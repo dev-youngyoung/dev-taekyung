@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="EUC-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>▒ 나이스다큐 (전자구매시스템)▒</title>
+    <link rel="stylesheet" type="text/css" href="/web/buyer/html/css/style.css">
+    <script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery-3.1.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery.easing.1.3.js"></script>
+    <script language="javascript" type="text/javascript" src="/web/buyer/html/js/common.js"></script>
+    <script language="javascript" type="text/javascript" src="/web/buyer/html/js/common.js"></script>
+    <script language="javascript" type="text/javascript" src="./bluebird.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./jspdf.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./html2canvas.js"></script>
+    <script language="javascript" type="text/javascript" src="./html2canvas.min.js"></script>
+<style type="text/css">
+.glabel {
+	color: #707070;
+	FONT-FAMILY: "돋움", "Arial";
+	FONT-SIZE: 9pt;
+	/*LINE-HEIGHT: 13pt;*/
+	border: 1 solid;
+	border-color: #d7d5ca;
+	text-align: left;
+	background-color: #ffff00
+}
+td {  font-family: "나눔고딕, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+.lineTable { border-collapse:collapse; border:1px solid black }
+.lineTable td { border:1px solid black }
+.lineTable .noborder { border:0 }
+</style>
+<script type="text/javascript">
+function html2Pdf(){
+	var f = document.forms['form1'];
+	splitHtml(f, 'cont_html', false);
+	splitHtml(f, 'cont_html_rm', true);
+	f.action= "http://new.nicedocu.com/web/buyer/html_to_pdf.jsp";
+	//document.getElementById("__html_0").innerHTML=f["cont_html_rm_0"].value;
+	f.submit();
+}
+
+
+function jsHtml2Pdf(){
+	html2canvas(document.getElementById("__html_0"), {
+     onrendered: function(canvas) {
+ 
+    // 캔버스를 이미지로 변환
+    var imgData = canvas.toDataURL('image/png');
+     
+    var imgWidth = 210; // 이미지 가로 길이(mm) A4 기준
+    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var heightLeft = imgHeight;
+     
+        var doc = new jsPDF('p', 'mm');
+        var position = 0;
+         
+        // 첫 페이지 출력
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+         
+        // 한 페이지 이상일 경우 루프 돌면서 출력
+        while (heightLeft >= 20) {
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+ 
+        // 파일 저장
+        doc.save('sample_A4.pdf');
+  }
+});
+
+}
+</script>
+</head>
+<body>
+
+<button type="button" class="sbtn color" onclick="htmlToPdf()">pdf변환</button>
+<button type="button" class="sbtn color" onclick="jsHtml2Pdf()">jsPdf변환</button>
+
+<form name="form1" method="post" enctype="multipart/form-data">
+
+
+<div class="cont_warp">
+<div id="__html">
+<div style="{{template.template_style}}; padding: 50px 25px 50px 25px" id="__html_0">
+
+<!-- body 아래 부분이 실제 pd4ml에 사용될 부분 -->
+<input type="hidden" name="recv_write_save"> 
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="center" style="font-size: 26px;"><b>추 가 합 의 서</b></td>
+    </tr>
+</table>
+</p>
+
+<p style="margin-top: 20px;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col></colgroup>
+    <tr>
+        <td style="text-align:justify">본 합의서는 <span class="cust_name_area_1">㈜위메프</span>(이하 “위메프”라 함)와 <span class="cust_name_area_2">__</span>(이하 “파트너사”라 함) 간에 체결한 “상품 입점 계약”(이하 “본 계약”이라 함)에 대한 추가합의서로서, “파트너사”가 각 항목에 동의 의사를 표시하시면 해당 항목에 대하여 “위메프”와 “파트너사”간에 합의한 것으로 봅니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-top: 1px solid black;margin-top: 30px;">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="center" style="padding-top: 30px;font-size: 15px;"><b>■ 위메프 노출지원 프로그램 이용 ■</b></td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="3" cellspacing="0" class="lineTable">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="center" style="color: red;" class="noborder"><b>[3월 사전예약 프로모션]</b></td>
+    </tr>
+    <tr>
+        <td style="color: red;" class="noborder">2019년 3월 31일까지 본 프로그램 이용에 동의하신 “파트너사”에게는 “위매프”가 2019년 4월 1일까지 위메프 광고주센터의 “파트너사” 계정으로 99,000원 상당의 광고쿠폰(유효기간: 2019년 4월 30일)을 제공해 드립니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col width="20px"><col></colgroup>
+    <tr>
+        <td valign="top"><b>1.</b></td>
+        <td style="text-align:justify"><b>소개</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">‘위메프 노출지원 프로그램’은 위메프의 AI 추천 로직이 고객의 성별, 연령, 클릭, 구매이력 등 빅데이터를 분석하여 구매가능성이 높은 고객에게 “파트너사”의 상품 노출을 지원하는 프로그램입니다. “파트너사”는 효과적인 상품 노출을 통하여 매출 상승 효과를 기대하실 수 있습니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col width="20px"><col></colgroup>
+    <tr>
+        <td valign="top"><b>2.</b></td>
+        <td style="text-align:justify"><b>노출지원영역</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">‘위메프 노출지원 프로그램’은 위메프 모바일 앱(App)의 홈 상단부터 검색결과, 위메프픽까지 위메프의 주요 노출영역을 모두 활용하여 참여하시는 “파트너사”의 상품의 노출을 지원합니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <table class="lineTable" width="100%" cellpadding="3" cellspacing="0">
+                <colgroup><col width="15%"><col width="24%"><col width="46%"><col></colgroup>
+                <tbody>
+                <tr>
+                    <td align="center">플랫폼</td>
+                    <td align="center">노출지원영역</td>
+                    <td align="center">설명</td>
+                    <td align="center">출시예정일</td>
+                </tr>
+                <tr>
+                    <td align="center">모바일 앱</td>
+                    <td align="center">홈 상단</td>
+                    <td>홈 퀵메뉴 하단, 띠배너 상단영역</td>
+                    <td align="center">2019-04-01</td>
+                </tr>
+                <tr>
+                    <td align="center">전체</td>
+                    <td align="center">검색결과</td>
+                    <td>검색결과 판매자추천 영역</td>
+                    <td align="center">2019-04-01</td>
+                </tr>
+                <tr>
+                    <td align="center">모바일 앱</td>
+                    <td align="center">위메프픽 전체</td>
+                    <td>전체 121번 구좌 이후 영역</td>
+                    <td align="center">2019-04-01</td>
+                </tr>
+                <tr>
+                    <td align="center">모바일 앱</td>
+                    <td align="center">위메프픽 우먼 ,맨, 키즈</td>
+                    <td>우먼, 맨, 키즈 11,21,31,41,51번 영역</td>
+                    <td align="center">2019-04-01</td>
+                </tr>
+                <tr>
+                    <td align="center">모바일 앱</td>
+                    <td align="center">W추천</td>
+                    <td>모바일 상단 네비게이션바 (GNB) 5번째 영역</td>
+                    <td align="center">2019-04-01</td>
+                </tr>
+                <tr>
+                    <td align="center">모바일 앱</td>
+                    <td align="center">기타 주요 노출영역</td>
+                    <td>노출영역 지속 추가예정</td>
+                    <td align="center">미정</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">* 단, 노출지원영역 및 영역별 출시예정일은 향후 앱 개편에 따라 다소 변경될 수 있습니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col width="20px"><col></colgroup>
+    <tr>
+        <td valign="top"><b>3.</b></td>
+        <td style="text-align:justify"><b>이용기간</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">2019. 4. 1.부터* “파트너사”가 본 프로그램의 이용 동의를 철회 신청한 날 또는 “위메프”가 본 프로그램을 종료하는 날까지</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">* 2019. 4. 1. 이후에 프로그램 이용에 동의하신 경우에는 동의하신 날부터</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+    <tr>
+        <td valign="top"><b>4.</b></td>
+        <td colspan="3" style="text-align:justify"><b>서비스 이용대금</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td valign="top">(1)</td>
+        <td colspan="2" style="text-align:justify">기본 패키지: 월 99,000원</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">①</td>
+        <td style="text-align:justify">광고포인트 충전방식: 정산대금 상계</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align:justify">본 프로그램의 이용에 동의하시면 매월 1일마다 정기적으로 광고포인트가 자동 충전되며 충전된 광고포인트는 “파트너사”의 정산대금에서 상계됩니다. 다만, 정산대금이 500,000원 보다 적거나 없는 경우에는 광고 포인트 자동 충전이 진행되지 않으므로, 이 경우에는 “파트너사”가 광고주센터에서 신용카드, 실시간계좌이체 등의 결제수단으로 광고포인트를 충전하셔야 본 프로그램의 혜택을 적용 받으실 수 있습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">②</td>
+        <td style="text-align:justify">광고포인트 차감방식: 유효 클릭 당 110원(VAT별도), 충전된 광고포인트 내 차감</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align:justify">충전된 광고포인트는 본 프로그램의 노출지원영역에서 발생한 유효 클릭수에 따라 차감되며, 유효 클릭 당 기본단가는 110원(VAT별도)입니다. 본 프로그램에 의해 “파트너사”가 부담하는 총 광고비는 충전된 광고 포인트 금액을 넘지 않으며, 충전된 광고포인트가 모두 소진된 경우에는 “파트너사”의 상품이 본 프로그램의 노출지원영역에서 자동으로 제외됩니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td valign="top">(2)</td>
+        <td colspan="2" style="text-align:justify">추가 패키지: 광고포인트 추가충전, 충전금액 상향, 충전주기 변경, 유효 클릭 당 단가 변경</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">①</td>
+        <td style="text-align:justify">광고포인트 추가충전: “파트너사”가 희망하시는 경우, 광고주센터에서 광고포인트 금액을 원하는 금액만큼 추가로 충전할 수 있습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">②</td>
+        <td style="text-align:justify">광고포인트 충전금액 상향: “파트너사”가 희망하시는 경우, 광고주센터에서 매월 자동 충전되는 광고포인트 금액을 99,000원 보다 상향 설정하실 수 있습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">③</td>
+        <td style="text-align:justify">광고포인트 충전주기 변경: “파트너사”가 희망하시는 경우, 광고포인트 자동 충전 시점을 매월 1일이 아닌 ‘광고포인트 소진 완료 시점’으로 설정하실 수 있습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">④</td>
+        <td style="text-align:justify">유효 클릭당 단가 변경: “파트너사”가 희망하시는 경우, 유효 클릭당 단가를 기본 110원(VAT 별도)보다 상향 설정하실 수 있습니다. 유효 클릭당 단가는 AI 추천 로직의 상품 노출 우선순위 설정 시에 반영되므로, 이를 통하여 본 프로그램의 노출지원영역에서 “파트너사” 상품의 클릭수 상승을 기대하실 수 있습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td valign="top">(3)</td>
+        <td colspan="2" style="text-align:justify">서비스 이용 중단 및 환불 정책</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">①</td>
+        <td style="text-align:justify">이용 중단: “파트너사”가 본 프로그램의 이용 중단을 희망하시는 경우에는, 광고주센터에서 ‘위메프 노출 지원 프로그램 이용 중단 신청’이 가능합니다. 이용 중단 신청 시, 24시간 이내에  “파트너사”의 상품이 본 프로그램의 노출대상에서 제외되며 유효 클릭 당 광고비 차감도 함께 중단됩니다. 또한, 이용 중단 상태에서는 매월 1일 자동 광고포인트 충전이 이뤄지지 않습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top">②</td>
+        <td style="text-align:justify">환불 정책: “파트너사”가 충전된 광고포인트의 환불을 희망하시는 경우에는, 먼저 서비스 이용 중단을 신청하셔야 하며, 이용 중단 신청 이후의 잔여 광고포인트는 광고주센터에서 환불 신청이 가능합니다. “파트너사”가 정산대금에서 광고포인트를 자동 충전하신 경우에는 환불 신청 시 잔여 광고포인트 금액이 정산대금에 가산되며, “파트너사”가 다른 결제수단으로 광고포인트를 충전하신 경우에는 환불신청 시 잔여 광고포인트가 해당 결제수단으로 환불됩니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col width="20px"><col></colgroup>
+    <tr>
+        <td valign="top"><b>5.</b></td>
+        <td style="text-align:justify"><b>성과확인</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">본 프로그램을 통하여 발생하는 총 유효 클릭수, 광고 매출, 광고 ROAS 등의 실적 데이터는 위메프 광고주센터에서 확인하실 수 있습니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col width="20px"><col></colgroup>
+    <tr>
+        <td valign="top"><b>6.</b></td>
+        <td style="text-align:justify"><b>상세 이용방법 안내</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">본 프로그램에 관한 보다 상세한 내용은 위메프 광고주센터(https://ad.wemakeprice.com)의 공지사항에서 확인하실 수 있습니다.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="text-align:justify">* 위메프 광고주센터의 광고주 ID/PW는 파트너센터의 파트너 ID/PW와 동일합니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="3" cellspacing="0" class="lineTable">
+    <colgroup><col></colgroup>
+    <tr>
+        <td class="noborder" align="center" style="color: red;"><b>[3월 사전예약 프로모션]</b></td>
+    </tr>
+    <tr>
+        <td class="noborder" style="color: red;">2019년 3월 31일까지 본 프로그램 이용에 동의하신 “파트너사”에게는 “위매프”가 2019년 4월 1일까지 위메프 광고주센터의 “파트너사” 계정으로 99,000원 상당의 광고쿠폰(유효기간: 2019년 4월 30일)을 제공해 드립니다.</td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 30px;">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="center"><label><span><input type="radio" name="cont_radio_01" class="input_r" required="Y" writable="Y" hname="동의여부" errfunc="tabView(0)" value="Y"/></span>예, 동의합니다.</label> &nbsp; &nbsp; <label><span><input type="radio" name="cont_radio_01" class="input_r" required="Y" writable="Y" hname="동의여부" errfunc="tabView(0)" value="N"/></span>아니요, 동의하지 않습니다.</label></td>
+    </tr>
+</table>
+</p>
+
+<p>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:50px">
+    <tbody>
+    <tr>
+        <td align="center" style="font-size: 14px;"><span class="cont_year_area"> </span>년 <span class="cont_month_area"> </span>월 <span class="cont_day_area"> </span>일</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:40px">
+    <tbody>
+    <tr>
+        <td valign="top" width="49%" class="noborder">
+            <table border="0" cellpadding="3" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td class="noborder">‘위메프’</td>
+                </tr>
+                <tr>
+                    <td class="noborder">(사업자등록번호 : <span class="vendcd1_1">120</span>-<span class="vendcd2_1">87</span>-<span class="vendcd3_1">55227</span>)</td>
+                </tr>
+                <tr>
+                    <td class="noborder"><span class="address_area_1">서울시 강남구 영동대로 502 위메프빌딩</span></td>
+                </tr>
+                <tr>
+                    <td class="noborder"><span class="cust_name_area_1">주식회사 위메프</span></td>
+                </tr>
+                <tr>
+                    <td class="noborder">대표이사 <span class="boss_name_area_1">박은상</span><font color="white">..</font>(인)</td>
+                </tr>
+                </tbody>
+            </table> </td>
+        <td width="2%" class="noborder"></td>
+        <td valign="top" width="49%" class="noborder">
+            <table border="0" cellpadding="3" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td class="noborder">‘파트너사’</td>
+                </tr>
+                <tr>
+                    <td>(사업자등록번호 : <span class="vendcd1_2"></span>-<span class="vendcd2_2"></span>-<span class="vendcd3_2"></span>)</td>
+                </tr>
+                <tr>
+                    <td class="noborder"><span class="address_area_2"></span></td>
+                </tr>
+                <tr>
+                    <td class="noborder"><span class="cust_name_area_2"></span></td>
+                </tr>
+                <tr>
+                    <td class="noborder">대표이사 <span class="boss_name_area_2"></span><font color="white">..</font>(인)</td>
+                </tr>
+                </tbody>
+            </table> </td>
+    </tr>
+    </tbody>
+</table>
+</p>
+<!-- 여기까지   HTML 종료 -->
+
+</div>
+</div>		
+</div>
+
+
+</form>
+
+</body>
+</html>

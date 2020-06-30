@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="order" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1053648e-a3f0-4d3a-8408-b27214fc2a7b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.background.image" value="C:\Users\Administrator\Desktop\supp_deli_list.gif"/>
+	<property name="ireport.background.image.properties" value="false,true,0.25,0,0,0,0,0,0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Default"/>
+	<subDataset name="Table Dataset 1" uuid="2c71fac8-4f7a-4603-8cc0-7c69ada1ac2b">
+		<parameter name="recv_member_no" class="java.lang.String" isForPrompting="false">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="order_no" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="order_chasu" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select substr(b.vendcd,1,3)||'-'||substr(b.vendcd,4,2)||'-'||substr(b.vendcd,6,5) recv_vendcd
+        ,b.member_name recv_member_name
+        ,b.boss_name recv_boss_name
+        ,b.address recv_address
+        ,substr(c.vendcd,1,3)||'-'||substr(c.vendcd,4,2)||'-'||substr(c.vendcd,6,5) supp_vendcd
+        ,c.member_name supp_member_name
+        ,c.boss_name supp_boss_name
+        ,c.address supp_address
+        ,to_date(a.order_dt,'%Y%m%d') order_dt2
+        ,(select user_name from tcb_person where member_no = a.recv_member_no and person_seq = a.order_person_seq) order_user_name
+        ,(select user_name from tcb_person where member_no = a.recv_member_no and person_seq = a.check_person_seq) check_user_name
+        ,a.*
+from tcb_order_master a
+      ,tcb_member b
+      ,tcb_member c
+where a.recv_member_no = b.member_no
+  and a.supp_member_no = c.member_no
+and a.recv_member_no = $P{recv_member_no}
+and  a.order_no = $P{order_no}
+and a.order_chasu = $P{order_chasu}]]>
+		</queryString>
+		<field name="recv_vendcd" class="java.lang.String"/>
+		<field name="recv_member_name" class="java.lang.String"/>
+		<field name="recv_boss_name" class="java.lang.String"/>
+		<field name="recv_address" class="java.lang.String"/>
+		<field name="supp_vendcd" class="java.lang.String"/>
+		<field name="supp_member_name" class="java.lang.String"/>
+		<field name="supp_boss_name" class="java.lang.String"/>
+		<field name="supp_address" class="java.lang.String"/>
+		<field name="order_dt2" class="java.sql.Timestamp"/>
+		<field name="order_user_name" class="java.lang.String"/>
+		<field name="check_user_name" class="java.lang.String"/>
+		<field name="recv_member_no" class="java.lang.String"/>
+		<field name="order_no" class="java.lang.String"/>
+		<field name="order_chasu" class="java.lang.Integer"/>
+		<field name="supp_member_no" class="java.lang.String"/>
+		<field name="order_nm" class="java.lang.String"/>
+		<field name="order_dt" class="java.lang.String"/>
+		<field name="price_form" class="java.lang.String"/>
+		<field name="pay_condition" class="java.lang.String"/>
+		<field name="deli_terms" class="java.lang.String"/>
+		<field name="note" class="java.lang.String"/>
+		<field name="order_div" class="java.lang.String"/>
+		<field name="order_form" class="java.lang.String"/>
+		<field name="order_dept" class="java.lang.String"/>
+		<field name="order_id" class="java.lang.String"/>
+		<field name="order_person_seq" class="java.lang.Integer"/>
+		<field name="order_tel" class="java.lang.String"/>
+		<field name="order_req_dt" class="java.lang.String"/>
+		<field name="order_amt" class="java.math.BigDecimal"/>
+		<field name="check_person_seq" class="java.lang.Integer"/>
+		<field name="check_id" class="java.lang.String"/>
+		<field name="check_tel" class="java.lang.String"/>
+		<field name="check_fax" class="java.lang.String"/>
+		<field name="cont_no" class="java.lang.String"/>
+		<field name="cont_chasu" class="java.lang.Integer"/>
+		<field name="cancel_reason" class="java.lang.String"/>
+		<field name="cancel_id" class="java.lang.String"/>
+		<field name="cancel_person_seq" class="java.lang.Integer"/>
+		<field name="cancel_dt" class="java.lang.String"/>
+		<field name="recept_id" class="java.lang.String"/>
+		<field name="recept_person_seq" class="java.lang.Integer"/>
+		<field name="recept_dt" class="java.lang.String"/>
+		<field name="status" class="java.lang.String"/>
+		<field name="reg_person_seq" class="java.lang.Integer"/>
+		<field name="reg_dt" class="java.lang.String"/>
+		<field name="modi_person_seq" class="java.lang.Integer"/>
+		<field name="modi_dt" class="java.lang.String"/>
+		<field name="cancel_tel" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="Table Dataset 2" uuid="93306142-65ce-45a9-bd17-973d6a20832f">
+		<parameter name="order_chasu" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="order_no" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="recv_member_no" class="java.lang.String" isForPrompting="false">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select *
+        ,to_number(item_cnt) item_cnt2
+        ,to_number(unit_cost) unit_cost2
+        ,to_number(cost_sum) cost_sum2
+        ,to_char(to_date(deli_dt,'%Y%m%d'),'%Y-%m-%d') deli_dt2
+  from tcb_order_item
+where recv_member_no = $P{recv_member_no}
+and  order_no = $P{order_no}
+and order_chasu = $P{order_chasu}]]>
+		</queryString>
+		<field name="recv_member_no" class="java.lang.String"/>
+		<field name="order_no" class="java.lang.String"/>
+		<field name="item_cd" class="java.lang.String"/>
+		<field name="item_nm" class="java.lang.String"/>
+		<field name="item_unit" class="java.lang.String"/>
+		<field name="item_size" class="java.lang.String"/>
+		<field name="item_cnt" class="java.math.BigDecimal"/>
+		<field name="unit_cost" class="java.math.BigDecimal"/>
+		<field name="cost_sum" class="java.math.BigDecimal"/>
+		<field name="deli_dt" class="java.lang.String"/>
+		<field name="deli_place" class="java.lang.String"/>
+		<field name="order_chasu" class="java.lang.Integer"/>
+		<field name="item_cnt2" class="java.math.BigDecimal"/>
+		<field name="unit_cost2" class="java.math.BigDecimal"/>
+		<field name="cost_sum2" class="java.math.BigDecimal"/>
+		<field name="deli_dt2" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="order_chasu" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="order_no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="recv_member_no" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select b.member_name recv_member_name
+        ,to_date(a.order_dt,'%Y%m%d') order_dt2
+        ,a.*
+from tcb_order_master a
+      ,tcb_member b
+      ,tcb_member c
+where a.recv_member_no = b.member_no
+  and a.supp_member_no = c.member_no
+and a.recv_member_no = $P{recv_member_no}
+and  a.order_no = $P{order_no}
+and a.order_chasu = $P{order_chasu}]]>
+	</queryString>
+	<field name="recv_member_name" class="java.lang.String"/>
+	<field name="order_dt2" class="java.sql.Timestamp"/>
+	<field name="recv_member_no" class="java.lang.String"/>
+	<field name="order_no" class="java.lang.String"/>
+	<field name="order_chasu" class="java.lang.Integer"/>
+	<field name="supp_member_no" class="java.lang.String"/>
+	<field name="order_nm" class="java.lang.String"/>
+	<field name="order_dt" class="java.lang.String"/>
+	<field name="price_form" class="java.lang.String"/>
+	<field name="pay_condition" class="java.lang.String"/>
+	<field name="deli_terms" class="java.lang.String"/>
+	<field name="note" class="java.lang.String"/>
+	<field name="order_div" class="java.lang.String"/>
+	<field name="order_form" class="java.lang.String"/>
+	<field name="order_dept" class="java.lang.String"/>
+	<field name="order_id" class="java.lang.String"/>
+	<field name="order_person_seq" class="java.lang.Integer"/>
+	<field name="order_tel" class="java.lang.String"/>
+	<field name="order_req_dt" class="java.lang.String"/>
+	<field name="order_amt" class="java.math.BigDecimal"/>
+	<field name="check_person_seq" class="java.lang.Integer"/>
+	<field name="check_id" class="java.lang.String"/>
+	<field name="check_tel" class="java.lang.String"/>
+	<field name="check_fax" class="java.lang.String"/>
+	<field name="cont_no" class="java.lang.String"/>
+	<field name="cont_chasu" class="java.lang.Integer"/>
+	<field name="cancel_reason" class="java.lang.String"/>
+	<field name="cancel_id" class="java.lang.String"/>
+	<field name="cancel_person_seq" class="java.lang.Integer"/>
+	<field name="cancel_dt" class="java.lang.String"/>
+	<field name="recept_id" class="java.lang.String"/>
+	<field name="recept_person_seq" class="java.lang.Integer"/>
+	<field name="recept_dt" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="reg_person_seq" class="java.lang.Integer"/>
+	<field name="reg_dt" class="java.lang.String"/>
+	<field name="modi_person_seq" class="java.lang.Integer"/>
+	<field name="modi_dt" class="java.lang.String"/>
+	<field name="cancel_tel" class="java.lang.String"/>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="179" y="-1" width="195" height="53" uuid="7f4c67e5-b8b1-4a10-8c7c-d8d130fb18f6"/>
+				<textElement textAlignment="Center">
+					<font size="36" pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[발주서]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="41" width="234" height="38" uuid="050b37fd-5b43-4e6e-9813-4c48c528fd2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(Purchase Order)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="358" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" positionType="Float" x="0" y="143" width="555" height="33" isPrintWhenDetailOverflows="true" uuid="eb4d3613-35a7-4773-a6d0-5cd7e8bee00d"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="aa8820bd-dc03-462f-b6d3-65721ea16315">
+						<datasetParameter name="recv_member_no">
+							<datasetParameterExpression><![CDATA[$P{recv_member_no}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="order_no">
+							<datasetParameterExpression><![CDATA[$P{order_no}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="order_chasu">
+							<datasetParameterExpression><![CDATA[$P{order_chasu}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="65" uuid="70f3e8b6-906d-4ab6-af27-4863fb813df7">
+						<jr:tableFooter height="26" rowSpan="1">
+							<box>
+								<pen lineWidth="1.0"/>
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="65" height="26" isPrintWhenDetailOverflows="true" uuid="3c579c17-961a-4bde-965d-50ea76c0609f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									<paragraph leftIndent="3"/>
+								</textElement>
+								<text><![CDATA[비고]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnGroup width="65" uuid="e5f2c9e6-efc9-4c75-8050-2ccb6fb12b98">
+							<jr:columnGroup width="65" uuid="e16e0b4f-8a01-4825-b131-4620a10db273">
+								<jr:columnGroup width="65" uuid="8acdd203-3d9d-434e-9a25-0b63b0cbfc8d">
+									<jr:columnFooter height="30" rowSpan="1">
+										<box>
+											<pen lineWidth="1.0"/>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<staticText>
+											<reportElement x="0" y="0" width="65" height="30" isPrintWhenDetailOverflows="true" uuid="118b7554-7a73-454b-90a3-ede48abc4b38"/>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+												<paragraph leftIndent="3"/>
+											</textElement>
+											<text><![CDATA[결제형태]]></text>
+										</staticText>
+									</jr:columnFooter>
+									<jr:columnGroup width="65" uuid="d5251ede-ec05-4ebc-ba9d-7d82a660a62f">
+										<jr:column width="65" uuid="b6f191a2-a949-40be-8132-414456158e0c">
+											<jr:columnHeader height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<staticText>
+													<reportElement x="0" y="0" width="65" height="26" isPrintWhenDetailOverflows="true" uuid="13017fa7-1e39-47e6-a1c1-0f83c6ed92db"/>
+													<textElement textAlignment="Center" verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3"/>
+													</textElement>
+													<text><![CDATA[발주부서]]></text>
+												</staticText>
+											</jr:columnHeader>
+											<jr:columnFooter height="0" rowSpan="1"/>
+											<jr:detailCell height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<staticText>
+													<reportElement x="0" y="0" width="65" height="26" isPrintWhenDetailOverflows="true" uuid="8b7e5979-0b1d-4e05-8ea1-09dc8111181f"/>
+													<textElement textAlignment="Center" verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3"/>
+													</textElement>
+													<text><![CDATA[검수자]]></text>
+												</staticText>
+											</jr:detailCell>
+										</jr:column>
+									</jr:columnGroup>
+								</jr:columnGroup>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+					<jr:columnGroup width="489" uuid="f1bd51bd-f379-4ba9-a31c-2dd738cae341">
+						<jr:tableFooter height="26" rowSpan="1">
+							<box>
+								<pen lineWidth="1.0"/>
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<elementGroup>
+								<textField isStretchWithOverflow="true">
+									<reportElement x="0" y="0" width="489" height="26" isPrintWhenDetailOverflows="true" uuid="623f2b4b-5ebc-404c-bc64-dd2d3600fc1f"/>
+									<textElement verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3" rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+								</textField>
+							</elementGroup>
+						</jr:tableFooter>
+						<jr:columnGroup width="489" uuid="cbb0cb35-1657-47d6-bb74-11ea84c38944">
+							<jr:columnGroup width="489" uuid="eab35554-f20e-4aef-907f-5f0ca793fee4">
+								<jr:columnGroup width="116" uuid="da294444-6662-45a2-97f2-941473bf9c6c">
+									<jr:columnFooter height="30" rowSpan="1">
+										<box>
+											<pen lineWidth="1.0"/>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<textField>
+											<reportElement x="0" y="0" width="116" height="30" isPrintWhenDetailOverflows="true" uuid="76b829d6-f4d2-48b0-b37e-11b4a6769a4a"/>
+											<textElement verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+												<paragraph leftIndent="3" rightIndent="3"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{price_form}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:columnGroup width="116" uuid="45fb0790-b682-4808-8cac-a72b8f9c5501">
+										<jr:column width="116" uuid="9e6ce42f-a7e2-4bc2-8cfb-35cec75d75d4">
+											<jr:columnHeader height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<textField>
+													<reportElement x="0" y="0" width="116" height="26" isPrintWhenDetailOverflows="true" uuid="e7c2aa10-e1eb-4af0-998d-ae1c5de86b55"/>
+													<textElement verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3" rightIndent="3"/>
+													</textElement>
+													<textFieldExpression><![CDATA[$F{order_dept}]]></textFieldExpression>
+												</textField>
+											</jr:columnHeader>
+											<jr:columnFooter height="0" rowSpan="1"/>
+											<jr:detailCell height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<textField>
+													<reportElement x="0" y="0" width="116" height="26" uuid="b2d3b16c-2682-4d79-94be-c74f28bcc7a2"/>
+													<textElement verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3" rightIndent="3"/>
+													</textElement>
+													<textFieldExpression><![CDATA[$F{check_user_name}]]></textFieldExpression>
+												</textField>
+											</jr:detailCell>
+										</jr:column>
+									</jr:columnGroup>
+								</jr:columnGroup>
+								<jr:columnGroup width="64" uuid="f413348f-64aa-476e-9f07-5459795e6132">
+									<jr:columnFooter height="30" rowSpan="1">
+										<box>
+											<pen lineWidth="1.0"/>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<staticText>
+											<reportElement x="0" y="0" width="64" height="30" isPrintWhenDetailOverflows="true" uuid="e4572a97-b93c-4340-bfdd-f678973bd44f"/>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+												<paragraph leftIndent="3"/>
+											</textElement>
+											<text><![CDATA[지불조건]]></text>
+										</staticText>
+									</jr:columnFooter>
+									<jr:columnGroup width="64" uuid="0d3aac36-0394-4cff-af7e-741e09f53ed9">
+										<jr:column width="64" uuid="c771b339-3831-4dc0-8af3-99b3951b2f39">
+											<jr:columnHeader height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<staticText>
+													<reportElement x="0" y="0" width="64" height="26" isPrintWhenDetailOverflows="true" uuid="9a42d334-079e-4aaa-aa6d-097bd1920e0e"/>
+													<textElement textAlignment="Center" verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3"/>
+													</textElement>
+													<text><![CDATA[발주자]]></text>
+												</staticText>
+											</jr:columnHeader>
+											<jr:columnFooter height="0" rowSpan="1"/>
+											<jr:detailCell height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<staticText>
+													<reportElement x="0" y="0" width="64" height="26" isPrintWhenDetailOverflows="true" uuid="14924a18-3041-42e6-b1fe-5005971a0c12"/>
+													<textElement textAlignment="Center" verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3"/>
+													</textElement>
+													<text><![CDATA[검수자 Tel]]></text>
+												</staticText>
+											</jr:detailCell>
+										</jr:column>
+									</jr:columnGroup>
+								</jr:columnGroup>
+								<jr:columnGroup width="309" uuid="23c2f456-3a5f-4f4a-ba5d-13ed1a4e3dec">
+									<jr:columnFooter height="30" rowSpan="1">
+										<box>
+											<pen lineWidth="1.0"/>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<textField isBlankWhenNull="true">
+											<reportElement x="0" y="0" width="309" height="30" isPrintWhenDetailOverflows="true" uuid="f178e311-f200-4b70-8458-ebff513ed4b5"/>
+											<textElement verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+												<paragraph leftIndent="3" rightIndent="3"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{pay_condition}]]></textFieldExpression>
+										</textField>
+									</jr:columnFooter>
+									<jr:columnGroup width="132" uuid="76872763-a864-4463-b375-bbdb4b712918">
+										<jr:column width="132" uuid="a59ccc5d-8635-405c-a0c2-62e59a693ccc">
+											<jr:columnHeader height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<textField>
+													<reportElement x="0" y="0" width="132" height="26" uuid="35b48847-c3ce-4f43-af05-3f5c88b49dfb"/>
+													<textElement verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3" rightIndent="3"/>
+													</textElement>
+													<textFieldExpression><![CDATA[$F{order_user_name}]]></textFieldExpression>
+												</textField>
+											</jr:columnHeader>
+											<jr:columnFooter height="0" rowSpan="1"/>
+											<jr:detailCell height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<textField isStretchWithOverflow="true">
+													<reportElement x="0" y="0" width="132" height="26" isPrintWhenDetailOverflows="true" uuid="01e7fdc7-9d2c-4a65-bf7c-cec8f6388dd9"/>
+													<textElement verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3" rightIndent="3"/>
+													</textElement>
+													<textFieldExpression><![CDATA[$F{check_tel}+" "]]></textFieldExpression>
+												</textField>
+											</jr:detailCell>
+										</jr:column>
+									</jr:columnGroup>
+									<jr:columnGroup width="177" uuid="f84e13f9-6c0b-4347-96fe-c4ebfded7941">
+										<jr:column width="66" uuid="7532e625-245e-4035-9fda-ccd35e30a364">
+											<jr:columnHeader height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<staticText>
+													<reportElement x="0" y="0" width="66" height="26" isPrintWhenDetailOverflows="true" uuid="45110a31-5151-48fd-9ede-5bbd2dd94ba2"/>
+													<textElement textAlignment="Center" verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3"/>
+													</textElement>
+													<text><![CDATA[발주자 Tel]]></text>
+												</staticText>
+											</jr:columnHeader>
+											<jr:detailCell height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<staticText>
+													<reportElement x="0" y="0" width="66" height="26" isPrintWhenDetailOverflows="true" uuid="76177ed2-5196-432a-8b4c-55112934d0de"/>
+													<textElement textAlignment="Center" verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3"/>
+													</textElement>
+													<text><![CDATA[검수자 Tel]]></text>
+												</staticText>
+											</jr:detailCell>
+										</jr:column>
+										<jr:column width="111" uuid="baa08681-8ab4-4592-8823-79c87cc6417e">
+											<jr:columnHeader height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<textField>
+													<reportElement x="0" y="0" width="111" height="26" isPrintWhenDetailOverflows="true" uuid="1f5ab60f-1a30-4d26-bec2-9347df2f0995"/>
+													<textElement verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3" rightIndent="3"/>
+													</textElement>
+													<textFieldExpression><![CDATA[$F{order_tel}+" "]]></textFieldExpression>
+												</textField>
+											</jr:columnHeader>
+											<jr:detailCell height="26" rowSpan="1">
+												<box>
+													<pen lineWidth="1.0"/>
+													<topPen lineWidth="1.0"/>
+													<leftPen lineWidth="1.0"/>
+													<bottomPen lineWidth="1.0"/>
+													<rightPen lineWidth="1.0"/>
+												</box>
+												<textField>
+													<reportElement x="0" y="0" width="111" height="26" isPrintWhenDetailOverflows="true" uuid="276a2e48-e29b-4304-95e6-f68b2b4d6ba9"/>
+													<textElement verticalAlignment="Middle">
+														<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+														<paragraph leftIndent="3" rightIndent="3"/>
+													</textElement>
+													<textFieldExpression><![CDATA[$F{check_fax}+" "]]></textFieldExpression>
+												</textField>
+											</jr:detailCell>
+										</jr:column>
+									</jr:columnGroup>
+								</jr:columnGroup>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table" positionType="Float" x="0" y="26" width="555" height="100" isPrintWhenDetailOverflows="true" uuid="d8999d93-042d-491b-9904-126a20d45a85"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="6021bdda-6b9f-4943-a207-6e9662eca7c3">
+						<datasetParameter name="recv_member_no">
+							<datasetParameterExpression><![CDATA[$P{recv_member_no}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="order_no">
+							<datasetParameterExpression><![CDATA[$P{order_no}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="order_chasu">
+							<datasetParameterExpression><![CDATA[$P{order_chasu}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="26" uuid="fff9c385-67e8-42e8-a276-fdc7305e389f">
+						<jr:tableHeader style="table" height="104" rowSpan="4">
+							<staticText>
+								<reportElement x="0" y="0" width="26" height="104" uuid="eca6301d-6197-4911-ac5e-50bd9a688051"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<text><![CDATA[공
+급
+자]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="0" rowSpan="1"/>
+					</jr:column>
+					<jr:columnGroup width="91" uuid="9c7e8148-38c0-4580-a4aa-7578b403dfe5">
+						<jr:tableHeader style="table" height="26" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="91" height="26" uuid="702d7ca6-f3bb-479c-b0e8-ed12b9261686"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<text><![CDATA[등록번호]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnGroup width="91" uuid="313dec3e-def2-47ab-8708-a86424fe018a">
+							<jr:tableHeader style="table" height="26" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="91" height="26" uuid="bd20a3cb-a10b-4335-8de3-a2faa55206e0"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[상호(법인명)]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnGroup width="91" uuid="f0744773-c264-4ee8-81f3-4f79d5bdd2bf">
+								<jr:tableHeader style="table" height="26" rowSpan="1">
+									<staticText>
+										<reportElement x="0" y="0" width="91" height="26" uuid="af4e74f5-56dc-4d97-bc0c-d2b8a08e4405"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<text><![CDATA[대표자명]]></text>
+									</staticText>
+								</jr:tableHeader>
+								<jr:column width="91" uuid="2ffc0ccb-eda9-42ad-97a8-6c5fa7450a8f">
+									<jr:tableHeader style="table" height="26" rowSpan="1">
+										<staticText>
+											<reportElement x="0" y="0" width="91" height="26" uuid="ad2a0084-5254-40aa-aa09-f47c5069c98a"/>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+											</textElement>
+											<text><![CDATA[사업장주소]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:detailCell height="0" rowSpan="1"/>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+					<jr:columnGroup width="155" uuid="5522b371-1e42-491d-8fff-3b24ac7d43b9">
+						<jr:tableHeader style="table" height="26" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="155" height="26" uuid="db149901-d278-413e-a800-8f1fc9277e91"/>
+								<textElement verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									<paragraph leftIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{supp_vendcd}]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:columnGroup width="155" uuid="bfb04c92-1b68-438f-9657-3700ca699c85">
+							<jr:tableHeader style="table" height="26" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement x="0" y="0" width="155" height="26" uuid="e1853118-42cb-49a6-8e71-d1da5b2630c9"/>
+									<textElement verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{supp_member_name}]]></textFieldExpression>
+								</textField>
+							</jr:tableHeader>
+							<jr:columnGroup width="155" uuid="e2d42718-9721-4abe-b212-4adb79d022c8">
+								<jr:tableHeader style="table" height="26" rowSpan="1">
+									<textField isStretchWithOverflow="true">
+										<reportElement x="0" y="0" width="155" height="26" uuid="c34838d2-fba5-4457-b250-e68fb3fa526e"/>
+										<textElement verticalAlignment="Middle">
+											<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+											<paragraph leftIndent="3"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{supp_boss_name}]]></textFieldExpression>
+									</textField>
+								</jr:tableHeader>
+								<jr:column width="155" uuid="1c6b9837-0606-413d-b456-c41c155f8571">
+									<jr:tableHeader style="table" height="26" rowSpan="1">
+										<textField isStretchWithOverflow="true">
+											<reportElement x="0" y="0" width="155" height="26" uuid="cdee8088-40c4-4cb8-8589-a9b69c8a9c09"/>
+											<textElement verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+												<paragraph leftIndent="3"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{supp_address}]]></textFieldExpression>
+										</textField>
+									</jr:tableHeader>
+									<jr:detailCell height="0" rowSpan="1"/>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+					<jr:column width="26" uuid="90f4b528-7b8b-4152-a8be-ab1b14ec54f0">
+						<jr:tableHeader style="table" height="104" rowSpan="4">
+							<staticText>
+								<reportElement x="0" y="0" width="26" height="104" uuid="66df382e-a494-464c-b756-9d82b43a96f0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<text><![CDATA[공
+급
+받
+는
+자]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="0" rowSpan="1"/>
+					</jr:column>
+					<jr:columnGroup width="90" uuid="5d5f93ad-8278-4473-a182-b3db741ae6bb">
+						<jr:tableHeader style="table" height="26" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="26" uuid="c57d0d9f-3008-425e-bb81-2056c94201d6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<text><![CDATA[등록번호]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnGroup width="90" uuid="f1c48d48-8b5e-4aca-8a1b-e829dbac53da">
+							<jr:tableHeader style="table" height="26" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="90" height="26" uuid="e0e2d7fb-0196-4a95-8ee7-75ed4ed2d3b7"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[상호(법인명)]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:columnGroup width="90" uuid="34f8f4ad-44b8-452e-ab5b-c144f0d4044d">
+								<jr:tableHeader style="table" height="26" rowSpan="1">
+									<staticText>
+										<reportElement x="0" y="0" width="90" height="26" uuid="e97c349c-e9fd-4395-be4a-6354fb38e839"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<text><![CDATA[대표자명]]></text>
+									</staticText>
+								</jr:tableHeader>
+								<jr:column width="90" uuid="68dddbb2-ac12-45d0-bfb1-d05598e5ec08">
+									<jr:tableHeader style="table" height="26" rowSpan="1">
+										<staticText>
+											<reportElement x="0" y="0" width="90" height="26" uuid="81122f2a-d8cc-4695-8b57-6f862de5bbed"/>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+											</textElement>
+											<text><![CDATA[사업장주소]]></text>
+										</staticText>
+									</jr:tableHeader>
+									<jr:detailCell height="0" rowSpan="1"/>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+					<jr:columnGroup width="166" uuid="8c014cbe-0735-4ca1-947d-9197e4a78fa4">
+						<jr:tableHeader style="table" height="26" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="166" height="26" uuid="8fe1a13c-6c50-45b3-aec4-3d36dbff1cda"/>
+								<textElement verticalAlignment="Middle">
+									<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									<paragraph leftIndent="3"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{recv_vendcd}]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:columnGroup width="166" uuid="12f68039-7883-4a0d-8a8c-b215cc3da175">
+							<jr:tableHeader style="table" height="26" rowSpan="1">
+								<textField isStretchWithOverflow="true">
+									<reportElement x="0" y="0" width="166" height="26" uuid="177b647d-9afb-4d92-ad97-5a999c87d524"/>
+									<textElement verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{recv_member_name}]]></textFieldExpression>
+								</textField>
+							</jr:tableHeader>
+							<jr:columnGroup width="166" uuid="343c4fba-2953-4ca0-b475-c120a7b0266b">
+								<jr:tableHeader style="table" height="26" rowSpan="1">
+									<textField isStretchWithOverflow="true">
+										<reportElement x="0" y="0" width="166" height="26" uuid="837ae460-e8f7-4fb4-91df-505664eb585c"/>
+										<textElement verticalAlignment="Middle">
+											<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+											<paragraph leftIndent="3"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{recv_boss_name}]]></textFieldExpression>
+									</textField>
+								</jr:tableHeader>
+								<jr:column width="166" uuid="2fa426ef-9f11-4262-8544-f9c604e64e57">
+									<jr:tableHeader style="table" height="26" rowSpan="1">
+										<textField isStretchWithOverflow="true">
+											<reportElement x="0" y="0" width="166" height="26" uuid="2ceb79e9-a735-49b5-9455-76dd6fcf9a68"/>
+											<textElement verticalAlignment="Middle">
+												<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+												<paragraph leftIndent="3"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$F{recv_address}]]></textFieldExpression>
+										</textField>
+									</jr:tableHeader>
+									<jr:detailCell height="0" rowSpan="1"/>
+								</jr:column>
+							</jr:columnGroup>
+						</jr:columnGroup>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<textField isStretchWithOverflow="true" pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="52" y="0" width="149" height="20" uuid="fbf73f67-822c-49de-99ed-f5f09f737494"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font isBold="true" pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{order_dt2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="151" height="20" uuid="050eccf3-2e13-48c4-9396-0f76096b1bd3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true" pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA["발주번호 : "+$F{order_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="52" height="20" uuid="791a76b1-9341-47c2-808b-a345830ff015"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[발주일자 :]]></text>
+			</staticText>
+			<elementGroup>
+				<componentElement>
+					<reportElement key="table 1" style="table 1" positionType="Float" x="0" y="194" width="555" height="72" isPrintWhenDetailOverflows="true" uuid="9ba533b6-1ce4-4d5b-859c-e57310687902"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Table Dataset 2" uuid="1e5e43af-a02f-4c02-be23-eebdbdf5e6e1">
+							<datasetParameter name="recv_member_no">
+								<datasetParameterExpression><![CDATA[$P{recv_member_no}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="order_no">
+								<datasetParameterExpression><![CDATA[$P{order_no}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="order_chasu">
+								<datasetParameterExpression><![CDATA[$P{order_chasu}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="26" uuid="193747d7-7745-4dc0-b43b-0af2f775e8c9">
+							<jr:columnHeader style="table" height="39" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="26" height="39" uuid="39bdf14f-2938-46ba-ab51-0c5ff03e41a7"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[No]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table" height="39" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="26" height="39" uuid="edf2c41f-1208-41ab-8c3a-aa062e7972d4"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="207" uuid="70ae5102-a6bf-4c25-9030-0bd2ee27f42a">
+							<jr:columnHeader style="table" height="39" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="207" height="19" uuid="4c783fe5-6008-4c4c-8e8e-0e054c524d38"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[품     명]]></text>
+								</staticText>
+								<staticText>
+									<reportElement x="0" y="19" width="207" height="19" uuid="c3bfe99c-acdd-401f-a106-34ac583dbcb6"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[규     격]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table" height="39" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="20" width="207" height="19" uuid="2cdd2f49-f05c-44e8-99d4-ced202919fa9"/>
+									<textElement verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{item_unit}]]></textFieldExpression>
+								</textField>
+								<textField>
+									<reportElement x="0" y="0" width="207" height="19" uuid="278adf03-9fa2-4ac6-93b1-a5c20123c46e"/>
+									<textElement verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{item_nm}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90" uuid="bc6aa15d-5ce5-4d6e-9764-abc91ac2cfda">
+							<jr:columnHeader style="table" height="39" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="90" height="39" uuid="b1fe61b4-f0ca-40bc-9801-868de6f3d8e2"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[단     위]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table" height="39" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="90" height="39" uuid="86fe086c-8197-4ab6-ab4f-7687cef6f877"/>
+									<textElement verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{item_size}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="104" uuid="c12fc2d5-4456-4a1d-a455-668e2ef0d467">
+							<jr:columnHeader style="table" height="39" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="19" width="104" height="19" uuid="1830148a-f92c-40c1-885e-c5417523692f"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[금     액]]></text>
+								</staticText>
+								<elementGroup>
+									<staticText>
+										<reportElement x="0" y="0" width="104" height="19" uuid="0442e310-1209-424c-9064-b87d5c8caeda"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<text><![CDATA[수     량]]></text>
+									</staticText>
+								</elementGroup>
+							</jr:columnHeader>
+							<jr:detailCell style="table" height="39" rowSpan="1">
+								<textField pattern="#,##0.###" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="104" height="19" uuid="7b2a9b1f-e294-4241-b7c2-7f73b09fd923"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{item_cnt2}]]></textFieldExpression>
+								</textField>
+								<textField pattern="#,##0" isBlankWhenNull="true">
+									<reportElement x="0" y="19" width="104" height="19" uuid="61c193b2-f875-4d9a-8192-485cb88deb0d"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph rightIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{cost_sum2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="127" uuid="7d6fe1ba-15e6-48a0-9679-09d6b8e12110">
+							<jr:columnHeader style="table" height="39" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="127" height="19" uuid="44cce6bf-cf71-4a3e-8185-a65a960b09c3"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[발주장소]]></text>
+								</staticText>
+								<staticText>
+									<reportElement x="0" y="19" width="127" height="19" uuid="12f99d56-1c43-42bf-8d48-b1ad957bb182"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+									</textElement>
+									<text><![CDATA[입고일자]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell style="table" height="39" rowSpan="1">
+								<textField pattern="">
+									<reportElement x="0" y="0" width="127" height="19" uuid="284ce704-c70d-42ef-ae75-74fc0fc5f9a6"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{deli_dt2}+" "]]></textFieldExpression>
+								</textField>
+								<textField>
+									<reportElement x="0" y="19" width="127" height="19" uuid="e49ff918-1573-477c-b025-f2ce3401dd58"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										<paragraph leftIndent="3"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{deli_place}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</elementGroup>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="156" y="0" width="242" height="40" uuid="6ef6c391-2fcf-4263-a481-abd4edb913a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" pdfFontName="NGULIM.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recv_member_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

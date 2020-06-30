@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
+	<filter>  
+		<filter-name>XSS</filter-name>  
+		<filter-class>nicednb.xss.XssFilter</filter-class>  
+	</filter>  
+	<filter-mapping>  
+		<filter-name>XSS</filter-name>  
+		<url-pattern>/*</url-pattern>  
+	</filter-mapping>
+	
+
+	<servlet>
+		<servlet-name>StartLoader</servlet-name>
+		<servlet-class>procure.common.conf.Startup</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ConfigServlet</servlet-name>
+		<servlet-class>nicelib.util.Config</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+    <error-page>
+        <error-code>501</error-code>
+        <location>/error/501.jsp</location>
+    </error-page>  
+
+
+</web-app>
