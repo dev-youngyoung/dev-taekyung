@@ -1,0 +1,34 @@
+{
+   "header":{
+      "background":"#f4f4f4",
+      "selectedBackground":"#ff696969",
+      "contentFit":"auto",
+      "inactiveBackground":"#ffd3d3d3",
+      "selectionDisplay":"mask",
+      "hoveredMaskBackground":"#1f5292f7",
+      "hoveredMaskBorder":"#335292f7,1",
+      "fontBold":"true",
+      "paddingLeft":"2",
+      "paddingRight":"2",
+      "paddingBottom":"2",
+      "paddingTop":"2",
+      "textAlignment":"center",
+      "lineAlignment":"center",
+      "group":{
+          "background":"#f4f4f4",
+	      "selectedBackground":"#ff696969",
+	      "contentFit":"auto",
+	      "inactiveBackground":"#ffd3d3d3",
+	      "selectionDisplay":"mask",
+	      "hoveredMaskBackground":"#1f5292f7",
+	      "hoveredMaskBorder":"#335292f7,1",
+	      "fontBold":"true",
+	      "paddingLeft":"2",
+	      "paddingRight":"2",
+	      "paddingBottom":"2",
+	      "paddingTop":"2",
+	      "textAlignment":"center",
+	      "lineAlignment":"center"
+      }
+   }
+}

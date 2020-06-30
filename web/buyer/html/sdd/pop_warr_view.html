@@ -1,0 +1,83 @@
+<form name="form1" method="post" enctype="multipart/form-data">
+<div style="width:100%;text-align:right;padding:10px 10px">
+	<!-- IF START 'btn' -->
+	<button type="button" class="sbtn color ico-delete" onclick="if(confirm('삭제 하시겠습니까?')){location.href='pop_warr_delete.jsp?{{query}}';}"><span></span>삭제</button>
+	<!-- IF END 'btn' -->
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="15%"/>
+			<col width="75%"/>
+		</colgroup>
+		<tr>
+			<th> 보증서종류</th>
+			<td>
+				{{warr.warr_type_name}}
+			</td>
+		</tr>
+		<tr>
+			<th> 발급기관</th>
+			<td>{{warr.warr_office}}</td>
+		</tr>
+		<tr>
+			<th> 증권번호</th>
+			<td>{{warr.warr_no}}</td>
+		</tr>
+		<tr>
+			<th> 보증기간</th>
+			<td>{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
+		</tr>
+		<tr>
+			<th> 보증금액</th>
+			<td>
+				￦ {{warr.warr_amt}}
+			</td>
+		</tr>
+		<tr>
+			<th> 발급일</th>
+			<td>
+				{{warr.warr_date}}
+			</td>
+		</tr>
+		<tr>
+			<th> 첨부파일</th>
+			<td>
+					<!-- IFNOT START 'warr.file_name' -->
+					미첨부
+					<!-- IFNOT END 'warr.file_name' -->
+					<!-- IF START 'warr.file_name' -->
+				{{warr.doc_name}}&nbsp;&nbsp;({{warr.file_size}})&nbsp;
+				<input type="button" class="down4" value="다운로드" onclick="filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')""/>
+					<!-- IF END 'warr.file_name' -->
+			</td>
+		</tr>
+		<tr>
+			<th> 비고</th>
+			<td>
+				{{warr.etc}}
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+
+<script language="javascript">
+// 서울보증보험이면 필수 체크 안함.(동희오토)
+function warrCheck()
+{
+	var warr_office = document.form1.warr_office.value;
+	if(warr_office != "서울보증보험")
+	{
+		var el = document.form1.warr_file;
+		if (el.value == null || el.value == "")
+		{
+			alert("보증서 파일을 첨부해주세요.");
+			return false;
+		}
+	}
+	return true;
+}
+</script>

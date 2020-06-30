@@ -1,0 +1,473 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 작성 업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="12%">
+			<col width="21%">
+			<col width="12%">
+			<col width="21%">
+			<col width="12%">
+			<col width="*">
+		</colgroup>
+		<tr>
+			<th><p>업체명</p></th>
+			<td>{{member_name}}</td>
+			<th><p>사업자번호</p></th>
+			<td>{{vendcd2}}</td>
+			<th><p>대표자명</p></th>
+			<td>{{boss_name}}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	    	<label><input type="radio" name="cont_gb" value="1" onclick="setColumns('A');" checked="checked" />기본</label>
+			<label><input type="radio" name="cont_gb" value="2" onclick="setColumns('A');"/>Maint'사업부</label>
+			<label><input type="radio" name="cont_gb" value="3" onclick="setColumns('B');"/>운영팀</label>
+			<label><input type="radio" name="cont_gb" value="4" onclick="setColumns('C');"/>정비팀</label>
+			<label><input type="radio" name="cont_gb" value="5" onclick="setColumns('D');"/>운영팀(이천)</label>
+	    </div>
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 400px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<table>
+		<tr>
+			<td align="center" height="30" style="font-size:15px; color:#ffffff;background:#94a400;"><b>※ 엑셀 Data 입력 형식</b></td>
+		</tr>
+		<tr>
+			<td style="padding:5 3 5 3">
+			생년월일 : YYMMDD 예) 721225 <br>
+			성별 : 1 또는 2  (남자1 여자2) <br>
+			모든금액 (,) 없이 숫자만 입력<br>
+			모든 날짜 항목 : YYYYMMDD <br>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-save auth_css" onClick="javascript:submitItem()"><span></span>일괄생성</button>
+</div>
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns('A');
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg);
+
+        });
+}
+
+function setColumns(num) {
+    var columns = [];
+
+    if(num == 'A'){
+
+    	columns.push({name:"r_name" ,fieldName:"r_name" ,header:"성명" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_birthday" ,fieldName:"r_birthday" ,header:"생년월일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_sex" ,fieldName:"r_sex" ,header:"성별" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_addr" ,fieldName:"r_addr" ,header:"주소" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_totalpay" ,fieldName:"r_totalpay" ,header:"총연봉계약금액" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_baseyearpay" ,fieldName:"r_baseyearpay" ,header:"기본급(연간)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_persent" ,fieldName:"r_persent" ,header:"%" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_bonuspay" ,fieldName:"r_bonuspay" ,header:"상여금" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jepay" ,fieldName:"r_jepay" ,header:"제수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jikcpay" ,fieldName:"r_jikcpay" ,header:"직책수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jakpay" ,fieldName:"r_jakpay" ,header:"자격수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_basepay" ,fieldName:"r_basepay" ,header:"실질기본급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_dept" ,fieldName:"r_dept" ,header:"근무부서" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_workif" ,fieldName:"r_workif" ,header:"근무조건" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_sday" ,fieldName:"r_cont_sday" ,header:"연봉계약시작일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_eday" ,fieldName:"r_cont_eday" ,header:"연봉계약종료일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_day" ,fieldName:"r_cont_day" ,header:"계약일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t1" ,fieldName:"r_t1" ,header:"전직급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_tb" ,fieldName:"r_tb" ,header:"전년도계약연봉" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_ta" ,fieldName:"r_ta" ,header:"전년도급여" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t2" ,fieldName:"r_t2" ,header:"전년도급여수준" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t3" ,fieldName:"r_t3" ,header:"전년도상대평가" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t7" ,fieldName:"r_t7" ,header:"승진자" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t6" ,fieldName:"r_t6" ,header:"평가결과인상율" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t4" ,fieldName:"r_t4" ,header:"업적절대평가" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t5" ,fieldName:"r_t5" ,header:"팀평가" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t8_1" ,fieldName:"r_t8_1" ,header:"고정PI" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t8_2" ,fieldName:"r_t8_2" ,header:"변동PI" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t9" ,fieldName:"r_t9" ,header:"인상율" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    
+    }else if (num == 'B'){
+    	
+    	columns.push({name:"r_name" ,fieldName:"r_name" ,header:"성명" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_birthday" ,fieldName:"r_birthday" ,header:"생년월일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_sex" ,fieldName:"r_sex" ,header:"성별" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_addr" ,fieldName:"r_addr" ,header:"주소" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_totalpay" ,fieldName:"r_totalpay" ,header:"총연봉계약금액" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_timepay" ,fieldName:"r_timepay" ,header:"시급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_persent" ,fieldName:"r_persent" ,header:"%" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_bonuspay" ,fieldName:"r_bonuspay" ,header:"상여금" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jepay" ,fieldName:"r_jepay" ,header:"제수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jikcpay" ,fieldName:"r_jikcpay" ,header:"직책수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jakpay" ,fieldName:"r_jakpay" ,header:"자격수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_basepay" ,fieldName:"r_basepay" ,header:"기본급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_overtime" ,fieldName:"r_overtime" ,header:"초과시간" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_overpay" ,fieldName:"r_overpay" ,header:"초과수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_dept" ,fieldName:"r_dept" ,header:"근무부서" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_team" ,fieldName:"r_team" ,header:"팀" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_workif" ,fieldName:"r_workif" ,header:"근무조건" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_worktime" ,fieldName:"r_worktime" ,header:"근로시간" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_sday" ,fieldName:"r_cont_sday" ,header:"연봉계약시작일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_eday" ,fieldName:"r_cont_eday" ,header:"연봉계약종료일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_day" ,fieldName:"r_cont_day" ,header:"계약일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_ta" ,fieldName:"r_ta" ,header:"인상금액(시간급)" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_tb" ,fieldName:"r_tb" ,header:"당해년기준기본급" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t1" ,fieldName:"r_t1" ,header:"인상율" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	
+    }else if (num == 'C'){
+
+    	columns.push({name:"r_name" ,fieldName:"r_name" ,header:"성명" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_birthday" ,fieldName:"r_birthday" ,header:"생년월일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_sex" ,fieldName:"r_sex" ,header:"성별" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_addr" ,fieldName:"r_addr" ,header:"주소" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_totalpay" ,fieldName:"r_totalpay" ,header:"총연봉계약금액" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_timepay" ,fieldName:"r_timepay" ,header:"시급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_persent" ,fieldName:"r_persent" ,header:"%" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_bonuspay" ,fieldName:"r_bonuspay" ,header:"상여금" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jepay" ,fieldName:"r_jepay" ,header:"제수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jikcpay" ,fieldName:"r_jikcpay" ,header:"직책수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jakpay" ,fieldName:"r_jakpay" ,header:"자격수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_basepay" ,fieldName:"r_basepay" ,header:"기본급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_overtime" ,fieldName:"r_overtime" ,header:"초과시간" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_overpay" ,fieldName:"r_overpay" ,header:"초과수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_dept" ,fieldName:"r_dept" ,header:"근무부서" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_team" ,fieldName:"r_team" ,header:"팀" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_workif" ,fieldName:"r_workif" ,header:"근무조건" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_sday" ,fieldName:"r_cont_sday" ,header:"연봉계약시작일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_eday" ,fieldName:"r_cont_eday" ,header:"연봉계약종료일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_day" ,fieldName:"r_cont_day" ,header:"계약일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_ta" ,fieldName:"r_ta" ,header:"인상금액(시간급)" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_tb" ,fieldName:"r_tb" ,header:"당해년기준기본급" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t1" ,fieldName:"r_t1" ,header:"인상율" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	
+    }else{
+
+    	columns.push({name:"r_name" ,fieldName:"r_name" ,header:"성명" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_birthday" ,fieldName:"r_birthday" ,header:"생년월일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_sex" ,fieldName:"r_sex" ,header:"성별" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_addr" ,fieldName:"r_addr" ,header:"주소" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_totalpay" ,fieldName:"r_totalpay" ,header:"총연봉계약금액" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_timepay" ,fieldName:"r_timepay" ,header:"시급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_persent" ,fieldName:"r_persent" ,header:"%" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_bonuspay" ,fieldName:"r_bonuspay" ,header:"상여금" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jepay" ,fieldName:"r_jepay" ,header:"제수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jikcpay" ,fieldName:"r_jikcpay" ,header:"직책수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_jakpay" ,fieldName:"r_jakpay" ,header:"자격수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_basepay" ,fieldName:"r_basepay" ,header:"기본급" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_overtime" ,fieldName:"r_overtime" ,header:"초과시간" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_overpay" ,fieldName:"r_overpay" ,header:"초과수당" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_dept" ,fieldName:"r_dept" ,header:"근무부서" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_team" ,fieldName:"r_team" ,header:"팀" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_workif" ,fieldName:"r_workif" ,header:"근무조건" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_worktime" ,fieldName:"r_worktime" ,header:"근로시간" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_sday" ,fieldName:"r_cont_sday" ,header:"연봉계약시작일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_eday" ,fieldName:"r_cont_eday" ,header:"연봉계약종료일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_cont_day" ,fieldName:"r_cont_day" ,header:"계약일" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_ta" ,fieldName:"r_ta" ,header:"인상금액(시간급)" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_tb" ,fieldName:"r_tb" ,header:"당해년기준기본급" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"r_t1" ,fieldName:"r_t1" ,header:"인상율" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	
+    }
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+    	var idx;
+    	
+    	for(i=0; i<document.getElementsByName('cont_gb').length; i++){
+    		if(document.getElementsByName('cont_gb')[i].checked){
+    			idx = i+1;
+    			break;
+    		}
+    	}
+    	
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+
+            if(idx == 1 || idx == 2 ){
+            	cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC"];
+				fields = ["r_name","r_birthday","r_sex","r_addr","r_totalpay","r_baseyearpay","r_persent","r_bonuspay","r_jepay","r_jikcpay","r_jakpay","r_basepay"
+					     ,"r_dept","r_workif","r_cont_sday","r_cont_eday","r_cont_day","r_t1","r_tb","r_ta","r_t2","r_t3","r_t7","r_t6","r_t4","r_t5","r_t8_1","r_t8_2","r_t9"];
+            }else if(idx == 3){
+            	cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X"];
+				fields = ["r_name","r_birthday","r_sex","r_addr","r_totalpay","r_timepay","r_persent","r_bonuspay","r_jepay","r_jikcpay","r_jakpay","r_basepay"
+					      ,"r_overtime","r_overpay","r_dept","r_team","r_workif","r_worktime","r_cont_sday","r_cont_eday","r_cont_day","r_ta","r_tb","r_t1"];
+            }else if(idx == 4){
+            	cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W"];
+				fields = ["r_name","r_birthday","r_sex","r_addr","r_totalpay","r_timepay","r_persent","r_bonuspay","r_jepay","r_jikcpay","r_jakpay","r_basepay"
+					      ,"r_overtime","r_overpay","r_dept","r_team","r_workif","r_cont_sday","r_cont_eday","r_cont_day","r_ta","r_tb","r_t1"];
+            }else{
+				cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X"];
+				fields = ["r_name","r_birthday","r_sex","r_addr","r_totalpay","r_timepay","r_persent","r_bonuspay","r_jepay","r_jikcpay","r_jakpay","r_basepay"
+					      ,"r_overtime","r_overpay","r_dept","r_team","r_workif","r_worktime","r_cont_sday","r_cont_eday","r_cont_day" ,"r_ta","r_tb","r_t1"];
+            }
+            
+			if(row["A"] == null || row["A"].toString().trim() == ""){alert("성명에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)");return;}
+
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    if(fields[j]=="r_sup" || fields[j]=="r_pro" || fields[j]=="r_sum"){
+                        rowdata[fields[j]] = row[cols[j]].trim().replaceAll(",","");
+                    }else{
+                        rowdata[fields[j]] = row[cols[j]].trim();
+                    }
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+        alert("업로드 처리 되었습니다.");
+    }
+}
+
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+
+	var fileNmae;
+	var idx;
+	
+	for(i=0; i<document.getElementsByName('cont_gb').length; i++){
+		if(document.getElementsByName('cont_gb')[i].checked){
+			idx = i+1;
+			break;
+		}
+	}
+	
+	if(idx == 1) fileNmae = '기본정보';
+	if(idx == 2) fileNmae = 'Maint사업부정보';
+	if(idx == 3) fileNmae = '운영팀정보';
+	if(idx == 4) fileNmae = '정비팀정보';
+	if(idx == 5) fileNmae = '운영팀(이천)';
+	
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: fileNmae+".xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("연봉계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("연봉계약서를 일괄 생성 하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a_hts.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+	var idx;
+	
+	for(i=0; i<document.getElementsByName('cont_gb').length; i++){
+		if(document.getElementsByName('cont_gb')[i].checked){
+			idx = i+1;
+			break;
+		}
+	}
+
+    var data = {
+         grid:grid_string
+        ,member_no:"{{member_no}}"
+        ,cont_gb:idx
+    };
+
+    submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            if (data > 0) {
+                alert("연봉계약서 생성에 성공하였습니다.\n임시저장 메뉴에서 확인하세요.");
+                dataProvider.clearRowStates(true);
+                submit_chk = false;
+            } else {
+                alert("처리에 실패하였습니다.");
+                submit_chk = false;
+            }
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "error:" + error);
+            submit_chk = false;
+        }
+    });
+}
+
+</script>

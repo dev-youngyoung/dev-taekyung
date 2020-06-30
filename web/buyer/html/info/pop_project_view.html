@@ -1,0 +1,65 @@
+<form name="form1" method="post">
+<div class="div_table">
+    <table>
+    <colgroup>
+        <col width="20%">
+        <col width="80%">
+    </colgroup>
+    <tr>
+        <th>프로젝트(현장)명</th>
+        <td>{{project.project_name}}</td>
+    </tr>
+    <tr>
+        <th>프로젝트코드</th>
+        <td>{{project.project_cd}}</td>
+    </tr>
+    <tr>
+        <th>발주처</th>
+        <td>{{project.order_comp_nm}}</td>
+    </tr>
+    <!-- IF START 'project.project_cont_date' -->
+    <tr>
+        <th>계약일자</th>
+        <td>{{project.project_cont_date}}</td>
+    </tr>
+    <!-- IF END 'project.project_cont_date' -->
+    <tr>
+        <th>프로젝트(현장)위치</th>
+        <td>{{project.project_loc}}</td>
+    </tr>
+    <!-- IF START 'project.etc1' -->
+    <tr>
+        <th>비고1</th>
+        <td>{{project.etc1}}</td>
+    </tr>
+    <!-- IF END 'project.etc1' -->
+    <!-- IF START 'project.etc2' -->
+    <tr>
+        <th>비고2</th>
+        <td>{{project.etc2}}</td>
+    </tr>
+    <!-- IF END 'project.etc2' -->
+    <tr>
+        <th>프로젝트 상태 </th>
+        <td>
+            {{project.use_yn_nm}}
+        </td>
+    </tr>
+    <!-- IF START 'modify' -->
+    <tr>
+        <th>등록/수정일시</th>
+        <td>{{project.reg_date}}</td>
+    </tr>
+    <tr>
+        <th>등록/수정</th>
+        <td>{{project.reg_name}}</td>
+    </tr>
+    <!-- IF END 'modify' -->
+    </table>
+</div>
+
+<div class="btn-group-wrap">
+    <button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+</form>
+

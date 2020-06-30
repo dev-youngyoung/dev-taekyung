@@ -1,0 +1,181 @@
+<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+<input type="hidden" name="mode" />
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="13%">
+    <col width="54%">
+    <col width="13%">
+    <col width="15%">
+    <col width="10%">
+  </colgroup>
+  <tr>
+    <th><p>거래일시</p></th>
+    <td>
+		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+    </td>
+    
+    <th><p>결제수단</p></th>
+    <td>
+		 <select name="s_pay_type">
+             <option value="">전체</option>
+             <!-- LOOP START 'code_pay_type' -->
+             <option value="{{code_pay_type.id}}">{{code_pay_type.value}}</option>
+             <!-- LOOP END 'code_pay_type' -->
+         </select>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+	<td colspan="2">
+		<table style="width:100%">
+		<colgroup>
+			<col width="20%">
+			<col width="42%">
+			<col width="20%">
+			<col width="18%">
+		</colgroup>
+		<tr>
+			<th><p>업체명</p></th>
+			<td>
+				<table style="width:100%;">
+				<tr>
+					<td rowspan="2">
+						<input type="hidden" name="s_member_no">
+						<input type="text" name="s_member_name" class="in_readonly"  style="width:150px" readonly>
+					</td>
+					<td>
+						<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_pay_company.jsp?callback=setMember','pop_search_company', '800','600','yes');"><span></span>업체검색</button>
+					</td>
+				</tr>
+					<td>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.forms['form1']['s_member_no'].value='';document.forms['form1']['s_member_name'].value='';"><span></span>지움</button>	
+					</td>
+				</table> 
+			</td>
+			<th><p>부서</p></th>
+			<td>
+				<select name="s_field_seq" style="width:100px">
+					<option value="">-전체-</option>
+					<!-- LOOP START 'field' -->
+					<option value="{{field.field_seq}}">{{field.field_name}}</option>
+					<!-- LOOP END 'field' -->
+				</select>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<th><p>사업자번호</p></th>
+    <td><input type="text" name="s_vendcd" style="width:95%"></td>
+    <td align="right">
+       <button type="submit" class="btn color ico-search"><span></span>검색</button>
+    </td>    
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+<div class="util-row">
+<div class="push-right">
+      <button type="button" class="sbtn color ico-excel" onclick="fDownExcelSales()"><span></span>매출</button>
+      <button type="button" class="sbtn color ico-excel" onclick="fDownExcelCust()"><span></span>업체</button>	  
+	  <button type="button" class="sbtn color ico-write" value="수동" onClick="fWrite()"><span></span>수동</button>
+</div>
+</div>
+
+<div class="util-row">
+ <div class="push-left">
+      <h3><span class="caution-text"></span></h3>
+    </div>
+    
+ <div class="push-right">
+ 		매출금액: {{total_num}}건/ {{total_amt}}원
+ </div>
+ </div>
+ <div class="div_table">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <colgroup>
+    <col width="15%">
+    <col width="14%">
+    <col width="20%">
+    <col width="8%">
+    <col width="6%">
+    <col width="9%">
+    <col width="16%">
+    <col width="12%">
+  </colgroup>
+  <tr>
+    <th>결제업체</th>
+    <th>원사업자</th>
+    <th>계약명</th>
+    <th>결제금액</th>
+    <th>수단</th>
+    <th>영수증</th>
+    <th>거래일시</th>
+    <th>비고</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+  <tr>
+	<td>{{list.member_name}}</td>
+	<td>{{list.main_member_name}}</td>
+	<td>{{list.cont_name}}</td>
+	<td align="right">{{list.pay_amount}}</td>
+	<td align="center">{{list.pay_type_nm}}</td>
+	<td align="center">
+		<button type="button" class="sbtn color ico-paper"  onClick="fViewReciept('{{list.pay_type}}','{{list.tid}}','{{list.receit_type}}')"><span></span>{{list.btn_name}}</button>
+	</td>
+	<td align="center" >{{list.accept_date}} </td>
+	<td><span  style=""><div style="width:100px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;" title="{{list.etc}}">{{list.etc}}</div></td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="8" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ 
+ <div class="common-paging">{{pagerbar}}</div>
+
+ <script language="javascript">
+ function formSubmit(f){
+ 	f.action="";
+ 	f['mode'].value="";
+ 	return true;
+ }
+ 
+ function fWrite(){
+	OpenWindow('pop_pay_insert.jsp','pop_pay_insert', '600', '500');
+ }
+
+ function fDownExcelSales(){
+     var f = document.forms['form1'];
+     f.action = "";
+     f['mode'].value="excel";
+     f.submit();
+ }
+
+ function fDownExcelCust(){
+     var f = document.forms['form1'];
+     if(f['s_member_name'].value=='') {
+         alert('업체명을 입력해 주세요');
+         return;
+     }
+     f['mode'].value="excel";
+     f.action = "./pay_info_list_excel.jsp";
+     f.submit();
+ }
+ 
+ function setMember(member){
+	 var f = document.forms['form1'];
+	 f['s_member_no'].value = member['member_no'];
+	 f['s_member_name'].value = member['member_name'];
+	 if(formSubmit(f)){
+	 	f.submit();
+	 }
+ }
+ </script>

@@ -1,0 +1,310 @@
+<!-- IF START 'search_type' -->
+<div class="cont_tab">
+	<!-- IF START 'tab_view_cp' -->
+	<span class="tab_on" id="tab_0" onClick="location.href='pop_search_company.jsp?search_type={{search_type}}&sign_seq={{sign_seq}}" style="width:100;padding-top:6">사업자</span>
+	<span class="tab_off" id="tab_1" onClick="location.href='pop_search_person.jsp?search_type={{search_type}}&sign_seq={{sign_seq}}'" style="width:100;padding-top:6">개인</span>
+	<!-- IF END 'tab_view_cp' -->
+</div>
+
+<!-- IF END 'search_type' -->
+
+
+<form name="form1" method="get">
+<input type="hidden" name="search" value="1">
+<input type="hidden" name="search_type" value="{{search_type}}">
+<input type="hidden" name="sign_seq" value="{{sign_seq}}">
+
+<div style="width:100%;padding:5px;text-align:right">
+	<!-- IF START 'view_btn_member_insert' -->
+	<button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert.jsp?{{query}}';"><span></span>비회원업체추가</button>
+	<!-- IF END 'view_btn_member_insert' -->
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span> 닫기</button>
+</div>
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="15%">
+		    <col width="28%">
+		    <col width="15%">
+		    <col width="29%">
+		    <col width="*">
+		</colgroup>
+		<!-- IF START 'member.src_depth' -->
+		<tr>
+			<th><p>소싱그룹</p></th>
+	  		<td colspan="4">
+	  			<!-- IF START 'src_l' -->
+	  			<span id="l_src_area">
+		  			<select name="l_src_cd" onchange="chgSelectBox('m')">
+		  				<option value="">-전체-</option>
+		  			</select>
+	  			</span>
+	  			<!-- IF END 'src_l' -->
+	  			<!-- IF START 'src_m' -->
+		  		<span id="m_src_area">
+		  			<select name="m_src_cd" onchange="chgSelectBox('s')">
+		  				<option value="">-전체-</option>
+		  			</select>
+		  		</span>
+		  		<!-- IF END 'src_m' -->
+		  		<!-- IF START 'src_s' -->
+		  		<span id="s_src_area">
+		  			<select name="s_src_cd">
+		  				<option value="">-전체-</option>
+		  			</select>
+		  		</span>
+	  			<!-- IF END 'src_s' -->
+	  		</td>
+		</tr>
+	  	<!-- IF END 'member.src_depth' -->
+	  	<!-- IF START 'isKTH' -->
+		<tr>
+			<th><p>거래처코드</p></th>
+		    <td colspan="3">
+		    	<input type="text" name="s_cust_detail_code" maxlength="30" style="width: 210px;">
+		    </td>
+			<td align="right"></td>
+		</tr>
+	  	<!-- IF END 'isKTH' -->
+	  	<tr>
+		    <th><p>업체명</p></th>
+		    <td>
+		    	<input type="text" name="s_member_name" maxlength="30" style="width: 210px;" id="s_member_name">
+		    </td>
+		    <th><p>사업자번호</p></th>
+		    <td><input type="text" name="s_vendcd" maxlength="30" style="width: 140px;"> (-없이 입력)</td>
+			<td align="right">
+		      <button type="submit" class="search_btn">검색</button>
+		    </td>
+	  	</tr>
+	</table>
+</div>
+
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+<div class="util-row">
+    <div class="push-left">
+       <span class="caution-text">※업체명 또는 사업자 등록번호를 입력후 검색 하세요.</span>
+    </div>
+</div>
+
+<!-- LOOP START 'list' -->
+<form name="form_{{list.member_no}}" method="post" >
+<input type="hidden" name="member_no" value="{{list.member_no}}"/>
+<input type="hidden" name="vendcd" value="{{list.vendcd}}"/>
+<input type="hidden" name="post_code" value="{{list.post_code}}"/>
+<input type="hidden" name="member_slno" value="{{list.member_slno}}"/>
+<input type="hidden" name="address" value="{{list.address}}"/>
+<input type="hidden" name="member_name" value="{{list.member_name}}"/>
+<input type="hidden" name="boss_name" value="{{list.boss_name}}"/>
+<input type="hidden" name="member_gubun" value="{{list.member_gubun}}"/>
+<input type="hidden" name="cust_detail_code" value="{{list.cust_detail_code}}"/>
+<input type="hidden" name="condition" value="{{list.condition}}"/>
+<input type="hidden" name="category" value="{{list.category}}"/>
+<input type="hidden" name="jumin_no" value="{{list.jumin_no}}"/>
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="12%">
+			<!-- IF START 'isKTH' -->
+			<col width="15%">
+			<!-- IF END 'isKTH' -->
+			<col width="*">
+			<col width="18%">
+			<col width="18%">
+			<col width="13%">
+		</colgroup>
+		<tr>
+			<th>순번</th>
+			<!-- IF START 'isKTH' -->
+			<th>거래처코드</th>
+			<!-- IF END 'isKTH' -->
+			<th>업체명</th>
+			<th>사업자번호</th>
+			<th>대표자</th>
+			<th>추가</th>
+		</tr>
+		<tr>
+			<td align="center">{{list.__ord}}</td>
+			<!-- IF START 'isKTH' -->
+			<td align="center">{{list.str_cust_detail_code}}</td>
+			<!-- IF END 'isKTH' -->
+			<td>{{list.member_name}}</td>
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<td align="center"><button type="button" class="sbtn ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>추가</button></td>
+		</tr>
+		<tr>
+			<td <!-- IFNOT START 'isKTH' -->colspan="5"<!-- IFNOT END 'isKTH' --><!-- IF START 'isKTH' -->colspan="6"<!-- IF END 'isKTH' --> align="center" style="padding-top: 3px;">
+				<table>
+					<colgroup>
+						<col width="15%">
+						<col width="20%">
+						<col width="20%">
+						<col width="*">
+						<col width="12%">
+					</colgroup>
+					<tr>
+		  				<th>담당자명</th>
+		  				<th>전화번호</th>
+		  				<th>휴대폰번호</th>
+		  				<th>E-mail</th>
+		  				<th>선택 <input type="radio" name="person_seq" style="display: none"/></th>
+	  				</tr>
+	  				<!-- LOOP START 'person' -->
+	  				<tr>
+	  					<td align="center">{{person.user_name}}
+	  						<input type="hidden" name="user_name_{{person.person_seq}}" value="{{person.user_name}}"/>
+	  						<input type="hidden" name="email_{{person.person_seq}}" value="{{person.email}}"/>
+	  						<input type="hidden" name="tel_num_{{person.person_seq}}" value="{{person.tel_num}}"/>
+	  						<input type="hidden" name="hp1_{{person.person_seq}}" value="{{person.hp1}}"/>
+	  						<input type="hidden" name="hp2_{{person.person_seq}}" value="{{person.hp2}}"/>
+	  						<input type="hidden" name="hp3_{{person.person_seq}}" value="{{person.hp3}}"/>
+	  					</td>
+	  					<td align="center">{{person.tel_num}}</td>
+	  					<td align="center">{{person.hp1}}-{{person.hp2}}-{{person.hp3}}</td>
+	  					<td align="center">{{person.email}}</td>
+	  					<td align="center"><input type="radio" name="person_seq" value="{{person.person_seq}}"/></td>
+	  				</tr>
+	  				<!-- LOOP END 'person' -->
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+<!-- LOOP END 'list' -->
+
+<!-- IFNOT START 'list' -->
+<div class="div_table">
+	<table>
+		<tr>
+			<td align="center" colspan="5">검색 결과가 없습니다.</td>
+		</tr>
+	</table>
+</div>
+<!-- IFNOT END 'list' -->
+
+<div class="common-paging">{{pagerbar}}</div>
+
+<br/>
+
+<script language="javascript">
+attachOnload(function() { document.getElementById("s_member_name").focus(); });
+
+function addCompany(member_no){
+
+	var seq = GetFormValue("form_"+member_no,"person_seq");
+	var data = null;
+	if(seq){
+		var f = document.forms["form_"+member_no];
+		data = {
+			"member_no" : f['member_no'].value
+		   ,"vendcd" : f['vendcd'].value
+		   ,"member_slno" : f['member_slno'].value
+		   ,"member_name" : f['member_name'].value
+		   ,"post_code" : f['post_code'].value
+		   ,"address" : f['address'].value
+		   ,"boss_name" : f['boss_name'].value
+		   ,"member_gubun" : f['member_gubun'].value
+		   ,"user_name" : f['user_name_'+seq].value
+		   ,"tel_num" : f['tel_num_'+seq].value
+		   ,"hp1" : f['hp1_'+seq].value
+		   ,"hp2" : f['hp2_'+seq].value
+		   ,"hp3" : f['hp3_'+seq].value
+		   ,"email" : f['email_'+seq].value
+		   ,"sign_seq" : "{{sign_seq}}"
+		   ,"jumin_no" : f['jumin_no'].value //주민등록번호
+		   ,"cust_detail_code" : f['cust_detail_code'].value	// 거래처코드
+		   ,"condition" : f['condition'].value// 업태
+		   ,"category" : f['category'].value// 업종
+		}
+	}else{
+		alert("담당자 선택 후 업체 추가하여 주세요.");
+		return;
+	}
+	opener.addClientInfo(data);
+	self.close();
+}
+
+function chgSelectBox(gubun){
+	var f = document.forms['form1'];
+	var l_src_cd = f['l_src_cd'].value;
+	var m_src_cd = f['m_src_cd'].value;
+	switch(gubun){
+		case 'l':
+			call("./call_src_selectbox.jsp?gubun=l","l_src_area");
+		case 'm':
+			call("./call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
+		case 's':
+			call("./call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
+			break;
+	}
+}
+</script>
+
+<!-- IF START 'member.src_depth' -->
+<script language="javascript">
+
+var search = "{{search}}";
+var l_src_cd = "{{l_src_cd}}";
+var m_src_cd = "{{m_src_cd}}";
+var s_src_cd = "{{s_src_cd}}";
+if(!search){
+	<!-- IF START 'bInitSrcGrLink' -->
+	if(opener.document.forms['form1']['src_cd']){
+		src_cd = opener.document.forms['form1']['src_cd'].value;
+		l_src_cd = src_cd.substring(0,3);
+		m_src_cd = src_cd.substring(3,6);
+		s_src_cd = src_cd.substring(6,9);
+	}
+	<!-- IF END 'bInitSrcGrLink' -->
+}
+
+<!-- IF START 'src_l' -->
+call("./call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
+function defaultValue_l(){
+	SetFormValue("form1","l_src_cd", l_src_cd);
+	setEnd();
+}
+<!-- IF END 'src_l' -->
+
+<!-- IF START 'src_m' -->
+call("./call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
+function defaultValue_m()
+{
+	SetFormValue("form1","m_src_cd", m_src_cd);
+	setEnd();
+}
+<!-- IF END 'src_m' -->
+
+<!-- IF START 'src_s' -->
+call("./call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
+function defaultValue_s()
+{
+	SetFormValue("form1","s_src_cd", s_src_cd);
+	setEnd();
+}
+<!-- IF END 'src_s' -->
+
+function setEnd(){
+	var f = document.forms['form1'];
+	if(!search){
+		if(f['l_src_cd'].value!=''&&f['m_src_cd'].value!=''&&f['s_src_cd'].value!=''){
+		 document.forms['form1'].submit();
+		}
+	}
+}
+</script>
+<!-- IF END 'member.src_depth' -->

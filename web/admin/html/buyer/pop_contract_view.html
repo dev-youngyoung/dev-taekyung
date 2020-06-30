@@ -1,0 +1,32 @@
+<form novalidate name="form1" method="post">
+<div style="width:100%;text-align:right;margin: 10px 0px">
+	<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>닫기</button>
+</div>
+<div class="div_table">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width=""/>
+		<col width=""/>
+		<col width=""/>
+	</colgroup>
+	<tr>
+		<th>파일구분</th>
+		<th>계약서류명</th>
+		<th>첨부파일</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.auto_str}}</td>
+		<td align="center">{{list.doc_name}}</td>
+		<td align="right">{{list.file_size_str}}
+			<button type="button" class="sbtn color ico-download" onclick="{{list.down_script}}"><span></span>{{list.btn_name}}</button>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+</table>
+</div>
+
+</form>
+<script>
+</script>
+

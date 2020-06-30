@@ -1,0 +1,97 @@
+
+<form novalidate name="form1" method="get" >
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="13%">
+			<col width="30%">
+			<col width="13%">
+			<col width="%">
+			<col width="10%">
+		</colgroup>
+		<tr>
+			<th><p>서비스종료일</p></th>
+			<td>
+				<input type="text" name="s_sdate"  style="width:100px" maxlength="10" onkeyup="dateFormat(this)">
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])">
+				~
+				<input type="text" name="s_edate" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+			</td>
+			<th><p>요금제</p></th>
+			<td>
+				<select name="s_pay_type_cd">
+					<option value="">-전체-</option>
+					<!-- LOOP START 'code_pay_type_cd' -->
+					<option value="{{code_pay_type_cd.id}}">{{code_pay_type_cd.value}}</option>
+					<!-- LOOP END 'code_pay_type_cd' -->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><p>업체명</p></th>
+			<td colspan="3" > <input type="text" name="s_member_name" value="" maxlength="100" style="width:90%"></td>
+			<td align="right">
+				<button type="submit" class="btn color ico-search" ><span></span>검색</button>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+
+{{form_script}}
+
+<div class="div_table">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <colgroup>
+	  <col width="10%">
+	  <col width="20%">
+	  <col width="13%">
+	  <col width="10%">
+	  <col width="11%">
+	  <col width="*">
+  </colgroup>
+  <tr class="ltitle">
+	  <th>순번</th>
+	  <th>업체명</th>
+	  <th>사업자번호</th>
+	  <th>요금제</th>
+	  <th>서비스<br>종료일</th>
+    <th>관리기능</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+  <tr class="cel">
+	<td align="center">{{list.__ord}}</td>
+	<td>{{list.member_name}}</td>
+	<td align="center">{{list.vendcd}}</td>
+	<td align="center">{{list.paytypecd}}</td>
+	<td align="center">{{list.useendday}}</td>
+	<td style="line-height: 2">
+		<button type="button" class="sbtn color ico-write" onclick="OpenWindows('./pop_menu_member.jsp?member_no={{list.member_no}}','pop_menu_member',700,700)"><span></span>메뉴관리</button>
+		<button type="button" class="sbtn color ico-search" onclick="location.href='client_view.jsp?member_no={{list.member_no}}&list_url=pay_comp_list&{{list_query}}';"><span></span>거래처조회</button>
+		<button type="button" class="sbtn color ico-write" onclick="location.href='{{list.useinfo_link}}?member_no={{list.member_no}}&{{list_query}}';"><span></span>요금제관리</button>
+		<!-- IF START 'list.btn_esti' -->
+		<button type="button" class="sbtn color ico-write" onclick="location.href='esti_conf_modify.jsp?member_no={{list.member_no}}&{{list_query}}';"><span></span>견적설정</button>
+		<!-- IF END 'list.btn_esti' -->
+		<!-- IF START 'list.btn_bid' -->
+		<button type="button" class="sbtn color ico-write" onclick="location.href='bid_conf_modify.jsp?member_no={{list.member_no}}&{{list_query}}';"><span></span>입찰설정</button>
+		<!-- IF END 'list.btn_bid' -->
+		<!-- IF START 'list.src_depth' -->
+		<button type="button" class="sbtn color ico-write" onclick="OpenWindows('./pop_src_insert.jsp?member_no={{list.member_no}}','pop_src_insert',1000,750)"><span></span>업체별 소싱관리</button>
+		<!-- IF END 'list.src_depth' -->
+		<br/><button type="button" class="sbtn color ico-write" onclick="OpenWindows('./pop_person_insert.jsp?member_no={{list.member_no}}','pop_person_insert',1000,750)"><span></span>담당자 일괄등록</button>
+	</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr class="cel">
+	<td colspan="8" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ <div class="common-paging">{{pagerbar}}</div>
+
+

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>나이스다큐</title>
+<script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.HeightAuto').css('height' ,  $(window).height() );
+		$(window).resize(function() {
+			$('.HeightAuto').css('height' ,  $(window).height() );
+		});
+	});
+</script>
+<style type="text/css">
+body {
+	margin: 0;
+}
+img{
+	border: none;
+}
+.wrap{
+	display: table;
+	width: 100%;
+}
+.inner-container{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+	<div class="wrap HeightAuto">
+		<div class="inner-container">
+			<img src="/web/buyer/html/images/renewal_open_img.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>

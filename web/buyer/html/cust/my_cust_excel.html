@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><b style="font-size:18pt">협력업체 명부현황<b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td>
+
+      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+        <tr align="center">
+			<td height="30" bgcolor="#cccccc">순번</td>
+			<td bgcolor="#cccccc">업체명</td>
+			<td bgcolor="#cccccc">업태</td>
+			<td bgcolor="#cccccc">종목</td>
+			<!-- IF START 'isDetailCode' -->
+			<td bgcolor="#cccccc">거래처코드</td>
+			<!-- IF END 'isDetailCode' -->
+			<td bgcolor="#cccccc">사업자번호</td>
+			<td bgcolor="#cccccc">대표자</td>
+			<td bgcolor="#cccccc">주소</td>
+			<td bgcolor="#cccccc">담당자명</td>
+			<td bgcolor="#cccccc">이메일</td>
+			<td bgcolor="#cccccc">전화번호</td>
+			<td bgcolor="#cccccc">휴대폰</td>
+			<td bgcolor="#cccccc">팩스</td>
+			<!-- IF START 'view_clienttype' -->
+			<td bgcolor="#cccccc">업체유형</td>
+			<!-- IF END 'view_clienttype' -->
+			<td bgcolor="#cccccc">회원상태</td>
+        </tr>
+		<!-- LOOP START 'list' -->
+        <tr>
+			<td align="center" style="cursor:pointer">{{list.__ord}}</td>
+			<td>{{list.member_name}}</td>
+			<td>{{list.condition}}</td>
+			<td>{{list.category}}</td>
+			<!-- IF START 'isDetailCode' -->
+			<td align="center">{{list.cust_detail_code}}</td>
+			<!-- IF END 'isDetailCode' -->
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<td>{{list.address}}</td>
+			<td align="center">{{list.user_name}}</td>
+			<td align="center">{{list.email}}</td>
+			<td align="center">{{list.tel_num}}</td>
+			<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+			<td align="center">{{list.fax_num}}</td>
+			<!-- IF START 'view_clienttype' -->
+			<td align="center">{{list.client_type}}</td>
+			<!-- IF END 'view_clienttype' -->
+			<td align="center">{{list.member_gubun_name}}</td>
+        </tr>
+		<!-- LOOP END 'list' -->
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

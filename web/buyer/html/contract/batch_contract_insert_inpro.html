@@ -1,0 +1,493 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 작성 업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+		</tr>
+		<tr>
+			<th>대표자명</th>
+			<td>{{boss_name}}</td>
+			<th>계약서종류</th>
+			<td>
+				<select id="template_cd" onchange="setColumns(this.value);" style="width:200px;"> 
+					<option value="2019330">(기간제)파견근로계약서</option> 
+					<option value="2019331">(기간제)파견근로계약서_시급직</option> 
+				</select>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 500px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table lineTable">
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="22%"> 
+			<col width="22%"> 
+			<col width="22%"> 
+		</colgroup>
+		<tr> 
+			<th></th> 
+			<th>취업고지서 선택 유무</th> 
+		    <th>개인정보 수집 선택 유무</th> 
+		    <th>파견사유(1~3번)</th>  
+		</tr>
+		<tr>
+			<th>구분</th>  
+			<td align="left" style="padding-left: 80px;">1 : 선택<br/>2 : 선택안함<br/>(미선택 시 : 선택안함)</td> 
+			<td align="left" style="padding-left: 80px;">1 : 선택<br/>2 : 선택안함<br/>(미선택 시 : 선택안함)</td>
+			<td align="left" style="padding-left: 80px;">1 : 선택<br/>2 : 선택안함<br/>(미선택 시 : 선택안함)</td>
+		</tr> 
+	</table>
+</div>
+
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>일괄전송</button>
+</div>
+
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns(document.getElementById("template_cd").value);
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg); 
+        });
+}
+
+function setColumns(template_cd) {
+    var columns = [];
+
+    columns.push({name:"birth_date" ,fieldName:"birth_date",dataType:"text" ,header:"생년월일" ,width:90 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"member_name" ,fieldName:"member_name",dataType:"text" ,header:"이름" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"address" ,fieldName:"address",dataType:"text" ,header:"주소" ,width:300 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"tel_num" ,fieldName:"tel_num",dataType:"text" ,header:"전화번호" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp1" ,fieldName:"hp1",dataType:"text" ,header:"휴대폰(앞)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp2" ,fieldName:"hp2",dataType:"text" ,header:"휴대폰(중간)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp3" ,fieldName:"hp3",dataType:"text" ,header:"휴대폰(마지막)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"email" ,fieldName:"email",dataType:"text" ,header:"이메일" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"계약일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"계약기간 시작일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"계약기간 종료일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+      
+   if (template_cd == '2019330') {  ///(기간제)파견근로계약서 
+		columns.push({name:"cont_gubun1",fieldName:"cont_gubun1",header:"취업고지서 선택",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"cont_gubun2",fieldName:"cont_gubun2",header:"개인정보 수집 이용 동의서 선택",width:150,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_work_name",fieldName:"a_work_name",header:"직무",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_work_place",fieldName:"a_work_place",header:"취업장소/근무지",width:120,readOnly:false , movable:false ,sortable:false});
+		 
+		columns.push({name:"a_pay_1",fieldName:"a_pay_1",header:"기본급",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_2",fieldName:"a_pay_2",header:"연차수당",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_3",fieldName:"a_pay_3",header:"성과금",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_4",fieldName:"a_pay_4",header:"직책수당",width:120,readOnly:false , movable:false ,sortable:false});
+		
+		columns.push({name:"a_incentive_pay_1",fieldName:"a_incentive_pay_1",header:"사업장상여",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_incentive_seq_1",fieldName:"a_incentive_seq_1",header:"사업장상여 지급횟수",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_incentive_pay_2",fieldName:"a_incentive_pay_2",header:"성과인센티브",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_incentive_seq_2",fieldName:"a_incentive_seq_2",header:"성과인센티브 지급횟수",width:120,readOnly:false , movable:false ,sortable:false});
+		
+		columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"파견근로자의 수",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"g1",fieldName:"g1",header:"파견사유_1번",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"g2",fieldName:"g2",header:"파견사유_2번",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"g3",fieldName:"g3",header:"파견사유_3번",width:120,readOnly:false , movable:false ,sortable:false}); 
+		
+		columns.push({name:"input_cont_text03",fieldName:"input_cont_text03",header:"파견근무지 소재지(주소)",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"input_cont_text04",fieldName:"input_cont_text04",header:"파견근무 부서",width:120,readOnly:false , movable:false ,sortable:false});   
+		columns.push({name:"input_cont_text05",fieldName:"input_cont_text05",header:"직접지휘명령자 성명",width:150,readOnly:false , movable:false ,sortable:false});   
+		 
+		columns.push({name:"a_pay_5",fieldName:"a_pay_5",header:"급여",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_6",fieldName:"a_pay_6",header:"퇴충금",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_7",fieldName:"a_pay_7",header:"국민연금",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_8",fieldName:"a_pay_8",header:"건강보험",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_9",fieldName:"a_pay_9",header:"고용보험",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_10",fieldName:"a_pay_10",header:"산재보험",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_11",fieldName:"a_pay_11",header:"기타운영비",width:120,readOnly:false , movable:false ,sortable:false});
+		
+		columns.push({name:"input_cont_text06",fieldName:"input_cont_text06",header:"사용사업관리책임자 성명",width:120,readOnly:false , movable:false ,sortable:false});    
+		columns.push({name:"input_cont_text07",fieldName:"input_cont_text07",header:"복리후생시설",width:120,readOnly:false , movable:false ,sortable:false});    
+ 
+   }else if(template_cd == '2019331'){
+	   columns.push({name:"cont_gubun1",fieldName:"cont_gubun1",header:"취업고지서 선택",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"cont_gubun2",fieldName:"cont_gubun2",header:"개인정보 수집 이용 동의서 선택",width:150,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_work_name",fieldName:"a_work_name",header:"직무",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_work_place",fieldName:"a_work_place",header:"취업장소/근무지",width:120,readOnly:false , movable:false ,sortable:false});
+		 
+		columns.push({name:"a_pay_1",fieldName:"a_pay_1",header:"시급",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_2",fieldName:"a_pay_2",header:"주휴시급",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_3",fieldName:"a_pay_3",header:"연차시급",width:120,readOnly:false , movable:false ,sortable:false}); 
+ 
+		
+		columns.push({name:"a_work_time",fieldName:"a_work_time",header:"소정근로시간",width:120,readOnly:false , movable:false ,sortable:false});
+		 
+		columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"파견근로자의 수",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"g1",fieldName:"g1",header:"파견사유_1번",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"g2",fieldName:"g2",header:"파견사유_2번",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"g3",fieldName:"g3",header:"파견사유_3번",width:120,readOnly:false , movable:false ,sortable:false}); 
+		
+		columns.push({name:"input_cont_text03",fieldName:"input_cont_text03",header:"파견근무지 소재지(주소)",width:120,readOnly:false , movable:false ,sortable:false}); 
+		columns.push({name:"input_cont_text04",fieldName:"input_cont_text04",header:"파견근무 부서",width:120,readOnly:false , movable:false ,sortable:false});   
+		columns.push({name:"input_cont_text05",fieldName:"input_cont_text05",header:"직접지휘명령자 성명",width:150,readOnly:false , movable:false ,sortable:false});   
+		 
+		columns.push({name:"a_pay_5",fieldName:"a_pay_5",header:"급여",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_6",fieldName:"a_pay_6",header:"퇴충금",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_7",fieldName:"a_pay_7",header:"국민연금",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_8",fieldName:"a_pay_8",header:"건강보험",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_9",fieldName:"a_pay_9",header:"고용보험",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_10",fieldName:"a_pay_10",header:"산재보험",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"a_pay_11",fieldName:"a_pay_11",header:"기타운영비",width:120,readOnly:false , movable:false ,sortable:false});
+		
+		columns.push({name:"input_cont_text06",fieldName:"input_cont_text06",header:"사용사업관리책임자 성명",width:120,readOnly:false , movable:false ,sortable:false});    
+		columns.push({name:"input_cont_text07",fieldName:"input_cont_text07",header:"복리후생시설",width:120,readOnly:false , movable:false ,sortable:false});    
+	   
+	   
+   }    
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+            var template_cd = document.getElementById("template_cd").value;
+			
+            if(template_cd == '2019330'){
+            	cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC" , "AD" ,"AE","AF" ,"AG","AH","AI","AJ","AK","AL","AM"];
+            }else{
+            	cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC" , "AD" ,"AE","AF" ,"AG","AH","AI"];
+            } 
+            fields = ["birth_date","member_name","address","tel_num","hp1","hp2","hp3","email","cont_date" , "cont_sdate" ,"cont_edate"];
+			if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("생년월일에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)");return;}
+			if(row[cols[0]].length != 10){alert("생년월일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (A열,"+(i+1)+"행)");return;}
+			if(row[cols[1]] == null || row[cols[1]].toString().trim() == ""){alert("이름에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)");return;}
+			if(row[cols[2]] == null || row[cols[2]].toString().trim() == ""){alert("주소에 빈값이 들어가 있습니다.(C열,"+(i+1)+"행)");return;}
+			//if(row["D"] == null || row["D"].toString().trim() == ""){alert("담당자명에 빈값이 들어가 있습니다.(D열,"+(i+1)+"행)");return;}
+			if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("휴대폰(앞)에 빈값이 들어가 있습니다.(E열,"+(i+1)+"행)");return;}
+			if(row[cols[5]] == null || row[cols[5]].toString().trim() == ""){alert("휴대폰(중간)에 빈값이 들어가 있습니다.(F열,"+(i+1)+"행)");return;}
+			if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("휴대폰(마지막)에 빈값이 들어가 있습니다.(G열,"+(i+1)+"행)");return;}
+			if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("이메일에 빈값이 들어가 있습니다.(H열,"+(i+1)+"행)");return;}
+            if(!pattern.test(row[cols[7]].toString().trim())){alert("이메일이 올바르지 않습니다.(H열,"+(i+1)+"행)");return;}
+            if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("계약일자에 빈값이 들어가 있습니다.(I열,"+(i+1)+"행)");return;}
+            if(row[cols[8]].length != 10){alert("계약일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (I열,"+(i+1)+"행)");return;}
+            
+            if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("계약기간 시작일자에 빈값이 들어가 있습니다.(J열,"+(i+1)+"행)");return;}
+            if(row[cols[9]].length != 10){alert("계약기간 시작일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (J열,"+(i+1)+"행)");return;}
+            
+            if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("계약기간 종료일자에 빈값이 들어가 있습니다.(K열,"+(i+1)+"행)");return;}
+            if(row[cols[10]].length != 10){alert("계약기간 종료일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (K열,"+(i+1)+"행)");return;}
+  
+            if (template_cd == '2019330') {  // (기간제) 파견근로계약서
+                fields.push("cont_gubun1"); //취업고지서 선택 유무
+                fields.push("cont_gubun2"); //개인정보 수집 선택 유무
+                fields.push("a_work_name"); //직무
+                fields.push("a_work_place"); //취업장소
+                fields.push("a_pay_1"); //기본급
+                fields.push("a_pay_2");
+                fields.push("a_pay_3");
+                fields.push("a_pay_4");
+                 
+				fields.push("a_incentive_pay_1");
+	            fields.push("a_incentive_seq_1");
+	            fields.push("a_incentive_pay_2");
+	            fields.push("a_incentive_seq_2");
+	            fields.push("input_cont_text01");
+	            fields.push("g1");
+	            fields.push("g2");
+	            fields.push("g3");
+	            fields.push("input_cont_text03");
+	            fields.push("input_cont_text04");
+				fields.push("input_cont_text05");
+	            fields.push("a_pay_5");
+	            fields.push("a_pay_6");
+	            fields.push("a_pay_7");
+				fields.push("a_pay_8");
+				fields.push("a_pay_9");
+				fields.push("a_pay_10");
+				fields.push("a_pay_11"); 
+	            fields.push("input_cont_text06"); 
+				fields.push("input_cont_text07");   
+ 
+                if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("취업고지서 선택에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("개인정보 수집 선택에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("직무에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;}  
+                if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("취업장소에 빈값이 들어가 있습니다.(" + cols[14] + "열,"+(i+1)+"행)");return;}  
+                if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("기본급에 빈값이 들어가 있습니다.(" + cols[15] + "열,"+(i+1)+"행)");return;} 
+                
+           } else  if (template_cd == '2019331') {  
+               fields.push("cont_gubun1"); //취업고지서 선택 유무
+               fields.push("cont_gubun2"); //개인정보 수집 선택 유무
+               fields.push("a_work_name"); //직무
+               fields.push("a_work_place"); //취업장소
+               fields.push("a_pay_1"); //기본급
+               fields.push("a_pay_2");
+               fields.push("a_pay_3");  
+				fields.push("a_work_time"); 
+	             
+	            fields.push("input_cont_text01");
+	            fields.push("g1");
+	            fields.push("g2");
+	            fields.push("g3");
+	            fields.push("input_cont_text03");
+	            fields.push("input_cont_text04");
+				fields.push("input_cont_text05");
+	            fields.push("a_pay_5");
+	            fields.push("a_pay_6");
+	            fields.push("a_pay_7");
+				fields.push("a_pay_8");
+				fields.push("a_pay_9");
+				fields.push("a_pay_10");
+				fields.push("a_pay_11"); 
+	            fields.push("input_cont_text06"); 
+				fields.push("input_cont_text07");   
+
+               if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("취업고지서 선택에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;}
+               if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("개인정보 수집 선택에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;}
+               if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("직무에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;}  
+               if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("취업장소에 빈값이 들어가 있습니다.(" + cols[14] + "열,"+(i+1)+"행)");return;}  
+               if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("시급에 빈값이 들어가 있습니다.(" + cols[15] + "열,"+(i+1)+"행)");return;} 
+               if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("주휴시급에 빈값이 들어가 있습니다.(" + cols[16] + "열,"+(i+1)+"행)");return;} 
+               if(row[cols[17]] == null || row[cols[17]].toString().trim() == ""){alert("연차시급에 빈값이 들어가 있습니다.(" + cols[17] + "열,"+(i+1)+"행)");return;} 
+               if(row[cols[18]] == null || row[cols[18]].toString().trim() == ""){alert("소정근로시간에 빈값이 들어가 있습니다.(" + cols[18] + "열,"+(i+1)+"행)");return;} 
+          }  
+
+ 
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    rowdata[fields[j]] = row[cols[j]].trim();
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress(); 
+    }
+}
+ 
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+
+	var fileNmae = "계약서일괄생성";
+	
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: fileNmae+".xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("계약서를 일괄 전송 하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a_inpro.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+         grid:grid_string
+		,template_cd:document.getElementById("template_cd").value
+        ,member_no:"{{member_no}}"
+    };
+
+    console.log(data);
+    submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            data = data.trim();
+            alert(data);
+            dataProvider.clearRowStates(true);
+            submit_chk = false;
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\\n" + "error:" + error);
+            submit_chk = false;
+        }
+    });
+}
+
+</script>

@@ -1,0 +1,131 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="search" value="1">
+<input type="hidden" name="callback" value="{{callback}}">
+
+<div style="width:100%;margin-bottom:10px;" align="right">		
+		<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"> <span></span>닫기</button>
+</div>
+	
+<div class="search_div">	
+<table class="search_table">
+  <colgroup>
+    <col width="15%"/>
+    <col width="25%"/>
+    <col width="15%"/>
+    <col width="25%"/>
+    <col width="15%"/>
+  </colgroup>
+  <tr>
+    <th><p>회원유형</p></th>
+    <td>
+    	<select name="s_member_type">
+    		<option value="">-선택-</option>
+    		<!-- LOOP START 'code_member_type' -->
+    		<option value="{{code_member_type.id}}">{{code_member_type.value}}</option>
+    		<!-- LOOP END 'code_member_type' -->
+    	</select>
+    </td>
+    <th><p>업체상태</p></th>
+    <td>
+    	<select name="s_status">
+    		<option value="">-선택-</option>
+    		<!-- LOOP START 'code_status' -->
+    		<option value="{{code_status.id}}">{{code_status.value}}</option>
+    		<!-- LOOP END 'code_status' -->
+    	</select>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <th><p>업체명</p></th>
+    <td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+    <th><p>사업자번호</p></th>
+    <td><input type="text" name="s_vendcd" maxlength="30" style="width:95%"></td>
+    <td align="right">
+      <button type="submit" class="btn color ico-search" value="검색"><span></span>검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+
+function formSubmit(f){
+	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+
+<div class="push-left">
+    <span class="caution-text">
+	※ <font color="blue"><b>업체명</b></font> 또는 사업자 등록번호를 입력후 검색 하세요.
+    </span>
+</div>
+<br>
+<br>
+<div class="div_table">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<colgroup>
+		<col width="25%">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+		<col width="10%">
+		<col width="15%%">
+	</colgroup>
+	<tr class="ltitle">
+		<th>업체명</th>
+		<th>사업자번호</th>
+		<th>대표자</th>
+		<th>유형</th>
+		<th>상태</th>
+		<th>추가</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td>{{list.member_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<td align="center">{{list.boss_name}}</td>
+		<td align="center">{{list.member_type_nm}}</td>
+		<td align="center">{{list.status_nm}}</td>
+		<td align="center">
+			<form novalidate name="member_form_{{list.member_no}}">
+				<input type="hidden" name="member_no" value="{{list.member_no}}">
+				<input type="hidden" name="member_name" value="{{list.member_name}}">
+			</form>
+			<button type="button" class="sbtn color ico-add" value="추가" onclick="fadd('{{list.member_no}}')"><span></span>추가</button>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr class="cel">
+		<td align="center" colspan="6">검색 결과가 없습니다.</td>
+	</tr>
+	<!-- IFNOT END 'list' -->
+</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+ 
+<script>
+function formSubmit(f){
+	if(f['s_member_name'].value== "" && f['s_vendcd'].value == ""){
+		alert("업체명 또는 사업자등록번호 입력 후 검색 하세요.");
+		f['s_member_name'].focus();
+		return false;
+	}
+	return true;
+} 
+
+function fadd(member_no){
+	var f = document.forms['member_form_'+member_no] 
+	var member = { "member_no" : f['member_no'].value, "member_name": f['member_name'].value};
+	opener.{{callback}}(member);
+	self.close();
+}
+</script>

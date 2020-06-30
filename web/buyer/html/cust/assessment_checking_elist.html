@@ -1,0 +1,84 @@
+<form name="form1" method="get">
+	<div class="search_div">
+		<table class="search_table">
+			<colgroup>
+				<col width="13%"/>
+				<col width="*"/>
+				<col width="13%"/>
+				<col width="30%"/>
+				<col width="10%"/>
+			</colgroup>
+			<tr>
+				<th><p>업체명</p></th>
+				<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+				<th><p>프로젝트명</p></th>
+				<td><input type="text" name="s_project_name" maxlength="30" style="width:95%"></td>
+				<td align="right"><button type="submit" class="search_btn" value="검색"><span></span>검색</button></td>
+			</tr>
+		</table>
+	</div>
+
+</form>
+{{form_script}}
+<div class="div_table">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<colgroup>
+			<col width="8%">
+			<col width="*">
+			<col width="30%">
+			<col width="11%">
+			<col width="11%">
+			<col width="10%">
+			<col width="10%">
+		</colgroup>
+		<tr>
+			<th>평가년도</th>
+			<th>업체명</th>
+			<th>프로젝트명</th>
+			<th>총점</th>
+			<th>상태</th>
+			<th>평가자</th>
+			<th>평가일</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr style="cursor:pointer" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="goCheckSheet('{{list.kind_cd}}', '{{list.asse_no}}', '{{list.div_cd}}');">
+			<td align="center">{{list.asse_year}}</td>
+			<td align="left">{{list.member_name}}</td>
+			<td align="left">{{list.project_name}}</td>
+			<td align="center">{{list.rating_point}}</td>
+			<td align="center">{{list.status_nm}}</td>
+			<td align="center">{{list.user_nm}}</td>
+			<td align="center">{{list.reg_date}}</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="7">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+<script language="javascript">
+    function goCheckSheet(kind_cd, asse_no, div_cd){
+
+        //alert(kind_cd);
+        //alert(asse_no);
+        //alert(div_cd);
+        var url = "";
+        if(kind_cd == "N"){	//구매_신규평가
+            url = "assessment_s_checkSheet_new.jsp?asse_no="+asse_no;
+        }else if(kind_cd == "R"){	//구매_정기평가
+            url = "assessment_s_checkSheet_regular.jsp?asse_no="+asse_no;
+        }else if(kind_cd == "S"){	//수시평가
+            if(div_cd == "Q"){	//QC
+                url = "assessment_q_checkSheet_sumetime.jsp?asse_no="+asse_no;
+            }else{	//ENC
+                url = "assessment_e_checkSheet_sumetime.jsp?asse_no="+asse_no;
+            }
+        }
+        location.href = url;
+
+    }
+</script>

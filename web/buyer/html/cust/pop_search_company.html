@@ -1,0 +1,605 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="search" value="1">
+
+<div class="util-row">
+	<div class="push-right">
+	<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"> <span></span>닫기</button>
+	</div>
+</div>
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="15%"/>
+			<col width="25%"/>
+			<col width="15%"/>
+			<col width="25%"/>
+			<col width="10%"/>
+		</colgroup>
+		<tr>
+			<th><p>업체명</p></th>
+			<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+			<th><p>사업자번호</p></th>
+			<td><input type="text" name="s_vendcd" maxlength="30" style="width:95%"></td>
+			<td align="right">
+				<button type="submit" class="search_btn">검색</button>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+attachOnload( function(){
+        <!-- IF START 'bWemakeCust' -->
+        document.form1['s_member_name'].value = "위메프";
+        document.form1['s_vendcd'].value = "1208755227";
+        <!-- IF END 'bWemakeCust' -->
+        document.form1['s_member_name'].focus();
+    });
+    
+    function formSubmit(f){
+        if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+            alert("상대방 업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+
+<div class="push-left">
+    <span class="caution-text">
+    <!-- IF START 'bWemakeCust' -->
+	위메프 거래처인 경우 자사 정보가 아닌 <font color="blue"><b>"위메프"를 검색하신 후 추가</b></font>해주세요.
+		<!-- IF END 'bWemakeCust' -->
+		<!-- IFNOT START 'bWemakeCust' -->
+	※ <font color="blue"><b>상대방 업체명</b></font> 또는 사업자 등록번호를 입력후 검색 하세요. <font color="gray">예) 한국쓰리엠, 케이티하이텔</font>
+		<!-- IFNOT END 'bWemakeCust' -->
+    </span>
+</div>
+<br>
+<br>
+<div class="div_table">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<colgroup>
+			<col width="10%">
+			<col width="*">
+			<col width="20%">
+			<col width="20%">
+			<col width="15%">
+		</colgroup>
+		<tr class="ltitle">
+			<th>순번</th>
+			<th>업체명</th>
+			<th>사업자번호</th>
+			<th>대표자</th>
+			<th>추가</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.__ord}}</td>
+			<td>{{list.member_name}}</td>
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<td align="center">
+				<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>추가</button>
+			</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="5">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+<style type="text/css">
+	#is3Mdiv{
+		width:400px;
+		height:65px;
+		position: absolute;
+		top:200px;
+		left:110px;
+		z-index:10;
+		border:2px solid #0071a7;
+		padding:5px;
+		background-color:#FFFFFF
+	}
+</style>
+<form name="form2" method="get">
+	<div id="20121203661" align="center" style="display:none">
+		<div class="div_table" style="padding-top: 5px;">
+			<table>
+				<tr>
+					<td align="center">
+						거래처 관계를 선택 하세요.
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="client_type" value="0"> 공급사
+						<input type="checkbox" name="client_type" value="1"> 판매(대리)점
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121203661')"><span></span>업체등록</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121203661').style.display='none';"><span></span>취소</button>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						- 공급사 : 3M에게 물품, 용역을 제공(납품)을 하는 업체<br>
+						- 판매(대리)점 : 3M의 위탁을 받아 매매를 하는 업체
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="20140300055" align="center" style="display:none">
+		<div class="div_table" style="padding-top: 5px;">
+			<table>
+				<tr>
+					<td align="center">
+						거래처 관계를 선택 하세요.
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="client_type" value="0"> 공급사
+						<input type="checkbox" name="client_type" value="1"> 판매(대리)점
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20140300055')"><span></span>업체등록</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20140300055').style.display='none';"><span></span>취소</button>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						- 공급사 : 한국유리공업(주)에게 물품, 용역을 제공(납품)을 하는 업체<br>
+						- 대리점 : 한국유리공업(주)의 위탁을 받아 매매를 하는 업체
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="20130400091" align="center" style="display:none">
+		<div class="div_table" style="padding-top: 5px;">
+			<table>
+				<tr>
+					<td align="center">
+						거래처 관계를 선택 하세요.
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="client_type" value="0"> 물품
+						<input type="checkbox" name="client_type" value="1"> 용역
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20130400091')"><span></span>업체등록</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400091').style.display='none';"><span></span>취소</button>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						- 물품 : 대보정보통신에게 물품을 제공(납품)을 하는 업체<br>
+						- 용역 : 대보정보통신에게 용역을 제공 하는 업체
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="20121200116" align="center" style="display:none">
+		<div class="div_table" style="padding-top: 5px;">
+			<table>
+				<tr>
+					<td align="center">
+						거래처 관계를 선택 하세요.
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="client_type" value="0"> 물품
+						<input type="checkbox" name="client_type" value="1"> 공사
+						<input type="checkbox" name="client_type" value="2"> 용역
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121200116')"><span></span>업체등록</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121200116').style.display='none';"><span></span>취소</button>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						- 물품 : 한국제지에게 물품을 제공(납품)을 하는 업체<br>
+						- 공사 : 한국제지 하도급 업체<br>
+						- 용역 : 한국제지에게 용역을 제공 하는 업체
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="20140101025" align="center" style="display:none">
+		<div class="div_table" style="padding-top: 5px;">
+			<table>
+				<tr>
+					<td align="center">
+						거래처 관계를 선택 하세요.
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="client_type" value="0"> 물품
+						<input type="checkbox" name="client_type" value="1"> 공사
+						<input type="checkbox" name="client_type" value="2"> 용역
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20140101025')"><span></span>업체등록</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20140101025').style.display='none';"><span></span>취소</button>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						- 물품 : 신세계백화점에 물품을 제공(납품)을 하는 업체<br>
+						- 공사 : 신세계백화점 하도급 업체<br>
+						- 용역 : 신세계백화점에 용역을 제공 하는 업체
+					</td>
+				</tr>
+			</table>
+		</div>
+</div>
+<div id="20170101031" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<td align="center">
+					거래처 관계를 선택 하세요.
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 물품
+					<input type="checkbox" name="client_type" value="1"> 공사
+					<input type="checkbox" name="client_type" value="2"> 용역
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20170101031')">업체등록</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20170101031').style.display='none';">취소</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 물품 : 수협은행에 물품을 제공(납품)을 하는 업체<br>
+					- 공사 : 수협은행 하도급 업체<br>
+					- 용역 : 수협은행에 용역을 제공 하는 업체
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="20150200088" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<td align="center">
+					거래처 관계를 선택 하세요.
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 원자재
+					<input type="checkbox" name="client_type" value="1"> 외주
+					<input type="checkbox" name="client_type" value="2"> 부자재
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20170101031')">업체등록</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20170101031').style.display='none';">취소</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 원자재 : 코스모코스에 원자재를 제공(납품)하는 업체<br>
+					- 외주 : 코스모코스의 하도급 업체<br>
+					- 부자재 : 코스모코스에 부자재를 제공(납품)하는 업체
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="20121204063" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<td align="center">
+					거래처 관계를 선택 하세요.
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 물품
+					<input type="checkbox" name="client_type" value="1"> 공사
+					<input type="checkbox" name="client_type" value="2"> 용역
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121204063')">업체등록</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121204063').style.display='none';">취소</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 물품 : 홈플러스에 물품을 제공(납품)을 하는 업체<br>
+					- 공사 : 홈플러스 하도급 업체<br>
+					- 용역 : 홈플러스에 용역을 제공 하는 업체
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="20170602171" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<td align="center">
+					거래처 관계를 선택 하세요.
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 물품
+					<input type="checkbox" name="client_type" value="1"> 공사
+					<input type="checkbox" name="client_type" value="2"> 용역
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 물품 : 대림씨엔에스에 물품을 제공(납품)을 하는 업체<br>
+					- 공사 : 대림씨엔에스 하도급 업체<br>
+					- 용역 : 대림씨엔에스에 용역을 제공 하는 업체
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="20120200001" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<td align="center">
+					거래처 관계를 선택 하세요.
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 물품
+					<input type="checkbox" name="client_type" value="1"> 공사
+					<input type="checkbox" name="client_type" value="2"> 용역
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20120200001')">업체등록</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20120200001').style.display='none';">취소</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 물품 : 테스트02에게 물품을 제공(납품)을 하는 업체<br>
+					- 공사 : 테스트02 하도급 업체<br>
+					- 용역 : 테스트02에게 용역을 제공 하는 업체
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="20130400333_03" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<th align="center">
+					거래처 관계를 선택 하세요.
+				</th>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 수송
+					<input type="checkbox" name="client_type" value="1"> 구매
+					<input type="checkbox" name="client_type" value="2"> 공사
+				</td>
+			</tr>
+			<tr>
+				<th align="center">
+					대표자 생년월일 및 성별을 입력 하세요.
+				</th>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="text" name="member_slno1" class="input_n" size="10" maxlength="10">&nbsp;
+					<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form2']['member_slno1'])">
+					/
+					<input type="radio" name="member_slno2" value="1">남자
+					<input type="radio" name="member_slno2" value="2">여자
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany2('20130400333')">업체등록</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400333').style.display='none';">취소</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 수송 : 수송부의 거래처<br>
+					- 구매 : 구매팀 거래처<br>
+					- 공사 : 인프라팀 거래처
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="20130400333" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+		<table>
+			<tr>
+				<td align="center">
+					거래처 관계를 선택 하세요.
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="client_type" value="0"> 수송
+					<input type="checkbox" name="client_type" value="1"> 구매
+					<input type="checkbox" name="client_type" value="2"> 공사
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20130400333')">업체등록</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400333').style.display='none';">취소</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					- 수송 : 수송부의 거래처<br>
+					- 구매 : 구매팀 거래처<br>
+					- 공사 : 인프라팀 거래처
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div id="20160901598" align="center" style="display:none">
+	<div class="div_table" style="padding-top: 5px;">
+	<table>
+		<tr>
+			<th>거래처 유형 선택</th>
+		</tr>
+		<!-- IF START 'noti.noti_seq' -->
+		<tr>
+			<td align="center">
+				<input type="radio" name="client_type" value="1"> 등록업체
+				<input type="radio" name="client_type" value="2"> 협력업체
+			</td>
+		</tr>
+		<!-- IF END 'noti.noti_seq' -->
+		<!-- IFNOT START 'noti.noti_seq' -->
+		<tr>
+			<td align="center">
+				<input type="radio" name="client_type" value="1" disabled> 등록업체(신청기간아님)
+				<input type="radio" name="client_type" value="2"> 협력업체
+			</td>
+		</tr>
+		<!-- IFNOT END 'noti.noti_seq' -->
+		<tr>
+			<td align="center">
+				<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddNhqv('20160901598')"><span></span>거래신청</button>
+				<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20160901598').style.display='none';"><span></span>취소</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				- 등록업체 : 등록업체 모집공고 기간중만 선택 가능<br>
+				<font style="color:#ffffff">..</font>  (등록업체공종 : 인테리어,전기,통신,간판,제작가구,사무용가구,냉난방)<br>
+				- 협력업체 : 등록업체 공종 이외의 업체
+			</td>
+		</tr>
+	</table>
+	</div>
+</div>
+
+</form>
+
+<script language="javascript">
+    var sSelectMemberNo = "";
+    function addCompany(member_no){
+        var arr3m = ["20121203661","20130400010","20130400009","20130400011","20130400008"];
+        if(jQuery.inArray(member_no, arr3m)>=0){  // 3M
+            document.getElementById("20121203661").style.display="";
+            sSelectMemberNo = member_no;
+            return;
+        }
+        else if(jQuery.inArray(member_no, ["20140300055","20130400091","20121200116","20140101025","20120200001"])>=0){  // 한국유리공업, 대보정보통신, 한국제지, 신세계, 테스트02
+            document.getElementById(member_no).style.display="";
+            sSelectMemberNo = member_no;
+            return;
+        }
+        else if(jQuery.inArray(member_no, ["20160901598"])>=0){  // NH투자증권
+            document.getElementById(member_no).style.display="";
+            sSelectMemberNo = member_no;
+            return;
+        }
+        else if(jQuery.inArray(member_no, ["20130400333"])>=0) { // 씨제이대한통운
+        	if("{{_auth._MEMBER_GUBUN}}" == "03"){
+				document.getElementById(member_no+"_03").style.display="";
+				sSelectMemberNo = member_no;
+				return;
+			}else{
+				document.getElementById(member_no).style.display="";
+				sSelectMemberNo = member_no;
+				return;
+			}
+        }
+
+        var retVal = new Array(member_no,"");
+        opener.addClient(retVal);
+        self.close();
+    }
+    function isDetailAddCompany(member_no){
+        var client_type = GetFormValue("form2","client_type");
+        if(client_type==""){
+            alert("거래처와의 관계를 선택 하세요.");
+            return;
+        }
+        var retVal = new Array(sSelectMemberNo,client_type);
+        opener.addClient(retVal);
+        self.close();
+    }
+    function isDetailAddCompany2(member_no){
+		var client_type = GetFormValue("form2","client_type");
+        var member_slno1 = GetFormValue("form2","member_slno1");
+        var member_slno2 = GetFormValue("form2","member_slno2");
+        if(member_slno1.length != 10){
+            alert("대표자 생년월일을 입력 하세요.");
+            return;
+        }
+        if(member_slno2.length != 1){
+            alert("성별을 선택 하세요.");
+            return;
+        }
+        var retVal = new Array(sSelectMemberNo,client_type,member_slno1,member_slno2);
+        opener.addClient(retVal);
+        self.close();
+    }
+
+    function isDetailAddNhqv(member_no){
+        var client_type = GetFormValue("form2","client_type");
+        if(client_type==""){
+            alert("거래처 유형을 선택 하세요.");
+            return;
+        }
+        var retVal = new Array(sSelectMemberNo,client_type);
+        if(client_type=="1"){
+            OpenWindows("pop_nhqv_recruit_req.jsp?noti_seq={{noti.noti_seq}}",'pop_nhqv_recruit_req','1000','700');
+        }else if(client_type == "2"){
+            opener.addClient(retVal);
+        }
+        self.close();
+    }
+</script>

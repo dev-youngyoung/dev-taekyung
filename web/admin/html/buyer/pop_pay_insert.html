@@ -1,0 +1,127 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
+<div style="text-align:right;margin: 5px 0px" >
+		<button type="submit" class="sbtn color ico-save" value="저장"><span></span>저장</button>
+		<button type="button" class="sbtn color ico-cancel" value="닫기" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+<div class="div_table">
+<table>
+<colgroup>
+<col width="30%">
+<col width="*">
+</colgroup>
+<tr>
+	<th class="req-check">계약번호</th>
+	<td>
+		<input type="text" name="cont_no" style="width:110px" class="in_readonly" readonly> - <input type="text" name="cont_chasu" style="width:40px" class="in_readonly" readonly>
+		<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_cont_member.jsp?callback=setContMember','pop_cont_member','1100','700')"><span></span>계약검색</button> 
+	</td>
+</tr>
+<tr>
+	<th class="req-check">계약명</th>
+	<td>
+		<input type="text" name="cont_name" style="width:95%" class="in_readonly" readonly>
+	</td>
+</tr>
+<tr>
+	<th class="req-check">결제업체</th>
+	<td>
+		<input type="hidden" name="member_no">
+		<input type="text" name="member_name" style="width:95%" class="in_readonly" readonly>
+	</td>
+</tr>
+<tr>
+	<th class="req-check">결제형태</th>
+	<td>
+		<select name="pay_type" onChange="chgPayType()">
+		<option value="">선택</option>
+		<!-- 
+		<option value="011">신용카드</option>
+		<option value="022">계좌이체(지출증빙)</option>
+		<option value="021">계좌이체(소득공제)</option>
+		<option value="020">계좌이체(미발행)</option>
+		 -->
+		<option value="023">계좌이체(통장)</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th class="req-check">주문번호</th>
+	<td><input type="text" name="pay_number"  style="width:200px" maxlength="20"></td>
+</tr>
+<tr>
+	<th class="req-check" id="td_tid">TID</th>
+	<td><input type="text" name="tid"  style="width:98%" maxlength="30" onblur="inputTid()"></td>
+</tr>
+<tr>
+	<th class="req-check">결제금액</th>
+	<td>￦ <input type="text"  style="width:100px"  name="pay_amount"  onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"> (VAT포함) </td>
+</tr>
+<tr>
+	<th class="req-check">결제일시</th>
+	<td>
+		<input type="text" name="accept_date" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" value="{{sysdate}}">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['accept_date'])">
+		 <input type="text"  style="width:40px"  name="accept_hh"  onkeydown="num_only()" onkeypress="num_only()" value="00">
+		 :<input type="text"  style="width:40px"  name="accept_mm"  onkeydown="num_only()" onkeypress="num_only()" value="00">
+		 :<input type="text"  style="width:40px"  name="accept_ss"  onkeydown="num_only()" onkeypress="num_only()" value="00">
+		 
+	</td>
+</tr>
+<tr>
+	<th>비고</th>
+	<td>
+		<input type="text" style="width: 100%;" name="etc" />
+	</td>
+</tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("결제정보를 저장 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function chgPayType(){
+	var f = document.forms['form1'];
+	var pay_type = f['pay_type'].value;
+	if(pay_type == '023'){
+		f['pay_number'].value= f['cont_no'].value+f['cont_chasu'].value+"aaaaaaaa";
+		f['tid'].value="00000000000000{{sysdate}}0000";
+	}
+	if(pay_type == "022"||pay_type == "021"){
+		document.getElementById("td_tid").innerHTML = "현금영수증TID";
+	}else{
+		document.getElementById("td_tid").innerHTML = "TID";
+	}
+	inputTid();
+}
+
+function inputTid(){
+	var f = document.forms['form1'];
+	var pay_type = f['pay_type'].value;
+	if(inArray(pay_type,['021','022','023'])){
+		var tid = f['tid'].value;
+		f['accept_date'].value = tid.substring(14,22);
+	}
+}
+
+function setContMember(data){
+	var f = document.forms['form1'];
+	f['cont_no'].value=data['cont_no'];
+	f['cont_chasu'].value=data['cont_chasu'];
+	f['cont_name'].value=data['cont_name'];
+	f['member_no'].value=data['member_no'];
+	f['member_name'].value=data['member_name'];
+	f['pay_amount'].value=data['pay_amount'];
+	
+	return;
+}
+
+</script>

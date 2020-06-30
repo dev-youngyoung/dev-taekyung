@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><b style="font-size:18pt">협력업체 조회<b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td>
+
+      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+        <tr align="center">
+			<td height="30" bgcolor="#cccccc">순번</td>
+			<td bgcolor="#cccccc">계약처명</td>
+			<td bgcolor="#cccccc">계약처코드</td>
+			<td bgcolor="#cccccc">사업자번호</td>
+			<td bgcolor="#cccccc">대표자</td>
+			<td bgcolor="#cccccc">거래정지</td>
+			<td bgcolor="#cccccc">일회성업체</td>
+			<td bgcolor="#cccccc">KPP담당</td>
+        </tr>
+		<!-- LOOP START 'list' -->
+        <tr>
+			<td align="center" style="cursor:pointer">{{list.__ord}}</td>
+			<td>{{list.member_name}}</td>
+			<td align="center">{{list.cust_detail_code}}</td>
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<td align="center">{{list.status}}</td>
+			<td align="center">{{list.temp_yn}}</td>
+			<td align="center">{{list.user_name}}</td>
+        </tr>
+		<!-- LOOP END 'list' -->
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

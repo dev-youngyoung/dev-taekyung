@@ -1,0 +1,98 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);" >
+<input type="hidden" name="batch_seq" value="{{batch.batch_seq}}" />
+
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>기본정보</h3>
+    </div>
+</div>
+<table>
+	<colgroup>
+		<col width="15%">
+		<col width="85%">
+	</colgroup>
+	<!-- IF START 'modify' -->
+	<tr>
+		<th class="req-check">회원번호 </th>
+		<td>
+			{{batch.member_no}}</td>
+	</tr>
+	<!-- IF END 'modify' -->
+	<!-- IFNOT START 'modify' -->
+		<tr>
+		<th class="req-check">회원번호 </th>
+		<td>
+			<input type="text" name="member_no" style="width:85%" value="{{batch.member_no}}" required="required" hname="회원번호" readonly="readonly" />
+			<button type="button" class="sbtn color ico-write" onclick="OpenWindows('../buyer/pop_search_company.jsp?client_no=00000000000&callback=setMember','pop_search_comapny', '860','700');"><span></span>검색</button>
+		</td>
+	</tr>
+	<!-- IFNOT END 'modify' -->
+	<tr>
+		<th class="req-check">양식코드 </th>
+		<td>
+			<input type="text" name="template_cd" style="width:95%"  value="{{batch.template_cd}}" required="required" hname="양식코드" >
+			<!-- <button type="button" class="sbtn color ico-write" onclick="javascript:openTemplate();"><span></span>검색</button> -->
+		</td>
+	</tr>
+	<tr>
+		<th class="req-check">URL </th>
+		<td>
+			<input type="text" name="batch_url" style="width:95%"  value="{{batch.batch_url}}" required="required" hname="URL" >
+		</td>
+	</tr>
+	<tr>
+		<th  >기타 </th>
+		<td>
+			<input type="text" name="etc" style="width:95%"  value="{{batch.etc}}">
+		</td>
+	</tr>
+</table>
+</div>
+
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+	<!-- IF START 'modify' -->
+	<button type="button" class="btn color ico-delete auth_css" onclick="batchDelete();"><span></span>삭제</button>
+	<!-- IF END 'modify' -->
+	<button type="button" class="btn color ico-list" onclick="location.href='batch_url_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>		
+ 
+
+</form>
+{{form_script}}
+
+<script language="javascript">
+
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("저장 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+
+function openTemplate(){
+	var f = document.forms['form1'];
+	var member_no = f['member_no'].value;
+	OpenWindows('pop_search_template.jsp?callback=setTemplate','pop_search_template', '860','700');
+}
+
+function setMember(member){
+	var f = document.forms['form1'];
+	f['member_no'].value = member['member_no'];
+}
+
+
+function batchDelete(){
+	if(confirm("해당 일괄전송 URL을 삭제 하시겠습니까?")){
+		location.href='batch_url_delete.jsp?{{query}}';
+	}
+}
+
+</script>
+
+

@@ -1,0 +1,104 @@
+<!-- INCLUDE FILE 'layout/header.html' -->
+<body>
+<div class="wrap">
+<!-- EXECUTE FILE '/web/buyer/layout/topMenu.jsp?menu_cd={{menu_cd}}' -->
+<div class="page-content">
+<!-- EXECUTE FILE '/web/buyer/layout/leftMenu.jsp?menu_cd={{menu_cd}}' -->
+
+<div class="page-body">
+
+<!-- IFNOT START 'default_user_block' -->
+<!-- IF START 'auth_select' -->
+<style type="text/css">
+	.auth_css { display:none}
+</style>
+<script type="text/javascript">
+attachOnload(
+	function (){
+		var auth_form = true;
+		if("{{auth_form}}"=="false"){
+			return;
+		}
+		var forms = document.forms;
+		for(var i = 0; i< forms.length; i ++){
+			forms[i].setAttribute("onsubmit", "return false")
+		}
+	}
+);
+</script>
+<div style="width:100%;border:1px solid #dddddd; background-color:#fafafa; padding:10px; text-align:center; margin-bottom: 10px" class="caution-text">※ 로그인 한 사용자의 해당 메뉴 권한은 조회만 가능 하도록 설정 되어 있습니다.</div>
+<!-- IF END 'auth_select' -->
+<!-- IFNOT END 'default_user_block' -->
+
+
+<!-- EXECUTE FILE '/web/buyer/layout/topTitle.jsp?menu_cd={{menu_cd}}' -->
+<!-- INCLUDE NAME 'BODY' -->
+</div>
+
+
+
+<div class="quick-menu">
+    <div class="quick-menu-inner">
+    	<div class="quick-menu-nav">
+	    	<h2>QUICK MENU</h2>
+	        <ul>
+	        	<!-- IF START 'default_user_block' -->
+	        	
+	        	<!-- IFNOT START 'person_block' -->
+	            <li><a href="/web/buyer/info/company_modify.jsp">회사정보변경</a></li>
+	            <li><a href="/web/buyer/info/cert_info.jsp">인증서등록/갱신</a></li>
+	            <!-- IFNOT END 'person_block' -->
+	            <!-- IF START 'person_block' -->
+	            <li><a href="/web/buyer/info/cert_info.jsp">인증서등록/갱신</a></li>
+	            <!-- IF END 'person_block' -->
+	            <!-- IF END 'default_user_block' -->
+	            
+	            <!-- IF START 'eul_block' -->
+	            <li><a href="/web/buyer/info/pay_list.jsp">결제내역</a></li>
+	            <!-- IF END 'eul_block' -->
+	            
+	            <li><a href="http://www.0302.co.kr/ndocu" target="_blank">원격기술지원요청</a></li>
+	        </ul>
+	    </div> 
+	    <div class="customer-menu">
+         <h2><img src="/web/buyer/html/images/common/customer_menu_icon.png" alt="">고객지원센터</h2>
+         <div class="customer-body">
+             <h3>02-788-9097</h3>
+             <p class="customer-day">평일: 9:00 - 18:00</p>
+             <p class="customer-lunch">점심: 12:00 ~ 13:00</p>
+             <p class="customer-end">토, 일, 공휴일 휴무</p>
+             <span>nicedocu@nicednr.co.kr</span>
+         </div>
+     	</div>
+     	<div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+		<a href="javascript:OpenWindows('/web/buyer/html/help/banner_msign_contract.html','banner_msign_contract',1015,700)"><img src="/web/buyer/html/images/banner_msign_contract.jpg"></a>
+		</div>  
+		<!--  <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+		<a href="javascript:OpenWindows('/web/buyer/html/main/pop_campus.html','campus' ,1020,780,300,80);"><img src="/web/buyer/html/images/banner_docu_edu.jpg"></a>
+		</div>  -->
+		<!-- <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+		 <a href="https://nicewel.co.kr/?act=user.user_join_info&r=nomubi" target="_blank"><img src="/web/buyer/html/images/banner_nicewel02.jpg"></a>
+	   
+		</div>  --> 
+		<!-- <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+			<a href="javascript:OpenWindow('http://www.nicedocu.com/web/buyer/layout/vauchar.jsp?member_no={{_auth._MEMBER_NO}}&user_id={{_auth._USER_ID}}','vouchar','1200','750')"  style=" overflow: hidden;">   <img src="/web/buyer/html/images/banner_voucher2.jpg"></a>
+		</div> -->
+		<div style="margin-top: 10px;margin-bottom: 10px;text-align: center;"> 
+		<!-- <a href="https://aff.g2brating.co.kr/#MENUCM0300?param=NICEDOCU" target="_blank"><img src="/web/buyer/html/images/banner_nicednb1.jpg"></a> -->
+		<a href="https://finset.io/loan/compareGoods" target="_blank"><img src="/web/buyer/html/images/banner_finset2.jpg"></a> 
+		</div>
+		<div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+		<a href="https://www.nicers.co.kr" target="_blank"><img src="/web/buyer/html/images/banner_nicednb2.jpg"></a>
+		</div>
+    </div>
+</div> 
+
+</div>
+<!-- INCLUDE FILE 'layout/footer.html' -->
+
+<div id="CalendarLayer" style="display:none; width:172px; height:185px; z-index:6000">
+    <iframe border="0" frameborder="0" height="185px" name="CalendarFrame" scrolling="no" src="/web/buyer/html/js/lib.calendar.js.htm" width="172px"></iframe>
+</div>
+</div>
+</body>
+</html>

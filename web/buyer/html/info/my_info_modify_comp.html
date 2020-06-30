@@ -1,0 +1,112 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this)">
+<input type="hidden" name="person_seq" value="{{person_seq}}">
+
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <h3>기본 정보</h3>
+        </div>
+    </div>
+
+    <table>
+        <colgroup>
+            <col width="17%">
+            <col width="37%">
+            <col width="15%">
+            <col width="31%">
+        </colgroup>
+        <tr>
+            <th>아이디</th>
+            <td colspan="3">
+                {{person.user_id}}
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호 </th>
+            <td colspan="3"><input type="password" name="passwd" style="170px" maxlength="20"> (비밀번호 변경시 입력)<br>
+                <font color="gray">※ 영문, 숫자 1자 이상, 특수문자 1자 이상 포함한 8 ~ 20자리로 입력하세요.</font></td>
+        </tr>
+        <tr>
+            <th>비밀번호 확인</th>
+            <td colspan="3"><input type="password" name="passwd2" style="170px" maxlength="20"></td>
+        </tr>
+        <tr>
+            <th class="req-check">담당자명 </th>
+            <td><input type="text" name="user_name"  size="10" maxlength="30" style="width:98%"></td>
+            <th class="req-check">직위</th>
+            <td><input type="text" name="position"  maxlength="20" style="width:98%"></td>
+        </tr>
+        <tr>
+            <th class="req-check">이메일 </th>
+            <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:98%" ></td>
+            <th class="req-check">전화번호 </th>
+            <td>
+                <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="예) 02-788-9097">
+            </td>
+        </tr>
+        <tr>
+            <th>부서명 </th>
+            <td>{{person.dept_name}}</td>
+            <th>팩스번호</th>
+            <td>
+                <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="예) 02-788-9097">
+            </td>
+        </tr>
+        <tr>
+            <th class="req-check">휴대전화 </th>
+            <td colspan="3">
+                <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
+                    <option value="">선택</option>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                </select> -
+                <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
+                <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
+            </td>
+        </tr>
+        <!-- IF START 'gap_block' -->
+        <tr>
+            <th> 사용자 유형</th>
+            <td>{{person.user_level_nm}}</td>
+            <th> 사용자구분</th>
+            <td>{{person.user_gubun_nm}}</td>
+        </tr>
+        <!-- IF END 'gap_block' -->
+        <!-- IF START 'eul_block' -->
+        <tr>
+            <th> 사용자 유형</th>
+            <td colspan="3">{{person.user_level_nm}}</td>
+        </tr>
+        <!-- IF END 'eul_block' -->
+    </table>
+</div>
+
+
+
+<div class="btn-group-wrap">
+    <button type="submit" class="btn color ico-save" ><span></span>저장</button>
+</div>
+
+</form>
+
+<div id="div_auth_info"></div>
+
+<script type="text/javascript">
+function formSubmit(f){
+    if(validate(f)){
+        if(!confirm("저장 하시겠습니까?")){
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+call("./call_auth_info.jsp?default_yn={{person.default_yn}}&auth_cd={{person.auth_cd}}","div_auth_info");
+</script>
+{{form_script}}
+

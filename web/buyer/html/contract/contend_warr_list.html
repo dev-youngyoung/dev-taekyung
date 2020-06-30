@@ -1,0 +1,165 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="mode"/> 
+<input type="hidden" name="hdn_sort_column">
+<input type="hidden" name="hdn_sort_order">
+<div class="search_div">
+	<table class="search_table">
+	  <colgroup>
+		<col width="13%">
+		<col width="32%">
+		<col width="13%">
+		<col width="32%">
+		<col width="10%">
+	  </colgroup>
+	   <tr>
+	    <th><p>보증종류</p></th>
+	    <td>
+	    <select name="s_code_warr_type">
+  			<option value="">-전체-</option>
+  			<!-- LOOP START 'code_warr_type' -->
+  			<option value="{{code_warr_type.id}}">{{code_warr_type.value}}</option>
+  			<!-- LOOP END 'code_warr_type' -->
+  		</select>
+	    </td>
+	    <th><p>등록여부</p></th>
+	    <td>
+	    <select name="s_reg_gubun">
+  			<option value="">-전체-</option>
+  			<option value="Y">등록</option>
+			<option value="N">미등록</option>
+  		</select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <th><p>거래처명</p></th>
+	    <td><input type="text" name="s_cust_name" value="" maxlength="100" class="input" style="width:95%"></td>
+	  	<th>
+			<p>
+			<select name="s_date_name" style="width:90%;">
+				<option value="cont_date">계약일자</option>
+				<option value="cont_edate">계약종료일자</option>
+				<option value="warr_edate">보증종료일자</option>
+			</select>
+			</p>
+	  	</th>
+	    <td>
+	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+				<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	    </td>
+	    <td align="right">
+	    </td>
+	  </tr>
+	  <tr>
+	    <th><p>계약명</p></th>
+	    <td colspan="3"><input type="text" name="s_cont_name" value="" maxlength="100" class="input" style="width:98%"></td>
+	    <td align="right">
+	      <button type="button" class="btn color ico-search" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
+	    </td>
+	  </tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+
+<div class="util-row">
+    <div class="push-left">
+        <span class="caution-text">※완료된 계약에 대해 보증서를 요청 하고 미등록 보증서를 직접 첨부 할 수 있습니다.</span>
+    </div>
+    <div class="push-right">
+    	<button type="button" class="sbtn color ico-excel" onclick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀다운로드</button>
+    </div>
+</div>
+<br/>
+
+<div class="div_table">
+	<div style="width: 100%; height:500px; overflow-y:scroll">
+		<table>
+		  <colgroup>
+		    <col width="15%">
+		    <col width="10%">
+		    <col width="12%">
+		    <col width="15%">
+		    <col width="8%">
+		    <col width="*"> 
+		    <col width="11%">
+		    <col width="17%">
+		  </colgroup>
+		  <tr>
+		    <th>계약명</th>
+		     <th width="10%">
+				<a href="javascript:fChangeOrder('a.cont_date', '{{sSortOrder}}')">
+				계약일자
+				<!-- IFC START 'sSortColumn==a.cont_date' -->
+					{{sSortCustNameIconName}}
+				<!-- IFC END 'sSortColumn==a.cont_date' -->
+				<!-- IFC START 'sSortColumn!=a.cont_date' -->
+					<font style='color:blue;font-weight:bold'>↕</font>
+				<!-- IFC END 'sSortColumn!=a.cont_date' -->
+				</a>
+			</th> 
+		    <th>계약금액</th>
+		    <th>거래처명</th>
+		    <th>보증종류</th>
+		    <th>기능</th>
+		    <th>보증기간</th>
+		    <th>증권번호</th>
+		  </tr>
+		  <!-- LOOP START 'list' -->
+			  <tr>
+			  	<!-- IF START 'list.first' -->
+			  	<td rowspan="{{list.rowspan}}" valign="top">{{list.cont_name}}</td>
+			  	<td rowspan="{{list.rowspan}}" valign="top" align="center">{{list.cont_date}}</td>
+			  	<td rowspan="{{list.rowspan}}" valign="top" align="right">{{list.cont_total}}&nbsp;&nbsp;</td>
+			  	<td rowspan="{{list.rowspan}}" valign="top">{{list.member_name}}</td>
+			  	<!-- IF END 'list.first' -->
+			  	<td align="center" style="border-left: 1px solid #e0e0e0;">{{list.warr_name}}</td>
+			  	<td align="center" style="line-height: 2">{{list.btn}}</td>
+			  	<td align="center">{{list.warr_term}}</td>
+			  	<td align="center">{{list.warr_no}}</td>
+			  </tr>
+		  <!-- LOOP END 'list' -->
+		  <!-- IFNOT START 'list' -->
+			  <tr>
+			  	<td colspan="8" align="center">검색 결과가 없습니다.</td>
+			  </tr>
+		  <!-- IFNOT END 'list' -->
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+function warrReq(cont_no, cont_chasu, warr_seq){
+	if(!confirm("보증요청 하시겠습니까?")){
+		return;
+	}
+	var url = "warr_req.jsp?{{list_query}}";
+		url+= "&cont_no="+cont_no;
+		url+= "&cont_chasu="+cont_chasu;
+		url+= "&warr_seq="+warr_seq;
+	location.href = url;	
+}
+
+
+//정렬방식 변경
+function fChangeOrder(sortColumn, sortOrder)
+{
+	var form = document.form1;
+ 
+	form.hdn_sort_column.value = sortColumn;
+ if (sortOrder == "asc") // 오름차순 정렬 일때
+ {
+     form.hdn_sort_order.value = "desc"; // 내림차순 정렬로 설정
+ }
+ else                        // 나머지 (내림차순 정렬 또는 최초 클릭시)
+ {
+     form.hdn_sort_order.value =  "asc";  // 오름차순 정렬로 설정
+ }
+
+ form.submit();
+
+ return;
+}
+
+</script>

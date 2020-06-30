@@ -1,0 +1,32 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
+<div style="width:100%;text-align:right;padding:10px 10px">
+	<button type="submit" class="sbtn color ico-save"><span></span>수정요청</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+<div class="div_table">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="350">
+<colgroup>
+	<col width="15%"/>
+	<col width="85%"/>
+</colgroup>
+<tr>
+	<th>사유</th>
+	<td align="center">
+		<textarea style="width:98%;height:100%" name="mod_req_reason"></textarea>
+	</td>
+</tr>
+</table>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(!confirm("수정요청 하시겠습니까?")){
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+</script>

@@ -1,0 +1,75 @@
+<form name="form1" method="get">
+    <input type="hidden" name="mode">
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="13%"/>
+                <col width="77%"/>
+                <col width="10%"/>
+            </colgroup>
+            <tr>
+                <th><p>담당자명</p></th>
+                <td><input type="text" name="s_user_name" maxlength="30" style="width:98%"></td>
+                <td align="right">
+                    <button type="submit" class="search_btn"><span></span>검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<br/>
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <span class="caution-text">※ 담당자를 클릭하시면 담당자정보를 "변경" 또는 "삭제" 할 수 있습니다.</span>
+        </div>
+        <div class="push-right">
+            <button type="button" class="sbtn color ico-add" onClick="location.href='client_person_insert.jsp';"><span></span>추가</button>
+        </div>
+    </div>
+
+    <table>
+        <colgroup>
+          <col width="8%">
+          <col width="15%">
+          <col width="15%">
+          <col width="10%">
+          <col width="12%">
+          <col width="15%">
+          <col width="10%">
+          <col width="15%">
+        </colgroup>
+        <tr>
+            <th>순번</th>
+            <th>담당자 ID</th>
+            <th>담당자명</th>
+            <th>직위</th>
+            <th>부서</th>
+            <th>전화번호</th>
+            <th>상태</th>
+            <th>등록(변경)일자</th>
+        </tr>
+
+        <!-- LOOP START 'list' -->
+        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='client_person_modify.jsp?person_seq={{list.person_seq}}&{{list_query}}';" style="cursor:pointer">
+            <td align="center">{{list.__ord}}</td>
+            <td align="center">{{list.user_id}}</td>
+            <td align="center">{{list.user_name}}</td>
+            <td align="center">{{list.position}}</td>
+            <td align="center">{{list.division}}</td>
+            <td align="center">{{list.tel_num}}</td>
+            <td align="center">{{list.use_yn}}</td>
+            <td align="center">{{list.reg_date}}</td>
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td align="center" colspan="8">검색 결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+

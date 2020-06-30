@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>▒ 나이스다큐 (전자구매시스템)▒</title>
+<link rel="shortcut icon" type="image/ico" href="/images/nicedocu.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="X-UA-Compatible" content="IE=6"/>
+<link rel="stylesheet" type="text/css" href="/web/buyer/html/css/style.css">
+<script language="javascript" type="text/javascript" src="/web/buyer/html/js/common.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function pop_7close(){
+	var expires = 60*60*24*1; 
+	SetCookie('recruit','done',expires);
+	parent.document.getElementsByName("user_id")[0].focus();
+	pop_close();
+}
+
+ 
+
+function pop_close(){
+	var	bNode = parent.document.getElementById("back");
+	if(bNode){
+		parent.document.body.removeChild(bNode);
+	}
+	//parent.document.getElementsByName("user_id")[0].focus();
+	fLayerPopClose("dong_fee");
+}
+</script> 
+
+
+<div>
+	<img src="/web/buyer/html/images/pop/dong_fee.png?v=1"  border="0" usemap="#Map" id="noti_img"/>
+	<map name="Map" id="Map">
+ 		<area shape="rect" coords="392,462,517,478" href="javascript:pop_7close();" />
+ 		<area shape="rect" coords="529,458,581,483" href="javascript:pop_close();" />
+	</map>
+</div>
+ 
+</body>
+</html>

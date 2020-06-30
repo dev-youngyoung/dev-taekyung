@@ -1,0 +1,1033 @@
+<!-- IF START 'sign_able' -->
+<style type="text/css">
+.sign_area{
+	background-color: yellow;
+	cursor: pointer;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+}
+.alert
+{
+    font-size: 1.3em;
+    padding: 1em;
+    text-align: center;
+    white-space: nowrap;
+    width: auto;
+    word-wrap: normal;
+}
+</style>
+<!-- IF END 'sign_able' -->
+
+<form name="form1" method="post">
+	<input type="hidden" name="sign_able" value="{{sign_able}}">
+	<input type="hidden" name="sysdate" value="{{_sysdate}}">
+    <input type="hidden" name="cont_no" value="{{cont.cont_no}}">
+    <input type="hidden" name="cont_chasu" value="{{cont.cont_chasu}}">
+    <input type="hidden" name="sign_member_no" value="{{_member_no}}">
+    <input type="hidden" name="sign_seq" value="{{_sign_seq}}">
+    <input type="hidden" name="email_random" value="{{email_random}}">
+    <input type="hidden" name="sign_dn" value="{{sign_dn}}">
+    <input type="hidden" name="sign_data" value="{{sign_data}}">
+	<input type="hidden" name="file_path" value="{{file_path}}">
+    
+
+    <div class="container-wrap">
+        <div class="pc-title-block pc_pad">
+            <div class="inner-container">
+                <div class="title-line"></div>
+				<!-- IF START 'sign_able' -->
+				<h2>계약서 서명 날인 및 승인</h2>
+                <!-- IF END 'sign_able' -->
+                <!-- IFNOT START 'sign_able' -->
+                <h2>계약서 조회</h2>
+                <!-- IFNOT END 'sign_able' -->
+            </div>
+        </div>
+        <div class="flow-tab-block">
+            <div class="inner-container">
+                <ul>
+                    <!-- IF START 'sign_able' -->
+                    <li id="sign-popup-li">
+                        <a href="#"></a>
+                        <div class="pop-link" id="sign-popup-btn">1. 서명 날인</div>
+                    </li>
+                    <li id="final-reg-popup-li">
+                        <a href="#"></a>
+                        <div class="pop-link" id="final-reg-popup-btn">2. 계약서 승인</div>
+                    </li>
+                    <!-- IF END 'sign_able' -->
+                    <!-- IFNOT START 'sign_able' -->
+                    <li class="active">
+                        <a href="#"></a>
+                        <div class="pop-link" id="cont-print-btn">계약서 인쇄</div>
+                    </li>
+                    <!-- IFNOT END 'sign_able' -->
+                    <li class="active" id="contractor-info-popup-li">
+                        <a href="#"></a>
+                        <div class="pop-link" id="contractor-info-popup-btn">계약자 정보</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="indenture-paper-block">
+            <div class="inner-container">
+                <!-- IF START 'sign_able' -->
+                <p class="indenture-paper-text">
+                    1.계약서 내용 검토 후 <strong>'1.서명날인’</strong>을 클릭하여 서명하세요.<br>
+                    2.계약서 서명날인 후 <strong>'2.계약서 승인'</strong>을 클릭하세요.
+                </p>
+                <!-- IF END 'sign_able' -->
+                
+                <div class="div_table mobile" id="div_cfile" >
+                <div class="util-row">
+					<div class="push-left">
+						<h3>계약서류</h3>
+					</div>
+				</div>
+				<table>
+				<colgroup>
+					<col>
+				</colgroup>
+				<tr>
+					<th>계약서류명</th>
+				</tr>
+				<tr>
+					<td><span class="caution-text">※ 계약서류명을 클릭하여 계약서 내용을 확인하세요.</span></td>
+				</tr>
+				<tr>
+					<td onClick="tabDisplay(0)">{{cont.template_name}}</td>
+				</tr>
+				<!-- LOOP START 'contSub' -->
+				<tr>
+					<td onClick="tabDisplay({{contSub.sub_seq}})">{{contSub.cont_sub_name}}</td>
+				</tr>
+				<!-- LOOP END 'contSub' -->
+				</table>
+                </div>
+                
+                <div class="div_table">
+					<div class="util-row">
+					    <div class="push-left" style="line-height: 35px">
+							<input type="hidden" name="cont_sub_name" value="{{template.template_name}}">
+							<input type="hidden" name="cont_sub_style" value="{{template.template_style}}">
+							<input type="hidden" name="gubun" value="10">
+							<input type="hidden" name="sub_seq" value="0">
+							<span class="tab_on" id="tab_0" onClick="tabView(0)">{{cont.template_name}}</span>&nbsp;
+							
+							<!-- LOOP START 'contSub' -->
+							<span class="tab_off" style="margin-left:-5" id="tab_{{contSub.sub_seq}}" onclick="tabView({{contSub.sub_seq}})">{{contSub.cont_sub_name}}</span>
+							<input type="hidden" name="cont_sub_name" value="{{contSub.cont_sub_name}}">
+							<input type="hidden" name="cont_sub_style" value="{{contSub.cont_sub_style}}">
+							<input type="hidden" name="gubun" value="{{contSub.gubun}}">
+							<input type="hidden" name="sub_seq" value="{{contSub.sub_seq}}">
+							<!-- LOOP END 'contSub' -->
+					    </div>
+					</div>  
+	                <!-- 계약서 보여지는 부분 -->
+	                <div class="div-cont-html">
+	                <div id="__html">
+	                    <div id="__html_0">
+	                        {{cont.cont_html}}
+	                    </div>
+	
+	                    <!-- LOOP START 'contSub' -->
+	                    <div style="{{contSub.cont_sub_style}}; padding-top: 10px; display:none" id="__html_{{contSub.sub_seq}}">
+	                        {{contSub.cont_sub_html}}
+	                    </div>
+	                    <!-- LOOP END 'contSub' -->
+	
+	                </div>
+	                </div>
+                </div>
+
+				<div class="div_table" id="div_rfile" style="display:<!-- IFNOT START 'rfile' -->none<!-- IFNOT END 'rfile' -->">
+					<div class="util-row">
+						<div class="push-left">
+							<h3>구비서류</h3>
+						</div>
+					</div>
+					<table>
+						<colgroup>
+							<col>
+						</colgroup>
+						<thead>
+						<tr>
+							<th>구비서류명</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td><span class="caution-text">※ 구비서류 첨부 후 상단의 "서명날인" 버튼을 클릭하여 서명완료 처리 가능 합니다.</span></td>
+						</tr>
+						<!-- LOOP START 'rfile' -->
+						<tr>
+							<td style="line-height: 25px">
+								<input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+								<input type="hidden" name="rfile_upload_yn" id="rfile_upload_yn_{{rfile.rfile_seq}}" value="{{rfile.upload_yn}}">
+								<div style="float: left;">{{rfile.attch_str}} {{rfile.doc_name}}</div>
+								<br class="mobile">
+								<div style="float: left;">
+									<div style="float: left;margin-left: 5px;display:{{rfile.display_down}};" id="rfile_info_{{rfile.rfile_seq}}">
+										[ <span id="rfile_size_{{rfile.rfile_seq}}">{{rfile.file_size}}</span> ] <button type="button" class="sbtn" id="btn_down_{{rfile.rfile_seq}}" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')">다운로드</button>
+									</div>
+									<div style="float: left;margin-left: 5px;display: {{rfile.display_upload}};" class="filebox" id="rfile_upload_{{rfile.rfile_seq}}">
+										<label for="rfile_{{rfile.rfile_seq}}" id="btn_upload_{{rfile.rfile_seq}}">{{rfile.upload_btn_nm}}</label>
+										<input type="file" name="rfile_{{rfile.rfile_seq}}" id="rfile_{{rfile.rfile_seq}}"  hname="첨부파일" allow="{{rfile.allow_ext}}" onchange="rfileUpload('{{rfile.rfile_seq}}',this)"/>
+									</div>
+									<!-- IFNOT START 'rfile.attch' -->
+									<div style="float: left;margin-left: 5px; display: {{rfile.display_del}};" id="rfile_del_{{rfile.rfile_seq}}">
+										<button type="button" class="sbtn" onclick="rfileDel('{{rfile.doc_name}}','{{rfile.rfile_seq}}')">삭제</button>
+									</div>
+									<!-- IFNOT END 'rfile.attch' -->
+								</div>
+							</td>
+						</tr>
+						<!-- LOOP END 'rfile' -->
+						</tbody>
+					</table>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- layerpopup -->
+    <div class="lp-wrap HeightAuto" id="sign-popup">
+        <div class="lp-popup sign">
+            <div class="lp-header">
+                <p class="lp-title">서명 입력</p>
+                <div class="lp-close">
+                    <i></i>
+                </div>
+            </div>
+            <div class="lp-container" id="signature-pad">
+            	
+                <div class="lp-textarea-block mb-25">
+                    <p class="lp-base-text">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<colgroup><col width="5px"><col></colgroup>
+						<!-- IF START 'sign_able' -->
+						<tr>
+							<td valign="top" class="lp-base-text">·</td>
+							<td class="lp-base-text">계약서 내용에 대해 꼼꼼히 확인을 하셨나요.</td>
+						</tr>
+						<tr>
+							<td valign="top" class="lp-base-text">·</td>
+							<td class="lp-base-text">아래의 서명란에 서명 후 [날인하기] 클릭하면 계약서에 서명이 적용됩니다.</td>
+						</tr>
+						<!-- IF END 'sign_able' -->
+						<!-- IFNOT START 'sign_able' -->
+						<tr>
+							<td valign="top" class="lp-base-text">·</td>
+							<td class="lp-base-text">서명 날인 확인</td>
+						</tr>
+						<!-- IFNOT END 'sign_able' -->
+	                    </table>
+                    </p>
+                </div>
+                <div class="lp-sign-touch-block" style="background-color: #ffffff">
+                    <div class="signature-pad" style="width:100%;height:100%">
+                        <canvas id="signPad" style="width:100%;height:100%"></canvas>
+                    </div>
+                </div>
+                <ul class="lp-popup-btn">
+                    <li>
+                        <input type="button" id="btn_sign_pad_clear" value="지우기" class="common-btn gray" data-action="clear">
+                    </li>
+                    <li>
+                        <input type="button" id="btn_sign"  value="날인하기" class="common-btn" onclick="signSeal();">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="lp-background HeightAuto"></div>
+    </div>
+
+    <div class="lp-wrap HeightAuto" id="final-reg-popup">
+        <div class="lp-popup final-reg">
+            <div class="lp-header">
+                <p class="lp-title">계약서 승인</p>
+                <div class="lp-close">
+                    <i></i>
+                </div>
+            </div>
+            <div class="lp-container">
+                <div class="lp-table-company-block" style="border: solid 1px #cdcdcd;">
+                    <ul class="lp-table-under-text" style="padding: 8px">
+                        <li style="padding-bottom: 5px">계약업체명: {{cont.member_name}}</li>
+                        <li style="padding-bottom: 5px">계약명: {{cont.cont_name}}</li>
+                        <li style="padding-bottom: 5px">계약자: {{_member_name}} <a>
+                        <!-- IF START 'isboss_name' --> 
+	                        </a>(대표자명: {{isboss_name}})
+                        <!-- IF END 'isboss_name' -->
+                        </li>
+                        <li style="padding-bottom: 5px">본 계약 내용을 모두 숙지를 하였습니다.</li>
+                        <li>계약내용에 대해 본인의 의사를 사실에 근거하여 서명해야 할 부분에 대해 서명날인 하였습니다.</li>
+                    </ul>
+                </div>
+                <div class="lp-final-check-block">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<colgroup><col width="30px"><col></colgroup>
+					<tr>
+						<td valign="middle"><input type="checkbox" name="call-id-terms" value="terms1" id="dc_info_check"></td>
+						<td><label for="dc_info_check">위 내용에 대해 확인 및 동의하여 계약을 승인합니다.</label></td>
+					</tr>
+                    </table>
+                </div>
+                <div class="lp-popup-btn2">
+                    <input type="button" value="계약서 최종 승인" class="common-btn" onclick="formSubmit();">
+                </div>
+            </div>
+        </div>
+        <div class="lp-background HeightAuto"></div>
+    </div>
+    <div class="lp-wrap HeightAuto" id="contractor-info-popup">
+        <div class="lp-popup contractor-info">
+            <div class="lp-header">
+                <p class="lp-title">계약자 정보</p>
+                <div class="lp-close">
+                    <i></i>
+                </div>
+            </div>
+            <div class="lp-container">
+                <div class="lp-table-company-block">
+                    <p class="table-title">발신인 정보</p>
+                    <table>
+                        <col width="30%">
+                        <col width="70%">
+                        <tbody>
+                        <tr>
+                            <th scope="row">상호</th>
+                            <td>{{cont.member_name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">대표자</th>
+                            <td>{{cont.boss_name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">주소</th>
+                            <td>{{cont.address}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">담당자</th>
+                            <td>{{cont.user_name}} / {{cont.hp1}}-{{cont.hp2}}-{{cont.hp3}}</td>
+                        </tr>
+                        <tr>
+                        	<th scope="row">전화번호</th>
+							<td>{{cont.tel_num}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">이메일</th>
+                            <td>{{cont.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">서명일시</th>
+                            <td>{{cont.sign_date}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="table-title last">수신인 정보</p>
+                    <!-- LOOP START 'cust' -->
+                    <!-- IF START 'cust.is_person' -->
+                    <table>
+                        <col width="30%">
+                        <col width="70%">
+                        <tbody>
+                        <tr>
+                            <th scope="row">성명</th>
+                            <td>{{cust.user_name}} / {{cust.hp1}}-{{cust.hp2}}-{{cust.hp3}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">주소</th>
+                            <td>{{cust.address}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">이메일</th>
+                            <td>{{cust.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">서명일시</th>
+                            <td>{{cust.sign_date}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- IF END 'cust.is_person' -->
+                    <!-- IFNOT START 'cust.is_person' -->
+                    <table>
+                        <col width="30%">
+                        <col width="70%">
+                        <tbody>
+                        <tr>
+                            <th scope="row">상호</th>
+                            <td>{{cust.member_name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">주소</th>
+                            <td>{{cust.address}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">대표자</th>
+                            <td>{{cust.boss_name}} / {{cust.hp1}}-{{cust.hp2}}-{{cust.hp3}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">이메일</th>
+                            <td>{{cust.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">서명일시</th>
+                            <td>{{cust.sign_date}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- IFNOT END 'cust.is_person' -->
+                    <!-- LOOP END 'cust' -->
+                </div>
+            </div>
+        </div>
+        <div class="lp-background HeightAuto"></div>
+    </div>
+    <!-- layerpopup -->
+</form>
+<iframe name="ifm_proc" id="ifm_proc" src="about:black" width="0" height="0" frameborder="0" style="display:none"></iframe>
+<script language="javascript" type="text/javascript" src="/cab/signaturepad/signature_pad.js"></script>
+<script language="javascript" type="text/javascript" src="/cab/signaturepad/app.js"></script>
+
+{{form_script}}
+
+<script>
+$(document).ready(function(){
+	lp_all();
+    HeightAuto();
+	width_auto();
+	setCfileTab();
+});
+
+$(window).on("load",function(){
+	for(var i=0; i<=10; i++)
+	{
+		if( document.getElementById("__html_"+i) !== null )
+		{
+			removeInput2(document.getElementById("__html_"+i));
+		}
+	}
+	<!-- IF START 'sign_able' -->
+	if(document.getElementById("__html")){
+        var elements = document.getElementById("__html").getElementsByTagName("input");
+        for(var i = 0; i < elements.length; i++){
+            var element = elements[i];
+            if(element.getAttribute("writable")!=null){
+            	element.style.display="";
+            	if(element.getAttribute("required")&&element.type =="text"){
+                	element.className="input_r";
+                }
+                element.parentNode.innerHTML = element.outerHTML;
+                
+            }
+        }
+        var elements = document.getElementById("__html").getElementsByTagName("textarea");
+        for(var i = 0; i < elements.length; i++){
+            var element = elements[i];
+            if(element.getAttribute("writable")!=null){
+            	element.style.display="";
+            	if(element.getAttribute("required")){
+                	element.className="input_r";
+                }
+            	element.parentNode.innerHTML = element.outerHTML;
+            }
+        }
+        var elements = document.getElementById("__html").getElementsByTagName("select");
+        for(var i = 0; i < elements.length; i++){
+            var element = elements[i];
+            if(element.getAttribute("writable")!=null){
+                element.style.display="";
+                if(element.getAttribute("required")){
+                	element.className="input_r";
+                }
+                element.parentNode.innerHTML = element.outerHTML;
+            }
+        }
+    }
+	
+	$(".sign_area").css('cursor','pointer');
+	$(".sign_area").on("click",function(event){
+		var node = $(event.target);
+		while(!$(node).hasClass("sign_area")){
+			node = $(event.target).parent();
+		}
+		now_sign_object_name = $(node).attr("id");
+		
+		$("#sign-popup").show();
+		$("body").addClass("lp-fixed");
+        $('#signPad').attr('width', $('.lp-sign-touch-block').width());
+        $('#signPad').attr('height', $('.lp-sign-touch-block').height());
+        signaturePad.clear();
+        //초기 서명 이미지의 공백 크기를 알기 위해 저장
+        sign_img_length = signaturePad.toDataURL("image/png").length ;
+        
+        if($("#sign_img_data_"+now_sign_object_name).length>0){
+        	signaturePad.fromDataURL($("#sign_img_data_"+now_sign_object_name).val());
+        }
+	});
+	btnCtrl();
+	<!-- IF END 'sign_able' -->
+	<!-- IFNOT START 'sign_able' -->
+	$("#btn_sign_pad_clear").hide();
+    $("#btn_sign").hide();
+    <!-- IFNOT END 'sign_able' -->
+});
+
+$(window).resize(function() {
+    HeightAuto();
+    width_auto();
+    setCfileTab();
+});
+
+
+</script>
+
+<script>
+
+
+var now_sign_object_name = "";
+var sign_img_length = "";
+
+/*btn script START*/
+function btnCtrl(){
+	var sign_area = $(".sign_area");
+	var sign_end = true;
+	
+	sign_area.each(
+		function(index, value){
+			if($(this).children("img").length < 1){
+				if(sign_end)sign_end = false;
+			} 
+	});
+	
+	$('#sign-popup-li').addClass("active");
+    if(sign_end){
+		$('#final-reg-popup-btn').parent().find('li').attr('class', 'active');
+	    $('#final-reg-popup-li').addClass("active");
+    }else{
+    	$('#final-reg-popup-btn').parent().find('li').attr('class', '');
+	    $('#final-reg-popup-li').removeClass("active");
+    }
+}
+
+
+function lp_all(){
+	
+	$( "#service-popup-btn" ).click(function() {
+		$("#service-popup").show();
+		$("body").addClass("lp-fixed");
+	});
+	$( "#final-reg-popup-btn" ).click(function() {
+		var f = document.forms['form1'];
+		if(validate(f, true)) {
+            var rfile_chk = false;
+            var attch_yn = document.getElementById("div_rfile").querySelectorAll("input[name=attch_yn]");
+            for(var i = 0 ; i < attch_yn.length ; i++){
+                if(attch_yn[i].value =="Y"){
+                    if(document.getElementById("rfile_upload_yn_"+(i+1)).value != "Y"){
+                        rfile_chk = true;
+                        break
+                    }
+                }
+            }
+            if(rfile_chk) {
+                <!-- IF START 'template.need_attach_yn' -->
+                alert("필수 구비서류가 첨부 되지 않았습니다.\n\n첨부 후 서명 완료 처리 가능 합니다.");
+                return;
+                <!-- IF END 'template.need_attach_yn' -->
+                <!-- IFNOT START 'template.need_attach_yn' -->
+                alert("필수 구비서류가 첨부 되지 않았습니다.\n\n구비서류를 첨부 후 서명완료 처리 하시려면 최종선택창에서 취소를 클릭 후 첨부 하세요.");
+                <!-- IFNOT END 'template.need_attach_yn' -->
+            }
+			$(top.document).find(".lp-wrap3").hide();	// dskim추가 
+			$("#final-reg-popup").show();
+			$("body").addClass("lp-fixed");	
+		}
+	});
+	$( "#contractor-info-popup-btn" ).click(function() {
+		$("#contractor-info-popup").show();
+		$("body").addClass("lp-fixed");
+	});
+	$( ".lp-close" ).click(function() {
+		//if(typeof signaturePad == 'object' && signaturePad.toDataURL().length > 4000 && $('#signature_image').val()=='') {
+			//if(!confirm('날인하기 버튼을 누르전에 창을 닫으시면 서명란이 초기화 됩니다. 창을 닫으시겠습니까?')) {
+              //  return false;
+			//}
+		//}
+		$(top.document).find(".lp-wrap").hide();
+		$("body").removeClass("lp-fixed");
+	});
+	// dskim추가
+	$( ".lp-close2" ).click(function() {
+		$(top.document).find(".lp-wrap2").hide();
+		if(arr_alert_message.length>0){
+		    alert();
+        }
+		$("body").removeClass("lp-fixed");
+	});
+	$( "#cont-print-btn" ).click(function() {
+		 var seq = Number($(".tab_on").attr("id").split("_")[1])+1;
+		 contPdfViewer('{{cont.cont_no}}','{{cont.cont_chasu}}',seq);
+	});
+	$( "#sign-popup-btn" ).click(function() {
+		var f = document.forms['form1'];
+		if(!validate(f, true)) {
+			return false;
+		}
+		var sign_area = $(".sign_area");
+		var sign_end = true;
+		sign_area.each(
+			function(index, value){
+				if($(this).children("img").length < 1 ){
+					if($(this).attr("errfunc")!=""){
+						eval($(this).attr("errfunc"));
+					}
+					$(this).attr('tabindex',-1).focus();
+					alert("서명 부분을 확인 후 클릭 하세요.");
+					if(sign_end)sign_end = false;
+					//$(this).trigger("click");
+					return false;
+				} 
+			}
+		);
+		if(sign_end){
+			var rfile_chk = false;
+			var attch_yn = document.getElementById("div_rfile").querySelectorAll("input[name=attch_yn]");
+		    for(var i = 0 ; i < attch_yn.length ; i++){
+		        if(attch_yn[i].value =="Y"){
+					if(document.getElementById("rfile_upload_yn_"+(i+1)).value != "Y"){
+						rfile_chk = true;
+						break
+					}
+				}
+			}
+		    if(rfile_chk){
+                <!-- IF START 'template.need_attach_yn' -->
+				alert("필수 구비서류가 첨부 되지 않았습니다.\n\n첨부 후 서명 완료 처리 가능 합니다.");
+                return false;
+                <!-- IF END 'template.need_attach_yn' -->
+                <!-- IFNOT START 'template.need_attach_yn' -->
+                confirm(
+                    "계약서류별 서명날인을 해야 할 부분에 대해 서명 완료 되엇지만 필수 구비서류가 첨부 되지 않았습니다.\n다시 확인을 원하시면 [취소] 버튼 클릭하시고, 최종승인을 하시려면 [확인] 버튼을 클릭하세요."
+                    ,function(e){
+                        if(e.currentTarget.id=="btn_confirm_accpet"){
+                            HeightAuto();
+                            $( "#final-reg-popup-btn" ).trigger("click");
+                        }
+                    }
+                );
+                return false;
+                <!-- IFNOT END 'template.need_attach_yn' -->
+			}
+
+			confirm(
+			"계약서류별 서명날인을 해야 할 부분에 대해 서명 완료 되었습니다.\n다시 확인을 원하시면 [취소] 버튼 클릭하시고, 최종승인을 하시려면 [확인] 버튼을 클릭하세요."
+			,function(e){
+				if(e.currentTarget.id=="btn_confirm_accpet"){
+						HeightAuto();
+						$( "#final-reg-popup-btn" ).trigger("click");
+					} 
+				}
+			);
+			
+		}
+	});
+}
+
+/*btn script END*/
+
+
+
+/*본인확인 START*/
+function identifyCheck() {
+    OpenIdentifyCheckplus('{{cust.member_no}}', '{{cont.cont_no}}', '{{cont.cont_chasu}}');
+}
+
+function identifyCallback(ci, user_name, birth_date, hp, text, gender) {
+    var f = document.forms["form1"];
+    if('{{cust.boss_name}}' == user_name
+        && '{{cust.hp1}}{{cust.hp2}}{{cust.hp3}}' == hp
+        && '{{cust.jumin_no}}' == birth_date
+    ) {
+        f['sign_dn'].value = ci;
+        f['sign_data'].value = Base64.encode(text);
+        f.encoding="application/x-www-form-urlencoded";
+        f.target="";
+        f.action = "./email_contract_msign_recvview.jsp";
+        f.submit();
+    } else {
+        alert('계약자 본인확인에 실패했습니다.');
+        return false;
+    }
+}
+
+/*본인확인 END*/
+
+
+/*계약서승인*/
+var submit_check = false;
+function formSubmit() {
+    var f = document.forms['form1'];
+
+    var sign_area = $(".sign_area");
+	sign_area.each(
+		function(index, value){
+			if($(this).children("img").length < 1){
+				alert("서명되지 않는 부분이 있습니다.\n\n해당 부분을 확인 하고 서명 하세요.");
+				if($(this).attr("errfunc")!=""){
+					eval($(this).attr("errfunc"));	
+				}
+				$(this).attr('tabindex',-1).focus();
+				
+				return;
+			} 
+		}
+	);
+    
+    if(f['dc_info_check'].checked!=true){
+        alert("내용에 대한 동의 후 승인 가능합니다.");
+        return;
+    }
+
+    if(validate(f, true)) {
+        confirm(
+        	 '계약서 승인 하시겠습니까?'
+        	,function(e){
+        	if(e.currentTarget.id == "btn_confirm_accpet"){
+                if(submit_check){
+                    alert("처리 중입니다.");
+                    return;
+                }
+	   	        if(document.getElementById("__html")){
+	   	        	var elements = document.getElementById("__html").getElementsByTagName("input");
+	   	        	for(var i = 0; i < elements.length; i++){
+	   	            	var element = elements[i];
+	   	                if(element.getAttribute("writable")==null)
+	   	                	setEnabled(element);
+	   	                }
+	   	                var elements = document.getElementById("__html").getElementsByTagName("textarea");
+	   	                for(var i = 0; i < elements.length; i++){
+	   	                    var element = elements[i];
+	   	                    element.getAttribute("writable")==null
+	   	                    setEnabled(element);
+	   	                }
+	   	            }
+	   	            setDivInputValue("__html");
+	   	            splitHtml(f, 'cont_html', false);
+	   	            splitHtml(f, 'cont_html_rm', true);
+	   	            f.encoding="application/x-www-form-urlencoded";
+	   	            f.target = "";
+	   	            f.action = "./email_contract_msign_recvview_save.jsp";
+                    submit_check = true;
+	   	            f.submit();
+	           	}
+            }	
+        ); 
+    }
+}
+
+
+
+
+
+/*서명처리 START*/
+function signSeal() { 
+    var f = document.forms['form1'];
+    if(signaturePad.toDataURL("image/png").length < (sign_img_length+1000)) {
+        alert('서명란에 서명 후 날인하기 버튼을 누르세요.');
+        return false;
+    }
+    //console.log('signSeal='+signaturePad.toDataURL("image/jpeg"));
+    var dataURL = signaturePad.toDataURL();
+    
+    if($("#sign_img_data_"+now_sign_object_name).length){
+    	$("#sign_img_data_"+now_sign_object_name).val(dataURL);
+    	$("#sign_object_name_"+now_sign_object_name).val(now_sign_object_name);
+    }else{
+    	var seq = Number($(".tab_on").attr("id").split("_")[1]);
+	    $("<input/>").attr({"type":"hidden", "name":"sign_img_data", "value":dataURL, "id":"sign_img_data_"+now_sign_object_name}).appendTo("#__html_"+seq);
+	    $("<input/>").attr({"type":"hidden", "name":"sign_object_name", "value":now_sign_object_name, "id":"sign_object_name_"+now_sign_object_name}).appendTo("#__html_"+seq);
+    }
+    
+    $(top.document).find(".lp-wrap").hide();
+    $("body").removeClass("lp-fixed");
+    resizeSignImage();
+}
+
+function resizeSignImage() {
+    var f = document.forms['form1'];
+    var width = $("#"+now_sign_object_name).clone().width();//객체가 리사이징 되기 이전의 크기로 가져 온다. 
+    var height = $("#"+now_sign_object_name).clone().height();//객체가 리사이징 되기 이전의 크기로 가져 온다.
+    var sign_img_data =  $("#sign_img_data_"+now_sign_object_name).val();
+    var sign_object_name = $("#sign_object_name_"+now_sign_object_name).val();
+    var data = {"sign_img_data":sign_img_data, "sign_object_name": sign_object_name , "width":width, "height":height};
+    
+    var url = "./resize_msign_sign.jsp";
+    callJqueryAjax(url, data, callResizeSignImage);
+}
+
+function callResizeSignImage(data) {
+    var f = document.forms['form1'];
+    var data = JSON.parse(data)
+    $("#"+data['signature_object_name']).html("<img name='img_"+data['signature_object_name']+"' src='"+data["resize_image"]+"'/>");
+    $("#"+data['signature_object_name']).attr('tabindex',-1).focus();
+    //각 객체별 callback함수 
+    if(document.getElementById(data['signature_object_name']).getAttribute("callback")){
+    	eval($("#"+data['signature_object_name']).attr("callback")+"(data);");
+    }
+    //서명 후 최종 승인 버튼 컨트롤
+    btnCtrl();
+    $( "#sign-popup-btn" ).trigger("click");//
+}
+
+/*서명처리 END*/
+
+/*구비서류 관련 함수 START*/
+function rfileDel(doc_name,rfile_seq){
+	confirm(doc_name + "구비서류 파일을 삭제 하시겠습니까?"
+		,function(e){
+        	if(e.currentTarget.id=="btn_confirm_accpet") {
+        	    $("#btn_confirm_cancel").trigger("click");
+                var url = "rfile_delete.jsp"
+                    + "?cont_no={{cont_no}}"
+                    + "&cont_chasu={{cont_chasu}}"
+                    + "&email_random={{email_random}}"
+                    + "&rfile_seq=" + rfile_seq;
+                document.getElementById("ifm_proc").src = url;
+            }
+		}
+		);
+}
+function rfileDelAfter(rfile_seq){
+    document.getElementById("rfile_info_"+rfile_seq).style.display="none";
+    document.getElementById("rfile_size_"+rfile_seq).innerHTML="";
+    document.getElementById("btn_down_"+rfile_seq).onclick=function(){};
+    document.getElementById("rfile_upload_yn_"+rfile_seq).value="";
+    document.getElementById("btn_upload_"+rfile_seq).innerHTML="첨부";
+    if(document.getElementById("rfile_del_"+rfile_seq)){
+    	document.getElementById("rfile_del_"+rfile_seq).style.display="none";
+    }
+}
+
+function rfileUpload(rfile_seq) {
+    var rfile = document.getElementById("rfile_"+rfile_seq);
+    if(rfile){
+        var allow_file = rfile.getAttribute("allow").replaceAll(",","|")+"";
+        if(allow_file!=""){
+			var pattern = new RegExp("("+allow_file+")$");
+			if (!pattern.test(rfile.value.toLowerCase())){
+				alert("해당 구비서류는 저정된 파일형식만 첨부 가능 합니다.\n\n(파일형식:"+allow_file.replaceAll("|",",")+")" );
+				return;
+			}
+        }
+		var url = "rfile_upload.jsp"
+			+ "?cont_no={{cont_no}}"
+			+ "&cont_chasu={{cont_chasu}}"
+			+ "&email_random={{email_random}}"
+			+"&rfile_seq="+rfile_seq;
+		var f = document.forms['form1'];
+		f.encoding= "multipart/form-data";
+		f.action= url;
+		f.target="ifm_proc";
+		f.submit();
+    }
+}
+
+function rfileUploadAfter(rfile_seq, rfile_size, file_path, down_file_name){
+    document.getElementById("rfile_info_"+rfile_seq).style.display="";
+    document.getElementById("rfile_size_"+rfile_seq).innerHTML=rfile_size;
+    document.getElementById("btn_down_"+rfile_seq).onclick=function(){filedown('file.path.bcont_pdf',file_path,down_file_name)};
+    document.getElementById("rfile_upload_yn_"+rfile_seq).value="Y";
+    document.getElementById("btn_upload_"+rfile_seq).innerHTML="수정첨부";
+    if(document.getElementById("rfile_del_"+rfile_seq)) {
+        document.getElementById("rfile_del_" + rfile_seq).style.display = "";
+    }
+}
+/*구비서류 관련 함수 END*/
+
+
+
+/*문서 tab view ctrl start*/
+function setCfileTab(){
+	var windowWidth = $(window).width();
+
+	/* if(!document.getElementById("tab_1")){
+		return;
+	} */
+	
+	if(windowWidth < 766){
+		for(var i=0; i<=12; i++){
+			if( document.getElementById("tab_"+i) !== null ){
+				if(document.getElementById("tab_"+i).className=="tab_on"){
+					document.getElementById("tab_"+i).style.display="";
+				}else{
+					document.getElementById("tab_"+i).style.display="none";
+				}
+			}
+		}
+	}else{
+		for(var i=0; i<=12; i++){
+			if( document.getElementById("tab_"+i) !== null ){
+				document.getElementById("tab_"+i).style.display="";
+			}
+		}
+	}
+}
+
+function tabDisplay(seq){
+	var windowWidth = $(window).width();
+	
+	/* if(!document.getElementById("tab_1")){
+		return;
+	} */
+	
+	for(var i=0; i<=12; i++){
+		if( document.getElementById("tab_"+i) !== null ){
+			if(i == seq){
+				document.getElementById("tab_"+i).className="tab_on";
+				if(windowWidth < 766){
+					document.getElementById("tab_"+i).style.display="";
+				}
+			}else{
+				document.getElementById("tab_"+i).className="tab_off";
+				if(windowWidth < 766){
+					document.getElementById("tab_"+i).style.display="none";
+				}
+			}
+		}
+	}
+	tabView(seq);
+}
+
+/*문서 tab view ctrl END*/
+
+
+ 
+
+/*반응형 사이즈 조정 START*/
+// Height Auto
+function HeightAuto(){
+	$('.HeightAuto').css('height' ,  $(window).height());
+}
+
+function width_auto(){
+	
+	var w = window,
+    d = document;
+    e = d.documentElement;
+    b = d.getElementsByTagName('body')[0];
+
+    x = e.clientWidth ||w.innerWidth || g.clientWidth;
+    if(x>1000){
+    	x = 1000;
+    }
+	
+	var windowWidth = x-60;
+	var scaleX = null;
+	var realWidth = 768;
+	if(windowWidth > 768){
+		scaleX = 1;
+	}else{
+		scaleX = (windowWidth / realWidth).toFixed(4);;
+	}
+	var height = ($('#__html').height()*scaleX).toFixed(0) ;
+	//alert("height:"+height );
+	$('#__html').css({
+		'-ms-transform'           : 'scale(' + scaleX + ',' + scaleX + ')',
+		'-ms-transform-origin'    : '0% 0%', 
+		'-webkit-transform'       : 'scale(' + scaleX + ',' + scaleX + ')',
+		'-webkit-transform-origin': '0% 0%', 
+		'-moz-transform'          : 'scale(' + scaleX + ',' + scaleX + ')',
+		'-o-transform'            : 'scale(' + scaleX + ',' + scaleX + ')',
+		'transform'               : 'scale(' + scaleX + ',' + scaleX + ')',
+		'transform-origin'        :'0% 0%;'
+	});
+	
+	$('#__html').height(($('.div-cont-html').height()-20)*(1/scaleX) ); //보정된 높이에 맞춰서 높이 수정
+}
+/*반응형 사이즈 조정 END*/
+
+
+
+
+function contPdfViewer(cont_no, cont_chasu, cfile_seq){
+    var pdfjs_yn = "";
+
+    browserInfo = getBrowserInfo();
+    if(browserInfo['name']=="Internet Explorer"){
+        if(browserInfo['version']=="v.10"||browserInfo['version']=="v.11"||browserInfo['version']=="edge"){//ie10부터 지원
+            pdfjs_yn = "Y";
+        }
+    }else{
+        pdfjs_yn = "Y";
+    }
+
+    var link = "/web/buyer/sdd/pop_pdf_viewer.jsp?"
+        +"cont_no="+cont_no
+        +"&cont_chasu="+cont_chasu
+        +"&cfile_seq="+cfile_seq
+        +"&pdfjs_yn="+pdfjs_yn;
+    OpenWindow(link,"cont_pdfViewer",830,800);
+}
+
+
+function callJqueryAjax(url, postData, callback) {
+	$.ajax({
+        url : url,
+        type : "post",
+        data : postData,
+        success : function(data) {
+            if (data!=null && data.trim().length > 0) {
+                if (typeof callback === "function") {
+					callback(data.trim());
+                }
+            } else {
+                alert("조회 중 오류가 발생했습니다.");
+            }
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "error:" + error);
+        }
+    });
+}
+
+window.old_alert = window.alert;
+
+var arr_alert_message = [];
+window.alert = function(message){
+    if(message){
+        arr_alert_message.push(message.replaceAll("\n","<br>"));
+    }
+    if(arr_alert_message.length> 0 ){
+        if(!$("#div_alert").is(":visible")){
+            $("#alert_msg").html(arr_alert_message.shift());
+            $("#div_alert").show();
+        }
+    }
+};
+
+window.confirm = function(message, callback){
+	$(top.document).find(".lp-wrap").hide();
+	$("body").removeClass("lp-fixed");
+	$("#confirm_msg").html(message.replaceAll("\n","<br>"));
+	$("#div_confirm").show();
+	$("#btn_confirm_accpet").unbind("click");//이벤트 초기화
+	$("#btn_confirm_accpet").click(callback);
+};
+
+
+</script>
+
+<!-- IF START 'template.recv_write' -->
+<script language="javascript">
+    function templateLoadEvent(){
+        var f = document.forms["form1"];
+        if(f['cont_html_onload2']){
+            eval(f['cont_html_onload2'].value);
+        }
+    }
+    templateLoadEvent();
+</script>
+<!-- IF END 'template.recv_write' -->

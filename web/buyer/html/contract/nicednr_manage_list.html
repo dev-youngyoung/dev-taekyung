@@ -1,0 +1,130 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="mode">
+
+<div class="search_div">
+	<table class="search_table">
+		  <colgroup>
+		<col width="13%">
+		<col width="32%">
+		<col width="13%">
+		<col width="32%">
+		<col width="10%">
+	  </colgroup>
+	  <tr>
+	    <th><p>계약일자</p></th>
+	    <td  >
+	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+			<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	    </td>
+	    <th><p>계약상태</p></th>
+	    <td>
+	    	<select name="s_status">
+	    		<option value="">전체</option>
+	    		<!-- LOOP START 'code_status' -->
+				<option value="{{code_status.id}}">{{code_status.value}}</option>
+				<!-- LOOP END 'code_status' -->
+	    	</select>
+	    </td>
+	   <td></td>
+	  </tr>
+	  <tr>
+	  	<th><p>계약명</p></th>
+	    <td>
+	    	<input type="text" name="s_cont_name" maxlength="100" style="width:95%">
+	    </td>
+	  	<th><p>프로젝트 코드</p></th>
+	    <td><input type="text" name="s_project_cd" maxlength="100" style="width:95%"></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	  	<th><p>도급인</p></th>
+	    <td><input type="text" name="s_cust_name" maxlength="100" style="width:95%"></td>
+	  	   <td><p  style="font-size: 13px;line-height:23px">도급인 코드<br />(고유 번호)</p></td>
+	    <td><input type="text" name="s_cust_cd" maxlength="100" style="width:95%"></td> 
+	  </tr>
+	  <tr>
+	  	<th><p>계약서종류</p></th>
+	    <td>
+			<select name="s_template_cd">
+	    		<option value="">-------전체-------</option>
+	    		<!-- LOOP START 'template' -->
+	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
+	    		<!-- LOOP END 'template' -->
+	    	</select>
+		</td>
+	  	   <td><p>조사구분</p></td>
+	       <td>
+	       	<select name="s_sel"> 
+	    		<option value="">전체</option>
+	    		<!-- LOOP START 's_sel' -->
+				<option value="{{s_sel.id}}">{{s_sel.value}}</option>
+				<!-- LOOP END 's_sel' -->
+	    	</select></td>
+	     <td align="right">
+	          <button type="submit" class="search_btn">검색</button>
+	      </td>
+	  </tr>
+	</table>
+</div>
+
+<div class="util-row">
+	<div class="push-right"><button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button></div>
+</div>
+
+<div class="div_table">
+	<table>
+		<thead>
+			<colgroup>
+				<col width="6%" />
+				<col width="29%"/>
+				<col width="26%"/>
+				<col width="13%"/>
+				<col width="10%"/>
+				<col width="7%"/>
+				<col width="9%"/>
+			</colgroup>
+			<tr>
+				<th>순번</th>
+				<th>계약명</th>
+				<th>프로젝트명<br/>(코드)</th>
+				<th>도급인<br/>(코드/고유번호)</th>
+				<th>계약일자</th>
+				<th>작성자</th>
+				<th>계약상태</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'list' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" >
+			<td align="center">{{list.__ord}}</td>
+			<td>{{list.cont_name}}</td>
+			<td>{{list.project_name}}<br/>({{list.project_cd}})</td>
+			<td align="center">{{list.cust_name}}<br/>({{list.cust_cd}})</td>
+			<td align="center">{{list.cont_date}}</td>
+			<td align="center">{{list.reg_name}}</td>
+			<td align="center">{{list.status_name}}</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td colspan="7" align="center">조회결과가 존재하지 않습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+		</tbody>
+	</table>
+</div>
+</form>
+{{form_script}}
+ 
+<div class="common-paging">{{pagerbar}}</div>
+
+<iframe name="ifExcel" style="height:0; border: 0;"></iframe>
+
+<script language="javascript">
+function formSubmit(f){
+	f['mode'].value="";
+	return true;
+}
+</script>

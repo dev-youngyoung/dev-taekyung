@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<configuration>
+	<db>
+		<datasource>java:comp/env/cdb</datasource>
+		<queryformat>true</queryformat>
+	</db>
+
+	<dir>D:/Project/Intellij/nongshim</dir>
+
+	<file>
+		<path>  <!-- 파일 디렉토리-->
+			${dir}/file
+
+			<file>${file.path}/file/</file>                <!-- 첨부파일   디렉토리-->
+			<pds>${file.path}/pds/</pds> 				     <!-- 자료실     디렉토리-->
+			<noti>${file.path}/noti/</noti> 				 <!-- 공지사항   디렉토리-->
+
+			<bcontract>${file.path}/bcontract/</bcontract>    	<!-- 전자계약(비건설) 디렉토리-->
+			<bcont_template>${file.path}/bcontract/template/</bcont_template>		<!-- 전자계약 계약서식 기본첨부 디렉토리 -->
+			<bcont_pdf>${file.path}/bcontract/pdf/</bcont_pdf>	<!-- 전자계약(비건설) 비건설 pdf(output) -->
+			<bcont_logo>${file.path}/bcontract/logo/</bcont_logo>	<!-- 전자계약 로고(비건설) 디렉토리 -->
+			<bcont_logo_http>/file/bcontract/logo/</bcont_logo_http>	<!-- 전자계약 로고(비건설) http 상대경로 -->
+			<bcont_pds>${file.path}/bcontract/pds/</bcont_pds>	<!-- 전자계약 자료방(비건설) 디렉토리 -->
+			<send_log>${file.path}/send_log/</send_log>
+
+		</path>
+	</file>
+
+	<log>C:/log</log>
+
+	<nicelib>
+		<document_root>${dir}/web/buyer</document_root>
+		<admin_root>${dir}/web/admin</admin_root>
+	</nicelib>
+
+	<adminid>systemadmin</adminid> <!-- 서버관리자 아이디 -->
+
+	<domain>http://www.nicedocu.com</domain> <!-- 로컬 도메인 -->
+	<email>
+		<mailHost>172.25.220.63</mailHost>
+		<mailFrom>klsong@nicedata.co.kr</mailFrom>
+	</email> <!-- 로컬 도메인 -->
+
+</configuration>

@@ -1,0 +1,35 @@
+<form name="form1" method="post">
+    <input type="hidden" name="check_contract_info_yn">
+    <input type="hidden" name="sign_dn">
+    <input type="hidden" name="sign_data">
+
+    <!-- 계약업체 정보 조회 -->
+    <div class="container-wrap">
+        <div class="login-block">
+            <div class="inner-container">
+                <div class="inner-section">
+                    <div class="inner-left">
+                        <p>아이디</p>
+                    </div>
+                    <div class="inner-right">
+                        <input type="text" name="user_id" title="아이디" placeholder="아이디">
+                    </div>
+                </div>
+                <div class="inner-section">
+                    <div class="inner-left">
+                        <p>비밀번호</p>
+                    </div>
+                    <div class="inner-right">
+                        <input type="password" name="passwd" title="비밀번호" placeholder="비밀번호">
+                    </div>
+                </div>
+                <div class="btn-wrap">
+                    <input type="submit" value="로그인" class="common-btn width-200">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{form_script}}
+

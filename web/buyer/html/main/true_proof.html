@@ -1,0 +1,70 @@
+<div>
+	<div class="cont_tab">
+		<span class="tab_off" onclick="location.href='true_contract.jsp'">전자계약 진위확인</span>
+		<span class="tab_on">실적증명서 진위확인</span>
+	</div>
+</div>
+
+<form novalidate name="form1" method="post" onSubmit="return fSubmit(this)" style="min-height: 210px;">
+
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<span class="caution-text">(※ 전자문서 상단 우측의 문서번호 입력)</span>
+			</div>
+		</div>
+
+		<table>
+			<colgroup>
+				<col width="15%">
+				<col width="85%">
+			</colgroup>
+			<tr>
+				<th>발급번호</th>
+				<td>
+					<input type="text" name="proof_no1" size="4" maxlength="4" style="ime-mode:disabled;width:50px" onKeyUp="moveNext('proof_no2')">
+					-
+					<input type="text" name="proof_no2" size="8" maxlength="8" style="ime-mode:disabled;width:90px" onKeyUp="moveNext('proof_no3')">
+					-
+					<input type="text" name="proof_no3" size="5" maxlength="5" style="ime-mode:disabled;width:60px">
+					<button type="submit" class="sbtn color ico-check" ><span></span> 확인</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="div_table">
+		<table>
+			<colgroup>
+				<col width="15%">
+				<col width="85%">
+			</colgroup>
+			<tr>
+				<th>문서명</th>
+				<td>{{proof.template_name}}</td>
+			</tr>
+			<tr>
+				<th>원사업자</th>
+				<td>{{proof.won_member_name}}</td>
+			</tr>
+			<!-- IF START 'msg' -->
+			<tr>
+				<td colspan="2" align="center">{{msg}}</td>
+			</tr>
+			<!-- IF END 'msg' -->
+		</table>
+	</div>
+
+</form>
+<div class="btn-group-wrap">
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>닫기</button>
+</div>
+
+{{form_script}}
+<script>
+function formSubmit(f){
+	if(validate(f)){
+		f.submit();
+	}
+}
+</script>

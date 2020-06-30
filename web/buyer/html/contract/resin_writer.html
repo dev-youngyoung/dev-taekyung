@@ -1,0 +1,36 @@
+<div class="div_table">
+	<table>
+	  <colgroup>
+	    <col width="20%">
+	    <col width="80%">
+	  </colgroup>
+	  <tr>
+	    <th>작가명</th>
+	    <td>{{cust.member_name}}</td>
+	  </tr>
+	  <!-- IF START 'cust.birthday' -->
+	  <tr>
+	    <th>생년월일</th>
+	    <td>{{cust.birthday}}</td>
+	  </tr>
+	  <!-- IF END 'cust.birthday' -->
+	  <tr>
+	  	<th>주소</th>
+	  	<td>{{cust.address}}</td>
+	  </tr>
+	  <tr>
+	  	<th>연락처</th>
+	  	<td>{{cust.hp1}}-{{cust.hp2}}-{{cust.hp3}}</td>
+	  </tr>
+	  <tr>
+	    <th>이메일</th>
+	    <td>{{cust.email}}</td>
+	  </tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-cancel" onClick="window.close();"><span></span>닫기</button>
+</div>
+
+{{form_script}}

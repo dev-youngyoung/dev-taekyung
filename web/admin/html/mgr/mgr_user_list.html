@@ -1,0 +1,31 @@
+<div style="text-align: right;padding:10px">
+    <button type="button" class="sbtn color ico-write" onclick="location.href='mgr_user_insert.jsp'"><span></span>추가</button>
+</div>
+<div class="div_table">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <colgroup>
+    <col>
+    <col>
+    <col>
+  </colgroup>
+  <tr class="ltitle">
+    <th>아이디</th>
+    <th>사용자명</th>
+    <th>등록일자</th>
+  </tr>
+  <!-- LOOP START 'list' -->
+  <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='../mgr/mgr_user_modify.jsp?admin_id={{list.admin_id}}'" style="cursor:pointer">
+	<td align="center">{{list.admin_id}}</td>
+	<td align="center">{{list.admin_name}}</td>
+	<td align="center">{{list.reg_date}}</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="9" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ <div class="common-paging">{{pagerbar}}</div>

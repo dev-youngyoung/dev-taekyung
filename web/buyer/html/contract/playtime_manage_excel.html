@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+			<tr align="center"> 
+				<td bgcolor="#cccccc">계약명</td>
+				<td bgcolor="#cccccc">계약일자</td>
+				<td bgcolor="#cccccc">계약상태</td>
+				<td bgcolor="#cccccc">근로자명</td> 
+				<td bgcolor="#cccccc">생년월일</td>  
+				<td bgcolor="#cccccc">이메일</td> 
+				<td bgcolor="#cccccc">핸드폰번호</td>  
+				<td bgcolor="#cccccc">작성자</td>
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">근로 계약 시작일</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td bgcolor="#cccccc">입사일</td><!-- IFC END 'isTemplate==2020042' -->  
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">근로 계약 종료일</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td bgcolor="#cccccc">퇴사일</td><!-- IFC END 'isTemplate==2020042' -->  
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">근무장소</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td bgcolor="#cccccc">매장명</td><!-- IFC END 'isTemplate==2020042' -->  
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">근로시간(1일)</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td bgcolor="#cccccc">사직사유</td><!-- IFC END 'isTemplate==2020042' -->  
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">근로시간(1주)</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td bgcolor="#cccccc">기타사유</td><!-- IFC END 'isTemplate==2020042' -->  
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">근로시간(1주 총)</td><!-- IFC END 'isTemplate==2020041' -->
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">임금(시급)</td><!-- IFC END 'isTemplate==2020041' -->
+				<!-- IFC START 'isTemplate==2020041' --><td bgcolor="#cccccc">남/여 구분</td><!-- IFC END 'isTemplate==2020041' -->
+			</tr>
+	  		<!-- LOOP START 'list' -->
+			<tr align="center"> 
+				<td>{{list.cont_name}}</td>
+				<td>{{list.cont_date}}</td>
+				<td>{{list.status_name}}</td>
+				<td>{{list.cust_name}}</td> 
+				<td>{{list.birth_date}}</td> 
+				<td>{{list.email}}</td> 
+				<td>{{list.hp}}</td>  
+				<td>{{list.reg_name}}</td> 
+				<!-- IFC START 'isTemplate!=A' -->
+				<td  align="center">{{list.cont_sdate}}</td> 
+			 	<td  align="center">{{list.cont_edate}}</td> 
+				<td  align="left">{{list.add_col1}}</td>
+				<!-- IFC END 'isTemplate!=A' --> 
+				<!-- IFC START 'isTemplate==2020041' --><td style="mso-number-format:'\@'">{{list.add_col2}} 시간</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td>{{list.dele_reason}}</td><!-- IFC END 'isTemplate==2020042' --> 
+				<!-- IFC START 'isTemplate==2020041' --><td style="mso-number-format:'\@'">{{list.add_col3}} 일</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td align="left">{{list.add_col3}}</td><!-- IFC END 'isTemplate==2020042' --> 
+  				<!-- IFC START 'isTemplate==2020041' --><td style="mso-number-format:'\@'">{{list.add_col4}} 시간</td><!-- IFC END 'isTemplate==2020041' -->
+				<!-- IFC START 'isTemplate==2020041' --><td style="mso-number-format:'\@'">{{list.add_col5}} 원</td><!-- IFC END 'isTemplate==2020041' -->
+				<!-- IFC START 'isTemplate==2020041' --><td>{{list.add_col6}}</td><!-- IFC END 'isTemplate==2020041' --> 
+			</tr>
+			<!-- LOOP END 'list' -->  
+		</table>
+	</td>
+	</tr>
+	</table>
+</body>

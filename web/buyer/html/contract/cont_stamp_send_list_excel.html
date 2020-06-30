@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table widtd="800" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center"><b style="font-size:18pt">{{title}}<b></td>
+	</tr>
+	<tr>
+		<td><br></td>
+	</tr>
+	<tr>
+		<td>
+			<table widtd="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+			  <tr>
+			  	<td bgcolor="#cccccc" align="center" rowspan="2">순번</td>
+			  	<td bgcolor="#cccccc" align="center" rowspan="2">계약명</td>
+			  	<td bgcolor="#cccccc" align="center" rowspan="2">수급사업자</td>
+			  	<td bgcolor="#cccccc" align="center" rowspan="2">계약일자</td>
+			  	<td bgcolor="#cccccc" align="center" rowspan="2">계약금액</td>
+			  	<td bgcolor="#cccccc" align="center" colspan="4">원사업자</td>
+			  	<td bgcolor="#cccccc" align="center" colspan="4">수급업자</td>
+			  </tr>
+			  <tr>
+			  	<td bgcolor="#cccccc" align="center" >인지세액</td>
+			  	<td bgcolor="#cccccc" align="center" >고유(접수)번호</td>
+			  	<td bgcolor="#cccccc" align="center" >발급처</td>
+			  	<td bgcolor="#cccccc" align="center" >발급일</td>
+			  	<td bgcolor="#cccccc" align="center" >인지세액</td>
+			  	<td bgcolor="#cccccc" align="center" >고유(접수)번호</td>
+			  	<td bgcolor="#cccccc" align="center" >발급처</td>
+			  	<td bgcolor="#cccccc" align="center" >발급일</td>
+			  </tr>
+			  <!-- IF START 'list' -->
+			  <!-- LOOP START 'list' -->
+			  <tr>
+				<td align="center">{{list.__ord}}</td>
+				<td>{{list.cont_name}}</td>
+				<td>{{list.member_name}}</td>
+				<td align="center">{{list.cont_date}}</td>
+				<td align="right">{{list.cont_total}}</td>
+				<!-- IF START 'list.send_reg' -->
+				<td align="right">{{list.send_stamp_amt}}</td>
+				<td align="center"    style="mso-number-format: '@';" >{{list.send_cert_no}}</td>
+				<td align="center">{{list.send_channel}}</td>
+				<td align="center">{{list.send_issue_date}}</td>
+				<!-- IF END 'list.send_reg' -->
+				<!-- IFNOT START 'list.send_reg' -->
+				<td align="center" colspan="4">해당없음</td>
+				<!-- IFNOT END 'list.send_reg' -->
+				
+				<!-- IF START 'list.recv_reg' -->
+				<td align="right">{{list.recv_stamp_amt}}</td>
+				<td align="center"   style="mso-number-format: '@';">{{list.recv_cert_no}}</td>
+				<td align="center">{{list.recv_channel}}</td>
+				<td align="center">{{list.recv_issue_date}}</td>
+				<!-- IF END 'list.recv_reg' -->
+				<!-- IFNOT START 'list.recv_reg' -->
+				<td align="center" colspan="4">해당없음</td>
+				<!-- IFNOT END 'list.recv_reg' -->
+			  </tr>
+			  <!-- LOOP END 'list' -->
+			</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

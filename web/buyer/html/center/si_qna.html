@@ -1,0 +1,111 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
+<div class="div_table">
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※ 시스템 이용에 대한 문의 및 상담 글을 남겨주시면 빠른 상담을 도와 드리겠습니다.</span>
+	</div>
+</div>
+<table>
+	<colgroup>
+	<col width="20%">
+	<col width="80%">
+	</colgroup>
+	<tr>
+		<th class="req-check">회사명 </th>
+		<td><input type="text" name="companynm" style="width:98%" maxlength="50"></td>
+	</tr>
+	<tr>
+		<th class="req-check">담당자명 </th>
+		<td><input type="text" name="personnm" style="width:98%" maxlength="50"></td>
+	</tr>
+	<tr>
+		<th class="req-check">담당자 연락처 </th>
+		<td>
+			<select name="hp1" onChange="document.forms['form1']['hp2'].focus()">
+				<option value="">선택</option>
+				<option value="010">010</option>
+				<option value="011">011</option>
+				<option value="016">016</option>
+				<option value="017">017</option>
+				<option value="018">018</option>
+				<option value="019">019</option>
+				<option value="02">02</option>
+				<option value="051">051</option>
+				<option value="053">053</option>
+				<option value="032">032</option>
+				<option value="062">062</option>
+				<option value="042">042</option>
+				<option value="052">052</option>
+				<option value="044">044</option>
+				<option value="031">031</option>
+				<option value="033">033</option>
+				<option value="043">043</option>
+				<option value="041">041</option>
+				<option value="063">063</option>
+				<option value="061">061</option>
+				<option value="054">054</option>
+				<option value="055">055</option>
+				<option value="064">064</option>
+			</select> -
+			<input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
+			<input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('hp2')">
+		</td>
+	</tr>
+	<tr>
+		<th class="req-check">문의내용 </th>
+		<td><textarea name="contents" style="width:100%;height:100px"></textarea></td>
+	</tr>
+</table>
+</div>
+
+<div class="div_table">
+<table>
+	<tr>
+		<td align="center">
+		 <textarea name="txa_use_clause" style="width:100%;height:300px"readonly>[개인정보 수집·이용 동의]
+1. 개인정보 수집 목적
+ : 나이스디앤알㈜는 시스템 이용 및 시스템 구축 문의에 대한 상담을 목적으로 개인 정보를 수집합니다.
+  
+2. 처리하는 개인정보 항목
+  - 필수항목 : 회사명, 담당자명, 담당자연락처
+  
+3. 이용 및 보유기간
+ : 상담신청시 부터 상담 완료시까지
+ 
+4. 동의거부할 권리와 미 동의 시 그에 따른 불이익 사항
+   문의 내용 등록 불가
+</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			<input type="checkbox" name="chk_confirm1" value="1" id="chk_confirm1">
+            <b><label for="chk_confirm1">위 이용약관에 동의합니다. (필수사항)</label></b>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="g-recaptcha" data-sitekey="6LduZXUUAAAAAPXpYHXRWEvS8JJHGBmbRrXnOOIy" style="padding-left:350px"></div>
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-request"><span></span>문의하기</button>
+</div>
+</form>
+{{form_script}}
+<script>
+function formSubmit(f){
+	if(validate(f)){
+		if(f['g-recaptcha-response'].value==''){
+			alert("로봇이 아닙니다 항목을 체크하여 검증을 진행 하세요.");
+			return false;
+		}
+		if(confirm("해당내용으로 문의 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+</script>

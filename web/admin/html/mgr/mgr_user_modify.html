@@ -1,0 +1,92 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>계정정보</h3>
+	</div>
+</div>
+
+<table>
+  <colgroup>
+    <col width="17%">
+    <col width="33%">
+    <col width="17%">
+    <col width="33%">
+  </colgroup>
+  <tr>
+  	<th>아이디</th>
+  	<td>
+  		<!-- IFNOT START 'modify' -->
+  		<input type="text" name="admin_id"  style="width:95%" maxlength="20" >
+  		<!-- IFNOT END 'modify' -->
+  		<!-- IF START 'modify' -->
+        <input type="text" name="admin_id" class="in_readonly" readonly style="width:95%" maxlength="20" >
+        <!-- IF END 'modify' -->
+  	</td>
+  	<th>관리자명</th>
+  	<td>
+        <input type="text" name="admin_name" style="width:95%" maxlength="20" >
+  	</td>
+  </tr>
+  <tr>
+    <th>비밀번호</th>
+    <td colspan="3">
+        <input type="password" name="passwd" style="width:37%" maxlength="20" > &nbsp;&nbsp;<font color="gray">※ 영문, 숫자 1자 이상, 특수문자 1자 이상 포함한 8 ~ 20자리로 입력하세요.</font>
+    </td>
+  </tr>
+  <tr>
+    <th>비밀번호확인</th>
+    <td colspan="3">
+        <input type="password" name="passwd2" style="width:37%" maxlength="20" >
+    </td>
+  </tr>
+    <tr>
+        <th>권한코드</th>
+        <td>
+            <select name="auth_cd" onchange="chgAuthCd()" style="width: 95%;">
+                <option value="">-권한선택-</option>
+                <!-- LOOP START 'authInfo' -->
+                <option value="{{authInfo.auth_cd}}">{{authInfo.auth_nm}}</option>
+                <!-- LOOP END 'authInfo' -->
+            </select>
+        </td>
+        <th>관리자IP</th>
+        <td>
+            <input type="text" name="admin_ip"  style="width:95%" maxlength="20" >
+        </td>
+    </tr>
+</table>
+</div>
+
+<div class="btn-group-wrap">
+      <button type="submit" name="btn_join" class="btn color ico-save" ><span></span>저장</button>
+      <!-- IF START 'modify' -->
+      <button type="button" name="btn_join" class="btn color ico-delete" onclick="if(confirm('삭제처리 하시겠습니까?'))location.href='mgr_user_delete.jsp?admin_id={{mgr_user.admin_id}}'"><span></span>삭제</button>
+      <!-- IF END 'modify' -->
+      <button type="button" name="btn_join" class="btn color ico-list" onclick="location.href='mgr_user_list.jsp?{{list_query}}'" ><span></span>목록으로</button>
+</div>
+
+<div id="div_auth_info"></div>
+
+</form>
+
+{{form_script}}
+<script type="text/javascript">
+function formSubmit(f){
+	if(validate(f)){
+	    var msg = '';
+		if(confirm(msg+"저장하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function chgAuthCd(){
+    var f = document.forms['form1'];
+    var auth_cd = f['auth_cd'].value;
+    call("./call_auth_info.jsp?auth_cd="+auth_cd,"div_auth_info");
+}
+chgAuthCd();
+</script>

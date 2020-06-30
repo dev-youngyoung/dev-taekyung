@@ -1,0 +1,13 @@
+<!--사이드 시작-->
+<div class="side-menu">
+	<div class="side-menu-inner">
+		<h2>{{l_menu_nm}}</h2>
+		<ul class="side-menu-nav1">
+			<!-- LOOP START 'menu' -->
+			<!-- IF START 'menu.depth2' --><li><p>{{menu.menu_nm}}</p></li><!-- IF END 'menu.depth2' -->
+			<!-- IF START 'menu.depth3' --><ul class="side-menu-nav2 <!-- IF START 'menu.__last' -->last<!-- IF END 'menu.__last' -->"><li><a href="{{menu.menu_path}}">· {{menu.menu_nm}}</a></li></ul><!-- IF END 'menu.depth3' -->	
+			<!-- LOOP END 'menu' -->
+		</ul>
+	</div>
+</div>
+<!--사이드 끝-->

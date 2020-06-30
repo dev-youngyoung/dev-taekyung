@@ -1,0 +1,73 @@
+<!-- 전자인증 모듈 설정 //-->
+<!-- INCLUDE FILE 'layout/crosscert_include.html' -->
+<!-- 전자인증 모듈 설정 //-->
+<script language="javascript" type="text/javascript" src="../html/js/sign_init.js"></script>
+<div class="div_table">
+	<table>
+		<tr>
+			<td>
+				<img src="../html/images/pop_crosscert.png" border="0" usemap="#crosscert">
+			</td>
+		</tr>
+	</table>
+</div>
+<map name="crosscert">
+	<area shape="rect" coords="388,238,533,269" href="javascript:fCheckCert();"/>
+</map>
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-cancel" onClick="self.close();"><span></span>닫기</button>
+</div>
+<script language="javascript">
+//인증서 등록/갱신
+function fCheckCert(){
+    setUniSign("all");
+    var	sSignDn = "";		//	서명 DN값
+    var	sVendcd = "{{_auth._VENDCD}}";		//	수급사업자번호
+    var	sOrgnData = "123456";	//	서명대상 원본데이타
+    var	sSignData = "";
+
+    var ssn = sVendcd;// 사업자등록번호/주민등록번호
+
+    unisign.SignDataNVerifyVID( sOrgnData, null, ssn,
+        function(rv, signedText, certAttrs)
+        {
+            sSignData = signedText;
+
+            if ( null === sSignData || '' === sSignData || false === rv )
+            {
+                unisign.GetLastError(
+                    function(errCode, errMsg)
+                    {
+                        if(errCode == "999"){
+                            //사용자 취소
+                        }else if(errCode == "14208"){
+                            alert("선택한 인증서는 귀사의 인증서가 아닙니다.");
+                        }else{
+                            alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
+                        }
+                    }
+                );
+            } else {
+                //console.log(JSON.stringify(certAttrs,null,2));
+                //인증서 확인 단계
+                var signEnddt = getFormatDate(certAttrs.validateTo);
+                if (signEnddt.length < 8){
+                    alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                    return;
+                }
+                if (!isValidDate(signEnddt))
+                {
+                    alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                    return;
+                }
+                if (js_isDateCmp(signEnddt, sCurrYmd))
+                {
+                    alert("유효기간이 지난 인증서 입니다.\n\n다시 한번 인증서를 확인 하십시오.");
+                    return;
+                }
+                return;
+            }
+        }
+    );
+}
+</script>

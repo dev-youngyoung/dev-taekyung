@@ -1,0 +1,64 @@
+<script type="text/javascript">
+
+// 기존에 저장된 로고 이미지 불러오기
+function fLoadLogo()
+{
+    document.getElementById("img_logo").src = "/servlets/procure.common.file.FileDownLoad?FILE_KEY=file.path.bcont_logo&FILE_NAME={{member.ci_img_path}}";
+    return;
+}
+
+// 로고 이미지 크기 조정
+function fSetSizeLogo(img)
+{
+    var maxWidth = 480;
+    var maxHeight = 250;
+
+    if ( (img.width > 0) && (img.height > 0) )
+    {
+
+        // 가로/세로 비율이 기준비율보다 더 크면
+        if ( (img.width/img.height) > (maxWidth/maxHeight) )
+        {
+            img.width = maxWidth;   // 가로크기 제한
+        }
+        else
+        {
+            img.height = maxHeight; // 세로크기 제한
+        }
+    }
+
+    return;
+}
+</script>
+<form novalidate  name="form1" method="post" enctype="multipart/form-data">
+    <div class="div_table">
+        <table>
+            <tr>
+                <td style="color:#e08036">
+                    <input type="file" name="ci_file"   accept="image/*"  style="width:90%" /><br>
+                    ※ 이미지는 jpg,gif,png 형식 파일만 첨부하시기 바랍니다.
+                </td>
+            </tr>
+            <tr>
+                <td height="280" align="center">
+                    <img src="/web/buyer/html/images/blank.gif" style="width: 90%;" id="img_logo" onload="fSetSizeLogo(this)">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="btn-group-wrap">
+        <button type="submit"  class="sbtn color ico-save"><span></span>저장</button>
+        <!-- IF START 'member.ci_img_path' -->
+        <button type="button"  class="sbtn color ico-delete" onclick="if(confirm('삭제하시겠습니까?')){document.forms['form1'].action='pop_ci_delete.jsp'; document.forms['form1'].submit(); }"><span></span>삭제</button>
+        <!-- IF END 'member.ci_img_path' -->
+        <button type="button"  class="sbtn color ico-cancel"  onclick="self.close()"><span></span>닫기</button>
+    </div>
+</form>
+{{form_script}}
+
+<script type="text/javascript">
+<!-- IF START 'member.ci_img_path' -->
+ fLoadLogo();
+<!-- IF END 'member.ci_img_path' -->
+</script>

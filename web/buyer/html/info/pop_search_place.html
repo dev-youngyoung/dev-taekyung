@@ -1,0 +1,60 @@
+<form name="form1" method="post">
+<div class="search_div">
+	<table class="search_table">
+	<colgroup>
+		<col width="20%"/>
+		<col width="50%"/>
+		<col width="30%"/>
+	</colgroup>
+	<tr>
+		<th><p>지점명</p></th>
+		<td><input type="text" name="s_field_name" maxlength="30" style="width:95%"></td>
+		<td align="right">
+			<button type="submit" class="btn color ico-search" value="검색"><span></span>검색</button>
+		</td>
+	</tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+<div style="text-align: right;padding:10px">
+	<button type="button" class="sbtn color ico-add" onclick="addFields();"><span></span>추가</button>
+	<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"> <span></span>닫기</button>
+</div>
+
+<form name="form2" method="post">
+<div class="div_table">
+<table>
+	<colgroup>
+		<col width="10%">
+		<col width="60%">
+		<col width="30%">
+	</colgroup>
+	<tr class="ltitle">
+		<th>선택</th>
+		<th>지점명</th>
+		<th>사용여부</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center"><input type="checkbox" name="chk_field" value="{{list.field_seq}}"></td>
+		<td>{{list.field_name}}</td>
+		<td align="center">{{list.use_yn}}</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td colspan="3">검색 결과가 없습니다.</td>
+	</tr>
+	<!-- IFNOT END 'list' -->
+</table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+</form>
+<script>
+function addFields(){
+	var chkField = GetFormValue("form2","chk_field");
+	opener.addFields(chkField);
+	self.close();
+}
+</script>

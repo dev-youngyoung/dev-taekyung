@@ -1,0 +1,78 @@
+<form name="form1" method="post">
+<input type="hidden" name="cont_no">
+<input type="hidden" name="cont_chasu">
+
+<input type="hidden" name="cust_member_no">
+<input type="hidden" name="cust_name">
+<input type="hidden" name="cust_email">
+
+
+<div class="div_table">
+<table>
+<colgroup>
+<col width="10%">
+<col width="20%">
+<col width="25%">
+<col width="20%">
+<col width="10%">
+<col width="15%">
+</colgroup>
+<tr>
+	<th>종류</th>
+	<th>수신자명</th>
+	<th>이메일</th>
+	<th>최근 전송일시</th>
+	<th>수신확인</th>
+	<th>재전송</th>
+</tr>
+<!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+<tr>
+	<td align="center">{{list.member_name}}</td>
+	<td align="center"><input type="text" name="sName{{list.__ord}}" style="width:100%;text-align:center" value="{{list.user_name}}"></td>
+	<td align="center"><input type="text" name="sEmail{{list.__ord}}" style="width:100%;text-align:center" value="{{list.email}}"></td>
+	<td align="center">{{list.send_date}}</td>
+	<td align="center">{{list.recv_dete}}</td>
+	<td align="center">
+		<button type="button" class="sbtn color ico-change"  onclick="fReSend('{{list.member_no}}', {{list.__ord}});"><span></span>재전송</button>
+	</td>
+</tr>
+  <!-- LOOP END 'list' -->
+<!-- IF END 'list' -->
+</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+</form>
+
+{{form_script}}
+<script language="javascript">
+function fReSend(member_no, no){
+	var cust_member_no = member_no;
+	var cust_name = eval("document.form1.sName" + no);
+	var cust_email = eval("document.form1.sEmail" + no);
+
+	if(cust_name.value == "") {
+		alert("수신자명을 입력해 주세요");
+		cust_name.focus();
+		return;
+	}
+	if(cust_email.value == "") {
+		alert("이메일을 입력해 주세요");
+		cust_email.focus();
+		return;
+	}
+
+	if(confirm("이메일을 재전송 하시겠습니까?"))
+	{
+		document.form1.cust_member_no.value = cust_member_no;
+		document.form1.cust_name.value = cust_name.value;
+		document.form1.cust_email.value = cust_email.value;
+		document.form1.submit();
+	}
+	return;
+}
+</script>

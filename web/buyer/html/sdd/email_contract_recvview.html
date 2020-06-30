@@ -1,0 +1,981 @@
+<!-- 전자인증 모듈 설정 //-->
+<!-- INCLUDE FILE 'layout/crosscert_include.html' -->
+<!-- 전자인증 모듈 설정 //-->
+
+<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return false;">
+<input type="hidden" name="sysdate" value="{{_sysdate}}">
+<input type="hidden" name="sign_able" value="{{sign_able}}">
+<input type="hidden" name="cont_no" value="{{cont.cont_no}}"/>
+<input type="hidden" name="cont_chasu" value="{{cont.cont_chasu}}"/>
+<input type="hidden" name="cont_userno" value="{{cont.cont_userno}}"/>
+<input type="hidden" name="member_no" value="{{cont.member_no}}"/>
+<input type="hidden" name="sign_member_no" value="{{_member_no}}"/>
+
+<input type="hidden" name="cont_hash" value="{{cont.cont_hash}}"/>
+<input type="hidden" name="sign_data"/>
+<input type="hidden" name="sign_dn"/>
+<input type="hidden" name="sinput">
+
+
+
+
+<div class="<!-- IF START 'cont.sign_complete' -->dc-step-wrap step3<!-- IF END 'cont.sign_complete' --><!-- IFNOT START 'cont.sign_complete' -->dc-step-wrap step2<!-- IFNOT END 'cont.sign_complete' -->">
+	<ol>
+	<li>
+		<div class="text_wrap"><div class="text">고유식별정보 동의 및 본인 확인</div></div>
+	</li>
+	<li>
+		<div class="text_wrap"><div class="text <!-- IFNOT START 'cont.sign_complete' -->active<!-- IFNOT END 'cont.sign_complete' -->">계약서 확인 및 서명</div></div>
+	</li>
+	<li>
+		<div class="text_wrap"><div class="text <!-- IF START 'cont.sign_complete' -->active<!-- IF END 'cont.sign_complete' -->">서명완료</div></div>
+	</li>
+	</ol>
+</div>
+
+<!-- IF START 'cont.mod_req_date' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>수정요청/반려 사유</h3>
+		</div>
+		<div class="push-right">
+			계약상태 : <span class="caution-text">{{status_name}}</span>
+		</div>
+	</div>
+
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="40%">
+			<col width="10%">
+			<col width="40%">
+		</colgroup>
+		<tr>
+			<th>요청업체명</th>
+			<td>{{cont.mod_req_name}}</td>
+			<th>요청일시</th>
+			<td>{{cont.mod_req_date}}</td>
+		</tr>
+		<tr>
+			<th>사유</th>
+			<td colspan="3">{{cont.mod_req_reason}}</td>
+		</tr>
+	</table>
+</div>
+<!-- IF END 'cont.mod_req_date' -->
+
+<div class="div_table" style="display: none;">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>계약기본정보</h3>
+		</div>
+		<!-- IFNOT START 'cont.mod_req_date' -->
+		<div class="push-right">
+			계약상태: <span class="caution-text"><b>{{status_name}}</b></span></td>
+		</div>
+		<!-- IFNOT END 'cont.mod_req_date' -->
+	</div>
+
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="50%">
+			<col width="10%">
+			<col width="30%">
+		</colgroup>
+		<tr>
+			<th>현장명</th>
+			<td>{{cont.field_name}}</td>
+			<th>면허정보</th>
+			<td>{{cont.license_name}}</td>
+		</tr>
+		<tr>
+			<th>계약명</th>
+			<td colspan="3">{{cont.cont_name}}</td>
+		</tr>
+		<tr>
+			<th>계약일자</th>
+			<td>{{cont.cont_date}}</td>
+			<th>계약번호</th>
+			<td>{{cont.cont_userno}}</td>
+		</tr>
+		<tr>
+			<th>계약구분 </th>
+			<td <!-- IFNOT START 'cont.view_change_gubun' -->colspan="3"<!-- IFNOT END 'cont.view_change_gubun' -->>
+			{{cont.cont_gubun_nm}}
+			</td>
+			<!-- IF START 'cont.view_change_gubun' -->
+			<th>변경구분 </th>
+			<td>{{cont.change_gubun_nm}}</td>
+			<!-- IF END 'cont.view_change_gubun' -->
+		</tr>
+	</table>
+</div>
+
+<div>
+	<div class="cont_tab">
+		<input type="hidden" name="cont_sub_name" value="{{template.template_name}}"><input type="hidden" name="cont_sub_style" value="{{template.template_style}}"><input type="hidden" name="gubun" value="10"><input type="hidden" name="sub_seq" value="0">
+		<span class="tab_on" id="tab_0" onClick="tabView(0)">{{template.template_name}}</span>&nbsp;
+		
+		<!-- LOOP START 'contSub' -->
+		<!-- IFNOT START 'contSub.hidden' -->
+		<span class="tab_off" style="margin-left:-5" id="tab_{{contSub.sub_seq}}" onClick="tabView({{contSub.sub_seq}})">{{contSub.cont_sub_name}}</span>
+		<!-- IFNOT END 'contSub.hidden' -->
+		<!-- IF START 'contSub.hidden' -->
+		<span class="tab_off" id="tab_{{contSub.sub_seq}}" onClick="tabView({{contSub.sub_seq}})" style="display:none">{{contSub.cont_sub_name}}</span>
+		<!-- IF END 'contSub.hidden' -->
+		<input type="hidden" name="cont_sub_name" value="{{contSub.cont_sub_name}}"><input type="hidden" name="cont_sub_style" value="{{contSub.cont_sub_style}}"><input type="hidden" name="gubun" value="{{contSub.gubun}}"><input type="hidden" name="sub_seq" value="{{contSub.sub_seq}}">
+		<!-- LOOP END 'contSub' -->
+	</div>
+	<div class="cont_warp">
+		<div id="__html">
+			<div style="{{template.template_style}}; padding-top: 10px" id="__html_0">
+			{{cont.cont_html}}
+			</div>
+			
+			<!-- LOOP START 'contSub' -->
+			<div style="{{contSub.cont_sub_style}}; padding-top: 10px; display:none" id="__html_{{contSub.sub_seq}}">
+			{{contSub.cont_sub_html}}
+			</div>
+			<!-- LOOP END 'contSub' -->
+		</div>
+	</div>
+</div>		
+
+<!-- LOOP START 'sign_template' -->
+<input type="hidden" name="sign_seq" value="{{sign_template.sign_seq}}"/>
+<input type="hidden" name="signer_name" value="{{sign_template.signer_name}}"/>
+<input type="hidden" name="signer_max" value="{{sign_template.signer_max}}"/>
+<input type="hidden" name="member_type" value="{{sign_template.member_type}}"/>
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>{{sign_template.signer_name}}</h3>
+		</div>
+	</div>
+	<div style="border-top: 2px solid #333;border-bottom: 1px solid #e0e0e0;">
+		<table id="comp_grid_{{sign_template.sign_seq}}">
+			<thead>
+			<tr style="display:none"><td style="height: 0px;"></td></tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!-- LOOP END 'sign_template' -->
+
+<!-- IF START 'cust_chain' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>연대보증</h3>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="70%">
+			<col width="30%">
+		</colgroup>
+		<!-- LOOP START 'cust_chain' -->
+		<tr>
+			<td style="height:40">
+				<!-- IF START 'cust_chain.member_name' -->
+				{{cust_chain.member_name}}
+				<!-- IF END 'cust_chain.member_name' -->
+				({{cust_chain.user_name}})
+				<!-- IF START 'cust_chain.tel_num' -->
+				/ {{cust_chain.tel_num}}
+				<!-- IF END 'cust_chain.tel_num' -->
+				<!-- IF START 'cust_chain.hp1' -->
+				/ {{cust_chain.hp1}}-{{cust_chain.hp2}}-{{cust_chain.hp3}}
+				<!-- IF END 'cust_chain.hp1' -->
+				/ {{cust_chain.email}} </td>
+			<!-- IF START 'cust_chain.sign_dn' -->
+			<td align="right">서명일시: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
+			<!-- IF END 'cust_chain.sign_dn' -->
+			<!-- IFNOT START 'cust_chain.sign_dn' -->
+			<td align="right">서명일시: <b style="color:red">미서명</b></td>
+			<!-- IFNOT END 'cust_chain.sign_dn' -->
+		</tr>
+		<!-- LOOP END 'cust_chain' -->
+	</table>
+</div>
+<!-- IF END 'cust_chain' -->
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>계약서류&nbsp;&nbsp;<span class="caution-text">※ 계약서류를 확인 후  전자서명 하세요.</span></h3>
+		</div>
+	</div>
+	<table id="cfile_grid" style="table-layout: fixed;">
+		<colgroup>
+			<col width="15%"/>
+			<col width="45%"/>
+			<col width="40%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>파일구분</th>
+			<th>계약서류명</th>
+			<th>첨부</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'cfile' -->
+		<tr>
+			<td align="center"><span class="{{cfile.auto_class}}">{{cfile.auto_str}}</span></td>
+			<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" class="in_readonly" readonly style="width:98%" /></td>
+			<td align="right">
+				<!-- IF START 'cfile.file_name' -->
+				{{cfile.file_size_str}}&nbsp;&nbsp;
+				<button type="button" class="sbtn color ico-download" onclick="{{cfile.down_script}}"><span></span>{{cfile.btn_name}}</button>
+				<!-- IF END 'cfile.file_name' -->
+				<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
+				<input type="hidden" name="cfile_auto_type" value="{{cfile.auto_type}}"/>
+			</td>
+		</tr>
+		<!-- LOOP END 'cfile' -->
+		<!-- IF START 'sign_able' -->
+		<!-- IF START 'template.agree_html' -->
+		<tr><td colspan="3" height="5"></td></tr>
+		<tr>
+			<td colspan="3">
+				{{template.agree_html}}
+			</td>
+		</tr>
+		<tr><td colspan="3" height="5" style="border-bottom: #e0e0e0 1px solid"></td></tr>
+		<!-- IF END 'template.agree_html' -->
+		<!-- IF END 'sign_able' -->
+		</tbody>
+	</table>
+</div>
+
+<!-- IF START 'stamp' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>인지세</h3>
+		</div>
+	</div>
+
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="20%">
+			<col width="15%">
+			<col width="15%">
+			<col width="20%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th>납부업체</th>
+			<th>인지세 고유번호</th>
+			<th>인지세액</th>
+			<th>발급일자</th>
+			<th>발급처</th>
+			<th>등록/조회</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'stamp' -->
+		<!-- IFNOT START 'stamp.cert_no' -->
+		<tr>
+			<td align="center">{{stamp.member_name}}</td>
+			<td colspan="4"></td>
+			<td align="center"><button type="button" class="sbtn color ico-save" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>등록</button>
+			</td>
+		</tr>
+		<!-- IFNOT END 'stamp.cert_no' -->
+		<!-- IF START 'stamp.cert_no' -->
+		<tr>
+			<td align="center">{{stamp.member_name}}</td>
+			<td align="center">{{stamp.cert_no}}</td>
+			<td align="center">￦{{stamp.stamp_amt}}</td>
+			<td align="center">{{stamp.issue_date}}</td>
+			<td align="center">{{stamp.channel}}</td>
+			<td align="center"><button type="button" class="sbtn color ico-confirm" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>조회</button></td>
+		</tr>
+		<!-- IF END 'stamp.cert_no' -->
+		<!-- LOOP END 'stamp' -->
+		</tbody>
+	</table>
+</div>
+<!-- IF END 'stamp' -->
+
+<!-- IF START 'warr' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>보증서류&nbsp;&nbsp;<span style="color:red">※ 제출해야 할 보증증권에 대해 [등록] 버튼을 클릭하여 첨부하세요.</span></h3>
+		</div>
+	</div>
+	<table id="warr_grid">
+		<colgroup>
+			<col width="10%">
+			<col width="15%">
+			<col width="14%">
+			<col width="14%">
+			<col width="18%">
+			<col width="10%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th>보증서종류</th>
+			<th>발급기관</th>
+			<th>증권번호</th>
+			<th>발급일자</th>
+			<th>보증기간</th>
+			<th>보증금액</th>
+			<th>등록/조회</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'warr' -->
+		<!-- IFNOT START 'warr.warr_no' -->
+		<tr>
+			<td align="center">{{warr.warr_type}}</td>
+			<td colspan="5"><b>비고:</b> {{warr.etc}} &nbsp;<!-- IF START 'warr.haja' -->[계약완료후 등록]<!-- IF END 'warr.haja' --></td>
+			<td align="center">
+				<!-- IFNOT START 'warr.haja' -->
+				<!-- IF START 'gap_yn' -->
+				미등록
+				<!-- IF END 'gap_yn' -->
+				<!-- IFNOT START 'gap_yn' -->
+				<button type="button" class="sbtn color ico-add" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}')"><span></span>등록</button>
+				<!-- IFNOT END 'gap_yn' -->
+				<!-- IFNOT END 'warr.haja' -->
+			</td>
+		</tr>
+		<!-- IFNOT END 'warr.warr_no' -->
+		<!-- IF START 'warr.warr_no' -->
+		<tr>
+			<td align="center">{{warr.warr_type}}</td>
+			<td align="center">{{warr.warr_office}}</td>
+			<td align="center">{{warr.warr_no}}</td>
+			<td align="center">{{warr.warr_date}}</td>
+			<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
+			<td align="right">￦{{warr.warr_amt}}</td>
+			<td align="center"><button type="button" class="sbtn color ico-download" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}')"><span></span>조회</button></td>
+		</tr>
+		<!-- IF END 'warr.warr_no' -->
+		<!-- LOOP END 'warr' -->
+		</tbody>
+	</table>
+</div>
+<!-- IF END 'warr' -->
+</form>
+{{form_script}}
+
+<form name="form2" method="post" enctype="multipart/form-data" action="email_contract_rfile_insert.jsp?{{query}}" onsubmit="return formSubmit2(this);">
+	<input type="hidden" name="rfile_path" value="{{file_path}}"/>
+	<input type="hidden" name="from_page" value="email_contract_recvview.jsp"/>
+	<input type="hidden" name="sign_member_no" value="{{_member_no}}"/>
+	<!-- LOOP START 'rfile_cust' -->
+	<!-- IF START 'rfile' -->
+	<div class="div_table">
+		<div class="util-row">
+			<!-- IF START 'rfile_cust.attch_area' -->
+			<div class="push-left">
+				<h3>구비서류&nbsp;&nbsp;<span style="color:red">※ 구비서류를 찾아보기 한 후 [구비서류 저장] 버튼을 클릭하세요.</span></h3>
+			</div>
+			<!-- IF END 'rfile_cust.attch_area' -->
+			<!-- IF START 'rfile_cust.attch_area' -->
+			<!-- IF START 'cont_ing' -->
+			<div class="push-right">
+				<button type="submit" class="sbtn color ico-save" ><span></span>구비서류 저장</button>
+			</div>
+			<!-- IF END 'cont_ing' -->
+			<!-- IF END 'rfile_cust.attch_area' -->
+		</div>
+		<table id="rfile_grid">
+			<colgroup>
+				<col width="8%"/>
+				<col width="67%"/>
+				<col width="25%"/>
+			</colgroup>
+			<thead>
+			<tr>
+				<th>필수여부</th>
+				<th>문서명</th>
+				<th>첨부파일</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- LOOP START 'rfile' -->
+			<tr>
+				<td align="center">
+					<input type="checkbox" name="attch" {{rfile.attch}} disabled>
+					<input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+				</td>
+				<td>{{rfile.doc_name}}</td>
+				<!-- IF START 'rfile.gap' -->
+				<td align="center" id="rfile_area_{{rfile.rfile_seq}}">
+					<font color="#0000ff">등록완료</font>(파일크기:{{rfile.file_size}})<br>
+					&nbsp;<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>다운로드</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+				<!-- IF END 'rfile.gap' -->
+				<!-- IFNOT START 'rfile.gap' -->
+				<!-- IF START 'rfile_cust.attch_area' -->
+				<td align="center" id="rfile_area_{{rfile.rfile_seq}}">
+					<!-- IFNOT START 'rfile.file_name' -->
+					<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
+					<input type="file" name="rfile_{{rfile.rfile_seq}}"  hname="첨부파일" style="width:95%" allow="{{rfile.allow_ext}}"/>
+					<input type="hidden" name="rfile_required" value = "{{rfile.attch_yn}}"/>
+					<!-- IF START 'rfile.allow_ext' -->
+					<br><span class="caution-text"> ※ {{rfile.allow_ext}} 파일만 첨부 가능</span>
+					<!-- IF END 'rfile.allow_ext' -->
+					<!-- IFNOT END 'rfile.file_name' -->
+					<!-- IF START 'rfile.file_name' -->
+					<font color="#0000ff">등록완료</font>(파일크기:{{rfile.file_size}})<br>
+					&nbsp;<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>다운로드</button>
+					<!-- IF START 'cont_ing' -->
+					&nbsp;<button type="button" class="sbtn color ico-delete" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}')"><span></span>삭제</button>
+					<!-- IF END 'cont_ing' -->
+					<!-- IF END 'rfile.file_name' -->
+				</td>
+				<!-- IF END 'rfile_cust.attch_area' -->
+				<!-- IFNOT START 'rfile_cust.attch_area' -->
+				<td align="center">
+					<!-- IF START 'rfile.file_name' -->
+					<font color="#0000ff">등록완료</font>(파일크기:{{rfile.file_size}})	&nbsp;<input type="button" class="down4" value="다운로드"/>
+					<!-- IF END 'rfile.file_name' -->
+					<!-- IFNOT START 'rfile.file_name' -->
+					미첨부
+					<!-- IFNOT END 'rfile.file_name' -->
+				</td>
+				<!-- IFNOT END 'rfile_cust.attch_area' -->
+				<!-- IFNOT END 'rfile.gap' -->
+			</tr>
+			<!-- LOOP END 'rfile' -->
+			</tbody>
+		</table>
+		<!-- IF START 'template.rfile_info' -->
+		<table>
+			<tr>
+				<td  style="padding:5px 0px 0px 5px;">{{template.rfile_info}}</td>
+			</tr>
+		</table>
+		<!-- IF END 'template.rfile_info' -->
+		<table>
+			<tr>
+				<td  style="padding:5px 0px 0px 5px;">
+					<span class="caution-text">※ 파일이 여러개인 경우 압축파일(zip파일)로 만들어 첨부하세요.</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- IF END 'rfile' -->
+	<!-- LOOP END 'rfile_cust' -->
+</form>
+
+
+<div class="btn-group-wrap">
+	<!-- IF START 'sign_able' -->
+	<button type="button" id="btn_sign" class="btn color ico-confirm" onclick="contSaveBeforeSign();"><span></span>전자서명</button>
+	<button type="button" class="btn color ico-request" onclick="modifyReq()"><span></span>수정요청</button>
+	<!-- IF END 'sign_able' -->
+	<button type="button" class="btn color ico-cancel" onclick="self.close()"><span></span>닫기</button>
+</div>
+
+
+<br>
+<div class="help-content">
+    <h3>NOTICE<span>사용전에 알아두세요~ </span></h3>
+    <div class="help-content-body">
+        <ul>
+			<li>계약상대방이 계약서에 전자서명을 하면 ‘계약완료’ 처리가 되며, SMS로 알림 통보가 됩니다</li>
+			<li>완료된 계약서에 대해 조회를 하고자 하는 경우 “나이스다큐 일반기업용 사이트에 로그인을 하시면 확인 할 수 있습니다.</li>
+			<li>회원가입이 안되어 있는 경우 회원가입을 한 후 로그인 하세요.</li>
+			<li>시스템 문의는 나이스다큐 고객센터 &nbsp;&nbsp;&nbsp; ☎ 02-788-9097</li>
+        </ul>
+    </div>
+</div>
+
+<form name="comp_form" method="post" >
+<table id="comp_template" style="display: none">
+	<tr>
+		<td>
+			<table style="border: 0px;">
+				<tr>
+				  <td align="right">
+					  서명일시: [[sign_date]]
+				  </td>
+				</tr>
+			</table>
+			<input type="hidden" name="member_no"/>
+			<input type="hidden" name="vendcd"/>
+			<input type="hidden" name="post_code"/>
+			<input type="hidden" name="member_slno"/>
+			<input type="hidden" name="cust_sign_seq"/>
+			<input type="hidden" name="jumin_no"/>
+			<input type="hidden" name="cust_gubun" value="02"/>
+			<table class="inner_table">
+				<colgroup>
+					<col width="10%"/>
+					<col width="23%"/>
+					<col width="10%"/>
+					<col width="23%"/>
+					<col width="10%"/>
+					<col width="24%"/>
+				</colgroup>
+				<tr>
+					<th>주소</th>
+					<td colspan="3"><input type="text" name="address" class="in_readonly" style="width:98%" readonly/></td>
+					<th>담당자</th>
+					<td><input type="text" name="user_name" class="in_readonly" style="width:98%" readonly/></td>
+				</tr>
+				<tr>
+					<th>상호</th>
+					<td colspan="3"><input type="text" name="member_name" class="in_readonly" style="width:98%" readonly/></td>
+					<th>이메일</th>
+					<td><input type="text" name="email" class="in_readonly" style="width:98%" readonly/></td>
+				</tr>
+				<tr>
+					<th>대표자</th>
+					<td><input type="text" name="boss_name" class="in_readonly" style="width:98%" readonly/></td>
+					<th>일반전화</th>
+					<td><input type="text" name="tel_num" class="in_readonly" style="width:98%" readonly/></td>
+					<th>휴대폰</th>
+					<td>
+						<input type="text" name="hp1" class="in_readonly" style="width:28%" size="3" readonly/>-
+						<input type="text" name="hp2" class="in_readonly" style="width:30%" size="4" readonly/>-
+						<input type="text" name="hp3" class="in_readonly" style="width:30%" size="4" readonly/>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+
+<form name="person_form" method="post">
+<table id="person_template" style="display: none">
+	<tr>
+		<td>
+			<input type="hidden" name="member_no"/>
+			<input type="hidden" name="vendcd"/>
+			<input type="hidden" name="post_code"/>
+			<input type="hidden" name="member_slno"/>
+			<input type="hidden" name="cust_sign_seq"/>
+			<input type="hidden" name="user_name"/>
+			<input type="hidden" name="boss_name"/>
+			<input type="hidden" name="jumin_no"/>
+			<input type="hidden" name="cust_gubun" value="02"/>
+			<table>
+				<tr align="right">
+					<td>
+					서명일시: [[sign_date]]
+					</td>
+				</tr>
+			</table>
+			<table  class="inner_table">
+			<colgroup>
+				<col width="10%"/>
+				<col width="57%"/>
+				<col width="10%"/>
+				<col width="23%"/>
+			</colgroup>
+			<tr>
+				<th>이름</th>
+				<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="상호" required="Y" onblur="setCustArea()"/></td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="주소" required="Y" onblur="setCustArea()"/></td>
+				<th>이메일</th>
+				<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="이메일" option="email" required="Y"/></td>
+			</tr>
+			<tr>
+				<th>일반전화</th>
+				<td><input type="text" name="tel_num" class="in_readonly" readonly style="width:98%" maxlength="20"/></td>
+				<th>휴대폰</th>
+				<td>
+					<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="휴대폰" required="Y"/>-
+					<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>-
+					<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+</form>
+
+
+<iframe name="save_ifm" src="about:blank" width="0" height="0" frameborder="0"></iframe>
+
+<script language="javascript">
+
+    if( window.attachEvent )  // IE의 경우
+        window.attachEvent( "onload", convertHtml );
+    else  // IE가 아닌 경우.
+        window.addEventListener( "load", convertHtml , false );
+
+
+    function convertHtml(){
+
+        var status = "{{cont.status}}";
+        var allDisabled = true;
+        //if("Y"!= "{{template.writer_type}}")return;
+        if(!document.getElementById("__html"))return;
+        if((status == "20")) allDisabled = false;
+
+        for(var i=0; i<=6; i++)
+    	{
+    		if( document.getElementById("__html_"+i) !== null )
+    		{
+    			removeInput2(document.getElementById("__html_"+i));
+    		}
+    	}
+        
+    	if(!allDisabled){
+	    	if(document.getElementById("__html")){
+	            var elements = document.getElementById("__html").getElementsByTagName("input");
+	            for(var i = 0; i < elements.length; i++){
+	                var element = elements[i];
+	                if(element.getAttribute("writable")!=null){
+	                	element.style.display="";
+	                    element.parentNode.innerHTML = element.outerHTML;
+	                }
+	            }
+	            var elements = document.getElementById("__html").getElementsByTagName("textarea");
+	            for(var i = 0; i < elements.length; i++){
+	                var element = elements[i];
+	                if(element.getAttribute("writable")!=null){
+	                	element.style.display="";
+	                	element.parentNode.innerHTML = element.outerHTML;
+	                }
+	            }
+	            var elements = document.getElementById("__html").getElementsByTagName("select");
+	            for(var i = 0; i < elements.length; i++){
+	                var element = elements[i];
+	                if(element.getAttribute("writable")!=null){
+	                    element.style.display="";
+	                    element.parentNode.innerHTML = element.outerHTML;
+	                }
+	            }
+	        }
+    	}
+    }
+
+
+    var chkSubmit = "";
+    function contSaveBeforeSign(sign_type)
+    {
+        if(chkSubmit!=""){
+            alert("처리중입니다. 잠시 기다려주세요.");
+            return;
+        }
+
+        var f = document.forms['form1'];
+		f['cont_hash'].value="";//초기화
+        if(validate(f, true))
+        {
+            if(document.getElementById("__html")){
+                var elements = document.getElementById("__html").getElementsByTagName("input");
+                for(var i = 0; i < elements.length; i++){
+                    var element = elements[i];
+                    if(element.getAttribute("writable")==null)
+                        setEnabled(element);
+                }
+                var elements = document.getElementById("__html").getElementsByTagName("textarea");
+                for(var i = 0; i < elements.length; i++){
+                    var element = elements[i];
+                    element.getAttribute("writable")==null
+                    setEnabled(element);
+                }
+            }
+
+            setDivInputValue("__html");
+            splitHtml(f, 'cont_html', false);
+            splitHtml(f, 'cont_html_rm', true);
+            //splitHtml(f, 'cont_sub_file', false);
+            chkSubmit = '1';
+            f.target = "save_ifm";
+            f.action = "contract_recvview_save_sign.jsp?{{query}}";
+            f.submit();
+        }
+    }
+
+    function formSubmit(){
+		var f = document.forms["form1"];
+        if(validate(f, true)){
+            var f2 = document.forms['form2'];
+            var rfile_chk = false;
+
+            if(f2['rfile_required']){
+                if(f2['rfile_required'].type == "hidden"){
+                    if(f2['rfile_required'].value == "Y"){
+                        rfile_chk = true;
+                    }
+                }else{
+                    var rfile_cnt = f2['rfile_required'].length;
+                    for(var i =0; i < rfile_cnt; i++){
+                        if(f2['rfile_required'][i].value == "Y"){
+                            rfile_chk = true;
+                        }
+                    }
+                }
+            }
+            if(rfile_chk){
+                <!-- IF START 'template.need_attach_yn' -->
+                alert("필수 구비서류를 첨부 하지 않았습니다.\n\n첨부 후 진행 하세요.");
+                return false;
+                <!-- IF END 'template.need_attach_yn' -->
+
+                <!-- IFNOT START 'template.need_attach_yn' -->
+                if(!confirm('필수 구비서류를 첨부 하지 않았습니다.\n\n그래도 {{sign_title}} 하시겠습니까?')){
+                    return false;
+                }
+                <!-- IFNOT END 'template.need_attach_yn' -->
+            }
+            
+            <!-- IFNOT START 'template.recv_write' -->
+            if(!confirm("전자서명 하시겠습니까?")){
+                return false;
+            }
+            <!-- IFNOT END 'template.recv_write' -->
+            f.target="";
+            f.action="";
+            return fSign();
+
+        }
+        return false;
+    }
+
+    // 인증서 선택창 띄우고 계약서서명 실행
+    function fSign()
+    {
+		var f = document.forms['form1'];
+        var vendcd = '';
+        <!-- IF START 'person_yn' -->
+        setUniSign("person");
+
+        vendcd = "{{jumin_no}}";
+        var sinput = null;
+        if(f['sinput'].value=='') {
+            fLayerPopClose('pop_sign_val');
+            fLayerPop('pop_sign_val',"./pop_sign_val.jsp",480,250);
+            return;
+        } else {
+            vendcd = vendcd + f['sinput'].value;
+            if (vendcd.length != 13) {
+                alert("주민등록번호가 부정확 합니다.\n\n고객센터로 문의하세요.");
+                return;
+            }
+        }
+        <!-- IF END 'person_yn' -->
+        <!-- IFNOT START 'person_yn' -->
+        setUniSign("comp");
+
+        vendcd = "{{_vendcd}}";
+        <!-- IFNOT END 'person_yn' -->
+
+
+        var cont_hash = f['cont_hash'].value;    // 계약서류 hash에 서명한 값
+        if(cont_hash==""){
+            alert("{{sign_title}} 데이터가 존재 하지 않습니다. 고객센터(02-788-9097)로 문의해 주세요.");
+            return false;
+        }
+
+        unisign.SignDataNVerifyVID(cont_hash, null, vendcd,
+            function(rv, signedText, certAttrs)
+            {
+                sSignData = signedText;
+
+                if ( null === sSignData || '' === sSignData || false === rv )
+                {
+                    unisign.GetLastError(
+                        function(errCode, errMsg)
+                        {
+                            if(errCode == "999"){
+                                //사용자 취소
+                                f['sinput'].value="";
+                            }else if(errCode == "14208"){
+                                f['sinput'].value="";
+                                alert("선택한 인증서는 귀사의 인증서가 아닙니다.");
+                            }else{
+                                f['sinput'].value="";
+                                alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
+                            }
+                        }
+                    );
+                } else {
+                    //console.log(JSON.stringify(certAttrs,null,2));
+                    //인증서 확인 단계
+                    var signEnddt = getFormatDate(certAttrs.validateTo);
+                    if (signEnddt.length < 8){
+                        alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                        return;
+                    }
+                    if (!isValidDate(signEnddt))
+                    {
+                        alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                        return;
+                    }
+                    if (js_isDateCmp(signEnddt, "{{_sysdate}}"))
+                    {
+                        alert("유효기간이 지난 인증서 입니다.\n\n다시 한번 인증서를 확인 하십시오.");
+                        return;
+                    }
+
+                    f['sign_dn'].value = certAttrs.subjectName;
+                    f['sign_data'].value = sSignData;
+                    f.submit();
+                }
+            }
+        );
+        return false;
+    }
+
+    function formSubmit2(f){
+        if(validate(f)){
+            if(confirm("구비서류를 저장하시겠습니까?")){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    function modifyReq(){
+        OpenWindow("pop_modify_req.jsp?{{query}}","moidfy_req",600,500);
+        return;
+    }
+
+
+
+    function delFile(seq, file_ext){
+        var area = document.getElementById("rfile_area_"+seq);
+        var html = '<input type="file" name="rfile_'+seq+'"  hname="첨부파일" style="width:95%" allow="'+file_ext+'"/>';
+        html += '<input type="hidden" name="rfile_seq" value="'+seq+'"/>';
+        if(file_ext !=''){
+            html += '<br><span class="caution-text"> ※ '+file_ext+' 파일만 첨부 가능</span>'
+        }
+        area.innerHTML = html;
+    }
+
+
+    function contWarr(cont_no, cont_chasu, warr_seq){
+        var link = "/web/buyer/sdd/pop_warr_modify.jsp?"
+            +"cont_no="+cont_no
+            +"&cont_chasu="+cont_chasu
+            +"&warr_seq="+warr_seq
+            +"&sign_member_no={{_member_no}}";
+        OpenWindow(link,"pop_warr",600,480);
+    }
+
+    function contPdfViewer(cont_no, cont_chasu, cfile_seq){
+        var pdfjs_yn = "";
+
+        browserInfo = getBrowserInfo();
+        if(browserInfo['name']=="Internet Explorer"){
+            if(browserInfo['version']=="v.10"||browserInfo['version']=="v.11"||browserInfo['version']=="edge"){//ie10부터 지원
+                pdfjs_yn = "Y";
+            }
+        }else{
+            pdfjs_yn = "Y";
+        }
+
+        var link = "/web/buyer/sdd/pop_pdf_viewer.jsp?"
+            +"cont_no="+cont_no
+            +"&cont_chasu="+cont_chasu
+            +"&cfile_seq="+cfile_seq
+            +"&pdfjs_yn="+pdfjs_yn;
+        OpenWindow(link,"cont_pdfViewer",830,800);
+    }
+
+
+    function modifyReq(){
+        OpenWindow("pop_modify_req.jsp?{{query}}&member_no={{_member_no}}","moidfy_req",600,500);
+        return;
+    }
+
+    function makeSignTable(sign_date) {
+        var htmlTable = "<table style='border-top: 0px solid #e0e0e0;'>";
+        htmlTable = htmlTable + "<tr><td align='right'>";
+        htmlTable = htmlTable + " 서명일시: ";
+        if(sign_date==null || sign_date=='') {
+            htmlTable = htmlTable + "<b style='color:red'>미서명";
+        } else {
+            htmlTable = htmlTable + "<b style='color:blue'>"+sign_date;
+        }
+
+        htmlTable = htmlTable +"</b></td></tr></table>";
+        return htmlTable;
+    }
+</script>
+
+<script language="javascript">
+
+    <!-- LOOP START 'sign_template' -->
+    var comp_grid_{{sign_template.sign_seq}} = new MGRID("comp_grid_{{sign_template.sign_seq}}");
+    comp_grid_{{sign_template.sign_seq}}.cells = table2array("comp_template");
+    <!-- LOOP END 'sign_template' -->
+
+    var form_name = "comp_form";
+    var template_name= "comp_template";
+
+
+</script>
+
+<!-- LOOP START 'cust' -->
+<script language="javascript">
+
+    if("02"=="{{cust.cust_gubun}}"){
+        form_name = "person_form";
+        template_name = "person_template";
+    }else{
+        form_name = "comp_form";
+        template_name = "comp_template";
+    }
+
+    SetFormValue(form_name,"member_no","{{cust.member_no}}");
+    SetFormValue(form_name,"vendcd","{{cust.vendcd}}");
+    SetFormValue(form_name,"post_code","{{cust.post_code}}");
+    SetFormValue(form_name,"member_slno","{{cust.member_slno}}");
+    SetFormValue(form_name,"cust_sign_seq","{{cust.sign_seq}}");
+    SetFormValue(form_name,"address","{{cust.address}}");
+    SetFormValue(form_name,"user_name","{{cust.user_name}}");
+    SetFormValue(form_name,"member_name","{{cust.member_name}}");
+    SetFormValue(form_name,"email","{{cust.email}}");
+    SetFormValue(form_name,"boss_name","{{cust.boss_name}}");
+    SetFormValue(form_name,"tel_num","{{cust.tel_num}}");
+    SetFormValue(form_name,"hp1","{{cust.hp1}}");
+    SetFormValue(form_name,"hp2","{{cust.hp2}}");
+    SetFormValue(form_name,"hp3","{{cust.hp3}}");
+    SetFormValue(form_name,"jumin_no","{{cust.jumin_no}}");
+    var signTable = "";
+    <!-- IFNOT START 'cust.sign_dn' -->
+        <!-- IF START 'cust.sign_display' -->
+        signTable = makeSignTable("{{cust.sign_date}}");
+        <!-- IF END 'cust.sign_display' -->
+        comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=><b style=\"color:red\">미서명</b>","sign_table=>"+signTable));
+    <!-- IFNOT END 'cust.sign_dn' -->
+    <!-- IF START 'cust.sign_dn' -->
+        <!-- IF START 'cust.sign_display' -->
+        signTable = makeSignTable("{{cust.sign_date}}");
+        <!-- IF END 'cust.sign_display' -->
+        comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=><b style=\"color:blue\">{{cust.sign_date}}</b>","sign_table=>"+signTable));
+    <!-- IF END 'cust.sign_dn' -->
+    comp_grid_{{cust.sign_seq}}.addRow();
+</script>
+<!-- LOOP END 'cust' -->
+
+<!-- IF START 'template.recv_write' -->
+<script language="javascript">
+    function templateLoadEvent(){
+        var f = document.forms["form1"];
+        if(f['cont_html_onload2']){
+            eval(f['cont_html_onload2'].value);
+        }
+    }
+    templateLoadEvent();
+</script>
+<!-- IF END 'template.recv_write' -->

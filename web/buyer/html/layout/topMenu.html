@@ -1,0 +1,162 @@
+<div class="page-header">
+
+    <!-- IF START 'login_block' -->
+    <div class="page-header-top">
+        <div class="page-header-top-inner">
+            <!-- IF START 'person_block' -->
+            <p><span>{{_auth._USER_NAME}}</span>님 께서 로그인 하셧습니다.</p>
+            <!-- IF END 'person_block' -->
+            <!-- IFNOT START 'person_block' -->
+            <p><span>{{_auth._MEMBER_NAME}}</span>/<span>{{_auth._USER_NAME}}</span>님께서 로그인 하셨습니다.</p>
+            <!-- IFNOT END 'person_block' -->
+            <ul>
+                <li><a href="/web/buyer/">HOME</a></li>
+                <li><a href="../main/logout.jsp">LOGOUT</a></li>
+                <li><a href="javascript:bookMark();">즐겨찾기등록</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-header-bottom">
+        <div class="page-header-bottom-inner">
+            <h1><a href="/web/buyer/">
+                <!-- IFNOT START '_LOGO' -->
+                <img src="/web/buyer/html/images/common/page_header_logo.png">
+                <!-- IFNOT END '_LOGO' -->
+                <!-- IF START '_LOGO' -->
+                <img src="/web/buyer/html/images/logo/{{_LOGO}}" onload="if(this.width>170){this.style.marginTop='9px';}">
+                <!-- IF END '_LOGO' -->
+            </h1>
+            <ul class="page-gnb">
+            	<!-- LOOP START 'menu' -->
+                <li>
+                    <a>{{menu.name}}</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                            	<!-- LOOP START 'm_menu' -->
+                                <div class="page-gnb-depth2-row">
+                                    <h2>{{m_menu.name}}</h2>
+                                        <ul>
+                                        	<!-- LOOP START 's_menu' -->
+                                            <li><a href="{{s_menu.href}}">{{s_menu.name}}</a></li>
+                                            <!-- LOOP END 's_menu' -->
+                                        </ul>
+                                </div>
+                                <!-- LOOP END 'm_menu' -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- LOOP END 'menu' -->
+            </ul>
+        </div>
+    </div>
+    <!-- IF END 'login_block' -->
+    
+    <!-- IFNOT START 'login_block' -->
+    <div class="page-header-bottom2">
+       <div class="page-header-bottom-inner">
+            <div class="inner-top">
+                <div class="inner-left">
+                    <h1><a href="/web/buyer/"><img src="/web/buyer/html/images/common/page_header_logo2.png"></a></h1>
+                </div>
+                <div class="inner-right">
+                    <ul class="page-quick-menu">
+                        <li>
+                            <a href="/web/buyer/">HOME</a>
+                        </li>
+                        <li>
+                            <a href="javascript:bookMark();">즐겨찾기등록</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="page-gnb2">
+                <li>
+                    <a>견적관리</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                            </div>
+                        </div>
+                     </div>
+                </li>
+                <li>
+                    <a>입찰관리</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                            </div>
+                        </div>
+                     </div>
+                </li>
+                <li>
+                    <a>계약관리</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                            </div>
+                        </div>
+                     </div>
+                </li>
+                <li>
+                    <a>통계관리</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                            </div>
+                        </div>
+                     </div>
+                <li>
+                    <a>협력사관리</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                            </div>
+                        </div>
+                     </div>
+                </li>
+                <li>
+                    <a>고객센터</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                                <div class="page-gnb-depth2-row">
+                                    <h2>고객센터</h2>
+                                    <ul>
+                                        <li><a href="../center/noti_list.jsp">공지사항</a></li>
+                                        <li><a href="../center/faq_list.jsp">FAQ</a></li>
+                                        <li><a href="../center/si_qna.jsp?gubun=01">문의 및 상담</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--
+                <li>
+                    <a style="color:#ff6c00">서비스소개</a>
+                    <div class="page-gnb-depth2">
+                        <div class="page-gnb-depth2-inner">
+                            <div class="page-gnb-depth2-container">
+                                <div class="page-gnb-depth2-row">
+                                    <h2>서비스소개</h2>
+                                    <ul>
+                                        <li><a href="../guide/service_intro.jsp">서비스안내</a></li>
+                                         <li><a href="../center/faq_list.jsp">고객사</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                -->
+            </ul>
+       </div>
+    </div>
+    <!-- IFNOT END 'login_block' -->
+
+</div>
+
+
+

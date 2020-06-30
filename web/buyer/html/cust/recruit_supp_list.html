@@ -1,0 +1,101 @@
+<form name="form1" method="get">
+<input type="hidden" name="mode"/>
+<input type="hidden" name="seq" value="{{seq}}">
+<div class="search_div">
+    <table class="search_table">
+    <colgroup>
+        <col width="13%">
+        <col width="32%">
+        <col width="13%">
+        <col width="32%">
+        <col width="10%">
+    </colgroup>
+    <tr>
+        <th><p>사업자번호</p></th>
+        <td><input type="text" name="s_vendcd" maxlength="100" style="width:80%"></td>
+        <th><p>업체명</p></th>
+        <td><input type="text" name="s_vendnm" maxlength="100" style="width:90%"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th><p>모집분야</p></th>
+        <td colspan="3">
+            <!-- LOOP START 'category' -->
+            <nobr><input type="checkbox" name="s_category" value="{{category.code}}"> {{category.code_name}}&nbsp;&nbsp;</nobr>
+            <!-- LOOP END 'category' -->
+        </td>
+        <td align="right">
+            <button type="submit" class="search_btn" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
+        </td>
+    </tr>
+    </table>
+</div>
+</form>
+{{form_script}}
+
+<div class="util-row">
+    <div class="push-right">
+        <button type="button" class="sbtn color ico-list" onclick="location.href='recruit_list.jsp';"><span></span>공고목록</button>
+        <button type="button" class="sbtn color ico-excel" onclick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
+    </div>
+</div>
+
+<div class="div_table">
+    <table>
+    <colgroup>
+        <col width="7%">
+        <col width="12%">
+        <col width="20%">
+        <col width="10%">
+        <col width="11%">
+        <col width="11%">
+        <col width="19%">
+        <col width="10%">
+    </colgroup>
+    <tr>
+        <th>순번</th>
+        <th>사업자등록번호</th>
+        <th>업체명</th>
+        <th>대표자</th>
+        <th>자본금<br>(단위:백만원)</th>
+        <th>매출액<br>(단위:백만원)</th>
+        <th>모집분야</th>
+        <th>신청일</th>
+    </tr>
+    <!-- IF START 'list' -->
+    <!-- LOOP START 'list' -->
+    <tr onclick="popVendView('{{list.member_no}}','{{list.seq}}','{{list.vendcd}}')" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer">
+        <td align="center">{{list.__ord}}</td>
+        <td align="center">{{list.vendcd}}</td>
+        <td>{{list.vendnm}}</td>
+        <td align="center">{{list.boss_name}}</td>
+        <td align="right">{{list.capital}}</td>
+        <td align="right">{{list.sales_amt}}</td>
+        <td align="center">{{list.category}}</td>
+        <td align="center">{{list.reg_date}}</td>
+    </tr>
+    <!-- LOOP END 'list' -->
+    <!-- IF END 'list' -->
+    <!-- IFNOT START 'list' -->
+    <tr>
+        <td colspan="8" align="center">검색결과가 없습니다.</font></td>
+    </tr>
+    <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="btn-group-wrap">{{pagerbar}}</div>
+
+<script type="text/javascript">
+ function popVendView(member_no, seq, vendcd){
+	 var url = "pop_recruit_view.jsp?"
+	         + "member_no="+member_no
+	         + "&seq="+seq
+	         + "&vendcd="+vendcd;
+	 OpenWindows(url,'pop_recruit_req',750,780);
+ }
+ 
+ 
+ <!-- IF START 's_categorys' -->
+ SetFormValue("form1", "s_category", "{{s_categorys}}",",");
+ <!-- IF END 's_categorys' -->
+ </script>

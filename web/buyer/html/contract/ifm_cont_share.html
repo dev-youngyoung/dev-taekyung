@@ -1,0 +1,61 @@
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>공람정보<span class="caution-text">※계약서를 공람할 부서 또는 담당자를 지정 할 수 있습니다.</span></h3>
+	    </div>
+	    <div class="push-right">
+	    	<button type="button" class="sbtn ico-add" onclick="OpenWindows('pop_share_person.jsp?{{query}}','pop_share_person', 480, 500);"><span></span>추가</button>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="8%">
+			<col width="20%">
+			<col width="20%">
+			<col width="20%">
+			<col width="20%">
+			<col width="12%">
+		</colgroup>
+		<tr>
+			<th>No.</th>
+			<th>공람발신자</th>
+			<th>공람발신일시</th>
+			<th>공람수신 부서/담당자</th>
+			<th>공람수신일시</th>
+			<th>삭제</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.__ord}}</td>
+			<td align="center">{{list.send_user_name}}</td>
+			<td align="center">{{list.send_date}}</td>
+			<td align="center">
+				<!-- IFNOT START 'list.recv_user_id' -->
+				{{list.recv_field_name}}
+				<!-- IFNOT END 'list.recv_user_id' -->
+				<!-- IF START 'list.recv_user_id' -->
+				{{list.recv_user_name}}
+				<!-- IF END 'list.recv_user_id' -->
+			</td>
+			<td align="center">
+				{{list.recv_date}}
+				<!-- IFNOT START 'list.recv_user_id' -->
+				<!-- IF START 'list.recv_user_name' -->
+				<br>({{list.recv_user_name}})
+				<!-- IF END 'list.recv_user_name' -->
+				<!-- IFNOT END 'list.recv_user_id' -->
+			</td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="if(confirm('해당공람을 삭제하시겠습니까?')){location.href='ifm_cont_share_delete.jsp?{{query}}&seq={{list.seq}}';}"><span></span>삭제</button></td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="6">지정된 공람 정보가 없습니다.</td>
+		</tr>	
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<script>
+ResizeIframe("ifm_cont_share");
+</script>

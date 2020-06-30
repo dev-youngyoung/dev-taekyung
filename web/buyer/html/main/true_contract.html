@@ -1,0 +1,112 @@
+<div>
+  <div class="cont_tab">
+    <span class="tab_on" >전자계약 진위확인</span>
+    <span class="tab_off" onclick="location.href='true_proof.jsp'">실적증명서 진위확인</span>
+  </div>
+</div>
+
+<form name="form1" method="post" onSubmit="return fSubmit(this)">
+
+<div class="div_table">
+  <div class="util-row">
+    <div class="push-left">
+      <span class="caution-text">(※ 계약서 하단 우측의 관리번호 입력)</span>
+    </div>
+  </div>
+
+  <table>
+    <colgroup>
+      <col width="15%">
+      <col width="85%">
+    </colgroup>
+    <tr>
+      <th>관리번호</th>
+      <td>
+        <input type="text" name="cont_no" size="12" maxlength="11" style="ime-mode:disabled;width:120px" onKeyUp="moveNext('cont_chasu')">
+        -
+        <input type="text" name="cont_chasu" size="1" maxlength="2" style="ime-mode:disabled;width:40px" onKeyUp="movePrv('cont_no'); moveNext('true_random')">
+        -
+        <input type="text" name="true_random" size="5" maxlength="5" style="ime-mode:disabled;width:70px" onKeyUp="movePrv('cont_chasu')">
+        <button type="submit" class="sbtn color ico-confirm"><span></span>확인</button><br/>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="div_table">
+  <table>
+    <colgroup>
+      <col width="15%">
+      <col width="85%">
+    </colgroup>
+    <tr>
+      <th>계약명</th>
+      <td><input type="text" name="cont_name" value="{{ds.cont_name}}" style="width:100%" readOnly></td>
+    </tr>
+    <tr>
+      <th>갑사업자</th>
+      <td><input type="text" name="first_cust_name" value="{{ds.first_cust_name}}" style="width:100%" readOnly></td>
+    </tr>
+    <tr>
+      <th>을사업자</th>
+      <td><input type="text" name="second_cust_name" value="{{ds.second_cust_name}}" style="width:100%" readOnly></td>
+    </tr>
+    <tr>
+      <th>계약일자</th>
+      <td><input type="text" name="cont_date" value="{{ds.cont_date}}" size="10" readOnly></td>
+    </tr>
+  </table>
+  <!-- IF START msg -->
+  <table width="85%" border="0" cellspacing="5" cellpadding="20" bgcolor="#f2f2f2">
+    <tr>
+      <td bgcolor="white">{{msg}}</td>
+    </tr>
+  </table>
+  <!-- IF END msg -->
+</div>
+</form>
+<div class="btn-group-wrap">
+  <button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>닫기</button>
+</div>
+{{form_script}}
+
+<script language="javascript">
+
+// load
+attachOnload( function()
+{
+    var form = document.forms["form1"];
+
+    form.cont_no.focus();
+
+    return;
+});
+
+// 확인
+function fSubmit(form)
+{
+    form.cont_no.value = form.cont_no.value.replace(/\\/g, "");
+    form.cont_chasu.value = form.cont_chasu.value.replace(/\\/g, "");
+
+    if (form.cont_no.value.length < 11)
+    {
+        alert("관리번호를 11자리로 입력하세요.");
+        form.cont_no.focus();
+        return false;
+    }
+    else if (form.cont_chasu.value == "")
+    {
+        alert("변경차수를 입력하세요.");
+        form.cont_chasu.focus();
+        return false;
+    }
+    else if (form.true_random.value == "")
+    {
+        alert("관리번호 뒷자리를 입력하세요.");
+        form.true_random.focus();
+        return false;
+    }
+
+    return true;    
+}
+
+</script>

@@ -1,0 +1,27 @@
+<form name="form1" method="get" >
+	<div class="div_table">
+		<table>
+			<colgroup>
+				<col width="12%">
+				<col width="62%">
+				<col width="12%">
+				<col width="14%">
+			</colgroup>
+			<tr>
+				<th>제목</th>
+				<td>{{info.title}}</td>
+				<th>등록일자</th>
+				<td>{{info.open_date}}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="3" style="height:200px;" valign="top">
+					{{info.contents}}
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-list" value="목록으로" onclick="location.href='faq_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>

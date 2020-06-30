@@ -1,0 +1,52 @@
+<form name="form1" method="get" >
+    <div class="search_div">
+        <table class="search_table">
+          <colgroup>
+            <col width="13%">
+            <col width="77%">
+            <col width="10%">
+          </colgroup>
+          <tr>
+              <th><p>제목</p></th>
+              <td><input type="text" name="s_title" maxlength="100" style="width:80%"></td>
+              <td align="right">
+                  <button type="submit" class="search_btn" value="검색"><span></span>검색</button>
+              </td>
+          </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+
+<div class="div_table">
+    <table>
+    <colgroup>
+        <col width="10%">
+        <col width="15%">
+        <col width="75%">
+    </colgroup>
+    <tr>
+        <th>순번</th>
+        <th>등록일자</th>
+        <th>제목</th>
+    </tr>
+    <!-- IF START 'list' -->
+    <!-- LOOP START 'list' -->
+    <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
+    onclick="location.href='faq_view.jsp?id={{list.board_id}}'" style="cursor:pointer">
+        <td align="center">{{list.__ord}}</td>
+        <td align="center">{{list.open_date}}</td>
+        <td>{{list.title}}</td>
+    </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IF END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td colspan="3" align="center">검색결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+

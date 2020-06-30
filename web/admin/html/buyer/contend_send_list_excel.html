@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+    </tr>
+    <tr>
+        <td><br></td>
+    </tr>
+    <tr>
+        <td>
+
+            <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+                <tr align="center">
+                    <td height="30" bgcolor="#cccccc">순번</td>
+                    <td bgcolor="#cccccc">구분</td>
+                    <td bgcolor="#cccccc">현장명</td>
+                    <td bgcolor="#cccccc">계약명</td>
+                    <td bgcolor="#cccccc">원사업자</td>
+                    <td bgcolor="#cccccc">수급사업자</td>
+                    <td bgcolor="#cccccc">계약일자</td>
+                    <td bgcolor="#cccccc">계약상태</td>
+                    <td bgcolor="#cccccc">이용수수료</td>
+                </tr>
+                <!-- LOOP START 'list' -->
+                <tr>
+                    <td align="center">{{list.__ord}}</td>
+                    <td align="center">{{list.cont_gubun}}</td>
+                    <td>{{list.field_name}}</td>
+                    <td>{{list.cont_name}}</td>
+                    <td>{{list.member_name}}</td>
+                    <td>{{list.client_name}}</td>
+                    <td align="center">{{list.cont_date}}</td>
+                    <td align="center">{{list.status_name}}</td>
+                    <td style="mso-number-format:\#\,0; text-align:right;">{{list.cont_amt}}</td>
+                </tr>
+                <!-- LOOP END 'list' -->
+                <tr>
+                    <td colspan="8" align="center">합계금액</td>
+                    <td align="right">{{sum}}</td>
+                </tr>
+                <tr>
+                    <td colspan="8" align="center">VAT</td>
+                    <td align="right">{{vat}}</td>
+                </tr>
+                <tr>
+                    <td colspan="8" align="center">청구금액</td>
+                    <td align="right">{{total}}</td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<form name="form1" method="post">
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>기본정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="30%">
+			<col width="70%">
+		</colgroup>
+		<tr>
+			<th><p>현장명</p></th>
+			<td><input type="text" name="field_name" style="width: 95%"></td>
+		</tr>
+		<tr>
+			<th><p>발주자</p></th>
+			<td><input type="text" name="order_name" style="width: 95%"></td>
+		</tr>
+		<tr>
+			<th><p>현장위치</p></th>
+			<td><input type="text" name="field_loc" style="width: 95%"></td>
+		</tr>
+		<tr>
+			<th><p>현장상태</p></th>
+			<td><input type="radio" name="del_yn" value="Y">진행중 <input type="radio" name="del_yn" value="N">완료</td>
+		</tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-save"><span></span>저장</button>
+	<!-- IF START 'modify' -->
+		<button type="button" class="btn color ico-delete" onClick="if(confirm('삭제하시겠습니까?')){location.href='order_field_delete.jsp?{{query}}';}"><span></span>삭제</button>
+	<!-- IF END 'modify' -->
+	<button type="button" class="btn color ico-cancel" onClick="location.href='order_field_list.jsp?{{list_query}}';"><span></span>취소</button>
+</div>
+
+</form>
+{{form_script}}
+
+<script language="javascript">
+window.resizeTo(500,470);
+</script>

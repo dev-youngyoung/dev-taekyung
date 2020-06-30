@@ -1,0 +1,116 @@
+<!-- IF START 'cust_view' -->
+<form novalidate name="form1" method="post">
+<input type="hidden" name="gubun" value="cust">
+<input type="hidden" name="cust_member_no">
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>{{member.member_name}} 의  원사업자등록관리</h3>
+	</div>
+	<div class="push-right">
+		<button type="button" class="sbtn color ico-add" onclick="OpenWindows('pop_search_company.jsp?client_no={{member.member_no}}&callback=addCust','pop_search_company', '800','600','yes');"><span></span>원사업자 추가</button>
+	</div>
+</div>
+
+<table>
+  <colgroup>
+    <col width="10%">
+    <col>
+    <col width="15%">
+    <col width="15%">
+    <col width="15%">
+    <col width="10%">
+  </colgroup>
+  <tr>
+  	<th>순번</th>
+  	<th>업체명</th>
+  	<th>사업자등록번호</th>
+  	<th>대표자</th>
+  	<th>등록일시</th>
+  	<th>삭제</th>
+  </tr>
+  <!-- LOOP START 'cust' -->
+  <tr>
+  	<td align="center">{{cust.__ord}}</td>
+  	<td align="center">{{cust.member_name}}</td>
+  	<td align="center">{{cust.vendcd}}</td>
+  	<td align="center">{{cust.boss_name}}</td>
+  	<td align="center">{{cust.client_reg_date}}</td>
+  	<td align="center">
+  		<button type="button" class="sbtn color ico-delete" onclick="if(confirm('삭제 하시겠습니까?')){location.href='client_delete.jsp?{{query}}&main_member_no={{cust.member_no}}&client_seq={{cust.client_seq}}';}"><span></span>삭제</button>
+  	</td>
+  </tr>
+  <!-- LOOP END 'cust' -->
+</table>
+</div>
+</form>
+<!-- IF END 'cust_view' -->
+
+<!-- IF START 'client_view' -->
+<form novalidate name="form2" method="post">
+<input type="hidden" name="gubun" value="client">
+<input type="hidden" name="client_member_no">
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>{{member.member_name}} 의  수급사업자 관리</h3>
+	</div>
+	<div class="push-right">
+		<button type="button" class="sbtn color ico-write" onclick="OpenWindows('pop_member_insert.jsp?member_no={{member_no}}','pop_member_insert',1000,750)"><span></span>거래처 일괄등록</button>
+		<button type="button" class="sbtn color ico-add" onclick="OpenWindows('pop_search_company.jsp?client_no={{member_no}}&callback=addClient','pop_search_company', '800','600','yes');"><span></span>수급사업자 추가</button>
+	</div>
+</div>
+
+<table>
+  <colgroup>
+    <col width="10%">
+    <col>
+    <col width="15%">
+    <col width="12%">
+    <col width="15%">
+    <col width="10%">
+  </colgroup>
+  <tr>
+  	<th>순번</th>
+  	<th>업체명</th>
+  	<th>사업자등록번호</th>
+  	<th>대표자</th>
+  	<th>등록일시</th>
+  	<th>삭제</th>
+  </tr>
+  <!-- LOOP START 'client' -->
+  <tr>
+  	<td align="center">{{client.__ord}}</td>
+  	<td align="center">{{client.member_name}}</td>
+  	<td align="center">{{client.vendcd}}</td>
+  	<td align="center">{{client.boss_name}}</td>
+  	<td align="center">{{client.reg_date}}</td>
+  	<td align="center">
+  		<button type="button" class="sbtn color ico-delete" onclick="if(confirm('삭제 하시겠습니까?')){location.href='client_delete.jsp?{{query}}&main_member_no={{member_no}}&client_seq={{client.client_seq}}';}"><span></span>삭제</button>
+  	</td>
+  </tr>
+  <!-- LOOP END 'client' -->
+</table>
+</div>
+</form>
+<!-- IF END 'client_view' -->
+
+
+<div class="btn-group-wrap">
+      <button type="button" name="btn_join" class="btn color ico-list" onclick="location.href='{{list_url}}.jsp?{{list_query}}'" ><span></span>목록으로</button>
+</div>
+
+
+<script type="text/javascript">
+function addCust(data){
+	var f = document.forms['form1'];
+	f['cust_member_no'].value = data["member_no"];
+	f.submit();
+}
+
+function addClient(data){
+	var f = document.forms['form2'];
+	f['client_member_no'].value=data["member_no"];
+	f.submit();
+}
+</script>

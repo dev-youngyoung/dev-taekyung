@@ -1,0 +1,92 @@
+﻿<!-- 
+	설치 후 이동할 페이지 경로 설정 : mainPageUrl
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>인증서 관리 프로그램 설치 페이지</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		<style type="text/css">
+			body,td{
+				color:#333;
+				font: 12px/200% 돋움,Arial, Helvetica, sans-serif;
+				letter-spacing:0em; 
+				word-spacing:0px; 
+				margin: 15px;	
+				overflow-x:hidden;
+			}
+			.btn_refresh{
+				font-family: "Dotum";
+				font-size: 11px;
+				background-color: #eee; border: 1px solid #aaa;
+				cursor: pointer;
+				margin: 15px; padding: 15px;
+			}
+			.btn_refresh:hover{
+				background-color: #ccc; outline: 2px solid #332255;
+			}
+			.hide{display:none;}
+		</style>
+		<script type="text/javascript" src="../unisignweb/framework/json2.js" ></script>
+		<script type="text/javascript" src="./InstallChecker.js" ></script>
+	</head>
+	<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+		<div class="body_wrap" align="center">
+			<div style="width:1170px;margin:auto;text-align:center"> <center>
+				<div style="border:solid 1px #ccc;width:563px;;margin-top:10px">
+					<div style="width:543px;margin:10px">
+						<img src="./CCimages/cs.jpg" alt="VestCert 프로그램을 설치중입니다. - 한국전자인증-" />
+				
+						<div align="center" style="width:507px;padding:20px 0;text-align:left">						
+							<img src="./CCimages/icon_square_blue.gif" align="abmiddle" alt=""/><strong> 프로그램의 설치여부를 묻는 <font color="#FF6633">"보안경고" </font><font color="#333333">창이 뜨면 반드시 </font><font color="#FF6633">"예"</font><font color="#333333">를 클릭하십시요.  </font><font color="#FF6633">"아니오"</font><font color="#333333">를 클릭하시면 프로그램이 설치되지 않습니다. </br>  </strong>
+							
+							<img src="./CCimages/icon_square_blue.gif" align="abmiddle" alt=""/><strong><font color='red'> 프로그램 설치가 끝나면 브라우저를 다시 실행시켜야 합니다.</font></br> </strong>
+							
+							<img src="./CCimages/icon_square_blue.gif" align="abmiddle" alt=""/><strong> 사용자가 최초 접속하는 경우 컴퓨터 및 네트웍의 상황에 따라 많은 시간이 소요되는 경우가 있습니다. 화면이 장시간 정지 시에는 프로그램을 수동설치하셔야 합니다. </br></br> </strong> 
+						</div>
+						
+						<iframe id="us-downloadURL" name="us-downloadURL" width="0" height="0" style="display: none;"></iframe>
+						<div style="text-align:center;padding:0 0 10px 0; display: none;" id="win_downloadBox">
+							<script> document.write("<a href='./VestCertSetup.exe' target='us-downloadURL'>"); </script>
+							Windows 32/64 BIT 수동 설치프로그램 다운로드
+							<script> document.write("</a>"); </script>					
+						</div>
+						
+						<div style="text-align:center;padding:0 0 10px 0; display: none;" id="mac_downloadBox">							
+							<script> document.write("<a href='./VestCertSetup.dmg' target='us-downloadURL'>"); </script>
+							MAC 32/64 BIT 수동 설치프로그램 다운로드
+							<script> document.write("</a>"); </script>							
+						</div>
+												
+					</div>
+				</div>
+				<div id="status_text" style="font-size: 11px; font-weight: bold; color: red;">인증서 관리 프로그램 설치 확인 중</div>
+				<div id="btn_run" class="hide">
+					<input type="button" class="btn_refresh" onclick="fnVestCertCall()" value="실행하기">
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+	CCWEBInstall({
+		options: {
+			// XML 전자서명을 사용할때만 true로 설정.
+			pluginConfig: false
+		},
+		success: function(){
+			document.getElementById("status_text").innerHTML = "인증서 관리 프로그램이 설치되었습니다";
+			setTimeout(function(){document.location.href = '../unisignweb_document/index.html';}, 500);
+		},
+		fail: function(code, msg){
+			document.getElementById("status_text").innerHTML = msg;
+			if( code == -90 || code == -98 ) document.getElementById("btn_run").style.display = "block";
+			else if(code > 80) document.getElementById("hsmiframe").src = 'VestCertSetup.exe';
+		},
+		progress: function(msg){
+			document.getElementById("status_text").innerHTML = msg;
+		}
+	});
+	</script>
+</html>

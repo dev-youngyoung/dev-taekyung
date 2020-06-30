@@ -1,0 +1,71 @@
+<form name="form1" method="post" enctype="multipart/form-data">
+<div style="width:100%;text-align:right;padding:10px 10px">
+	<!-- IF START 'btn' -->
+	<button type="button" class="sbtn color ico-delete" onclick="if(confirm('삭제 하시겠습니까?')){location.href='pop_stamp_delete.jsp?{{query}}';}"><span></span>삭제</button>
+	<!-- IF END 'btn' -->
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+<div class="div_table">
+	<table>
+		<colgroup>
+		  <col width="24%">
+		  <col width="76%">
+		</colgroup>
+		<tr>
+			<th> 납부업체명</th>
+			<td>
+				{{cont.member_name}}
+			</td>
+		</tr>
+		<tr>
+			<th> 사업자등록번호</th>
+			<td>
+				{{cont.vendcd}}
+			</td>
+		</tr>
+		<tr>
+			<th> 계약금액</th>
+			<td>
+				￦{{cont.cont_total}}
+			</td>
+		</tr>
+		<tr>
+			<th> 인지세액</th>
+			<td>
+				￦{{stamp.stamp_money}}
+			</td>
+		</tr>
+		<tr>
+			<th> 고유(접수)번호</th>
+			<td>
+				{{stamp.cert_no}}
+			</td>
+		</tr>
+		<tr>
+			<th> 발급처</th>
+			<td>
+				{{stamp.channel}}
+			</td>
+		</tr>
+		<tr>
+			<th> 발급일</th>
+			<td>
+				{{stamp.issue_date}}
+			</td>
+		</tr>
+		<tr>
+			<th> 첨부파일</th>
+			<td>
+				<!-- IFNOT START 'stamp.file_name' -->
+				미첨부
+				<!-- IFNOT END 'stamp.file_name' -->
+				<!-- IF START 'stamp.file_name' -->
+				{{stamp.file_title}}&nbsp;&nbsp;({{stamp.file_size}})&nbsp;
+                <button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_pdf','{{stamp.file_path}}{{stamp.file_name}}','{{stamp.file_title}}')"><span></span>다운로드</button>
+				<!-- IF END 'stamp.file_name' -->
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+{{form_script}}

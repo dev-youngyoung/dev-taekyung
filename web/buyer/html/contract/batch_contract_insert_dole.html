@@ -1,0 +1,816 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 작성 업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+		</tr>
+		<tr>
+			<th>대표자명</th>
+			<td>{{boss_name}}</td>
+			<th>계약서종류</th>
+			<td>
+				<select id="template_cd" onchange="setColumns(this.value);" style="width:200px;">
+					<!-- IF START 'dole' -->
+					<option value="2019217">돌코리아 생과사업부 근로계약서</option>
+					<option value="2019233">돌코리아 가공사업부 근로계약서</option>
+					<option value="2019275">돌코리아 계약직 근로계약서</option>
+					<!-- IF END 'dole' -->
+					<!-- IF START 'dfc' -->
+					<option value="2019221">DFC 관리직 근로계약서</option>
+					<option value="2019218">DFC 생산직 근로계약서</option>
+					<!-- IF END 'dfc' -->
+					<!-- IF START 'dlc' -->
+					<option value="2019219">디엘씨 근로계약서</option>
+					<!-- IF END 'dlc' -->
+					<!-- IF START 'logis' -->
+					<option value="2019222">돌로지스틱스 근로계약서</option>
+					<!-- IF END 'logis' -->
+					<!-- IF START 'korea' -->
+					<option value="2019223">코리아후레쉬시스템 일반 근로계약서</option>
+					<option value="2019220">코리아후레쉬시스템 소포장 근로계약서</option>
+					<!-- IF END 'korea' -->
+					<!-- IF START 'test' -->
+					<option value="2019217">돌코리아 생과사업부 근로계약서</option>
+					<option value="2019233">돌코리아 가공사업부 근로계약서</option>
+					<option value="2019275">돌코리아 계약직 근로계약서</option>
+					<option value="2019221">DFC 관리직 근로계약서</option>
+					<option value="2019218">DFC 생산직 근로계약서</option>
+					<option value="2019219">디엘씨 근로계약서</option>
+					<option value="2019222">돌로지스틱스 근로계약서</option>
+					<option value="2019223">코리아후레쉬시스템 일반 근로계약서</option>
+					<option value="2019220">코리아후레쉬시스템 소포장 근로계약서</option>
+					<!-- IF END 'test' -->
+				</select>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 400px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<!-- IFNOT START 'dole' -->
+<div class="div_table lineTable">
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="80%">
+		</colgroup>
+		<tr>
+			<th></th>
+			<th>
+			<!-- IF START 'dfc' -->
+			DFC 생산직
+			<!-- IF END 'dfc' -->
+			근로계약서</th>
+		</tr>
+		<tr>
+			<th>계약구분</th>
+			<td colspan="2" align="center">정규직 : 정규직, 계약직 : 계약직</td>
+		</tr>
+		<tr>
+			<th>근로계약시작일</th>
+			<td colspan="2" align="center">계약구분이 "계약직"인 경우</td>
+		</tr>
+		<tr>
+			<th>근로계약종료일</th>
+			<td colspan="2" align="center">계약구분이 "계약직"인 경우</td>
+		</tr>
+		<tr>
+			<th>동의서작성여부</th>
+			<td colspan="2" align="center">
+				Y : 휴일야간연장근로동의서, 개인정보수집이용제공동의서 생성<br/>
+				N : 휴일야간연장근로동의서, 개인정보수집이용제공동의서 미생성
+			</td>
+		</tr>		 
+	</table>
+</div>
+<!-- IFNOT END 'dole' -->
+<!-- IF START 'dole' -->
+<div class="div_table lineTable">
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="80%">
+		</colgroup>
+		<tr>
+			<th></th>
+			<th>
+			 근로계약서(가공사업부), 근로계약서(생과사업부)
+			</th>
+		</tr> 
+		 
+		<tr>
+			<th>동의서작성여부</th>
+			<td colspan="2" align="center">
+				Y : 휴일야간연장근로동의서, 개인정보수집이용제공동의서 생성, 행동규범연례확인서 생성<br/>
+				N : 휴일야간연장근로동의서, 개인정보수집이용제공동의서 미생성, 행동규범연례확인서 미생성
+			</td>
+		</tr>		
+	 	<tr>
+			<th>5조 8항 선택여부</th>
+			<td colspan="2" align="center">
+				Y : 선택<br/>
+				N : 미선택
+			</td>
+		</tr>	 
+	</table>
+</div> 
+<!-- IF END 'dole' -->
+	
+
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>일괄전송</button>
+</div>
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+var grid_2019217 = [];	// 돌코리아 생과사업부 근로계약서
+var grid_2019218 = [];	// DFC 생산직 근로계약서
+var grid_2019219 = [];	// 디엘씨 근로계약서
+var grid_2019220 = [];	// 코리아후레쉬시스템 소포장 근로계약서
+var grid_2019221 = [];	// DFC 관리직 근로계약서
+var grid_2019222 = [];	// 돌로지스틱스 근로계약서
+var grid_2019223 = [];	// 코리아후레쉬시스템 일반 근로계약서
+var grid_2019233 = [];	// 돌코리아 가공사업부 근로계약서
+var grid_2019275 = [];	// 돌코리아 계약직 근로계약서
+
+var grid_data = [];
+var work_type_template = "";
+var work_type_yn = "";
+
+
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setData();
+    setColumns(document.getElementById("template_cd").value);
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg);
+
+        });
+}
+
+function setData() {
+	var idx = 0;
+
+  	// 돌코리아 생과사업부 근로계약서
+	idx = 0;
+  	grid_2019217[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019217[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019217[idx++] = ["cont_total", "text", "연봉", "120", "N", "R"];
+    grid_2019217[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019217[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019217[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019217[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019217[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019217[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019217[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+    grid_2019217[idx++] = ["cont_cdate", "text", "근로계약기간", "120", "D", "R"];
+  	grid_2019217[idx++] = ["cont_sdate", "text", "연봉계약시작일", "120", "D", "R"];
+   	grid_2019217[idx++] = ["cont_edate", "text", "연봉계약종료일", "120", "D", "R"];
+    	
+  	grid_2019217[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019217[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+  	grid_2019217[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019217[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019217[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_amt_01", "text", "기본급", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_amt_02", "text", "식대", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_amt_03", "text", "자녀보육수당", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_amt_04", "text", "연장근로수당", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_amt_05", "text", "휴일근로수당", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_txt_03", "text", "시간외 근로시간", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_txt_04", "text", "휴일 근로시간", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_txt_05", "text", "초과 휴일 근로시간", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_txt_06", "text", "시간급", "120", "N", "R"];
+   	grid_2019217[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019217[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019217[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+  	grid_2019217[idx++] = ["cont_check_03", "text", "5조 8항 선택여부", "100", "YN", "R"];
+  	grid_2019217[idx++] = ["cont_txt_07", "text", "8항 입력란", "250", "", "R"];
+   /* 	grid_2019217[idx++] = ["rule_agree_yn", "text", "행동규범작성여부", "100", "YN", "R"]; */
+
+  	// DFC 생산직 근로계약서
+	idx = 0;
+	grid_2019218[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+	grid_2019218[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019218[idx++] = ["cont_amt_01", "text", "월급여", "120", "N", "R"];
+   	grid_2019218[idx++] = ["cont_amt_02", "text", "시간급", "120", "N", "R"];
+   	grid_2019218[idx++] = ["address", "text", "주소", "300", "", "R"];
+   	grid_2019218[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019218[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019218[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019218[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019218[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019218[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+  	grid_2019218[idx++] = ["sel_01", "text", "계약구분", "100", "", "R"];
+  	grid_2019218[idx++] = ["cont_cdate", "text", "근로개시일", "120", "D", "R"];
+  	grid_2019218[idx++] = ["cont_sdate", "text", "근로계약시작일", "120", "D", "R"];
+   	grid_2019218[idx++] = ["cont_edate", "text", "근로계약종료일", "120", "D", "R"];
+   	
+   	grid_2019218[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019218[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+   	grid_2019218[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019218[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019218[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019218[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019218[idx++] = ["cont_txt_02", "text", "담당 업무", "200", "", "R"];
+   	grid_2019218[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+
+   	// 디엘씨 근로계약서
+   	idx = 0;
+  	grid_2019219[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019219[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019219[idx++] = ["cont_amt_01", "text", "월급여", "120", "N", "R"];
+   	grid_2019219[idx++] = ["cont_amt_02", "text", "시간급", "120", "N", "R"];
+    grid_2019219[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019219[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019219[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019219[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019219[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019219[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019219[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+   	grid_2019219[idx++] = ["sel_01", "text", "계약구분", "100", "", "R"];
+   	
+   	grid_2019219[idx++] = ["cont_cdate", "text", "근로개시일", "120", "D", "R"];
+   	grid_2019219[idx++] = ["cont_sdate", "text", "근로계약시작일", "120", "D", "R"];
+   	grid_2019219[idx++] = ["cont_edate", "text", "근로계약종료일", "120", "D", "R"];
+   	
+  	grid_2019219[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019219[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+  	grid_2019219[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019219[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019219[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+   	grid_2019219[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019219[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019219[idx++] = ["cont_txt_02", "text", "담당 업무", "200", "", "R"];
+   	grid_2019219[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+
+   	// 코리아후레쉬시스템 소포장 근로계약서
+   	idx = 0;
+  	grid_2019220[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019220[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019220[idx++] = ["cont_amt_01", "text", "월급여", "120", "N", "R"];
+   	grid_2019220[idx++] = ["cont_amt_02", "text", "시간급", "120", "N", "R"];
+    grid_2019220[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019220[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019220[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019220[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019220[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019220[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019220[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+   	grid_2019220[idx++] = ["sel_01", "text", "계약구분", "100", "", "R"];
+
+   	grid_2019220[idx++] = ["cont_cdate", "text", "근로개시일", "120", "D", "R"];
+   	grid_2019220[idx++] = ["cont_sdate", "text", "근로계약시작일", "120", "D", "R"];
+   	grid_2019220[idx++] = ["cont_edate", "text", "근로계약종료일", "120", "D", "R"];
+
+  	grid_2019220[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019220[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+  	grid_2019220[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019220[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019220[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+   	grid_2019220[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019220[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019220[idx++] = ["cont_txt_02", "text", "담당 업무", "200", "", "R"];
+   	grid_2019220[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+
+   	// DFC 관리직 근로계약서
+   	idx = 0;
+  	grid_2019221[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019221[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+  	grid_2019221[idx++] = ["cont_total", "text", "연봉액", "120", "N", "R"];
+    grid_2019221[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019221[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019221[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019221[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019221[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019221[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019221[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+    grid_2019221[idx++] = ["cont_cdate", "text", "근로계약기간", "120", "D", "R"];
+  	grid_2019221[idx++] = ["cont_sdate", "text", "연봉계약시작일", "120", "D", "R"];
+  	grid_2019221[idx++] = ["cont_edate", "text", "연봉계약종료일", "120", "D", "R"];
+  	
+  	grid_2019221[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019221[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+  	grid_2019221[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019221[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+  
+  	grid_2019221[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_amt_01", "text", "기본급", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_amt_02", "text", "식대", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_amt_03", "text", "자녀보육수당", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_amt_04", "text", "연장근로수당", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_amt_05", "text", "휴일근로수당", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_txt_03", "text", "시간외 근로시간", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_txt_04", "text", "휴일 근로시간", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_txt_05", "text", "초과 휴일 근로시간", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_txt_06", "text", "시간급", "120", "N", "R"];
+  	grid_2019221[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+  	grid_2019221[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019221[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+
+   	// 돌로지스틱스 근로계약서
+   	idx = 0;
+  	grid_2019222[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019222[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019222[idx++] = ["cont_amt_01", "text", "월급여", "120", "N", "R"];
+   	grid_2019222[idx++] = ["cont_amt_02", "text", "시간급", "120", "N", "R"];
+    grid_2019222[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019222[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019222[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019222[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019222[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019222[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019222[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+   	grid_2019222[idx++] = ["sel_01", "text", "계약구분", "100", "", "R"];
+   	
+   	grid_2019222[idx++] = ["cont_cdate", "text", "근로개시일", "120", "D", "R"];
+   	grid_2019222[idx++] = ["cont_sdate", "text", "근로계약시작일", "120", "D", "R"];
+   	grid_2019222[idx++] = ["cont_edate", "text", "근로계약종료일", "120", "D", "R"];
+   	
+  	grid_2019222[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019222[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+  	grid_2019222[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019222[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019222[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+   	grid_2019222[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019222[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019222[idx++] = ["cont_txt_02", "text", "담당 업무", "200", "", "R"];
+   	grid_2019222[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+
+   	// 코리아후레쉬시스템 일반 근로계약서
+   	idx = 0;
+  	grid_2019223[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019223[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019223[idx++] = ["cont_amt_01", "text", "월급여", "120", "N", "R"];
+   	grid_2019223[idx++] = ["cont_amt_02", "text", "시간급", "120", "N", "R"];
+    grid_2019223[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019223[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019223[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019223[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019223[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019223[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019223[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+   	grid_2019223[idx++] = ["sel_01", "text", "계약구분", "100", "", "R"];
+
+   	grid_2019223[idx++] = ["cont_cdate", "text", "근로개시일", "120", "D", "R"];
+   	grid_2019223[idx++] = ["cont_sdate", "text", "근로계약시작일", "120", "D", "R"];
+   	grid_2019223[idx++] = ["cont_edate", "text", "근로계약종료일", "120", "D", "R"];
+   	
+  	grid_2019223[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019223[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+  	grid_2019223[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019223[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019223[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+   	grid_2019223[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019223[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019223[idx++] = ["cont_txt_02", "text", "담당 업무", "200", "", "R"];
+   	grid_2019223[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+
+  	// 돌코리아 가공사업부 근로계약서
+	idx = 0;
+  	grid_2019233[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+    grid_2019233[idx++] = ["member_name", "text", "이름", "100", "", "R"];
+   	grid_2019233[idx++] = ["cont_total", "text", "연봉", "120", "N", "R"];
+    grid_2019233[idx++] = ["address", "text", "주소", "300", "", "R"];
+    grid_2019233[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+    grid_2019233[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+    grid_2019233[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+    grid_2019233[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+    grid_2019233[idx++] = ["email", "text", "이메일", "200", "E", "R"];
+    grid_2019233[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+    grid_2019233[idx++] = ["cont_cdate", "text", "근로계약기간", "120", "D", "R"];
+  	grid_2019233[idx++] = ["cont_sdate", "text", "연봉계약시작일", "120", "D", "R"];
+   	grid_2019233[idx++] = ["cont_edate", "text", "연봉계약종료일", "120", "D", "R"];
+   	
+   	grid_2019233[idx++] = ["input_month_a1", "text", "연봉계약갱신(시작)월", "120", "N", "R"];
+   	grid_2019233[idx++] = ["input_day_a1", "text", "연봉계약갱신(시작)일", "120", "N", "R"];
+   	grid_2019233[idx++] = ["input_month_a2", "text", "연봉계약갱신(종료)월", "120", "N", "R"];
+   	grid_2019233[idx++] = ["input_day_a2", "text", "연봉계약갱신(종료)일", "120", "N", "R"];
+   	
+   	grid_2019233[idx++] = ["cont_txt_01", "text", "수습기간임금", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_amt_01", "text", "기본급", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_amt_02", "text", "식대", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_amt_03", "text", "자녀보육수당", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_amt_04", "text", "연장근로수당", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_amt_05", "text", "휴일근로수당", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_txt_03", "text", "시간외 근로시간", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_txt_04", "text", "휴일 근로시간", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_txt_05", "text", "초과 휴일 근로시간", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_txt_06", "text", "시간급", "120", "N", "R"];
+   	grid_2019233[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+   	grid_2019233[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"];
+   	grid_2019233[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+   	grid_2019233[idx++] = ["cont_check_03", "text", "5조 8항 선택여부", "100", "YN", "R"];
+   	grid_2019233[idx++] = ["cont_txt_07", "text", "8항 입력란", "250", "", "R"];
+   	
+   // 돌코리아 계약직 근로계약서
+	idx = 0;
+  	grid_2019275[idx++] = ["birth_date", "text", "생년월일", "90", "D", "R"];
+  	grid_2019275[idx++] = ["member_name", "text", "이름", "100", "", "R"]; 
+  	grid_2019275[idx++] = ["address", "text", "주소", "300", "", "R"];
+  	grid_2019275[idx++] = ["tel_num", "text", "전화번호", "100", "", "R"];
+  	grid_2019275[idx++] = ["hp1", "text", "휴대폰(앞)", "80", "N", "R"];
+  	grid_2019275[idx++] = ["hp2", "text", "휴대폰(중간)", "80", "N", "R"];
+  	grid_2019275[idx++] = ["hp3", "text", "휴대폰(마지막)", "100", "N", "R"];
+  	grid_2019275[idx++] = ["email", "text", "이메일", "200", "E", "R"]; 
+  	
+  	grid_2019275[idx++] = ["cont_date", "text", "계약일자", "120", "D", "R"];
+  	grid_2019275[idx++] = ["cont_sdate", "text", "근로시작일", "120", "D", "R"]; 
+  	grid_2019275[idx++] = ["cont_edate", "text", "근로종료일", "120", "D", "R"]; 
+ 
+  	grid_2019275[idx++] = ["cont_amt_01", "text", "시간급", "120", "N", "R"];
+  	grid_2019275[idx++] = ["cont_amt_02", "text", "기본급", "120", "N", "R"];
+  	grid_2019275[idx++] = ["cont_amt_03", "text", "식대", "120", "N", "R"];
+  	grid_2019275[idx++] = ["cont_amt_04", "text", "연장근로수당", "120", "N", "R"];
+  	grid_2019275[idx++] = ["cont_amt_05", "text", "휴일근로수당", "120", "N", "R"];
+  	grid_2019275[idx++] = ["cont_txt_03", "text", "시간외 근로시간", "120", "N", "R"];
+  	grid_2019275[idx++] = ["cont_txt_04", "text", "휴일 근로시간", "120", "N", "R"]; 
+  	grid_2019275[idx++] = ["cont_txt_05", "text", "임금 7)위 근로 계약기간을 성실히 다 채운 경우 회사는 직원에게 100만원의 추가 급여를 계약 마지막 달에 지급한다", "500", "", "R"]; 
+  	grid_2019275[idx++] = ["cont_work_team", "text", "소속팀", "200", "", "R"];
+  	grid_2019275[idx++] = ["cont_work_place", "text", "근무장소", "200", "", "R"]; 
+  	grid_2019275[idx++] = ["cont_agree_yn", "text", "동의서작성여부", "100", "YN", "R"];
+}
+
+function setColumns(template_cd) {
+    var columns = [];
+
+    grid_data = [];
+    work_type_template = "";
+    work_type_yn= "";
+
+  	// 돌코리아 생과사업부 근로계약서
+	if (template_cd == "2019217") {
+		grid_data = grid_2019217;
+		work_type_yn = "Y";
+	}	// DFC 생산직 근로계약서
+	else if (template_cd == "2019218") {
+		grid_data = grid_2019218;
+		work_type_template = "Y";
+	}	// 디엘씨 근로계약서
+	else if (template_cd == "2019219") {
+		grid_data = grid_2019219;
+		work_type_template = "Y";
+	}	// 코리아후레쉬시스템 소포장 근로계약서
+	else if (template_cd == "2019220") {
+		grid_data = grid_2019220;
+		work_type_template = "Y";
+	}	// DFC 관리직 근로계약서
+	else if (template_cd == "2019221") {
+		grid_data = grid_2019221;
+	}	// 돌로지스틱스 근로계약서
+	else if (template_cd == "2019222") {
+		grid_data = grid_2019222;
+		work_type_template = "Y";
+	}	// 코리아후레쉬시스템 일반 근로계약서
+	else if (template_cd == "2019223") {
+		grid_data = grid_2019223;
+		work_type_template = "Y";
+	}	// 돌코리아 가공사업부 근로계약서
+	else if (template_cd == "2019233") {
+		grid_data = grid_2019233;
+		work_type_yn = "Y";
+	}// 돌코리아 계약직 근로계약서
+	else if (template_cd == "2019275") {
+		grid_data = grid_2019275;
+	}
+
+	for (var idx=0;idx<grid_data.length;idx++) {
+		columns.push({name:grid_data[idx][0], fieldName:grid_data[idx][0], dataType:grid_data[idx][1], header:grid_data[idx][2], width:grid_data[idx][3], readOnly:false, movable:false, sortable:false});
+	}
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF"];
+            var fields = [];
+           	var col_sel_01_idx = 11;	// 계약구분 column indx
+           	var col_check_pass = "";
+           	var col_valid_type = "";
+           	var col_data = "";
+
+           	for (var idx=0;idx<grid_data.length;idx++) {
+           		col_check_pass = "";
+
+           		fields.push(grid_data[idx][0]);
+
+           		// 계약부분이 있는 경우
+           		if (work_type_template=="Y") {
+           			// 근로계약시작일, 종료일은 정규직인 경우 없다.
+           			if (idx==12 || idx==13) {
+	           			if(row[cols[col_sel_01_idx]] == "정규직") {
+	           				col_check_pass = "Y";
+	           			}
+           			}
+           		}
+           		
+            	// 조항 선택 유무가 있는 서식일때
+           	   if(work_type_yn=="Y") { 
+           			if (idx==31 || idx==32) { 
+           				if(col_data.toString().trim() == "N") { 
+	           				col_check_pass = "Y";
+	           			}
+	           		}
+           		} 
+
+           		col_data = row[cols[idx]];
+
+           		if (col_check_pass=="") {
+	           		if(col_data == null || col_data.toString().trim() == "") { 
+               			alert(grid_data[idx][2] + "에 빈값이 들어가 있습니다. (" + cols[idx] + "열,"+(i+1)+"행)");
+	           			return; 
+	           		}
+
+	           		// 계약부분이 있는 경우
+	           		if (work_type_template=="Y") {
+	           			if (idx==col_sel_01_idx) {
+		           			if(col_data.toString().trim() != "정규직" && col_data.toString().trim() != "계약직") {
+			           			alert(grid_data[idx][2] + "의 값은 '정규직' 또는 '계약직' 이어야 합니다. (" + cols[idx] + "열,"+(i+1)+"행)");
+			           			return;
+		           			}
+	           			}
+	           		}
+
+	           		col_valid_type = grid_data[idx][4];
+
+	           		// 날짜인 경우
+	           		if(col_valid_type=="D") {
+	           			if(col_data.length != 10) {
+	           				alert(grid_data[idx][2] + " 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[idx] + "열,"+(i+1)+"행)");
+	           				return;
+	           			}
+	           			else if (!isValidDate(col_data.toString().trim())) {
+	           				alert(grid_data[idx][2] + "의 값은 유효한 날짜이어야 합니다. (" + cols[idx] + "열,"+(i+1)+"행)");
+	           				return;
+	           			}
+	           		}	// 숫자인 경우
+	           		else if(col_valid_type=="N") {
+	           			if (!isNum(trimComma(col_data.toString().trim()))) {
+	           				alert(grid_data[idx][2] + "의 값은 숫자이어야 합니다. (" + cols[idx] + "열,"+(i+1)+"행)");
+	           				return;
+	           			}
+	           		}	// 메일인 경우
+	           		else if(col_valid_type=="E") {
+	                    if (!pattern.test(col_data.toString().trim())) {
+	                    	alert("이메일이 올바르지 않습니다. (" + cols[idx] + "열,"+(i+1)+"행)");
+	                    	return;
+	                    }
+	           		}	// 여부인 경우
+	           		else if(col_valid_type=="YN") {
+	           			if(col_data.toString().trim() != "Y" && col_data.toString().trim() != "N") {
+		           			alert(grid_data[idx][2] + "의 값은 'Y' 또는 'N' 이어야 합니다. (" + cols[idx] + "열,"+(i+1)+"행)");
+		           			return;
+	           			}
+	           		}
+           		}
+           	}
+
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    rowdata[fields[j]] = row[cols[j]].trim();
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+       // alert("정 되었습니다.");
+    }
+}
+
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+
+	var fileNmae = "계약서일괄생성";
+	
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: fileNmae+".xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("계약서를 일괄 전송 하시겠습니까?")){
+		return;
+	}
+
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a_dole.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+         grid:grid_string
+		,template_cd:document.getElementById("template_cd").value
+        ,member_no:"{{member_no}}"
+    };
+
+    console.log(data);
+	submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            data = data.trim();
+            alert(data);
+            dataProvider.clearRowStates(true);
+			submit_chk = false;
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\\n" + "error:" + error);
+			submit_chk = false;
+        }
+    });
+}
+
+
+</script>

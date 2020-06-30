@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>후불정산내역</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+		<td bgcolor="#cccccc" rowspan="2">순서</td>
+		<td bgcolor="#cccccc" rowspan="2">업체명</td>
+		<td bgcolor="#cccccc" rowspan="2">사업자등록번호</td>
+		<td bgcolor="#cccccc" rowspan="2">이용종료일</td>
+		<td bgcolor="#cccccc" rowspan="2">계약서발행주기</td>
+		<td bgcolor="#cccccc" rowspan="2">정산시작일</td>
+		<td bgcolor="#cccccc" rowspan="2">정산종료일</td>
+		<td bgcolor="#cccccc" colspan="3">계산서담당자</td>
+		<td bgcolor="#cccccc" rowspan="2">이용건수</td>
+		<td bgcolor="#cccccc" colspan="3">이용금액</td>
+		<td bgcolor="#cccccc" rowspan="2">정산일자</td>
+  	</tr>
+	<tr align="center">
+		<td bgcolor="#cccccc">이름</td>
+		<td bgcolor="#cccccc">휴대폰</td>
+		<td bgcolor="#cccccc">이메일</td>
+		<td bgcolor="#cccccc">공급가</td>
+		<td bgcolor="#cccccc">부가세</td>
+		<td bgcolor="#cccccc">합계</td>
+	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.__ord}}</td>
+		<td align="left">{{list.member_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<td align="center">{{list.use_edate}}</td>
+		<td align="center">{{list.calc_day_nm}}</td>
+		<td align="center">{{list.pay_sdate}}</td>
+		<td align="center">{{list.pay_edate}}</td>
+		<td align="center">{{list.user_name}}</td>
+		<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+		<td align="center">{{list.email}}</td>
+		<td align="right">{{list.str_pay_cnt}}</td>
+		<td align="right">{{list.str_pay_supp}}</td>
+		<td align="right">{{list.str_pay_tax}}</td>
+		<td align="right">{{list.str_pay_amount}}</td>
+		<td align="center">{{list.calc_date}}</td>
+	</tr>
+  	<!-- LOOP END 'list' -->
+	<tr>
+		<td align="right" colspan="10">합계</td>
+		<td align="right">{{sumInfo.str_sum_cnt}}</td>
+		<td align="right">{{sumInfo.str_pay_supp}}</td>
+		<td align="right">{{sumInfo.str_pay_tax}}</td>
+		<td align="right">{{sumInfo.str_pay_amount}}</td>
+		<td></td>
+	</tr>
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

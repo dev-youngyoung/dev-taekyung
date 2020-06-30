@@ -1,0 +1,71 @@
+<form name="form1" method="get">
+<input type="hidden" name="callback" value="{{callback}}">
+<div class="util-row">
+    <div class="push-right">
+        <button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+    </div>
+</div>
+<div class="search_div">
+    <table class="search_table">
+    <colgroup>
+        <col width="18%">
+        <col width="75%">
+        <col width="10%">
+    </colgroup>
+    <tr>
+        <th><p>담당자명</p></th>
+        <td><input type="text" name="s_user_name" maxlength="100" style="width:95%"></td>
+        <td align="right">
+            <button type="submit" class="search_btn">검색</button>
+        </td>
+    </tr>
+    </table>
+</div>
+</form>
+{{form_script}}
+
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <span class="caution-text">※ 담당자가 검색이 안되는 경우는 권한이 부여되지 않아서이며, 관리자에게 권한 부여 요청을 하세요.</span>
+        </div>
+    </div>
+    <table>
+    <colgroup>
+        <col width="10%">
+        <col width="20%">
+        <col width="10%">
+        <col width="20%">
+        <col width="20%">
+    </colgroup>
+    <tr>
+        <th>순번</th>
+        <th>담당자명</th>
+        <th>직책</th>
+        <th>부서</th>
+        <th>관리유형</th>
+    </tr>
+    <!-- IF START 'list' -->
+    <!-- LOOP START 'list' -->
+    <tr style="cursor:pointer" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onClick="select({peson_seq:'{{list.person_seq}}',user_id:'{{list.user_id}}',user_name:'{{list.user_name}}'});">
+        <td align="center">{{list.__ord}}</td>
+        <td align="center">{{list.user_name}}</td>
+        <td align="center">{{list.position}}</td>
+        <td align="center">{{list.division}}</td>
+        <td align="center">{{list.user_level_nm}}</td>
+    </tr>
+    <!-- LOOP END 'list' -->
+    <!-- IF END 'list' -->
+    <!-- IFNOT START 'list' -->
+    <tr><td colspan="5" align="center">검색결과가 없습니다.</td></tr>
+    <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+<script language="javascript">
+function select(data){
+	opener.{{callback}}(data);
+	self.close();
+}
+</script>

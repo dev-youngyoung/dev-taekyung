@@ -1,0 +1,66 @@
+<form novalidate name="form1" method="post">
+	<input type="hidden" name="mode" value="1">
+	<input type="hidden" name="member_no">
+	<input type="hidden" name="person_seq">
+
+	<div style="width:100%" align="center">
+		<div style="width:50%;">
+
+			<div style="line-height:20px">
+				<b><span style="color:#4EAEEA">※ 아이디 찾기 절차 ※</span></b><br><br>
+				<b>1)개인정보 입력 -> 2)사용자 이메일로 아이디 발송</b>
+			</div>
+
+			<div class="div_table" style="margin-top: 10px;">
+				<table>
+					<colgroup>
+						<col width="30%">
+						<col width="70%">
+					</colgroup>
+					<tr>
+						<th>사용자구분</th>
+						<td>
+							<label>
+								<input type="radio" name="userGubun" onchange="location.href='find_id.jsp'"/>사업자&nbsp;
+							</label>
+							<label>
+								<input type="radio" name="userGubun" checked="checked" />개인
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<th class="req-check">이름</th>
+						<td>
+							<input type="text" name="user_name" hname="이름" width="150px" maxlength="10" >
+						</td>
+					</tr>
+					<tr>
+						<th class="req-check">생년월일</th>
+						<td>
+							<input type="text" name="jumin_no" hname="생년월일" size="6" maxlength="6" onKeyPress="num_only();" style="ime-mode:disabled;" >
+						</td>
+					</tr>
+					<tr>
+						<th class="req-check">휴대전화</th>
+						<td>
+							<select name="hp1" hname="휴대전화" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
+								<option value="">선택</option>
+								<option value="010">010</option>
+								<option value="011">011</option>
+								<option value="016">016</option>
+								<option value="017">017</option>
+								<option value="018">018</option>
+								<option value="019">019</option>
+							</select> -
+							<input type="text" name="hp2" hname="휴대전화" size="4" maxlength="4" onKeyPress="num_only();" onKeyUp="moveNext('hp3')" style="ime-mode:disabled;"> -
+							<input type="text" name="hp3" hname="휴대전화" size="4" maxlength="4" onKeyPress="num_only();" style="ime-mode:disabled;"> &nbsp; &nbsp;
+							<button type="submit" class="sbtn color ico-confirm"><span></span>확인</button>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
+{{form_script}}

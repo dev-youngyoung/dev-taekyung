@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>▒ 나이스다큐 (전자구매시스템)▒</title>
+    <meta charset="EUC-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name = "format-detection" content = "telephone=no">
+	<link rel="stylesheet" type="text/css" href="/web/buyer/html/css/style_mobile.css?sysdate={{_sysdate}}">
+    <script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery-3.1.1.min.js"></script>
+	<script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery-ui.min.js"></script>
+	<script language="javascript" type="text/javascript" src="/web/buyer/html/js/jquery/jquery.easing.1.3.js"></script>
+	<script language="javascript" type="text/javascript" src="/web/buyer/html/js/common.js?sysdate={{_sysdate}}"></script>
+	<script language="javascript" type="text/javascript" src="/web/buyer/html/js/lib.validate.js"></script>
+	<script>
+	$(document).ready(function(){
+		$( "#ci-popup-btn" ).click(function() {
+			$("#ci-popup").show();
+			$("body").addClass("lp-fixed");
+		});
+		$( "#privacy-popup-btn" ).click(function() {
+			$("#privacy-popup").show();
+			$("body").addClass("lp-fixed");
+		});
+		$( "#service-popup-btn" ).click(function() {
+			$("#service-popup").show();
+			$("body").addClass("lp-fixed");
+		});
+		$( ".lp-close" ).click(function() {
+			$(top.document).find(".lp-wrap").hide();
+			$("body").removeClass("lp-fixed");
+		});
+		$('.HeightAuto').css('height' ,  $(window).height());
+	});
+	</script>
+</head>
+<body>
+<div class="wrap">
+	<div class="lp-wrap HeightAuto" id="service-popup">
+		<div class="lp-popup service-info">
+			<div class="lp-header">
+				<p class="lp-title">고객지원</p>
+				<div class="lp-close">
+					<i></i>
+				</div>
+			</div>
+			<div class="lp-container">
+				<div class="lp-textarea-block mb-5">
+					<p class="lp-base-text">국내 NO. 1 나이스다큐 서비스 이용과 관련한 문의는 아래 고객지원센터를 이용해 주세요.</p>
+				</div>
+				<div class="lp-service-call-block">
+					<a href="#">
+						<i></i>
+						<div class="phone-number">
+							<ul>
+								<li onclick="document.location.href='tel:02-788-9097'">02-788-9097</li>
+							</ul>
+						</div>
+					</a>
+					<p class="service-text">전화번호를 클릭하시면 통화연결이 가능합니다.</p>
+				</div>
+				<div class="lp-table-company-block">
+					<table>
+						<col width="30%">
+						<col width="70%">
+						<tbody>
+						<tr>
+							<th scope="row">상담시간</th>
+							<td>09:00 ~ 18:00</td>
+						</tr>
+						<tr>
+							<th scope="row">점심시간</th>
+							<td>12:00 ~ 13:00</td>
+						</tr>
+						<tr>
+							<th scope="row">휴무일</th>
+							<td>토, 일, 공휴일 휴무</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="lp-background HeightAuto"></div>
+	</div>
+
+	<!-- layerpopup -->
+	<div class="header-wrap">
+		<div class="header">
+			<div class="header-logo">
+				<h1><img src="/web/supplier/html/images/m/logo.png" alt="국내 NO.1 구매·조달 장터 나이스다큐 전자입찰·전자계약 임대서비스"></h1>
+			</div>
+			<div class="header-service">
+				<div class="header-pc-service pc_pad">
+					<div class="header-service-text">
+						<i></i>
+						<p>고객지원</p>
+					</div>
+					<div class="header-service-phone">
+						<ul>
+							<li>02.788.9097</li>
+						</ul>
+					</div>
+					<div class="header-service-time">
+						<ul>
+							<li>상담시간 09:00~18:00</li>
+							<li>점심시간 12:00~13:00</li>
+							<li>토,일,공휴일 휴무</li>
+						</ul>
+					</div>
+				</div>
+				<div class="header-m-service mobile">
+					<div class="service-contents" id="service-popup-btn">
+						<i></i>
+						<p>고객지원</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- INCLUDE NAME 'BODY' -->
+	<div class="footer-wrap">
+		<div class="inner-container">
+			<ul class="address">
+				<li>NICE 디앤알(주)  대표자 : 강용구</li>
+				<li>통신판매업 신고번호 : 제2012-서울구로-1033호</li>
+				<li class="last">사업자등록번호 : 107-87-08207</li>
+				<li>서울시 서대문구 충정로 36(충정로3가)</li>
+				<li>TEL : 02-788-9097</li>
+				<li class="last">FAX : 02-6442-2383</li>
+			</ul>
+			<p class="copyright">Copyright 나이스디앤알 주식회사 All Rights Reserved.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

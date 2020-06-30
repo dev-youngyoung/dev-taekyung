@@ -1,0 +1,61 @@
+
+<form novalidate name="form1" method="get" >
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="13%">
+    <col width="77%">
+    <col width="10%">
+  </colgroup>
+  <tr>
+    <th><p>권한명</p></th>
+    <td><input type="text" name="s_auth_name" maxlength="100" style="width:98%"></td>
+    <td align="right">
+      <button type="submit" class="search_btn">검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+<div style="text-align: right;padding:10px">
+<button type="button" class="sbtn color ico-write auth_css" onclick="location.href='./auth_insert.jsp'"><span></span>신규등록</button>
+</div>
+<div class="div_table">
+ <table>
+  <colgroup>
+    <col width="10%">
+    <col width="50%">
+    <col width="10%">
+    <col width="15%">
+    <col width="15%">
+  </colgroup>
+  <tr>
+    <th>번호</th>
+    <th>권한명</th>
+    <th>사용자수</th>
+    <th>수정일시</th>
+    <th>수정자</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+   	<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
+   	 onclick="location.href='auth_modify.jsp?auth_cd={{list.auth_cd}}&{{list_query}}'" style="cursor:pointer;">
+	<td align="center">{{list.__ord}}</td>
+	<td>{{list.auth_nm}}</a></td>
+	<td align="right">{{list.user_cnt}}</a></td>
+	<td align="center" >{{list.mod_date}}</td>
+	<td align="center" >{{list.mod_name}}</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="5" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ <div class="common-paging">{{pagerbar}}</div>
+
+

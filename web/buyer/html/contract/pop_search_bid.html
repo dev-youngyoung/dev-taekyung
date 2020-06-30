@@ -1,0 +1,89 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="search" value="1">
+<table width="100%">
+	<tr>
+		<td align="right"><input type="button" class="cls2" value="닫기" onclick="self.close();"> </td>
+	</tr>
+</table>
+<table width="96%" border="0" cellpadding="0" cellspacing="0" class="sub_table1">
+  <colgroup>
+    <col width="10%"/>
+    <col width="30%"/>
+    <col width="15%"/>
+    <col width="35%"/>
+    <col width="10%"/>
+  </colgroup>
+  <tr>
+    <td><img src="../../../images/supplier/icon_blue.gif" align="absmiddle"> 공고명</td>
+    <td><input type="text" name="s_bid_name" maxlength="30" style="width:95%"></td>
+    <td><img src="../../../images/supplier/icon_blue.gif" align="absmiddle"> 공고일자</td>
+    <td>
+    	<input type="text" name="s_sdate" class="in_readonly" size="10" maxlength="10" >&nbsp;<img src="../../../images/ico02_calender.jpg" align="absmiddle" class="hand" onClick="open_calendar('s_sdate')"> ~
+    	<input type="text" name="s_edate" class="in_readonly" size="10" maxlength="10" >&nbsp;<img src="../../../images/ico02_calender.jpg" align="absmiddle" class="hand" onClick="open_calendar('s_edate')">
+    </td>
+    <td align="right">
+      <input type="submit" class="search2_01" value="검색">
+    </td>
+  </tr>
+</table>
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	return true;
+}
+</script>
+<br/>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td class="caution-text">
+	※계약대상이 아닌 입찰건은 전자입찰>입찰결과 메뉴의 입찰건 상세 화면에서 전자계약대상여부를  변경 하시기 바랍니다.
+	</td></tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<colgroup>
+		<col width="15%">
+		<col width="35%">
+		<col width="20%">
+		<col width="20%">
+		<col width="10%">
+	</colgroup>
+	<tr class="ltitle">
+		<td>공고번호</td>
+		<td>입찰건명</td>
+		<td>공고일자</td>
+		<td>낙찰업체명</td>
+		<td>낙찰금액</td>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" 
+    onclick="addBid('{{list.bid_no}}','{{list.bid_deg}}','{{list.bid_name}}','{{list.member_name}}','{{list.total_cost}}')" style="cursor:pointer">
+		<td align="center">{{list.bid_no}}-{{list.bid_deg}}</td>
+		<td>{{list.bid_name}}</td>
+		<td align="center">{{list.bid_date}}</td>
+		<td align="center">{{list.member_name}}</td>
+		<td align="right">{{list.total_cost}}</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+</table>
+<!-- IFNOT START 'list' -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td align="center" colspan="5">검색 결과가 없습니다.</td>
+	</tr>
+</table>	
+<!-- IFNOT END 'list' -->
+<br/>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>{{pagerbar}}</td>
+	</tr>
+ </table>
+
+
+<script language="javascript">
+function addBid(bid_no, bid_deg, bid_name, member_name, total_cost){
+	var	arr = new Array(bid_no, bid_deg, bid_name, member_name, total_cost);
+	window.returnValue = arr;
+	self.close();
+}
+</script>

@@ -1,0 +1,52 @@
+<form novalidate name="form1" method="post" enctype="multipart/form-data"  onsubmit="return formSubmit(this);">
+<input type="hidden" name="template_html" />
+
+<div class="help-content">
+    <h3>NOTICE<span>유용한 정보! 사용전에 알아두세요~ </span></h3>
+    <div class="help-content-body">
+        <ul>
+            <li>계약 항목에 대해 디폴트 값을 등록 해놓으면 계약서 작성시 자동으로 표시되어, 매번 반복적인 입력 작업을 줄일 수 있습니다.</li>
+        </ul>
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <span class="tab_on" id="tab_0">{{template.template_name}}</span>
+	    </div>
+	</div>
+	<table>
+		<tr>
+			<td align="center" style="background-color:#f8f8f8;">
+				<div id="__html">
+					<div style="{{template.template_style}}; padding-top: 10px" id="__html_0">
+					{{template.template_html}}
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-save"><span></span>저장</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='contract_select_template.jsp';"><span></span>이전으로</button>
+</div>
+
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	if(!confirm("저장하시겠습니까?")){
+		return false;
+	}
+	var html = document.getElementById("__html_0").innerHTML;	
+	f['template_html'].value = Base64.encode(html);
+	return true;
+}
+</script>
+

@@ -1,0 +1,105 @@
+<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+    <input type="hidden" name="mode" />
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="15%"/>
+                <col/>
+                <col width="15%"/>
+                <col/>
+                <col width="15%"/>
+                <col/>
+                <col width="13%"/>
+            </colgroup>
+            <tr>
+                <th><p>기준년월</p></th>
+                <td>
+                    <input type="text" name="s_tran_date" style="width:100px" maxlength="6" onKeyPress="num_only();" onkeydown="num_only();">
+                </td>
+                <th><p>전송상태</p></th>
+                <td>
+                    <select name="s_tran_rslt" style="width:100px">
+                        <option value="">전체</option>
+                        <option value="0">성공</option>
+                        <option value="1">실패</option>
+                    </select>
+                </td>
+
+                <th><p>수신번호</p></th>
+                <td>
+                    <input type="text" name="s_tran_phone" style="width:100%">
+                </td>
+            </tr>
+            <tr>
+                <th><p>전송메시지</p></th>
+                <td colspan="5">
+                    <input type="text" name="s_tran_msg" value="" maxlength="50" style="width:100%">
+                </td>
+                <td align="right">
+                    <button type="submit" class="btn color ico-search"><span></span>검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<div class="util-row">
+    <div class="push-right">
+        <button type="button" class="sbtn color ico-excel" onclick="fDownExcel()"><span></span>엑셀</button>
+    </div>
+</div>
+<div class="div_table">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <colgroup>
+            <col width="6%">
+            <col width="12%">
+            <col width="10%">
+            <col width="10%">
+            <col width="6%">
+            <col width="15%">
+            <col>
+        </colgroup>
+        <tr>
+            <th>순번</th>
+            <th>수신번호</th>
+            <th>전송일시</th>
+            <th>수신일시</th>
+            <th>통신사</th>
+            <th>전송상태</th>
+            <th>전송메세지</th>
+        </tr>
+        <!-- LOOP START 'list' -->
+        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
+            <td align="center">{{list.__ord}}</td>
+            <td align="center">{{list.tran_phone}}</td>
+            <td align="center">{{list.tran_date}}</td>
+            <td align="center">{{list.tran_reportdate}}</td>
+            <td align="center">{{list.tran_net}}</td>
+            <td align="center">{{list.tran_rslt_nm}}</td>
+            <td>{{list.tran_msg}}</td>
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td colspan="7" align="center">검색결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+
+<script type="text/javascript">
+    function formSubmit(f){
+        f.action="";
+        f['mode'].value="";
+        return true;
+    }
+
+    function fDownExcel(){
+        var f = document.forms['form1'];
+        f.action = "";
+        f['mode'].value="excel";
+        f.submit();
+    }
+</script>

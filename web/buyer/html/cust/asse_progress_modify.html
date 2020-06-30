@@ -1,0 +1,112 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>평가정보</h3>
+		</div>
+		<div class="push-right">
+			평가상태: <span class="caution-text"><b>작성중</b></span>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="85%">
+		</colgroup>
+		<tr>
+			<th>평가명</th>
+			<td colspan="3">
+				{{asse.project_name}}
+			</td>
+		</tr>
+		<tr>
+			<th>평가업체</th>
+			<td colspan="3">
+				{{asse.member_name}}
+			</td>
+		</tr>
+		<tr>
+			<th>평가담당자</th>
+			<td colspan="3">
+				{{detail.reg_name}}
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table" style="margin-bottom: 0px">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>평가내용</h3>
+		</div>
+		<div class="push-right">
+			<button type="button" class="sbtn color ico-print" onClick="assePdfViewer('{{detail.asse_no}}', '{{detail.div_cd}}');"><span></span>조회/인쇄</button>
+		</div>
+	</div>
+</div>	
+	
+<div class="cont_warp">
+	<div id="__html">
+		<div style="padding: 10px 0px" id="__html_0">
+			{{detail.asse_html}}
+		</div>
+	</div>
+</div>
+
+<div class="btn-group-wrap">
+	<!-- IF START 'btn_auth' -->
+	<!-- IFNOT START 'detail.progress_end' -->
+	<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+	<!-- IF START 'detail.total_point' -->
+	<button type="button" class="btn color ico-confirm auth_css" onclick="if(confirm('평가완료처리 하시겠습니까?\n\n완료처리 후에는 수정 할 수 없습니다.')){location.href='./asse_progress_end.jsp?{{query}}';}"><span></span>평가완료</button>
+	<!-- IF END 'detail.total_point' -->
+	<!-- IFNOT END 'detail.progress_end' -->
+	<!-- IF END 'btn_auth' -->
+	<button type="button" class="btn color ico-list" onclick="location.href='asse_progress_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+        setDivInputValue("__html");
+		splitHtml(f, 'asse_html', false);
+		splitHtml(f, 'asse_html_rm', true);
+		if(confirm("저장 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function setDefaultData(){
+	replaceInput('{{asse.project_name}}','project_name',document.__html);	
+	replaceInput('{{asse.member_name}}','member_name',document.__html);	
+	replaceInput('{{detail.reg_name}}','user_name',document.__html);
+	replaceInput('{{confirm_year}}','confirm_year',document.__html);
+	replaceInput('{{confirm_month}}','confirm_month',document.__html);
+	replaceInput('{{confirm_day}}','confirm_day',document.__html);
+}
+<!-- IFNOT START 'detail.progress_end' -->
+setDefaultData();
+<!-- IFNOT END 'detail.progress_end' -->
+
+<!-- IF START 'detail.progress_end' -->
+if( window.attachEvent )  // IE의 경우
+    window.attachEvent( "onload", convertHtml );
+else  // IE가 아닌 경우.
+    window.addEventListener( "load", convertHtml , false );
+
+function convertHtml(){
+    removeInput2(document.getElementById("__html_0"));
+}
+<!-- IF END 'detail.progress_end' -->
+
+function assePdfViewer(asse_no, div_cd){
+    var link = "/web/buyer/cust/asse_viewer.jsp?"
+        +"asse_no="+asse_no
+        +"&div_cd="+div_cd;
+
+    OpenWindow(link,"asse_pdfViewer",830,850);
+}
+</script>

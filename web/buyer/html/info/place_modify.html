@@ -1,0 +1,101 @@
+<form name="form1" method="post" onSubmit="return formSubmit(this)">
+  <div class="div_table">
+    <table>
+      <colgroup>
+        <col width="20%">
+        <col width="30%">
+        <col width="20%">
+        <col width="30%">
+      </colgroup>
+      <tr>
+        <th width="20%">부서/지점구분 </th>
+        <td colspan="3" width="80%">
+          <!-- LOOP START 'code_field_gubun' -->
+          <input type="radio" name="field_gubun" value="{{code_field_gubun.id}}" onclick="setFieldGubun('{{code_field_gubun.id}}')">&nbsp;{{code_field_gubun.value}} &nbsp;&nbsp;
+          <!-- LOOP END 'code_field_gubun' -->
+        </td>
+      </tr>
+      <tr>
+        <th width="20%">부서/지점명</th>
+        <td colspan="3" width="80%">
+          <input type="text" name="field_name" maxlength="200" style="width:100%">
+        </td>
+      </tr>
+      <tr id="sub_area1">
+        <th>대표자명</th>
+        <td><input type="text" name="boss_name" style="width:98%" maxlength="30"></td>
+        <th>전화번호</th>
+        <td>
+          <input type="text" name="telnum" style="width:50%" maxlength="15">
+          <font color="gray">예) 02-788-9097</font>
+        </td>
+      </tr>
+      <tr id="sub_area2">
+        <th>주소</th>
+        <td colspan="3">
+          <input type="text" name="post_code" size="6" maxlength="6" class="in_readonly" readOnly>
+          <button type="button" name="btn_search_addr" class="sbtn ico-search auth_css" onclick="jusoPopup();"><span></span>우편번호찾기</button>
+          <input type="text" name="address" style="width:100%; margin-top: 3px" maxlength="100">
+        </td>
+      </tr>
+      <tr>
+        <th width="20%">사용여부 </th>
+        <td colspan="3" width="80%">
+          <input type="radio" name="use_yn" value="Y"> <label>사용</label>&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="use_yn" value="N"> <label>사용중지</label>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="btn-group-wrap">
+    <button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+    <!-- IF START 'modify' -->
+    <button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('삭제하시겠습니까?')){location.href='./place_delete.jsp?{{query}}'}"><span></span>삭제</button>
+    <!-- IF END 'modify' -->
+    &nbsp;&nbsp;<button type="button" class="btn color ico-list" onclick="location.href='place_list.jsp?{{list_query}}'"><span></span>목록보기</button>
+  </div>
+</form>
+{{form_script}}
+<script type="text/javascript">
+
+    function formSubmit(f){
+        var field_gubun = GetFormValue('form1','field_gubun');
+        if(field_gubun=="01"){// 부서
+            setAttr("form1","","required","Y");
+        }
+        if(field_gubun=="02"){// 지점
+            setAttr("form1","post_code1,post_code2,address","required","Y");
+        }
+        if(validate(f)){
+            if(!confirm("저장 하시겠습니까?")){
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    function fDelete(f, replaceUrl){
+        if(!confirm("삭제 하시겠습니까?")){
+            location.href = replaceUrl;
+        }
+    }
+
+    function setFieldGubun(field_gubun){
+        if(field_gubun=="01"){
+            document.getElementById("sub_area1").style.display = "none";
+            document.getElementById("sub_area2").style.display = "none";
+        }else{
+            document.getElementById("sub_area1").style.display = "";
+            document.getElementById("sub_area2").style.display = "";
+        }
+    }
+
+    setFieldGubun("{{field.field_gubun}}");
+
+    function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){
+        var f = document.forms['form1'];
+        f['address'].value=roadFullAddr;
+        f['post_code'].value=zipNo;
+    }
+</script>

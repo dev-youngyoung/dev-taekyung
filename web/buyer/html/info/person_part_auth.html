@@ -1,0 +1,92 @@
+<form name="form1" method="get" onsubmit="return false;">
+	<div class="div_table">
+	<table style="border: none;">
+	<colgroup>
+		<col width="40%">
+		<col width="2%">
+		<col width="58%">
+	</colgroup>
+	<tr>
+		<td style="padding: 0; border: none; vertical-align: top;">
+			<div class="util-row">
+				<div class="push-left">
+					<h3>사용자</h3>
+				</div>
+				<div class="push-right">
+					<input type="text" name="s_user_name" style="width:150px" onkeyup="if(event.keyCode==13){search();}">
+					<button type="button" class="sbtn color ico-search" onclick="search()"><span></span>검색</button>
+				</div>
+			</div>
+			<iframe id="ifm_llist" width="100%" src="./person_part_list.jsp" frameborder="0" height="600px" scrolling="auto"></iframe>
+		</td>
+		<td style="border: none;"></td>
+		<td style="padding: 0; border: none; vertical-align: top;">
+			<div class="util-row">
+				<div class="push-left">
+					<h3><span id="span_division_name" style="font-size:18px"></span><span id="span_user_name" style="font-size:18px"></span></h3>
+				</div>
+				<div class="push-right">
+					<input type="text" name="s_dept_name"  style='width:100px' onkeyup="if(event.keyCode==13){searchDept();}">
+					<button type="button" class="sbtn color ico-search" onclick="searchDept()"><span></span>검색</button>
+					<button type="button" class="sbtn color ico-save auth_css" onclick="fSumbit()"><span></span>저장</button>
+					<button type="button" class="sbtn color ico-excel" onclick="excel()"><span></span>엑셀</button>
+				</div>
+			</div>
+			<iframe id="ifm_slist" name="ifm_slist" width="100%" frameborder="0" height="600px" scrolling="auto"></iframe>
+		</td>
+	</tr>
+</table>
+</div>
+</form>
+<script language="javascript">
+
+function excel(){
+	var f = document.forms['form1'];
+	//goMemMenu(sMemberNo,sMemberName,sPersonSeq,sDivision);
+	//f.submit();
+	
+	document.getElementById("ifm_slist").src	= document.getElementById("ifm_slist").src+"&mode=excel";
+	//document.getElementById("ifm_llist").src = "./person_part_list.jsp?mode="+f['mode'].value;
+}
+
+function search(){
+	var f = document.forms['form1'];
+	document.getElementById("ifm_llist").src = "./person_part_list.jsp?s_user_name="+f['s_user_name'].value;
+}
+
+function searchDept() {
+	var f = document.forms['form1'];
+	var dept_name = f.s_dept_name.value;
+	
+	var dept_list = ifm_slist.document.getElementById("dept_table");
+	for(var i = 1 ; i < dept_list.rows.length; i++){
+		var row = dept_list.rows[i];
+		 if(dept_name=='') {
+			row.style.display='';
+		 }else if(row.getAttribute('hname').indexOf(dept_name)>=0){
+		 	row.style.display='';
+		 }else{
+			row.style.display='none';
+		 }
+	}
+	
+}
+
+/***************************
+	메뉴권한 페이지 이동
+***************************/
+function goMemMenu(sMemberNo,sMemberName,sPersonSeq,sDivision)
+{
+	document.getElementById("span_division_name").innerHTML	=	sDivision+"/";
+	document.getElementById("span_user_name").innerHTML	=	sMemberName;
+	document.getElementById("ifm_slist").src	=	"./person_part_info.jsp?member_no="+sMemberNo+"&person_seq="+sPersonSeq;		
+}
+
+/***************************
+	메뉴권한 등록
+***************************/
+function fSumbit()
+{	
+	document.getElementById("ifm_slist").contentWindow.fSumbit();
+}
+</script>

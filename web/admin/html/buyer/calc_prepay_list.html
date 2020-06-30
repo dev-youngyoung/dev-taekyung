@@ -1,0 +1,154 @@
+<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+<input type="hidden" name="mode" />
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="13%">
+    <col width="32%">
+    <col width="13%">
+    <col width="32%">
+    <col width="10%">
+  </colgroup>
+	<tr>
+		<td colspan="4">
+		<table class="search_table">
+			<colgroup>
+				<col width="14%">
+				<col width="12%">
+				<col width="14%">
+				<col width="12%">
+				<col width="14%">
+				<col width="34%">
+			</colgroup>
+		<th><p>정산기준년월</p></th>
+		<td><input type="text" name="s_yyyymm" size="8" maxlength="7" onkeyup="dateFormat(this)" ></td>
+		<th><p>요금제</p></th>
+		<td>
+			<select name="s_pay_type_cd">
+				<option value="">-전체-</option>
+				<!-- LOOP START 'code_pay_type_cd' -->
+				<option value="{{code_pay_type_cd.id}}">{{code_pay_type_cd.value}}</option>
+				<!-- LOOP END 'code_pay_type_cd' -->
+			</select>
+		</td>
+		<th><p>이용종료일</p></th>
+		<td>
+			<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+			<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+		</td>
+		</table>
+		</td>
+		<td></td>
+  </tr>
+  <tr>
+	<th><p>업체명</p></th>
+	<td colspan="3">
+		<input type="text" name="s_member_name" style="width:98%">
+	</td>
+    <td align="right">
+       <button type="submit" class="btn color ico-search"><span></span>검색</button>
+    </td>    
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+
+ <div class="div_table">
+ <div class="util-row">
+	 <div class="push-left">
+		 입찰:[ 공급가:{{sumInfo.str_bid_supp}} / 부가세:{{sumInfo.str_bid_tax}} / 합계:{{sumInfo.str_bid_amount}}] <br>계약:[ 공급가:{{sumInfo.str_pay_supp}} / 부가세:{{sumInfo.str_pay_tax}} / 합계:{{sumInfo.str_pay_amount}}]
+	 </div>
+	 <div class="push-right">
+		 <button class="sbtn color ico-excel" onclick="excelDown()"><span></span>엑셀다운</button>
+	 </div>
+ </div>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <colgroup>
+    <col width="5%">
+    <col width="20%">
+    <col width="12%">
+	<col width="12%">
+	<col width="8%">
+	<col width="12%">
+	<col width="8%">
+	<col width="13%">
+	<col width="10%">
+  </colgroup>
+  <tr>
+	<th>No</th>
+    <th>업체명</th>
+    <th>사업자등록번호</th>
+    <th>이용기간</th>
+	<th>요금제</th>
+	<th>입찰<br>공급가<br>부가세<br>합계</th>
+	<th>계약<br>공급가<br>부가세<br>합계</th>
+    <th>계산서담당</th>
+    <th>안내일자</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+  <tr>
+	<td align="center">{{list.__ord}}</td>
+	<td>{{list.member_name}}</td>
+	<td align="center">{{list.vendcd}}</td>
+	<td align="center">{{list.use_sdate}} <br> ~ {{list.use_edate}}</td>
+	<td align="center">{{list.pay_type_cd_nm}}</td>
+	  <td align="right">
+		  {{list.str_bid_supp}}<br>
+		  {{list.str_bid_tax}}<br>
+		  {{list.str_bid_amt}}
+	  </td>
+	<td align="right">
+		{{list.str_pay_supp}}<br>
+		{{list.str_pay_tax}}<br>
+		{{list.str_pay_amount}}
+	</td>
+	<td align="center">
+		<!-- IFNOT START 'list.user_name' -->
+		<span style="color:red">미등록</span>
+		<!-- IFNOT END 'list.user_name' -->
+		<!-- IF START 'list.user_name' -->
+		{{list.user_name}}<br>
+		{{list.hp1}}-{{list.hp2}}-{{list.hp3}}<br>
+		{{list.email}}
+		<!-- IF END 'list.user_name' -->
+	</td>
+	<td align="center">{{list.calc_date}}</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="7" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ 
+ <div class="common-paging">{{pagerbar}}</div>
+
+
+<script>
+    function formSubmit(f){
+        f['mode'].value='';
+        return true;
+    }
+    function excelDown(){
+        var f = document.forms['form1'];
+        f['mode'].value='excel';
+        f.submit();
+    }
+
+	function sendReq(yyyymm, member_no, seq){
+	    if(confirm('전송 하시겠습니까?')){
+            var url = 'calc_prepay_send.jsp'
+                + '?{{queryString}}'
+                +'yyyymm='+ yyyymm
+                +'&member_no=' + member_no
+			    +'&calc_person_seq='+seq;
+            location.href = url;
+		}
+	}
+</script>

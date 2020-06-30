@@ -1,0 +1,377 @@
+<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<h3>계약서식</h3>
+			</div>
+		</div>
+		<table>
+			<colgroup>
+				<col width="13%">
+				<col width="50%">
+				<col width="13%">
+				<col width="24%">
+			</colgroup>
+			<tr>
+				<th>서식명</th>
+				<td>{{template.template_name}}</td>
+				<th>사용여부</th>
+				<td>
+					<input type="radio" name="use_yn" value="Y">&nbsp;사용&nbsp;&nbsp;
+					<input type="radio" name="use_yn" value="N">&nbsp;미사용
+				</td>
+			</tr>
+			<tr>
+				<th>계약서류</th>
+				<td colspan="3">
+					<div class="util-row">
+						<div class="push-left">
+							<span class="caution-text">※ 계약 체결시 필수로 첨부되어야 할 서류명 또는 파일을 등록하세요.</span>
+						</div>
+						<div class="push-right">
+							<button type="button" class="sbtn ico-add auth_css" onclick="addFileRow();"><span></span>추가</button>
+						</div>
+					</div>
+
+					<div class="div_table">
+						<table id="file_grid">
+							<colgroup>
+								<col width="45%">
+								<col width="44%">
+								<col width="11%">
+							</colgroup>
+							<thead>
+							<tr>
+								<th>문서명</th>
+								<th>첨부</th>
+								<th>삭제</th>
+							</tr>
+							</thead>
+							<!-- LOOP START 'cfile' -->
+							<tr>
+								<td><input type="text" name="doc_name" value="{{cfile.doc_name}}" style="width:98%" hname="문서명" required="Y" /></td>
+								<td align="right">
+									<!-- IFNOT START 'cfile.file_name' -->
+									<input type="file" name="file_{{cfile.file_seq}}" style="width:98%"/>
+									<!-- IFNOT END 'cfile.file_name' -->
+									<!-- IF START 'cfile.file_name' -->
+									{{cfile.str_file_size}}&nbsp;&nbsp;
+									<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_template','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>다운로드</button>
+									<!-- IF END 'cfile.file_name' -->
+									<input type="hidden" name="file_seq" value="{{cfile.file_seq}}"/>
+									<input type="hidden" name="att_type" value="mod"/>
+								</td>
+								<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="file_grid.del(this);"><span></span>삭제</button></td>
+							</tr>
+							<!-- LOOP END 'cfile' -->
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>구비서류</th>
+				<td colspan="3">
+					<div class="util-row">
+						<div class="push-left">
+							<span class="caution-text"> ※ 계약상대방에게 필수로 받아야 할 구비서류를 등록하세요.</span>
+						</div>
+						<div class="push-right">
+							<button type="button" class="sbtn ico-add auth_css" onclick="addRFileRow();"><span></span>추가</button>
+						</div>
+					</div>
+					<div class="div_table">
+						<table id="rfile_grid">
+							<colgroup>
+								<col width="15%"/>
+								<col width="55%"/>
+								<col width="15%"/>
+								<col width="15%"/>
+							</colgroup>
+							<thead>
+							<tr>
+								<th>필수여부</th>
+								<th>구비서류명</th>
+								<th>첨부가능파일</th>
+								<th>삭제</th>
+							</tr>
+							</thead>
+							<!-- LOOP START 'rfile' -->
+							<tr>
+								<td align="center" ><input type="checkbox" name="attch" {{rfile.checked}} onclick="chkClick(this,'form1','attch_yn','Y')"><input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+								<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
+									<input type="hidden" name="add_type" value="mod"/>
+									<input type="hidden" name="sample_file_name" value="{{rfile.sample_file_name}}"/>
+								</td>
+								<td align="center" ><input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" style="width:98%" required="Y" hname="구비서류명"></td>
+								<td align="center" >
+									<select name="allow_ext">
+										<option value="">-전체-</option>
+										<!-- LOOP START 'code_allow' -->
+										<option value="{{code_allow.id}}" {{code_allow.selected}}>{{code_allow.value}}</option>
+										<!-- LOOP END 'code_allow' -->
+									</select>
+								</td>
+								<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>삭제</button></td>
+							</tr>
+							<!-- LOOP END 'rfile' -->
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>내부관리서류</th>
+				<td colspan="3">
+					<input type="radio" name="efile_yn" value="Y" onclick="chgEfileYn()">&nbsp;사용&nbsp;&nbsp;
+					<input type="radio" name="efile_yn" value="N" onclick="chgEfileYn()">&nbsp;미사용<br>
+					<div id="div_efile">
+						<div class="util-row">
+							<div class="push-left">
+								<span class="caution-text"> ※ 계약 체결시 내부에서 관리해야 할   서류명 또는 파일을 등록하세요.</span>
+							</div>
+							<div class="push-right">
+								<button type="button" class="sbtn ico-add auth_css" onclick="addEFileRow();"><span></span>추가</button>
+							</div>
+						</div>
+
+
+						<div class="div_table">
+							<table id="efile_grid">
+								<colgroup>
+									<col width="15%">
+									<col width="74%">
+									<col width="11%">
+								</colgroup>
+								<thead>
+								<tr>
+									<th>필수여부</th>
+									<th>문서명</th>
+									<th>삭제</th>
+								</tr>
+								</thead>
+								<!-- LOOP START 'efile' -->
+								<tr>
+									<td align="center" ><input type="checkbox" name="efile_attach" {{efile.checked}} onclick="chkClick(this,'form1','efile_attach_yn','Y')"><input type="hidden" name="efile_attach_yn" value="{{efile.attach_yn}}"></td>
+									<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" style="width:98%" hname="문서명" required="Y" /></td>
+									<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>삭제</button></td>
+								</tr>
+								<!-- LOOP END 'efile' -->
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>인지세 관리</th>
+				<td colspan="3">
+					인지세 첨부기능
+					<input type="radio" name="stamp_yn" value="Y">&nbsp;사용&nbsp;&nbsp;
+					<input type="radio" name="stamp_yn" value="N" selected>&nbsp;미사용<br>
+				</td>
+			</tr>
+
+			<tr>
+				<th>추가저장<br>항목관리</th>
+				<td colspan="3">
+					<div id="div_tfile">
+						<div class="util-row">
+							<div class="push-left">
+								<span class="caution-text"> ※ 추가적인 항목이 필요할 때 새로운 항목을 등록하세요.</span>
+							</div>
+							<div class="push-right">
+								<button type="button" class="sbtn ico-add auth_css" onclick="addTFileRow();"><span></span>추가</button>
+							</div>
+						</div>
+						<div class="div_table">
+							<table id="tfile_grid">
+								<colgroup>
+									<col width="30%">
+									<col width="30%">
+									<col width="10%">
+									<col width="19%">
+									<col width="11%">
+								</colgroup>
+								<thead>
+								<tr>
+									<th>항목명(영문)</th>
+									<th>항목명(한글)</th>
+									<th>복수여부</th>
+									<th>컬럼명</th>
+									<th>삭제</th>
+								</tr>
+								</thead>
+								<!-- LOOP START 'tfile' -->
+								<tr>
+									<td><input type="text" name="tfile_name_en" value="{{tfile.template_name_en}}" style="width:98%" hname="항목명(영문)" required="Y" /></td>
+									<td><input type="text" name="tfile_name_ko" value="{{tfile.template_name_ko}}" style="width:98%" hname="항목명(한글)" required="Y" /></td>
+									<td><input type="text" name="mul_yn" value="{{tfile.mul_yn}}" style="width:98%" hname="복수여부(Y/N)" required="Y" /></td>
+									<td><input type="text" name="col_name" value="{{tfile.col_name}}" style="width:98%" hname="컬럼명" required="Y" /></td>
+									<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="tfile_grid.del(this);"><span></span>삭제</button></td>
+								</tr>
+								<!-- LOOP END 'tfile' -->
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+	<div class="btn-group-wrap">
+		<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='cont_template_list.jsp?{{list_query}}';"><span></span>목록으로</button>
+	</div>
+
+</form>
+<br/>
+<div style="text-align:right;margin: 5px 0px 10px" >
+	※<span style="background-color:yellow;text-align:center">노랑색</span>은 필수입력사항, <span style="background-color:#CCFF99;text-align:center">연두색</span>은 계약서에 인쇄되지 않는 항목입니다.
+	<!-- IF START 'template.version_seq' -->
+		<div style="text-align:right;margin: 5px 0px">
+		계약서 버전 : <select name="version_seq" onchange="changeTemplate(this.value)">
+		<!-- LOOP START 'templateHist' -->
+		<option value="{{templateHist.version_seq}}">{{templateHist.version_name}}</option>
+		<!-- LOOP END 'templateHist' -->
+		</select>
+		</div>
+	<!-- IF END 'template.version_seq' -->
+</div>
+
+<div>
+	<div class="cont_tab">
+        <input type="hidden" name="cont_sub_name" value="{{template.template_name}}"><input type="hidden" name="cont_sub_style" value="{{template.template_style}}"><input type="hidden" name="gubun" value="10"><input type="hidden" name="sub_seq" value="0"><input type="hidden" name="option_yn_0" value="A">
+		<span class="tab_on" id="tab_0" onClick="tabView(0)">{{template.template_name}}</span>
+		<!-- LOOP START 'templateSub' -->
+			<!-- IFNOT START 'templateSub.hidden' -->
+			<span class="tab_off" style="margin-left:-5" id="tab_{{templateSub.sub_seq}}" onClick="tabView({{templateSub.sub_seq}})"><!-- IF START 'templateSub.option_yn' --><input type="checkbox" name="option_yn_{{templateSub.sub_seq}}" value="Y"<!-- IFC START 'templateSub.option_yn==Y' --> checked<!-- IFC END 'templateSub.option_yn==Y' --> style="margin:-2px 0 0 0; vertical-align:middle;"><!-- IF END 'templateSub.option_yn' --><!-- IFNOT START 'templateSub.option_yn' --><input type="hidden" name="option_yn_{{templateSub.sub_seq}}" value="A"><!-- IFNOT END 'templateSub.option_yn' -->{{templateSub.template_name}}</span>
+			<!-- IFNOT END 'templateSub.hidden' -->
+			<!-- IF START 'templateSub.hidden' -->
+			<span class="tab_off" id="tab_{{templateSub.sub_seq}}" style="display:none" onClick="tabView({{templateSub.sub_seq}})">{{templateSub.template_name}}</span>
+			<!-- IF END 'templateSub.hidden' -->
+			<input type="hidden" name="cont_sub_name" value="{{templateSub.template_name}}"><input type="hidden" name="cont_sub_style" value="{{templateSub.template_style}}"><input type="hidden" name="gubun" value="{{templateSub.gubun}}"><input type="hidden" name="sub_seq" value="{{templateSub.sub_seq}}">
+		<!-- LOOP END 'templateSub' -->
+    </div>
+	<div class="cont_warp">
+			<div id="__html">
+				<div style="{{template.template_style}}; padding-top: 10px" id="__html_0">
+					{{template.template_html}}
+				</div>
+				<!-- LOOP START 'templateSub' -->
+				<div style="{{templateSub.template_style}}; padding-top: 10px; display:none" id="__html_{{templateSub.sub_seq}}">
+					{{templateSub.template_html}}
+				</div>
+				<!-- LOOP END 'templateSub' -->
+			</div>
+	</div>		
+</div>
+
+
+
+<table id="file_template" style="display:none">
+	<tr>
+		<td><input type="text" name="doc_name" style="width:98%" hname="문서명" required="Y" /></td>
+		<td>
+			<input type="file" name="file_[[seq]]" style="width:98%"/>
+			<input type="hidden" name="file_seq" value="[[seq]]"/>
+			<input type="hidden" name="att_type" value="new"/>
+		</td>
+		<td><button type="button" class="sbtn ico-delete auth_css" onclick="file_grid.del(this);"><span></span>삭제</button></td>
+	</tr>
+</table>
+
+
+{{form_script}}
+<script type="text/javascript">
+
+    function formSubmit(f){
+        if(validate(f)){
+            if(confirm("저장하시겠습니까?")){
+                return true;
+            }
+        }
+        return false;
+    }
+	
+    function changeTemplate(seq) {
+        location.href = "cont_template_modify.jsp?template_cd={{template.template_cd}}&version_seq="+seq;
+    }
+
+
+    var file_grid = new MGRID("file_grid");
+
+    function addFileRow(){
+        if(document.getElementById('file_grid').rows.length >10){
+            alert("더이상 추가 할 수 없습니다.");
+            return;
+        }
+        var data = table2array("file_template", new Array("seq=>"+(document.getElementById('file_grid').rows.length-1)));
+        file_grid.addRow(null, data);
+    }
+
+
+    var rfile_grid = new MGRID("rfile_grid");
+    rfile_grid.cells = new Array(
+        '<input type="checkbox" name="attch" onclick="chkClick(this,\'form1\',\'attch_yn\',\'Y\')"><input type="hidden" name="attch_yn"><input type="hidden" name="rfile_seq" /><input type="hidden" name="add_type" value="new"/>'
+        ,'<input type="text" name="rfile_doc_name" style="width:98%" required="Y" hname="구비서류명">'
+        ,'<select name="allow_ext"><option value="">-전체-</option><!-- LOOP START 'code_allow_ext' --><option value="{{code_allow_ext.id}}" >{{code_allow_ext.value}}</option><!-- LOOP END 'code_allow_ext' --></select>'
+        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>삭제</button>'
+    );
+    function addRFileRow(){
+        if(document.getElementById('rfile_grid').rows.length >26 ){
+            alert("더이상 추가 할 수 없습니다.");
+            return;
+        }
+        rfile_grid.addRow();
+    }
+    
+
+
+    var efile_grid = new MGRID("efile_grid");
+    efile_grid.cells = new Array(
+        '<input type="checkbox" name="efile_attach" onclick="chkClick(this,\'form1\',\'efile_attach_yn\',\'Y\')"><input type="hidden" name="efile_attach_yn" >'
+        ,'<input type="text" name="efile_doc_name"  style="width:98%" hname="문서명" required="Y" />'
+        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>삭제</button>'
+    );
+
+    function addEFileRow(){
+        if(document.getElementById('efile_grid').rows.length >5){
+            alert("더이상 추가 할 수 없습니다.");
+            return;
+        }
+        efile_grid.addRow();
+    }
+
+    var tfile_grid = new MGRID("tfile_grid");
+    tfile_grid.cells = new Array(
+        '<input type="text" name="tfile_name_en" style="width:98%" hname="항목명(영문)" required="Y" />'
+        ,'<input type="text" name="tfile_name_ko" style="width:98%" hname="항목명(한글)" required="Y" />'
+        ,'<input type="text" name="mul_yn" style="width:98%" hname="복수여부(Y/N)" required="Y" />'
+        ,'<input type="text" name="col_name" style="width:98%" hname="컬럼명" required="Y" />'
+        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="tfile_grid.del(this);"><span></span>삭제</button>'
+    );
+
+    function addTFileRow(){
+        tfile_grid.addRow();
+    }
+
+    function chgEfileYn(){
+        var f = document.forms['form1'];
+        var efile_yn = GetFormValue("form1","efile_yn");
+        if(efile_yn=="Y"){
+            document.getElementById("div_efile").style.display="";
+        }else{
+            document.getElementById("div_efile").style.display="none";
+        }
+    }
+    chgEfileYn();
+
+</script>

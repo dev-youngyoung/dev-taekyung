@@ -1,0 +1,156 @@
+<form name="form1" method="get" enctype="multipart/form-data">
+<div class="search_div">
+	<table class="search_table">
+	  <colgroup>
+	    <col width="12%">
+	    <col width="32%">
+	    <col width="12%">
+	    <col width="*">
+	    <col width="13%">
+	  </colgroup>
+	  <tr>
+	    <th><p>계약서종류</p></th>
+	    <td>
+	    	<select name="s_template_cd">
+	    		<option value="">-------선택-------</option>
+	    		<!-- LOOP START 'template' -->
+	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
+	    		<!-- LOOP END 'template' -->
+	    	</select>
+		</td>
+	    <th><p>계약상태</p></th>
+	    <td>
+          <select name="s_status">
+              <option value="">-선택-</option>
+              <!-- LOOP START 'code_status' -->
+              <option value="{{code_status.id}}">{{code_status.value}}</option>
+              <!-- LOOP END 'code_status' -->
+          </select>
+	    </td>
+	    <td align="right"></td>
+	  </tr>
+	  <tr>
+	    <th><p>거래처명</p></th>
+	    <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
+	    <th><p>계약명</p></th>
+	    <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
+	    <td align="right"></td>
+	  </tr>
+	  <tr>
+	    <th><p>계약일자</p></th>
+	    <td>
+	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+			<input type="text" name="s_edate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	    </td>
+	    <th><p>계약번호</p></th>
+	    <td><input type="text" name="s_user_no" maxlength="100" style="width: 50%;"></td>
+	    <td align="right">
+	      <button type="submit" class="search_btn">검색</button>
+	    </td>
+	  </tr>  
+	</table>
+</div>
+
+<br/><br/>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="5%">
+	   		<col width="*">
+		    <col width="20%">
+		    <col width="10%">
+		    <col width="10%">
+		    <col width="30%">
+		</colgroup>
+		<tr>  
+			<th>순번</th>
+	   		<th>계약명</th>
+		    <th>거래처명</th>
+		    <th>계약일자</th>
+		    <th>상태</th>
+		    <th>결재자</th>
+		</tr>
+	 	<!-- IF START 'list' -->
+	 		<!-- LOOP START 'list' -->
+	 			<tr>   
+					<td align="center">{{list.__ord}}</td>
+					<td>{{list.cont_name}}</td>
+					<td>{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.status_name}}</td>
+					
+					<!-- IF START 'subLoop' -->
+						<td align="center" >
+							<table>
+								<colgroup>
+									<col width="50%">
+									<col width="50%">
+								</colgroup>
+								<!-- LOOP START 'subLoop' -->
+									<tr align="center">
+										<th>{{subLoop.agree_name}}</th>
+										<td><a style="cursor:pointer; color:#0000ff" onclick="popInderPerson('{{list.cont_no}}','{{list.cont_chasu}}','{{subLoop.agree_seq}}','{{list.template_cd}}')">{{subLoop.agree_person_name}}</a>
+									</tr>
+								<!-- LOOP END 'subLoop' -->
+							</table>
+						</td>
+					<!-- IF END 'subLoop' -->
+					
+					<!-- IFNOT START 'subLoop' -->
+					<td align="center"></td>
+					<!-- IFNOT END 'subLoop' -->
+					
+				</tr>
+			 <!-- LOOP END 'list' -->
+		 <!-- IF END 'list' -->
+		
+		<!-- IFNOT START 'list' -->
+			<tr>
+				<td colspan="6" align="center">검색결과가 없습니다.</td>
+			</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+ <br/>
+ 
+ </form>
+{{form_script}}
+ 
+<div class="common-paging">{{pagerbar}}</div>
+
+
+<form name="form2" method="post">
+<input type="hidden" name="template_cd">
+<input type="hidden" name="cont_no">
+<input type="hidden" name="cont_chasu">
+<input type="hidden" name="agree_seq">
+<input type="hidden" name="person_id">
+<input type="hidden" name="person_name">
+</form>
+
+<script language="javascript">
+
+
+function popInderPerson(cont_no, cont_chasu, agree_seq, template_cd){
+	var result = OpenWindows("./pop_inter_person.jsp?template_cd="+template_cd+"&cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&agree_seq="+agree_seq,'inter', 500, 450);
+}
+
+function addPersonInfo(data){
+	if(data != null){
+		var f	= document.forms['form2'];
+		f['template_cd'].value = data['template_cd'];
+		f['agree_seq'].value = data['agree_seq'];
+		f['cont_no'].value = data['cont_no'];
+		f['cont_chasu'].value = data['cont_chasu'];
+		f['person_id'].value = data['person_id'];
+		f['person_name'].value = data['person_name'];
+		f.action="./contract_charge_set.jsp?{{list_query}}";
+		f.submit();
+	}
+}
+
+</script>

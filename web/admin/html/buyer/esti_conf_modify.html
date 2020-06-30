@@ -1,0 +1,94 @@
+<form novalidate name="form1" method="post" onSubmit="return formSubmit(this)">
+<input type="hidden" name="conf_text">
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>업체정보</h3>
+		</div>
+	</div>
+	<table>
+	<colgroup>
+		<col width="15%">
+		<col width="35%">
+		<col width="15%">
+		<col width="35%">
+	</colgroup>
+	<tr>
+		<th>업체명</th>
+		<td>
+			{{member.member_name}}
+		</td>
+		<th>회원번호</th>
+		<td>
+			{{member.member_no}}
+		</td>
+	</tr>
+	</table>
+
+	<div class="util-row">
+		<div class="push-left">
+			<h3>견적설정</h3>
+		</div>
+	</div>
+	<table>
+	<colgroup>
+		<col width="15%">
+		<col>
+	</colgroup>
+	<tr>
+		<th class="req-check">VAT포함여부</th>
+		<td>
+			<input type="radio" name="vat_yn" value="Y">VAT포함 &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="vat_yn" value="N">VAT별도
+		</td>
+	</tr>
+	<tr>
+		<th class="req-check">견적서수정 사용여부</th>
+		<td>
+			<input type="radio" name="nego_yn" value="Y">사용 &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="nego_yn" value="N">미사용
+		</td>
+	</tr>
+	<tr>
+		<th>낙찰수수료과금여부</th>
+		<td><label><input type="checkbox" class="input_n" name="succ_pay_yn" value="Y">과금시 체크</label> </td>
+	</tr>
+	</table>
+
+	<div class="btn-group-wrap">
+		<button type="submit" class="btn color ico-save"><span></span>저장</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}';"><span></span>목록으로</button>
+	</div>
+</div>
+</form>
+{{form_script}}
+<script>
+function formSubmit(f){
+	if(validate(f)){
+		var vat_yn = GetFormValue("form1","vat_yn");
+		var nego_yn = GetFormValue("form1","nego_yn");
+		var succ_pay_yn = GetFormValue("form1","succ_pay_yn");
+		if(confirm("저장하시겠습니까?")){
+			var conf_text = "";
+			conf_text+= "vat_yn=>"+vat_yn+"|";
+			conf_text+= "nego_yn=>"+nego_yn+"|";
+			conf_text+= "succ_pay_yn=>"+succ_pay_yn;
+			f['conf_text'].value = Base64.encode(conf_text);
+			return true; 
+		}
+	}
+	return false;
+}
+</script>
+<!-- LOOP START 'template' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>입찰조건({{template.bid_kind_cd_nm}})</h3>
+		</div>
+	</div>
+	{{template.template_html}}
+</div>
+<!-- LOOP END 'template' -->
+
+

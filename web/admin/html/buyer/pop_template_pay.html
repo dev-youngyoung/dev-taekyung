@@ -1,0 +1,57 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);" novalidate>
+<div class="div_table">
+    <div style="width:100%;text-align:right;margin: 10px 0px">
+        <button type="submit" class= 'sbtn color ico-add'  id="btn_template_pay_add"><span></span>저장</button>
+        <button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>닫기</button>
+    </div>
+<table>
+  <colgroup>
+    <col width="25%">
+    <col width="25%">
+    <col width="25%">
+    <col width="25%">
+  </colgroup>
+  <tr>
+    <th class="req-check">계약서 종류</th>
+    <td colspan="3">
+		<select name="template_cd" style="width:300px">
+			<option value="">------------------ 선&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;택 ------------------</option>
+			<!-- LOOP START 'template' -->
+			<option value="{{template.template_cd}}">{{template.template_name}}</option>
+			<!-- LOOP END 'template' -->
+		</select>
+	</td>
+  </tr>
+  <tr>
+    <th class="req-check">원사업자요금</th>
+    <td>
+		<input type="text" name="recpmoneyamt" size="9" maxlength="10" class="label" style="text-align:right" onKeyPress="num_only()" onKeyDown="num_only()" onKeyUp="fnMakeComma();">
+    </td>
+    <th class="req-check">수급사업자요금</th>
+    <td>
+		<input type="text" name="suppmoneyamt" size="9" maxlength="10" class="label" style="text-align:right" onKeyPress="num_only()" onKeyDown="num_only()" onKeyUp="fnMakeComma();">
+	</td>
+  </tr>
+  <tr>
+    <th class="req-check">수급사업자 요금 처리</th>
+    <td colspan="3">
+		<input type="radio" name="insteadyn" value="Y">원사업자에게 과금
+		<input type="radio" name="insteadyn" value="N">수급사업자에게 과금
+	</td>
+  </tr>
+</table>
+
+</div>
+</form>
+{{form_script}}
+
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("저장 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+</script>

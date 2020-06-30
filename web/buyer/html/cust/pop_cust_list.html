@@ -1,0 +1,68 @@
+<form name="form1" method="get">
+	<input type="hidden" name="search" value="1">
+	<div style="text-align:right;margin: 5px 0px" >
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+	</div>
+	<div class="search_div">
+		<table class="search_table">
+			<colgroup>
+				<col width="30%">
+				<col width="*">
+				<col width="20%">
+			</colgroup>
+			<tr>
+				<th><p>업체명</p></th>
+				<td><input type="text" name="s_member_name" maxlength="30" style="width:98%"></td>
+				<td align="right"><button type="submit" class="search_btn" value="검색"><span></span>검색</button></td>
+			</tr>
+		</table>
+	</div>
+</form>
+{{form_script}}
+<div class="div_table">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<colgroup>
+			<col width="70%">
+			<col width="30%">
+		</colgroup>
+		<tr class="ltitle">
+			<th>업체명</th>
+			<th>선택</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="left">{{list.member_name}}</td>
+			<td align="center"><button type="button" class="sbtn color ico-add" value="추가" onclick="addCompany('{{list.member_no}}', '{{list.member_name}}');"><span></span>추가</button></td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="2">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+<script language="javascript">
+function formSubmit(f){
+	/* 	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+			alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+			return false;
+		}
+		return true; */
+}
+
+function addCompany(member_no, member_name){
+
+	var arr = null;
+	arr = new Array(
+		member_no
+		,member_name
+	);
+
+	opener.fPopupCustListResult(arr);
+	self.close();
+}
+</script>

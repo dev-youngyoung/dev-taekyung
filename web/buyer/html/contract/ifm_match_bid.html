@@ -1,0 +1,44 @@
+<form name="form1" method="post" id="bid_form">
+{{_html}}
+</form>
+<script language="javascript">
+var f = parent.document.forms['form1'];
+var bid = document.getElementById("bid_form");
+var elements = bid.getElementsByTagName("input");
+
+for(var i = 0 ; i < elements.length; i ++){
+	var name = elements[i].name;
+	if(f[name]){
+		f[name].value = elements[i].value;
+		parent.replaceInput(elements[i].value, name, document.all.__html);
+	}
+	
+}
+
+if( f['cont_total']){
+	
+	try{
+		if(parent.document.getElementById("spn_cont_total")){
+			parent.fSetKoreanMoney(f['cont_total'].value, 'spn_cont_total');
+			parent.replaceInput(f['cont_total'].value, 'cont_total', document.all.__html);
+		}
+		if(typeof parent.cont_total_calc == "function")
+			parent.cont_total_calc();
+		
+	}catch(e){}		
+}
+
+if(f['supp_tax']){
+	if(parent.document.getElementById("spn_supp_tax")){
+		parent.fSetKoreanMoney(f['supp_tax'].value, 'spn_supp_tax');
+		parent.replaceInput(f['supp_tax'].value, 'supp_tax', document.all.__html);
+	}
+}
+if(f['supp_vat']){
+	if(parent.document.getElementById("spn_supp_vat")){
+		parent.fSetKoreanMoney(f['supp_vat'].value, 'spn_supp_vat');
+		parent.replaceInput(f['supp_vat'].value, 'supp_vat', document.all.__html);
+	}
+}
+
+</script>

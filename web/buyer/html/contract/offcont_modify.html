@@ -1,0 +1,637 @@
+<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+<input type="hidden" name="first_cont_no" value="{{first_cont_no}}">
+<input type="hidden" name="first_cont_chasu" value="{{first_cont_chasu}}">
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약기본정보<!-- IF START 'modify' -->&nbsp;<span style="color:blue">(서면계약)</span><!-- IF END 'modify' --></h3>
+	    </div>
+	    <!-- IF START 'modify' -->
+	    <div class="push-right">
+			계약상태: <span class="caution-text">작성중</span>
+	    </div>
+	    <!-- IF END 'modify' -->	    
+	</div>
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="52%">
+			<col width="10%">
+			<col width="28%">
+		</colgroup>
+		<tr>
+			<th class="req-check">계약명</th>
+			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>
+				<input type="text" name="cont_name" style="width:95%" >
+			</td>
+			<!-- IF START 'member.src_depth' -->
+			<th>소싱그룹</th>
+			<td>
+				<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
+				<span id="src_nm">{{cont.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>선택</button>
+			</td>
+			<!-- IF END 'member.src_depth' -->
+		</tr>
+		<tr>
+			<th class="req-check">계약일자</th>
+			<td>
+				<input type="text" name="cont_date" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_date'])">
+			</td>
+			<th>계약번호 </th>
+			<td>
+				<input type="text" name="cont_userno" style="width:100%" maxlength="40" onChange="replaceInput(this, this.name, document.all.__html)">
+			</td>
+		</tr>
+		<tr>
+			<th>계약기간</th>
+			<td>
+				<input type="text" name="cont_sdate" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_sdate'])">
+				~
+				<input type="text" name="cont_edate" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_edate'])">
+			</td>
+			<th>계약금액</th>
+			<td>
+				<input type="text" name="cont_total"  maxlength="20" style="text-align: right;ime-mode:disabled; width: 120px;" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"> 원 
+				 <!-- IF START 'techcross' -->
+				<select name="cont_etc2" hname="VAT종류" style="margin-left: 20px;">
+					<option value="">-선택-</option>
+					<!-- LOOP START 'code_vat_type' -->
+					<option value="{{code_vat_type.id}}">{{code_vat_type.value}}</option>
+					<!-- LOOP END 'code_vat_type' -->
+				</select>
+				<!-- IF END 'techcross' -->
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!-- LOOP START 'sign_template' -->
+<input type="hidden" name="sign_seq" value="{{sign_template.sign_seq}}"/>
+<input type="hidden" name="signer_name" value="{{sign_template.signer_name}}"/>
+<input type="hidden" name="signer_max" value="{{sign_template.signer_max}}"/>
+<input type="hidden" name="member_type" value="{{sign_template.member_type}}"/>
+<input type="hidden" name="cust_type" value="{{sign_template.cust_type}}"/>
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>{{sign_template.signer_name}}</h3>
+	    </div>
+	</div>
+	<table id="comp_grid_{{sign_template.sign_seq}}" style="border: 0px;">
+		<thead>
+			<tr style="display: none;">
+				<td></td>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<!-- LOOP END 'sign_template' -->
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서류<span class="caution-text">(※ 계약서 첨부시 꼭 <u>PDF파일로 첨부</u>)</span></h3>
+	    </div>
+	    <div class="push-right">
+			<button type="button" class="sbtn ico-add auth_css" onclick="addCfileRow();"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="cfile_grid" style="table-layout: fixed;">
+		<colgroup>
+			<col width="10%"/>
+			<col width="35%"/>
+			<col width="45%"/>
+			<col width="10%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>파일구분</th>
+				<th>계약서류명</th>
+				<th>첨부</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- LOOP START 'cfile' -->
+			<tr>
+				<td align="center">직접첨부</td>
+				<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" style="width:98%" hname="계약서류명" required="Y" /></td>
+				<td align="right">
+					{{cfile.file_size_str}}
+						<!-- IF START 'cfile.pdf_yn' -->
+						 <button type="button" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfile.cfile_seq}}')"><span></span>조회(인쇄)</button>
+						<!-- IF END 'cfile.pdf_yn' -->
+						<!-- IFNOT START 'cfile.pdf_yn' -->
+						 <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>다운로드</button>
+						<!-- IFNOT END 'cfile.pdf_yn' -->
+						<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
+				</td>
+				<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="cfile_grid.del(this);"><span></span>삭제</button></td>
+			</tr>
+			<!-- LOOP END 'cfile' -->
+		</tbody>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>보증서류<span class="caution-text">(※ 비고항목에 선택한 보증서에 대한 정보입력, 예: 보증기간,보증률)</span></h3>
+	    </div>
+	    <div class="push-right">
+			<button type="button" class="sbtn ico-add auth_css" onclick="addWarrRow()"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="warr_grid">
+		<colgroup>
+			<col width="10%">
+			<col width="15%">
+			<col width="12%">
+			<col width="12%">
+			<col width="12%">
+			<col width="15%">
+			<col width="12%">
+			<col width="12%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>보증서종류</th>
+				<th>발급기관</th>
+				<th>증권번호</th>
+				<th>발급일자</th>
+				<th>보증기간</th>
+				<th>보증금액</th>
+				<th>보증서류</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- LOOP START 'warr' -->
+			<tr>
+				<td align="center">
+					<input type="hidden" name="warr_seq" value="{{warr.warr_seq}}">
+					<select name="warr_type" id="warr_type_{{warr.warr_seq}}" hname="보증서종류" required="Y">
+						<option value="">-선택-</option>
+						<!-- LOOP START 'code_warr_type' -->
+						<option value="{{code_warr_type.id}}">{{code_warr_type.value}}</option>
+						<!-- LOOP END 'code_warr_type' -->
+					</select>
+					<script>for(var i=0; i<document.getElementById("warr_type_{{warr.warr_seq}}").options.length; i++) if(document.getElementById("warr_type_{{warr.warr_seq}}").options[i].value == '{{warr.warr_type}}') document.getElementById("warr_type_{{warr.warr_seq}}").options[i].selected = true;</script>
+				</td>
+				<td align="center">
+					<select name="warr_office" id="warr_office_{{warr.warr_seq}}" hname="발급기관" required="Y">
+						<option value="">-선택-</option>
+						<!-- LOOP START 'code_warr_office' -->
+						<option value="{{code_warr_office.id}}">{{code_warr_office.value}}</option>
+						<!-- LOOP END 'code_warr_office' -->
+					</select>
+					<script>for(var i=0; i<document.getElementById("warr_office_{{warr.warr_seq}}").options.length; i++) if(document.getElementById("warr_office_{{warr.warr_seq}}").options[i].value == '{{warr.warr_office}}') document.getElementById("warr_office_{{warr.warr_seq}}").options[i].selected = true;</script>
+				</td>
+				<td align="center"><input type="text" name="warr_no" style="width:100%" hname="증권번호" required="Y" value="{{warr.warr_no}}"></td>
+				<td align="center"><input type="text" name="warr_date" style="width:100px;ime-mode:disabled" maxlength="10" hname="발급일자" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" value="{{warr.warr_date}}" fixbyte="10"></td>
+				<td align="center">
+					<input type="text" name="warr_sdate" style="width:90px;ime-mode:disabled" maxlength="10" hname="보증기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" value="{{warr.warr_sdate}}" fixbyte="10"> ~<br> 
+					<input type="text" name="warr_edate" style="width:90px;ime-mode:disabled" maxlength="10" hname="보증기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" value="{{warr.warr_edate}}" fixbyte="10">
+				</td>
+				<td align="right">￦<input type="text" name="warr_amt" style="width:90px;text-align: right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()" value="{{warr.warr_amt}}"></td>
+				<td align="center">
+					<div id="str_warr_file_{{warr.warr_seq}}" style="width:90px;overflow: hidden;"><a href="javascript:filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')"><u style="color:blue">{{warr.doc_name}}</u></a></div>
+					<input type="file" name="warr_file_{{warr.warr_seq}}" style="width:80px" hname="보증서류" allow="jpg|gif|png|pdf" onchange="chgWarrFile('{{warr.warr_seq}}')">
+					<input type="hidden" name="warr_doc_name_{{warr.warr_seq}}" value="{{warr.doc_name}}" required="Y" hname="보증서류">
+				</td>
+				<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="warr_grid.del(this);"><span></span>삭제</button></td>
+			</tr>
+			<!-- LOOP END 'warr' -->
+		</tbody>
+	</table>
+</div>
+
+ <div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>구비서류<span class="caution-text">(※ 계약체결시 받은 구비서류, 예: 사업자등록증,납세증명서...)</span></h3>
+	    </div>
+	    <div class="push-right">
+			<button type="button" value="추가" class="sbtn ico-add auth_css" onclick="addRfileRow();"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="rfile_grid">
+		<colgroup>
+			<col width="10%"/>
+			<col width="75%"/>
+			<col width="15%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>필수여부</th>
+				<th>문서명</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- LOOP START 'rfile' -->
+				<!-- IFNOT START 'rfile.file_name' -->
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="attch" onclick="chkClick(this,'form1','attch_yn','Y')" {{rfile.attch}} {{rfile.attch_disabled}}>
+						<input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+						<input type="hidden" name="reg_type" value="{{rfile.reg_type}}">
+						<input type="hidden" name="allow_ext" value="{{rfile.allow_ext}}">
+					</td>
+					<td align="left">
+						<input type="hidden" name="attch_type" value="1">
+						<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}">
+						<!-- IFNOT START 'rfile.allow_ext' -->
+						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="{{rfile.doc_name_class}}" {{rfile.doc_name_readonly}} style="width:470px" required="Y" hname="구비서류명">
+						<!-- IFNOT END 'rfile.allow_ext' -->
+						<!-- IF START 'rfile.allow_ext' -->
+						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="{{rfile.doc_name_class}}" {{rfile.doc_name_readonly}} style="width:300px" required="Y" hname="구비서류명">
+						<span class="caution-text">※ {{rfile.allow_ext}} 파일만 첨부 가능</span>
+						<!-- IF END 'rfile.allow_ext' -->
+					</td>
+					<td align="center">
+						<!-- IF START 'rfile.del_btn_yn' -->
+						<button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>삭제</button>
+						<!-- IF END 'rfile.del_btn_yn' -->
+					</td>
+				</tr>
+				<!-- IFNOT END 'rfile.file_name' -->
+				<!-- IF START 'rfile.file_name' -->
+				<tr>
+					<td align="center">
+						<input type="checkbox" name="attch" onclick="chkClick(this,'form1','attch_yn','Y')" {{rfile.attch}} {{rfile.attch_disabled}}>
+						<input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+						<input type="hidden" name="reg_type" value="{{rfile.reg_type}}">
+						<input type="hidden" name="allow_ext" value="{{rfile.allow_ext}}">
+					</td>
+					<td align="left">
+						<input type="hidden" name="attch_type" value="3">
+						<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}">
+						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" style="width:300px" required="Y" hname="구비서류명" value="{{rfile.doc_name}}"> &nbsp;&nbsp;{{rfile.str_file_size}}
+						&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>다운로드</button>
+						<input type="hidden" name="rfile_file_path_{{rfile.rfile_seq}}" value="{{rfile.file_path}}">
+						<input type="hidden" name="rfile_file_name_{{rfile.rfile_seq}}" value="{{rfile.file_name}}">
+						<input type="hidden" name="rfile_file_size_{{rfile.rfile_seq}}" value="{{rfile.file_size}}">
+						<input type="hidden" name="rfile_file_ext_{{rfile.rfile_seq}}" value="{{rfile.file_ext}}">
+					<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>삭제</button></td>
+				</tr>
+				<!-- IF END 'rfile.file_name' -->
+			<!-- LOOP END 'rfile' -->
+		</tbody>
+	</table>
+</div>
+
+<div class="btn-group-wrap">	
+	<!-- IFNOT START 'modify' -->
+	<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+	<button type="button" class="btn color ico-cancel" onclick="location.href='offcont_template.jsp';"><span></span>취소</button>
+	<!-- IFNOT END 'modify' -->
+	<!-- IF START 'modify' -->
+	<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+	<button type="button" class="btn color ico-pencil auth_css" onclick="if(confirm('작성완료처리 하시겠습니까?\n\n완료처리 후 더이상 수정 할 수 없습니다.')){location.href='offcont_complate.jsp?{{query}}';}"><span></span>작성완료</button>
+	<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('삭제하시겠습니까?')){location.href='contract_delete.jsp?{{query}}'}"><span></span>삭제</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='contract_writing_list.jsp?{{list_query}}';"><span></span>목록으로</button>
+	<!-- IF END 'modify' -->
+</div>
+
+</form>
+{{form_script}}
+
+<form name="comp_form" method="post">
+<table id="comp_template" style="display: none">
+	<tr>
+		<td>
+		<input type="hidden" name="member_no"/>
+		<input type="hidden" name="cust_gubun" value="01"/>
+		<input type="hidden" name="vendcd"/>
+		<input type="hidden" name="post_code"/>
+		<input type="hidden" name="member_slno"/>
+		<input type="hidden" name="cust_sign_seq"/>
+		<input type="hidden" name="jumin_no"/>
+		<table>
+			<colgroup>
+				<col width="10%"/>
+				<col width="23%"/>
+				<col width="10%"/>
+				<col width="23%"/>
+				<col width="10%"/>
+				<col width="24%"/>
+			</colgroup>
+			<tr>
+				<th>주소</th>
+				<td colspan="3"><input type="text" name="address" style="width:98%" maxlength="100" hname="주소" required="Y"/></td>
+				<th>담당자</th>
+				<td><input type="text" name="user_name" style="width:98%" maxlength="30" hname="담당자" required="Y"/></td>
+			</tr>
+			<tr>
+				<th>상호</th>
+				<td colspan="3"><input type="text" name="member_name" style="width:98%" maxlength="100" hname="상호" required="Y"/></td>
+				<th>이메일</th>
+				<td><input type="text" name="email" style="width:98%" maxlength="150" hname="이메일" option="email" required="Y"/></td>
+			</tr>
+			<tr>
+				<th>대표자</th>
+				<td><input type="text" name="boss_name" style="width:98%" maxlength="50" hname="대표자" required="Y"/></td>
+				<th>일반전화</th>
+				<td><input type="text" name="tel_num" style="width:98%" maxlength="20" hname="일반전화" required="Y"/></td>
+				<th>휴대폰</th>
+				<td>
+					<input type="text" name="hp1" maxlength="3" style="width:28%" hname="휴대폰" required="Y"/>-
+					<input type="text" name="hp2" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>-
+					<input type="text" name="hp3" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+</form>
+
+<form name="person_form" method="post">
+<table id="person_template" style="display: none">
+	<tr>
+		<td>
+			<input type="hidden" name="member_no"/>
+			<input type="hidden" name="cust_gubun" value="02"/>
+			<input type="hidden" name="vendcd"/>
+			<input type="hidden" name="post_code"/>
+			<input type="hidden" name="member_slno"/>
+			<input type="hidden" name="cust_sign_seq"/>
+			<input type="hidden" name="user_name"/>
+			<input type="hidden" name="boss_name"/>
+			<input type="hidden" name="jumin_no"/>
+			<table>
+				<colgroup>
+					<col width="10%"/>
+					<col width="57%"/>
+					<col width="10%"/>
+					<col width="23%"/>
+				</colgroup>
+				<tr>
+					<th>이름</th>
+					<td colspan="3"><input type="text" name="member_name" style="width:98%" maxlength="100" hname="이름" required="Y"/></td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td><input type="text" name="address" style="width:98%" maxlength="100" hname="주소" required="Y"/></td>
+					<th>이메일</th>
+					<td><input type="text" name="email" style="width:98%" maxlength="150" hname="이메일" option="email" required="Y"/></td>
+				</tr>
+				<tr>
+					<th>일반전화</th>
+					<td><input type="text" name="tel_num" style="width:98%" maxlength="20"/></td>
+					<th>휴대폰</th>
+					<td>
+						<input type="text" name="hp1" maxlength="3" style="width:28%" hname="휴대폰" required="Y"/>-
+						<input type="text" name="hp2" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>-
+						<input type="text" name="hp3" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+
+
+<table id="cfile_template" style="display:none">
+	<tr>
+		<td align="center">직접첨부</td>
+		<td><input type="text" name="cfile_doc_name" style="width:98%" hname="계약서류명" required="Y" maxlength="255"/></td>
+		<td>
+			<input type="file" name="cfile_[[seq]]" style="width:98%" hname="계약서류 파일" required="Y" />
+			<input type="hidden" name="cfile_seq" value="0"/>
+		</td>
+		<td><button type="button" class="sbtn ico-delete auth_css" onclick="cfile_grid.del(this);"><span></span>삭제</button></td>
+	</tr>
+</table>
+
+<form name="temp_warr_form" method="post">
+<table id="warr_template" style="display:none">
+	<tr>
+		<td align="center">
+			<input type="hidden" name="warr_seq" value="[[seq]]">
+			<select name="warr_type" hname="보증서종류" required="Y" style="width:100px">
+				<option value="">-선택-</option>
+				<!-- LOOP START 'code_warr_type' -->
+				<option value="{{code_warr_type.id}}">{{code_warr_type.value}}</option>
+				<!-- LOOP END 'code_warr_type' -->
+			</select>
+		</td>
+		<td align="center">
+			<select name="warr_office" hname="발급기관" required="Y" style="width:100px">
+				<option value="">-선택-</option>
+				<!-- LOOP START 'code_warr_office' -->
+				<option value="{{code_warr_office.id}}">{{code_warr_office.value}}</option>
+				<!-- LOOP END 'code_warr_office' -->
+			</select>
+		</td>
+		<td align="center"><input type="text" name="warr_no" style="width:100%" hname="증권번호" required="Y"></td>
+		<td align="center"><input type="text" name="warr_date" style="width:100px;ime-mode:disabled" maxlength="10" hname="발급일자" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)"  fixbyte="10"></td>
+		<td align="center">
+			<input type="text" name="warr_sdate" style="width:90px;ime-mode:disabled" maxlength="10" hname="보증기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" fixbyte="10"> ~<br> 
+			<input type="text" name="warr_edate" style="width:90px;ime-mode:disabled" maxlength="10" hname="보증기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" fixbyte="10">
+		</td>
+		<td align="right">￦<input type="text" name="warr_amt" style="width:90px;text-align: right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"></td>
+		<td align="center">
+			<div id="str_warr_file_[[seq]]" style="display:none;width:90px;overflow: hidden;"></div>
+			<input type="file" name="warr_file_[[seq]]" style="width:80px" hname="보증서류" allow="jpg|gif|png|pdf" onchange="chgWarrFile('[[seq]]')">
+			<input type="hidden" name="warr_doc_name_[[seq]]" required="Y" hname="보증서류">
+		</td>
+		<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="warr_grid.del(this);"><span></span>삭제</button></td>
+	</tr>
+</table>
+</form>
+
+<table id="rfile_template" style="display:none">
+	<tr>
+		<td>
+			<input type="checkbox" name="attch" onclick="chkClick(this,'form1','attch_yn','Y')">
+			<input type="hidden" name="attch_yn">
+			<input type="hidden" name="reg_type" value="20">
+		</td>
+		<td>
+			<input type="hidden" name="rfile_seq" value="[[seq]]">
+			<input type="text" name="rfile_doc_name" style="width:450px" required="Y" hname="구비서류명">
+			<input type="file" name="rfile_[[seq]]"  hname="첨부파일" style="width:255px" required="Y" hname="구비서류"/>
+			<input type="hidden" name="attch_type" value="2">
+			<input type="hidden" name="allow_ext" value="">
+		</td>
+		<td><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>삭제</button></td>
+	</tr>
+</table>
+
+<script language="javascript">
+
+function formSubmit(f){
+	if(validate(f)){
+		var group_cnt = f['sign_seq'].length;
+		for(var i =0; i< group_cnt ; i ++){
+			var table = document.getElementById("comp_grid_"+f["sign_seq"][i].value);
+			var row_cnt = table.rows.length-1;
+			if(row_cnt==0){
+				alert(f['signer_name'][i].value+" 에 해당하는  업체를 선택해 주세요.");
+				return false;
+			}
+		}
+
+		//나포함 여부 체크
+		var my_chk = false;
+		var cust_cnt = f['member_no'].length;
+		for(var i =0; i < cust_cnt; i ++){
+			if("{{_auth._MEMBER_NO}}"==f['member_no'][i].value){
+				my_chk = true;
+				break;
+			}
+		}
+		if(!my_chk){
+			alert("로그인한 업체는 계약관계사에 반드시 포함 되어야 합니다.");
+			return false;
+		}
+
+		var cfile_cnt = document.getElementById("cfile_grid").rows.length-1;
+		if(cfile_cnt<1){
+			alert("계약서류를 1개이상 첨부 하세요.");
+			return false;
+		}
+
+		if(!confirm("저장하시겠습니까?")){
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+
+</script>
+
+<script language="javascript">
+
+<!-- LOOP START 'sign_template' -->
+var comp_grid_{{sign_template.sign_seq}} = new MGRID("comp_grid_{{sign_template.sign_seq}}");
+comp_grid_{{sign_template.sign_seq}}.cells = table2array("comp_template");
+<!-- LOOP END 'sign_template' -->
+
+var cfile_grid = new MGRID("cfile_grid");
+cfile_grid.cells = table2array("cfile_template");
+
+var warr_grid = new MGRID("warr_grid");
+warr_grid.cells = table2array("warr_template");
+
+var rfile_grid = new MGRID("rfile_grid");
+rfile_grid.cells = table2array("rfile_template");
+
+
+function addClient(sign_seq, signer_max, signer_name){
+	var f = document.forms['form1'];
+	var grid_table = document.getElementById("comp_grid_"+sign_seq);
+	if( (grid_table.rows.length-1) >= signer_max){
+		alert(signer_name+"는 "+signer_max+"개의 업체까지만 지정 가능 합니다.");
+		return;
+	}
+	//var result = OpenDialog('pop_search_company.jsp','pop_search_comapny', '700','650','auto');
+	OpenWindows('pop_search_company.jsp?sign_seq='+sign_seq,'pop_search_comapny', '700','650');
+
+	if(result!=null){
+		if(f["member_no"]){
+			if(f['member_no'].type=="hidden"){
+				if(f["member_no"].value==result[0]){
+					alert("이미 추가 되어 있는 업체 입니다.");
+					return;
+				}
+			}else{
+				var cnt = f['member_no'].length;
+			  	for(var i = 0; i < cnt; i++){
+					if(f["member_no"][i].value==result[0]){
+					alert("이미 추가 되어 있는 업체 입니다.");
+					return;
+				}
+			  	}
+			}
+		}
+		var i =0;
+		SetFormValue("temp_form","member_no",result[i++]);
+		SetFormValue("temp_form","vendcd",result[i++]);
+		SetFormValue("temp_form","member_slno",result[i++]);
+		SetFormValue("temp_form","member_name",result[i++]);
+		SetFormValue("temp_form","post_code",result[i++]);
+		SetFormValue("temp_form","address",result[i++]);
+		SetFormValue("temp_form","boss_name",result[i++]);
+		SetFormValue("temp_form","user_name",result[i++]);
+		SetFormValue("temp_form","tel_num",result[i++]);
+		SetFormValue("temp_form","hp1",result[i++]);
+		SetFormValue("temp_form","hp2",result[i++]);
+		SetFormValue("temp_form","hp3",result[i++]);
+		SetFormValue("temp_form","email",result[i++]);
+		SetFormValue("temp_form","cust_sign_seq",sign_seq);
+		var grid =eval("comp_grid_"+sign_seq);
+		grid.cells = table2array("comp_template", new Array("seq=>"+sign_seq));
+		grid.addRow();
+
+	}
+}
+
+function addCfileRow(){
+	var data = table2array("cfile_template", new Array("seq=>"+(document.getElementById('cfile_grid').rows.length-1)));
+	cfile_grid.addRow(null, data);
+}
+
+function addWarrRow(){
+	var data = table2array("warr_template", new Array("seq=>"+(document.getElementById('warr_grid').rows.length-1)));
+	warr_grid.addRow(null, data);
+}
+function chgWarrFile(seq){
+	var f = document.forms['form1'];
+	if( f['warr_file_'+seq].value== ""){
+		document.getElementById("str_warr_file_"+seq).innerHTML = "";
+		f['warr_doc_name_'+seq].value="";
+		document.getElementById("str_warr_file_"+seq).style.display="none";
+	}else{
+		document.getElementById("str_warr_file_"+seq).style.display="";
+		var temp = f['warr_file_'+seq].value.split("\\");
+		var file_name = temp[temp.length-1];
+		document.getElementById("str_warr_file_"+seq).innerHTML = file_name;
+		f['warr_doc_name_'+seq].value=file_name;
+	}
+}
+
+function addRfileRow(){
+	var data = table2array("rfile_template", new Array("seq=>"+(document.getElementById('rfile_grid').rows.length)));
+	rfile_grid.addRow(null, data);
+}
+</script>
+
+<!-- LOOP START 'cust' -->
+<script language="javascript">
+if("02"=="{{cust.cust_gubun}}"){
+	form_name = "person_form";
+	template_name = "person_template";
+}else{
+	form_name = "comp_form";
+	template_name = "comp_template";
+}
+SetFormValue(form_name,"member_no","{{cust.member_no}}");
+SetFormValue(form_name,"vendcd","{{cust.vendcd}}");
+SetFormValue(form_name,"post_code","{{cust.post_code}}");
+SetFormValue(form_name,"member_slno","{{cust.member_slno}}");
+SetFormValue(form_name,"cust_sign_seq","{{cust.sign_seq}}");
+SetFormValue(form_name,"address","{{cust.address}}");
+SetFormValue(form_name,"user_name","{{cust.user_name}}");
+SetFormValue(form_name,"member_name","{{cust.member_name}}");
+SetFormValue(form_name,"email","{{cust.email}}");
+SetFormValue(form_name,"boss_name","{{cust.boss_name}}");
+SetFormValue(form_name,"tel_num","{{cust.tel_num}}");
+SetFormValue(form_name,"hp1","{{cust.hp1}}");
+SetFormValue(form_name,"hp2","{{cust.hp2}}");
+SetFormValue(form_name,"hp3","{{cust.hp3}}");
+SetFormValue(form_name,"jumin_no","{{cust.jumin_no}}");
+comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}"));
+comp_grid_{{cust.sign_seq}}.addRow();
+</script>
+<!-- LOOP END 'cust' -->

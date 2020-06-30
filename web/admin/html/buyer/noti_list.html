@@ -1,0 +1,59 @@
+<form name="form1" method="get" >
+<div class="search_div">
+    <table class="search_table">
+        <colgroup>
+            <col width="15%">
+            <col width="65%">
+            <col width="20%">
+        </colgroup>
+        <tr>
+            <th><p>제목</p></th>
+            <td><input type="text" name="s_title" value="" maxlength="100" class="label" style="width:98%"></td>
+            <td align="right">
+                <button type="submit" class="btn color ico-search"><span></span>검색</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</form>
+{{form_script}}
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-right">
+            <button type="button" class="sbtn color ico-add" onclick="Go('noti_insert.jsp')"><span></span>신규등록</button>
+        </div>
+    </div>
+    <table>
+    <colgroup>
+        <col width="10%">
+        <col width="15%">
+        <col width="40%">
+        <col width="15%">
+        <col width="20%">
+    </colgroup>
+    <tr>
+        <th>번호</th>
+        <th>공개일자</th>
+        <th>제목</th>
+        <th>등록자</th>
+        <th>등록일시</th>
+    </tr>
+    <!-- IF START 'list' -->
+    <!-- LOOP START 'list' -->
+    <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='noti_modify.jsp?id={{list.board_id}}&{{list_query}}'">
+        <td align="center">{{list.__ord}}</td>
+        <td align="center">{{list.open_date}}</td>
+        <td>{{list.title}}</td>
+        <td align="center">{{list.reg_id}}</td>
+        <td align="center">{{list.reg_date}}</td>
+    </tr>
+    <!-- LOOP END 'list' -->
+    <!-- IF END 'list' -->
+    <!-- IFNOT START 'list' -->
+    <tr>
+        <td colspan="5" align="center">검색결과가 없습니다.</td>
+    </tr>
+    <!-- IFNOT END 'list' -->
+    </table>
+    <div class="common-paging">{{pagerbar}}</div>
+</div>

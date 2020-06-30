@@ -1,0 +1,67 @@
+<form name="form1" method="get">
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="13%">
+                <col width="76%">
+                <col width="11%">
+            </colgroup>
+            <tr>
+                <th><p>평가지명</p></th>
+                <td><input type="text" name="s_exam_name"  maxlength="100" style="width:100%"></td>
+                <td align="right">
+                    <button type="submit" class="search_btn">검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<br>
+
+<div class="util-row">
+    <div class="push-right">
+        <button type="button" class="sbtn color ico-write auth_css" onclick="location.href='exam_insert.jsp?{{list_qauery}}'"><span></span>신규등록</button>
+    </div>
+</div>
+
+<div class="div_table">
+    <table>
+        <colgroup>
+            <col width="8%">
+            <col width="%">
+            <!-- IFNOT START 'isCJ' -->
+            <col width="10%">
+            <!-- IFNOT END 'isCJ' -->
+            <col width="10%">
+            <col width="15%">
+        </colgroup>
+        <tr class="ltitle">
+            <th>순번</th>
+            <th>평가지명</th>
+            <!-- IFNOT START 'isCJ' -->
+            <th>평가유형</th>
+            <!-- IFNOT END 'isCJ' -->
+            <th>평가항목수</th>
+            <th>등록일자</th>
+        </tr>
+        <!-- LOOP START 'list' -->
+        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='exam_view.jsp?exam_cd={{list.exam_cd}}&{{list_query}}'">
+            <td align="center">{{list.__ord}}</td>
+            <td align="left">{{list.exam_name}}</td>
+            <!-- IFNOT START 'isCJ' -->
+            <td align="center">{{list.exam_type}}</td>
+            <!-- IFNOT END 'isCJ' -->
+            <td align="center">{{list.question_cnt}}</td>
+            <td align="center">{{list.reg_date}}</td>
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td colspan="5" align="center">검색 결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<br/>
+<div class="btn-group-wrap">{{pagerbar}}</div>

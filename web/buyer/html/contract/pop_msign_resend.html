@@ -1,0 +1,89 @@
+<form name="form1" method="get">
+
+<div style="width:100%;padding:5px;text-align:right">
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+		    <col width="15%">
+		    <col width="28%">
+		    <col width="15%">
+		    <col width="28%">
+		    <col width="*">
+		</colgroup>
+		<tr>
+		    <th><p>계약명</p></th>
+		    <td><input type="text" name="s_cont_name" maxlength="30" style="width: 210px;"></td>
+		    <th><p>거래처명</p></th>
+		    <td><input type="text" name="s_member_name" maxlength="6" style="width: 210px;"></td>
+			<td align="right">
+		      <button type="submit" class="btn color ico-search" value="검색"><span></span>검색</button>
+		    </td>
+		</tr>
+	</table>
+</div>
+
+</form>
+{{form_script}}
+
+
+<form name="form2" method="post" onsubmit="return formSubmit2(this)">
+<input type="hidden" name="chk_conts">
+	<div class="util-row">
+		<div class="push-left">
+			<h3><span class="caution-text">※서명요청 상태인 모바일서명 계약건만 조회 됩니다.</span></h3>
+		</div>
+		<div class="push-right">
+			<button type="submit" class="sbtn color ico-request"><span></span>재전송</button>
+		</div>
+	</div>
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="5%">
+			<col width="30%">
+			<col width="12%">
+			<col width="12%">
+			<col width="25%">
+			<col width="15%">
+		</colgroup>
+		<tr>
+			<th><input type="checkbox" name="check_all" onclick="AutoCheck('form2','chk_cont','check_all')"></th>
+			<th>계약명</th>
+			<th>계약일자</th>
+			<th>거래처명</th>
+			<th>휴대폰<br>이메일</th>
+			<th>최근전송일</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center"><input type="checkbox" name="chk_cont" value="{{list.cont_no}}-{{list.cont_chasu}}"></td>
+			<td>{{list.cont_name}}</td>
+			<td align="center">{{list.cont_date}}</td>
+			<td align="center">{{list.member_name}}</td>
+			<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}<br>{{list.email}}</td>
+			<td align="center">{{list.send_date}}</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+	</table>
+</div>
+
+<script language="javascript">
+
+function formSubmit2(f){
+    var f = document.forms["form2"];
+    var chk_conts = GetFormValue("form2","chk_cont");
+    if(chk_conts == ""){
+		alert("재전송 대상 계약건을 1개이상 선택 하세요.");
+        return false;
+	}
+    if(confirm("선택한 계약건을 재전송 하시겠습니까?")){
+        f['chk_conts'].value = chk_conts;
+        return true;
+	}
+	return false;
+}
+
+</script>

@@ -1,0 +1,130 @@
+<form novalidate name="form2" method="post" onsubmit="return formSubmit2(this)">
+<input type="hidden" name="s_sdate">
+<input type="hidden" name="s_edate">
+<input type="hidden" name="s_cont_name">
+<input type="hidden" name="s_member_name">
+<input type="hidden" name="s_user_name">
+<div class="div_table">
+	<div class="util-row"><h3>폐기확약서 전송</h3></div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="30%">
+			<col width="15%">
+			<col width="30%">
+			<col width="10%">
+		</colgroup>
+		<th>확약일자</th>
+		<td>
+			<input type="text" name="cont_date" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" required="Y" hname="확인일자" value="{{cont_date}}"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form2']['cont_date'])">
+		</td>
+		<th>업무위수탁기간</th>
+		<td>
+			<input type="text" name="cont_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" required="Y" hname="업무위수탁기간"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form2']['cont_sdate'])"> ~
+			<input type="text" name="cont_edate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" required="Y" hname="업무위수탁기간"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form2']['cont_edate'])">
+		</td>
+		<td>
+			<button class="sbtn color ico-request"><span></span>전송</button>
+		</td>
+	</table>
+</div>
+</form>
+<script>
+function formSubmit2(f){
+    if(validate(f)){
+        var f1 = document.forms['form1'];
+        if(confirm('해당정보로 총{{total_num}}건의 폐기확약서를 전송 하시겠습니까?')){
+            f['s_sdate'].value = f1['s_sdate'].value;
+            f['s_edate'].value = f1['s_edate'].value;
+            f['s_cont_name'].value = f1['s_cont_name'].value;
+            f['s_member_name'].value = f1['s_member_name'].value;
+            f['s_user_name'].value = f1['s_user_name'].value;
+            f.action = "batch_contract_insert_a_meritz.jsp";
+            return true;
+		}
+	}
+    return false;
+}
+</script>
+
+<div class="div_table" style="margin-bottom: 0px;">
+	<div class="util-row"><h3>대상건 목록</h3></div>
+</div>
+<form name="form1" method="get">
+	<div class="search_div">
+		<table class="search_table">
+			<colgroup>
+				<col width="12%">
+				<col width="32%">
+				<col width="12%">
+				<col width="*">
+				<col width="13%">
+			</colgroup>
+			<tr>
+				<th><p>협약일자</p></th>
+				<td>
+					<input type="text" name="s_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)"/>
+					<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+					<input type="text" name="s_edate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)"/>
+					<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+				</td>
+				<th><p>담당자</p></th>
+				<td><input type="text" name="s_user_name" maxlength="100" style="width: 98%;"></td>
+			</tr>
+			<tr>
+				<th><p>계약명</p></th>
+				<td><input type="text" name="s_cont_name" maxlength="100" style="width: 98%;"></td>
+				<th><p>딜러명</p></th>
+				<td><input type="text" name="s_member_name" maxlength="100" style="width: 98%;"></td>
+				<td align="right">
+					<button type="submit" class="search_btn">검색</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+{{form_script}}
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left"><span class="caution-text">※ 검색된건을 대상으로 폐기확약서를 발송 하실 수 있습니다.</span></div>
+		<div class="push-right">총 {{total_num}} 건</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="*">
+			<col width="10%">
+			<col width="10%">
+			<col width="15%">
+		</colgroup>
+		<tr>
+			<th>순번</th>
+			<th>계약명</th>
+			<th>딜러명</th>
+			<th>협약일자</th>
+			<th>담당자</th>
+		</tr>
+		<!-- IF START 'list' -->
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.__ord}}</td>
+			<td align="left">{{list.cont_name}}</td>
+			<td align="center">{{list.member_name}}</td>
+			<td align="center">{{list.cont_date}}</td>
+			<td align="center">{{list.user_name}}</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IF END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td colspan="5" align="center">검색결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>

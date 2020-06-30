@@ -1,0 +1,54 @@
+<style>
+body { background-color: "#F0F0F0" }
+.btn {
+	color: #000000;
+	FONT-FAMILY: "돋움", "Arial";
+	FONT-SIZE: 10pt;
+	text-decoration: none;
+	width: 85px;
+	height: 25px;
+	border-bottom: 1px solid #646464;
+	border-right: 1px solid #646464;
+	border-top: 1px solid #E3E3E3;
+	border-left: 1px solid #E3E3E3;
+}
+input {
+	color: #000000;
+	FONT-FAMILY: "돋움", "Arial";
+	FONT-SIZE: 10pt;
+	text-decoration: none;
+	width: 85px;
+	height: 25px;
+	border-bottom: 1px solid #E3E3E3;
+	border-right: 1px solid #E3E3E3;
+	border-top: 1px solid #646464;
+	border-left: 1px solid #646464;
+}
+</style>
+<form name="form1" method="post" onSubmit="return inputok()">
+<table width="96%" border="0" cellpadding="5" cellspacing="0" style="margin:10">
+  <tr>
+    <td style="color:black">주민등록번호 뒷자리 7자리를 입력해주세요.</td>
+	<td align="right"><input type="button" value="확인" class="btn" onclick="inputok()"><br><input type="button" value="취소" class="btn" onclick="self.close();"></td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="password" name="s_input" style="width:100%;ime-mode:disabled" maxlength="7" onkeydown="num_only()" onkeypress="num_only()"></td>
+  </tr>
+</table>
+</form>
+<script language="javascript">
+attachOnload(function() {
+	document.forms['form1']['s_input'].focus();
+});
+
+function inputok(){
+	var val = GetFormValue("form1","s_input");
+	if(val.length != 7){
+		alert("숫자 7자리로 입력해주세요.");
+		form1.s_input.focus();
+		return false;
+	}
+	opener.fSign(val);
+	self.close();
+}
+</script>

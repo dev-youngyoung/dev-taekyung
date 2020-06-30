@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>만료예정 계약정보</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<style type="text/css">
+<!--
+td {
+	font-family: "돋움", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	color: #5B5B5B
+}
+
+.b {
+	font-family: "돋움", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #3662B8
+}
+
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0"	marginwidth="0" marginheight="0">  
+		<div style="width:710; line-height:200%" align="left">
+			{{member.member_name}} 담당자님, 안녕하십니까?<br>
+			다음은 {{str_sysdate}} 기준으로 계약 만료 예정건에 관한 내용이며, 업무에 참고하시기 바랍니다.<br>
+			※ 이미 계약을 갱신하시거나 종료예정인 경우 본 메일을 무시하시기 바랍니다.
+		</div> 
+		<br> <br>
+		<table width="710" border="1" cellspacing="0" cellpadding="0" style="border-color:black">
+			<colgroup>
+			   <col width="270px">
+			   <col width="180px">
+			   <col width="90px">
+			   <col width="90px">
+			   <col width="80px">
+			<colgroup>
+			<tr height="25">
+				<td align="center" style="font-weight:bold;border-color:black" bgcolor="#EAEAEA">계약명</td>
+				<td align="center" style="font-weight:bold;border-color:black" bgcolor="#EAEAEA">거래처</td>
+				<td align="center" style="font-weight:bold;border-color:black" bgcolor="#EAEAEA">계약일자</td>
+				<td align="center" style="font-weight:bold;border-color:black" bgcolor="#EAEAEA">계약종료일자</td>
+				<td align="center" style="font-weight:bold;border-color:black" bgcolor="#EAEAEA">계약담당자</td>
+			</tr>
+			<!-- LOOP START 'list' -->
+			<tr height="25">
+				<td style="border-color:black">{{list.cont_name}}</td>
+				<td style="border-color:black">{{list.member_name}}</td>
+				<td align="center" style="border-color:black">{{list.cont_date}}</td>
+				<td align="center" style="border-color:black">{{list.cont_edate}}</td>
+				<td align="center" style="border-color:black">{{list.user_name}}</td>
+			</tr>
+			<!-- LOOP END 'list' -->
+		</table>
+		<table width="710" border="0" cellspacing="0" cellpadding="0" >
+		<tr>
+			<td>
+				<img src="http://www.nicedocu.com/images/email/20110620/copyright.gif" width="700" height="120">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

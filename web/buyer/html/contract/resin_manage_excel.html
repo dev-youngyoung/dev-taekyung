@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+        <td bgcolor="#cccccc">계약차수</td>
+        <td bgcolor="#cccccc">작품명</td>
+        <td bgcolor="#cccccc">계약명</td>
+        <td bgcolor="#cccccc">작가명</td>
+        <td bgcolor="#cccccc">필명</td>
+        <td bgcolor="#cccccc">글그림</td>
+        <td bgcolor="#cccccc">계약일자</td>
+        <td bgcolor="#cccccc">계약담당</td>
+        <td bgcolor="#cccccc">연재예정기간</td>
+        <td bgcolor="#cccccc">연재 개시일</td>
+        <td bgcolor="#cccccc">연재 완료일</td>
+        <td bgcolor="#cccccc">연재 만료일</td>
+        <td bgcolor="#cccccc">영어번역<br>개시일</td>
+        <td bgcolor="#cccccc">영어번역<br>완료일</td>
+        <td bgcolor="#cccccc">영어번역<br>만료일</td>
+        <td bgcolor="#cccccc">일본어번역 <br>개시일</td>
+        <td bgcolor="#cccccc">일본어번역 <br>완료일</td>
+        <td bgcolor="#cccccc">일본어번역 <br>만료일</td>
+        <td bgcolor="#cccccc">중국어번역<br>개시일</td>
+        <td bgcolor="#cccccc">중국어번역<br>완료일</td>
+        <td bgcolor="#cccccc">중국어번역<br>만료일</td>
+        <td bgcolor="#cccccc">MG</td>
+        <td bgcolor="#cccccc">글MG</td>
+        <td bgcolor="#cccccc">그림MG</td>
+        <td bgcolor="#cccccc">한국어 코인당</td>
+        <td bgcolor="#cccccc">영어 코인당</td>
+        <td bgcolor="#cccccc">일본어 코인당</td>
+        <td bgcolor="#cccccc">연락처</td>
+        <td bgcolor="#cccccc">이메일</td>
+        <td bgcolor="#cccccc">주소</td>
+        <td bgcolor="#cccccc">특약유무</td>
+  	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr align="center">
+		<td>{{list.cont_chasu_nm}}</td>
+		<td>{{list.item_name}}</td>
+		<td>{{list.cont_name}}</td>
+		<td>{{list.member_name}}</td>
+		<td>{{list.write_name}}</td>
+		<td>{{list.c_writer_type}}</td>
+		<td>{{list.cont_date}}</td>
+		<td>{{list.user_name}}</td>
+		<td>{{list.cont_sdate}}~{{list.cont_edate}}</td>
+		<td>{{list.n_sday}}</td>
+		<td>{{list.n_eday}}</td>
+		<td>{{list.n_fday}}</td>
+        <td>{{list.e_sday}}</td>
+        <td>{{list.e_eday}}</td>
+        <td>{{list.e_fday}}</td>
+        <td>{{list.j_sday}}</td>
+        <td>{{list.j_eday}}</td>
+        <td>{{list.j_fday}}</td>
+        <td>{{list.c_sday}}</td>
+        <td>{{list.c_eday}}</td>
+        <td>{{list.c_fday}}</td>
+        <td>{{list.cont_total}}</td>
+        <td>{{list.write_amt}}</td>
+        <td>{{list.draw_amt}}</td>
+        <td>{{list.kor_fee}}</td>
+        <td>{{list.eng_fee}}</td>
+        <td>{{list.jr_fee}}</td>
+        <td>{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.address}}</td>
+        <td>{{list.tt_etc_yn}}</td>
+  	</tr>
+  	<!-- LOOP END 'list' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

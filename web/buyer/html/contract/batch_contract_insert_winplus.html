@@ -1,0 +1,500 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 작성 업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+		</tr>
+		<tr>
+			<th>대표자명</th>
+			<td>{{boss_name}}</td>
+			<th>계약서종류</th>
+			<td> 
+				<select id="template_cd" onchange="setColumns(this.value);" style="width:230px;">
+					<!-- IF START 'winplus' -->
+					<option value="2020003">직매입거래계약서(윈플러스)</option>
+					<option value="2020009">PB상품계약서 A형</option>
+					<option value="2020046">성장장려금 지급 약정서</option>
+					<option value="2020044">시설물 사용 계약서</option> 
+					<!-- IF END 'winplus' -->
+					<!-- IF START 'winplus1' -->
+					<option value="2020005">직매입거래계약서(마트,동부,서부)</option>
+					<option value="2020008">특정매입거래계약서(마트,동부,서부)</option> 
+					<option value="2020010">PB상품계약서 B형</option>
+					<option value="2020046">성장장려금 지급 약정서</option>
+					<option value="2020044">시설물 사용 계약서</option> 
+					<!-- IF END 'winplus1' --> 
+					<!-- IF START 'winplus2' -->
+					<option value="2020005">직매입거래계약서(마트,동부,서부)</option>
+					<option value="2020008">특정매입거래계약서(마트,동부,서부)</option> 
+					<option value="2020010">PB상품계약서 B형</option>
+					<option value="2020046">성장장려금 지급 약정서</option>
+					<option value="2020044">시설물 사용 계약서</option> 
+					<!-- IF END 'winplus2' -->
+					<!-- IF START 'winplus3' -->
+					<option value="2020005">직매입거래계약서(마트,동부,서부)</option>
+					<option value="2020008">특정매입거래계약서(마트,동부,서부)</option> 
+					<option value="2020010">PB상품계약서 B형</option>
+					<option value="2020046">성장장려금 지급 약정서</option>
+					<option value="2020044">시설물 사용 계약서</option> 
+					<!-- IF END 'winplus3' -->  
+					<!-- IF START 'winplusfarm' -->
+					<option value="2020004">직매입거래계약서(윈플러팜)</option> 
+					<option value="2020046">성장장려금 지급 약정서</option>
+					<option value="2020044">시설물 사용 계약서</option>  
+					<!-- IF END 'winplusfarm' -->   
+					<!-- IF START 'test' --> 
+					<option value="2020003">직매입거래계약서(윈플러스)</option>
+					<!-- <option value="2020004">직매입거래계약서(윈플러팜)</option> 
+					<option value="2020005">직매입거래계약서(마트,동부,서부)</option>
+					<option value="2020008">특정매입거래계약서(마트,동부,서부)</option>  -->
+					<option value="2020009">PB상품계약서 A형</option>
+					<option value="2020046">성장장려금 지급 약정서</option>
+					<option value="2020044">시설물 사용 계약서</option>
+					<!-- <option value="2020010">PB상품계약서 B형</option>
+					<option value="2020046">성장장려금 지급 약정서</option>
+					  -->
+					<!-- IF END 'test' -->
+				</select>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 500px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table lineTable">
+	<table>
+		<colgroup>
+			<col width="30%"> 
+			<col> 
+		</colgroup>
+		<tr> 
+			<th ></th>
+			<th>입력 구분</th>   
+		</tr>
+		<tr>
+			<th>구분</th> 
+			<td align="left" style="line-height:28px; padding-left: 15px;" valign="top">1) <span style="color: red">날짜 </span>항목 입력방식<br />&nbsp;&nbsp;&nbsp;(예시) 2020-01-01
+		    <br />2) <span style="color: red">선택 탭(체크박스) </span>항목 입력방식<br />&nbsp;&nbsp;&nbsp;(예시) Y<br />&nbsp;&nbsp;&nbsp;<span style="color: blue">Y: 선택, N: 미선택</span>
+		    <br />3) <span style="color: red">"생년월일" 유형(숫자입력)</span> 항목 입력방식<br />&nbsp;&nbsp;&nbsp;(예시) 770103 <br />&nbsp;&nbsp;&nbsp;(<span style="color: blue">개인사업자</span> 일때 입력)
+		    <br />4) <span style="color: red">"성별" 유형(숫자입력)</span> 항목 입력방식<br />&nbsp;&nbsp;&nbsp;(예시) 1 <br />&nbsp;&nbsp;&nbsp;<span style="color: blue">1: 남, 2: 여</span> (<span style="color: blue">개인사업자</span> 일때 입력)
+			</td>  
+		</tr>  
+	</table>
+</div>
+
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>일괄전송</button>
+</div>
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns(document.getElementById("template_cd").value);
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg); 
+        });
+}
+
+function setColumns(template_cd) {
+    var columns = [];
+
+    columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"사업자번호" ,width:90 ,readOnly:false , movable:false ,sortable:false}); 
+    columns.push({name:"birthday1_2" ,fieldName:"birthday1_2" ,header:"생년월일(개인사업자)" ,width:125 ,readOnly:false , movable:false ,sortable:false}); 
+    columns.push({name:"birthday1_3" ,fieldName:"birthday1_3" ,header:"성별(개인사업자)" ,width:100 ,readOnly:false , movable:false ,sortable:false});  
+    columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"계약일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+     
+    if (template_cd == '2020003') { //직매입거래계약서(윈플러스)
+    	columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"계약 시작일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"계약 종료일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"제6조 대금 정산기간(시작)",width:150,readOnly:false , movable:false ,sortable:false}); 
+    	columns.push({name:"input_cont_text02",fieldName:"input_cont_text02",header:"제6조 대금 정산기간(마감)",width:150,readOnly:false , movable:false ,sortable:false}); 
+    	columns.push({name:"input_cont_3_text01",fieldName:"input_cont_3_text01",header:"별지1",width:100,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"contract_pre_amt",fieldName:"contract_pre_amt",header:"점별 통과상품 물류대행",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"contract_pre_amt1",fieldName:"contract_pre_amt1",header:"총량 통과상품 물류대행",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_3_text04",fieldName:"input_cont_3_text04",header:"보관 출고상품 물류대행",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_gubun1",fieldName:"cont_gubun1",header:"backhaul업무대행약정서 선택",width:120,readOnly:false , movable:false ,sortable:false}); 
+    	columns.push({name:"input_cont_4_text01",fieldName:"input_cont_4_text01",header:"대행수수료%",width:120,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_gubun2",fieldName:"cont_gubun2",header:"개인정보 수집 이용 동의서 선택",width:150,readOnly:false , movable:false ,sortable:false});
+	 
+    }else if(template_cd == '2020004'){ //직매입거래계약서(윈플러스팜)
+    	
+    }else if(template_cd == '2020005'){ //직매입거래계약서(마트,동부,서부)
+    	
+    }else if(template_cd == '2020008'){ //특정매입거래계약서(마트,동부,서부)
+    	
+    }else if(template_cd == '2020009'){ //PB상품계약서 A형(윈플러스)
+    	columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"계약 시작일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"계약 종료일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"input_cont_1_a1",fieldName:"input_cont_1_a1",header:"상품대금 지급조건 및 지급기일",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"contract_pre_amt",fieldName:"contract_pre_amt",header:"점별 통과상품 물류대행",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"contract_pre_amt1",fieldName:"contract_pre_amt1",header:"총량 통과상품 물류대행",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_5_text03",fieldName:"input_cont_5_text03",header:"보관 출고상품 물류대행",width:150,readOnly:false , movable:false ,sortable:false});   
+    	columns.push({name:"input_cont_5_text04",fieldName:"input_cont_5_text04",header:"지역 물류센터 간 이동시 추가 적용",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_gubun1",fieldName:"cont_gubun1",header:"backhaul업무대행약정서 선택",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_4_text01",fieldName:"input_cont_4_text01",header:"대행수수료%",width:120,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_gubun2",fieldName:"cont_gubun2",header:"개인정보 수집 이용 동의서 선택",width:150,readOnly:false , movable:false ,sortable:false}); 
+    }else if(template_cd == '2020010'){//PB상품계약서 B형(윈플러스)
+    	
+    }else if(template_cd == '2020046'){//성장장려금 지급 약정서
+    	columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"계약 시작일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"계약 종료일자" ,width:120 ,readOnly:false , movable:false ,sortable:false}); 
+    	columns.push({name:"cont_syear_a1",fieldName:"cont_syear_a1",header:"체결일",width:150,readOnly:false , movable:false ,sortable:false});   
+    	columns.push({name:"input_cont_a_text01",fieldName:"input_cont_a_text01",header:"매입신장액",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_t1",fieldName:"cont_t1",header:"목표 초과시 한도액",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_t2",fieldName:"cont_t2",header:"매입기준",width:120,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"cont_t3",fieldName:"cont_t3",header:"장려금(정액)",width:120,readOnly:false , movable:false ,sortable:false});  
+    	  
+    }else if(template_cd == '2020044'){//시설물 사용 계약서 
+    	columns.push({name:"input_cont_01",fieldName:"input_cont_01",header:"계약기간(년)",width:150,readOnly:false , movable:false ,sortable:false});   
+    	columns.push({name:"input_cont_02",fieldName:"input_cont_02",header:"사용료의 청구 및 납부방법",width:150,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_1_01",fieldName:"input_cont_1_01",header:"점포명",width:100,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_1_02",fieldName:"input_cont_1_02",header:"시설명",width:100,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_1_03",fieldName:"input_cont_1_03",header:"위치",width:100,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_1_04",fieldName:"input_cont_1_04",header:"크기",width:100,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_1_05",fieldName:"input_cont_1_05",header:"사용료(년)",width:100,readOnly:false , movable:false ,sortable:false});  
+    	columns.push({name:"input_cont_1_06",fieldName:"input_cont_1_06",header:"계약기간",width:100,readOnly:false , movable:false ,sortable:false});   
+    }
+     
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+        var regExp = /^[0-9]+$/; 
+        var template_cd = document.getElementById("template_cd").value; 
+        
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+			cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF"];  
+		 
+            if(template_cd != "2020044"){
+            	fields = ["vendcd","birthday1_2","birthday1_3","cont_date", "cont_sdate" ,"cont_edate"]; 
+				if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("사업자번호에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)");return;}
+	            if(row[cols[3]] == null || row[cols[3]].toString().trim() == ""){alert("계약일자에 빈값이 들어가 있습니다.(I열,"+(i+1)+"행)");return;}
+	            if(row[cols[3]].length != 10){alert("계약일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (I열,"+(i+1)+"행)");return;} 
+	            if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("계약 시작일자에 빈값이 들어가 있습니다.(J열,"+(i+1)+"행)");return;}
+	            if(row[cols[4]].length != 10){alert("계약 시작일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (J열,"+(i+1)+"행)");return;} 
+	            if(row[cols[5]] == null || row[cols[5]].toString().trim() == ""){alert("계약 종료일자에 빈값이 들어가 있습니다.(K열,"+(i+1)+"행)");return;}
+	            if(row[cols[5]].length != 10){alert("계약 종료일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (K열,"+(i+1)+"행)");return;}
+            }else{
+            	fields = ["vendcd","birthday1_2","birthday1_3","cont_date"]; 
+				if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("사업자번호에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)");return;}
+	            if(row[cols[3]] == null || row[cols[3]].toString().trim() == ""){alert("계약일자에 빈값이 들어가 있습니다.(I열,"+(i+1)+"행)");return;}
+	            if(row[cols[3]].length != 10){alert("계약일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (I열,"+(i+1)+"행)");return;} 
+            }
+          
+            if (template_cd == '2020003') { //직매입거래계약서(윈플러스)
+            	fields.push("input_cont_text01"); 
+				fields.push("input_cont_text02"); 
+				fields.push("input_cont_3_text01"); 
+				fields.push("contract_pre_amt"); 
+				fields.push("contract_pre_amt1"); 
+				fields.push("input_cont_3_text04"); 
+				fields.push("cont_gubun1"); 
+				fields.push("input_cont_4_text01"); 
+				fields.push("cont_gubun2"); 
+				if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("제6조 대금 정산기간(시작)에 빈값이 들어가 있습니다.(" + cols[6] + "열,"+(i+1)+"행)");return;} 
+                if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("제6조 대금 정산기간(마감)에 빈값이 들어가 있습니다.(" + cols[7] + "열,"+(i+1)+"행)");return;} 
+                if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("별지1에 빈값이 들어가 있습니다.(" + cols[8] + "열,"+(i+1)+"행)");return;} 
+                if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("보관 출고상품 물류대행에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;}  
+                if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("backhaul업무대행약정서 선택에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;} 
+                if(row[cols[12]] == "Y"){
+                	if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("대행수수료%에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;} 
+                }
+                if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("개인정보 수집 선택에 빈값이 들어가 있습니다.(" + cols[14] + "열,"+(i+1)+"행)");return;} 
+                
+            }else if(template_cd == '2020009') { //PB상품계약서 A형(윈플러스)
+            	fields.push("input_cont_1_a1"); 
+				fields.push("contract_pre_amt"); 
+				fields.push("contract_pre_amt1");  
+				fields.push("input_cont_5_text03"); 
+				fields.push("input_cont_5_text04");  
+				fields.push("cont_gubun1"); 
+				fields.push("input_cont_4_text01"); 
+				fields.push("cont_gubun2"); 
+				 
+				if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("상품대금 지급조건 및 지급기일에 빈값이 들어가 있습니다.(" + cols[6] + "열,"+(i+1)+"행)");return;}  
+				 
+                if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("보관 출고상품 물류대행에 빈값이 들어가 있습니다.(" + cols[9] + "열,"+(i+1)+"행)");return;}  
+                if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("지역 물류센터 간 이동시 추가 적용에 빈값이 들어가 있습니다.(" + cols[10] + "열,"+(i+1)+"행)");return;}  
+                if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("backhaul업무대행약정서 선택에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;} 
+                if(row[cols[11]] == "Y"){
+                	if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("대행수수료%에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;} 
+                }
+                if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("개인정보 수집 선택에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;}  
+            	
+            }else if(template_cd == '2020046'){ 
+            	fields.push("cont_syear_a1"); 
+				fields.push("input_cont_a_text01"); 
+				fields.push("cont_t1");  
+				fields.push("cont_t2"); 
+				fields.push("cont_t3");  
+				
+				if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("체결일에 빈값이 들어가 있습니다.("+ cols[6] + "열,"+(i+1)+"행)");return;}  
+	            if(row[cols[6]].length != 10){alert("체결일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 ("+(i+1)+"행)");return;} 
+            	   
+	            if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("매입신장액에 빈값이 들어가 있습니다.(" + cols[7] + "열,"+(i+1)+"행)");return;}  
+	            if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("목표 초과시 한도액에 빈값이 들어가 있습니다.(" + cols[8] + "열,"+(i+1)+"행)");return;}  
+	            if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("매입기준에 빈값이 들어가 있습니다.(" + cols[9] + "열,"+(i+1)+"행)");return;}  
+	            if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("장려금(정액)에 빈값이 들어가 있습니다.(" + cols[10] + "열,"+(i+1)+"행)");return;}  
+	            
+            }else if(template_cd == '2020044'){
+            	fields.push("input_cont_01"); 
+				fields.push("input_cont_02"); 
+				fields.push("input_cont_1_01");  
+				fields.push("input_cont_1_02"); 
+				fields.push("input_cont_1_03");  
+				fields.push("input_cont_1_04");  
+				fields.push("input_cont_1_05");  
+				fields.push("input_cont_1_06");  
+            	
+				if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("계약기간(년)에 빈값이 들어가 있습니다.("+ cols[4] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[5]] == null || row[cols[5]].toString().trim() == ""){alert("사용료의 청구 및 납부방법에 빈값이 들어가 있습니다.("+ cols[5] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("점포명에 빈값이 들어가 있습니다.("+ cols[6] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("시설명에 빈값이 들어가 있습니다.("+ cols[7] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("위치에 빈값이 들어가 있습니다.("+ cols[8] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("크기에 빈값이 들어가 있습니다.("+ cols[9] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("사용료(년)에 빈값이 들어가 있습니다.("+ cols[10] + "열,"+(i+1)+"행)");return;}  
+				if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("계약기간에 빈값이 들어가 있습니다.("+ cols[11] + "열,"+(i+1)+"행)");return;}   
+            	  
+            }
+             
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    rowdata[fields[j]] = row[cols[j]].trim();
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+       // alert("정 되었습니다.");
+    }
+}
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+
+	var fileNmae = "계약서일괄생성";
+	
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: fileNmae+".xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("계약서를 일괄 전송 하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a_winplus.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+         grid:grid_string
+		,template_cd:document.getElementById("template_cd").value
+        ,member_no:"{{member_no}}"
+    };
+
+    console.log(data);
+    submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            data = data.trim();
+            alert(data);
+            dataProvider.clearRowStates(true);
+            submit_chk = false;
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\\n" + "error:" + error);
+            submit_chk = false;
+        }
+    });
+}
+
+</script>

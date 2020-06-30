@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>▒ 나이스다큐 (전자구매시스템)▒</title>
+<link rel="shortcut icon" type="image/ico" href="/images/nicedocu.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="X-UA-Compatible" content="IE=6"/>
+<link rel="stylesheet" type="text/css" href="/web/buyer/html/css/style.css">
+<script language="javascript" type="text/javascript" src="/web/buyer/html/js/common.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function pop_close(){
+	var	bNode = parent.document.getElementById("back");
+	if(bNode){
+		parent.document.body.removeChild(bNode);
+	}
+	
+	fLayerPopClose("noti1");
+	
+	
+}
+function pop_7close(){
+	var expires = 60*60*24*1; 
+	SetCookie('noti2','done',expires);
+
+	pop_close();
+}
+window.onload= function(){
+	if(parent.location.href.indexOf("apt")>0){
+		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML.replaceAll("나이스다큐", "나이스아파트");
+	}
+}
+</script>
+	<div style="height:100%;height:255px; border:5px solid #32acf9; background-color:white; padding:20px;  line-height: 2;   id="content">
+	<b>[ 근로자의 날, 운영팀 상담 및 지원업무 휴무 안내 ]</b>
+	
+	<br>
+	5월1일 근로자의 날, 5월6일 대체공휴일 휴무로 인하여, <br>
+	나이스다큐 운영팀의 상담 및 지원업무가 불가합니다.<br>
+	
+	나이스다큐의 접속과 서비스는 정상적으로 운영됩니다.<br>
+	업무에 참고하시기 바랍니다.<br>
+	
+	감사합니다.<br>
+	</div>
+	<div style="width: 100%;height:20px;background-color:#dcdcdc;padding-top:3px">
+		<div style="float: left;font-size:12px">
+			<a href="javascript:pop_7close()" style="color:black"><img src="/images/notice_xbox.gif" align="absmiddle"> 오늘하루이창을 열지 않기</a>
+		</div>
+		 
+		<div style="float: right;font-size:12px;padding-right: 5px"><a href="javascript:pop_close()" style="color:black">닫기</a></div>
+	</div>
+</body>
+</html>

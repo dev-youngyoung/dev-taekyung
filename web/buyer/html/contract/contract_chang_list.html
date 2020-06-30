@@ -1,0 +1,110 @@
+<form name="form1" method="get">
+<div class="search_div">
+	<table class="search_table">
+	  <colgroup>
+	    <col width="13%">
+		<col width="32%">
+		<col width="13%">
+		<col width="32%">
+		<col width="10%">
+	  </colgroup>
+	  <tr>
+	    <th><p>거래처명</p></th>
+	    <td><input type="text" name="s_cust_name" maxlength="100" style="width:92%"></td>
+	    <th><p>계약명</p></th>
+	    <td><input type="text" name="s_cont_name" maxlength="100" style="width:92%"></td>
+	    <td align="right">
+	    </td>
+	  </tr>
+	  <tr>
+	    <th><p>계약일자</p></th>
+	    <td colspan="3">
+	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+			<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	    </td>
+	    <td align="right">
+	      <button type="submit" class="search_btn">검색</button>
+	    </td>
+	  </tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+
+<br/>
+
+<form name="form2" method="get">
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="10%">
+		    <col width="*">
+		    <col width="20%">
+		    <col width="16%">
+		    <col width="22%">
+		    <col width="14%">
+		</colgroup>
+		<tr>
+			<th>순번</th>
+			<th>계약명</th>
+	   		<th>거래처명</th>
+	   		<th>계약일자</th>
+	   		<th>양식선택</th>
+	   		<th>작성</th>
+	 	</tr>
+		<!-- IF START 'list' -->
+			<!-- LOOP START 'list' -->
+			<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer">
+				<td align="center">{{list.__ord}}</td>
+				<td>{{list.cont_name}}</td>
+				<td>{{list.cust_name}}</td>
+				<td align="center">{{list.cont_date}}</td>
+				<td align="center">
+					<select name="template_cd_{{list.cont_no}}" style="width:90%;">
+						<option value="">-선택-</option>
+						<!-- LOOP START 'template' -->
+						<option value="{{template.template_cd}}|{{template.sign_types}}">{{template.template_name}}</option>
+						<!-- LOOP END 'template' -->
+					</select>
+				</td>
+				<td align="center"><button type="button" class="sbtn ico-pencil auth_css" onclick="goWrite('{{list.cont_no}}','{{list.cont_chasu}}');"><span></span>작성</button></td>
+			</tr>
+			 <!-- LOOP END 'list' -->
+		 <!-- IF END 'list' -->
+		 <!-- IFNOT START 'list' -->
+		 <tr>
+			<td colspan="6" align="center">검색결과가 없습니다.</td>
+		 </tr>
+		 <!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+</form>
+<script language="javascript">
+function goWrite(cont_no, cont_chasu){
+	var select_value = document.forms['form2']['template_cd_'+cont_no].value;
+	var template_cd = select_value.split("|")[0];
+	var sign_types =  select_value.split("|")[1];
+	if(template_cd == ""){
+		alert("작성양식을 선택해 주세요.");
+		document.forms['form2']['template_cd_'+cont_no].focus();
+		return;
+	}
+
+	var link = "contract_chang_insert.jsp";
+	if(sign_types!=""){
+		link = "contract_msign_chang_insert.jsp";
+	}
+	
+	var url = link+"?{{list_query}}";
+		url+= "&cont_no="+cont_no;
+		url+= "&cont_chasu="+cont_chasu;
+		url+= "&template_cd="+template_cd;
+	location.href=url;
+		
+}
+</script>

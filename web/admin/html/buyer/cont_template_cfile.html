@@ -1,0 +1,106 @@
+<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+        <h3>계약서류설정
+        <span>
+        <select name="member_no" onchange="location.href='cont_template_cfile.jsp?{{list_query}}&member_no='+this.value">
+        	<option value="">-선택-</option>
+        	<!-- LOOP START 'member' -->
+        	<option value="{{member.member_no}}">{{member.member_name}}</option>
+        	<!-- LOOP END 'member' -->
+        </select>
+        </span>
+        <span class="caution-text">※ 계약 체결시 필수로 첨부되어야 할 서류명 또는 파일을 등록하세요.</span>
+        </h3>
+    </div>
+    <div class="push-right">
+		<button type="button" class="sbtn color ico-add" onclick="addFileRow();"><span></span>추가</button>
+		<button type="submit" class="sbtn color ico-save""><span></span>저장</button>
+    </div>
+</div>
+
+<table id="file_grid">
+<colgroup>
+	<col width="45%">
+	<col width="45%">
+	<col width="10%">
+</colgroup>
+<thead>
+<tr>
+	<th>문서명</th>
+	<th>첨부</th>
+	<th>삭제</th>
+</tr>
+</thead>
+<!-- LOOP START 'cfile' -->
+<tr>
+	<td><input type="text" name="doc_name" value="{{cfile.doc_name}}" class="label" style="width:98%" hname="문서명" required="Y" /></td>
+	<td align="right">
+		<!-- IFNOT START 'cfile.file_name' -->
+		<input type="file" name="file_{{cfile.file_seq}}" class="label" style="width:98%"/>
+		<!-- IFNOT END 'cfile.file_name' -->
+		<!-- IF START 'cfile.file_name' -->
+		{{cfile.str_file_size}}&nbsp;&nbsp;
+		<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_template','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>다운로드</button>
+		<!-- IF END 'cfile.file_name' -->
+		<input type="hidden" name="file_seq" value="{{cfile.file_seq}}"/>	
+		<input type="hidden" name="att_type" value="mod"/>
+	</td>
+	<td align="center">
+		<button type="button" class="sbtn color ico-delete" onclick="delFileRow(this);"><span></span>삭제</button>
+	</td>
+</tr>
+<!-- LOOP END 'cfile' -->
+	<tbody>
+	</tbody>
+</table>
+
+</div>
+</form>
+{{form_script}}
+
+
+<table id="file_template" style="display:none">
+	<tr>
+		<td><input type="text" name="doc_name" class="label" style="width:98%" hname="문서명" required="Y" /></td>
+		<td>
+			<input type="file" name="file_[[seq]]" class="label" style="width:98%"/>
+			<input type="hidden" name="file_seq" value="[[seq]]"/>
+			<input type="hidden" name="att_type" value="new"/>
+		</td>
+		<td><button type="button" class="sbtn color ico-delete" onclick="delFileRow(this);"><span></span>삭제</button></td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm('저장하시겠습니까?')){
+			return true;;
+		}
+	}
+	return false;
+}
+
+
+var file_grid = new MGRID("file_grid");
+
+function addFileRow(){
+	if(document.getElementById('file_grid').rows.length >10){
+		alert("더이상 추가 할 수 없습니다.");
+		return;
+	}
+	var data = table2array("file_template", new Array("seq=>"+(document.getElementById('file_grid').rows.length-1)));
+	file_grid.addRow(null, data);
+	ResizeIframe("ifm_cfile");
+}
+
+function delFileRow(obj){
+	file_grid.del(obj);
+	ResizeIframe("ifm_cfile");
+}
+
+ResizeIframe("ifm_cfile"); 
+</script>

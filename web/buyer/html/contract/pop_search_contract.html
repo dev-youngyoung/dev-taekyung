@@ -1,0 +1,127 @@
+<form name="form1" method="get">
+<input type="hidden" name="callback" value="{{callback}}">
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+		    <col width="15%">
+		    <col width="30%">
+		    <col width="15%">
+		    <col width="30%">
+		    <col width="*">
+		</colgroup>
+		<tr>
+			<th><p>계약서종류</p></th>
+		    <td>
+		    	<select name="s_template_cd">
+		    		<option value="">-------선택-------</option>
+		    		<!-- LOOP START 'template' -->
+		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
+		    		<!-- LOOP END 'template' -->
+		    	</select>
+		    </td>
+			<td></td>
+		</tr>
+  		<tr>
+  			<th><p>계약일자</p></th>
+		    <td>
+		    	<input type="text" name="s_sdate" class="in_readonly" size="10" maxlength="10" onkeyup="dateFormat(this)"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+				<input type="text" name="s_edate" class="in_readonly" size="10" maxlength="10" onkeyup="dateFormat(this)"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+		    </td>
+		    <th><p>상태</p></th>
+		    <td>
+		    	<select name="s_status">
+		    		<option value="">-전체-</option>
+		    		<!-- LOOP START 'code_status' -->
+		    		<option value="{{code_status.id}}">{{code_status.value}}</option>
+		    		<!-- LOOP END 'code_status' -->
+		    	</select>
+		    </td>
+		    <td></td>
+  		</tr>
+  		<tr>
+  			<th><p>거래처명</p></th>
+		    <td><input type="text" name="s_cust_name" maxlength="100" style="width:97%"></td>
+		    <th><p>계약명</p></th>
+		    <td><input type="text" name="s_cont_name" maxlength="100" style="width:97%"></td>
+		    <td align="right">
+		      <button type="submit" class="search_btn">검색</button>
+		    </td>
+		</tr>
+	</table>
+</div>
+
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+<div class="util-row">
+    <div class="push-left">
+        <span class="caution-text">※업체명 또는 사업자 등록번호를 입력후 검색 하세요.</span>
+    </div>
+</div>
+
+<br/>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="*">
+			<col width="20%">
+			<col width="12%">
+			<col width="10%">
+			<col width="10%">
+		</colgroup>
+		<tr>
+			<th>서식명</th>
+			<th>계약명</th>
+			<th>거래처명</th>
+			<th>계약일자</th>
+			<th>상태</th>
+			<th>선택</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td>{{list.template_name}}</td>
+			<td>{{list.cont_name}}</td>
+			<td>{{list.cust_name}}</td>
+			<td align="center">{{list.cont_date}}</td>
+			<td align="center">{{list.status_nm}}</td>
+			<td align="center"><button type="button" class="sbtn ico-confirm" onclick="selContract('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.cont_name}}', '{{list.cust_name}}', '{{list.cont_date}}');"><span></span>선택</button></td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="6">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+<br/>
+
+<script language="javascript">
+function selContract(cont_no, cont_chasu, cont_name, cust_name, cont_date){
+	var data = {
+			   "cont_no":cont_no
+			, "cont_chasu":cont_chasu 
+			, "cont_name":cont_name 
+			, "cust_name":cust_name 
+			, "cont_date":cont_date 
+			}
+	opener.{{callback}}(data);
+	self.close();
+}
+</script>

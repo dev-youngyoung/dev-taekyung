@@ -1,0 +1,47 @@
+<form name="form1" method="post">
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			문서번호
+			<input type="text" name="doc_no1" size="12" maxlength="12" style="ime-mode:disabled" onKeyUp="this.value=this.value.toUpperCase();moveNext('doc_no2')">
+			-
+			<input type="text" name="doc_no2" size="5" maxlength="5" style="ime-mode:disabled" onKeyUp="moveNext('true_random')">
+			-
+			<input type="text" name="true_random" size="5" maxlength="5" style="ime-mode:disabled" onKeyUp="">
+			<button type="submit" class="sbtn color ico-confirm"><span></span>제출</button>
+			(※  전자문서 하단의 관리번호 입력)
+		</div>
+	</div>
+</div>
+
+<div class="div_table">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="15%">
+		<col width="85%">
+	</colgroup>
+	<tr>
+		<th>문서명</th>
+		<td><input type="text" name="template_name" value="{{ds.template_name}}" style="width:100%" readOnly></td>
+	</tr>
+	<tr>
+		<th>문서상태</th>
+		<td><input type="text" name="status" value="{{ds.status}}" style="width:100%" readOnly></td>
+	</tr>
+	<tr>
+		<th>발신업체</th>
+		<td><input type="text" name="send_member_name" value="{{ds.send_member_name}}" style="width:100%" readOnly></td>
+	</tr>
+	<tr>
+		<th>수신업체</th>
+		<td><input type="text" name="recv_member_name" value="{{ds.recv_member_name}}" style="width:100%" readOnly></td>
+	</tr>
+	</table>
+</div>
+
+</form>
+
+<div class="btn-group-wrap">
+	<button type="button" class="sbtn color ico-cancel"><span></span>닫기</button>
+</div>
+{{form_script}}

@@ -1,0 +1,104 @@
+<script language="javascript">
+	/************************************
+		모든부서 조회 클릭시 저장기능 disabled
+	************************************/
+	function fAllReadDisable(oj)
+	{
+		var	sAdmCd	=	oj.value;
+		
+		if($("input[name='all_read']").filter("input[value='"+sAdmCd+"']").attr("checked"))
+		{
+			$("input[name='read']").filter("input[value='"+sAdmCd+"']").attr("checked",true);
+
+			$("input[name='save']").filter("input[value='"+sAdmCd+"']").attr("checked",false);
+			$("input[name='save']").filter("input[value='"+sAdmCd+"']").attr("disabled",true);
+			$("input[name='save']").filter("input[value='"+sAdmCd+"']").attr("style","display:none");
+			
+			$("input[name='print']").filter("input[value='"+sAdmCd+"']").attr("checked",true);
+		}else
+		{
+			$("input[name='read']").filter("input[value='"+sAdmCd+"']").attr("disabled",false);
+			$("input[name='save']").filter("input[value='"+sAdmCd+"']").attr("disabled",false);
+			$("input[name='save']").filter("input[value='"+sAdmCd+"']").attr("style","");
+			$("input[name='print']").filter("input[value='"+sAdmCd+"']").attr("disabled",false);
+		}
+	}
+</script>
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="multi_person_seq">
+	<div class="div_table">
+		<table>
+			<colgroup>
+			</colgroup>
+			<tr>
+				<th>메뉴명</th>
+				<th>중분류</th>
+				<th>메뉴명</th>
+				<th>조회<br><input type="checkbox" onclick="AutoCheck('form1','read','read_base')" name="read_base"/></th>
+				<th>저장<br><input type="checkbox" onclick="AutoCheck('form1','save','save_base')" name="save_base"/></th>
+				<th>인쇄<br><input type="checkbox" onclick="AutoCheck('form1','print', 'print_base')" name="print_base"/></th>
+				<th>모든<br/>부서<br/>조회<br/></th>
+			</tr>
+			<!-- LOOP START 'mauth' -->
+			<tr>
+				<!-- IF START 'mauth.l_first' -->
+				<td align="center" rowspan="{{mauth.l_div_cnt}}">{{mauth.l_div_nm}}</td>
+				<!-- IF END 'mauth.l_first' -->
+				<!-- IF START 'mauth.m_first' -->
+				<td align="center" rowspan="{{mauth.m_div_cnt}}">{{mauth.m_div_nm}}</td>
+				<!-- IF END 'mauth.m_first' -->
+				<td align="left">{{mauth.menu_nm}}<input type="hidden" name="adm_cd" value="{{mauth.adm_cd}}"/></td>
+				<td align="center"><input type="checkbox" name="read" value="{{mauth.adm_cd}}" {{mauth.read_check}}  onClick="fAllReadDisable(this)"/></td>
+				<td align="center"><input type="checkbox" name="save" value="{{mauth.adm_cd}}" {{mauth.save_check}} {{mauth.save_disabled}}/></td>
+				<td align="center"><input type="checkbox" name="print" value="{{mauth.adm_cd}}" {{mauth.print_check}}  onClick="fAllReadDisable(this)"/></td>
+				<td align="center"><input type="checkbox" name="all_read" value="{{mauth.adm_cd}}" {{mauth.all_read_check}} {{mauth.all_read_disabled}} onClick="fAllReadDisable(this)"/></td>
+			</tr>
+			<!-- LOOP END 'mauth' -->
+		</table>
+	</div>
+</form>
+<br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="caution-text">※ 조회 : 메뉴에 대한 조회 가능여부</td>
+	</tr>
+	<tr>
+		<td class="caution-text">※ 저장 : 저장,수정,삭제,전송,공고,서명 등 각종 정보변경 기능 사용 여부</td>
+	</tr>
+	<tr>
+		<td class="caution-text">※ 인쇄 : 파일다운로드 및 인쇄 기능 사용 여부</td>
+	</tr>
+	<tr>
+		<td class="caution-text">※ 모든부서조회 : 메뉴에 대하여 부서와 관계없이 조회 기능<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(저장기능은 차단됨)</td>
+	</tr>
+</table>
+<script language="javascript">
+
+function fsubmit(){
+	var f = parent.document.form1;
+	var n = "chk_person_seq";
+		
+	var arr = new Array();
+	var j = 0;
+	for(var i=0; i<f[n].length; i++) {
+		if(f[n][i].checked == true) {
+			 arr[j] = f[n][i].value;
+			 j++;
+		}
+	}
+	
+	document.forms['form1'].multi_person_seq.value = arr.join(",");
+	if(formSubmit(document.forms['form1'])){
+		document.forms['form1'].submit();
+	}
+}
+
+function formSubmit(f){
+	if(!confirm("선택된 사용자의 권한이 모두 변경됩니다.  저장 하시겠습니까?")){
+		return false;
+	}
+	return true;
+}
+
+ResizeIframe("person_auth");	
+</script>

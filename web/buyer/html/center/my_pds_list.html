@@ -1,0 +1,58 @@
+<form name="form1" method="post">
+  <div class="search_div">
+    <table class="search_table">
+      <colgroup>
+        <col width="13%">
+        <col width="57%">
+        <col width="30%">
+      </colgroup>
+      <tr>
+        <th><p> 제목</p></th>
+        <td><input type="text" name="s_title"  maxlength="100" style="width:90%"></td>
+        <td align="right">
+          <button type="submit" class="search_btn" value="검색"><span></span>검색</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+{{form_script}}
+
+<div class="push-left">
+  <span class="caution-text">※ 등록된 자료는 상대 거래업체가 조회 및 다운로드 할 수 있습니다.</span>
+</div>
+<div class="push-right">
+  <button type="button" class="sbtn color ico-write auth_select" value="신규작성" onclick="location.href='my_pds_insert.jsp'"><span></span>신규작성</button>
+</div>
+<br>
+<br>
+<div class="div_table">
+  <table>
+    <colgroup>
+      <col width="8%">
+      <col width="65%">
+      <col width="15%">
+      <col width="12%">
+    </colgroup>
+    <tr class="ltitle">
+      <th>순번</th>
+      <th>제목</th>
+      <th>등록자</th>
+      <th>등록일자</th>
+    </tr>
+    <!-- LOOP START 'list' -->
+    <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='my_pds_modify.jsp?seq={{list.seq}}&{{list_query}}'">
+      <td align="center">{{list.__ord}}</td>
+      <td>{{list.title}}</td>
+      <td align="center">{{list.user_name}}</td>
+      <td align="center">{{list.reg_date}}</td>
+    </tr>
+    <!-- LOOP END 'list' -->
+    <!-- IFNOT START 'list' -->
+    <tr>
+      <td colspan="4" align="center">검색 결과가 없습니다.</td>
+    </tr>
+    <!-- IFNOT END 'list' -->
+  </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>

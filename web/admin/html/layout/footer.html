@@ -1,0 +1,72 @@
+<!-- footer start -->
+<div class="page-footer">
+    <div class="page-footer-link">
+        <div class="page-footer-link-inner">
+            <ul class="page-footer-link-inner-list">
+                <li><a href="javascript:fPopupPrivacy();">개인정보처리방침</a></li>
+            </ul>
+            <div class="page-footer-family">
+                <div class="page-footer-family-btn">
+                    <span>나이스다큐 다른 서비스</span>
+                </div>
+                <ul class="page-footer-family-list">
+                    <li>
+                        <a href="http://www.nicedocu.com/web/buyer/" target="_black">나이스다큐-일반 기업용</a>
+                    </li>
+                    <li>
+                        <a href="https://www.nicedocu.com/web/supplier/" target="_black">나이스다큐-건설 기업용</a>
+                    </li>
+                    <li>
+                        <a href="http://logis.nicedocu.com" target="_black">나이스다큐-물류 기업용</a>
+                    </li>
+                    <li>
+                        <a href="https://nfc.nicedocu.com" target="_black">나이스다큐-프랜차이즈 기업용</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="page-top-btn">TOP</button>
+        </div>
+    </div>
+    <div class="page-footer-info">
+        <div class="page-footer-info-inner">
+            <p class="footer-logo"><img src="../html/images/common/footer_logo.png"></p>
+            <ul>
+                <li>NICE 데이터(주)</li>
+                <li>대표자 : 강용구</li>
+                <li>통신판매업 신고번호 : 제2012-서울구로-1033호</li>
+                <li>사업자등록번호 : 107-87-08207</li>
+                <li>서울시 서대문구 충정로 36(충정로3가)</li>
+                <li>TEL : 02-788-9097</li>
+                <li>FAX : 02-6442-2383</li>
+            </ul>
+            
+        </div>
+    </div>
+</div>
+<!-- footer end -->
+
+<script>
+//개인정보 보호정책
+function fPopupPrivacy(){
+    window.open("/web/supplier/html/main/privacy_pop.html", "privacy", "left=0,top=0,width=680,height=700,scrollbars=yes");
+    return;
+}
+
+function family_btn(){
+	$( ".page-footer-family-btn" ).click(function() {
+		if ($('.page-footer-family-btn').hasClass('active')){
+			$('.page-footer-family-btn').removeClass('active');
+			$(".page-footer-family-list").slideToggle();
+		}
+		else {
+			$('.page-footer-family-btn').addClass('active');
+			$(".page-footer-family-list").slideToggle();
+		}
+	});
+}
+$(document).ready(function(){
+	family_btn();
+}
+);
+</script>
+<script language="javascript" type="text/javascript" src="../html/js/jquery/ui.js"></script>

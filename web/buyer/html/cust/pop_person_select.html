@@ -1,0 +1,29 @@
+<div class="div_table">
+    <table id="person_table">
+    <colgroup>
+        <col width="60%">
+        <col width="40%">
+    </colgroup>
+    <tr>
+        <tH>부서</tH>
+        <tH>이름</tH>
+    </tr>
+    <!-- LOOP START 'person' -->
+    <tr id="row_{{person.person_seq}}" onclick="personSelect('{{person.person_seq}}', '{{person.field_name}} / {{person.user_name}}')"  style="cursor:pointer">
+        <td align="center">{{person.field_name}}</td>
+        <td align="center">{{person.user_name}}</td>
+    </tr>
+    <!-- LOOP END 'person' -->
+    <!-- IFNOT START 'person' -->
+    <tr>
+        <td align="center" colspan="2">담당자가 없습니다.</td>
+    </tr>
+    <!-- IFNOT END 'person' -->
+    </table>
+
+<script language="javascript">
+function personSelect(seq, info){
+	opener.sel_person_Info(seq, info);
+	self.close();
+}
+</script>

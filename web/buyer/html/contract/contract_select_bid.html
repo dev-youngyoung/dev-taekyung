@@ -1,0 +1,88 @@
+<form name="form1" method="get">
+<div class="search_div">
+	<table class="search_table">
+	  <colgroup>
+	    <col width="13%">
+		<col width="32%">
+		<col width="13%">
+		<col width="32%">
+		<col width="10%">
+	  </colgroup>
+	  <tr>
+	    <th><p>입찰건명</p></th>
+	    <td><input type="text" name="s_bid_name" maxlength="30" style="width:95%"></td>
+	    <th><p>낙찰업체명</p></th>
+	    <td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+	    <td align="right">
+	      <button type="submit" class="search_btn">검색</button>
+	    </td>
+	  </tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+<br/>
+<form name="form2" method="get">
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="8%">
+			<col width="*">
+			<col width="15%">
+			<col width="15%">
+			<col width="16%">
+			<col width="12%">
+		</colgroup>
+		<tr>
+			<th>유형</th>
+			<th>입찰건명</th>
+			<th>낙찰업체명</th>
+			<th>낙찰금액</th>
+			<th>계약서종류</th>
+			<th>작성</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
+			<td align="center">{{list.bid_kind_cd}}</td>
+			<td>{{list.bid_name}}</td>
+			<td>{{list.member_name}}</td>
+			<td align="right">{{list.total_cost}}</td>
+			<td align="center">
+				<select name="template_cd_{{list.bid_no}}_{{list.bid_deg}}_{{list.member_no}}" style="width:140px;">
+					<option value="">-선택-</option>
+					<!-- LOOP START 'template' -->
+					<option value="{{template.template_cd}}">{{template.template_name}}</option>
+					<!-- LOOP END 'template' -->
+				</select>
+			</td>
+			<td align="center"><button type="button" class="sbtn ico-pencil auth_css" onclick="goWrite('{{list.bid_no}}','{{list.bid_deg}}','{{list.member_no}}')"><span></span>작성</button></td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="6">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+</form> 
+<script language="javascript">
+function goWrite(bid_no, bid_deg, member_no){
+	var f = document.forms['form2'];
+	var template_cd = f['template_cd_'+bid_no+'_'+bid_deg+'_'+member_no].value; 
+	if( template_cd == ""){
+		alert("계약서식을 선택 하세요.");
+		f['template_cd_'+bid_no+'_'+bid_deg].focus();
+		return;
+	}
+	var url = "contract_insert.jsp?";
+	    url+= "template_cd="+template_cd;
+	    url+= "&bid_no="+bid_no;
+	    url+= "&bid_deg="+bid_deg
+	    url+= "&supp_member_no="+member_no;
+	location.href = url;
+}	
+</script>

@@ -1,0 +1,22 @@
+<div class="div_table">
+	<div class="util-row" style="border-bottom: 1px solid black">
+	    <div class="push-left">
+			<!-- IFC START 'search_type==C' -->
+			<span class="tab_on" id="tab_0" onClick="location.href='pop_search_company.jsp?search_type=C&sign_seq={{sign_seq}}" style="width:100;padding-top:6">사업자</span>
+			<span class="tab_off" id="tab_1" onClick="location.href='pop_search_person.jsp?search_type=P&sign_seq={{sign_seq}}'" style="width:100;padding-top:6">개인</span>
+			<!-- IFC END 'search_type==C' -->
+			<!-- IFC START 'search_type==P' -->
+			<span class="tab_off" id="tab_0" onClick="location.href='pop_search_company.jsp?search_type=C&sign_seq={{sign_seq}}'" style="width:100;padding-top:6">사업자</span>
+			<span class="tab_on" id="tab_1" onClick="location.href='pop_search_person.jsp?search_type=P&sign_seq={{sign_seq}}'" style="width:100;padding-top:6">개인</span>
+			<!-- IFC END 'search_type==P' -->
+		</div>
+	</div>
+</div>
+
+<!-- IFC START 'search_type==C' -->
+	<!-- INCLUDE FILE 'contract/pop_search_company.html' -->
+<!-- IFC END 'search_type==C' -->
+
+<!-- IFC START 'search_type==P' -->
+	<!-- INCLUDE FILE 'contract/pop_search_person.html' -->
+<!-- IFC END 'search_type==P' -->

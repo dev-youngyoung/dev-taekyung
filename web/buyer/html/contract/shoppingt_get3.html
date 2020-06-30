@@ -1,0 +1,87 @@
+<form name="form1" method="get">
+
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="20%"/>
+    <col width="30%"/>
+    <col width="50%"/>
+  </colgroup>
+  <tr>
+    <th><p>사업자번호</p></th>
+    <td><input type="text" name="s_indo" maxlength="30" style="width:95%"></td>
+    <td align="right">
+      <button type="submit" class="search_btn">검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+
+
+<form name="form2" method="get">
+<div class="div_table">
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※사업자번호를 입력후 검색 하세요.</span>
+	</div>
+</div>
+<table>
+	<colgroup>
+		<col width="15%">
+		<col width="">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+	</colgroup>
+	<tr>
+		<th>업체코드</th>
+		<th>업체명</th>
+		<th>사업자번호</th>
+		<th>이행보증기간</th>
+		<th></th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.entpCode}}</td>
+		<td align="center">{{list.entpName}}</td>
+		<td align="center">{{list.sIdno}}</td>
+		<td align="center">{{list.insuranceBdate}}<br>~{{list.insuranceEdate}}</td>
+		<td align="center">
+			<input type="hidden" name="entpCode_{{list.entpCode}}" value="{{list.entpCode}}"/>
+			<input type="hidden" name="entpName_{{list.entpCode}}" value="{{list.entpName}}"/>
+			<input type="hidden" name="sIdno_{{list.entpCode}}" value="{{list.sIdno}}"/>
+			<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.entpCode}}');"><span></span>선택</button>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td align="center" colspan="5">조회 결과가 없습니다.</td>
+	</tr>
+<!-- IFNOT END 'list' -->
+</table>
+
+
+</div>
+</form>
+
+<script language="javascript">
+
+attachOnload(function(){resizeTo(850,600)});
+
+function addCompany(seq){
+	var f= document.forms['form2'];
+	var arr = null;
+	arr = new Array(
+		f['entpCode_'+seq].value
+	   ,f['sIdno_'+seq].value
+	);
+
+	//console.log(arr);
+	opener.addEntp(arr);
+	self.close();
+}
+</script>

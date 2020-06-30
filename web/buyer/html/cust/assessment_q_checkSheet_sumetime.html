@@ -1,0 +1,319 @@
+<style>
+.chk2
+{
+	font-family: "돋음", "Arial";
+	PADDING-TOP: 3px;
+	PADDING-LEFT: 12px;
+	BORDER-TOP: medium none;
+	BORDER-RIGHT: medium none;
+
+	FONT-SIZE: 9pt;
+	BACKGROUND-IMAGE: url(../html/images/chk2.gif);
+	PADDING-BOTTOM: 1px;
+	BORDER-LEFT: medium none;
+	WIDTH: 50px;
+	CURSOR: hand;
+	background-color: #FFFFFF;
+
+	BORDER-BOTTOM: medium none; 
+	HEIGHT: 18px
+}
+</style>
+<form name="form1" method="post" enctype="multipart/form-data">
+<input type="hidden" name="print_content">
+
+<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
+<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
+<input type="hidden" name="saveDiv" >
+<input type="hidden" name="email" >
+
+<div class="cont_warp">
+	<style type="text/css" id="__html_style">
+		.glabel {
+			color: #707070;
+			FONT-FAMILY: "돋움", "Arial";
+			FONT-SIZE: 9pt;
+			/*LINE-HEIGHT: 13pt;*/
+			border: 1px solid;
+			border-color: #d7d5ca;
+			text-align: left;
+			background-color: #ffff00;}
+		.itemtable {font-size: 11px;background-color:white;line-height:2.5em}
+		td {  font-family: "NanumGothic, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+		.lineTable { border-collapse:collapse; border:1px solid black }
+		.lineTable td { border:1px solid black }
+		.lineTable .noborder { border:0 }
+		.itemtable {font-size: 11px;background-color:white;line-height:2.5em}
+	</style>
+
+	<div id="__html">
+		<div style="padding-top: 10px" id="__html_0">
+			{{assessment.asse_html}}
+		</div>
+	</div>
+</div>
+</form>
+<div class="btn-group-wrap">
+	<!-- IF START 'del' -->
+	<button type="button" value="이전단계로" class="btn color ico-prev" onclick="del()" ><span></span>이전단계로</button>
+	<!-- IF END 'del' -->
+
+	<!-- IF START 'modify' -->
+	<button type="button" value="임시저장" class="btn color ico-save" onclick="save('20')" ><span></span>임시저장</button>
+	<button type="button" value="평가완료" class="btn color ico-confirm" onclick="save('50')" ><span></span>평가완료</button>
+	<button type="button" value="결과전송" class="btn color ico-request" onclick="save('90')" ><span></span>결과전송</button>
+	<button type="button" value="인쇄" class="btn color ico-print" onclick="print()"><span></span>인쇄</button>
+	<button type="button" value="목록으로" class="btn color ico-list" onclick="javascript:history.back()"><span></span>목록으로</button>
+	<!-- IF END 'modify' -->
+	<!-- IFNOT START 'modify' -->
+	<button type="button" value="결과전송" class="btn color ico-request" onclick="save1('90')" ><span></span>결과전송</button>
+	<button type="button" value="인쇄" class="btn color ico-print" onclick="print()"><span></span>인쇄</button>
+	<button type="button" value="목록으로" class="btn color ico-list" onclick="javascript:history.back()"><span></span>목록으로</button>
+	<!-- IFNOT END 'modify' -->
+</div>
+
+<form name="form2" method="post" action="assessment_delete.jsp">
+	<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
+	<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
+	<input type="hidden" name="mstatus" value="{{assessment.status}}" >
+	<input type="hidden" name="mode" value="10">
+	<input type="hidden" name="ret" value="assessment_checking_qlist.jsp">
+</form>
+
+<script language="javascript">
+
+    var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+    function hex(x) {
+        return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+    }
+
+    function selectCheck(div){
+
+        if(div=="20") return true; // 임시저장은 선택값 다 입력안해도 저장 가능하도록
+
+        for(var i=1; i<16; i++){
+            var checkYn = "n";
+            for(var j=1; j<=5; j++){
+                var checkItem = $("#operationitem"+i+"_"+j).css("background-color");
+                console.log(checkItem);
+                if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
+                    checkYn = "y";
+                    break;
+                }
+            }
+            if(checkYn == "n"){
+                alert("일반 평가항목을 모두 선택해주세요");
+                return;
+            }
+        }
+
+        return true;
+    }
+
+    function onItemSet(obj, sheetId){
+        <!-- IF START 'modify' -->
+        var itemPoint = 0;
+        var onClickCurId = $(obj).attr("id");
+        var arryItem = onClickCurId.split("_");
+        var itemId = arryItem[0];
+        var itemSeq = arryItem[1];
+
+        if($(obj).css("background-color")=="yellow" || $(obj).css("background-color")=="rgb(255, 255, 0)"){
+            $(obj).css("background-color","white");
+            itemPoint = 0;
+        }else{
+            for(var i=1; i<6; i ++){
+                $("#"+itemId+"_"+i).css("background-color","white");
+            }
+            $(obj).css("background-color","yellow");
+            if(itemSeq == "1"){
+                itemPoint = 5.0;
+            }else if(itemSeq == "2"){
+                itemPoint = 4.0;
+            }else if(itemSeq == "3"){
+                itemPoint = 3.0;
+            }else if(itemSeq == "4"){
+                itemPoint = 2.0;
+            }else{
+                itemPoint = 1.0;
+            }
+        }
+
+        $("#"+itemId).html(itemPoint);	//평점
+        var sheetNm = "";
+        var rowCnt = 0;
+        if(sheetId == "1"){	//일반사항
+            sheetNm = "operationitem";
+            rowCnt = 16;
+        }
+        sumSafetyItemPoint(sheetNm, rowCnt);
+        culRatingPoint();
+        <!-- IF END 'modify' -->
+    }
+
+    function emptyCheck(){
+        var projectItemPoint = $("#projectItemPoint").val();
+        if(projectItemPoint == ""){
+            $("#projectItemPoint").val("0");
+        }
+    }
+
+    function sumSafetyItemPoint(sheetNm, rowCnt){
+
+        var sumPoint = 0;
+        for(var i=1; i<rowCnt; i++){
+            sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//항목평가 점수
+        }
+        $("#"+sheetNm+"SumPoint").html(sumPoint.toFixed(1));
+
+    }
+
+
+    function openQcInspection(){
+        var f = document.forms['form1'];
+        var asse_no = f['asse_no'].value;
+        var nWidth = "900";
+        var nHeight = "600";
+        var xPos = 0;
+        var yPos = 0;
+        var adjX = xPos ? xPos : (window.screen.width/2 - nWidth/2);
+        var adjY = yPos ? yPos : (window.screen.height/2 - nHeight/2 - 50);
+        var qResult = window.open( "pop_qc_inspection.jsp?asse_no={{assessment.asse_no}}", 'pop_qc_inspection', "width="+nWidth+", height="+nHeight+",left="+adjX+",top="+adjY+",toolbar=no,status=yes,scrollbars=yes,resizable=yes");
+        qResult.focus();
+        //popup_callback(resultTotalPoint);
+    }
+
+    function popup_callback(resultTotalPoint){
+        if(resultTotalPoint != null ||  typeof resultTotalPoint == "undefined"){
+            $("#inspectionitem1").html(resultTotalPoint);
+            culRatingPoint();
+        }
+    }
+
+    //현장선택
+    function fSelProject(result)
+    {
+        var form = document.form1;
+        if (result != null)
+        {
+            form.project_name.value = result[1];
+        }
+    }
+
+    function culRatingPoint(){
+
+        var totalPoint = 0;	//최종점수
+        var totalRating = 0;
+        var operationSumPoint = parseFloat($("#operationitemSumPoint").html());	//일반사항 중간합계
+        var projectItemPoint = parseFloat($("#inspectionitem1").html()==""?"0":$("#inspectionitem1").html());		//제품평균점수
+        totalPoint = operationSumPoint + projectItemPoint;		//합산(최종점수)
+        totalRating = Number(operationSumPoint / 5) + projectItemPoint;
+
+        $("#rating").val(totalRating);
+        $("#point").val(totalPoint.toFixed(1));
+        $("#totalRating").html(totalRating.toFixed(1));
+    }
+
+    function save1(div){
+
+        var f = document.forms['form1'];
+        f.action = 'assessment_result_sendmail_qc.jsp?asse_no={{assessment.asse_no}}';
+        var message = "결과 전송 하시겠습니까?";
+        if(confirm(message)){
+            //fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 700);
+            OpenWindow("pop_sendEmailSet.jsp", "sendEmailSet", 450, 250);
+        }
+    }
+
+    function save(div){
+
+        var f = document.forms['form1'];
+        f['saveDiv'].value = div;
+        if(selectCheck(div)){
+            if(validate(f)){
+                var d = f['date'].value;
+                if(!isDateFormat(d)) {
+                    alert("YYYY-MM-DD 평가일를 확인해주세요.");
+                    f['date'].focus();
+                    return false;
+                }
+                if(div == "50"){
+                    if(document.getElementById("inspectionitem1")){
+                        if(document.getElementById("inspectionitem1").innerHTML == ""){
+                            alert("DataBase평가점수를 입력 하세요.");
+                            return;
+                        }
+                    }
+                }
+                var message = "";
+                if(div == "20"){	//임시저장
+                    message = "임시 저장 하시겠습니까?";
+                }else if(div == "50"){
+                    message = "평가 완료 하시겠습니까?";
+                }else if(div == "90"){
+                    message = "평가 완료 후 결과 전송 하시겠습니까?";
+                }
+                if(confirm(message)){
+                    setDivInputValue("__html");
+                    splitHtml(f, 'doc_html', false);
+                    //alert(f['sector'].value);		//소속
+                    //alert(f['assessor'].value);	//평가원
+                    if(div == "90"){
+                        //fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 680);
+                        OpenWindow("pop_sendEmailSet.jsp", "sendEmailSet", 450, 250);
+                    }else{
+                        f.submit();
+                    }
+                }
+            }
+        }
+    }
+
+    function del(){
+        var f = document.forms['form2'];
+        var message = "";
+        if(f['mstatus'].value == "20")  // 평가중 -> 평가대상
+        {
+            message = "다시 평가대상 등록을 하시겠습니까?\n평가 진행중인 모든 기록이 삭제됩니다.";
+        }
+        else if(f['mstatus'].value == "50")  // 평가완료 -> 평가중
+        {
+            message = "다시 평가할 수 있도록 [평가중] 상태로 돌리시겠습니까?";
+        }
+
+        if(confirm(message)){
+            f.submit();
+        }
+
+    }
+
+    function isDateFormat(d) {
+        var df = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+        return d.match(df);
+    }
+
+    function popuphelp(){	//도움말 팝업
+        OpenWindows('pop_qc_helt.jsp','qc_helt', '1000','700');
+    }
+
+    function print(){
+        var f = document.forms['form1'];
+        removeInput(document.getElementById("__html_0"), f['print_content']);
+        var printPop = window.open("","_blank","width=748, height=700");
+        var html = "<html><head>"+$('head').html()+"<style type='text/css'>"+$("#__html_style").html()+"</style></head><body>"+ f['print_content'].value+"</body></html>"
+        printPop.document.write(html);
+        printPop.document.close();
+        printPop.print();
+        //printPop.close();
+    }
+</script>
+
+<script language="javascript">
+    // 초기값
+    <!-- IFC START 'assessment.dstatus==20' -->
+    SetFormValue("form1","date","{{cur_date}}");
+    //replaceInput("{{cur_date}}", "write_date", document.all.__html);  // 작성일
+    //SetFormValue("form1","maker","{{assessment.member_name}}");
+    <!-- IFC END 'assessment.dstatus==20' -->
+</script>

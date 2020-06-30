@@ -1,0 +1,117 @@
+<form novalidate name="form1" method="get">
+<input type="hidden" name="mode" />
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="13%">
+    <col width="30%">
+    <col width="13%">
+    <col width="29%">
+    <col width="15%">
+  </colgroup>
+  <tr>
+    <th><p>공고일자</p></th>
+    <td>
+		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+    </td>
+    <th><p>청구상태</p></th>
+    <td>
+		<select name="s_status">
+			<!-- LOOP START 'code_status' -->
+			<option value="{{code_status.id}}">{{code_status.name}}</option>
+			<!-- LOOP END 'code_status' -->
+		</select>
+    </td>
+  </tr>
+  <tr>
+	<th><p>발주사</p></th>
+    <td><input type="text" name="s_main_member_name"  style="width:95%"></td>
+	<th><p>낙찰업체</p></th>
+    <td><input type="text" name="s_member_name"  style="width:95%"></td>
+    <td align="right">
+       <button type="submit" class="btn color ico-search"><span></span>검색</button>
+    </td>    
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+
+
+ <div class="div_table">
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <colgroup>
+    <col width="35%">
+    <col width="25%">
+    <col width="15%">
+    <col width="15%">
+    <col width="10%">
+  </colgroup>
+  <tr>
+    <th>공고정보</th>
+    <th>낙찰업체</th>
+    <th>낙찰금액</th>
+    <th>수수료</th>
+    <th>청구상태</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+  <tr>
+	<td>
+	{{list.main_member_name}}<br>
+	{{list.bid_name}}<br>
+	(공고일자 : {{list.bid_date}})<br>
+	(입찰종료일 : {{list.bid_end_date}})
+	<td>
+		{{list.member_name}}<br>
+		{{list.user_name}}<br>
+		{{list.hp1}}-{{list.hp2}}-{{list.hp3}}<br>
+		{{list.email}}
+		
+	</td>
+	<td align="right">{{list.total_cost}}</td>
+	<td align="right">{{list.succ_pay_amt}}</td>
+	<td align="center">{{list.status_nm}}</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="7" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ 
+ <div class="common-paging">{{pagerbar}}</div>
+
+ <script language="javascript">
+ function fSearch(){
+ 	var f = document.forms['form1'];
+ 	f['mode'].value="";
+ 	f.submit();
+ }
+ 
+ function fWrite(){
+	OpenWindow('pop_bid_pay_insert.jsp','pop_pay_insert', '600', '500');
+ }
+
+ function fDownExcelSales(){
+     var f = document.forms['form1'];
+     f['mode'].value="excel";
+     f.submit();
+ }
+
+ function fDownExcelCust(){
+     var f = document.forms['form1'];
+     if(f['s_member_name'].value=='') {
+         alert('업체명을 입력해 주세요');
+         return;
+     }
+     f.action = "./pay_info_list_excel.jsp";
+     f.submit();
+     f.action = "./pay_list.jsp"
+ }
+ </script>

@@ -1,0 +1,198 @@
+	
+<!-- IF START 'view_gap_pds' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>발신 알림방<span class="caution-text">(※ 등록된 자료는 귀사와 거래하는 협력업체만 조회됩니다.)</span></h3>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="60%">
+			<col width="15%">
+			<col width="15%">
+		</colgroup>
+		<tr>
+			<th>NO</th>
+			<th>제목</th>
+			<th>등록자</th>
+			<th>등록일자</th>
+		</tr>
+		<!-- LOOP START 'gap_pds' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;"
+		 onclick="location.href='../center/my_pds_modify.jsp?seq={{gap_pds.seq}}'">
+			<td align="center">{{gap_pds.__ord}}</td>
+			<td align="left">{{gap_pds.title}}</td>
+			<td align="center">{{gap_pds.user_name}}</td>
+			<td align="center">{{gap_pds.reg_date}}</td>
+		</tr>
+		<!-- LOOP END 'gap_pds' -->
+		<!-- IF START 'gap_pds' -->
+		 <tr><td colspan="4" align="center"><a href="../center/my_pds_list.jsp">알림방 내용 더보기...</a></td></tr>
+		<!-- IF END 'gap_pds' -->
+		<!-- IFNOT START 'gap_pds' -->
+		 <tr><td colspan="4" align="center">등록된 자료가 없습니다.</td></tr>
+		<!-- IFNOT END 'gap_pds' -->
+	</table>
+</div>
+<!-- IF END 'view_gap_pds' -->
+<!-- IF START 'view_eul_pds' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>수신 알림방<span class="caution-text">(※ 귀사와 거래 하는 업체에서 공지한 내용 입니다.)</span></h3>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="20%">
+			<col width="50%">
+			<col width="20%">
+		</colgroup>
+		<tr>
+			<th>NO</th>
+			<th>거래처</th>
+			<th>제목</th>
+			<th>등록일자</th>
+		</tr>
+		<!-- LOOP START 'eul_pds' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;"
+		 onclick="location.href='../center/cust_pds_view.jsp?member_no={{eul_pds.member_no}}&seq={{eul_pds.seq}}'">
+			<td align="center">{{eul_pds.__ord}}</td>
+			<td align="left">{{eul_pds.member_name}}</td>
+			<td align="left">{{eul_pds.title}}</td>
+			<td align="center">{{eul_pds.reg_date}}</td>
+		</tr>
+		<!-- LOOP END 'eul_pds' -->
+		<!-- IF START 'eul_pds' -->
+		 <tr><td colspan="4" align="center"><a href="../center/cust_pds_list.jsp">알림방 내용 더보기 ...</a></td></tr>
+		<!-- IF END 'eul_pds' -->
+		<!-- IFNOT START 'eul_pds' -->
+		 <tr><td colspan="4" align="center">등록된 자료가 없습니다.</td></tr>
+		<!-- IFNOT END 'eul_pds' -->
+	</table>
+</div>
+<!-- IF END 'view_eul_pds' -->
+<!-- IF START 'view_slist' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>발신 To-Do List</h3>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="65%">
+			<col width="20%">
+		</colgroup>
+		<tr>
+			<th>업무구분</th>
+			<th>업무명</th>
+			<th>상태</th>
+		</tr>
+		<!-- LOOP START 'slist' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;" onclick="location.href='{{slist.link}}'">
+			<td align="center">{{slist.gubun}}</td>
+			<td align="left">{{slist.name}}</td>
+			<td align="center">{{slist.status_nm}}</td>
+		</tr>
+		<!-- LOOP END 'slist' -->
+		<!-- IFNOT START 'slist' -->
+		<tr>
+			<td align="center" colspan="3">진행중인 업무가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'slist' -->
+	</table>
+</div>
+<!-- IF END 'view_slist' -->
+
+<!-- IF START 'view_rlist' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>수신 To-Do List</h3>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="20%">
+			<col width="45%">
+			<col width="20%">
+		</colgroup>
+		<tr>
+			<th>업무구분</th>
+			<th>거래처</th>
+			<th>업무명</th>
+			<th>상태</th>
+		</tr>
+		<!-- LOOP START 'rlist' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;" onclick="location.href='{{rlist.link}}'">
+			<td align="center">{{rlist.gubun}}</td>
+			<td align="left">{{rlist.client_name}}</td>
+			<td align="left">{{rlist.name}}</td>
+			<td align="center">{{rlist.status_nm}}</td>
+		</tr>
+		<!-- LOOP END 'rlist' -->
+		<!-- IFNOT START 'rlist' -->
+		<tr>
+			<td align="center" colspan="4">진행중인 업무가 없습니다.</td>
+		</tr>
+	<!-- IFNOT END 'rlist' -->
+	</table>
+</div>
+<!-- IF END 'view_rlist' -->
+
+<!-- IF START 'eul_block' -->
+
+<div class="help-content">
+    <h3>NOTICE<span>유용한 정보! 사용전에 알아두세요~ </span></h3>
+    <div class="help-content-body">
+    	<ul>
+			<li>
+				 견적, 입찰, 계약, 채권 업무 진행을 위한 거래 상대방 추가 <br/>
+				상단 '거래업체관리' 메뉴 클릭 → 좌측 '거래처등록관리' 메뉴에서 거래 상대방을 추가 하세요.
+				<button type="button" name="btn_field" style="float: right;" class="sbtn color ico-search" onclick="location.href='/web/buyer/cust/cust_list.jsp';"><span></span> 바로가기</button>
+				<br/>
+				<br/>
+			</li>
+		</ul>
+		<ul>	
+			<li>
+				전자서명을 위한 공인인증서 등록 <br/>
+				입찰서 제출 및 계약서, 채권잔액확인서에 전자서명을 하려면 공인인증서를 등록 해야만 합니다.<br/>
+				상단 '회사정보수정' 메뉴 클릭 → 좌측 '회사정보변경' 메뉴를 클릭하여 인증서를 등록하세요.<br/>
+				<button type="button" name="btn_field" style="float: right;" class="sbtn color ico-search" onclick="location.href='/web/buyer/info/company_modify.jsp';"><span></span> 바로가기</button><br/>
+				공인인증서가 없는 경우 로그인 전 나이스다큐 메인 화면의 우측 하단 '공인인증서 신규/갱신 발급' 배너를 클릭하여 발급<br>
+				<font color="blue"> 개인사업자인 경우 계약서 종류에 따라 사업자용 공인인증서가 아닌 개인 범용 공인인증서를 사용하는 경우가 있습니다.<br>
+				<u>개인 범용 공인인증서 사용 유무는 계약 상대방 업체에 문의를 해주시기 바랍니다.</u></font>
+			</li>
+		</ul>	
+    </div>
+</div>
+<!-- IF END 'eul_block' -->
+		
+<script language="javascript">
+ 
+// if ( GetCookie("chk_vouchar_b")!="done") { 
+	//OpenWindows('http://www.nicedocu.com/web/buyer/layout/vauchar.jsp?member_no={{_auth._MEMBER_NO}}&user_id={{_auth._USER_ID}}','vouchar',1200,750);
+//}  
+
+<!-- IF START 'cert_msg' -->
+//alert("{{cert_msg}}");
+<!-- IF END 'cert_msg' -->
+
+
+<!-- IFNOT START 'gap_block' -->
+//협력업체 모집공고 팝업
+//if(GetCookie("recruit1")!="done"){
+//	fLayerPop('recruit1',"/web/buyer/html/cust/pop_recruit_noti.html" ,552,652,450,1);
+//}
+<!-- IFNOT END 'gap_block' -->
+
+</script>
+</body>
+</html>

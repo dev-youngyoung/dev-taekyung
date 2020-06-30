@@ -1,0 +1,191 @@
+<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+<input type="hidden" name="mode">
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="13%"/>
+    <col width="30%"/>
+    <col width="13%"/>
+    <col width="34%"/>
+    <col width="10%"/>
+  </colgroup>
+  <tr>
+	<th><p>계약일자</p></th>
+	<td>
+		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	</td>
+	<th><p>계약상태</p></th>
+	  <td>
+		  <select name="s_status">
+			  <option value="">전체</option>
+			  <!-- LOOP START 'code_status' -->
+			  <option value="{{code_status.id}}">{{code_status.value}}</option>
+			  <!-- LOOP END 'code_status' -->
+			  <option value="00">숨김</option>
+		  </select>
+	  </td>
+  </tr>
+  <tr>
+  	<th><p>과금업체</p></th>
+    <td><input type="text" name="s_member_name" value="" maxlength="100"  style="width:98%"></td>
+    <th><p>거래처</p></th>
+    <td><input type="text" name="s_client_name" value="" maxlength="100"  style="width:98%"></td>
+    <td></td>    
+  </tr>
+  <tr>
+    <th><p>계약명</p></th>
+    <td colspan="3"><input type="text" name="s_cont_name" value="" maxlength="100" style="width:99%"></td>
+    <td align="right" valign="bottom">
+		<button type="submit" class="btn color ico-search"><span></span>검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+ <div class="div_table">
+ <div class="util-row">
+    <div class="push-right">
+    	계약건수 :{{tot_cnt}}건
+    </div>
+ </div>
+ <table>
+  <colgroup>
+  	<col width="25%">
+  	<col width="14%">
+  	<col width="14%">
+  	<col width="9%">
+  	<col width="8%">
+  	<col width="13%">
+  	<col width="7%">
+  </colgroup>
+  <tr>
+    <th>계약번호계약명</th>
+    <th>과금업체</th>
+    <th>거래처</th>
+    <th>계약일자</th>
+    <th>상태</th>
+    <th>상태변경</th>
+    <th>결제</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+  <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer">
+	<td>
+		{{list.str_cont_no}}-{{list.cont_chasu}}
+		<button type="button" class="sbtn color" onclick="toclip('info_{{list.str_cont_no}}_{{list.cont_chasu}}')">JIRA</button>
+		<div id="info_{{list.str_cont_no}}_{{list.cont_chasu}}" style="display: none">
+		계약번호:{{list.str_cont_no}}-{{list.cont_chasu}}
+		계약명 : {{list.cont_name}}
+		과금업체:{{list.member_name}}
+		작성자:{{list.reg_id}}
+		거래처:{{list.client_name}}
+		</div> 
+		<br><a onclick="OpenWindow('pop_contract_view.jsp?cont_no={{list.str_cont_no}}&cont_chasu={{list.cont_chasu}}', 'pop_contract_view', 800, 500, 0, 0);"  >{{list.cont_name}}</a>
+	</td>
+	<td>{{list.member_name}}<br>( {{list.field_name}}-{{list.reg_id}} )</td>
+	<td>
+		{{list.client_name}}<br>( {{list.client_id}} )
+		<!-- IF START 'list.client_names' -->
+		<br>[ {{list.client_names}} ]
+		<!-- IF END 'list.client_names' -->
+	</td>
+	<td align="center">{{list.cont_date}}</td>
+	<td align="center">{{list.status_name}}</td>
+	<td align="left">
+		<table class="inner_table" style="border:0px">
+			<colgroup><col width="50%"><col width="50%"></colgroup>
+			<tr>
+				<td style="padding:1px;border:0px" align="center">
+				<!-- IF START 'list.btn_writing' -->
+				 <button type="button" class="sbtn color" onclick="chgStatus('writing','{{list.cont_no}}','{{list.cont_chasu}}')">작성</button>
+				<!-- IF END 'list.btn_writing' --> 
+				</td>
+				<td style="padding:1px;border:0px" align="center">
+				<!-- IF START 'list.btn_finish' -->
+				 <button type="button" class="sbtn color" onclick="chgStatus('finish','{{list.cont_no}}','{{list.cont_chasu}}')">완료</button>
+				<!-- IF END 'list.btn_finish' -->  
+				</td>
+			</tr>
+			<tr>
+				<td style="padding:1px;border:0px" align="center">
+				<!-- IF START 'list.btn_hide' -->
+				 <button type="button" class="sbtn color" onclick="chgStatus('hide','{{list.cont_no}}','{{list.cont_chasu}}')">숨김</button>
+				<!-- IF END 'list.btn_hide' --> 
+				</td>
+				<td style="padding:1px;border:0px" align="center">
+				 <button type="button" class="sbtn color" onclick="contDelete('{{list.cont_no}}','{{list.cont_chasu}}')">삭제</button> 
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td align="left">
+		<table class="inner_table" style="border:0px">
+		<tr>
+			<td style="padding:1px;border:0px" align="center">
+				<!-- IF START 'list.btn_won_pay' -->
+				<button type="button" class="sbtn color" onclick="chgPay('won','{{list.cont_no}}','{{list.cont_chasu}}','{{list.member_no}}')">원</button>
+				<!-- IF END 'list.btn_won_pay' -->
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:1px;border:0px" align="center">
+				<!-- IF START 'list.btn_su_pay' -->
+				<button type="button" class="sbtn color" onclick="chgPay('su','{{list.cont_no}}','{{list.cont_chasu}}','{{list.client_no}}')">수</button>
+				<!-- IF END 'list.btn_su_pay' -->
+			</td>
+		</tr>
+		</table>
+	</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="7" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ <div class="common-paging">{{pagerbar}}</div>
+
+
+<script>
+function chgStatus(gubun,cont_no,cont_chasu){
+	var msg = "";
+	if(gubun == "writing")msg = "작성중상태로 변경 처리 하시겠습니까?";
+	if(gubun == "finish")msg = "완료상태로 변경 처리 하시겠습니까?";
+	if(gubun == "hide")msg = "계약서 숨김상태로 변경 처리 하시겠습니까?";
+	var url = "contract_chg_status.jsp?{{list_query}}&cont_no="+cont_no+"&cont_chasu="+cont_chasu;
+	if(confirm(msg)){
+		url += "&gubun="+gubun;
+		location.href= url ;
+	}
+}
+
+function contDelete(cont_no, cont_chasu){
+	if(confirm('삭제시 복구 할 수 없습니다.\n\n삭제처리 하시겠습니까?')){
+		location.href="contract_delete.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&{{list_query}}";
+	}
+}
+
+function chgPay(gubun, cont_no, cont_chasu, member_no){
+	if(gubun == "won") msg = "원사업자";
+	if(gubun == "su") msg = "수급사업자"
+	if(confirm(msg + ' 계약수수료 무료처리 하시겠습니까?')){
+		location.href="contract_chg_pay.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&member_no="+member_no+"&{{list_query}}";
+	}
+}
+function formSubmit(f){
+	f['mode'].value="";
+	return true;
+}
+
+function excel(){
+	var f = document.forms["form1"];
+	f['mode'].value="excel";
+	f.submit();
+}
+</script>

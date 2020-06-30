@@ -1,0 +1,154 @@
+<form name="form1" method="post" enctype="multipart/form-data" action="rfile_insert.jsp?{{query}}" onsubmit="return formSubmit(this);">
+<input type="hidden" name="from_page" value="company_view.jsp"/>
+
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <h3>업체정보</h3>
+        </div>
+    </div>
+    <table>
+      <colgroup>
+        <col width="17%">
+        <col width="33%">
+        <col width="17%">
+        <col width="33%">
+      </colgroup>
+      <tr>
+        <th>사업자구분</th>
+        <td colspan="3">{{member.member_gubun_name}}</td>
+      </tr>
+      <tr>
+        <th>사업자번호</th>
+        <td>{{member.vendcd}}</td>
+        <th>법인번호</th>
+        <td>{{member.member_slno}}</td>
+      </tr>
+      <tr>
+        <th>업체명</th>
+        <td>{{member.member_name}}</td>
+        <th>대표자명</th>
+        <td>{{member.boss_name}}</td>
+      </tr>
+      <tr>
+        <th>업태</th>
+        <td>{{member.condition}}</td>
+        <th>종목</th>
+        <td>{{member.category}}</td>
+      </tr>
+      <tr>
+        <th>주소</th>
+        <td colspan="3">
+          ({{member.post_code}})&nbsp;&nbsp;
+          {{member.address}}
+        </td>
+      </tr>
+    </table>
+</div>
+
+<!-- IF START 'rfile' -->
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <h3>구비서류</h3>
+        </div>
+    </div>
+    <table id="rfile_grid">
+        <colgroup>
+            <col width="8%"/>
+            <col width="67%"/>
+            <col width="25%"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>필수여부</th>
+            <th>문서명</th>
+            <th>첨부파일</th>
+        </tr>
+        </thead>
+        <tbody>
+            <!-- LOOP START 'rfile' -->
+            <tr>
+                <td align="center">
+                    <input type="checkbox" name="attch" {{rfile.attch}} disabled>
+                    <input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+                </td>
+                <td>{{rfile.doc_name}}</td>
+                <td align="center" id="rfile_area_{{rfile.rfile_seq}}">
+                    <!-- IFNOT START 'rfile.file_name' -->
+                    <input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
+                    <input type="file" name="rfile_{{rfile.rfile_seq}}"  hname="첨부파일" style="width:95%" allow="{{rfile.allow_ext}}"/>
+                    <input type="hidden" name="rfile_required" value="{{rfile.attch_yn}}"/>
+                        <!-- IF START 'rfile.allow_ext' -->
+                    <br><span class="caution-text"> ※ {{rfile.allow_ext}} 파일만 첨부 가능</span>
+                        <!-- IF END 'rfile.allow_ext' -->
+                    <!-- IFNOT END 'rfile.file_name' -->
+                    <!-- IF START 'rfile.file_name' -->
+                    <font color="#0000ff">등록완료</font>(파일크기:{{rfile.file_size}})<br>
+                    &nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcompany','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>다운로드</button>
+                    &nbsp;<button type="button" class="sbtn ico-delete" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}','{{rfile.attch_yn}}')"><span></span>삭제</button>
+                    <!-- IF END 'rfile.file_name' -->
+                </td>
+            </tr>
+            <!-- LOOP END 'rfile' -->
+        </tbody>
+    </table>
+</div>
+<!-- IF END 'rfile' -->
+
+<div class="btn-group-wrap">
+    <!-- IF START 'rfile' -->
+    <button type="submit" class="btn color ico-save"><span></span>저장</button>
+    <!-- IF END 'rfile' -->
+    <!-- IF START 'btn_reg_doc' -->
+    <button type="button" class="btn color ico-save" onclick="OpenWindows('pop_reg_doc.jsp?member_no={{member_no}}&client_no={{_auth._MEMBER_NO}}','pop_reg_doc',1000,700)"><span></span>거래처등록확인원</button>
+    <!-- IF END 'btn_reg_doc' -->
+    {{recruitNoti.btn}}
+    <button type="button" class="btn color ico-list" onclick="location.href='cust_list.jsp?{{list}}'"><span></span>목록으로</button>
+</div>
+
+</form>
+{{form_script}}
+
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+		var rfile_chk = false;
+
+		if(f['rfile_required']){
+			if(f['rfile_required'].type == "hidden"){
+				if(f['rfile_required'].value == "Y" && f['rfile_'+f['rfile_seq'].value].value==''){
+					rfile_chk = true;
+				}
+			}else{
+				var rfile_cnt = f['rfile_required'].length;
+				for(var i =0; i < rfile_cnt; i++){
+					if(f['rfile_required'][i].value == "Y" && f['rfile_'+f['rfile_seq'][i].value].value==''){
+						rfile_chk = true;
+					}
+				}
+			}
+		}
+		if(rfile_chk){
+			alert("필수 구비서류를 첨부 하지 않았습니다.\n\n첨부 후 진행 하세요.");
+			return false;
+		}		
+		
+		if(confirm("저장 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function delFile(seq, file_ext, attch_yn){
+	var area = document.getElementById("rfile_area_"+seq);
+	var html = '<input type="file" name="rfile_'+seq+'"  hname="첨부파일" style="width:95%" allow="'+file_ext+'"/>';
+	    html += '<input type="hidden" name="rfile_seq" value="'+seq+'"/>';
+	    html += '<input type="hidden" name="rfile_required" value="'+attch_yn+'"/>';
+	if(file_ext !=''){
+		html += '<br><span class="caution-text"> ※ '+file_ext+' 파일만 첨부 가능</span>'
+	}
+	area.innerHTML = html;
+}
+</script>

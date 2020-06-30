@@ -1,0 +1,158 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this)">
+<input type="hidden" name="person_seq" value="{{person_seq}}">
+
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <h3>기본 정보</h3>
+        </div>
+    </div>
+
+    <table>
+        <colgroup>
+            <col width="17%">
+            <col width="37%">
+            <col width="15%">
+            <col width="31%">
+        </colgroup>
+        <tr>
+            <th>아이디</th>
+            <td colspan="3">
+                {{person.user_id}}
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호 </th>
+            <td colspan="3">
+                <input type="password" name="passwd" style="170px" maxlength="20"> (비밀번호 변경시 입력)<br>
+                <font color="gray">※ 영문, 숫자 1자 이상, 특수문자 1자 이상 포함한 8 ~ 20자리로 입력하세요.</font>
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호 확인</th>
+            <td colspan="3"><input type="password" name="passwd2" style="170px" maxlength="20"></td>
+        </tr>
+        <tr>
+            <th class="req-check">이름 </th>
+            <td colspan="3"><input type="text" name="member_name"  size="10" maxlength="30" style="width:98%"></td>
+        </tr>
+        <tr>
+            <th class="req-check">생년월일/성별</th>
+            <td  colspan="3">
+                <input type="text" name="birth_date" id="birth_date" size="10" maxlength="10" onKeyDown="num_only()" onKeyUp="dateFormat(this)">
+                <img src="../html/images/common/datepicker_icon.png"  align="absmiddle"  style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['birth_date'])" />
+                <label><input type="radio" name="gender" value="1"></label>남자 /<label><input type="radio" name="gender" value="2">여자</label>
+                &nbsp;&nbsp;<font color="gray">※ 계약서 서명시 본인인증(공인인증서) 처리목적.</font><br><b><font id="font_jumin_msg" color="#FF6C00"></font></b>
+            </td>
+        </tr>
+        <tr>
+        	<th class="req-check">휴대전화 </th>
+            <td>
+                <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
+                    <option value="">선택</option>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                </select> -
+                <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
+                <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
+            </td>
+            <th class="req-check">이메일 </th>
+            <td colspan="3"><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:98%" ></td>
+        </tr>
+        <tr>
+            <th class="req-check">주소</th>
+            <td colspan="3">
+            <input type="text" name="post_code" class="in_readonly" size="6" readonly>
+            <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>우편번호찾기</button>
+            <input type="text" name="address" style="width:98%" maxlength="150">
+            </td>
+        </tr>
+        <tr>
+            <th>공인인증서</th>
+            <td colspan="3">
+              <input type="hidden" name="hdn_orgn_data" value="nicedocu"/>
+              <input type="hidden" name="hdn_sign_data" value=""/>
+              <input type="hidden" name="cert_end_date" value="{{_auth._CERT_END_DATE}}"/>
+              <input type="hidden" name="cert_dn" value="{{_auth._CERT_DN}}"/>
+              <table style="border:0px">
+                <tr>
+                  <td  height="27px" style="border:0px">- 인증서 만료일 :
+                    <!-- IF START '_auth._CERT_END_DATE' -->
+                    <span style="color:blue">{{member.cert_end_date}}</span>
+                    <!-- IF END '_auth._CERT_END_DATE' -->
+                    <!-- IFNOT START '_auth._CERT_END_DATE' -->
+                    <span style="color:red">[미등록]</span>
+                    <!-- IFNOT END '_auth._CERT_END_DATE' -->
+                  </td>
+                  <td align="right" style="border:0px" valign="bottom"><button type="button" name="btn_update_cert" class="sbtn ico-caution" onclick="location.href='./cert_info.jsp'"><span></span>인증서 등록/갱신</button></td>
+                </tr>
+                <tr>
+                  <td height="27px" style="border:0px"><font class="caution-text">- 개인(범용)인증서를 등록해야만 전자계약 업무를 진행할 수 있습니다.</font></td>
+                </tr>
+              </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="div_table">
+  <div class="util-row">
+    <div class="push-left">
+      <h3>추가정보 (선택입력사항)</h3>
+    </div>
+  </div>
+  <table>
+    <colgroup>
+      <col width="17%">
+      <col width="33%">
+      <col width="19%">
+      <col width="31%">
+    </colgroup>
+    <tr>
+      <th>전화번호 </th>
+      <td>
+        <input type="text" name="tel_num" size="12" maxlength="15" style="width:98%" placeholder="예) 02-788-9097">
+      </td>
+      <th>팩스번호 </th>
+      <td>
+        <input type="text" name="fax_num" size="12" maxlength="15" style="width:98%" placeholder="예) 02-788-9097">
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+</table>
+</div>
+<!-- IF END 'treeMenu' -->
+<div class="btn-group-wrap">
+    <button type="submit" class="btn color ico-save" ><span></span>저장</button>
+</div>
+
+
+
+</form>
+<script type="text/javascript">
+function formSubmit(f){
+    if(validate(f)){
+        if(!confirm("저장 하시겠습니까?")){
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){
+    var f = document.forms['form1'];
+    f['address'].value=roadFullAddr;
+    f['post_code'].value=zipNo;
+}
+</script>
+{{form_script}}
+

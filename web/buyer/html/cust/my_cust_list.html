@@ -1,0 +1,185 @@
+<form name="form1" method="get">
+<input type="hidden" name="mode">
+<input type="hidden" name="custtype" value="{{custtype}}"/>
+
+<div class="search_div">
+    <table class="search_table">
+    <colgroup>
+        <col width="13%">
+        <col width="49%">
+        <col width="13%">
+        <col width="15%">
+        <col width="10%">
+    </colgroup>
+    <!-- IF START 'isDetailCode' -->
+    <tr>
+        <th><p>거래처코드</p></th>
+        <td colspan="3"><input type="text" name="s_cust_detail_code" maxlength="100" size="20"></td>
+        <td align="right">
+        </td>
+    </tr>
+    <!-- IF END 'isDetailCode' -->
+    <!-- IF START 'isLicense' -->
+    <tr>
+    <th><p>보유면허</p></th>
+    <td colspan="3">
+    	<select name="s_tech_cd">
+			<option value="">-전체-</option>
+			<!-- LOOP START 'userCode' -->
+			<option value="{{userCode.code}}">{{userCode.code_nm}}</option>
+			<!-- LOOP END 'userCode' -->
+		</select>
+    </td>
+    <td align="right">
+    </td>
+  </tr>
+  <!-- IF END 'isLicense' -->
+  <!-- IF START 'isCategory' -->
+    <tr>
+        <td colspan="4">
+            <table class="search_table">
+            <colgroup>
+                <col width="14.5%">
+                <col width="35.5%">
+                <col width="14%">
+                <col width="36%">
+            </colgroup>
+            <th><p>업태</p></th>
+            <td><input type="text" name="s_condition" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}"></td>
+            <th><p>종목</p></th>
+            <td><input type="text" name="s_category" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}"></td>
+            </table>
+        </td>
+        <td align="right"></td>
+    </tr>
+  <!-- IF END 'isCategory' -->
+  <tr>
+    <th><p>업체명</p></th>
+    <td><input type="text" name="s_member_name" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}"></td>
+    <th><p>회원상태</p></th>
+    <td>
+		<select name="s_status">
+			<option value="">-전체-</option>
+			<!-- LOOP START 'status_code' -->
+			<option value="{{status_code.id}}">{{status_code.name}}</option>
+			<!-- LOOP END 'status_code' -->
+		</select>
+    </td>
+    <td align="right">
+      <button type="button" class="search_btn" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+<form name="form2" method="post">
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left"><span class="caution-text">※ 업체 상세정보 조회 및 거래정지 사유를 입력 하시려면 업체명을 클릭 하세요.</span></div>
+        <div class="push-right">
+            <button type="submit" class="sbtn color ico-save auth_css" onclick="form2Save()"><span></span>저장</button>
+            <button type="button" class="sbtn color ico-excel" onclick="excel()"><span></span>엑셀</button>
+        </div>
+    </div>
+    <table>
+    <colgroup>
+        <col width="10%">
+        <!-- IF START 'isDetailCode' -->
+        <col width="10%">
+        <!-- IF END 'isDetailCode' -->
+        <col width="*%">
+        <col width="10%">
+        <col width="10%">
+        <col width="12%">
+        <col width="7%">
+        <!-- IF START 'isLicense' -->
+        <col width="10%">
+        <!-- IF END 'isLicense' -->
+        <col width="8%">
+        <col width="8%">
+        <col width="8%">
+        <col width="8%">
+    </colgroup>
+    <tr>
+        <th>순번</th>
+        <!-- IF START 'isDetailCode' -->
+        <th>거래처코드</th>
+        <!-- IF END 'isDetailCode' -->
+        <th>업체명</th>
+        <th>업태</th>
+        <th>종목</th>
+        <th>사업자번호</th>
+        <th>대표자</th>
+        <!-- IF START 'isLicense' -->
+        <th>보유면허</th>
+        <!-- IF END 'isLicense' -->
+        <!-- IF START 'isCredit' -->
+        <th>신용등급</th>
+        <!-- IF END 'isCredit' -->
+        <th>거래정지</th>
+        <th>일회성</th>
+        <th>회원상태</th>
+    </tr>
+    <!-- IF START 'list' -->
+    <!-- LOOP START 'list' -->
+    <tr align="center" onMouseOver="this.style.backgroundColor='#EFEFEF';" onMouseOut="this.style.backgroundColor='';" style="cursor:pointer" onclick="location.href='cust_view.jsp?member_no={{list.client_no}}&custtype={{custtype}}&{{list_query}}';">
+        <td>{{list.__ord}}</td>
+        <!-- IF START 'isDetailCode' -->
+        <td>{{list.cust_detail_code}}</td>
+        <!-- IF END 'isDetailCode' -->
+        <td align="left">
+        	{{list.member_name}}
+        	<!-- IF START 'list.clip_grd' -->
+			<iframe frameborder=0 marginwidth="0" marginheight="0" hspace="0" vspace="-9" scrolling="no" src="http://interface.nicednb.com/serv/docuCri.do?bz={{list.clip_grd}}" style="width:35px;height:13px;vert-align:middle"></iframe>
+			<!-- IF END 'list.clip_grd' -->
+        </td>
+        <td>{{list.condition}}</td>
+        <td>{{list.category}}</td>
+        <td>{{list.vendcd}}</td>
+        <td>{{list.boss_name}}</td>
+        <!-- IF START 'isLicense' -->
+        <td onclick="event.cancelBubble=true;">
+            <button type="button" class="sbtn color ico-monitor" onclick="OpenWindows('./pop_license_view.jsp?client_no={{list.client_no}}&code_gubun=A','pop_license_view','750','400')"><span></span>보기</button>
+        </td>
+        <!-- IF END 'isLicense' -->
+        <!-- IF START 'isCredit' -->
+        <td onclick="event.cancelBubble=true;">
+            <a href="{{list.xlink}}" target="_NEW" style="text-decoration: underline;color: blue;">{{list.grade}}<br>{{list.cashgrade}}</a>
+        </td>
+        <!-- IF END 'isCredit' -->
+        <td onclick="event.cancelBubble=true;">
+            <input type="hidden" name="client_no" value="{{list.client_no}}"/>
+            <input type="checkbox" value="90" name="client_status_{{list.client_no}}" {{list.check_status}}>
+        </td>
+        <td onclick="event.cancelBubble=true;">
+            <input type="checkbox" value="Y" name="temp_yn_{{list.client_no}}" {{list.temp_checked}}>
+        </td>
+        <td>{{list.member_gubun_name}}</td>
+    </tr>
+    <!-- LOOP END 'list' -->
+    <!-- IF END 'list' -->
+    <!-- IFNOT START 'list' -->
+    <tr>
+        <td colspan="8" align="center">검색결과가 없습니다.</td>
+    </tr>
+    <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+</form>
+<script language="javascript">
+function form2Save(){
+	if(!confirm('저장하시겠습니까?'))return;
+	var f = document.forms['form2'];
+	f.action = "cust_list_save.jsp?{{list_query}}";
+	f.submit();
+}
+
+function excel(){
+	var f = document.forms['form1'];
+	f['mode'].value="excel";
+	f.submit();
+}
+</script>

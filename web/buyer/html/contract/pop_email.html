@@ -1,0 +1,49 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="cont_no" value="{{cont_no}}">
+<input type="hidden" name="cont_chasu" value="{{cont_chasu}}">
+<input type="hidden" name="cust_member_no" value="{{cust_member_no}}">
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="*">
+			<col width="20%">
+			<col width="20%">
+			<col width="15%">
+		</colgroup>
+		<tr>
+			<th>수신자명</th>
+			<th>이메일</th>
+			<th>최근 전송일시</th>
+			<th>수신확인</th>
+			<th>재전송</th>
+		</tr>
+			<tr align="center">
+				<td>{{contEmail.user_name}}</td>
+				<td><input type="text" name="email" style="width:100%;text-align:center"></td>
+				<td>{{contEmail.send_date}}</td>
+				<td>{{contEmail.recv_dete}}</td>
+				<td><button type="submit" class="sbtn color ico-change" ><span></span>재전송</button></td>
+			</tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-cancel" onClick="window.close()"><span></span>닫기</button>
+</div>
+
+</form>
+{{form_script}}
+
+<script type="text/javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("재전송하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+</script>

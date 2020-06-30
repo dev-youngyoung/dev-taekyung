@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<title>낙찰자 선정방법 안내</title>
+<script type="text/javascript">
+function Answer(tab)
+{
+	// 먼저 이미 활성화 되어 있으면 비활성화만 함
+	if (eval(tab).style.display == 'block'){
+		//eval(tab).style.display = 'none';
+	}else{
+		var obj = document.getElementsByTagName("TR");
+
+		for( var i=0 ; i < obj.length ; i++){
+			if( obj[i].id != "" ){
+				if( obj[i].id == tab ){
+					obj[i].style.display = 'block';
+				}else{
+					obj[i].style.display = 'none';
+				}
+			}
+		}
+	}
+}
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  <table border="0" cellspacing="0" cellpadding="0">
+  <tr id='tab1'>
+	<td valign="top"><img src="../images/guide/bid_help1.gif" alt="" border="0" usemap="#Map" /></td>
+  </tr>
+  <tr id='tab2' style='display:none'>
+	<td valign="top"><img src="../images/guide/bid_help2.gif" alt="" border="0" usemap="#Map" /></td>
+  </tr>
+  <tr id='tab3' style='display:none'>
+	<td valign="top"><img src="../images/guide/bid_help3.gif" alt="" border="0" usemap="#Map" /></td>
+  </tr>
+  <tr id='tab4' style='display:none'>
+	<td valign="top"><img src="../images/guide/bid_help4.gif" alt="" border="0" usemap="#Map" /></td>
+  </tr>
+  <tr id='tab5' style='display:none'>
+	<td valign="top"><img src="../images/guide/bid_help5.gif" alt="" border="0" usemap="#Map" /></td>
+  </tr>
+</table>
+<map name="Map" id="Map">
+  <area shape="rect" coords="6,65,127,102" href="javascript:Answer('tab1');" />
+  <area shape="rect" coords="128,65,221,102" href="javascript:Answer('tab2');" />
+  <area shape="rect" coords="224,65,316,102" href="javascript:Answer('tab3');" />
+  <area shape="rect" coords="319,65,457,102" href="javascript:Answer('tab4');" />
+  <area shape="rect" coords="459,65,584,102" href="javascript:Answer('tab5');" />
+</map>
+</body>
+</html>

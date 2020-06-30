@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><b style="font-size:18pt">신청서 현황<b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td>
+
+      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+        <tr align="center">
+			<td height="30" bgcolor="#cccccc" >순번</td>
+			<td bgcolor="#cccccc"  >문서번호</td>
+			<td bgcolor="#cccccc"  >문서명</td>
+			<td bgcolor="#cccccc"  >신청자</td>
+			<td bgcolor="#cccccc"  >신청일자</td>
+			<td bgcolor="#cccccc"  >사업자번호</td>
+			<td bgcolor="#cccccc"  >대표자</td>
+			<!-- IF START 'isNicePay' -->
+			<td bgcolor="#cccccc"  >대표자 생년월일</td>
+			<!-- IF END 'isNicePay' -->
+			<td bgcolor="#cccccc"  >담당자</td>
+			<td bgcolor="#cccccc"  >전화번호</td>
+			<td bgcolor="#cccccc"  >우편번호</td>
+			<td bgcolor="#cccccc"  >주소</td>
+			<!-- IF START 'isNicePay' -->
+			<td bgcolor="#cccccc"  >핸드폰번호</td>
+			<td bgcolor="#cccccc"  >이메일</td>
+			<td bgcolor="#cccccc"  >은행</td>
+			<td bgcolor="#cccccc"  >계좌번호</td>
+			<td bgcolor="#cccccc"  >예금주</td>
+			<!-- IF END 'isNicePay' -->
+        </tr>
+		<!-- LOOP START 'list' -->
+        <tr>
+			<td align="center" style="cursor:pointer">{{list.__ord}}</td>
+			<td>{{list.cont_userno}}</td>
+			<td>{{list.cont_name}}</td>
+			<td>{{list.cust_name}}</td>
+			<td>{{list.cont_date}}</td>
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<!-- IF START 'isNicePay' -->
+			<td>{{list.boss_birthday}}</td>
+			<!-- IF END 'isNicePay' -->
+			<td align="center">{{list.user_name}}</td>
+			<td>{{list.tel_num}}</td>
+			<td align="center">{{list.post_code}}</td>
+			<td>{{list.address}}</td>
+			<!-- IF START 'isNicePay' -->
+			<td>{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+			<td>{{list.email}}</td>
+			<td>{{list.bank_name}}</td>
+			<td style="mso-number-format: '@';">{{list.bank_no}}</td>
+			<td>{{list.bank_user}}</td>
+			<!-- IF END 'isNicePay' -->
+        </tr>
+		<!-- LOOP END 'list' -->
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

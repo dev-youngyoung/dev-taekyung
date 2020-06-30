@@ -1,0 +1,109 @@
+<form novalidate name="form1" method="get">
+<input type="hidden" name="callback" value="{{callback}}">
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="13%"/>
+    <col width="30%"/>
+    <col width="13%"/>
+    <col width="34%"/>
+    <col width="10%"/>
+  </colgroup>
+  <tr>
+	<th><p>계약일자</p></th>
+	<td>
+		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	</td>
+	<th><p>계약상태</p></th>
+	  <td>
+		  <select name="s_status">
+			  <option value="">전체</option>
+			  <!-- LOOP START 'code_status' -->
+			  <option value="{{code_status.id}}">{{code_status.value}}</option>
+			  <!-- LOOP END 'code_status' -->
+			  <option value="00">숨김</option>
+		  </select>
+	  </td>
+  </tr>
+  <tr>
+  	<th><p>과금업체</p></th>
+    <td><input type="text" name="s_member_name" value="" maxlength="100"  style="width:98%"></td>
+    <th><p>거래처</p></th>
+    <td><input type="text" name="s_client_name" value="" maxlength="100"  style="width:98%"></td>
+    <td></td>    
+  </tr>
+  <tr>
+    <th><p>계약명</p></th>
+    <td colspan="3"><input type="text" name="s_cont_name" value="" maxlength="100" style="width:99%"></td>
+    <td align="right" valign="bottom">
+		<button type="submit" class="btn color ico-search"><span></span>검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+ <div class="div_table">
+ <table>
+  <colgroup>
+  	<col width="42%">
+  	<col width="19%">
+  	<col width="19%">
+  	<col width="10%">
+  	<col width="10%">
+  </colgroup>
+  <tr>
+    <th>계약번호/현장명/계약명</th>
+    <th>원사업자</th>
+    <th>수급사업자</th>
+    <th>계약일자</th>
+    <th>상태</th>
+  </tr>
+  <!-- IF START 'list' -->
+  <!-- LOOP START 'list' -->
+  <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer">
+	<td>{{list.cont_no}}-{{list.cont_chasu}}<br>{{list.field_name}}<br>{{list.cont_name}}</td>
+	<td>
+		{{list.member_name}}
+		<!-- IF START 'list.btn_won_pay' -->
+		<button type="button" class="sbtn color" onclick="setInfo('{{list.cont_no}}','{{list.cont_chasu}}','{{list.cont_name}}','{{list.member_no}}','{{list.member_name}}','{{list.recp_amt}}','won')">선택</button>
+		<!-- IF END 'list.btn_won_pay' -->
+	</td>
+	<td>
+		{{list.client_name}}
+		<!-- IF START 'list.btn_su_pay' -->
+		<button type="button" class="sbtn color" onclick="setInfo('{{list.cont_no}}','{{list.cont_chasu}}','{{list.cont_name}}','{{list.client_no}}','{{list.client_name}}','{{list.supp_amt}}','su')">선택</button>
+		<!-- IF END 'list.btn_su_pay' -->
+	</td>
+	<td align="center">{{list.cont_date}}</td>
+	<td align="center">{{list.status_name}}</td>
+  </tr>
+  <!-- LOOP END 'list' -->
+  <!-- IF END 'list' -->
+  <!-- IFNOT START 'list' -->
+  <tr>
+	<td colspan="7" align="center">검색결과가 없습니다.</td>
+  </tr>
+  <!-- IFNOT END 'list' -->
+ </table>
+ </div>
+ <div class="common-paging">{{pagerbar}}</div>
+
+
+<script>
+function setInfo( cont_no, cont_chasu, cont_name, member_no, member_name, pay_amount,gubun){
+	var data = {
+			 "cont_no": cont_no
+			,"cont_chasu": cont_chasu
+			,"cont_name": cont_name
+			,"member_no": member_no
+			,"member_name": member_name
+			,"pay_amount": pay_amount
+			,"gubun": gubun
+	}
+	opener.{{callback}}(data);
+	self.close();
+}
+</script>

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+			<tr align="center">
+				<td bgcolor="#cccccc">순번</td>
+				<td bgcolor="#cccccc">계약명</td>
+				<td bgcolor="#cccccc">도급인명</td>
+				<td bgcolor="#cccccc">도급인코드(고유번호)</td>
+				<td bgcolor="#cccccc">프로젝트 코드</td>
+				<td bgcolor="#cccccc">프로젝트 명</td>
+				<td bgcolor="#cccccc">계약일자</td>
+				<td bgcolor="#cccccc">작성자</td>
+				<td bgcolor="#cccccc">계약상태</td>
+			</tr>
+	  		<!-- LOOP START 'list' -->
+			<tr align="center">
+				<td>{{list.__ord}}</td>
+				<td>{{list.cont_name}}</td>
+				<td>{{list.cust_name}}</td>
+				<td>{{list.cust_cd}}</td>
+				<td>{{list.project_cd}}</td>
+				<td>{{list.project_name}}</td>
+				<td>{{list.cont_date}}</td>
+				<td>{{list.reg_name}}</td>
+				<td>{{list.status_name}}</td>
+			</tr>
+			<!-- LOOP END 'list' -->
+		</table>
+	</td>
+	</tr>
+	</table>
+</body>

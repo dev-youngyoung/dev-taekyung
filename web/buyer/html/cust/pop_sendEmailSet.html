@@ -1,0 +1,34 @@
+<form novalidate name="form1" method="get">
+<div class="div_table">
+	<table>
+  		<tr>
+    		<th>전송할 이메일</th>
+    		<td><input type="text" name="s_sendEmail" maxlength="30" size="20"></td>
+  		</tr>
+	</table>
+	<div class="btn-group-wrap">
+		<button type="button" class="btn color ico-save" onclick="vali();"><span></span>확인</button>
+		<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+	</div>
+</div>
+</form>
+{{form_script}}
+
+<script language="javascript">
+function vali(){
+    var f = document.forms['form1'];
+	if(validate(f)){
+		var inputEmail = f['s_sendEmail'].value;
+		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
+		
+		if(regex.test(inputEmail) === false) {  
+			alert("잘못된 이메일 형식입니다.");  
+			return false;  
+		}else{
+		    self.close();
+            opener.document.form1.email.value = f['s_sendEmail'].value;
+            opener.document.form1.submit();
+		} 
+	}
+}
+</script>

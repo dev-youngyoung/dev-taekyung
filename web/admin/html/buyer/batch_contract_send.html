@@ -1,0 +1,245 @@
+<form novalidate name="form1" method="post">
+
+<input type="hidden" name="template_cd">
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		 <colgroup>
+		    <col width="15%">
+		    <col width="35%">
+		    <col width="15%">
+		    <col width="35%">
+		  </colgroup>
+		<tr>
+			<th>사업자명</th>
+			<td><input type="text" name="w_member_name" class="in_readonly"  style="width:98%" readonly hname="원사업자명" required="Y"></td>
+			<th>회원번호</th>
+			<td>
+				<input type="text" name="w_member_no" class="in_readonly"  style="width:190px" readonly hname="원사업자번호" required="Y">
+				<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_send_company.jsp?callback=setMember','pop_search_company', '1000','700','yes');"><span></span>업체검색</button> 
+			</td>
+		</tr>
+		<tr>
+			<th>부서명</th>
+			<td><input type="text" name="w_dept_name" class="in_readonly"  style="width:98%" readonly></td>
+			<th>아이디</th>
+			<td>
+				<input type="text" name="w_userid" class="in_readonly"  style="width:190px" readonly>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</form>
+
+
+<form novalidate name="form2" method="post">
+
+<input type="hidden" name="proc" value="A">
+<input type="hidden" name="w_member_no">
+<input type="hidden" name="w_userid">
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left"><h3>서식선택</h3></div>
+	</div>
+	<table>
+	<colgroup>
+		<col width="30%">
+		<col width="70%">
+	</colgroup>
+		<tr>
+			<th>계약서 종류</th>
+			<td>
+				<select name="template_cd" hname="계약서종류" required="Y" onchange="getFieldList()">
+				<option value="">------------------ 선&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;택 ------------------</option>
+				<!-- LOOP START 'templateDs' -->
+				<option value="{{templateDs.template_cd}}" {{templateDs.select}}>{{templateDs.template_name}}</option>
+				<!-- LOOP END 'templateDs' -->
+			</select>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서류설정</h3>
+	    </div>
+	</div>
+	<table id="file_grid">
+		<colgroup>
+			<col width="50%">
+			<col width="50%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th>문서명</th>
+			<th>다운로드</th>
+		</tr>
+		</thead>
+		<!-- LOOP START 'cfile' -->
+		<tr>
+			<td>{{cfile.doc_name}}</td>
+			<td align="right">
+				<!-- IFNOT START 'cfile.file_name' -->
+				미첨부
+				<!-- IFNOT END 'cfile.file_name' -->
+				<!-- IF START 'cfile.file_name' -->
+				{{cfile.str_file_size}}&nbsp;&nbsp;
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_template','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>다운로드</button>
+				<!-- IF END 'cfile.file_name' -->
+			</td>
+		</tr>
+		<!-- LOOP END 'cfile' -->
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>구비서류설정</h3>
+	    </div>
+	</div>
+	<table id="rfile_grid">
+		<colgroup>
+			<col width="15%"/>
+			<col width="70%"/>
+			<col width="15%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>필수여부</th>
+			<th>구비서류명</th>
+			<th>첨부가능파일</th>
+		</tr>
+		</thead>
+		<!-- LOOP START 'rfile' -->
+		<tr>
+			<td align="center"><input type="checkbox" name="attch" {{rfile.checked}} disabled="disabled"></td>
+			<td align="left">{{rfile.doc_name}}</td>
+			<td align="center" >
+				<select name="allow_ext" disabled="disabled">
+					<option value="">-전체-</option>
+					<!-- LOOP START 'code_allow' -->
+					<option value="{{code_allow.id}}" {{code_allow.selected}}>{{code_allow.value}}</option>
+					<!-- LOOP END 'code_allow' -->
+				</select>
+			</td>
+		</tr>
+		<!-- LOOP END 'rfile' -->
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>입력값 설정</h3>
+	    </div>
+	    <div class="push-right">
+	    	<button type="button" class="sbtn color ico-add" onclick="field_grid.addRow();"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="field_grid">
+		<colgroup>
+			<col width="30%">
+			<col width="30%">
+			<col width="30%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th>필드명(영문)</th>
+			<th>필드명(한글)</th>
+			<th>필드타입</th>
+			<th>삭제</th>
+		</tr>
+		</thead>
+		<!-- LOOP START 'fieldList' -->
+		<tr>
+			<td><input type="text" name="input_eng" value="{{fieldList.input_eng}}" class="label" style="width:98%" hname="필드명(영문)" required="Y" /></td>
+			<td><input type="text" name="input_kor" value="{{fieldList.input_kor}}" class="label" style="width:98%" hname="필드명(한글)" required="Y" /></td>
+			<td align="center">
+				<select name="input_type" id="input_type_{{fieldList.b_seq}}" hname="필드타입" required="Y">
+					<option value="input">input</option>
+					<option value="checkbox">checkbox</option>
+					<option value="radio">radio</option>
+					<option value="select">select</option>
+				</select>
+				<script>document.getElementById("input_type_{{fieldList.b_seq}}").value="{{fieldList.input_type}}";</script>
+			</td>
+			<td align="center"><button type="button" class="sbtn color ico-delete" onclick="field_grid.del(this);"><span></span>삭제</button></td>
+		</tr>
+		<!-- LOOP END 'fieldList' -->
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div align="center">
+	<button type="button" class="btn color ico-save" onclick="goTemplate()"><span></span>작성</button>
+</div>
+
+</form>
+
+{{form_script}}
+
+<script type="text/javascript">
+
+var field_grid = new MGRID("field_grid");
+field_grid.cells = new Array(
+	 '<input type="text" name="input_eng" class="label" style="width:98%" hname="필드명(영문)" required="Y" />'
+	,'<input type="text" name="input_kor" class="label" style="width:98%" hname="필드명(한글)" required="Y" />'
+	,'<select name="input_type" hname="필드타입" required="Y"><option value="input">input</option><option value="checkbox">checkbox</option><option value="radio">radio</option><option value="select">select</option></select>'
+	,'<button type="button" class="sbtn color ico-delete" onclick="field_grid.del(this);"><span></span>삭제</button>'
+);
+
+function setMember(member){
+	 var f = document.forms['form1'];
+	 
+	 f['w_member_no'].value = member['member_no'];
+	 f['w_member_name'].value = member['member_name'];
+	 f['w_dept_name'].value = member['dept_name'];
+	 f['w_userid'].value = member['user_id'];
+	 f.submit();
+}
+
+function getFieldList(){
+	var f1 = document.forms['form1'];
+	var f2 = document.forms['form2'];
+	
+	if(f2['template_cd'] != '' && validate(f1)){
+		f1['template_cd'].value = f2['template_cd'].value; 
+		f1.submit();
+	}
+	
+}
+
+function goTemplate(){
+	
+	var f1 = document.forms['form1'];
+	var f2 = document.forms['form2'];
+	var row_cnt = document.getElementById('field_grid').getElementsByTagName("tbody")[0].rows.length;
+	
+	if(validate(f1)&&validate(f2)){
+
+		if(confirm("입력한 값으로 진행하시겠습니까?")){
+			f2['w_member_no'].value = f1['w_member_no'].value; 
+			f2['w_userid'].value = f1['w_userid'].value; 
+			f2.submit();
+		}
+	}
+	return false;
+}
+
+<!-- LOOP START 'fieldList' -->
+SetFormValue("form2","input_type","{{fieldList.input_type}}");
+<!-- LOOP END 'fieldList' -->
+
+</script>

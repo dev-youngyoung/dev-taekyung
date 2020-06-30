@@ -1,0 +1,36 @@
+
+<form name="form1" method="post">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <colgroup>
+    <col width="10%">
+    <col width="15%">
+    <col width="15%">
+    <col width="25%">
+    <col width="40%">
+  </colgroup>
+  <tr class="ltitle">
+    <td>No.</td>
+    <td>진행구분</td>
+    <td>진행담당자</td>
+    <td>처리일시</td>
+    <td>처리작업</td>
+  </tr>
+  <!-- LOOP START 'contLog' -->
+  <tr>
+  	<td align="center">{{contLog.log_seq}}</td>
+  	<td align="center">{{contLog.member_gubun}}</td>
+  	<td align="center">{{contLog.user_name}}</td>
+  	<td align="center">{{contLog.log_date}}</td>
+  	<td>{{contLog.log_etc}}</td>
+  </tr>
+  <!-- LOOP END 'contLog' -->
+</table>
+<p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td align="center">
+			<input type="button" value="닫기" class="cls2" onclick="self.close();"/>
+		</td>
+	</tr>
+</table>  
+</form>

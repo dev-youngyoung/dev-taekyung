@@ -1,0 +1,68 @@
+<!-- IF START 'pdfjs_yn' -->
+<script>
+var pdf_url = "{{url}}";
+var down_file_name = "{{down_file_name}}";
+    
+function chgFooterText(){
+	var f  = document.forms['form1'];
+	var footer_text = document.forms['form1']["footer_text"].checked?"Y":"N"; 
+	location.href='pop_pdf_viewer.jsp?{{query}}&footer_text='+footer_text;
+}
+</script>
+<form name="form1" method="post">
+<!-- IF START 'view_footer_ctrl' -->
+<div class="util-row" style="background-color: #FFF612;position: absolute; top:40px;left:40px">
+<span style="font-weight: normal !important;" class="caution-text">※ 인쇄시 계약서 하단 전자계약 체결 안내 문구 표시를 삭제하고자 경우 체크를 해제하세요. <input type="checkbox" name="footer_text" value="Y" {{footer_text_checked}} onclick="chgFooterText()"></span>
+</div>
+<!-- IF END 'view_footer_ctrl' -->
+</form>
+<!-- IF END 'pdfjs_yn' -->
+
+<!-- IFNOT START 'pdfjs_yn' -->
+<form name="form1" method="post">
+<!-- IF START 'view_footer_ctrl' -->
+<div class="util-row" style="background-color: #f4f4f4">
+    <div class="push-left" style="padding-left: 10px" >
+        <span style="font-weight:normal !important;">※ 계약서가 보이지 않을 경우 Adobe Reader 최신버전을  설치 하세요. <button class="sbtn color" onclick="window.open('https://get.adobe.com/reader/?loc=kr')">바로가기</button></span> 
+        <br>
+        <span style="font-weight: normal !important;" class="caution-text">※ 인쇄시 계약서 하단 전자계약 체결 안내 문구 표시를 삭제하고자 경우 체크를 해제하세요. <input type="checkbox" name="footer_text" value="Y" {{footer_text_checked}} onclick="chgFooterText()"></span>
+    </div>
+    <div class="push-right" style="padding-top:30px;height: 70px">    	
+        	<button type="button"  class="sbtn color ico-save" onclick="pdfDown()"><span></span>계약서 저장</button>
+			<button type="button"  class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>        
+    </div>
+</div>
+<!-- IF END 'view_footer_ctrl' -->
+<!-- IFNOT START 'view_footer_ctrl' -->
+<div class="util-row" style="background-color: #f4f4f4">
+    <div class="push-left" style="padding-left: 10px" >
+        <span style="font-weight:normal !important;">※ 계약서가 보이지 않을 경우 Adobe Reader 최신버전을  설치 하세요. <button class="sbtn color" onclick="window.open('https://get.adobe.com/reader/?loc=kr')">바로가기</button></span> 
+    </div>
+    <div class="push-right">    	
+        	<button type="button"  class="sbtn color ico-save" onclick="pdfDown()"><span></span>계약서 저장</button>
+			<button type="button"  class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>        
+    </div>
+</div>
+<!-- IFNOT END 'view_footer_ctrl' -->
+
+<div id="pdf" style="margin-top: 10px">
+  <object width="100%" height="800px" type="application/pdf" data="{{url}}" >
+     <p>브라우져가 pdf조회를 지원하지 않습니다.계약서를 다운로드 하여 조회 하시기 바랍니다.: <a href="{{url}}">계약서 다운로드</a>.</p>
+  </object>
+</div>
+<iframe id="downifm" src="_blank" style="display:none"></iframe>
+</form>
+
+<script>
+function pdfDown(){
+	document.getElementById("downifm").src="{{url}}";
+}
+function chgFooterText(){
+	var f  = document.forms['form1'];
+	var footer_text = GetFormValue("form1", "footer_text");
+	if(footer_text != "Y") footer_text = "N";
+	location.href='pop_pdf_viewer.jsp?{{query}}&footer_text='+footer_text;
+}
+</script>
+
+<!-- IFNOT END 'pdfjs_yn' -->

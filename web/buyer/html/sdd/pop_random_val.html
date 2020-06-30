@@ -1,0 +1,39 @@
+<form name="form1" method="post" onSubmit="return false;">
+  <div class="div_table">
+    <table>
+      <tr>
+        <td>
+          인증코드 전송을 선택하시면 핸드폰으로 인증서코드가 전송됩니다.<br/>
+          인증서코드 확인 후 계약서 화면으로 이동합니다.
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <button type="button" class="sbtn color ico-request" onClick="indentify_random();"><span></span>인증코드전송</button>
+        </td>
+      </tr>
+      <tr>
+        <td align="center"><input type="text" name="s_input" style="width:140px" maxlength="6" onkeyup="if(event.keyCode=='13'){inputok();}"></td>
+      </tr>
+    </table>
+    <div class="btn-section type1">
+      <button type="button" class="sbtn color ico-confirm" onClick="inputok();"><span></span>확인</button>
+      <button type="button" class="sbtn color ico-cancel" onClick="fLayerPopClose('pop_sign_val');"><span></span>취소</button>
+    </div>
+  </div>
+</form>
+<script language="javascript">
+function indentify_random() {
+    call("./send_random.jsp?{{query}}");
+}
+
+function inputok(){
+    var f = document.forms["form1"];
+	if(f['s_input'].value.length != 6){
+		alert("문자 또는 숫자 6자리로 입력해주세요.");
+		f['s_input'].focus();
+		return false;
+	}
+	f.submit();
+}
+</script>

@@ -1,0 +1,30 @@
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			{{client.member_name}} 보유먼허
+		</div>
+		<div class="push-right">
+			<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+		</div>
+	</div>
+	<table id="item_grid">
+		<colgroup>
+			<col width="50%"/>
+			<col width="50%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>면허종류</th>
+			<th>비고</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.code_nm}}</td>
+			<td align="center">{{list.tech_expl}}</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,216 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="mode">
+<input type="hidden" name="hdn_sort_column">
+<input type="hidden" name="hdn_sort_order">
+<div class="search_div">
+<table class="search_table">
+ 	<colgroup>
+	  	 <col width="13%">
+		<col width="32%">
+		<col width="13%">
+		<col width="32%">
+		<col width="10%">
+	</colgroup>
+	
+  	<!-- IF START 'member.src_depth' -->
+	<tr>
+	 	<th><p>소싱그룹{{subdomain}}</p></th>
+	 	<td colspan="3">
+	 		<!-- IF START 'src_l' -->
+	 		<span id="l_src_area">
+	 			<select name="l_src_cd" onchange="chgSelectBox('m')">
+	 				<option value="">-전체-</option>
+	 			</select>
+	 		</span>
+	 		<!-- IF END 'src_l' -->
+	 		<!-- IF START 'src_m' -->
+	 		<span id="m_src_area">
+	 			<select name="m_src_cd" onchange="chgSelectBox('s')">
+	 				<option value="">-전체-</option>
+	 			</select>
+	 		</span>
+	 		<!-- IF END 'src_m' -->
+	 		<!-- IF START 'src_s' -->
+	 		<span id="s_src_area">
+	 			<select name="s_src_cd">
+	 				<option value="">-전체-</option>
+	 			</select>
+	 		</span>
+	 		<!-- IF END 'src_s' -->
+	 	</td>
+	 	<td align="right"></td>
+	</tr>
+	<!-- IF END 'member.src_depth' -->
+	
+	
+	
+	<tr>
+	   <th><p>거래처명</p></th>
+	   <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
+	   <th><p>계약명</p></th>
+	   <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
+	   <td align="right"></td>
+	</tr>
+	<tr>
+	   <td><p>계약일자</p></td>
+	   <td>
+		<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+		<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	   </td>
+	   <th><p>계약번호</p></th>
+	   <td><input type="text" name="s_user_no" style="width: 60%;" maxlength="100"></td>
+	   <td align="right" rowspan="7">
+	 		<button type="submit" class="search_btn">검색</button>
+	 	</td>
+	 </tr>
+</table>
+</div>
+
+<div class="util-row" align="right">
+	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
+</div>
+
+<br/>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+				<col width="7%">  
+				<col>
+				<col width="15%">   
+				<col width="10%">
+				<col width="10%">
+	 	</colgroup>
+		<tr>
+				<th>순번</th>
+				<th>계약명</th>
+				<th>거래처명</th>
+			<th>
+				<a href="javascript:fChangeOrder('a.cont_date', '{{sSortOrder}}')">
+					계약일자
+					<!-- IFC START 'sSortColumn==a.cont_date' -->
+						{{sSortCustNameIconName}}
+					<!-- IFC END 'sSortColumn==a.cont_date' -->
+					<!-- IFC START 'sSortColumn!=a.cont_date' -->
+						<font style='color:blue;font-weight:bold'>↕</font>
+					<!-- IFC END 'sSortColumn!=a.cont_date' -->
+				</a>
+			</th>
+			<th>
+				<a href="javascript:fChangeOrder('a.cont_userno', '{{sSortOrder}}')">
+					계약번호
+					<!-- IFC START 'sSortColumn==a.cont_userno' -->
+						{{sSortCustNameIconName}}
+					<!-- IFC END 'sSortColumn==a.cont_userno' -->
+					<!-- IFC START 'sSortColumn!=a.cont_userno' -->
+						<font style='color:blue;font-weight:bold'>↕</font>
+					<!-- IFC END 'sSortColumn!=a.cont_userno' -->
+				</a>
+			</th>
+	 	</tr>
+	 	<!-- IF START 'list' -->
+			<!-- LOOP START 'list' -->
+				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='contend_offcont_sendview.jsp?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
+					<td align="center">{{list.__ord}}</td>
+					<td>{{list.cont_name}}</td>
+					<td>{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.cont_userno}}</td>
+				</tr>
+			<!-- LOOP END 'list' -->
+		<!-- IF END 'list' -->
+		<!-- IFNOT START 'list' -->
+	 		<tr>
+				<td colspan="5" align="center">검색결과가 없습니다.</td>
+			 </tr>
+	 	<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<br/>
+
+</form>
+
+{{form_script}}
+
+<div class="common-paging">{{pagerbar}}</div>
+
+
+<script language="javascript">
+function formSubmit(f){
+	f['mode'].value="";
+	return true;
+}
+
+
+// 정렬방식 변경
+function fChangeOrder(sortColumn, sortOrder)
+{
+	var form = document.form1;
+
+	form.hdn_sort_column.value = sortColumn;
+    if (sortOrder == "asc") // 오름차순 정렬 일때
+    {
+        form.hdn_sort_order.value = "desc"; // 내림차순 정렬로 설정
+    }
+    else                        // 나머지 (내림차순 정렬 또는 최초 클릭시)
+    {
+        form.hdn_sort_order.value =  "asc";  // 오름차순 정렬로 설정
+    }
+
+    form.submit();
+
+    return;
+}
+
+function chgSelectBox(gubun){
+	var f = document.forms('form1');
+	var l_src_cd = f['l_src_cd'].value;
+	var m_src_cd = f['m_src_cd'].value;
+	switch(gubun){
+		case 'l':
+			call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area");
+		case 'm':
+			call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
+		case 's':
+			call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
+			break;
+	}
+}
+
+
+</script>
+
+
+<!-- IF START 'member.src_depth' -->
+<script language="javascript">
+
+var l_src_cd = "{{l_src_cd}}";
+var m_src_cd = "{{m_src_cd}}";
+var s_src_cd = "{{s_src_cd}}";
+
+<!-- IF START 'src_l' -->
+call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
+function defaultValue_l(){
+	SetFormValue("form1","l_src_cd", l_src_cd);
+}
+<!-- IF END 'src_l' -->
+
+<!-- IF START 'src_m' -->
+call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
+function defaultValue_m(){
+	SetFormValue("form1","m_src_cd", m_src_cd);
+}
+<!-- IF END 'src_m' -->
+
+<!-- IF START 'src_s' -->
+function defaultValue_s(){
+	SetFormValue("form1","s_src_cd", s_src_cd);
+}
+call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
+
+<!-- IF END 'src_s' -->
+</script>
+<!-- IF END 'member.src_depth' -->

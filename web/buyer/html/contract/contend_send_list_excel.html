@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+  	<!-- IF START 'isPbpartners' -->
+	<td bgcolor="#cccccc">계약서명</td>
+	<!-- IF END 'isPbpartners' -->
+  	<!-- IF START 'isLGH' -->
+  	<td bgcolor="#cccccc">프로젝트코드(계약서)</td>
+  	<td bgcolor="#cccccc">담당자</td> 
+  	<!-- IF END 'isLGH' -->
+    <td bgcolor="#cccccc">계약명</td>
+    <td bgcolor="#cccccc">거래처명</td>
+    <td bgcolor="#cccccc">사업자등록번호</td>
+    <!-- IF START 'isNH' -->
+    <td bgcolor="#cccccc">대표자</td>
+    <td bgcolor="#cccccc">주소</td>
+    <!-- IF END 'isNH' -->
+	<!-- IF START 'isDwst' -->
+	<td bgcolor="#cccccc">거래처 서명일시</td>
+	<td bgcolor="#cccccc">본사 서명일시</td>
+	<!-- IF END 'isDwst' -->
+	<!-- IF START 'is3M' -->
+	<td bgcolor="#cccccc">Sourcing</td>
+	<td bgcolor="#cccccc">Group</td>
+    <td bgcolor="#cccccc">Division</td>
+    <td bgcolor="#cccccc">담당자</td>
+	<!-- IF END 'is3M' -->
+    <td bgcolor="#cccccc">계약일자</td>
+    <!-- IF START 'detail_cd' -->
+    <td bgcolor="#cccccc">계약처코드</td>
+	<td bgcolor="#cccccc">KPP담당</td>
+    <!-- IF END 'detail_cd' -->
+    <!-- IF START 'isKTH' -->
+	<td bgcolor="#cccccc">거래처<br>코드</td>
+	<td bgcolor="#cccccc">담당자</td>
+	<!-- IF END 'isKTH' -->
+	<!-- IF START 'isPersonView' -->
+	<td bgcolor="#cccccc">담당자</td>
+	<!-- IF END 'isPersonView' -->
+	<!-- IFNOT START 'is3M' -->
+    <td bgcolor="#cccccc">계약시작</td>
+	<!-- IFNOT END 'is3M' -->
+    <td bgcolor="#cccccc">계약종료</td>
+	<!-- IFNOT START 'is3M' -->
+	<!-- IF START 'isDwst' -->
+	<td bgcolor="#cccccc">공급가</td>
+	<td bgcolor="#cccccc">부가세</td>
+	<!-- IF END 'isDwst' -->
+    <td bgcolor="#cccccc">계약금액</td>
+	<!-- IFNOT END 'is3M' -->
+    <td bgcolor="#cccccc">계약번호</td>
+	<!-- IF START 'is3M' -->
+	<td bgcolor="#cccccc">협력업체 서명일</td>
+	<td bgcolor="#cccccc">3M 서명일</td>
+	<td bgcolor="#cccccc">계약상태</td>
+	<!-- IF END 'is3M' -->
+	<!-- IF START 'isGenie' -->
+	<td bgcolor="#cccccc">서명일자</td>
+	<!-- IF END 'isGenie' -->
+	<!-- IF START 'isOlive' -->
+	<td bgcolor="#cccccc">담당자</td>
+	<!-- IF END 'isOlive' -->
+    <!-- IF START 'isWoowahan' -->
+	<td bgcolor="#cccccc">담당자명</td>
+    <td bgcolor="#cccccc">연락처</td>
+    <td bgcolor="#cccccc">이메일</td>
+    <td bgcolor="#cccccc">우편번호</td>
+    <td bgcolor="#cccccc">주소</td>
+    <td bgcolor="#cccccc">생년월일</td>
+    <td bgcolor="#cccccc">예금주명</td>
+    <td bgcolor="#cccccc">은행명</td>
+    <td bgcolor="#cccccc" colspan="2">계좌번호</td>
+    <td bgcolor="#cccccc">주소</td>
+    <td bgcolor="#cccccc">교육이수 CODE</td>
+	<!-- IF END 'isWoowahan' --> 
+	<!-- IF START 'isSKB' -->
+    <td bgcolor="#cccccc">담당자명</td>
+    <td bgcolor="#cccccc">연락처</td>
+    <td bgcolor="#cccccc">이메일</td>
+    <td bgcolor="#cccccc">우편번호</td>
+    <td bgcolor="#cccccc">주소</td>
+    <td bgcolor="#cccccc">업체코드</td>
+    <td bgcolor="#cccccc">상품코드</td>
+    <td bgcolor="#cccccc">상품명</td>
+    <td bgcolor="#cccccc">판매가(소비자가,VAT포함)</td>
+    <td bgcolor="#cccccc">배송형태</td>
+    <td bgcolor="#cccccc">배송기간</td>
+    <td bgcolor="#ffff99">상품코드</td>
+    <td bgcolor="#ffff99">판매수수료</td>
+    <td bgcolor="#ccff99">상품코드</td>
+    <td bgcolor="#ccff99">용도</td>
+    <td bgcolor="#ccff99">비용부담 협력사</td>
+    <td bgcolor="#ccff99">비용부담 B shopping</td>
+	<!-- IF END 'isSKB' -->
+	<!-- IF START 'isGenie' -->
+	<td bgcolor="#cccccc">담당부서</td>
+	<td bgcolor="#cccccc">담당자</td>
+	<!-- IF END 'isGenie' -->
+	<!-- IF START 'isNH' -->
+	<td bgcolor="#cccccc">담당부서</td>
+    <td bgcolor="#cccccc">담당자</td>
+    <td bgcolor="#cccccc">경쟁방법</td>
+    <td bgcolor="#cccccc">낙찰자선정방법</td>
+	<!-- IF END 'isNH' --> 
+	<!-- IF START 'isNicednr' -->
+	<td bgcolor="#cccccc">도급수급인코드</td>
+	<td bgcolor="#cccccc">프로젝트코드</td>
+	<td bgcolor="#cccccc">프로젝트명</td>
+	<!-- IF END 'isNicednr' -->
+	<!-- IF START 'isTES' -->
+	<td bgcolor="#cccccc">담당자</td> 
+	<!-- IF END 'isTES' -->
+	<!-- IF START 'isNHhanaro' -->
+	<td bgcolor="#cccccc">담당자</td>
+	<td bgcolor="#cccccc">거래처 서명일시</td>
+	<td bgcolor="#cccccc">본사 서명일시</td>
+	<!-- IF END 'isNHhanaro' -->
+	<!-- IF START 'vatType' -->
+	<td bgcolor="#cccccc">VAT유형</td>
+	<!-- IF END 'vatType' --> 
+	<!-- IF START 'isLGH' -->
+  	<td bgcolor="#cccccc">프로젝트 코드</td>
+  	<td bgcolor="#cccccc">프로젝트(현장)명</td> 
+  	<!-- IF END 'isLGH' --> 
+  	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr>
+	<!-- IF START 'isPbpartners' -->
+		<td align="center">{{list.template_name}}</td> 
+	<!-- IF END 'isPbpartners' -->
+		<!-- IF START 'isLGH' -->
+		<td align="center">{{list.cont_etc1}}</td>
+		<td align="center">{{list.user_name}}</td> 
+		<!-- IF END 'isLGH' -->
+		<td align="center">{{list.cont_name}}</td>
+		<td align="center">{{list.cust_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<!-- IF START 'isNH' -->
+		<td align="center">{{list.boss_name}}</td>
+		<td align="center">{{list.address}}</td>
+		<!-- IF END 'isNH' -->
+		<!-- IF START 'isDwst' -->
+		<td align="center">{{list.cust2_sign_date}}</td>
+		<td align="center">{{list.cust1_sign_date}}</td>
+		<!-- IF END 'isDwst' -->
+		<!-- IF START 'is3M' -->
+		<td align="center">{{list.sourcing}}</td>
+		<td align="center">{{list.group}}</td>
+	    <td align="center">{{list.division}}</td>
+	    <td align="center">{{list.user_name}}</td>
+		<!-- IF END 'is3M' -->
+
+		<td align="center">{{list.cont_date}}</td>
+		<!-- IF START 'detail_cd' -->
+		<td align="center">{{list.cust_detail_code}}</a></td>
+		<td align="center">{{list.user_name}}</td>
+		<!-- IF END 'detail_cd' -->
+		<!-- IF START 'isKTH' -->
+		<td align="center">{{list.cust_detail_code}}</a></td>
+		<td align="center">{{list.user_name}}</td>
+		<!-- IF END 'isKTH' -->
+		<!-- IF START 'isPersonView' -->
+		<td align="center">{{list.user_name}}</td>
+		<!-- IF END 'isPersonView' -->
+		<!-- IFNOT START 'is3M' -->
+		<td align="center">{{list.cont_sdate}}</td>
+		<!-- IFNOT END 'is3M' -->
+		<td align="center">{{list.cont_edate}}</td>
+		<!-- IFNOT START 'is3M' -->
+		<!-- IF START 'isDwst' -->
+		<td align="right">{{list.supp_tax}}</td>
+		<td align="right">{{list.supp_vat}}</td>
+		<!-- IF END 'isDwst' -->
+		<td align="right">{{list.cont_total}}</td>
+		<!-- IFNOT END 'is3M' -->
+		<td align="center">{{list.cont_userno}}</td>
+		<!-- IF START 'is3M' -->
+		<td align="center">{{list.cust_sign_date}}</td>
+		<td align="center">{{list.org_sign_date}}</td>
+		<td align="center">{{list.valid_cont}}</td>
+		<!-- IF END 'is3M' -->
+		<!-- IF START 'isGenie' -->
+		<td align="center">{{list.org_sign_date}}</td>
+		<!-- IF END 'isGenie' -->
+		<!-- IF START 'isOlive' -->
+		<td align="center">{{list.user_name}}</td>
+		<!-- IF END 'isOlive' --> 
+		<!-- IF START 'isWoowahan' -->
+		<td align="center">{{list.user_name}}</td>
+		<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+		<td align="center">{{list.email}}</td>
+		<td align="center">{{list.post_code}}</td>
+		<td>{{list.address}}</td>
+		<td align="center">{{list.boss_birth_date}}</td>
+		<td align="center">{{list.add_col1}}</td>
+		<td align="center">{{list.add_col2}}</td>
+		<td align="center" colspan="2" style="mso-number-format:'\@'">{{list.add_col3}}</td>
+		<td align="center">{{list.add_col4}}</td>  
+		<td align="center" style="mso-number-format:'\@'">{{list.add_col5}}</td>  
+		<!-- IF END 'isWoowahan' -->   
+		<!-- IF START 'isSKB' -->
+		<td align="center">{{list.user_name}}</td>
+		<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+		<td align="center">{{list.email}}</td>
+		<td align="center">{{list.post_code}}</td>
+		<td>{{list.address}}</td>
+		<td align="left">{{list.cust_code}}</td>
+		<td align="left">{{list.item_code}}</td>
+		<td align="left">{{list.item_name}}</td>
+		<td align="left">{{list.item_sale}}</td>
+		<td align="left">{{list.move_type}}</td>
+		<td align="left">{{list.move_limit}}</td>
+		<td align="left">{{list.item_code1}}</td>
+		<td align="left">{{list.item_charge}}</td>
+		<td align="left">{{list.item_code2}}</td>
+		<td align="left">{{list.sale_type}}</td>
+		<td align="left">{{list.pay_cust}}</td>
+		<td align="left">{{list.pay_bshop}}</td>
+		<!-- IF END 'isSKB' -->
+		<!-- IF START 'isGenie' -->
+		<td align="center">{{list.field_name}}</td>
+		<td align="center">{{list.reg_name}}</td>
+		<!-- IF END 'isGenie' -->
+		<!-- IF START 'isNH' -->
+		<td align="center">{{list.field_name}}</td>
+		<td align="center">{{list.reg_name}}</td>
+		<td align="center">{{list.bid_method}}</td>
+		<td align="center">{{list.succ_method}}</td>
+		<!-- IF END 'isNH' --> 
+		<!-- IF START 'isNicednr' -->
+		<td align="center">{{list.add_col1}}</td>
+		<td align="center">{{list.add_col2}}</td>
+		<td align="left">{{list.add_col3}}</td>
+		<!-- IF END 'isNicednr' -->
+		<!-- IF START 'isTES' -->
+		<td align="center">{{list.user_name}}</td> 
+		<!-- IF END 'isTES' -->
+		<!-- IF START 'isNHhanaro' -->
+		<td align="center">{{list.user_name}}</td>
+		<td align="center" style="mso-number-format:'\@'">{{list.cust2_sign_date}}</td>
+		<td align="center" style="mso-number-format:'\@'">{{list.cust1_sign_date}}</td>
+		<!-- IF END 'isNHhanaro' -->
+		<!-- IF START 'vatType' -->
+		<td align="center">{{list.vattype}}</td>
+		<!-- IF END 'vatType' -->
+		<!-- IF START 'isLGH' --> 
+	  	<td align="center" style="mso-number-format:'\@'">{{list.project_cd}}</td>
+	  	<td align="center" style="mso-number-format:'\@'">{{list.project_name}}</td>
+	  	<!-- IF END 'isLGH' --> 
+  	</tr>
+  	<!-- LOOP END 'list' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

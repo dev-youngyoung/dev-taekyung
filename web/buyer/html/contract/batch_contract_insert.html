@@ -1,0 +1,325 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	    	<h3>계약서 작성 업체정보</h3>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="13%">
+			<col width="20%">
+			<col width="13%">
+			<col width="20%">
+			<col width="13%">
+			<col width="*">
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+			<th>대표자명</th>
+			<td>{{boss_name}}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	    	<h3>계약서 정보</h3>
+		</div>
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 400px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<table>
+		<tr>
+			<td align="center" height="30" style="font-size:15px; color:#ffffff;background:#94a400;"><b>※ 엑셀 Data 입력 형식</b></td>
+		</tr>
+		<tr>
+			<td style="padding:5 3 5 3">
+				사업자번호 : 1078624874<br>
+				업체코드 : 100229<br>
+				휴대폰(앞) : 010  <br>
+				휴대폰(중간) : 5008<br>
+				휴대폰(마지막) : 4535<br>
+				이메일 : nicedocu@nicednr.co.kr<br>
+				청구일자 : 2015-06-05<br>
+				청구월 : 6<br>
+				청구차수 : 1<br>
+				상품 : 6월1차분 상품 대금<br>
+				상품대금 : 1,044,995<br>
+				프로모션 : 44,995<br>
+				합계 : 1,000,000<br>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-save auth_css" onClick="javascript:submitItem()"><span></span>일괄생성</button>
+</div>
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns();
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg);
+
+        });
+}
+
+function setColumns() {
+    var columns = [];
+    
+	columns.push({name:"r_vendcd" ,fieldName:"r_vendcd" ,header:"사업자번호" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+	columns.push({name:"r_cust_code" ,fieldName:"r_cust_code" ,header:"업체코드" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+	columns.push({name:"r_user_name" ,fieldName:"r_user_name" ,header:"담당자명" ,width:80 ,readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_hp1" ,fieldName:"r_hp1" ,header:"휴대폰(앞)" ,width:80 ,readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_hp2" ,fieldName:"r_hp2" ,header:"휴대폰(중간)" ,width:90, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_hp3" ,fieldName:"r_hp3" ,header:"휴대폰(마지막)" ,width:100, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_email" ,fieldName:"r_email" ,header:"이메일" ,width:160, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_cont_date" ,fieldName:"r_cont_date" ,header:"청구일자" ,width:80, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_req_month" ,fieldName:"r_req_month" ,header:"청구월" ,width:60, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_req_count" ,fieldName:"r_req_count" ,header:"청구차수" ,width:80, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_item" ,fieldName:"r_item" ,header:"상품" ,width:160, readOnly:false ,movable:false ,sortable:false});
+	columns.push({name:"r_sup" ,fieldName:"r_sup" ,header:"상품대금" ,width:80, readOnly:false ,movable:false ,sortable:false ,dataType:"number"  ,styles:{textAlignment:"far" ,numberFormat:"###,###,###,###"}});
+	columns.push({name:"r_pro" ,fieldName:"r_pro" ,header:"프로모션" ,width:80, readOnly:false ,movable:false ,sortable:false ,dataType:"number"  ,styles:{textAlignment:"far" ,numberFormat:"###,###,###,###"}});
+	columns.push({name:"r_sum" ,fieldName:"r_sum" ,header:"합계금액" ,width:80, readOnly:false ,movable:false ,sortable:false ,dataType:"number"  ,styles:{textAlignment:"far" ,numberFormat:"###,###,###,###"}});
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+
+			cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N"];
+			fields = ["r_vendcd","r_cust_code","r_user_name","r_hp1","r_hp2","r_hp3","r_email","r_cont_date","r_req_month","r_req_count","r_item","r_sup","r_pro","r_sum"];
+			if(row["A"] == null || row["A"].toString().trim() == ""){alert("사업자번호에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)");return;}
+
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    if(fields[j]=="r_sup" || fields[j]=="r_pro" || fields[j]=="r_sum"){
+                        rowdata[fields[j]] = row[cols[j]].trim().replaceAll(",","");
+                    }else{
+                        rowdata[fields[j]] = row[cols[j]].trim();
+                    }
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+        alert("업로드 처리 되었습니다.");
+    }
+}
+
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: "계약서 정보.xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("계약서를 일괄 생성 하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+        member_no:"{{member_no}}", grid:grid_string
+    };
+
+    submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            if (data > 0) {
+                alert("계약서 생성에 성공하였습니다.\n임시저장 메뉴에서 확인하세요.");
+                dataProvider.clearRowStates(true);
+                submit_chk = false;
+            } else {
+                alert("처리에 실패하였습니다.");
+                submit_chk = false;
+            }
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "error:" + error);
+            submit_chk = false;
+        }
+    });
+}
+
+</script>

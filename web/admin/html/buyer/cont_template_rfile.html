@@ -1,0 +1,97 @@
+<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+        <h3>구비서류설정
+        <span>
+        <select name="member_no" onchange="location.href='cont_template_rfile.jsp?{{list_query}}&member_no='+this.value">
+        	<option value="">-선택-</option>
+        	<!-- LOOP START 'member' -->
+        	<option value="{{member.member_no}}">{{member.member_name}}</option>
+        	<!-- LOOP END 'member' -->
+        </select>
+        </span>
+        <span class="caution-text"> ※ 계약상대방에게 필수로 받아야 할 구비서류를 등록하세요.</span>
+        </h3>
+    </div>
+    <div class="push-right">
+		<button type="button" class="sbtn color ico-add" onclick="addRFileRow();"><span></span>추가</button>
+		<button type="submit" class="sbtn color ico-save""><span></span>저장</button>
+    </div>
+</div>
+
+<table id="rfile_grid">
+<colgroup>
+	<col width="15%"/>
+	<col width="55%"/>
+	<col width="15%"/>
+	<col width="15%"/>
+</colgroup>
+<thead>
+<tr>
+	<th>필수여부</th>
+	<th>구비서류명</th>
+	<th>첨부가능파일</th>
+	<th>삭제</th>
+</tr>
+</thead>
+<!-- LOOP START 'rfile' -->
+<tr>
+	<td align="center" ><input type="checkbox" name="attch" {{rfile.checked}} onclick="chkClick(this,'form1','attch_yn','Y')"><input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}"></td>
+	<td align="center" ><input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="label" style="width:98%" required="Y" hname="구비서류명"></td>
+	<td align="center" >
+		<select name="allow_ext">
+			<option value="">-전체-</option>
+			<!-- LOOP START 'code_allow' -->
+			<option value="{{code_allow.id}}" {{code_allow.selected}}>{{code_allow.value}}</option>
+			<!-- LOOP END 'code_allow' -->
+		</select>
+	</td>
+	<td align="center" >
+		<button type="button" class="sbtn color ico-delete" onclick="delRFileRow(this);"><span></span>삭제</button>
+	</td>
+</tr>
+<!-- LOOP END 'rfile' -->
+	<tbody>
+	</tbody>
+</table>
+
+</div>
+</form>
+{{form_script}}
+
+
+<script type="text/javascript">
+
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm('저장하시겠습니까?')){
+			return true;;
+		}
+	}
+	return false;
+}
+
+var rfile_grid = new MGRID("rfile_grid");
+rfile_grid.cells = new Array(
+	'<input type="checkbox" name="attch" onclick="chkClick(this,\'form1\',\'attch_yn\',\'Y\')"><input type="hidden" name="attch_yn">'
+	,'<input type="text" name="rfile_doc_name" class="label" style="width:98%" required="Y" hname="구비서류명">'
+	,'<select name="allow_ext"><option value="">-전체-</option><!-- LOOP START 'code_allow_ext' --><option value="{{code_allow_ext.id}}" >{{code_allow_ext.value}}</option><!-- LOOP END 'code_allow_ext' --></select>'
+	,'<button type="button" class="sbtn color ico-delete" onclick="delRFileRow(this);"><span></span>삭제</button>'
+);
+function addRFileRow(){
+	if(document.getElementById('rfile_grid').rows.length >15){
+		alert("더이상 추가 할 수 없습니다.");
+		return;
+	}
+	rfile_grid.addRow();
+	ResizeIframe("ifm_rfile");
+}
+
+function delRFileRow(obj){
+	rfile_grid.del(obj);
+	ResizeIframe("ifm_rfile");
+}
+
+ResizeIframe("ifm_rfile"); 
+</script>

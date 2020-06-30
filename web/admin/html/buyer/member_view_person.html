@@ -1,0 +1,178 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="comp_cates">
+
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>기본정보</h3>
+	</div>
+</div>
+
+<table>
+    <colgroup>
+        <col width="17%">
+        <col width="33%">
+        <col width="17%">
+        <col width="33%">
+    </colgroup>
+    <tr>
+        <th>업체유형</th>
+        <td>
+            <select name="member_gubun">
+                <option value="">선택</option>
+                <!-- LOOP START 'code_member_gubun' -->
+                <option value="{{code_member_gubun.id}}">{{code_member_gubun.value}}</option>
+                <!-- LOOP END 'code_member_gubun' -->
+            </select>
+        </td>
+        <th>회원상태</th>
+        <td>
+            <select name="status">
+                <option value="">선택</option>
+                <!-- LOOP START 'code_status' -->
+                <option value="{{code_status.id}}">{{code_status.value}}</option>
+                <!-- LOOP END 'code_status' -->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>회원유형 </th>
+        <td colspan="3">
+        	<!-- LOOP START 'code_member_type' -->
+            <input type="radio" name="member_type" value="{{code_member_type.id}}"> {{code_member_type.value}}
+            <!-- LOOP END 'code_member_type' -->
+        </td>
+    </tr>
+    <tr>
+    	<th>아이디</th>
+    	<td colspan="3">{{member.user_id}}</td>
+    </tr>
+    <tr>
+        <th class="req-check">이름 </th>
+        <td class="dcel">
+          <input type="text" name="member_name" style="width:30%" maxlength="6" >
+        </td>
+        <th class="req-check">생년월일/성별 </th>
+        <td class="dcel">
+        	<input type="text" name="jumin_no" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" readonly="readonly" class="in_readonly">
+        	<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['jumin_no'])"> &nbsp;
+          	<input type="radio" name="gender" value="1">남자 
+      		<input type="radio" name="gender" value="2">여자 
+        </td>
+    </tr>
+    <tr>
+        <th class="req-check">주소 </th>
+        <td colspan="3">
+            <input type="text" name="post_code" class="in_readonly" size="6" readonly>
+            <button type="button" class="sbtn color ico-search" onclick="jusoPopup()"><span></span>우편번호찾기</button>
+            <input type="text" name="address" style="width:98%; margin-top: 3px" maxlength="150">
+        </td>
+    </tr>
+    <tr>
+        <th class="req-check">휴대전화 </th>
+        <td class="dcel">
+	      <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
+	        <option value="">선택</option>
+	        <option value="010">010</option>
+	        <option value="011">011</option>
+	        <option value="016">016</option>
+	        <option value="017">017</option>
+	        <option value="018">018</option>
+	        <option value="019">019</option>
+	      </select> -
+	      <input type="text" name="hp2" value="" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
+	      <input type="text" name="hp3" value="" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
+        </td>
+        <th class="req-check">이메일 </th>
+        <td class="dcel">
+        	<input type="text" name="email" maxlength="255"  style="ime-mode:disabled; width:95%;">
+        </td>
+    </tr>
+    <tr>
+        <th>전화번호 </th>
+        <td class="dcel">
+			<input type="text" name="tel_num" value="" style="width: 95%;" maxlength="15" >
+        </td>
+        <th>팩스번호 </th>
+        <td class="dcel">
+			<input type="text" name="fax_num" value="" style="width: 95%;" maxlength="15" >
+        </td>
+    </tr>
+    <tr>
+        <th>인증서 만료일 </th>
+        <td colspan="3">
+                <!-- IF START 'member.cert_end_date' -->
+                <span style="color:blue">{{member.cert_end_date}}</span>
+                <!-- IF END 'member.cert_end_date' -->
+                <!-- IFNOT START 'member.cert_end_date' -->
+                <span style="color:red">[미등록]</span>
+                <!-- IFNOT END 'member.cert_end_date' -->
+        </td>
+    </tr>
+</table>
+</div>
+
+<!-- IF START 'memberBoss.boss_name' -->
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>본인인증 정보</h3>
+	</div>
+</div>
+
+<table>
+    <colgroup>
+        <col width="17%">
+        <col width="33%">
+        <col width="17%">
+        <col width="33%">
+    </colgroup>
+    <tr>
+    	<th>이름</th>
+    	<td>{{memberBoss.boss_name}}</td>
+    	<th>생년월일</th>
+    	<td>{{memberBoss.boss_birth_date}}</td>
+    </tr>
+    <tr>
+    	<th>성별</th>
+    	<td>{{memberBoss.boss_gender}}</td>
+    	<th>휴대전화</th>
+    	<td>{{memberBoss.boss_hp1}}-{{memberBoss.boss_hp2}}-{{memberBoss.boss_hp3}} </td>
+    </tr>
+    <tr>
+    	<th>본인인증 일시</th>
+    	<td colspan="3"><span style="color:blue">{{memberBoss.ci_date}}</span></td>
+    </tr>
+</table>
+</div>
+<!-- IF END 'memberBoss.boss_name' -->
+
+<div class="btn-group-wrap">
+      <button type="submit" name="btn_join" class="btn color ico-save" ><span></span>저장</button>
+      <button type="button" name="btn_join" class="btn color ico-delete" onclick="if(confirm('삭제처리 하시겠습니까?\n\n삭제처리 시 복구 할 수 없습니다.'))location.href='member_delete.jsp?{{query}}'"><span></span>삭제</button>
+      <button type="button" name="btn_join" class="btn color ico-list" onclick="location.href='member_list.jsp?{{list_query}}'" ><span></span>목록으로</button>
+</div>
+</form>
+{{form_script}}
+<script type="text/javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("저장하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){
+	 var f = document.forms['form1'];
+	f['address'].value=roadFullAddr;
+	f['post_code'].value=zipNo;
+}
+
+function popLogo(){
+    OpenWindow("pop_ci_modify.jsp?member_no={{member.member_no}}","ci","550","450","no");
+    return;
+}
+
+</script>

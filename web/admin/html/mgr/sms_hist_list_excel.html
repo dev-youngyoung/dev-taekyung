@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center"><b style="font-size:18pt">매출내역<b></td>
+    </tr>
+    <tr>
+        <td><br></td>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+                <tr>
+                    <th>순번</th>
+                    <th>수신번호</th>
+                    <th>전송일시</th>
+                    <th>수신일시</th>
+                    <th>통신사</th>
+                    <th>전송상태</th>
+                    <th>전송메세지</th>
+                </tr>
+                <!-- LOOP START 'list' -->
+                <tr>
+                    <td align="center">{{list.__ord}}</td>
+                    <td align="center">{{list.tran_phone}}</td>
+                    <td align="center">{{list.tran_date}}</td>
+                    <td align="center">{{list.tran_reportdate}}</td>
+                    <td align="center">{{list.tran_net}}</td>
+                    <td align="center">{{list.tran_rslt_nm}}</td>
+                    <td>{{list.tran_msg}}</td>
+                </tr>
+                <!-- LOOP END 'list' -->
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

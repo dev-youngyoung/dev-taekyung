@@ -1,0 +1,152 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="search" value="1">
+<input type="hidden" name="callback" value="{{callback}}">
+
+<div style="width:100%;margin-bottom:10px;" align="right">		
+		<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"> <span></span>닫기</button>
+</div>
+	
+<div class="search_div">	
+<table class="search_table">
+  <colgroup>
+    <col width="13%"/>
+    <col width="31%"/>
+    <col width="13%"/>
+    <col width="31%"/>
+    <col width="*"/>
+  </colgroup>
+  <tr>
+    <th><p>업체명</p></th>
+    <td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+    <th><p>사업자번호</p></th>
+    <td><input type="text" name="s_vendcd" maxlength="30" style="width:95%"></td>
+    <td align="right">
+    	<button type="submit" class="btn color ico-search"><span></span>검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+
+function formSubmit(f){
+	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+
+<div class="push-left">
+    <span class="caution-text">
+	※ <font color="blue"><b>업체명</b></font> 또는 사업자 등록번호를 입력후 검색 하세요.
+    </span>
+</div>
+<br>
+<br>
+<div class="div_table">
+<!-- LOOP START 'list' -->
+<form novalidate name="form_{{list.member_no}}">
+<input type="hidden" name="member_no" value="{{list.member_no}}">
+<input type="hidden" name="member_name" value="{{list.member_name}}">
+<table>
+	<colgroup>
+		<col width="40%">
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+	</colgroup>
+	<tr>
+		<th>업체명</th>
+		<th>사업자번호</th>
+		<th>대표자</th>
+		<th>추가</th>
+	</tr>
+	<tr>
+		<td>{{list.member_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<td align="center">{{list.boss_name}}</td>
+		<td align="center"><button type="button" class="sbtn color ico-add" value="추가" onclick="fadd('{{list.member_no}}')"><span></span>추가</button></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<table class="inner_table">
+				<colgroup>
+					<col width="15%">
+					<col width="15%">
+					<col width="15%">
+					<col width="15%">
+					<col width="30%">
+					<col width="*">
+				</colgroup>
+				<tr>
+	  				<th>담당자명</th>
+	  				<th>부서명</th>
+	  				<th>전화번호</th>
+	  				<th>휴대폰번호</th>
+	  				<th>E-mail</th>
+	  				<th>선택 <input type="radio" name="person_seq" value="" style="display: none"/></th>
+ 				</tr>
+ 				<!-- LOOP START 'person' -->
+ 				<tr>
+ 					<td align="center">{{person.user_name}}
+ 						<input type="hidden" name="dept_name_{{person.person_seq}}" value="{{person.dept_name}}"/>
+ 						<input type="hidden" name="user_id_{{person.person_seq}}" value="{{person.user_id}}"/>
+ 					</td>
+ 					<td align="center">{{person.dept_name}}</td>
+ 					<td align="center">{{person.tel_num}}</td>
+ 					<td align="center">{{person.hp1}}-{{person.hp2}}-{{person.hp3}}</td>
+ 					<td align="center">{{person.email}}</td>
+ 					<td align="center"><input type="radio" name="person_seq" value="{{person.person_seq}}"/></td>
+ 				</tr>
+ 				<!-- LOOP END 'person' -->
+			</table>
+		</td>
+	</tr>
+</table>
+<!-- LOOP END 'list' -->
+<!-- IFNOT START 'list' -->
+<table>
+	<tr>
+		<td align="center" colspan="4">검색 결과가 없습니다.</td>
+	</tr>
+</table>
+<!-- IFNOT END 'list' -->
+</form>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+ 
+<script>
+function formSubmit(f){
+	if(f['s_member_name'].value== "" && f['s_vendcd'].value == "" && f['s_userid'].value == ""){
+		alert("업체명 또는 사업자등록번호 또는 아이디를 입력 후 검색 하세요.");
+		f['s_member_name'].focus();
+		return false;
+	}
+	return true;
+} 
+
+function fadd(member_no){
+
+	var seq = GetFormValue("form_"+member_no, "person_seq");
+	var data = null;
+	if(seq){
+		var f = document.forms["form_"+member_no];
+		data = {
+			"member_no" : f['member_no'].value
+		   ,"member_name" : f['member_name'].value
+		   ,"dept_name" : f['dept_name_'+seq].value
+		   ,"user_id" : f['user_id_'+seq].value
+		}
+	}else{
+		alert("담당자 선택 후 업체 추가하여 주세요.");
+		return;
+	}
+	opener.{{callback}}(data);
+	self.close();
+}
+</script>

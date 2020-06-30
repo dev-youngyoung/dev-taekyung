@@ -1,0 +1,139 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>회원현황(전체사업자 / 사이트별)</h3>
+	    </div>
+	</div>
+  <table>
+  <colgroup>
+  	<col width="13%">
+  	<col width="13%">
+  	<col width="13%">
+  	<col width="13%">
+  	<col width="12%">
+  	<col width="12%">
+  	<col width="12%">
+  	<col width="12%">
+  </colgroup>
+  <tr>
+    <th colspan="2">건설</th>
+    <th colspan="2">비건설</th>
+    <th colspan="2">가맹</th>
+    <th colspan="2">물류</th>
+  </tr>
+  <tr>
+    <th>과금</th>
+    <th>비과금</th>
+    <th>과금</th>
+    <th>비과금</th>
+    <th>가맹본부</th>
+    <th>점주</th>
+    <th>과금</th>
+    <th>비과금</th>
+  </tr>
+  <tr>
+    <td align="right">{{sumMember.supplier_pay_comp_cnt}}</td>
+    <td align="right">{{sumMember.supplier_comp_cnt}}</td>
+    <td align="right">{{sumMember.buyer_pay_comp_cnt}}</td>
+    <td align="right">{{sumMember.buyer_comp_cnt}}</td>
+    <td align="right">{{sumMember.fc_pay_comp_cnt}}</td>
+    <td align="right">{{sumMember.fc_comp_cnt}}</td>
+    <td align="right">{{sumMember.logis_pay_comp_cnt}}</td>
+    <td align="right">{{sumMember.logis_comp_cnt}}</td>
+  <tr>
+  </table>
+</div>
+
+<form novalidate name="form1" method="get">
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <h3>회원형황(수급사업자 / 회원종류별)</h3>
+        </div>
+        <div class="push-right">
+            누적 :
+            <input type="text" name="s_edate" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">
+            <img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+            <button type="submit" class="btn color ico-search"><span></span>검색</button>
+        </div>
+    </div>
+    <table>
+        <colgroup>
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+        </colgroup>
+        <tr>
+            <th>법인사업자</th>
+            <th>개인사업자</th>
+            <th>개인</th>
+            <th>합계</th>
+        </tr>
+        <tr>
+            <td align="right">{{sumMemberSpe.member_type1_cnt}}</td>
+            <td align="right">{{sumMemberSpe.member_type2_cnt}}</td>
+            <td align="right">{{sumMemberSpe.member_type3_cnt}}</td>
+            <td align="right">{{sumMemberSpe.member_type_sum}}</td>
+        <tr>
+    </table>
+</div>
+</form>
+{{form_script}}
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약현황</h3>
+	    </div>
+	</div>
+  <table>
+  <colgroup>
+  	<col width="25%">
+  	<col width="25%">
+  	<col width="25%">
+  	<col width="25%">
+  </colgroup>
+  <tr>
+    <th>건설</th>
+    <th>비건설</th>
+    <th>가맹</th>
+    <th>물류</th>
+  </tr>
+  <tr>
+    <td align="right">{{sumCont.supplier_cnt}}</td>
+    <td align="right">{{sumCont.buyer_cnt}}</td>
+    <td align="right">{{sumCont.fc_cnt}}</td>
+    <td align="right">{{sumCont.logis_cnt}}</td>
+  <tr>
+  </table>
+</div>
+
+
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>입찰현황</h3>
+	    </div>
+	</div>
+  <table>
+  <colgroup>
+  	<col width="50%">
+  	<col width="50%">
+  </colgroup>
+  <tr>
+    <th>건설</th>
+    <th>비건설</th>
+  </tr>
+  <tr>
+    <td align="right">{{sumBid.supplier_cnt}}</td>
+    <td align="right">{{sumBid.buyer_cnt}}</td>
+  <tr>
+  </table>
+</div>

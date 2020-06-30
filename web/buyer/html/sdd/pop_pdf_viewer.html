@@ -1,0 +1,17 @@
+<script>
+    var pdf_url = "{{url}}";
+    var down_file_name = "{{down_file_name}}";
+
+    function chgFooterText(){
+        var f  = document.forms['form1'];
+        var footer_text = document.forms['form1']["footer_text"].checked?"Y":"N";
+        location.href='pop_pdf_viewer.jsp?{{query}}&footer_text='+footer_text;
+    }
+</script>
+<!-- IF START 'view_noti' -->
+<form name="form1" method="post" style="display:none">
+    <div class="util-row" style="background-color: #FFF612;position: absolute; top:40px;left:25px">
+        <span style="font-weight: normal !important;" class="caution-text">{{noti_text}} <input type="checkbox" name="footer_text" value="Y" {{footer_text_checked}} onclick="chgFooterText()"></span>
+    </div>
+</form>
+<!-- IF END 'view_noti' -->

@@ -1,0 +1,72 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="comp_cates">
+
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>계정정보</h3>
+	</div>
+</div>
+
+<table>
+    <colgroup>
+        <col width="17%">
+        <col width="33%">
+        <col width="17%">
+        <col width="33%">
+    </colgroup>
+    <tr>
+        <th>업체명</th>
+        <td colspan="3">
+            {{qna.companynm}}
+        </td>
+    </tr>
+    <tr>
+        <th>구분</th>
+        <td>
+            {{qna.gubun_nm}}
+        </td>
+        <th>문의일자</th>
+        <td>
+            {{qna.insertdate}}
+        </td>
+    </tr>
+    <tr>
+        <th>담당자명</th>
+        <td>
+            {{qna.personnm}}
+        </td>
+        <th>연락처</th>
+        <td>
+            {{qna.mobile}}
+        </td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td colspan="3">
+            {{qna.contents}}
+        </td>
+    </tr>
+</table>
+</div>
+
+<div class="btn-group-wrap">
+      <button type="button" name="btn_join" class="btn color ico-delete" onclick="if(confirm('삭제처리 하시겠습니까?'))location.href='si_qna_delete.jsp?qnaseq={{qna.qnaseq}}'"><span></span>삭제</button>
+      <button type="button" name="btn_join" class="btn color ico-list" onclick="location.href='si_qna_list.jsp?{{list_query}}'" ><span></span>목록으로</button>
+</div>
+</form>
+{{form_script}}
+<script type="text/javascript">
+function formSubmit(f){
+	if(validate(f)){
+	    var msg = '';
+	    if(f['passwd'].value!='') {
+            msg='비밀번호도 함께 변경합니다. '
+        }
+		if(confirm(msg+"저장하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+</script>

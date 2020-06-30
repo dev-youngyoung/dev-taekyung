@@ -1,0 +1,37 @@
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+    <td>계약명</td>
+    <td>거래처명</td>
+    <td>계약일자</td>
+    <td>계약시작</td>
+    <td>계약종료</td>
+    <td>계약금액</td>
+    <td>계약번호</td>
+    <td>상태</td>
+  	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr align="center">
+		<td align="center">{{list.cont_name}}</td>
+		<td align="center">{{list.cust_name}}</td>
+		<td align="center">{{list.cont_date}}</td>
+		<td align="center">{{list.cont_sdate}}</td>
+		<td align="center">{{list.cont_edate}}</td>
+		<td align="right">{{list.cont_total}}</td>
+		<td align="center">{{list.cont_userno}}</td>
+		<td align="center">{{list.status}}</td>
+  	</tr>
+  	<!-- LOOP END 'list' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

@@ -1,0 +1,53 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>{{member.member_name}} 담당자정보</h3>
+	</div>
+</div>
+
+<table>
+  <colgroup>
+    <col width="12%">
+    <col width="10%">
+    <col width="13%">
+    <col width="12%">
+    <col width="12%">
+    <col width="15%">
+    <col width="15%">
+    <col width="9%">
+  </colgroup>
+  <tr>
+  	<th>담당자아이디</th>
+  	<th>비밀번호</th>
+  	<th>이름</th>
+  	<th>부서명</th>
+  	<th>사용자유형</th>
+  	<th>전화번호/휴대폰</th>
+  	<th>이메일</th>
+  	<th>사용여부</th>
+  </tr>
+  <!-- LOOP START 'person' -->
+  <tr>
+  	<td align="center">{{person.user_id}}</td>
+  	<td align="center"><button type="button" class="sbtn color" onclick="OpenWindow('./pop_pw_reset.jsp?{{query}}&person_seq={{person.person_seq}}', 'pop_pw_reset', 400, 220, 0, 0);">초기화</button></td>
+  	<td align="center">{{person.user_name}} {{person.position}}</td>
+  	<td align="center">{{person.dept_name}}</td>
+  	<td align="center">{{person.user_level}}</td>
+  	<td align="center">{{person.tel_num}}<br>{{person.hp1}} - {{person.hp2}} - {{person.hp3}}</td>
+  	<td align="center">{{person.email}}</td>
+  	<td align="center">{{person.use_yn}}</td>
+  </tr>
+  <!-- LOOP END 'person' -->
+</table>
+</div>
+
+<div class="btn-group-wrap">
+      <button type="button" name="btn_join" class="btn color ico-list" onclick="location.href='member_list.jsp?{{list_query}}'" ><span></span>목록으로</button>
+</div>
+</form>
+{{form_script}}
+<script type="text/javascript">
+
+</script>

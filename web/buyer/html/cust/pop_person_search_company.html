@@ -1,0 +1,87 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="person_seq" value="{{person_seq}}">
+<input type="hidden" name="search" value="1">
+<div class="util-row">
+	<div class="push-right">
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+	</div>
+</div>
+<div class="search_div">
+	<table class="search_table">
+	<colgroup>
+		<col width="13%"/>
+		<col width="33%"/>
+		<col width="13%"/>
+		<col width="33%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<th><p>업체명</p></th>
+		<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+		<th><p>사업자번호</p></th>
+		<td><input type="text" name="s_vendcd" maxlength="30" size="12">(-없이 입력)</td>
+		<td align="right">
+			<button type="submit" class="search_btn">검색</button>
+		</td>
+	</tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			※업체명 또는 사업자 등록번호를 입력후 검색 하세요.
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="40%">
+			<col width="20%">
+			<col width="20%">
+			<col width="10%">
+		</colgroup>
+		<tr>
+			<th>순번</th>
+			<th>업체명</th>
+			<th>사업자번호</th>
+			<th>대표자</th>
+			<th>추가</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.__ord}}</td>
+			<td>{{list.member_name}}</td>
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<td align="center">
+				<button type="button" class="sbtn color" onclick="addCompany('{{list.client_seq}}');">추가</button>
+			</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="5">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+<script language="javascript">
+function addCompany(client_seq){
+	opener.addClientInfo(client_seq);
+	self.close();
+}
+</script>

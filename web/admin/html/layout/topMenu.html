@@ -1,0 +1,89 @@
+        <div class="page-header">
+            <div class="page-header-top">
+                <div class="page-header-top-inner">
+                    <!-- IF START 'login_block' -->
+                    <p>
+                        <span>{{_auth._ADMIN_NAME}}</span> 님께서 로그인 하셨습니다.
+                        <!-- IF START '_auth._BEFORE_LOGIN_DATE' -->
+                        (이전 접속 일시:{{_auth._BEFORE_LOGIN_DATE}})
+                        <!-- IF END '_auth._BEFORE_LOGIN_DATE' -->
+                    </p>
+                    <!-- IF END 'login_block' -->
+                    <ul>
+                        <li><a href="/web/supplier/">HOME</a></li>
+                        <!-- IF START 'login_block' -->
+                        <li><a href="../main/logout.jsp">LOGOUT</a></li>
+                        <!-- IF END 'login_block' -->
+                    </ul>
+                </div>
+            </div>
+            <div class="page-header-bottom">
+                <div class="page-header-bottom-inner">
+                    <h1><a href="/web/admin">
+                    <!-- IFNOT START 'logo_img' -->
+                    <img src="../html/images/common/page_header_logo.png">
+                    <!-- IFNOT END 'logo_img' -->
+                    <!-- IF START 'logo_img' -->
+                    <div style="height: 58px;line-height: 58px" align="middle">
+                    <img src="../html/images/logo/{{logo_img}}" style="vertical-align:middle;" >
+                    </div>
+                    <!-- IF END 'logo_img' -->
+                    </a></h1>
+                    <ul class="page-gnb">
+                    	<!-- LOOP START 'menu' -->
+                    		<!-- IFNOT START 'menu.hide' -->
+                        <li>
+                            <a class="dir_{{menu.dir}}">{{menu.name}}</a>
+                            <div class="page-gnb-depth2">
+                                <div class="page-gnb-depth2-inner">
+                                    <div class="page-gnb-depth2-container">
+                                    	<!-- LOOP START 'm_menu' -->
+                                        <div class="page-gnb-depth2-row">
+                                            <h2>{{m_menu.name}}</h2>
+                                                <ul>
+                                                	<!-- LOOP START 's_menu' -->
+                                                    <li><a href="{{s_menu.href}}" style="color:{{s_menu.font_color}} !important">{{s_menu.name}}</a></li>
+                                                    <!-- LOOP END 's_menu' -->
+                                                </ul>
+                                        </div>
+                                        <!-- LOOP END 'm_menu' -->
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        	<!-- IFNOT END 'menu.hide' -->
+                        <!-- LOOP END 'menu' -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- IF START 'view_nav' -->
+        <div class="page-visual">
+        </div>
+        <div class="page-sub-nav" style="background:{{nav_background}}">
+            <div class="page-sub-nav-inner" style="background:{{nav_background}};">
+                <p><a href="/web/admin/"><span class="sr-only">홈</span></a></p>
+                <ul>
+                	<!-- LOOP START 'dtitle' -->
+                	<!-- IFNOT START 'dtitle.depth3' -->
+                    <li style="background:{{nav_background}};border-left:{{nav_background}}"><span class="depth-title">{{dtitle.menu_nm}}</span></li>
+                    <!-- IFNOT END 'dtitle.depth3' -->
+                    <!-- IF START 'dtitle.depth3' -->
+                    <li class="depth3" style="background:{{nav_background_highlight}};border-left:{{nav_background}}"><a>{{dtitle.menu_nm}}<span></span></a>
+                        <div class="depth4" style="background:{{nav_background}}">
+                        	<!-- LOOP START 'dmenu' -->
+                            <h3 style="background:{{nav_background_highlight}}">{{dmenu.name}}</h3>
+                            <ul>
+                            	<!-- LOOP START 's_menu' -->
+                                <li><a href="{{s_menu.href}}">{{s_menu.name}}</a></li>
+                                <!-- LOOP END 's_menu' -->
+                            </ul>
+                            <!-- LOOP END 'dmenu' -->
+                        </div>
+                    </li>
+                    <!-- IF END 'dtitle.depth3' -->
+                    <!-- LOOP END 'dtitle' -->
+                </ul>
+            </div>
+        </div>
+        <!-- IF END 'view_nav' -->

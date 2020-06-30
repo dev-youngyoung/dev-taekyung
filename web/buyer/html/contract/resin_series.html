@@ -1,0 +1,60 @@
+<form name="form1" method="post">
+
+<div class="div_table">
+	<table>
+	  <colgroup>
+	    <col width="40%">
+	    <col width="60%">
+	  </colgroup>
+	  <tr>
+	    <th class="req-check">상태</th>
+	    <td>
+	        <select name="status">
+	            <!-- LOOP START 'code_status' -->
+	            	<option value="{{code_status.id}}">{{code_status.value}}</option>
+	           	<!-- LOOP END 'code_status' -->
+	       </select>
+	   </td>
+	 </tr>
+	 <tr>
+	 	<th class="req-check">연재 개시일</th>
+	 	<td>
+			<input type="text" name="sday" class="in_readonly" style="width: 45%;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['sday'])">
+	 	</td>
+	 </tr>
+	 <tr>
+	 	<th>연재 완료일</th>
+	 	<td>
+			<input type="text" name="eday" class="in_readonly" style="width: 45%;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['eday'])">
+	 	</td>	 
+	 </tr>
+	 <tr>
+	    <th>서비스권 만료일</th>
+	    <td>
+			<input type="text" name="fday" class="in_readonly" style="width: 45%;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['fday'])">
+	    </td>
+	 </tr>
+	 <tr>
+	 	<th>자동연장 조건</th>
+	 	<td><textarea name="auto" style="width:100%;height:40px"></textarea></td>
+	 </tr>
+	 <tr>
+	 	<th>기타</th>
+	 	<td><textarea name="etc" style="width:100%;height:40px"></textarea></td>
+	  </tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-save"><span></span>저장</button> &nbsp;
+	<!-- IF START 'modify' -->
+		<button type="button" class="btn color ico-delete" onClick="if(confirm('삭제하시겠습니까?')){location.href='project_delete.jsp?{{query}}';}" ><span></span>삭제</button> 
+	<!-- IF END 'modify' -->
+	<button type="button" class="btn color ico-cancel" onClick="window.close();"><span></span>닫기</button>
+</div>
+</form>
+
+{{form_script}}

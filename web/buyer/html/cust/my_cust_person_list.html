@@ -1,0 +1,95 @@
+<form name="form1" method="get">
+    <input type="hidden" name="mode"/>
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+				<col width="13%">
+				<col width="42%">
+				<col width="13%">
+				<col width="22%">
+				<col width="10%">
+            </colgroup>
+            <tr>
+                <th><p>이름</p></th>
+                <td><input type="text" name="s_member_name" maxlength="100" style="width:98%"></td>
+                <td><p>회원상태</p></td>
+                <td>
+                <select name="s_status">
+                <option value="">-전체-</option>
+                <!-- LOOP START 'code_status' -->
+                <option value="{{code_status.id}}">{{code_status.value}}</option>
+                <!-- LOOP END 'code_status' -->
+                </select>
+                </td>
+                <td align="right">
+                    <button type="button" class="search_btn" value="검색" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<form name="form2" method="post">
+    <table  width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 5px;">
+        <tr>
+            <td class="caution-text"></td>
+            <td align="right">
+                <!-- <input type="button" class="xls6" value="엑셀다운로드" onclick="excel()"/>  -->
+            </td>
+        </tr>
+    </table>
+    <div class="div_table">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <colgroup>
+		    <col width="5%">
+		    <col width="10%">
+		    <col width="14%">
+		    <col width="13%">
+		    <col width="19%">
+		    <col width="29%">
+		    <col width="10%">
+		    <col>
+            </colgroup>
+            <tr>
+                <th>순번</th>
+                <th>이름</th>
+                <th>생년월일(성별)</th>
+                <th>핸드폰번호</th>
+                <th>이메일</th>
+                <th>주소</th>
+                <th>회원상태</th>
+            </tr>
+            <!-- IF START 'list' -->
+            <!-- LOOP START 'list' -->
+            <tr onclick="location.href='my_cust_person_modify.jsp?{{list_query}}&member_no={{list.member_no}}';" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
+                <td align="center">{{list.__ord}}</td>
+                <td align="center">{{list.member_name}}</td>
+                <td align="center">{{list.birth_date}}{{list.gender}}</td>
+                <td align="center">{{list.hp_no}}</td>
+                <td align="center">{{list.email}}</td>
+                <td>{{list.address}}</td>
+                <td align="center">{{list.status}}</td>
+            </tr>
+            <!-- LOOP END 'list' -->
+            <!-- IF END 'list' -->
+            <!-- IFNOT START 'list' -->
+            <tr>
+                <td colspan="7" align="center">검색결과가 없습니다.</td>
+            </tr>
+            <!-- IFNOT END 'list' -->
+        </table>
+    </div>
+    <div class="common-paging">{{pagerbar}}</div>
+</form>
+<script language="javascript">
+function formSubmit(f){
+	f["mode"].value="";
+	return true;
+}
+
+function excel(){
+	var f = document.forms['form1'];
+	f['mode'].value="excel";
+	f.submit();
+}
+</script>

@@ -1,0 +1,67 @@
+<!-- IF START 'treeMenu' -->
+
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>권한정보({{auth_nm}})</h3>
+    </div>
+</div>
+<table>
+	<tr>
+		<th>메뉴명</th>
+		<th>중분류</th>
+		<th>메뉴명</th>
+		<th>열람범위</th>
+		<th>업무권한</th>
+	</tr>
+	<!-- LOOP START 'treeMenu' -->
+	<tr>
+		<!-- IF START 'treeMenu.l_menu_nm' -->
+		<td align="center" rowspan="{{treeMenu.l_row_span}}">{{treeMenu.l_menu_nm}}</td>
+		<!-- IF END 'treeMenu.l_menu_nm' -->
+		<!-- IF START 'treeMenu.m_menu_nm' -->
+		<td align="center" rowspan="{{treeMenu.m_row_span}}" style="border-left: 1px solid #e0e0e0">{{treeMenu.m_menu_nm}}</td>
+		<!-- IF END 'treeMenu.m_menu_nm' -->
+		<!-- IF START 'treeMenu.s_menu_nm' -->
+		<td align="center" style="border-left: 1px solid #e0e0e0">{{treeMenu.s_menu_nm}}</td>
+		<td align="center">{{treeMenu.select_auth}}</td>
+		<td align="center">{{treeMenu.btn_auth}}</td>
+		<!-- IF END 'treeMenu.s_menu_nm' -->
+	</tr>
+	<!-- LOOP END 'treeMenu' -->
+</table>
+</div>
+<!-- IF END 'treeMenu' -->
+
+<!-- IF START 'authField' -->
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>타부서 메뉴별 접근권한 </h3>
+    </div>
+</div>
+<table id="afiled_grid">
+	<colgroup>
+		<col width="30%">
+		<col width="40%">
+		<col width="25%">
+	</colgroup>
+	<thead>
+	<tr>
+		<th>타부서</th>
+		<th>접근메뉴</th>
+		<th>메뉴권한</th>
+	</tr>
+	</thead>
+	<tbody>
+		<!-- LOOP START 'authField' -->
+		<tr>
+			<td align="center">{{authField.field_name}}</td>
+			<td align="center">{{authField.full_menu_nm}}</td>
+			<td align="center">{{authField.btn_auth_nm}}</td>
+		</tr>
+		<!-- LOOP END 'authField' -->
+	</tbody>
+</table>
+</div>
+<!-- IF END 'authField' -->

@@ -1,0 +1,46 @@
+<form name="form1" method="post">
+<input type="hidden" name="fields">
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<h3>{{user_name}}님의 담당지점</h3>
+			</div>
+			<div class="push-right">
+				<button type="button" class="sbtn color ico-add" onclick="popField();"><span></span>현장추가</button>
+			</div>
+		</div>
+		<table>
+			<colgroup>
+				<col width="60%">
+				<col width="20%">
+				<col width="20%">
+			</colgroup>
+			<tr>
+				<th>지점명</th>
+				<th>사용여부</th>
+				<th>삭제</th>
+			</tr>
+			<!-- LOOP START 'list' -->
+			<tr>
+				<td>{{list.field_name}}</td>
+				<td align="center">{{list.use_yn}}</td>
+				<td align="center">
+					<button type="button" class="sbtn color" onclick="if(confirm('삭제하시겠습니까?')){location.href='ifm_place_delete.jsp?field_seq={{list.field_seq}}&{{query}}';}">삭제</button>
+				</td>
+			</tr>
+			<!-- LOOP END 'list' -->
+		</table>
+	</div>
+</form>
+<script language="javascript">
+function popField(){
+	var f = document.forms['form1'];
+    OpenWindow("./pop_search_place.jsp?callback=addClient&person_seq={{person_seq}}","pop_field",820,700);
+}
+
+function addFields(fields){
+    var f = document.forms['form1'];
+    f['fields'].value = fields;
+    f.submit();
+}
+</script>

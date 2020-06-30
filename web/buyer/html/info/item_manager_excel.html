@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+    <td bgcolor="#cccccc">대분류명</td>
+    <td bgcolor="#cccccc">중분류명</td>
+    <td bgcolor="#cccccc">소분류명</td>
+    <td bgcolor="#cccccc">품목명</td>
+    <td bgcolor="#cccccc">규격</td>
+    <td bgcolor="#cccccc">단위</td>
+    <td bgcolor="#cccccc">유형</td>
+    <td bgcolor="#cccccc">품목코드</td>
+  	</tr>
+  	<!-- LOOP START 'item' -->
+	<tr>
+		<td align="center">{{item.l_cd_nm}}</td>
+		<td align="center">{{item.m_cd_nm}}</td>
+		<td align="center">{{item.s_cd_nm}}</td>
+		<td align="center">{{item.item_nm}}</td>
+		<td align="center">{{item.standard}}</td>
+		<td align="center">{{item.unit}}</td>
+		<td align="center">{{item.mat_cd_nm}}</td>
+		<td align="center">{{item.item_cd}}</td>
+  	</tr>
+  	<!-- LOOP END 'item' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

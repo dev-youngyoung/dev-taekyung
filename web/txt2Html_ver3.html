@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="EUC-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>▒ 나이스다큐 (전자구매시스템)▒</title>
+    <link rel="stylesheet" type="text/css" href="http://www.nicedocu.com/web/buyer/html/css/style.css">
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery-3.1.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery.easing.1.3.js"></script>
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/common.js"></script>
+<style type="text/css">
+.glabel {
+	color: #707070;
+	FONT-FAMILY: "돋움", "Arial";
+	FONT-SIZE: 9pt;
+	/*LINE-HEIGHT: 13pt;*/
+	border: 1 solid;
+	border-color: #d7d5ca;
+	text-align: left;
+	background-color: #ffff00
+}
+td {  font-family: "나눔고딕, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+.lineTable { border-collapse:collapse; border:1px solid black }
+.lineTable td { border:1px solid black }
+.lineTable .noborder { border:0 }
+</style>
+
+<script type="text/javascript">
+function text2html(){
+	var f = document.forms['form1'];
+	var txt = f['txt'].value.replaceAll(" \n","\n").replaceAll("\n\n\n","\n\n");//공백 입력 줄 , 엔터 2번 한거 변환 처리
+	var html = "";
+
+	var groups = txt.split("\n\n");//조항단위로 쪼개기
+
+	for(var i = 0 ; i < groups.length; i ++){
+		var group = groups[i];
+		var rows = group.split("\n");
+		var tdCnt = 0;
+		//td 수 구하기
+		for(var j = 0 ; j< rows.length; j++){
+			var cells = rows[j].split("\t");
+			if(tdCnt < cells.length){
+				tdCnt = cells.length;
+			}
+		}
+
+		//table header 입력 시작
+		html += '\n';
+		html += '\n<p>';
+		html += '\n<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+		html +='\n<colgroup>';
+		for(var k = 0 ; k< tdCnt-1 ; k++){
+			html +='<col width="20px">';
+		}
+		html +='<col>';
+		html +='</colgroup>';
+
+		//내용채우기
+		for(var j = 0 ; j< rows.length; j++){
+			html+="\n<tr>";
+			var cells = rows[j].split("\t");
+			var isBold = false;
+
+			if(cells[0].replaceAll(" ","").trim()!="\t"&&j==0){//일반내용
+				isBold = true;
+			}
+			var colspan = tdCnt - cells.length+1;
+			for(var c = 0 ; c< cells.length; c++){
+				var cell = cells[c].trim();
+				if(isBold) cell = "<b>"+cell+"</b>";
+				if( c == cells.length-1){// 마지막cell
+					if(colspan!=1){
+						html+='\n\t<td colspan="'+colspan+'" style="text-align:justify">'+cell+'</td>';
+					}else{
+						html+='\n\t<td style="text-align:justify">'+cell+'</td>';
+					}
+				}else{// 중간 cell
+					if(cell==""){
+						html+='\n\t<td>'+cell+'</td>';
+					}else{
+						html+='\n\t<td valign="top">'+cell+'</td>';
+					}
+				}
+			}
+			html+='\n</tr>';
+		}
+		html+='\n</table>';
+		html+='\n</p>';
+	}
+	f['html'].value= html;
+	document.getElementById("__html_0").innerHTML=html;
+}
+
+function grid2html(txt){
+    txt = txt.replaceAll(" \n","\n").replaceAll("\n\n\n","\n\n");//공백 입력 줄 , 엔터 2번 한거 변환 처리
+    var html = "";
+
+    var groups = txt.split("\n\n");//조항단위로 쪼개기
+
+    for(var i = 0 ; i < groups.length; i ++){
+        var group = groups[i];
+        var rows = group.split("\n");
+        var tdCnt = 0;
+        //td 수 구하기
+        for(var j = 0 ; j< rows.length; j++){
+            var cells = rows[j].split("\t");
+            if(tdCnt < cells.length){
+                tdCnt = cells.length;
+            }
+        }
+
+        //table header 입력 시작
+        html += '<table>'
+        html +='\n<colgroup>';
+        for(var k = 0 ; k< tdCnt-1 ; k++){
+            html +='<col>';
+        }
+        html +='<col>';
+        html +='</colgroup>';
+        html +='\n<tbody>';
+
+        //내용채우기
+        for(var j = 0 ; j< rows.length; j++){
+            html += "\n<tr>";
+            var cells = rows[j].split("\t");
+
+            var colspan = tdCnt - cells.length+1;
+
+            for(var c = 0 ; c< cells.length; c++){
+                var cell = cells[c].trim();
+                if( c == cells.length-1){// 마지막cell
+                    if(colspan!=1){
+                        html+='\n\t<td colspan="'+colspan+'" align="center">'+cell+'</td>';
+                    }else{
+                        html+='\n\t<td align="center">'+cell+'</td>';
+                    }
+                }else{// 중간 cell
+                    if(cell==""){
+                        html+='\n\t<td align="center">'+cell+'</td>';
+                    }else{
+                        html+='\n\t<td align="center">'+cell+'</td>';
+                    }
+                }
+            }
+            html+='\n</tr>';
+        }
+        html+='\n</tbody>';
+        html+='\n</table>';
+    }
+    document.getElementById("__html_0").innerHTML = html;
+}
+
+function removeAttr(){
+	document.getElementById("__html_0").innerHTML = document.querySelector("#__html_0 table").outerHTML;
+
+    //table 불필요 항목 제거
+    var tableObj = document.querySelector("#__html_0 table");
+	var table_att_names = tableObj.getAttributeNames();
+    var col;
+	for(var i= 0 ; i<table_att_names.length; i++){
+		var attr_name = table_att_names[i];
+		tableObj.removeAttribute(attr_name);
+	}
+    if (tableObj.getElementsByTagName("colgroup").length > 0) {
+        tableObj.removeChild(tableObj.getElementsByTagName("colgroup")[0]);
+	}
+	tableObj.className="lineTable";
+    tableObj.width = "100%";
+    tableObj.cellPadding = "3";
+    tableObj.cellSpacing = "0";
+    tableObj.style.marginTop = "2px";
+    tableObj.innerHTML = tableObj.innerHTML.replace(/^\s*/, "\n");
+    tableObj.innerHTML = tableObj.innerHTML + "\n";
+
+	//tr 불필요 항목 제거
+    var arr_tr = document.querySelectorAll("#__html_0 table tr");
+	for(var i = 0 ; i < arr_tr.length ; i++){
+		var trObj = arr_tr[i];
+		var tr_att_names = trObj.getAttributeNames();
+		for(var j = 0 ; j< tr_att_names.length;j++){
+			var attr_name = tr_att_names[j];
+			trObj.removeAttribute(attr_name);
+		}
+		if (i == 0) {
+            trObj.outerHTML = "\n" + trObj.outerHTML;
+            var tdCnt = arr_tr[0].getElementsByTagName("td");
+            var colCount = 0;
+            for(var j = 0  ; j< tdCnt.length; j++) {
+                colCount += Number(tdCnt[j].getAttribute("colspan") == null ? 1 : tdCnt[j].getAttribute("colspan"));
+            }
+            col = '\n<colgroup>';
+            for(var j = 0  ; j< colCount - 1; j++) {
+                col += '<col width="' + parseInt(100 / colCount) + '%">';
+            }
+            col += '<col>';
+            col += '</colgroup>';
+		}
+	}
+
+	//td 불필요 항목 제거
+    var arr_td = document.querySelectorAll("#__html_0 table tr td");
+	for(var i = 0 ; i < arr_td.length ; i++){
+		var tdObj = arr_td[i];
+		var td_att_names = tdObj.getAttributeNames();
+		for(var j = 0  ; j< td_att_names.length;j++){
+			var attr_name = td_att_names[j];
+			if(!(attr_name.toLowerCase()=="colspan"||attr_name.toLowerCase()=="rowspan")){
+				tdObj.removeAttribute(attr_name);
+			}
+		}
+
+        tdObj.innerHTML = tdObj.innerHTML.replace(/(<([^>]+)>)/gi, "").trim();
+        tdObj.innerHTML = tdObj.innerHTML.replace(/&nbsp;/g, "").trim();
+        tdObj.align = "center";
+        tdObj.outerHTML = tdObj.outerHTML.replace(/^\s*/, "\t");
+	}
+
+    tableObj.innerHTML = col + document.querySelector("#__html_0 table").outerHTML;
+}
+
+function inputGridHtml() {
+    document.getElementById("grid_area").value = document.getElementById("__html_0").innerHTML;
+}
+</script>
+
+</head>
+
+<body>
+<form name="form1">
+<div class="wrap">
+<div class="page-content">
+<div class="page-body">
+
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left"><h3>TEXT2HTML</h3></div>
+	</div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<th width="50">원본</th>
+		<td><textarea name="txt" style="width:100%;height:100px">제 9 조 [계약기간]
+		①	계약기간은 (20    년    월    일로부터 20    년    월    일)로 "가맹본부"와 "가맹점사업자"가 협의하여 정한 계약기간의 시작일로부터 만 2년으로 한다. 단, 잔여기간으로 양도양수의 계약을 체결할 경우 계약기간은 만 2년이 아닌 본 항에서 협의 한 기간으로 한다.
+		②	"가맹점사업자"는 계약갱신 시 다음 각 호를 계약갱신일 전까지 이행하여야 한다. 
+			1.	"가맹점사업자"는 "가맹본부"의 시스템 변경이 있을 경우 변경된 시스템으로 교체 또는 수리하여야 하고, "가맹본부"로부터 매장의 노후 설비의 보수, 교체를 통지받은 경우, 이를 이행하여야 한다.
+			2.	"가맹점사업자"는 "가맹본부"에 대한 상품대금, 대여금 및 기타비용 등 모든 금융상의 채무를 완전히 변제하여야 한다.
+			3.	계약갱신 시 "가맹본부"와 "가맹점사업자"는 당해 다른 가맹점사업자에게 통상적으로 적용되는 조건으로 새로운 가맹계약서를 작성하여야 한다.
+		③	"가맹본부"는 "가맹점사업자"가 가맹계약기간 만료 전 180일부터 90일까지 사이에 가맹계약의 갱신을 요구하는 경우 정당한 사유 없이 이를 거절하지 못한다. 다만, "가맹본부"는 "가맹점사업자"가 다음 각 호의 어느 하나에 해당하는 경우에는 "가맹본부"는 "가맹점사업자"의 갱신요구를 받은 날부터 15일 이내에 거절사유를 적은 서면으로 가맹계약의 갱신을 거부할 수 있다.
+			1.	"가맹점사업자"가 본 계약서상의 금전적 지급의무를 지키지 아니한 경우
+			2.	"가맹점사업자"가 다른 가맹점사업자에게 통상적으로 적용되는 계약조건이나 영업방침을 수락하지 아니한 경우
+			3.	가맹사업의 유지를 위하여 필요하다고 인정되는 것으로서 다음 각 목의 어느 하나에 해당하는 "가맹본부"의 중요한 영업방침을 "가맹점사업자"가 지키지 아니한 경우
+				가.	가맹점의 운영에 필요한 점포ㆍ설비의 확보나 법령상 필요한 자격ㆍ면허ㆍ허가의 취득에 관한 사항
+				나.	판매하는 상품이나 용역의 품질을 유지하기 위하여 필요한 제조공법 또는 서비스기법의 준수에 관한 사항
+				다.	"가맹점사업자"가 가맹사업을 정상적으로 유지하기 위하여 필요하다고 인정되는 것으로서 "가맹본부"가 가맹사업을 영위하는데 필수적인 지적재산권의 보호에 관한 사항
+				라.	"가맹점사업자"가 가맹사업을 정상적으로 유지하기 위하여 필요하다고 인정되는 것으로써  "가맹본부"가 "가맹점사업자"에게 정기적으로 실시하는 교육훈련의 준수에 관한 사항. 다만, "가맹점사업자"가 부담하는 교육·훈련비용이 같은 업종의 다른 가맹본부가 통상적으로 요구하는 비용보다 뚜렷하게 높은 경우는 제외한다.
+		④	"가맹본부"가 제3항의 거절 통지를 하지 아니하거나 가맹계약기간 만료 전 180일부터 90일까지 사이에 "가맹점사업자"에게 조건의 변경에 대한 통지나 가맹계약을 갱신하지 아니한다는 사실의 통지를 서면으로 하지 아니하는 경우에는 계약 만료 전의 가맹계약과 같은 조건으로 다시 가맹계약을 체결한 것으로 본다. 다만, "가맹점사업자"가 계약이 만료되는 날부터 60일 전까지 이의를 제기하거나 "가맹본부"나 "가맹점사업자"에게 천재지변이나 그밖에 다음과 같은 부득이한 사유가 있는 경우에는 그러하지 아니한다.
+			1.	"가맹본부"나 "가맹점사업자"에게 파산 신청이 있거나 강제집행절차 또는 회생절차가 개시된 경우
+			2.	"가맹본부"나 "가맹점사업자"가 발행한 어음ㆍ수표가 부도 등으로 지급거절이 된 경우
+			3.	"가맹점사업자"에게 중대한 일신상의 사유 등이 발생하여 더 이상 가맹사업을 경영할 수 없게 된 경우
+		⑤	“가맹점사업자”의 갱신요구는 최초 가맹계약일로부터 10년을 초과하지 아니하는 범위 내에서만 행사할 수 있다.</textarea></td>
+	</tr>
+	<tr>
+		 <td align="center" colspan="2" style="padding:10px"><button type="button" class="sbtn color ico-request" onclick="text2html()"><span></span>Txt -> html 변환</button></td>
+	</tr>
+	<tr>
+		<th>생성</th>
+		<td><textarea name="html" style="width:100%;height:100px"></textarea></td>
+	</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left"><h3>GRID2HTML</h3></div>
+	</div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><textarea id="grid_area" name="grid_area" style="width:100%;height:100px"></textarea></td>
+	</tr>	
+	</table>
+</div>
+
+<p>
+<div class="cont_warp" style="padding-top:20px">
+	<div id="__html">
+		<div style="padding-top: 10px" id="__html_0"></div>
+	</div>
+</div>
+</p>
+
+
+
+
+</div>
+</div>
+</div>
+</form>
+
+
+<script>
+document.getElementById("grid_area").addEventListener('paste', function(e) {
+	var org_data = "";
+	if (window.clipboardData && window.clipboardData.getData) { // IE
+		grid2html(window.clipboardData.getData('text'));
+	} else if (e.clipboardData && e.clipboardData.getData) {
+		org_data = e.clipboardData.getData('text/html');
+        document.getElementById("__html_0").innerHTML = org_data;
+        removeAttr();
+	} else {
+		alert('Not paste object!');
+	}
+    inputGridHtml();
+	e.preventDefault()
+}, false);
+</script>
+</body>
+</html>

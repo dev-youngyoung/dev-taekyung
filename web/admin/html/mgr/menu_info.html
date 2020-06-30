@@ -1,0 +1,253 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+
+<form novalidate name="form1" method="post" >
+
+<div style="width:100%; text-align:right;margin-bottom:10px">
+	<button type="button" class="sbtn color ico-save" onclick="if(confirm('저장하시겠습니까?'))saveMenu();"><span></span> 저장</button>
+</div>
+
+<div id="realgrid" style="width: 1000px; height: 500px;"></div>
+
+
+<script language="javascript">
+var max_menu_seq = {{max_menu_seq}};
+var treeDataProvider = null;
+var treeView = null;
+$(document).ready( function(){
+	RealGridJS.setRootContext("{{realgrid_path}}");
+	//RealGridJS.setTrace(true);
+	
+	treeDataProvider = new RealGridJS.LocalTreeDataProvider();
+	treeView = new RealGridJS.TreeView("realgrid");
+	treeView.setDataSource(treeDataProvider);
+	setOptions();
+	setStyle();
+	setColumns();
+	loadData();
+	setEvent();
+	setContextMenu();
+});
+
+function setOptions() {
+	var options =  {
+	    hideDeletedRows : true,
+	    indicator:{visible: false }
+	    ,panel: {visible: false}
+	    ,footer: {visible: false}
+	    ,checkBar: {visible: false}
+	    ,stateBar: {visible: false}
+	    ,edit: {
+	        enterToTab: true,
+	        insertable: true,
+	        appendable: true,
+	        updatable: true,
+	        deletable: true,
+	        deleteRowsConfirm: true,
+	        deleteRowsMessage: "삭제하시겠습니까 ?"		    
+	    }
+	    ,displayOptions:{
+	        //columnWidth : 200
+	    }
+	};
+	treeView.setOptions(options);
+	
+	//treeView.setFixedOptions({
+		//  colCount: 1
+		//});
+	
+	//폴더 이미지 등록
+	var imgFiles = ["folder_close.gif","folder_open.gif","unknown.gif"];
+	var imageList = new RealGridJS.ImageList("images", "/cab/realgrid/resource/");
+	imageList.addUrls(imgFiles);
+	// 트리뷰에 이미지 리스트 등록하기
+	treeView.registerImageList(imageList);
+	treeView.setTreeOptions({
+	    iconImages: imageList.getName(),
+	    iconWidth: 20
+	});
+};
+
+function setStyle(){
+	$.getJSON("/cab/realgrid/resource/supplier_style.json", function (data, textStatus, jqXHR) {
+        treeView.setStyles(data);
+        $('.codeview.realtreestyle').html(
+          JSON.stringify(data, null, 4)
+        );
+    })
+    .done(function (data, textStatus, jqXHR) {
+        treeView.setFocus();
+    })
+    .fail(function (jqxhr, textStatus, error) {
+        var err = textStatus + ', ' + error;
+          var msg = "treeView failStyleSet: " + err;
+          console && console.log(msg);
+          alert(msg);
+        
+    });
+}
+
+function setColumns() {
+    var columns = [];
+	columns.push({name:"menu_nm" ,fieldName:"menu_nm" ,header:"메뉴정보" ,width:200 ,editable:true ,movable:false ,sortable:false});
+	columns.push({name:"menu_cd" ,fieldName:"menu_cd" ,header:"메뉴코드" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:true});
+	columns.push({name:"p_menu_cd" ,fieldName:"p_menu_cd" ,header:"부모코드" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:true});
+	columns.push({name:"icon" ,fieldName:"icon" ,header:"icon" ,width:120 ,editable:true ,movable:false ,sortable:false, visible:false});
+	columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,width:50 ,editable:true ,movable:false ,sortable:false, visible:true});
+	columns.push({name:"dir" ,fieldName:"dir" ,header:"폴더" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:true});
+	columns.push({name:"menu_path" ,fieldName:"menu_path" ,header:"메뉴경로" ,width:250 ,readOnly:false , movable:false ,sortable:false, visible:true});
+	columns.push({name:"display_seq" ,fieldName:"display_seq" ,header:"순번" ,width:50 ,readOnly:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"btn_auth_cds" ,fieldName:"btn_auth_cds" ,header:"기능권한" ,width:150 ,readOnly:false , movable:false ,sortable:false, visible:true});
+	columns.push({name:"etc" ,fieldName:"etc" ,header:"비고" ,width:200 ,readOnly:false , movable:false ,sortable:false, visible:true});
+	columns.push({name:"adm_cd" ,fieldName:"adm_cd" ,header:"구코드" ,width:200 ,readOnly:false , movable:false ,sortable:false, visible:false});
+	
+	treeDataProvider.setFields(columns);
+	treeView.setColumns(columns);
+	
+	treeView.addCellRenderers(
+			[{
+				"id": "chk_use_yn",
+				"type": "check",
+		        "shape": "box",
+			    "editable": true,
+			    "trueValues": "Y",
+			    "falseValues": "N",
+			}]
+			);
+	
+	//treeView.setColumnProperty(treeView.columnByField("gap_yn"),"dynamicStyles",[{ "criteria":"value!=Y","styles":{"renderer": "chk_use_yn"}}]);
+	//treeView.setColumnProperty(treeView.columnByField("eul_yn"),"dynamicStyles",[{ "criteria":"value!=Y","styles":{"renderer": "chk_use_yn"}}]);
+	//treeView.setColumnProperty(treeView.columnByField("use_yn"),"dynamicStyles",[{ "criteria":"value!=Y","styles":{"renderer": "chk_use_yn"}}]);
+}
+
+function loadData() {
+	$.ajaxSetup({ cache: false });
+ 
+    var params = {};
+ 
+    $.getJSON("./menu_info_q.jsp", params, function (data) {
+    	treeDataProvider.setJsonRows(data,"rows","","icon");
+    })
+    .done(function () {
+       treeView.setFocus();
+       treeView.expandAll();
+       
+    })
+    .fail(function (jqxhr, textState, error) {
+        var err = textState + ', ' + error;
+        console.log("jQuery getJSON() Failed: " + err);
+        alert("jQuery getJSON() Failed: " + err);
+    })
+};
+
+function setContextMenu(){
+	treeView.setContextMenu(
+			 [{label: "동일노드추가"}, {label: "하위노드추가"}, {label: "삭제"}]
+		);
+	
+	treeView.onContextMenuItemClicked = function (grid, label, index) {
+			treeView.commit();
+		    //alert("Context menu가 클릭됐습니다: " + label.label + "\n" + JSON.stringify(index, null, 4));
+		    var row_id= index['dataRow'];
+		    var icon_index = 1;
+		    var depth = treeDataProvider.getValue(row_id,"depth");
+		    var childId = null;
+		    var p_row_id = null;
+		    var p_menu_cd = null;
+		    if(label["label"]=="동일노드추가"){
+		    	if(treeDataProvider.getAncestors(row_id)!= null){
+		    		p_row_id = treeDataProvider.getAncestors(row_id)[0];
+		    	}
+		    	p_menu_cd = (row_id==-1||p_row_id==null||p_row_id=="")?"000000":treeDataProvider.getValue(p_row_id,"menu_cd");
+		    	depth = row_id==-1?"1":treeDataProvider.getValue(row_id,"depth");
+		    	if(depth == "3") icon_index= 2;
+		    }
+		    if(label["label"]=="하위노드추가"){
+		    	p_row_id = row_id;
+		    	p_menu_cd = row_id==-1?"000000":treeDataProvider.getValue(row_id,"menu_cd");
+		    	depth = row_id==-1?"1":Number(treeDataProvider.getValue(row_id,"depth"))+1;
+		    	
+		    	if(depth == "3") icon_index= 2;
+		    	if(depth == "4") {alert("더이상 하위 노드를 추가 할 수 없습니다."); return;}
+		    }
+		    
+		    if(label["label"]=="동일노드추가"||label["label"]=="하위노드추가"){
+		    	display_seq = treeDataProvider.getChildCount(p_row_id)+1;
+		    	new_row_id = treeDataProvider.addChildRow(
+		    			  p_row_id,     // parent rowId
+	  			    	  ["메뉴명입력"],
+	  			    	  icon_index,      // icon index
+	  			    	  false   // children(자식 보유 여부)
+	  			    );
+		    	treeDataProvider.setValue(new_row_id,"menu_cd",getMenuCd());
+		    	treeDataProvider.setValue(new_row_id,"p_menu_cd", p_menu_cd);
+                treeDataProvider.setValue(new_row_id,"depth", depth);
+		    	treeDataProvider.setValue(new_row_id,"dir",treeDataProvider.getValue("dir",p_row_id));
+		    	treeDataProvider.setValue(new_row_id,"use_yn", depth==3?"Y":"");
+		    	treeDataProvider.setValue(new_row_id,"display_seq", display_seq );
+		    	
+		    	if(label["label"]=="하위노드추가"){
+			    	treeView.expand(treeView.getItemIndex(row_id), true, true);
+			    }
+		    	treeView.setCurrent({dataRow:new_row_id});
+		    	treeView.showEditor();
+		    }
+		    
+			if(label["label"]=="삭제"){
+				if(confirm("선택된 행을 삭제 하시겠습니까?")){
+					treeDataProvider.removeRow(row_id);
+				}
+		    }
+		};
+}
+
+function setEvent(){
+	treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
+	    treeDataProvider.setIconIndex(rowId,1);
+	};
+	treeView.onTreeItemCollapsed = function (tree, itemIndex, rowId) {
+		treeDataProvider.setIconIndex(rowId,0);	
+	};
+}
+
+function getMenuCd(){
+	max_menu_seq = max_menu_seq+1;
+	var str =  ""+max_menu_seq;
+	var pad = "000000"
+	return pad.substring(0, pad.length - str.length) + str;
+}
+
+
+function saveMenu(){
+	treeView.commit();
+    var url = "menu_info_a.jsp";
+    	var grid_string = "";
+    	if(treeDataProvider.getRowCount()>0){
+    		var jRowsData =  treeDataProvider.getJsonRows(-1, true, "rows", "icon");;
+    		grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    	}
+    	
+        var data = {grid:grid_string};
+        
+        $.ajax({
+            url : url,
+            type : "post",
+            data : data,
+            success : function(data) {
+                if (data > 0) {
+                    alert("처리되었습니다.");
+                    treeDataProvider.clearRowStates(true);
+                    loadData();
+                } else {
+                    alert("처리에 실패하였습니다.");
+                }
+            },
+            error : function(request, status, error) {
+                alert("code:" + request.status + "\n" + "error:" + error);
+            }
+        });
+}
+
+</script>

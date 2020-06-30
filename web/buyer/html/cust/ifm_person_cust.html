@@ -1,0 +1,80 @@
+<form name="form1" method="get">
+<input type="hidden" name="person_seq" value="{{person_seq}}"/>
+<div class="search_div">
+	<table class="search_table">
+  	<colgroup>
+		<col width="22%">
+		<col width="26%">
+		<col width="22%">
+		<col width="25%">
+		<col width="15%">
+  	</colgroup>
+	<tr>
+		<th><p>계약처명</p></th>
+		<td><input type="text" name="s_member_name" maxlength="100" style="width:80%"></td>
+		<th><p>계약처코드</p></th>
+		<td><input type="text" name="s_cust_code" maxlength="6" size="6"></td>
+		<td align="right">
+			<button type="submit" class="search_btn">검색</button>
+		</td>
+  	</tr>
+</table>
+</div>
+</form>
+
+<div style="height:650px; overflow-y:auto">
+	<div class="div_table">
+		<table>
+			<colgroup>
+				<col width="10%">
+				<col width="20%">
+				<col width="14%">
+				<col width="18%">
+				<col width="10%">
+				<col width="18%">
+			</colgroup>
+			<tr>
+				<th>순번</th>
+				<th>계약처명</th>
+				<th>계약처<br>코드</th>
+				<th>사업자번호</th>
+				<th>담당자</th>
+				<th>전화번호</th>
+				<!--<td>기능</td>-->
+			</tr>
+			<!-- LOOP START 'list' -->
+			<tr align="center">
+				<td>{{list.__ord}}</td>
+				<td align="left"><a href="#" onClick="fCustView('{{list.client_no}}','{{list.client_detail_seq}}','{{list.person_seq}}','{{list.cust_person_seq}}')">{{list.cust_detail_name}}</a></td>
+				<td>{{list.cust_detail_code}}</td>
+				<td>{{list.vendcd}}</td>
+				<td>{{list.user_name}}</td>
+				<td>{{list.tel_num}}</td>
+				<!--<td><input type="button" class="del2" value="삭제" onClick="delClient('{{list.client_seq}}')"></td>-->
+			</tr>
+			<!-- LOOP END 'list' -->
+		  	<!-- IFNOT START 'list' -->
+			<tr>
+				<td align="center" colspan="6">담당 업체가 없습니다.</td>
+			</tr>
+		  <!-- IFNOT END 'list' -->
+		</table>
+	</div>
+</div>
+
+<form name="form2" method="post">
+	<input type="hidden" name="mode">
+	<input type="hidden" name="client_seq">
+	<input type="hidden" name="person_seq">
+</form>
+
+{{form_script}}
+
+<script language="javascript">
+
+function fCustView(client_no, client_detail_seq, person_seq, cust_person_seq){
+	parent.location.href = "person_cust_view.jsp?client_no="+client_no+"&client_detail_seq="+client_detail_seq+"&person_seq="+person_seq+"&cust_person_seq="+cust_person_seq;
+}
+
+</script>
+

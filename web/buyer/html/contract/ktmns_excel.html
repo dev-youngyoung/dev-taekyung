@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>계약진행현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">계약진행현황<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+    <td bgcolor="#cccccc">계약서양식</td>
+    <td bgcolor="#cccccc">계약명</td>
+    <td bgcolor="#cccccc">계약일</td>
+    <td bgcolor="#cccccc">계약번호</td>
+    <td bgcolor="#cccccc">거래처명</td>
+    <td bgcolor="#cccccc">사업자번호</td>
+    <td bgcolor="#cccccc">접점코드</td>
+    <td bgcolor="#cccccc">서명시간</td>
+    <td bgcolor="#cccccc">진행상태</td>
+    <td bgcolor="#cccccc">내부문서등록</td>
+  	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr align="center">
+		<td>{{list.template_name}}</td>
+		<td>{{list.cont_name}}</td>
+		<td align="center">{{list.cont_date}}</td>
+		<td>{{list.cont_userno}}</td>
+		<td>{{list.cust_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<td align="center">{{list.mns_code}}</td>
+		<td>{{list.sign_date}}</td>
+		<td align="center">{{list.status_nm}}</td>
+		<td align="center">{{list.efile_status}}</td>
+  	</tr>
+  	<!-- LOOP END 'list' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

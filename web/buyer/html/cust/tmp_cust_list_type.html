@@ -1,0 +1,78 @@
+<form name="form1" method="get">
+    <input type="hidden" name="mode"/>
+    <input type="hidden" name="custtype" value="{{custtype}}"/>
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="13%">
+                <col width="77%">
+                <col width="10%">
+            </colgroup>
+            <tr>
+                <th><p> 업체명</p></th>
+                <td><input type="text" name="s_member_name" maxlength="100" style="width:95%"></td>
+                <td align="right">
+                    <button type="button" class="search_btn" value="검색" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<div class="div_table">
+    <table>
+        <colgroup>
+            <col width="5%">
+            <col width="*%">
+            <col width="14%">
+            <col width="14%">
+            <col width="13%">
+            <!-- IF START 'code_client_type' -->
+            <col width="18%">
+            <!-- IF END 'code_client_type' -->
+        </colgroup>
+        <tr>
+            <th>순번</th>
+            <th>업체명</th>
+            <th>사업자번호</th>
+            <th>대표자</th>
+            <th>가입일자</th>
+            <!-- IF START 'code_client_type' -->
+            <th>업체유형</th>
+            <!-- IF END 'code_client_type' -->
+        </tr>
+        <!-- LOOP START 'list' -->
+        <tr align="center" onMouseOver="this.style.backgroundColor='#EFEFEF';" onMouseOut="this.style.backgroundColor='';" style="cursor:pointer" onclick="location.href='tmp_cust_view_type.jsp?member_no={{list.client_no}}&{{list_query}}';">
+            <td>{{list.__ord}}</td>
+            <td align="left">
+                <!-- IF START 'list.cmp_typ_nm' -->
+                <span style="color:red;font-weight:bold;">[{{list.cmp_typ_nm}}]</span>
+                <!-- IF END 'list.cmp_typ_nm' -->
+                {{list.member_name}}
+            </td>
+            <td align="center">{{list.vendcd}}</td>
+            <td align="center">{{list.boss_name}}</td>
+            <td align="center">{{list.client_reg_date}}</td>
+            <!-- IF START 'code_client_type' -->
+            <td align="center"><font color="blue">{{list.client_type}}</font></td>
+            <!-- IF END 'code_client_type' -->
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td colspan="7" align="center">검색결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+
+<script language="javascript">
+
+    function excel(){
+        var f = document.forms['form1'];
+        f['mode'].value="excel";
+        f.submit();
+    }
+</script>

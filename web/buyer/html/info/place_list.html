@@ -1,0 +1,62 @@
+<form name="form1" method="get">
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="13%">
+                <col width="67%">
+                <col width="20%">
+            </colgroup>
+            <tr>
+                <th><p>부서/지점명</p></th>
+                <td><input type="text" name="s_title" maxlength="100" style="width:98%"></td>
+                <td>
+                    <button type="submit" class="search_btn">검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="util-row">
+        <div class="push-right">
+            <button type="button" class="sbtn color ico-write auth_css" onClick="location.href='place_insert.jsp'"><span></span>신규등록</button>
+        </div>
+    </div>
+</form>
+{{form_script}}
+<div class="div_table">
+    <table>
+        <colgroup>
+            <col width="6%">
+            <col width="10%">
+            <col width="20%">
+            <col width="15%">
+            <col width="40%">
+            <col width="9%">
+        </colgroup>
+        <tr>
+            <th>순번</th>
+            <th>구분</th>
+            <th>부서/지점명</th>
+            <th>전화번호</th>
+            <th>주소</th>
+            <th>상태</th>
+        </tr>
+        <!-- IF START 'list' -->
+        <!-- LOOP START 'list' -->
+        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='place_modify.jsp?id={{list.field_seq}}&{{list_query}}'">
+            <td align="center">{{list.__ord}}</td>
+            <td align="center">{{list.field_gubun}}</td>
+            <td>{{list.field_name}}</td>
+            <td>{{list.telnum}}</td>
+            <td>{{list.address}}</td>
+            <td align="center">{{list.use_yn}}</td>
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IF END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td colspan="6" align="center">검색결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>

@@ -1,0 +1,81 @@
+<form name="form1" method="post">
+<input type="hidden" name="t_cd" value="{{t_cd}}">
+<input type="hidden" name="seq" value="{{seq}}">
+
+<div class="search_div">
+	<table class="search_table">
+	  <colgroup>
+	  	<col width="29%"/>
+	  	<col width="*"/>
+	  	<col width="22%"/>
+	  </colgroup>
+	  <tr>
+	    <td><p>사용자명</p></td>
+	    <td><input type="text" name="s_member_name" maxlength="30" style="width: 95%;"></td>
+		<td align="right">
+	      <button type="submit" class="search_btn">검색</button>
+	    </td>
+	  </tr>
+	</table>
+</div>	
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="10%">
+			<col width="*">
+			<col width="22%">
+		</colgroup>
+		<!-- LOOP START 'person' -->
+		<tr>
+			
+			<!-- IFC START 'person.plevel==1' -->
+			<td align="center"><img src="../html/images/group_1.gif"></td>
+			<td colspan="2">{{person.person_name}}</td>
+			<!-- IFC END 'person.plevel==1' -->
+			
+			<!-- IFC START 'person.plevel>1' -->
+			<td></td>
+			<td align="center"><img src="../html/images/group_2.gif" valign="absmiddle"></td>
+			<td>{{person.person_name}}</td>
+			<!-- IFC END 'person.plevel>1' -->
+			
+			<td align="center">
+				<button type="button" class="sbtn ico-add" onclick="selPerson('{{person.__no}}');"><span></span>선택</button>
+				<input type="hidden" name="field_seq_{{person.__no}}" value="{{person.field_seq}}">
+				<input type="hidden" name="person_id_{{person.__no}}" value="{{person.person_id}}">
+				<input type="hidden" name="person_name_{{person.__no}}" value="{{person.person_name}}">
+			</td>
+		</tr>
+		<!-- LOOP END 'person' -->
+	</table>
+</div>
+
+<!-- IFNOT START 'person' -->
+<div class="div_table">
+	<table>
+		<tr>
+			<td align="center">사용자가 없습니다.</td>
+		</tr>
+	</table>
+</div>
+<!-- IFNOT END 'person' -->
+</form>
+{{form_script}}
+
+<script language="javascript">
+function selPerson(no){
+	var f= document.forms['form1'];
+	var data= {
+			 "agree_seq":{{agree_seq}}
+			,"field_seq":f['field_seq_'+no].value
+			,"person_id":f['person_id_'+no].value
+			,"person_name":f['person_name_'+no].value
+			,"cont_no":"{{cont_no}}"
+			,"cont_chasu":"{{cont_chasu}}"
+			}
+		opener.addPersonInfo(data);
+		self.close();
+}
+</script>

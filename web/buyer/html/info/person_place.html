@@ -1,0 +1,50 @@
+<div class="div_table">
+	<table style="border: none;">
+		<colgroup>
+			<col width="48%" />
+			<col width="4%" />
+			<col width="48%" />
+		</colgroup>
+		<tr>
+			<td style="padding: 0; border: none; vertical-align: top;">
+				<div class="util-row">
+					<div class="push-left">
+						<h3>담당자</h3>
+					</div>
+				</div>
+				<table>
+					<colgroup>
+						<col width="50%">
+						<col width="50%">
+					</colgroup>
+					<tr>
+						<th>담당자ID</th>
+						<th>이름</th>
+					</tr>
+					<!-- LOOP START 'list' -->
+					<tr style="cursor: pointer;" onclick="selectPerson('{{list.person_seq}}')">
+						<td>{{list.user_id}}</td>
+						<td>{{list.user_name}}</td>
+					</tr>
+					<!-- LOOP END 'list' -->
+				</table>
+			</td>
+			<td width="4%" align="center" style="border: none" valign="middle"><img src="../../../images/resultset_next.gif"/></td>
+			<td width="64%" valign="top" style="border: none">
+				<!-- IF START 'person_seq' -->
+				<iframe id="ifm_place" style="width:100%" name="ifm_place" src="ifm_place.jsp?person_seq={{person_seq}}" frameborder="0"></iframe>
+				<!-- IF END 'person_seq' -->
+				<!-- IFNOT START 'person_seq' -->
+				<iframe id="ifm_place" name="ifm_place" src="" frameborder="0"></iframe>
+				<!-- IFNOT END 'person_seq' -->
+			</td>
+		</tr>
+	</table>
+</div>
+<script language="javascript">
+function selectPerson(person_seq){
+	var ifm = document.getElementById("ifm_place");
+	ifm.src = "ifm_place.jsp?person_seq="+person_seq;
+	return;
+}
+</script>

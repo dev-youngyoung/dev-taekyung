@@ -1,0 +1,326 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="12%">
+			<col width="*">
+			<col width="12%">
+			<col width="15%">
+			<col width="12%">
+			<col width="20%">
+			<col>
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+			<th>대표자명</th>
+			<td>{{boss_name}}</td>
+		</tr>
+	</table>
+</div>
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>소싱카테고리</h3>
+		</div>
+		<div class="push-right">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>엑셀다운로드</button>		
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 400px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-save" value="저장" onClick="javascript:submitItem()"><span></span>저장</button>
+	<button type="button" class="btn color ico-cancel" value="닫기" onClick="javascript:window.close()"><span></span>닫기</button>
+</div>
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns();
+    loadData();
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg);
+
+        });
+}
+
+function setColumns() {
+    var columns = [];
+    
+    columns.push({name:"l_src_nm" ,fieldName:"l_src_nm" ,header:"대분류" ,width:140 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"중분류" ,width:140 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"s_src_nm" ,fieldName:"s_src_nm" ,header:"소분류" ,width:140 ,readOnly:false , movable:false ,sortable:false});
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        
+        if(rows.length > 1){
+    		if(!confirm("내역양식업로드를 하면 기존데이타가 초기화됩니다.\n\n내역양식업로드를 하시겠습니까?")){
+    			return;
+    		}
+        }
+        
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+
+			cols = ["A","B","C"];
+			fields = ["l_src_nm","m_src_nm","s_src_nm"];
+			if(row["A"] == null || row["A"].toString().trim() == ""){alert("대분류명에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+			if(row["B"] == null || row["B"].toString().trim() == ""){alert("중분류명에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+			if(row["C"] == null || row["C"].toString().trim() == ""){alert("소분류명에 빈값이 들어가 있습니다.(C열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+					rowdata[fields[j]] = row[cols[j]].trim();
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+        alert("업로드 처리 되었습니다.");
+    }
+}
+
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: "소싱카테고리.xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+function submitItem(){
+	
+	 if(dataProvider.getRowCount() == 0){
+		alert("내역정보가 존재하지 않아 내역저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("업로드한 내역을 저장하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "pop_src_insert_a.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+        member_no:"{{member_no}}", grid:grid_string
+    };
+
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            if (data > 0) {
+                alert("거래처 정보를 등록하였습니다.");
+                dataProvider.clearRowStates(true);
+            } else {
+                alert("처리에 실패하였습니다.");
+            }
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "error:" + error);
+        }
+    });
+}
+
+function loadData() {
+	gridView.showProgress();
+
+    $.ajaxSetup({ cache: false });
+ 
+    var params = { member_no:"{{member_no}}" };
+ 
+    $.getJSON("./pop_src_insert_q.jsp", params, function (data) {
+        dataProvider.setRows(data);
+    })
+    .done(function () {
+       gridView.closeProgress();
+       gridView.setFocus();
+    })
+    .fail(function (jqxhr, textState, error) {
+    	gridView.closeProgress();
+        var err = textState + ', ' + error;
+        console.log("jQuery getJSON() Failed: " + err);
+        alert("jQuery getJSON() Failed: " + err);
+    })
+    /* .xhr( function () {
+        var xhr = new window.XMLHttpRequest();
+        //Download progress
+        xhr.addEventListener("progress", function (evt) {
+            if (evt.lengthComputable) {
+                if (evt.loaded > evt.total / 2) {
+                    gridView.setProgress(0, evt.total, evt.loaded, "Loading...");
+                } else {
+                    gridView.setProgress(0, evt.total, evt.loaded);
+                }
+            }
+        }, false);
+        return xhr;
+    }) */
+};
+
+</script>

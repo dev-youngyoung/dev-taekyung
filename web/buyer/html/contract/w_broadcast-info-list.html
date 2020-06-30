@@ -1,0 +1,153 @@
+<form name="form1" method="get">
+<input type="hidden" name="template_cd" value="{{template_cd}}">
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="15%"/>
+    <col width="20%"/>
+    <col width="15%"/>
+    <col width="20%"/>
+    <col width="%"/>
+  </colgroup>
+  <tr>
+    <th><p>사업자번호</p></th>
+	<td><input type="text" name="sIdno" maxlength="30" style="width:95%"></td>
+    <th><p>상품코드</p></th>
+    <td><input type="text" name="s_code" maxlength="30" style="width:95%"></td>
+    <td align="right">
+      <button type="submit" class="btn color ico-search"><span></span>검색</button>
+      <button type="button" class="btn color ico-add" onclick="addCompany();"><span></span>선택</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+
+
+<form name="form2" method="get">
+<div class="div_table">
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※상품코드를 입력후 검색 하세요.</span>
+	</div>
+</div>
+<table>
+	<colgroup>
+		<col width="7%">
+		<col width="15%">
+		<col width="%">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+	</colgroup>
+	<tr>
+		<th>
+			<!-- 
+			<input type="checkbox" name="all" onClick="fAllCheck()"/>
+			 -->
+		</th>
+		<th>편성순번</th>
+		<th>프로그램명</th>
+		<th>편성구분</th>
+		<th>방송시작<br>일시</th>
+		<th>방송종료<br>일시</th>
+		<th>정액방송금액</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center" onclick="event.cancelBubble=true;"><input type="checkbox" name="save" value="{{list.__ord}}"/></td>
+		<td align="center">{{list.seqFrameNo}}</td>
+		<td align="left">{{list.tapeName}}</td>
+		<td align="left">{{list.multichName}}</td>
+		<td align="center">{{list.bdBtime}}</td>
+		<td align="center">{{list.bdEtime}}</td>
+		<td align="right">{{list.broadFixedAmt}}
+			<input type="hidden" name="seqFrameNo" value="{{list.seqFrameNo}}"/>
+			<input type="hidden" name="goodsCode" value="{{list.goodsCode}}"/>
+			<input type="hidden" name="tapeName" value="{{list.tapeName}}"/>
+			<input type="hidden" name="btime" value="{{list.bdBtime}}"/>
+			<input type="hidden" name="etime" value="{{list.bdEtime}}"/>
+			<input type="hidden" name="broadFixedAmt" value="{{list.broadFixedAmt}}"/>
+            <input type="hidden" name="multichCode" value="{{list.multichCode}}"/>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td align="center" colspan="7">조회 결과가 없습니다.</td>
+	</tr>
+<!-- IFNOT END 'list' -->
+</table>
+
+
+</form>
+
+<script language="javascript">
+attachOnload(function(){resizeTo(850,600)});
+
+    function fAllCheck()
+    {
+        if($("input[name='all']").attr("checked"))  {
+            $("input[name='save']").attr("checked",true);
+        }else  {
+            $("input[name='save']").attr("checked",false);
+        }
+    }
+
+    function addCompany(){
+        var f= document.forms['form2'];
+        var arr;
+
+        var chkCnt = $(":checkbox[name='save']:checked").length;
+        
+        if(chkCnt != 1){
+            alert("1건만 선택 가능 합니다.");
+            return;
+        }
+
+        if(chkCnt==0)  {
+            alert("입력할 편성 정보를 선택 해주세요.");
+            return;
+        } else if($(":checkbox[name='save']").length==1) {
+            $(":checkbox[name='save']").each(function() {
+				if(this.checked) {
+				    //alert(f['seqFrameNo'].value);
+                    arr = new Array(
+                        f['seqFrameNo'].value
+                        , f['goodsCode'].value
+                        , f['tapeName'].value
+                        , f['btime'].value
+                        , f['etime'].value
+                        , f['broadFixedAmt'].value
+                        , f['multichCode'].value
+                    );
+				}
+            });
+        } else {
+            arr = new Array(chkCnt);
+            $(":checkbox[name='save']").each(function() {
+                if(this.checked) {
+                    //alert(f['seqFrameNo'][this.value].value);
+					arr.push(new Array(
+                        f['seqFrameNo'][this.value].value
+                        ,f['goodsCode'][this.value].value
+                        ,f['tapeName'][this.value].value
+                        ,f['btime'][this.value].value
+                        ,f['etime'][this.value].value
+                        ,f['broadFixedAmt'][this.value].value
+                        ,f['multichCode'][this.value].value
+                        )
+					)
+                }
+            });
+
+        }
+
+        //console.log(arr);
+        opener.addBroadcast(arr);
+        self.close();
+    }
+</script>

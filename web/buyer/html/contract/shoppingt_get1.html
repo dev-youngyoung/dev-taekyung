@@ -1,0 +1,107 @@
+<form name="form1" method="get">
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="20%"/>
+    <col width="30%"/>
+    <col width="50%"/>
+  </colgroup>
+  <tr>
+    <th><p>상품코드</p></th>
+    <td><input type="text" name="s_code" maxlength="30" style="width:95%"></td>
+    <td align="right">
+      <button type="submit" class="btn color ico-search"><span></span>검색</button>
+      <button type="button" class="btn color ico-add" onclick="addCompany();"><span></span>선택</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+
+<form name="form2" method="get">
+<div class="div_table">
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※상품코드를 입력후 검색 하세요.</span>
+	</div>
+</div>
+<table>
+	<colgroup>
+		<col width="15%">
+		<col width="15%">
+		<col width="*">
+		<col width="15%">
+		<col width="10%">
+	</colgroup>
+	<tr>
+		<th>방송시작<br>일시</th>
+		<th>방송종료<br>일시</th>
+		<th>프로그램명</th>
+		<th>상품구분</th>
+		<th>판매준비수량</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.bdBtime}}</td>
+		<td align="center">{{list.bdEtime}}</td>
+		<td align="center">{{list.tapeName}}</td>
+		<td align="center">{{list.goodsFlagNm}}</td>
+		<td align="center">{{list.planQty}}
+			<input type="hidden" name="goodsCode" value="{{list.goodsCode}}"/>
+			<input type="hidden" name="bdBtime" value="{{list.bdBtime}}"/>
+			<input type="hidden" name="bdEtime" value="{{list.bdEtime}}"/>
+			<input type="hidden" name="tapeName" value="{{list.tapeName}}"/>
+			<input type="hidden" name="goodsFlag" value="{{list.goodsFlag}}"/>
+			<input type="hidden" name="planQty" value="{{list.planQty}}"/>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td align="center" colspan="5">조회 결과가 없습니다.</td>
+	</tr>
+	<!-- IFNOT END 'list' -->
+</table>
+
+
+</div>
+</form>
+
+<script language="javascript">
+attachOnload(function(){resizeTo(850,600)});
+
+function addCompany(){
+	var f= document.forms['form2'];
+	var arr= null;
+	if (typeof(f['goodsCode'].length) == "undefined")
+	{
+		arr = new Array(
+			f['goodsCode'].value
+		   ,f['bdBtime'].value
+		   ,f['bdEtime'].value
+		   ,f['tapeName'].value
+		   ,f['goodsFlag'].value
+		   ,f['planQty'].value
+		);
+
+	} else {
+		arr = new Array(f['goodsCode'].length);
+		for (var i=0; i<f['goodsCode'].length; i++) {
+			arr[i] = new Array(
+					f['goodsCode'][i].value
+				   ,f['bdBtime'][i].value
+				   ,f['bdEtime'][i].value
+				   ,f['tapeName'][i].value
+				   ,f['goodsFlag'][i].value
+				   ,f['planQty'][i].value
+				);
+		}
+	}
+
+	//console.log(arr);
+	opener.addChannel(arr);
+	self.close();
+}
+</script>

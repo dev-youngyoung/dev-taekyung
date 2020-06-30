@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td><br></td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">
+<!-- IF START 'isPbpartners' -->
+	<td bgcolor="#cccccc">계약서명</td>
+<!-- IF END 'isPbpartners' -->
+    <td bgcolor="#cccccc">계약명</td>
+    <td bgcolor="#cccccc">거래처명</td>
+    <td bgcolor="#cccccc">사업자번호</td>
+    <td bgcolor="#cccccc">계약일자</td>
+    <td bgcolor="#cccccc">계약시작</td>
+    <td bgcolor="#cccccc">계약종료</td>
+    <td bgcolor="#cccccc">계약금액</td>
+    <td bgcolor="#cccccc">계약번호</td>
+<!-- IF START 'isPersonView' -->
+	<td bgcolor="#cccccc">담당자</td>
+<!-- IF END 'isPersonView' -->	    
+    <td bgcolor="#cccccc">업체담당자</td>
+    <td bgcolor="#cccccc">연락처</td>
+    <td bgcolor="#cccccc">이메일</td>
+    <td bgcolor="#cccccc">우편번호</td>
+    <td bgcolor="#cccccc">주소</td>
+    <td bgcolor="#cccccc">상태</td>
+
+    <!-- IF START 'isNicednr' -->
+	<td bgcolor="#cccccc">도급수급인코드</td>
+	<td bgcolor="#cccccc">프로젝트코드</td>
+	<td bgcolor="#cccccc">프로젝트명</td>
+    <!-- IF END 'isNicednr' -->
+
+	<!-- IF START 'isSKB' -->
+    <td bgcolor="#cccccc">업체코드</td>
+    <td bgcolor="#cccccc">상품코드</td>
+    <td bgcolor="#cccccc">상품명</td>
+    <td bgcolor="#cccccc">판매가(소비자가,VAT포함)</td>
+    <td bgcolor="#cccccc">배송형태</td>
+    <td bgcolor="#cccccc">배송기간</td>
+    <td bgcolor="#ffff99">상품코드</td>
+    <td bgcolor="#ffff99">판매수수료</td>
+    <td bgcolor="#ccff99">상품코드</td>
+    <td bgcolor="#ccff99">용도</td>
+    <td bgcolor="#ccff99">비용부담 협력사</td>
+    <td bgcolor="#ccff99">비용부담 B shopping</td>
+	<!-- IF END 'isSKB' -->
+  	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr align="center">
+	<!-- IF START 'isPbpartners' -->
+		<td align="center">{{list.template_name}}</td> 
+	<!-- IF END 'isPbpartners' -->
+		<td align="center">{{list.cont_name}}</td>
+		<td align="center">{{list.cust_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<td align="center">{{list.cont_date}}</td>
+		<td align="center">{{list.cont_sdate}}</td>
+		<td align="center">{{list.cont_edate}}</td>
+		<td align="right">{{list.cont_total}}</td>
+		<td align="center">{{list.cont_userno}}</td>
+	<!-- IF START 'isPersonView' -->
+		<td align="center">{{list.reg_name}}</td>
+	<!-- IF END 'isPersonView' -->			
+		<td align="center">{{list.user_name}}</td>
+		<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+		<td align="center">{{list.email}}</td>
+		<td align="center">{{list.post_code}}</td>
+		<td align="center">{{list.address}}</td>
+		<td align="center">{{list.status_name}}</td>
+
+		<!-- IF START 'isNicednr' -->
+		<td align="center">{{list.add_col1}}</td>
+		<td align="center">{{list.add_col2}}</td>
+		<td align="left">{{list.add_col3}}</td>
+		<!-- IF END 'isNicednr' -->
+		
+		<!-- IF START 'isSKB' -->
+		<td align="left">{{list.cust_code}}</td>
+		<td align="left">{{list.item_code}}</td>
+		<td align="left">{{list.item_name}}</td>
+		<td align="left">{{list.item_sale}}</td>
+		<td align="left">{{list.move_type}}</td>
+		<td align="left">{{list.move_limit}}</td>
+		<td align="left">{{list.item_code1}}</td>
+		<td align="left">{{list.item_charge}}</td>
+		<td align="left">{{list.item_code2}}</td>
+		<td align="left">{{list.sale_type}}</td>
+		<td align="left">{{list.pay_cust}}</td>
+		<td align="left">{{list.pay_bshop}}</td>
+		<!-- IF END 'isSKB' -->	
+
+  	</tr>
+  	<!-- LOOP END 'list' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

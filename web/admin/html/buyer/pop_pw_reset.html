@@ -1,0 +1,39 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<div style="width:100%;text-align:right;margin: 10px 0px">
+<button type="submit" class="sbtn color ico-confirm"><span></span>비밀번호 초기화</button>
+<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>닫기</button>
+</div>
+<div class="div_table">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="30%">
+		<col width="70%">
+	</colgroup>
+	<tr>
+		<th>휴대폰</th>
+		<td>
+			<input type="text" size="3" maxlength="3" onkeydown="num_only()" name="hp1">-
+			<input type="text" size="4" maxlength="4" onkeydown="num_only()" name="hp2">-
+			<input type="text" size="4" maxlength="4" onkeydown="num_only()" name="hp3">
+		</td>
+	</tr>
+	<tr>
+		<th>변경 비밀번호</th>
+		<td>{{pw}}<input type="hidden" name="pw" value="{{pw}}"></td>
+	</tr>
+</table>
+</div>
+</form>
+
+{{form_script}}
+
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("비밀번호 초기화 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+</script>

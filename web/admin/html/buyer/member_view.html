@@ -1,0 +1,131 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="comp_cates">
+
+<div class="div_table">
+<div class="util-row">	
+	<div class="push-left">	
+	  <h3>회사기본정보</h3>
+	</div>
+</div>
+
+<table>
+    <colgroup>
+        <col width="17%">
+        <col width="33%">
+        <col width="17%">
+        <col width="33%">
+    </colgroup>
+    <tr>
+        <th>업체유형</th>
+        <td>
+            <select name="member_gubun">
+                <option value="">선택</option>
+                <!-- LOOP START 'code_member_gubun' -->
+                <option value="{{code_member_gubun.id}}">{{code_member_gubun.value}}</option>
+                <!-- LOOP END 'code_member_gubun' -->
+            </select>
+        </td>
+        <th>회원상태</th>
+        <td>
+            <select name="status">
+                <option value="">선택</option>
+                <!-- LOOP START 'code_status' -->
+                <option value="{{code_status.id}}">{{code_status.value}}</option>
+                <!-- LOOP END 'code_status' -->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>회원유형 </th>
+        <td colspan="3">
+        	<!-- LOOP START 'code_member_type' -->
+            <input type="radio" name="member_type" value="{{code_member_type.id}}"> {{code_member_type.value}}
+            <!-- LOOP END 'code_member_type' -->
+        </td>
+    </tr>
+    <tr>
+        <th>사업자번호 </th>
+        <td colspan="3">
+           <input type="text" name="vendcd1" value="" style="width:50px;text-align:center;" maxlength="3" size="3" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd2')"> -
+           <input type="text" name="vendcd2" value="" style="width:40px;text-align:center;" maxlength="2" size="2" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd3'); movePrv('vendcd1')"> -
+           <input type="text" name="vendcd3" value="" style="width:60px;text-align:center;" maxlength="5" size="5" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('vendcd2')">
+        </td>
+    </tr>
+    <tr id="tr_member_slno">
+        <th class="req-check">법인번호 </th>
+        <td colspan="3">
+          <input type="text" name="member_slno1" value="" size="6" maxlength="6" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('member_slno2')"> -
+          <input type="text" name="member_slno2" value="" size="7" maxlength="7" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('txt_cust_slno1')">
+        </td>
+    </tr>
+    <tr>
+        <th class="req-check">업체명 </th>
+        <td class="dcel">
+          <input type="text" name="member_name" style="width:95%" maxlength="30" >
+        </td>
+        <th class="req-check">대표자명 </th>
+        <td>
+            <input type="text" name="boss_name" style="width:95%" maxlength="30" >
+        </td>
+    </tr>
+    <tr>
+    <th class="req-check">업태</th>
+        <td>
+          <input type="text" name="condition" style="width:95%" maxlength="30" >
+        </td>
+        <th class="req-check">종목 </th>
+        <td>
+            <input type="text" name="category" style="width:95%" maxlength="30" >
+        </td>
+    </tr>
+    <tr>
+        <th class="req-check">주소 </th>
+        <td colspan="3">
+            <input type="text" name="post_code" class="in_readonly" size="6" readonly>
+            <button type="button" class="sbtn color ico-search" onclick="jusoPopup()"><span></span>우편번호찾기</button>
+            <input type="text" name="address" style="width:98%; margin-top: 3px" maxlength="150">
+        </td>
+    </tr>
+    <tr>
+        <th>인증서 만료일 </th>
+        <td colspan="3">
+                <!-- IF START 'member.cert_end_date' -->
+                <span style="color:blue">{{member.cert_end_date}}</span>
+                <!-- IF END 'member.cert_end_date' -->
+                <!-- IFNOT START 'member.cert_end_date' -->
+                <span style="color:red">[미등록]</span>
+                <!-- IFNOT END 'member.cert_end_date' -->
+        </td>
+    </tr>
+</table>
+</div>
+
+<div class="btn-group-wrap">
+      <button type="submit" name="btn_join" class="btn color ico-save" ><span></span>저장</button>
+      <button type="button" name="btn_join" class="btn color ico-delete" onclick="if(confirm('삭제처리 하시겠습니까?\n\n삭제처리 시 복구 할 수 없습니다.'))location.href='member_delete.jsp?{{query}}'"><span></span>삭제</button>
+      <button type="button" name="btn_join" class="btn color ico-list" onclick="location.href='member_list.jsp?{{list_query}}'" ><span></span>목록으로</button>
+</div>
+</form>
+{{form_script}}
+<script type="text/javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(confirm("저장하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){
+	 var f = document.forms['form1'];
+	f['address'].value=roadFullAddr;
+	f['post_code'].value=zipNo;
+}
+
+function popLogo(){
+    OpenWindow("pop_ci_modify.jsp?member_no={{member.member_no}}","ci","550","450","no");
+    return;
+}
+
+</script>

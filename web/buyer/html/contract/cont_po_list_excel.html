@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="1000" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  </tr>
+  <tr>
+  <td align="left">기 간 : {{date}}</td>
+  </td>
+  </tr>
+  <tr>
+  <td>
+	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  	<tr align="center">	
+	<td bgcolor="#cccccc">순번</td>
+	<td bgcolor="#cccccc">요청부서</td>   
+    <td bgcolor="#cccccc">담당자</td>
+    <td bgcolor="#cccccc">계약명</td>
+    <td bgcolor="#cccccc">발주일</td>
+    <td bgcolor="#cccccc">납품일</td>
+    <td bgcolor="#cccccc">거래처</td>
+    <td bgcolor="#cccccc">품명</td>
+    <td bgcolor="#cccccc">규격</td>
+    <td bgcolor="#cccccc">단위</td>
+    <td bgcolor="#cccccc">수량</td>
+    <td bgcolor="#cccccc">단가</td>
+    <td bgcolor="#cccccc">발주금액</td>
+  	</tr>
+  	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.__ord}}</td>
+		<!-- IF START 'list.first' -->
+	    <td rowspan="{{list.rowspan}}" align="center">{{list.field_name}}</td>
+	    <td rowspan="{{list.rowspan}}" align="center">{{list.user_name}}</td>
+	    <td rowspan="{{list.rowspan}}" align="left">{{list.cont_name}}</td>
+	    <td rowspan="{{list.rowspan}}" align="center">{{list.cont_date}}</td>
+	    <td rowspan="{{list.rowspan}}" align="center">{{list.add_col4}}</td>
+	    <td rowspan="{{list.rowspan}}" align="left">{{list.member_name}}</td>
+	    <!-- IF END 'list.first' -->
+	    <td align="left">{{list.add_col6}}</td>
+	    <td align="center">{{list.add_col7}}</td>
+	    <td align="center">{{list.add_col8}}</td>
+	    <td align="right">{{list.add_col9}}</td>
+	    <td align="right">{{list.add_col10}}</td>
+	    <td align="right">{{list.add_col11}}</td>
+  	</tr>
+  	<!-- LOOP END 'list' -->
+		</table>
+	</td>
+  </tr>
+	</table>
+</body>

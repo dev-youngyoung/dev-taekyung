@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>▒ 나이스다큐 (전자구매시스템)▒</title>
+<link rel="shortcut icon" type="image/ico" href="/images/nicedocu.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="X-UA-Compatible" content="IE=6"/>
+<link rel="stylesheet" type="text/css" href="/web/buyer/html/css/style.css">
+<script language="javascript" type="text/javascript" src="/web/buyer/html/js/common.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+function pop_7close(){
+	var expires = 60*60*24*1; 
+	SetCookie('recruit2','done',expires);
+	parent.document.getElementsByName("user_id")[0].focus();
+	pop_close();
+}
+
+ 
+
+function pop_close(){
+	var	bNode = parent.document.getElementById("back");
+	if(bNode){
+		parent.document.body.removeChild(bNode);
+	}
+	parent.document.getElementsByName("user_id")[0].focus();
+	fLayerPopClose("recruit2");
+}
+</script> 
+
+
+<!-- 
+<div style="width:220px;height:30px; position: absolute; top: 10px;left:160px;">
+	<button type="button" class="sbtn color ico-check" onclick="javascript:pop_7close()"><span></span>오늘 하루 보지 않기</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="pop_close();" ><span></span>닫기</button>
+</div>
+ -->
+<div>
+	<img src="/images/dwconstruction_recruit.png"  border="0" usemap="#Map" id="noti_img"/>
+	<map name="Map" id="Map">
+		<area shape="rect" coords="355,17,372,30" href="javascript:pop_close();" />
+		<area shape="rect" coords="8,380,102,394" href="javascript:javascript:pop_7close()" />
+ 		<area shape="rect" coords="128,342,245,370" href="javascript:filedown('file.path.noti','/201904171508030.pdf','2019년 협럭업체 정기모집공고.pdf')" />
+	</map>
+</div>
+<!-- 
+<div>
+	<img src="/images/home_recruit.jpg"  border="0" usemap="#Map" id="noti_img"/>
+	<map name="Map" id="Map">
+ <area shape="rect" coords="90,721,240,749" href='javascript:filedown("file.path.noti","/home_20190304_1.pdf","홈플러스협력사모집공고문.pdf");' />
+	  <area shape="rect" coords="247,711,394,751" href="javascript:filedown('file.path.noti','/home_20190304_2.xlsx','홈플러스_IT분야_OOO주식회사.xlsx');" />
+	  <area shape="rect" coords="401,717,551,752" href="javascript:filedown('file.path.noti','/home_20190304_3.xlsx','홈플러스_OO분야_OOO주식회사.xlsx');" />
+	</map>
+</div>
+ -->
+</body>
+</html>

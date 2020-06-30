@@ -1,0 +1,167 @@
+<form name="form1" method="post" onsubmit="return false;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" >
+	<colgroup>
+		<col width="35%">
+		<col width="5%">
+		<col width="60%">
+	</colgroup>
+	<tr>
+		<td valign="top">
+			<div class="div_table">
+				<div class="util-row">
+					<div class="push-left">
+						<h3>담당자 목록</h3>
+					</div>
+					<div class="push-right">
+						※권한을 변경 할 담당자를 클릭하세요.
+					</div>
+				</div>
+				<table>
+				<tr>
+					<th>이름</th>
+					<td>
+						<input type="text" style="width: 150px" name="s_user_name" onkeyup="if(event.keyCode==13){search();}">
+						<button type="button" class="sbtn color" onclick="search();">검색</button>
+					</td>
+				</tr>
+				</table>
+			</div>
+
+			<div style="height:650px; overflow-y:auto">
+				<div class="div_table">
+				<table id="person_table">
+				  <colgroup>
+					<col width="15%">
+					<col width="42%">
+					<col width="24%">
+					<col width="19%">
+				  </colgroup>
+				  <tr>
+					<th>선택</th>
+					<th>부서</th>
+					<th>이름</th>
+					<th>직급</th>
+				  </tr>
+				  <!-- LOOP START 'person' -->
+				  <tr id="row_{{person.person_seq}}" hname="{{person.user_name}}" onclick="personSelect('{{person.person_seq}}','{{person.field_name}}','{{person.user_name}}','{{person.position}}')"  style="cursor:pointer">
+					<td align="center"><input type="checkbox" name="chk_person_seq" value="{{person.person_seq}}"></td>
+					<td align="center">{{person.field_name}}</td>
+					<td align="center">{{person.user_name}}</td>
+					<td align="center">{{person.position}}</td>
+				  </tr>
+				  <!-- LOOP END 'person' -->
+				  <!-- IFNOT START 'person' -->
+				  <tr>
+					<td align="center" colspan="4">권한을 부여할 담당자가 없습니다.</td>
+				  </tr>
+				  <!-- IFNOT END 'person' -->
+				</table>
+				</div>
+			</div>
+
+		</td>
+		<td></td>
+		<td valign="top">
+			<div class="div_table">
+				<div class="util-row">
+					<div class="push-left">
+						<h3>메뉴별권한</h3>
+					</div>
+				</div>
+				<table style="margin-bottom:3px;">
+					<colgroup>
+						<col width="45%">
+						<col width="35%">
+						<col width="20%">
+					</colgroup>
+					<tr>
+						<td id="info_area"></td>
+						<td> <span id="search_area">메뉴명:
+							<select name="l_div_cd" onchange="chgDiv(this.value)">
+								<option value="">-전체-</option>
+								<!-- LOOP START 'l_div' -->
+								<option value="{{l_div.l_div_cd}}">{{l_div.menu_nm}}</option>
+								<!-- LOOP END 'l_div' -->
+							</select>
+							</span>
+						</td>
+						<td align="right">
+							<button type="button" class="sbtn color" onclick="fsave();">저장</button>
+						</td>
+					</tr>
+				</table>
+				<iframe id="person_auth" src="about:blank" width="100%" height="100%" frameborder="0"></iframe>
+			</div>
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+
+var person_seq = "";
+
+function personSelect(person_seq, field_name, user_name, position){
+	if(person_seq == "")return;
+	var f = document.forms['form1'];
+	this.person_seq = person_seq;
+	var url = "ifm_person_auth.jsp?person_seq="+person_seq;
+	var iframe = document.getElementById("person_auth");
+	iframe.src = url;
+	var person_list = document.getElementById("person_table");
+	for(var i = 1 ; i < person_list.rows.length; i++){
+		var row = person_list.rows[i];
+		var row_id = "row_"+person_seq;
+		 if(row.id == row_id ){
+		 	row.style.backgroundColor='#EAE7FE';
+		 }else{
+		 	row.style.backgroundColor='';
+		 }
+	}
+
+	var str = field_name + " <font style='color:#0000ff;font-weight:bold'>"+user_name+"</font> ";
+	document.getElementById("info_area").innerHTML = str;
+	f['l_div_cd'].value= "";
+}
+
+function search() {
+	var f = document.forms['form1'];
+	var user_name = f.s_user_name.value;
+	var search_fnc = "";
+	
+	var person_list = document.getElementById("person_table");
+	for(var i = 1 ; i < person_list.rows.length; i++){
+		var row = person_list.rows[i];
+		 if(user_name=='') {
+			row.style.display='';
+		 }else if(row.getAttribute('hname').indexOf(user_name)>=0){
+		 	row.style.display='';
+		 	search_fnc = row;
+		 }else{
+			row.style.display='none';
+		 }
+	}
+	
+	if(search_fnc != '') {
+		search_fnc.onclick();
+	}
+}
+
+function chgDiv(l_div_cd){
+	if(person_seq == "") return;
+	var url = "ifm_person_auth.jsp";
+        url+= "?person_seq="+person_seq;
+        url+= "&l_div_cd="+l_div_cd;
+	var iframe = document.getElementById("person_auth");
+	iframe.src = url;
+}
+
+function fsave(){
+	var iframe = document.getElementById("person_auth");
+		iframe.contentWindow.fsubmit();
+}
+<!-- IF START 'fperson.person_seq' -->
+personSelect("{{fperson.person_seq}}","{{fperson.field_name}}","{{fperson.user_name}}","{{fperson.position}}");
+<!-- IF END 'fperson.person_seq' -->
+</script>
+{{form_script}}
+

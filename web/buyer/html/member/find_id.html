@@ -1,0 +1,81 @@
+<form novalidate name="form1" method="post">
+	<input type="hidden" name="mode" value="1">
+	<input type="hidden" name="member_no">
+	<input type="hidden" name="person_seq">
+
+	<div style="width:100%" align="center">
+		<div style="width:50%;">
+
+			<div style="line-height:20px">
+				<b><span style="color:#4EAEEA">※ 아이디 찾기 절차 ※</span></b><br><br>
+				<b>1)사업자등록번호 입력 -> 2)담당자 선택 -> 3)담당자 이메일로 아이디 발송</b>
+			</div>
+
+			<div class="div_table" style="margin-top: 10px;">
+				<table>
+					<colgroup>
+						<col width="30%">
+						<col width="70%">
+					</colgroup>
+					<tr>
+						<th>사용자구분</th>
+						<td>
+							<label>
+								<input type="radio" name="userGubun" checked="checked" />사업자&nbsp;
+							</label>
+							<label>
+								<input type="radio" name="userGubun" onchange="location.href='find_id_person.jsp';" />개인
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<th class="req-check">사업자 번호</th>
+						<td>
+							<input type="text" name="vendcd1" size="3" maxlength="3" onKeyPress="num_only();" onKeyUp="moveNext('vendcd2')" style="ime-mode:disabled;"> -
+							<input type="text" name="vendcd2" size="2" maxlength="2" onKeyPress="num_only();" onKeyUp="moveNext('vendcd3')" style="ime-mode:disabled;"> -
+							<input type="text" name="vendcd3" size="5" maxlength="5" onKeyPress="num_only();" style="ime-mode:disabled;"> &nbsp; &nbsp;
+							<button type="submit" class="sbtn color ico-confirm"><span></span>확인</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- IF START 'person' -->
+			<div class="div_table" style="margin-top: 10px">
+				<table>
+					<colgroup>
+						<col width="30%">
+						<col width="40%">
+						<col width="30%">
+					</colgroup>
+					<tr>
+						<th>아이디</th>
+						<th>이메일</th>
+						<th>메일전송</th>
+					</tr>
+					<!-- LOOP START 'person' -->
+					<tr>
+						<td align="center">{{person.user_id}}</td>
+						<td align="center">{{person.email}}</td>
+						<td align="center"><button type="button" class="sbtn color ico-request" onclick="sendMail('{{person.member_no}}','{{person.person_seq}}')"><span></span>메일전송</button></td>
+					</tr>
+					<!-- LOOP END 'person' -->
+				</table>
+			</div>
+			<!-- IF END 'person' -->
+		</div>
+	</div>
+</form>
+{{form_script}}
+
+
+<script type="text/javascript">
+
+    function sendMail(member_no, person_seq){
+        var f = document.forms['form1'];
+        f['mode'].value = 2;
+        f['member_no'].value=member_no;
+        f['person_seq'].value=person_seq;
+        f.submit();
+    }
+
+</script>

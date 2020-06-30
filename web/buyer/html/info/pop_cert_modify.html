@@ -1,0 +1,62 @@
+<form novalidate name="form1" method="post" enctype="multipart/form-data">
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-right">
+				<button type="submit" class="sbtn color ico-save"><span></span>저장</button>
+				<button type="button" class="sbtn color ico-delete" onclick="if(confirm('삭제 하시겠습니까?')){location.href='cert_delete.jsp?{{query}}'}"><span></span>삭제</button>
+				<button type="button" class="sbtn color" onclick="self.close();">닫기</button>
+			</div>
+		</div>
+		<table>
+			<colgroup>
+				<col width="20%"/>
+				<col width="80%"/>
+			</colgroup>
+			<tr>
+				<th>인허가명</th>
+				<td>
+					<input type="text" name="cert_name" size="30" >
+				</td>
+			</tr>
+			<tr>
+				<th>등록/허가번호</th>
+				<td>
+					<input type="text" name="cert_no" size="30" >
+				</td>
+			</tr>
+			<tr>
+				<th>관련기관</th>
+				<td>
+					<input type="text" name="cert_org" size="30" >
+				</td>
+			</tr>
+			<tr>
+				<th>유효기간</th>
+				<td>
+					<input type="text" name="cert_sdate" class="in_readonly" style="width:120px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cert_sdate'])"> ~
+					<input type="text" name="cert_edate" class="in_readonly" style="width:120px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cert_edate'])">
+				</td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td>
+					<!-- IFNOT START 'modify' -->
+					※ 인허가 증서를 스캔하여 첨부하세요.(jpg,gif,png,pdf 파일만 첨부 가능합니다.)<br>
+					<input type="file" name="cert_file" style="width:95%">
+					<!-- IFNOT END 'modify' -->
+					<!-- IF START 'modify' -->
+						<!-- IFNOT START 'cert.file_name' -->
+						미첨부
+						<!-- IFNOT END 'cert.file_name' -->
+						<!-- IF START 'cert.file_name' -->
+					{{cert.doc_name}}&nbsp;&nbsp;({{cert.file_size}})&nbsp;
+					<input type="button" class="down4" value="다운로드" onclick="filedown('file.path.bcompany','{{cert.file_path}}{{cert.file_name}}','{{cert.doc_name}}')""/>
+						<!-- IF END 'cert.file_name' -->
+					<!-- IF END 'modify' -->
+
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+{{form_script}}

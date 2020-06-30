@@ -1,0 +1,536 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);" >
+<input type="hidden" name="arr_menu_cd">
+
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>기본정보</h3>
+    </div>
+</div>
+<table>
+	<colgroup>
+		<col width="15%">
+		<col width="85%">
+	</colgroup>
+	<tr>
+		<th class="req-check">권한명 </th>
+		<td>
+			<input type="text" name="auth_nm" style="width:95%">
+		</td>
+	</tr>
+	<tr>
+		<th>비&nbsp;&nbsp;&nbsp;고 </th>
+		<td>
+			<textarea name="etc" style="width:100%; height:50px;">{{authInfo.etc}}</textarea>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>간편권한부여 <span class="caution-text"> ※ 간편 권한 클릭 시 선택 항목에 따라 상세 권한 정보를 손쉽게 설정 하실 수 있습니다.</span></h3>
+    </div>
+</div>
+<table>
+	<colgroup>
+		<col width="15%">
+		<col width="85%">
+	</colgroup>
+	<!-- IF START 'menuCnt.esti_yn' -->
+	<tr>
+		<th>견적관리</th>
+		<td> 
+			<select name="auth_esti" onchange="setAuth(this.value)">
+				<option value="">-선택-</option>
+				<option value="esti_auth_0">권한없음</option>
+				<option value="esti_auth_1">견적진행권한</option>
+				<option value="esti_auth_2">견적결과조회</option>
+			</select>
+		 </td>
+	</tr>
+	<!-- IF END 'menuCnt.esti_yn' -->
+	<!-- IF START 'menuCnt.bid_yn' -->
+	<tr>
+		<th>입찰관리</th>
+		<td> 
+			<select name="auth_esti" onchange="setAuth(this.value)">
+				<option value="">-선택-</option>
+				<option value="bid_auth_0">권한없음</option>
+				<option value="bid_auth_1">입찰진행/개찰권한</option>
+				<option value="bid_auth_2">개찰권한</option>
+				<option value="bid_auth_3">입찰결과조회</option>
+			</select>
+		 </td>
+	</tr>
+	<!-- IF END 'menuCnt.bid_yn' -->
+	<!-- IF START 'menuCnt.cont_yn' -->
+	<tr>
+		<th>전자계약</th>
+		<td>
+			<select name="auth_cont" onchange="setAuth(this.value)">
+				<option value="">-선택-</option>
+				<option value="cont_auth_0">권한없음</option>
+				<option value="cont_auth_1">계약진행권한</option>
+				<option value="cont_auth_2">완료계약조회권한</option>
+			</select>
+		</td>
+	</tr>
+	<!-- IF END 'menuCnt.cont_yn' -->
+	<tr>
+		<th>거래업체관리</th>
+		<td>
+			<select name="auth_cust" onchange="setAuth(this.value)">
+				<option value="">-선택-</option>
+				<option value="cust_auth_0">권한없음</option>
+				<option value="cust_auth_1">업체관리권한</option>
+				<option value="cust_auth_2">업체조회권한</option>
+			</select>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>상세권한정보</h3>
+    </div>
+    <div class="push-right">
+    </div>
+</div>
+<table>
+	<tr>
+		<th>메뉴명</th>
+		<th>중분류</th>
+		<th>메뉴명</th>
+		<th>사용여부</th>
+		<th>열람범위</th>
+		<th>업무권한</th>
+	</tr>
+	<!-- LOOP START 'treeMenu' -->
+	<tr>
+		<!-- IF START 'treeMenu.l_menu_nm' -->
+		<td align="center" rowspan="{{treeMenu.l_row_span}}">{{treeMenu.l_menu_nm}}</td>
+		<!-- IF END 'treeMenu.l_menu_nm' -->
+		<!-- IF START 'treeMenu.m_menu_nm' -->
+		<td align="center" rowspan="{{treeMenu.m_row_span}}" style="border-left: 1px solid #e0e0e0">{{treeMenu.m_menu_nm}}</td>
+		<!-- IF END 'treeMenu.m_menu_nm' -->
+		<!-- IF START 'treeMenu.s_menu_nm' -->
+		<td align="center" style="border-left: 1px solid #e0e0e0">{{treeMenu.s_menu_nm}}</td>
+		<td align="center"><input type="checkbox" id="menu_cd_{{treeMenu.menu_cd}}" name="menu_cd" value="{{treeMenu.menu_cd}}" onclick="clickMenuChk(this.value,this.checked)"></td>
+		<td align="center">
+			<!-- IF START 'code_select_auth' -->
+			<select name="select_auth_{{treeMenu.menu_cd}}" hname="열람범위" disabled>
+				<option value="">-선택-</option>
+				<!-- LOOP START 'code_select_auth' -->
+				<option value="{{code_select_auth.id}}" >{{code_select_auth.value}}</option>
+				<!-- LOOP END 'code_select_auth' -->
+			</select>
+			<!-- IF END 'code_select_auth' -->
+		</td>
+		<td align="center">
+			<!-- IF START 'code_btn_auth' -->
+			<select name="btn_auth_{{treeMenu.menu_cd}}" hname="업무권한" disabled>
+				<option value="">-선택-</option>
+				<!-- LOOP START 'code_btn_auth' -->
+				<option value="{{code_btn_auth.id}}">{{code_btn_auth.value}}</option>
+				<!-- LOOP END 'code_btn_auth' -->
+			</select>
+			<!-- IF END 'code_btn_auth' -->
+		</td>
+		<!-- IF END 'treeMenu.s_menu_nm' -->
+	</tr>
+	<!-- LOOP END 'treeMenu' -->
+</table>
+</div>
+
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>타부서 메뉴별 접근권한 <span class="caution-text">※  타부서의 견적/입찰/계약메뉴의  업무권한을 설정 할 수 있습니다.</span></h3>
+    </div>
+    <div class="push-right">
+    	<button type="button" class="sbtn color ico-add" onclick="OpenWindows('pop_auth_menu.jsp?callback=addAfieldRow','pop_auth_menu', 500,400)"><span></span>추가</button>
+    </div>
+</div>
+<table id="afiled_grid">
+	<colgroup>
+		<col width="25%">
+		<col width="40%">
+		<col width="20%">
+		<col width="15%">
+	</colgroup>
+	<thead>
+	<tr>
+		<th>타부서</th>
+		<th>접근메뉴</th>
+		<th>메뉴권한</th>
+		<th>삭제</th>
+	</tr>
+	</thead>
+	<tbody>
+		<!-- LOOP START 'authField' -->
+		<tr>
+			<td align="center">
+				 <select name="afield_field_seq" id="afield_field_seq_{{authField.seq}}" requried="Y" hname='부서'>
+				 	<option value="">-선택-</option>
+				 	<!-- LOOP START 'field' -->
+				 	<option value="{{field.field_seq}}">{{field.field_name}}</option>
+				 	<!-- LOOP END 'field' -->
+				 </select>
+				 <script>document.getElementById("afield_field_seq_{{authField.seq}}").value="{{authField.field_seq}}";</script>
+			</td>
+			<td align="center">
+				{{authField.full_menu_nm}}
+				<input type="hidden" name="afield_menu_cd" value="{{authField.menu_cd}}">
+			</td>
+			<td align="center">
+				<select name="afield_btn_auth" id="afield_btn_auth_{{authField.seq}}" requried="Y" hname='업무권한'>
+				 	<option value="">-선택-</option>
+				 	<!-- LOOP START 'code_btn_auth' -->
+				 	<option value="{{code_btn_auth.id}}">{{code_btn_auth.value}}</option>
+				 	<!-- LOOP END 'code_btn_auth' -->
+				 </select>
+				 <script>document.getElementById("afield_btn_auth_{{authField.seq}}").value="{{authField.btn_auth}}";</script>
+			</td>
+			<td align="center"><button type='button' class='sbtn color ico-delete' onclick='afiled_grid.del(this)'><span></span>삭제</button></td>
+		</tr>
+		<!-- LOOP END 'authField' -->
+	</tbody>
+</table>
+</div>
+
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+	<!-- IF START 'modify' -->
+	<button type="button" class="btn color ico-delete auth_css" onclick="authDelete();"><span></span>삭제</button>
+	<!-- IF END 'modify' -->
+	<button type="button" class="btn color ico-list" onclick="location.href='auth_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>		
+
+
+<!-- IF START 'modify' -->
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+    	<h3>사용자 ( {{authInfo.user_cnt}} )</h3>
+    </div>
+</div>
+<table>
+	<colgroup>
+		<col width="20%">
+		<col width="80%">
+	</colgroup>
+	<tr>
+		<th>부서명</th>
+		<th>담당자명</th>
+	</tr>
+	<!-- LOOP START 'person' -->
+	<tr>
+		<td align="center">{{person.field_name}}</td>
+		<td style="word-break:keep-all">{{person.user_names}}</td>
+	</tr>
+	<!-- LOOP END 'person' -->
+	<!-- IFNOT START 'person' -->
+	<tr>
+		<td align="center" colspan="2">해당권한을 이용중인 사용자가 없습니다.</td>
+	</tr>
+	<!-- IFNOT END 'person' -->
+</table>
+</div>
+<!-- IF END 'modify' -->
+
+</form>
+{{form_script}}
+
+<script language="javascript">
+
+function formSubmit(f){
+	document.getElementById("menu_cd_000118").checked = true;
+	f['arr_menu_cd'].value=GetFormValue("form1","menu_cd");
+	if(validate(f)){
+		if(confirm("저장 하시겠습니까?")){
+			return true;
+		}
+	}
+	return false;
+}
+
+function clickMenuChk(menu_cd, checked, select_auth_val, btn_auth_val){
+	var f = document.forms['form1'];
+	var select_auth = "";
+	var btn_auth = "";
+	if(select_auth_val) select_auth = select_auth_val;
+	if(btn_auth_val) btn_auth = btn_auth_val;
+	
+	if(checked){
+		if(f['select_auth_'+menu_cd]){
+			f['select_auth_'+menu_cd].disabled = false;
+			f['select_auth_'+menu_cd].value = select_auth;
+			setAttr("form1","select_auth_"+menu_cd ,"required","Y");
+		}
+		if(f['btn_auth_'+menu_cd]){
+			f['btn_auth_'+menu_cd].disabled = false;
+			f['btn_auth_'+menu_cd].value = btn_auth;
+			setAttr("form1", "btn_auth_"+menu_cd,"required","Y");
+		}
+	}else{
+		if(f['select_auth_'+menu_cd]){
+			f['select_auth_'+menu_cd].disabled= true;
+			f['select_auth_'+menu_cd].value = "";
+			removeAttr("form1","select_auth_"+menu_cd);
+		}
+		if(f['btn_auth_'+menu_cd]){
+			f['btn_auth_'+menu_cd].disabled = true;
+			f['btn_auth_'+menu_cd].value = "";
+			removeAttr("form1","btn_auth_"+menu_cd);
+		}
+	}
+}
+
+function authDelete(){
+	var user_cnt = Number("{{authInfo.user_cnt}}");
+	if(user_cnt > 0){
+		alert("해당 권한을 사용 하는 사용자가 있습니다.\n\n 해당 권한의 사용자가 없는 경우만 삭제 가능 합니다.");
+		return;
+	}
+	if(confirm("해당권한을 삭제 하시겠습니까?")){
+		location.href='auth_delete.jsp?{{query}}';
+	}
+}
+
+
+var afiled_grid = new MGRID("afiled_grid");
+
+function addAfieldRow(data){
+	var field_select = "<select name='afield_field_seq' requried='Y' hname='부서'> "
+	                      +" <option value=''>-선택-</option> "
+	                      <!-- LOOP START 'field' -->
+	                      +" <option value='{{field.field_seq}}'>{{field.field_name}}</option> "
+	                      <!-- LOOP END 'field' -->
+	                      +" </select>";
+	var f = document.forms['form1'];
+	
+	var btn_auth = document.forms['form1']['btn_auth_'+data['menu_cd']].cloneNode(true);
+	btn_auth['name']= "afield_btn_auth";
+	btn_auth['required']= "Y";
+	btn_auth['hname']= "업무권한";
+	btn_auth.disabled = false;
+	
+	var cells = [
+		field_select
+		, "<input type='hidden' name='afield_menu_cd' value='"+data['menu_cd']+"'>"+data['full_menu_nm']
+		, btn_auth.outerHTML
+		, "<button type='button' class='sbtn color ico-delete' onclick='afiled_grid.delRow()'><span></span>삭제</button>"
+	];
+	afiled_grid.addRow(null, cells);
+}
+</script>
+
+
+
+<script>
+function setMenuValue(){
+	var f = document.forms['form1'];
+<!-- LOOP START 'authMenu' -->
+	SetFormValue("form1","menu_cd","{{authMenu.menu_cd}}",",");
+	clickMenuChk("{{authMenu.menu_cd}}",true);
+	SetFormValue("form1","select_auth_{{authMenu.menu_cd}}","{{authMenu.select_auth}}");
+	SetFormValue("form1","btn_auth_{{authMenu.menu_cd}}","{{authMenu.btn_auth}}");
+<!-- LOOP END 'authMenu' -->
+}
+setMenuValue();
+document.getElementById("menu_cd_000118").checked = true;
+</script>
+
+<script>
+function setAuth(auth_data_nm){
+	var f = document.forms['form1'];
+	if(auth_data_nm == "")return;
+	var data = eval(auth_data_nm);
+	for(var i = 0 ; i < data.length ; i ++){
+		var menu_cd = data[i]["menu_cd"];
+		var checked = data[i]["checked"]==true;
+		var select_auth_val =  data[i]["select_auth_val"];
+		var btn_auth_val = data[i]["btn_auth_val"];
+		if(document.getElementById("menu_cd_"+menu_cd)){
+			document.getElementById("menu_cd_"+menu_cd).checked = checked;
+			clickMenuChk(menu_cd, checked,select_auth_val, btn_auth_val);
+		}
+	}
+}
+
+/*견적 */
+var esti_auth_0 = [
+		{"menu_cd":"000033", "menu_nm":"견적요청현황","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{"menu_cd":"000034", "menu_nm":"견적결과","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	]; 
+var esti_auth_1 = [
+		 {"menu_cd":"000033", "menu_nm":"견적요청현황","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+		,{"menu_cd":"000034", "menu_nm":"견적결과","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	]; 
+var esti_auth_2 = [
+		 {"menu_cd":"000033", "menu_nm":"견적요청현황","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{"menu_cd":"000034", "menu_nm":"견적결과","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	];
+
+var bid_auth_0 =[
+		 { "menu_cd":"000036", "menu_nm":"입찰계획","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000038", "menu_nm":"현설(사양)공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000039", "menu_nm":"입찰공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000040", "menu_nm":"기술(규격)평가","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000041", "menu_nm":"입찰서개찰","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000042", "menu_nm":"낙찰업체선정","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000043", "menu_nm":"입찰결과","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000044", "menu_nm":"구매담당자변경","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000045", "menu_nm":"복수예가관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000047", "menu_nm":"입찰진행현황","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	];
+
+/*입찰 */
+var bid_auth_0 =[//권한없음.
+		 { "menu_cd":"000036", "menu_nm":"입찰계획","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000038", "menu_nm":"현설(사양)공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000039", "menu_nm":"입찰공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000040", "menu_nm":"기술(규격)평가","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000041", "menu_nm":"입찰서개찰","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000042", "menu_nm":"낙찰업체선정","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000043", "menu_nm":"입찰결과","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000044", "menu_nm":"구매담당자변경","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000045", "menu_nm":"복수예가관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000047", "menu_nm":"입찰진행현황","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	];		
+var bid_auth_1 =[//입찰/개찰권한
+	 { "menu_cd":"000036", "menu_nm":"입찰계획","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000038", "menu_nm":"현설(사양)공고","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000039", "menu_nm":"입찰공고","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000040", "menu_nm":"기술(규격)평가","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000041", "menu_nm":"입찰서개찰","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000042", "menu_nm":"낙찰업체선정","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000043", "menu_nm":"입찰결과","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000044", "menu_nm":"구매담당자변경","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000045", "menu_nm":"복수예가관리","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000047", "menu_nm":"입찰진행현황","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+];
+var bid_auth_2 =[//개찰권한
+	 { "menu_cd":"000036", "menu_nm":"입찰계획","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000038", "menu_nm":"현설(사양)공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000039", "menu_nm":"입찰공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000040", "menu_nm":"기술(규격)평가","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000041", "menu_nm":"입찰서개찰","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000042", "menu_nm":"낙찰업체선정","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000043", "menu_nm":"입찰결과","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	,{ "menu_cd":"000044", "menu_nm":"구매담당자변경","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000045", "menu_nm":"복수예가관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000047", "menu_nm":"입찰진행현황","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+];
+var bid_auth_3 =[//결과조회
+	 { "menu_cd":"000036", "menu_nm":"입찰계획","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000038", "menu_nm":"현설(사양)공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000039", "menu_nm":"입찰공고","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000040", "menu_nm":"기술(규격)평가","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000041", "menu_nm":"입찰서개찰","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000042", "menu_nm":"낙찰업체선정","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000043", "menu_nm":"입찰결과","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	,{ "menu_cd":"000044", "menu_nm":"구매담당자변경","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000045", "menu_nm":"복수예가관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000047", "menu_nm":"입찰진행현황","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+];
+
+//계약
+var cont_auth_0 = [//권한없음
+	 { "menu_cd":"000052", "menu_nm":"계약대상(전자입찰)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000053", "menu_nm":"신규계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000055", "menu_nm":"자유서식 계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000056", "menu_nm":"자유서식 계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000057", "menu_nm":"서면계약등록","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000058", "menu_nm":"변경계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000059", "menu_nm":"임시저장 계약","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000060", "menu_nm":"진행중(보낸계약)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000063", "menu_nm":"완료(보낸계약)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000066", "menu_nm":"만료예정 계약서","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000067", "menu_nm":"서면계약","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000068", "menu_nm":"보증보험증권관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000162", "menu_nm":"인지세관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000077", "menu_nm":"공람완료","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000157", "menu_nm":"수신함","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+];
+var cont_auth_1 = [//계약진행권한
+	 { "menu_cd":"000052", "menu_nm":"계약대상(전자입찰)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000053", "menu_nm":"신규계약작성","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000055", "menu_nm":"자유서식 계약작성","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000056", "menu_nm":"자유서식 계약작성","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000057", "menu_nm":"서면계약등록","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000058", "menu_nm":"변경계약작성","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000059", "menu_nm":"임시저장 계약","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000060", "menu_nm":"진행중(보낸계약)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000063", "menu_nm":"완료(보낸계약)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000066", "menu_nm":"만료예정 계약서","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000067", "menu_nm":"서면계약","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000068", "menu_nm":"보증보험증권관리","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000162", "menu_nm":"인지세관리","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000077", "menu_nm":"공람완료","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000157", "menu_nm":"수신함","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+];
+var cont_auth_2 = [//완료계약조회권한
+	 { "menu_cd":"000052", "menu_nm":"계약대상(전자입찰)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000053", "menu_nm":"신규계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000055", "menu_nm":"자유서식 계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000056", "menu_nm":"자유서식 계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000057", "menu_nm":"서면계약등록","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000058", "menu_nm":"변경계약작성","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000059", "menu_nm":"임시저장 계약","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000060", "menu_nm":"진행중(보낸계약)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000063", "menu_nm":"완료(보낸계약)","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	,{ "menu_cd":"000066", "menu_nm":"만료예정 계약서","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000067", "menu_nm":"서면계약","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000068", "menu_nm":"보증보험증권관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000162", "menu_nm":"인지세관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000077", "menu_nm":"공람완료","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000157", "menu_nm":"수신함","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+];
+
+var cust_auth_0 = [//권한없음
+	 { "menu_cd":"000082", "menu_nm":"협력업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000083", "menu_nm":"협력업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000085", "menu_nm":"협력업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000086", "menu_nm":"담당자별 업체조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000087", "menu_nm":"개인회원 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000088", "menu_nm":"가등록업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000089", "menu_nm":"협력업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000090", "menu_nm":"대리점 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000091", "menu_nm":"등록업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000092", "menu_nm":"협력업체 조회","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000093", "menu_nm":"업체소싱그룹관리","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+];
+
+var cust_auth_1 = [//관리권한
+	 { "menu_cd":"000082", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000083", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000085", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000086", "menu_nm":"담당자별 업체조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000087", "menu_nm":"개인회원 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000088", "menu_nm":"가등록업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000089", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000090", "menu_nm":"대리점 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000091", "menu_nm":"등록업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000092", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000093", "menu_nm":"업체소싱그룹관리","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+];
+var cust_auth_2 = [//조회권한
+	 { "menu_cd":"000082", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000083", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000085", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000086", "menu_nm":"담당자별 업체조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000087", "menu_nm":"개인회원 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000088", "menu_nm":"가등록업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000089", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000090", "menu_nm":"대리점 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000091", "menu_nm":"등록업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000092", "menu_nm":"협력업체 조회","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000093", "menu_nm":"업체소싱그룹관리","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+];
+</script>

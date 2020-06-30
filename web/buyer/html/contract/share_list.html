@@ -1,0 +1,120 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="mode">
+<input type="hidden" name="hdn_sort_column">
+<input type="hidden" name="hdn_sort_order">
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="13%">
+			<col width="32%">
+			<col width="13%">
+			<col width="32%">
+			<col width="10%">
+		</colgroup>
+		<tr>
+			<th><p>계약일자</p></th>
+		    <td>
+				<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+				<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+		    </td>
+			<th><p>계약상태</p></th>
+			<td>
+				<select name="s_status">
+					<option value="">-선택-</option>
+					<!-- LOOP START 'code_status' -->
+					<option value="{{code_status.id}}">{{code_status.value}}</option>
+					<!-- LOOP END 'code_status' -->
+				</select>
+			</td>
+			<td align="right"></td>
+		</tr>
+	  	<tr>
+			<th><p>거래처명</p></th>
+			<td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
+			<th><p>계약명</p></th>
+			<td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
+		    <td align="right">
+				<button type="submit" class="search_btn">검색</button>
+			</td>
+	  	</tr>
+	</table>
+</div>
+
+<br/>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="24%">
+			<col width="15%">
+			<col width="10%">
+			<col width="8%">
+			<col width="10%">
+			<col width="11%">
+			<col width="11%">
+			<col width="11%">
+		</colgroup>
+		<tr>
+			<th>계약명</th>
+			<th>거래처명</th>
+			<th>계약일자</th>
+			<th>계약상태</th>
+			<th>공람지정자</th>
+			<th>공람발신일시</th>
+			<th>수신(부서)자</th>
+			<th>공람수신일시</th>
+	 	</tr>
+	 	<!-- IF START 'list' -->
+	 		<!-- LOOP START 'list' -->
+	 			<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='share_view.jsp?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&share_seq={{list.seq}}&{{list_query}}'"  style="cursor:pointer">
+					<td>{{list.cont_name}}</td>
+					<td align="center">{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.status}}</td>
+					<td align="center">{{list.send_user_name}}</td>
+					<td align="center">{{list.send_date}}</td>
+					<td align="center">
+						<!-- IFNOT START 'list.recv_user_id' -->
+							{{list.recv_field_name}}
+						<!-- IFNOT END 'list.recv_user_id' -->
+						<!-- IF START 'list.recv_user_id' -->
+							{{list.recv_user_name}}
+						<!-- IF END 'list.recv_user_id' -->
+					</td>
+					<td align="center">
+						{{list.recv_date}}
+						<!-- IFNOT START 'list.recv_user_id' -->
+							<!-- IF START 'list.recv_user_name' -->
+								<br>({{list.recv_user_name}})
+							<!-- IF END 'list.recv_user_name' -->
+						<!-- IFNOT END 'list.recv_user_id' -->
+					</td>
+				</tr>
+	 		<!-- LOOP END 'list' -->
+	 	<!-- IF END 'list' -->
+	 	
+	 	<!-- IFNOT START 'list' -->
+	 		<tr>
+				<td colspan="8" align="center">검색결과가 없습니다.</td>
+	 		</tr>
+	 	<!-- IFNOT END 'list' -->
+	</table>
+ </div>
+ 
+</form>
+{{form_script}}
+
+<br/>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+<script language="javascript">
+function formSubmit(f){
+	f['mode'].value="";
+	return true;
+}
+
+</script>

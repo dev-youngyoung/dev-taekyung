@@ -1,0 +1,49 @@
+<form novalidate name="form1" method="post">
+<div class="div_table">
+<div class="util-row">
+    <div class="push-left">
+      <h3>메뉴선택</h3>
+    </div>
+</div>
+
+<table>
+<colgroup>
+<col width="20%">
+<col width="20%">
+<col width="30%">
+<col width="30%">
+</colgroup>
+<tr>
+	<th>메뉴명</th>
+	<th>중분류</th>
+	<th>메뉴명</th>
+	<th>기타</th>
+</tr>
+<!-- LOOP START 'treeMenu' -->
+<tr>
+	<!-- IF START 'treeMenu.l_menu_nm' -->
+	<td align="center" rowspan="{{treeMenu.l_row_span}}">{{treeMenu.l_menu_nm}}</td>
+	<!-- IF END 'treeMenu.l_menu_nm' -->
+	<!-- IF START 'treeMenu.m_menu_nm' -->
+	<td align="center" rowspan="{{treeMenu.m_row_span}}" style="border-left: 1px solid #e0e0e0">{{treeMenu.m_menu_nm}}</td>
+	<!-- IF END 'treeMenu.m_menu_nm' -->
+	<!-- IF START 'treeMenu.s_menu_nm' -->
+	<td align="center" style="border-left: 1px solid #e0e0e0">{{treeMenu.s_menu_nm}}</td>
+	<td align="center"><button type="button" class="sbtn color ico-check" onclick="setMenu('{{treeMenu.menu_cd}}', '{{treeMenu.full_menu_nm}}', '{{treeMenu.btn_auth_cds}}')"><span></span>선택</button></td>
+	<!-- IF END 'treeMenu.s_menu_nm' -->
+</tr>
+<!-- LOOP END 'treeMenu' -->
+</table>
+</div>
+</form>
+
+<script>
+function setMenu(menu_cd, full_menu_nm, btn_auth_cds){
+	var data = {
+		"menu_cd":menu_cd
+		,"full_menu_nm": full_menu_nm
+		,"btn_auth_cds": btn_auth_cds
+	};
+	opener.{{callback}}(data);
+}
+</script>

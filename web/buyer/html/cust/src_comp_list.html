@@ -1,0 +1,379 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript">
+    var treeDataProvider = null;
+    var dataProvider = null;
+    var treeView = null;
+    var gridView = null;
+    $(document).ready( function(){
+        RealGridJS.setRootContext("{{realgrid_path}}");   //  cab/realgrid
+        //RealGridJS.setTrace(true);
+
+        // filed는 데이타 영역, 컬럼은 view영역
+
+        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source 객체
+        treeView			= new RealGridJS.TreeView("realgrid");
+        treeView.setDataSource(treeDataProvider);
+
+        setOptions();
+        setStyle();
+        setColumns();
+        loadData();
+        setEvent();
+
+		setDetailInit();
+        fSelectSourcing();
+    });
+
+    function setDetailInit() {
+        dataProvider = new RealGridJS.LocalDataProvider();
+        gridView = new RealGridJS.GridView("realgrid_list");
+        gridView.setDataSource(dataProvider);
+
+        var options =  {
+            hideDeletedRows : true,
+            indicator:{visible: false }
+            ,panel: {visible: false}
+            ,footer: {visible: false}
+            ,checkBar: {visible: false}
+            ,stateBar: {visible: false}
+            ,displayOptions:{
+                //columnWidth : 200
+            }
+        };
+        gridView.setOptions(options);
+
+        $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+            gridView.setStyles(data);
+        })
+		.done(function (data, textStatus, jqXHR) {
+			gridView.setFocus();
+		})
+		.fail(function (jqxhr, textStatus, error) {
+			var err = textStatus + ', ' + error;
+			var msg = "gridView failStyleSet: " + err;
+			console && console.log(msg);
+			alert(msg);
+        });
+
+        var columns = [];
+        columns.push({name:"member_name" ,fieldName:"member_name",header:"업체명" ,width: 200 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"사업자번호" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"boss_name" ,fieldName:"boss_name" ,header:"대표자명" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"중분류" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"s_src_nm" ,fieldName:"s_src_nm" ,header:"소분류" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"업체번호" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"소싱코드" ,width: 100 ,editable:false,movable:false ,sortable:false});
+
+        dataProvider.setFields(columns);
+        gridView.setColumns(columns);
+	}
+
+    function setOptions(){
+        var options =  {
+            hideDeletedRows : true,
+            indicator:{visible: false }
+            ,panel: {visible: false}
+            ,footer: {visible: false}
+            ,checkBar: {visible: false}
+            ,stateBar: {visible: false}
+            ,edit: {
+                enterToTab: true,
+                insertable: true,
+                appendable: true,
+                updatable: true,
+                deletable: true,
+                deleteRowsConfirm: true,
+                deleteRowsMessage: "삭제하시겠습니까 ?"
+            }
+            ,displayOptions:{
+                //columnWidth : 200
+            }
+        };
+        treeView.setOptions(options);
+
+        //폴더 이미지 등록
+        var imgFiles = ["folder_close.gif","folder_open.gif","unknown.gif"];
+        var imageList = new RealGridJS.ImageList("images", "/cab/realgrid/resource/");
+        imageList.addUrls(imgFiles);
+        // 트리뷰에 이미지 리스트 등록하기
+        treeView.registerImageList(imageList);
+        treeView.setTreeOptions({
+            iconImages: imageList.getName(),
+            iconWidth: 20
+        });
+    };
+
+    function setStyle(){
+        $.getJSON("/cab/realgrid/resource/fc_style.json", function (data, textStatus, jqXHR) {
+            treeView.setStyles(data);
+            $('.codeview.realtreestyle').html(JSON.stringify(data, null, 4));
+        })
+            .done(function (data, textStatus, jqXHR){
+                treeView.setFocus();
+            })
+            .fail(function (jqxhr, textStatus, error){
+                var err = textStatus + ', ' + error;
+                var msg = "treeView failStyleSet: " + err;
+                console && console.log(msg);
+                alert(msg);
+
+            });
+    }
+
+    function setColumns() {
+        var columns = [];
+        columns.push({name:"icon" ,fieldName:"icon" ,header:"icon" ,width:120 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"src_nm" ,fieldName:"src_nm" ,header:"카테고리" ,width: 180 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"src_cnt" ,fieldName:"src_cnt" ,header: "소싱수" ,width:50 ,editable:false,movable:false ,sortable:false, visible:true});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"업체코드" ,width:80 ,editable:false ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"l_src_cd" ,fieldName:"l_src_cd" ,header:"소싱코드1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"m_src_cd" ,fieldName:"m_src_cd" ,header:"소싱코드2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"s_src_cd" ,fieldName:"s_src_cd" ,header:"소싱코드3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"p_src_cd" ,fieldName:"p_src_cd" ,header:"부모소싱코드" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"소싱코드" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,width:50 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "마지막 노드여부" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
+
+        treeDataProvider.setFields(columns);
+        treeView.setColumns(columns);	// 컬럼을 TreeView에 입력
+        treeView.addCellRenderers(
+            [{
+                "id": "chk_use_yn",
+                "type": "check",
+                "shape": "box",
+                "editable": true,
+                "trueValues": "Y",
+                "falseValues": "N",
+            }]
+        );
+
+        treeView.setColumnProperty(treeView.columnByField("use_yn"),"dynamicStyles",[{ "criteria":"value!=Y","styles":{"renderer": "chk_use_yn"}}]);
+    }
+
+    function loadData() {
+        $.ajaxSetup({ cache: false });
+
+        var params = {};
+
+        $.getJSON("./src_comp_list_q.jsp", params, function (data){
+            treeDataProvider.setJsonRows(data,"rows","","icon");
+        })
+		.done(function () {
+			treeView.setFocus();
+			treeView.expandAll();
+            setDetailData();
+		})
+		.fail(function (jqxhr, textState, error) {
+			var err = textState + ', ' + error;
+			console.log("jQuery getJSON() Failed: " + err);
+			alert("jQuery getJSON() Failed: " + err);
+		});
+    }
+
+    function setEvent(){
+        treeView.onTreeItemExpanded = function (tree, itemIndex, rowId) {
+            treeDataProvider.setIconIndex(rowId,1);
+        };
+        treeView.onTreeItemCollapsed = function (tree, itemIndex, rowId) {
+            treeDataProvider.setIconIndex(rowId,0);
+        };
+        treeView.onDataCellClicked = function(grid, index) {
+            setDetailData();
+            getParentItem(index.itemIndex+1);
+        }
+    }
+
+    function getParentItem(itemIndex) {
+        var arrItem=[];
+        arrItem.push(treeDataProvider.getJsonRow(itemIndex).src_nm);
+        var parentIndex = treeDataProvider.getParent(itemIndex);
+        while(parentIndex > -1) {
+            arrItem.push(treeDataProvider.getJsonRow(parentIndex).src_nm);
+            parentIndex = treeDataProvider.getParent(parentIndex);
+        }
+        var div_nm = '';
+        for(var i=arrItem.length; i > 0; i--) {
+            if(i==arrItem.length)
+                div_nm = '['+arrItem[i-1];
+            else
+            	div_nm = div_nm + ' > ' + arrItem[i-1];
+        }
+        document.getElementById("span_depth_nm").innerText=div_nm+']';
+    }
+
+    function setDetailData() {
+    	if(treeView.getCurrent().itemIndex<0)return;
+        var depth = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).depth;
+        if(depth==3) {
+			document.getElementById('btnAdd').style.display='';
+			document.getElementById('btnDelete').style.display='';
+		} else {
+            document.getElementById('btnAdd').style.display='none';
+            document.getElementById('btnDelete').style.display='none';
+		}
+        var columns = [];
+        columns.push({name:"member_name" ,fieldName:"member_name",mergeRule:{criteria: "value"},header:"업체명" ,width: 200 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"vendcd" ,fieldName:"vendcd",mergeRule:{criteria: "value"} ,header:"사업자번호" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"boss_name" ,fieldName:"boss_name",mergeRule:{criteria: "value"} ,header:"대표자명" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"업체번호" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"소싱코드" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        if(depth == '1') {
+            columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"중분류" ,width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_src_nm" ,fieldName:"s_src_nm" ,header:"소분류" ,width: 100 ,editable:false,movable:false ,sortable:false});
+		} else if(depth == '2') {
+            columns.push({name:"l_src_nm" ,fieldName:"s_src_nm" ,header:"소분류" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        }
+
+        dataProvider.setFields(columns);
+        gridView.setColumns(columns);
+
+        loadDetailData();
+	}
+
+    function loadDetailData() {
+        var member_no = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).member_no;
+        var depth = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).depth;
+        var l_src_cd = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).l_src_cd;
+        var m_src_cd = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).m_src_cd;
+        var s_src_cd = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).s_src_cd;
+        $.ajaxSetup({ cache: false });
+        var params = {
+            "member_no":member_no, "depth":depth, "l_src_cd":l_src_cd, "m_src_cd":m_src_cd, "s_src_cd":s_src_cd
+        };
+        $.getJSON("./src_percomp_list_q.jsp", params, function (data) {
+            //console.log(JSON.stringify(data));
+            dataProvider.setRows(data);
+        })
+            .done(function () {
+                gridView.setFocus();
+            })
+            .fail(function (jqxhr, textState, error) {
+                var err = textState + ', ' + error;
+                console.log("jQuery getJSON() Failed: " + err);
+                alert("jQuery getJSON() Failed: " + err);
+            });
+    }
+
+    function fSelectSourcing()
+    {
+        $.getJSON("./call_src_comp.jsp", function (data, textStatus, jqXHR) {
+            setMapCnt(data);
+        })
+            .done(function (data, textStatus, jqXHR) {
+
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ', ' + error;
+                var msg = "gridView failStyleSet: " + err;
+                console && console.log(msg);
+                alert(msg);
+            });
+    }
+
+    function setMapCnt(mapping_cnt){
+        var client_cnt = Number('{{client_cnt}}');
+        var spn_map_cnt = document.getElementById("spn_map_cnt");
+        var spn_not_map_cnt = document.getElementById("spn_not_map_cnt");
+        spn_map_cnt.innerHTML = mapping_cnt;
+        spn_not_map_cnt.innerHTML = client_cnt - mapping_cnt;
+    }
+
+    function addClient(){
+        var itemIndex = treeView.getCurrent().itemIndex+1;
+        var s_src_nm = treeDataProvider.getJsonRow(itemIndex).src_nm;
+		var parentIndex = treeDataProvider.getParent(itemIndex);
+        var m_src_nm = treeDataProvider.getJsonRow(parentIndex).src_nm;
+        parentIndex = treeDataProvider.getParent(parentIndex);
+        var l_src_nm = treeDataProvider.getJsonRow(parentIndex).src_nm;
+        var src_cd = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).src_cd;
+        var	sUrl	=	"pop_su_src_comp.jsp"+
+						"?l_src_nm="+l_src_nm+
+						"&m_src_nm="+m_src_nm+
+						"&s_src_nm="+s_src_nm+
+						"&src_cd="+src_cd;
+
+        OpenWindows(sUrl,'pop_su_src_comp', '850','700');
+    }
+
+	function delClient() {
+        if(!confirm("삭제하시겠습니까?")){
+            return;
+        }
+		var member_no = dataProvider.getJsonRow(gridView.getCurrent().itemIndex).member_no;
+		var src_cd = dataProvider.getJsonRow(gridView.getCurrent().itemIndex).src_cd;
+        var params = {
+            "member_no":member_no, "src_cd":src_cd
+        };
+        $.getJSON("./src_percomp_list_d.jsp", params, function (data) {
+            //console.log(JSON.stringify(data));
+            if(data=='1') {
+                alert('삭제 되었습니다.');
+                loadDetailData();
+			}
+        })
+		.done(function () {
+			gridView.setFocus();
+		})
+		.fail(function (jqxhr, textState, error) {
+			var err = textState + ', ' + error;
+			console.log("jQuery getJSON() Failed: " + err);
+			alert("jQuery getJSON() Failed: " + err);
+		});
+	}
+
+function fDownXLS(){
+    location.href="src_comp_xls.jsp";
+}
+</script>
+
+<table width="100%">
+<colgroup>
+	<col width="240">
+	<col width="5">
+	<col>
+</colgroup>
+<tr>
+	<td colspan="3" align="right">
+		<div class="div_table">
+			<table style="border: none">
+			<tr>
+				<td><li><b>협력업체수 : {{client_cnt}}개 (<font color="#66B3FF">설정 업체수: <span id="spn_map_cnt"></span>개</font> , <font color="FD8D68" style="cursor: pointer" onclick="fPopNoMapPage()"><u>미설정 업체수 : <span id="spn_not_map_cnt"></span> 개</u></font>)</b></li></td>
+				<td align="right">
+                    <button type="button" class="sbtn color ico-excel" onClick="fDownXLS();"><span></span>업체소싱현황</button>
+                </td>
+			</tr>
+			<tr>
+				<td colspan="2" ><li  class="caution-text">소싱카테고리변경은 상단 우측의 <b>회원정보수정 → 소싱카테고리관리</b> 메뉴에서 하실 수 있습니다.</li>
+				</td>
+			</tr>
+			</table>
+		</div>
+	</td>
+</tr>
+<tr>
+<td valign="top">
+	<div class="div_table">
+		<div class="push-left">
+			<h3>소싱카테고리</h3>
+		</div>
+	</div>
+	<div id="realgrid" style="width: 100%; height: 500px;"></div>
+</td>
+<td></td>
+	<td valign="top">
+		<div class="div_table">
+			<div class="push-left">
+				<h3>카테고리별 업체<span id="span_depth_nm"></span></h3>
+			</div>
+			<div class="push-right">
+				<button type="button" id="btnAdd" class="sbtn color ico-add auth_css" onClick="addClient();" style="display: none"><span></span>업체추가</button>
+				<button type="button" id="btnDelete" class="sbtn color ico-delete auth_css" onClick="delClient();" style="display: none"><span></span>업체삭제</button>
+			</div>
+		</div>
+	<div id="realgrid_list" style="width: 100%; height: 500px;"></div>
+</td>
+</tr>
+</table>

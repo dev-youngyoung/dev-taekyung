@@ -1,0 +1,135 @@
+<form name="form1" method="get">
+<input type="hidden" name="mode"/>
+<input type="hidden" name="custtype" value="{{custtype}}"/>
+<div class="search_div">
+	<table class="search_table">
+	<colgroup>
+		<!-- IF START 'view_cust_type' -->
+		<col width="13%">
+		<col width="15%">
+		<!-- IF END 'view_cust_type' -->
+		<col width="13%">
+		<col width="*">
+		<col width="20%">
+  	</colgroup>
+  	<tr>
+		<!-- IF START 'view_cust_type' -->
+		<th><p>��ü����</p></th>
+		<td>
+			<select name="s_client_type">
+			<option value="">��ü</option>
+			<!-- LOOP START 'code_client_type' -->
+			<option value="{{code_client_type.id}}">{{code_client_type.value}}</option>
+			<!-- LOOP END 'code_client_type' -->
+			</select>
+		</td>
+		<!-- IF END 'view_cust_type' -->
+		<!-- IFNOT START 'view_cust_type' -->
+			<input type="hidden" name="s_client_type">
+		<!-- IFNOT END 'view_cust_type' -->
+		<th><p>��ü��</p></th>
+		<td><input type="text" name="s_member_name" maxlength="100" style="width:80%"></td>
+		<td align="right">
+			<button type="button" class="search_btn" value="�˻�" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>�˻�</button>
+		</td>
+  	</tr>
+</table>
+</div>
+</form>
+{{form_script}}
+<form name="form2" method="post">
+<input type="hidden" name="returnUrl"/>
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<span class="caution-text">�� ��ü ������ ��ȸ �� �ŷ����� ������ �Է� �Ͻ÷��� ��ü���� Ŭ�� �ϼ���.</span>
+		</div>
+		<div class="push-right">
+			<button type="button" class="sbtn color ico-save auth_css" value="����" onclick="form2Save()"><span></span>����</button>
+			<!-- IF START 'isExcel' -->
+			<button type="button" class="sbtn color ico-download" value="�����ٿ�ε�" onclick="excel()"><span></span>�����ٿ�ε�</button>
+			<!-- IF END 'isExcel' -->
+		</div>
+	</div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<colgroup>
+		<col width="10%">
+		<col width="*%">
+		<col width="15%">
+		<col width="10%">
+		<!-- IF START 'isCredit' -->
+		<col width="8%">
+		<!-- IF END 'isCredit' -->
+		<col width="15%">
+		<col width="8%">
+		<col width="8%">
+		<col width="8%">
+	</colgroup>
+	<tr>
+		<th>����</th>
+		<th>��ü��</th>
+		<th>����ڹ�ȣ</th>
+		<th>��ǥ��</th>
+		<!-- IF START 'isCredit' -->
+		<th>�ſ���<br>�����帧</th>
+		<!-- IF END 'isCredit' -->
+		<th>��ü����</th>
+		<th>ȸ������</th>
+		<th>�ŷ�����</th>
+		<th>��ȸ��</th>
+	</tr>
+	<!-- IF START 'list' -->
+	<!-- LOOP START 'list' -->
+	<tr align="center" onMouseOver="this.style.backgroundColor='#EFEFEF';" onMouseOut="this.style.backgroundColor='';" style="cursor:pointer" onclick="location.href='cust_view_type.jsp?member_no={{list.client_no}}&{{list_query}}';">
+		<td>{{list.__ord}}</td>
+		<td align="left">
+			{{list.member_name}}
+			<span style="color:blue">
+			<!-- IF START 'list.clip_grd' -->
+			<iframe frameborder=0 marginwidth="0" marginheight="0" hspace="0" vspace="-9" scrolling="no" src="http://interface.nicednb.com/serv/docuCri.do?bz={{list.clip_grd}}" style="width:35px;height:13px;vert-align:middle"></iframe>
+			<!-- IF END 'list.clip_grd' -->
+			</span>
+		</td>
+		<td>{{list.vendcd}}</td>
+		<td>{{list.boss_name}}</td>
+		<!-- IF START 'isCredit' -->
+		<td onclick="event.cancelBubble=true;">
+			<a href="{{list.xlink}}" target="_NEW">{{list.grade}}<br>{{list.cashgrade}}</a>
+		</td>
+		<!-- IF END 'isCredit' -->
+		<td align="center">{{list.client_type}}</td>
+		<td align="center">{{list.status_nm}}</td>
+		<td onclick="event.cancelBubble=true;">
+			<input type="hidden" name="client_no" value="{{list.client_no}}"/>
+			<input type="checkbox" value="90" name="client_status_{{list.client_no}}" {{list.check_status}}>
+		</td>
+		<td onclick="event.cancelBubble=true;">
+			<input type="checkbox" value="Y" name="temp_yn_{{list.client_no}}" {{list.temp_checked}}>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IF END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td colspan="8" align="center">�˻������ �����ϴ�.</td>
+	</tr>
+	<!-- IFNOT END 'list' -->
+	</table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+</form>
+<script language="javascript">
+function form2Save(){
+	if(!confirm('�����Ͻðڽ��ϱ�?'))return;
+	var f = document.forms['form2'];
+	f['returnUrl'].value = "my_cust_list_type.jsp";
+	f.action = "cust_list_save.jsp?{{list_query}}";
+	f.submit();
+}
+
+function excel(){
+	var f = document.forms['form1'];
+	f['mode'].value="excel";
+	f.submit();
+}
+</script>

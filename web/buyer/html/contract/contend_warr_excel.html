@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><b style="font-size:18pt">보증보험 관리<b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td>
+
+      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+        <tr align="center">
+          <td height="30" bgcolor="#cccccc">계약명</td>
+	      <td bgcolor="#cccccc">계약일자</td>
+          <td bgcolor="#cccccc">계약시작일</td>
+          <td bgcolor="#cccccc">계약종료일</td>
+	      <td bgcolor="#cccccc">계약금액</td>
+	      <td bgcolor="#cccccc">거래처명</td>
+	      <td bgcolor="#cccccc">계약담당자</td>
+	      <td bgcolor="#cccccc">보증종류</td>
+	      <td bgcolor="#cccccc">보증기간(시작)</td>
+	      <td bgcolor="#cccccc">보증기간(종료)</td>
+	      <td bgcolor="#cccccc">증권번호</td> 
+        </tr>
+		<!-- LOOP START 'list' -->
+        <tr>
+          <!-- IF START 'list.first' -->
+		  <td rowspan="{{list.rowspan}}" valign="top">{{list.cont_name}}</td>
+		  <td rowspan="{{list.rowspan}}" valign="top">{{list.cont_date}}</td>
+          <td rowspan="{{list.rowspan}}" valign="top">{{list.cont_sdate}}</td>
+          <td rowspan="{{list.rowspan}}" valign="top">{{list.cont_edate}}</td>
+		  <td rowspan="{{list.rowspan}}" valign="top" align="right">{{list.cont_total}}&nbsp;&nbsp;</td>
+		  <td rowspan="{{list.rowspan}}" valign="top">{{list.member_name}}</td>
+		  <td rowspan="{{list.rowspan}}" valign="top">{{list.user_name}}</td>
+		  <!-- IF END 'list.first' -->
+		  <td align="center">{{list.warr_name}}</td>
+		  <td align="center">{{list.warr_sdate}}</td>
+		  <td align="center">{{list.warr_edate}}</td>
+		  <td align="center" style="mso-number-format: '@';">{{list.warr_no}}</td>
+        </tr>
+		<!-- LOOP END 'list' -->
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

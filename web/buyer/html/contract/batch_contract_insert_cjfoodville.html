@@ -1,0 +1,326 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 작성 업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+		</tr>
+		<tr>
+			<th>대표자명</th>
+			<td colspan="3">{{boss_name}}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 400px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>일괄전송</button>
+</div>
+
+
+<br/>
+<div class="help-content">
+	<h3>NOTICE<span>유용한 정보! 사용전에 알아두세요~ </span></h3>
+	<div class="help-content-body">
+		<h4>작성안내</h4>
+		<ul>
+			<li>다운로드 받은 엑셀 서식 작성시 전체 클리하여 셀서식을 "텍스트" 로 변경 하세요. </li>
+			<li>엑셀 작성시 수식 및 셀서식을 텍스트 이외에 다른 형식으로 선택시 오작성 될 수 있습니다.</li>
+			<li>일괄전송으로 계약전송시 CJ푸드빌담당자와 ,파견사 담당자의 휴대전화번호, Email항목은 임의의 값으로 대체 됩니다.(알림을 너무 많이 받으시게 되기 때문)</li>
+		</ul>
+	</div>
+</div>
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns('2019030');
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg);
+
+        });
+}
+
+function setColumns(template_cd) {
+    var columns = [];
+	columns.push({name:"a_store_name" ,fieldName:"a_store_name",dataType:"text" ,header:"점포명" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+	columns.push({name:"a_client_vendcd" ,fieldName:"a_client_vendcd",dataType:"text" ,header:"파견사_사업자번호" ,width:110 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"birth_date" ,fieldName:"birth_date",dataType:"text" ,header:"생년월일" ,width:90 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"member_name" ,fieldName:"member_name",dataType:"text" ,header:"이름" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"address" ,fieldName:"address",dataType:"text" ,header:"주소" ,width:300 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"tel_num" ,fieldName:"tel_num",dataType:"text" ,header:"전화번호" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp1" ,fieldName:"hp1",dataType:"text" ,header:"휴대폰(앞)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp2" ,fieldName:"hp2",dataType:"text" ,header:"휴대폰(중간)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp3" ,fieldName:"hp3",dataType:"text" ,header:"휴대폰(마지막)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"email" ,fieldName:"email",dataType:"text" ,header:"이메일" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"계약일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+	columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"약정시작일" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+	columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"약정종료일" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+	columns.push({name:"a_cont_term" ,fieldName:"a_cont_term",dataType:"text" ,header:"약정기간" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+			cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC"];
+			fields = ["a_store_name","a_client_vendcd","birth_date","member_name","address","tel_num","hp1","hp2","hp3","email","cont_date","cont_sdate","cont_edate","a_cont_term"];
+			if(row[cols[2]] == null || row[cols[2]].toString().trim() == ""){alert("생년월일에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)");return;}
+			if(row[cols[2]].length != 10){alert("생년월일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (B열,"+(i+1)+"행)");return;}
+			if(row[cols[3]] == null || row[cols[3]].toString().trim() == ""){alert("이름에 빈값이 들어가 있습니다.(D열,"+(i+1)+"행)");return;}
+			if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("주소에 빈값이 들어가 있습니다.(E열,"+(i+1)+"행)");return;}
+			if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("휴대폰(앞)에 빈값이 들어가 있습니다.(G열,"+(i+1)+"행)");return;}
+			if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("휴대폰(중간)에 빈값이 들어가 있습니다.(H열,"+(i+1)+"행)");return;}
+			if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("휴대폰(마지막)에 빈값이 들어가 있습니다.(I열,"+(i+1)+"행)");return;}
+			if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("이메일에 빈값이 들어가 있습니다.(J열,"+(i+1)+"행)");return;}
+            if(!pattern.test(row[cols[9]].toString().trim())){alert("이메일이 올바르지 않습니다.(J열,"+(i+1)+"행)");return;}
+            if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("계약일자에 빈값이 들어가 있습니다.(K열,"+(i+1)+"행)");return;}
+            if(row[cols[10]].length != 10){alert("계약일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (K열,"+(i+1)+"행)");return;}
+			if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("약정시작일에 빈값이 들어가 있습니다.(L열,"+(i+1)+"행)");return;}
+			if(row[cols[11]].length != 10){alert("약정시작일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (L열,"+(i+1)+"행)");return;}
+			if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("약정종료일에 빈값이 들어가 있습니다.(M열,"+(i+1)+"행)");return;}
+			if(row[cols[12]].length != 10){alert("약정종료일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (M열,"+(i+1)+"행)");return;}
+			if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("약적기간에 빈값이 들어가 있습니다.(N열,"+(i+1)+"행)");return;}
+
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    rowdata[fields[j]] = row[cols[j]].trim();
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+       // alert("정 되었습니다.");
+    }
+}
+
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+
+	var fileNmae = "계약서일괄생성";
+	
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: fileNmae+".xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("계약서를 일괄 전송 하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a_cjfoodville.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+         grid:grid_string
+        ,member_no:"{{member_no}}"
+    };
+
+    console.log(data);
+	submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            data = data.trim();
+            alert(data);
+            dataProvider.clearRowStates(true);
+			submit_chk = false;
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\\n" + "error:" + error);
+			submit_chk = false;
+        }
+    });
+}
+
+</script>

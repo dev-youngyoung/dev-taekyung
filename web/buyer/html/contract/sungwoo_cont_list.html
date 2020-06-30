@@ -1,0 +1,111 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="mode">
+<div class="search_div">
+	<table class="search_table">	
+		<colgroup>
+			<col width="12%">
+			<col width="32%">
+			<col width="12%">
+			<col width="*">
+			<col width="13%">
+		</colgroup>
+		<tr>
+			<th><p>발주사</p></th>
+			<td>
+		    	<select name="s_member_no">
+		  			<option value="">----전--체----</option>
+		  			<!-- LOOP START 'code_member_no' -->
+		  			<option value="{{code_member_no.id}}">{{code_member_no.value}}</option>
+		  			<!-- LOOP END 'code_member_no' -->
+		  		</select>
+	   	 	</td>
+		    <th><p>계약서종류</p></th>
+		    <td>
+		    	<select name="s_template_cd">
+		    		<option value="">-------선택-------</option>
+		    		<!-- LOOP START 'template' -->
+		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
+		    		<!-- LOOP END 'template' -->
+		    	</select>
+			</td>
+			<td align="right"></td>	
+	 	</tr>
+	  	<tr>
+			  <th><p>계약일자<p></th>
+			  <td>
+			  	 <input type="text" name="s_sdate" class="in_readonly" style="width: 36%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+				 <img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+				 <input type="text" name="s_edate" class="in_readonly" style="width: 36%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+				 <img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+			  </td>
+			  <th><p>거래처명</p></th>
+			  <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
+			  <td align="right"></td>	
+	  	</tr>
+	  	<tr>
+			<th><p>계약명</p></th>
+			<td colspan="3"><input type="text" name="s_cont_name" maxlength="100" style="width:42%"></td>
+			<td align="right">
+			  <button type="submit" class="search_btn">검색</button>
+			</td>	
+	  	</tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+
+<br/>
+
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<span class="caution-text">※ 완료된 계약건만 조회 됩니다.</span>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="6%">
+			<col width="15%">
+			<col width="*">
+			<col width="18%">
+			<col width="12%">
+			<col width="12%">
+	 	</colgroup>
+		<tr>
+			<th>순번</th>
+		    <th>발주사</th>
+	   	    <th>계약명</th>
+		    <th>거래처명</th>
+		    <th>계약일자</th>
+		    <th>계약담당</th>
+	 	</tr>
+	 	<!-- IF START 'list' -->
+	 		<!-- LOOP START 'list' -->
+	 			<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
+	   				onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
+					<td align="center">{{list.__ord}}</td>
+					<td align="center">{{list.main_member_name}}</td>
+					<td>{{list.cont_name}}</td>
+					<td>{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.charge_name}}</td>
+	 			</tr>
+	 		<!-- LOOP END 'list' -->
+	 	<!-- IF END 'list' -->
+	 	
+	 	<!-- IFNOT START 'list' -->
+	 		<tr>
+				<td colspan="6" align="center">검색결과가 없습니다.</td>
+	 		</tr>
+	 	<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+	
+<script language="javascript">
+function formSubmit(f){
+	f['mode'].value="";
+	return true;
+}
+</script>

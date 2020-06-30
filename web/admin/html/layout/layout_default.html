@@ -1,0 +1,40 @@
+<!-- INCLUDE FILE 'layout/header.html' -->
+<body>
+<div class="wrap">
+<!-- EXECUTE FILE '/web/admin/layout/topMenu.jsp?menu_cd={{menu_cd}}' -->
+<div class="page-content">
+
+<!-- EXECUTE FILE '/web/admin/layout/quick_menu.jsp' -->
+
+<!-- IFNOT START 'default_user_block' -->
+	<!-- IF START 'auth_select' -->
+<style type="text/css">
+	.auth_css { display:none}}
+</style>
+<script type="text/javascript">
+if( window.attachEvent )  // IE의 경우
+	window.attachEvent( "onload", disableSubmit );
+else  // IE가 아닌 경우.
+	window.addEventListener( "load", disableSubmit, false );
+
+function disableSubmit(){
+	var forms = document.forms;
+	for(var i = 0; i< forms.length; i ++){
+		forms[i].setAttribute("onsubmit", "return false")
+	}
+}
+</script>
+<div style="width:100%;border:1px solid #dddddd; background-color:#fafafa; padding:10px; text-align:center; margin-bottom: 10px" class="caution-text">※ 로그인 한 사용자의 해당 메뉴 권한은 조회만 가능 하도록 설정 되어 있습니다.</div>
+
+	<!-- IF END 'auth_select' -->
+<!-- IFNOT END 'default_user_block' -->
+
+<!-- INCLUDE NAME 'BODY' -->
+</div>
+<!-- INCLUDE FILE 'layout/footer.html' -->
+
+<div id="CalendarLayer" style="display:none; width:172px; height:185px; z-index:6000">
+    <iframe border="0" frameborder="0" height="185px" name="CalendarFrame" scrolling="no" src="/web/admin/html/js/lib.calendar.js.htm" width="172px"></iframe>
+</div>
+</body>
+</html>

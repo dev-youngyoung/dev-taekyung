@@ -1,0 +1,48 @@
+
+<form name="form1" method="get" >
+	<div class="div_table">
+		<table>
+			<colgroup>
+				<col width="12%">
+				<col width="62%">
+				<col width="12%">
+				<col width="14%">
+			</colgroup>
+			<tr>
+				<th>제목</th>
+				<td>{{info.title}}</td>
+				<th>공지일자</th>
+				<td>{{info.open_date}}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="3" style="height:200px;" valign="top">
+					{{info.contents}}
+				</td>
+			</tr>
+			<!-- IF START 'info.doc_name' -->
+			<tr>
+				<th>첨부파일</th>
+				<td colspan="3">
+					<table>
+						<colgroup>
+							<col width="30%">
+							<col width="70%">
+						</colgroup>
+						<tr>
+							<td colspan="2">
+								<input type="hidden" name="doc_name">{{info.doc_name}}.{{info.file_ext}} ({{info.file_size}})
+								<button type="button" class="btn icon" onclick="filedown('file.path.noti','{{info.file_path}}{{info.file_name}}','{{info.doc_name}}.{{info.file_ext}}')">다운로드</button>
+							</td>
+						</tr>
+					</table>
+					<!-- IF END 'info.doc_name' -->
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+<br>
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-list" onclick="location.href='noti_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>

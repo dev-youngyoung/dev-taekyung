@@ -1,0 +1,89 @@
+<form name="form1" method="get">
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="18%">
+			<col width="*">
+			<col width="15%">
+		</colgroup>
+		<tr>
+		    <td> 
+				<select name="s_date_type" style="width: 90%;">
+					<option value="1">계약일자</option>
+					<option value="2">등록일자</option>
+				</select>    
+		    </td>
+		    <td>
+		    	<input type="text" name="s_sdate" class="in_readonly" style="width: 20%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+				<input type="text" name="s_edate" class="in_readonly" style="width: 20%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+		    </td>
+		    <td align="center">
+				<button type="submit" class="search_btn">검색</button>
+				<!-- input type="button" class="xls2_01" value="엑셀" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();" -->
+		    </td>
+	  	</tr>
+	</table>
+</div>
+</form>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>부문별 집계표</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="*">
+			<col width="12%">
+			<col width="12%">
+			<col width="12%">
+			<col width="12%">
+			<col width="12%">
+			<col width="12%">
+			<col width="12%">
+		</colgroup>
+		<tr>
+			<th>부문명</th>
+			<th>작성중</th>
+			<th>서명요청</th>
+			<th>서명대기</th>
+			<th>수정요청</th>
+			<th>반려</th>
+			<th>완료</th>
+			<th>합계</th>
+		</tr>
+		<!-- IF START 'list' -->
+			
+			<!-- LOOP START 'list' -->
+				<tr align="center">
+					<td><b>{{list.cont_etc1}}</b></td>
+					<td>{{list.writing_cnt}} 건</td>
+					<td>{{list.req_cnt}} 건</td>
+					<td>{{list.stendby_cnt}} 건</td>
+					<td>{{list.mod_req_cnt}} 건</td>
+					<td>{{list.return_cnt}} 건</td>
+					<td>{{list.complete_cnt}} 건</td>
+					<td bgcolor="#edefed">{{list.sum}} 건</td>
+				</tr>
+			<!-- LOOP END 'list' -->
+			
+			<tr bgcolor="#fcfecd">
+				<td>계</td>
+				<td align="right">{{tot.writing_cnt}} 건</td>
+				<td align="right">{{tot.req_cnt}} 건</td>
+				<td align="right">{{tot.stendby_cnt}} 건</td>
+				<td align="right">{{tot.mod_req_cnt}} 건</td>
+				<td align="right">{{tot.return_cnt}} 건</td>
+				<td align="right">{{tot.complete_cnt}} 건</td>
+				<td align="right">{{tot.sum}} 건</td>		
+			</tr>
+			
+		<!-- IF END 'list' -->
+	</table>
+</div>
+
+{{form_script}}

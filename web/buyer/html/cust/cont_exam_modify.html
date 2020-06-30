@@ -1,0 +1,287 @@
+<form name="form1" method="post" >
+	<input type="hidden" name="status"/>
+
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<h3>기본정보<span class="caution-text"></span></h3>
+			</div>
+			<div class="push-right">
+				<!-- IFNOT START 'modify' -->
+				<td align="right"><font color="#93a700"><b>[상태:평가대상]</b></font></td>
+				<!-- IFNOT END 'modify' -->
+				<!-- IF START 'modify' -->
+				<td align="right"><font color="#93a700"><b>[상태:{{exam.status_name}}]</b></font></td>
+				<!-- IF END 'modify' -->
+			</div>
+		</div>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<colgroup>
+				<col width="15%">
+				<col width="35%">
+				<col width="15%">
+				<col width="35%">
+			</colgroup>
+			<tr>
+				<th>계약명</th>
+				<td colspan="3">&nbsp;{{cont.cont_name}}</td>
+			</tr>
+			<tr>
+				<th>거래처명</th>
+				<td>&nbsp;{{cust.member_name}}</td>
+				<th>계약일자</th>
+				<td>&nbsp;{{cont.cont_date}}</td>
+			</tr>
+			<!-- IF START 'modify' -->
+			<tr>
+				<th>평가자</th>
+				<td>&nbsp;{{exam.exam_user_name}}</td>
+				<th>평가일자</th>
+				<td>&nbsp;{{exam.result_date}}</td>
+			</tr>
+			<!-- IF END 'modify' -->
+		</table>
+	</div>
+	<!-- IF START '2depth' -->
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<h3>평가항목<span class="caution-text"></span></h3>
+			</div>
+			<div class="push-right">
+			</div>
+		</div>
+		<table>
+			<colgroup>
+				<col width="25%">
+				<col width="35%">
+				<col width="5%">
+				<col width="10%">
+				<col width="25%">
+			</colgroup>
+			<thead>
+			<tr >
+				<th>분류</th>
+				<th>세부항목</th>
+				<th>총점</th>
+				<th>점수</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- LOOP START 'question' -->
+			<tr>
+				<!-- IF START 'question.l_first' -->
+				<td align="left" rowspan="{{question.l_div_cnt}}">{{question.l_div_nm}}</td>
+				<!-- IF END 'question.l_first' -->
+				<td align="left">{{question.question}}</td>
+				<td align="center">{{question.point}}</td>
+				<td align="center">
+					<input type="hidden" name="question_cd" value="{{question.question_cd}}"/>
+					<select name="item_point" onchange="calcPoint()" hname="점수" <!-- IFNOT START 'edit' -->disabled<!-- IFNOT END 'edit' -->>
+					<option value="">-선택-</option>
+					<!-- LOOP START 'item' -->
+					<option value="{{item.point}}" {{item.selected}}>{{item.item_text}}</option>
+					<!-- LOOP END 'item' -->
+					</select>&nbsp;
+				</td>
+				<td align="left">{{question.etc}}</td>
+			</tr>
+			<!-- LOOP END 'question' -->
+			<tr>
+				<td align="center" colspan="2">합계</td>
+				<td align="center">100</td>
+				<td align="center" style="background-color:yellow;">
+					<span id="point_area"></span>점
+					<input type="hidden" name="result_point"/>
+				</td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- IF END '2depth' -->
+
+	<!-- IF START '3depth' -->
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<h3>평가항목<span class="caution-text"></span></h3>
+			</div>
+			<div class="push-right">
+			</div>
+		</div>
+		<table>
+			<colgroup>
+				<col width="15%">
+				<col width="20%">
+				<col width="25%">
+				<col width="5%">
+				<col width="10%">
+				<col width="25%">
+			</colgroup>
+			<thead>
+			<tr class="ltitle">
+				<th>대분류</th>
+				<th>중분류</th>
+				<th>세부항목</th>
+				<th>총점</th>
+				<th>점수</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- LOOP START 'question' -->
+			<tr >
+				<!-- IF START 'question.l_first' -->
+				<td align="left" rowspan="{{question.l_div_cnt}}">{{question.l_div_nm}}</td>
+				<!-- IF END 'question.l_first' -->
+				<!-- IF START 'question.m_first' -->
+				<td align="left" rowspan="{{question.m_div_cnt}}">{{question.m_div_nm}}</td>
+				<!-- IF END 'question.m_first' -->
+				<td align="left">{{question.question}}</td>
+				<td align="center">{{question.point}}</td>
+				<td align="center">
+					<input type="hidden" name="question_cd" value="{{question.question_cd}}"/>
+					<select name="item_point" onchange="calcPoint()" hname="점수" <!-- IFNOT START 'edit' -->disabled<!-- IFNOT END 'edit' -->>
+					<option value="">-선택-</option>
+					<!-- LOOP START 'item' -->
+					<option value="{{item.point}}" {{item.selected}}>{{item.item_text}}</option>
+					<!-- LOOP END 'item' -->
+					</select>
+				</td>
+				<td align="left">{{question.etc}}</td>
+			</tr>
+			<!-- LOOP END 'question' -->
+			<tr>
+				<td align="center" colspan="3">합계</td>
+				<td align="center">100</td>
+				<td align="center" style="background-color:yellow;">
+					<span id="point_area"></span>점
+					<input type="hidden" name="result_point"/>
+				</td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- IF END '3depth' -->
+
+	<!-- IF START 'end' -->
+	<!-- IF START 'grade' -->
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				<h3>평가결과</h3>
+			</div>
+		</div>
+		<table>
+			<tr>
+				<th rowspan="3">평가결과등급</th>
+				<th>등급</th>
+				<!-- LOOP START 'grade' -->
+				<td align="center">{{grade.grade}}</td>
+				<!-- LOOP END 'grade' -->
+			</tr>
+			<tr>
+				<th>등급수준</th>
+				<!-- LOOP START 'grade' -->
+				<td align="center">{{grade.level_o}}</td>
+				<!-- LOOP END 'grade' -->
+			</tr>
+			<tr>
+				<th>평점(100점기준)</th>
+				<!-- LOOP START 'grade' -->
+				<th>{{grade.grade_text}}</th>
+				<!-- LOOP END 'grade' -->
+			</tr>
+		</table>
+
+		<table style="margin-top: 10px ">
+			<colgroup>
+				<col width="25%">
+				<col width="25%">
+				<col width="25%">
+				<col width="25%">
+			</colgroup>
+			<tr>
+				<th>평가결과</th>
+				<td align="center" style="background-color:yellow;">{{exam.rpoint}}점</td>
+				<th>등급</th>
+				<td align="center" style="background-color:yellow;">{{exam.grade_name}}</td>
+			</tr>
+		</table>
+	</div>
+	<!-- IF END 'grade' -->
+	<!-- IF END 'end' -->
+	<div class="btn-group-wrap">
+		<!-- IFNOT START 'modify' -->
+		<button type="button" class="btn color ico-save auth_css" value="임시저장" onclick="btnAction('10');"/><span></span>임시저장</button>
+		<button type="button" class="btn color ico-confirm auth_css" value="평가완료" onclick="btnAction('20')"/><span></span>평가완료</button>
+		<!-- IFNOT END 'modify' -->
+		<!-- IF START 'modify' -->
+		<!-- IF START 'btn' -->
+		<button type="button" class="btn color ico-save auth_css" value="임시저장" onclick="btnAction('10');"/><span></span>임시저장</button>
+		<button type="button" class="btn color ico-confirm auth_css" value="평가완료" onclick="btnAction('20')"/><span></span>평가완료</button>
+		<button type="button" class="btn color ico-cancel auth_css" value="평가취소" onclick="if(confirm('평가취소하시겠습니까?')){location.href='cont_exam_delete.jsp?{{query}}'}"><span></span>평가취소</button>
+		<!-- IF END 'btn' -->
+		<!-- IF END 'modify' -->
+		<button type="button" class="btn color ico-list" value="목록으로" onclick="location.href='cont_exam_list.jsp?{{list_query}}';"><span></span>목록으로</button>
+	</div>
+</form>
+{{form_script}}
+
+<script language="javascript">
+
+    function btnAction(status){
+        var f = document.forms["form1"];
+        f["status"].value=status;
+        var required = true;
+        if(status == "10"){
+            required = false;
+        }
+        var items = f['item_point'];
+
+        for(var i = 0 ; i < items.length; i ++){
+            var item = items[i];
+            if(required){
+                item.setAttribute("required","Y");
+            }else{
+                item.removeAttribute("required");
+            }
+        }
+        if(formSubmit(f)){
+            f.submit();
+        }
+    }
+
+    function formSubmit(f){
+        var msg = "임시저장  처리 하시겠습니까?";
+        if(f['status'].value=="20")msg = "평가완료 하시겠습니까?\n\n평가완료 후에는 변경 할 수 없습니다.";
+        if(validate(f)){
+            if(confirm(msg)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    function calcPoint(){
+        var f = document.forms['form1'];
+        var items = f['item_point'];
+        var result_point = 0;
+        for(var i = 0 ; i < items.length; i ++){
+            var item = items[i];
+            if(item.value != ""){
+                result_point += parseFloat(item.value);
+            }
+        }
+        var point_area = document.getElementById("point_area");
+        point_area.innerHTML = result_point;
+        f['result_point'].value = result_point;
+    }
+
+    calcPoint();
+</script>

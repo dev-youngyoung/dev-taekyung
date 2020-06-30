@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><b style="font-size:18pt">개인회원조회<b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+        <tr align="center">
+          <td height="30" bgcolor="#cccccc">번호</td>
+          <td  bgcolor="#cccccc">이름</td>
+          <td  bgcolor="#cccccc">생년월일</td>
+          <td  bgcolor="#cccccc">성별</td>
+          <td  bgcolor="#cccccc">휴대폰1</td>
+          <td  bgcolor="#cccccc">휴대폰2</td>
+          <td  bgcolor="#cccccc">휴대폰3</td>
+          <td  bgcolor="#cccccc">전화번호</td>
+          <td  bgcolor="#cccccc">email</td>
+          <td  bgcolor="#cccccc">주소</td>
+          <td  bgcolor="#cccccc">회원상태</td>
+        </tr>
+		<!-- LOOP START 'list' -->
+        <tr>
+          <td align="center">{{list.__ord}}</td>
+          <td>{{list.member_name}}</td>
+          <td align="center">{{list.birth_date}}</td>
+          <td align="center">{{list.gender}}</td>
+          <td align="center" style="mso-number-format:'\@'">{{list.hp1}}</td>
+          <td align="center" style="mso-number-format:'\@'">{{list.hp2}}</td>
+          <td align="center" style="mso-number-format:'\@'">{{list.hp3}}</td>
+          <td align="center" style="mso-number-format:'\@'">{{list.tel_num}}</td>
+          <td align="center">{{list.email}}</td>
+          <td>{{list.address}}</td>
+          <td>{{list.status}}</td>
+        </tr>
+		<!-- LOOP END 'list' -->
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

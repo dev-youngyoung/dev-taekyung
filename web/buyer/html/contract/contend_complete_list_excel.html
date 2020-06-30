@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center"><b style="font-size:18pt">{{title}}<b></td>
+    </tr>
+    <tr>
+        <td><br></td>
+    </tr>
+    <tr>
+        <td>
+
+            <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+                <tr align="center">
+                    <td align="center" height="30" bgcolor="#cccccc"  rowspan="2">순번</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">계약구분</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">계약명</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">사업자번호</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">업체명</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">대표자명</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">주소</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">작성(계약)일자</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">계약기간</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">작성자(바이어명)</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">작성자 부서명</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">GLN코드</td>
+                    <td align="center" bgcolor="#cccccc" colspan="2">마진율</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">정산일자</td>
+                    <td align="center" bgcolor="#cccccc" colspan="2">판촉인원</td>
+                    <td align="center" bgcolor="#cccccc" rowspan="2">보증기간</td>
+                </tr>
+                <tr>
+                	<td align="center" bgcolor="#cccccc">점포명</td>
+                	<td align="center" bgcolor="#cccccc">정상마진율<br/>/물류대행수수료</td>
+                	<td align="center" bgcolor="#cccccc">매장명</td>
+                	<td align="center" bgcolor="#cccccc">판촉인원</td>
+                </tr>
+                <!-- LOOP START 'list' -->
+                <tr>
+                	<td align="center">{{list.__ord}}</td>
+                	<td>{{list.template_name}}</td>
+					<td>{{list.cont_name}}</td>
+					<td align="center">{{list.vendcd}}</td>
+					<td align="center">{{list.member_name}}</td>
+					<td align="center">{{list.boss_name}}</td>
+					<td>{{list.address}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.cont_sdate}}~{{list.cont_edate}}</td>
+					<td align="center">{{list.user_name}}</td>
+					<td align="center">{{list.field_name}}</td>
+					<td align="center"  style="mso-number-format: '@';">{{list.add_col1}}</td>
+					<td align="center">{{list.add_col2}}</td>
+					<td align="center">{{list.add_col3}}</td>
+					<td align="center">{{list.add_col4}}</td>
+					<td align="center">{{list.add_col5}}</td>
+					<td align="center">{{list.add_col6}}</td>
+					<td>{{list.warr_date}}</td>
+	            </tr>
+                <!-- LOOP END 'list' -->
+            </table>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

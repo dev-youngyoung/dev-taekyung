@@ -1,0 +1,114 @@
+<form name="form1" method="get">
+<div class="search_div">
+<table class="search_table">
+  <colgroup>
+    <col width="20%"/>
+    <col width="30%"/>
+    <col width="50%"/>
+    
+  </colgroup>
+  <tr>
+    <td><p>상품코드</p></td>
+    <td><input type="text" name="s_code" maxlength="30" style="width:95%"></td>
+    <td align="right">
+      <button type="submit" class="search_btn">검색</button>
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+{{form_script}}
+
+
+
+<form name="form2" method="get">
+<div class="div_table">
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※사업자번호를 입력후 검색 하세요.</span>
+	</div>
+</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<colgroup>
+		<col width="%">
+		<col width="10%">
+		<col width="12%">
+		<col width="10%">
+		<col width="10%">
+		<col width="10%">
+		<col width="10%">
+		<col width="10%">
+		<col width="12%">
+	</colgroup>
+	<tr>
+		<th>상품명</th>
+		<th>판매가</th>
+		<th>가격적용일자</th>
+		<th>마진율(%)</th>
+		<th>매입방법</th>
+		<th>배송구분</th>
+		<th>상품구분</th>
+		<th>업체</th>
+		<th>선택</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.goodsName}}</td>
+		<td align="center">{{list.goodsPrice}}</td>
+		<td align="center">{{list.applyDate}}</td>
+		<td align="center">{{list.marginRate}}%</td>
+		<td align="center">{{list.buyMed}}</td>
+		<td align="center">{{list.delyDt}}</td>
+		<td align="center">{{list.inviGoodsType}}</td>
+		<td align="center">{{list.entpName}}</td>
+		<td align="center">
+			<input type="hidden" name="goodsCode" value="{{list.goodsCode}}"/>
+			<input type="hidden" name="goodsName" value="{{list.goodsName}}"/>
+			<input type="hidden" name="goodsPrice" value="{{list.goodsPrice}}"/>
+			<input type="hidden" name="applyDate" value="{{list.applyDate}}"/>
+			<input type="hidden" name="marginRate" value="{{list.marginRate}}"/>
+			<input type="hidden" name="buyMed" value="{{list.buyMed}}"/>
+			<input type="hidden" name="delyDt" value="{{list.delyDt}}"/>
+			<input type="hidden" name="inviGoodsType" value="{{list.inviGoodsType}}"/>
+			<input type="hidden" name="entpName" value="{{list.entpName}}"/>
+			<input type="hidden" name="entpCode" value="{{list.entpCode}}"/>
+			<input type="hidden" name="sIdno" value="{{list.sIdno}}"/>
+			<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.goodsCode}}');"><span></span>선택</button>
+		</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td align="center" colspan="9">조회 결과가 없습니다.</td>
+	</tr>
+<!-- IFNOT END 'list' -->
+</table>
+
+
+</div>
+
+</form>
+
+<script language="javascript">
+
+attachOnload(function(){resizeTo(1000,600)});
+
+function addCompany(goodsCode){
+	var f= document.forms['form2'];
+	var arr = null;
+		arr = new Array(
+			f['goodsCode'].value
+		   ,f['goodsName'].value
+		   ,f['goodsPrice'].value
+		   ,f['buyMed'].value
+		   ,f['delyDt'].value
+		   ,f['marginRate'].value
+		   ,f['entpCode'].value
+		   ,f['entpName'].value
+		   ,f['sIdno'].value
+		);
+
+	opener.addItem(arr);
+	self.close();
+}
+</script>

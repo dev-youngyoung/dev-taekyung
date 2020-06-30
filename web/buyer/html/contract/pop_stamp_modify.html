@@ -1,0 +1,94 @@
+<form name="form1" method="post" enctype="multipart/form-data">
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="23%">
+			<col width="77%">
+		</colgroup>
+		<tr>
+			<th>납부업체명</th>
+			<td>
+				{{cont.member_name}}
+			</td>
+		</tr>
+		<tr>
+			<th>사업자등록번호</th>
+			<td>
+				{{cont.vendcd}}
+			</td>
+		</tr>
+		<tr>
+			<th>계약금액</th>
+			<td>
+				￦{{cont.cont_total}}
+			</td>
+		</tr>
+		<tr>
+			<th>인지세액</th>
+			<td>
+				￦<input type="text" name="stamp_money" class="input_n" required="Y" maxlength="20" onkeydown="num_only()" onkeyup="fnMakeComma()" onkeypress="num_only()" hname="납부한 인지세액" style="text-align: right; width: 25%;"> 납부한 수입인지 금액
+				&nbsp;&nbsp;&nbsp;
+				<!-- IFC START 'cont.member_no==20151101243' -->
+					<button type="button" class="sbtn ico-help" onClick="filedown('file.path.bcontract','sample/stamp_manual.pdf','전자수입인지 도움말.pdf');"><span></span>전자수입인지 도움말</button>
+				<!-- IFC END 'cont.member_no==20151101243' -->
+				<!-- IFC START 'cont.member_no!=20151101243' -->
+					<button type="button" class="sbtn ico-help" onClick="window.open('http://www.e-revenuestamp.or.kr/etc/serviceGuide.do');"><span></span>전자수입인지란?</button>
+				<!-- IFC END 'cont.member_no!=20151101243' -->			
+			</td>
+		</tr>
+		<tr>
+			<th>고유(접수)번호</th>
+			<td>
+				<input type="text" name="cert_no" class="input_n" style="width: 45%;" maxlength="20" hname="고유(접수)번호" required="Y"> '-'제외하고 넣어주세요.(16~20자리)
+			</td>
+		</tr>
+		<tr>
+			<th>발급처</th>
+			<td>
+				<input type="text" name="channel" class="input_n" style="width: 70%;" maxlength="40" hname="발급처" required="Y">
+			</td>
+		</tr>
+		<tr>
+			<th>발급일</th>
+			<td>
+				<input type="text" name="issue_date" class="in_readonly" style="width: 25%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['issue_date'])">
+			</td>
+		</tr>
+		<tr>
+			<th>첨부파일</th>
+			<td>
+				<!-- IFNOT START 'stamp.cert_no' -->
+					<input type="file" name="stamp_file" style="width:95%">
+					<!-- IFC START 'cont.member_no==20151101243' -->
+						<br><span class="caution-text">※ 전자수입인지 사이트에서 발급받은 전자수입인지를 스캔하여 첨부하세요.<br>(jpg,gif,png,pdf 파일만 첨부 가능합니다.)</span> <button type="button" class="sbtn ico-monitor" onClick="filedown('file.path.bcontract','sample/stamp_sample.png','전자수입인지샘플.png');"><span></span>샘플보기</button>
+					<!-- IFC END 'cont.member_no==20151101243' -->
+					<!-- IFC START 'cont.member_no!=20151101243' -->
+						<br><span class="caution-text">※ 납부확인서(홈텍스) 또는 전자수입인지를 스캔하여 첨부하세요.<br>(jpg,gif,png,pdf 파일만 첨부 가능합니다.)</span>
+					<!-- IFC END 'cont.member_no!=20151101243' -->	
+				<!-- IFNOT END 'stamp.cert_no' -->
+			
+				<!-- IF START 'stamp.cert_no' -->
+					<!-- IFNOT START 'stamp.file_name' -->
+						미첨부 
+					<!-- IFNOT END 'stamp.file_name' -->
+					<!-- IF START 'stamp.file_name' -->
+						{{stamp.file_title}}&nbsp;&nbsp;({{stamp.file_size}})&nbsp;
+						<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{stamp.file_path}}{{stamp.file_name}}','{{stamp.file_name}}')"><span></span>다운로드</button>
+					<!-- IF END 'stamp.file_name' -->
+				<!-- IF END 'stamp.cert_no' -->
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<!-- IF START 'btn' -->
+		<button type="submit" class="btn color ico-save"><span></span>저장</button>
+	<!-- IF END 'btn' -->
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+</form>
+{{form_script}}

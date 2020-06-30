@@ -1,0 +1,57 @@
+<form novalidate name="form1" method="get">
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="15%"/>
+                <col/>
+                <col width="15%"/>
+            </colgroup>
+            <tr>
+                <th><p>업체명</p></th>
+                <td>
+                    <input type="text" name="s_companynm" value="" maxlength="50" style="width:90%">
+                </td>
+                <td align="right">
+                    <button type="submit" class="btn color ico-search"><span></span>검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<div class="div_table">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <colgroup>
+            <col width="8%">
+            <col width="15%">
+            <col>
+            <col width="12%">
+            <col width="16%">
+            <col width="16%">
+        </colgroup>
+        <tr>
+            <th>순번</th>
+            <th>구분</th>
+            <th>업체명</th>
+            <th>담당자</th>
+            <th>연락처</th>
+            <th>문의일자</th>
+        </tr>
+        <!-- LOOP START 'list' -->
+        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='../mgr/si_qna_view.jsp?qnaseq={{list.qnaseq}}&{{query}}'" style="cursor:pointer">
+            <td align="center">{{list.__ord}}</td>
+            <td align="center">{{list.gubun_nm}}</td>
+            <td>{{list.companynm}}</td>
+            <td align="center">{{list.personnm}}</td>
+            <td align="center">{{list.mobile}}</td>
+            <td align="center">{{list.insertdate}}</td>
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+        <td colspan="6" align="center">검색결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>

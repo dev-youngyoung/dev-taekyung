@@ -1,0 +1,302 @@
+<form name="form1" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="print_content">
+	<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
+	<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
+	<input type="hidden" name="saveDiv" >
+	<input type="hidden" name="email" >
+
+	<div class="cont_warp">
+		<style type="text/css" id="__html_style">
+			.glabel {
+				color: #707070;
+				FONT-FAMILY: "돋움", "Arial";
+				FONT-SIZE: 9pt;
+				/*LINE-HEIGHT: 13pt;*/
+				border: 1px solid;
+				border-color: #d7d5ca;
+				text-align: left;
+				background-color: #ffff00
+			}
+			.itemtable {font-size: 11px;background-color:white;line-height:2.5em}
+
+			td {  font-family: "NanumGothic, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+			.lineTable { border-collapse:collapse; border:1px solid black }
+			.lineTable td { border:1px solid black }
+			.lineTable .noborder { border:0 }
+			.itemtable {font-size: 11px;background-color:white;line-height:2.5em}
+		</style>
+
+		<div id="__html">
+			<div style="padding-top: 10px;align-content: center" id="__html_0">
+				{{assessment.asse_html}}
+			</div>
+		</div>
+	</div>
+</form>
+
+<div class="btn-group-wrap">
+	<!-- IF START 'del' -->
+	<button type="button" value="이전단계로" class="btn color ico-prev" onclick="del()" ><span></span>이전단계로</button> &nbsp;&nbsp;
+	<!-- IF END 'del' -->
+
+	<!-- IF START 'modify' -->
+	<button type="button" value="임시저장" class="btn color ico-save" onclick="save('20')" ><span></span>임시저장</button>
+	<button type="button" value="평가완료" class="btn color ico-confirm" onclick="save('50')" ><span></span>평가완료</button>
+	<button type="button" value="결과전송" class="btn color ico-request" onclick="save('90')" ><span></span>결과전송</button>
+	<button type="button" value="인쇄" class="btn color ico-print" onclick="print()"><span></span>인쇄</button>
+	<button type="button" value="목록으로" class="btn color ico-list" onclick="javascript:history.back()"><span></span>목록으로</button>
+
+
+	<!-- IF END 'modify' -->
+	<!-- IFNOT START 'modify' -->
+	<button type="button" value="결과전송" class="btn color ico-request" onclick="save1('90')" ><span></span>결과전송</button>
+	<button type="button" value="인쇄" class="btn color ico-print" onclick="print()"><span></span>인쇄</button>
+	<button type="button" value="목록으로" class="btn color ico-list" onclick="javascript:history.back()"><span></span>목록으로</button>
+
+	<!-- IFNOT END 'modify' -->
+</div>
+
+
+<form name="form2" method="post" action="assessment_delete.jsp">
+	<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
+	<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
+	<input type="hidden" name="mstatus" value="{{assessment.status}}" >
+	<input type="hidden" name="mode" value="10">
+	<input type="hidden" name="ret" value="assessment_checking_qlist.jsp">
+</form>
+
+<script language="javascript">
+
+    var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+    function hex(x) {
+        return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+    }
+
+    function selectCheck(div){
+
+        if(div=="20") return true; // 임시저장은 선택값 다 입력안해도 저장 가능하도록
+
+        for(var i=1; i<4; i++){
+            var checkYn = "n";
+            for(var j=1; j<=5; j++){
+                var checkItem = $("#operationitem"+i+"_"+j).css("background-color");
+                if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
+                    checkYn = "y";
+                    break;
+                }
+            }
+            if(checkYn == "n"){
+                alert("경영 일반 평가항목을 모두 선택해주세요");
+                return;
+            }
+        }
+
+        var checkItem = $("#financeitem1").html();
+        if(checkItem == "0"){
+            alert("재무 관리 평가항목을 모두 선택해주세요");
+            return;
+        }
+
+        for(var i=1; i<4; i++){
+            var checkYn = "n";
+            for(var j=1; j<=5; j++){
+                var checkItem = $("#processesitem"+i+"_"+j).css("background-color");
+                if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
+                    checkYn = "y";
+                    break;
+                }
+            }
+            if(checkYn == "n"){
+                alert("내부 프로세스 평가항목을 모두 선택해주세요");
+                return;
+            }
+        }
+
+        return true;
+    }
+
+    function onItemSet(obj, sheetId){
+        <!-- IF START 'modify' -->
+        var itemPoint = 0;
+        var onClickCurId = $(obj).attr("id");
+        var arryItem = onClickCurId.split("_");
+        var itemId = arryItem[0];
+        var itemSeq = arryItem[1];
+
+        for(var i=1; i<6; i ++){
+            $("#"+itemId+"_"+i).css("background-color","white");
+        }
+        $(obj).css("background-color","yellow");
+        if(itemSeq == "1"){
+            itemPoint = 5.0;
+        }else if(itemSeq == "2"){
+            itemPoint = 4.0;
+        }else if(itemSeq == "3"){
+            itemPoint = 3.0;
+        }else if(itemSeq == "4"){
+            itemPoint = 2.0;
+        }else{
+            itemPoint = 1.0;
+        }
+
+        $("#"+itemId).html(itemPoint);
+        var sheetNm = "";
+        var rowCnt = 0;
+        if(sheetId == "1"){
+            sheetNm = "operationitem";
+            rowCnt = 4;
+        }else if(sheetId == "2"){
+            sheetNm = "financeitem";
+            rowCnt = 4;
+        }else if(sheetId == "3"){
+            sheetNm = "processesitem";
+            rowCnt = 4;
+        }else if(sheetId == "4"){
+            sheetNm = "qualityitem";
+            rowCnt = 2;
+        }
+
+        sumSafetyItemPoint(sheetNm, rowCnt);
+        culRatingPoint();
+        <!-- IF END 'modify' -->
+    }
+
+    function sumSafetyItemPoint(sheetNm, rowCnt){
+        var sumPoint = 0;
+        for(var i=1; i<rowCnt; i++){
+            sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());
+        }
+        $("#"+sheetNm+"SumPoint").html(sumPoint.toFixed(1));
+    }
+
+function culRatingPoint(){
+	var totalPoint = 0;
+	var totalRating = 0;
+	var operationSumPoint = parseFloat($("#operationitemSumPoint").html());
+	var financeSumPoint = parseFloat($("#financeitemSumPoint").html());
+	var processesSumPoint = parseFloat($("#processesitemSumPoint").html());
+	var projectItemPoint = parseFloat($("#projectItemPoint").val());
+	 if(projectItemPoint != null ||  typeof projectItemPoint == "undefined")
+         projectItemPoint = 0;
+	totalPoint = operationSumPoint + financeSumPoint + processesSumPoint + projectItemPoint;
+	$("#rating").val(totalPoint.toFixed(1));
+	$("#point").val(totalPoint.toFixed(1));
+	$("#totalPoint").html(totalPoint.toFixed(1));
+}
+culRatingPoint();
+
+    function openfinance(){
+        var f = document.forms['form1'];
+        var asse_no = f['asse_no'].value;
+        OpenWindow("pop_finance.jsp?asse_no="+asse_no,"pop_finance", 900, 500);
+    }
+
+    function financeCallback(resultTotalPoint){
+        if(resultTotalPoint != null ||  typeof resultTotalPoint == "undefined"){
+            $("#financeitem1").html(resultTotalPoint);
+            $("#financeitemSumPoint").html(resultTotalPoint);
+            culRatingPoint();
+        }
+    }
+
+    function emptyCheck(){
+        var projectItemPoint = $("#projectItemPoint").val();
+        if(projectItemPoint == ""){
+            $("#projectItemPoint").val("0");
+        }
+    }
+
+    function save1(div){
+
+        var f = document.forms['form1'];
+        f.action = 'assessment_result_sendmail_regular.jsp?asse_no={{assessment.asse_no}}';
+        var message = "결과 전송 하시겠습니까?";
+        if(confirm(message)){
+            fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 700);
+        }
+    }
+
+
+    function save(div){
+
+        var f = document.forms['form1'];
+        f['saveDiv'].value = div;
+        if(selectCheck(div)){
+            if(validate(f)){
+                var d = f['ratingDate'].value;
+                if(!isDateFormat(d)) {
+                    alert("YYYY-MM-DD 평가일을 확인해주세요.");
+                    f['ratingDate'].focus();
+                    return false;
+                }
+                var message = "";
+                if(div == "20"){	//임시저장
+                    message = "임시 저장 하시겠습니까?";
+                }else if(div == "50"){
+                    message = "평가 완료 하시겠습니까?";
+                }else if(div == "90"){
+                    message = "평가 완료 후 결과 전송 하시겠습니까?";
+                }
+                if(confirm(message)){
+                    setDivInputValue("__html");
+                    splitHtml(f, 'doc_html', false);
+                    //alert(f['sector'].value);		//소속
+                    //alert(f['assessor'].value);	//평가원
+                    if(div == "90"){
+                        fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 490);
+                    }else{
+                        f.submit();
+                    }
+                }
+            }
+        }
+    }
+
+    function del(){
+        var f = document.forms['form2'];
+        var message = "";
+        if(f['mstatus'].value == "20")  // 평가중 -> 평가대상
+        {
+            message = "다시 평가대상 등록을 하시겠습니까?\n평가 진행중인 모든 기록이 삭제됩니다.";
+        }
+        else if(f['mstatus'].value == "50")  // 평가완료 -> 평가중
+        {
+            message = "다시 평가할 수 있도록 [평가중] 상태로 돌리시겠습니까?";
+        }
+
+        if(confirm(message)){
+            f.submit();
+        }
+
+    }
+
+
+    function layerPopCloseEnt(layerID)
+    {
+        var	oNode	=	parent.document.getElementById(layerID);
+        if(oNode != null)
+        {
+            parent.document.body.removeChild(oNode);
+        }
+    }
+
+    function isDateFormat(d) {
+        var df = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+        return d.match(df);
+    }
+
+    function print(){
+        alert('배경색을 인쇄하려면 브라우저의 [파일] -> [페이지 설정] 메뉴에서 "배경색 및 이미지 인쇄"를 체크해주세요."');
+        var f = document.forms['form1'];
+        removeInput(document.getElementById("__html_0"), f['print_content']);
+        var printPop = window.open("","_blank","width=748, height=700");
+        var html = "<html><head>"+$('head').html()+"<style type='text/css'>"+$("#__html_style").html()+"</style></head><body>"+ f['print_content'].value+"</body></html>"
+        printPop.document.write(html);
+
+        printPop.document.close();
+        printPop.print();
+        //printPop.close();
+    }
+
+</script>

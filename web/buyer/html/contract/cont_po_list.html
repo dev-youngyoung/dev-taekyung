@@ -1,0 +1,146 @@
+<form name="form1" method="get" onsubmit="return formSubmit(this);">
+<input type="hidden" name="mode">
+
+<div class="search_div">
+	<table class="search_table">
+	  <colgroup>
+	  	<col width="12%">
+	  	<col width="32%">
+	  	<col width="12%">
+	  	<col width="*">
+	  	<col width="13%">
+	  </colgroup>
+	  <tr>
+	    <th><p>요청부서</p></th>
+	    <td><input type="text" name="s_field_name" maxlength="100" style="width: 95%;"></td>
+		<th><p>거래처</p></th>
+	    <td><input type="text" name="s_member_name" maxlength="100" style="width: 95%;"></td>
+	    <td align="right"></td>
+	  </tr>
+	  <tr>
+	  	<th><p>발주담당</p></th>
+	    <td><input type="text" name="s_user_name" maxlength="100" style="width: 45%;"></td>
+	  	<th><p>발주일자</p></th>
+	    <td>
+	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
+			<input type="text" name="s_edate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
+			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
+	    </td>
+	    <td align="right">
+	      <button type="submit" class="search_btn">검색</button>
+	    </td>
+	  </tr>
+	</table>
+</div>
+
+<div align="right">
+	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
+</div>
+
+<br/>
+
+<div style="overflow-x:scroll">
+	<div class="div_table">
+		<table style="width: 140%;">
+			<colgroup>
+				<col width="4%">
+				<col width="8%">   
+			    <col width="6%">
+			    <col width="*">
+			    <col width="7%">
+			    <col width="7%">
+			    <col width="9%">
+			    <col width="9%">
+			    <col width="5%">
+			    <col width="5%">
+			    <col width="5%">
+			    <col width="6%">
+			    <col width="8%">
+			</colgroup>
+			<tr>  
+				<th>순번</th>
+				<th>요청부서</th>   
+			    <th>담당자</th>
+			    <th>계약명</th>
+			    <th>발주일</th>
+			    <th>납품일</th>
+			    <th>거래처</th>
+			    <th>품명</th>
+			    <th>규격</th>
+			    <th>단위</th>
+			    <th>수량</th>
+			    <th>단가</th>
+			    <th>발주금액</th>
+			</tr>
+	  		<!-- IF START 'list' -->
+	  			<!-- LOOP START 'list' -->
+		  			<tr>
+					    <td align="center">{{list.__ord}}</td>
+					    <!-- IF START 'list.first' -->
+					    <td rowspan="{{list.rowspan}}" align="center">{{list.field_name}}</td>
+					    <td rowspan="{{list.rowspan}}" align="center">{{list.user_name}}</td>
+					    <td rowspan="{{list.rowspan}}" align="left">{{list.cont_name}}</td>
+					    <td rowspan="{{list.rowspan}}" align="center">{{list.cont_date}}</td>
+					    <td rowspan="{{list.rowspan}}" align="center">{{list.add_col4}}</td>
+					    <td rowspan="{{list.rowspan}}" align="left">{{list.member_name}}</td>
+					    <!-- IF END 'list.first' -->
+					    <td align="left">{{list.add_col6}}</td>
+					    <td align="center">{{list.add_col7}}</td>
+					    <td align="center">{{list.add_col8}}</td>
+					    <td align="right">{{list.add_col9}}</td>
+					    <td align="right">{{list.add_col10}}</td>
+					    <td align="right">{{list.add_col11}}</td>
+					</tr>
+				<!-- LOOP END 'list' -->
+			<!-- IF END 'list' -->
+		
+			<!-- IFNOT START 'list' -->
+		  	<tr>
+				<td colspan="13" align="center">검색결과가 없습니다.</td>
+		  	</tr>
+	  		<!-- IFNOT END 'list' -->
+		 </table>
+	</div>
+</div>
+
+</form>
+{{form_script}}
+
+<br/>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+<iframe name="ifExcel" style="height:0; border: 0;"></iframe>
+
+<script language="javascript">
+function formSubmit(f){
+	f['mode'].value="";
+	return true;
+}
+
+function fAllCheck(){
+	
+	if($("input[name='all']").attr("checked"))
+	{
+		$("input[name='save']").attr("checked",true);
+	
+	}else
+	{
+		$("input[name='save']").attr("checked",false);
+	}
+}
+
+function fSave(){
+	
+	if($(":checkbox[name='save']:checked").length==0)
+	{
+		alert("다운로드할 계약을 먼저 선택해주세요.");
+		return;
+	}
+	document.form1.target = "ifExcel";
+	document.forms['form1']['mode'].value='down';
+	document.forms['form1'].submit();
+	document.form1.target = "_self";
+}
+</script>

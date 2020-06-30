@@ -1,0 +1,8 @@
+# This file is for configuration to write nicednb license
+
+# Directory to write license
+base_dir=D:/Work/eclipse_workspace/TEST/src/license
+
+
+# License Term
+license_term=(주)나이스디앤비의 라이센스 정책이 담긴 파일입니다.\n함부로 파일의 내용을 변경하거나 삭제할 경우\n(주)나이스디앤비에서 제공받는 기능이 정상적으로\n동작하지않을 수 있습니다.

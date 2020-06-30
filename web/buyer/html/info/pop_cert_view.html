@@ -1,0 +1,47 @@
+<form name="form1" method="post">
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-right">
+			<button type="button" class="sbtn color" onclick="self.close();">닫기</button>
+		</div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%"/>
+			<col width="75%"/>
+		</colgroup>
+		<tr>
+			<td style="padding:8px"> 인허가명</td>
+			<td style="padding:8px">
+				{{cert.cert_name}}
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:8px"> 등록/허가번호</td>
+			<td style="padding:8px">
+				{{cert.cert_no}}
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:8px"> 관련기관</td>
+			<td style="padding:8px">
+				{{cert.cert_org}}
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:8px"> 유효기간</td>
+			<td style="padding:8px">
+				{{cert.cert_sdate}} ~ {{cert.cert_edate}}
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:8px"> 첨부파일</td>
+			<td style="padding:8px">
+				{{cert.doc_name}}&nbsp;&nbsp;({{cert.file_size}})&nbsp;
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcompany','{{cert.file_path}}{{cert.file_name}}','{{cert.doc_name}}')">다운로드</button>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+

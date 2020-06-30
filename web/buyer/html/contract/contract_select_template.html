@@ -1,0 +1,107 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 서식</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="80%">
+		</colgroup>
+		<tr>
+			<th>계약서 종류</th>
+			<td>
+				<select name="template_cd" onchange="select_template(this.value);" style="width:300">
+					<option value="">------------------ 선&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;택 ------------------</option>
+					<!-- LOOP START 'template' -->
+					<option value="{{template.template_cd}}">{{template.template_name}}</option>
+					<!-- LOOP END 'template' -->
+				</select>
+				<button type="button" class="sbtn ico-write auth_css" style="display:none" id="template_set_button" onclick="template_set()"><span></span>계약 디폴트값 등록</button>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>구비서류<span class="caution-text">예)사업자등록증, 납세증명서, ......</span></h3>
+	    </div>
+	    <div class="push-right">
+	        <button type="button" class="sbtn ico-add auth_css" onclick="grid.addRow();" style="display: none" id="btn_rfile_add"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="rfile_grid">
+		<colgroup>
+			<col width="15%"/>
+			<col width="70%"/>
+			<col width="15%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>필수여부</th>
+			<th>구비서류명</th>
+			<th>삭제</th>
+		</tr>
+		</thead>
+		<tbody id="call_target">
+		</tbody>
+	</table>
+</div>
+
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-write auth_css"><span></span>작성</button>
+</div>
+
+</form>
+{{form_script}}
+
+<br/>
+<br/>
+<div class="help-content">
+    <h3>NOTICE<span>유용한 정보! 사용전에 알아두세요~ </span></h3>
+    <div class="help-content-body">
+        <h4>작성안내</h4>
+        <ul>
+			<li>계약 항목에 대해 디폴트 값을 등록 해놓으면 계약서 작성시 자동으로 표시되어, 매번 반복적인 입력 작업을 줄일 수 있습니다.</li>
+			<li>선택한 계약서에 대해 항상 받는 구비서류가 있는 경우 미리 등록해 두시면 계약서 작성 상세 화면에서 매번 구비서류를<br>등록 안해도 자동으로 생성됩니다.</li>
+			<li>신규로 사용하고자 하는 계약양식은  고객센터로 양식 추가 요청을 하시기 바랍니다.</li>
+        </ul>
+    </div>
+</div>
+
+<script language="javascript">
+
+var grid = new MGRID("rfile_grid");
+grid.cells = new Array(
+	'<input type="checkbox" name="attch" onclick="chkClick(this,\'form1\',\'attch_yn\',\'Y\')"><input type="hidden" name="attch_yn">'
+	,'<input type="text" name="doc_name" style="width:98%" required="Y" hname="구비서류명"><input type="hidden" name="reg_type" value="20">'
+	,'<button type="button" class="sbtn ico-delete auth_css" onclick="grid.del(this);"><span></span>삭제</button>'
+);
+
+function select_template(template_cd){
+	var f = document.forms['form1'];
+	if(template_cd == '')return;
+	call("call_rfile_template.jsp?template_cd="+template_cd);
+}
+
+function template_set(){
+	var f = document.forms['form1'];
+	var template_cd = f['template_cd'].value;
+	location.href="contract_setting_template.jsp?template_cd="+template_cd;
+}
+
+function formSubmit(f){
+	if(validate(f)){
+		return true;
+	}
+	return false;
+}
+
+	
+</script>

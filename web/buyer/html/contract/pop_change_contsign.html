@@ -1,0 +1,86 @@
+<form name="form1" method="post"  onsubmit="return true;"  >
+<input type="hidden" name="member_no" />
+<div style="width:100%;padding:5px;text-align:right">
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+</form>
+{{form_script}}
+<br/>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td class="caution-text">※나이스다큐에 등록된 회원만 조회됩니다.</td>
+</tr>
+</table>
+<br/>
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="30%">
+			<col width="25%">
+			<col width="25%">
+			<col width="20%">
+		</colgroup>
+		<tr>
+			<th>회원명</th>
+			<th>생년월일</th>
+			<th>휴대폰번호</th>
+			<th>선택</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.user_name}}</td>
+			<td align="center">{{list.birth_date}}</td>
+			<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
+			<td align="center">
+				<button type="button" class="sbtn ico-add" onclick="chgContSign('{{list.member_no}}');"><span></span>선택</button>
+			</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td align="center" colspan="4">조회 결과가 없습니다.<br/> 회원등록이 먼저 진행되어야 공인인증서로 서명이 가능합니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+
+
+<br/>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+
+<script language="javascript">
+
+function chgContSign(member_no){
+	
+	if(!confirm("선택한 회원을 해당 계약서를 공인인증서 서명으로 변경하시겠습니까?\n휴대폰 서명으로 되돌리 수 없으며, 이메일과 SMS가 재전송 됩니다.")){
+		return false;
+	}
+	
+	var f = document.forms["form1"];
+	f['member_no'].value = member_no;
+	f.submit();
+}
+
+
+function addPerson(){
+
+	var f = document.forms["form_"+member_no];
+	var elems = f.elements;
+	var data = {"sign_seq":"{{sign_seq}}"};
+	for(var i=0;i<elems.length;i++){
+		var elem = elems[i];
+		if( elem.tagName.toLowerCase() == "input" ){
+			data[elem.name] =  elem.value;
+		}
+	}
+	opener.addClientInfo(data);
+	self.close();
+}
+
+
+</script>

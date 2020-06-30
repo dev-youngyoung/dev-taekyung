@@ -1,0 +1,75 @@
+<form novalidate name="form1" method="post">
+<div style="width:100%;text-align:right;margin: 10px 0px">
+	<!-- IF START 'btn_add' -->
+	<button type="button" class= 'sbtn color ico-add'  id="btn_supp_add" onclick="OpenWindows('pop_search_supp.jsp?{{query}}&callback=addSupp','pop_search_comapny', '800','650','auto');" ><span></span>추가</button>
+	<!-- IF END 'btn_add' -->
+	<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>닫기</button>
+</div>
+<div class="div_table">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<colgroup>
+		<col width="14%">
+		<col width="22%">
+		<col width="12%">
+		<col width="16%">
+		<col width="16%">
+		<col width="10%" >
+		<col width="10%" >
+	</colgroup>
+	<tr>
+		<th>사업자번호</th>
+		<th>업체명</th>
+		<th>담당자</th>
+		<th>연락처</th>
+		<th>이메일</th>
+		<th>상태</th>
+		<th>기능</th>
+	</tr>
+	<!-- LOOP START 'supp' -->
+	<tr>
+	<td align="center">{{supp.vendcd}}</td>
+	<td align="left">{{supp.member_name}}</td>
+	<td align="center">{{supp.user_name}}</td>
+	<td align="center">{{supp.hp1}}-{{supp.hp2}}-{{supp.hp3}}</td>
+	<td align="center">{{supp.email}}</td>
+	<td align="center">{{supp.status_nm}}</td>
+	<td align="center">
+        <button type="button" class="sbtn color" onclick="if(confirm('삭제하시겠습니까?')){location.href='bid_supp_delete.jsp?{{query}}&member_no={{supp.member_no}}';}">삭제</button>
+		<!-- IF START 'supp.btn_pay' -->
+		<button style="margin-top: 3px;" type="button" class="sbtn color" onclick="if(confirm('입찰 무료처리 하시겠습니까?')){location.href='bid_supp_free.jsp?{{query}}&member_no={{supp.member_no}}';}">무료</button>
+		<!-- IF END 'supp.btn_pay' -->
+    </td>
+	</tr>
+	<!-- LOOP END 'supp' -->
+</table>
+</div>
+
+<input type="hidden" name="member_no">
+<input type="hidden" name="vendcd">
+<input type="hidden" name="member_name">
+<input type="hidden" name="boss_name">
+<input type="hidden" name="user_name">
+<input type="hidden" name="hp1">
+<input type="hidden" name="hp2">
+<input type="hidden" name="hp3">
+<input type="hidden" name="email">
+
+</form>
+
+{{form_script}}
+
+<script language="javascript">
+function addSupp(data){
+	var f = document.forms['form1'];
+	f["member_no"].value = data["member_no"];
+	f["vendcd"].value = data["vendcd"];
+	f["member_name"].value = data["member_name"];
+	f["boss_name"].value = data["boss_name"];
+	f["user_name"].value = data["user_name"];
+	f["hp1"].value = data["hp1"];
+	f["hp2"].value = data["hp2"];
+	f["hp3"].value = data["hp3"];
+	f["email"].value = data["email"];
+	f.submit();
+}
+</script>

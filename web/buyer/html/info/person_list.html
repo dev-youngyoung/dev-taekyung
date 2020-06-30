@@ -1,0 +1,117 @@
+<form name="form1" method="get">
+    <input type="hidden" name="mode">
+    <div class="search_div">
+        <table class="search_table">
+            <colgroup>
+                <col width="13%"/>
+                <col width="15%"/>
+                <col width="13%"/>
+                <col width="10%"/>
+                <col width="13%"/>
+                <col width="35%"/>
+                <col width="10%"/>
+            </colgroup>
+            <tr>
+            	<th><p>사용자유형</p></th>
+                <td>
+                    <select name="s_user_level">
+                        <option value="">-전체-</option>
+                        <!-- LOOP START 'code_user_level' -->
+                        <option value="{{code_user_level.id}}">{{code_user_level.value}}</option>
+                        <!-- LOOP END 'code_user_level' -->
+                    </select>
+                </td>
+                <th><p>사용여부</p></th>
+                <td>
+                    <select name="s_use_yn">
+                        <option value="">-전체-</option>
+                        <option value="Y">사용</option>
+                        <option value="N">사용중지</option>
+                    </select>
+                </td>
+                <th><p>부여권한</p></th>
+                <td>
+                    <select name="s_auth_cd">
+                        <option value="">-전체-</option>
+                        <!-- LOOP START 'authInfo' -->
+                        <option value="{{authInfo.auth_cd}}">{{authInfo.auth_nm}}</option>
+                        <!-- LOOP END 'authInfo' -->
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+            	<th><p>부서명</p></th>
+                <td colspan="3"><input type="text" name="s_field_name" maxlength="30" style="width:98%"></td>
+                <th><p>담당자명</p></th>
+                <td><input type="text" name="s_user_name" maxlength="30" style="width:98%"></td>
+                <td align="right">
+                    <button type="button" class="btn color ico-search" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{{form_script}}
+<br/>
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left">
+            <span class="caution-text">※ 담당자를 클릭하시면 담당자정보를 "변경" 또는 "삭제" 할 수 있습니다.</span>
+        </div>
+        <div class="push-right">
+            <button type="button" class="sbtn color ico-add auth_css" onClick="location.href='person_insert.jsp';"><span></span>추가</button>
+            <button type="button" class="sbtn color ico-excel" onclick="excel()"><span></span>엑셀다운로드</button>
+        </div>
+    </div>
+
+    <table>
+        <colgroup>
+          <col width="10%">
+          <col width="15%">
+          <col width="15%">
+          <col width="10%">
+          <col width="15%">
+          <col width="10%">
+          <col width="10%">
+          <col width="15%">
+        </colgroup>
+        <tr>
+            <th>순번</th>
+            <th>담당자 ID</th>
+            <th>담당자명</th>
+            <th>직위</th>
+            <th>부서</th>
+            <th>사용자유형</th>
+            <th>사용여부</th>
+            <th>부여권한</th>
+        </tr>
+        <!-- LOOP START 'list' -->
+        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='person_modify.jsp?person_seq={{list.person_seq}}&{{list_query}}';" style="cursor:pointer">
+            <td align="center">{{list.__ord}}</td>
+            <td align="center">{{list.user_id}}</td>
+            <td align="center">{{list.user_name}}</td>
+            <td align="center">{{list.position}}</td>
+            <td align="center">{{list.field_name}}</td>
+            <td align="center">{{list.user_level}}</td>
+            <td align="center">{{list.use_yn}}</td>
+            <td align="center">{{list.auth_nm}}</td>
+        </tr>
+        <!-- LOOP END 'list' -->
+        <!-- IFNOT START 'list' -->
+        <tr>
+            <td align="center" colspan="9">검색 결과가 없습니다.</td>
+        </tr>
+        <!-- IFNOT END 'list' -->
+    </table>
+</div>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+<script type="text/javascript">
+    function excel(){
+        var f = document.forms['form1'];
+        f['mode'].value="excel";
+        f.submit();
+    }
+</script>

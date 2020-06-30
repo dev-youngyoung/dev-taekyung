@@ -1,0 +1,86 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+	<div class="div_table">
+		<div class="util-row">
+			<div class="push-left">
+				보유면허 (※ 회사의 보유면허 등록하세요. 해외건설업/엔지니어링/기타의 경우 비고란에 상세내용을 입력 하세요.)
+			</div>
+			<div class="push-right">
+				<button type="button" class="sbtn color ico-add" onClick="techAdd();"><span></span>추가</button>
+			</div>
+		</div>
+
+		<table id="tech_grid">
+			<colgroup>
+				<col width="45%"/>
+				<col width="45%"/>
+				<col width="10%"/>
+			</colgroup>
+			<thead>
+			<tr>
+				<th>보유면허</th>
+				<th>비고</th>
+				<th>삭제</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+	<div class="btn-group-wrap">
+		<button type="submit" name="btn_save" class="btn color ico-save"><span></span>저장</button>
+	</div>
+</form>
+{{form_script}}
+<form name="form2">
+	<table id="tech_template" style="display: none">
+		<tr>
+			<td align="center">
+				<select name="t_tech_cd" hname="면허종류" required="Y">
+					<option value="">-선택-</option>
+					<!-- LOOP START 'userCode' -->
+					<option value="{{userCode.code}}">{{userCode.code_nm}}</option>
+					<!-- LOOP END 'userCode' -->
+				</select>
+			</td>
+			<td align="center"><input type="text" name="t_tech_expl" style="width:98%"></td>
+			<td align="center"><button type="button" onclick="tech_grid.del(this);" name="btn_save" class="sbtn color">삭제</button></td>
+		</tr>
+	</table>
+</form>
+
+<script language="javascript">
+function formSubmit(f){
+	if(validate(f)){
+		if(!confirm("저장하시겠습니까?")){
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+
+</script>
+<script language="javascript">
+//보유면허
+var tech_grid = new MGRID("tech_grid");
+function techAdd(){
+	var seq = document.getElementById("tech_grid").rows.length;
+	if(seq>5){
+		alert("최대 5개 항목까지 추가 가능 합니다.");
+		return;
+	}
+	tech_grid.cells = table2array("tech_template");
+	tech_grid.addRow();
+}
+
+</script>
+<script>
+<!-- LOOP START 'tech' -->
+SetFormValue("form2","t_tech_cd","{{tech.tech_cd}}");
+SetFormValue("form2","t_tech_expl","{{tech.tech_expl}}");
+tech_grid.cells = table2array("tech_template");
+tech_grid.addRow();
+<!-- LOOP END 'tech' -->
+SetFormValue("form2","t_tech_cd","");
+SetFormValue("form2","t_tech_expl","");
+</script>

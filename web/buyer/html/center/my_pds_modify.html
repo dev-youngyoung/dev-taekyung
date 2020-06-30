@@ -1,0 +1,136 @@
+<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+<input type="hidden" name="contents" />
+  <div class="push-left">
+    <h3><span class="caution-text">* 표시는 필수 입력항목 입니다</span></h3>
+  </div>
+  <div class="push-right">
+    <p></p>
+  </div>
+  <br>
+  <br>
+  <div class="div_table">
+    <table width="100%">
+      <colgroup>
+        <col width="15%">
+        <col width="35%">
+        <col width="15%">
+        <col width="35%">
+      </colgroup>
+      <!-- IFNOT START 'modify' -->
+      <tr>
+        <th>등록자</th>
+        <td class="dcel">{{_auth._USER_NAME}}</td>
+        <th>등록일자</th>
+        <td class="dcel"></td>
+      </tr>
+      <!-- IFNOT END 'modify' -->
+      <!-- IF START 'modify' -->
+      <tr>
+        <th>등록자</th>
+        <td class="dcel">{{pds.reg_name}}</td>
+        <th>등록일자</th>
+        <td class="dcel">{{pds.reg_date}}</td>
+      </tr>
+      <!-- IF END 'modify' -->
+      <tr>
+        <th class="req-check">제목</th>
+        <td class="dcel" colspan="3"><input type="text" name="title" value="" maxlength="100" class="label" style="width:100%"></td>
+      </tr>
+      <tr>
+        <th class="req-check">내용 </th>  
+        <td class="dcel" colspan="3" ><textarea  name ="_contents" id = "_contents" class="textarea01" style="width:100%; height:300px; overflow-x:hidden; overflow-y:auto">{{pds.contents}}</textarea></td>
+      </tr>
+      <tr>
+        <th>첨부파일</th>
+        <td class="dcel" colspan="3">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+            <colgroup>
+              <col width="30%">
+              <col width="70%"> 
+            </colgroup>
+            <tr class="ltitle">
+              <th>문서명</th>
+              <th>첨부</th>
+            </tr>
+            <!-- LOOP START 'fds' -->
+            <!-- IF START 'fds.doc_name' -->
+            <tr class="cel">
+              <td><input type="text" name="doc_name_{{fds.seq}}" maxlength="200" value="{{fds.doc_name}}" class="label" style="width:100%"></td>
+              <td align="right">
+                <div id="file_area_{{fds.seq}}">
+                  <input type="hidden" name="file_gubun_{{fds.seq}}" value = "1"/>
+                  <input type="hidden" name="file_name_{{fds.seq}}", value="{{fds.file_name}}"/>
+                  <input type="hidden" name="file_path_{{fds.seq}}" value="{{fds.seq}}"/>
+                  <input type="hidden" name="file_ext_{{fds.seq}}" value="{{fds.file_ext}}"/>
+                  <input type="hidden" name="file_size_{{fds.seq}}" value="{{fds.file_size}}"/>
+                  {{fds.file_size_str}}
+                  <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pds','{{fds.file_path}}{{fds.file_name}}','{{fds.doc_name}}.{{fds.file_ext}}')"><span></span>다운로드</button>
+                  <button type="button" class="sbtn ico-delete" onclick="file_delete('{{fds.seq}}')"><span></span>삭제</button>
+                </div>
+              </td>
+            </tr>
+            <!-- IF END 'fds.doc_name' -->
+            <!-- IFNOT START 'fds.doc_name' -->
+            <tr class="cel">
+              <td><input type="text" name="doc_name_{{fds.seq}}" maxlength="200" class="label" style="width:100%"></td>
+              <td>
+                <input type="hidden" name="file_gubun_{{fds.seq}}" value = ""/>
+                <input type="file" name="file_pds_{{fds.seq}}" class="label" style="width:100%">
+              </td>
+            </tr>
+            <!-- IFNOT END 'fds.doc_name' -->
+            <!-- LOOP END 'fds' -->
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="btn-group-wrap">
+    <button type="submit" class="btn color ico-save auth_css" value=""><span></span>저장</button>
+    <!-- IF START 'modify' -->
+    <button type="button" class="btn color ico-delete auth_css" value="" onclick="if(confirm('삭제하시겠습니까?')){location.href='my_pds_delete.jsp?{{query}}'}" ><span></span>삭제</button>
+    <!-- IF END 'modify' -->
+    <button type="button" class="btn color ico-list" value="" onClick="location.href='my_pds_list.jsp?{{list_query}}';"><span></span>목록보기</button>
+  </div>
+</form>
+{{form_script}}
+<script language="javascript">
+    function formSubmit(f){
+        if(validate(f)){
+            for(var i =1; i <=3;i++){
+                var file_gubun = f['file_gubun_'+i].value;
+                var doc_name = f['doc_name_'+i].value;
+                if(file_gubun == ""){
+                    var file_pds = f['file_pds_'+i].value;
+                    if( (doc_name=="" && file_pds!="")|| (doc_name!="" && file_pds=="")){
+                        alert("문서명과 파일정보를 정확히 입력하여 주십시오.");
+                        return false;
+                    }
+                }
+                if(file_gubun != ""){
+                    if(doc_name==""){
+                        alert("문서명을 입력하세요.");
+                        return false;
+                    }
+                } 
+                 
+            }   
+              
+            f['contents'].value=Base64.encode(f['_contents'].value);
+            
+            if(!confirm("저장하시겠습니까?")){ 
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    function file_delete(seq){
+        var html = "<input type='hidden' name='file_gubun_"+seq+"' value = ''/>";
+        html += "<input type=\"file\" name=\"file_pds_"+seq+"\" class=\"label\" style=\"width:100%\">";
+        var area = document.getElementById('file_area_'+seq);
+        area.innerHTML = html;
+    }
+</script>

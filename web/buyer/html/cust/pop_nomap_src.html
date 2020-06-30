@@ -1,0 +1,83 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this);">
+<input type="hidden" name="search" value="1">
+<div class="util-row">
+	<div class="push-right">
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+	</div>
+</div>
+<div class="search_div">
+	<table class="search_table">
+	<colgroup>
+		<col width="13%"/>
+		<col width="30%"/>
+		<col width="13%"/>
+		<col width="31%"/>
+		<col width="*"/>
+	</colgroup>
+	<tr>
+		<th><p>업체명</p></th>
+		<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
+		<th><p>사업자번호</p></th>
+		<td><input type="text" name="s_vendcd" maxlength="30" size="12">(-없이 입력)</td>
+		<td align="right">
+			<button type="submit" class="sbtn color ico-search" value="검색"><span></span>검색</button>
+		</td>
+	</tr>
+	</table>
+</div>
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f){
+	/*if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}*/
+	return true;
+}
+</script>
+
+<div class="div_table">
+<table>
+	<colgroup>
+		<col width="10%">
+		<col width="40%">
+		<col width="20%">
+		<col>
+	</colgroup>
+	<tr>
+		<th>순번</th>
+		<th>업체명</th>
+		<th>사업자번호</th>
+		<th>대표자</th>
+	</tr>
+	<!-- LOOP START 'list' -->
+	<tr>
+		<td align="center">{{list.__ord}}</td>
+		<td>{{list.member_name}}</td>
+		<td align="center">{{list.vendcd}}</td>
+		<td align="center">{{list.boss_name}}</td>
+	</tr>
+	<!-- LOOP END 'list' -->
+	<!-- IFNOT START 'list' -->
+	<tr>
+		<td align="center" colspan="4">검색 결과가 없습니다.</td>
+	</tr>
+	<!-- IFNOT END 'list' -->
+</table>
+</div>
+<div class="common-paging">{{pagerbar}}</div>
+
+<script language="javascript">
+function addCompany(member_name,vendcd,boss_name,member_no)
+{
+	var	arrComp	=	new	Array();
+	arrComp[0]	=	member_name;
+	arrComp[1]	=	vendcd;
+	arrComp[2]	=	boss_name;
+	arrComp[3]	=	member_no;
+	
+	window.returnValue = arrComp;
+	self.close();
+}
+</script>

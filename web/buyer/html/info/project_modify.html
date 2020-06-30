@@ -1,0 +1,82 @@
+<form name="form1" method="post" onsubmit="return formSubmit(this)">
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="80%">
+		</colgroup>
+		<tr>
+			<th class="req-check">프로젝트(현장)명 </th>
+			<td><input type="text" name="project_name" style="width:98%"></td>
+		</tr>
+		<tr>
+			<th>프로젝트코드</th>
+			<td>
+				<input type="text" name="project_cd" style="width: 150px;">
+				<span class="caution-text">( ※ 회사내부에서 관리하는 코드가 있는 경우 입력 하세요. )</span>
+			</td>
+		</tr>
+		<tr>
+			<th>발주처</th>
+			<td><input type="text" name="order_comp_nm" style="width:98%"></td>
+		</tr>
+		<tr>
+			<th>계약일자</th>
+			<td><input type="text" name="project_cont_date" class="in_readonly" style="width:120px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['project_cont_date'])"></td>
+		</tr>
+		<tr>
+			<th>프로젝트(현장)위치</th>
+			<td><input type="text" name="project_loc" style="width:98%"></td>
+		</tr>
+		<tr>
+			<th>비고1</th>
+			<td>
+				<textarea style="width:98%;height:100px" name="etc1" onkeyup="autoTextAreaHeight(this,100)">{{project.etc1}}</textarea>
+				<script>autoTextAreaHeight(document.forms['form1']['etc1'],100)</script>
+			</td>
+		</tr>
+		<tr>
+			<th>비고2</th>
+			<td>
+				<textarea style="width:98%;height:100px" name="etc2" onkeyup="autoTextAreaHeight(this,100)">{{project.etc2}}</textarea>
+				<script>autoTextAreaHeight(document.forms['form1']['etc2'],100)</script>
+			</td>
+		</tr>
+		<tr>
+			<th class="req-check">프로젝트 상태</th>
+			<td>
+				<input type="radio" name="use_yn" value="Y"> 진행중&nbsp;
+				<input type="radio" name="use_yn" value="N"> 종료
+			</td>
+		</tr>
+		<!-- IF START 'modify' -->
+		<tr>
+			<th>등록/수정일시</th>
+			<td>{{project.reg_date}}</td>
+		</tr>
+		<tr>
+			<th>등록/수정</th>
+			<td>{{project.reg_name}}</td>
+		</tr>
+		<!-- IF END 'modify' -->
+	</table>
+</div>
+<div class="btn-group-wrap">
+	<button type="submit" class="btn color ico-save"><span></span>저장</button>
+	<!-- IF START 'modify' -->
+	<button type="button" class="btn color ico-delete" onclick="if(confirm('삭제하시겠습니까?')){location.href='project_delete.jsp?{{query}}';}"><span></span>삭제</button>
+	<!-- IF END 'modify' -->
+	<button type="button" class="btn color ico-list" onclick="location.href='project_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>
+</form>
+{{form_script}}
+<script>
+    function formSubmit(f){
+        if(validate(f)){
+            if(confirm("저장하시겠습니까?")){
+                return true;
+            }
+        }
+        return false;
+    }
+</script>

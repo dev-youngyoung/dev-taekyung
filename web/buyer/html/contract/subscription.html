@@ -1,0 +1,578 @@
+
+<!-- 전자인증 모듈 설정 //-->
+<!-- INCLUDE FILE 'layout/crosscert_include.html' -->
+<!-- 전자인증 모듈 설정 //-->
+
+<script>
+attachOnload(function(){
+	 window.document.body.scroll = "auto";
+});
+</script>
+<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return false">
+    <input type="hidden" name="sysdate" value="{{_sysdate}}">
+    <input type="hidden" name="sign_able" value="{{sign_able}}">
+    <input type="hidden" name="cont_no" value="{{cont.cont_no}}"/>
+    <input type="hidden" name="cont_chasu" value="{{cont.cont_chasu}}"/>
+    <input type="hidden" name="cont_hash" value="{{cont.cont_hash}}"/>
+    <input type="hidden" name="random_no" value="{{cont.true_random}}"/>
+    <input type="hidden" name="sign_data" value=""/>
+    <input type="hidden" name="sign_dn" value=""/>
+
+    <div class="dc-popup-wrap" >
+        <div class="dc-inner-contents">
+            <div class="dc-step-wrap step2">
+                <ol>
+                    <li>
+                        <div class="text_wrap">
+                            <div class="text ">
+                                고유식별정보 동의 및 사업자 확인
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="text_wrap">
+                            <div class="text active">
+                                정보등록 및 신청
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="text_wrap">
+                            <div class="text">
+                                완료
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div class="dc-section">
+                <p class="dc-popup-title">기본 정보</p>
+                <div class="dc-info-check-all">
+                    <div class="ineer-section">
+                        <div class="left">
+                            <input type="hidden" name="vendcd">
+                            <input type="text" name="vendcd1" onfocus="this.blur();$('#member_name').focus();" style="background-color: #eeeeee; color: #000000; width:42px" readonly> -
+                            <input type="text" name="vendcd2" onfocus="this.blur();$('#member_name').focus();" style="background-color: #eeeeee; color: #000000; width:35px" readonly> -
+                            <input type="text" name="vendcd3" onfocus="this.blur();$('#member_name').focus();" style="background-color: #eeeeee; color: #000000; width:60px" readonly>
+                        </div>
+                        <div class="right">
+                            <input type="text" name="member_name" id="member_name" placeholder="회사명" onkeyup="hanengnum_only(this)" onChange="replaceInput(this, 'cust_name_area_2', document.all.__html)" onblur="replaceInput(this, 'cust_name_area_2', document.all.__html)">
+                        </div>
+                    </div>
+                    <div class="ineer-section">
+                        <div class="left">
+                            <input type="text" name="boss_name" placeholder="대표자명" onkeyup="haneng_only(this)" onChange="replaceInput(this, 'boss_name_area_2', document.all.__html)" onblur="replaceInput(this, 'boss_name_area_2', document.all.__html)">
+                        </div>
+                        <div class="right">
+                            <!-- IFC START 'mgubun==01' -->
+                            <input type="text" name="slno1" placeholder="법인등록번호 앞자리" style="width:200px;" onkeyup="n_only()" onChange="replaceInput(this, 'member_slno1_2', document.all.__html)" onblur="replaceInput(this, 'member_slno1_2', document.all.__html)">
+                            -
+                            <input type="text" name="slno2" placeholder="법인등록번호 뒷자리" style="width:200px;" onkeyup="n_only()" onChange="replaceInput(this, 'member_slno2_2', document.all.__html)" onblur="replaceInput(this, 'member_slno2_2', document.all.__html)">
+                            <!-- IFC END 'mgubun==01' -->
+
+                            <!-- IFC START 'mgubun==02' -->
+                            <input type="text" name="birthday" placeholder="생년월일 ex)720815" maxlength="6" onkeyup="n_only()" onblur="replaceInput(this, 'jumin_no1_2', document.all.__html)">
+                            <!-- IFC END 'mgubun==02' -->
+                        </div>
+                    </div>
+                    <div class="ineer-section">
+                        <div class="left" style="width:100%">
+                            <input type="hidden" name="post_code" errmsg="주소검색 버튼을 눌러 주소를 입력해주세요.">
+                            <input type="text" name="address" id="address" style="background-color: #eeeeee; color: #000000;width:35%" placeholder="사업장 주소" onfocus="this.blur();$('#addr_detail').focus();" readonly>
+                            <input type="text" name="addr_detail" id="addr_detail" style="width:30%" placeholder="상세 주소" onblur="jusoInput();">
+                            <input type="text" name="address2" style="background-color: #eeeeee; color: #000000;width:22%" onfocus="this.blur();$('#addr_detail').focus();" readonly>
+                            <input name="dc_input_5_btn" type="button" style="width:95px" value="주소검색" onclick="jusoPopup()"><br>
+                        </div>
+                    </div>
+                    <div class="ineer-section">
+                        <div class="left">
+                            <input type="text" name="user_name" placeholder="신청자명" onkeyup="haneng_only(this)" onChange="replaceInput(this, 'user_name_area_2', document.all.__html)">
+                        </div>
+                        <div class="right">
+                            <input type="text" name="hp1" maxlength="3" style="width:42px" onkeyup="n_only()" onblur="replaceInput(this, 'hp1_2', document.all.__html);">-<input type="text" name="hp2" maxlength="4" style="width:50px" onkeyup="n_only()" onblur="replaceInput(this, 'hp2_2', document.all.__html);">-<input type="text" name="hp3" maxlength="4" style="width:50px" onkeyup="n_only()" onblur="replaceInput(this, 'hp3_2', document.all.__html);"> ※ 신청자 휴대전화
+                        </div>
+                    </div>
+                    <div class="ineer-section">
+                        <div class="left">
+                            <input type="text" name="tel_num" placeholder="신청자 전화번호" style="ime-mode:disabled;" onkeyup="nm_only()" onChange="replaceInput(this, 'telnum_area_2', document.all.__html)" onblur="replaceInput(this, 'telnum_area_2', document.all.__html)">
+                        </div>
+                        <div class="right">
+                            <input type="text" name="email" placeholder="신청자 이메일" onkeyup="email_only(this)" onChange="replaceInput(this, 'email_area_2', document.all.__html)" onblur="replaceInput(this, 'email_area_2', document.all.__html)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- IF START 'cont.mod_req_date' -->
+            <div class="dc-section type2">
+                <p class="dc-popup-title">반려 정보</p>
+                <div class="dc-info-check-all">
+                    <div class="ineer-section">
+                        <div class="left">              <input type="text" style="background-color: #eeeeee;" value="반려자 : {{cont.mod_req_name}}">
+                        </div>
+                        <div class="right">
+                            <input type="text" style="background-color: #eeeeee;" value="반려일시 : {{cont.mod_req_date}}">
+                        </div>
+                    </div>
+                    <div class="ineer-section" style="background-color: #eeeeee;border: 1px solid #DDDDDD;padding:10px;margin:10px">
+                        {{cont.mod_req_reason}}
+                    </div>
+                </div>
+            </div>
+            <!-- IF END 'cont.mod_req_date' -->
+
+            <div class="dc-section type1 type3">
+                <div class="dc-doc-tab-wrap">
+                    <p class="dc-popup-title">서식 작성</p>
+                    <ul class="dc-doc-tab">
+                        <input type="hidden" name="cont_sub_name" value="{{template.template_name}}">
+                        <input type="hidden" name="cont_sub_style" value="{{template.template_style}}">
+                        <input type="hidden" name="gubun" value="10">
+                        <input type="hidden" name="sub_seq" value="0">
+                        <input type="hidden" name="option_yn_0" value="A">
+                        <li class="tab_on" id="tab_0" onClick="tabView(0)">{{template.template_name}}</li>
+                        <!-- IF START 'modify' -->
+                        <!-- LOOP START 'contSub' -->
+                        <input type="hidden" name="cont_sub_name" value="{{contSub.cont_sub_name}}">
+                        <input type="hidden" name="cont_sub_style" value="{{contSub.cont_sub_style}}">
+                        <input type="hidden" name="gubun" value="{{contSub.gubun}}">
+                        <input type="hidden" name="sub_seq" value="{{contSub.sub_seq}}">
+                        <li class="tab_off" id="tab_{{contSub.sub_seq}}" onclick="tabView({{contSub.sub_seq}})">
+                            <!-- IF START 'contSub.view_option' -->
+                            <input type="checkbox" name="option_yn_{{contSub.sub_seq}}" value="Y" {{contSub.option_checked}} style="margin:-2px 0 0 0; vertical-align:middle;">
+                            <!-- IF END 'contSub.view_option' -->
+                            <!-- IFNOT START 'contSub.view_option' -->
+                            <input type="hidden" name="option_yn_{{contSub.sub_seq}}" value="A">
+                            <!-- IFNOT END 'contSub.view_option' -->
+                            {{contSub.cont_sub_name}}
+                        </li>
+                        <!-- LOOP END 'contSub' -->
+                        <!-- IF END 'modify' -->
+                        <!-- IFNOT START 'modify' -->
+                        <!-- LOOP START 'templateSub' -->
+                        <input type="hidden" name="cont_sub_name" value="{{templateSub.template_name}}">
+                        <input type="hidden" name="cont_sub_style" value="{{templateSub.template_style}}">
+                        <input type="hidden" name="gubun" value="{{templateSub.gubun}}">
+                        <input type="hidden" name="sub_seq" value="{{templateSub.sub_seq}}">
+                        <li class="tab_off" id="tab_{{templateSub.sub_seq}}" onclick="tabView({{templateSub.sub_seq}})">
+                            <!-- IF START 'templateSub.view_option' -->
+                            <input type="checkbox" name="option_yn_{{templateSub.sub_seq}}" value="Y" {{templateSub.option_checked}} style="margin:-2px 0 0 0; vertical-align:middle;">
+                            <!-- IF END 'templateSub.view_option' -->
+                            <!-- IFNOT START 'templateSub.view_option' -->
+                            <input type="hidden" name="option_yn_{{templateSub.sub_seq}}" value="A">
+                            <!-- IFNOT END 'templateSub.view_option' -->
+                            {{templateSub.template_name}}
+                        </li>
+                        <!-- LOOP END 'templateSub' -->
+                        <!-- IFNOT END 'modify' -->
+                    </ul>
+                </div>
+                <table width="100%">
+                    <tr>
+                        <td align="center" style="background-color:#f8f8f8;">
+                            <div id="__html">
+                                <div style="{{template.template_style}}; padding-top: 10px" id="__html_0">
+                                    <!-- IF START 'modify' -->
+                                    {{cont.cont_html}}
+                                    <!-- IF END 'modify' -->
+                                    <!-- IFNOT START 'modify' -->
+                                    {{template.template_html}}
+                                    <!-- IFNOT END 'modify' -->
+                                </div>
+                                <!-- IF START 'modify' -->
+                                <!-- LOOP START 'contSub' -->
+                                <div style="{{contSub.cont_sub_style}}; padding-top: 10px; display:none" id="__html_{{contSub.sub_seq}}">
+                                    {{contSub.cont_sub_html}}
+                                </div>
+                                <!-- LOOP END 'contSub' -->
+                                <!-- IF END 'modify' -->
+
+                                <!-- IFNOT START 'modify' -->
+                                <!-- LOOP START 'templateSub' -->
+                                <div style="{{templateSub.template_style}}; padding-top: 10px; display:none" id="__html_{{templateSub.sub_seq}}">
+                                    {{templateSub.template_html}}
+                                </div>
+                                <!-- LOOP END 'templateSub' -->
+                                <!-- IFNOT END 'modify' -->
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- IF START 'template.rfile_info' -->
+             {{template.rfile_info}} 
+            <!-- IF END 'template.rfile_info' -->
+            
+            <div class="dc-section">
+                <div class="dc-file-wrap">
+                    <!-- LOOP START 'rfile' -->
+                    <div class="file_innner">
+                        <div class="file_left" style="width: 35%;">
+                            <input type="hidden" name="rfile_doc_name" value="{{rfile.doc_name}}">
+                            <input type="hidden" name="attach_yn" value="{{rfile.attach_yn}}">
+                            <input type="hidden" name="reg_type" value="{{rfile.reg_type}}">
+                            <input type="hidden" name="allow_ext" value="{{rfile.allow_ext}}">
+                            <input type="hidden" name="attch_type" value="1">
+                             {{rfile.doc_name}}  <!-- IFC START 'rfile.attch_yn==Y' --><font color="red">(필수)</font><!-- IFC END 'rfile.attch_yn==Y' -->
+                        </div>
+                        <div class="file_right" id="rfile_area_{{rfile.rfile_seq}}" style="width: 65%;">
+                            <!-- IFNOT START 'rfile.file_name' -->
+                            <input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
+                            <input type="hidden" name="rfile_required" value="{{rfile.attch_yn}}"/>  
+                         
+                             <!-- IFC START 'rfile.template_cd==2019285' -->  
+                                <input type="file" name="rfile_{{rfile.rfile_seq}}"   hname="첨부파일"<!-- IFC START 'rfile.attch_yn==Y' --> required="Y" <!-- IFC END 'rfile.attch_yn==Y' --> class="input_n" style="width:50%" allow="{{rfile.allow_ext}}"/>
+                           	<!-- IFC END 'rfile.template_cd==2019285' -->
+                             <!-- IFC START 'rfile.template_cd!=2019285' --> 
+                               <input type="file" name="rfile_{{rfile.rfile_seq}}" errmsg="첨부하신 파일은 등록이 제한된 형식입니다. PDF 또는 이미지(png, jpg 등) 파일로 업로드 바랍니다."  hname="첨부파일"<!-- IFC START 'rfile.attch_yn==Y' --> required="Y" <!-- IFC END 'rfile.attch_yn==Y' --> class="input_n" style="width:50%" allow="{{rfile.allow_ext}}"/>
+                             <!-- IFC END 'rfile.template_cd!=2019285' -->
+                            
+                            <!-- IF START 'rfile.sample_file_name' -->
+                            <input type="button" class="down4" style="float:none;vertical-align:top" value="양식 다운로드" onclick="filedown('file.path.bcont_template','{{rfile.sample_file_path}}{{rfile.sample_file_name}}','{{rfile.sample_file_name}}')"/>
+                            <!-- IF END 'rfile.sample_file_name' -->
+                            <!-- IF START 'rfile.allow_ext' -->
+                            <!-- <br><span class="caution-text"> ※ {{rfile.allow_ext}} 파일만 첨부 가능</span> -->
+                            <!-- IF END 'rfile.allow_ext' -->
+                            <!-- IFNOT END 'rfile.file_name' -->
+                            <!-- IF START 'rfile.file_name' --> 
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%"><font color="#0000ff">등록완료</font>(파일크기:{{rfile.file_size}})</td>
+                                    <td width="50%">
+                                        <input type="button" value="다운로드" style="width:100px;margin:2px;" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"/>
+                                        &nbsp;<input type="button" value="삭제" style="width:100px;margin:2px;" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}','{{rfile.attch_yn}}')"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- IF END 'rfile.file_name' -->
+                        </div>
+                    </div>
+                    <!-- LOOP END 'rfile' -->
+                    <!-- IFC START 'mgubun==02' -->
+                    <!-- IFC START 'template==02' -->
+                    <!-- IF START 'view_bank_valid' -->
+                    <div class="file_innner">
+                        <div class="file_left" style="width: 35%;" >계좌인증</div>
+                        <div class="file_right" style="width: 65%;">
+                            <span class="spn_bank_valid_result" style="line-height: 34px;"></span>
+                            <input type="button" id="btn_bank_valid" class="down4" style="float:none;vertical-align:top" value="계좌인증" onclick="fBankValid()"/>
+                        </div>
+                    </div>
+                    <!-- IF END 'view_bank_valid' -->
+                    <div class="file_innner">
+                        <div class="file_left" style="width: 35%;" >신청시 사용할 공인인증서</div>
+                        <div class="file_right" style="width: 65%;">
+                            <input type="radio"  name="cert_type" value="comp" errmsg="신청시 사용할 공인인증서를 선택해주세요." required="Y" onClick="removeAttr('form1', 'jumin7', 'required');">사업자용
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="cert_type" value="person" errmsg="신청시 사용할 공인인증서를 선택해주세요." required="Y" onClick="setAttr('form1', 'jumin7', 'required', 'Y');">개인용
+                            <input type="text" name="jumin7" onkeydown="num_only()" onkeypress="num_only()" style="width:130px;float:none;margin-top:0px" maxlength="7" fixbyte="7" placeholder="주민번호 뒤 7자리" hname="주민번호 뒤 7자리">
+                        </div>
+                    </div>
+                    <!-- IFC END 'mgubun==02' -->
+                </div>
+            </div>
+
+            <div class="dc-section">
+                <div class="dc-file-wrap">
+
+                </div>
+            </div>
+
+            <div class="dc-section">
+                <div class="dc-notice-wrap">
+                    <ul class="depth1_list">
+                        <li>
+                            <p class="title">"{{template_name}}"에 대해 온라인 신청시 <font color="red">공인인증서로 전자서명</font>을 하여 제출 합니다.</p>
+                            <!-- IFC START 'mgubun==01' -->
+                            <ul class="depth2_list">
+                                <li>법인사업자 : 범용 사업자용 공인인증서, 나이스다큐 전용 공인인증서를 이용하여 전자서명 (금융기관용 공인인증서 이용 불가)</li>
+                                <li>인증서 발급방법 [거래은행 사이트(즉시발급), <a href="javascript:OpenWindow('../html/contract/subscription_pop.html','cert','500','630');" style="color:blue;text-decoration:underline">인증서발급</a>] 또는 [한국전자인증(영업일로부터 5일 소요), <a href="https://raadmin.crosscert.com/customer/dnbkorea/index.html" target="_new" style="color:blue;text-decoration:underline">인증서발급]</a></li>
+                                <li>공인인증서 발급에 대한 문의는 한국전자인증 고객센터 ☎ 1566-0566</li>
+                            </ul>
+                            <!-- IFC END 'mgubun==01' -->
+                            <!-- IFC START 'mgubun==02' -->
+                            <ul class="depth2_list">
+                                <li>개인사업자 : 범용 사업자용 공인인증서, 나이스다큐 전용 공인인증서, 개인 범용 공인인증서를 이용하여 전자서명 (금융기관용 공인인증서 이용 불가)</li>
+                                <li>개인 범용공인인증서(4,400원)를 이용하여 전자서명을 하는 경우 주민등록번호 뒤 7자리 필수 입력</li>
+                                <li>"주민등록법" 제37조(벌칙) 제10항(2009. 4 .1. 시행)에 의해 타인의 주민등록번호를 부정사용하는 자는 3년 이하의 징역 또는 1천만원 이하의 벌금이 부과될 수 있습니다.</li>
+                                <li>공인인증서 발급방법 [거래은행 사이트(즉시발급), <a href="javascript:OpenWindow('../html/contract/subscription_pop.html','cert','500','630');" style="color:blue;text-decoration:underline">인증서발급</a>] 또는 [한국전자인증(영업일로부터 5일 소요), <a href="https://raadmin.crosscert.com/customer/dnbkorea/index.html" target="_new" style="color:blue;text-decoration:underline">인증서발급]</a></li>
+                                <li>공인인증서 발급에 대한 문의는 한국전자인증 고객센터 ☎ 1566-0566</li>
+                            </ul>
+                            <!-- IFC END 'mgubun==02' -->
+                        </li>
+                        <li>
+                            <p class="title">{{template.agree_html}}</p>
+                        </li>
+                        <li>
+                            <p class="title">시스템에 대한 문의는 나이스다큐 SDD서비스 고객센터 ☎ 02-788-9097</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IFNOT START 'readonly' -->
+            <div class="btn-section type1">
+                <a onClick="formSubmit(document.forms['form1']);" style="cursor:pointer" class="submit">신청</a>
+                <a onClick="window.close();" style="cursor:pointer" class="cancel">취소</a>
+            </div>
+            <!-- IFNOT END 'readonly' -->
+
+        </div>
+    </div>
+</form>
+{{form_script}}
+
+<iframe name="save_ifm" src="about:blank" width="0" height="0" frameborder="0"></iframe>
+
+<script language="javascript">
+	attachOnload(function() {
+        replaceInput('{{vendcd}}'.substring(0,3), 'vendcd1_2', document.all.__html);
+        replaceInput('{{vendcd}}'.substring(3,5), 'vendcd2_2', document.all.__html);
+        replaceInput('{{vendcd}}'.substring(5), 'vendcd3_2', document.all.__html);
+        replaceInput('{{mgubun}}', 'c_gubun', document.all.__html);
+        replaceInput('{{_sysdate}}'.substring(0,4), 'cont_year_area', document.all.__html);
+        replaceInput('{{_sysdate}}'.substring(4,6), 'cont_month_area', document.all.__html);
+        replaceInput('{{_sysdate}}'.substring(6,8), 'cont_day_area', document.all.__html);
+
+        SetFormValue("form1","e_gubun","{{mgubun}}");
+    });
+
+    function formSubmit(f){
+    	
+    	if(f['cont_html_onsubmit']){
+            Function("contValid="+f['cont_html_onsubmit'].value+"();")();
+            if(contValid==false)
+            	return false;
+		}
+
+        if(validate(f)){
+
+            if(!confirm("신청 하시겠습니까?")){
+                return;
+            }
+
+            saveHtml();
+
+        }
+
+        return;
+    }
+
+    function saveHtml(){
+        var f = document.forms["form1"];
+        setDivInputValue("__html");
+        splitHtml(f, 'cont_html', false);
+        splitHtml(f, 'cont_html_rm', true);
+        f.target = "save_ifm";
+        f.action = "./subscription_save.jsp?{{query}}";
+        chkSubmit = "1";
+        f.submit();
+    }
+
+    function fSign(){
+        var f = document.forms["form1"];
+        var vendcd = f['vendcd'].value;
+        var cont_hash = f['cont_hash'].value;    // 계약서류 hash에 서명한 값
+
+        if(cont_hash==""){
+            alert("전자서명 데이터가 존재 하지 않습니다. 고객센터(02-788-9097)로 문의해 주세요.");
+            return false;
+        }
+
+        // 환경설정 함수 호출
+        var cert = GetFormValue("form1","cert_type");
+        if(cert) {
+            if(cert=="person") {
+                vendcd = GetFormValue("form1","birthday")+GetFormValue("form1","jumin7");
+            }
+            setUniSign(cert);
+        } else {
+            setUniSign("comp");
+        }
+
+        unisign.SignDataNVerifyVID( cont_hash, null, vendcd,
+            function(rv, signedText, certAttrs)
+            {
+                sSignData = signedText;
+
+                if ( null === sSignData || '' === sSignData || false === rv )
+                {
+                    unisign.GetLastError(
+                        function(errCode, errMsg)
+                        {
+                            if(errCode == "999"){
+                                //사용자 취소
+                            }else if(errCode == "14208"){
+                                alert("선택한 인증서는 귀사의 인증서가 아닙니다.");
+                            }else{
+                                alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
+                            }
+                        }
+                    );
+                } else {
+                    //console.log(JSON.stringify(certAttrs,null,2));
+                    //인증서 확인 단계
+                    var signEnddt = getFormatDate(certAttrs.validateTo);
+                    if (signEnddt.length < 8){
+                        alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                        return;
+                    }
+                    if (!isValidDate(signEnddt))
+                    {
+                        alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                        return;
+                    }
+                    if (js_isDateCmp(signEnddt, "{{_sysdate}}"))
+                    {
+                        alert("유효기간이 지난 인증서 입니다.\n\n다시 한번 인증서를 확인 하십시오.");
+                        return;
+                    }
+
+                    f['sign_dn'].value = certAttrs.subjectName;
+                    f['sign_data'].value = sSignData;
+                    f.target = "";
+                    f.action = "";
+                    f.submit();
+                }
+            }
+        );
+    }
+
+    function delFile(seq, file_ext, attch_yn){
+        var area = document.getElementById("rfile_area_"+seq);
+
+        var html = "";
+        html += '<input type="hidden" name="rfile_seq" value="'+seq+'"/>';
+        html += '<input type="hidden" name="rfile_required" value="'+attch_yn+'"/>';
+        if(attch_yn=='Y') {
+            html += '<input type="file" name="rfile_'+seq+'"  hname="첨부파일" class="input_n" required="Y" style="width:50%" allow="'+file_ext+'"/>';
+        } else {
+            html += '<input type="file" name="rfile_'+seq+'"  hname="첨부파일" class="input_n" style="width:50%" allow="'+file_ext+'"/>';
+        }
+        if(file_ext !=''){
+            html += '<span class="caution-text"> ※ '+file_ext+' 파일만 첨부 가능</span>'
+        }
+        area.innerHTML = html;
+    }
+
+    function jusoInput() {
+        var addr = "";
+        var f = document.forms['form1'];
+
+        addr = f['address'].value;
+        if(f['addr_detail'].value != '')
+            addr += ", " + f['addr_detail'].value;
+        if(f['address2'].value != '')
+            addr += " " + f['address2'].value;
+
+        replaceInput(addr, 'address_area_2', document.all.__html);
+    }
+
+    function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn){
+        var f = document.forms['form1'];
+        f['post_code'].value=zipNo;
+        replaceInput(zipNo, 'post_code', document.all.__html);
+        if(roadAddrPart2 != "") {
+            f['address'].value=roadAddrPart1;
+            f['address2'].value=roadAddrPart2;
+        } else {
+            f['address'].value=roadAddrPart1;
+        }
+        f['addr_detail'].value=addrDetail;
+        jusoInput();
+    }
+
+    //한글만 허용
+    function han_only(el) {
+        var no_han = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힝|\s|()]/;
+        var val = el.value;
+        if(no_han.test(val))
+        {
+            el.value = val.replace(no_han, "");
+        }
+    }
+
+    //한글,영문만 허용
+    function haneng_only(el) {
+        var no_han = /[^a-zA-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|\s|()]/;
+        var val = el.value;
+        if(no_han.test(val))
+        {
+            el.value = val.replace(no_han, "");
+        }
+    }
+
+    //한글,영문,숫자만 허용
+    function hanengnum_only(el) {
+        var no_han = /[^0-9a-zA-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|\s|()]/;
+        var val = el.value;
+        if(no_han.test(val))
+        {
+            el.value = val.replace(no_han, "");
+        }
+    }
+
+    //이메일
+    function email_only(el) {
+        var no_email =/[^0-9a-zA-Z-_\.@]/;
+        var val = el.value;
+        if(no_email.test(val))
+        {
+            el.value = val.replace(no_email, "");
+        }
+    }
+
+    //숫자만 허용
+    function n_only(event) {
+        event = event || window.event;
+        var keyID = (event.which) ? event.which : event.keyCode;
+        if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+            return;
+        else
+            event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    }
+
+    //숫자,-만 허용
+    function nm_only(event) {
+        event = event || window.event;
+        var keyID = (event.which) ? event.which : event.keyCode;
+        if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 109 || keyID == 189 )
+            return;
+        else
+            event.target.value = event.target.value.replace(/[^0-9|-]/g, "");
+    }
+
+    //숫자,소숫점만 허용
+    function np_only(event) {
+        event = event || window.event;
+        var keyID = (event.which) ? event.which : event.keyCode;
+        if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 109 || keyID == 189 )
+            return;
+        else
+            event.target.value = event.target.value.replace(/[^0-9|.]/g, "");
+    }
+
+    function fBankValid(){
+        var f = document.forms['form1'];
+        if(f["c_bankno"].value == ""){
+            alert("계좌정보를 먼저 입력 하세요.");
+            document.getElementById("pdf_nocomment").scrollIntoView();
+            return;
+        }
+        var url = "../contract/pop_bank_valid.jsp?callback=fBankValidCallbak"
+        OpenWindows(url,"pop_bank_valid","600","300");
+    }
+    function fBankValidCallbak(data){
+        var f = document.forms["form1"];
+        if(f['cont_html_bank_valid_callback']){
+            Function("bankValid="+f['cont_html_bank_valid_callback'].value)();
+            if(bankValid(data)==false){
+                return false;
+            }
+        }
+        document.getElementById("btn_bank_valid").style.display = "none";
+        var bank_valid_result = data['bank_name']+ "/ 계좌번호:" + data['bank_no'] +"/ 예금주 "+ data['bank_user'] + "(<font style='color:blue'>인증완료</font>)"
+        replaceInput(bank_valid_result,"spn_bank_valid_result",document.all);
+
+    }
+
+</script>

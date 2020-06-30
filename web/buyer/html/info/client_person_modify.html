@@ -1,0 +1,147 @@
+<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
+<input type="hidden" name="person_seq" value="{{person_seq}}">
+<div class="div_table">
+    <div class="util-row">
+        <div class="push-left"><h3>담당자 정보</h3></div>
+    </div>
+
+    <table>
+        <colgroup>
+            <col width="17%">
+            <col width="37%">
+            <col width="15%">
+            <col width="31%">
+        </colgroup>
+        <tr>
+            <th class="req-check">아이디</th>
+            <!-- IFNOT START 'modify' -->
+            <td colspan="3">
+                <input type="hidden" name="chk_id">
+                <input type="text" name="user_id" style="width:170px" maxlength="20" style="ime-mode:disabled" onchange="document.forms['form1']['chk_id'].value=''">
+                <button type="button"  class="sbtn ico-confirm" onClick="chkId()"><span></span>중복확인</button>
+                <font color="gray">6 ~ 20자리로 입력하세요. (영문자, 숫자만 가능)</font>
+            </td>
+            <!-- IFNOT END 'modify' -->
+            <!-- IF START 'modify' -->
+            <td colspan="3">
+                {{person.user_id}}
+            </td>
+            <!-- IF END 'modify' -->
+        </tr>
+        <tr>
+            <th class="req-check">비밀번호 </th>
+            <td colspan="3"><input type="password" name="passwd" style="170px"  maxlength="20"> (변경할 비밀번호)<br>
+                <font color="gray">※ 영문, 숫자 1자 이상, 특수문자 1자 이상 포함한 8 ~ 20자리로 입력하세요.</font></td>
+        </tr>
+        <tr>
+            <th class="req-check">비밀번호 확인</th>
+            <td colspan="3"><input type="password" name="passwd2" style="170px" maxlength="20"></td>
+        </tr>
+        <tr>
+            <th class="req-check">담당자명 </th>
+            <td><input type="text" name="user_name" size="10" maxlength="30" style="width:98%"></td>
+            <th class="req-check">직위</th>
+            <td><input type="text" name="position" maxlength="20" style="width:98%"></td>
+        </tr>
+        <tr>
+            <th class="req-check">이메일 </th>
+            <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:98%" ></td>
+            <th class="req-check">전화번호 </th>
+            <td>
+                <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="예시)02-788-9097">
+            </td>
+        </tr>
+        <tr>
+            <th class="req-check">부서명 </th>
+            <td>
+                <input type="text" name="division" maxlength="50" style="width:98%">
+            </td>
+            <th>팩스번호</th>
+            <td>
+                <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="예시)02-788-9097">
+            </td>
+        </tr>
+        <tr>
+            <th class="req-check">휴대전화 </th>
+            <td colspan="3">
+                <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
+                    <option value="">선택</option>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                </select> -
+                <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
+                <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onKeyUp=" movePrv('hp2')">
+            </td>
+        </tr>
+        <tr>
+            <th class="req-check">사용자 유형</th>
+            <td>
+                <!-- LOOP START 'code_user_level' -->
+                <label><input type="radio" name="user_level" value="{{code_user_level.id}}" onclick="chgUserLevel()"/> {{code_user_level.value}}</label>
+                <!-- LOOP END 'code_user_level' -->
+            </td>
+            <th class="req-check">사용여부</th>
+            <td>
+                <input type="radio" name="use_yn" value="Y"/> 사용
+                <input type="radio" name="use_yn" value="N"/> 미사용
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="btn-group-wrap">
+    <button type="submit" class="btn color ico-save" ><span></span>저장</button>
+    <!-- IF START 'modify' -->
+    <!-- IF START 'btn_del' -->
+    <button type="button" class="btn color ico-delete" onclick="if(confirm('삭제 하시겠습니까?')){location.href='person_delete.jsp?{{query}}&callback=client_person_list.jsp';}" ><span></span>삭제</button>
+    <!-- IF END 'btn_del' -->
+    <!-- IF END 'modify' -->
+    <button type="button" class="btn color ico-list" onclick="location.href='person_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+</div>
+</form>
+<script type="text/javascript">
+    function formSubmit(f){
+        if(validate(f)){
+           if(confirm("저장 하시겠습니까?")){
+               return true;
+           }
+        }
+        return false;
+    }
+
+    function chkId(){
+        var f = document.forms['form1'];
+        var user_id = f['user_id'].value;
+        if(user_id==""){
+            alert("아이디를 입력 하여 주십시오.");
+            return;
+        }
+        call("../member/idchk.jsp?user_id="+user_id);
+    }
+
+    function validChkId(){
+        var f = document.forms['form1'];
+        if(f['chk_id'].value ==""){
+            alert("아이디 중복 확인을 해 주십시오.");
+            return false;
+        }
+        return true;
+    }
+    
+
+    function chgUserLevel(){
+    	var s_user_level  = "{{person.user_level}}";
+    	var user_level = GetFormValue("form1","user_level");
+    	if(s_user_level == "10" && user_level!="10"){//전체관리 계정 권한 해제 문구
+    		alert("전체관리자 계정은 해제 할 수 없습니다.\n\n전체관리자 계정은 다른 담당자에게 양도를 통해서만 해제 가능 합니다.");
+    		SetFormValue("form1","user_level", s_user_level);
+    		return;
+    	}
+    }
+
+</script>
+{{form_script}}

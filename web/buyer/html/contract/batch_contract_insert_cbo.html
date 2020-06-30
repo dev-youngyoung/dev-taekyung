@@ -1,0 +1,482 @@
+<script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
+<script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>계약서 작성 업체정보</h3>
+	    </div>
+	</div>
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tr>
+			<th>업체명</th>
+			<td>{{member_name}}</td>
+			<th>사업자번호</th>
+			<td>{{vendcd2}}</td>
+		</tr>
+		<tr>
+			<th>대표자명</th>
+			<td>{{boss_name}}</td>
+			<th>계약서종류</th>
+			<td>
+				<select id="template_cd" onchange="setColumns(this.value);" style="width:200px;">
+					<option value="2019030">근로계약서</option>
+					<option value="2019126">근로계약서(관제)</option>
+					<option value="2019031">연봉계약서</option>
+					<option value="2019127">연봉계약서(관제)</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-right" style="z-index:1">
+			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
+			<button type="button" class="sbtn color ico-excel auth_css"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>엑셀다운로드</button>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="realgrid" style="width: 100%; height: 400px;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="div_table lineTable">
+	<table>
+		<colgroup>
+			<col width="12%">
+			<col width="22%">
+			<col width="22%">
+			<col width="22%">
+			<col width="22%">
+		</colgroup>
+		<tr>
+			<th></th>
+			<th>근로계약서</th>
+			<th>근로계약서(관제)</th>
+			<th>연봉계약서</th>
+			<th>연봉계약서(관제)</th>
+		</tr>
+		<tr>
+			<th>계약구분</th>
+			<td colspan="2" align="center">1 : 신입<br/>2 : 경력<br/>3 : 기간제<br/>4 : 경력수습</td>
+			<td align="center">1 : 일반(수당無)<br/>2 : 일반(수당有)<br/>3 : 수습(수당無)<br/>4 : 수습(수당有)<br/>5 : 경력수습(수당無)<br/>6 : 경력수습(수당有)</td>
+			<td align="center">1 : 일반<br/>2 : 수습<br/>3 : 경력수습</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="btn-group-wrap">
+	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>일괄전송</button>
+</div>
+
+
+<script language="javascript">
+
+var dataProvider = null;
+var gridView = null;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
+    //RealGridJS.setTrace(true);
+
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns('2019030');
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: false}
+        ,stateBar: {visible: false}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "삭제하시겠습니까 ?"
+        }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg);
+
+        });
+}
+
+function setColumns(template_cd) {
+    var columns = [];
+
+    columns.push({name:"birth_date" ,fieldName:"birth_date",dataType:"text" ,header:"생년월일" ,width:90 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"member_name" ,fieldName:"member_name",dataType:"text" ,header:"이름" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"address" ,fieldName:"address",dataType:"text" ,header:"주소" ,width:300 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"tel_num" ,fieldName:"tel_num",dataType:"text" ,header:"전화번호" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp1" ,fieldName:"hp1",dataType:"text" ,header:"휴대폰(앞)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp2" ,fieldName:"hp2",dataType:"text" ,header:"휴대폰(중간)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp3" ,fieldName:"hp3",dataType:"text" ,header:"휴대폰(마지막)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"email" ,fieldName:"email",dataType:"text" ,header:"이메일" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"계약일자" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+
+    if (template_cd == '2019030' || template_cd == '2019126') {//근로계약서,근로계약서(관제)
+		columns.push({name:"cont_gubun",fieldName:"cont_gubun",header:"계약구분",width:70,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"cont_text_01",fieldName:"cont_text_01",header:"업무",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"cont_text_02",fieldName:"cont_text_02",header:"업무수행 장소",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"cont_text_03",fieldName:"cont_text_03",header:"직위",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_sdate",fieldName:"cont_sdate",header:"근로계약시작일",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_edate",fieldName:"cont_edate",header:"근로계약종료일",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_07",fieldName:"cont_text_07",header:"수습시작일",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_10",fieldName:"cont_text_10",header:"수습종료일",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_13",fieldName:"cont_text_13",header:"수습개월수",width:120,readOnly:false , movable:false ,sortable:false});
+        if (template_cd == '2019126') {
+            columns.push({name:"cont_text_14",fieldName:"cont_text_14",header:"주간 시업시각",width:120,readOnly:false , movable:false ,sortable:false});
+            columns.push({name:"cont_text_15",fieldName:"cont_text_15",header:"주간 종업시각",width:120,readOnly:false , movable:false ,sortable:false});
+            columns.push({name:"cont_text_16",fieldName:"cont_text_16",header:"야간 시업시각",width:120,readOnly:false , movable:false ,sortable:false});
+            columns.push({name:"cont_text_17",fieldName:"cont_text_17",header:"야간 종업시각",width:120,readOnly:false , movable:false ,sortable:false});
+            columns.push({name:"cont_text_18",fieldName:"cont_text_18",header:"주간 휴게시각",width:120,readOnly:false , movable:false ,sortable:false});
+            columns.push({name:"cont_text_19",fieldName:"cont_text_19",header:"야간 휴게시각",width:120,readOnly:false , movable:false ,sortable:false});
+		}
+    } else if (template_cd == '2019031') {//연봉계약서
+        columns.push({name:"cont_gubun",fieldName:"cont_gubun",header:"계약구분",width:70,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_01",fieldName:"cont_text_01",header:"연봉",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_03",fieldName:"cont_text_03",header:"수당",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_07",fieldName:"cont_text_07",header:"기본급",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_08",fieldName:"cont_text_08",header:"기본급 기준시간",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_09",fieldName:"cont_text_09",header:"시간 외 수당",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_10",fieldName:"cont_text_10",header:"시간 외 수당 기준시간",width:150,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_12",fieldName:"cont_text_12",header:"식대",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_11",fieldName:"cont_text_11",header:"차량보조금",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_sdate",fieldName:"cont_sdate",header:"연봉계약시작일",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_edate",fieldName:"cont_edate",header:"연봉계약종료일",width:120,readOnly:false , movable:false ,sortable:false});
+	} else {//연봉계약서(관제)
+        columns.push({name:"cont_gubun",fieldName:"cont_gubun",header:"계약구분",width:70,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_01",fieldName:"cont_text_01",header:"연봉",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_03",fieldName:"cont_text_03",header:"수당",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_07",fieldName:"cont_text_07",header:"기본급",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_08",fieldName:"cont_text_08",header:"기본급 기준시간",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_09",fieldName:"cont_text_09",header:"시간 외 수당",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_10",fieldName:"cont_text_10",header:"시간 외 수당 기준시간",width:150,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"cont_text_24",fieldName:"cont_text_24",header:"야간근로 수당",width:120,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"cont_text_25",fieldName:"cont_text_25",header:"야간근로 수당 기준시간",width:150,readOnly:false , movable:false ,sortable:false});
+		columns.push({name:"cont_text_13",fieldName:"cont_text_13",header:"식대",width:120,readOnly:false , movable:false ,sortable:false});
+       // columns.push({name:"cont_text_11",fieldName:"cont_text_11",header:"숙직 수당",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_text_12",fieldName:"cont_text_12",header:"지원 수당",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_sdate",fieldName:"cont_sdate",header:"연봉계약시작일",width:120,readOnly:false , movable:false ,sortable:false});
+        columns.push({name:"cont_edate",fieldName:"cont_edate",header:"연봉계약종료일",width:120,readOnly:false , movable:false ,sortable:false});
+	}
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+}
+
+function excelRead(){
+
+    var files;
+
+    if(window.event.target)
+        files = window.event.target.files;
+    else if(window.event.srcElement)
+        files = window.event.srcElement.files;
+
+    if(!files) {
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
+        return true;
+    }
+    var i, f;
+    for (i = 0, f = files[i]; i != files.length; ++i) {
+        var reader = new FileReader();
+        var name = f.name;
+        reader.onload = function (e) {
+            var data = e.target.result;
+            //var workbook = XLSX.read(data, { type: 'binary' });
+            var arr = fixdata(data);
+            workbook = XLSX.read(btoa(arr), { type: 'base64' });
+            process_wb(workbook);
+            /* DO SOMETHING WITH workbook HERE */
+        };
+        //reader.readAsBinaryString(f);
+        reader.readAsArrayBuffer(f);
+    }
+}
+
+function process_wb(wb) {
+    var output = "";
+    output = to_json(wb);
+    var sheetNames = Object.keys(output);
+    if (sheetNames.length > 0) {
+        try{
+            output[sheetNames][0];
+        }catch(e){
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
+            return;
+        }
+
+        var colObj = output[sheetNames][0];
+        var rows = output[sheetNames];
+        var data = [];
+        var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+
+        for(var i = 1 ; i < rows.length ; i++){
+            var row = rows[i];
+            var cols = [];
+            //입력값 validation
+			cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC"];
+			fields = ["birth_date","member_name","address","tel_num","hp1","hp2","hp3","email","cont_date"];
+			if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("생년월일에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)");return;}
+			if(row[cols[0]].length != 10){alert("생년월일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (A열,"+(i+1)+"행)");return;}
+			if(row[cols[1]] == null || row[cols[1]].toString().trim() == ""){alert("이름에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)");return;}
+			if(row[cols[2]] == null || row[cols[2]].toString().trim() == ""){alert("주소에 빈값이 들어가 있습니다.(C열,"+(i+1)+"행)");return;}
+			//if(row["D"] == null || row["D"].toString().trim() == ""){alert("담당자명에 빈값이 들어가 있습니다.(D열,"+(i+1)+"행)");return;}
+			if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("휴대폰(앞)에 빈값이 들어가 있습니다.(E열,"+(i+1)+"행)");return;}
+			if(row[cols[5]] == null || row[cols[5]].toString().trim() == ""){alert("휴대폰(중간)에 빈값이 들어가 있습니다.(F열,"+(i+1)+"행)");return;}
+			if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("휴대폰(마지막)에 빈값이 들어가 있습니다.(G열,"+(i+1)+"행)");return;}
+			if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("이메일에 빈값이 들어가 있습니다.(H열,"+(i+1)+"행)");return;}
+            if(!pattern.test(row[cols[7]].toString().trim())){alert("이메일이 올바르지 않습니다.(H열,"+(i+1)+"행)");return;}
+            if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("계약일자에 빈값이 들어가 있습니다.(I열,"+(i+1)+"행)");return;}
+            if(row[cols[8]].length != 10){alert("계약일자 형식이 올바르지 않습니다. 입력형식:1999-01-02 (I열,"+(i+1)+"행)");return;}
+
+            var template_cd = document.getElementById("template_cd").value;
+            if (template_cd == '2019030' || template_cd == '2019126') {
+                fields.push("cont_gubun");
+                fields.push("cont_text_01");
+                fields.push("cont_text_02");
+                fields.push("cont_text_03");
+                fields.push("cont_sdate");
+                fields.push("cont_edate");
+                fields.push("cont_text_07");
+                fields.push("cont_text_10");
+                fields.push("cont_text_13");
+                if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("업무에 빈값이 들어가 있습니다.(" + cols[10] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("업무수행 장소에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("직위에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("근로계약시작일에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[13]].length != 10){alert("근로계약시작일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[13] + "열,"+(i+1)+"행)");return;}
+                if (row[cols[9]].toString().trim() == "3") {
+					if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("근로계약종료일에 빈값이 들어가 있습니다.(" + cols[14] + "열,"+(i+1)+"행)");return;}
+					if(row[cols[14]].length != 10){alert("근로계약종료일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[14] + "열,"+(i+1)+"행)");return;}
+				} else if (row[cols[9]].toString().trim() == "1" || row[cols[9]].toString().trim() == "4") {
+                    if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("수습시작일에 빈값이 들어가 있습니다.(" + cols[15] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[15]].length != 10){alert("수습시작일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[15] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("수습종료일에 빈값이 들어가 있습니다.(" + cols[16] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[16]].length != 10){alert("수습종료일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[16] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[17]] == null || row[cols[17]].toString().trim() == ""){alert("수습개월수에 빈값이 들어가 있습니다.(" + cols[17] + "열,"+(i+1)+"행)");return;}
+				}
+                if (template_cd == '2019126') {
+                    fields.push("cont_text_14");
+                    fields.push("cont_text_15");
+                    fields.push("cont_text_16");
+                    fields.push("cont_text_17");
+                    fields.push("cont_text_18");
+                    fields.push("cont_text_19");
+                    if(row[cols[18]] == null || row[cols[18]].toString().trim() == ""){alert("주간 시업시각에 빈값이 들어가 있습니다.(" + cols[18] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[19]] == null || row[cols[19]].toString().trim() == ""){alert("주간 종업시각에 빈값이 들어가 있습니다.(" + cols[19] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[20]] == null || row[cols[20]].toString().trim() == ""){alert("야간 시업시각에 빈값이 들어가 있습니다.(" + cols[20] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[21]] == null || row[cols[21]].toString().trim() == ""){alert("야간 종업시각에 빈값이 들어가 있습니다.(" + cols[21] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[22]] == null || row[cols[22]].toString().trim() == ""){alert("주간 휴게시각에 빈값이 들어가 있습니다.(" + cols[22] + "열,"+(i+1)+"행)");return;}
+                    if(row[cols[23]] == null || row[cols[23]].toString().trim() == ""){alert("야간 휴게시각에 빈값이 들어가 있습니다.(" + cols[23] + "열,"+(i+1)+"행)");return;}
+				}
+            } else if (template_cd == '2019031') {
+                fields.push("cont_gubun");
+                fields.push("cont_text_01");
+                fields.push("cont_text_03");
+                fields.push("cont_text_07");
+                fields.push("cont_text_08");
+                fields.push("cont_text_09");
+                fields.push("cont_text_10");
+                fields.push("cont_text_12");
+                fields.push("cont_text_11");
+                fields.push("cont_sdate");
+                fields.push("cont_edate");
+                if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("연봉에 빈값이 들어가 있습니다.(" + cols[10] + "열,"+(i+1)+"행)");return;}
+				if((row[cols[11]] == null || row[cols[11]].toString().trim() == "") && (row[cols[9]].toString().trim() == '2' || row[cols[9]].toString().trim() == '4')){alert("수당에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("기본급에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("기본급 기준시간에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("시간 외 수당에 빈값이 들어가 있습니다.(" + cols[14] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("시간 외 수당 기준시간에 빈값이 들어가 있습니다.(" + cols[15] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("식대에 빈값이 들어가 있습니다.(" + cols[16] + "열,"+(i+1)+"행)");return;}
+				if((row[cols[17]] == null || row[cols[17]].toString().trim() == "") && (row[cols[9]].toString().trim() == '2' || row[cols[9]].toString().trim() == '4' || row[cols[9]].toString().trim() == '6')){alert("차량보조금에 빈값이 들어가 있습니다.(" + cols[17] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[18]] == null || row[cols[18]].toString().trim() == ""){alert("연봉계약시작일에 빈값이 들어가 있습니다.(" + cols[18] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[18]].length != 10){alert("연봉계약시작일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[18] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[19]] == null || row[cols[19]].toString().trim() == ""){alert("연봉계약종료일에 빈값이 들어가 있습니다.(" + cols[19] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[19]].length != 10){alert("연봉계약종료일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[19] + "열,"+(i+1)+"행)");return;}
+            } else {
+                fields.push("cont_gubun");
+                fields.push("cont_text_01");
+                fields.push("cont_text_03");
+                fields.push("cont_text_07");
+                fields.push("cont_text_08");
+                fields.push("cont_text_09");
+                fields.push("cont_text_10");
+				fields.push("cont_text_24");
+				fields.push("cont_text_25");
+                fields.push("cont_text_13");
+             //   fields.push("cont_text_11");
+                fields.push("cont_text_12");
+                fields.push("cont_sdate");
+                fields.push("cont_edate");
+                if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("연봉에 빈값이 들어가 있습니다.(" + cols[10] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("수당에 빈값이 들어가 있습니다.(" + cols[11] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("기본급에 빈값이 들어가 있습니다.(" + cols[12] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("기본급 기준시간에 빈값이 들어가 있습니다.(" + cols[13] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("시간 외 수당에 빈값이 들어가 있습니다.(" + cols[14] + "열,"+(i+1)+"행)");return;}
+                if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("시간 외 수당 기준시간에 빈값이 들어가 있습니다.(" + cols[15] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("야간근로 수당에 빈값이 들어가 있습니다.(" + cols[16] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[17]] == null || row[cols[17]].toString().trim() == ""){alert("야간근로 수당 기준시간에 빈값이 들어가 있습니다.(" + cols[17] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[18]] == null || row[cols[18]].toString().trim() == ""){alert("식대에 빈값이 들어가 있습니다.(" + cols[18] + "열,"+(i+1)+"행)");return;}
+			//	if(row[cols[19]] == null || row[cols[19]].toString().trim() == ""){alert("숙직 수당에 빈값이 들어가 있습니다.(" + cols[19] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[19]] == null || row[cols[19]].toString().trim() == ""){alert("지원 수당에 빈값이 들어가 있습니다.(" + cols[19] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[20]] == null || row[cols[20]].toString().trim() == ""){alert("연봉계약시작일에 빈값이 들어가 있습니다.(" + cols[20] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[20]].length != 10){alert("연봉계약시작일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[20] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[21]] == null || row[cols[21]].toString().trim() == ""){alert("연봉계약종료일에 빈값이 들어가 있습니다.(" + cols[21] + "열,"+(i+1)+"행)");return;}
+				if(row[cols[21]].length != 10){alert("연봉계약종료일 형식이 올바르지 않습니다. 입력형식:1999-01-02 (" + cols[21] + "열,"+(i+1)+"행)");return;}
+            }
+
+            var rowdata={};
+            for(var j = 0 ; j < cols.length; j++){
+                if(row[cols[j]]){
+                    rowdata[fields[j]] = row[cols[j]].trim();
+                }else{
+                    rowdata[fields[j]] = "";
+                }
+            }
+            data.push(rowdata);
+            //gridView.setProgress(0,cols.length,i,"loading...");
+        }
+        dataProvider.setRows(data);
+        gridView.closeProgress();
+       // alert("정 되었습니다.");
+    }
+}
+
+
+function to_json(workbook) {
+    var result = {};
+    workbook.SheetNames.forEach(
+        function (sheetName) {
+            var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], { header: "A" });
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+        }
+    );
+    return result;
+}
+
+function fixdata(data) {
+    var o = "", l = 0, w = 10240;
+    for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+    o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+    return o;
+}
+
+function excelDown(){
+
+	var fileNmae = "계약서일괄생성";
+	
+    gridView.exportGrid({
+        type: "excel",
+        target: "local",
+        fileName: fileNmae+".xlsx",
+        showProgress: false,
+        applyDynamicStyles: false,
+        progressMessage: "다운로드 진행 중입니다.",
+        indicator: "hidden",
+        header: "visible",
+        footer: "hidden",
+        compatibility: "2007",
+        done: function () {  //내보내기 완료 후 실행되는 함수
+        }
+    });
+}
+
+var submit_chk = false;
+function submitItem(){
+	if(submit_chk){
+		alert("처리 중입니다.");
+		return;
+	}
+	if(dataProvider.getRowCount() == 0){
+		alert("계약서 정보가 존재하지 않아 저장을 하실 수 없습니다.");
+		return;
+	}
+
+	if(!confirm("계약서를 일괄 전송 하시겠습니까?")){
+		return;
+	}
+	
+    gridView.commit();
+    var currRow = gridView.getCurrent().dataRow;
+    var url = "batch_contract_insert_a_cbo.jsp";
+
+    var grid_string = "";
+    if(dataProvider.getRowCount()>0){
+        var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
+        grid_string =encodeURIComponent(JSON.stringify(jRowsData))
+    }
+
+    var data = {
+         grid:grid_string
+		,template_cd:document.getElementById("template_cd").value
+        ,member_no:"{{member_no}}"
+    };
+
+    console.log(data);
+    submit_chk = true;
+    $.ajax({
+        url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+            data = data.trim();
+            alert(data);
+            dataProvider.clearRowStates(true);
+            submit_chk = false;
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\\n" + "error:" + error);
+            submit_chk = false;
+        }
+    });
+}
+
+</script>

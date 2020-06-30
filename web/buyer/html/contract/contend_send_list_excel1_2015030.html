@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>계약현황</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+</head>
+<body>
+<table width="800" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+  		<td align="center"><b style="font-size:18pt">{{title}}<b></td>
+  	</tr>
+  	<tr>
+  		<td><br></td>
+  	</tr>
+  	<tr>
+  		<td>
+			<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+  				<tr align="center">
+    				<td bgcolor="#cccccc" rowspan="2">계약명</td>
+    				<td bgcolor="#cccccc" rowspan="2">거래처명</td>
+    				<td bgcolor="#cccccc" rowspan="2">사업자등록번호</td>
+    				<td bgcolor="#cccccc" rowspan="2">계약일자</td>
+    				<td bgcolor="#cccccc" rowspan="2">계약시작</td>
+    				<td bgcolor="#cccccc" rowspan="2">계약종료</td>
+    				<td bgcolor="#cccccc" rowspan="2">계약번호</td>
+
+    				<td bgcolor="#cccccc" rowspan="2">정기발주일</td>
+    				<td bgcolor="#cccccc" rowspan="2">업체배송일</td>
+    				<td bgcolor="#cccccc" rowspan="2">대금지급</td>
+    				<td bgcolor="#cccccc" rowspan="2">지급보류액</td>
+
+    				<td bgcolor="#cccccc" colspan="3">신세계쇼핑 데이터</td>
+    				<td bgcolor="#cccccc" colspan="3">인터넷쇼핑몰</td>
+    				<td bgcolor="#cccccc" colspan="3">모바일쇼핑몰</td>
+    				
+    				<td bgcolor="#cccccc" rowspan="2">수수료율</td>
+				
+				</tr>
+  				<tr>
+  					<td bgcolor="#cccccc">게시위치</td>
+  					<td bgcolor="#cccccc">게시크기</td>
+  					<td bgcolor="#cccccc">게시기간</td>
+  					<td bgcolor="#cccccc">게시위치</td>
+  					<td bgcolor="#cccccc">게시크기</td>
+  					<td bgcolor="#cccccc">게시기간</td>
+  					<td bgcolor="#cccccc">게시위치</td>
+  					<td bgcolor="#cccccc">게시크기</td>
+  					<td bgcolor="#cccccc">게시기간</td>
+
+				</tr>
+  				<!-- LOOP START 'list' -->
+				<tr>
+					<td align="center">{{list.cont_name}}</td>
+					<td align="center">{{list.cust_name}}</td>
+					<td align="center">{{list.vendcd}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.cont_sdate}}</td>
+					<td align="center">{{list.cont_edate}}</td>
+					<td align="center">{{list.cont_userno}}</td>
+
+					<td align="center">매월 {{list.order_day}}일</td>
+					<td align="center">{{list.delivery_day}}일 이내</td>
+					<td align="center">익월 {{list.price_day}}일까지</td>
+					<td align="center">판매금액 중 {{list.hold_rate}}% 이하</td>
+
+					<td align="center">{{list.data1}}</td>
+					<td align="center">{{list.data2}}</td>
+					<td align="center">{{list.data3}}</td>
+					<td align="center">{{list.internet1}}</td>
+					<td align="center">{{list.internet2}}</td>
+					<td align="center">{{list.internet3}}</td>
+					<td align="center">{{list.mobile1}}</td>
+					<td align="center">{{list.mobile2}}</td>
+					<td align="center">{{list.mobile3}}</td>
+					
+					<td align="center">{{list.commission}}%</td>
+				
+				</tr>
+  				<!-- LOOP END 'list' -->
+			</table>
+		</td>
+  	</tr>
+</table>
+</body>	
