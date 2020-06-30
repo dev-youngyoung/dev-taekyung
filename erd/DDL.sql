@@ -1,0 +1,4260 @@
+ALTER TABLE DOCU.TCB_AGREE_USER
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_AGREE_USER CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_AGREE_USER
+(
+  AGREE_NAME         VARCHAR2(20 BYTE),
+  AGREE_FIELD_SEQ    NUMBER(10),
+  AGREE_PERSON_NAME  VARCHAR2(20 BYTE),
+  AGREE_SEQ          NUMBER(10)                 NOT NULL,
+  AGREE_CD           CHAR(1 BYTE),
+  AGREE_PERSON_ID    VARCHAR2(20 BYTE),
+  TEMPLATE_CD        CHAR(7 BYTE)               NOT NULL,
+  USER_ID            VARCHAR2(20 BYTE)          NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_BOARD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_BOARD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_BOARD
+(
+  BOARD_ID   NUMBER(10)                         NOT NULL,
+  CATEGORY   VARCHAR2(20 BYTE)                  NOT NULL,
+  TITLE      VARCHAR2(255 BYTE)                 NOT NULL,
+  OPEN_DATE  VARCHAR2(8 BYTE),
+  FILE_EXT   VARCHAR2(5 BYTE),
+  OPEN_YN    CHAR(1 BYTE),
+  CONTENTS   CLOB,
+  DOC_NAME   VARCHAR2(255 BYTE),
+  FILE_PATH  VARCHAR2(255 BYTE),
+  FILE_NAME  VARCHAR2(255 BYTE),
+  FILE_SIZE  NUMBER(10),
+  REG_DATE   VARCHAR2(14 BYTE),
+  REG_ID     VARCHAR2(20 BYTE)
+)
+LOB (CONTENTS) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CLIENT_RFILE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CLIENT_RFILE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CLIENT_RFILE
+(
+  MEMBER_NO  CHAR(11 BYTE)                      NOT NULL,
+  RFILE_SEQ  NUMBER                             NOT NULL,
+  CLIENT_NO  CHAR(12 BYTE)                      NOT NULL,
+  FILE_PATH  VARCHAR2(255 BYTE),
+  FILE_NAME  VARCHAR2(255 BYTE),
+  FILE_EXT   VARCHAR2(5 BYTE),
+  FILE_SIZE  NUMBER,
+  REG_GUBUN  VARCHAR2(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_COMCODE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_COMCODE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_COMCODE
+(
+  CCODE     CHAR(4 BYTE)                        NOT NULL,
+  CODE      VARCHAR2(3 BYTE)                    NOT NULL,
+  CNAME     VARCHAR2(100 BYTE),
+  ETC1      VARCHAR2(50 BYTE),
+  ETC2      VARCHAR2(200 BYTE),
+  SORT      NUMBER(38),
+  USE_YN    CHAR(1 BYTE),
+  CONDT_YN  CHAR(1 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONTMASTER
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONTMASTER CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONTMASTER
+(
+  CONT_NO            CHAR(11 BYTE)              NOT NULL,
+  CONT_CHASU         NUMBER(10)                 NOT NULL,
+  MEMBER_NO          CHAR(11 BYTE)              NOT NULL,
+  FIELD_SEQ          NUMBER(10),
+  TEMPLATE_CD        CHAR(7 BYTE),
+  CONT_USERNO        VARCHAR2(40 BYTE),
+  CONT_NAME          VARCHAR2(255 BYTE),
+  CONT_DATE          VARCHAR2(8 BYTE),
+  CONT_SDATE         VARCHAR2(8 BYTE),
+  CONT_EDATE         VARCHAR2(8 BYTE),
+  SUPP_TAX           NUMBER(16,2),
+  SUPP_TAXFREE       NUMBER(16,2),
+  SUPP_VAT           NUMBER(16,2),
+  CONT_TOTAL         NUMBER(16,2),
+  MOD_REQ_DATE       VARCHAR2(14 BYTE),
+  MOD_REQ_MEMBER_NO  VARCHAR2(11 BYTE),
+  MOD_REQ_REASON     CLOB,
+  CONT_HASH          CLOB,
+  CONT_HTML          CLOB,
+  TRUE_RANDOM        VARCHAR2(10 BYTE),
+  REG_DATE           VARCHAR2(14 BYTE),
+  REG_ID             VARCHAR2(20 BYTE),
+  STATUS             CHAR(2 BYTE),
+  CHANGE_GUBUN       VARCHAR2(2 BYTE),
+  BID_KIND_CD        CHAR(2 BYTE),
+  SRC_CD             VARCHAR2(9 BYTE),
+  BATCH_GRP_CD       NUMBER(10),
+  AGREE_FIELD_SEQS   VARCHAR2(20 BYTE),
+  AGREE_PERSON_IDS   VARCHAR2(255 BYTE),
+  EFILE_YN           CHAR(1 BYTE),
+  CONT_ETC1          VARCHAR2(255 BYTE),
+  CONT_ETC2          VARCHAR2(255 BYTE),
+  CONT_ETC3          VARCHAR2(255 BYTE),
+  BID_NO             CHAR(9 BYTE),
+  BID_DEG            NUMBER(10),
+  STAMP_TYPE         VARCHAR2(1 BYTE),
+  PAPER_YN           CHAR(1 BYTE),
+  SUBSCRIPTION_YN    VARCHAR2(1 BYTE),
+  SIGN_TYPES         VARCHAR2(255 BYTE),
+  PROJECT_SEQ        NUMBER,
+  ORG_CONT_HTML      CLOB,
+  VERSION_SEQ        NUMBER(4)
+)
+LOB (ORG_CONT_HTML) STORE AS (
+  TABLESPACE TS_DOCU_D
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_D
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+LOB (MOD_REQ_REASON) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+LOB (CONT_HASH) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+LOB (CONT_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_ADD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_ADD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_ADD
+(
+  CONT_NO     CHAR(11 BYTE)                     NOT NULL,
+  CONT_CHASU  NUMBER(10)                        NOT NULL,
+  SEQ         NUMBER(10)                        NOT NULL,
+  ADD_COL1    VARCHAR2(255 BYTE),
+  ADD_COL2    VARCHAR2(255 BYTE),
+  ADD_COL3    VARCHAR2(255 BYTE),
+  ADD_COL4    VARCHAR2(255 BYTE),
+  ADD_COL5    VARCHAR2(1000 BYTE),
+  ADD_COL6    VARCHAR2(1000 BYTE),
+  ADD_COL7    VARCHAR2(255 BYTE),
+  ADD_COL8    VARCHAR2(255 BYTE),
+  ADD_COL9    VARCHAR2(255 BYTE),
+  ADD_COL10   VARCHAR2(255 BYTE),
+  ADD_COL11   VARCHAR2(255 BYTE),
+  ADD_COL12   VARCHAR2(255 BYTE),
+  ADD_COL13   VARCHAR2(255 BYTE),
+  ADD_COL14   VARCHAR2(255 BYTE),
+  ADD_COL15   VARCHAR2(255 BYTE),
+  ADD_COL16   VARCHAR2(255 BYTE),
+  ADD_COL17   VARCHAR2(255 BYTE),
+  ADD_COL18   VARCHAR2(255 BYTE),
+  ADD_COL19   VARCHAR2(255 BYTE),
+  ADD_COL20   VARCHAR2(255 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_AGREE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_AGREE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_AGREE
+(
+  AGREE_NAME           VARCHAR2(20 BYTE),
+  AGREE_FIELD_SEQ      NUMBER(10),
+  AGREE_PERSON_NAME    VARCHAR2(20 BYTE),
+  AGREE_SEQ            NUMBER(10)               NOT NULL,
+  AG_MD_DATE           VARCHAR2(14 BYTE),
+  MOD_REASON           VARCHAR2(2000 BYTE),
+  AGREE_CD             CHAR(1 BYTE),
+  R_AGREE_PERSON_NAME  VARCHAR2(100 BYTE),
+  AGREE_PERSON_ID      VARCHAR2(20 BYTE),
+  R_AGREE_PERSON_ID    VARCHAR2(20 BYTE),
+  CONT_NO              CHAR(11 BYTE)            NOT NULL,
+  CONT_CHASU           NUMBER(10)               NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_LOG
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_LOG CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_LOG
+(
+  CONT_NO      CHAR(11 BYTE)                    NOT NULL,
+  CONT_CHASU   NUMBER                           NOT NULL,
+  LOG_SEQ      NUMBER                           NOT NULL,
+  MEMBER_NO    CHAR(11 BYTE),
+  PERSON_SEQ   NUMBER,
+  LOG_IP       VARCHAR2(100 BYTE),
+  LOG_DATE     VARCHAR2(14 BYTE),
+  LOG_ETC      VARCHAR2(255 BYTE),
+  SAYOU        CLOB,
+  CONT_STATUS  CHAR(2 BYTE),
+  STATUS       CHAR(2 BYTE),
+  USER_NAME    VARCHAR2(100 BYTE),
+  LOG_LEVEL    CHAR(2 BYTE)
+)
+LOB (SAYOU) STORE AS (
+  TABLESPACE TS_DOCU_D
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_D
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DOCU.TCB_CONT_LOG IS '계약진행이력';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.CONT_NO IS '계약관리번호';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.CONT_CHASU IS '변경차수';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.LOG_SEQ IS '일련번호';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.MEMBER_NO IS '회원번호';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.PERSON_SEQ IS '담당자일련번호';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.LOG_IP IS '진행IP';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.LOG_DATE IS '진행일시';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.LOG_ETC IS '진행비고';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.SAYOU IS '사유';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.CONT_STATUS IS '계약상태';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_LOG.STATUS IS '상태';
+
+
+ALTER TABLE DOCU.TCB_CONT_SIGN
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_SIGN CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_SIGN
+(
+  CONT_NO      CHAR(11 BYTE)                    NOT NULL,
+  CONT_CHASU   NUMBER(10)                       NOT NULL,
+  SIGN_SEQ     NUMBER(10)                       NOT NULL,
+  SIGNER_NAME  VARCHAR2(30 BYTE)                NOT NULL,
+  SIGNER_MAX   NUMBER(10),
+  MEMBER_TYPE  CHAR(2 BYTE),
+  CUST_TYPE    CHAR(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_SUB
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_SUB CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_SUB
+(
+  CONT_NO            CHAR(11 BYTE)              NOT NULL,
+  CONT_CHASU         NUMBER(10)                 NOT NULL,
+  SUB_SEQ            NUMBER(10)                 NOT NULL,
+  CONT_SUB_HTML      CLOB,
+  CONT_SUB_NAME      VARCHAR2(50 BYTE),
+  CONT_SUB_STYLE     VARCHAR2(50 BYTE),
+  GUBUN              VARCHAR2(2 BYTE),
+  CHK_YN             VARCHAR2(1 BYTE),
+  OPTION_YN          VARCHAR2(1 BYTE),
+  ORG_CONT_SUB_HTML  CLOB
+)
+LOB (ORG_CONT_SUB_HTML) STORE AS (
+  TABLESPACE TS_DOCU_D
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_D
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+LOB (CONT_SUB_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1024M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_TEMPLATE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_TEMPLATE
+(
+  TEMPLATE_CD      CHAR(7 BYTE)                 NOT NULL,
+  MEMBER_NO        VARCHAR2(255 BYTE),
+  TEMPLATE_NAME    VARCHAR2(50 BYTE),
+  TEMPLATE_HTML    CLOB,
+  STATUS           NUMBER(10),
+  TEMPLATE_STYLE   VARCHAR2(50 BYTE),
+  WRITER_TYPE      CHAR(1 BYTE),
+  ORG_TEMPLATE_CD  VARCHAR2(255 BYTE),
+  TEMPLATE_TYPE    VARCHAR2(2 BYTE),
+  PERSON_YN        CHAR(1 BYTE),
+  NEED_ATTACH_YN   VARCHAR2(1 BYTE),
+  USE_YN           VARCHAR2(2 BYTE),
+  DISPLAY_SEQ      NUMBER(10),
+  BATCH_CD         VARCHAR2(2 BYTE),
+  EXPIRE_NOTI_DAY  VARCHAR2(10 BYTE),
+  FIELD_SEQ        VARCHAR2(255 BYTE),
+  RFILE_INFO       VARCHAR2(4000 BYTE),
+  AGREE_HTML       CLOB,
+  EFILE_YN         CHAR(1 BYTE),
+  DOC_TYPE         VARCHAR2(1 BYTE),
+  STAMP_YN         VARCHAR2(1 BYTE),
+  DISPLAY_NAME     VARCHAR2(255 BYTE),
+  WARR_YN          CHAR(1 BYTE),
+  SEND_TYPE        CHAR(2 BYTE),
+  SIGN_TYPES       VARCHAR2(255 BYTE),
+  VERSION_NAME     VARCHAR2(255 BYTE),
+  VERSION_SEQ      NUMBER(4)
+)
+LOB (TEMPLATE_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+LOB (AGREE_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_ADD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_TEMPLATE_ADD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_TEMPLATE_ADD
+(
+  TEMPLATE_CD       CHAR(7 BYTE)                NOT NULL,
+  SEQ               NUMBER(10)                  NOT NULL,
+  TEMPLATE_NAME_EN  VARCHAR2(255 BYTE),
+  TEMPLATE_NAME_KO  VARCHAR2(255 BYTE),
+  MUL_YN            VARCHAR2(2 BYTE),
+  COL_NAME          VARCHAR2(255 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_HIST
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_TEMPLATE_HIST CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_TEMPLATE_HIST
+(
+  TEMPLATE_CD    CHAR(7 BYTE)                   NOT NULL,
+  VERSION_SEQ    INTEGER                        NOT NULL,
+  VERSION_NAME   VARCHAR2(255 BYTE),
+  TEMPLATE_NAME  VARCHAR2(50 BYTE),
+  TEMPLATE_HTML  CLOB
+)
+LOB (TEMPLATE_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DOCU.TCB_CONT_TEMPLATE_HIST IS '계약서식 히스토리';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_HIST.TEMPLATE_CD IS '서식코드';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_HIST.VERSION_SEQ IS '서식버전';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_HIST.VERSION_NAME IS '버전명';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_HIST.TEMPLATE_NAME IS '서식명';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_HIST.TEMPLATE_HTML IS '서식HTML';
+
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_SUB
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_TEMPLATE_SUB CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_TEMPLATE_SUB
+(
+  TEMPLATE_CD     CHAR(7 BYTE)                  NOT NULL,
+  SUB_SEQ         NUMBER(10)                    NOT NULL,
+  TEMPLATE_NAME   VARCHAR2(50 BYTE),
+  TEMPLATE_HTML   CLOB,
+  TEMPLATE_STYLE  VARCHAR2(50 BYTE),
+  GUBUN           VARCHAR2(2 BYTE),
+  OPTION_YN       VARCHAR2(1 BYTE)
+)
+LOB (TEMPLATE_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_SUB_HIST
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_TEMPLATE_SUB_HIST CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_TEMPLATE_SUB_HIST
+(
+  TEMPLATE_CD    CHAR(7 BYTE)                   NOT NULL,
+  VERSION_SEQ    INTEGER                        NOT NULL,
+  SUB_SEQ        NUMBER                         NOT NULL,
+  TEMPLATE_NAME  VARCHAR2(50 BYTE),
+  TEMPLATE_HTML  CLOB,
+  OPTION_YN      VARCHAR2(1 BYTE),
+  GUBUN          VARCHAR2(2 BYTE)
+)
+LOB (TEMPLATE_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DOCU.TCB_CONT_TEMPLATE_SUB_HIST IS '계약서식 히스토리 서브';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_SUB_HIST.TEMPLATE_CD IS '서식코드';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_SUB_HIST.VERSION_SEQ IS '서식버전';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_SUB_HIST.SUB_SEQ IS '일련번호';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_SUB_HIST.TEMPLATE_NAME IS 'SUB서식명';
+
+COMMENT ON COLUMN DOCU.TCB_CONT_TEMPLATE_SUB_HIST.TEMPLATE_HTML IS '서식HTML';
+
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_USER
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_TEMPLATE_USER CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_TEMPLATE_USER
+(
+  TEMPLATE_CD    CHAR(7 BYTE)                   NOT NULL,
+  MEMBER_NO      CHAR(11 BYTE)                  NOT NULL,
+  TEMPLATE_HTML  CLOB,
+  REG_ID         VARCHAR2(20 BYTE),
+  REG_DATE       VARCHAR2(14 BYTE)
+)
+LOB (TEMPLATE_HTML) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CUST
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CUST CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CUST
+(
+  CONT_NO           CHAR(11 BYTE)               NOT NULL,
+  CONT_CHASU        NUMBER(10)                  NOT NULL,
+  MEMBER_NO         CHAR(11 BYTE)               NOT NULL,
+  SIGN_SEQ          NUMBER(10),
+  CUST_GUBUN        CHAR(2 BYTE),
+  VENDCD            VARCHAR2(10 BYTE),
+  JUMIN_NO          VARCHAR2(50 BYTE),
+  MEMBER_NAME       VARCHAR2(60 BYTE),
+  BOSS_NAME         VARCHAR2(30 BYTE),
+  POST_CODE         CHAR(6 BYTE),
+  ADDRESS           VARCHAR2(100 BYTE),
+  TEL_NUM           VARCHAR2(15 BYTE),
+  MEMBER_SLNO       VARCHAR2(13 BYTE),
+  USER_NAME         VARCHAR2(30 BYTE),
+  HP1               VARCHAR2(3 BYTE),
+  HP2               VARCHAR2(4 BYTE),
+  HP3               VARCHAR2(4 BYTE),
+  EMAIL             VARCHAR2(255 BYTE),
+  SIGN_DATE         VARCHAR2(14 BYTE),
+  SIGN_DN           VARCHAR2(255 BYTE),
+  SIGN_DATA         CLOB,
+  EMAIL_RANDOM      VARCHAR2(30 BYTE),
+  PAY_YN            CHAR(1 BYTE),
+  DISPLAY_SEQ       NUMBER(10),
+  CUST_DETAIL_CODE  VARCHAR2(255 BYTE),
+  SIGN_TYPE         CHAR(2 BYTE),
+  BOSS_BIRTH_DATE   VARCHAR2(14 BYTE),
+  BOSS_GENDER       VARCHAR2(2 BYTE),
+  LIST_CUST_YN      CHAR(1 BYTE)
+)
+LOB (SIGN_DATA) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CUST_SIGN_IMG
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CUST_SIGN_IMG CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CUST_SIGN_IMG
+(
+  CONT_NO       CHAR(11 BYTE)                   NOT NULL,
+  CONT_CHASU    NUMBER(10)                      NOT NULL,
+  MEMBER_NO     CHAR(11 BYTE)                   NOT NULL,
+  SIGN_IMG_SEQ  NUMBER(10)                      NOT NULL,
+  OBJECT_NAME   VARCHAR2(255 BYTE),
+  IMG_DATA      CLOB,
+  IMG_HASH      VARCHAR2(255 BYTE),
+  STATUS        CHAR(10 BYTE)
+)
+LOB (IMG_DATA) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DOCU.TCB_CUST_SIGN_IMG IS '계약업체서명날인';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.CONT_NO IS '계약관리번호';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.CONT_CHASU IS '변경차수';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.MEMBER_NO IS '회원번호';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.SIGN_IMG_SEQ IS '일련번호';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.OBJECT_NAME IS '서명OBJ명';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.IMG_DATA IS '서명_IMG_DATA';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.IMG_HASH IS '서명_IMG_HASH';
+
+COMMENT ON COLUMN DOCU.TCB_CUST_SIGN_IMG.STATUS IS '상태';
+
+
+ALTER TABLE DOCU.TCB_CUST_TEMP
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CUST_TEMP CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CUST_TEMP
+(
+  MAIN_MEMBER_NO  CHAR(11 BYTE)                 NOT NULL,
+  TEMP_SEQ        NUMBER(10)                    NOT NULL,
+  MEMBER_NO       CHAR(11 BYTE)                 NOT NULL,
+  SIGN_SEQ        NUMBER(10),
+  SIGNER_CD       CHAR(2 BYTE),
+  SIGNER_NAME     VARCHAR2(60 BYTE),
+  CUST_GUBUN      CHAR(2 BYTE),
+  VENDCD          VARCHAR2(10 BYTE),
+  JUMIN_NO        VARCHAR2(13 BYTE),
+  MEMBER_NAME     VARCHAR2(60 BYTE),
+  BOSS_NAME       VARCHAR2(30 BYTE),
+  POST_CODE       CHAR(6 BYTE),
+  ADDRESS         VARCHAR2(100 BYTE),
+  TEL_NUM         VARCHAR2(15 BYTE),
+  MEMBER_SLNO     VARCHAR2(13 BYTE),
+  USER_NAME       VARCHAR2(30 BYTE),
+  HP1             CHAR(3 BYTE),
+  HP2             CHAR(4 BYTE),
+  HP3             CHAR(4 BYTE),
+  EMAIL           VARCHAR2(255 BYTE),
+  DISPLAY_SEQ     NUMBER(10)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_IDENTIFY_LOG
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_IDENTIFY_LOG CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_IDENTIFY_LOG
+(
+  LOG_SEQ     CHAR(13 BYTE)                     NOT NULL,
+  LOG_TYPE    VARCHAR2(100 BYTE),
+  LOG_DATE    VARCHAR2(100 BYTE),
+  CONT_NO     CHAR(11 BYTE),
+  CONT_CHASU  NUMBER,
+  MEMBER_NO   CHAR(11 BYTE),
+  CONTENT     CLOB,
+  ETC         VARCHAR2(255 BYTE),
+  STATUS      CHAR(2 BYTE)
+)
+LOB (CONTENT) STORE AS (
+  TABLESPACE TS_DOCU_D
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_D
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DOCU.TCB_IDENTIFY_LOG IS '본인확인TSA이력';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.LOG_SEQ IS '이력일련번호';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.LOG_TYPE IS '이력구분';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.LOG_DATE IS '이력일자';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.CONT_NO IS '계약번호';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.CONT_CHASU IS '계약차수';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.MEMBER_NO IS '회원번호';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.CONTENT IS '전문내용';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.ETC IS '비고';
+
+COMMENT ON COLUMN DOCU.TCB_IDENTIFY_LOG.STATUS IS '상태';
+
+
+DROP TABLE DOCU.TCB_LOGIN_LOG CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_LOGIN_LOG
+(
+  MEMBER_NO   CHAR(11 BYTE)                     NOT NULL,
+  PERSON_SEQ  NUMBER                            NOT NULL,
+  USER_ID     VARCHAR2(20 BYTE)                 NOT NULL,
+  LOGIN_IP    VARCHAR2(100 BYTE),
+  LOGIN_DATE  VARCHAR2(14 BYTE)                 NOT NULL,
+  LOGIN_URL   VARCHAR2(255 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_MEMBER
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_MEMBER CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_MEMBER
+(
+  MEMBER_NO      CHAR(11 BYTE)                  NOT NULL,
+  MEMBER_NAME    VARCHAR2(60 BYTE)              NOT NULL,
+  VENDCD         VARCHAR2(50 BYTE),
+  MEMBER_GUBUN   CHAR(2 BYTE),
+  MEMBER_TYPE    CHAR(2 BYTE),
+  BOSS_NAME      VARCHAR2(30 BYTE),
+  POST_CODE      CHAR(6 BYTE),
+  ADDRESS        VARCHAR2(100 BYTE),
+  BIZ_POST_CODE  CHAR(6 BYTE),
+  BIZ_ADDRESS    VARCHAR2(100 BYTE),
+  MEMBER_SLNO    VARCHAR2(13 BYTE),
+  CONDITION      VARCHAR2(100 BYTE),
+  CATEGORY       VARCHAR2(100 BYTE),
+  CERT_DN        VARCHAR2(255 BYTE),
+  CERT_END_DATE  VARCHAR2(14 BYTE),
+  CI_IMG_PATH    VARCHAR2(255 BYTE),
+  JOIN_DATE      VARCHAR2(14 BYTE),
+  OUT_DATE       VARCHAR2(14 BYTE),
+  STATUS         CHAR(2 BYTE),
+  REG_DATE       VARCHAR2(14 BYTE),
+  REG_ID         VARCHAR2(20 BYTE),
+  LOGO_IMG_PATH  VARCHAR2(255 BYTE),
+  SRC_DEPTH      CHAR(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_MENU
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_MENU CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_MENU
+(
+  MENU_CD          CHAR(6 BYTE)                 NOT NULL,
+  P_MENU_CD        CHAR(6 BYTE),
+  DEPTH            NUMBER(10),
+  DIR              VARCHAR2(255 BYTE),
+  MENU_PATH        VARCHAR2(255 BYTE),
+  MENU_NM          VARCHAR2(255 BYTE),
+  GAP_YN           CHAR(1 BYTE),
+  EUL_YN           CHAR(1 BYTE),
+  USE_YN           CHAR(1 BYTE),
+  SELECT_AUTH_CDS  VARCHAR2(255 BYTE),
+  BTN_AUTH_CDS     VARCHAR2(255 BYTE),
+  DISPLAY_SEQ      NUMBER(10),
+  ETC              VARCHAR2(255 BYTE),
+  ADM_CD           VARCHAR2(6 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_MENU_INFO
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_MENU_INFO CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_MENU_INFO
+(
+  ADM_CD      CHAR(6 BYTE)                      NOT NULL,
+  L_DIV_CD    CHAR(2 BYTE),
+  M_DIV_CD    CHAR(2 BYTE),
+  S_DIV_CD    CHAR(2 BYTE),
+  SEQ         NUMBER(10),
+  DEPTH       NUMBER(10),
+  DIR         VARCHAR2(100 BYTE),
+  SRC_PATH    VARCHAR2(255 BYTE),
+  MENU_NM     VARCHAR2(100 BYTE),
+  WON_YN      CHAR(1 BYTE),
+  SOO_YN      CHAR(1 BYTE),
+  DEFAULT_YN  CHAR(1 BYTE),
+  ETC         VARCHAR2(20 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_MENU_MEMBER
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_MENU_MEMBER CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_MENU_MEMBER
+(
+  MEMBER_NO  CHAR(11 BYTE)                      NOT NULL,
+  MENU_CD    CHAR(6 BYTE)                       NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_MENU_SUB
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_MENU_SUB CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_MENU_SUB
+(
+  ADM_CD     CHAR(6 BYTE)                       NOT NULL,
+  SEQ        NUMBER(10)                         NOT NULL,
+  FILE_NAME  VARCHAR2(255 BYTE)                 NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_QNA
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_QNA CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_QNA
+(
+  QNASEQ      NUMBER(10)                        NOT NULL,
+  COMPANYNM   VARCHAR2(50 BYTE),
+  PERSONNM    VARCHAR2(13 BYTE),
+  MOBILE      VARCHAR2(13 BYTE),
+  CONTENTS    CLOB,
+  INSERTDATE  DATE,
+  GUBUN       VARCHAR2(2 BYTE)
+)
+LOB (CONTENTS) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             100M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_RFILE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_RFILE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_RFILE
+(
+  CONT_NO           CHAR(11 BYTE)               NOT NULL,
+  CONT_CHASU        NUMBER(10)                  NOT NULL,
+  RFILE_SEQ         NUMBER(10)                  NOT NULL,
+  DOC_NAME          VARCHAR2(255 BYTE)          NOT NULL,
+  ATTCH_YN          CHAR(1 BYTE),
+  REG_TYPE          VARCHAR2(2 BYTE),
+  ALLOW_EXT         VARCHAR2(100 BYTE),
+  SAMPLE_FILE_PATH  VARCHAR2(255 BYTE),
+  SAMPLE_FILE_NAME  VARCHAR2(255 BYTE),
+  UNCHECK_TEXT      VARCHAR2(255 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_RFILE_CUST
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_RFILE_CUST CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_RFILE_CUST
+(
+  CONT_NO     CHAR(11 BYTE)                     NOT NULL,
+  CONT_CHASU  NUMBER(10)                        NOT NULL,
+  RFILE_SEQ   NUMBER(10)                        NOT NULL,
+  MEMBER_NO   CHAR(11 BYTE)                     NOT NULL,
+  FILE_PATH   VARCHAR2(255 BYTE),
+  FILE_NAME   VARCHAR2(255 BYTE),
+  FILE_EXT    VARCHAR2(5 BYTE),
+  FILE_SIZE   NUMBER(10),
+  REG_GUBUN   VARCHAR2(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_RFILE_TEMPLATE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_RFILE_TEMPLATE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_RFILE_TEMPLATE
+(
+  TEMPLATE_CD       CHAR(7 BYTE)                NOT NULL,
+  MEMBER_NO         CHAR(11 BYTE)               NOT NULL,
+  RFILE_SEQ         NUMBER(10)                  NOT NULL,
+  DOC_NAME          VARCHAR2(255 BYTE)          NOT NULL,
+  ATTCH_YN          CHAR(1 BYTE),
+  REG_TYPE          VARCHAR2(2 BYTE),
+  ALLOW_EXT         VARCHAR2(100 BYTE),
+  SAMPLE_FILE_PATH  VARCHAR2(255 BYTE),
+  SAMPLE_FILE_NAME  VARCHAR2(255 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_USEINFO
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_USEINFO CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_USEINFO
+(
+  MEMBER_NO         CHAR(11 BYTE)               NOT NULL,
+  USESEQ            NUMBER(10)                  NOT NULL,
+  RECPMONEYAMT      NUMBER(10),
+  USESTARTDAY       VARCHAR2(8 BYTE),
+  USEENDDAY         VARCHAR2(8 BYTE),
+  MODIFYDATE        VARCHAR2(14 BYTE),
+  PAYTYPECD         VARCHAR2(2 BYTE),
+  SUPPMONEYAMT      NUMBER(10),
+  INSTEADYN         CHAR(1 BYTE),
+  BIDUSEYN          CHAR(1 BYTE),
+  ORDER_WRITE_TYPE  VARCHAR2(1 BYTE),
+  ETC               VARCHAR2(255 BYTE),
+  STAMPYN           VARCHAR2(1 BYTE),
+  PROOF_YN          CHAR(1 BYTE),
+  PAPER_AMT         NUMBER(10),
+  BID_AMT           NUMBER(10),
+  CALC_DAY          CHAR(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_USEINFO_ADD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_USEINFO_ADD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_USEINFO_ADD
+(
+  TEMPLATE_CD   VARCHAR2(20 BYTE)               NOT NULL,
+  RECPMONEYAMT  NUMBER(10),
+  SUPPMONEYAMT  NUMBER(10),
+  INSTEADYN     CHAR(1 BYTE),
+  USESEQ        NUMBER(10)                      NOT NULL,
+  MEMBER_NO     CHAR(11 BYTE)                   NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_USER_CODE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_USER_CODE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_USER_CODE
+(
+  MEMBER_NO  CHAR(11 BYTE)                      NOT NULL,
+  CODE       VARCHAR2(10 BYTE)                  NOT NULL,
+  L_CD       VARCHAR2(1 BYTE)                   NOT NULL,
+  M_CD       VARCHAR2(3 BYTE),
+  S_CD       VARCHAR2(3 BYTE),
+  D_CD       VARCHAR2(3 BYTE),
+  DEPTH      NUMBER(10),
+  CODE_NM    VARCHAR2(255 BYTE),
+  USE_YN     CHAR(1 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_WARR
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_WARR CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_WARR
+(
+  CONT_NO      CHAR(11 BYTE)                    NOT NULL,
+  CONT_CHASU   NUMBER(10)                       NOT NULL,
+  WARR_SEQ     NUMBER(10)                       NOT NULL,
+  WARR_TYPE    CHAR(2 BYTE)                     NOT NULL,
+  MEMBER_NO    CHAR(11 BYTE),
+  WARR_OFFICE  VARCHAR2(30 BYTE),
+  WARR_NO      VARCHAR2(100 BYTE),
+  WARR_AMT     NUMBER(16,2),
+  WARR_SDATE   VARCHAR2(8 BYTE),
+  WARR_EDATE   VARCHAR2(8 BYTE),
+  WARR_DATE    VARCHAR2(8 BYTE),
+  WARR_KAMT1   NUMBER(16,2),
+  WARR_KAMT2   NUMBER(16,2),
+  DOC_NAME     VARCHAR2(255 BYTE),
+  FILE_NAME    VARCHAR2(255 BYTE),
+  FILE_PATH    VARCHAR2(255 BYTE),
+  FILE_EXT     VARCHAR2(5 BYTE),
+  FILE_SIZE    NUMBER(10),
+  REG_ID       VARCHAR2(20 BYTE),
+  REG_DATE     VARCHAR2(14 BYTE),
+  ETC          VARCHAR2(255 BYTE),
+  STATUS       VARCHAR2(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_WARR_ADD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_WARR_ADD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_WARR_ADD
+(
+  MEMBER_NO    CHAR(11 BYTE)                    NOT NULL,
+  WARR_SEQ     NUMBER(10)                       NOT NULL,
+  WARR_TYPE    CHAR(2 BYTE)                     NOT NULL,
+  WARR_OFFICE  VARCHAR2(30 BYTE),
+  WARR_NO      VARCHAR2(100 BYTE),
+  WARR_AMT     NUMBER(16,2),
+  WARR_RATE    NUMBER(5,2),
+  WARR_SDATE   VARCHAR2(8 BYTE),
+  WARR_EDATE   VARCHAR2(8 BYTE),
+  WARR_DATE    VARCHAR2(8 BYTE),
+  WARR_KAMT1   NUMBER(16,2),
+  WARR_KAMT2   NUMBER(16,2),
+  DOC_NAME     VARCHAR2(255 BYTE),
+  FILE_NAME    VARCHAR2(255 BYTE),
+  FILE_PATH    VARCHAR2(255 BYTE),
+  FILE_EXT     VARCHAR2(5 BYTE),
+  FILE_SIZE    NUMBER(10),
+  REG_ID       VARCHAR2(20 BYTE),
+  REG_DATE     VARCHAR2(14 BYTE),
+  ETC          VARCHAR2(255 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE INDEX DOCU.FK_TCB_CONT_ADD ON DOCU.TCB_CONT_ADD
+(CONT_NO, CONT_CHASU)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX DOCU.FK_TCB_CONT_TEMPLATE_ADD ON DOCU.TCB_CONT_TEMPLATE_ADD
+(TEMPLATE_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX DOCU.IDX_TCB_CONTMASTER_N1 ON DOCU.TCB_CONTMASTER
+(MEMBER_NO, CONT_DATE)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX DOCU.IDX_TCB_CONTMASTER_N2 ON DOCU.TCB_CONTMASTER
+(TEMPLATE_CD)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX DOCU.IDX_TCB_CONT_AGREE_N1 ON DOCU.TCB_CONT_AGREE
+(AGREE_PERSON_ID)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX DOCU.IDX_TCB_MEMBER_N1 ON DOCU.TCB_MEMBER
+(MEMBER_TYPE)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_CLIENT_RFILE ON DOCU.TCB_CLIENT_RFILE
+(MEMBER_NO, RFILE_SEQ, CLIENT_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_COMCODE ON DOCU.TCB_COMCODE
+(CCODE, CODE)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_CONT_ADD ON DOCU.TCB_CONT_ADD
+(CONT_NO, CONT_CHASU, SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_CONT_TEMPLATE_ADD ON DOCU.TCB_CONT_TEMPLATE_ADD
+(TEMPLATE_CD, SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_CONT_TEMPLATE_HIST ON DOCU.TCB_CONT_TEMPLATE_HIST
+(TEMPLATE_CD, VERSION_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_CUST_SIGN_IMG ON DOCU.TCB_CUST_SIGN_IMG
+(CONT_NO, CONT_CHASU, MEMBER_NO, SIGN_IMG_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_MENU ON DOCU.TCB_MENU
+(MENU_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_MENU_MEMBER ON DOCU.TCB_MENU_MEMBER
+(MEMBER_NO, MENU_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.SYS_C3 ON DOCU.TCB_CONT_TEMPLATE_SUB_HIST
+(TEMPLATE_CD, VERSION_SEQ, SUB_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_AGREE_USER_PK ON DOCU.TCB_AGREE_USER
+(TEMPLATE_CD, AGREE_SEQ, USER_ID)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_BOARD_PK ON DOCU.TCB_BOARD
+(CATEGORY, BOARD_ID)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONTMASTER_PK ON DOCU.TCB_CONTMASTER
+(CONT_NO, CONT_CHASU)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_AGREE_PK ON DOCU.TCB_CONT_AGREE
+(CONT_NO, CONT_CHASU, AGREE_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_LOG_PK ON DOCU.TCB_CONT_LOG
+(CONT_NO, CONT_CHASU, LOG_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_SIGN_PK ON DOCU.TCB_CONT_SIGN
+(CONT_NO, CONT_CHASU, SIGN_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          32M
+            NEXT             4M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_SUB_PK ON DOCU.TCB_CONT_SUB
+(CONT_NO, CONT_CHASU, SUB_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_TEMPLATE_PK ON DOCU.TCB_CONT_TEMPLATE
+(TEMPLATE_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_TEMPLATE_SUB_PK ON DOCU.TCB_CONT_TEMPLATE_SUB
+(TEMPLATE_CD, SUB_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_TEMPLATE_USER_PK ON DOCU.TCB_CONT_TEMPLATE_USER
+(TEMPLATE_CD, MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CUST_PK ON DOCU.TCB_CUST
+(CONT_NO, CONT_CHASU, MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          32M
+            NEXT             4M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CUST_TEMP_PK ON DOCU.TCB_CUST_TEMP
+(MAIN_MEMBER_NO, TEMP_SEQ, MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_IDENTIFY_LOG_PK ON DOCU.TCB_IDENTIFY_LOG
+(LOG_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_MEMBER_PK ON DOCU.TCB_MEMBER
+(MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE INDEX DOCU.TCB_MEMBER_VENDCD ON DOCU.TCB_MEMBER
+(VENDCD)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_MENU_INFO_PK ON DOCU.TCB_MENU_INFO
+(ADM_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_MENU_SUB_PK ON DOCU.TCB_MENU_SUB
+(ADM_CD, SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_RFILE_CUST_PK ON DOCU.TCB_RFILE_CUST
+(CONT_NO, CONT_CHASU, RFILE_SEQ, MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_RFILE_PK ON DOCU.TCB_RFILE
+(CONT_NO, CONT_CHASU, RFILE_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_RFILE_TEMPLATE_PK ON DOCU.TCB_RFILE_TEMPLATE
+(TEMPLATE_CD, MEMBER_NO, RFILE_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_USEINFO_ADD_PK ON DOCU.TCB_USEINFO_ADD
+(USESEQ, MEMBER_NO, TEMPLATE_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_USEINFO_PK ON DOCU.TCB_USEINFO
+(USESEQ, MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_USER_CODE_IDX1 ON DOCU.TCB_USER_CODE
+(MEMBER_NO, CODE)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_WARR_ADD_PK ON DOCU.TCB_WARR_ADD
+(MEMBER_NO, WARR_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_WARR_PK ON DOCU.TCB_WARR
+(CONT_NO, CONT_CHASU, WARR_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.XPKTCB_QNA ON DOCU.TCB_QNA
+(QNASEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+DROP PUBLIC SYNONYM TCB_AGREE_USER;
+
+CREATE PUBLIC SYNONYM TCB_AGREE_USER FOR DOCU.TCB_AGREE_USER;
+
+
+DROP PUBLIC SYNONYM TCB_BOARD;
+
+CREATE PUBLIC SYNONYM TCB_BOARD FOR DOCU.TCB_BOARD;
+
+
+DROP PUBLIC SYNONYM TCB_CLIENT_RFILE;
+
+CREATE PUBLIC SYNONYM TCB_CLIENT_RFILE FOR DOCU.TCB_CLIENT_RFILE;
+
+
+DROP PUBLIC SYNONYM TCB_COMCODE;
+
+CREATE PUBLIC SYNONYM TCB_COMCODE FOR DOCU.TCB_COMCODE;
+
+
+DROP PUBLIC SYNONYM TCB_CONTMASTER;
+
+CREATE PUBLIC SYNONYM TCB_CONTMASTER FOR DOCU.TCB_CONTMASTER;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_ADD;
+
+CREATE PUBLIC SYNONYM TCB_CONT_ADD FOR DOCU.TCB_CONT_ADD;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_AGREE;
+
+CREATE PUBLIC SYNONYM TCB_CONT_AGREE FOR DOCU.TCB_CONT_AGREE;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_LOG;
+
+CREATE PUBLIC SYNONYM TCB_CONT_LOG FOR DOCU.TCB_CONT_LOG;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_SIGN;
+
+CREATE PUBLIC SYNONYM TCB_CONT_SIGN FOR DOCU.TCB_CONT_SIGN;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_SUB;
+
+CREATE PUBLIC SYNONYM TCB_CONT_SUB FOR DOCU.TCB_CONT_SUB;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_TEMPLATE;
+
+CREATE PUBLIC SYNONYM TCB_CONT_TEMPLATE FOR DOCU.TCB_CONT_TEMPLATE;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_TEMPLATE_ADD;
+
+CREATE PUBLIC SYNONYM TCB_CONT_TEMPLATE_ADD FOR DOCU.TCB_CONT_TEMPLATE_ADD;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_TEMPLATE_HIST;
+
+CREATE PUBLIC SYNONYM TCB_CONT_TEMPLATE_HIST FOR DOCU.TCB_CONT_TEMPLATE_HIST;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_TEMPLATE_SUB;
+
+CREATE PUBLIC SYNONYM TCB_CONT_TEMPLATE_SUB FOR DOCU.TCB_CONT_TEMPLATE_SUB;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_TEMPLATE_SUB_HIST;
+
+CREATE PUBLIC SYNONYM TCB_CONT_TEMPLATE_SUB_HIST FOR DOCU.TCB_CONT_TEMPLATE_SUB_HIST;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_TEMPLATE_USER;
+
+CREATE PUBLIC SYNONYM TCB_CONT_TEMPLATE_USER FOR DOCU.TCB_CONT_TEMPLATE_USER;
+
+
+DROP PUBLIC SYNONYM TCB_CUST;
+
+CREATE PUBLIC SYNONYM TCB_CUST FOR DOCU.TCB_CUST;
+
+
+DROP PUBLIC SYNONYM TCB_CUST_SIGN_IMG;
+
+CREATE PUBLIC SYNONYM TCB_CUST_SIGN_IMG FOR DOCU.TCB_CUST_SIGN_IMG;
+
+
+DROP PUBLIC SYNONYM TCB_CUST_TEMP;
+
+CREATE PUBLIC SYNONYM TCB_CUST_TEMP FOR DOCU.TCB_CUST_TEMP;
+
+
+DROP PUBLIC SYNONYM TCB_IDENTIFY_LOG;
+
+CREATE PUBLIC SYNONYM TCB_IDENTIFY_LOG FOR DOCU.TCB_IDENTIFY_LOG;
+
+
+DROP PUBLIC SYNONYM TCB_LOGIN_LOG;
+
+CREATE PUBLIC SYNONYM TCB_LOGIN_LOG FOR DOCU.TCB_LOGIN_LOG;
+
+
+DROP PUBLIC SYNONYM TCB_MEMBER;
+
+CREATE PUBLIC SYNONYM TCB_MEMBER FOR DOCU.TCB_MEMBER;
+
+
+DROP PUBLIC SYNONYM TCB_MENU;
+
+CREATE PUBLIC SYNONYM TCB_MENU FOR DOCU.TCB_MENU;
+
+
+DROP PUBLIC SYNONYM TCB_MENU_INFO;
+
+CREATE PUBLIC SYNONYM TCB_MENU_INFO FOR DOCU.TCB_MENU_INFO;
+
+
+DROP PUBLIC SYNONYM TCB_MENU_MEMBER;
+
+CREATE PUBLIC SYNONYM TCB_MENU_MEMBER FOR DOCU.TCB_MENU_MEMBER;
+
+
+DROP PUBLIC SYNONYM TCB_MENU_SUB;
+
+CREATE PUBLIC SYNONYM TCB_MENU_SUB FOR DOCU.TCB_MENU_SUB;
+
+
+DROP PUBLIC SYNONYM TCB_QNA;
+
+CREATE PUBLIC SYNONYM TCB_QNA FOR DOCU.TCB_QNA;
+
+
+DROP PUBLIC SYNONYM TCB_RFILE;
+
+CREATE PUBLIC SYNONYM TCB_RFILE FOR DOCU.TCB_RFILE;
+
+
+DROP PUBLIC SYNONYM TCB_RFILE_CUST;
+
+CREATE PUBLIC SYNONYM TCB_RFILE_CUST FOR DOCU.TCB_RFILE_CUST;
+
+
+DROP PUBLIC SYNONYM TCB_RFILE_TEMPLATE;
+
+CREATE PUBLIC SYNONYM TCB_RFILE_TEMPLATE FOR DOCU.TCB_RFILE_TEMPLATE;
+
+
+DROP PUBLIC SYNONYM TCB_USEINFO;
+
+CREATE PUBLIC SYNONYM TCB_USEINFO FOR DOCU.TCB_USEINFO;
+
+
+DROP PUBLIC SYNONYM TCB_USEINFO_ADD;
+
+CREATE PUBLIC SYNONYM TCB_USEINFO_ADD FOR DOCU.TCB_USEINFO_ADD;
+
+
+DROP PUBLIC SYNONYM TCB_USER_CODE;
+
+CREATE PUBLIC SYNONYM TCB_USER_CODE FOR DOCU.TCB_USER_CODE;
+
+
+DROP PUBLIC SYNONYM TCB_WARR;
+
+CREATE PUBLIC SYNONYM TCB_WARR FOR DOCU.TCB_WARR;
+
+
+DROP PUBLIC SYNONYM TCB_WARR_ADD;
+
+CREATE PUBLIC SYNONYM TCB_WARR_ADD FOR DOCU.TCB_WARR_ADD;
+
+
+ALTER TABLE DOCU.TCB_AGREE_TEMPLATE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_AGREE_TEMPLATE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_AGREE_TEMPLATE
+(
+  AGREE_NAME         VARCHAR2(20 BYTE),
+  AGREE_FIELD_SEQ    NUMBER(10),
+  AGREE_PERSON_NAME  VARCHAR2(20 BYTE),
+  AGREE_SEQ          NUMBER(10)                 NOT NULL,
+  AGREE_CD           CHAR(1 BYTE),
+  AGREE_PERSON_ID    VARCHAR2(20 BYTE),
+  TEMPLATE_CD        CHAR(7 BYTE)               NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_ATT_CFILE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_ATT_CFILE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_ATT_CFILE
+(
+  TEMPLATE_CD  CHAR(7 BYTE)                     NOT NULL,
+  MEMBER_NO    CHAR(11 BYTE)                    NOT NULL,
+  FILE_SEQ     NUMBER(10)                       NOT NULL,
+  DOC_NAME     VARCHAR2(255 BYTE),
+  FILE_PATH    VARCHAR2(255 BYTE),
+  FILE_NAME    VARCHAR2(200 BYTE),
+  FILE_EXT     VARCHAR2(20 BYTE),
+  FILE_SIZE    NUMBER(10),
+  AUTO_TYPE    VARCHAR2(20 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_AUTH
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_AUTH CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_AUTH
+(
+  MEMBER_NO  CHAR(11 BYTE)                      NOT NULL,
+  AUTH_CD    CHAR(4 BYTE)                       NOT NULL,
+  AUTH_NM    VARCHAR2(255 BYTE),
+  AUTH_INFO  CLOB,
+  ETC        VARCHAR2(255 BYTE),
+  REG_DATE   VARCHAR2(14 BYTE),
+  REG_ID     VARCHAR2(20 BYTE),
+  MOD_DATE   VARCHAR2(14 BYTE),
+  MOD_ID     VARCHAR2(20 BYTE),
+  STATUS     CHAR(2 BYTE)
+)
+LOB (AUTH_INFO) STORE AS (
+  TABLESPACE TS_DOCU_D
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_D
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_AUTH_FIELD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_AUTH_FIELD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_AUTH_FIELD
+(
+  MEMBER_NO  CHAR(11 BYTE)                      NOT NULL,
+  AUTH_CD    CHAR(4 BYTE)                       NOT NULL,
+  SEQ        NUMBER                             NOT NULL,
+  FIELD_SEQ  NUMBER,
+  MENU_CD    CHAR(6 BYTE),
+  BTN_AUTH   CHAR(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_AUTH_MENU
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_AUTH_MENU CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_AUTH_MENU
+(
+  MEMBER_NO    CHAR(11 BYTE)                    NOT NULL,
+  AUTH_CD      CHAR(4 BYTE)                     NOT NULL,
+  MENU_CD      CHAR(6 BYTE)                     NOT NULL,
+  SELECT_AUTH  CHAR(2 BYTE),
+  BTN_AUTH     CHAR(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CFILE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CFILE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CFILE
+(
+  CONT_NO     CHAR(11 BYTE)                     NOT NULL,
+  CONT_CHASU  NUMBER(10)                        NOT NULL,
+  CFILE_SEQ   NUMBER(10)                        NOT NULL,
+  DOC_NAME    VARCHAR2(255 BYTE)                NOT NULL,
+  FILE_NAME   VARCHAR2(255 BYTE),
+  FILE_PATH   VARCHAR2(255 BYTE),
+  FILE_EXT    VARCHAR2(5 BYTE),
+  FILE_SIZE   NUMBER(10),
+  AUTO_YN     CHAR(1 BYTE),
+  AUTO_TYPE   VARCHAR2(20 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CLIENT
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CLIENT CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CLIENT
+(
+  MEMBER_NO        CHAR(11 BYTE)                NOT NULL,
+  CLIENT_SEQ       NUMBER(10)                   NOT NULL,
+  CLIENT_NO        CHAR(11 BYTE)                NOT NULL,
+  STATUS           VARCHAR2(2 BYTE),
+  REASON           CLOB,
+  REASON_DATE      VARCHAR2(14 BYTE),
+  REASON_ID        VARCHAR2(20 BYTE),
+  TEMP_YN          CHAR(1 BYTE),
+  CLIENT_TYPE      VARCHAR2(20 BYTE),
+  CLIENT_REG_CD    VARCHAR2(1 BYTE),
+  CLIENT_REG_DATE  VARCHAR2(14 BYTE)
+)
+LOB (REASON) STORE AS (
+  TABLESPACE TS_DOCU_B
+  ENABLE       STORAGE IN ROW
+  CHUNK       8192
+  RETENTION
+  NOCACHE
+  LOGGING
+  INDEX       (
+        TABLESPACE TS_DOCU_B
+        STORAGE    (
+                    INITIAL          64K
+                    NEXT             1M
+                    MINEXTENTS       1
+                    MAXEXTENTS       UNLIMITED
+                    PCTINCREASE      0
+                    BUFFER_POOL      DEFAULT
+                   ))
+      STORAGE    (
+                  INITIAL          64K
+                  NEXT             1M
+                  MINEXTENTS       1
+                  MAXEXTENTS       UNLIMITED
+                  PCTINCREASE      0
+                  BUFFER_POOL      DEFAULT
+                 ))
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CLIENT_RFILE_TEMPLATE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CLIENT_RFILE_TEMPLATE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CLIENT_RFILE_TEMPLATE
+(
+  RFILE_SEQ  NUMBER                             NOT NULL,
+  MEMBER_NO  CHAR(11 BYTE)                      NOT NULL,
+  DOC_NAME   VARCHAR2(255 BYTE)                 NOT NULL,
+  ATTCH_YN   CHAR(1 BYTE),
+  ALLOW_EXT  VARCHAR2(100 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_EMAIL
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_EMAIL CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_EMAIL
+(
+  CONT_NO      CHAR(11 BYTE)                    NOT NULL,
+  CONT_CHASU   NUMBER(10)                       NOT NULL,
+  MEMBER_NO    CHAR(11 BYTE)                    NOT NULL,
+  EMAIL_SEQ    NUMBER(10)                       NOT NULL,
+  SEND_DATE    VARCHAR2(14 BYTE)                NOT NULL,
+  RECV_DETE    VARCHAR2(14 BYTE),
+  MEMBER_NAME  VARCHAR2(60 BYTE),
+  USER_NAME    VARCHAR2(30 BYTE),
+  EMAIL        VARCHAR2(255 BYTE),
+  STATUS       CHAR(2 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_CONT_SIGN_TEMPLATE
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_CONT_SIGN_TEMPLATE CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_CONT_SIGN_TEMPLATE
+(
+  TEMPLATE_CD  CHAR(7 BYTE)                     NOT NULL,
+  SIGN_SEQ     NUMBER(10)                       NOT NULL,
+  SIGNER_NAME  VARCHAR2(50 BYTE)                NOT NULL,
+  SIGNER_MAX   NUMBER(10),
+  MEMBER_TYPE  CHAR(2 BYTE),
+  CUST_TYPE    CHAR(2 BYTE),
+  PAY_YN       CHAR(1 BYTE)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_FIELD
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_FIELD CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_FIELD
+(
+  MEMBER_NO    CHAR(11 BYTE)                    NOT NULL,
+  FIELD_SEQ    NUMBER(10)                       NOT NULL,
+  FIELD_NAME   VARCHAR2(200 BYTE),
+  POST_CODE    CHAR(6 BYTE),
+  ADDRESS      VARCHAR2(200 BYTE),
+  TELNUM       VARCHAR2(15 BYTE),
+  BOSS_NAME    VARCHAR2(30 BYTE),
+  USE_YN       CHAR(1 BYTE),
+  STATUS       NUMBER(10),
+  FIELD_GUBUN  CHAR(2 BYTE),
+  P_FIELD_SEQ  NUMBER(10)
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE DOCU.TCB_FIELDPERSON
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE DOCU.TCB_FIELDPERSON CASCADE CONSTRAINTS;
+
+CREATE TABLE DOCU.TCB_FIELDPERSON
+(
+  MEMBER_NO   CHAR(11 BYTE)                     NOT NULL,
+  PERSON_SEQ  NUMBER(10)                        NOT NULL,
+  FIELD_SEQ   NUMBER(10)                        NOT NULL
+)
+TABLESPACE TS_DOCU_D
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE INDEX DOCU.IDX_TCB_CLIENT_N1 ON DOCU.TCB_CLIENT
+(CLIENT_NO)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_AUTH ON DOCU.TCB_AUTH
+(MEMBER_NO, AUTH_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_AUTH_FIELD ON DOCU.TCB_AUTH_FIELD
+(MEMBER_NO, AUTH_CD, SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_AUTH_MENU ON DOCU.TCB_AUTH_MENU
+(MEMBER_NO, AUTH_CD, MENU_CD)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.PK_TCB_CLIENT_RFILE_TEMPLATE ON DOCU.TCB_CLIENT_RFILE_TEMPLATE
+(RFILE_SEQ, MEMBER_NO)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_AGREE_TEMPLATE_PK ON DOCU.TCB_AGREE_TEMPLATE
+(TEMPLATE_CD, AGREE_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_ATT_CFILE_PK ON DOCU.TCB_ATT_CFILE
+(TEMPLATE_CD, MEMBER_NO, FILE_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CFILE_PK ON DOCU.TCB_CFILE
+(CONT_NO, CONT_CHASU, CFILE_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CLIENT_PK ON DOCU.TCB_CLIENT
+(MEMBER_NO, CLIENT_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          8M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_EMAIL_PK ON DOCU.TCB_CONT_EMAIL
+(CONT_NO, CONT_CHASU, MEMBER_NO, EMAIL_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          32M
+            NEXT             4M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_CONT_SIGN_TEMPLATE_PK ON DOCU.TCB_CONT_SIGN_TEMPLATE
+(TEMPLATE_CD, SIGN_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_FIELDPERSON_PK ON DOCU.TCB_FIELDPERSON
+(MEMBER_NO, PERSON_SEQ, FIELD_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_D
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+CREATE UNIQUE INDEX DOCU.TCB_FIELD_PK ON DOCU.TCB_FIELD
+(MEMBER_NO, FIELD_SEQ)
+LOGGING
+TABLESPACE TS_DOCU_I
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          1M
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+DROP PUBLIC SYNONYM TCB_AGREE_TEMPLATE;
+
+CREATE PUBLIC SYNONYM TCB_AGREE_TEMPLATE FOR DOCU.TCB_AGREE_TEMPLATE;
+
+
+DROP PUBLIC SYNONYM TCB_ATT_CFILE;
+
+CREATE PUBLIC SYNONYM TCB_ATT_CFILE FOR DOCU.TCB_ATT_CFILE;
+
+
+DROP PUBLIC SYNONYM TCB_AUTH;
+
+CREATE PUBLIC SYNONYM TCB_AUTH FOR DOCU.TCB_AUTH;
+
+
+DROP PUBLIC SYNONYM TCB_AUTH_FIELD;
+
+CREATE PUBLIC SYNONYM TCB_AUTH_FIELD FOR DOCU.TCB_AUTH_FIELD;
+
+
+DROP PUBLIC SYNONYM TCB_AUTH_MENU;
+
+CREATE PUBLIC SYNONYM TCB_AUTH_MENU FOR DOCU.TCB_AUTH_MENU;
+
+
+DROP PUBLIC SYNONYM TCB_CFILE;
+
+CREATE PUBLIC SYNONYM TCB_CFILE FOR DOCU.TCB_CFILE;
+
+
+DROP PUBLIC SYNONYM TCB_CLIENT;
+
+CREATE PUBLIC SYNONYM TCB_CLIENT FOR DOCU.TCB_CLIENT;
+
+
+DROP PUBLIC SYNONYM TCB_CLIENT_RFILE_TEMPLATE;
+
+CREATE PUBLIC SYNONYM TCB_CLIENT_RFILE_TEMPLATE FOR DOCU.TCB_CLIENT_RFILE_TEMPLATE;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_EMAIL;
+
+CREATE PUBLIC SYNONYM TCB_CONT_EMAIL FOR DOCU.TCB_CONT_EMAIL;
+
+
+DROP PUBLIC SYNONYM TCB_CONT_SIGN_TEMPLATE;
+
+CREATE PUBLIC SYNONYM TCB_CONT_SIGN_TEMPLATE FOR DOCU.TCB_CONT_SIGN_TEMPLATE;
+
+
+DROP PUBLIC SYNONYM TCB_FIELD;
+
+CREATE PUBLIC SYNONYM TCB_FIELD FOR DOCU.TCB_FIELD;
+
+
+DROP PUBLIC SYNONYM TCB_FIELDPERSON;
+
+CREATE PUBLIC SYNONYM TCB_FIELDPERSON FOR DOCU.TCB_FIELDPERSON;
+
+
+ALTER TABLE DOCU.TCB_AGREE_USER ADD (
+  CONSTRAINT TCB_AGREE_USER_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, AGREE_SEQ, USER_ID)
+  USING INDEX DOCU.TCB_AGREE_USER_PK);
+
+ALTER TABLE DOCU.TCB_BOARD ADD (
+  CONSTRAINT TCB_BOARD_PK
+  PRIMARY KEY
+  (CATEGORY, BOARD_ID)
+  USING INDEX DOCU.TCB_BOARD_PK);
+
+ALTER TABLE DOCU.TCB_CLIENT_RFILE ADD (
+  CONSTRAINT PK_TCB_CLIENT_RFILE
+  PRIMARY KEY
+  (MEMBER_NO, RFILE_SEQ, CLIENT_NO)
+  USING INDEX DOCU.PK_TCB_CLIENT_RFILE);
+
+ALTER TABLE DOCU.TCB_COMCODE ADD (
+  CONSTRAINT PK_TCB_COMCODE
+  PRIMARY KEY
+  (CCODE, CODE)
+  USING INDEX DOCU.PK_TCB_COMCODE);
+
+ALTER TABLE DOCU.TCB_CONTMASTER ADD (
+  CONSTRAINT TCB_CONTMASTER_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU)
+  USING INDEX DOCU.TCB_CONTMASTER_PK);
+
+ALTER TABLE DOCU.TCB_CONT_ADD ADD (
+  CONSTRAINT PK_TCB_CONT_ADD
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, SEQ)
+  USING INDEX DOCU.PK_TCB_CONT_ADD);
+
+ALTER TABLE DOCU.TCB_CONT_AGREE ADD (
+  CONSTRAINT TCB_CONT_AGREE_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, AGREE_SEQ)
+  USING INDEX DOCU.TCB_CONT_AGREE_PK);
+
+ALTER TABLE DOCU.TCB_CONT_LOG ADD (
+  CONSTRAINT TCB_CONT_LOG_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, LOG_SEQ)
+  USING INDEX DOCU.TCB_CONT_LOG_PK);
+
+ALTER TABLE DOCU.TCB_CONT_SIGN ADD (
+  CONSTRAINT TCB_CONT_SIGN_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, SIGN_SEQ)
+  USING INDEX DOCU.TCB_CONT_SIGN_PK);
+
+ALTER TABLE DOCU.TCB_CONT_SUB ADD (
+  CONSTRAINT TCB_CONT_SUB_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, SUB_SEQ)
+  USING INDEX DOCU.TCB_CONT_SUB_PK);
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE ADD (
+  CONSTRAINT TCB_CONT_TEMPLATE_PK
+  PRIMARY KEY
+  (TEMPLATE_CD)
+  USING INDEX DOCU.TCB_CONT_TEMPLATE_PK);
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_ADD ADD (
+  CONSTRAINT PK_TCB_CONT_TEMPLATE_ADD
+  PRIMARY KEY
+  (TEMPLATE_CD, SEQ)
+  USING INDEX DOCU.PK_TCB_CONT_TEMPLATE_ADD);
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_HIST ADD (
+  CONSTRAINT PK_TCB_CONT_TEMPLATE_HIST
+  PRIMARY KEY
+  (TEMPLATE_CD, VERSION_SEQ)
+  USING INDEX DOCU.PK_TCB_CONT_TEMPLATE_HIST);
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_SUB ADD (
+  CONSTRAINT TCB_CONT_TEMPLATE_SUB_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, SUB_SEQ)
+  USING INDEX DOCU.TCB_CONT_TEMPLATE_SUB_PK);
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_SUB_HIST ADD (
+  CONSTRAINT SYS_C3
+  PRIMARY KEY
+  (TEMPLATE_CD, VERSION_SEQ, SUB_SEQ)
+  USING INDEX
+    TABLESPACE TS_DOCU_I
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+               ));
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_USER ADD (
+  CONSTRAINT TCB_CONT_TEMPLATE_USER_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, MEMBER_NO)
+  USING INDEX DOCU.TCB_CONT_TEMPLATE_USER_PK);
+
+ALTER TABLE DOCU.TCB_CUST ADD (
+  CONSTRAINT TCB_CUST_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, MEMBER_NO)
+  USING INDEX DOCU.TCB_CUST_PK);
+
+ALTER TABLE DOCU.TCB_CUST_SIGN_IMG ADD (
+  CONSTRAINT PK_TCB_CUST_SIGN_IMG
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, MEMBER_NO, SIGN_IMG_SEQ)
+  USING INDEX DOCU.PK_TCB_CUST_SIGN_IMG);
+
+ALTER TABLE DOCU.TCB_CUST_TEMP ADD (
+  CONSTRAINT TCB_CUST_TEMP_PK
+  PRIMARY KEY
+  (MAIN_MEMBER_NO, TEMP_SEQ, MEMBER_NO)
+  USING INDEX DOCU.TCB_CUST_TEMP_PK);
+
+ALTER TABLE DOCU.TCB_IDENTIFY_LOG ADD (
+  CONSTRAINT TCB_IDENTIFY_LOG_PK
+  PRIMARY KEY
+  (LOG_SEQ)
+  USING INDEX DOCU.TCB_IDENTIFY_LOG_PK);
+
+ALTER TABLE DOCU.TCB_MEMBER ADD (
+  CONSTRAINT TCB_MEMBER_PK
+  PRIMARY KEY
+  (MEMBER_NO)
+  USING INDEX DOCU.TCB_MEMBER_PK);
+
+ALTER TABLE DOCU.TCB_MENU ADD (
+  CONSTRAINT PK_TCB_MENU
+  PRIMARY KEY
+  (MENU_CD)
+  USING INDEX DOCU.PK_TCB_MENU);
+
+ALTER TABLE DOCU.TCB_MENU_INFO ADD (
+  CONSTRAINT TCB_MENU_INFO_PK
+  PRIMARY KEY
+  (ADM_CD)
+  USING INDEX DOCU.TCB_MENU_INFO_PK);
+
+ALTER TABLE DOCU.TCB_MENU_MEMBER ADD (
+  CONSTRAINT PK_TCB_MENU_MEMBER
+  PRIMARY KEY
+  (MEMBER_NO, MENU_CD)
+  USING INDEX DOCU.PK_TCB_MENU_MEMBER);
+
+ALTER TABLE DOCU.TCB_MENU_SUB ADD (
+  CONSTRAINT TCB_MENU_SUB_PK
+  PRIMARY KEY
+  (ADM_CD, SEQ)
+  USING INDEX DOCU.TCB_MENU_SUB_PK);
+
+ALTER TABLE DOCU.TCB_QNA ADD (
+  CONSTRAINT XPKTCB_QNA
+  PRIMARY KEY
+  (QNASEQ)
+  USING INDEX DOCU.XPKTCB_QNA);
+
+ALTER TABLE DOCU.TCB_RFILE ADD (
+  CONSTRAINT TCB_RFILE_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, RFILE_SEQ)
+  USING INDEX DOCU.TCB_RFILE_PK);
+
+ALTER TABLE DOCU.TCB_RFILE_CUST ADD (
+  CONSTRAINT TCB_RFILE_CUST_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, RFILE_SEQ, MEMBER_NO)
+  USING INDEX DOCU.TCB_RFILE_CUST_PK);
+
+ALTER TABLE DOCU.TCB_RFILE_TEMPLATE ADD (
+  CONSTRAINT TCB_RFILE_TEMPLATE_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, MEMBER_NO, RFILE_SEQ)
+  USING INDEX DOCU.TCB_RFILE_TEMPLATE_PK);
+
+ALTER TABLE DOCU.TCB_USEINFO ADD (
+  CONSTRAINT TCB_USEINFO_PK
+  PRIMARY KEY
+  (USESEQ, MEMBER_NO)
+  USING INDEX DOCU.TCB_USEINFO_PK);
+
+ALTER TABLE DOCU.TCB_USEINFO_ADD ADD (
+  CONSTRAINT TCB_USEINFO_ADD_PK
+  PRIMARY KEY
+  (USESEQ, MEMBER_NO, TEMPLATE_CD)
+  USING INDEX DOCU.TCB_USEINFO_ADD_PK);
+
+ALTER TABLE DOCU.TCB_USER_CODE ADD (
+  CONSTRAINT TCB_USER_CODE_IDX1
+  PRIMARY KEY
+  (MEMBER_NO, CODE)
+  USING INDEX DOCU.TCB_USER_CODE_IDX1);
+
+ALTER TABLE DOCU.TCB_WARR ADD (
+  CONSTRAINT TCB_WARR_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, WARR_SEQ)
+  USING INDEX DOCU.TCB_WARR_PK);
+
+ALTER TABLE DOCU.TCB_WARR_ADD ADD (
+  CONSTRAINT TCB_WARR_ADD_PK
+  PRIMARY KEY
+  (MEMBER_NO, WARR_SEQ)
+  USING INDEX DOCU.TCB_WARR_ADD_PK);
+
+ALTER TABLE DOCU.TCB_AGREE_TEMPLATE ADD (
+  CONSTRAINT TCB_AGREE_TEMPLATE_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, AGREE_SEQ)
+  USING INDEX DOCU.TCB_AGREE_TEMPLATE_PK);
+
+ALTER TABLE DOCU.TCB_ATT_CFILE ADD (
+  CONSTRAINT TCB_ATT_CFILE_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, MEMBER_NO, FILE_SEQ)
+  USING INDEX DOCU.TCB_ATT_CFILE_PK);
+
+ALTER TABLE DOCU.TCB_AUTH ADD (
+  CONSTRAINT PK_TCB_AUTH
+  PRIMARY KEY
+  (MEMBER_NO, AUTH_CD)
+  USING INDEX DOCU.PK_TCB_AUTH);
+
+ALTER TABLE DOCU.TCB_AUTH_FIELD ADD (
+  CONSTRAINT PK_TCB_AUTH_FIELD
+  PRIMARY KEY
+  (MEMBER_NO, AUTH_CD, SEQ)
+  USING INDEX DOCU.PK_TCB_AUTH_FIELD);
+
+ALTER TABLE DOCU.TCB_AUTH_MENU ADD (
+  CONSTRAINT PK_TCB_AUTH_MENU
+  PRIMARY KEY
+  (MEMBER_NO, AUTH_CD, MENU_CD)
+  USING INDEX DOCU.PK_TCB_AUTH_MENU);
+
+ALTER TABLE DOCU.TCB_CFILE ADD (
+  CONSTRAINT TCB_CFILE_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, CFILE_SEQ)
+  USING INDEX DOCU.TCB_CFILE_PK);
+
+ALTER TABLE DOCU.TCB_CLIENT ADD (
+  CONSTRAINT TCB_CLIENT_PK
+  PRIMARY KEY
+  (MEMBER_NO, CLIENT_SEQ)
+  USING INDEX DOCU.TCB_CLIENT_PK);
+
+ALTER TABLE DOCU.TCB_CLIENT_RFILE_TEMPLATE ADD (
+  CONSTRAINT PK_TCB_CLIENT_RFILE_TEMPLATE
+  PRIMARY KEY
+  (RFILE_SEQ, MEMBER_NO)
+  USING INDEX DOCU.PK_TCB_CLIENT_RFILE_TEMPLATE);
+
+ALTER TABLE DOCU.TCB_CONT_EMAIL ADD (
+  CONSTRAINT TCB_CONT_EMAIL_PK
+  PRIMARY KEY
+  (CONT_NO, CONT_CHASU, MEMBER_NO, EMAIL_SEQ)
+  USING INDEX DOCU.TCB_CONT_EMAIL_PK);
+
+ALTER TABLE DOCU.TCB_CONT_SIGN_TEMPLATE ADD (
+  CONSTRAINT TCB_CONT_SIGN_TEMPLATE_PK
+  PRIMARY KEY
+  (TEMPLATE_CD, SIGN_SEQ)
+  USING INDEX DOCU.TCB_CONT_SIGN_TEMPLATE_PK);
+
+ALTER TABLE DOCU.TCB_FIELD ADD (
+  CONSTRAINT TCB_FIELD_PK
+  PRIMARY KEY
+  (MEMBER_NO, FIELD_SEQ)
+  USING INDEX DOCU.TCB_FIELD_PK);
+
+ALTER TABLE DOCU.TCB_FIELDPERSON ADD (
+  CONSTRAINT TCB_FIELDPERSON_PK
+  PRIMARY KEY
+  (MEMBER_NO, PERSON_SEQ, FIELD_SEQ)
+  USING INDEX DOCU.TCB_FIELDPERSON_PK);
+
+ALTER TABLE DOCU.TCB_CONT_ADD ADD (
+  CONSTRAINT FK_TCB_CONT_ADD 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CONT_AGREE ADD (
+  CONSTRAINT FK_TCB_CONT_AGREE_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CONT_LOG ADD (
+  CONSTRAINT FK_TCB_CONT_LOG_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CONT_SIGN ADD (
+  CONSTRAINT FK_TCB_CONT_SIGN_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CONT_SUB ADD (
+  CONSTRAINT FK_TCB_CONT_SUB_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_ADD ADD (
+  CONSTRAINT FK_TCB_CONT_TEMPLATE_ADD 
+  FOREIGN KEY (TEMPLATE_CD) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE (TEMPLATE_CD));
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_SUB ADD (
+  CONSTRAINT FK_TCB_CONT_TEMPLATE_SUB_1 
+  FOREIGN KEY (TEMPLATE_CD) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE (TEMPLATE_CD));
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_SUB_HIST ADD (
+  CONSTRAINT FK_TCB_CONT_TEMPLATE_SUB_HIST 
+  FOREIGN KEY (TEMPLATE_CD, VERSION_SEQ) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE_HIST (TEMPLATE_CD,VERSION_SEQ));
+
+ALTER TABLE DOCU.TCB_CONT_TEMPLATE_USER ADD (
+  CONSTRAINT FK_TCB_CONT_TEMPLATE_USER_1 
+  FOREIGN KEY (TEMPLATE_CD) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE (TEMPLATE_CD));
+
+ALTER TABLE DOCU.TCB_CUST ADD (
+  CONSTRAINT FK_TCB_CUST_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CUST_SIGN_IMG ADD (
+  CONSTRAINT FK_TCB_CUST_SIGN_IMG 
+  FOREIGN KEY (CONT_NO, CONT_CHASU, MEMBER_NO) 
+  REFERENCES DOCU.TCB_CUST (CONT_NO,CONT_CHASU,MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_MENU_MEMBER ADD (
+  CONSTRAINT FK_TCB_MENU_MEMBER 
+  FOREIGN KEY (MEMBER_NO) 
+  REFERENCES DOCU.TCB_MEMBER (MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_RFILE ADD (
+  CONSTRAINT FK_TCB_RFILE_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_RFILE_CUST ADD (
+  CONSTRAINT FK_TCB_RFILE_CUST_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU, RFILE_SEQ) 
+  REFERENCES DOCU.TCB_RFILE (CONT_NO,CONT_CHASU,RFILE_SEQ));
+
+ALTER TABLE DOCU.TCB_USEINFO ADD (
+  CONSTRAINT FK_TCB_USEINFO_1 
+  FOREIGN KEY (MEMBER_NO) 
+  REFERENCES DOCU.TCB_MEMBER (MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_USEINFO_ADD ADD (
+  CONSTRAINT FK_TCB_USEINFO_ADD_1 
+  FOREIGN KEY (USESEQ, MEMBER_NO) 
+  REFERENCES DOCU.TCB_USEINFO (USESEQ,MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_WARR ADD (
+  CONSTRAINT FK_TCB_WARR_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_AGREE_TEMPLATE ADD (
+  CONSTRAINT FK_TCB_AGREE_TEMPLATE_1 
+  FOREIGN KEY (TEMPLATE_CD) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE (TEMPLATE_CD));
+
+ALTER TABLE DOCU.TCB_ATT_CFILE ADD (
+  CONSTRAINT FK_TCB_ATT_CFILE_1 
+  FOREIGN KEY (TEMPLATE_CD) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE (TEMPLATE_CD));
+
+ALTER TABLE DOCU.TCB_AUTH ADD (
+  CONSTRAINT FK_TCB_AUTH 
+  FOREIGN KEY (MEMBER_NO) 
+  REFERENCES DOCU.TCB_MEMBER (MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_AUTH_FIELD ADD (
+  CONSTRAINT FK_TCB_AUTH_FIELD 
+  FOREIGN KEY (MEMBER_NO, AUTH_CD) 
+  REFERENCES DOCU.TCB_AUTH (MEMBER_NO,AUTH_CD));
+
+ALTER TABLE DOCU.TCB_AUTH_MENU ADD (
+  CONSTRAINT FK_TCB_AUTH_MENU 
+  FOREIGN KEY (MEMBER_NO, AUTH_CD) 
+  REFERENCES DOCU.TCB_AUTH (MEMBER_NO,AUTH_CD));
+
+ALTER TABLE DOCU.TCB_CFILE ADD (
+  CONSTRAINT FK_TCB_CFILE_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU) 
+  REFERENCES DOCU.TCB_CONTMASTER (CONT_NO,CONT_CHASU));
+
+ALTER TABLE DOCU.TCB_CLIENT ADD (
+  CONSTRAINT FK_TCB_CLIENT_1 
+  FOREIGN KEY (MEMBER_NO) 
+  REFERENCES DOCU.TCB_MEMBER (MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_CLIENT_RFILE_TEMPLATE ADD (
+  CONSTRAINT FK_TCB_CLIENT_RFILE_TEMPLATE 
+  FOREIGN KEY (MEMBER_NO) 
+  REFERENCES DOCU.TCB_MEMBER (MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_CONT_EMAIL ADD (
+  CONSTRAINT FK_TCB_CONT_EMAIL_1 
+  FOREIGN KEY (CONT_NO, CONT_CHASU, MEMBER_NO) 
+  REFERENCES DOCU.TCB_CUST (CONT_NO,CONT_CHASU,MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_CONT_SIGN_TEMPLATE ADD (
+  CONSTRAINT FK_TCB_CONT_SIGN_TEMPLATE 
+  FOREIGN KEY (TEMPLATE_CD) 
+  REFERENCES DOCU.TCB_CONT_TEMPLATE (TEMPLATE_CD));
+
+ALTER TABLE DOCU.TCB_FIELD ADD (
+  CONSTRAINT FK_TCB_FIELD_1 
+  FOREIGN KEY (MEMBER_NO) 
+  REFERENCES DOCU.TCB_MEMBER (MEMBER_NO));
+
+ALTER TABLE DOCU.TCB_FIELDPERSON ADD (
+  CONSTRAINT FK_TCB_FIELDPERSON_1 
+  FOREIGN KEY (MEMBER_NO, FIELD_SEQ) 
+  REFERENCES DOCU.TCB_FIELD (MEMBER_NO,FIELD_SEQ),
+  CONSTRAINT FK_TCB_FIELDPERSON_2 
+  FOREIGN KEY (MEMBER_NO, PERSON_SEQ) 
+  REFERENCES DOCU.TCB_PERSON (MEMBER_NO,PERSON_SEQ));
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_AGREE_USER TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_BOARD TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CLIENT_RFILE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_COMCODE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONTMASTER TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_ADD TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_AGREE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_LOG TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_SIGN TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_SUB TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_TEMPLATE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_TEMPLATE_ADD TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_TEMPLATE_HIST TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_TEMPLATE_SUB TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_TEMPLATE_SUB_HIST TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_TEMPLATE_USER TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CUST TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CUST_SIGN_IMG TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CUST_TEMP TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_IDENTIFY_LOG TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_LOGIN_LOG TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_MEMBER TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_MENU TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_MENU_INFO TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_MENU_MEMBER TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_MENU_SUB TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_QNA TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_RFILE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_RFILE_CUST TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_RFILE_TEMPLATE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_USEINFO TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_USEINFO_ADD TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_USER_CODE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_WARR TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_WARR_ADD TO DOCU_DML;
+
+GRANT SELECT ON DOCU.TCB_AGREE_USER TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_BOARD TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CLIENT_RFILE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_COMCODE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONTMASTER TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_ADD TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_AGREE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_LOG TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_SIGN TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_SUB TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_TEMPLATE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_TEMPLATE_ADD TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_TEMPLATE_HIST TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_TEMPLATE_SUB TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_TEMPLATE_SUB_HIST TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_TEMPLATE_USER TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CUST TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CUST_SIGN_IMG TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CUST_TEMP TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_IDENTIFY_LOG TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_LOGIN_LOG TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_MEMBER TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_MENU TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_MENU_INFO TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_MENU_MEMBER TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_MENU_SUB TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_QNA TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_RFILE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_RFILE_CUST TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_RFILE_TEMPLATE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_USEINFO TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_USEINFO_ADD TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_USER_CODE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_WARR TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_WARR_ADD TO DOCU_SEL;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_AGREE_TEMPLATE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_ATT_CFILE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_AUTH TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_AUTH_FIELD TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_AUTH_MENU TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CFILE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CLIENT TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CLIENT_RFILE_TEMPLATE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_EMAIL TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_CONT_SIGN_TEMPLATE TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_FIELD TO DOCU_DML;
+
+GRANT DELETE, INSERT, UPDATE ON DOCU.TCB_FIELDPERSON TO DOCU_DML;
+
+GRANT SELECT ON DOCU.TCB_AGREE_TEMPLATE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_ATT_CFILE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_AUTH TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_AUTH_FIELD TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_AUTH_MENU TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CFILE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CLIENT TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CLIENT_RFILE_TEMPLATE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_EMAIL TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_CONT_SIGN_TEMPLATE TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_FIELD TO DOCU_SEL;
+
+GRANT SELECT ON DOCU.TCB_FIELDPERSON TO DOCU_SEL;
