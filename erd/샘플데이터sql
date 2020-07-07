@@ -17142,3 +17142,24 @@ Insert into DOCU.TCB_COMCODE
    ('M008', '99', '계약폐기', 
     12, 'Y', 'N');
 COMMIT;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SET DEFINE OFF;
+Insert into TCB_PERSON.TCB_MEMBER
+   (MEMBER_NO, SEQ, TITLE, CONTENTS, REG_DATE, REG_ID, USER_NAME)
+ Values
+   ('20120700021', 1, '알림방 테스트', '알림방 테스트', '20200619161914', 
+    'test08', '김사일');
+COMMIT;
