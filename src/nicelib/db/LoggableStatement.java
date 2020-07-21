@@ -2333,12 +2333,10 @@ public class LoggableStatement implements PreparedStatement {
 		return false;
 	}
 
-	@Override
 	public void closeOnCompletion() throws SQLException {
 
 	}
 
-	@Override
 	public boolean isCloseOnCompletion() throws SQLException {
 		return false;
 	}
