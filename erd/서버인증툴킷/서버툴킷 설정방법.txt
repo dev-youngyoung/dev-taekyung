@@ -1,0 +1,8 @@
+1. CrossCertLIB64.zip을 임의의 폴더에 풉니다.
+   예) D:\CrossCertLIB64
+
+2. 컴퓨터 환경변수의 path에 위의 폴더를 추가합니다.
+   참고) 환경변수 추가.png
+
+3. 2020-9.zip 파일안의 라이센스 키 파일을 "C:\Program Files\NPKI" 폴더에 복사합니다.
+   참고) 라이센스키 복사.png
