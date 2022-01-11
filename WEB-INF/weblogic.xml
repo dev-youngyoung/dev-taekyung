@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://www.bea.com/ns/weblogic/90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<container-descriptor>
+		<servlet-reload-check-secs>1</servlet-reload-check-secs>
+	</container-descriptor>
+	
+	<jsp-descriptor>
+		<page-check-seconds>1</page-check-seconds>
+		<encoding>UTF-8</encoding>
+	</jsp-descriptor>
+	
+	<session-descriptor>
+		<timeout-secs>3600</timeout-secs>
+		<invalidation-interval-secs>20</invalidation-interval-secs>
+		<debug-enabled>false</debug-enabled>
+		<id-length>52</id-length>
+		<cookie-name>JSESSIONID</cookie-name>
+		<!-- <persistent-store-type>replicated_if_clustered</persistent-store-type> -->
+	</session-descriptor>
+	
+	<charset-params>
+		<input-charset>
+			<resource-path>/*</resource-path>
+			<java-charset-name>UTF-8</java-charset-name>
+		</input-charset>
+	</charset-params>
+	
+	<context-root>/</context-root>
+
+</weblogic-web-app>

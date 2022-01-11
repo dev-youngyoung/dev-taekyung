@@ -1,0 +1,123 @@
+<form name="form1" method="get">
+<input type="hidden" name="search" value="1">
+<input type="hidden" name="search_type" value="{{search_type}}">
+<input type="hidden" name="sign_seq" value="{{sign_seq}}">
+
+<div style="width:100%;padding:5px;text-align:right">
+	<!-- <button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert.jsp?{{query}}';"><span></span>비회원업체추가</button> -->
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+		    <col width="15%">
+		    <col width="29%">
+		    <col width="*">
+		</colgroup>
+	  	<tr>
+		    <th><p>사업자번호</p></th>
+		    <td><input type="text" name="s_vendcd" value="{{s_vendcd}}" maxlength="30" style="width: 140px;" readonly="readonly"></td>
+	  	</tr>
+	</table>
+</div>
+
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f) {
+	if (f['s_vendcd'].value == "" && f['s_member_name'].value == "") {
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="*">
+			<col width="25%">
+			<col width="18%">
+			<col width="20%">
+			<col width="13%">
+		</colgroup>
+		<tr>
+			<th>거래처</th>
+			<th>업체명</th>
+			<th>사업자번호</th>
+			<th>대표자</th>
+			<th>선택</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.ltrim_cust_code}}</td>
+			<td align="left">{{list.com_name}}</td>
+			<td align="center">{{list.comm_no}}</td>
+			<td align="left">{{list.boss_name}}</td>
+			<td align="center">
+			<form name="form_{{list.member_no}}">
+				<input type="hidden" name="member_no" value="{{list.member_no}}"/>
+				<input type="hidden" name="member_name" value="{{list.com_name}}"/>
+				<input type="hidden" name="boss_name" value="{{list.boss_name}}"/>
+				<input type="hidden" name="condition" value="{{list.site_item}}"/>
+				<input type="hidden" name="category" value="{{list.biz_type}}"/>
+				<input type="hidden" name="post_code" value="{{list.head_ofce_post}}"/>
+				<input type="hidden" name="address" value="{{list.head_ofce_adrs}}"/>
+				<input type="hidden" name="user_id" value="{{list.comm_no}}"/>
+				<input type="hidden" name="hdn_member_no" value="{{list.member_no}}"/>
+				<input type="hidden" name="join_mem" value="{{list.join_mem}}"/>
+				<input type="hidden" name="status" value="{{list.status}}"/>
+				<input type="hidden" name="custCode" value="{{list.ltrim_cust_code}}"/>
+				
+				<button type="button" class="sbtn ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>선택</button>
+			</form>
+			</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+	</table>
+</div>
+
+<!-- IFNOT START 'list' -->
+<div class="div_table">
+<table>
+	<tr>
+		<td align="center">검색 결과가 없습니다.</td>
+	</tr>
+</table>
+</div>
+<!-- IFNOT END 'list' -->
+
+<br/>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+
+
+<script language="javascript">
+attachOnload(function() {
+	if (opener.location.toString().indexOf("_msign_") > -1) {
+	    document.getElementById("btn_add_person").style.display = "";
+	}
+});
+
+function addPerson() {
+    opener.addClientPersonBlank('{{sign_seq}}');
+    self.close();
+}
+
+function addCompany(member_no){
+	var f = document.forms["form_" + member_no];
+	var elems = f.elements;
+	var data = {"sign_seq" : "{{sign_seq}}"};
+	for (var i=0; i<elems.length; i++) {
+		var elem = elems[i];
+		if (elem.tagName.toLowerCase() == "input") {
+			data[elem.name] = elem.value;
+		}
+	}
+	opener.addClientInfo(data);
+	self.close();
+}
+</script>

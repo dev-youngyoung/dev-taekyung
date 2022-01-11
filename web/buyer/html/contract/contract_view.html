@@ -1,0 +1,47 @@
+﻿<form novalidate name="form1" method="post" >
+	<div>
+		<div class="cont_tab">
+			<span class="tab_on" id="tab_0" onClick="tabView(0)">{{template.template_name}}</span>&nbsp;
+			<!-- LOOP START 'contSub'  -->
+			<!-- IFNOT START 'contSub.hidden' -->
+			<span class="tab_off" style="margin-left:-5" id="tab_{{contSub.sub_seq}}" onClick="tabView({{contSub.sub_seq}})">{{contSub.cont_sub_name}}</span>
+			<!-- IFNOT END 'contSub.hidden' -->
+			<!-- IF START 'contSub.hidden' -->
+			<span class="tab_off" id="tab_{{contSub.sub_seq}}" style="display:none" onClick="tabView({{contSub.sub_seq}})">{{contSub.cont_sub_name}}</span>
+			<!-- IF END 'contSub.hidden' -->
+			<input type="hidden" name="cont_sub_name" value="{{contSub.cont_sub_name}}"><input type="hidden" name="cont_sub_style" value="{{contSub.cont_sub_style}}">
+			<!-- LOOP END 'contSub' -->
+		</div>
+		<div class="cont_warp">
+			<div id="__html">
+				<div style="{{template.template_style}}; padding-top: 10px" id="__html_0">
+				{{cont.cont_html}}
+				</div>
+				<!-- LOOP START 'contSub' -->
+				<div style="{{contSub.cont_sub_style}}; padding-top: 10px; display:none" id="__html_{{contSub.sub_seq}}">
+				{{contSub.cont_sub_html}}
+				</div>
+				<!-- LOOP END 'contSub' -->
+			</div>
+		</div>
+	</div>
+</form>
+
+<script language="javascript">
+
+if( window.attachEvent )  // IE의 경우
+	window.attachEvent( "onload", convertHtml );
+else  // IE가 아닌 경우.
+	window.addEventListener( "load", convertHtml , false );
+	
+function convertHtml(){
+	for(var i=0; i<=10; i++)
+	{
+		if( document.getElementById("__html_"+i) !== null )
+		{
+			removeInput2(document.getElementById("__html_"+i));
+		}
+	}
+}
+
+</script>

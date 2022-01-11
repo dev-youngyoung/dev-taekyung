@@ -1,0 +1,146 @@
+﻿<form novalidate name="form1" method="post" enctype="multipart/form-data" onSubmit="return formSubmit(this)">
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>공지사항 상세<span class="caution-text">* 표시는 필수 입력항목 입니다</span></h3>
+		</div>
+		<div class="push-right">
+			<p></p>
+		</div>
+	</div>
+
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="*">
+		</colgroup>
+		<tr>
+			<th class="req-check">등록자</th>
+			<td>
+				<input type="text" name="reg_name" style="width: 100%" readonly="readonly">
+				<input type="hidden" name="reg_id"/>
+			</td>
+			<th class="req-check">공지일자</th>
+			<td>
+				<input type="text" id="open_date" name="open_date" value="{{sysdate}}" style="width:100px" onKeyUp="dateFormat(this)" size="10" maxlength="10" readonly>
+				<!-- <img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['open_date'])"> -->
+				<input type="checkbox" name="open_yn" value="Y" checked>공개여부
+			</td>
+		</tr>
+		<tr>
+			<th class="req-check">제목</th>
+			<td colspan="3"><input type="text" name="title" style="width:100%" maxlength="100"></td>
+		</tr>
+		<tr>
+			<th  class="req-check" colspan="3">공지내용&nbsp;&nbsp;&nbsp; ※ html로 작성해서 넣어주세요.</th>
+			<td align="center">
+				<button type="button" class="sbtn color ico-write" value="" onClick="fPreview(false);"><span></span>HTML작성</button>
+				<button type="button" class="sbtn color ico-list " value="" onClick="fPreview(true);"><span></span>미리보기</button>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" height="400" valign="top">
+				<textarea name="contents" id="contents" style="width:100%; height:400px; padding:5" wrap='soft' class="textarea01"></textarea>
+				<div id="preview" style="width:100%; height:400px; padding:5; display:none" class="textarea01"></div>
+			</td>
+		</tr>
+		<tr>
+			<th>첨부파일</th>
+			<td colspan="3">
+				<!-- IF START 'ds.doc_name' -->
+				<input type="hidden" name="doc_name">{{ds.doc_name}}.{{ds.file_ext}} ({{ds.file_size}})
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.noti','{{ds.file_path}}{{ds.file_name}}','{{ds.doc_name}}.{{ds.file_ext}}')"><span></span>다운로드</button>
+				<button type="button" class="sbtn color ico-delete"  onclick="file_delete()"><span></span>삭제</button>
+				<!-- IF END 'ds.doc_name' -->
+
+				<!-- IFNOT START 'ds.doc_name' -->
+				<input type="text" name="doc_name" maxlength="200" style="valign:absmiddle;width:250px">
+				<input type="file" name="file_pds" style="width:530px" onchange="javascript:setDocName(this);">
+				<!-- IFNOT END 'ds.doc_name' -->
+			</td>
+		</tr>
+	</table>
+
+	<div class="btn-group-wrap">
+		<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
+		<!-- IF START 'modify' -->
+		<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('삭제하시겠습니까?')){location.href='noti_delete.jsp?{{query}}';}"><span></span>삭제</button>
+		<!-- IF END 'modify' -->
+		<button type="button" class="btn color ico-list" onclick="location.href='noti_list.jsp?{{list_query}}'"><span></span>목록으로</button>
+	</div>
+</div>
+</form>
+{{form_script}}
+
+<script type="text/javascript">
+function formSubmit(f){
+    if(validate(f)){
+        if(f['file_pds'] != null)
+        {
+            var doc_name = f['doc_name'].value;
+            var file_pds = f['file_pds'].value;
+
+            if( (doc_name=="" && file_pds!="")|| (doc_name!="" && file_pds=="")){
+                alert("문서명과 파일정보를 정확히 입력하여 주십시오.");
+                return false;
+            }
+        }
+
+        if(!confirm("저장 하시겠습니까?")){
+            return false;
+        }
+
+        var sContents = f.contents.value;
+        sContents = sContents.replaceAll("\"", "&quot;");
+        sContents = sContents.replaceAll("<", "&lt;");
+        sContents = sContents.replaceAll(">", "&gt;");
+        f.contents.value = sContents;
+
+        return true;
+    }
+    return false;
+}
+
+// 미리보기
+function fPreview(mode)
+{
+    if(mode)
+    {
+        document.getElementById("contents").style.display = "none";
+        document.getElementById("preview").innerHTML = document.getElementById("contents").value;
+        document.getElementById("preview").style.display = "";
+    }
+    else
+    {
+        document.getElementById("contents").style.display = "";
+        document.getElementById("preview").style.display = "none";
+    }
+}
+
+// 파일삭제
+function file_delete()
+{
+	Go('noti_delete.jsp?mode=file&{{query}}');
+}
+
+//파일명 SET
+function setDocName(upfile){
+	var filename = upfile.value.split('/').pop().split('\\').pop().split('.'); // 파일명 추출
+	var setName = "";
+	var length = filename.length;
+	for(var i=0; i < filename.length; i++){
+		if(i+1 != length){
+			if(i==0){
+				setName = setName + filename[i];
+			}else{
+				setName = setName + "." + filename[i];
+			}
+		}
+	}
+	
+	var cfile_doc_name = document.getElementsByName('doc_name');
+	cfile_doc_name[0].value = setName;
+}
+</script>

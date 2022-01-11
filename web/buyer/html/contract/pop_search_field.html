@@ -1,0 +1,88 @@
+<form name="form1" method="get">
+<input type="hidden" name="search" value="1">
+
+<div style="width:100%;padding:5px;text-align:right">
+	<!-- <button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert.jsp?{{query}}';"><span></span>비회원업체추가</button> -->
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="20%">
+		    <col width="18%">
+		    <col width="20%">
+		    <col width="20%">
+		    <col width="*">
+		</colgroup>
+	  	<tr>
+		    <th><p>부서코드</p></th>
+		    <td>
+		    	<input type="text" name="s_field_seq" maxlength="30" style="width: 100px;">
+		    </td>
+		    <th><p>부서명</p></th>
+		    <td><input type="text" name="s_field_name" maxlength="30" style="width: 140px;"></td>
+			<td align="right">
+		      <button type="submit" class="search_btn">검색</button>
+		    </td>
+	  	</tr>
+	</table>
+</div>
+
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f) {
+	if (f['s_vendcd'].value == "" && f['s_member_name'].value == "") {
+		alert("부서코드 또는 부서명을 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※업체명 또는 사업자 등록번호를 입력후 검색 하세요.</span>
+    </div>
+</div>
+
+<br/>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="15%">
+			<col width="*">
+			<col width="14%">
+		</colgroup>
+		<tr>
+			<th>부서코드</th>
+			<th>부서명</th>
+			<th>추가</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.field_seq}}</td>
+			<td align="center">{{list.field_name}}</td>
+			<td align="center">
+			<button type="button" class="sbtn ico-add" onclick="opener.addFieldRow('{{list.field_seq}}', '{{list.field_name}}');"><span></span>추가</button>
+			</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+	</table>
+</div>
+
+<!-- IFNOT START 'list' -->
+<div class="div_table">
+<table>
+	<tr>
+		<td align="center">검색 결과가 없습니다.</td>
+	</tr>
+</table>
+</div>
+<!-- IFNOT END 'list' -->
+
+<br/>
+
+<div class="common-paging">{{pagerbar}}</div>

@@ -1,0 +1,64 @@
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="35%">
+			<col width="50%">
+			<col width="15%">
+		</colgroup>
+		<tr>
+			<th>투자품의번호</th>
+			<th>투자품의명(공사명또는설비제작명)</th>
+			<th>계약시작일</th>
+		</tr>
+		<!-- IF START 'list' -->
+		<!-- LOOP START 'list' -->
+		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="javascript:addInvCsltSapDetail('{{list.posId}}', '{{list.seq}}', '{{form_id}}');">
+			<td align="center">{{list.posId}} {{list.seq}}</td>
+			<td align="left">{{list.item}}</td>
+			<td align="center">{{list.sDate}}</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+		<!-- IF END 'list' -->
+		
+		<!-- IFNOT START 'list' -->
+		<tr>
+			<td colspan="3" align="center">검색 결과가 없습니다.</td>
+		</tr>
+		<!-- IFNOT END 'list' -->
+	</table>
+</div>
+
+<script language="javascript">
+function addInvCsltSapDetail(invest_no, invest_seq, form_id) {
+	var url = "./search_inv_cslt_sap_detail.jsp";
+	var data = {"invest_no" : invest_no, "invest_seq" : invest_seq, "form_id" : form_id};
+	callJqueryAjax(url, data, callInvCsltSapDetail);
+}
+
+function callInvCsltSapDetail(data) {
+	var sapData = JSON.parse(data);
+	
+	opener.addInvCsltSapDetailInfo(sapData);
+	self.close();
+}
+
+function callJqueryAjax(url, postData, callback) {
+   	$.ajax({
+        url : url,
+        type : "post",
+        data : postData,
+        success : function(data) {
+            if (data != null && data.trim().length > 0) {
+                if (typeof callback === "function") {
+					callback(data.trim());
+                }
+            } else {
+                alert("조회 중 오류가 발생했습니다.");
+            }
+        },
+        error : function(request, status, error) {
+            alert("code:" + request.status + "\n" + "error:" + error);
+        }
+    });
+}
+</script>

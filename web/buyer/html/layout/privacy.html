@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- PAGE TITLE -->
+    <title>농심</title>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+
+    <!-- Default CSS -->
+<style type="text/css">
+@charset "UTF-8";
+
+body.route1-util.route1-util .privacy-wrap {
+    margin-top: 100px;
+    line-height: 1.7;
+}
+
+body.route1-util.route1-util .privacy-wrap .head-cont .article-title-dot
+    {
+    margin-botton: 10px !important;
+}
+
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc p:first-child {
+    line-height:50px;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy{
+    display:flex;
+    position: absolute;
+    right: 0;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy-form {
+    position: relative;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy label{
+    margin-right: 22px;
+    line-height: 50px;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy-form::after{
+    content: "\e953";
+    font-family: icomoon;
+    position: absolute;
+    top: 16px;
+    right: 21px;
+    font-size: 9px;
+    z-index: -1;
+}
+
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc select {
+    border: 0 none;
+    background: transparent;
+    font-size: 18px;
+    padding-right: 50px;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    padding: 0 30px 0 16px;
+    height: 50px;
+}
+@media ( max-width : 990px) {
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy{position:relative;}
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc select {font-size:15px;    padding: 0 24px 0 10px;}
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy label {margin-right:2%}
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy button {padding:10px;}
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc select::-ms-expand
+    {
+    display: none;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item {
+    border-bottom: 1px solid #e4e4e4;
+    padding: 125px 20px 40px 20px;
+    margin-top: -125px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item em {
+    font-style: normal;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item>.tit
+    {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    color: #010000;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit
+    {
+    display: block;
+    font-weight: 500;
+    margin: 10px 0 10px 0;
+    color: #333;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit::before
+    {
+    display: inline-block;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #96c11f;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit-lg
+    {
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont
+    {
+    color: #666;
+    padding: 0 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont.p-margin>p
+    {
+    margin-top: 10px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont.hyphen p::before
+    {
+    content: "-";
+    font-size: 10px;
+    margin-right: 6px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont p
+    {
+    margin-bottom: 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl
+    {
+    margin-bottom: 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dt,
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dd
+    {
+    display: inline-block;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dt
+    {
+    font-weight: normal;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dt::before
+    {
+    content: "⊙";
+    font-size: 12px;
+    margin-right: 6px;
+    margin-left: 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box
+    {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+    width: 100%;
+    margin-bottom: 60px;
+    background: #f4f4f4;
+    padding: 50px 45px;
+    margin-top: 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box li
+    {
+    padding: 6px 0;
+    font-weight: 600;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box li.selected a>span
+    {
+    padding-bottom: 2px;
+    border-bottom: 1px solid #ca0202;
+}
+
+@media ( min-width : 992px) {
+
+
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box
+        {
+        height: 295px;
+    }
+}
+
+@media ( max-width : 991px) {
+
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item {
+        border-bottom: 1px solid #e4e4e4;
+        padding: 125px 3px 40px 3px;
+        margin-top: -125px;
+    }
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc {
+        display: block;
+    }
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .select-form
+        {
+        position: relative;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .tit
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit-lg
+        {
+        font-size: 16px;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box
+        {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+        flex-flow: column;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box li
+        {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+        flex: 1 1 100%;
+    }
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .table.table-nongshim td
+    {
+    text-align: left;
+    padding-left: 2.8em;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route1-util .privacy-wrap .body-cont .table.table-nongshim .table.table-nongshim td
+        {
+        padding-left: 0;
+    }
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling
+    {
+    margin-top: 30px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling>.row
+    {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item
+    {
+    border: 1px solid #e4e4e4;
+    margin-bottom: 30px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .img
+    {
+    height: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box
+    {
+    border-top: 1px solid #e4e4e4;
+    padding: 40px 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box>p
+    {
+    margin-bottom: 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box>p .tit
+    {
+    color: #333;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box>p .url
+    {
+    color: #666;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry {
+    max-width: 920px;
+    margin: 100px auto 0 auto;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header
+    {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title
+    {
+    font-weight: 500;
+    color: #000;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header
+        {
+        padding: 50px 0;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title
+        {
+        font-size: 48px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header
+        {
+        padding: 30px 0;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title
+        {
+        font-size: 28px;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical
+    {
+    position: relative;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title
+    {
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical
+        {
+        margin-bottom: 20px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title-dot
+        {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 7px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title
+        {
+        font-size: 24px;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list
+    {
+    position: relative;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list>.container,
+        body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list>.container-fluid
+        {
+        border-top: solid 1px #aaa;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header
+    {
+    text-align: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header
+        {
+        padding: 70px 30px 10px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header .title
+        {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header p
+        {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header
+        {
+        padding: 10px 0;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header .title
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header p
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-form
+    {
+    position: relative;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-form .border-form
+    {
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #e4e4e4;
+    padding: 60px 0 45px;
+    margin-bottom: 60px;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .document
+    {
+    background: #f4f4f4;
+    padding: 60px;
+    text-align: center;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .document p
+    {
+    color: #333;
+    margin-bottom: 0;
+}
+
+body.route1-util.route2-error .error {
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+body.route1-util.route2-error .error>strong {
+    font-size: 200px;
+    font-weight: 800;
+    color: #539a00;
+}
+
+body.route1-util.route2-error .error .tit {
+    font-size: 28px;
+    color: #000;
+    font-weight: 500;
+}
+
+body.route1-util.route2-error .error .desc {
+    color: #333;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-error .error-404>strong {
+        font-size: 100px;
+    }
+    body.route1-util.route2-error .error-404 .tit {
+        font-size: 20px;
+    }
+}
+
+body.route1-util.route2-error_404 .error {
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+body.route1-util.route2-error_404 .error>strong {
+    font-size: 200px;
+    font-weight: 800;
+    color: #539a00;
+}
+
+body.route1-util.route2-error_404 .error .tit {
+    font-size: 28px;
+    color: #000;
+    font-weight: 500;
+}
+
+body.route1-util.route2-error_404 .error .desc {
+    color: #333;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-error_404 .error-404>strong {
+        font-size: 100px;
+    }
+    body.route1-util.route2-error_404 .error-404 .tit {
+        font-size: 20px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login {
+    padding: 60px 0 150px 0;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login {
+        padding: 30px 0 75px 0;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .sso-title-header
+    {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.route1-util.route2-education_login .education_login .sso-title-header .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-education_login .education_login .sso-title-header .title
+    {
+    font-weight: 500;
+    color: #000;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-education_login .education_login .sso-title-header
+        {
+        padding: 50px 0;
+    }
+    body.route1-util.route2-education_login .education_login .sso-title-header .title
+        {
+        font-size: 48px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .sso-title-header
+        {
+        padding: 30px 0;
+    }
+    body.route1-util.route2-education_login .education_login .sso-title-header .title
+        {
+        font-size: 28px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list
+    {
+    position: relative;
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list>.container,
+        body.route1-util.route2-education_login .education_login .article-gate-list>.container-fluid
+        {
+        border-top: solid 1px #aaa;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .article-header
+    {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header
+        {
+        padding: 70px 30px 10px;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header .title
+        {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header p
+        {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header
+        {
+        padding: 10px 0;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header .title
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header p
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .login-form
+    {
+    position: relative;
+    width: 480px;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id
+    {
+    position: relative;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label
+    {
+    cursor: pointer;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label input[type=checkbox]
+    {
+    visibility: hidden !important;
+    display: none;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label input[type=checkbox]:checked+i::before
+    {
+    content: '\e943';
+    color: #96c11f;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label i
+    {
+    color: #e5e8ef;
+    font-size: 22px;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label span
+    {
+    color: #666;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .login-button
+    {
+    position: relative;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .account-util
+    {
+    position: relative;
+    padding: 30px 0;
+    margin-bottom: 30px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .account-util p
+    {
+    line-height: 28px;
+    color: #666;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .account-util a
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login
+    {
+    padding-top: 30px;
+    border-top: 1px solid #e4e4e4;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login strong
+    {
+    display: block;
+    margin-bottom: 25px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn
+    {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 70px;
+    margin: 0 25px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn.naver
+    {
+    background-color: #2db400;
+    color: #FFF;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn.kakao
+    {
+    background-color: #ffdc00;
+    color: #381e1f;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn.facebook
+    {
+    background-color: #2a6cd0;
+    color: #FFF;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn
+        {
+        width: 50px;
+        height: 50px;
+        margin: 0 15px;
+        font-size: 18px;
+        line-height: 50px;
+    }
+}
+
+body.route1-util.route2-email_reject .email_reject {
+    padding: 70px 0 150px 0;
+        margin-top: 100px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-email_reject .email_reject {
+        padding: 30px 0 75px 0;
+    }
+}
+
+body.route1-util.route2-email_reject .email_reject .article-title-dot {
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+    border-bottom: solid 1px #aaa;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-email_reject .email_reject .article-title-dot {
+        padding-bottom: 25px;
+        margin-bottom: 50px;
+    }
+}
+
+body.route1-util.route2-email_reject .email_reject .body-cont .desc {
+    line-height: 28px;
+    color: #666;
+}
+
+body.route1-util.route2-potal .group-img-side {
+    position: relative;
+}
+
+body.route1-util.route2-potal .group-img-side::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-potal .group-img-side>.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-potal .group-img-side .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-potal .group-img-side {
+        height: 546px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 550px;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 80px 80px;
+        margin-left: -80px;
+        margin-left: 40px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text .tit {
+        position: relative;
+        display: inline-block;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 0;
+        line-height: 40px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text .tit::before {
+        position: absolute;
+        top: -12px;
+        left: -26px;
+        content: "\e975";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-potal .group-img-side .item-text .tit::after {
+        position: absolute;
+        top: 32px;
+        left: 230px;
+        content: "\e976";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-potal .group-img-side .item-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 82%;
+        height: 546px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .group-img-side .item-text {
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text strong {
+        position: relative;
+        display: inline-block;
+        padding-right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text strong::before
+        {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        display: block;
+        width: 400px;
+        height: 1px;
+        background-color: #539a00;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text strong span {
+        color: #999;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    body.route1-util.route2-potal .group-img-side .item-img {
+        height: 273px;
+    }
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-potal .group-img-side.full-img-side-reverse .item-text
+        {
+        margin: 0 0 0 auto;
+    }
+    body.route1-util.route2-potal .group-img-side.full-img-side-reverse .item-img
+        {
+        right: auto;
+        left: 0;
+    }
+}
+
+body.route1-util.route2-potal .e-contract-link {
+    position: relative;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 70px 40px;
+}
+
+body.route1-util.route2-potal .e-contract-link .b-right {
+    border-right: 1px solid #e4e4e4;
+}
+
+body.route1-util.route2-potal .e-contract-link p {
+    color: #666;
+}
+
+body.route1-util.route2-potal .e-contract-link i {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+    text-align: center;
+    font-size: 64px;
+    color: #b49b93;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-potal .e-contract-link i img {
+    margin-bottom: 16px;
+}
+
+body.route1-util.route2-potal .e-contract-link .tit {
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 20px;
+    color: #000;
+}
+
+body.route1-util.route2-potal .e-contract-link .btn {
+    margin-top: 20px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .e-contract-link {
+        padding: 50px 10px;
+        margin-bottom: 30px;
+    }
+    body.route1-util.route2-potal .e-contract-link .b-right {
+        border: 0 none;
+        margin-bottom: 30px;
+    }
+    body.route1-util.route2-potal .e-contract-link i {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 50px;
+        margin-left: 0;
+    }
+    body.route1-util.route2-potal .e-contract-link i img {
+        width: 58px;
+        margin-bottom: 16px;
+    }
+}
+
+body.route1-util.route2-potal .e-login {
+    padding: 80px 70px 100px 70px;
+}
+
+body.route1-util.route2-potal .e-login i {
+    display: block;
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 64px;
+    color: #b49b93;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-potal .e-login i img {
+    margin-bottom: 17px;
+}
+
+body.route1-util.route2-potal .e-login .tit {
+    font-size: 36px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+body.route1-util.route2-potal .e-login a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+body.route1-util.route2-potal .e-login a button {
+    width: 100px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .e-login {
+        padding: 30px 20px 40px 20px;
+    }
+    body.route1-util.route2-potal .e-login i {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 50px;
+        margin-top: 20px;
+    }
+    body.route1-util.route2-potal .e-login i img {
+        width: 58px;
+        margin-bottom: 16px;
+    }
+}
+
+body.route1-util.route2-potal .call-cenater {
+    position: relative;
+    background: #f4f4f4;
+    padding: 35px 50px;
+}
+
+body.route1-util.route2-potal .call-cenater i {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 28px;
+    text-align: center;
+    color: #96c11f;
+    background: #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-potal .call-cenater strong {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-potal .call-cenater p {
+    display: inline-block;
+    color: #444;
+    font-size: 20px;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-potal .call-cenater p.number {
+    float: right;
+    font-size: 36px;
+    color: #000;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .call-cenater {
+        padding: 18px 25px;
+    }
+    body.route1-util.route2-potal .call-cenater i {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+    }
+    body.route1-util.route2-potal .call-cenater strong {
+        font-size: 20px;
+        margin: 0 10px;
+    }
+    body.route1-util.route2-potal .call-cenater p {
+        font-size: 13px;
+    }
+    body.route1-util.route2-potal .call-cenater p.number {
+        float: left;
+        font-size: 26px;
+    }
+}
+
+body.route1-util.route2-potal .call-cenater::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+body.route1-util.route2-e-progress .e-sub-tit {
+    display: block;
+    font-size: 28px;
+    color: #539a00;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+body.route1-util.route2-e-progress .e-sub-tit+.desc {
+    font-size: 20px;
+}
+
+body.route1-util.route2-e-progress hr {
+    margin: 40px 0 100px 0;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .e-sub-tit {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-e-progress .e-sub-tit+.desc {
+        font-size: 14px;
+    }
+    body.route1-util.route2-e-progress hr {
+        margin: 20px 0 50px 0;
+    }
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01 {
+    position: relative;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01>.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01 .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-e-progress .group-img-side-type01 {
+        height: 570px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 754px;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 40px 80px;
+        margin-left: -40px;
+        margin-left: 40px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit
+        {
+        position: relative;
+        display: inline-block;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 0;
+        line-height: 40px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit::before
+        {
+        position: absolute;
+        top: -12px;
+        margin-left: -18px;
+        content: "\e975";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit::after
+        {
+        position: absolute;
+        bottom: 10px;
+        margin-left: 5px;
+        content: "\e976";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 82%;
+        height: 570px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text {
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 20px 30px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit
+        {
+        position: relative;
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 0;
+        line-height: 40px;
+        padding: 20px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text strong
+        {
+        position: relative;
+        display: inline-block;
+        padding-right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text strong::before
+        {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        display: block;
+        width: 400px;
+        height: 1px;
+        background-color: #539a00;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text strong span
+        {
+        color: #999;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text p {
+        margin-bottom: 0;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-img {
+        height: 285px;
+    }
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02 {
+    position: relative;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02>.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02 .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-e-progress .group-img-side-type02 {
+        height: 560px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 660px;
+        z-index: 1;
+        margin-left: 25%;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap
+        {
+        position: relative;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit
+        {
+        color: #fff;
+        font-size: 28px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit::before
+        {
+        position: absolute;
+        top: 0px;
+        left: -20px;
+        content: "\e975";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit::after
+        {
+        position: absolute;
+        top: 0px;
+        left: 443px;
+        content: "\e976";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit span
+        {
+        font-size: 22px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap::before
+        {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        display: block;
+        width: 50%;
+        height: 2px;
+        background-color: #92d04d;
+        margin-right: 85px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .cont
+        {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .cont em
+        {
+        display: block;
+        font-style: normal;
+        margin-top: 70px;
+        font-size: 16px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 84%;
+        height: 560px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        color: #fff;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text strong
+        {
+        position: relative;
+        display: inline-block;
+        padding-right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text strong::before
+        {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        display: block;
+        width: 400px;
+        height: 1px;
+        background-color: #539a00;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text strong span
+        {
+        color: #999;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text p {
+        font-size: 16px;
+        margin-bottom: 0;
+        font-weight: 300;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text p em
+        {
+        display: block;
+        font-style: normal;
+        margin-top: 30px;
+        font-size: 14px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-img {
+        height: 450px;
+    }
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03 {
+    position: relative;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03>.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03 .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-e-progress .group-img-side-type03 {
+        height: 560px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 745px;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 40px 80px;
+        margin-left: -40px;
+        margin-left: 40px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .dco-line
+        {
+        border-right: 1px solid #e4e4e4;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .col-6:last-child
+        {
+        padding-left: 50px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .col-6 .logo img
+        {
+        height: 50px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p {
+        font-size: 20px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p em
+        {
+        display: block;
+        font-style: normal;
+        font-weight: bold;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .btn
+        {
+        font-size: 15px;
+        color: #999;
+        font-weight: bold;
+        border-color: #b7b7b7;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 785px;
+        height: 560px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text {
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .logo img
+        {
+        height: 30px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p em
+        {
+        display: block;
+        font-style: normal;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-img {
+        height: 280px;
+    }
+}
+
+body.route1-util.route2-e-progress .payment-system {
+    margin-top: 100px;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit {
+    position: relative;
+    font-size: 22px;
+    padding-left: 75px;
+    font-weight: 500;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit em {
+    font-style: normal;
+    font-size: 18px;
+    color: #da4343;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit.num01::before {
+    content: '1';
+    display: inline-block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    background: #444;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit.num02::before {
+    content: '2';
+    display: inline-block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    background: #444;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit.num01 .cont {
+    height: 214px;
+    border: 1px solid #e5e5e5;
+}
+
+body.route1-util.route2-e-progress .payment-system .cont {
+    padding-left: 75px;
+}
+
+body.route1-util.route2-e-progress .payment-system .cont p {
+    position: relative;
+    font-size: 18px;
+}
+
+body.route1-util.route2-e-progress .payment-system .cont p:before {
+    content: '.';
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    color: #333;
+}
+
+body.route1-util.route2-e-progress .payment-system .desc {
+    margin-top: 40px;
+    color: #888;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .payment-system {
+        margin-top: 50px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit {
+        font-size: 20px;
+        padding-left: 0;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit em {
+        font-size: 18px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num01 {
+        margin-top: 50px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num01::before {
+        top: -40px;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num02 {
+        margin-top: 80px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num02::before {
+        top: -40px;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num01 .cont {
+        border: 0;
+    }
+    body.route1-util.route2-e-progress .payment-system .cont {
+        padding-left: 0;
+    }
+    body.route1-util.route2-e-progress .payment-system .cont p {
+        font-size: 18px;
+    }
+}
+
+body.route1-util.route2-e-progress .legal-obligations {
+    margin-top: 100px;
+}
+
+body.route1-util.route2-e-progress .legal-obligations .cont {
+    font-size: 20px;
+}
+
+body.route1-util.route2-e-progress .legal-obligations .cont em {
+    font-size: 22px;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .legal-obligations {
+        margin-top: 50px;
+    }
+    body.route1-util.route2-e-progress .legal-obligations .cont {
+        font-size: 16px;
+    }
+    body.route1-util.route2-e-progress .legal-obligations .cont em {
+        font-size: 15px;
+        font-weight: 500;
+        font-style: normal;
+    }
+}
+
+body.route1-util.route2-e-progress .c-reg .col-12 .legal-img {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+body.route1-util.route2-e-progress .c-reg .col-12 .legal-img i {
+    display: block;
+    color: #fff;
+    font-size: 100px;
+    padding-top: 80px;
+}
+
+body.route1-util.route2-e-progress .c-reg .col-12 .legal-img p {
+    font-size: 22px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+body.route1-util.route2-e-progress .c-reg .title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .c-reg .legal-img {
+        margin-bottom: 25px;
+    }
+    body.route1-util.route2-e-progress .c-reg .title {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-e-progress .c-question dl {
+    display: table;
+    width: 100%;
+}
+
+body.route1-util.route2-e-progress .c-question dl dt, body.route1-util.route2-e-progress .c-question dl dd
+    {
+    display: table-cell;
+    padding-top: 45px;
+    border-top: 1px solid #000;
+}
+
+body.route1-util.route2-e-progress .c-question dl dt {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20%;
+}
+
+body.route1-util.route2-e-progress .c-question dl dd {
+    font-size: 18px;
+}
+
+body.route1-util.route2-e-progress .c-question dl dd em {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .c-question dl dt, body.route1-util.route2-e-progress .c-question dl dd
+        {
+        display: table-row-group;
+    }
+    body.route1-util.route2-e-progress .c-question dl dt {
+        font-size: 16px;
+        display: block;
+        border: solid #000;
+        border-width: 0 0 1px 0;
+        padding-bottom: 5px;
+        padding-top: 0;
+        margin-bottom: 5px;
+    }
+    body.route1-util.route2-e-progress .c-question dl dd {
+        font-size: 14px;
+    }
+    body.route1-util.route2-e-progress .c-question dl dd em {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .diagram {
+        position: relative;
+    }
+    body.route1-util.route2-e-progress .diagram b.zoom {
+        top: 0;
+        right: 0;
+    }
+    body.route1-util.route2-e-progress b.zoom {
+        overflow: hidden;
+        display: block;
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+    }
+    body.route1-util.route2-e-progress b.zoom span.icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        background-image: url(../../resources2/images/common/image-zoom.svg);
+        background-size: cover;
+        background-position: center;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header .title {
+    font-weight: 500;
+    color: #000;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-pw_change .pw_change .sso-title-header {
+        padding: 50px 0;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header .title {
+        font-size: 48px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-pw_change .pw_change .sso-title-header {
+        padding: 30px 0;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header .title {
+        font-size: 28px;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical
+    {
+    position: relative;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title
+    {
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical
+        {
+        margin-bottom: 20px;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title-dot
+        {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 7px;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title
+        {
+        font-size: 24px;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-list {
+    position: relative;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-pw_change .pw_change .article-gate-list>.container,
+        body.route1-util.route2-pw_change .pw_change .article-gate-list>.container-fluid
+        {
+        border-top: solid 1px #aaa;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header
+    {
+    text-align: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header
+        {
+        padding: 70px 30px 10px;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header .title
+        {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header p
+        {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header
+        {
+        padding: 10px 0;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header .title
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header p
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-form {
+    position: relative;
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-form .border-form
+    {
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #e4e4e4;
+    padding: 60px 0 45px;
+    margin-bottom: 60px;
+}
+
+body.route1-util.route1-util .util-box {
+    background: #f4f4f4;
+    padding: 80px 0;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route1-util .util-box {
+        padding: 40px 0;
+    }
+    body.route1-util.route1-util .util-box .logo-item {
+        text-align: center;
+    }
+    body.route1-util.route1-util .util-box .btn {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+}
+</style>
+</head>
+
+<body id="body" class="full-layout category-nongshim route1-util route2-privacy route3-index page-navigation-overflow">
+<div id="body-wrap" class="body-wrap">
+    <section id="content-block" class="view-">
+        <article class="article-">
+            <div class="container">
+                <div class="privacy-wrap">
+                    <article>
+                        <div class="head-cont">
+                            <div class="article-title-dot article-title-dot-lg">
+                                <h1 style="display: block;
+									    font-size: 34px;
+									    font-weight: 700;
+									    color: #010000;
+									    margin-left: 30px;
+									    margin-bottom: 20px;">개인정보 처리방침</h1>
+                            </div>
+                            <div class="sub-desc">
+                                <p>(주) 농심은 고객님의 개인정보를 소중히 다루고 있습니다.</p>
+                                <p class="select-form">
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="body-cont">
+                            <div id="privacy01" class="privacy-item">
+                                <strong class="tit">1. 수집하는 개인정보 항목 및 이용 목적</strong>
+                                <p class="sub-tit">농심은 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
+								<div class="table-responsive">
+									<table class="table table-nongshim" title="수집하는 개인정보 항목 및 이용 목적 ">
+										<caption>수집하는 개인정보 항목 및 이용 목적</caption>
+										<colgroup>
+											<col style="width:30%">
+											<col style="width:70%;">
+										</colgroup>
+										<thead>
+										<tr class="text-center">
+											<th scope="col">수집항목</th>
+											<th scope="col">목적</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td>
+												(필수)<br>
+												<em>이름, 생년월일, 성별, 로그인ID, 휴대전화번호, 이메일 주소</em>
+											</td>
+											<td>
+												-	<em>서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 콘텐츠 제공</em><br><br>
+												-	회원 관리 : <em>회원제 서비스 이용에 따른 본인확인, 개인 식별, 불량회원의 부정 이용 방지와 비인가 사용 방지, 가입 의사 확인, 연령확인, 만14세 미만 아동 개인정보 수집 시 법정 대리인 동의여부 확인, 불만처리 등 민원처리, 고지사항 전달</em><br><br>
+												-	익명 정보 내부 활용 : <em>신규 서비스(제품) 개발 및 특화, 인구통계학적 특성에 따른 서비스 제공, 접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계</em>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												(선택)<br> 
+												<em>로그인ID, 이름, 휴대폰번호, 이메일 주소, 자택주소</em>		
+											</td>
+											<td>
+												-	마케팅 및 광고 활용 :  <em>이벤트 참여 및 참여기회 제공, 이벤트 관련 문의 처리, 경품 배송 정보, 마케팅 및 프로모션 등의 광고성 정보 전달</em> (단, 광고성 정보 전달은 이메일/문자 수신에 동의한 회원에 한합니다.)	
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+                                <div class="txt-cont hyphen">								
+                                    <p>
+										개인정보 수집방법 : 홈페이지(회원가입, 메일 문의), 경품 행사 응모, 제휴사로부터의 제공,  또한 서비스 이용과정이나 사업 처리 과정에서 아래와 같은 정보들이 생성되어 수집될 수 있습니다. <em>(이용자의 브라우저 종류 및 OS, 검색어, 서비스 이용 기록, IP Address, 방문 일시, 쿠키, 서비스 이용 기록, 불량 이용 기록)	</em>								
+									</p>
+                                </div>
+                            </div>
+							<!--
+                            <div id="privacy02" class="privacy-item">
+                                <strong class="tit">2. 개인정보의 수집 및 이용목적</strong>
+                                <p class="sub-tit">농심은 수집한 개인정보를 다음의 목적을 위해 활용합니다.</p>
+                                <div class="txt-cont hyphen">
+                                    <p><em>서비스 제공에 관한 계약 이행 및 서비스 제공</em>에 따른 콘텐츠 제공
+                                    <p>회원 관리 : <em>회원제 서비스 이용에 따른 본인확인, 개인 식별, 불량회원의 부정 이용 방지와 비인가 사용 방지, 가입 의사 확인, 연령확인, 만14세 미만 아동 개인정보 수집 시
+                                    법정 대리인 동의여부 확인, 불만처리 등 민원처리, 고지사항 전달</em></p>
+                                    <p>익명 정보 내부 활용 : <em>신규 서비스(제품) 개발 및 특화, 인구통계학적 특성에 따른 서비스 제공, 접속 빈도 파악 또는 회원의
+서비스 이용에 대한 통계</em></p>
+                                </div>
+                            </div>
+							-->
+
+                            <div id="privacy03" class="privacy-item">
+                                <strong class="tit">2. 개인정보의 보유 및 이용기간</strong>
+                                <p class="sub-tit-lg">농심은 개인정보 수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다. 단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.
+                                </p>
+                                <strong class="sub-tit">회사 내부 방침에 의한 정보보유 사유</strong>
+                                <div class="txt-cont hyphen">
+                                    <p>부정이용기록</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>부정 이용 방지</dd>
+                                    </dl>
+                                    <dl>
+                                       <dt>보존기간 : </dt>
+                                        <dd><em>1년</em></dd>
+                                    </dl>
+                                </div>
+                                <strong class="sub-tit">관련법령에 의한 정보보유 사유</strong>
+                                <div class="text-cont">
+                                    <p>
+                                        상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다.
+                                    </p>
+                                </div>
+                                <div class="txt-cont hyphen p-margin">
+                                    <p>계약 또는 청약철회 등에 관한 기록 </p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>전자상거래 등에서의 소비자보호에 관한 법률</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>5년</em></dd>
+                                    </dl>
+
+                                    <p>대금결제 및 재화 등의 공급에 관한 기록</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>전자상거래 등에서의 소비자보호에 관한 법률</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>5년</em></dd>
+                                    </dl>
+
+                                    <p>소비자의 불만 또는 분쟁처리에 관한 기록</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>전자상거래 등에서의 소비자보호에 관한 법률</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>3년</em></dd>
+                                    </dl>
+
+                                    <p>본인확인에 관한 기록</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>정보통신 이용촉진 및 정보보호 등에 관한 법률 </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>6개월</em></dd>
+                                    </dl>
+
+                                    <p>방문에 관한 기록</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>통신비밀보호법</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>3개월</em></dd>
+                                    </dl>
+                                </div>
+
+                                <strong class="sub-tit">이벤트 및 광고성 정보 전달에 따른 정보보유 사유</strong>
+                                <div class="text-cont">
+                                    <p>
+                                        이벤트 참여로 수집된 정보 및 이메일/문자 수신에 동의한 회원에 한하여 그 목적을 위해서만 보관하며, 그 보존기간은 아래와 같습니다.
+                                    </p>
+                                </div>
+                                <div class="txt-cont hyphen p-margin">
+                                    <p>이벤트 참여 정보</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>당첨자 선정 및 당첨안내, 이벤트 관련 문의 처리, 경품 배송지 정보 확인</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>당첨자 발표 후 경품 발송 시까지 </em></dd>
+                                    </dl>
+                                    <p>경품 배송 정보</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>경품 배송 </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>경품 배송 완료 시까지</em></dd>
+                                    </dl>
+                                    <p>광고성 정보 전달</p>
+                                    <dl class="mt-1">
+                                        <dt>보존이유 : </dt>
+                                        <dd>수신 동의 여부 확인 및 마케팅/프로모션 정보의 정확한 전달</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>보존기간 : </dt>
+                                        <dd><em>동의 철회 또는 회원 탈퇴 시까지</em></dd>
+                                    </dl>
+                                </div>
+
+
+                            </div>
+
+                            <div id="privacy04" class="privacy-item">
+                                <strong class="tit">3. 개인정보의 파기절차 및 방법</strong>
+                                <p class="sub-tit-lg">농심은 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체없이 파기합니다. 파기절차 및 방법은 다음과 같습니다.</p>
+                                <strong class="sub-tit">파기절차</strong>
+                                <p class="txt-cont">
+                                    회원님이 회원가입 등을 위해 입력하신 정보는 목적이 달성된 후 별도의 DB로 옮겨져(종이의 경우 별도의 서류함) 내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라
+                                    (보유 및 이용기간 참조) 일정 기간 저장된 후 파기됩니다. 별도 DB로 옮겨진 개인정보는 법률에 의한 경우가 아니고서는 보유 이외의 다른 목적으로 이용되지 않습니다.
+                                </p>
+                                <strong class="sub-tit">파기방법</strong>
+                                <p class="txt-cont">
+                                    전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.
+                                </p>
+                            </div>
+
+                            <div id="privacy05" class="privacy-item">
+                                <strong class="tit">4. 개인정보 제공</strong>
+                                <p class="sub-tit-lg">농심은 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.</p>
+                                <div class="txt-cont hyphen">
+                                    <p>이용자들이 사전에 동의한 경우</p>
+                                    <p>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</p>
+                                </div>
+                            </div>
+
+                            <div id="privacy06" class="privacy-item">
+                                <strong class="tit">5. 수집한 개인정보의 위탁</strong>
+                                <p class="sub-tit-lg">
+                                    농심은 서비스 향상을 위해서 이용자들의 개인정보를 외부전문업체에 위탁하여 처리할 수 있습니다. 개인정보의 처리를 위탁하는 경우에는 미리 그 사실을
+                                    이용자들에게 공지할 것입니다. 또한 위탁계약 등을 통하여 서비스제공자의 개인정보보호 관련 지시엄수, 개인정보에 관한 비밀유지, 제3자 제공의 금지 및
+                                    사고시의 책임부담 등을 명확히 규정하고 당해 계약내용을 서면 또는 전자적으로 보관하여 이용자의 권익을 보호하고 있습니다.<br><br>
+
+                                    농심의 개인정보 위탁 처리 기관 및 위탁되는 개인정보와 그 위탁 기간은 아래와 같습니다.
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table table-nongshim" title="수집한 개인정보의 위탁">
+                                        <caption>수집한 개인정보의 위탁</caption>
+                                        <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">수탁자</th>
+                                            <th scope="col">위탁업무내용</th>
+                                            <th scope="col">위탁 개인정보</th>
+                                            <th scope="col">기간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><em>㈜엔디에스</em></td>
+                                            <td><em>시스템 유지보수 및 서비스 개발, 테스트</em></td>
+                                            <td></td>
+                                            <td><em>위탁 계약 종료 시까지</em></td>
+                                        </tr>
+                                        <tr>
+                                            <td><em>NICE신용평가㈜</em></td>
+                                            <td><em>실명 본인인증</em></td>
+                                            <td>가입 통신사명, 이름, 휴대폰번호, 생년월일</td>
+                                            <td><em>위탁 계약 종료 시까지</em></td>
+                                        </tr>
+                                        <tr>
+                                            <td><em>㈜쓰리에스포유</em></td>
+                                            <td><em>이벤트 상품 등의 우편물 배송 서비스</em></td>
+                                            <td>이름, 주소, 휴대폰번호</td>
+                                            <td><em>배송 완료 시까지</em></td>
+                                        </tr>
+                                        <tr>
+                                            <td><em>KG이니시스, 카드사 </em></td>
+                                            <td><em>주문상품의 결제 및 환불<br>
+                                                    (신용카드,계좌이체,무통장입금,간편결제 등)</em></td>
+                                            <td></td>
+                                            <td><em>위탁 계약 종료 시까지</em></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="privacy07" class="privacy-item">
+                                <strong class="tit">6. 이용자 및 법정대리인의 권리와 그 행사방법</strong>
+                                <p class="sub-tit-lg">
+                                    이용자 및 법정 대리인은 언제든지 등록되어 있는 자신 혹은 당해 만 14세 미만 아동의 개인정보를 조회하거나 수정할 수 있으며 가입해지를 요청할 수도 있습니다. 이용자 혹은 만 14세 미만 아동의 개인정보 조회/수정을 위해서는 ‘개인정보변경’(또는 ‘회원정보수정’ 등)을 가입해지(동의철회)를 위해서는 “회원탈퇴”를 클릭하여 본인 확인 절차를 거치신 후 직접 열람, 정정 또는 탈퇴가 가능합니다. 혹은 개인정보관리책임자에게 서면, 전화 또는 이메일로 연락하시면 본인 확인 후 지체없이 조치하겠습니다. 귀하가 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. 또한 잘못된 개인정보를 제3자에게 이미 제공한 경우에는 정정 처리결과를 제3자에게 지체없이 통지하여 정정이 이루어지도록 하겠습니다. 농심은 이용자 혹은 법정 대리인의 요청에 의해 해지 또는 삭제된 개인정보는 “수집하는 개인정보의 보유 및 이용기간”에 명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.
+                                </p>
+                            </div>
+
+                            <div id="privacy08" class="privacy-item">
+                                <strong class="tit">7. 개인정보 자동수집 장치의 설치, 운영 및 그 거부에 관한 사항</strong>
+                                <p class="sub-tit-lg">농심은 귀하의 정보를 수시로 저장하고 찾아내는 ‘쿠키(cookie)’ 등을 운용합니다. 쿠키란 농심의 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에 저장됩니다. 농심의 웹사이트는 다음과 같은 목적을 위해 쿠키를 사용합니다.
+                                </p>
+                                <strong class="sub-tit">쿠키 등 사용목적</strong>
+                                <p class="txt-cont">
+                                    회원과 비회원의 접속 빈도나 방문 시간 등을 분석, 이용자의 취향과 관심분야를 파악 및 자취 추적, 각종 이벤트 참여 정도 및 방문 회수 파악 등을 통한 타겟 마케팅 및 개인 맞춤 서비스 제공을 목적으로 하며, 귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 귀하는 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다.
+                                </p>
+                                <strong class="sub-tit">쿠키 설정 거부 방법</strong>
+                                <p class="txt-cont">
+                                    예: 쿠키 설정을 거부하는 방법으로는 회원님이 사용하시는 웹 브라우저의 옵션을 선택함으로써 모든 쿠키를 허용하거나 쿠키를 저장할 때마다 확인을 거치거나, 모든 쿠키의 저장을 거부할 수 있습니다.
+                                    설정방법 예(인터넷 익스플로어의 경우) : 웹 브라우저 상단의 도구 -> 인터넷 옵션 -> 개인정보
+                                    단, 귀하께서 쿠키 설치를 거부하였을 경우 서비스 제공에 어려움이 있을 수 있습니다.
+                                </p>
+                            </div>
+
+                            <div id="privacy09" class="privacy-item">
+                                <strong class="tit">8. 개인정보의 기술적/관리적 보호 대책</strong>
+                                <p class="sub-tit-lg">농심은 이용자들의 개인정보를 취급함에 있어 개인정보가 분실, 도난, 누출, 변조 또는 훼손되지 않도록 안전성 확보를 위하여 다음과 같은 기술적/관리적 대책을
+                                    강구하고 있습니다.
+                                </p>
+                                <strong class="sub-tit">비밀번호 암호화</strong>
+                                <p class="txt-cont">
+                                    농심 회원 아이디(ID)의 비밀번호는 암호화되어 저장 및 관리되고 있어 본인만이 알고 있으며, 개인정보의 확인 및 변경도 비밀번호를 알고 있는 본인에 의해서만 가능합니다.
+                                </p>
+                                <strong class="sub-tit">해킹 등에 대비한 대책</strong>
+                                <p class="txt-cont">
+                                    농심은 해킹이나 컴퓨터 바이러스 등에 의해 회원의 개인정보가 유출되거나 훼손되는 것을 막기 위해 최선을 다하고 있습니다. 개인정보의 훼손에 대비해서 자료를 수시로
+                                    백업하고 있고, 최신 백신프로그램을 이용하여 이용자들의 개인정보나 자료가 누출되거나 손상되지 않도록 방지하고 있으며, 암호화통신 등을 통하여 네트워크상에서 개인정보를
+                                    안전하게 전송할 수 있도록 하고 있습니다. 그리고 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있으며, 기타 시스템적으로 보안성을 확보하기 위한 가능한
+                                    모든 기술적 장치를 갖추려 노력하고 있습니다.
+                                </p>
+                                <strong class="sub-tit">취급 직원의 최소화 및 교육</strong>
+                                <p class="txt-cont">
+                                    농심의 개인정보관련 취급 직원은 담당자에 한정시키고 있고 이를 위한 별도의 비밀번호를 부여하여 정기적으로 갱신하고 있으며, 담당자에 대한 수시 교육을 통하여
+                                    개인정보처리방침의 준수를 항상 강조하고 있습니다.
+                                </p>
+                            </div>
+
+                            <div id="privacy10" class="privacy-item">
+                                <strong class="tit">9. 개인정보에 관한 민원서비스</strong>
+                                <p class="sub-tit-lg">
+                                    농심은 고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 아래와 같이 관련 부서 및 개인정보관리책임자를 지정하고 있습니다.
+                                </p>
+                                <div class="txt-cont hyphen mt-4 mb-4">
+                                    <p>고객서비스 담당부서: 고객상담팀</p>
+                                    <p>전화번호 : 080-023-5181 </p>
+                                    <p class="mb-4">이메일 : ask@nongshim.com</p><br>
+
+                                    <p>채용담당부서 : 인사팀</p>
+                                    <p>전화번호 : 02-820-7093 </p>
+                                    <p class="mb-4">recruit@nongshim.com</p><br>
+
+                                    <p> 개인정보관리책임자 성명 : 안영진</p>
+                                    <p>개인정보 관리부서 : 경영개선팀</p>
+                                    <p>전화번호 : 02-820-7074</p>
+                                    <p>이메일 : ejkim@nongshim.com </p>
+                                </div>
+                                <p class="txt-cont">
+                                    귀하께서는 농심의 서비스를 이용하시며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자 혹은 담당부서로 신고하실 수 있습니다. 농심은 이용자들의 신고사항에
+                                    대해 신속하게 충분한 답변을 드릴 것입니다. 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.
+                                </p>
+
+                               <div class="privacy-counselling">
+                                   <div class="container">
+                                       <div class="row row-cols-1">
+                                           <div class="col col-sm-12 col-md-6 text-center">
+                                               <div class="counselling-item">
+                                                   <div class="img" style="background-image: url(http://www.nongshim.com/resources2/images/view-util/privacy4-2-kisa.jpg)"></div>
+                                                   <div class="txt-box">
+                                                       <p class="tit">KISA 개인정보보호 개인정보침해신고센터</p>
+                                                       <p class="url"><a href="https://privacy.kisa.or.kr/main.do" target="_blank">https://privacy.kisa.or.kr/main.do / Tel. 118</a></p>
+                                                   </div>
+                                               </div>
+                                            </div>
+                                           <div class="col col-sm-12 col-md-6 text-center">
+                                               <div class="counselling-item">
+                                                   <div class="img" style="background-image: url(http://www.nongshim.com/resources2/images/view-util/privacy4-2-pico.gif)"></div>
+                                                   <div class="txt-box">
+                                                       <p class="tit">개인정보 분쟁조정위원회</p>
+                                                       <p class="url"><a href="https://www.kopico.go.kr/main/main.do" target="_blank"> https://www.kopico.go.kr/main/main.do / Tel. 118</a></p>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="col col-sm-12 col-md-6 text-center">
+                                               <div class="counselling-item">
+                                                   <div class="img" style="background-image: url(http://www.nongshim.com/resources2/images/view-util/privacy4-2-mark.png)"></div>
+                                                   <div class="txt-box">
+                                                       <p class="tit">정보보호마크 인증위원회</p>
+                                                       <p class="url"><a href="http://www.eprivacy.or.kr" target="_blank">http://www.eprivacy.or.kr / Tel. 1899-4134</a></p>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="col col-sm-12 col-md-6 text-center">
+                                               <div class="counselling-item">
+                                                   <div class="img" style="background-image: url(http://www.nongshim.com/resources2/images/view-util/privacy4-2-police.png)"></div>
+                                                   <div class="txt-box">
+                                                       <p class="tit">경찰청</p>
+                                                       <p class="url"><a href="http://www.police.go.kr" target="_blank">www.police.go.kr</a></p>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                            </div>
+
+                            <div id="privacy11" class="privacy-item">
+                                <strong class="tit">10. 기타</strong>
+                                <p class="sub-tit-lg">
+                                    농심에 링크되어 있는 웹사이트들이 개인정보를 수집하는 행위에 대해서는 본 "농심 개인정보처리방침"이 적용되지 않음을 알려 드립니다.
+                                </p>
+                            </div>
+                            <div id="privacy12" class="privacy-item">
+                                <strong class="tit">11. 고지의 의무</strong>
+                                <p class="sub-tit-lg">
+                                    현 개인정보처리방침 내용 추가, 삭제 및 수정이 있을 시에는 개정 최소 7일전부터 홈페이지의 '공지사항'을 통해 고지할 것입니다.<br>
+                                    공고일자 : 2020년 09월 15일<br>
+                                    시행일자 : 2020년 09월 23일
+                                </p>
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+                <div class="body-cont">
+                </div>
+            </div>
+        </article>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!-- IF START 'cust' -->
+<!-- LOOP START 'cust' -->
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+			<h3>{{cust.member_name}}</h3>
+		</div>
+	</div>	    
+	<table>
+		<colgroup>
+			<col width="20%">
+			<col width="80%">
+		</colgroup>
+		<tr>
+			<th align="center">서명일시</th>
+			<td align="left">{{cust.sign_date}}</td>
+		</tr>
+		<tr>
+			<th align="center">사용자DN</th>
+			<td align="left">{{cust.sign_dn}}</td>
+		</tr>
+		<tr>
+			<th align="center">서명값</th>
+			<td align="left">{{cust.sign_data}}</td>
+		</tr>
+	</table>
+</div>	
+<!-- LOOP END 'cust' -->
+<!-- IF END 'cust' -->
+
+<!-- IFNOT START 'cust' -->
+<div class="div_table">
+	<table>
+		<tr>
+			<td align="center">검색 결과가 없습니다.</td>
+		</tr>
+	</table>
+</div>
+<!-- IFNOT END 'cust' -->

@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- PAGE TITLE -->
+    <title>농심 전자계약시스템</title>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+    
+<style type="text/css">
+@charset "UTF-8";
+
+body.route1-util.route1-util .privacy-wrap {
+    margin-top: 100px;
+    line-height: 1.7;
+}
+
+body.route1-util.route1-util .privacy-wrap .head-cont .article-title-dot
+    {
+    margin-botton: 10px !important;
+}
+
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc p:first-child {
+    line-height:50px;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy{
+    display:flex;
+    position: absolute;
+    right: 0;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy-form {
+    position: relative;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy label{
+    margin-right: 22px;
+    line-height: 50px;
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy-form::after{
+    content: "\e953";
+    font-family: icomoon;
+    position: absolute;
+    top: 16px;
+    right: 21px;
+    font-size: 9px;
+    z-index: -1;
+}
+
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc select {
+    border: 0 none;
+    background: transparent;
+    font-size: 18px;
+    padding-right: 50px;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    padding: 0 30px 0 16px;
+    height: 50px;
+}
+@media ( max-width : 990px) {
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy{position:relative;}
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc select {font-size:15px;    padding: 0 24px 0 10px;}
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy label {margin-right:2%}
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .privacy button {padding:10px;}
+}
+body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc select::-ms-expand
+    {
+    display: none;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item {
+    border-bottom: 1px solid #e4e4e4;
+    padding: 125px 20px 40px 20px;
+    margin-top: -125px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item em {
+    font-style: normal;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item>.tit
+    {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    color: #010000;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit
+    {
+    display: block;
+    font-weight: 500;
+    margin: 10px 0 10px 0;
+    color: #333;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit::before
+    {
+    display: inline-block;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #96c11f;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit-lg
+    {
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont
+    {
+    color: #666;
+    padding: 0 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont.p-margin>p
+    {
+    margin-top: 10px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont.hyphen p::before
+    {
+    content: "-";
+    font-size: 10px;
+    margin-right: 6px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont p
+    {
+    margin-bottom: 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl
+    {
+    margin-bottom: 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dt,
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dd
+    {
+    display: inline-block;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dt
+    {
+    font-weight: normal;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .txt-cont dl dt::before
+    {
+    content: "⊙";
+    font-size: 12px;
+    margin-right: 6px;
+    margin-left: 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box
+    {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+    width: 100%;
+    margin-bottom: 60px;
+    background: #f4f4f4;
+    padding: 50px 45px;
+    margin-top: 20px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box li
+    {
+    padding: 6px 0;
+    font-weight: 600;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box li.selected a>span
+    {
+    padding-bottom: 2px;
+    border-bottom: 1px solid #ca0202;
+}
+
+@media ( min-width : 992px) {
+
+
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box
+        {
+        height: 295px;
+    }
+}
+
+@media ( max-width : 991px) {
+
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item {
+        border-bottom: 1px solid #e4e4e4;
+        padding: 125px 3px 40px 3px;
+        margin-top: -125px;
+    }
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc {
+        display: block;
+    }
+    body.route1-util.route1-util .privacy-wrap .head-cont .sub-desc .select-form
+        {
+        position: relative;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .tit
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .sub-tit-lg
+        {
+        font-size: 16px;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box
+        {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+        flex-flow: column;
+    }
+    body.route1-util.route1-util .privacy-wrap .body-cont .privacy-item .list-box li
+        {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+        flex: 1 1 100%;
+    }
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .table.table-nongshim td
+    {
+    text-align: left;
+    padding-left: 2.8em;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route1-util .privacy-wrap .body-cont .table.table-nongshim .table.table-nongshim td
+        {
+        padding-left: 0;
+    }
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling
+    {
+    margin-top: 30px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling>.row
+    {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item
+    {
+    border: 1px solid #e4e4e4;
+    margin-bottom: 30px;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .img
+    {
+    height: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box
+    {
+    border-top: 1px solid #e4e4e4;
+    padding: 40px 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box>p
+    {
+    margin-bottom: 0;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box>p .tit
+    {
+    color: #333;
+}
+
+body.route1-util.route1-util .privacy-wrap .body-cont .privacy-counselling .counselling-item .txt-box>p .url
+    {
+    color: #666;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry {
+    max-width: 920px;
+    margin: 100px auto 0 auto;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header
+    {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title
+    {
+    font-weight: 500;
+    color: #000;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header
+        {
+        padding: 50px 0;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title
+        {
+        font-size: 48px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header
+        {
+        padding: 30px 0;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header .title
+        {
+        font-size: 28px;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical
+    {
+    position: relative;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title
+    {
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical
+        {
+        margin-bottom: 20px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title-dot
+        {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 7px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .sso-title-header-vertical .title
+        {
+        font-size: 24px;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list
+    {
+    position: relative;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list>.container,
+        body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list>.container-fluid
+        {
+        border-top: solid 1px #aaa;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header
+    {
+    text-align: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header
+        {
+        padding: 70px 30px 10px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header .title
+        {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header p
+        {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header
+        {
+        padding: 10px 0;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header .title
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-list .article-header p
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-form
+    {
+    position: relative;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .article-gate-form .border-form
+    {
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #e4e4e4;
+    padding: 60px 0 45px;
+    margin-bottom: 60px;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .document
+    {
+    background: #f4f4f4;
+    padding: 60px;
+    text-align: center;
+}
+
+body.route1-util.route2-certificate_inquiry .certificate_inquiry .document p
+    {
+    color: #333;
+    margin-bottom: 0;
+}
+
+body.route1-util.route2-error .error {
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+body.route1-util.route2-error .error>strong {
+    font-size: 200px;
+    font-weight: 800;
+    color: #539a00;
+}
+
+body.route1-util.route2-error .error .tit {
+    font-size: 28px;
+    color: #000;
+    font-weight: 500;
+}
+
+body.route1-util.route2-error .error .desc {
+    color: #333;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-error .error-404>strong {
+        font-size: 100px;
+    }
+    body.route1-util.route2-error .error-404 .tit {
+        font-size: 20px;
+    }
+}
+
+body.route1-util.route2-error_404 .error {
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+body.route1-util.route2-error_404 .error>strong {
+    font-size: 200px;
+    font-weight: 800;
+    color: #539a00;
+}
+
+body.route1-util.route2-error_404 .error .tit {
+    font-size: 28px;
+    color: #000;
+    font-weight: 500;
+}
+
+body.route1-util.route2-error_404 .error .desc {
+    color: #333;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-error_404 .error-404>strong {
+        font-size: 100px;
+    }
+    body.route1-util.route2-error_404 .error-404 .tit {
+        font-size: 20px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login {
+    padding: 60px 0 150px 0;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login {
+        padding: 30px 0 75px 0;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .sso-title-header
+    {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.route1-util.route2-education_login .education_login .sso-title-header .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-education_login .education_login .sso-title-header .title
+    {
+    font-weight: 500;
+    color: #000;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-education_login .education_login .sso-title-header
+        {
+        padding: 50px 0;
+    }
+    body.route1-util.route2-education_login .education_login .sso-title-header .title
+        {
+        font-size: 48px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .sso-title-header
+        {
+        padding: 30px 0;
+    }
+    body.route1-util.route2-education_login .education_login .sso-title-header .title
+        {
+        font-size: 28px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list
+    {
+    position: relative;
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list>.container,
+        body.route1-util.route2-education_login .education_login .article-gate-list>.container-fluid
+        {
+        border-top: solid 1px #aaa;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .article-header
+    {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header
+        {
+        padding: 70px 30px 10px;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header .title
+        {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header p
+        {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header
+        {
+        padding: 10px 0;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header .title
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route2-education_login .education_login .article-gate-list .article-header p
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .login-form
+    {
+    position: relative;
+    width: 480px;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id
+    {
+    position: relative;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label
+    {
+    cursor: pointer;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label input[type=checkbox]
+    {
+    visibility: hidden !important;
+    display: none;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label input[type=checkbox]:checked+i::before
+    {
+    content: '\e943';
+    color: #96c11f;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label i
+    {
+    color: #e5e8ef;
+    font-size: 22px;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .remember-id label span
+    {
+    color: #666;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .login-button
+    {
+    position: relative;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .account-util
+    {
+    position: relative;
+    padding: 30px 0;
+    margin-bottom: 30px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .account-util p
+    {
+    line-height: 28px;
+    color: #666;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .account-util a
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login
+    {
+    padding-top: 30px;
+    border-top: 1px solid #e4e4e4;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login strong
+    {
+    display: block;
+    margin-bottom: 25px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn
+    {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 70px;
+    margin: 0 25px;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn.naver
+    {
+    background-color: #2db400;
+    color: #FFF;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn.kakao
+    {
+    background-color: #ffdc00;
+    color: #381e1f;
+}
+
+body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn.facebook
+    {
+    background-color: #2a6cd0;
+    color: #FFF;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-education_login .education_login .article-gate-list .social-login .social-login-btn
+        {
+        width: 50px;
+        height: 50px;
+        margin: 0 15px;
+        font-size: 18px;
+        line-height: 50px;
+    }
+}
+
+body.route1-util.route2-email_reject .email_reject {
+    padding: 70px 0 150px 0;
+        margin-top: 100px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-email_reject .email_reject {
+        padding: 30px 0 75px 0;
+    }
+}
+
+body.route1-util.route2-email_reject .email_reject .article-title-dot {
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+    border-bottom: solid 1px #aaa;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-email_reject .email_reject .article-title-dot {
+        padding-bottom: 25px;
+        margin-bottom: 50px;
+    }
+}
+
+body.route1-util.route2-email_reject .email_reject .body-cont .desc {
+    line-height: 28px;
+    color: #666;
+}
+
+body.route1-util.route2-potal .group-img-side {
+    position: relative;
+}
+
+body.route1-util.route2-potal .group-img-side::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-potal .group-img-side>.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-potal .group-img-side .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-potal .group-img-side {
+        height: 546px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 550px;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 80px 80px;
+        margin-left: -80px;
+        margin-left: 40px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text .tit {
+        position: relative;
+        display: inline-block;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 0;
+        line-height: 40px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text .tit::before {
+        position: absolute;
+        top: -12px;
+        left: -26px;
+        content: "\e975";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-potal .group-img-side .item-text .tit::after {
+        position: absolute;
+        top: 32px;
+        left: 230px;
+        content: "\e976";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-potal .group-img-side .item-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 82%;
+        height: 546px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .group-img-side .item-text {
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text strong {
+        position: relative;
+        display: inline-block;
+        padding-right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text strong::before
+        {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        display: block;
+        width: 400px;
+        height: 1px;
+        background-color: #539a00;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text strong span {
+        color: #999;
+    }
+    body.route1-util.route2-potal .group-img-side .item-text p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    body.route1-util.route2-potal .group-img-side .item-img {
+        height: 273px;
+    }
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-potal .group-img-side.full-img-side-reverse .item-text
+        {
+        margin: 0 0 0 auto;
+    }
+    body.route1-util.route2-potal .group-img-side.full-img-side-reverse .item-img
+        {
+        right: auto;
+        left: 0;
+    }
+}
+
+body.route1-util.route2-potal .e-contract-link {
+    position: relative;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 70px 40px;
+}
+
+body.route1-util.route2-potal .e-contract-link .b-right {
+    border-right: 1px solid #e4e4e4;
+}
+
+body.route1-util.route2-potal .e-contract-link p {
+    color: #666;
+}
+
+body.route1-util.route2-potal .e-contract-link i {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+    text-align: center;
+    font-size: 64px;
+    color: #b49b93;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-potal .e-contract-link i img {
+    margin-bottom: 16px;
+}
+
+body.route1-util.route2-potal .e-contract-link .tit {
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 20px;
+    color: #000;
+}
+
+body.route1-util.route2-potal .e-contract-link .btn {
+    margin-top: 20px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .e-contract-link {
+        padding: 50px 10px;
+        margin-bottom: 30px;
+    }
+    body.route1-util.route2-potal .e-contract-link .b-right {
+        border: 0 none;
+        margin-bottom: 30px;
+    }
+    body.route1-util.route2-potal .e-contract-link i {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 50px;
+        margin-left: 0;
+    }
+    body.route1-util.route2-potal .e-contract-link i img {
+        width: 58px;
+        margin-bottom: 16px;
+    }
+}
+
+body.route1-util.route2-potal .e-login {
+    padding: 80px 70px 100px 70px;
+}
+
+body.route1-util.route2-potal .e-login i {
+    display: block;
+    width: 130px;
+    height: 130px;
+    line-height: 130px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 64px;
+    color: #b49b93;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-potal .e-login i img {
+    margin-bottom: 17px;
+}
+
+body.route1-util.route2-potal .e-login .tit {
+    font-size: 36px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+body.route1-util.route2-potal .e-login a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+body.route1-util.route2-potal .e-login a button {
+    width: 100px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .e-login {
+        padding: 30px 20px 40px 20px;
+    }
+    body.route1-util.route2-potal .e-login i {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 50px;
+        margin-top: 20px;
+    }
+    body.route1-util.route2-potal .e-login i img {
+        width: 58px;
+        margin-bottom: 16px;
+    }
+}
+
+body.route1-util.route2-potal .call-cenater {
+    position: relative;
+    background: #f4f4f4;
+    padding: 35px 50px;
+}
+
+body.route1-util.route2-potal .call-cenater i {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 28px;
+    text-align: center;
+    color: #96c11f;
+    background: #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-potal .call-cenater strong {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-potal .call-cenater p {
+    display: inline-block;
+    color: #444;
+    font-size: 20px;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+body.route1-util.route2-potal .call-cenater p.number {
+    float: right;
+    font-size: 36px;
+    color: #000;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-potal .call-cenater {
+        padding: 18px 25px;
+    }
+    body.route1-util.route2-potal .call-cenater i {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+    }
+    body.route1-util.route2-potal .call-cenater strong {
+        font-size: 20px;
+        margin: 0 10px;
+    }
+    body.route1-util.route2-potal .call-cenater p {
+        font-size: 13px;
+    }
+    body.route1-util.route2-potal .call-cenater p.number {
+        float: left;
+        font-size: 26px;
+    }
+}
+
+body.route1-util.route2-potal .call-cenater::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+body.route1-util.route2-e-progress .e-sub-tit {
+    display: block;
+    font-size: 28px;
+    color: #539a00;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+body.route1-util.route2-e-progress .e-sub-tit+.desc {
+    font-size: 20px;
+}
+
+body.route1-util.route2-e-progress hr {
+    margin: 40px 0 100px 0;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .e-sub-tit {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-e-progress .e-sub-tit+.desc {
+        font-size: 14px;
+    }
+    body.route1-util.route2-e-progress hr {
+        margin: 20px 0 50px 0;
+    }
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01 {
+    position: relative;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01>.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type01 .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-e-progress .group-img-side-type01 {
+        height: 570px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 754px;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 40px 80px;
+        margin-left: -40px;
+        margin-left: 40px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit
+        {
+        position: relative;
+        display: inline-block;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 0;
+        line-height: 40px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit::before
+        {
+        position: absolute;
+        top: -12px;
+        margin-left: -18px;
+        content: "\e975";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit::after
+        {
+        position: absolute;
+        bottom: 10px;
+        margin-left: 5px;
+        content: "\e976";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 82%;
+        height: 570px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text {
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 20px 30px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text .tit
+        {
+        position: relative;
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 0;
+        line-height: 40px;
+        padding: 20px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text strong
+        {
+        position: relative;
+        display: inline-block;
+        padding-right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text strong::before
+        {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        display: block;
+        width: 400px;
+        height: 1px;
+        background-color: #539a00;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text strong span
+        {
+        color: #999;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-text p {
+        margin-bottom: 0;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type01 .item-img {
+        height: 285px;
+    }
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02 {
+    position: relative;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02>.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type02 .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-e-progress .group-img-side-type02 {
+        height: 560px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 660px;
+        z-index: 1;
+        margin-left: 25%;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap
+        {
+        position: relative;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit
+        {
+        color: #fff;
+        font-size: 28px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit::before
+        {
+        position: absolute;
+        top: 0px;
+        left: -20px;
+        content: "\e975";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit::after
+        {
+        position: absolute;
+        top: 0px;
+        left: 443px;
+        content: "\e976";
+        font-family: 'icomoon';
+        font-size: 11px;
+        opacity: 0.4;
+        filter: alpha(opacity = 40);
+        /* For IE8 and earlier */
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap .tit span
+        {
+        font-size: 22px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .tit-wrap::before
+        {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        display: block;
+        width: 50%;
+        height: 2px;
+        background-color: #92d04d;
+        margin-right: 85px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .cont
+        {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text .cont em
+        {
+        display: block;
+        font-style: normal;
+        margin-top: 70px;
+        font-size: 16px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 84%;
+        height: 560px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        color: #fff;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text strong
+        {
+        position: relative;
+        display: inline-block;
+        padding-right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text strong::before
+        {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        display: block;
+        width: 400px;
+        height: 1px;
+        background-color: #539a00;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text strong span
+        {
+        color: #999;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text p {
+        font-size: 16px;
+        margin-bottom: 0;
+        font-weight: 300;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-text p em
+        {
+        display: block;
+        font-style: normal;
+        margin-top: 30px;
+        font-size: 14px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type02 .item-img {
+        height: 450px;
+    }
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03 {
+    position: relative;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03>.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.route1-util.route2-e-progress .group-img-side-type03 .item-img {
+    background-size: cover;
+    background-position: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-e-progress .group-img-side-type03 {
+        height: 560px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 745px;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 40px 80px;
+        margin-left: -40px;
+        margin-left: 40px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .dco-line
+        {
+        border-right: 1px solid #e4e4e4;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .col-6:last-child
+        {
+        padding-left: 50px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .col-6 .logo img
+        {
+        height: 50px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p {
+        font-size: 20px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p em
+        {
+        display: block;
+        font-style: normal;
+        font-weight: bold;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .btn
+        {
+        font-size: 15px;
+        color: #999;
+        font-weight: bold;
+        border-color: #b7b7b7;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 785px;
+        height: 560px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text {
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text .logo img
+        {
+        height: 30px;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-text p em
+        {
+        display: block;
+        font-style: normal;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+    body.route1-util.route2-e-progress .group-img-side-type03 .item-img {
+        height: 280px;
+    }
+}
+
+body.route1-util.route2-e-progress .payment-system {
+    margin-top: 100px;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit {
+    position: relative;
+    font-size: 22px;
+    padding-left: 75px;
+    font-weight: 500;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit em {
+    font-style: normal;
+    font-size: 18px;
+    color: #da4343;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit.num01::before {
+    content: '1';
+    display: inline-block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    background: #444;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit.num02::before {
+    content: '2';
+    display: inline-block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    background: #444;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+body.route1-util.route2-e-progress .payment-system .tit.num01 .cont {
+    height: 214px;
+    border: 1px solid #e5e5e5;
+}
+
+body.route1-util.route2-e-progress .payment-system .cont {
+    padding-left: 75px;
+}
+
+body.route1-util.route2-e-progress .payment-system .cont p {
+    position: relative;
+    font-size: 18px;
+}
+
+body.route1-util.route2-e-progress .payment-system .cont p:before {
+    content: '.';
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    color: #333;
+}
+
+body.route1-util.route2-e-progress .payment-system .desc {
+    margin-top: 40px;
+    color: #888;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .payment-system {
+        margin-top: 50px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit {
+        font-size: 20px;
+        padding-left: 0;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit em {
+        font-size: 18px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num01 {
+        margin-top: 50px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num01::before {
+        top: -40px;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num02 {
+        margin-top: 80px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num02::before {
+        top: -40px;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+    body.route1-util.route2-e-progress .payment-system .tit.num01 .cont {
+        border: 0;
+    }
+    body.route1-util.route2-e-progress .payment-system .cont {
+        padding-left: 0;
+    }
+    body.route1-util.route2-e-progress .payment-system .cont p {
+        font-size: 18px;
+    }
+}
+
+body.route1-util.route2-e-progress .legal-obligations {
+    margin-top: 100px;
+}
+
+body.route1-util.route2-e-progress .legal-obligations .cont {
+    font-size: 20px;
+}
+
+body.route1-util.route2-e-progress .legal-obligations .cont em {
+    font-size: 22px;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .legal-obligations {
+        margin-top: 50px;
+    }
+    body.route1-util.route2-e-progress .legal-obligations .cont {
+        font-size: 16px;
+    }
+    body.route1-util.route2-e-progress .legal-obligations .cont em {
+        font-size: 15px;
+        font-weight: 500;
+        font-style: normal;
+    }
+}
+
+body.route1-util.route2-e-progress .c-reg .col-12 .legal-img {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+body.route1-util.route2-e-progress .c-reg .col-12 .legal-img i {
+    display: block;
+    color: #fff;
+    font-size: 100px;
+    padding-top: 80px;
+}
+
+body.route1-util.route2-e-progress .c-reg .col-12 .legal-img p {
+    font-size: 22px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+body.route1-util.route2-e-progress .c-reg .title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .c-reg .legal-img {
+        margin-bottom: 25px;
+    }
+    body.route1-util.route2-e-progress .c-reg .title {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-e-progress .c-question dl {
+    display: table;
+    width: 100%;
+}
+
+body.route1-util.route2-e-progress .c-question dl dt, body.route1-util.route2-e-progress .c-question dl dd
+    {
+    display: table-cell;
+    padding-top: 45px;
+    border-top: 1px solid #000;
+}
+
+body.route1-util.route2-e-progress .c-question dl dt {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20%;
+}
+
+body.route1-util.route2-e-progress .c-question dl dd {
+    font-size: 18px;
+}
+
+body.route1-util.route2-e-progress .c-question dl dd em {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .c-question dl dt, body.route1-util.route2-e-progress .c-question dl dd
+        {
+        display: table-row-group;
+    }
+    body.route1-util.route2-e-progress .c-question dl dt {
+        font-size: 16px;
+        display: block;
+        border: solid #000;
+        border-width: 0 0 1px 0;
+        padding-bottom: 5px;
+        padding-top: 0;
+        margin-bottom: 5px;
+    }
+    body.route1-util.route2-e-progress .c-question dl dd {
+        font-size: 14px;
+    }
+    body.route1-util.route2-e-progress .c-question dl dd em {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-e-progress .diagram {
+        position: relative;
+    }
+    body.route1-util.route2-e-progress .diagram b.zoom {
+        top: 0;
+        right: 0;
+    }
+    body.route1-util.route2-e-progress b.zoom {
+        overflow: hidden;
+        display: block;
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+    }
+    body.route1-util.route2-e-progress b.zoom span.icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        background-image: url(../../resources2/images/common/image-zoom.svg);
+        background-size: cover;
+        background-position: center;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header .title {
+    font-weight: 500;
+    color: #000;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-pw_change .pw_change .sso-title-header {
+        padding: 50px 0;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header .title {
+        font-size: 48px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-pw_change .pw_change .sso-title-header {
+        padding: 30px 0;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header .title {
+        font-size: 28px;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical
+    {
+    position: relative;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title-dot
+    {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #96c11f;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title
+    {
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical
+        {
+        margin-bottom: 20px;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title-dot
+        {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 7px;
+    }
+    body.route1-util.route2-pw_change .pw_change .sso-title-header-vertical .title
+        {
+        font-size: 24px;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-list {
+    position: relative;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-pw_change .pw_change .article-gate-list>.container,
+        body.route1-util.route2-pw_change .pw_change .article-gate-list>.container-fluid
+        {
+        border-top: solid 1px #aaa;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header
+    {
+    text-align: center;
+}
+
+@media ( min-width : 992px) {
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header
+        {
+        padding: 70px 30px 10px;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header .title
+        {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header p
+        {
+        font-size: 16px;
+    }
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header
+        {
+        padding: 10px 0;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header .title
+        {
+        font-size: 20px;
+    }
+    body.route1-util.route2-pw_change .pw_change .article-gate-list .article-header p
+        {
+        font-size: 14px;
+    }
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-form {
+    position: relative;
+}
+
+body.route1-util.route2-pw_change .pw_change .article-gate-form .border-form
+    {
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #e4e4e4;
+    padding: 60px 0 45px;
+    margin-bottom: 60px;
+}
+
+body.route1-util.route1-util .util-box {
+    background: #f4f4f4;
+    padding: 80px 0;
+}
+
+@media ( max-width : 991px) {
+    body.route1-util.route1-util .util-box {
+        padding: 40px 0;
+    }
+    body.route1-util.route1-util .util-box .logo-item {
+        text-align: center;
+    }
+    body.route1-util.route1-util .util-box .btn {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+}
+</style>
+</head>
+
+<body id="body" class="full-layout category-nongshim route1-util route2-terms_use-4-0 route3-index page-navigation-overflow">
+
+<div id="body-wrap" class="body-wrap">
+    <section id="content-block" class="view-">
+        <article class="article-">
+            <div class="container">
+                <div class="privacy-wrap">
+                    <article>
+                        <div class="head-cont">
+                            <div class="article-title-dot article-title-dot-lg">
+                                <h1 style="display: block;
+									    font-size: 34px;
+									    font-weight: 700;
+									    color: #010000;
+									    margin-left: 30px;
+									    margin-bottom: 20px;">서비스 이용 약관</h1>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="body-cont">
+                            <div id="term01" class="privacy-item">
+                                <strong class="tit">제 1 장 총칙</strong>
+                                <strong class="tit">제 1 조(약관의 목적)</strong>
+                                <div class="txt-cont">
+                                    <p> 본 약관은 (주)농심(이하 “회사”라 한다)가 제공하는 전자 계약시스템(이하 “서비스”라 한다)을 이용함에 있어서 회사와 서비스 이용자(이하 “회원”이라 한다)간에 서비스 이용의 방법 및 기타 필요사항을 규정함을 목적으로 합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term02" class="privacy-item">
+                                <strong class="tit">제 2 조 (약관의 효력 및 변경)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 본 약관은 서비스 이용자가 서비스에 가입함과 동시에 효력이 발휘되고 또한 회사의 서비스 사이트(ecs.nongshim.com)에 게시하여 공지하거나 전자우편, 기타의 방법으로 회원에게 통지함으로써 효력을 발생합니다.</p>
+                                    <p>2. 회사는 업무상 약관을 변경하여야 할 중요한 사유가 있다고 판단될 경우 약관을 변경할 수 있으며, 변경된 약관은 전항과 동일한 방법으로 공지 또는 통지함으로써 효력을 발생합니다.</p>
+                                    <p>3. 변경된 약관이 공시된 날로부터 1개월 이내에 회원이 회사에 서면으로 이의를 제기하지 아니한 때에는 변경된 약관을 승인한 것으로 간주하며, 회원이 이의를 제기하는 경우 회사는 회원과 협의를 거친 후 수용여부를 결정합니다.</p>
+                                    <p>4. 약관의 내용은 회사의 서비스 사이트에 항상 게시됩니다.</p>
+                                </div>
+                            </div>
+                            <div id="term03" class="privacy-item">
+                                <strong class="tit">제 3 조 (명시되지 않은 약관의 적용)</strong>
+                                <div class="txt-cont">
+                                    <p> 본 약관에 명시되지 아니한 사항이 관계법령 및 기타관습에 따릅니다.</p>
+                                </div>
+                            </div>
+                            <div id="term04" class="privacy-item">
+                                <strong class="tit">제 4 조 (용어의 정의)</strong>
+                                <div class="txt-cont">
+                                    <p> 본 약관에서 사용하는 용어의 의미는 다음 각 호와 같습니다.</p>
+                                    <p>1. 서비스: 회원들간의 구매조달 업무에서 발생하는 입찰, 계약, 채권잔액 등의 업무를 전자적으로 처리 할 수 있는 종합적인 서비스를 총칭합니다.</p>
+                                    <p>2. 회 원: 회사의 서비스 이용약관에 동의하고 회사가 요구하는 소정의 정보를 제공하여 회원등록을 한 기업 및 개인</p>
+                                    <p>3. 비회원: 견적관리, 전자입찰, 전자계약, 채권잔액 업무진행을 위해 회원이 직접 정보를 등록한 기업 및 개인</p>
+                                    <p>4. 아이디(ID): 회원식별과 서비스 이용을 위하여 회원이 선정하고 회사가 승인한 문자와 숫자의 조합</p>
+                                    <p>5. 비밀번호(PW): ID 에 대하여 사용자임을 확인하고 회원 자신의 비밀 보호를 위하여 회원이 선정하고 회사가 승인한 문자와 숫자의 조합</p>
+                                </div>
+                            </div>
+                            <div id="term05" class="privacy-item">
+                                <strong class="tit">제 2 장 서비스 이용신청</strong>
+                                <strong class="tit">제 5 조 (서비스 이용신청)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 본 서비스 이용을 희망하는 기업은 서비스 사이트 (ecs.nongshim.com)에 접속하여 회원으로 가입함으로써 회사와 서비스 이용계약이 성립됩니다.</p>
+									<p>2. 회원가입은 이용 희망기업이 서비스의 이용약관에 동의한 후, 가입신청서에 회사의 정보를 기재하여 신청함으로써 성립합니다.</p>
+									<p>3. 가입신청서에 입력한 이용기업의 정보는 모두 실제 데이터로 간주되며, 허위정보임이 판명되면 서비스의 제한을 받을 수 있습니다.</p>
+									<p>4. 회원가입 시 입력한 회사정보는 사업자등록증의 정보와 동일하여야 합니다.</p>
+								</div>
+                            </div>
+                            <div id="term06" class="privacy-item">
+                                <strong class="tit">제 3 장 서비스의 이용 및 제한</strong>
+                                <strong class="tit">제 6 조 (서비스의 제공)</strong>
+                                <div class="txt-cont">
+									<p>1. 서비스는 아이디, 비밀번호로 로그인 후 이용하여야 합니다.</p>
+									<p>2. 서비스의 이용시간은 연중 무휴 1일 24시간으로 합니다. 다만, 다음 각 호에 해당하는 경우에는 그러하지 아니합니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 보안의 유지 및 향상, 주 전산기의 유지, 점검 등이 필요한 경우</p>
+										<p>&nbsp;② 정기적 주기에 따른 데이터의 백업 및 안전한 보관을 위한 경우</p>
+										<p>&nbsp;③ 통신장애 또는 기타 불가피한 사유로 인하여 서비스가 중단되는 경우</p>
+										<p>&nbsp;④ 기타 상기 각 호에 준하는 경우</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="term07" class="privacy-item">
+                                <strong class="tit">제 7조 서비스의 중단</strong>
+                                <div class="txt-cont">
+                                    <p>1. 서비스는 제5조에 의거하여 가입을 완료한 시점부터 즉시 이용할 수 있습니다. 또한, 이용요금에 대한 결제가 정상적으로 이루어진 회원에 한하여 이용이 가능합니다.</p>
+                                    <p>2. 서비스의 이용시간은 연중무휴 1일 24시간을 원칙으로 하며, 다음 각 호에 해당하는 경우는 예외로 합니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 정기점검, 서비스 이용향상 등을 위해 회사가 정한 날이나 시간</p>
+										<p>&nbsp;② 시스템 장애, 서비스 이용의 폭주, 천재지변으로 인한 서비스의 중단</p>
+										<p>&nbsp;③ 위의 각 호에 준하는 경우</p>
+                                    </div>
+									<p>3. 회사는 이용시간을 제한하는 경우 그 내용을 사전에 사이트에 공지하여야 합니다.</p>                                   
+                                </div>
+                            </div>
+                            <div id="term08" class="privacy-item">
+                                <strong class="tit">제 4 장 회원정보의 관리</strong>
+                                <strong class="tit">제 8 조 (회원정보의 수집 및 이용목적)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회원으로 가입하여 서비스를 이용하고자 하는 경우 회사에서 요청하는 제반 정보를 제공하여야 합니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 기업회원: 사업자번호, 법인번호, 업체명, 대표자명, 업태, 종목, 주소, 아이디, 비밀번호, 담당자명, 부서명, 직위, 이메일, 전화번호, 팩스번호, 휴대전화</p>
+										<p>&nbsp;② 개인회원: 이름, 생년월일, 주소, 휴대전화, 전화번호, 팩스번호, 아이디, 비밀번호</p>
+                                    </div>
+                                    <p>2. 모든 회원은 반드시 회원 본인의 정보를 제공하여야만 서비스를 이용할 수 있으며, 타인의 명의를 도용하거나 허위의 정보를 등록하는 등 본인의 진정한 정보를 등록하지 않은 회원은 서비스 이용과 관련하여 권리를 주장할 수 없으며, 관계 법령에 따라 처벌을 받을 수 있습니다.</p>
+                                    <p>3. 회사는 회원이 등록한 정보에 대하여 확인조치를 할 수 있으며, 회원은 회사의 확인조치에 대하여 적극 협력하여야 하고, 만일 이를 준수하지 아니할 경우 회사는 회원이 등록한 정보가 부정확한 것으로 간주하여 처리할 수 있습니다.</p>
+                                </div>
+                            </div>
+
+                            <div id="term09" class="privacy-item">
+                                <strong class="tit">제 9 조 (회원정보의 보호)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 수집된 회원정보가 분실, 도난, 누출, 변조 또는 훼손되지 아니하도록 보안 및 안정성 확보에 필요한 기술적 조치 등을 취하여야 합니다.</p>
+                                    <p>2. 회사는 ‘신용정보의 이용 및 보호에 관한 법률’(이하 “신용정보법”) 등 관련 법령에 따른 정보 보호 및 활용에 관한 규정을 준수합니다</p>
+                                    <p>3. 제2항에 따라 허용된 범위 내에서 회사는 광고업무와 관련하여 회원 전체 또는 일부의 개인정보에 관한 통계자료를 작성하여 이를 사용할 수 있고, 서비스를 통하여 회원의 컴퓨터에 쿠키를 전송할 수 있습니다. 이 경우 회원은 쿠키의 수신을 거부하거나 쿠키의 수신에 대하여 경고하도록 컴퓨터 브라우저의 설정을 변경할 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term10" class="privacy-item">
+                                <strong class="tit">제 10 조 (회원이용정보 및 자료의 보호)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 회원이 제공한 회원정보를 서비스 이용기간 동안 보유하며, 회원 탈퇴 시에는 회원정보를 관련법규에 따라 보존할 의무가 없는 한 즉시 폐기합니다.</p>
+                                    <p>2. 회원가입 시 제공한 회원의 정보(담당자 이름, 전자메일 주소, 담당자 연락처 등)는 서비스의 원활한 운영을 위해 경우에 따라 공유될 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term11" class="privacy-item">
+                                <strong class="tit">제 11 조 (ID, 비밀번호의 부여, 변경 및 관리)</strong>
+                                <div class="txt-cont">
+                                    <p>1. ID는 다음 각 호에 해당하는 경우 회원 또는 회사의 요청에 의하여 변경할 수 있습니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 회원의 사생활 침해 우려가 있는 경우</p>
+										<p>&nbsp;② 타인에게 혐오감을 주거나 미풍양속에 어긋나는 경우</p>
+										<p>&nbsp;③ 기타 합리적인 사유가 있는 경우</p>
+                                    </div>
+                                    <p>2. ID와 비밀번호는 수시로 변경이 가능하며, ID 및 비밀번호에 대한 관리책임은 회원에게 있습니다.</p>
+                                    <p>3. 회원의 관리자는 인증키 등의 보안, 유출방지 의무가 있으며, 이를 통해 본 서비스를 이용하는 회원 내부직원에 대한 책임을 부담하며 이에 따른 그 어떠한 문제에 대해서도 회사는 책임을 지지 않습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term12" class="privacy-item">
+                                <strong class="tit">제 12 조 (게시물의 관리)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 회원이 게시하거나 등록한 내용이 다음 각 호에 해당한다고 판단되는 경우 통지나 동의 없이 게시물을 삭제할 수 있으며, 게시물의 검열, 검색에 따른 의무와 게시물의 내용 및 관리에 따른 손해배상책임을 부담하지 않습니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 다른 회원 또는 제3자를 비방하거나 중상모략으로 명예를 손상시키는 내용인 경우</p>
+										<p>&nbsp;② 공공질서 및 미풍양속에 위반되는 내용인 경우</p>
+										<p>&nbsp;③ 범죄적 행위와 결부된다고 판단되는 내용인 경우</p>
+										<p>&nbsp;④ 제3자의 저작권 등 기타 권리를 침해하는 내용인 경우</p>
+										<p>&nbsp;⑤ 광고성 글이나 음란물 등 사이트의 이용목적에 부합하지 않는 경우</p>
+										<p>&nbsp;⑥ 기타 관계법령에 위배되거나 위배될 우려가 있는 경우</p>
+                                    </div>
+                                    <p>2. 회원은 서비스를 이용하여 얻은 정보를 가공, 판매하는 행위 등 게재된 자료를 상업적으로 이용할 수 없으며 이를 위반하여 발생하는 제반 문제의 책임은 회원에게 있습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term13" class="privacy-item">
+                                <strong class="tit">제 13 조 (서비스 이용요금)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 전자입찰, 전자계약, 채권잔액 서비스는 유료이며 가격변동은 회원의 동의 등 제2조에서 정한 약관변경을 위한 절차를 거친 후 적용됩니다.</p>
+                                    <p>2. 기타 서비스 내에서 별도로 정한 유료서비스 이용 시 이용내역에 따라 요금이 부과됩니다.</p>
+                                    <p>3. 회사는 별도로 정한 경우를 제외하고는 사업자등록번호 단위로 이용요금을 부과합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term14" class="privacy-item">
+                                <strong class="tit">제 14 조 (청구 및 납입)</strong>
+                                <div class="txt-cont">
+                                    <p>회사는 회원의 요금제에 따라 이용요금을 청구합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term15" class="privacy-item">
+                                <strong class="tit">제 15 조 (이용요금 반환)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 이용요금 등의 과납이 있을 경우 회원의 이의신청 (청구일로부터 3월 이내에 한함)에 따라 다음 각 호에 해당하는 조치를 취합니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 과납 청구한 이용요금 등에 대하여는 그 금액을 감액하여 신청일 익월에 이용요금에서 상계하거나 탈퇴한 회원의 경우 해당 금액을 반환 처리합니다.</p>
+										<p>&nbsp;② 이용요금 등을 반환 받아야 할 회원이 이용요금 등의 체납이 있는 경우 회사는 해당 금액을 공제하고 전호의 내용을 적용합니다.</p>
+                                    </div>
+                                    <p>2. 회사는 과소청구액에 대하여는 익월에 합산하여 청구합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term16" class="privacy-item">
+                                <strong class="tit">제 5 장 책임</strong>
+                                <strong class="tit">제 16 조 (회사의 의무)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 제7조 2항에서 정한 경우를 제외하고 이 약관 및 관계법령이 정한 바에 따라 계속적, 안정적으로 서비스를 제공할 의무가 있습니다.</p>
+                                    <p>2. 회사는 서비스 관련 설비를 항상 운용 가능한 상태로 유지보수하며, 장애가 발생하거나 멸실된 경우 지체 없이 이를 수리/복구할 수 있도록 최선의 노력을 다하여야 합니다.</p>
+                                    <p>3. 회사는 회원으로부터 제기되는 의견이나 불만이 정당하다고 인정될 경우 신속히 처리하여야 합니다. 다만, 신속한 처리가 곤란한 경우 회원에게 그 사유와 처리일정을 e-mail이나 서면 또는 전화로 통지하여야 합니다.</p>
+                                    <p>4. 회사는 이용계약의 체결, 계약사항의 변경 및 해지 등 회원과의 계약관련 절차 및 내용 등에 있어 회원에게 편의를 제공하도록 노력해야 합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term17" class="privacy-item">
+                                <strong class="tit">제 17 조 (회원의 의무)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회원은 본 약관, 관계법령, 선량한 풍속 등 기타 사회질서 및 회사가 공지하는 사항을 준수하여야 하며, 기타 회사의 업무수행에 지장을 초래하는 행위를 할 수 없습니다.</p>
+                                    <p>2. 회원은 회사의 사전 승인 없이 서비스를 이용한 어떠한 영리행위도 할 수 없습니다.</p>
+                                    <p>3. 회원은 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 복사, 복제, 개조, 번역하여 타인에게 제공할 수 없습니다.</p>
+                                    <p>4. 회원은 자신의 ID와 비밀번호의 관리에 대하여 각별히 주의하여야 합니다.</p>
+                                    <p>5. 회원은 자신의 ID가 부정하게 사용된 것을 발견한 즉시 회사에 그 사실을 통보하여야 합니다.</p>
+                                    <p>6. 회원은 서비스 이용과 관련하여 다음 각 호의 행위를 할 수 없습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term18" class="privacy-item">
+                                <strong class="tit">제 18 조 (서비스 이용의 제한)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 회원이 이 약관 위반 및 다음 각 호에 해당하는 경우 회사가 정한 소정의 기간 내에 이를 해소하지 않으면 서비스 이용계약을 사전 통지나 동의 없이 고객의 서비스 이용을 제한할 수 있습니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 제14조의 규정에 의한 회원의 의무를 이행하지 아니한 경우</p>
+										<p>&nbsp;② 회원이 해산으로 인하여 법인격을 상실하게 되거나 존재하지 않는다고 볼 수 있는 상당한 이유가 있을 경우</p>
+										<p>&nbsp;③회원의 서비스 이용을 제한하거나 정지시킨 후 동일한 행위가 2회 이상 반복되는 경우</p>
+										<p>&nbsp;④기타 이 약관이나 관계법령에서 정한 사항의 위반 등 회원 자격을 그대로 유지시키기 어려운 상당한 이유가 있는 경우</p>
+                                    </div>
+                                    <p>2. 회사는 회원의 이용을 제한할 경우 그 사유, 일시 및 기간을 정하여 이용제한 5일전까지 서면, 전화, e-mail 등을 통하여 회원에게 통지합니다.</p>                                   
+                                </div>
+                            </div>
+                            <div id="term19" class="privacy-item">
+                                <strong class="tit">제 19 조 (이용제한 해제)</strong>
+                                <div class="txt-cont">
+                                    <p> 회사는 이용제한 기간 중에 그 이용제한 사유가 해소된 것이 확인된 경우 이용제한 조치를 즉시 해제하며 그 사실을 회원에게 통지합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term20" class="privacy-item">
+                                <strong class="tit">제 20 조 (서비스 제공의 제한 및 중지)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 다음 각 호에 해당하는 경우 서비스의 이용을 전부 또는 일부를 제한하거나 중지할 수 있습니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 시스템 보수 및 데이터 관리를 위하여 부득이한 경우</p>
+										<p>&nbsp;② 전기통신사업법에 규정된 기간통신사업자가 전기통신서비스를 중지한 경우</p>
+										<p>&nbsp;③ 국가 비상사태, 천재지변이 발생하거나 발생할 우려가 있는 경우</p>
+                                    </div> 
+                                    <p>2. 전항에 의한 서비스 중단의 경우 그 사유 등을 홈페이지에 게시하거나 회원에게 통지합니다. 다만, 회사가 통제할 수 없는 사유로 인하여 사전통지가 불가능한 경우 그러하지 아니합니다.</p>                                   
+                                </div>
+                            </div>
+                            <div id="term21" class="privacy-item">
+                                <strong class="tit">제 21 조 (해지)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회원이 이용계약을 해지하고자 하는 경우 서비스에 정한 양식에 따라 신청서에 의거 전화, 팩스 또는 e-mail 을 통하여 회사에 해지신청을 하여야 합니다.</p>
+                                    <p>2. 이용계약의 해지 시 회원은 최종 요금납부 이후 이용한 서비스에 대한 이용요금을 모두 납입하여야 합니다.</p>
+                                    <p>3. 회사는 회원이 본 약관의 규정을 위반하고 회사가 정한 소정의 기간 내에 이를 해소하지 아니하는 경우에 서비스 이용계약을 사전 통지나 동의 없이 해지할 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term22" class="privacy-item">
+                                <strong class="tit">제 6 장 기타</strong>
+                                <strong class="tit">제 22 조 (양도금지)</strong>
+                                <div class="txt-cont">
+                                    <p> 회원이 서비스의 이용권한, 기타 이용계약상 지위를 타인에게 양도하거나 담보로 제공할 수 없습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term23" class="privacy-item">
+                                <strong class="tit">제 23 조 (손해배상)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회원이 본 약관의 규정을 위반하여 다른 회원 또는 제3자에게 손해를 입히는 경우 회원은 이에 대한 모든 책임을 부담합니다.</p>
+                                    <p>2. 전항의 경우를 제외하고는 회사는 서비스 제공과 관련하여 회원에게 손해가 발생한 경우 고의 또는 중과실이 없는 한 이에 대하여 책임지지 않습니다.</p>
+                                </div>
+                            </div>
+                            <div id="term24" class="privacy-item">
+                                <strong class="tit">제 24 조 (면책사항)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 회사는 회원이 게재한 정보, 자료 및 그에 대한 사실의 정확성, 신뢰성 등에 관하여는 어떠한 책임도 지지 않으며, 서비스를 이용하여 게시 또는 전송한 자료, 자료의 취사선택, 기타 서비스 이용과 관련하여 회원에게 어떠한 손해 또는 불이익이 발생하더라도 이에 대한 모든 책임은 회원에게 있습니다.</p>
+                                    <p>2. 회사는 제14조 규정을 위반하여 회원간 또는 회원과 제3자간에 회사의 서비스를 매개로 하여 물품거래 등의 행위에 대하여 어떠한 책임도 지지 않습니다.</p>
+                                    <p>3. 회원 아이디(ID)와 비밀번호의 관리 및 이용상의 부주의로 인하여 발생되는 손해 또는 제3자에 의한 부정사용 등에 대한 책임은 모두 회원에게 있습니다.</p>
+                                    <p>4. 회사는 다음 각 호의 경우에 대하여는 책임을 지지 아니합니다.</p>
+                                    <div class="pdl20">
+										<p>&nbsp;① 천재지변 등 불가항력적인 사유로 서비스를 제공하지 못하는 경우</p>
+										<p>&nbsp;② 회원이 제공하는 자료의 오류로 인하여 발생한 손해</p>
+										<p>&nbsp;③ 통신기기, 통신회선 또는 전산시스템 장애에 의한 업무처리의 지연이나 불능일 경우</p>
+										<p>&nbsp;④ 회원이 컴퓨터 바이러스 침투, 불법S/W설치 등 관리소홀 및 부주의로 손해가 발생한 경우</p>
+										<p>&nbsp;⑤ 기타 회사의 과실로 인하여 발생한 사고가 아닌 경우</p>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div id="term25" class="privacy-item">
+                                <strong class="tit">제 25 조 (분쟁해결 및 관할법원)</strong>
+                                <div class="txt-cont">
+                                    <p>1. 본 계약의 해석과 관련하여 이견이 있을 경우 및 본 계약에 제시되지 않은 사항이 있을 경우 관련법규가 있으면 그 관련법규를 따르고 관련법규가 없으면 신의성실의 원칙에 따라 상호 협의하여 결정합니다.</p>
+                                    <p>2. 본 계약과 관련한 분쟁의 해결에 대해서는 서울중앙지방법원을 관할법원으로 합니다.</p>
+                                </div>
+                            </div>
+                            <div id="term26" class="privacy-item">
+                                <strong class="tit">- 부   칙 -</strong>
+                                <div class="txt-cont">
+                                    <p>(시행일) 본 약관은 2020.10.19부터 적용합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </article>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="EUC-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>▒ 나이스다큐 (전자구매시스템)▒</title>
+    <link rel="stylesheet" type="text/css" href="http://www.nicedocu.com/web/buyer/html/css/style.css">
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery-3.1.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery.easing.1.3.js"></script>
+    <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/common.js"></script>
+<style type="text/css">
+.glabel {
+	color: #707070;
+	FONT-FAMILY: "돋움", "Arial";
+	FONT-SIZE: 9pt;
+	/*LINE-HEIGHT: 13pt;*/
+	border: 1 solid;
+	border-color: #d7d5ca;
+	text-align: left;
+	background-color: #ffff00
+}
+td {  font-family: "나눔고딕, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+.lineTable { border-collapse:collapse; border:1px solid black }
+.lineTable td { border:1px solid black }
+.lineTable .noborder { border:0 }
+</style>
+<script type="text/javascript">
+function htmlToPdf(){
+	var f = document.forms['form1'];
+	splitHtml(f, 'cont_html', false);
+	splitHtml(f, 'cont_html_rm', true);
+	f.action= "http://new.nicedocu.com/web/buyer/html_to_pdf.jsp";
+	//document.getElementById("__html_0").innerHTML=f["cont_html_rm_0"].value;
+	f.submit();
+}
+</script>
+</head>
+<body>
+
+<input type="button" class="sbtn5" value="pdf변환" onclick="htmlToPdf()">
+
+<form name="form1" method="post" enctype="multipart/form-data">
+
+
+<div class="cont_warp">
+<div id="__html">
+<div style="{{template.template_style}}; padding-top: 10px" id="__html_0">
+
+<!-- body 아래 부분이 실제 pd4ml에 사용될 부분 -->
+
+<!-- 여기까지   HTML 종료 -->
+
+</div>
+</div>		
+</div>
+
+
+</form>
+
+</body>
+</html>

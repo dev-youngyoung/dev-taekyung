@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<db>
+		<datasource>cdb</datasource>
+		<queryformat>true</queryformat>
+	</db>
+
+	<dir>/wasdata01/8024/ECS_nongshim_2020</dir>
+
+	<file>
+		<path> <!-- 파일 디렉토리-->
+			${dir}/file
+
+			<file>${file.path}/file/</file> <!-- 첨부파일 디렉토리-->
+			<pds>${file.path}/pds/</pds> <!-- 자료실 디렉토리-->
+			<noti>${file.path}/noti/</noti> <!-- 공지사항   디렉토리-->
+
+			<bcontract>${file.path}/bcontract/</bcontract> <!-- 전자계약 디렉토리-->
+			<bcont_template>${file.path}/bcontract/template/</bcont_template> <!-- 전자계약 계약서식 기본첨부 디렉토리 -->
+			<bcont_pdf>${file.path}/bcontract/pdf/</bcont_pdf> <!-- 전자계약 pdf(output) -->
+			<bcont_logo>${file.path}/bcontract/logo/</bcont_logo> <!-- 전자계약 로고 디렉토리 -->
+			<bcont_logo_http>/file/bcontract/logo/</bcont_logo_http> <!-- 전자계약 로고 http 상대경로 -->
+			<bcont_pds>${file.path}/bcontract/pds/</bcont_pds> <!-- 전자계약 자료방 디렉토리 -->
+			<send_log>${file.path}/send_log/</send_log>
+		</path>
+	</file>
+
+	<log>/was/8024dom/logs</log>
+
+	<nicelib>
+		<document_root>${dir}/web/buyer</document_root>
+		<admin_root>${dir}/web/admin</admin_root>
+	</nicelib>
+	
+	<crosscert>
+		<path>/was/cert/8024
+			<npki>${crosscert.path}/NPKI</npki> <!-- NPKI 경로 -->
+		</path>
+		<servercert>
+			<path>${dir}/file/NPKI</path> <!-- 서버인증서 경로 -->
+			<password>qwe112233!</password><!-- 서버인증서 비밀번호 -->
+		</servercert>
+	</crosscert>
+
+	<adminid>systemadmin</adminid> <!-- 서버관리자 아이디 -->
+
+	<domain>http://172.25.1.191:8024</domain> <!-- 전자결재 도메인 -->
+	<email>
+		<mailHost>smtp.nsgportal.net</mailHost>
+		<mailFrom>ecs@nongshim.com</mailFrom>
+	</email>
+	
+	<approval>
+		<action>http://dev.nsgportal.net</action> <!-- 전자결재 URL -->
+		<url>http://172.25.1.191:8024</url> <!-- 전자계약 URL -->
+		<documentType>ECS12</documentType>
+		<createSystem>NSNECS_DEV</createSystem>
+		<createServer>172.25.1.191:8024</createServer>
+		<systemCd>APPL200345</systemCd>
+	</approval>
+</configuration>

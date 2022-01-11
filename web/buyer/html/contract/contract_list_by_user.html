@@ -1,0 +1,46 @@
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="13%">
+		    <col>
+		    <col width="10%">
+		    <col width="12%">
+		    <col width="12%">
+	    	<col width="10%">
+		</colgroup>
+		<tr>
+		    <th>계약번호</th>
+		    <th>계약명</th>
+		    <th>담당자</th>
+		    <th>부서</th>
+		    <th>거래처명</th>
+		    <th>계약일자</th>
+		</tr>
+		
+		<!-- IF START 'list' -->
+			<!-- LOOP START 'list' -->
+				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
+		    		onclick="location.href='contract_view.jsp?cont_no={{list.cont_no_enc}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
+					<td align="center">{{list.cont_no}}</td>
+					<td>&nbsp;{{list.cont_name}}</td>
+					<td align="center">{{list.user_name}}</td>
+					<td align="center">{{list.division}}</td>
+					<td align="center">{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+		  		</tr>
+			<!-- LOOP END 'list' -->
+		<!-- IF END 'list' -->
+		
+		<!-- IFNOT START 'list' -->
+			<tr>
+				<td colspan="6" align="center">검색결과가 없습니다.</td>
+		  	</tr>
+		<!-- IFNOT END 'list' -->
+		
+	</table>
+</div>
+
+{{form_script}}
+
+<br/>
+<div class="common-paging">{{pagerbar}}</div>

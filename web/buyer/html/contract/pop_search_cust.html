@@ -1,0 +1,174 @@
+<form name="form1" method="get">
+<input type="hidden" name="search" value="1">
+<input type="hidden" name="search_type" value="{{search_type}}">
+<input type="hidden" name="sign_seq" value="{{sign_seq}}">
+
+<div style="width:100%;padding:5px;text-align:right">
+	<!-- <button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert.jsp?{{query}}';"><span></span>비회원업체추가</button> -->
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
+</div>
+
+<div class="search_div">
+	<table class="search_table">
+		<colgroup>
+			<col width="11%">
+		    <col width="23%">
+		    <col width="11%">
+		    <col width="24%">
+		    <col width="11%">
+		    <col width="11%">
+		    <col width="*">
+		</colgroup>
+	  	<tr>
+		    <th><p>업체명</p></th>
+		    <td>
+		    	<input type="text" name="s_member_name" maxlength="30" style="width: 210px;" id="s_member_name">
+		    </td>
+		    <th><p>사업자번호</p></th>
+		    <td><input type="text" name="s_vendcd" maxlength="30" style="width: 140px;"> (-없이 입력)</td>
+		    <th><p>구분</p></th>
+		    <td>
+		    	<select name="s_if_gubn">
+		    		<option value="">--전체--</option>
+		    		<option value="01">판매처</option>
+		    		<option value="02">공급처</option>
+		    	</select>
+		    </td>
+			<td align="right">
+		      <button type="submit" class="search_btn">검색</button>
+		    </td>
+	  	</tr>
+	</table>
+</div>
+
+</form>
+{{form_script}}
+<script language="javascript">
+function formSubmit(f) {
+	if (f['s_vendcd'].value == "" && f['s_member_name'].value == "") {
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+<div class="util-row">
+	<div class="push-left">
+		<span class="caution-text">※업체명 또는 사업자 등록번호를 입력후 검색 하세요.</span>
+    </div>
+</div>
+
+<br/>
+
+<div class="div_table">
+	<table>
+		<colgroup>
+			<col width="10%">
+			<col width="12%">
+			<col width="*">
+			<col width="12%">
+			<col width="10%">
+			<col width="10%">
+			<col width="13%">
+			<col width="9%">
+		</colgroup>
+		<tr>
+			<th>구분</th>
+			<th>거래처코드</th>
+			<th>업체명</th>
+			<th>사업자번호</th>
+			<th>대표자</th>
+			<th>담당자</th>
+			<th>휴대폰번호</th>
+			<th>추가</th>
+		</tr>
+		<!-- LOOP START 'list' -->
+		<tr>
+			<td align="center">{{list.if_gubn_name}}</td>
+			<td align="center">{{list.cust_code}}</td>
+			<td align="center">{{list.member_name}}</td>
+			<td align="center">{{list.vendcd}}</td>
+			<td align="center">{{list.boss_name}}</td>
+			<td align="center">{{list.user_name}}</td>
+			<td align="center">{{list.mem_hp}}</td>
+			<td align="center">
+			<form name="form_{{list.member_no}}">
+				<input type="hidden" name="member_no" value="{{list.member_no}}"/>
+				<input type="hidden" name="member_name" value="{{list.member_name}}"/>
+				<input type="hidden" name="vendcd" value="{{list.vendcd}}"/>
+				<input type="hidden" name="boss_name" value="{{list.boss_name}}"/>
+				<input type="hidden" name="address" value="{{list.address}}"/>
+				
+				<input type="hidden" name="vendcd" value="{{list.vendcd}}"/>
+				<input type="hidden" name="post_code" value="{{list.post_code}}"/>
+				<input type="hidden" name="member_slno" value="{{list.member_slno}}"/>
+				<input type="hidden" name="address" value="{{list.address}}"/>
+				<input type="hidden" name="member_name" value="{{list.member_name}}"/>
+				<input type="hidden" name="boss_name" value="{{list.boss_name}}"/>
+				<input type="hidden" name="member_gubun" value="{{list.member_gubun}}"/>
+				<input type="hidden" name="user_name" value="{{list.user_name}}"/>
+				<input type="hidden" name="email" value="{{list.email}}"/>
+				<input type="hidden" name="tel_num" value="{{list.tel_num}}"/>
+				<input type="hidden" name="hp1" value="{{list.hp1}}"/>
+				<input type="hidden" name="hp2" value="{{list.hp2}}"/>
+				<input type="hidden" name="hp3" value="{{list.hp3}}"/>
+				<input type="hidden" name="jumin_no" value="{{list.jumin_no}}"/>
+				<input type="hidden" name="boss_birth_date" value="{{list.boss_birth_date}}">
+				<input type="hidden" name="boss_gender" value="{{list.boss_gender}}">
+				<input type="hidden" name="boss_hp1" value="{{list.boss_hp1}}">
+				<input type="hidden" name="boss_hp2" value="{{list.boss_hp2}}">
+				<input type="hidden" name="boss_hp3" value="{{list.boss_hp3}}">
+				<input type="hidden" name="boss_email" value="{{list.boss_email}}">
+				<input type="hidden" name="boss_ci" value="{{list.boss_ci}}">
+				
+				<button type="button" class="sbtn ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>추가</button>
+			</form>
+			</td>
+		</tr>
+		<!-- LOOP END 'list' -->
+	</table>
+</div>
+
+<!-- IFNOT START 'list' -->
+<div class="div_table">
+<table>
+	<tr>
+		<td align="center">검색 결과가 없습니다.</td>
+	</tr>
+</table>
+</div>
+<!-- IFNOT END 'list' -->
+
+<br/>
+
+<div class="common-paging">{{pagerbar}}</div>
+
+
+
+<script language="javascript">
+attachOnload(function() {
+	if (opener.location.toString().indexOf("_msign_") > -1) {
+	    document.getElementById("btn_add_person").style.display = "";
+	}
+});
+
+function addPerson() {
+    opener.addClientPersonBlank('{{sign_seq}}');
+    self.close();
+}
+
+function addCompany(member_no){
+	var f = document.forms["form_" + member_no];
+	var elems = f.elements;
+	var data = {"sign_seq" : "{{sign_seq}}"};
+	for (var i=0; i<elems.length; i++) {
+		var elem = elems[i];
+		if (elem.tagName.toLowerCase() == "input") {
+			data[elem.name] = elem.value;
+		}
+	}
+	opener.addClientInfo(data);
+	self.close();
+}
+</script>
