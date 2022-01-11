@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.ArrayList
 				,nicelib.db.DataSet
 				,nicelib.util.Util
@@ -6,7 +6,6 @@
 				,nicelib.db.DB
 				,java.net.URLDecoder
 "%>
-<%@ include file = "../../../inc/funUtil.inc" %>
 <%
 // http://dev.nicedocu.com/web/buyer/admin/batch_person_insert.jsp?member_no=20130500019
 
@@ -21,11 +20,11 @@
 
 	try{
 		
-		String	sMemberNo	= u.request("member_no");	// È¸¿ø¹øÈ£
-		String  person_seq	=	"";		// ÀÏ·Ã¹øÈ£
-		String 	user_id			=	"";	//	¾ÆÀÌµğ
-		String	field_name		=	"";	//	´ëÇ¥ÀÚ¸í
-		String	field_seq		=	"";	//	ºÎ¼­ÄÚµå
+		String	sMemberNo	= u.request("member_no");	// íšŒì›ë²ˆí˜¸
+		String  person_seq	=	"";		// ì¼ë ¨ë²ˆí˜¸
+		String 	user_id			=	"";	//	ì•„ì´ë””
+		String	field_name		=	"";	//	ëŒ€í‘œìëª…
+		String	field_seq		=	"";	//	ë¶€ì„œì½”ë“œ
 
 		System.out.println("realGrid.getRowCnt["+data.size()+"]");
 
@@ -34,19 +33,19 @@
 
 			user_id	= data.getString("user_id").replaceAll(" ", "");
 
-			// 1. ±âÁ¸ µî·ÏµÈ »ç¿ëÀÚÀÎÁö È®ÀÎ
+			// 1. ê¸°ì¡´ ë“±ë¡ëœ ì‚¬ìš©ìì¸ì§€ í™•ì¸
 			DataObject daoPerson = new DataObject("tcb_person");
 			DataSet dsPerson = daoPerson.find("user_id = '"+user_id+"'", "member_no");
-			if(dsPerson.next()) // È¸¿ø
+			if(dsPerson.next()) // íšŒì›
 			{
-				System.out.println("±âÁ¸ »ç¿ëÀÚ ÀÔ´Ï´Ù.  user_id->" + user_id);
+				System.out.println("ê¸°ì¡´ ì‚¬ìš©ì ì…ë‹ˆë‹¤.  user_id->" + user_id);
 			}
 			else
-			{	// ¹Ìµî·Ï »ç¿ëÀÚ
+			{	// ë¯¸ë“±ë¡ ì‚¬ìš©ì
 
 				person_seq = daoPerson.getOne("select nvl(max(person_seq),0)+1 person_seq from tcb_person where member_no = '"+sMemberNo+"'");
 				if(person_seq.equals("")){
-					System.out.println("´ã´çÀÚ SEQ »ı¼º ¿À·ù : user_id->" + user_id);
+					System.out.println("ë‹´ë‹¹ì SEQ ìƒì„± ì˜¤ë¥˜ : user_id->" + user_id);
 					continue;
 				}
 
@@ -55,9 +54,10 @@
 				DataSet dsField = daoField.find(" member_no = '"+sMemberNo+"' and field_name = '"+field_name+"'", "field_seq");
 				if(!dsField.next())
 				{
-					field_seq = daoPerson.getOne("select nvl(max(field_seq),0)+1 field_seq from tcb_field where member_no = '"+sMemberNo+"'");
+					//field_seq = daoPerson.getOne("select nvl(max(field_seq),0)+1 field_seq from tcb_field where member_no = '"+sMemberNo+"'");
+					field_seq = daoPerson.getOne("select LPAD((NVL(MAX(field_seq), 0) + 1),4,'0') field_seq from tcb_field where member_no = '"+sMemberNo+"'");
 					if(field_seq.equals("")){
-						System.out.println("ºÎ¼­ »ı¼º ¿À·ù : user_id->" + user_id);
+						System.out.println("ë¶€ì„œ ìƒì„± ì˜¤ë¥˜ : user_id->" + user_id);
 						continue;
 					}
 					daoField.item("member_no", sMemberNo);
@@ -65,7 +65,7 @@
 					daoField.item("field_name", field_name);
 					daoField.item("use_yn", "Y");
 					daoField.item("status", "1");
-					daoField.item("field_gubun", "01");  // 01:ºÎ¼­, 02:ÁöÁ¡
+					daoField.item("field_gubun", "01");  // 01:ë¶€ì„œ, 02:ì§€ì 
 					db.setCommand(daoField.getInsertQuery(), daoField.record);
 				} else {
 					field_seq = dsField.getString("field_seq");
@@ -97,7 +97,7 @@
 				daoPerson.item("use_yn","Y");
 				daoPerson.item("reg_date", Util.getTimeString());
 				daoPerson.item("reg_id", "systemadmin");
-				daoPerson.item("user_gubun", data.getString("user_gubun"));		// 10-º»»ç, 20-Áö»ç
+				daoPerson.item("user_gubun", data.getString("user_gubun"));		// 10-ë³¸ì‚¬, 20-ì§€ì‚¬
 				daoPerson.item("status", "1");
 				daoPerson.item("field_seq", field_seq);
 				daoPerson.item("user_level", data.getString("user_level"));

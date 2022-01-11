@@ -1,8 +1,8 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);">
+﻿<form name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="search" value="1">
 <div class="util-row">
 	<div class="push-right">
-		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>�ݱ�</button>
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
 	</div>
 </div>
 <div class="search_div">
@@ -15,12 +15,12 @@
 		<col width="*"/>
 	</colgroup>
 	<tr>
-		<th><p>��ü��</p></th>
+		<th><p>업체명</p></th>
 		<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
-		<th><p>����ڹ�ȣ</p></th>
-		<td><input type="text" name="s_vendcd" maxlength="30" size="12">(-���� �Է�)</td>
+		<th><p>사업자번호</p></th>
+		<td><input type="text" name="s_vendcd" maxlength="30" size="12">(-없이 입력)</td>
 		<td align="right">
-			<button type="submit" class="sbtn color ico-search" value="�˻�"><span></span>�˻�</button>
+			<button type="submit" class="sbtn color ico-search" value="검색"><span></span>검색</button>
 		</td>
 	</tr>
 	</table>
@@ -30,7 +30,7 @@
 <script language="javascript">
 function formSubmit(f){
 	/*if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-		alert("��ü�� �Ǵ� ����� ��Ϲ�ȣ�� �Է� �� �˻� �ϼ���.");
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
 		return false;
 	}*/
 	return true;
@@ -46,10 +46,10 @@ function formSubmit(f){
 		<col>
 	</colgroup>
 	<tr>
-		<th>����</th>
-		<th>��ü��</th>
-		<th>����ڹ�ȣ</th>
-		<th>��ǥ��</th>
+		<th>순번</th>
+		<th>업체명</th>
+		<th>사업자번호</th>
+		<th>대표자</th>
 	</tr>
 	<!-- LOOP START 'list' -->
 	<tr>
@@ -61,7 +61,7 @@ function formSubmit(f){
 	<!-- LOOP END 'list' -->
 	<!-- IFNOT START 'list' -->
 	<tr>
-		<td align="center" colspan="4">�˻� ����� �����ϴ�.</td>
+		<td align="center" colspan="4">검색 결과가 없습니다.</td>
 	</tr>
 	<!-- IFNOT END 'list' -->
 </table>

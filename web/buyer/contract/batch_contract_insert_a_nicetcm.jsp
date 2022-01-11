@@ -2,11 +2,37 @@
 				,org.jsoup.nodes.Document
 				,org.jsoup.nodes.Element
 				,java.net.URLDecoder"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String template_cd = u.request("template_cd"); 
 String reg_id = auth.getString("_USER_ID");
+
+/**
+ * B2B
+ * 2020902 : [ì˜ì—…] ê±°ë˜ì•½ì •ì„œ_ì§ê±°ë˜ì 
+ * 2020903 : [ì˜ì—…] ê±°ë˜ì•½ì •ì„œ_íŠ¹ì•½ì 
+ * 2020904 : [ì˜ì—…] ìê¸ˆì´ì²´ ì•½ì •ì„œ
+ * 2020905 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_ìƒí’ˆ
+ * 2020906 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_ì œí’ˆì¢…í•©
+ * 2020907 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_ì§ê±°ë˜ì 
+ * 2020908 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_íŒë§¤
+ * 2020909 : [êµ¬ë§¤] ê¸°ìˆ ìë£Œ ìš”êµ¬ì„œ
+ * 2020917 : [êµ¬ë§¤] 2020ë…„ë„ (í•˜ë„ê¸‰)ê³µì •ê±°ë˜ í˜‘ì•½ì„œ
+ * 2020928 : [ì˜ì—…] ê³µì •ê±°ë˜ë°ìƒìƒí˜‘ë ¥ í˜‘ì•½ì„œ(ëŒ€ë¦¬ì ë¶„ì•¼)
+ */
+ 
+String jobGubun = "B2C";	//B2B, B2C êµ¬ë¶„
+String ifGubn = "01"; //ì˜ì—…(01), êµ¬ë§¤(02) êµ¬ë¶„
+if("2020902".equals(template_cd) || "2020903".equals(template_cd) || "2020904".equals(template_cd) || "2020905".equals(template_cd) || "2020906".equals(template_cd) ||
+   "2020907".equals(template_cd) || "2020908".equals(template_cd) || "2020909".equals(template_cd) || "2020917".equals(template_cd) || "2020928".equals(template_cd)
+   ){
+	jobGubun = "B2B";
+}
+
+if("2020909".equals(template_cd) || "2020917".equals(template_cd)){
+	ifGubn = "02";
+}
 
 int loop_cnt=0;
 
@@ -20,7 +46,38 @@ Security security = new	Security();
 DataSet data = u.grid2dataset(grid);
 data.first();
 
-//ÀÛ¼ºÀÚ Á¤º¸
+//ì„œì‹ ì •ë³´
+DataObject templateDao = new DataObject("tcb_cont_template");
+DataSet template = templateDao.find(" status > 0 and template_cd = '" + template_cd + "'");
+if(!template.next()){
+	out.println("0");
+	return;
+}
+
+// ì¶”ê°€ ì„œì‹ì •ë³´ ì¡°íšŒ
+DataObject templateSubDao = new DataObject("tcb_cont_template_sub");
+DataSet templateSub = templateSubDao.find("template_cd = '"+template_cd+"' ","*"," sub_seq asc");
+while (templateSub.next()) {
+	templateSub.put("hidden", u.inArray(templateSub.getString("gubun"), new String[]{"20", "30"}));
+	// ìë™ ìƒì„±í•´ì•¼ í•˜ëŠ” ì–‘ì‹
+	//if (templateSub.getString("option_yn").equals("A")) templateSub.put("option_yn", false);
+}
+
+//ì„œëª…ì •ë³´ ì¡°íšŒ
+DataObject signTemplateDao = new DataObject("tcb_cont_sign_template");
+DataSet signTemplate = signTemplateDao.find("template_cd = '"+template_cd+"' ","*"," sign_seq asc");
+/* String default_sign_seq = "";
+String r_default_sign_seq = "";
+while (signTemplate.next()) {
+	// cust_type - 01:ê°‘, 02:ì„, 00:ì—°ëŒ€ë³´ì¦
+	// member_type - 01:ì‘ì„±ì—…ì²´, 02:ìˆ˜ì‹ ì—…ì²´
+	if (signTemplate.getString("cust_type").equals("01")) default_sign_seq = signTemplate.getString("sign_seq");
+	if (signTemplate.getString("cust_type").equals("02")) r_default_sign_seq = signTemplate.getString("sign_seq");
+} */
+
+// êµ¬ë¹„ì„œë¥˜, ë‚´ë¶€ê´€ë¦¬ ì„œë¥˜ ì¡°íšŒ x
+
+//ì‘ì„±ì ì •ë³´
 DataObject memberDao = new DataObject("tcb_member");
 DataObject personDao = new DataObject("tcb_person");
 
@@ -29,63 +86,143 @@ if(!w_member.next()){
 	out.println("0");
 	return;
 }
+
 DataSet w_person = personDao.find(" member_no = '"+_member_no+"' and user_id = '"+reg_id+"'  ");
 if(!w_person.next()){
 	out.println("0");
 	return;
 }
 
-//¼­½Ä Á¤º¸
-DataObject templateDao = new DataObject("tcb_cont_template");
-DataSet template = templateDao.find(" template_cd = '"+template_cd+"' ");
-if(!template.next()){
-	out.println("0");
-	return;
-}
-
-DataObject templateSubDao = new DataObject("tcb_cont_template_sub");
-DataSet templateSub = templateSubDao.find("template_cd = '"+template_cd+"' ","*"," sub_seq asc");
-
-DataObject signTemplateDao = new DataObject("tcb_cont_sign_template");
-DataSet signTemplate = signTemplateDao.find("template_cd = '"+template_cd+"' ","*"," sign_seq asc");
-
 String error_message = "";
+String gbizNo = "";	//ì‚¬ì—…ìë²ˆí˜¸
 
 try {
 	while(data.next()){
-
 		DataSet r_member  = new DataSet();
-		r_member.addRow();
-		r_member.put("member_no", Util.strrpad("1", 11, "0"));
-		r_member.put("member_name", data.getString("member_name"));
-		r_member.put("address", data.getString("address"));
-		r_member.put("boss_name", data.getString("member_name"));
-		r_member.put("tel_num", data.getString("tel_num"));
-
 		DataSet r_person  = new DataSet();
+		
+		r_member.addRow();
 		r_person.addRow();
-		r_person.put("user_name", data.getString("member_name"));
-		r_person.put("hp1", data.getString("hp1"));
-		r_person.put("hp2", data.getString("hp2"));
-		r_person.put("hp3", data.getString("hp3"));
-		r_person.put("email", data.getString("email"));
-		r_person.put("birth_date", data.getString("birth_date"));
-
-		/*°è¾à¼­ html»ı¼º ½ÃÀÛ*/
-		String cont_html = setHtmldata( template.getString("template_html"), w_member, w_person,r_member,r_person,data, template_cd); 
+		String vendcd = "";
+		String cust_code = "";
+		
+		// B2C ê³„ì•½ì„œ
+		if("B2C".equals(jobGubun)){
+			System.out.println("B2C ##########");
+			DataObject personObj = new DataObject("tcb_person");
+			String email =  personObj.getOne("select email from tcb_person where member_no = '20201000002' and user_empno = '" + data.getString("emp_no") +"'");
+			
+			String cela_tel = data.getString("cela_tel");
+			String cela_tel1 = "";
+			String cela_tel2 = "";
+			String cela_tel3 = "";
+			
+			if(cela_tel != null && cela_tel != ""){
+				String[] cela = data.getString("cela_tel").split("-");
+				System.out.print("cela###########################" + cela);
+				if(cela.length == 3){
+					cela_tel1 = cela[0];
+					cela_tel2 = cela[1];
+					cela_tel3 = cela[2];
+				}
+			}
+			
+			data.put("cont_date", u.getTimeString("yyyy-MM-dd"));
+			data.put("member_name", data.getString("han_name"));
+			data.put("address", data.getString("addr"));
+			data.put("hp1", cela_tel1);
+			data.put("hp2", cela_tel2);
+			data.put("hp3", cela_tel3);
+			data.put("email", email);
+			
+			r_member.put("member_no", Util.strrpad("1", 11, "0"));
+			r_member.put("member_name", data.getString("member_name"));
+			r_member.put("address", data.getString("address"));
+			r_member.put("boss_name", data.getString("member_name"));
+			r_member.put("tel_num", data.getString("tel_num"));
+			
+			r_person.put("user_name", data.getString("member_name"));
+			r_person.put("hp1", data.getString("hp1"));
+			r_person.put("hp2", data.getString("hp2"));
+			r_person.put("hp3", data.getString("hp3"));
+			r_person.put("email", data.getString("email"));
+			r_person.put("birth_date", data.getString("birth_date"));
+			
+		// B2B ê³„ì•½ì„œ
+		}else{
+			System.out.println("B2B ##########");
+			cust_code = data.getString("cust_code");
+			// ê±°ë˜ì²˜ì •ë³´ ì¡°íšŒ
+			String sTable = "(" +
+							"SELECT im.MEMBER_NO, im.COM_NAME, im.COMM_NO, im.BOSS_MOBL, im.HEAD_OFCE_ADRS, replace(im.HEAD_OFCE_POST, '-', '') HEAD_OFCE_POST, im.BOSS_NAME, tp.USER_NAME, tp.HP1, tp.HP2, tp.HP3, tp.EMAIL, tp.TEL_NUM, tp.DIVISION " +
+			   				" FROM IF_MMBAT100 im, ( " +
+							" SELECT MEMBER_NO, PERSON_SEQ, USER_NAME, HP1, HP2, HP3, EMAIL, TEL_NUM, DIVISION " +
+							" FROM ( SELECT ROW_NUMBER() OVER(PARTITION BY MEMBER_NO ORDER BY PERSON_SEQ DESC) RNUM, MEMBER_NO, PERSON_SEQ, USER_NAME, HP1, HP2, HP3, EMAIL, TEL_NUM, DIVISION FROM TCB_PERSON ) " +
+							" WHERE RNUM = 1 " +
+			   				" ) tp " +
+			   				" WHERE im.MEMBER_NO = tp.MEMBER_NO(+) " +
+			   				" AND im.IF_GUBN = '" + ifGubn +"' " +
+			   				" AND TO_NUMBER(im.CUST_CODE) = " + cust_code +
+			   				")";
+			
+			DataObject clientInfoObj = new DataObject(sTable);
+			
+			DataSet clientInfo = clientInfoObj.find(null, "*");
+			if(!clientInfo.next()){
+				error_message += " ê±°ë˜ì²˜ ì½”ë“œ " + cust_code + " ì˜ ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ";
+				continue;
+			}
+			
+			if("".equals(data.getString("cont_date")) || data.getString("cont_date") == null){
+				data.put("cont_date", u.getTimeString("yyyy-MM-dd"));
+			}
+			
+			vendcd = clientInfo.getString("comm_no");// ì‚¬ì—…ì ë²ˆí˜¸
+			// ê±°ë˜ì²˜ ì •ë³´
+			r_member.put("member_no", clientInfo.getString("member_no"));
+			/* r_member.put("member_name", data.getString("member_name")); // ì—…ì²´ëª…(ì…ë ¥ê°’)
+			r_member.put("address", data.getString("address")); // ì£¼ì†Œ(ì…ë ¥ê°’)
+			r_member.put("boss_name", data.getString("boss_name")); // ëŒ€í‘œì(ì…ë ¥ê°’) */
+			r_member.put("member_name", clientInfo.getString("com_name")); // ì—…ì²´ëª…
+			r_member.put("address", clientInfo.getString("head_ofce_adrs"));
+			r_member.put("boss_name", clientInfo.getString("boss_name"));
+			r_member.put("tel_num", clientInfo.getString("tel_num"));
+			r_member.put("vendcd", vendcd);
+			
+			// ê±°ë˜ì²˜ ë‹´ë‹¹ì ì •ë³´
+			r_person.put("user_name", clientInfo.getString("user_name"));
+			r_person.put("hp1", clientInfo.getString("hp1"));
+			r_person.put("hp2", clientInfo.getString("hp2"));
+			r_person.put("hp3", clientInfo.getString("hp3"));
+			r_person.put("email", clientInfo.getString("email"));
+			r_person.put("division", clientInfo.getString("division"));
+			// r_person.put("birth_date", data.getString("birth_date"));
+		}
+		
+		/*ê³„ì•½ì„œ htmlìƒì„± ì‹œì‘*/
+		String cont_html = setHtmldata( template.getString("template_html"), w_member, w_person,r_member,r_person,data, template_cd, jobGubun); 
 		String cont_html_rm = removeHtml(cont_html); 
 		 
-		
+		// ê³„ì•½ë²ˆí˜¸, ê³„ì•½ëª… ìƒì„±
 		ContractDao contDao = new ContractDao();
-		String cont_no = contDao.makeContNo();
+		String cont_no = "";
+		String cont_name = "";
+		if("B2C".equals(jobGubun)){
+			cont_no = contDao.makeContNo("C");
+			cont_name = u.getTimeString("yyyy")+"ë…„ "+template.getString("template_name") + "_" + data.getString("member_name") ;
+		}else{
+			cont_no = contDao.makeContNo("B");
+			cont_name = template.getString("template_name") + "-" + vendcd;
+		}
 		String cont_chasu = "0";
 		String random_no = u.strpad(u.getRandInt(0,99999)+"",5,"0");
-		String cont_userno = data.getString("cont_userno");
+		String cont_userno = cont_no;	//data.getString("cont_userno");
+		
 		ArrayList autoFiles = new ArrayList();
 
 		int file_seq = 1;
 
-		// °è¾à¼­ °©Áö ÆÄÀÏ »ı¼º
+		// ê³„ì•½ì„œ ê°‘ì§€ íŒŒì¼ ìƒì„±
 		DataSet pdfInfo = new DataSet();
 		pdfInfo.addRow();
 		pdfInfo.put("member_no",w_member.getString("member_no"));
@@ -96,23 +233,28 @@ try {
 		pdfInfo.put("html", cont_html_rm);
 		pdfInfo.put("doc_type", template.getString("doc_type"));
 		pdfInfo.put("file_seq", file_seq++);
+		
 		DataSet pdf = contDao.makePdf(pdfInfo);
 		if(pdf==null){
-			error_message += "ERROR => »ı³â¿ùÀÏ:"+data.getString("birth_date")+" ÀÌ¸§: "+data.getString("member_name")+" (°è¾à¼­ÆÄÀÏ»ı¼º½ÇÆĞ.)";
+			if("B2C".equals(jobGubun)){
+				error_message += "ERROR => ìƒë…„ì›”ì¼: "+data.getString("birth_date")+" ì´ë¦„: "+data.getString("member_name")+" (ê³„ì•½ì„œíŒŒì¼ìƒì„±ì‹¤íŒ¨.)";
+			}else{
+				error_message += "ERROR => ì‚¬ì—…ìë²ˆí˜¸: "+vendcd+" ì—…ì²´ëª…: "+r_member.getString("member_name")+" (ê³„ì•½ì„œíŒŒì¼ìƒì„±ì‹¤íŒ¨.)";
+			}
 			continue;
 		}
  
-		//¼­ºê¼­½Ä pdfÆÄÀÏ »ı¼º
+		//ì„œë¸Œì„œì‹ pdfíŒŒì¼ ìƒì„±
 		templateSub.first();
 		while(templateSub.next()){
 			String cont_gubun = templateSub.getString("gubun");
 			String cont_option_yn = templateSub.getString("option_yn");
-			String cont_sub_html = setHtmldata(templateSub.getString("template_html"), w_member, w_person, r_member, r_person, data, template_cd);
+			String cont_sub_html = setHtmldata(templateSub.getString("template_html"), w_member, w_person, r_member, r_person, data, template_cd, jobGubun);
 			templateSub.put("cont_sub_html", cont_sub_html);
    
 			if(    cont_gubun.equals("20")
 					|| ( cont_gubun.equals("30") )
-					|| ( cont_gubun.equals("40") && (cont_option_yn.equals("A") || (cont_option_yn.equals("Y") ))) // ÀÚµ¿À¸·Î »ı¼ºµÇ´Â ¾ç½Ä ¶Ç´Â Ã¼Å©µÈ ¾ç½ÄÀÎ °æ¿ì
+					|| ( cont_gubun.equals("40") && (cont_option_yn.equals("A") || (cont_option_yn.equals("Y") ))) // ìë™ìœ¼ë¡œ ìƒì„±ë˜ëŠ” ì–‘ì‹ ë˜ëŠ” ì²´í¬ëœ ì–‘ì‹ì¸ ê²½ìš°
 					)
 			{
 				String cont_sub_html_rm = removeHtml(cont_sub_html);
@@ -135,12 +277,11 @@ try {
 			}
 		} 
 		 
-			
+		// ê³„ì•½ê¸°ê°„êµ¬í•˜ê¸° - ìë™ì—°ì¥ ì“°ë ¤ë©´ ì¶”ê°€ í•„ìš”
+		
 		System.out.println("--------db start -------------");
 
 		DB db = new DB();
- 
-	 	String cont_name = u.getTimeString("yyyy")+"³â "+template.getString("template_name") + "_" + data.getString("member_name") ; 
 
 		contDao.item("cont_no", cont_no);
 		contDao.item("cont_chasu", cont_chasu);
@@ -161,12 +302,13 @@ try {
 		contDao.item("reg_date", u.getTimeString());
 		contDao.item("true_random", random_no);
 		contDao.item("reg_id", reg_id);
-		contDao.item("status", "20");
+		contDao.item("status", "10");	//ì„ì‹œì €ì¥ìœ¼ë¡œ ë³€ê²½ : 20 -> 10
 		contDao.item("sign_types", template.getString("sign_types"));
 		contDao.item("version_seq", template.getString("version_seq"));
-		contDao.item("src_cd", "");
 		contDao.item("efile_yn", template.getString("efile_yn").equals("Y")?"Y":"N");
 		contDao.item("batch_grp_cd", "00");
+		// ì¸ì§€ì„¸ default N
+		contDao.item("stamp_type", "N");
 		
 		db.setCommand(contDao.getInsertQuery(), contDao.record);
 		System.out.println("--------11-------------");
@@ -192,7 +334,7 @@ try {
 			db.setCommand(contSubDao.getInsertQuery(), contSubDao.record);
 		}
 		System.out.println("--------22-------------");
-		// ¼­¸í ¼­½Ä ÀúÀå
+		// ì„œëª… ì„œì‹ ì €ì¥
 		signTemplate.first();
 		while(signTemplate.next()){
 			if(signTemplate.getString("cust_type").equals("01")) w_member.put("sign_seq", signTemplate.getString("sign_seq"));
@@ -203,21 +345,24 @@ try {
 			contSignDao.item("sign_seq", signTemplate.getString("sign_seq"));
 			contSignDao.item("signer_name", signTemplate.getString("signer_name"));
 			contSignDao.item("signer_max", signTemplate.getString("signer_max"));
-			contSignDao.item("member_type", signTemplate.getString("member_type"));  // 01:³ªÀÌ½º¿Í °è¾àÇÑ ¾÷Ã¼ 02:³ªÀÌ½º ¹Ì°è¾à¾÷Ã¼
-			contSignDao.item("cust_type", signTemplate.getString("cust_type"));      // 01:°© 02:À»
+			contSignDao.item("member_type", signTemplate.getString("member_type"));  // 01:ë‚˜ì´ìŠ¤ì™€ ê³„ì•½í•œ ì—…ì²´ 02:ë‚˜ì´ìŠ¤ ë¯¸ê³„ì•½ì—…ì²´
+			contSignDao.item("cust_type", signTemplate.getString("cust_type"));      // 01:ê°‘ 02:ì„
 			db.setCommand(contSignDao.getInsertQuery(), contSignDao.record);
 		}
 		System.out.println("--------33-------------");
-		//°áÁ¦¶óÀÎ ÀúÀå
+		//ê²°ì œë¼ì¸ ì €ì¥
 
-
-		//ÀÛ¾÷¾÷Ã¼ÀúÀå
+		String sMemberNo1 = "20201000001";	//ì‚¬ì—…ì
+		String sMemberNo2 = "20201000002";	//ê°œì¸
+		
+		//ì‘ì—…ì—…ì²´ì €ì¥
 		DataObject custDao = new DataObject("tcb_cust");
 		custDao.item("cont_no", cont_no);
 		custDao.item("cont_chasu",cont_chasu);
-		custDao.item("member_no",w_member.getString("member_no"));
+		//custDao.item("member_no",w_member.getString("member_no"));
+		custDao.item("member_no",sMemberNo1);
 		custDao.item("sign_seq", w_member.getString("sign_seq"));
-		custDao.item("cust_gubun", "01");  //01:»ç¾÷ÀÚ 02:°³ÀÎ
+		custDao.item("cust_gubun", "01");  //01:ì‚¬ì—…ì 02:ê°œì¸
 		custDao.item("vendcd", w_member.getString("vendcd"));
 		custDao.item("member_name", w_member.getString("member_name"));
 		custDao.item("boss_name", w_member.getString("boss_name"));
@@ -231,28 +376,49 @@ try {
 		custDao.item("hp3", w_person.getString("hp3"));
 		custDao.item("email", w_person.getString("email"));
 		custDao.item("display_seq", 0);
+		if("B2C".equals(jobGubun)){
+			//custDao.item("boss_birth_date", boss_birth_date[i].replaceAll("-", ""));
+			//custDao.item("boss_gender", boss_gender[i]);
+		}
+		if (signTemplate.getString("pay_yn").equals("Y")) custDao.item("pay_yn", "Y");
 		db.setCommand(custDao.getInsertQuery(), custDao.record);
 		System.out.println("--------44-------------");
-		//¼ö½Å¾÷Ã¼ ÀúÀå
+		
+		//ìˆ˜ì‹ ì—…ì²´ ì €ì¥
 		custDao = new DataObject("tcb_cust");
 		custDao.item("cont_no", cont_no);
 		custDao.item("cont_chasu",cont_chasu);
-		custDao.item("member_no", r_member.getString("member_no"));
+		//custDao.item("member_no", r_member.getString("member_no"));
 		custDao.item("sign_seq", r_member.getString("sign_seq"));
-		custDao.item("cust_gubun", "02");  //01:»ç¾÷ÀÚ 02:°³ÀÎ
 		custDao.item("vendcd", r_member.getString("vendcd"));
 		//custDao.item("jumin_no", r_person.getString("jumin_no"));
-		custDao.item("member_name", data.getString("member_name"));
-		custDao.item("boss_name", data.getString("member_name"));
+		if("B2C".equals(jobGubun)){
+			custDao.item("member_name", data.getString("member_name"));
+			custDao.item("boss_name", data.getString("member_name"));
+			custDao.item("hp1", data.getString("hp1"));
+			custDao.item("hp2", data.getString("hp2"));
+			custDao.item("hp3", data.getString("hp3"));
+			custDao.item("email", data.getString("email"));
+			custDao.item("tel_num", data.getString("tel_num"));
+			custDao.item("cust_gubun", "02");  //01:ì‚¬ì—…ì 02:ê°œì¸
+			custDao.item("address", data.getString("address"));
+			custDao.item("member_no",sMemberNo2);
+		}else{
+			custDao.item("member_name", r_member.getString("member_name"));
+			custDao.item("boss_name", r_member.getString("boss_name"));
+			custDao.item("division", r_person.getString("division"));
+			custDao.item("hp1", r_person.getString("hp1"));
+			custDao.item("hp2", r_person.getString("hp2"));
+			custDao.item("hp3", r_person.getString("hp3"));
+			custDao.item("email", r_person.getString("email"));
+			custDao.item("tel_num", r_member.getString("tel_num"));
+			custDao.item("cust_gubun", "01");  //01:ì‚¬ì—…ì 02:ê°œì¸
+			custDao.item("address", r_member.getString("address"));
+			custDao.item("member_no",r_member.getString("member_no"));
+		}
+		custDao.item("user_name", r_person.getString("user_name"));
 		custDao.item("post_code", data.getString("post_code").replaceAll("-",""));
-		custDao.item("address", data.getString("address"));
 		custDao.item("member_slno", r_member.getString("member_slno"));
-		custDao.item("tel_num", data.getString("tel_num"));
-		custDao.item("user_name", data.getString("member_name"));
-		custDao.item("hp1", data.getString("hp1"));
-		custDao.item("hp2", data.getString("hp2"));
-		custDao.item("hp3", data.getString("hp3"));
-		custDao.item("email", data.getString("email"));
 		custDao.item("display_seq", 1);
 		custDao.item("list_cust_yn", "Y");
 		custDao.item("boss_birth_date", data.getString("birth_date").replaceAll("-", ""));
@@ -261,10 +427,11 @@ try {
 		//custDao.item("boss_gender", gender);
 		db.setCommand(custDao.getInsertQuery(), custDao.record);
 		System.out.println("--------55-------------");
-		//°è¾à¼­·ùÀúÀå
+		
+		//ê³„ì•½ì„œë¥˜ì €ì¥
 		int cfile_seq_real = 1;
 		String file_hash = pdf.getString("file_hash");
-		//°è¾à¼­·ù °©Áö
+		//ê³„ì•½ì„œë¥˜ ê°‘ì§€
 		DataObject cfileDao = new DataObject("tcb_cfile");
 		cfileDao.item("cont_no", cont_no);
 		cfileDao.item("cont_chasu", cont_chasu);
@@ -278,7 +445,7 @@ try {
 		cfileDao.item("auto_type", "");
 		db.setCommand(cfileDao.getInsertQuery(), cfileDao.record);
 
-		//ÀÚµ¿»ı¼ºÆÄÀÏ
+		//ìë™ìƒì„±íŒŒì¼
 		for(int i=0; i <autoFiles.size(); i ++){
 			DataSet temp = (DataSet)autoFiles.get(i);
 			cfileDao = new DataObject("tcb_cfile");
@@ -291,8 +458,8 @@ try {
 			cfileDao.item("file_ext", temp.getString("file_ext"));
 			cfileDao.item("file_size", temp.getString("file_size"));
 			cfileDao.item("auto_yn","Y");
-			if(temp.getString("gubun").equals("50"))	// ÀÛ¼º¾÷Ã¼¸¸ º¸°í ÀÎ¼âÇÏ´Â ¾ç½ÄÀº ¼­¸í´ë»óÀÌ ¾Æ´Ô.  gubun[i].equals("50")
-				cfileDao.item("auto_type", "3");	// °ø¹é:ÀÚµ¿»ı¼º, 1:ÀÚµ¿Ã·ºÎ, 2:ÇÊ¼öÃ·ºÎ, 3:³»ºÎ¿ë
+			if(temp.getString("gubun").equals("50"))	// ì‘ì„±ì—…ì²´ë§Œ ë³´ê³  ì¸ì‡„í•˜ëŠ” ì–‘ì‹ì€ ì„œëª…ëŒ€ìƒì´ ì•„ë‹˜.  gubun[i].equals("50")
+				cfileDao.item("auto_type", "3");	// ê³µë°±:ìë™ìƒì„±, 1:ìë™ì²¨ë¶€, 2:í•„ìˆ˜ì²¨ë¶€, 3:ë‚´ë¶€ìš©
 			else
 			{
 				file_hash+="|"+temp.getString("file_hash");
@@ -305,105 +472,61 @@ try {
 		cont2.item("cont_hash", file_hash);
 		db.setCommand(cont2.getUpdateQuery("cont_no= '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'"), cont2.record);
 
-		//ÀÚµ¿Ã·ºÎ ÆÄÀÏ Ã³¸®
+		//ìë™ì²¨ë¶€ íŒŒì¼ ì²˜ë¦¬
 
-		//ÀÚµ¿ ±¸ºñ¼­·ù Ã³¸®
+		//ìë™ êµ¬ë¹„ì„œë¥˜ ì²˜ë¦¬
 
-
-		/* °è¾à·Î±× START*/
+		// ê³„ì•½ì„œ ì¶”ê°€ ì…ë ¥ì •ë³´
+		
+		/* ê³„ì•½ë¡œê·¸ START*/
 		ContBLogDao logDao = new ContBLogDao();
-		logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  w_member.getString("member_no"), w_person.getString("person_seq"), w_person.getString("user_name"), request.getRemoteAddr(), template.getString("template_name")+ " »ı¼ºÀü¼Û",  "", "20","10");
-		/* °è¾à·Î±× END*/
+		logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  w_member.getString("member_no"), w_person.getString("person_seq"), w_person.getString("user_name"), request.getRemoteAddr(), template.getString("template_name")+ " ìƒì„±ì „ì†¡",  "", "20","10");
+		/* ê³„ì•½ë¡œê·¸ END*/
 
 		if(!db.executeArray()){
-			error_message += "ERROR => »ı³â¿ùÀÏ:"+data.getString("birth_date")+" ÀÌ¸§: "+data.getString("member_name")+" (°è¾à¼­ÀúÀå½ÇÆĞ.)";
+			if("B2C".equals(jobGubun)){
+				error_message += "ERROR => ìƒë…„ì›”ì¼:"+data.getString("birth_date")+" ì´ë¦„: "+data.getString("member_name")+" (ê³„ì•½ì„œì €ì¥ì‹¤íŒ¨.)";
+			}else{
+				error_message += "ERROR => ì‚¬ì—…ìë²ˆí˜¸: "+vendcd+" ì—…ì²´ëª…: "+r_member.getString("member_name")+" (ê³„ì•½ì„œì €ì¥ì‹¤íŒ¨.)";
+			}
 			continue;
 		}
 
-		String send_type = template.getString("send_type");
-
-		//SMSÀü¼Û
-		 SmsDao smsDao = new SmsDao();
-		if(!data.getString("hp2").equals("0000") && !data.getString("hp1").equals("") && !data.getString("hp2").equals("")&&!data.getString("hp3").equals("")){
-			if(send_type.equals("20")) {// ÈŞ´ëÆù º»ÀÎ ÀÎÁõ ¼­¸í
-				String linkUrl = request.getRequestURL().substring(0, request.getRequestURL().indexOf("/web/buyer")) + "/web/buyer/sdd/email_msign_callback.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu + "&email_random=" + email_random;
-				String subject = "[³ªÀÌ½º´ÙÅ¥]"+auth.getString("_MEMBER_NAME")+" ¾È³»";
-				String longMessage = "[" + auth.getString("_MEMBER_NAME") + "] °è¾à¼­¸¦ ÀüÀÚ¼­¸íÇØÁÖ¼¼¿ä \n"
-						+ " *¾È³»* \n1.¼ö½Å¹ŞÀº °è¾à¼­¿¡ ´ëÇØ PC¿¡¼­µµ ÀüÀÚ¼­¸íÀÌ °¡´ÉÇÕ´Ï´Ù.(" + data.getString("email")
-						+ "¿¡¼­ È®ÀÎ°¡´É) \n2.½Ã½ºÅÛ ÀÌ¿ë ¹®ÀÇ´Â ³ªÀÌ½º´ÙÅ¥ °í°´¼¾ÅÍ·Î ÇØÁÖ¼¼¿ä. \n3.°è¾à ³»¿ë ¹®ÀÇ´Â °è¾à¾÷Ã¼ÀÇ °è¾à´ã´çÀÚ¿¡°Ô ÇØÁÖ¼¼¿ä.\n"
-						+ linkUrl;
-				smsDao.sendLMS("buyer", data.getString("hp1"), data.getString("hp2"), data.getString("hp3"), subject,longMessage);
-			}
-		}
- 
-		  if(!data.getString("email").equals("")){
-
-			DataObject contEmailDao = new DataObject("tcb_cont_email");
-			String email_seq = contEmailDao.getOne("select nvl(max(email_seq),0)+1 from tcb_cont_email where cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and member_no = '"+r_member.getString("member_no")+"' ");
-			contEmailDao.item("cont_no", cont_no);
-			contEmailDao.item("cont_chasu", cont_chasu);
-			contEmailDao.item("member_no", r_member.getString("member_no"));
-			contEmailDao.item("email_seq", email_seq);
-			contEmailDao.item("send_date", u.getTimeString());
-			contEmailDao.item("user_name", data.getString("user_name"));
-			contEmailDao.item("email", data.getString("email"));
-			contEmailDao.item("status", "01");
-			if(!contEmailDao.insert()){
-			}
-
-			String return_url = "";
-			if(send_type.equals("20")) {
-				return_url = "web/buyer/sdd/email_msign_callback.jsp?cont_no="+u.aseEnc(cont_no)+"&cont_chasu="+cont_chasu+"&email_random="+email_random;
-			}
-
-			DataSet mailInfo = new DataSet();
-			mailInfo.addRow();
-			mailInfo.put("send_member_name", w_member.getString("member_name"));
-			mailInfo.put("cont_name", cont_name);
-			mailInfo.put("cont_date", u.getTimeString("yyyy-MM-dd",data.getString("cont_date").replaceAll("-", "")));
-			mailInfo.put("member_name", data.getString("member_name"));
-			p.setVar("info", mailInfo);
-			p.setVar("server_name", request.getServerName());
-			p.setVar("return_url", return_url);
-			p.setVar("recv_check_url", "/web/buyer/contract/emailReadCheck.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&member_no="+r_member.getString("member_no")+"&num="+email_seq);
-			String mail_body = p.fetch("../html/mail/cont_send_mail.html");
-			u.mail(data.getString("email"), "[³ªÀÌ½º´ÙÅ¥] "+w_member.getString("member_name")+"¿¡¼­ °è¾à¼­ ¼­¸í¿äÃ»", mail_body );
-		}  
-
 		loop_cnt ++;
 		
-		System.out.println("-------------------------------------------------------------ÇÑ±¹ÀüÀÚ±İÀ¶ ÀÏ°ı»ı¼º ["+loop_cnt+"]°Ç »ı¼º Áß");
+		System.out.println("------------------------------------------------------------ ì¼ê´„ìƒì„± ["+loop_cnt+"]ê±´ ìƒì„± ì¤‘");
 		Thread.sleep(500);
 	}
 
 	out.clearBuffer();
 	if(error_message.equals("")) {
-		out.write(loop_cnt+"°Ç °è¾à¼­¸¦ Àü¼ÛÇÏ¿´½À´Ï´Ù.\nÁøÇàÁß(º¸³½°è¾à) ¸Ş´º¿¡¼­ È®ÀÎÇÏ¼¼¿ä.");
+		out.write(loop_cnt+"ê±´ ê³„ì•½ì„œë¥¼ ì „ì†¡í•˜ì˜€ìŠµë‹ˆë‹¤.\nì¼ê´„ê³„ì•½ì „ì†¡ì—ì„œ í™•ì¸ í›„ ì„œëª…ìš”ì²­í•˜ì„¸ìš”.");
 	}else {
-		out.write(loop_cnt+"°Ç °è¾à¼­¸¦ Àü¼ÛÇÏ¿´½À´Ï´Ù.\n\n[½ÇÆĞ°Ç]\n\n"+error_message);
+		out.write(loop_cnt+"ê±´ ê³„ì•½ì„œë¥¼ ì „ì†¡í•˜ì˜€ìŠµë‹ˆë‹¤.\n\n[ì‹¤íŒ¨ê±´]\n\n"+error_message);
 	}
 
 }catch(Exception e){
-	out.print("¾Ë¼ö ¾ø´Â ¿¡·¯ ¹ß»ı : " + e.getCause() + "\n" + e.getMessage());
+	out.print("ì•Œìˆ˜ ì—†ëŠ” ì—ëŸ¬ ë°œìƒ : " + e.getCause() + "\n" + e.getMessage());
+	e.printStackTrace();
 }
 %>
 <%!
 
-//input box µîÀ» Á¦°Å
+//input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String cont_html_rm = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
-	// PDF¿ë 
+	// PDFìš© 
 	for (Element elem : cont_doc.select("textarea")) {
 		elem.parent().html(elem.text().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br />"));
 	} 
 	for( Element elem : cont_doc.select("input[type=text]") ){ if(elem.val().equals("")) elem.parent().text("\u00a0"); else elem.parent().text(elem.val());}
 	for( Element elem : cont_doc.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
-	cont_doc.select(".no_pdf").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+	cont_doc.select(".no_pdf").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 
 	cont_html_rm = cont_doc.getElementsByTag("body").html().toString();
 	String style = cont_doc.getElementsByTag("style").html();
@@ -414,14 +537,14 @@ public String removeHtml(String html)
 	return cont_html_rm;
 }
 
-//¾ç½Ä¿¡ °ª Ã¤¿ö³Ö±â
-public String setHtmldata(String html, DataSet w_member, DataSet w_person, DataSet r_member, DataSet r_person, DataSet data, String template_cd)
+//ì–‘ì‹ì— ê°’ ì±„ì›Œë„£ê¸°
+public String setHtmldata(String html, DataSet w_member, DataSet w_person, DataSet r_member, DataSet r_person, DataSet data, String template_cd, String jobGubun)
 {
-	//contract_modify.jsp ¿¡ ÀÖ´Â script Ç×¸ñµé ¸ÂÃç°¡¾ß ÇÒµí.
+	//contract_modify.jsp ì— ìˆëŠ” script í•­ëª©ë“¤ ë§ì¶°ê°€ì•¼ í• ë“¯.
 	String cont_html = "";
 	Document cont_doc = Jsoup.parse(html);
 	
-	//ÀÛ¼ºÀÚ Á¤º¸
+	//ì‘ì„±ì ì •ë³´
 	replaceInput(cont_doc,"cust_name_area_1", w_member.getString("member_name"));
 	replaceInput(cont_doc,"address_area_1", w_member.getString("address"));
 	replaceInput(cont_doc,"boss_name_area_1", w_member.getString("boss_name"));
@@ -445,7 +568,7 @@ public String setHtmldata(String html, DataSet w_member, DataSet w_person, DataS
 	replaceInput(cont_doc,"hp3_1", w_person.getString("hp3"));
 	replaceInput(cont_doc,"email_area_1", w_person.getString("email"));
 
-	//¼ö½ÅÀÚ Á¤º¸
+	//ìˆ˜ì‹ ì ì •ë³´
 	replaceInput(cont_doc,"cust_name_area_2", r_member.getString("member_name"));
 	replaceInput(cont_doc,"address_area_2", r_member.getString("address"));
 	replaceInput(cont_doc,"boss_name_area_2", r_member.getString("boss_name"));
@@ -463,92 +586,124 @@ public String setHtmldata(String html, DataSet w_member, DataSet w_person, DataS
 	replaceInput(cont_doc,"cont_day_area", data.getString("cont_date").replaceAll("-", "").substring(6));
 	replaceInput(cont_doc,"cont_name", data.getString("cont_name"));
 	  
-	
-	 
-  	if (template_cd.equals("2020020")) {    
-  		replaceInput(cont_doc, "cont_syear", data.getString("cont_sdate").replaceAll("-", "").substring(0, 4));
-  		replaceInput(cont_doc, "cont_smonth", data.getString("cont_sdate").replaceAll("-", "").substring(4, 6));
-  		replaceInput(cont_doc, "cont_sday", data.getString("cont_sdate").replaceAll("-", "").substring(6));
-  		replaceInput(cont_doc, "cont_eyear", data.getString("cont_edate").replaceAll("-", "").substring(0, 4));
-  		replaceInput(cont_doc, "cont_emonth", data.getString("cont_edate").replaceAll("-", "").substring(4, 6));
-  		replaceInput(cont_doc, "cont_eday", data.getString("cont_edate").replaceAll("-", "").substring(6));
+    if ("B2C".equals(jobGubun)) {
+    	//B2C
+  		replaceInput(cont_doc, "loca_name", data.getString("loca_name"));
+  		replaceInput(cont_doc, "jwrk_name", data.getString("jwrk_name"));
+  		replaceInput(cont_doc, "dept_name", data.getString("dept_name"));
+  		replaceInput(cont_doc, "autt_name", data.getString("autt_name"));
+  		replaceInput(cont_doc, "job_name", data.getString("job_name"));
+  		replaceInput(cont_doc, "etc_cont", data.getString("etc_cont"));
   		
-  		replaceInput(cont_doc,"cont_total", Util.numberFormat(data.getString("cont_total").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_1", Util.numberFormat(data.getString("a_pay_1").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_2", Util.numberFormat(data.getString("a_pay_2").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_3", Util.numberFormat(data.getString("a_pay_3").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_4", Util.numberFormat(data.getString("a_pay_4").replaceAll(",", "")));   
-    
-		int a_pay_1 =  Integer.parseInt(data.getString("a_pay_1").replaceAll(",", ""));
-		int a_pay_2 =  Integer.parseInt(data.getString("a_pay_2").replaceAll(",", ""));
-		int a_pay_3 =  Integer.parseInt(data.getString("a_pay_3").replaceAll(",", ""));
-		int a_pay_4 =  Integer.parseInt(data.getString("a_pay_4").replaceAll(",", ""));
-	 
- 		int cont_total_1 = a_pay_1 + a_pay_2 + a_pay_3 + a_pay_4 ;  
- 		replaceInput(cont_doc,"cont_total_1", Util.numberFormat(cont_total_1));  
- 		replaceInput(cont_doc,"input_cont_text01", data.getString("input_cont_text01"));  
-	
-  	}else if(template_cd.equals("2020021")){
-  		replaceInput(cont_doc, "cont_syear", data.getString("cont_sdate").replaceAll("-", "").substring(0, 4));
-  		replaceInput(cont_doc, "cont_smonth", data.getString("cont_sdate").replaceAll("-", "").substring(4, 6));
-  		replaceInput(cont_doc, "cont_sday", data.getString("cont_sdate").replaceAll("-", "").substring(6));
-  		replaceInput(cont_doc, "cont_eyear", data.getString("cont_edate").replaceAll("-", "").substring(0, 4));
-  		replaceInput(cont_doc, "cont_emonth", data.getString("cont_edate").replaceAll("-", "").substring(4, 6));
-  		replaceInput(cont_doc, "cont_eday", data.getString("cont_edate").replaceAll("-", "").substring(6));
+  		replaceInput(cont_doc,"work_month_amt", Util.numberFormat(data.getString("work_month_amt").replaceAll(",", "")));
+  		replaceInput(cont_doc,"jeva_amt", Util.numberFormat(data.getString("jeva_amt").replaceAll(",", "")));
+  		replaceInput(cont_doc,"over_time", Util.numberFormat(data.getString("over_time").replaceAll(",", "")));
+  		replaceInput(cont_doc,"over_labo_alow", Util.numberFormat(data.getString("over_labo_alow").replaceAll(",", "")));
+  		replaceInput(cont_doc,"work_month_time", Util.numberFormat(data.getString("work_month_time").replaceAll(",", "")));
+  		replaceInput(cont_doc,"work_day_time", Util.numberFormat(data.getString("work_day_time").replaceAll(",", "")));
+  		replaceInput(cont_doc,"work_week_time", Util.numberFormat(data.getString("work_week_time").replaceAll(",", "")));
+  		replaceInput(cont_doc,"pay_amt", Util.numberFormat(data.getString("pay_amt").replaceAll(",", "")));
+  		replaceInput(cont_doc,"day_pay", Util.numberFormat(data.getString("day_pay").replaceAll(",", "")));
+  		replaceInput(cont_doc,"wday_amt", Util.numberFormat(data.getString("wday_amt").replaceAll(",", "")));
   		
-		replaceInput(cont_doc,"cont_total", Util.numberFormat(data.getString("cont_total").replaceAll(",", "")));  
-		replaceInput(cont_doc,"a_pay_1", Util.numberFormat(data.getString("a_pay_1").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_2", Util.numberFormat(data.getString("a_pay_2").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_3", Util.numberFormat(data.getString("a_pay_3").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_4", Util.numberFormat(data.getString("a_pay_4").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_5", Util.numberFormat(data.getString("a_pay_5").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_6", Util.numberFormat(data.getString("a_pay_6").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_7", Util.numberFormat(data.getString("a_pay_7").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_8", Util.numberFormat(data.getString("a_pay_8").replaceAll(",", ""))); 
- 
-		int a_pay_1 =  Integer.parseInt(data.getString("a_pay_1").replaceAll(",", ""));
-		int a_pay_2 =  Integer.parseInt(data.getString("a_pay_2").replaceAll(",", ""));
-		int a_pay_3 =  Integer.parseInt(data.getString("a_pay_3").replaceAll(",", ""));
-		int a_pay_4 =  Integer.parseInt(data.getString("a_pay_4").replaceAll(",", ""));
-		int a_pay_5 =  Integer.parseInt(data.getString("a_pay_5").replaceAll(",", ""));
-		int a_pay_6 =  Integer.parseInt(data.getString("a_pay_6").replaceAll(",", ""));
-		int a_pay_7 =  Integer.parseInt(data.getString("a_pay_7").replaceAll(",", ""));
-		int a_pay_8 =  Integer.parseInt(data.getString("a_pay_8").replaceAll(",", ""));
-		int cont_total_1 = a_pay_1 + a_pay_2 + a_pay_3 + a_pay_4 + a_pay_5 + a_pay_6 + a_pay_7 + a_pay_8 ; 
-		
- 		replaceInput(cont_doc,"cont_total_1", Util.numberFormat(cont_total_1));   
- 		replaceInput(cont_doc,"input_cont_text01", data.getString("input_cont_text01"));  
-	
-  	}else if(template_cd.equals("2020022")){
-  		replaceInput(cont_doc, "cont_syear", data.getString("cont_sdate").replaceAll("-", "").substring(0, 4));
-  		replaceInput(cont_doc, "cont_smonth", data.getString("cont_sdate").replaceAll("-", "").substring(4, 6));
-  		replaceInput(cont_doc, "cont_sday", data.getString("cont_sdate").replaceAll("-", "").substring(6));
-  		replaceInput(cont_doc, "cont_eyear", data.getString("cont_edate").replaceAll("-", "").substring(0, 4));
-  		replaceInput(cont_doc, "cont_emonth", data.getString("cont_edate").replaceAll("-", "").substring(4, 6));
-  		replaceInput(cont_doc, "cont_eday", data.getString("cont_edate").replaceAll("-", "").substring(6));
+  		//ì…ì‚¬ì¼(entr_com_date)
+  		String entrComDate = data.getString("entr_com_date");
+  		String contStaYear = "";
+  		String contStaMonth = "";
+  		String contStaDay = "";
+
+  		if(entrComDate.length() == 8){
+  			contStaYear = entrComDate.substring(0, 4);
+  			contStaMonth = entrComDate.substring(4, 6);
+  			contStaDay = entrComDate.substring(6);
+  		}
   		
-		replaceInput(cont_doc,"a_pay_1", Util.numberFormat(data.getString("a_pay_1").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_2", Util.numberFormat(data.getString("a_pay_2").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_3", Util.numberFormat(data.getString("a_pay_3").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_4", Util.numberFormat(data.getString("a_pay_4").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_5", Util.numberFormat(data.getString("a_pay_5").replaceAll(",", ""))); 
-		replaceInput(cont_doc,"a_pay_6", Util.numberFormat(data.getString("a_pay_6").replaceAll(",", "")));  
-		
-		int a_pay_1 =  Integer.parseInt(data.getString("a_pay_1").replaceAll(",", ""));
-		int a_pay_2 =  Integer.parseInt(data.getString("a_pay_2").replaceAll(",", ""));
-		int a_pay_3 =  Integer.parseInt(data.getString("a_pay_3").replaceAll(",", ""));
-		int a_pay_4 =  Integer.parseInt(data.getString("a_pay_4").replaceAll(",", ""));
-		int a_pay_5 =  Integer.parseInt(data.getString("a_pay_5").replaceAll(",", ""));
-		int a_pay_6 =  Integer.parseInt(data.getString("a_pay_6").replaceAll(",", "")); 
-		int cont_total = a_pay_1 + a_pay_2 + a_pay_3 + a_pay_4 + a_pay_5 + a_pay_6  ; 
-		
- 		replaceInput(cont_doc,"cont_total", Util.numberFormat(cont_total));   
- 		replaceInput(cont_doc,"input_cont_text01", data.getString("input_cont_text01"));  
-  	}else if(template_cd.equals("2020159")){
-  		replaceInput(cont_doc,"input_cont_text01", data.getString("input_cont_text01"));  
-  		replaceInput(cont_doc,"input_cont_text02", data.getString("input_cont_text02"));  
+  		replaceInput(cont_doc,"cont_sta_year", contStaYear);
+  		replaceInput(cont_doc,"cont_sta_month", contStaMonth);
+  		replaceInput(cont_doc,"cont_sta_day", contStaDay);
+  		
+  		//ê³„ì•½ì‹œì‘ì¼ì(cont_sta_date)
+  		String contStaDate = data.getString("cont_sta_date");
+  		String contSyear = "";
+  		String contSmonth = "";
+  		String contSday = "";
+  		if(contStaDate.length() == 8){
+  			contSyear = contStaDate.substring(0, 4);
+  			contSmonth = contStaDate.substring(4, 6);
+  			contSday = contStaDate.substring(6);
+  		}
+  		replaceInput(cont_doc,"cont_syear", contSyear);
+  		replaceInput(cont_doc,"cont_smonth", contSmonth);
+  		replaceInput(cont_doc,"cont_sday", contSday);
+
+  		//ê³„ì•½ì¢…ë£Œì¼ì(cont_end_date)
+  		String contEndDate = data.getString("cont_end_date");
+  		String contEyear = "";
+  		String contEmonth = "";
+  		String contEday = "";
+  		if(contEndDate.length() == 8){
+  			contEyear = contEndDate.substring(0, 4);
+  			contEmonth = contEndDate.substring(4, 6);
+  			contEday = contEndDate.substring(6);
+  		}
+  		replaceInput(cont_doc,"cont_eyear", contEyear);
+  		replaceInput(cont_doc,"cont_emonth", contEmonth);
+  		replaceInput(cont_doc,"cont_eday", contEday);
+  		
+  		//ì œìˆ˜ë‹¹ìœ ë¬´ check
+  		String etcAmtYn = data.getString("etc_amt_yn");
+  		String etcAmtY = "";
+  		String etcAmtN = "";
+  		if(etcAmtYn != null && !etcAmtYn.equals("")){
+  			if(etcAmtYn.equals("Y")){
+  				etcAmtY = "O";
+  				etcAmtN = "";
+  			}else{
+  				etcAmtY = "";
+  				etcAmtN = "O";
+  			}
+  		}else{
+  			etcAmtY = "";
+  			etcAmtN = "O";
+  		}
+  		replaceInput(cont_doc,"etc_amt_y", etcAmtY);
+  		replaceInput(cont_doc,"etc_amt_n", etcAmtN);
+  		
+  	} else if("B2B".equals(jobGubun)){
+  		// B2B
+  		if(w_member.getString("vendcd").length()==10) {
+  			replaceInput(cont_doc, "vendcd1_2", r_member.getString("vendcd").substring(0, 3));
+  			replaceInput(cont_doc, "vendcd2_2", r_member.getString("vendcd").substring(3, 5));
+  			replaceInput(cont_doc, "vendcd3_2", r_member.getString("vendcd").substring(5));
+  		}
+  		replaceInput(cont_doc,"payment_day", Util.numberFormat(data.getString("payment_day").replaceAll(",", "")));
+  		String cont_date_from = "";
+  		if(data.getString("cont_date_from").length() == 8){
+  			cont_date_from = data.getString("cont_date_from").substring(0, 4) + "-" + data.getString("cont_date_from").substring(4, 6) + "-" + data.getString("cont_date_from").substring(6);
+  		}
+  		replaceInput(cont_doc, "cont_date_from", cont_date_from);
+  		replaceInput(cont_doc, "tech_comment", data.getString("tech_comment"));
+  		replaceInput(cont_doc, "req_purpose", data.getString("req_purpose"));
+  		replaceInput(cont_doc, "keep_secret", data.getString("keep_secret"));
+  		replaceInput(cont_doc, "req_purpose", data.getString("req_purpose"));
+  		replaceInput(cont_doc, "attr_of_rights", data.getString("attr_of_rights"));
+  		replaceInput(cont_doc, "cost", data.getString("cost"));
+  		replaceInput(cont_doc, "del_method", data.getString("del_method"));
+  		replaceInput(cont_doc, "per_or_use", data.getString("per_or_use"));
+  		replaceInput(cont_doc, "discard_method", data.getString("discard_method"));
+  		replaceInput(cont_doc, "etc_matters", data.getString("etc_matters"));
+  		
+  		//ê¸°ìˆ ìë£Œìš”êµ¬ì„œ ì†Œì†, ì „í™”ë²ˆí˜¸
+  		replaceInput(cont_doc, "division_1", w_person.getString("division"));
+  		if(!"".equals(w_person.getString("hp1")) && !"".equals(w_person.getString("hp2")) && !"".equals(w_person.getString("hp3"))){
+  			replaceInput(cont_doc, "cell_phon_1", w_person.getString("hp1")+"-"+w_person.getString("hp2")+"-"+w_person.getString("hp3"));
+  		}
+  		replaceInput(cont_doc, "division_2", r_person.getString("division"));
+  		if(!"".equals(r_person.getString("hp1")) && !"".equals(r_person.getString("hp2")) && !"".equals(r_person.getString("hp3"))){
+  			replaceInput(cont_doc, "cell_phon_2", r_person.getString("hp1")+"-"+r_person.getString("hp2")+"-"+r_person.getString("hp3"));
+  		}
   	}
-	
+
 	cont_html = cont_doc.getElementsByTag("body").html().toString();
 	 
 	String style = cont_doc.getElementsByTag("style").html();
@@ -574,7 +729,7 @@ public void replaceInput(Document cont_doc, String name, String value){
 				if(element.attr("value").equals(value)){
 					element.attr("checked","checked");
 				}
-			}else if(type.equals("text")||type.equals("")){//jsoup ¹öÀü ¹ö±× type="text"°¡ ÀüºÎ »ç¶óÁø´Ù.
+			}else if(type.equals("text")||type.equals("")){//jsoup ë²„ì „ ë²„ê·¸ type="text"ê°€ ì „ë¶€ ì‚¬ë¼ì§„ë‹¤.
 				if(type.equals("")){
 					element.attr("type","text");
 				}else{
@@ -605,12 +760,12 @@ public String getBirthHan(String inputBirth, String retType) {
 		if(retType.equals("1"))
 			sBirthHan = "19" + inputBirth.substring(0,2) + "-" + inputBirth.substring(2,4) + "-" + inputBirth.substring(4,6);
 		else
-			sBirthHan = "19" + inputBirth.substring(0,2) + "³â " + inputBirth.substring(2,4) + "¿ù " + inputBirth.substring(4,6) + "ÀÏ";
+			sBirthHan = "19" + inputBirth.substring(0,2) + "ë…„ " + inputBirth.substring(2,4) + "ì›” " + inputBirth.substring(4,6) + "ì¼";
 	} else {
 		if(retType.equals("1"))
 			sBirthHan = "20" + inputBirth.substring(0,2) + "-" + inputBirth.substring(2,4) + "-" + inputBirth.substring(4,6);
 		else
-			sBirthHan = "20" + inputBirth.substring(0,2) + "³â " + inputBirth.substring(2,4) + "¿ù " + inputBirth.substring(4,6) + "ÀÏ";
+			sBirthHan = "20" + inputBirth.substring(0,2) + "ë…„ " + inputBirth.substring(2,4) + "ì›” " + inputBirth.substring(4,6) + "ì¼";
 	} 
 	return sBirthHan;
 }

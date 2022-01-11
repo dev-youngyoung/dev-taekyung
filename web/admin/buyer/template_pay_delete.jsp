@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String member_no = u.request("member_no");
@@ -6,18 +6,18 @@ String useseq = u.request("useseq");
 String template_cd = u.request("template_cd");
 
 if(member_no.equals("") || useseq.equals("") || template_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 DataObject dao = new DataObject("tcb_useinfo_add");
 //dao.setDebug(out);
 if(!dao.delete("template_cd='"+template_cd+"' and member_no='"+member_no+"' and useseq='"+useseq+"'")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 
-u.jsAlertReplace("»èÁ¦ µÇ¾ú½À´Ï´Ù.", "./pay_useinfo_modify.jsp?"+u.getQueryString("template_cd,useseq"));
+u.jsAlertReplace("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./pay_useinfo_modify.jsp?"+u.getQueryString("template_cd,useseq"));
 
 %>

@@ -1,9 +1,9 @@
-<form name="form1" method="get" onsubmit="return formSubmit(this);">
+﻿<form name="form1" method="get" onsubmit="return formSubmit(this);">
 <input type="hidden" name="person_seq" value="{{person_seq}}">
 <input type="hidden" name="search" value="1">
 <div class="util-row">
 	<div class="push-right">
-		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>�ݱ�</button>
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>닫기</button>
 	</div>
 </div>
 <div class="search_div">
@@ -16,12 +16,12 @@
 		<col width="*"/>
 	</colgroup>
 	<tr>
-		<th><p>��ü��</p></th>
+		<th><p>업체명</p></th>
 		<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
-		<th><p>����ڹ�ȣ</p></th>
-		<td><input type="text" name="s_vendcd" maxlength="30" size="12">(-���� �Է�)</td>
+		<th><p>사업자번호</p></th>
+		<td><input type="text" name="s_vendcd" maxlength="30" size="12">(-없이 입력)</td>
 		<td align="right">
-			<button type="submit" class="search_btn">�˻�</button>
+			<button type="submit" class="search_btn">검색</button>
 		</td>
 	</tr>
 	</table>
@@ -31,7 +31,7 @@
 <script language="javascript">
 function formSubmit(f){
 	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-		alert("��ü�� �Ǵ� ����� ��Ϲ�ȣ�� �Է� �� �˻� �ϼ���.");
+		alert("업체명 또는 사업자 등록번호를 입력 후 검색 하세요.");
 		return false;
 	}
 	return true;
@@ -41,7 +41,7 @@ function formSubmit(f){
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			�ؾ�ü�� �Ǵ� ����� ��Ϲ�ȣ�� �Է��� �˻� �ϼ���.
+			※업체명 또는 사업자 등록번호를 입력후 검색 하세요.
 		</div>
 	</div>
 	<table>
@@ -53,11 +53,11 @@ function formSubmit(f){
 			<col width="10%">
 		</colgroup>
 		<tr>
-			<th>����</th>
-			<th>��ü��</th>
-			<th>����ڹ�ȣ</th>
-			<th>��ǥ��</th>
-			<th>�߰�</th>
+			<th>순번</th>
+			<th>업체명</th>
+			<th>사업자번호</th>
+			<th>대표자</th>
+			<th>추가</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr>
@@ -66,13 +66,13 @@ function formSubmit(f){
 			<td align="center">{{list.vendcd}}</td>
 			<td align="center">{{list.boss_name}}</td>
 			<td align="center">
-				<button type="button" class="sbtn color" onclick="addCompany('{{list.client_seq}}');">�߰�</button>
+				<button type="button" class="sbtn color" onclick="addCompany('{{list.client_seq}}');">추가</button>
 			</td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td align="center" colspan="5">�˻� ����� �����ϴ�.</td>
+			<td align="center" colspan="5">검색 결과가 없습니다.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>

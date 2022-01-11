@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000157";
 
-boolean isNicePay = _member_no.equals("20120600068"); // ³ªÀÌ½ºÆäÀÌ¸ÕÃ÷(ÁÖ) 20120600068
+boolean isNicePay = _member_no.equals("20120600068"); // ë‚˜ì´ìŠ¤í˜ì´ë¨¼ì¸ (ì£¼) 20120600068
 //boolean isNicePay = _member_no.equals(u.request("member_no")) ;
 
  
 CodeDao code = new CodeDao("tcb_comcode");
-String[] code_status = new String[] {"30=>½ÅÃ»Áß","41=>¹İ·Á","50=>¿Ï·á"};//code.getCodeArray("M008", " and code in ('30','41','50')"); // 30:½ÅÃ»Áß(¼­¸í´ë±â), 41:¹İ·Á, 50:°è¾à¿Ï·á
+String[] code_status = new String[] {"30=>ì‹ ì²­ì¤‘","41=>ë°˜ë ¤","50=>ì™„ë£Œ"};//code.getCodeArray("M008", " and code in ('30','41','50')"); // 30:ì‹ ì²­ì¤‘(ì„œëª…ëŒ€ê¸°), 41:ë°˜ë ¤, 50:ê³„ì•½ì™„ë£Œ
 
 String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM-dd",u.addDate("M",-1)));
 String s_edate = u.request("s_edate",u.getTimeString("yyyy-MM-dd"));
@@ -40,7 +40,7 @@ if(u.request("mode").equals("excel")){
 //System.out.println(sTable);
 //System.out.println(sColumn);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -63,9 +63,9 @@ list.addSearch("a.status",  f.get("s_status"));
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_cust_name"), "LIKE");
 list.addSearch("a.template_cd",  f.get("s_template_cd"));
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("(  a.agree_field_seqs like '%|"+auth.getString("_FIELD_SEQ")+"|%' or a.reg_id = '"+auth.getString("_USER_ID")+"' ) ");
 	}
@@ -79,19 +79,19 @@ DataSet ds = list.getDataSet();
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
-	if(ds.getString("status").equals("30")){//¼­¸í´ë±â »óÅÂÀÌ¸é »ı»ó Ç¥½Ã
+	if(ds.getString("status").equals("30")){//ì„œëª…ëŒ€ê¸° ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
 		ds.put("status_name", "<span class=\"caution-text\">"+u.getItem(ds.getString("status"), code_status)+"</span>");
-	}else if(ds.getString("status").equals("12")) {  // ³»ºÎ¹İ·Á
+	}else if(ds.getString("status").equals("12")) {  // ë‚´ë¶€ë°˜ë ¤
 		ds.put("status_name", "<span style='color:red'>"+u.getItem(ds.getString("status"), code_status)+"</span>");
-	}else if(ds.getString("status").equals("21")) {  // ½ÂÀÎ´ë±â
+	}else if(ds.getString("status").equals("21")) {  // ìŠ¹ì¸ëŒ€ê¸°
 		ds.put("status_name", "<span class=\"caution-text\">"+u.getItem(ds.getString("status"), code_status)+"<br>("+ds.getString("agree_name")+")</span>");
-	}else if(ds.getString("status").equals("40")){//¼öÁ¤¿äÃ» »óÅÂÀÌ¸é »ı»ó Ç¥½Ã
+	}else if(ds.getString("status").equals("40")){//ìˆ˜ì •ìš”ì²­ ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
 		ds.put("status_name", "<span style='color:blue'>"+u.getItem(ds.getString("status"), code_status)+"</span>");
 	}else{
 		ds.put("status_name", u.getItem(ds.getString("status"), code_status));
@@ -99,7 +99,7 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "½ÅÃ»¼­ ÇöÈ²");
+	p.setVar("title", "ì‹ ì²­ì„œ í˜„í™©");
 	String xlsFile = "subscription_list_excel.html";
 
 	ds.first();
@@ -112,7 +112,7 @@ if(u.request("mode").equals("excel")){
 
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("½ÅÃ»¼­ ÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ì‹ ì²­ì„œ í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/"+xlsFile));
 	return;
 }

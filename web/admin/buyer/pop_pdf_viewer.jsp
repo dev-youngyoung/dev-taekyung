@@ -1,12 +1,12 @@
 <%@page import="java.awt.Dimension"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@page import="gui.ava.html.image.generator.*"%><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@page import="gui.ava.html.image.generator.*"%><%@ include file="init.jsp" %>
 <%
 String cont_no = u.request("cont_no");
 String cont_chasu = u.request("cont_chasu");
 String cfile_seq = u.request("cfile_seq");
 String footer_text = u.request("footer_text", "Y");
 if(cont_no.equals("")||cont_chasu.equals("")||cfile_seq.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -23,7 +23,7 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find( where );
 if(!cont.next()){
-	u.jsErrClose("°è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsErrClose("ê³„ì•½ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -35,16 +35,16 @@ while(cust.next()){
 DataObject cfileDao = new DataObject("tcb_cfile");
 DataSet cfile = cfileDao.find(where+" and cfile_seq = '"+cfile_seq+"' ");
 if(!cfile.next()){
-	u.jsErrClose("ÆÄÀÏÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsErrClose("íŒŒì¼ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 
-//ci_img ¼³Á¤
+//ci_img ì„¤ì •
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+cont.getString("member_no")+"' ");
 if(!member.next()){
-	u.jsErrClose("°è¾à¼­ ÀÛ¼º ¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ê³„ì•½ì„œ ì‘ì„± ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -52,12 +52,12 @@ if(!member.getString("ci_img_path").equals("")){
 	ci_img = u.aseEnc(Startup.conf.getString("file.path.bcont_logo_http")+member.getString("ci_img_path"));
 }
  
-//ÆÄÀÏ °æ·Î
+//íŒŒì¼ ê²½ë¡œ
 full_file_path = u.aseEnc(Startup.conf.getString("file.path.bcont_pdf")+cfile.getString("file_path")+cfile.getString("file_name"));
 down_file_name = u.aseEnc(cfile.getString("doc_name"));
 
 
-//10:ÀÛ¼ºÁß ,20:¼­¸í¿äÃ» ,28:¼öÁ¤¿äÃ»,29:¹İ·Á,30:¼­¸í¿Ï·á(ëà), 40:¼­¸í¿Ï·á(Ë£),50:°è¾à¿Ï·á, 60:Å¸Àı, 70:Á¤»ê
+//10:ì‘ì„±ì¤‘ ,20:ì„œëª…ìš”ì²­ ,28:ìˆ˜ì •ìš”ì²­,29:ë°˜ë ¤,30:ì„œëª…ì™„ë£Œ(ä¹™), 40:ì„œëª…ì™„ë£Œ(ç”²),50:ê³„ì•½ì™„ë£Œ, 60:íƒ€ì ˆ, 70:ì •ì‚°
 String[] code_stamp_img = {
 	 "10=>pdf_watermark_edit.gif"
 	,"20=>pdf_watermark_progress.gif"
@@ -71,13 +71,13 @@ String[] code_stamp_img = {
 
 stamp_img = u.aseEnc(Startup.conf.getString("dir")+"/web/buyer/html/images/"+u.getItem(cont.getString("status"), code_stamp_img));
 
-// ÀÚÀ¯¼­½ÄÀÇ °æ¿ì¿¡¸¸ ÇÏ´Ü¿¡ °ü¸®¹øÈ£¸¦ ºä¾î¿¡¼­ ÀÎ¼â½Ã º¸¿©ÁØ´Ù.
+// ììœ ì„œì‹ì˜ ê²½ìš°ì—ë§Œ í•˜ë‹¨ì— ê´€ë¦¬ë²ˆí˜¸ë¥¼ ë·°ì–´ì—ì„œ ì¸ì‡„ì‹œ ë³´ì—¬ì¤€ë‹¤.
 if(cont.getString("template_cd").equals("")||!cfile.getString("auto_yn").equals("Y"))
 {
 	boolean bFooterShow = true;
 	if(cont.getString("status").equals("50")){
 		custDao = new DataObject("tcb_cust");
-		int sign_cnt = custDao.findCount("cont_no = '"+cont_no+"' and cont_chasu="+cont_chasu+" and sign_dn is not null");  // ¼­¸é°è¾àÀÌ¸é
+		int sign_cnt = custDao.findCount("cont_no = '"+cont_no+"' and cont_chasu="+cont_chasu+" and sign_dn is not null");  // ì„œë©´ê³„ì•½ì´ë©´
 		if(sign_cnt==0){
 			bFooterShow = false;
 			stamp_img = "";
@@ -87,20 +87,22 @@ if(cont.getString("template_cd").equals("")||!cfile.getString("auto_yn").equals(
 	
 	if(bFooterShow){
 		String sManageNo = cont_no+"-"+cont_chasu+"-"+cont.getString("true_random");
-		String signStr = "<table width='740px' height='40px' border='0'><tr><td valign='bottom' style='font-family:³ª´®°íµñ; font-size:10px'><font color='#5B5B5B'>*º» °è¾à¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı  µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© ÀüÀÚ¼­¸íÀ¸·Î Ã¼°áÇÑ ÀüÀÚ°è¾à¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ°è¾à ÁøÀ§¿©ºÎ´Â ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù. (°ü¸®¹øÈ£:"+sManageNo+")</font></td></tr></table>";
+//		String signStr = "<table width='740px' height='40px' border='0'><tr><td valign='bottom' style='font-family:ë‚˜ëˆ”ê³ ë”•; font-size:10px'><font color='#5B5B5B'>*ë³¸ ê³„ì•½ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì²´ê²°í•œ ì „ìê³„ì•½ì„œì…ë‹ˆë‹¤.<br>&nbsp;&nbsp;ì „ìê³„ì•½ ì§„ìœ„ì—¬ë¶€ëŠ” ë‚˜ì´ìŠ¤ë‹¤í(http://www.nicedocu.com)ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤. (ê´€ë¦¬ë²ˆí˜¸:"+sManageNo+")</font></td></tr></table>";
+		String signStr = "<table width='740px' height='40px' border='0'><tr><td valign='bottom' style='font-family:ë‚˜ëˆ”ê³ ë”•; font-size:10px'><font color='#5B5B5B'>*ë³¸ ê³„ì•½ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì²´ê²°í•œ ì „ìê³„ì•½ì„œì…ë‹ˆë‹¤. (ê´€ë¦¬ë²ˆí˜¸:"+sManageNo+")</font></td></tr></table>";
 		footer_img = procure.common.conf.Startup.conf.getString("file.path.lcont_temp") + auth.getString("_USER_ID") + "_" + u.getTimeString() + ".png";
 		HtmlImageGenerator imageGenerator = new HtmlImageGenerator();
 		Dimension  dimension = imageGenerator.getDefaultSize();
 		dimension.setSize(500,40);
 		imageGenerator.setSize(dimension);
 		imageGenerator.loadHtml(signStr);
-		imageGenerator.saveAsImage(footer_img);  // ¹°·ùÂÊ ÀÓ½Ã Æú´õ¿¡ °°ÀÌ ÀúÀåÇÔ. ¸ÅÀÏ ¹ã ¹èÄ¡ÆÄÀÏÀÌ µ¹¸é¼­ »èÁ¦ÇÑ´Ù.
+		imageGenerator.saveAsImage(footer_img);  // ë¬¼ë¥˜ìª½ ì„ì‹œ í´ë”ì— ê°™ì´ ì €ì¥í•¨. ë§¤ì¼ ë°¤ ë°°ì¹˜íŒŒì¼ì´ ëŒë©´ì„œ ì‚­ì œí•œë‹¤.
 		footer_img = u.aseEnc(footer_img);
 	}
 }
 
 
-String url = "/servlets/nicelib.pdf.PDFDown?";
+// String url = "/servlets/nicelib.pdf.PDFDown?";
+String url = "/PDFDown?";
        url+= "system=buyer";
        url+= "&full_file_path="+full_file_path;
        url+= "&down_file_name="+down_file_name;

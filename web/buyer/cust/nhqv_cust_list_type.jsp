@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_client_type = {"1=>µî·Ï¾÷Ã¼","2=>Çù·Â¾÷Ã¼"};
-String[] code_client_reg_cd = {"0=>°¡µî·Ï","1=>Á¤½Äµî·Ï"};
+String[] code_client_type = {"1=>ë“±ë¡ì—…ì²´","2=>í˜‘ë ¥ì—…ì²´"};
+String[] code_client_reg_cd = {"0=>ê°€ë“±ë¡","1=>ì •ì‹ë“±ë¡"};
 
 String client_type = u.request("client_type");
 if(client_type.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,7 +14,7 @@ String s_client_reg_cd = client_type.equals("1")?u.request("s_client_reg_cd", "1
 f.addElement("s_client_reg_cd", s_client_reg_cd, null);
 f.addElement("s_member_name",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -28,7 +28,7 @@ list.setFields(		"a.* "
 				+	",b.address"
 				+	",c.email"
 				+	",c.user_name"				
-				+	",decode(b.status,'01','Á¤È¸¿ø','02','ºñÈ¸¿ø','00','Å»Åğ') status_nm"
+				+	",decode(b.status,'01','ì •íšŒì›','02','ë¹„íšŒì›','00','íƒˆí‡´') status_nm"
 				+	",c.tel_num"
 				+	",c.hp1, c.hp2, c.hp3"
 				);
@@ -48,29 +48,6 @@ DataSet ds = list.getDataSet();
 while(ds.next()){
 	ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
 	ds.put("client_reg_cd_nm", u.getItems(ds.getString("client_reg_cd"), code_client_reg_cd));
-	if(u.request("mode").equals("excel")){
-		DataObject admDao = new DataObject("tcb_src_adm");
-		String src_nm = ""; 
-				DataSet src = admDao.query(
-				 "select  l_src_nm || decode(m_src_nm,null,null, '>') ||m_src_nm|| decode(s_src_nm,null,null, '>')||s_src_nm  as src_nm"
-				+"  from ("
-				+"    select "
-				+"           (select src_nm from tcb_src_adm where member_no = a.member_no and l_src_cd = a.l_src_cd and m_src_cd = '000'  and s_src_cd = '000' and l_src_cd <> '000') l_src_nm "
-				+"         , (select src_nm from tcb_src_adm where member_no = a.member_no and l_src_cd = a.l_src_cd and m_src_cd = a.m_src_cd  and s_src_cd = '000' and m_src_cd<>'000') m_src_nm "
-				+"         , (select src_nm from tcb_src_adm where member_no = a.member_no and l_src_cd = a.l_src_cd and m_src_cd = a.m_src_cd  and s_src_cd = a.s_src_cd and s_src_cd<> '000') s_src_nm " 
-				+"     from tcb_src_adm  a, tcb_src_member b "
-				+"  where a.member_no = b.member_no "
-				+"      and a.src_cd = b.src_cd "
-				+"      and b.member_no = '"+_member_no+"' "
-				+"      and b.src_member_no = '"+ds.getString("client_no")+"' "
-				+" ) "
-				);
-		while(src.next()){
-			if(!src_nm.equals(""))src_nm+="<br>";
-			src_nm += src.getString("src_nm");
-		}
-		ds.put("src_nm", src_nm);
-	}
 }
 
 if(u.request("mode").equals("excel")){
@@ -78,9 +55,9 @@ if(u.request("mode").equals("excel")){
 	String title = "";
 	
 	if(client_type.equals("1"))
-		title = "µî·Ï¾÷Ã¼ÇöÈ²";
+		title = "ë“±ë¡ì—…ì²´í˜„í™©";
 	else
-		title = "Çù·Â¾÷Ã¼ÇöÈ²";
+		title = "í˜‘ë ¥ì—…ì²´í˜„í™©";
 	
 	p.setLoop("list", ds);
 	p.setVar("title", title);
@@ -94,7 +71,7 @@ if(u.request("mode").equals("excel")){
 p.setLayout("default");
 p.setDebug(out);
 p.setBody("cust.nhqv_cust_list_type");
-if(client_type.equals("1")){// 1:µî·Ï¾÷Ã¼ 2:Çù·Â¾÷Ã¼
+if(client_type.equals("1")){// 1:ë“±ë¡ì—…ì²´ 2:í˜‘ë ¥ì—…ì²´
 	p.setVar("menu_cd","000091");
 	p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000091", "btn_auth").equals("10"));
 }else{

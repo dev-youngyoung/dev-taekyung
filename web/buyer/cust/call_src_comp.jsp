@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataObject clientDao = new DataObject("tcb_client");
 
@@ -9,7 +9,7 @@ int	iMapCnt	=	clientDao.getOneInt(
 		+"	  from tcb_src_member              "
 		+"	 where member_no = '"+_member_no+"'" 
 		+"	)                                  "
-		);	//	Çù·Â¾÷Ã¼¼ö
+		);	//	í˜‘ë ¥ì—…ì²´ìˆ˜
 
 out.println(iMapCnt);
 %>

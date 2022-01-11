@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_cmp_typ = {"7=>ÈŞ¾÷","8=>Æó¾÷"};
+String[] code_cmp_typ = {"7=>íœ´ì—…","8=>íì—…"};
 
 f.addElement("s_member_name",null, null);
 f.addElement("s_cust_code",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -25,15 +25,15 @@ list.setFields("a.client_no"
 		+	",b.boss_name"
 		+	",b.member_gubun"
 		+	",td.*"
-		+	",NVL(tp.user_name, '<font color=red>[¹ÌÁöÁ¤]</font>') user_name"
+		+	",NVL(tp.user_name, '<font color=red>[ë¯¸ì§€ì •]</font>') user_name"
 );
 list.addWhere(" a.member_no = '"+_member_no+"'");
 /*
-if(!auth.getString("_DEFAULT_YN").equals("Y")){	// °ü¸®ÀÚ°¡ ¾Æ´Ï¸é ÀÚ±â ¾÷Ã¼¸¸
+if(!auth.getString("_DEFAULT_YN").equals("Y")){	// ê´€ë¦¬ìê°€ ì•„ë‹ˆë©´ ìê¸° ì—…ì²´ë§Œ
 list.addWhere(" td.person_seq = "+auth.getString("_PERSON_SEQ"));
 }
 */
-//list.addWhere("	b.member_gubun != '04' ");  // »ç¾÷ÀÚ¸¸..
+//list.addWhere("	b.member_gubun != '04' ");  // ì‚¬ì—…ìë§Œ..
 list.addSearch("td.cust_detail_name", f.get("s_member_name"), "LIKE");
 if(f.get("s_cust_code").trim().length() > 0)
 	list.addSearch("td.cust_detail_code", f.get("s_cust_code"), "LIKE");
@@ -57,18 +57,18 @@ if(u.request("mode").equals("excel")){
 				sJuminNo	=	security.AESdecrypt(ds.getString("vendcd"));
 				sJuminNo	=	sJuminNo.substring(0,6)	+	"-*******";
 				ds.put("vendcd", sJuminNo);
-				ds.put("member_name", ds.getString("member_name") + " <font style=color:#FF0000>[°³ÀÎ]</font>");
+				ds.put("member_name", ds.getString("member_name") + " <font style=color:#FF0000>[ê°œì¸]</font>");
 			}
 		}
 		if(ds.getString("cust_detail_code").equals(""))
-			ds.put("cust_detail_code", "<a href=''><font color=red>[¹Ìµî·Ï]</font></a>");
+			ds.put("cust_detail_code", "<a href=''><font color=red>[ë¯¸ë“±ë¡]</font></a>");
 
-		ds.put("status", ds.getString("status").equals("90")?"°Å·¡Á¤Áö":"-");
-		ds.put("temp_yn", ds.getString("temp_yn").equals("Y")?"ÀÏÈ¸¼º¾÷Ã¼":"-");
+		ds.put("status", ds.getString("status").equals("90")?"ê±°ë˜ì •ì§€":"-");
+		ds.put("temp_yn", ds.getString("temp_yn").equals("Y")?"ì¼íšŒì„±ì—…ì²´":"-");
 	}
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("Çù·Â¾÷Ã¼.xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("í˜‘ë ¥ì—…ì²´.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/cust/person_my_cust_excel.html"));
 	return;
 }
@@ -84,15 +84,15 @@ while(ds.next()){
 			sJuminNo	=	security.AESdecrypt(ds.getString("vendcd"));
 			sJuminNo	=	sJuminNo.substring(0,6)	+	"-*******";
 			ds.put("vendcd", sJuminNo);
-			ds.put("member_name", ds.getString("member_name") + " <font style=color:#FF0000>[°³ÀÎ]</font>");
+			ds.put("member_name", ds.getString("member_name") + " <font style=color:#FF0000>[ê°œì¸]</font>");
 		}
 	}
 
 	if(ds.getString("cust_detail_code").equals(""))
-		ds.put("cust_detail_code", "<font color=red>[¹Ìµî·Ï]</font>");
+		ds.put("cust_detail_code", "<font color=red>[ë¯¸ë“±ë¡]</font>");
 
-	ds.put("check_status", ds.getString("status").equals("90")?"°Å·¡Á¤Áö":"-");
-	ds.put("temp_checked", ds.getString("temp_yn").equals("Y")?"ÀÏÈ¸¼º¾÷Ã¼":"-");
+	ds.put("check_status", ds.getString("status").equals("90")?"ê±°ë˜ì •ì§€":"-");
+	ds.put("temp_checked", ds.getString("temp_yn").equals("Y")?"ì¼íšŒì„±ì—…ì²´":"-");
 	ds.put("cmp_typ_nm", u.getItem(ds.getString("cmp_typ"),code_cmp_typ));
 }
 

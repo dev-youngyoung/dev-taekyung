@@ -1,5 +1,5 @@
 <%@page import="java.net.URLDecoder"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String grid = u.request("grid");
 if(!grid.equals("")){
@@ -12,7 +12,7 @@ DataSet loop = u.grid2dataset(grid);
 
 DataSet m_loop = null;
 DataSet s_loop = null;
-while(loop.next()){//´ë¸Þ´º
+while(loop.next()){//ëŒ€ë©”ë‰´
 	data.addRow();
 	data.put("menu_cd", loop.getString("menu_cd"));
 	data.put("p_menu_cd", loop.getString("p_menu_cd"));
@@ -24,7 +24,7 @@ while(loop.next()){//´ë¸Þ´º
 	data.put("btn_auth_cds", loop.getString("btn_auth_cds"));
 	data.put("etc", loop.getString("etc"));
 	if(loop.getDataSet("rows")!=null){
-		m_loop = loop.getDataSet("rows");//Áõ¸Þ´º
+		m_loop = loop.getDataSet("rows");//ì¦ë©”ë‰´
 		m_loop.first();
 		while(m_loop.next()){
 			data.addRow();
@@ -38,7 +38,7 @@ while(loop.next()){//´ë¸Þ´º
 			data.put("btn_auth_cds", m_loop.getString("btn_auth_cds"));
 			data.put("etc", m_loop.getString("etc"));
 			if(m_loop.getDataSet("rows")!=null){
-				s_loop = m_loop.getDataSet("rows");//¼Ò¸Þ´º
+				s_loop = m_loop.getDataSet("rows");//ì†Œë©”ë‰´
 				s_loop.first();
 				while(s_loop.next()){
 					data.addRow();

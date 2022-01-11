@@ -11,16 +11,16 @@
 	  	<col width="13%">
 	  </colgroup>
 	  <tr>
-	    <th><p>¿äÃ»ºÎ¼­</p></th>
+	    <th><p>ìš”ì²­ë¶€ì„œ</p></th>
 	    <td><input type="text" name="s_field_name" maxlength="100" style="width: 95%;"></td>
-		<th><p>°Å·¡Ã³</p></th>
+		<th><p>ê±°ëž˜ì²˜</p></th>
 	    <td><input type="text" name="s_member_name" maxlength="100" style="width: 95%;"></td>
 	    <td align="right"></td>
 	  </tr>
 	  <tr>
-	  	<th><p>¹ßÁÖ´ã´ç</p></th>
+	  	<th><p>ë°œì£¼ë‹´ë‹¹</p></th>
 	    <td><input type="text" name="s_user_name" maxlength="100" style="width: 45%;"></td>
-	  	<th><p>¹ßÁÖÀÏÀÚ</p></th>
+	  	<th><p>ë°œì£¼ì¼ìž</p></th>
 	    <td>
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -28,14 +28,14 @@
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
 	    <td align="right">
-	      <button type="submit" class="search_btn">°Ë»ö</button>
+	      <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	    </td>
 	  </tr>
 	</table>
 </div>
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 
 <br/>
@@ -59,19 +59,19 @@
 			    <col width="8%">
 			</colgroup>
 			<tr>  
-				<th>¼ø¹ø</th>
-				<th>¿äÃ»ºÎ¼­</th>   
-			    <th>´ã´çÀÚ</th>
-			    <th>°è¾à¸í</th>
-			    <th>¹ßÁÖÀÏ</th>
-			    <th>³³Ç°ÀÏ</th>
-			    <th>°Å·¡Ã³</th>
-			    <th>Ç°¸í</th>
-			    <th>±Ô°Ý</th>
-			    <th>´ÜÀ§</th>
-			    <th>¼ö·®</th>
-			    <th>´Ü°¡</th>
-			    <th>¹ßÁÖ±Ý¾×</th>
+				<th>ìˆœë²ˆ</th>
+				<th>ìš”ì²­ë¶€ì„œ</th>   
+			    <th>ë‹´ë‹¹ìž</th>
+			    <th>ê³„ì•½ëª…</th>
+			    <th>ë°œì£¼ì¼</th>
+			    <th>ë‚©í’ˆì¼</th>
+			    <th>ê±°ëž˜ì²˜</th>
+			    <th>í’ˆëª…</th>
+			    <th>ê·œê²©</th>
+			    <th>ë‹¨ìœ„</th>
+			    <th>ìˆ˜ëŸ‰</th>
+			    <th>ë‹¨ê°€</th>
+			    <th>ë°œì£¼ê¸ˆì•¡</th>
 			</tr>
 	  		<!-- IF START 'list' -->
 	  			<!-- LOOP START 'list' -->
@@ -97,7 +97,7 @@
 		
 			<!-- IFNOT START 'list' -->
 		  	<tr>
-				<td colspan="13" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+				<td colspan="13" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		  	</tr>
 	  		<!-- IFNOT END 'list' -->
 		 </table>
@@ -135,7 +135,7 @@ function fSave(){
 	
 	if($(":checkbox[name='save']:checked").length==0)
 	{
-		alert("´Ù¿î·ÎµåÇÒ °è¾àÀ» ¸ÕÀú ¼±ÅÃÇØÁÖ¼¼¿ä.");
+		alert("ë‹¤ìš´ë¡œë“œí•  ê³„ì•½ì„ ë¨¼ì € ì„ íƒí•´ì£¼ì„¸ìš”.");
 		return;
 	}
 	document.form1.target = "ifExcel";

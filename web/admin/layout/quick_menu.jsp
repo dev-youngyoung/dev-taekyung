@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
-out.print(p.fetch("../html/layout/quick_menu.html"));
+//out.print(p.fetch("../html/layout/quick_menu.html"));
 %>

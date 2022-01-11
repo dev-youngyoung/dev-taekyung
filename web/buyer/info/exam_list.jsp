@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_exam_type = {"10=>Á¤±âÆò°¡","20=>¼ö½ÃÆò°¡"};
-boolean isCJ = _member_no.equals("20130400333");  // ¾¾Á¦ÀÌ´ëÇÑÅë¿î
+String[] code_exam_type = {"10=>ì •ê¸°í‰ê°€","20=>ìˆ˜ì‹œí‰ê°€"};
+boolean isCJ = _member_no.equals("20130400333");  // ì”¨ì œì´ëŒ€í•œí†µìš´
 
 f.addElement("s_exam_name",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);

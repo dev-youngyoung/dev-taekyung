@@ -3,7 +3,7 @@
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.Context"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <% 
  String jndi = Config.getJndi();
  Context initContext = new InitialContext();
@@ -11,7 +11,7 @@
  DataSource ds   = (DataSource)initContext.lookup(jndi);
   
  BasicDataSource bds = (BasicDataSource)ds; 
- String dbname  = "ÀüÀÚ°è¾à";
+ String dbname  = "ì „ìžê³„ì•½";
  
  try { 
    int bdsNumActive  = bds.getNumActive(); 

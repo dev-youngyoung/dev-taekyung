@@ -1,14 +1,22 @@
+﻿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
 
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>��ü����</h3>
+	        <h3>업체정보</h3>
 	    </div>
 	</div>
 	<table>
@@ -22,11 +30,11 @@
 			<col>
 		</colgroup>
 		<tr>
-			<th>��ü��</th>
+			<th>업체명</th>
 			<td>{{member_name}}</td>
-			<th>����ڹ�ȣ</th>
+			<th>사업자번호</th>
 			<td>{{vendcd2}}</td>
-			<th>��ǥ�ڸ�</th>
+			<th>대표자명</th>
 			<td>{{boss_name}}</td>
 		</tr>
 	</table>
@@ -34,12 +42,12 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>�����</h3>
+			<h3>담당자</h3>
 		</div>
 		<div class="push-right">
 			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
-			<button type="button" class="sbtn color ico-excel"><span></span>�������ε�</button>
-			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>�����ٿ�ε�</button>		
+			<button type="button" class="sbtn color ico-excel"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>엑셀다운로드</button>		
 		</div>
 	</div>
 	<table>
@@ -52,8 +60,8 @@
 </div>
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-save" value="����" onClick="javascript:submitItem()"><span></span>����</button>
-	<button type="button" class="btn color ico-cancel" value="�ݱ�" onClick="javascript:window.close()"><span></span>�ݱ�</button>
+	<button type="button" class="btn color ico-save" value="저장" onClick="javascript:submitItem()"><span></span>저장</button>
+	<button type="button" class="btn color ico-cancel" value="닫기" onClick="javascript:window.close()"><span></span>닫기</button>
 </div>
 
 <script language="javascript">
@@ -88,7 +96,7 @@ function setOptions() {
             updatable: true,
             deletable: true,
             deleteRowsConfirm: false,
-            deleteRowsMessage: "�����Ͻðڽ��ϱ� ?"
+            deleteRowsMessage: "삭제하시겠습니까 ?"
         }
         ,displayOptions:{
             //columnWidth : 200
@@ -117,20 +125,20 @@ function setStyle(){
 function setColumns() {
     var columns = [];
     
-    columns.push({name:"person_seq" ,fieldName:"person_seq" ,header:"��ȣ" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"user_id" ,fieldName:"user_id" ,header:"���̵�" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"passwd" ,fieldName:"passwd" ,header:"��й�ȣ" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"user_name" ,fieldName:"user_name" ,header:"����ڸ�" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"position" ,fieldName:"position" ,header:"��å" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"field_name" ,fieldName:"field_name" ,header:"�μ�" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"tel_num" ,fieldName:"tel_num" ,header:"��ȭ��ȣ" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"fax_num" ,fieldName:"fax_num" ,header:"�ѽ���ȣ" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"hp1" ,fieldName:"hp1" ,header:"�޴���(��)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"hp2" ,fieldName:"hp2" ,header:"�޴���(�߰�)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"hp3" ,fieldName:"hp3" ,header:"�޴���(������)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"email" ,fieldName:"email" ,header:"�̸���" ,width:160 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"user_gubun" ,fieldName:"user_gubun" ,header:"����ڱ���" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"user_level" ,fieldName:"user_level" ,header:"���������" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"person_seq" ,fieldName:"person_seq" ,header:"번호" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"user_id" ,fieldName:"user_id" ,header:"아이디" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"passwd" ,fieldName:"passwd" ,header:"비밀번호" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"user_name" ,fieldName:"user_name" ,header:"사용자명" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"position" ,fieldName:"position" ,header:"직책" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"field_name" ,fieldName:"field_name" ,header:"부서" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"tel_num" ,fieldName:"tel_num" ,header:"전화번호" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"fax_num" ,fieldName:"fax_num" ,header:"팩스번호" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp1" ,fieldName:"hp1" ,header:"휴대폰(앞)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp2" ,fieldName:"hp2" ,header:"휴대폰(중간)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"hp3" ,fieldName:"hp3" ,header:"휴대폰(마지막)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"email" ,fieldName:"email" ,header:"이메일" ,width:160 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"user_gubun" ,fieldName:"user_gubun" ,header:"사용자구분" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"user_level" ,fieldName:"user_level" ,header:"사용자유형" ,width:80 ,readOnly:false , movable:false ,sortable:false});
 
     dataProvider.setFields(columns);
     gridView.setColumns(columns);
@@ -146,7 +154,7 @@ function excelRead(){
         files = window.event.srcElement.files;
 
     if(!files) {
-        alert("�������ε� ����� Internet Explorer 10 �̻� �Ǵ� ũ��(chrome)������ �̿��Ͻ� �� �ֽ��ϴ�.");
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
         return true;
     }
     
@@ -175,7 +183,7 @@ function process_wb(wb) {
         try{
             output[sheetNames][0];
         }catch(e){
-            alert("���Ŀ� ���� �ʴ� �����Դϴ�.\n\n���ε� ������ Ȯ�� �ϼ���.");
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
             return;
         }
 
@@ -184,7 +192,7 @@ function process_wb(wb) {
         var data = [];
         
         if(rows.length > 1){
-    		if(!confirm("���� ����ڴ� ���ε��ϴ��� ���� ��ϵ��� �ʽ��ϴ�.\n\n����ڸ� ���ε� �Ͻðڽ��ϱ�?")){
+    		if(!confirm("기존 사용자는 업로드하더라도 새로 등록되지 않습니다.\n\n사용자를 업로드 하시겠습니까?")){
     			return;
     		}
         }
@@ -192,12 +200,12 @@ function process_wb(wb) {
         for(var i = 1 ; i < rows.length ; i++){
             var row = rows[i];
             var cols = [];
-            //�Է°� validation
+            //입력값 validation
 
 			cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N"];
 			fields = ["person_seq","user_id","passwd","user_name","position","field_name","tel_num","fax_num","hp1","hp2","hp3","email","user_gubun","user_level"];
-			if(row["B"] == null || row["B"].toString().trim() == ""){alert("���̵� ���� �� �ֽ��ϴ�.(B��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
-			if(row["D"] == null || row["D"].toString().trim() == ""){alert("����ڸ��� ���� �� �ֽ��ϴ�.(D��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
+			if(row["B"] == null || row["B"].toString().trim() == ""){alert("아이디에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+			if(row["D"] == null || row["D"].toString().trim() == ""){alert("사용자명에 빈값이 들어가 있습니다.(D열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
 
             var rowdata={};
             for(var j = 0 ; j < cols.length; j++){
@@ -212,7 +220,7 @@ function process_wb(wb) {
         }
         dataProvider.setRows(data);
         gridView.closeProgress();
-        alert("���ε� ó�� �Ǿ����ϴ�.");
+        alert("업로드 처리 되었습니다.");
     }
 }
 
@@ -241,15 +249,15 @@ function excelDown(){
     gridView.exportGrid({
         type: "excel",
         target: "local",
-        fileName: "����� ����.xlsx",
+        fileName: "사용자 정보.xlsx",
         showProgress: false,
         applyDynamicStyles: false,
-        progressMessage: "�ٿ�ε� ���� ���Դϴ�.",
+        progressMessage: "다운로드 진행 중입니다.",
         indicator: "hidden",
         header: "visible",
         footer: "hidden",
         compatibility: "2007",
-        done: function () {  //�������� �Ϸ� �� ����Ǵ� �Լ�
+        done: function () {  //내보내기 완료 후 실행되는 함수
         }
     });
 }
@@ -257,11 +265,11 @@ function excelDown(){
 function submitItem(){
 	
 	 if(dataProvider.getRowCount() == 0){
-		alert("����� ������ �������� �ʾ� ������ �Ͻ� �� �����ϴ�.");
+		alert("사용자 정보가 존재하지 않아 저장을 하실 수 없습니다.");
 		return;
 	}
 
-	if(!confirm("���ε��� ����� ������ ��� �Ͻðڽ��ϱ�?")){
+	if(!confirm("업로드한 사용자 정보를 등록 하시겠습니까?")){
 		return;
 	}
 	
@@ -285,10 +293,10 @@ function submitItem(){
         data : data,
         success : function(data) {
             if (data > 0) {
-                alert("����� ������ ����Ͽ����ϴ�.");
+                alert("사용자 정보를 등록하였습니다.");
                 dataProvider.clearRowStates(true);
             } else {
-                alert("ó���� �����Ͽ����ϴ�.");
+                alert("처리에 실패하였습니다.");
             }
         },
         error : function(request, status, error) {

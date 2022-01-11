@@ -1,8 +1,8 @@
-<form novalidate name="form1" method="post" enctype="multipart/form-data" onSubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="post" enctype="multipart/form-data" onSubmit="return formSubmit(this)">
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>°øÁö»çÇ× »ó¼¼<span class="caution-text">* Ç¥½Ã´Â ÇÊ¼ö ÀÔ·ÂÇ×¸ñ ÀÔ´Ï´Ù</span></h3>
+			<h3>ê³µì§€ì‚¬í•­ ìƒì„¸<span class="caution-text">* í‘œì‹œëŠ” í•„ìˆ˜ ìž…ë ¥í•­ëª© ìž…ë‹ˆë‹¤</span></h3>
 		</div>
 		<div class="push-right">
 			<p></p>
@@ -17,24 +17,24 @@
 			<col width="*">
 		</colgroup>
 		<tr>
-			<th class="req-check">µî·ÏÀÚ</th>
+			<th class="req-check">ë“±ë¡ìž</th>
 			<td><input type="text" name="reg_id" style="width: 100%"></td>
-			<th class="req-check">°øÁöÀÏÀÚ</th>
+			<th class="req-check">ê³µì§€ì¼ìž</th>
 			<td>
 				<input type="text" id="open_date" name="open_date" style="width:100px" onKeyUp="dateFormat(this)" size="10" maxlength="10" readonly>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['open_date'])">
-				<input type="checkbox" name="open_yn" value="Y" checked>°ø°³¿©ºÎ
+				<input type="checkbox" name="open_yn" value="Y" checked>ê³µê°œì—¬ë¶€
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">Á¦¸ñ</th>
+			<th class="req-check">ì œëª©</th>
 			<td colspan="3"><input type="text" name="title" style="width:100%" maxlength="100"></td>
 		</tr>
 		<tr>
-			<th  class="req-check" colspan="3">°øÁö³»¿ë&nbsp;&nbsp;&nbsp; ¡Ø html·Î ÀÛ¼ºÇØ¼­ ³Ö¾îÁÖ¼¼¿ä.</th>
+			<th  class="req-check" colspan="3">ê³µì§€ë‚´ìš©&nbsp;&nbsp;&nbsp; â€» htmlë¡œ ìž‘ì„±í•´ì„œ ë„£ì–´ì£¼ì„¸ìš”.</th>
 			<td align="center">
-				<button type="button" class="sbtn color ico-write" value="" onClick="fPreview(false);"><span></span>HTMLÀÛ¼º</button>
-				<button type="button" class="sbtn color ico-list " value="" onClick="fPreview(true);"><span></span>¹Ì¸®º¸±â</button>
+				<button type="button" class="sbtn color ico-write" value="" onClick="fPreview(false);"><span></span>HTMLìž‘ì„±</button>
+				<button type="button" class="sbtn color ico-list " value="" onClick="fPreview(true);"><span></span>ë¯¸ë¦¬ë³´ê¸°</button>
 			</td>
 		</tr>
 		<tr>
@@ -44,12 +44,12 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Ã·ºÎÆÄÀÏ</th>
+			<th>ì²¨ë¶€íŒŒì¼</th>
 			<td colspan="3">
 				<!-- IF START 'ds.doc_name' -->
 				<input type="hidden" name="doc_name">{{ds.doc_name}}.{{ds.file_ext}} ({{ds.file_size}})
-				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.noti','{{ds.file_path}}{{ds.file_name}}','{{ds.doc_name}}.{{ds.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-				<button type="button" class="sbtn color ico-delete"  onclick="file_delete()"><span></span>»èÁ¦</button>
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.noti','{{ds.file_path}}{{ds.file_name}}','{{ds.doc_name}}.{{ds.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
+				<button type="button" class="sbtn color ico-delete"  onclick="file_delete()"><span></span>ì‚­ì œ</button>
 				<!-- IF END 'ds.doc_name' -->
 
 				<!-- IFNOT START 'ds.doc_name' -->
@@ -61,11 +61,11 @@
 	</table>
 
 	<div class="btn-group-wrap">
-		<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
+		<button type="submit" class="btn color ico-save"><span></span>ì €ìž¥</button>
 		<!-- IF START 'modify' -->
-		<button type="button" class="btn color ico-delete" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='noti_delete.jsp?{{query}}';}"><span></span>»èÁ¦</button>
+		<button type="button" class="btn color ico-delete" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='noti_delete.jsp?{{query}}';}"><span></span>ì‚­ì œ</button>
 		<!-- IF END 'modify' -->
-		<button type="button" class="btn color ico-list" onclick="location.href='noti_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='noti_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 </div>
 </form>
@@ -80,12 +80,12 @@ function formSubmit(f){
             var file_pds = f['file_pds'].value;
 
             if( (doc_name=="" && file_pds!="")|| (doc_name!="" && file_pds=="")){
-                alert("¹®¼­¸í°ú ÆÄÀÏÁ¤º¸¸¦ Á¤È®È÷ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+                alert("ë¬¸ì„œëª…ê³¼ íŒŒì¼ì •ë³´ë¥¼ ì •í™•ížˆ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
                 return false;
             }
         }
 
-        if(!confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+        if(!confirm("ì €ìž¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
             return false;
         }
 
@@ -100,7 +100,7 @@ function formSubmit(f){
     return false;
 }
 
-// ¹Ì¸®º¸±â
+// ë¯¸ë¦¬ë³´ê¸°
 function fPreview(mode)
 {
     if(mode)
@@ -116,7 +116,7 @@ function fPreview(mode)
     }
 }
 
-// ÆÄÀÏ»èÁ¦
+// íŒŒì¼ì‚­ì œ
 function file_delete()
 {
 	Go('noti_delete.jsp?mode=file&{{query}}');

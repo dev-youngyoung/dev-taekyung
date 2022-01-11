@@ -349,7 +349,7 @@ public class SqlFormatter {
 
 	public static void main(String[] args) {
 //		String query = " SELECT SYSDATE, 'AAA' BBB FROM DUAL A, (SELECT * FROM BBB) B WHERE 1=2 AND 2=3 ORDER BY 1, 2 ";
-		String query = " INSERT INTO TB_BOARD (CODE , SEQ , GRP_SEQ , SUBJECT , MEMO , OPEN_YN , CREATE_USER_ID , CREATE_DT, CREATE_IP ) VALUES ('B1' , 13 , 13 , '�׽�Ʈ12' , ';':\"' , 'Y' , 'test' , SYSDATE , '127.0.0.1') ";
+		String query = " INSERT INTO TB_BOARD (CODE , SEQ , GRP_SEQ , SUBJECT , MEMO , OPEN_YN , CREATE_USER_ID , CREATE_DT, CREATE_IP ) VALUES ('B1' , 13 , 13 , '테스트12' , ';':\"' , 'Y' , 'test' , SYSDATE , '127.0.0.1') ";
 		System.out.println(SqlFormatter.format(query));
 	}
 

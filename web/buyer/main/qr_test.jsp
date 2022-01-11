@@ -5,31 +5,31 @@
 <%@ page import="java.awt.image.BufferedImage" %>
 <%@ page import="com.google.zxing.MatrixToImageWriter" %>
 <%@ page import="javax.imageio.ImageIO" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-//gitÀ» ÅëÇØ
+//gitì„ í†µí•´
 //zxing-2.3.0.jar
 	try {
 		File file = null;
-		// Å¥¾ËÀÌ¹ÌÁö¸¦ ÀúÀåÇÒ µð·ºÅä¸® ÁöÁ¤
+		// íì•Œì´ë¯¸ì§€ë¥¼ ì €ìž¥í•  ë””ë ‰í† ë¦¬ ì§€ì •
 		file = new File("D:\\");
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-		// ÄÚµåÀÎ½Ä½Ã ¸µÅ©°É URLÁÖ¼Ò
+		// ì½”ë“œì¸ì‹ì‹œ ë§í¬ê±¸ URLì£¼ì†Œ
 		String codeurl = new String("https://www.kakaocorp.com/service/KakaoTalk?lang=en".getBytes("UTF-8"), "ISO-8859-1");
-		// Å¥¾ËÄÚµå ¹ÙÄÚµå »ý»ó°ª
+		// íì•Œì½”ë“œ ë°”ì½”ë“œ ìƒìƒê°’
 		int qrcodeColor = 0xFF2e4e96;
-		// Å¥¾ËÄÚµå ¹è°æ»ö»ó°ª
+		// íì•Œì½”ë“œ ë°°ê²½ìƒ‰ìƒê°’
 		int backgroundColor = 0xFFFFFFFF;
 
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
-		// 3,4¹øÂ° parameter°ª : width/height°ª ÁöÁ¤
+		// 3,4ë²ˆì§¸ parameterê°’ : width/heightê°’ ì§€ì •
 		BitMatrix bitMatrix = qrCodeWriter.encode(codeurl, BarcodeFormat.QR_CODE, 200, 200);
 		MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(); //new MatrixToImageConfig(qrcodeColor, backgroundColor);
 		BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig);
-		// ImageIO¸¦ »ç¿ëÇÑ ¹ÙÄÚµå ÆÄÀÏ¾²±â
+		// ImageIOë¥¼ ì‚¬ìš©í•œ ë°”ì½”ë“œ íŒŒì¼ì“°ê¸°
 		ImageIO.write(bufferedImage, "png", new File("D:\\qrcode.png"));
 
 	} catch (Exception e) {

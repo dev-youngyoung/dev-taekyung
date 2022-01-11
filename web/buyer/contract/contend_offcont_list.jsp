@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000067";
 
@@ -6,42 +6,28 @@ DataObject memberDao = new DataObject("tcb_member");
 //memberDao.setDebug(out);
 DataSet member = memberDao.find("member_no = '"+_member_no+"' ");
 if(!member.next()){
-	u.jsError("»ç¿ëÀÚ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì‚¬ìš©ì ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
-boolean src_l = false;
-boolean src_m = false;
-boolean src_s = false;
-if(member.getString("src_depth").equals("01")){
-	src_l = true;
-}
-if(member.getString("src_depth").equals("02")){
-	src_l = true;
-	src_m = true;
-}
-if(member.getString("src_depth").equals("03")){
-	src_l = true;
-	src_m = true;
-	src_s = true;
-}
-
-//Å×Å©·Î½º ¿öÅÍ¾Ø¿¡³ÊÁö,Å×Å©·Î½ºÈ¯°æ¼­ºñ½º ´Â ÀÚÀ¯¼­½Ä¿¡¼­ vat Æ÷ÇÔ¿©ºÎ ±â´É
+//í…Œí¬ë¡œìŠ¤ ì›Œí„°ì•¤ì—ë„ˆì§€,í…Œí¬ë¡œìŠ¤í™˜ê²½ì„œë¹„ìŠ¤ ëŠ” ììœ ì„œì‹ì—ì„œ vat í¬í•¨ì—¬ë¶€ ê¸°ëŠ¥
 boolean bIsTechcross = u.inArray(_member_no, new String[]{"20160401012","20180203437"});
  
 CodeDao codeDao = new CodeDao("tcb_comcode");
-String[] code_status = codeDao.getCodeArray("M008", "and code in ('50','91')");
-String[] code_vat_type = {"1=>VATº°µµ","2=>VATÆ÷ÇÔ","3=>VAT¹Ì¼±ÅÃ"};
+String[] code_status = codeDao.getCodeArray("M008", " and code in ('10','11','12','20','21','30','40','41','50','90','91','95','99')");
+String[] code_vat_type = {"1=>VATë³„ë„","2=>VATí¬í•¨","3=>VATë¯¸ì„ íƒ"};
 
 
-String sTable = "tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.paper_yn = 'Y'";
+String sTable = "tcb_contmaster a, tcb_cust b, tcb_cust c, tcb_person d, (SELECT * FROM tcb_cfile WHERE CFILE_SEQ = '3') e "; // b:ì„(ì—…ì²´)ì •ë³´, c:ê°‘(ë†ì‹¬)ì •ë³´, d:ìœ ì €ì •ë³´
 
-String sColumn = "a.cont_no, a.cont_chasu, a.template_cd, a.cont_name, a.cont_date,a.cont_sdate, a.cont_edate, a.cont_total, a.status, a.cont_userno, b.member_no, b.member_name, b.vendcd, b.boss_name, b.cust_detail_code,a.true_random,a.cont_etc2, "
-				+"( SELECT  COUNT(member_no) cnt FROM tcb_cust WHERE cont_no = a.cont_no AND cont_chasu= a.cont_chasu ) cust_cnt, a.cont_html  ";
+String sColumn = "a.cont_no, a.cont_chasu, a.template_cd, a.cont_name, a.cont_date,a.cont_sdate, a.cont_edate, a.cont_total, a.status, nvl(a.cont_userno,a.cont_no) cont_userno, b.member_no, b.member_name, b.vendcd, b.boss_name, b.cust_detail_code, a.true_random, a.cont_etc2, c.user_name, c.division, d.division as division_p, "
+				+"( SELECT  COUNT(member_no) cnt FROM tcb_cust WHERE cont_no = a.cont_no AND cont_chasu= a.cont_chasu ) cust_cnt, a.cont_html,  "
+				+" CASE WHEN e.file_name IS NOT NULL THEN 'ë“±ë¡' ELSE 'ë¯¸ë“±ë¡' END AS last_file_yn  ";
 
-
-String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM-dd",u.addDate("M",-3)));
-String s_edate = u.request("s_edate",u.getTimeString("yyyy-MM-dd"));
+Calendar mon = Calendar.getInstance();
+mon.add(Calendar.MONTH , -12);
+String s_sdate = u.request("s_sdate", u.getTimeString("yyyy-MM-dd",mon.getTime()));
+String s_edate = u.request("s_edate" , u.getTimeString("yyyy-MM-dd"));
 
 f.addElement("s_cont_name",null, null);
 f.addElement("s_cust_name",null, null);
@@ -51,18 +37,39 @@ f.addElement("s_user_no", null, null);
 f.addElement("s_template_cd", null, null);
 f.addElement("hdn_sort_column", null, null);
 f.addElement("hdn_sort_order", null, null);
+f.addElement("s_status", null, null);
+f.addElement("s_fileYn", null, null);
+f.addElement("s_division", null, null);
+f.addElement("s_user_name", null, null);
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
 list.setListNum(u.inArray(u.request("mode"), new String[]{"excel","report"})?-1:15);
 list.setTable(sTable);
 list.setFields(sColumn);
-list.addWhere("b.list_cust_yn = 'Y'");
-list.addWhere(" a.member_no = '"+_member_no+"' ");
-list.addWhere(" a.status in ('50','91')");//50:¿Ï·áµÈ °è¾à 91:°è¾àÇØÁö
+list.addWhere("a.cont_no = b.cont_no ");
+list.addWhere("a.cont_chasu = b.cont_chasu ");
+list.addWhere("a.member_no != b.member_no ");
+list.addWhere("a.cont_no = c.cont_no ");
+list.addWhere("a.cont_chasu = c.cont_chasu ");
+list.addWhere("a.member_no = c.member_no ");
+list.addWhere("a.reg_id = d.user_id ");
+list.addWhere("d.member_no = '" + _member_no + "' ");
+list.addWhere("a.cont_no = e.cont_no(+) ");
+list.addWhere("a.paper_yn = 'Y' ");
+list.addWhere("a.member_no = '"+_member_no+"' ");
+//list.addWhere("a.status not in('95') ");
+if("I".equals(f.get("s_status"))){
+	// ì§„í–‰ì¤‘
+	list.addWhere(" a.status in ('10','11','12','20','21','30','40','41') ");
+}else if("C".equals(f.get("s_status"))){
+	// ì™„ë£Œ(ê¸°ì¡´)
+	list.addWhere(" a.status in ('50','91') ");//50:ì™„ë£Œëœ ê³„ì•½ 91:ê³„ì•½í•´ì§€
+}
+
 
 String s_date_query = "";
 if(!s_sdate.equals("")) {
@@ -73,17 +80,23 @@ if(!s_edate.equals("")) {
 	list.addWhere(" a.cont_date <= '"+s_edate.replaceAll("-","")+"'");
 	s_date_query += " and cont_date <= '"+s_edate.replaceAll("-","")+"'";
 }
-if((!f.get("l_src_cd").equals(""))||(!f.get("m_src_cd").equals(""))||(!f.get("s_src_cd").equals(""))){
-	list.addWhere(" a.src_cd like '"+f.get("l_src_cd")+f.get("m_src_cd")+f.get("s_src_cd")+"%' ");
-}
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_cust_name"), "LIKE");
 list.addSearch("a.cont_userno",  f.get("s_user_no"), "LIKE");
 list.addSearch("a.template_cd",  f.get("s_template_cd"));
+list.addSearch("c.user_name",  f.get("s_user_name"));
+list.addSearch("d.division",  f.get("s_division"));
+if("Y".equals(f.get("s_fileYn"))){
+	// ìµœì¢…íŒŒì¼ ë“±ë¡
+	list.addWhere(" e.file_name IS NOT NULL ");
+}else if("N".equals(f.get("s_fileYn"))){
+	// ìµœì¢…íŒŒì¼ ë¯¸ë“±ë¡
+	list.addWhere(" e.file_name IS NULL ");//50:ì™„ë£Œëœ ê³„ì•½ 91:ê³„ì•½í•´ì§€
+}
 
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -97,14 +110,14 @@ String sSortOrder = f.get("hdn_sort_order");
 String sSortCustNameIconName = "";
 if(!sSortColumn.equals("")) {
 	if(sSortOrder.equals("asc"))
-		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>¡è</font>";
+		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>â†‘</font>";
 	else
-		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>¡é</font>";
+		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>â†“</font>";
 
 	list.setOrderBy(sSortColumn + " " + sSortOrder);
 } else {
-	list.setOrderBy("a.cont_no desc, a.cont_chasu asc");
-	sSortCustNameIconName = "<font style='color:blue;font-weight:bold'>¢Õ</font>";
+	list.setOrderBy("a.reg_date desc");
+	sSortCustNameIconName = "<font style='color:blue;font-weight:bold'>â†•</font>";
 }
 
 DataSet ds = list.getDataSet();
@@ -112,41 +125,56 @@ while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cont_chasu")>0){
 		if(!u.request("mode").equals("excel")){
-			ds.put("cont_name", "<img src='../html/images/re.jpg' align='absmiddle'> " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+			ds.put("cont_name", "<img src='../html/images/re.jpg' align='absmiddle'> " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 		}else{
-			ds.put("cont_name", "	" +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+			ds.put("cont_name", "	" +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 		}
 	}
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
 	ds.put("cont_sdate", u.getTimeString("yyyy-MM-dd",ds.getString("cont_sdate")));
 	ds.put("cont_edate", u.getTimeString("yyyy-MM-dd",ds.getString("cont_edate")));
-	ds.put("status", u.getItem(ds.getString("status"),code_status));
+	//ds.put("status", u.getItem(ds.getString("status"),code_status));
 	ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
 	ds.put("cont_total", u.numberFormat(ds.getDouble("cont_total"), 0));
-	ds.put("write_type", ds.getString("template_cd").equals("")?"ÀÚÀ¯¼­½Ä":"ÀÏ¹İ¼­½Ä"); 
+	ds.put("write_type", ds.getString("template_cd").equals("")?"ììœ ì„œì‹":"ì¼ë°˜ì„œì‹"); 
 	if(bIsTechcross){
 		ds.put("vattype", u.getItem(ds.getString("cont_etc2"),code_vat_type)); 
-	} 
+	}
+	if (ds.getString("status").equals("30")) { // ì„œëª…ëŒ€ê¸° ìƒíƒœì´ë©´ ìƒ‰ìƒ í‘œì‹œ
+		ds.put("status_name", "<span class=\"caution-text\">" + u.getItem(ds.getString("status"), code_status) + "</span>");
+	} else if(ds.getString("status").equals("12")) { // ë‚´ë¶€ë°˜ë ¤
+		ds.put("status_name", "<span style='color:red'>" + u.getItem(ds.getString("status"), code_status) + "</span>");
+	} else if(ds.getString("status").equals("21")) { // ìŠ¹ì¸ëŒ€ê¸°
+		ds.put("status_name", "<span class=\"caution-text\">" + u.getItem(ds.getString("status"), code_status) + "<br>(" + ds.getString("agree_name") + ")</span>");
+	} else if(ds.getString("status").equals("40")) { // ìˆ˜ì •ìš”ì²­ ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
+		ds.put("status_name", "<span style='color:blue'>" + u.getItem(ds.getString("status"), code_status) + "</span>");
+	} else {
+		ds.put("status_name", u.getItem(ds.getString("status"), code_status));
+	}
+	if (ds.getString("division") == null || ds.getString("division").equals("")) ds.put("division", ds.getString("division_p"));
 }
 
-
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "¿Ï·áµÈ ¼­¸í°è¾à °è¾àÇöÈ²");
+	p.setVar("title", "ì¢…ì´ê³„ì•½ ê³„ì•½í˜„í™©");
 	if(bIsTechcross){
 		p.setVar("vatType", "Y");
 	} 
+	ds.first();
+	while (ds.next()) {
+		ds.put("status_nm", ds.getString("status_name").replaceAll("<br>", ""));
+	}
+	p.setVar("paper_yn", "Y");
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("¿Ï·áµÈ °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ì™„ë£Œëœ ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/contend_send_list_excel.html"));
 	return;
 }
-
 
 DataObject templateDao = new DataObject();
 DataSet template = templateDao.query("select template_name, template_cd from tcb_cont_template where template_cd in (select template_cd from tcb_contmaster where member_no = '"+_member_no+"'"+s_date_query+" and status in ('50','91') group by template_cd) order by display_seq asc, template_cd desc");
@@ -159,19 +187,13 @@ p.setVar("menu_cd",_menu_cd);
 p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), _menu_cd, "btn_auth").equals("10"));
 p.setVar("auth_form", false);
 p.setVar("member", member);
-p.setLoop("code_status", u.arr2loop(code_status));
+//p.setLoop("code_status", u.arr2loop(code_status));
 p.setLoop("template", template);
 p.setLoop("list", ds);
 //p.setVar("sSortColumnContUserNo", sSortColumn.equals("a.cont_userno") ? true : false);
 p.setVar("sSortColumn", sSortColumn);
 p.setVar("sSortOrder", sSortOrder);
 p.setVar("sSortCustNameIconName", sSortCustNameIconName);
-p.setVar("src_l", src_l);
-p.setVar("src_m", src_m);
-p.setVar("src_s", src_s);
-p.setVar("l_src_cd", f.get("l_src_cd"));
-p.setVar("m_src_cd", f.get("m_src_cd"));
-p.setVar("s_src_cd", f.get("s_src_cd"));
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("cont_no,cont_chasu"));

@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
 <%
 String seq = u.request("seq");
 if(seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇØ ÁÖ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -15,7 +15,7 @@ db.setCommand(fileDao.getDeleteQuery("member_no='"+_member_no+"' and seq = '"+se
 db.setCommand(pdsDao.getDeleteQuery("member_no='"+_member_no+"' and seq = '"+seq+"'"),null);
 
 if(!db.executeArray()){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 

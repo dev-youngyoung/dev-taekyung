@@ -1,3 +1,82 @@
+<!-- IF START 'isSuccess' -->
+
+<!-- 전자인증 모듈 설정 //-->
+<!-- INCLUDE FILE 'layout/crosscert_include.html' -->
+<!-- 전자인증 모듈 설정 //-->
+
+<form name="form1" method="post">
+	<input type="hidden" name="cert_end_date" value="{{_auth._CERT_END_DATE}}" />
+	<input type="hidden" name="cert_dn" value="{{_auth._CERT_DN}}" />
+	<input type="hidden" name="sign_data" />
+	<input type="hidden" name="memberNo" value="{{memberNo}}" />
+</form>
+
+<script>
+alert("정상적으로 회원 가입 되었습니다.\n\n★★공인인증서를 등록을 진행합니다.★★");
+fSign();
+
+function fSign(sinput){
+	setUniSign("comp");
+	var ssn = "{{vendCd}}";
+
+    /* 서명데이타 만들기 */
+    var f = document.forms['signFrm'];
+    var	org_data = "nocedocu";	//	서명대상 원본데이타
+    var	sign_data = "";
+    
+    unisign.SignDataNVerifyVID( org_data, null, ssn,
+        function(rv, signedText, certAttrs)
+        {
+            sign_data = signedText;
+
+            if (null === sign_data || '' === sign_data || false === rv)
+            {
+                unisign.GetLastError(
+                    function(errCode, errMsg) {
+                        if (errCode == "999") {
+                            //사용자 취소
+                        } else if(errCode == "14208") {
+                            alert("선택한 인증서는 귀사의 인증서가 아닙니다.");
+                        } else {
+                            alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
+                        }
+                        location.replace("../");
+                    }
+                );
+            } else {
+                //console.log(JSON.stringify(certAttrs,null,2));
+                //인증서 확인 단계
+                var cert_end_date = getFormatDate(certAttrs.validateTo);
+                if (cert_end_date.length < 8) {
+                    alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                    return;
+                }
+                if (!isValidDate(cert_end_date)) {
+                    alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
+                    return;
+                }
+                if (js_isDateCmp(cert_end_date, "{{_sysdate}}")) {
+                    alert("유효기간이 지난 인증서 입니다.\n\n다시 한번 인증서를 확인 하십시오.");
+                    return;
+                }
+
+                f['sign_data'].value = sign_data;
+                f['cert_dn'].value = certAttrs.subjectName;
+                f['cert_end_date'].value = cert_end_date;
+                signSubmit();
+            }
+        }
+    );
+}
+
+function signSubmit(){
+    var f = document.forms['signFrm'];
+    f.action="join_cert.jsp";
+    f.submit();
+}
+</script>
+<!-- IF END 'isSuccess' -->
+
 <form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="hdn_mode">
 <input type="hidden" name="hdn_member_no">
@@ -5,7 +84,7 @@
 <div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>ȸ��⺻����</h3>
+      <h3>회사기본정보</h3>
     </div>
   </div>
   <table>
@@ -16,13 +95,13 @@
     <col width="31%">
   </colgroup>
   <tr>
-    <th>����ڱ���</th>
+    <th>사업자구분</th>
     <td colspan="3">
       <input type="hidden" name="member_gubun"><span id="span_memner_gubun_nm"></span>
     </td>
   </tr>
   <tr>
-    <th class="req-check">����ڹ�ȣ</th>
+    <th class="req-check">사업자번호</th>
     <td colspan="3">
       <input type="text" name="vendcd1" size="3" maxlength="3" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd2')" onBlur="fChkVendCd()"> -
       <input type="text" name="vendcd2" size="2" maxlength="2" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd3');movePrv('vendcd1')" onBlur="fChkVendCd()"> -
@@ -32,37 +111,37 @@
     </td>
   </tr>
   <tr>
-  <th>���ι�ȣ </th>
+  <th>법인번호 </th>
   <td colspan="3">
     <input type="text" name="member_slno1" size="6" maxlength="6" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('member_slno2')"> -
     <input type="text" name="member_slno2" size="7" maxlength="7" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('txt_cust_slno1')">
   </td>
   </tr>
   <tr>
-    <th class="req-check">��ü��</th>
+    <th class="req-check">업체명</th>
     <td>
       <input type="text" name="member_name" style="width:95%" maxlength="30" >
     </td>
-    <th class="req-check">��ǥ�ڸ�</th>
+    <th class="req-check">대표자명</th>
     <td>
       <input type="text" name="boss_name" style="width:95%" maxlength="30" >
     </td>
   </tr>
   <tr>
-  <th class="req-check">����</th>
+  <th class="req-check">업태</th>
   <td>
     <input type="text" name="condition" style="width:95%" maxlength="30" >
   </td>
-  <th class="req-check">����</th>
+  <th class="req-check">종목</th>
   <td>
     <input type="text" name="category" style="width:95%" maxlength="30" >
   </td>
   </tr>
   <tr>
-    <th class="req-check">�ּ�</th>
+    <th class="req-check">주소</th>
     <td colspan="3">
       <input type="text" name="post_code" class="in_readonly" size="6" readonly>
-      <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>������ȣã��</button>
+      <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>우편번호찾기</button>
       <input type="text" name="address" style="width:98%" maxlength="150">
     </td>
   </tr>
@@ -72,7 +151,7 @@
 <div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>����� ����&nbsp;&nbsp;<span style="color:red">(�� ȸ�������ϴ� ��ü(�����) �Ҽ��� ����� Ȥ�� ��ǥ�� ������ �Է��ϼ���.)</span></h3>
+      <h3>담당자 정보&nbsp;&nbsp;<span style="color:red">(※ 회원가입하는 업체(사업장) 소속의 담당자 혹은 대표자 정보를 입력하세요.)</span></h3>
     </div>
   </div>
   <table>
@@ -83,54 +162,54 @@
       <col width="31%">
     </colgroup>
     <tr>
-      <th class="req-check">���̵�</th>
+      <th class="req-check">아이디</th>
       <td colspan="3">
         <input type="hidden" name="chk_id">
         <input type="text" name="user_id" size="20" maxlength="20" style="ime-mode:disabled;width:150px" onchange="document.forms['form1']['chk_id'].value=''">
-        <button type="button" class="sbtn ico-check" onClick="chkId()" id="btn_chkid"><span></span>�ߺ�Ȯ��</button>
-        &nbsp;&nbsp;<font color="gray">��  6 ~ 20�ڸ��� �Է��ϼ���. (�����ҹ���, ���ڸ� ����)</font>
+        <button type="button" class="sbtn ico-check" onClick="chkId()" id="btn_chkid"><span></span>중복확인</button>
+        &nbsp;&nbsp;<font color="gray">※  6 ~ 20자리로 입력하세요. (영문소문자, 숫자만 가능)</font>
       </td>
       
     </tr>
     <tr>
-      <th class="req-check">��й�ȣ</th>
+      <th class="req-check">비밀번호</th>
       <td colspan="3">
       	<input type="password" name="passwd" size="20" maxlength="20" style="width:150px">
-      	&nbsp;&nbsp;<font color="gray">�� ����, ���� 1�� �̻�, Ư������ 1�� �̻� ������ 8 ~ 20�ڸ��� �Է��ϼ���.</font>
+      	&nbsp;&nbsp;<font color="gray">※ 영문, 숫자 1자 이상, 특수문자 1자 이상 포함한 8 ~ 20자리로 입력하세요.</font>
       </td>
       
     </tr>
     <tr>
-      <th class="req-check">��й�ȣ Ȯ��</th>
+      <th class="req-check">비밀번호 확인</th>
       <td colspan="3"><input type="password" name="passwd2" size="20" maxlength="20" style="width:150px"></td>
     </tr>
     <tr>
-      <th class="req-check">����ڸ�</th>
+      <th class="req-check">담당자명</th>
       <td><input type="text" name="user_name"  size="10" maxlength="30" style="width:95%"></td>
-      <th class="req-check">����</th>
+      <th>직위</th>
       <td><input type="text" name="position"  maxlength="20" style="width:95%"></td>
     </tr>
     <tr>
-      <th class="req-check">�̸���</th>
+      <th class="req-check">이메일</th>
       <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:95%"></td>
-      <th class="req-check">��ȭ��ȣ</th>
+      <th>전화번호</th>
       <td>
-        <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="��) 02-788-9097">
+        <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="예) 02-788-9097">
       </td>
     </tr>
     <tr>
-      <th class="req-check">�μ���</th>
+      <th>부서명</th>
       <td><input type="text" name="division" maxlength="50" style="width:100%"></td>
-      <th>�ѽ���ȣ</th>
+      <th>팩스번호</th>
       <td>
-        <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="��) 02-788-9097">
+        <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="예) 02-788-9097">
       </td>
     </tr>
     <tr>
-      <th class="req-check">�޴���ȭ</th>
+      <th class="req-check">휴대전화</th>
       <td colspan="3">
         <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
-          <option value="">����</option>
+          <option value="">선택</option>
           <option value="010">010</option>
           <option value="011">011</option>
           <option value="016">016</option>
@@ -139,130 +218,282 @@
           <option value="019">019</option>
         </select> -
         <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
-        <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
+        <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('hp2')">
       </td>
     </tr>
   </table>
 </div>
 
 <div class="help-content" style="margin-top: 10px;margin-bottom: 10px">
-  <h3>NOTICE<span>������ ����! ������� �˾Ƶμ���~ </span></h3>
+  <h3>NOTICE<span>유용한 정보! 사용전에 알아두세요~ </span></h3>
   <div class="help-content-body">
     <ul>
-      <li style="font-weight:bold">�޴���ȭ �� �̸��Ϸ� ����/���� ������û, ��༭ ������û�� ���� �˸��� �뺸�ǿ��� ��Ȯ�� ����ٶ��ϴ�.</li>
+      <li style="font-weight:bold">휴대전화 및 이메일로 계약서 서명요청에 대한 알림이 통보되오니 정확히 기재바랍니다.</li>
+      <li style="font-weight:bold">회원가입시 <font color="red">공인인증서 인증</font>을 진행하시면, 공인인증서 로그인 및 전자서명을 진행 하실 수 있습니다.</li>
+      <li style="font-weight:bold">회원가입시 공인인증서 인증이 안되면, 비밀번호 로그인 후 <font color="red">공인인증서 등록</font>을 진행하셔야 합니다.</li>
     </ul>
   </div>
 </div>
 
 <div class="btn-group-wrap">
-  <button type="submit" class="btn color ico-confirm"><span></span>ȸ������</button>
-  <button type="button" class="btn color ico-cancel" onclick="location.href='../'"><span></span>���</button>
+  <button type="submit" class="btn color ico-confirm"><span></span>회원가입</button>
+  <button type="button" class="btn color ico-cancel" onclick="location.href='../'"><span></span>취소</button>
 </div>
 
 </form>
 <script type="text/javascript">
-function formSubmit(f){
-	if(validate(f))
-	{
-		if(f['hdn_mode'].value	==	"BREAK")
-	 	{
-	 		alert("�ش� ����ڹ�ȣ�� ȸ��Ż�� �����Դϴ�.\n\n�ٽ� ȸ������ �����Ͻ÷���, �����������Ϳ� �����Ͻñ� �ٶ��ϴ�.");
+function formSubmit(f) {
+	if (validate(f)) {
+		if (f['hdn_mode'].value	== "BREAK") {
+	 		alert("해당 사업자번호는 회원탈퇴 상태입니다.\n\n다시 회원으로 가입하시려면, 고객지원센터에 문의하시기 바랍니다.");
+			return false;
+	 	} else if (f['hdn_mode'].value == "JOIN") {
+	 		alert("해당 사업자번호는 이미 회원가입이 되어 있습니다.");
+			return false;
+	 	} else if(f['hdn_mode'].value == "ERROR") {
+	 		alert("고객센터로 문의 하시기 바랍니다.");
 			return false;
 	 	}
-
-	 	if(f['hdn_mode'].value	==	"JOIN")
-	 	{
-	 		alert("�ش� ����ڹ�ȣ�� �̹� ȸ�������� �Ǿ� �ֽ��ϴ�.");
+		
+		if(f['hdn_member_no'].value != null && f['hdn_member_no'].value != ""){
+			if (confirm("등록된 정보로 회원가입을 하시겠습니까?")) return true;
+		}else{
+			alert("사업자번호가 정상적으로 선택되지 않았습니다.");
 			return false;
-	 	}
-
-	 	if(f['hdn_mode'].value	==	"ERROR")
-	 	{
-	 		alert("�������ͷ� ���� �Ͻñ� �ٶ��ϴ�.");
-			return false;
-	 	}
-
-		if(confirm("��ϵ� ������ ȸ�������� �Ͻðڽ��ϱ�?"))
-		{
-			return true;
 		}
 	}
 	return false;
 }
 
-	/*****************************
-		����ڹ�ȣ Ȯ��
-	*****************************/
-	function fChkVendCd()
-	{
-		var f = document.forms['form1'];
-		var	sVendcd1	=	f['vendcd1'].value;
-		var	sVendcd2	=	f['vendcd2'].value;
-		var	sVendcd3	=	f['vendcd3'].value;
-		var	sVendcd		=	sVendcd1	+	sVendcd2	+	sVendcd3;
+/*****************************
+	사업자번호 확인
+*****************************/
+function fChkVendCd() {
+	var f = document.forms['form1'];
+	var	sVendcd1 = f['vendcd1'].value;
+	var	sVendcd2 = f['vendcd2'].value;
+	var	sVendcd3 = f['vendcd3'].value;
+	var	sVendcd = sVendcd1 + sVendcd2 + sVendcd3;
 
-		if(sVendcd.length == 10)
-		{
-			call("./chk_vendcd.jsp?vendcd="+sVendcd);
-		}else
-		{
-			f['chk_id'].value					=	"";
-			f['member_gubun'].value		=	"";
-			f['member_slno1'].value		=	"";
-			f['member_slno2'].value		=	"";
-			f['member_name'].value		=	"";
-			f['boss_name'].value			=	"";
-			f['condition'].value			=	"";
-			f['category'].value				=	"";
-			f['post_code'].value			=	"";
-			f['address'].value				=	"";
-			f['user_id'].value				=	"";
-			f['user_name'].value			=	"";
-			f['position'].value				=	"";
-			f['email'].value					=	"";
-			f['tel_num'].value				=	"";
-			f['division'].value				=	"";
-			f['fax_num'].value				=	"";
-			f['hp1'].value						=	"";
-			f['hp2'].value						=	"";
-			f['hp3'].value						=	"";
-			f['hdn_mode'].value				=	"";
-			//f['hdn_member_no'].value	=	"";
-			f['hdn_person_seq'].value	=	"";
+	if (sVendcd.length == 10) {
+		call("./chk_vendcd.jsp?vendcd=" + sVendcd);
+	} else {
+		f['chk_id'].value = "";
+		f['member_gubun'].value = "";
+		f['member_slno1'].value = "";
+		f['member_slno2'].value = "";
+		f['member_name'].value = "";
+		f['boss_name'].value = "";
+		f['condition'].value = "";
+		f['category'].value = "";
+		f['post_code'].value = "";
+		f['address'].value = "";
+		f['user_id'].value = "";
+		f['user_name'].value = "";
+		f['position'].value = "";
+		f['email'].value = "";
+		f['tel_num'].value = "";
+		f['division'].value = "";
+		f['fax_num'].value = "";
+		f['hp1'].value = "";
+		f['hp2'].value = "";
+		f['hp3'].value = "";
+		f['hdn_mode'].value = "";
+		f['hdn_member_no'].value = "";
+		f['hdn_person_seq'].value = "";
 
-			f['user_id'].className 	= "label";
-			document.getElementById("btn_chkid").style.display				=	"";
-			document.getElementById("font_vendcd_msg").innerHTML			=	"";
-			document.getElementById("span_memner_gubun_nm").innerHTML	=	"";
-
-		}
+		f['user_id'].className = "label";
+		document.getElementById("btn_chkid").style.display = "";
+		document.getElementById("font_vendcd_msg").innerHTML = "";
+		document.getElementById("span_memner_gubun_nm").innerHTML = "";
 	}
-
- function chkId(){
- 	var f = document.forms['form1'];
- 	var user_id = f['user_id'].value;
- 	if(user_id==""){
- 		alert("���̵� �Է� �Ͽ� �ֽʽÿ�.");
- 		return;
- 	}
- 	call("./idchk.jsp?user_id="+user_id);
- }
-
- function validChkId(){
- 	var f = document.forms['form1'];
- 	if(f['chk_id'].value ==""){
- 		alert("���̵� �ߺ� Ȯ���� �� �ֽʽÿ�.");
- 		return false;
- 	}
-
- 	return true;
- }
-
- function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){
-	 var f = document.forms['form1'];
-	f['address'].value=roadFullAddr;
-	f['post_code'].value=zipNo;
 }
- 
+
+function chkId() {
+	var f = document.forms['form1'];
+	var user_id = f['user_id'].value;
+	if (user_id == "") {
+		alert("아이디를 입력 하여 주십시오.");
+		return;
+	}
+	if(6 > user_id.length || user_id.length > 20){
+		alert("아이디는 6자이상 20자 이하만 입력 가능합니다.");
+		return;
+	}
+	call("./idchk.jsp?user_id=" + user_id + "&type=client");
+}
+
+function validChkId() {
+	var f = document.forms['form1'];
+	if (f['chk_id'].value == "") {
+		alert("아이디 중복 확인을 해 주십시오.");
+		return false;
+	}
+	return true;
+}
+
+function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn) {
+	var f = document.forms['form1'];
+	f['address'].value = roadFullAddr;
+	f['post_code'].value = zipNo;
+}
+
+function addClientInfo(data){
+	var f = document.forms['form1'];
+	var member_no = data["member_no"];
+	var join_mem = data["join_mem"];
+	var status = data["status"];
+	
+	if(join_mem == null || join_mem == ""){
+		if(member_no != null && member_no != ""){
+			document.getElementById("font_vendcd_msg").innerHTML = "등록가능한 사업자 번호 입니다.<br> 담당자 정보를 입력 후  회원가입 버튼을 눌러주세요.";
+			f['member_slno1'].value = "";
+			f['member_slno2'].value = "";
+			f['member_name'].value = data["member_name"];
+			f['boss_name'].value = data["boss_name"];
+			f['condition'].value = data["condition"];
+			f['category'].value = data["category"];
+			f['post_code'].value = data["post_code"];
+			f['address'].value = data["address"];
+			f['user_id'].value = data["user_id"];
+			f['user_name'].value = "";
+			f['position'].value = "";
+			f['email'].value = "";
+			f['tel_num'].value = "";
+			f['division'].value = "";
+			f['fax_num'].value = "";
+			f['hp1'].value = "";
+			f['hp2'].value = "";
+			f['hp3'].value = "";
+			f['hdn_mode'].value = "NEW_M";
+			f['hdn_member_no'].value = data["hdn_member_no"];
+			f['hdn_person_seq'].value = "";
+			f['user_id'].readOnly = false;
+			f['user_id'].className = "label";
+			document.getElementById("btn_chkid").style.display = "";
+			f['chk_id'].value = "";
+		}else{
+			document.getElementById("font_vendcd_msg").innerHTML = "해당 사업자번호의 가입이 불가합니다. 고객센터로 문의 하시기 바랍니다.";
+			f['member_slno1'].value = "";
+			f['member_slno2'].value = "";
+			f['member_name'].value = "";
+			f['boss_name'].value = "";
+			f['condition'].value = "";
+			f['category'].value = "";
+			f['post_code'].value = "";
+			f['address'].value = "";
+			f['user_id'].value = "";
+			f['user_name'].value = "";
+			f['position'].value = "";
+			f['email'].value = "";
+			f['tel_num'].value = "";
+			f['division'].value = "";
+			f['fax_num'].value = "";
+			f['hp1'].value = "";
+			f['hp2'].value = "";
+			f['hp3'].value = "";
+			f['hdn_mode'].value = "ERROR";
+			f['hdn_member_no'].value = "";
+			f['hdn_person_seq'].value = "";
+			f['user_id'].readOnly = false;
+			f['user_id'].className = "label";
+			document.getElementById("btn_chkid").style.display = "";
+			f['chk_id'].value = "";
+		}
+	}else{
+		// 가입불가 로직 처리
+		if (status == "00") {
+			document.getElementById("font_vendcd_msg").innerHTML = "해당 사업자번호는 회원탈퇴 상태입니다.<br>다시 회원으로 가입하시려면, 고객지원센터에 문의하시기 바랍니다.";
+			f['member_slno1'].value = "";
+			f['member_slno2'].value = "";
+			f['member_name'].value = "";
+			f['boss_name'].value = "";
+			f['condition'].value = "";
+			f['category'].value = "";
+			f['post_code'].value = "";
+			f['address'].value = "";
+			f['user_id'].value = "";
+			f['user_name'].value = "";
+			f['position'].value = "";
+			f['email'].value = "";
+			f['tel_num'].value = "";
+			f['division'].value = "";
+			f['fax_num'].value = "";
+			f['hp1'].value = "";
+			f['hp2'].value = "";
+			f['hp3'].value = "";
+			f['hdn_mode'].value = "BREAK";
+			f['hdn_member_no'].value = "";
+			f['hdn_person_seq'].value = "";
+			f['user_id'].readOnly = false;
+			f['user_id'].className = "label";
+			document.getElementById("btn_chkid").style.display = "";
+			f['chk_id'].value = "";
+		}else if(status == "01" || status == "03"){
+			// TCB_PERSON 테이블만 INSERT
+			document.getElementById("font_vendcd_msg").innerHTML = "등록가능한 사업자 번호 입니다.<br> 담당자 정보를 입력 후  회원가입 버튼을 눌러주세요.";
+			f['member_slno1'].value = "";
+			f['member_slno2'].value = "";
+			f['member_name'].value = data["member_name"];
+			f['boss_name'].value = data["boss_name"];
+			f['condition'].value = data["condition"];
+			f['category'].value = data["category"];
+			f['post_code'].value = data["post_code"];
+			f['address'].value = data["address"];
+			f['user_id'].value = data["user_id"];
+			f['user_name'].value = "";
+			f['position'].value = "";
+			f['email'].value = "";
+			f['tel_num'].value = "";
+			f['division'].value = "";
+			f['fax_num'].value = "";
+			f['hp1'].value = "";
+			f['hp2'].value = "";
+			f['hp3'].value = "";
+			f['hdn_mode'].value = "NEW_P";
+			f['hdn_member_no'].value = data["hdn_member_no"];
+			f['hdn_person_seq'].value = "";
+			f['user_id'].readOnly = false;
+			f['user_id'].className = "label";
+			document.getElementById("btn_chkid").style.display = "";
+			f['chk_id'].value = "";
+		}/* else if(status == "02"){
+			var sMemberSlno1 = "";
+			var sMemberSlno2 = "";
+			if (data["member_slno"].length() == 13) {
+				sMemberSlno1 = data["member_slno"].substring(0,6);
+				sMemberSlno2 = data["member_slno"].substring(6);
+			}
+			document.getElementById("font_vendcd_msg").innerHTML = "해당 사업자번호는 거래처에서 미리 입력한 정보가 있습니다. 나머지 정보를 입력 후 회원가입 버튼을 눌러주세요.";
+			f['member_slno1'].value = sMemberSlno1;
+			f['member_slno2'].value = sMemberSlno2;
+			f['member_name'].value = data["member_name"];
+			f['boss_name'].value = data["boss_name"];
+			f['condition'].value = data["condition"];
+			f['category'].value = data["category"];
+			f['post_code'].value = data["post_code"];
+			f['address'].value = data["address"];
+			f['user_id'].value = data["user_id"];
+			f['user_name'].value = data["user_name"];
+			f['position'].value = data["position"];
+			f['email'].value = data["email"];
+			f['tel_num'].value = data["tel_num"];
+			f['division'].value = data["division"];
+			f['fax_num'].value = data["fax_num"];
+			f['hp1'].value = data["hp1"];
+			f['hp2'].value = data["hp2"];
+			f['hp3'].value = data["hp3"];
+			f['hdn_mode'].value = "UPDATE";
+			f['hdn_member_no'].value = data["hdn_member_no"];
+			f['hdn_person_seq'].value = data["hdn_person_seq"];
+			if (ds.getString("user_id") != null && ds.getString("user_id").length() > 0) {
+				f['user_id'].readOnly = true;
+				f['user_id'].className = "in_readonly";
+				document.getElementById("btn_chkid").style.display = "none";
+				f['chk_id'].value = "1";
+			}
+		} */
+	}
+}
 </script>
 {{form_script}}

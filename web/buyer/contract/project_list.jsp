@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 f.addElement("s_field_name", u.request("s_field_name"), null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -13,13 +13,13 @@ list.addWhere("member_no='"+_member_no+"'");
 list.addSearch("lower(field_name)", f.get("s_field_name").toLowerCase(), "LIKE");
 list.setOrderBy("field_seq desc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet rs = list.getDataSet();
 
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.project_list");
-p.setVar("popup_title","ÇÁ·ÎÁ§Æ® Á¤º¸");
+p.setVar("popup_title","í”„ë¡œì íŠ¸ ì •ë³´");
 p.setLoop("list", rs);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

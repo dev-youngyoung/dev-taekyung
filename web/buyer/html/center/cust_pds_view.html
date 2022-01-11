@@ -1,4 +1,4 @@
-<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
   <div class="div_table">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
       <colgroup>
@@ -8,41 +8,41 @@
         <col width="35%">
       </colgroup>
       <tr>
-        <th>¾÷Ã¼¸í</th>
+        <th>ì—…ì²´ëª…</th>
         <td colspan="3">{{pds.member_name}}</td>
       </tr>
       <tr>
-        <th>µî·ÏÀÚ</th>
+        <th>ë“±ë¡ì</th>
         <td>{{pds.reg_name}}</td>
-        <th>µî·ÏÀÏÀÚ</th>
+        <th>ë“±ë¡ì¼ì</th>
         <td>{{pds.reg_date}}</td>
       </tr>
       <tr>
-        <th class="req-check">Á¦¸ñ</th>
+        <th class="req-check">ì œëª©</th>
         <td colspan="3">{{pds.title}}</td>
       </tr>
       <tr>
-        <th class="req-check">³»¿ë</th>
+        <th class="req-check">ë‚´ìš©</th>
         <td colspan="3" height="200">
           {{pds.contents}}
         </td>
       </tr>
       <!-- IF START 'fds' -->
       <tr>
-        <th>Ã·ºÎÆÄÀÏ</th>
+        <th>ì²¨ë¶€íŒŒì¼</th>
         <td colspan="3">
           <table width="100%" border="0" cellpadding="0" cellspacing="0" >
             <colgroup>
               <col width="100%">
             </colgroup>
             <tr>
-              <th>¹®¼­¸í</th>
+              <th>ë¬¸ì„œëª…</th>
             </tr>
             <!-- LOOP START 'fds' -->
             <tr>
               <td>{{fds.doc_name}}.{{fds.file_ext}}
                 &nbsp;&nbsp;&nbsp;{{fds.file_size_str}}
-                <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pds','{{fds.file_path}}{{fds.file_name}}','{{fds.doc_name}}.{{fds.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
+                <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pds','{{fds.file_path}}{{fds.file_name}}','{{fds.doc_name}}.{{fds.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
               </td>
             </tr>
             <!-- LOOP END 'fds' -->
@@ -54,7 +54,7 @@
   </div>
 
   <div class="btn-group-wrap">
-    <button type="button" name="btn_list" class="btn color ico-list" value="¸ñ·Ïº¸±â" onClick="location.href='cust_pds_list.jsp?{{list_query}}';"><span></span>¸ñ·Ïº¸±â</button>
+    <button type="button" name="btn_list" class="btn color ico-list" value="ëª©ë¡ë³´ê¸°" onClick="location.href='cust_pds_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ë³´ê¸°</button>
   </div>
 </form>
 {{form_script}}
@@ -67,19 +67,19 @@
                 if(file_gubun == ""){
                     var file_pds = f['file_pds_'+i].value;
                     if( (doc_name=="" && file_pds!="")|| (doc_name!="" && file_pds=="")){
-                        alert("¹®¼­¸í°ú ÆÄÀÏÁ¤º¸¸¦ Á¤È®È÷ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+                        alert("ë¬¸ì„œëª…ê³¼ íŒŒì¼ì •ë³´ë¥¼ ì •í™•íˆ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
                         return false;
                     }
                 }
                 if(file_gubun != ""){
                     if(doc_name==""){
-                        alert("¹®¼­¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+                        alert("ë¬¸ì„œëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
                         return false;
                     }
                 }
             }
 
-            if(!confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+            if(!confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 return false;
             }
             return true;

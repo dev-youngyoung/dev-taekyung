@@ -8,9 +8,9 @@ import java.lang.reflect.*;
 import javax.servlet.http.*;
 
 /******************************
- * À¯¿ëÇÏ°Ô »ç¿ëµÇ´Â ÇÔ¼öµé.
- * ½ÇÁ¦·Î jsp·Î ±¸ÇöµÈ°ÍÀº ¾Æ´Ï°í class·Î µÇ¾îÀÖÀ½.<br>
- * »ç¿ë¹ıÀº Utils.func() ÀÓ
+ * ìœ ìš©í•˜ê²Œ ì‚¬ìš©ë˜ëŠ” í•¨ìˆ˜ë“¤.
+ * ì‹¤ì œë¡œ jspë¡œ êµ¬í˜„ëœê²ƒì€ ì•„ë‹ˆê³  classë¡œ ë˜ì–´ìˆìŒ.<br>
+ * ì‚¬ìš©ë²•ì€ Utils.func() ì„
 *******************************/
 public class Utils {
 	public static class mException extends Exception {
@@ -44,8 +44,8 @@ public class Utils {
 		df[6] = new DecimalFormat("0");
 	}
 /******************************
- * ½ºÆ®¸µÀÇ ÀÏºÎ¹®ÀÚ¸¦ ´Ù¸¥ ¹®ÀÚ·Î Ä¡È¯.
- * String b°¡ "" ÀÏ°æ¿ì ¹®ÀÚ»èÁ¦ÀÇ È¿°ú°¡ ÀÖÀ½.
+ * ìŠ¤íŠ¸ë§ì˜ ì¼ë¶€ë¬¸ìë¥¼ ë‹¤ë¥¸ ë¬¸ìë¡œ ì¹˜í™˜.
+ * String bê°€ "" ì¼ê²½ìš° ë¬¸ìì‚­ì œì˜ íš¨ê³¼ê°€ ìˆìŒ.
 *******************************/
 	public static String replaceMark(String str, char a, String b) {
 		if(str==null) return "";
@@ -60,7 +60,7 @@ public class Utils {
 	}
 
 /******************************
- * ½ºÆ®¸µÀº ±¸ºĞ¹®ÀÚ·Î Àß¶ó¼­ List·Î Ãâ·ÂÇÔ.
+ * ìŠ¤íŠ¸ë§ì€ êµ¬ë¶„ë¬¸ìë¡œ ì˜ë¼ì„œ Listë¡œ ì¶œë ¥í•¨.
 *******************************/
 	public static List splitlst(String str, char a) {
 		List ret = new Vector();
@@ -85,7 +85,7 @@ public class Utils {
 		return ret;
 	}
 /******************************
- * ½ºÆ®¸µÀ» ±¸ºĞ¹®ÀÚ·Î Àß¶ó¼­ String[]·Î Ãâ·Â
+ * ìŠ¤íŠ¸ë§ì„ êµ¬ë¶„ë¬¸ìë¡œ ì˜ë¼ì„œ String[]ë¡œ ì¶œë ¥
 *******************************/
 	public static String[] split(String str, char a) { List ret = splitlst(str, a); String[] b=new String[0]; return (String[])ret.toArray(b); }
 	public static String[] split(String str, char a, int max) { List ret = splitlst(str, a, max); String[] b=new String[0]; return (String[])ret.toArray(b); }
@@ -97,13 +97,13 @@ public class Utils {
 	}
 
 /******************************
- * ½ºÆ®¸µÀÇ ¿À¸¥ÂÊ °ø¹éÀ» ÀÚ¸§. ÅÇ¹®ÀÚ´Â ±×´ë·Î µÒ.
+ * ìŠ¤íŠ¸ë§ì˜ ì˜¤ë¥¸ìª½ ê³µë°±ì„ ìë¦„. íƒ­ë¬¸ìëŠ” ê·¸ëŒ€ë¡œ ë‘ .
 *******************************/
 	public static String rtrim(String str) {
 		if(str==null || str.length()==0) return "";
 		char[] arr_char = str.toCharArray();
 		int i=arr_char.length-1;
-		for(;i>=0&&(arr_char[i]<=' '||arr_char[i]=='¡¡'); i--) ;
+		for(;i>=0&&(arr_char[i]<=' '||arr_char[i]=='ã€€'); i--) ;
 		if(i<0) return "";
 		else return str.substring(0, i+1);
 	}
@@ -131,7 +131,7 @@ public class Utils {
 	private static String blank = "                                                                            ";
 	private static String zero  = "0000000000000000000000000000000000000000000000000000000000000000000000000000";
 /******************************
- * ¼ıÀÚ¸¦ ÁöÁ¤µÈ ±æÀÌ¸¸Å­ ¹®ÀÚ¿­·Î ¹Ù²Ù°í ¿ŞÂÊÀº °ø¹éÀ¸·Î Ã¤¿ò
+ * ìˆ«ìë¥¼ ì§€ì •ëœ ê¸¸ì´ë§Œí¼ ë¬¸ìì—´ë¡œ ë°”ê¾¸ê³  ì™¼ìª½ì€ ê³µë°±ìœ¼ë¡œ ì±„ì›€
 *******************************/
 	public static String pads(int val, int len) throws Exception {
 		String ret = Integer.toString(val);
@@ -141,7 +141,7 @@ public class Utils {
 	}
 
 /******************************
- * ¼ıÀÚ¸¦ ÁöÁ¤µÈ ±æÀÌ¸¸Å­ ¹®ÀÚ¿­·Î ¹Ù²Ù°í ¿ŞÂÊÀº '0'À¸·Î Ã¤¿ò
+ * ìˆ«ìë¥¼ ì§€ì •ëœ ê¸¸ì´ë§Œí¼ ë¬¸ìì—´ë¡œ ë°”ê¾¸ê³  ì™¼ìª½ì€ '0'ìœ¼ë¡œ ì±„ì›€
 *******************************/
 	public static String padz(int val, int len) throws Exception {
 		String ret = Integer.toString(val);
@@ -151,7 +151,7 @@ public class Utils {
 	}
 
 /******************************
- * ¹®ÀÚ¿­À» ÁöÁ¤µÈ ±æÀÌ·Î ¸¸µç´Ù. ÀÔ·Â ½ºÆ®¸µÀÌ lenº¸´Ù Å©¸é¼­ is_trimÀ» true·Î ¼³Á¤ÇÒ °æ¿ì´Â ±æÀÌ¸¸Å­ ÀÚ¸¥´Ù.
+ * ë¬¸ìì—´ì„ ì§€ì •ëœ ê¸¸ì´ë¡œ ë§Œë“ ë‹¤. ì…ë ¥ ìŠ¤íŠ¸ë§ì´ lenë³´ë‹¤ í¬ë©´ì„œ is_trimì„ trueë¡œ ì„¤ì •í•  ê²½ìš°ëŠ” ê¸¸ì´ë§Œí¼ ìë¥¸ë‹¤.
 *******************************/
 	public static String padd(String in, int len, boolean is_trim) {
 		if(in.length()>len) {
@@ -164,7 +164,7 @@ public class Utils {
 	}
 
 /******************************
- * ¹®ÀÚ¿­À» ÁöÁ¤µÈ ±æÀÌ·Î ¸¸µç´Ù. ÀÔ·Â ½ºÆ®¸µÀÌ lenº¸´Ù Å©¸é¼­ is_trimÀ» true·Î ¼³Á¤ÇÒ °æ¿ì´Â ±æÀÌ¸¸Å­ ÀÚ¸¥´Ù. ½ºÆ®¸µÀÇ ±æÀÌ°¡ ÀÛÀ»°æ¿ì ¿ŞÂÊ¿¡ °ø¹éÀ» ºÙÀÎ´Ù.
+ * ë¬¸ìì—´ì„ ì§€ì •ëœ ê¸¸ì´ë¡œ ë§Œë“ ë‹¤. ì…ë ¥ ìŠ¤íŠ¸ë§ì´ lenë³´ë‹¤ í¬ë©´ì„œ is_trimì„ trueë¡œ ì„¤ì •í•  ê²½ìš°ëŠ” ê¸¸ì´ë§Œí¼ ìë¥¸ë‹¤. ìŠ¤íŠ¸ë§ì˜ ê¸¸ì´ê°€ ì‘ì„ê²½ìš° ì™¼ìª½ì— ê³µë°±ì„ ë¶™ì¸ë‹¤.
 *******************************/
 	public static String paddl(String in, int len, boolean is_trim) {
 		if(in.length()>len) {
@@ -186,8 +186,8 @@ public class Utils {
 *******************************/
 	public static String paddL(String in, int len, char ch) { return paddL(in, len, ch, false); }
 /******************************
-	¹®ÀÚ¿­À» ÁöÁ¤µÈ ±æÀÌ·Î ¸¸µç´Ù. ÀÔ·Â ½ºÆ®¸µÀÌ lenº¸´Ù Å©¸é¼­ is_trimÀ» true·Î ¼³Á¤ÇÒ °æ¿ì´Â ±æÀÌ¸¸Å­ ÀÚ¸¥´Ù. ½ºÆ®¸µÀÇ ±æÀÌ°¡ ÀÛÀ»°æ¿ì ¿ŞÂÊ¿¡ °ø¹éÀ» ºÙÀÎ´Ù.
-	ÀÌ ÇÔ¼ö´Â ÇÑ±ÛÀÇ °æ¿ì¿¡ 2byte·Î °è»êÇØ¼­ Ãâ·ÂÇÑ´Ù.
+	ë¬¸ìì—´ì„ ì§€ì •ëœ ê¸¸ì´ë¡œ ë§Œë“ ë‹¤. ì…ë ¥ ìŠ¤íŠ¸ë§ì´ lenë³´ë‹¤ í¬ë©´ì„œ is_trimì„ trueë¡œ ì„¤ì •í•  ê²½ìš°ëŠ” ê¸¸ì´ë§Œí¼ ìë¥¸ë‹¤. ìŠ¤íŠ¸ë§ì˜ ê¸¸ì´ê°€ ì‘ì„ê²½ìš° ì™¼ìª½ì— ê³µë°±ì„ ë¶™ì¸ë‹¤.
+	ì´ í•¨ìˆ˜ëŠ” í•œê¸€ì˜ ê²½ìš°ì— 2byteë¡œ ê³„ì‚°í•´ì„œ ì¶œë ¥í•œë‹¤.
 *******************************/
 	public static String paddL(String in, int len, char ch, boolean is_trim) {
 		byte[] inb = in.getBytes();
@@ -485,7 +485,7 @@ public class Utils {
 
 /******************************
 *******************************/
-	public static HashMap lst2map(int ikey, List lst) { // °¢°¢ÀÇ element°¡ object[]ÀÎ »óÅÂ¿¡¼­ object[key]¸¦ °¡Áö°í HashMapÀ¸·Î º¯È¯
+	public static HashMap lst2map(int ikey, List lst) { // ê°ê°ì˜ elementê°€ object[]ì¸ ìƒíƒœì—ì„œ object[key]ë¥¼ ê°€ì§€ê³  HashMapìœ¼ë¡œ ë³€í™˜
 		HashMap map = new HashMap();
 		Iterator it = lst.iterator();
 		while(it.hasNext()) {
@@ -497,7 +497,7 @@ public class Utils {
 
 /******************************
 *******************************/
-	public static List lst2obj(List lst) { // °¢°¢ÀÇ element¸¦ list¿¡¼­ object[] ·Î º¯È¯
+	public static List lst2obj(List lst) { // ê°ê°ì˜ elementë¥¼ listì—ì„œ object[] ë¡œ ë³€í™˜
 		List ret = new ArrayList();
 		Iterator it = lst.iterator();
 		while(it.hasNext())
@@ -507,7 +507,7 @@ public class Utils {
 
 /******************************
 *******************************/
-	public static List obj2lst(List lst) { // °¢°¢ÀÇ element¸¦ object[]¿¡¼­ list ·Î º¯È¯
+	public static List obj2lst(List lst) { // ê°ê°ì˜ elementë¥¼ object[]ì—ì„œ list ë¡œ ë³€í™˜
 		List ret = new ArrayList();
 		Iterator it = lst.iterator();
 		while(it.hasNext())
@@ -517,7 +517,7 @@ public class Utils {
 
 /******************************
 *******************************/
-	public static List map2obj(List lst, String[] sKey) { // °¢°¢ÀÇ element¸¦ HashMap¿¡¼­ Object[] ·Î º¯È¯
+	public static List map2obj(List lst, String[] sKey) { // ê°ê°ì˜ elementë¥¼ HashMapì—ì„œ Object[] ë¡œ ë³€í™˜
 		List ret = new ArrayList();
 		Iterator it = lst.iterator();
 		while(it.hasNext()) {
@@ -532,7 +532,7 @@ public class Utils {
 
 /******************************
 *******************************/
-	public static List obj2map(List lst, String[] sKey) { // °¢°¢ÀÇ element¸¦ Object[]¿¡¼­ HashMap ·Î º¯È¯
+	public static List obj2map(List lst, String[] sKey) { // ê°ê°ì˜ elementë¥¼ Object[]ì—ì„œ HashMap ë¡œ ë³€í™˜
 		List ret = new ArrayList();
 		Iterator it = lst.iterator();
 		while(it.hasNext()) {
@@ -547,7 +547,7 @@ public class Utils {
 
 /******************************
 *******************************/
-	public static List obj2str(List lst) { // °¢°¢ÀÇ element¸¦ Object[]¿¡¼­ String[] ·Î º¯È¯
+	public static List obj2str(List lst) { // ê°ê°ì˜ elementë¥¼ Object[]ì—ì„œ String[] ë¡œ ë³€í™˜
 		List ret = new ArrayList();
 		Iterator it = lst.iterator();
 		while(it.hasNext()) {
@@ -699,11 +699,11 @@ public class Utils {
 	}
 
 /******************************
- * ListÀÇ µ¥ÀÌÅ¸ °ªÀ» ½ºÆ®¸µÀ¸·Î º¯È¯ÇØ¼­ Ãâ·ÂÇÑ´Ù. µğÆúÆ® ±¸ºĞ¹®ÀÚ´Â &lt;br&gt;.
+ * Listì˜ ë°ì´íƒ€ ê°’ì„ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€í™˜í•´ì„œ ì¶œë ¥í•œë‹¤. ë””í´íŠ¸ êµ¬ë¶„ë¬¸ìëŠ” &lt;br&gt;.
 *******************************/
 	public static String out_o(List arg) { return out_o(arg, "<br>");	}
 /******************************
- * ListÀÇ µ¥ÀÌÅ¸ °ªÀ» ½ºÆ®¸µÀ¸·Î º¯È¯ÇØ¼­ Ãâ·ÂÇÑ´Ù.
+ * Listì˜ ë°ì´íƒ€ ê°’ì„ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€í™˜í•´ì„œ ì¶œë ¥í•œë‹¤.
 *******************************/
 	public static String out_o(List arg, String app) {
 		StringBuffer buffer = new StringBuffer();
@@ -792,14 +792,14 @@ public class Utils {
 	}
 
 /******************************
- * ½ºÆ®¸µÀÌ ÇÑ±ÛÄÚµåÆäÀÌÁö¿¡ ¸Â´ÂÁö È®ÀÎ. DB¿¡ ÀúÀåÇÒ¶§ ¿¡·¯¸¦ ¹æÁöÇÏ±â À§ÇÔÀÓ.
+ * ìŠ¤íŠ¸ë§ì´ í•œê¸€ì½”ë“œí˜ì´ì§€ì— ë§ëŠ”ì§€ í™•ì¸. DBì— ì €ì¥í• ë•Œ ì—ëŸ¬ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•¨ì„.
 *******************************/
 	public static boolean checkStr(String str) {
 		return str.equals(new String(str.getBytes()));
 	}
 
 /******************************
- * ½ºÆ®¸µÀÌ ÇÑ±ÛÄÚµåÆäÀÌÁö¿¡ ¸Â´ÂÁö È®ÀÎ. DB¿¡ ÀúÀåÇÒ¶§ ¿¡·¯¸¦ ¹æÁöÇÏ±â À§ÇÔÀÓ.
+ * ìŠ¤íŠ¸ë§ì´ í•œê¸€ì½”ë“œí˜ì´ì§€ì— ë§ëŠ”ì§€ í™•ì¸. DBì— ì €ì¥í• ë•Œ ì—ëŸ¬ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•¨ì„.
 *******************************/
 	public static boolean checkStr(String str, String[] ret) {
 		String cret;
@@ -856,7 +856,7 @@ public class Utils {
 	}
 
 /******************************
- * Object Array¿¡¼­ idxÀÇ À§Ä¡¿¡ °ªÀ» ³¢¿ö³Ö´Â´Ù. ¸¶Áö¸· µ¥ÀÌÅ¸´Â »èÁ¦µÊ
+ * Object Arrayì—ì„œ idxì˜ ìœ„ì¹˜ì— ê°’ì„ ë¼ì›Œë„£ëŠ”ë‹¤. ë§ˆì§€ë§‰ ë°ì´íƒ€ëŠ” ì‚­ì œë¨
 *******************************/
 	public static void insert(Object[] obj, int idx, Object ins) {
 		int i = i=obj.length-1;
@@ -865,7 +865,7 @@ public class Utils {
 	}
 
 /******************************
- * Object Array¿¡¼­ idx À§Ä¡ °ªÀ» »èÁ¦ÇÑ´Ù. ¸¶Áö¸· µ¥ÀÌÅ¸´Â null·Î Ã¤¿ò
+ * Object Arrayì—ì„œ idx ìœ„ì¹˜ ê°’ì„ ì‚­ì œí•œë‹¤. ë§ˆì§€ë§‰ ë°ì´íƒ€ëŠ” nullë¡œ ì±„ì›€
 *******************************/
 	public static void delete(Object[] obj, int idx) {
 		for(int i=idx;i<obj.length-1;i++) obj[i] = obj[i+1];
@@ -934,7 +934,7 @@ public class Utils {
 	}
 
 /******************************
- * ¹®ÀÚ¿­ÀÇ µ¥ÀÌÅ¸¸¦ ºĞ¼®ÇÏ¿© ³¯Â¥ÇüÅÂ(yyyyMMDD)ÀÇ ½ºÆ®¸µÀ» Ãâ·ÂÇÑ´Ù. ¹®ÀÚ¿­ Áß°£ÀÇ ¼ıÀÚ°¡ ¾Æ´Ñ ¹®ÀÚ´Â ¹«½ÃµÇ¸ç ¼¼±â(20, 19)°¡ Ç¥½ÃµÇÁö ¾ÊÀ¸¸é Ãß°¡ÇÑ´Ù.
+ * ë¬¸ìì—´ì˜ ë°ì´íƒ€ë¥¼ ë¶„ì„í•˜ì—¬ ë‚ ì§œí˜•íƒœ(yyyyMMDD)ì˜ ìŠ¤íŠ¸ë§ì„ ì¶œë ¥í•œë‹¤. ë¬¸ìì—´ ì¤‘ê°„ì˜ ìˆ«ìê°€ ì•„ë‹Œ ë¬¸ìëŠ” ë¬´ì‹œë˜ë©° ì„¸ê¸°(20, 19)ê°€ í‘œì‹œë˜ì§€ ì•Šìœ¼ë©´ ì¶”ê°€í•œë‹¤.
 *******************************/
 	public static String ymd(String str) throws Exception {
 		if(str==null) return "";
@@ -984,7 +984,7 @@ public class Utils {
 	}
 
 /******************************
- * ¹®ÀÚ¿­ÀÇ µ¥ÀÌÅ¸¸¦ ºĞ¼®ÇÏ¿© ³¯Â¥ÇüÅÂ(yyyyMMDD)ÀÇ ½ºÆ®¸µÀ» Ãâ·ÂÇÑ´Ù. ¹®ÀÚ¿­ Áß°£ÀÇ ¼ıÀÚ°¡ ¾Æ´Ñ ¹®ÀÚ´Â ¹«½ÃµÇ¸ç ¼¼±â(20, 19)°¡ Ç¥½ÃµÇÁö ¾ÊÀ¸¸é Ãß°¡ÇÑ´Ù.
+ * ë¬¸ìì—´ì˜ ë°ì´íƒ€ë¥¼ ë¶„ì„í•˜ì—¬ ë‚ ì§œí˜•íƒœ(yyyyMMDD)ì˜ ìŠ¤íŠ¸ë§ì„ ì¶œë ¥í•œë‹¤. ë¬¸ìì—´ ì¤‘ê°„ì˜ ìˆ«ìê°€ ì•„ë‹Œ ë¬¸ìëŠ” ë¬´ì‹œë˜ë©° ì„¸ê¸°(20, 19)ê°€ í‘œì‹œë˜ì§€ ì•Šìœ¼ë©´ ì¶”ê°€í•œë‹¤.
 *******************************/
 	public static String date(String str) throws Exception {
 		if(str==null) return "";
@@ -1003,7 +1003,7 @@ public class Utils {
 	}
 
 /******************************
- * ¹®ÀÚ¿­Áß ¼ıÀÚ°¡ ¾Æ´Ñ ¹®ÀÚµéÀº »èÁ¦ÇÏ°í Ãâ·ÂÇÑ´Ù. ¼ıÀÚ°ªÀÇ ','¸¦ Á¦°ÅÇÏ´Âµ¥ À¯¿ëÇÏ´Ù.
+ * ë¬¸ìì—´ì¤‘ ìˆ«ìê°€ ì•„ë‹Œ ë¬¸ìë“¤ì€ ì‚­ì œí•˜ê³  ì¶œë ¥í•œë‹¤. ìˆ«ìê°’ì˜ ','ë¥¼ ì œê±°í•˜ëŠ”ë° ìœ ìš©í•˜ë‹¤.
 *******************************/
 	public static String num(String str) throws Exception {
 		if(str==null) return "";
@@ -1017,7 +1017,7 @@ public class Utils {
 	}
 
 /******************************
- * URLÁß¿¡ Æ¯¼ö¹®ÀÚ´Â %XX ·Î Ç¥½ÃµÇ´Â ÀÌ°ÍÀ» ÀÏ¹İ ¹®ÀÚ·Î ¹Ù²ãÁØ´Ù.
+ * URLì¤‘ì— íŠ¹ìˆ˜ë¬¸ìëŠ” %XX ë¡œ í‘œì‹œë˜ëŠ” ì´ê²ƒì„ ì¼ë°˜ ë¬¸ìë¡œ ë°”ê¿”ì¤€ë‹¤.
 *******************************/
 	public static String cvt_url(String str) throws Exception {
 		byte[] dat = str.getBytes();
@@ -1038,7 +1038,7 @@ public class Utils {
 	}
 
 /******************************
- * ÀÌÁßÅ°°ªÀ» °°´Â ¸®½ºÆ®¿¡¼­ ¸Ç ¾ÕÀÇ Å°¸¦ Ãâ·ÂÇÑ´Ù. º¸ÅëÀÇ Collecions.binarySearch¸¦ ÇÏ°Ô µÇ¸é Áß°£ÀÇ °ªÀ» Ãâ·ÂÇÒ¼öµµ ÀÖ´Ù.
+ * ì´ì¤‘í‚¤ê°’ì„ ê°™ëŠ” ë¦¬ìŠ¤íŠ¸ì—ì„œ ë§¨ ì•ì˜ í‚¤ë¥¼ ì¶œë ¥í•œë‹¤. ë³´í†µì˜ Collecions.binarySearchë¥¼ í•˜ê²Œ ë˜ë©´ ì¤‘ê°„ì˜ ê°’ì„ ì¶œë ¥í• ìˆ˜ë„ ìˆë‹¤.
 *******************************/
 	public static int binarySearch(List l, Object okey, Comparator c) {
 		int idx = Collections.binarySearch(l, okey, c);

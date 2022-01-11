@@ -1,9 +1,9 @@
-<form novalidate name="form1" method="post" onSubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="post" onSubmit="return formSubmit(this)">
 <input type="hidden" name="conf_text">
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>¾÷Ã¼Á¤º¸</h3>
+			<h3>ì—…ì²´ì •ë³´</h3>
 		</div>
 	</div>
 	<table>
@@ -14,11 +14,11 @@
 		<col width="35%">
 	</colgroup>
 	<tr>
-		<th>¾÷Ã¼¸í</th>
+		<th>ì—…ì²´ëª…</th>
 		<td>
 			{{member.member_name}}
 		</td>
-		<th>È¸¿ø¹øÈ£</th>
+		<th>íšŒì›ë²ˆí˜¸</th>
 		<td>
 			{{member.member_no}}
 		</td>
@@ -27,7 +27,7 @@
 
 	<div class="util-row">
 		<div class="push-left">
-			<h3>ÀÔÂûÄÚµå¼³Á¤</h3>
+			<h3>ìž…ì°°ì½”ë“œì„¤ì •</h3>
 		</div>
 	</div>
 	<table>
@@ -36,7 +36,7 @@
 		<col>
 	</colgroup>
 	<tr>
-		<th class="req-check">ÀÔÂûÀ¯Çü</th>
+		<th class="req-check">ìž…ì°°ìœ í˜•</th>
 		<td>
 			<!-- LOOP START 'code_bid_kind_cd' -->
 			<input type="checkbox" name="bid_kind_cd" value="'{{code_bid_kind_cd.id}}'">{{code_bid_kind_cd.value}}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,22 +44,22 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">ÀÔÂû¹æ¹ý</th>
+		<th class="req-check">ìž…ì°°ë°©ë²•</th>
 		<td>
 			<!-- LOOP START 'code_bid_method' -->
 			<input type="checkbox" name="bid_method" value="'{{code_bid_method.id}}'">{{code_bid_method.value}}&nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- LOOP END 'code_bid_method' -->
 			<br>
-			ÀÏ¹Ý/Á¦ÇÑ °æÀï  ÀüÃ¼°ø°³ ¿©ºÎ:
+			ì¼ë°˜/ì œí•œ ê²½ìŸ  ì „ì²´ê³µê°œ ì—¬ë¶€:
 			<select name="public_bid_yn">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="Y">ÀüÃ¼°ø°³</option>
-				<option value="N">Áö¸í°ø°³</option>
+				<option value="">-ì„ íƒ-</option>
+				<option value="Y">ì „ì²´ê³µê°œ</option>
+				<option value="N">ì§€ëª…ê³µê°œ</option>
 			</select>
 			<br>
-			<font style="color:blue">±âº»°ª</font> :
+			<font style="color:blue">ê¸°ë³¸ê°’</font> :
 			<select name="default_bid_method">
-				<option value="">-¾øÀ½-</option>
+				<option value="">-ì—†ìŒ-</option>
 				<!-- LOOP START 'code_bid_method' -->
 				<option value="{{code_bid_method.id}}">{{code_bid_method.value}}</option>
 				<!-- LOOP END 'code_bid_method' -->
@@ -68,14 +68,14 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">³«Âû¹æ¹ý</th>
+		<th class="req-check">ë‚™ì°°ë°©ë²•</th>
 		<td>
 			<!-- LOOP START 'code_succ_method' -->
 			<input type="checkbox" name="succ_method" value="'{{code_succ_method.id}}'">{{code_succ_method.value}}<br>
 			<!-- LOOP END 'code_succ_method' -->
-			<font style="color:blue">±âº»°ª</font> :
+			<font style="color:blue">ê¸°ë³¸ê°’</font> :
 			<select name="default_succ_method">
-				<option value="">-¾øÀ½-</option>
+				<option value="">-ì—†ìŒ-</option>
 				<!-- LOOP START 'code_succ_method' -->
 				<option value="{{code_succ_method.id}}">{{code_succ_method.value}}</option>
 				<!-- LOOP END 'code_succ_method' -->
@@ -83,7 +83,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">°ßÀû³»¿ª¾ç½Ä</th>
+		<th class="req-check">ê²¬ì ë‚´ì—­ì–‘ì‹</th>
 		<td>
 			<!-- LOOP START 'code_item_form_cd' -->
 			<input type="checkbox" name="item_form_cd" value="'{{code_item_form_cd.id}}'">{{code_item_form_cd.value}}<br>
@@ -91,53 +91,53 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">VATÆ÷ÇÔ¿©ºÎ</th>
+		<th class="req-check">VATí¬í•¨ì—¬ë¶€</th>
 		<td>
-			<input type="radio" name="vat_yn" value="Y">VATÆ÷ÇÔ &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="vat_yn" value="N" checked>VATº°µµ
+			<input type="radio" name="vat_yn" value="Y">VATí¬í•¨ &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="vat_yn" value="N" checked>VATë³„ë„
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">°ßÀû¼öÁ¤»ç¿ë¿©ºÎ</th>
+		<th class="req-check">ê²¬ì ìˆ˜ì •ì‚¬ìš©ì—¬ë¶€</th>
 		<td>
-			<input type="radio" name="nego_yn" value="Y">»ç¿ë &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="nego_yn" value="N">¹Ì»ç¿ë
+			<input type="radio" name="nego_yn" value="Y">ì‚¬ìš© &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="nego_yn" value="N">ë¯¸ì‚¬ìš©
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">ÇÁ·ÎÁ§Æ®°ü¸®<br>»ç¿ë¿©ºÎ</th>
+		<th class="req-check">í”„ë¡œì íŠ¸ê´€ë¦¬<br>ì‚¬ìš©ì—¬ë¶€</th>
 		<td>
-			<input type="radio" name="project_yn" value="Y">»ç¿ë &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="project_yn" value="N" checked>¹Ì»ç¿ë
+			<input type="radio" name="project_yn" value="Y">ì‚¬ìš© &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="project_yn" value="N" checked>ë¯¸ì‚¬ìš©
 		</td>
 	</tr>
 	<tr>
-		<th>º¹¼ö¿¹°¡Á¤º¸</th>
+		<th>ë³µìˆ˜ì˜ˆê°€ì •ë³´</th>
 		<td>
-			ÃßÃ·¹øÈ£°ø°³¿©ºÎ:
+			ì¶”ì²¨ë²ˆí˜¸ê³µê°œì—¬ë¶€:
 			<select name="multi_amt_open_yn">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="N">ºñ°ø°³</option>
-				<option value="Y">°ø°³</option>
+				<option value="">-ì„ íƒ-</option>
+				<option value="N">ë¹„ê³µê°œ</option>
+				<option value="Y">ê³µê°œ</option>
 			</select>
-			/ÃßÃ·¹øÈ£¼±ÅÃ°¹¼ö : <input type="text" name="multi_select_cnt" class="label" size="2" onkeydown="num_only()" onkeypress="num_only()">
+			/ì¶”ì²¨ë²ˆí˜¸ì„ íƒê°¯ìˆ˜ : <input type="text" name="multi_select_cnt" class="label" size="2" onkeydown="num_only()" onkeypress="num_only()">
 			<br>
-			/ ¿¹ºñ°¡°Ý ±¸°£ : - <input type="text" name="multi_amt_srate" class="label" size="2" onkeydown="num_point_only()" onkeypress="num_point_only()"> %¿¡¼­
-						  <input type="text" name="multi_amt_scnt" class="label" size="2" onkeydown="num_only()" onkeypress="num_only()">°³ ~
-						  + <input type="text" name="multi_amt_erate" class="label" size="2" onkeydown="num_point_only()" onkeypress="num_point_only()"> %¿¡¼­
-						  /<input type="text" name="multi_amt_ecnt" class="label" size="2" onkeydown="num_only()" onkeypress="num_only()"> °³
+			/ ì˜ˆë¹„ê°€ê²© êµ¬ê°„ : - <input type="text" name="multi_amt_srate" class="label" size="2" onkeydown="num_point_only()" onkeypress="num_point_only()"> %ì—ì„œ
+						  <input type="text" name="multi_amt_scnt" class="label" size="2" onkeydown="num_only()" onkeypress="num_only()">ê°œ ~
+						  + <input type="text" name="multi_amt_erate" class="label" size="2" onkeydown="num_point_only()" onkeypress="num_point_only()"> %ì—ì„œ
+						  /<input type="text" name="multi_amt_ecnt" class="label" size="2" onkeydown="num_only()" onkeypress="num_only()"> ê°œ
 		</td>
 	</tr>
 	<tr>
-		<th>¿ª°æ¸Å ¿¬ÀåÈ½¼ö</th>
-		<td><input type="text" class="input_n" name="ext_limit" size="3" maxlength="3"> ¹«Á¦ÇÑÀÎ°æ¿ì 999 ÀÔ·Â</td>
+		<th>ì—­ê²½ë§¤ ì—°ìž¥íšŸìˆ˜</th>
+		<td><input type="text" class="input_n" name="ext_limit" size="3" maxlength="3"> ë¬´ì œí•œì¸ê²½ìš° 999 ìž…ë ¥</td>
 	</tr>
 	<tr>
-		<th>³«Âû¼ö¼ö·á°ú±Ý¿©ºÎ</th>
-		<td><label><input type="checkbox" class="input_n" name="succ_pay_yn" value="Y">°ú±Ý½Ã Ã¼Å©</label> </td>
+		<th>ë‚™ì°°ìˆ˜ìˆ˜ë£Œê³¼ê¸ˆì—¬ë¶€</th>
+		<td><label><input type="checkbox" class="input_n" name="succ_pay_yn" value="Y">ê³¼ê¸ˆì‹œ ì²´í¬</label> </td>
 	</tr>
 	<tr>
-		<th>¿¹¿ÜÆäÀÌÁö</th>
+		<th>ì˜ˆì™¸íŽ˜ì´ì§€</th>
 		<td>
 			<textarea name="exp_url" style="width:100%" rows="3" onkeyup="autoTextAreaHeight(this,100)">{{exp_url}}</textarea>
 			<script>autoTextAreaHeight(document.forms['form1']['exp_url'],100)</script>
@@ -146,8 +146,8 @@
 	</table>
 
 	<div class="btn-group-wrap">
-		<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-		<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="submit" class="btn color ico-save"><span></span>ì €ìž¥</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 </div>
 </form>
@@ -157,22 +157,22 @@ function formSubmit(f){
 	if(validate(f)){
 		var bid_kind_cd = GetFormValue("form1","bid_kind_cd");
 		if(bid_kind_cd == ""){
-			alert("ÀÔÂûÀ¯ÇüÀ» ¼±ÅÃ ÇÏ¼¼¿ä");
+			alert("ìž…ì°°ìœ í˜•ì„ ì„ íƒ í•˜ì„¸ìš”");
 			return false;
 		}
 		var bid_method = GetFormValue("form1","bid_method");
 		if(bid_method == ""){
-			alert("ÀÔÂû¹æ¹ýÀ» ¼±ÅÃ ÇÏ¼¼¿ä");
+			alert("ìž…ì°°ë°©ë²•ì„ ì„ íƒ í•˜ì„¸ìš”");
 			return false;
 		}
 		var succ_method = GetFormValue("form1","succ_method");
 		if(succ_method == ""){
-			alert("³«Âû¹æ¹ýÀ» ¼±ÅÃ ÇÏ¼¼¿ä");
+			alert("ë‚™ì°°ë°©ë²•ì„ ì„ íƒ í•˜ì„¸ìš”");
 			return false;
 		}
 		var item_form_cd = GetFormValue("form1","item_form_cd");
 		if(item_form_cd == ""){
-			alert("³»¿ª¾ç½ÄÀ»À» ¼±ÅÃ ÇÏ¼¼¿ä");
+			alert("ë‚´ì—­ì–‘ì‹ì„ì„ ì„ íƒ í•˜ì„¸ìš”");
 			return false;
 		}
 		var vat_yn = GetFormValue("form1","vat_yn");
@@ -182,7 +182,7 @@ function formSubmit(f){
 		var exp_url = f['exp_url'].value;
 		if(exp_url == "") exp_url = " ";
 		
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			var conf_text = "";
 			conf_text+= "project_yn=>"+project_yn+"|";
 			conf_text+= "bid_kind_cd=>"+bid_kind_cd+"|";

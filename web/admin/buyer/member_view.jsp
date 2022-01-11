@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
-String[] code_status = {"00=>Å»Åğ", "01=>Á¤È¸¿ø", "02=>ºñÈ¸¿ø", "03=>Àç°¡ÀÔ"};  // È¸¿ø»óÅÂ
+String[] code_status = {"00=>íƒˆí‡´", "01=>ì •íšŒì›", "02=>ë¹„íšŒì›", "03=>ì¬ê°€ì…"};  // íšŒì›ìƒíƒœ
 String[] code_member_type = codeDao.getCodeArray("M002");
 String[] code_member_gubun = codeDao.getCodeArray("M001");
 String[] code_comp_cate = codeDao.getCodeArray("M004");
@@ -16,7 +16,7 @@ String[] code_comp_mgr = codeDao.getCodeArray("M011");
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -33,22 +33,22 @@ if(member.getString("member_slno").length()==13){
 	member.put("member_slno2",member.getString("member_slno").substring(6));
 }
 
-f.addElement("member_gubun", member.getString("member_gubun"),"hname:'¾÷Ã¼À¯Çü', required:'Y'");
-f.addElement("member_type", member.getString("member_type"),"hname:'È¸¿øÀ¯Çü', required:'Y'");
-f.addElement("status", member.getString("status"),"hname:'È¸¿ø»óÅÂ', required:'Y'");
-f.addElement("vendcd1", member.getString("vendcd1"),"hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y'");
-f.addElement("vendcd2", member.getString("vendcd2"),"hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y'");
-f.addElement("vendcd3", member.getString("vendcd3"),"hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y'");
-f.addElement("member_slno1", member.getString("member_slno1"), "hnme:'¹ıÀÎ¹øÈ£',option:'number', minbyte:'6'");
-f.addElement("member_slno2", member.getString("member_slno2"), "hnme:'¹ıÀÎ¹øÈ£',option:'number', minbyte:'7'");
-f.addElement("member_name", member.getString("member_name"), "hname:'¾÷Ã¼¸í',required:'Y'");
-f.addElement("boss_name", member.getString("boss_name"), "hname:'´ëÇ¥ÀÚ¸í',required:'Y'");
-f.addElement("condition", member.getString("condition"), "hname:'¾÷ÅÂ',required:'Y'");
-f.addElement("category", member.getString("category"), "hname:'Á¾¸ñ', required:'Y'");
-f.addElement("post_code", member.getString("post_code"), "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", member.getString("address"), "hname:'ÁÖ¼Ò', required:'Y'");
+f.addElement("member_gubun", member.getString("member_gubun"),"hname:'ì—…ì²´ìœ í˜•', required:'Y'");
+f.addElement("member_type", member.getString("member_type"),"hname:'íšŒì›ìœ í˜•', required:'Y'");
+f.addElement("status", member.getString("status"),"hname:'íšŒì›ìƒíƒœ', required:'Y'");
+f.addElement("vendcd1", member.getString("vendcd1"),"hname:'ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸', required:'Y'");
+f.addElement("vendcd2", member.getString("vendcd2"),"hname:'ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸', required:'Y'");
+f.addElement("vendcd3", member.getString("vendcd3"),"hname:'ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸', required:'Y'");
+f.addElement("member_slno1", member.getString("member_slno1"), "hnme:'ë²•ì¸ë²ˆí˜¸',option:'number', minbyte:'6'");
+f.addElement("member_slno2", member.getString("member_slno2"), "hnme:'ë²•ì¸ë²ˆí˜¸',option:'number', minbyte:'7'");
+f.addElement("member_name", member.getString("member_name"), "hname:'ì—…ì²´ëª…',required:'Y'");
+f.addElement("boss_name", member.getString("boss_name"), "hname:'ëŒ€í‘œìëª…',required:'Y'");
+f.addElement("condition", member.getString("condition"), "hname:'ì—…íƒœ',required:'Y'");
+f.addElement("category", member.getString("category"), "hname:'ì¢…ëª©', required:'Y'");
+f.addElement("post_code", member.getString("post_code"), "hname:'ìš°í¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", member.getString("address"), "hname:'ì£¼ì†Œ', required:'Y'");
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 	DB db = new DB();
 	memberDao = new DataObject("tcb_member");
@@ -66,11 +66,11 @@ if(u.isPost() && f.validate()){
 	db.setCommand(memberDao.getUpdateQuery(" member_no = '"+member_no+"' "), memberDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.","member_view.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","member_view.jsp?"+u.getQueryString());
 	return;
 }
 

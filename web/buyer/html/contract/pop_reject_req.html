@@ -1,13 +1,13 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this)">
+ï»¿<form name="form1" method="post" onsubmit="return formSubmit(this)">
 <div class="div_table">
 <div class="util-row">
 	<div class="push-left">
-		<h3>¹Ý·Á »çÀ¯</h3>
+		<h3>ë°˜ë ¤ ì‚¬ìœ </h3>
 	</div>
 </div>
 <table>
 <tr>
-	<th width="25%">»çÀ¯</th>
+	<th width="25%">ì‚¬ìœ </th>
 	<td width="75%">
 		<textarea style="width:98%;height:100px" name="mod_req_reason"></textarea>
 	</td>
@@ -16,15 +16,15 @@
 </div>	
 
 <div class="btn-group-wrap">
-	<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>´Ý±â</button> 
+	<button type="submit" class="btn color ico-save"><span></span>ì €ìž¥</button>
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button> 
 </div>		
 </form>
 {{form_script}}
 <script language="javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(!confirm("¹Ý·Á ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(!confirm("ë°˜ë ¤ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return false;
 		}
 		return true;

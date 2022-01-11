@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")||cont_chasu.equals("")){
@@ -9,7 +9,7 @@ DataObject shareDao = new DataObject("tcb_share");
 DataSet list = shareDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and status > 0  ","*", "seq asc");
 while(list.next()){
 	list.put("send_date", u.getTimeString("yyyy-MM-dd HH:mm", list.getString("send_date")));
-	list.put("recv_date", list.getString("recv_date").equals("")?"¹ÌÈ®ÀÎ":u.getTimeString("yyyy-MM-dd HH:mm", list.getString("recv_date")));
+	list.put("recv_date", list.getString("recv_date").equals("")?"ë¯¸í™•ì¸":u.getTimeString("yyyy-MM-dd HH:mm", list.getString("recv_date")));
 }
 
 

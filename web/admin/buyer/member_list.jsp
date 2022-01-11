@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_member_type = codeDao.getCodeArray("M002");
 String[] code_member_gubun = codeDao.getCodeArray("M001");
-String[] code_status = {"00=>Å»Åğ", "01=>Á¤È¸¿ø", "02=>ºñÈ¸¿ø", "03=>Àç°¡ÀÔ"};  // È¸¿ø»óÅÂ
+String[] code_status = {"00=>íƒˆí‡´", "01=>ì •íšŒì›", "02=>ë¹„íšŒì›", "03=>ì¬ê°€ì…"};  // íšŒì›ìƒíƒœ
 
 String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM-dd",u.addDate("M", -1)));
 
@@ -37,7 +37,7 @@ if(!f.get("s_edate").equals("")){
 }
 list.setOrderBy("a.status asc,  a.reg_date desc, a.member_no desc");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){

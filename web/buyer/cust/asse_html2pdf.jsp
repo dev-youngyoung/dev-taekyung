@@ -2,7 +2,7 @@
 <%@page import="org.zefer.pd4ml.*"%>
 <%@page import="java.awt.*"%>
 <%@ page import="org.jsoup.Jsoup,org.jsoup.nodes.Document,org.jsoup.nodes.Element,org.jsoup.select.Elements"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String asse_no = u.request("asse_no");
@@ -12,7 +12,7 @@ String stamp_img = u.request("stamp_img");
 String footer_img = u.request("footer_img");
 String down_file_name = u.request("down_file_name");
 if(asse_no.equals("")){
-	//u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	//u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -24,14 +24,14 @@ if(!down_file_name.equals("")) down_file_name = u.aseDec(down_file_name);
 DataObject asseDao = new DataObject("tcb_assemaster");
 DataSet asse = asseDao.find("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"' ");
 if(!asse.next()){
-	u.jsError("Æò°¡°èÈ¹ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ê³„íš ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject detailDao = new DataObject("tcb_assedetail");
 DataSet detail = detailDao.find(" asse_no = '"+asse_no+"' and div_cd = '"+div_cd+"'");
 if(!detail.next()){
-	u.jsError("Æò°¡»ó¼¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ìƒì„¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -40,7 +40,7 @@ if(!detail.next()){
 StringBuffer html = new StringBuffer();
 html.append("<html><head><style type=\"text/css\">");
 html.append("<!--");
-html.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
+html.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
 html.append("		.lineTable { border-collapse:collapse; border:1 solid black }");
 html.append("		.lineTable td { border:1 solid black }");
 html.append("		.lineTable .noborder { border:0 }");	
@@ -55,24 +55,24 @@ PD4ML pd4ml = new PD4ML();
 
 
 PD4PageMark headerMark = new PD4PageMark();
-headerMark.setAreaHeight( 30 );				//header ¿µ¿ª ¼³Á¤
+headerMark.setAreaHeight( 30 );				//header ì˜ì—­ ì„¤ì •
 
-//header µ¥ÀÌÅÍ ¼ÂÆÃ
+//header ë°ì´í„° ì…‹íŒ…
 headerMark.setHtmlTemplate("");
 pd4ml.setPageHeader(headerMark);
 
-//footer ¿µ¿ª¼³Á¤
+//footer ì˜ì—­ì„¤ì •
 //PD4PageMark footerMark = new PD4PageMark();
 //footerMark.setAreaHeight( 35 );
-//footerMark.setHtmlTemplate("<span><font style=\"font-size:12px\" color=\"#5B5B5B\">*º» ¹®¼­´Â ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com)¸¦ ÅëÇØ »ý¼º µÇ¾ú½À´Ï´Ù.</font></span>");20170623 ÀÌÆÀÀå´Ô ¿äÃ»À¸·Î Á¦°Å
+//footerMark.setHtmlTemplate("<span><font style=\"font-size:12px\" color=\"#5B5B5B\">*ë³¸ ë¬¸ì„œëŠ” ë‚˜ì´ìŠ¤ë‹¤í(http://www.nicedocu.com)ë¥¼ í†µí•´ ìƒì„± ë˜ì—ˆìŠµë‹ˆë‹¤.</font></span>");20170623 ì´íŒ€ìž¥ë‹˜ ìš”ì²­ìœ¼ë¡œ ì œê±°
 
 //pd4ml.setPageFooter(footerMark);
-pd4ml.setPageInsets(new Insets(10,20,5,20));						//¿©¹é¼³Á¤
-pd4ml.setHtmlWidth(750);									//º¯È¯ÇÒ htmlÀÇ width Á¤º¸
-pd4ml.setPageSize(PD4Constants.A4);									//¿ëÁö¸ð¾ç A4¼³Á¤
-//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//°¡·Î·Î ¼³Á¤
-pd4ml.useTTF("java:fonts", true);									//ÁöÁ¤ÇÑ ÆùÆ® »ç¿ë
-pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
+pd4ml.setPageInsets(new Insets(10,20,5,20));						//ì—¬ë°±ì„¤ì •
+pd4ml.setHtmlWidth(750);									//ë³€í™˜í•  htmlì˜ width ì •ë³´
+pd4ml.setPageSize(PD4Constants.A4);									//ìš©ì§€ëª¨ì–‘ A4ì„¤ì •
+//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//ê°€ë¡œë¡œ ì„¤ì •
+pd4ml.useTTF("java:fonts", true);									//ì§€ì •í•œ í°íŠ¸ ì‚¬ìš©
+pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
 pd4ml.enableDebugInfo();
 
 
@@ -80,7 +80,7 @@ String mimeType = "application/octet-stream";
 response.setContentType(mimeType);
 response.setHeader("Access-Control-Allow-Credentials", "true");
 //response.setHeader("Content-Disposition", "attachment;filename="+StrUtil.ConfCharset(sFileTarFile)+"\"");
-response.setHeader("Content-Disposition", "attachment;filename="+new String((down_file_name+".pdf").getBytes("EUC-KR"), "ISO-8859-1")+";");
+response.setHeader("Content-Disposition", "attachment;filename="+new String((down_file_name+".pdf").getBytes("UTF-8"), "ISO-8859-1")+";");
 //response.setContentLength(fileSize);
 ByteArrayOutputStream byteOuterupStream = new ByteArrayOutputStream();
 pd4ml.render(new StringReader(html.toString()), byteOuterupStream);
@@ -93,16 +93,16 @@ byteOuterupStream.close();
 outputStream.close();
 %>
 <%!
-// input box µîÀ» Á¦°Å
+// input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String html_rm = "";
-	// DB¿ë
+	// DBìš©
 	Document doc = Jsoup.parse(html);
-	// PDF¿ë
-	for( Element elem : doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à");  }  // Ã¼Å©¹Ú½º
-	for( Element elem : doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à"); }  // ¶óµð¿À
-	for( Element elem : doc.select("input") ){ elem.parent().text(elem.val()); }  // input box °ª ¸ðµÎ Á¦°Å
+	// PDFìš©
+	for( Element elem : doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡");  }  // ì²´í¬ë°•ìŠ¤
+	for( Element elem : doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡"); }  // ë¼ë””ì˜¤
+	for( Element elem : doc.select("input") ){ elem.parent().text(elem.val()); }  // input box ê°’ ëª¨ë‘ ì œê±°
 	for( Element elem : doc.select("select") ){elem.parent().text(elem.select("option[selected]").val());}
 	for( Element elem : doc.select("textarea") ){ elem.parent().text(elem.val()); }
 

@@ -1,4 +1,4 @@
-<form name="form1" method="get" >
+О╩©<form name="form1" method="get" >
 <div class="search_div">
     <table class="search_table">
         <colgroup>
@@ -7,10 +7,10 @@
             <col width="18%"/>
         </colgroup>
         <tr>
-            <th><p>га╥на╖ф╝╦М</p></th>
+            <th><p>М■└К║°Л═²М┼╦К╙┘</p></th>
             <td><input type="text" name="s_field_name" maxlength="30" style="width:90%"></td>
             <td align="right">
-                <button type="submit" class="search_btn"><span></span>╟к╩Ж</button>
+                <button type="submit" class="search_btn"><span></span>Й╡─Л┐┴</button>
             </td>
         </tr>
     </table>
@@ -19,7 +19,7 @@
 {{form_script}}
 <div class="util-row">
     <div class="push-right">
-        <button type="button" class="sbtn color ico-write" onClick="location.href='project_insert.jsp';"><span></span>╫е╠т╣Н╥о</button>
+        <button type="button" class="sbtn color ico-write" onClick="location.href='project_insert.jsp';"><span></span>Л▀═Й╥°К⌠╠К║²</button>
     </div>
 </div>
 <form name="frm_field">
@@ -32,10 +32,10 @@
             <col width="15%">
         </colgroup>
         <tr>
-            <th>╧Ьхё</th>
-            <th>га╥на╖ф╝╦М</th>
-            <th>╧ъажюз</th>
-            <th>╪╠ец</th>
+            <th>К╡┬М≤╦</th>
+            <th>М■└К║°Л═²М┼╦К╙┘</th>
+            <th>К╟°Лё╪Л·░</th>
+            <th>Л└═М┐²</th>
         </tr>
         <!-- IF START 'list' -->
         <!-- LOOP START 'list' -->
@@ -43,7 +43,7 @@
             <td align="center">{{list.__ord}}</td>
             <td>{{list.field_name}}</td>
             <td>{{list.order_name}}</td>
-            <td align="center" onClick="event.cancelBubble=true;"><button type="button" class="sbtn color ico-add" onClick="fSelect('{{list.field_seq}}');"><span></span>╪╠ец</button></td>
+            <td align="center" onClick="event.cancelBubble=true;"><button type="button" class="sbtn color ico-add" onClick="fSelect('{{list.field_seq}}');"><span></span>Л└═М┐²</button></td>
             <input name="hdn_field_name_{{list.field_seq}}" type="hidden" value="{{list.field_name}}"/>
             <input name="hdn_order_name_{{list.field_seq}}" type="hidden" value="{{list.order_name}}"/>
         </tr>
@@ -51,7 +51,7 @@
         <!-- IF END 'list' -->
         <!-- IFNOT START 'list' -->
         <tr>
-            <td colspan="4" align="center">га╥на╖ф╝ а╓╨╦╟║ ╬Ь╫ю╢о╢ы.</td>
+            <td colspan="4" align="center">М■└К║°Л═²М┼╦ Л═∙КЁ╢Й╟─ Л≈├Л┼╣К▀┬К▀╓.</td>
         </tr>
         <!-- IFNOT END 'list' -->
     </table>
@@ -60,7 +60,7 @@
 <div class="common-paging">{{pagerbar}}</div>
 
 <script language="javascript">
-// ╪╠ец
+// Л└═М┐²
 function fSelect(fieldSeq)
 {
     var form = document.forms["frm_field"];

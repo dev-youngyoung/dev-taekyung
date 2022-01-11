@@ -4,16 +4,16 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾àÁøÇàÁ¤º¸</h3>
+	        <h3>ê³„ì•½ì§„í–‰ì •ë³´</h3>
 	    </div>
 	</div>
 	<div class="contract-info">
 		<ul>
 			<li class="is-active">
-		       <em><span>ÀÛ¼ºÀÚ</span></em>             
+		       <em><span>ì‘ì„±ì</span></em>             
 		       <div class="info-body">
 		       		<p class="info-name">{{cont.writer_name}}</p>
-					<p class="info-message">¿Ï·á</p>
+					<p class="info-message">ì™„ë£Œ</p>
 					<span>{{cont.reg_date}}</span>        
 		       </div>
 			</li>
@@ -35,14 +35,14 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à±âº»Á¤º¸ <input type='hidden' id='url_copy' value="{{webUrl}}/web/buyer/contract/cin.jsp?key={{key}}">
+	        <h3>ê³„ì•½ê¸°ë³¸ì •ë³´ <input type='hidden' id='url_copy' value="{{webUrl}}/web/buyer/contract/cin.jsp?key={{key}}">
 				<!-- IF START 'btn_urlcopy' -->
-					&nbsp;<button type="button" class="sbtn ico-copy" onclick="toclip('url_copy')"><span></span>URLº¹»ç</button>
+					&nbsp;<button type="button" class="sbtn ico-copy" onclick="toclip('url_copy')"><span></span>URLë³µì‚¬</button>
 				<!-- IF END 'btn_urlcopy' -->
 			</h3>
 		</div>
 	    <div class="push-right">
-	    	°è¾à»óÅÂ: <span class="caution-text"><b>{{cont.status_name}}</b></span>
+	    	ê³„ì•½ìƒíƒœ: <span class="caution-text"><b>{{cont.status_name}}</b></span>
 		</div>
 	</div>
 	<table>
@@ -53,30 +53,26 @@
 			<col width="30%">
 		</colgroup>
 		<tr>
-			<th>°è¾à¸í</th>
-			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>{{cont.cont_name}}</td>
-			<!-- IF START 'member.src_depth' -->
-			<th>¼Ò½Ì±×·ì</th>
-			<td>{{cont.src_nm}}</td>
-			<!-- IF END 'member.src_depth' -->
+			<th>ê³„ì•½ëª…</th>
+			<td colspan="3">{{cont.cont_name}}</td>
 		</tr>
 		<tr>
-			<th>°è¾àÀÏÀÚ</th>
+			<th>ê³„ì•½ì¼ì</th>
 			<td>{{cont.cont_date}}</td>
-			<th>°è¾à¹øÈ£</th>
+			<th>ê³„ì•½ë²ˆí˜¸</th>
 			<td>{{cont.cont_userno}}</td>
 		</tr>
 		
 		<!-- IF START 'ContManageNo' -->
 		<tr>
-			<th>°è¾à°ü¸®¹øÈ£</th>
+			<th>ê³„ì•½ê´€ë¦¬ë²ˆí˜¸</th>
 			<td colspan="3">{{ContManageNo}}</td>
 		</tr>
 		<!-- IF END 'ContManageNo' -->
 		
 		<!-- IF START 'change_cont' -->
 		<tr>
-			<th>°è¾à±¸ºĞ</th>
+			<th>ê³„ì•½êµ¬ë¶„</th>
 			<td colspan="3">
 				<font color="red"><b>{{cont.change_gubun_str}}</b></font>
 			</td>
@@ -85,6 +81,383 @@
 	</table>
 </div>
 
+<!-- LOOP START 'sign_template' -->
+<input type="hidden" name="sign_seq" value="{{sign_template.sign_seq}}"/>
+<input type="hidden" name="signer_name" value="{{sign_template.signer_name}}"/>
+<input type="hidden" name="signer_max" value="{{sign_template.signer_max}}"/>
+<input type="hidden" name="member_type" value="{{sign_template.member_type}}"/>
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+			<h3>{{sign_template.signer_name}}</h3>
+		</div>
+	</div>	    
+	<table id="comp_grid_{{sign_template.sign_seq}}" style="border: 1;">
+		<thead>
+			<tr style="display: none;"><td style="height: 0px;"></td></tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<!-- LOOP END 'sign_template' -->
+
+<!-- IF START 'cust_chain' -->
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+			<h3>ì—°ëŒ€ë³´ì¦</h3>
+		</div>
+	</div>	    
+	<table>
+		<colgroup>
+			<col width="70%">
+			<col width="30%">
+		</colgroup>
+		<!-- LOOP START 'cust_chain' -->
+			<tr>
+				<td style="height:40">
+				<!-- IF START 'cust_chain.member_name' -->
+				{{cust_chain.member_name}}
+				<!-- IF END 'cust_chain.member_name' -->
+				({{cust_chain.user_name}})
+				<!-- IF START 'cust_chain.tel_num' -->
+				/ {{cust_chain.tel_num}}
+				<!-- IF END 'cust_chain.tel_num' -->
+				<!-- IF START 'cust_chain.hp1' -->
+				/ {{cust_chain.hp1}}-{{cust_chain.hp2}}-{{cust_chain.hp3}}
+				<!-- IF END 'cust_chain.hp1' -->
+				/ {{cust_chain.email}} </td>
+			<!-- IF START 'cust_chain.sign_dn' -->
+				<td align="right" style="font-size: 16px;">ì„œëª…ì¼ì‹œ: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
+			<!-- IF END 'cust_chain.sign_dn' -->
+			<!-- IFNOT START 'cust_chain.sign_dn' -->
+				<td align="right" style="font-size: 16px;">ì„œëª…ì¼ì‹œ: <b style="color:red">ë¯¸ì„œëª…</b></td>
+			<!-- IFNOT END 'cust_chain.sign_dn' -->
+			</tr>
+		<!-- LOOP END 'cust_chain' -->
+	</table>
+</div>
+<!-- IF END 'cust_chain' -->
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+			<h3>ê³„ì•½ì„œë¥˜</h3>
+		</div>
+		<div class="push-right">
+	    	<button type="button" class="sbtn" onclick="showSignData();"><span></span>ì„œëª…í™•ì¸</button>
+	    </div>
+	</div>	    
+	<table id="cfile_grid" style="table-layout: fixed;">
+		<colgroup>
+			<col width="8%"/>
+			<col width="47%"/>
+			<col width="40%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>íŒŒì¼êµ¬ë¶„</th>
+			<th>ê³„ì•½ì„œë¥˜ëª…</th>
+			<th>ì²¨ë¶€</th>
+		</tr>
+		</thead>
+		<tbody>
+			<!-- LOOP START 'cfile' -->
+			<tr>
+				<td align="center"><span class="{{cfile.auto_class}}">{{cfile.auto_str}}</span></td>
+				<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" class="in_readonly" readonly style="width:98%" /></td>
+				<td align="right">
+					<!-- IF START 'cfile.file_name' -->
+				 	{{cfile.file_size_str}}&nbsp;&nbsp;
+				 	<button type="button" class="sbtn ico-print" onclick="{{cfile.down_script}}"><span></span>{{cfile.btn_name}}</button>
+					<!-- IF END 'cfile.file_name' -->
+					<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
+					<input type="hidden" name="cfile_auto_type" value="{{cfile.auto_type}}"/>
+				</td>
+			</tr>
+			<!-- LOOP END 'cfile' -->
+		</tbody>
+	</table>
+</div>
+
+<!-- IF START 'stamp' -->
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+			<h3>ì¸ì§€ì„¸</h3>
+		</div>
+	</div>	    
+	<table id="warr_grid">
+		<colgroup>
+		    <col width="20%">
+		    <col width="12%">
+		    <col width="15%">
+		    <col width="10%">
+		    <col width="10%">
+		    <col width="23%">
+		    <col width="10%">
+		</colgroup>
+		<thead>
+			<tr>
+			  	<th>ë‚©ë¶€ì—…ì²´</th>
+			    <th>ì‚¬ì—…ìë²ˆí˜¸</th>
+			    <th>ì¸ì§€ì„¸ ê³ ìœ ë²ˆí˜¸</th>
+			    <th>ì¸ì§€ì„¸ì•¡</th>
+			    <th>ë°œê¸‰ì¼ì</th>
+			    <th>ë°œê¸‰ì²˜</th>
+			    <th>ë“±ë¡/ì¡°íšŒ</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'stamp' -->
+			<!-- IFNOT START 'stamp.cert_no' -->
+				<tr>
+					<td align="center">{{stamp.member_name}}</td>
+					<td align="center">{{stamp.vendcd}}</td>
+					<td colspan="4"></td>
+					<td align="center"><button type="button" class="sbtn ico-save auth_css" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>ë“±ë¡</button>
+					</td>
+				</tr>
+			<!-- IFNOT END 'stamp.cert_no' -->
+	    	<!-- IF START 'stamp.cert_no' -->
+				<tr>
+					<td align="center">{{stamp.member_name}}</td>
+					<td align="center">{{stamp.vendcd}}</td>
+					<td align="center">{{stamp.cert_no}}</td>
+					<td align="center">ï¿¦{{stamp.stamp_money}}</td>
+					<td align="center">{{stamp.issue_date}}</td>
+					<td align="center">{{stamp.channel}}</td>
+					<td align="center"><button type="button" class="sbtn ico-monitor auth_css" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>ì¡°íšŒ</td>
+				</tr>
+			<!-- IF END 'stamp.cert_no' -->
+		<!-- LOOP END 'stamp' -->
+		</tbody>
+	</table>
+</div>
+<!-- IF END 'stamp' -->
+
+<!-- IF START 'warr' -->
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+			<h3>ë³´ì¦ì„œë¥˜</h3>
+		</div>
+	</div>	    
+	<table id="warr_grid">
+		<colgroup>
+			<col width="10%">
+			<col width="15%">
+			<col width="14%">
+			<col width="10%">
+			<col width="18%">
+			<col width="14%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>ë³´ì¦ì„œì¢…ë¥˜</th>
+				<th>ë°œê¸‰ê¸°ê´€</th>
+				<th>ì¦ê¶Œë²ˆí˜¸</th>
+				<th>ë°œê¸‰ì¼ì</th>
+				<th>ë³´ì¦ê¸°ê°„</th>
+				<th>ë³´ì¦ê¸ˆì•¡</th>
+				<th>ë“±ë¡/ì¡°íšŒ</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'warr' -->
+			<!-- IFNOT START 'warr.warr_no' -->
+				<tr>
+					<td align="center">{{warr.warr_type}}</td>
+					<td colspan="5"><b>ë¹„ê³ :</b> {{warr.etc}}</td>
+					<td align="center">
+					<!-- IF START 'warr.haja' -->
+					<!-- IFNOT START 'gap_yn' -->
+					<button type="button" class="sbtn ico-save auth_css" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>ë“±ë¡</button>
+					<!-- IFNOT END 'gap_yn' -->
+					<!-- IF START 'gap_yn' -->
+					ë¯¸ë“±ë¡
+					<!-- IF END 'gap_yn' -->
+					<!-- IF END 'warr.haja' -->
+					<!-- IFNOT START 'warr.haja' -->
+					ë¯¸ë“±ë¡
+					<!-- IFNOT END 'warr.haja' -->
+					</td>
+				</tr>
+			<!-- IFNOT END 'warr.warr_no' -->
+	    	<!-- IF START 'warr.warr_no' -->
+				<tr>
+					<td align="center">{{warr.warr_type}}</td>
+					<td align="center">{{warr.warr_office}}</td>
+					<td align="center">{{warr.warr_no}}</td>
+					<td align="center">{{warr.warr_date}}</td>
+					<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
+					<td align="right">ï¿¦{{warr.warr_amt}}</td>
+					<td align="center"><button type="button" class="sbtn ico-monitor" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>ì¡°íšŒ</td>
+				</tr>
+			<!-- IF END 'warr.warr_no' -->
+		<!-- LOOP END 'warr' -->
+		</tbody>
+	</table>
+</div>
+<!-- IF END 'warr' -->
+
+</form>
+{{form_script}}
+
+<form name="form2" method="post" enctype="multipart/form-data" onsubmit="return formSubmit2(this);">
+<input type="hidden" name="rfile_path" value="{{file_path}}"/>
+<!-- LOOP START 'rfile_cust' -->
+<!-- IF START 'rfile' -->
+	<div class="div_table">
+		<div class="util-row">
+		    <div class="push-left">
+				<h3>êµ¬ë¹„ì„œë¥˜ ({{rfile_cust.member_name}})
+					&nbsp;<span class="caution-text">â€» êµ¬ë¹„ì„œë¥˜ë¥¼ ì²¨ë¶€ í•œ í›„ [ì €ì¥] ë²„íŠ¼ì„ í´ë¦­í•˜ì„¸ìš”.</span>
+				</h3>
+			</div>
+			<div class="push-right">
+		  		<button type="submit" class="sbtn ico-save auth_css"><span></span>ì €ì¥</button>
+		  	</div>
+		</div>
+		<table id="rfile_grid">
+			<colgroup>
+				<col width="8%"/>
+				<col width="67%"/>
+				<col width="25%"/>
+			</colgroup>
+			<thead>
+			<tr>
+				<th>í•„ìˆ˜ì—¬ë¶€</th>
+				<th>ë¬¸ì„œëª…</th>
+				<th>ì²¨ë¶€íŒŒì¼</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- LOOP START 'rfile' -->
+			<tr>
+				<td align="center">
+				<input type="checkbox" name="attch" {{rfile.attch}} disabled>
+				<input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
+				</td>
+				<td>{{rfile.doc_name}}</td>
+	
+					<!-- IF START 'rfile.file_name' -->
+					<td align="center" id="rfile_area_{{rfile_cust.member_no}}_{{rfile.rfile_seq}}">
+						{{rfile.file_size}}
+						&nbsp;<button type="button" class="sbtn ico-download" value="ë‹¤ìš´ë¡œë“œ" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
+						&nbsp;<button type="button" class="sbtn ico-delete auth_css" value="ì‚­ì œ" onclick="delFile('{{rfile_cust.member_no}}','{{rfile.rfile_seq}}','{{rfile.allow_ext}}')"><span></span>ì‚­ì œ</button>
+					</td>
+					<!-- IF END 'rfile.file_name' -->
+					<!-- IFNOT START 'rfile.file_name' -->
+				<td align="center" id="rfile_area_{{rfile_cust.member_no}}_{{rfile.rfile_seq}}">
+					<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
+					<input type="file" name="rfile_{{rfile_cust.member_no}}_{{rfile.rfile_seq}}"  hname="ì²¨ë¶€íŒŒì¼" style="width:95%" allow="{{rfile.allow_ext}}"/>
+					<input type="hidden" name="rfile_member_no" value = "{{rfile_cust.member_no}}"/>
+					<!-- IF START 'rfile.allow_ext' -->
+					<br><span class="caution-text">â€» {{rfile.allow_ext}} íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>
+					<!-- IF END 'rfile.allow_ext' -->
+				</td>
+					<!-- IFNOT END 'rfile.file_name' -->
+	
+			</tr>
+			<!-- LOOP END 'rfile' -->
+		</tbody>
+	</table>
+</div>
+<!-- IF END 'rfile' -->
+<!-- LOOP END 'rfile_cust' -->
+</form>
+
+<!-- IF START 'cont.efile_yn' -->
+<form name="form_efile" method="post" enctype="multipart/form-data" action="contract_efile_insert.jsp?{{query}}" onsubmit="return formSubmit3(this)">
+<input type="hidden" name="efile_path" value="{{file_path}}"/>
+<input type="hidden" name="from_page" value="contend_msign_sendview.jsp"/>
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>ë‚´ë¶€ê´€ë¦¬ì„œë¥˜<span class="caution-text">(â€» ê³„ì•½ê³¼ ê´€ë ¨ëœ ë‚´ë¶€ê´€ë¦¬ì„œë¥˜ ì²¨ë¶€, ë‚´ë¶€ì—ì„œë§Œ ì¡°íšŒ ê°€ëŠ¥ í•©ë‹ˆë‹¤.)</span></h3>
+		</div>
+		<div class="push-right">
+			<button type="button" class="sbtn ico-add auth_css" onclick="addEfileRow();"><span></span>ì¶”ê°€</button>
+            <button type="submit" class="sbtn ico-save auth_css" ><span></span>ê´€ë¦¬ì„œë¥˜ ì €ì¥</button>
+		</div>    
+	</div>
+	<table id="efile_grid">
+		<colgroup>
+			<col width="10%"/>
+			<col width="45%"/>
+			<col width="35%"/>
+			<col width="10%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>ê´€ë¦¬ìœ í˜•</th>
+				<th>ë¬¸ì„œëª…</th>
+				<th>ì²¨ë¶€</th>
+				<th>ì‚­ì œ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- LOOP START 'efile' -->
+			<tr>
+				<td align="center">{{efile.str_reg_type}}<input type="hidden" name="efile_reg_type" value="{{efile.reg_type}}"/></td>
+				<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" class="{{efile.doc_name_class}}" {{efile.doc_name_readonly}} style="width:98%" hname="ê³„ì•½ì„œë¥˜ëª…" {{efile.required}} /></td>
+				<td align="right">
+					<!-- IF START 'efile.file_name' -->
+					<div id="div_efile_{{efile.efile_seq}}">
+				 	{{efile.file_size_str}}&nbsp;&nbsp;
+				 	<button type="button" class="sbtn ico-download" onclick="{{efile.down_script}}"><span></span>ë‹¤ìš´ë¡œë“œ</button>
+				 	</div>
+					<!-- IF END 'efile.file_name' -->
+					<!-- IFNOT START 'efile.file_name' -->
+					<div style="width:100%;text-align:center">ë¯¸ì²¨ë¶€</div>
+					<!-- IFNOT END 'efile.file_name' -->
+					<input type="hidden" name="efile_seq" value="{{efile.efile_seq}}"/>
+					<input type="hidden" name="efile_del_yn" id="efile_del_yn_{{efile.efile_seq}}">
+				</td>
+				<td>
+					<!-- IF START 'efile.del_yn10' -->
+						<button type="button" class="sbtn ico-delete auth_css" onclick="delEfile('{{efile.efile_seq}}','10');this.style.display='none';"><span></span>ì‚­ì œ</button>
+					<!-- IF END 'efile.del_yn10' -->
+					
+					<!-- IF START 'efile.del_yn20' -->
+						<button type="button" class="sbtn ico-delete auth_css" onclick="delEfile('{{efile.efile_seq}}','20');this.style.display='none';"><span></span>ì‚­ì œ</button>
+					<!-- IF END 'efile.del_yn20' -->
+					
+					<!-- IF START 'efile.del_yn30' -->
+						<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>ì‚­ì œ</button>
+					<!-- IF END 'efile.del_yn30' -->
+				</td>
+			</tr>
+			<!-- LOOP END 'efile' -->
+		</tbody>
+	</table>
+</div>
+</form>
+<!-- IF END 'cont.efile_yn' -->
+
+<!-- IF START '_auth._CONT_SHARE_ABLE' -->
+<iframe name="ifm_cont_share" id="ifm_cont_share" src="./ifm_cont_share.jsp?{{query}}" frameborder="0" width="100%" scrolling="no"></iframe>
+<br>
+<!-- IF END '_auth._CONT_SHARE_ABLE' -->
+
+<div class="btn-group-wrap">
+	<!-- 
+	<button type="button" class="btn color ico-monitor" onclick="OpenWindows('pop_sign_cert_doc.jsp?cont_no={{cont.cont_no}}&cont_chasu={{cont.cont_chasu}}','pop_sign_cert_doc', 1000, 700);"><span></span>ì„œëª…ì‚¬ì‹¤í™•ì¸ì„œ</button>
+	 -->
+	<!-- IF START 'cont.isCopyAble' -->
+		<!-- IFNOT START 'paper' -->
+		<!-- <button type="button" class="btn color ico-copy auth_css" onclick="if(confirm('í•´ë‹¹ ê³„ì•½ì„œì˜ ë‚´ìš©ì„ ë³µì‚¬í•˜ì—¬ ê³„ì•½ì„œë¥¼ ìƒì„± í•˜ì‹œê² ìŠµë‹ˆê¹Œ?'))location.href='contract_copy.jsp?cont_no={{cont.cont_no}}&cont_chasu=0&template_cd={{cont.template_cd}}&cont_userno={{cont.cont_userno}}'"><span></span>ê³„ì•½ë³µì‚¬</button> -->
+		<!-- IFNOT END 'paper' -->
+	<!-- IF END 'cont.isCopyAble' -->
+	<!-- IF START 'btn_disuse' -->
+	<button type="button" class="btn color ico-cancel auth_css" onclick="if(confirm('í•´ë‹¹ ê³„ì•½ì„œë¥¼ íê¸° í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\nê³„ì•½íê¸° í›„ ê³„ì•½ì„œ ìƒíƒœ ë³€ê²½ì´ ë¶ˆê°€ëŠ¥ í•©ë‹ˆë‹¤.')){location.href='contend_disuse.jsp?{{query}}';}"><span></span>ê³„ì•½íê¸°</button>
+	<!-- IF END 'btn_disuse' -->
+	<button type="button" class="btn color ico-list" onclick="location.href='{{listUrl}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
+</div>
+<br/><br/>
+<!-- ê³„ì•½ì„œ ì„œì‹ -->
 <div>
 	<div class="cont_tab">
 		<span class="tab_on" id="tab_0" onClick="tabView(0)">{{template.template_name}}</span>&nbsp;
@@ -112,379 +485,6 @@
 			<!-- LOOP END 'contSub' -->
 		</div>
 	</div>
-</div>
-
-<!-- LOOP START 'sign_template' -->
-<input type="hidden" name="sign_seq" value="{{sign_template.sign_seq}}"/>
-<input type="hidden" name="signer_name" value="{{sign_template.signer_name}}"/>
-<input type="hidden" name="signer_max" value="{{sign_template.signer_max}}"/>
-<input type="hidden" name="member_type" value="{{sign_template.member_type}}"/>
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-			<h3>{{sign_template.signer_name}}</h3>
-		</div>
-	</div>	    
-	<table id="comp_grid_{{sign_template.sign_seq}}" style="border: 1;">
-		<thead>
-			<tr style="display: none;"><td style="height: 0px;"></td></tr>
-		</thead>
-		<tbody></tbody>
-	</table>
-</div>
-<!-- LOOP END 'sign_template' -->
-
-<!-- IF START 'cust_chain' -->
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-			<h3>¿¬´ëº¸Áõ</h3>
-		</div>
-	</div>	    
-	<table>
-		<colgroup>
-			<col width="70%">
-			<col width="30%">
-		</colgroup>
-		<!-- LOOP START 'cust_chain' -->
-			<tr>
-				<td style="height:40">
-				<!-- IF START 'cust_chain.member_name' -->
-				{{cust_chain.member_name}}
-				<!-- IF END 'cust_chain.member_name' -->
-				({{cust_chain.user_name}})
-				<!-- IF START 'cust_chain.tel_num' -->
-				/ {{cust_chain.tel_num}}
-				<!-- IF END 'cust_chain.tel_num' -->
-				<!-- IF START 'cust_chain.hp1' -->
-				/ {{cust_chain.hp1}}-{{cust_chain.hp2}}-{{cust_chain.hp3}}
-				<!-- IF END 'cust_chain.hp1' -->
-				/ {{cust_chain.email}} </td>
-			<!-- IF START 'cust_chain.sign_dn' -->
-				<td align="right">¼­¸íÀÏ½Ã: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
-			<!-- IF END 'cust_chain.sign_dn' -->
-			<!-- IFNOT START 'cust_chain.sign_dn' -->
-				<td align="right">¼­¸íÀÏ½Ã: <b style="color:red">¹Ì¼­¸í</b></td>
-			<!-- IFNOT END 'cust_chain.sign_dn' -->
-			</tr>
-		<!-- LOOP END 'cust_chain' -->
-	</table>
-</div>
-<!-- IF END 'cust_chain' -->
-
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-			<h3>°è¾à¼­·ù</h3>
-		</div>
-	</div>	    
-	<table id="cfile_grid" style="table-layout: fixed;">
-		<colgroup>
-			<col width="8%"/>
-			<col width="47%"/>
-			<col width="40%"/>
-		</colgroup>
-		<thead>
-		<tr>
-			<th>ÆÄÀÏ±¸ºĞ</th>
-			<th>°è¾à¼­·ù¸í</th>
-			<th>Ã·ºÎ</th>
-		</tr>
-		</thead>
-		<tbody>
-			<!-- LOOP START 'cfile' -->
-			<tr>
-				<td align="center"><span class="{{cfile.auto_class}}">{{cfile.auto_str}}</span></td>
-				<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" class="in_readonly" readonly style="width:98%" /></td>
-				<td align="right">
-					<!-- IF START 'cfile.file_name' -->
-				 	{{cfile.file_size_str}}&nbsp;&nbsp;
-				 	<button type="button" class="sbtn ico-print" onclick="{{cfile.down_script}}"><span></span>{{cfile.btn_name}}</button>
-					<!-- IF END 'cfile.file_name' -->
-					<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
-					<input type="hidden" name="cfile_auto_type" value="{{cfile.auto_type}}"/>
-				</td>
-			</tr>
-			<!-- LOOP END 'cfile' -->
-		</tbody>
-	</table>
-</div>
-
-<!-- IF START 'stamp' -->
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-			<h3>ÀÎÁö¼¼</h3>
-		</div>
-	</div>	    
-	<table id="warr_grid">
-		<colgroup>
-		    <col width="20%">
-		    <col width="12%">
-		    <col width="15%">
-		    <col width="10%">
-		    <col width="10%">
-		    <col width="23%">
-		    <col width="10%">
-		</colgroup>
-		<thead>
-			<tr>
-			  	<th>³³ºÎ¾÷Ã¼</th>
-			    <th>»ç¾÷ÀÚ¹øÈ£</th>
-			    <th>ÀÎÁö¼¼ °íÀ¯¹øÈ£</th>
-			    <th>ÀÎÁö¼¼¾×</th>
-			    <th>¹ß±ŞÀÏÀÚ</th>
-			    <th>¹ß±ŞÃ³</th>
-			    <th>µî·Ï/Á¶È¸</th>
-			</tr>
-		</thead>
-		<tbody>
-		<!-- LOOP START 'stamp' -->
-			<!-- IFNOT START 'stamp.cert_no' -->
-				<tr>
-					<td align="center">{{stamp.member_name}}</td>
-					<td align="center">{{stamp.vendcd}}</td>
-					<td colspan="4"></td>
-					<td align="center"><button type="button" class="sbtn ico-save auth_css" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>µî·Ï</button>
-					</td>
-				</tr>
-			<!-- IFNOT END 'stamp.cert_no' -->
-	    	<!-- IF START 'stamp.cert_no' -->
-				<tr>
-					<td align="center">{{stamp.member_name}}</td>
-					<td align="center">{{stamp.vendcd}}</td>
-					<td align="center">{{stamp.cert_no}}</td>
-					<td align="center">£Ü{{stamp.stamp_money}}</td>
-					<td align="center">{{stamp.issue_date}}</td>
-					<td align="center">{{stamp.channel}}</td>
-					<td align="center"><button type="button" class="sbtn ico-monitor auth_css" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>Á¶È¸</td>
-				</tr>
-			<!-- IF END 'stamp.cert_no' -->
-		<!-- LOOP END 'stamp' -->
-		</tbody>
-	</table>
-</div>
-<!-- IF END 'stamp' -->
-
-<!-- IF START 'warr' -->
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-			<h3>º¸Áõ¼­·ù</h3>
-		</div>
-	</div>	    
-	<table id="warr_grid">
-		<colgroup>
-			<col width="10%">
-			<col width="15%">
-			<col width="14%">
-			<col width="10%">
-			<col width="18%">
-			<col width="14%">
-			<col width="10%">
-		</colgroup>
-		<thead>
-			<tr>
-				<th>º¸Áõ¼­Á¾·ù</th>
-				<th>¹ß±Ş±â°ü</th>
-				<th>Áõ±Ç¹øÈ£</th>
-				<th>¹ß±ŞÀÏÀÚ</th>
-				<th>º¸Áõ±â°£</th>
-				<th>º¸Áõ±İ¾×</th>
-				<th>µî·Ï/Á¶È¸</th>
-			</tr>
-		</thead>
-		<tbody>
-		<!-- LOOP START 'warr' -->
-			<!-- IFNOT START 'warr.warr_no' -->
-				<tr>
-					<td align="center">{{warr.warr_type}}</td>
-					<td colspan="5"><b>ºñ°í:</b> {{warr.etc}}</td>
-					<td align="center">
-					<!-- IF START 'warr.haja' -->
-					<!-- IFNOT START 'gap_yn' -->
-					<button type="button" class="sbtn ico-save auth_css" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>µî·Ï</button>
-					<!-- IFNOT END 'gap_yn' -->
-					<!-- IF START 'gap_yn' -->
-					¹Ìµî·Ï
-					<!-- IF END 'gap_yn' -->
-					<!-- IF END 'warr.haja' -->
-					<!-- IFNOT START 'warr.haja' -->
-					¹Ìµî·Ï
-					<!-- IFNOT END 'warr.haja' -->
-					</td>
-				</tr>
-			<!-- IFNOT END 'warr.warr_no' -->
-	    	<!-- IF START 'warr.warr_no' -->
-				<tr>
-					<td align="center">{{warr.warr_type}}</td>
-					<td align="center">{{warr.warr_office}}</td>
-					<td align="center">{{warr.warr_no}}</td>
-					<td align="center">{{warr.warr_date}}</td>
-					<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
-					<td align="right">£Ü{{warr.warr_amt}}</td>
-					<td align="center"><button type="button" class="sbtn ico-monitor" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>Á¶È¸</td>
-				</tr>
-			<!-- IF END 'warr.warr_no' -->
-		<!-- LOOP END 'warr' -->
-		</tbody>
-	</table>
-</div>
-<!-- IF END 'warr' -->
-
-</form>
-{{form_script}}
-
-<form name="form2" method="post" enctype="multipart/form-data" onsubmit="return formSubmit2(this);">
-<input type="hidden" name="rfile_path" value="{{file_path}}"/>
-<!-- LOOP START 'rfile_cust' -->
-<!-- IF START 'rfile' -->
-	<div class="div_table">
-		<div class="util-row">
-		    <div class="push-left">
-				<h3>±¸ºñ¼­·ù ({{rfile_cust.member_name}})
-					&nbsp;<span class="caution-text">¡Ø ±¸ºñ¼­·ù¸¦ Ã·ºÎ ÇÑ ÈÄ [ÀúÀå] ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä.</span>
-				</h3>
-			</div>
-			<div class="push-right">
-		  		<button type="submit" class="sbtn ico-save auth_css"><span></span>ÀúÀå</button>
-		  	</div>
-		</div>
-		<table id="rfile_grid">
-			<colgroup>
-				<col width="8%"/>
-				<col width="67%"/>
-				<col width="25%"/>
-			</colgroup>
-			<thead>
-			<tr>
-				<th>ÇÊ¼ö¿©ºÎ</th>
-				<th>¹®¼­¸í</th>
-				<th>Ã·ºÎÆÄÀÏ</th>
-			</tr>
-			</thead>
-			<tbody>
-			<!-- LOOP START 'rfile' -->
-			<tr>
-				<td align="center">
-				<input type="checkbox" name="attch" {{rfile.attch}} disabled>
-				<input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
-				</td>
-				<td>{{rfile.doc_name}}</td>
-	
-					<!-- IF START 'rfile.file_name' -->
-					<td align="center" id="rfile_area_{{rfile_cust.member_no}}_{{rfile.rfile_seq}}">
-						{{rfile.file_size}}
-						&nbsp;<button type="button" class="sbtn ico-download" value="´Ù¿î·Îµå" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-						&nbsp;<button type="button" class="sbtn ico-delete auth_css" value="»èÁ¦" onclick="delFile('{{rfile_cust.member_no}}','{{rfile.rfile_seq}}','{{rfile.allow_ext}}')"><span></span>»èÁ¦</button>
-					</td>
-					<!-- IF END 'rfile.file_name' -->
-					<!-- IFNOT START 'rfile.file_name' -->
-				<td align="center" id="rfile_area_{{rfile_cust.member_no}}_{{rfile.rfile_seq}}">
-					<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
-					<input type="file" name="rfile_{{rfile_cust.member_no}}_{{rfile.rfile_seq}}"  hname="Ã·ºÎÆÄÀÏ" style="width:95%" allow="{{rfile.allow_ext}}"/>
-					<input type="hidden" name="rfile_member_no" value = "{{rfile_cust.member_no}}"/>
-					<!-- IF START 'rfile.allow_ext' -->
-					<br><span class="caution-text">¡Ø {{rfile.allow_ext}} ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>
-					<!-- IF END 'rfile.allow_ext' -->
-				</td>
-					<!-- IFNOT END 'rfile.file_name' -->
-	
-			</tr>
-			<!-- LOOP END 'rfile' -->
-		</tbody>
-	</table>
-</div>
-<!-- IF END 'rfile' -->
-<!-- LOOP END 'rfile_cust' -->
-</form>
-
-<!-- IF START 'cont.efile_yn' -->
-<form name="form_efile" method="post" enctype="multipart/form-data" action="contract_efile_insert.jsp?{{query}}" onsubmit="return formSubmit3(this)">
-<input type="hidden" name="efile_path" value="{{file_path}}"/>
-<input type="hidden" name="from_page" value="contend_msign_sendview.jsp"/>
-<div class="div_table">
-	<div class="util-row">
-		<div class="push-left">
-			<h3>³»ºÎ°ü¸®¼­·ù<span class="caution-text">(¡Ø °è¾à°ú °ü·ÃµÈ ³»ºÎ°ü¸®¼­·ù Ã·ºÎ, ³»ºÎ¿¡¼­¸¸ Á¶È¸ °¡´É ÇÕ´Ï´Ù.)</span></h3>
-		</div>
-		<div class="push-right">
-			<button type="button" class="sbtn ico-add auth_css" onclick="addEfileRow();"><span></span>Ãß°¡</button>
-            <button type="submit" class="sbtn ico-save auth_css" ><span></span>°ü¸®¼­·ù ÀúÀå</button>
-		</div>    
-	</div>
-	<table id="efile_grid">
-		<colgroup>
-			<col width="10%"/>
-			<col width="45%"/>
-			<col width="35%"/>
-			<col width="10%"/>
-		</colgroup>
-		<thead>
-			<tr>
-				<th>°ü¸®À¯Çü</th>
-				<th>¹®¼­¸í</th>
-				<th>Ã·ºÎ</th>
-				<th>»èÁ¦</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- LOOP START 'efile' -->
-			<tr>
-				<td align="center">{{efile.str_reg_type}}<input type="hidden" name="efile_reg_type" value="{{efile.reg_type}}"/></td>
-				<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" class="{{efile.doc_name_class}}" {{efile.doc_name_readonly}} style="width:98%" hname="°è¾à¼­·ù¸í" {{efile.required}} /></td>
-				<td align="right">
-					<!-- IF START 'efile.file_name' -->
-					<div id="div_efile_{{efile.efile_seq}}">
-				 	{{efile.file_size_str}}&nbsp;&nbsp;
-				 	<button type="button" class="sbtn ico-download" onclick="{{efile.down_script}}"><span></span>´Ù¿î·Îµå</button>
-				 	</div>
-					<!-- IF END 'efile.file_name' -->
-					<!-- IFNOT START 'efile.file_name' -->
-					<div style="width:100%;text-align:center">¹ÌÃ·ºÎ</div>
-					<!-- IFNOT END 'efile.file_name' -->
-					<input type="hidden" name="efile_seq" value="{{efile.efile_seq}}"/>
-					<input type="hidden" name="efile_del_yn" id="efile_del_yn_{{efile.efile_seq}}">
-				</td>
-				<td>
-					<!-- IF START 'efile.del_yn10' -->
-						<button type="button" class="sbtn ico-delete auth_css" onclick="delEfile('{{efile.efile_seq}}','10');this.style.display='none';"><span></span>»èÁ¦</button>
-					<!-- IF END 'efile.del_yn10' -->
-					
-					<!-- IF START 'efile.del_yn20' -->
-						<button type="button" class="sbtn ico-delete auth_css" onclick="delEfile('{{efile.efile_seq}}','20');this.style.display='none';"><span></span>»èÁ¦</button>
-					<!-- IF END 'efile.del_yn20' -->
-					
-					<!-- IF START 'efile.del_yn30' -->
-						<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>»èÁ¦</button>
-					<!-- IF END 'efile.del_yn30' -->
-				</td>
-			</tr>
-			<!-- LOOP END 'efile' -->
-		</tbody>
-	</table>
-</div>
-</form>
-<!-- IF END 'cont.efile_yn' -->
-
-<!-- IF START '_auth._CONT_SHARE_ABLE' -->
-<iframe name="ifm_cont_share" id="ifm_cont_share" src="./ifm_cont_share.jsp?{{query}}" frameborder="0" width="100%" scrolling="no"></iframe>
-<br>
-<!-- IF END '_auth._CONT_SHARE_ABLE' -->
-
-<div class="btn-group-wrap">
-	<!-- 
-	<button type="button" class="btn color ico-monitor" onclick="OpenWindows('pop_sign_cert_doc.jsp?cont_no={{cont.cont_no}}&cont_chasu={{cont.cont_chasu}}','pop_sign_cert_doc', 1000, 700);"><span></span>¼­¸í»ç½ÇÈ®ÀÎ¼­</button>
-	 -->
-	<!-- IF START 'cont.isCopyAble' -->
-		<!-- IFNOT START 'paper' -->
-		<button type="button" class="btn color ico-copy auth_css" onclick="if(confirm('ÇØ´ç °è¾à¼­ÀÇ ³»¿ëÀ» º¹»çÇÏ¿© °è¾à¼­¸¦ »ı¼º ÇÏ½Ã°Ú½À´Ï±î?'))location.href='contract_copy.jsp?cont_no={{cont.cont_no}}&cont_chasu=0&template_cd={{cont.template_cd}}&cont_userno={{cont.cont_userno}}'"><span></span>°è¾àº¹»ç</button>
-		<!-- IFNOT END 'paper' -->
-	<!-- IF END 'cont.isCopyAble' -->
-	<!-- IF START 'btn_disuse' -->
-	<button type="button" class="btn color ico-cancel auth_css" onclick="if(confirm('ÇØ´ç °è¾à¼­¸¦ Æó±â ÇÏ½Ã°Ú½À´Ï±î?\n°è¾àÆó±â ÈÄ °è¾à¼­ »óÅÂ º¯°æÀÌ ºÒ°¡´É ÇÕ´Ï´Ù.')){location.href='contend_disuse.jsp?{{query}}';}"><span></span>°è¾àÆó±â</button>
-	<!-- IF END 'btn_disuse' -->
-	<button type="button" class="btn color ico-list" onclick="location.href='{{listUrl}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
 </div>
 
 <form name="comp_form" method="post">
@@ -517,26 +517,26 @@
 					<col width="24%"/>
 				</colgroup>
 				<tr>
-					<th>ÁÖ¼Ò</th>
+					<th>ì£¼ì†Œ</th>
 					<td colspan="3"><input type="text" name="address" class="in_readonly" style="width:98%" readonly/></td>
-					<th>´ã´çÀÚ</th>
+					<th>ë‹´ë‹¹ì</th>
 					<td><input type="text" name="user_name" class="in_readonly" style="width:98%" readonly/></td>
 				</tr>
 				<tr>
-					<th>»óÈ£</th>
+					<th>ìƒí˜¸</th>
 					<td colspan="3"><input type="text" name="member_name" class="in_readonly" style="width: 98%;" readonly/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
+					<th>ì´ë©”ì¼</th>
 					<td><input type="text" name="email" class="in_readonly" style="width:98%" readonly/></td>
 				</tr>
 				<tr>
-					<th>´ëÇ¥ÀÚ</th>
+					<th>ëŒ€í‘œì</th>
 					<td><input type="text" name="boss_name" class="in_readonly" style="width:98%" readonly/></td>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" class="in_readonly" style="width:98%" readonly/></td>
-					<th>ÈŞ´ëÆù</th>
-					<td>
-						<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width:28%" readonly/>-
-						<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width:30%" readonly/>-
+					<th name="hp_th">íœ´ëŒ€í°</th>
+					<td name="hp_td">
+						<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width:28%" readonly/><span name="hp_bar1">-</span>
+						<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width:30%" readonly/><span name="hp_bar2">-</span>
 						<input type="text" name="hp3" class="in_readonly" maxlength="4" style="width:30%" readonly/>
 					</td>
 				</tr>
@@ -582,25 +582,25 @@
 					<col width="20%"/>
 				</colgroup>
 				<tr>
-					<th>ÁÖ¼Ò</th>
-					<td colspan="5"><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ÁÖ¼Ò" required="Y"/></td>
+					<th>ì£¼ì†Œ</th>
+					<td colspan="5"><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ì£¼ì†Œ" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>»óÈ£</th>
-					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="»óÈ£" required="Y"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
-					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ÀÌ¸ŞÀÏ" option="email" required="Y" /></td>
+					<th>ìƒí˜¸</th>
+					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ìƒí˜¸" required="Y"/></td>
+					<th>ì´ë©”ì¼</th>
+					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ì´ë©”ì¼" option="email" required="Y" /></td>
 				</tr>
 				<tr>
-					<th>´ëÇ¥ÀÚ</th>
-					<td><input type="text" name="boss_name" class="in_readonly" readonly style="width:98%" maxlength="50" hname="´ëÇ¥ÀÚ" required="Y"/></td>
-					<th>´ëÇ¥ÀÚ »ı³â¿ùÀÏ</th>
-					<td><input type="text" name="boss_birth_date" class="in_readonly" readonly style="width:80%" maxlength="10" hname="»ı³â¿ùÀÏ" required="Y" fixbyte="10"/></td>
-					<th>´ëÇ¥ÀÚ ÈŞ´ëÆù</th>
+					<th>ëŒ€í‘œì</th>
+					<td><input type="text" name="boss_name" class="in_readonly" readonly style="width:98%" maxlength="50" hname="ëŒ€í‘œì" required="Y"/></td>
+					<th>ëŒ€í‘œì ìƒë…„ì›”ì¼</th>
+					<td><input type="text" name="boss_birth_date" class="in_readonly" readonly style="width:80%" maxlength="10" hname="ìƒë…„ì›”ì¼" required="Y" fixbyte="10"/></td>
+					<th>ëŒ€í‘œì íœ´ëŒ€í°</th>
 					<td>
-						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="ÈŞ´ëÆù" required="Y" />-
-						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y" />-
-						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y" />
+						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="íœ´ëŒ€í°" required="Y" />-
+						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y" />-
+						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y" />
 					</td>
 				</tr>
 			</table>
@@ -638,25 +638,25 @@
 					<col width="23%"/>
 				</colgroup>
 				<tr>
-					<th>ÀÌ¸§</th>
-					<td><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="»óÈ£" required="Y"/></td>
-					<th>»ı³â¿ùÀÏ</th>
-					<td><input type="text" name="boss_birth_date" class="in_readonly" style="width:80%" readonly maxlength="10" hname="»ı³â¿ùÀÏ" required="Y"/></td>
+					<th>ì´ë¦„</th>
+					<td><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ìƒí˜¸" required="Y"/></td>
+					<th>ìƒë…„ì›”ì¼</th>
+					<td><input type="text" name="boss_birth_date" class="in_readonly" style="width:98%" readonly maxlength="10" hname="ìƒë…„ì›”ì¼" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>ÁÖ¼Ò</th>
-					<td><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ÁÖ¼Ò" required="Y"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
-					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ÀÌ¸ŞÀÏ" option="email" required="Y"/></td>
+					<th>ì£¼ì†Œ</th>
+					<td><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ì£¼ì†Œ" required="Y"/></td>
+					<th>ì´ë©”ì¼</th>
+					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ì´ë©”ì¼" option="email" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" class="in_readonly" readonly style="width:98%" maxlength="20"/></td>
-					<th>ÈŞ´ëÆù</th>
+					<th>íœ´ëŒ€í°</th>
 					<td>
-						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>
+						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>
 					</td>
 				</tr>
 			</table>
@@ -667,15 +667,15 @@
 
 <table id="efile_template" style="display:none">
 	<tr>
-		<td align="center">Ãß°¡Ã·ºÎ<input type="hidden" name="efile_reg_type" value="30"/></td>
-		<td><input type="text" name="efile_doc_name" style="width:98%" hname="¹®¼­¸í" required="Y" /></td>
+		<td align="center">ì¶”ê°€ì²¨ë¶€<input type="hidden" name="efile_reg_type" value="30"/></td>
+		<td><input type="text" name="efile_doc_name" style="width:98%" hname="ë¬¸ì„œëª…" required="Y" /></td>
 		<td>
 			<input type="hidden" name="efile_del_yn">
-			<input type="file" name="efile_[[seq]]" style="width:80%" hname="¹®¼­ ÆÄÀÏ" required="Y" />
+			<input type="file" name="efile_[[seq]]" style="width:80%" hname="ë¬¸ì„œ íŒŒì¼" required="Y" />
 			<input type="hidden" name="efile_seq" value="[[seq]]"/>
 		</td>
 		<td>
-			<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>»èÁ¦</button>
+			<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>ì‚­ì œ</button>
 		</td>
 	</tr>
 </table>
@@ -683,9 +683,9 @@
 
 <script language="javascript">
 
-if( window.attachEvent )  // IEÀÇ °æ¿ì
+if( window.attachEvent )  // IEì˜ ê²½ìš°
 	window.attachEvent( "onload", convertHtml );
-else  // IE°¡ ¾Æ´Ñ °æ¿ì.
+else  // IEê°€ ì•„ë‹Œ ê²½ìš°.
 	window.addEventListener( "load", convertHtml , false );
 	
 function convertHtml(){
@@ -703,7 +703,7 @@ function convertHtml(){
 
 function formSubmit2(f){
 	if(validate(f)){
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -713,11 +713,11 @@ function formSubmit2(f){
 
 function delFile(member_no, seq, file_ext){
 	var area = document.getElementById("rfile_area_"+member_no+"_"+seq);
-	var html = '<input type="file" name="rfile_'+member_no+'_'+seq+'"  hname="Ã·ºÎÆÄÀÏ" style="width:95%" allow="'+file_ext+'"/>';
+	var html = '<input type="file" name="rfile_'+member_no+'_'+seq+'"  hname="ì²¨ë¶€íŒŒì¼" style="width:95%" allow="'+file_ext+'"/>';
 	    html += '<input type="hidden" name="rfile_seq" value="'+seq+'"/>';
 	    html += '<input type="hidden" name="rfile_member_no" value = "'+member_no+'"/>';
     if(file_ext !=''){
-		html += '<br><span class="caution-text"> ¡Ø '+file_ext+' ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>'
+		html += '<br><span class="caution-text"> â€» '+file_ext+' íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>'
 	}
 	area.innerHTML = html;
 }
@@ -727,7 +727,7 @@ function delFile(member_no, seq, file_ext){
 
 function formSubmit3(f){
 	if(validate(f)){
-		if(confirm('°ü¸®¼­·ù¸¦ ÀúÀåÇÏ½Ã°Ú½À´Ï±î?')){
+		if(confirm('ê´€ë¦¬ì„œë¥˜ë¥¼ ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
 			return true;
 		}
 	}
@@ -745,10 +745,10 @@ function addEfileRow(){
 function delEfile(efile_seq, reg_type){
 	var td = document.getElementById("div_efile_"+efile_seq);
 	if(reg_type == "10"){
-		td.innerHTML = '<input type="file" name="efile_'+efile_seq+'" style="width:98%" hname="°ü¸®¼­·ù ÆÄÀÏ" required="Y" />'
+		td.innerHTML = '<input type="file" name="efile_'+efile_seq+'" style="width:98%" hname="ê´€ë¦¬ì„œë¥˜ íŒŒì¼" required="Y" />'
 	}
 	if(reg_type == '20' ){
-		td.innerHTML = '<input type="file" name="efile_'+efile_seq+'" style="width:98%" hname="°ü¸®¼­·ù ÆÄÀÏ"  />'
+		td.innerHTML = '<input type="file" name="efile_'+efile_seq+'" style="width:98%" hname="ê´€ë¦¬ì„œë¥˜ íŒŒì¼"  />'
 		document.getElementById("efile_del_yn_"+efile_seq).value="Y";
 	}
 }
@@ -802,8 +802,27 @@ SetFormValue(form_name,"boss_gender","{{cust.boss_gender}}");
 comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=>","sign_type_nm=>"));
 <!-- IFNOT END 'cust.sign_dn' -->
 <!-- IF START 'cust.sign_dn' -->
-comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=>¼­¸íÀÏ½Ã: <b style=\"color:blue\">{{cust.sign_date}}</b>","sign_type_nm=>{{cust.sign_type_nm}}"));
+comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=>ì„œëª…ì¼ì‹œ: <b style=\"color:blue\">{{cust.sign_date}}</b>","sign_type_nm=>{{cust.sign_type_nm}}"));
 <!-- IF END 'cust.sign_dn' -->
 comp_grid_{{cust.sign_seq}}.addRow();
 </script>
 <!-- LOOP END 'cust' -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	// ë†ì‹¬ íœ´ëŒ€í° hidden
+	document.getElementsByName('hp_th')[0].style.background = "white";
+	document.getElementsByName('hp_th')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_td')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_th')[0].innerHTML = "";
+	document.getElementsByName('hp_bar1')[0].innerHTML = "";
+	document.getElementsByName('hp_bar2')[0].innerHTML = "";
+	document.getElementsByName('hp1')[0].type= "hidden";
+	document.getElementsByName('hp2')[0].type= "hidden";
+	document.getElementsByName('hp3')[0].type= "hidden";
+});
+
+function showSignData() {
+	OpenWindows('pop_sign_list.jsp?cont_no={{cont.cont_no}}&cont_chasu={{cont_chasu}}', 'pop_sign_list', '1000','700');
+}
+</script>

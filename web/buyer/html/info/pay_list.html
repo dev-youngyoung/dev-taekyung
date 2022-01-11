@@ -1,4 +1,4 @@
-<form name="form1" method="get" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="get" onsubmit="return formSubmit(this);">
 <input type="hidden" name="mode">
     <div class="search_div">
         <table class="search_table">
@@ -10,28 +10,28 @@
                 <col width="11%">
             </colgroup>
             <tr>
-            	<th><p>°è¾à¸í(°ø°í¸í)</p></th>
+            	<th><p>ê³„ì•½ëª…(ê³µê³ ëª…)</p></th>
             	<td colspan="3"><input type="text"  name="s_cont_name" style="width: 90%;" /></td>
             </tr>
             <tr>
-                <th><p>±â°£</p></th>
+                <th><p>ê¸°ê°„</p></th>
                 <td>
                     <input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 				<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
                 </td>
-                <th><p>°áÁ¦¼ö´Ü</p></th>
+                <th><p>ê²°ì œìˆ˜ë‹¨</p></th>
                 <td>
                     <select name="s_pay_type">
-                        <option value="">ÀüÃ¼</option>
+                        <option value="">ì „ì²´</option>
                         <!-- LOOP START 'pay_type_code' -->
                         <option value="{{pay_type_code.id}}">{{pay_type_code.name}}</option>
                         <!-- LOOP END 'pay_type_code' -->
                     </select>
                 </td>
                 <td align="right">
-                    <button type="submit" class="search_btn">°Ë»ö</button>
+                    <button type="submit" class="search_btn">ê²€ìƒ‰</button>
                 </td>
             </tr>
         </table>
@@ -42,9 +42,9 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-right">
-               ÃÑ {{sumInfo.cnt}} °Ç/ÃÑ±Ý¾×: {{sumInfo.pay_amount}}
+               ì´ {{sumInfo.cnt}} ê±´/ì´ê¸ˆì•¡: {{sumInfo.pay_amount}}
         <!-- IF START 'gap_block' -->
-			&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="sbtn color ico-excel" onclick="excel()"><span></span>¿¢¼¿</button> 
+			&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="sbtn color ico-excel" onclick="excel()"><span></span>ì—‘ì…€</button> 
         <!-- IF END 'gap_block' -->
             
         </div>
@@ -59,12 +59,12 @@
         <col width="17%">
     </colgroup>
     <tr>
-        <th>¼ø¹ø</th>
-        <th>°è¾à¸í(°ø°í¸í)</th>
-        <th>°áÁ¦±Ý¾×</th>
-        <th>¼ö´Ü</th>
-        <th>¿µ¼öÁõ</th>
-        <th>°Å·¡ÀÏ½Ã</th>
+        <th>ìˆœë²ˆ</th>
+        <th>ê³„ì•½ëª…(ê³µê³ ëª…)</th>
+        <th>ê²°ì œê¸ˆì•¡</th>
+        <th>ìˆ˜ë‹¨</th>
+        <th>ì˜ìˆ˜ì¦</th>
+        <th>ê±°ëž˜ì¼ì‹œ</th>
     </tr>
     <!-- IF START 'list' -->
     <!-- LOOP START 'list' -->
@@ -81,7 +81,7 @@
     <!-- IF END 'list' -->
     <!-- IFNOT START 'list' -->
     <tr>
-        <td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+        <td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
     </tr>
     <!-- IFNOT END 'list' -->
     </table>

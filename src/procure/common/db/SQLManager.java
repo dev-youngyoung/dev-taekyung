@@ -34,22 +34,22 @@ import org.apache.commons.configuration.ConfigurationException;
 import	procure.common.conf.Startup;
 
 /**
- * @author ÀÌÁ¾È¯
+ * @author ì´ì¢…í™˜
  *
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class SQLManager{
-	private	String				sDataSourceName	=	"";		//DataSource ¸í
-	private	boolean				bContinueConn	=	false;	//Connection ¿©ºÎ
-	private	ArrayList			saColNames		=	null;	//	ÄÃ·³¸í
+	private	String				sDataSourceName	=	"";		//DataSource ëª…
+	private	boolean				bContinueConn	=	false;	//Connection ì—¬ë¶€
+	private	ArrayList			saColNames		=	null;	//	ì»¬ëŸ¼ëª…
 	private	LoggableStatement	ls				=	null;
 	
 	private	Connection			conn			=	null;
 	private	ResultSet			rs				=	null;
 	
 	/**
-	 * SQLManager »ı¼º
+	 * SQLManager ìƒì„±
 	 * @throws ConfigurationException
 	 * @throws NamingException
 	 * @throws SQLException
@@ -86,8 +86,8 @@ public class SQLManager{
 	}
 	
 	/**
-	 * SQLManager »ı¼ºÀÚ
-	 * @param sDataSourceName	Data Source ¸í
+	 * SQLManager ìƒì„±ì
+	 * @param sDataSourceName	Data Source ëª…
 	 * @throws NamingException
 	 * @throws SQLException
 	 */
@@ -118,7 +118,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÃÊ±âÈ­
+	 * ì´ˆê¸°í™”
 	 * @throws ConfigurationException
 	 */
 	private void init() throws ConfigurationException
@@ -132,7 +132,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * Connection ¾ò±â
+	 * Connection ì–»ê¸°
 	 * @return
 	 * @throws NamingException 
 	 * @throws SQLException 
@@ -156,9 +156,9 @@ public class SQLManager{
 				DataSource	ds 	= (DataSource) ctx.lookup(this.sDataSourceName);
 				this.conn 		= ds.getConnection();
 				
-				// ÀÎÆ÷¹Í½º µğ¸¦ À§ÇÑ ¼³Á¤
+				// ì¸í¬ë¯¹ìŠ¤ ë””ë¥¼ ìœ„í•œ ì„¤ì •
 				//this.setLockWait(this.conn);
-				//this.conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED); // db lockÀÌ µÈ commit µÇÁö ¾ÊÀº µ¥ÀÌÅÍµµ ÀĞÀ» ¼ö ÀÖÀ½. dirty read (À¢¸¸ÇÏ¸é ¾È¾²´Â°Ô ÁÁÀ½)
+				//this.conn.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED); // db lockì´ ëœ commit ë˜ì§€ ì•Šì€ ë°ì´í„°ë„ ì½ì„ ìˆ˜ ìˆìŒ. dirty read (ì›¬ë§Œí•˜ë©´ ì•ˆì“°ëŠ”ê²Œ ì¢‹ìŒ)
 			}
 		} catch (Exception e) {
 			System.out.println("[ERROR "+this.getClass().getName() + ".getConnection()] :" + e.toString());
@@ -168,11 +168,11 @@ public class SQLManager{
 	}
 	
 	/**
-	 * informix ¿¡¼­ Lock Mode ¼³Á¤ÇÏ´Â ºÎºĞ
-	 * Lock Mode : ´Ù¸¥ »ç¿ëÀÚ¿¡ ÀÇÇØ lockÀÌ °É·ÁÀÖ´Â µ¥ÀÌÅÍ¿¡ Á¢±ÙÇÒ ¶§ default·Î ±â´Ù¸®Áö ¾Ê°í error¸¦ return ÇÑ´Ù.
-	 * SET LOCK MODE TO WAIT;  (lockÀÌ ÇØÁ¦ µÉ ¶§±îÁö ¹«ÇÑÁ¤ ±â´Ù¸²)
-	 * SET LOCK MODE TO NOT WAIT; (lockÀÌ ÇØÁ¦ µÉ ¶§±îÁö ±â´Ù¸®Áö ¾Ê°í Áï½Ã error¸¦ ¸®ÅÏ:  default)
-	 * SET LOCK MODE TO WAIT 20;  (lockÀÌ ÇØÁ¦ µÉ ¶§±îÁö 20ÃÊ µ¿¾È ±â´Ù¸²)
+	 * informix ì—ì„œ Lock Mode ì„¤ì •í•˜ëŠ” ë¶€ë¶„
+	 * Lock Mode : ë‹¤ë¥¸ ì‚¬ìš©ìì— ì˜í•´ lockì´ ê±¸ë ¤ìˆëŠ” ë°ì´í„°ì— ì ‘ê·¼í•  ë•Œ defaultë¡œ ê¸°ë‹¤ë¦¬ì§€ ì•Šê³  errorë¥¼ return í•œë‹¤.
+	 * SET LOCK MODE TO WAIT;  (lockì´ í•´ì œ ë  ë•Œê¹Œì§€ ë¬´í•œì • ê¸°ë‹¤ë¦¼)
+	 * SET LOCK MODE TO NOT WAIT; (lockì´ í•´ì œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ì§€ ì•Šê³  ì¦‰ì‹œ errorë¥¼ ë¦¬í„´:  default)
+	 * SET LOCK MODE TO WAIT 20;  (lockì´ í•´ì œ ë  ë•Œê¹Œì§€ 20ì´ˆ ë™ì•ˆ ê¸°ë‹¤ë¦¼)
 	 * 
 	 * @param con
 	 * @throws Exception
@@ -202,7 +202,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÄÃ·³¸í ¾ò±â
+	 * ì»¬ëŸ¼ëª… ì–»ê¸°
 	 * @param rs
 	 * @return
 	 * @throws SQLException
@@ -224,7 +224,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * Procedure Query ¹® »ı¼º
+	 * Procedure Query ë¬¸ ìƒì„±
 	 * @param sProcedureName
 	 * @param aData
 	 * @return
@@ -240,8 +240,8 @@ public class SQLManager{
 	}
 	
 	/**
-	 * insert query¹® ¸¸µé±â
-	 * @param sTableName	Å×ÀÌºí¸í
+	 * insert queryë¬¸ ë§Œë“¤ê¸°
+	 * @param sTableName	í…Œì´ë¸”ëª…
 	 * @param hData	HashMap	
 	 * @return
 	 */
@@ -274,9 +274,9 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ¿©·¯Çà ¹İÈ¯
-	 * @param sSql			Äõ¸®¹®
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * ì—¬ëŸ¬í–‰ ë°˜í™˜
+	 * @param sSql			ì¿¼ë¦¬ë¬¸
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -291,7 +291,7 @@ public class SQLManager{
 
 			this.setColumNames();
 			
-			HashMap		hData		=	null;	//ÇÑÁÙµ¥ÀÌÅ¸
+			HashMap		hData		=	null;	//í•œì¤„ë°ì´íƒ€
 			ArrayList	aData		=	new	ArrayList();
 			String		sColName	=	"";
 			
@@ -365,8 +365,8 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ¿©·¯Çà ¹İÈ¯
-	 * @param sSql	Äõ¸®¹®
+	 * ì—¬ëŸ¬í–‰ ë°˜í™˜
+	 * @param sSql	ì¿¼ë¦¬ë¬¸
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -387,9 +387,9 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÇÑÁÙ µ¥ÀÌÅÍ °¡Á®¿À±â
-	 * @param sSql			Äõ¸®¹®
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * í•œì¤„ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
+	 * @param sSql			ì¿¼ë¦¬ë¬¸
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -428,7 +428,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÇÑÁÙ µ¥ÀÌÅÍ °¡Á®¿À±â
+	 * í•œì¤„ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
 	 * @param sSql
 	 * @return
 	 * @throws SQLException
@@ -451,10 +451,10 @@ public class SQLManager{
 	
 	
 	/**
-	 * ÇÁ·Î½ÃÁ® ½ÇÇàÇÏ±â
-	 * @param sProcedureName	ÇÁ·Î½ÃÁ®¸í
-	 * @param aData				µ¥ÀÌÅ¸
-	 * @param bContinueConn		Connection ²÷À»Áö ¿©ºÎ
+	 * í”„ë¡œì‹œì ¸ ì‹¤í–‰í•˜ê¸°
+	 * @param sProcedureName	í”„ë¡œì‹œì ¸ëª…
+	 * @param aData				ë°ì´íƒ€
+	 * @param bContinueConn		Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -486,9 +486,9 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÇÁ·Î½ÃÁ® ½ÇÇàÇÏ±â
-	 * @param sProcedureName	ÇÁ·Î½ÃÁ®¸í
-	 * @param aData				µ¥ÀÌÅ¸
+	 * í”„ë¡œì‹œì ¸ ì‹¤í–‰í•˜ê¸°
+	 * @param sProcedureName	í”„ë¡œì‹œì ¸ëª…
+	 * @param aData				ë°ì´íƒ€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -509,9 +509,9 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÇÁ·Î½ÃÁ® ½ÇÇà ÇÏ±â
-	 * @param sQuery		ÇÁ·Î½ÃÁ® Äõ¸®
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * í”„ë¡œì‹œì ¸ ì‹¤í–‰ í•˜ê¸°
+	 * @param sQuery		í”„ë¡œì‹œì ¸ ì¿¼ë¦¬
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -539,8 +539,8 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ÇÁ·Î½ÃÁ® ½ÇÇà ÇÏ±â
-	 * @param sQuery	ÇÁ·Î½ÃÁ® Äõ¸®
+	 * í”„ë¡œì‹œì ¸ ì‹¤í–‰ í•˜ê¸°
+	 * @param sQuery	í”„ë¡œì‹œì ¸ ì¿¼ë¦¬
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -561,10 +561,10 @@ public class SQLManager{
 	}
 	
 	/**
-	 * insert ½ÇÇà
-	 * @param sTableName	Å×ÀÌºí¸í
-	 * @param hData			ÀÔ·Â°ª
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * insert ì‹¤í–‰
+	 * @param sTableName	í…Œì´ë¸”ëª…
+	 * @param hData			ì…ë ¥ê°’
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -604,9 +604,9 @@ public class SQLManager{
 	}
 	
 	/**
-	 * insert ½ÇÇà
-	 * @param sTableName	Å×ÀÌºí¸í
-	 * @param hData			ÀÔ·Â°ª
+	 * insert ì‹¤í–‰
+	 * @param sTableName	í…Œì´ë¸”ëª…
+	 * @param hData			ì…ë ¥ê°’
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -628,8 +628,8 @@ public class SQLManager{
 
 	/**
 	 * DATA INSERT
-	 * @param sSql			Äõ¸®¹®
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * @param sSql			ì¿¼ë¦¬ë¬¸
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -658,7 +658,7 @@ public class SQLManager{
 	
 	/**
 	 * DATA INSERT
-	 * @param sSql	Äõ¸®¹®
+	 * @param sSql	ì¿¼ë¦¬ë¬¸
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -680,8 +680,8 @@ public class SQLManager{
 	
 	/**
 	 * data update
-	 * @param sSql			Äõ¸®¹®
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * @param sSql			ì¿¼ë¦¬ë¬¸
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -729,8 +729,8 @@ public class SQLManager{
 	
 	/**
 	 * DATA INSERT or UPDATE
-	 * @param sSql			Äõ¸®¹®
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * @param sSql			ì¿¼ë¦¬ë¬¸
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -796,8 +796,8 @@ public class SQLManager{
 	
 	/**
 	 * DATA INSERT or UPDATE
-	 * @param arrQuery		Äõ¸®¹®¹è¿­
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * @param arrQuery		ì¿¼ë¦¬ë¬¸ë°°ì—´
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException 
 	 * @throws UnsupportedEncodingException 
@@ -861,11 +861,11 @@ public class SQLManager{
 	}
 	
 	/**
-	 * Max°ª °¡Á®¿À±â
-	 * @param sColum		ÄÃ·³¸í
-	 * @param sTable		table¸í °¡Á®¿À±â
-	 * @param sWhere		where Á¶°ÇÀı
-	 * @param bContinueConn	Connection ²÷À»Áö ¿©ºÎ
+	 * Maxê°’ ê°€ì ¸ì˜¤ê¸°
+	 * @param sColum		ì»¬ëŸ¼ëª…
+	 * @param sTable		tableëª… ê°€ì ¸ì˜¤ê¸°
+	 * @param sWhere		where ì¡°ê±´ì ˆ
+	 * @param bContinueConn	Connection ëŠì„ì§€ ì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -896,10 +896,10 @@ public class SQLManager{
 	}
 	
 	/**
-	 * Max°ª °¡Á®¿À±â
-	 * @param sColum	ÄÃ·³¸í
-	 * @param sTable	table¸í °¡Á®¿À±â
-	 * @param sWhere	where Á¶°ÇÀı
+	 * Maxê°’ ê°€ì ¸ì˜¤ê¸°
+	 * @param sColum	ì»¬ëŸ¼ëª…
+	 * @param sTable	tableëª… ê°€ì ¸ì˜¤ê¸°
+	 * @param sWhere	where ì¡°ê±´ì ˆ
 	 * @return
 	 * @throws SQLException 
 	 * @throws UnsupportedEncodingException 
@@ -920,11 +920,11 @@ public class SQLManager{
 	}
 	
 	/**
-	 * °¹¼ö¼¼±â
-	 * @param sColum		ÄÃ·³¸í
-	 * @param sTable		Å×ÀÌºí¸í
-	 * @param sWhere		Á¶°ÇÀı
-	 * @param bContinueConn	Connection Á¾·á¿©ºÎ
+	 * ê°¯ìˆ˜ì„¸ê¸°
+	 * @param sColum		ì»¬ëŸ¼ëª…
+	 * @param sTable		í…Œì´ë¸”ëª…
+	 * @param sWhere		ì¡°ê±´ì ˆ
+	 * @param bContinueConn	Connection ì¢…ë£Œì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -955,10 +955,10 @@ public class SQLManager{
 	}
 	
 	/**
-	 * °¹¼ö¼¼±â
-	 * @param sColum	ÄÃ·³¸í
-	 * @param sTable	Å×ÀÌºí¸í
-	 * @param sWhere	Á¶°ÇÀı
+	 * ê°¯ìˆ˜ì„¸ê¸°
+	 * @param sColum	ì»¬ëŸ¼ëª…
+	 * @param sTable	í…Œì´ë¸”ëª…
+	 * @param sWhere	ì¡°ê±´ì ˆ
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -979,9 +979,9 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ´ÙÀ½ ¼ø¹ø ±¸ÇÏ±â
-	 * @param sColumn		ÄÃ·³¸í
-	 * @param bContinueConn	Connection Á¾·á¿©ºÎ
+	 * ë‹¤ìŒ ìˆœë²ˆ êµ¬í•˜ê¸°
+	 * @param sColumn		ì»¬ëŸ¼ëª…
+	 * @param bContinueConn	Connection ì¢…ë£Œì—¬ë¶€
 	 * @return
 	 * @throws SQLException
 	 * @throws UnsupportedEncodingException 
@@ -1012,7 +1012,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * ´ÙÀ½ ¼ø¹ø ±¸ÇÏ±â
+	 * ë‹¤ìŒ ìˆœë²ˆ êµ¬í•˜ê¸°
 	 * @param sColumn
 	 * @return
 	 * @throws SQLException
@@ -1034,7 +1034,7 @@ public class SQLManager{
 	}
 	
 	/**
-	 * Connection Á¾·á
+	 * Connection ì¢…ë£Œ
 	 * @param conn	Connection
 	 * @throws SQLException 
 	 */

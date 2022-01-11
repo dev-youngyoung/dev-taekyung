@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
     <!--
     <table width="96%" border="0" cellpadding="0" cellspacing="0" class="sub_table1">
       <colgroup>
@@ -7,11 +7,11 @@
         <col width="20%">
       </colgroup>
       <tr>
-        <td height="24"><img src="../../../images/supplier/icon_blue.gif" align="absmiddle"> ��ü��</td>
+        <td height="24"><img src="../../../images/supplier/icon_blue.gif" align="absmiddle"> 업체명</td>
         <td><input type="text" name="s_member_name" maxlength="100" style="width:80%"></td>
         <td align="right">
-          <input type="submit" class="search2_01" value="�˻�">
-          <input type="button" class="add4" value="��ü�߰�" onClick="addClient();">
+          <input type="submit" class="search2_01" value="검색">
+          <input type="button" class="add4" value="업체추가" onClick="addClient();">
         </td>
       </tr>
     </table>
@@ -20,10 +20,10 @@
 {{form_script}}
 <div class="util-row">
     <div class="push-left">
-        <span class="caution-text">�� ��ü���� Ŭ���Ͻø� ��ü���� �󼼸� �� �� �ֽ��ϴ�.</span>
+        <span class="caution-text">※ 업체명을 클릭하시면 업체정보 상세를 볼 수 있습니다.</span>
     </div>
     <div class="push-right">
-        <button type="button" class="sbtn color ico-add"  onClick="OpenWindows('pop_search_company.jsp',window, '800','500');"  ><span></span>��ü�߰�</button>
+        <button type="button" class="sbtn color ico-add"  onClick="OpenWindows('pop_search_company.jsp',window, '800','500');"  ><span></span>업체추가</button>
     </div>
 </div>
 <div class="div_table">
@@ -38,13 +38,13 @@
             <col width="10%">
         </colgroup>
         <tr class="ltitle">
-            <th>����</th>
-            <th>��ü��</th>
-            <th>����ڹ�ȣ</th>
-            <th>��ǥ��</th>
-            <th>��ü����</th>
-            <th>��ϻ���</th>
-            <th>����</th>
+            <th>순번</th>
+            <th>업체명</th>
+            <th>사업자번호</th>
+            <th>대표자</th>
+            <th>업체유형</th>
+            <th>등록상태</th>
+            <th>삭제</th>
         </tr>
         <!-- IF START 'list' -->
         <!-- LOOP START 'list' -->
@@ -55,13 +55,13 @@
             <td align="center" onclick="location.href='company_view.jsp?gubun=cust&member_no={{list.member_no}}'">{{list.boss_name}}</td>
             <td align="center" onclick="location.href='company_view.jsp?gubun=cust&member_no={{list.member_no}}'">{{list.client_type_nm}}</td>
             <td align="center">{{list.client_reg_nm}}</td>
-            <td align="center"><button type="button" class="sbtn color ico-delete"  onclick="deleteClient('{{list.member_no}}');" ><span></span>����</button></td>
+            <td align="center"><button type="button" class="sbtn color ico-delete"  onclick="deleteClient('{{list.member_no}}');" ><span></span>삭제</button></td>
         </tr>
         <!-- LOOP END 'list' -->
         <!-- IF END 'list' -->
         <!-- IFNOT START 'list' -->
         <tr>
-            <td colspan="7" align="center">�˻������ �����ϴ�.<br><br><font color="red">�� ��ü�߰� ��ư�� Ŭ���Ͽ� ��ü�� �߰� �ϼ���.</font></td>
+            <td colspan="7" align="center">검색결과가 없습니다.<br><br><font color="red">※ 업체추가 버튼을 클릭하여 업체를 추가 하세요.</font></td>
         </tr>
         <!-- IFNOT END 'list' -->
     </table>
@@ -96,7 +96,7 @@
 
     function deleteClient(id){
         var f = document.forms['form2'];
-        if(confirm("�����Ͻðڽ��ϱ�?")){
+        if(confirm("삭제하시겠습니까?")){
             f['member_no'].value = id;
             f.action = "cust_delete.jsp";
             f.submit();

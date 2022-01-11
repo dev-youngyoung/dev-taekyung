@@ -1,16 +1,16 @@
 <%@ page import="org.jsoup.Jsoup,org.jsoup.nodes.Document,org.jsoup.nodes.Element,org.jsoup.select.Elements"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String asse_no = u.request("asse_no");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject asseDao = new DataObject("tcb_assemaster");
 DataSet asse = asseDao.find("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"' and status = '10'");
 if(!asse.next()){
-	u.jsError("Æò°¡°èÈ¹ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ê³„íš ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -94,35 +94,35 @@ if(u.inArray(detail.getString("template_cd"), new String[]{"2017002","2017003"})
 
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-//sms, email¹ß¼Û Ã³¸®
+//sms, emailë°œì†¡ ì²˜ë¦¬
 
-u.jsAlertReplace("Æò°¡½ÃÀÛ Ã³¸® ÇÏ¿´½À´Ï´Ù.\\n\\nÆò°¡ÁøÇà ¸Þ´º¿¡¼­ °¢ ´ã´çÀÚ°¡ Æò°¡°¡ ÁøÇà µË´Ï´Ù.","asse_plan_list.jsp?"+u.getQueryString());
+u.jsAlertReplace("í‰ê°€ì‹œìž‘ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\ní‰ê°€ì§„í–‰ ë©”ë‰´ì—ì„œ ê° ë‹´ë‹¹ìžê°€ í‰ê°€ê°€ ì§„í–‰ ë©ë‹ˆë‹¤.","asse_plan_list.jsp?"+u.getQueryString());
 
 %>
 <%!
-//¾ç½Ä¿¡ °ª Ã¤¿ö³Ö±â
+//ì–‘ì‹ì— ê°’ ì±„ì›Œë„£ê¸°
 public String setHtmlValue(String html, DataSet info)
 {
 	String cont_html = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 	
-	// input box °ª Ã¤¿ì±â
-	cont_doc.select("input[name=cont_syear]").attr("value", info.getString("cont_syear"));	// °è¾à±â°£½ÃÀÛ³â
-	cont_doc.select("input[name=cont_smonth]").attr("value", info.getString("cont_smonth"));	// °è¾à±â°£½ÃÀÛ¿ù
-	cont_doc.select("input[name=cont_sday]").attr("value", info.getString("cont_sday"));		// °è¾à±â°£½ÃÀÛÀÏ
-	cont_doc.select("input[name=cont_eyear]").attr("value", info.getString("cont_eyear"));	// °è¾à±â°£Á¾·á³â
-	cont_doc.select("input[name=cont_emonth]").attr("value", info.getString("cont_emonth"));	// °è¾à±â°£Á¾·á¿ù
-	cont_doc.select("input[name=cont_eday]").attr("value", info.getString("cont_eday"));		// °è¾à±â°£Á¾·áÀÏ
-	cont_doc.select("input[name=cont_total]").attr("value", info.getString("cont_total"));		// °ø»ç±Ý¾×
-	cont_doc.select("input[name=finish_amt]").attr("value", info.getString("cont_total"));		// °ø»ç¿Ï·á±Ý¾×
+	// input box ê°’ ì±„ìš°ê¸°
+	cont_doc.select("input[name=cont_syear]").attr("value", info.getString("cont_syear"));	// ê³„ì•½ê¸°ê°„ì‹œìž‘ë…„
+	cont_doc.select("input[name=cont_smonth]").attr("value", info.getString("cont_smonth"));	// ê³„ì•½ê¸°ê°„ì‹œìž‘ì›”
+	cont_doc.select("input[name=cont_sday]").attr("value", info.getString("cont_sday"));		// ê³„ì•½ê¸°ê°„ì‹œìž‘ì¼
+	cont_doc.select("input[name=cont_eyear]").attr("value", info.getString("cont_eyear"));	// ê³„ì•½ê¸°ê°„ì¢…ë£Œë…„
+	cont_doc.select("input[name=cont_emonth]").attr("value", info.getString("cont_emonth"));	// ê³„ì•½ê¸°ê°„ì¢…ë£Œì›”
+	cont_doc.select("input[name=cont_eday]").attr("value", info.getString("cont_eday"));		// ê³„ì•½ê¸°ê°„ì¢…ë£Œì¼
+	cont_doc.select("input[name=cont_total]").attr("value", info.getString("cont_total"));		// ê³µì‚¬ê¸ˆì•¡
+	cont_doc.select("input[name=finish_amt]").attr("value", info.getString("cont_total"));		// ê³µì‚¬ì™„ë£Œê¸ˆì•¡
 	
-	// spanÀ¸·Î µÈ ºÎºÐ °ª Ã¤¿ì±â
+	// spanìœ¼ë¡œ ëœ ë¶€ë¶„ ê°’ ì±„ìš°ê¸°
 	for( Element elem : cont_doc.select("span.boss_name_2") ){ elem.text(info.getString("boss_name_2")); }
 	for( Element elem : cont_doc.select("span.user_name_2") ){ elem.text(info.getString("user_name_2")); }
 	for( Element elem : cont_doc.select("span.cont_year") ){ elem.text(info.getString("cont_year")); }

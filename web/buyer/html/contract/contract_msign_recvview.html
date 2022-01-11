@@ -20,10 +20,10 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>¼öÁ¤¿äÃ»/¹İ·Á »çÀ¯</h3>
+	        <h3>ìˆ˜ì •ìš”ì²­/ë°˜ë ¤ ì‚¬ìœ </h3>
 	    </div>
 	    <div class="push-right">
-			°è¾à»óÅÂ: <span class="caution-text">{{status_name}}</span>
+			ê³„ì•½ìƒíƒœ: <span class="caution-text">{{status_name}}</span>
 	    </div>
 	</div>
 	<table>
@@ -34,13 +34,13 @@
 			<col width="30%">
 		</colgroup>
 		<tr>
-			<th>¿äÃ»¾÷Ã¼¸í</th>
+			<th>ìš”ì²­ì—…ì²´ëª…</th>
 			<td>{{cont.mod_req_name}}</td>
-			<th>¿äÃ»ÀÏ½Ã</th>
+			<th>ìš”ì²­ì¼ì‹œ</th>
 			<td>{{cont.mod_req_date}}</td>
 		</tr>
 		<tr>
-			<th>»çÀ¯</th>
+			<th>ì‚¬ìœ </th>
 			<td colspan="3">{{cont.mod_req_reason}}</td>
 		</tr>
 	</table>
@@ -50,11 +50,11 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à±âº»Á¤º¸</h3>
+	        <h3>ê³„ì•½ê¸°ë³¸ì •ë³´</h3>
 	    </div>
 	    <!-- IFNOT START 'cont.mod_req_date' -->
 	    <div class="push-right">
-			°è¾à»óÅÂ: <span class="caution-text">{{status_name}}</span>
+			ê³„ì•½ìƒíƒœ: <span class="caution-text">{{status_name}}</span>
 	    </div>
 	    <!-- IFNOT END 'cont.mod_req_date' -->
 	</div>
@@ -66,18 +66,18 @@
 			<col width="24%">
 		</colgroup>
 		<tr>
-			<th>°è¾à¸í</th>
+			<th>ê³„ì•½ëª…</th>
 			<td colspan="3">{{cont.cont_name}}</td>
 		</tr>
 		<tr>
-			<th>°è¾àÀÏÀÚ</th>
+			<th>ê³„ì•½ì¼ì</th>
 			<td>{{cont.cont_date}}</td>
-			<th>°è¾à¹øÈ£</th>
+			<th>ê³„ì•½ë²ˆí˜¸</th>
 			<td>{{cont.cont_userno}}</td>
 		</tr>
 		<!-- IF START 'change_cont' -->
 		<tr>
-			<th>°è¾à±¸ºĞ</th>
+			<th>ê³„ì•½êµ¬ë¶„</th>
 			<td colspan="3">
 				<font color="red"><b>{{cont.change_gubun_str}}</b></font>
 			</td>
@@ -143,7 +143,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>¿¬´ëº¸Áõ</h3>
+	    	<h3>ì—°ëŒ€ë³´ì¦</h3>
 	    </div>
 	</div>
 	<table>
@@ -166,10 +166,10 @@
 				<!-- IF END 'cust_chain.hp1' -->
 				/ {{cust_chain.email}} </td>
 			<!-- IF START 'cust_chain.sign_dn' -->
-				<td align="right">¼­¸íÀÏ½Ã: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
+				<td align="right" style="font-size: 16px;">ì„œëª…ì¼ì‹œ: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
 			<!-- IF END 'cust_chain.sign_dn' -->
 			<!-- IFNOT START 'cust_chain.sign_dn' -->
-				<td align="right">¼­¸íÀÏ½Ã: <b style="color:red">¹Ì¼­¸í</b></td>
+				<td align="right" style="font-size: 16px;">ì„œëª…ì¼ì‹œ: <b style="color:red">ë¯¸ì„œëª…</b></td>
 			<!-- IFNOT END 'cust_chain.sign_dn' -->
 			</tr>
 		<!-- LOOP END 'cust_chain' -->
@@ -180,7 +180,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>°è¾à¼­·ù <span class="caution-text">¡Ø °è¾à¼­·ù¸¦ È®ÀÎ ÈÄ {{sign_title}} ÇÏ¼¼¿ä.</span></h3>
+	    	<h3>ê³„ì•½ì„œë¥˜ <span class="caution-text">â€» ê³„ì•½ì„œë¥˜ë¥¼ í™•ì¸ í›„ {{sign_title}} í•˜ì„¸ìš”.</span></h3>
 	    </div>
 	</div>
 	<table id="cfile_grid" style="table-layout: fixed;">
@@ -191,9 +191,9 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ÆÄÀÏ±¸ºĞ</th>
-			<th>°è¾à¼­·ù¸í</th>
-			<th>Ã·ºÎ</th>
+			<th>íŒŒì¼êµ¬ë¶„</th>
+			<th>ê³„ì•½ì„œë¥˜ëª…</th>
+			<th>ì²¨ë¶€</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -231,7 +231,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>ÀÎÁö¼¼</h3>
+	    	<h3>ì¸ì§€ì„¸</h3>
 	    </div>
 	</div>
 	<table id="warr_grid">
@@ -246,13 +246,13 @@
 		</colgroup>
 		<thead>
 		<tr>
-		  	<th>³³ºÎ¾÷Ã¼</th>
-		    <th>»ç¾÷ÀÚ¹øÈ£</th>
-		    <th>ÀÎÁö¼¼ °íÀ¯¹øÈ£</th>
-		    <th>ÀÎÁö¼¼¾×</th>
-		    <th>¹ß±ŞÀÏÀÚ</th>
-		    <th>¹ß±ŞÃ³</th>
-		    <th>µî·Ï/Á¶È¸</th>
+		  	<th>ë‚©ë¶€ì—…ì²´</th>
+		    <th>ì‚¬ì—…ìë²ˆí˜¸</th>
+		    <th>ì¸ì§€ì„¸ ê³ ìœ ë²ˆí˜¸</th>
+		    <th>ì¸ì§€ì„¸ì•¡</th>
+		    <th>ë°œê¸‰ì¼ì</th>
+		    <th>ë°œê¸‰ì²˜</th>
+		    <th>ë“±ë¡/ì¡°íšŒ</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -262,7 +262,7 @@
 				<td align="center">{{stamp.member_name}}</td>
 				<td align="center">{{stamp.vendcd}}</td>
 				<td colspan="4"></td>
-				<td align="center"><button type="button" class="sbtn ico-save" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>µî·Ï</button></td>
+				<td align="center"><button type="button" class="sbtn ico-save" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>ë“±ë¡</button></td>
 			</tr>
 			<!-- IFNOT END 'stamp.cert_no' -->
 	    	<!-- IF START 'stamp.cert_no' -->
@@ -270,10 +270,10 @@
 				<td align="center">{{stamp.member_name}}</td>
 				<td align="center">{{stamp.vendcd}}</td>
 				<td align="center">{{stamp.cert_no}}</td>
-				<td align="center">£Ü{{stamp.stamp_money}}</td>
+				<td align="center">ï¿¦{{stamp.stamp_money}}</td>
 				<td align="center">{{stamp.issue_date}}</td>
 				<td align="center">{{stamp.channel}}</td>
-				<td align="center"><button type="button" class="sbtn ico-search" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>Á¶È¸</button></td>
+				<td align="center"><button type="button" class="sbtn ico-search" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>ì¡°íšŒ</button></td>
 			</tr>
 			<!-- IF END 'stamp.cert_no' -->
 		<!-- LOOP END 'stamp' -->
@@ -286,7 +286,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>º¸Áõ¼­·ù <span class="caution-text">¡Ø Á¦ÃâÇØ¾ß ÇÒ º¸ÁõÁõ±Ç¿¡ ´ëÇØ [µî·Ï] ¹öÆ°À» Å¬¸¯ÇÏ¿© Ã·ºÎÇÏ¼¼¿ä.</span></h3>
+	    	<h3>ë³´ì¦ì„œë¥˜ <span class="caution-text">â€» ì œì¶œí•´ì•¼ í•  ë³´ì¦ì¦ê¶Œì— ëŒ€í•´ [ë“±ë¡] ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ ì²¨ë¶€í•˜ì„¸ìš”.</span></h3>
 	    </div>
 	</div>
 	<table id="warr_grid">
@@ -301,13 +301,13 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>º¸Áõ¼­Á¾·ù</th>
-			<th>¹ß±Ş±â°ü</th>
-			<th>Áõ±Ç¹øÈ£</th>
-			<th>¹ß±ŞÀÏÀÚ</th>
-			<th>º¸Áõ±â°£</th>
-			<th>º¸Áõ±İ¾×</th>
-			<th>µî·Ï/Á¶È¸</th>
+			<th>ë³´ì¦ì„œì¢…ë¥˜</th>
+			<th>ë°œê¸‰ê¸°ê´€</th>
+			<th>ì¦ê¶Œë²ˆí˜¸</th>
+			<th>ë°œê¸‰ì¼ì</th>
+			<th>ë³´ì¦ê¸°ê°„</th>
+			<th>ë³´ì¦ê¸ˆì•¡</th>
+			<th>ë“±ë¡/ì¡°íšŒ</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -315,14 +315,14 @@
 			<!-- IFNOT START 'warr.warr_no' -->
 			<tr>
 				<td align="center">{{warr.warr_type}}</td>
-				<td colspan="5"><b>ºñ°í:</b> {{warr.etc}} &nbsp;<!-- IF START 'warr.haja' -->[°è¾à¿Ï·áÈÄ µî·Ï]<!-- IF END 'warr.haja' --></td>
+				<td colspan="5"><b>ë¹„ê³ :</b> {{warr.etc}} &nbsp;<!-- IF START 'warr.haja' -->[ê³„ì•½ì™„ë£Œí›„ ë“±ë¡]<!-- IF END 'warr.haja' --></td>
 				<td align="center">
 				<!-- IFNOT START 'warr.haja' -->
 				<!-- IF START 'gap_yn' -->
-				¹Ìµî·Ï
+				ë¯¸ë“±ë¡
 				<!-- IF END 'gap_yn' -->
 				<!-- IFNOT START 'gap_yn' -->
-				<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>µî·Ï</button>
+				<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>ë“±ë¡</button>
 				<!-- IFNOT END 'gap_yn' -->
 				<!-- IFNOT END 'warr.haja' -->
 				</td>
@@ -335,8 +335,8 @@
 				<td align="center">{{warr.warr_no}}</td>
 				<td align="center">{{warr.warr_date}}</td>
 				<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
-				<td align="right">£Ü{{warr.warr_amt}}</td>
-				<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>Á¶È¸</button></td>
+				<td align="right">ï¿¦{{warr.warr_amt}}</td>
+				<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>ì¡°íšŒ</button></td>
 			</tr>
 			<!-- IF END 'warr.warr_no' -->
 		<!-- LOOP END 'warr' -->
@@ -356,15 +356,15 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>±¸ºñ¼­·ù({{rfile_cust.member_name}})
+	    	<h3>êµ¬ë¹„ì„œë¥˜({{rfile_cust.member_name}})
 		    	<!-- IF START 'rfile_cust.attch_area' -->
-					&nbsp;<span class="caution-text">¡Ø ±¸ºñ¼­·ù¸¦ Ã£¾Æº¸±â ÇÑ ÈÄ [±¸ºñ¼­·ù ÀúÀå] ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä.</span>
+					&nbsp;<span class="caution-text">â€» êµ¬ë¹„ì„œë¥˜ë¥¼ ì°¾ì•„ë³´ê¸° í•œ í›„ [êµ¬ë¹„ì„œë¥˜ ì €ì¥] ë²„íŠ¼ì„ í´ë¦­í•˜ì„¸ìš”.</span>
 				<!-- IF END 'rfile_cust.attch_area' -->
 	    	</h3>
 	    </div>
 	  	<!-- IF START 'rfile_cust.attch_area' -->
 	    <div class="push-right">
-	  		<button type="submit" class="sbtn ico-save" ><span></span>±¸ºñ¼­·ù ÀúÀå</button>
+	  		<button type="submit" class="sbtn ico-save" ><span></span>êµ¬ë¹„ì„œë¥˜ ì €ì¥</button>
 	    </div>
 	  	<!-- IF END 'rfile_cust.attch_area' -->
 	</div>
@@ -376,9 +376,9 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ÇÊ¼ö¿©ºÎ</th>
-			<th>¹®¼­¸í</th>
-			<th>Ã·ºÎÆÄÀÏ</th>
+			<th>í•„ìˆ˜ì—¬ë¶€</th>
+			<th>ë¬¸ì„œëª…</th>
+			<th>ì²¨ë¶€íŒŒì¼</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -391,8 +391,8 @@
 				<td>{{rfile.doc_name}}</td>
 				<!-- IF START 'rfile.gap' -->
 				<td align="center" id="rfile_area_{{rfile.rfile_seq}}">
-					<font color="#0000ff">µî·Ï¿Ï·á</font>(ÆÄÀÏÅ©±â:{{rfile.file_size}})<br>
-					<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
+					<font color="#0000ff">ë“±ë¡ì™„ë£Œ</font>(íŒŒì¼í¬ê¸°:{{rfile.file_size}})<br>
+					<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
 				<!-- IF END 'rfile.gap' -->
@@ -401,26 +401,26 @@
 				<td align="center" id="rfile_area_{{rfile.rfile_seq}}">
 					<!-- IFNOT START 'rfile.file_name' -->
 					<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
-					<input type="file" name="rfile_{{rfile.rfile_seq}}"  hname="Ã·ºÎÆÄÀÏ" style="width:95%" allow="{{rfile.allow_ext}}"/>
+					<input type="file" name="rfile_{{rfile.rfile_seq}}"  hname="ì²¨ë¶€íŒŒì¼" style="width:95%" allow="{{rfile.allow_ext}}"/>
 					<input type="hidden" name="rfile_required" value = "{{rfile.attch_yn}}"/>
 						<!-- IF START 'rfile.allow_ext' -->
-							<br><span class="caution-text"> ¡Ø {{rfile.allow_ext}} ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>
+							<br><span class="caution-text"> â€» {{rfile.allow_ext}} íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>
 						<!-- IF END 'rfile.allow_ext' -->
 					<!-- IFNOT END 'rfile.file_name' -->
 					<!-- IF START 'rfile.file_name' -->
-					<font color="#0000ff">µî·Ï¿Ï·á</font>(ÆÄÀÏÅ©±â:{{rfile.file_size}})<br>
-					&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-					&nbsp;<button type="button" class="sbtn ico-delete" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}')"><span></span>»èÁ¦</button>
+					<font color="#0000ff">ë“±ë¡ì™„ë£Œ</font>(íŒŒì¼í¬ê¸°:{{rfile.file_size}})<br>
+					&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
+					&nbsp;<button type="button" class="sbtn ico-delete" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}')"><span></span>ì‚­ì œ</button>
 					<!-- IF END 'rfile.file_name' -->
 				</td>
 				<!-- IF END 'rfile_cust.attch_area' -->
 				<!-- IFNOT START 'rfile_cust.attch_area' -->
 				<td align="center">
 					<!-- IF START 'rfile.file_name' -->
-					<font color="#0000ff">µî·Ï¿Ï·á</font>(ÆÄÀÏÅ©±â:{{rfile.file_size}})	&nbsp;<button type="button" class="sbtn ico-download" ><span></span>´Ù¿î·Îµå</button>
+					<font color="#0000ff">ë“±ë¡ì™„ë£Œ</font>(íŒŒì¼í¬ê¸°:{{rfile.file_size}})	&nbsp;<button type="button" class="sbtn ico-download" ><span></span>ë‹¤ìš´ë¡œë“œ</button>
 					<!-- IF END 'rfile.file_name' -->
 					<!-- IFNOT START 'rfile.file_name' -->
-					¹ÌÃ·ºÎ
+					ë¯¸ì²¨ë¶€
 					<!-- IFNOT END 'rfile.file_name' -->
 				</td>
 				<!-- IFNOT END 'rfile_cust.attch_area' -->
@@ -438,7 +438,7 @@
 <!-- IF END 'template.rfile_info' -->
 
 <div class="util-row">
-	<span class="caution-text">¡Ø ÆÄÀÏÀÌ ¿©·¯°³ÀÎ °æ¿ì ¾ĞÃàÆÄÀÏ(zipÆÄÀÏ)·Î ¸¸µé¾î Ã·ºÎÇÏ¼¼¿ä.<br/><br/></span>
+	<span class="caution-text">â€» íŒŒì¼ì´ ì—¬ëŸ¬ê°œì¸ ê²½ìš° ì••ì¶•íŒŒì¼(zipíŒŒì¼)ë¡œ ë§Œë“¤ì–´ ì²¨ë¶€í•˜ì„¸ìš”.<br/><br/></span>
 </div>
 
 <!-- IF END 'rfile' -->
@@ -448,11 +448,11 @@
 <!-- IF START 'sign_able' -->
 	<!-- IF START 'template.recv_write' -->
 	<div class="help-content">
-	    <h3>NOTICE<span>À¯¿ëÇÑ Á¤º¸! »ç¿ëÀü¿¡ ¾Ë¾ÆµÎ¼¼¿ä~ </span></h3>
+	    <h3>NOTICE<span>ìœ ìš©í•œ ì •ë³´! ì‚¬ìš©ì „ì— ì•Œì•„ë‘ì„¸ìš”~ </span></h3>
 	    <div class="help-content-body">
-	        <h4>ÀÛ¼º¾È³»</h4>
+	        <h4>ì‘ì„±ì•ˆë‚´</h4>
 	        <ul class="list_information">
-	            <li>°è¾à³»¿ë¿¡ ´ëÇØ ÀÔ·Â(¼öÁ¤)À» ÇÏ½Å °æ¿ì ÀüÀÚ¼­¸íÀü¿¡ [ÀúÀå]¹öÆ°À» ²À Å¬¸¯ÇÏ¼¼¿ä.</li>
+	            <li>ê³„ì•½ë‚´ìš©ì— ëŒ€í•´ ì…ë ¥(ìˆ˜ì •)ì„ í•˜ì‹  ê²½ìš° ì „ìì„œëª…ì „ì— [ì €ì¥]ë²„íŠ¼ì„ ê¼­ í´ë¦­í•˜ì„¸ìš”.</li>
 	        </ul>
 	    </div>
 	</div>
@@ -463,15 +463,15 @@
 
 	<!-- IF START 'sign_able' -->
 		<!-- IF START 'template.recv_write' -->
-		<button type="submit" class="btn color ico-save" onClick="contSave()"><span></span>ÀúÀå</button>&nbsp;
+		<!-- <button type="submit" class="btn color ico-save" onClick="contSave()"><span></span>ì €ì¥</button>&nbsp; -->
 		<!-- IF END 'template.recv_write' -->
 		<button type="button"  id="btn_sign" class="btn color ico-confirm" onclick="if(formSubmit(document.forms['form1'])){document.forms['form1'].submit();}"><span></span>{{sign_title}}</button>
 		<!-- IF START 'modify_able' -->
-		<button type="button" class="btn color ico-request" onclick="modifyReq()"><span></span>¼öÁ¤¿äÃ»</button>
+		<!-- <button type="button" class="btn color ico-request" onclick="modifyReq()"><span></span>ìˆ˜ì •ìš”ì²­</button> -->
 		<!-- IF END 'modify_able' -->
 	<!-- IF END 'sign_able' -->
 
-	<button type="button" class="btn color ico-list" onclick="location.href='contract_recv_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='contract_recv_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 
 </div>
 
@@ -481,8 +481,8 @@
 		<td>
 			<table>
 				<tr>
-				  <td align="right">
-					  ¼­¸íÀÏ½Ã: [[sign_date]]
+				  <td align="right" style="font-size: 16px;">
+					  ì„œëª…ì¼ì‹œ: [[sign_date]]
 				  </td>
 				</tr>
 			</table>
@@ -503,26 +503,26 @@
 					<col width="24%"/>
 				</colgroup>
 				<tr>
-					<th>ÁÖ¼Ò</th>
+					<th>ì£¼ì†Œ</th>
 					<td colspan="3"><input type="text" name="address" class="in_readonly" style="width:98%" readonly/></td>
-					<th>´ã´çÀÚ</th>
+					<th>ë‹´ë‹¹ì</th>
 					<td><input type="text" name="user_name" class="in_readonly" style="width:98%" readonly/></td>
 				</tr>
 				<tr>
-					<th>»óÈ£</th>
+					<th>ìƒí˜¸</th>
 					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width: 98%;"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
+					<th>ì´ë©”ì¼</th>
 					<td><input type="text" name="email" class="in_readonly" style="width:98%" readonly/></td>
 				</tr>
 				<tr>
-					<th>´ëÇ¥ÀÚ</th>
+					<th>ëŒ€í‘œì</th>
 					<td><input type="text" name="boss_name" class="in_readonly" style="width:98%" readonly/></td>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" class="in_readonly" style="width:98%" readonly/></td>
-					<th>ÈŞ´ëÆù</th>
-					<td>
-						<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width: 28%;" readonly/>-
-						<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width: 30%;" readonly/>-
+					<th name="hp_th">íœ´ëŒ€í°</th>
+					<td name="hp_td">
+						<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width: 28%;" readonly/><span name="hp_bar1">-</span>
+						<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width: 30%;" readonly/><span name="hp_bar2">-</span>
 						<input type="text" name="hp3" class="in_readonly" maxlength="4" style="width: 30%;" readonly/>
 					</td>
 				</tr>
@@ -547,8 +547,8 @@
 			<input type="hidden" name="cust_gubun" value="02"/>
 			<table>
 				<tr align="right">
-					<td>
-					¼­¸íÀÏ½Ã: [[sign_date]]
+					<td style="font-size: 16px;">
+					ì„œëª…ì¼ì‹œ: [[sign_date]]
 					</td>
 				</tr>
 			</table>
@@ -560,23 +560,23 @@
 					<col width="23%"/>
 				</colgroup>
 				<tr>
-					<th>ÀÌ¸§</th>
-					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="»óÈ£" required="Y" onblur="setCustArea()"/></td>
+					<th>ì´ë¦„</th>
+					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ìƒí˜¸" required="Y" onblur="setCustArea()"/></td>
 				</tr>
 				<tr>
-					<th>ÁÖ¼Ò</th>
-					<td><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ÁÖ¼Ò" required="Y" onblur="setCustArea()"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
-					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ÀÌ¸ŞÀÏ" option="email" required="Y"/></td>
+					<th>ì£¼ì†Œ</th>
+					<td><input type="text" name="address" class="in_readonly" readonly style="width:97%" maxlength="100" hname="ì£¼ì†Œ" required="Y" onblur="setCustArea()"/></td>
+					<th>ì´ë©”ì¼</th>
+					<td><input type="text" name="email" class="in_readonly" readonly style="width:93%" maxlength="150" hname="ì´ë©”ì¼" option="email" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" class="in_readonly" readonly style="width:98%" maxlength="20"/></td>
-					<th>ÈŞ´ëÆù</th>
+					<th>íœ´ëŒ€í°</th>
 					<td>
-						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width: 28%;" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width: 30%;" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width: 30%;" hname="ÈŞ´ëÆù" required="Y"/>
+						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width: 28%;" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width: 30%;" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width: 30%;" hname="íœ´ëŒ€í°" required="Y"/>
 					</td>
 				</tr>
 			</table>
@@ -589,9 +589,9 @@
 
 <script language="javascript">
 
-if( window.attachEvent )  // IEÀÇ °æ¿ì
+if( window.attachEvent )  // IEì˜ ê²½ìš°
 	window.attachEvent( "onload", convertHtml );
-else  // IE°¡ ¾Æ´Ñ °æ¿ì.
+else  // IEê°€ ì•„ë‹Œ ê²½ìš°.
 	window.addEventListener( "load", convertHtml , false );
 
 function convertHtml(){
@@ -633,13 +633,13 @@ function contSave()
 
 	if(validate(f, true))
 	{
-		if(!confirm('ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?'))
+		if(!confirm('ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?'))
 		{
 			return;
 		}
 
 <!-- IF START 'template.recv_write' -->
-		if(f.recv_write_save != null)	// ¼ö½ÅÀÚ ÀúÀå ¿©ºÎ(1:ÀúÀå, ³ª¸ÓÁö: ¹ÌÀúÀå)
+		if(f.recv_write_save != null)	// ìˆ˜ì‹ ì ì €ì¥ ì—¬ë¶€(1:ì €ì¥, ë‚˜ë¨¸ì§€: ë¯¸ì €ì¥)
 			f.recv_write_save.value = "1";
 <!-- IF END 'template.recv_write' -->
 
@@ -671,7 +671,7 @@ function contSave()
 
 function formSubmit(f, sign_type){
 	
-	alert("email ¹× ÈŞ´ëÆùÀ¸·Î Àü¼ÛµÈ °è¾à¼­ ÀÔ´Ï´Ù.\n\n°è¾à¼­ ¼­¸íÀ» À§ÇØ º°µµ Ã¢ÀÌ ¿­¸³´Ï´Ù.");
+	alert("email ë° íœ´ëŒ€í°ìœ¼ë¡œ ì „ì†¡ëœ ê³„ì•½ì„œ ì…ë‹ˆë‹¤.\n\nê³„ì•½ì„œ ì„œëª…ì„ ìœ„í•´ ë³„ë„ ì°½ì´ ì—´ë¦½ë‹ˆë‹¤.");
 	var url = "/web/buyer/sdd/email_msign_callback.jsp?cont_no={{cont_no}}&cont_chasu={{cont_chasu}}&email_random={{email_random}}";
 	window.open(url);
 	return false;
@@ -703,23 +703,23 @@ function formSubmit(f, sign_type){
 		}
 		if(rfile_chk){
 <!-- IF START 'template.need_attach_yn' -->
-			alert("ÇÊ¼ö ±¸ºñ¼­·ù¸¦ Ã·ºÎÇÏÁö ¾Ê¾Ò½À´Ï´Ù.\n\nÃ·ºÎ ÈÄ ÁøÇàÇÏ¼¼¿ä.");
+			alert("í•„ìˆ˜ êµ¬ë¹„ì„œë¥˜ë¥¼ ì²¨ë¶€í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n\nì²¨ë¶€ í›„ ì§„í–‰í•˜ì„¸ìš”.");
 			return false;
 <!-- IF END 'template.need_attach_yn' -->
 
 <!-- IFNOT START 'template.need_attach_yn' -->
-			if(!confirm('ÇÊ¼ö ±¸ºñ¼­·ù¸¦ Ã·ºÎÇÏÁö ¾Ê¾Ò½À´Ï´Ù.\n\n±×·¡µµ {{sign_title}} ÇÏ½Ã°Ú½À´Ï±î?')){
+			if(!confirm('í•„ìˆ˜ êµ¬ë¹„ì„œë¥˜ë¥¼ ì²¨ë¶€í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n\nê·¸ë˜ë„ {{sign_title}} í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
 				return false;
 			}
 <!-- IFNOT END 'template.need_attach_yn' -->
 		}
 		
 		<!-- IF START 'isNH' -->
-		/*º¸ÁõÃ¼Å© ¿ø·¡ ¾ÈÇßÀ½. NH°³¹ß¹Ú¼±¿ì ´ë¸® ¿äÃ»À¸·Î ÀÎÁö¼¼µµ Ã¼Å© ÇØ ´Ş¶óÇÔ. 20160616 Ã¼Å© ½ÃÀÛ*/
+		/*ë³´ì¦ì²´í¬ ì›ë˜ ì•ˆí–ˆìŒ. NHê°œë°œë°•ì„ ìš° ëŒ€ë¦¬ ìš”ì²­ìœ¼ë¡œ ì¸ì§€ì„¸ë„ ì²´í¬ í•´ ë‹¬ë¼í•¨. 20160616 ì²´í¬ ì‹œì‘*/
 		<!-- LOOP START 'stamp' -->
 			<!-- IF START 'stamp.recv_stamp' -->
 				<!-- IFNOT START 'stamp.cert_no' -->
-		alert("ÀÎÁö¼¼ Ã·ºÎ ÈÄ ÀüÀÚ¼­¸í °¡´ÉÇÕ´Ï´Ù.");
+		alert("ì¸ì§€ì„¸ ì²¨ë¶€ í›„ ì „ìì„œëª… ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');
 		return false;
 				<!-- IFNOT END 'stamp.cert_no' -->
@@ -729,7 +729,7 @@ function formSubmit(f, sign_type){
 		<!-- LOOP START 'warr' -->
 		if({{warr.warr_write_value}}){
 			<!-- IF START 'warr.warr_write_value' -->
-			alert("º¸Áõ¼­·ù¸¦ Ã·ºÎ ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.\n\n{{warr.warr_type}} Ã·ºÎ ÈÄ ÁøÇà ÇÏ¼¼¿ä.");
+			alert("ë³´ì¦ì„œë¥˜ë¥¼ ì²¨ë¶€ í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n\n{{warr.warr_type}} ì²¨ë¶€ í›„ ì§„í–‰ í•˜ì„¸ìš”.");
 			return false;
 			<!-- IF END 'warr.warr_write_value' -->
 		}
@@ -740,45 +740,37 @@ function formSubmit(f, sign_type){
 		var cert_dn ="{{_auth._CERT_DN}}";
 		<!-- IFNOT START 'boss_sign_yn' -->
 		if(cert_dn == ""){
-			alert("{{sign_title}}½Ã »ç¿ëÇÒ °øÀÎÀÎÁõ¼­°¡ µî·ÏµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.\n\nÈ­¸é»ó´Ü ¿ìÃøÀÇ [ÀÎÁõ¼­µî·Ï/°»½Å]À» Å¬¸¯ÇÏ¿© \n\nÀÎÁõ¼­¸¦ µî·ÏÇÑ ÈÄ °è¾à¼­¿¡ {{sign_title}} ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+			alert("{{sign_title}}ì‹œ ì‚¬ìš©í•  ê³µì¸ì¸ì¦ì„œê°€ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.\n\ní™”ë©´ìƒë‹¨ ìš°ì¸¡ì˜ [ì¸ì¦ì„œë“±ë¡/ê°±ì‹ ]ì„ í´ë¦­í•˜ì—¬ \n\nì¸ì¦ì„œë¥¼ ë“±ë¡í•œ í›„ ê³„ì•½ì„œì— {{sign_title}} í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 			return false;
 		}
 		<!-- IFNOT END 'boss_sign_yn' -->
 
 <!-- IF START 'template.recv_write' -->
 		if(f.recv_write_save.value != "1") {
-			alert("[ÀúÀå] ¹öÆ°À» ´­·¯ ¸ÕÀú ÀÔ·ÂÇÏ½Å °ªÀ» ÀúÀåÇÏ½Å ÈÄ {{sign_title}} ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+			alert("[ì €ì¥] ë²„íŠ¼ì„ ëˆŒëŸ¬ ë¨¼ì € ì…ë ¥í•˜ì‹  ê°’ì„ ì €ì¥í•˜ì‹  í›„ {{sign_title}} í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 			return false;
 		}
 <!-- IF END 'template.recv_write' -->
 
 <!-- IFNOT START 'template.recv_write' -->
-		if(!confirm("{{sign_title}} ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(!confirm("{{sign_title}} í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return false;
 		}
 <!-- IFNOT END 'template.recv_write' -->
 		
 		f.action="";
-		// °áÁ¦°¡ ÇÊ¿äÇÑ °æ¿ì
-		if(1)
-		{
-			document.getElementById('fra_pay').src = 'pay_check.jsp?{{query}}&sysdate={{_sysdate}}';
-			return false;
-		}
-		else
-		{
-			return fSign(false);
-		}
+		// ê²°ì œê°€ í•„ìš”í•œ ê²½ìš°
+		return fSign(false);
 	}
 	return false;
 }
 
-// ÀÎÁõ¼­ ¼±ÅÃÃ¢ ¶ç¿ì°í °è¾à¼­¼­¸í ½ÇÇà
-function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
+// ì¸ì¦ì„œ ì„ íƒì°½ ë„ìš°ê³  ê³„ì•½ì„œì„œëª… ì‹¤í–‰
+function fSign(isDirectSubmit)  // isDirectSubmitê°€ trueì´ë©´ submit
 {
     var f = document.forms["form1"];
 
-    if(f['sign_type'].value=='20') {//º»ÀÎÀÎÁõ ¼­¸í¿©ºÎ È®ÀÎ
+    if(f['sign_type'].value=='20') {//ë³¸ì¸ì¸ì¦ ì„œëª…ì—¬ë¶€ í™•ì¸
 		identifySign();
 		return false;
 	}
@@ -792,24 +784,24 @@ function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
     	<!-- IF START 'full_jumin_no' -->
     	try{
     		sinput = OpenDialog("../info/pop_sign_val.jsp?full=Y","pop_sign_val","400","150","no");
-    		alert("¡Ø °øÀÎÀÎÁõ¼­ ¾È³»\n\n°øÀÎÀÎÁõ¼­°¡ º¸ÀÌÁö ¾Ê´Â °æ¿ì\n\n°³ÀÎÀ¸·Î °Å·¡ÇÏ½Ã´Â ÀºÇàÀÇ °øÀÎÀÎÁõ¼±ÅÍ¿¡¼­\n\n°³ÀÎ¹ü¿ë °øÀÎÀÎÁõ¼­¸¦ ¹ß±Ş¹Ş¾Æ\n\n{{sign_title}}ÇÏ¼¼¿ä.");
+    		alert("â€» ê³µì¸ì¸ì¦ì„œ ì•ˆë‚´\n\nê³µì¸ì¸ì¦ì„œê°€ ë³´ì´ì§€ ì•ŠëŠ” ê²½ìš°\n\nê°œì¸ìœ¼ë¡œ ê±°ë˜í•˜ì‹œëŠ” ì€í–‰ì˜ ê³µì¸ì¸ì¦ì„ í„°ì—ì„œ\n\nê°œì¸ë²”ìš© ê³µì¸ì¸ì¦ì„œë¥¼ ë°œê¸‰ë°›ì•„\n\n{{sign_title}}í•˜ì„¸ìš”.");
     	}catch(err){
-    		alert("ÆË¾÷Â÷´ÜÀ» ÇØÁ¦ ÇÏ¼¼¿ä.");
+    		alert("íŒì—…ì°¨ë‹¨ì„ í•´ì œ í•˜ì„¸ìš”.");
     		return;
     	}
     	<!-- IF END 'full_jumin_no' -->
     	<!-- IFNOT START 'full_jumin_no' -->
     	try{
     		sinput = OpenDialog("../info/pop_sign_val.jsp","pop_sign_val","400","150","no");
-    		alert("¡Ø °øÀÎÀÎÁõ¼­ ¾È³»\n\n°øÀÎÀÎÁõ¼­°¡ º¸ÀÌÁö ¾Ê´Â °æ¿ì\n\n°³ÀÎÀ¸·Î °Å·¡ÇÏ½Ã´Â ÀºÇàÀÇ °øÀÎÀÎÁõ¼±ÅÍ¿¡¼­\n\n°³ÀÎ¹ü¿ë °øÀÎÀÎÁõ¼­¸¦ ¹ß±Ş¹Ş¾Æ\n\n{{sign_title}}ÇÏ¼¼¿ä.");
+    		alert("â€» ê³µì¸ì¸ì¦ì„œ ì•ˆë‚´\n\nê³µì¸ì¸ì¦ì„œê°€ ë³´ì´ì§€ ì•ŠëŠ” ê²½ìš°\n\nê°œì¸ìœ¼ë¡œ ê±°ë˜í•˜ì‹œëŠ” ì€í–‰ì˜ ê³µì¸ì¸ì¦ì„ í„°ì—ì„œ\n\nê°œì¸ë²”ìš© ê³µì¸ì¸ì¦ì„œë¥¼ ë°œê¸‰ë°›ì•„\n\n{{sign_title}}í•˜ì„¸ìš”.");
     	}catch(err){
-    		alert("ÆË¾÷Â÷´ÜÀ» ÇØÁ¦ ÇÏ¼¼¿ä.");
+    		alert("íŒì—…ì°¨ë‹¨ì„ í•´ì œ í•˜ì„¸ìš”.");
     		return;
     	}
     	<!-- IFNOT END 'full_jumin_no' -->
     	vendcd = vendcd+sinput;
     	if(vendcd.length!=13){
-    		alert("ÁÖ¹Îµî·Ï¹øÈ£°¡ ºÎÁ¤È® ÇÕ´Ï´Ù.\n\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇÏ¼¼¿ä.");
+    		alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ê°€ ë¶€ì •í™• í•©ë‹ˆë‹¤.\n\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•˜ì„¸ìš”.");
     		return;
     	}
     }
@@ -824,13 +816,13 @@ function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
     var signEnddt;
     var signedData;
 
-    var cont_hash = f['cont_hash'].value;    // °è¾à¼­·ù hash¿¡ ¼­¸íÇÑ °ª
+    var cont_hash = f['cont_hash'].value;    // ê³„ì•½ì„œë¥˜ hashì— ì„œëª…í•œ ê°’
     if(cont_hash==""){
-    	alert("{{sign_title}} µ¥ÀÌÅÍ°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù. °í°´¼¾ÅÍ(02-788-9097)·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.");
+    	alert("{{sign_title}} ë°ì´í„°ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°(02-788-9097)ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.");
     	return false;
     }
 
-    // È¯°æ¼³Á¤ ÇÔ¼ö È£Ãâ
+    // í™˜ê²½ì„¤ì • í•¨ìˆ˜ í˜¸ì¶œ
     <!-- IF START 'person_yn' -->
     initPerson();
     <!-- IF END 'person_yn' -->
@@ -838,7 +830,7 @@ function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
     init();
     <!-- IFNOT END 'person_yn' -->
 
-    // DN °ª ÃßÃâ DB¿¡ ³ÖÀ»°ª
+    // DN ê°’ ì¶”ì¶œ DBì— ë„£ì„ê°’
     userdn = CC_Object_id.GetUserDN();
     if ( (userdn == null) || (userdn == "") )
     {
@@ -848,14 +840,14 @@ function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
     getR = CC_Object_id.GetRFromKey(userdn, "");
     if (getR == "")
     {
-        alert("ÁÖ¹Î¹øÈ£/»ç¾÷ÀÚ¹øÈ£¸¦ È®ÀÎÇÒ ¼ö ¾ø´Â ÀÎÁõ¼­ÀÔ´Ï´Ù.");
+        alert("ì£¼ë¯¼ë²ˆí˜¸/ì‚¬ì—…ìë²ˆí˜¸ë¥¼ í™•ì¸í•  ìˆ˜ ì—†ëŠ” ì¸ì¦ì„œì…ë‹ˆë‹¤.");
         return false;
     }
 
     ret = CC_Object_id.ValidCert_VID(userdn, getR, vendcd);
     if (ret != 0)
     {
-        alert("¼±ÅÃÇÑ ÀÎÁõ¼­´Â ±Í»çÀÇ ÀÎÁõ¼­°¡ ¾Æ´Õ´Ï´Ù.");
+        alert("ì„ íƒí•œ ì¸ì¦ì„œëŠ” ê·€ì‚¬ì˜ ì¸ì¦ì„œê°€ ì•„ë‹™ë‹ˆë‹¤.");
         return false;
     }
 
@@ -864,40 +856,40 @@ function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
 
     if (signEnddt.length < 8)
     {
-        alert("À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ¼­ÀÔ´Ï´Ù.(À¯È¿ÀÏÀÚ ¹ÌÈ®ÀÎ)\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+        alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
         return false;
     }
 
     if (!isValidDate(signEnddt.substring(0, 8)))
     {
-        alert("À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ¼­ÀÔ´Ï´Ù.(À¯È¿ÀÏÀÚ ¹ÌÈ®ÀÎ)\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+        alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
         return false;
     }
 
     if (js_isDateCmp(signEnddt, currYmd))
     {
-        alert("À¯È¿±â°£ÀÌ Áö³­ ÀÎÁõ¼­ ÀÔ´Ï´Ù.\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+        alert("ìœ íš¨ê¸°ê°„ì´ ì§€ë‚œ ì¸ì¦ì„œ ì…ë‹ˆë‹¤.\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
         return false;
     }
     <!-- IFNOT START 'boss_sign_yn' -->
     <!-- IFC START '_auth._VENDCD!=2818700390' -->
     if (userdn != cert_dn)
     {
-        alert("¼±ÅÃÇÑ ÀÎÁõ¼­¿Í µî·ÏµÈ ÀÎÁõ¼­°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+        alert("ì„ íƒí•œ ì¸ì¦ì„œì™€ ë“±ë¡ëœ ì¸ì¦ì„œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         return false;
     }
     <!-- IFC END '_auth._VENDCD!=2818700390' -->
     <!-- IFNOT END 'boss_sign_yn' -->
 
-    // ÀüÀÚ¼­¸í »ı¼º
+    // ì „ìì„œëª… ìƒì„±
     // BSTR *SignData(BSTR Source, BSTR HashAlgo, BSTR Password);
     // parameters :
-    //   Source : ÀüÀÚ¼­¸íÇÒ ¸Ş¼¼Áö
-    //   HashAlgo : ¼­¸í ¾Ë°í¸®Áò ("SHA1", "MD5") ==> SHA1ÀÌ Ç¥ÁØ
-    //   Password : °³ÀÎÅ° º¹È£¸¦ À§ÇÑ ÆĞ½º¿öµå
-    // return value : »ı¼ºµÈ ÀüÀÚ¼­¸í °ª
-    // Âü °í :	1.¾ÏÈ£¸¦ ³ÖÁö ¾Ê¾ÒÀ» °æ¿ì¿¡´Â ¾ÏÈ£ ÀÔ·Â ´ÙÀÌ¾ó·Î±× ¹Ú½º¿¡ ÀÔ·ÂÇÑ´Ù.
-    signedData = CC_Object_id.SignData(cont_hash, "SHA1", "");   // °è¾à¼­·ù hash¿¡ ¼­¸íÇÑ °ª¿¡ ´Ù½Ã ¼­¸í
+    //   Source : ì „ìì„œëª…í•  ë©”ì„¸ì§€
+    //   HashAlgo : ì„œëª… ì•Œê³ ë¦¬ì¦˜ ("SHA1", "MD5") ==> SHA1ì´ í‘œì¤€
+    //   Password : ê°œì¸í‚¤ ë³µí˜¸ë¥¼ ìœ„í•œ íŒ¨ìŠ¤ì›Œë“œ
+    // return value : ìƒì„±ëœ ì „ìì„œëª… ê°’
+    // ì°¸ ê³  :	1.ì•”í˜¸ë¥¼ ë„£ì§€ ì•Šì•˜ì„ ê²½ìš°ì—ëŠ” ì•”í˜¸ ì…ë ¥ ë‹¤ì´ì–¼ë¡œê·¸ ë°•ìŠ¤ì— ì…ë ¥í•œë‹¤.
+    signedData = CC_Object_id.SignData(cont_hash, "SHA1", "");   // ê³„ì•½ì„œë¥˜ hashì— ì„œëª…í•œ ê°’ì— ë‹¤ì‹œ ì„œëª…
     if ( (signedData == null) || (signedData == "") )
     {
         alert(CC_Object_id.GetErrorContent());
@@ -919,7 +911,7 @@ function fSign(isDirectSubmit)  // isDirectSubmit°¡ trueÀÌ¸é submit
 
 function formSubmit2(f){
 	if(validate(f)){
-		if(confirm("±¸ºñ¼­·ù¸¦ ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("êµ¬ë¹„ì„œë¥˜ë¥¼ ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -936,10 +928,10 @@ function modifyReq(){
 
 function delFile(seq, file_ext){
 	var area = document.getElementById("rfile_area_"+seq);
-	var html = '<input type="file" name="rfile_'+seq+'"  hname="Ã·ºÎÆÄÀÏ" style="width:95%" allow="'+file_ext+'"/>';
+	var html = '<input type="file" name="rfile_'+seq+'"  hname="ì²¨ë¶€íŒŒì¼" style="width:95%" allow="'+file_ext+'"/>';
 	    html += '<input type="hidden" name="rfile_seq" value="'+seq+'"/>';
 	if(file_ext !=''){
-		html += '<br><span class="caution-text"> ¡Ø '+file_ext+' ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>'
+		html += '<br><span class="caution-text"> â€» '+file_ext+' íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>'
 	}
 	area.innerHTML = html;
 }
@@ -961,7 +953,7 @@ function identifyCallback(ci, user_name, birth_date, hp, text) {
         f['identify_birth_date'].value = birth_date;
         f.submit();
 	} else {
-	    alert('°è¾àÀÚ º»ÀÎÈ®ÀÎ¿¡ ½ÇÆĞÇß½À´Ï´Ù.');
+	    alert('ê³„ì•½ì ë³¸ì¸í™•ì¸ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
 	    return false;
 	}
 }
@@ -1008,7 +1000,7 @@ SetFormValue(form_name,"hp2","{{cust.hp2}}");
 SetFormValue(form_name,"hp3","{{cust.hp3}}");
 SetFormValue(form_name,"jumin_no","{{cust.jumin_no}}");
 <!-- IFNOT START 'cust.sign_data' -->
-comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=><b style=\"color:red\">¹Ì¼­¸í</b>"));
+comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=><b style=\"color:red\">ë¯¸ì„œëª…</b>"));
 <!-- IFNOT END 'cust.sign_data' -->
 <!-- IF START 'cust.sign_data' -->
 comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=><b style=\"color:blue\">{{cust.sign_date}}</b>"));
@@ -1028,3 +1020,18 @@ function templateLoadEvent(){
 templateLoadEvent();
 </script>
 <!-- IF END 'template.recv_write' -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	// ë†ì‹¬ íœ´ëŒ€í° hidden
+	document.getElementsByName('hp_th')[0].style.background = "white";
+	document.getElementsByName('hp_th')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_td')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_th')[0].innerHTML = "";
+	document.getElementsByName('hp_bar1')[0].innerHTML = "";
+	document.getElementsByName('hp_bar2')[0].innerHTML = "";
+	document.getElementsByName('hp1')[0].type= "hidden";
+	document.getElementsByName('hp2')[0].type= "hidden";
+	document.getElementsByName('hp3')[0].type= "hidden";
+});
+</script>

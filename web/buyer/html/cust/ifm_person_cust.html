@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
 <input type="hidden" name="person_seq" value="{{person_seq}}"/>
 <div class="search_div">
 	<table class="search_table">
@@ -10,12 +10,12 @@
 		<col width="15%">
   	</colgroup>
 	<tr>
-		<th><p>���ó��</p></th>
+		<th><p>계약처명</p></th>
 		<td><input type="text" name="s_member_name" maxlength="100" style="width:80%"></td>
-		<th><p>���ó�ڵ�</p></th>
+		<th><p>계약처코드</p></th>
 		<td><input type="text" name="s_cust_code" maxlength="6" size="6"></td>
 		<td align="right">
-			<button type="submit" class="search_btn">�˻�</button>
+			<button type="submit" class="search_btn">검색</button>
 		</td>
   	</tr>
 </table>
@@ -34,13 +34,13 @@
 				<col width="18%">
 			</colgroup>
 			<tr>
-				<th>����</th>
-				<th>���ó��</th>
-				<th>���ó<br>�ڵ�</th>
-				<th>����ڹ�ȣ</th>
-				<th>�����</th>
-				<th>��ȭ��ȣ</th>
-				<!--<td>���</td>-->
+				<th>순번</th>
+				<th>계약처명</th>
+				<th>계약처<br>코드</th>
+				<th>사업자번호</th>
+				<th>담당자</th>
+				<th>전화번호</th>
+				<!--<td>기능</td>-->
 			</tr>
 			<!-- LOOP START 'list' -->
 			<tr align="center">
@@ -50,12 +50,12 @@
 				<td>{{list.vendcd}}</td>
 				<td>{{list.user_name}}</td>
 				<td>{{list.tel_num}}</td>
-				<!--<td><input type="button" class="del2" value="����" onClick="delClient('{{list.client_seq}}')"></td>-->
+				<!--<td><input type="button" class="del2" value="삭제" onClick="delClient('{{list.client_seq}}')"></td>-->
 			</tr>
 			<!-- LOOP END 'list' -->
 		  	<!-- IFNOT START 'list' -->
 			<tr>
-				<td align="center" colspan="6">��� ��ü�� �����ϴ�.</td>
+				<td align="center" colspan="6">담당 업체가 없습니다.</td>
 			</tr>
 		  <!-- IFNOT END 'list' -->
 		</table>

@@ -1,7 +1,14 @@
+ï»¿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+
 <script type="text/javascript">
     var treeDataProvider = null;
     var dataProvider = null;
@@ -11,9 +18,9 @@
         RealGridJS.setRootContext("{{realgrid_path}}");   //  cab/realgrid
         //RealGridJS.setTrace(true);
 
-        // filed´Â µ¥ÀÌÅ¸ ¿µ¿ª, ÄÃ·³Àº view¿µ¿ª
+        // filedëŠ” ë°ì´íƒ€ ì˜ì—­, ì»¬ëŸ¼ì€ viewì˜ì—­
 
-        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source °´Ã¼
+        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source ê°ì²´
         treeView			= new RealGridJS.TreeView("realgrid");
         treeView.setDataSource(treeDataProvider);
 
@@ -59,13 +66,13 @@
         });
 
         var columns = [];
-        columns.push({name:"member_name" ,fieldName:"member_name",header:"¾÷Ã¼¸í" ,width: 200 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"»ç¾÷ÀÚ¹øÈ£" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"boss_name" ,fieldName:"boss_name" ,header:"´ëÇ¥ÀÚ¸í" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"ÁßºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"s_src_nm" ,fieldName:"s_src_nm" ,header:"¼ÒºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"¾÷Ã¼¹øÈ£" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"¼Ò½ÌÄÚµå" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_name" ,fieldName:"member_name",header:"ì—…ì²´ëª…" ,width: 200 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"ì‚¬ì—…ìë²ˆí˜¸" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"boss_name" ,fieldName:"boss_name" ,header:"ëŒ€í‘œìëª…" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"ì¤‘ë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"s_src_nm" ,fieldName:"s_src_nm" ,header:"ì†Œë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"ì—…ì²´ë²ˆí˜¸" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"ì†Œì‹±ì½”ë“œ" ,width: 100 ,editable:false,movable:false ,sortable:false});
 
         dataProvider.setFields(columns);
         gridView.setColumns(columns);
@@ -86,7 +93,7 @@
                 updatable: true,
                 deletable: true,
                 deleteRowsConfirm: true,
-                deleteRowsMessage: "»èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?"
+                deleteRowsMessage: "ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?"
             }
             ,displayOptions:{
                 //columnWidth : 200
@@ -94,11 +101,11 @@
         };
         treeView.setOptions(options);
 
-        //Æú´õ ÀÌ¹ÌÁö µî·Ï
+        //í´ë” ì´ë¯¸ì§€ ë“±ë¡
         var imgFiles = ["folder_close.gif","folder_open.gif","unknown.gif"];
         var imageList = new RealGridJS.ImageList("images", "/cab/realgrid/resource/");
         imageList.addUrls(imgFiles);
-        // Æ®¸®ºä¿¡ ÀÌ¹ÌÁö ¸®½ºÆ® µî·ÏÇÏ±â
+        // íŠ¸ë¦¬ë·°ì— ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ë“±ë¡í•˜ê¸°
         treeView.registerImageList(imageList);
         treeView.setTreeOptions({
             iconImages: imageList.getName(),
@@ -126,19 +133,19 @@
     function setColumns() {
         var columns = [];
         columns.push({name:"icon" ,fieldName:"icon" ,header:"icon" ,width:120 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"src_nm" ,fieldName:"src_nm" ,header:"Ä«Å×°í¸®" ,width: 180 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"src_cnt" ,fieldName:"src_cnt" ,header: "¼Ò½Ì¼ö" ,width:50 ,editable:false,movable:false ,sortable:false, visible:true});
-        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"¾÷Ã¼ÄÚµå" ,width:80 ,editable:false ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"l_src_cd" ,fieldName:"l_src_cd" ,header:"¼Ò½ÌÄÚµå1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"m_src_cd" ,fieldName:"m_src_cd" ,header:"¼Ò½ÌÄÚµå2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"s_src_cd" ,fieldName:"s_src_cd" ,header:"¼Ò½ÌÄÚµå3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"p_src_cd" ,fieldName:"p_src_cd" ,header:"ºÎ¸ğ¼Ò½ÌÄÚµå" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"¼Ò½ÌÄÚµå" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"src_nm" ,fieldName:"src_nm" ,header:"ì¹´í…Œê³ ë¦¬" ,width: 180 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"src_cnt" ,fieldName:"src_cnt" ,header: "ì†Œì‹±ìˆ˜" ,width:50 ,editable:false,movable:false ,sortable:false, visible:true});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"ì—…ì²´ì½”ë“œ" ,width:80 ,editable:false ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"l_src_cd" ,fieldName:"l_src_cd" ,header:"ì†Œì‹±ì½”ë“œ1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"m_src_cd" ,fieldName:"m_src_cd" ,header:"ì†Œì‹±ì½”ë“œ2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"s_src_cd" ,fieldName:"s_src_cd" ,header:"ì†Œì‹±ì½”ë“œ3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"p_src_cd" ,fieldName:"p_src_cd" ,header:"ë¶€ëª¨ì†Œì‹±ì½”ë“œ" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"ì†Œì‹±ì½”ë“œ" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
         columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,width:50 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "¸¶Áö¸· ³ëµå¿©ºÎ" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "ë§ˆì§€ë§‰ ë…¸ë“œì—¬ë¶€" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
 
         treeDataProvider.setFields(columns);
-        treeView.setColumns(columns);	// ÄÃ·³À» TreeView¿¡ ÀÔ·Â
+        treeView.setColumns(columns);	// ì»¬ëŸ¼ì„ TreeViewì— ì…ë ¥
         treeView.addCellRenderers(
             [{
                 "id": "chk_use_yn",
@@ -215,16 +222,16 @@
             document.getElementById('btnDelete').style.display='none';
 		}
         var columns = [];
-        columns.push({name:"member_name" ,fieldName:"member_name",mergeRule:{criteria: "value"},header:"¾÷Ã¼¸í" ,width: 200 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"vendcd" ,fieldName:"vendcd",mergeRule:{criteria: "value"} ,header:"»ç¾÷ÀÚ¹øÈ£" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"boss_name" ,fieldName:"boss_name",mergeRule:{criteria: "value"} ,header:"´ëÇ¥ÀÚ¸í" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"¾÷Ã¼¹øÈ£" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"¼Ò½ÌÄÚµå" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_name" ,fieldName:"member_name",mergeRule:{criteria: "value"},header:"ì—…ì²´ëª…" ,width: 200 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"vendcd" ,fieldName:"vendcd",mergeRule:{criteria: "value"} ,header:"ì‚¬ì—…ìë²ˆí˜¸" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"boss_name" ,fieldName:"boss_name",mergeRule:{criteria: "value"} ,header:"ëŒ€í‘œìëª…" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"ì—…ì²´ë²ˆí˜¸" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"ì†Œì‹±ì½”ë“œ" ,width: 100 ,editable:false,movable:false ,sortable:false});
         if(depth == '1') {
-            columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"ÁßºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
-            columns.push({name:"l_src_nm" ,fieldName:"s_src_nm" ,header:"¼ÒºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"ì¤‘ë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_src_nm" ,fieldName:"s_src_nm" ,header:"ì†Œë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
 		} else if(depth == '2') {
-            columns.push({name:"l_src_nm" ,fieldName:"s_src_nm" ,header:"¼ÒºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_src_nm" ,fieldName:"s_src_nm" ,header:"ì†Œë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
         }
 
         dataProvider.setFields(columns);
@@ -299,7 +306,7 @@
     }
 
 	function delClient() {
-        if(!confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+        if(!confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
             return;
         }
 		var member_no = dataProvider.getJsonRow(gridView.getCurrent().itemIndex).member_no;
@@ -310,7 +317,7 @@
         $.getJSON("./src_percomp_list_d.jsp", params, function (data) {
             //console.log(JSON.stringify(data));
             if(data=='1') {
-                alert('»èÁ¦ µÇ¾ú½À´Ï´Ù.');
+                alert('ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.');
                 loadDetailData();
 			}
         })
@@ -340,13 +347,13 @@ function fDownXLS(){
 		<div class="div_table">
 			<table style="border: none">
 			<tr>
-				<td><li><b>Çù·Â¾÷Ã¼¼ö : {{client_cnt}}°³ (<font color="#66B3FF">¼³Á¤ ¾÷Ã¼¼ö: <span id="spn_map_cnt"></span>°³</font> , <font color="FD8D68" style="cursor: pointer" onclick="fPopNoMapPage()"><u>¹Ì¼³Á¤ ¾÷Ã¼¼ö : <span id="spn_not_map_cnt"></span> °³</u></font>)</b></li></td>
+				<td><li><b>í˜‘ë ¥ì—…ì²´ìˆ˜ : {{client_cnt}}ê°œ (<font color="#66B3FF">ì„¤ì • ì—…ì²´ìˆ˜: <span id="spn_map_cnt"></span>ê°œ</font> , <font color="FD8D68" style="cursor: pointer" onclick="fPopNoMapPage()"><u>ë¯¸ì„¤ì • ì—…ì²´ìˆ˜ : <span id="spn_not_map_cnt"></span> ê°œ</u></font>)</b></li></td>
 				<td align="right">
-                    <button type="button" class="sbtn color ico-excel" onClick="fDownXLS();"><span></span>¾÷Ã¼¼Ò½ÌÇöÈ²</button>
+                    <button type="button" class="sbtn color ico-excel" onClick="fDownXLS();"><span></span>ì—…ì²´ì†Œì‹±í˜„í™©</button>
                 </td>
 			</tr>
 			<tr>
-				<td colspan="2" ><li  class="caution-text">¼Ò½ÌÄ«Å×°í¸®º¯°æÀº »ó´Ü ¿ìÃøÀÇ <b>È¸¿øÁ¤º¸¼öÁ¤ ¡æ ¼Ò½ÌÄ«Å×°í¸®°ü¸®</b> ¸Ş´º¿¡¼­ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</li>
+				<td colspan="2" ><li  class="caution-text">ì†Œì‹±ì¹´í…Œê³ ë¦¬ë³€ê²½ì€ ìƒë‹¨ ìš°ì¸¡ì˜ <b>íšŒì›ì •ë³´ìˆ˜ì • â†’ ì†Œì‹±ì¹´í…Œê³ ë¦¬ê´€ë¦¬</b> ë©”ë‰´ì—ì„œ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
 				</td>
 			</tr>
 			</table>
@@ -357,7 +364,7 @@ function fDownXLS(){
 <td valign="top">
 	<div class="div_table">
 		<div class="push-left">
-			<h3>¼Ò½ÌÄ«Å×°í¸®</h3>
+			<h3>ì†Œì‹±ì¹´í…Œê³ ë¦¬</h3>
 		</div>
 	</div>
 	<div id="realgrid" style="width: 100%; height: 500px;"></div>
@@ -366,11 +373,11 @@ function fDownXLS(){
 	<td valign="top">
 		<div class="div_table">
 			<div class="push-left">
-				<h3>Ä«Å×°í¸®º° ¾÷Ã¼<span id="span_depth_nm"></span></h3>
+				<h3>ì¹´í…Œê³ ë¦¬ë³„ ì—…ì²´<span id="span_depth_nm"></span></h3>
 			</div>
 			<div class="push-right">
-				<button type="button" id="btnAdd" class="sbtn color ico-add auth_css" onClick="addClient();" style="display: none"><span></span>¾÷Ã¼Ãß°¡</button>
-				<button type="button" id="btnDelete" class="sbtn color ico-delete auth_css" onClick="delClient();" style="display: none"><span></span>¾÷Ã¼»èÁ¦</button>
+				<button type="button" id="btnAdd" class="sbtn color ico-add auth_css" onClick="addClient();" style="display: none"><span></span>ì—…ì²´ì¶”ê°€</button>
+				<button type="button" id="btnDelete" class="sbtn color ico-delete auth_css" onClick="delClient();" style="display: none"><span></span>ì—…ì²´ì‚­ì œ</button>
 			</div>
 		</div>
 	<div id="realgrid_list" style="width: 100%; height: 500px;"></div>

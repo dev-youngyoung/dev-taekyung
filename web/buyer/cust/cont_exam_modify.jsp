@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_exam_status = {"00=>Æò°¡´ë»ó","10=>Æò°¡Áß","20=>Æò°¡¿Ï·á"};
+String[] code_exam_status = {"00=>í‰ê°€ëŒ€ìƒ","10=>í‰ê°€ì¤‘","20=>í‰ê°€ì™„ë£Œ"};
 String cont_no = u.request("cont_no");
 String cont_chasu = u.request("cont_chasu");
 String result_seq = u.request("result_seq");
 if(cont_no.equals("")||cont_chasu.equals("")|| result_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ");
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 cont.put("cont_date", u.getTimeString("yyyy-MM-dd", cont.getString("cont_date")));
@@ -20,7 +20,7 @@ cont.put("cont_date", u.getTimeString("yyyy-MM-dd", cont.getString("cont_date"))
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and sign_seq = '2' ");
 if(!cust.next()){
-	u.jsError("°Å·¡Ã³ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê±°ë˜ì²˜ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -33,7 +33,7 @@ DataSet result = resultDao.find(
 				+",(select grade from tcb_exam_result_grade where member_no = a.member_no and result_seq = a.result_seq and seq = a.grade_seq ) grade_name "
 );
 if(!result.next()){
-	u.jsError("Æò°¡ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 result.put("result_date", u.getTimeString("yyyy-MM-dd", result.getString("result_date")));
@@ -132,7 +132,7 @@ if(u.isPost()&&f.validate()){
 							+" and min_point<= '"+f.get("result_point")+"' "
 			);
 			if(!grade.next()){
-				u.jsError("Æò°¡µî±ŞÀ» ¾Ë ¼ö ¾ø½À´Ï´Ù.");
+				u.jsError("í‰ê°€ë“±ê¸‰ì„ ì•Œ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 				return;
 			}
 			grade_seq = grade.getString("seq");
@@ -150,7 +150,7 @@ if(u.isPost()&&f.validate()){
 	examResultDao.item("grade_seq", grade_seq);
 	db.setCommand(examResultDao.getUpdateQuery("member_no= '"+_member_no+"' and result_seq = '"+result_seq+"'"), examResultDao.record);
 
-	// ¾ç½Ä ÀúÀå
+	// ì–‘ì‹ ì €ì¥
 	String[] question_cd = f.getArr("question_cd");
 	String[] item_point = f.getArr("item_point");
 	int cnt = question_cd == null? 0:question_cd.length;
@@ -161,12 +161,12 @@ if(u.isPost()&&f.validate()){
 		db.setCommand(questionDao.getUpdateQuery("member_no= '"+_member_no+"' and result_seq = '"+result_seq+"' and question_cd = '"+question_cd[i]+"' "), questionDao.record);
 	}
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	String msg = "ÀúÀåÇÏ¿´½À´Ï´Ù.";
+	String msg = "ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.";
 	if(status.equals("20")){
-		msg = "Æò°¡ ¿Ï·á Ã³¸® ÇÏ¿´½À´Ï´Ù.";
+		msg = "í‰ê°€ ì™„ë£Œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 	}
 	u.jsAlertReplace(msg,"cont_exam_list.jsp?"+u.getQueryString("cont_no, cont_chasu, result_seq"));
 	return;

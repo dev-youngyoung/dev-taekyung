@@ -11,8 +11,8 @@ import procure.common.conf.Startup;
 
 public class FileUtil {
 	/**
-	 * µğ·ºÅä¸® Ã¼Å©¸¦ ÇÏ°í ¾øÀ¸¸é »ı¼ºÇÑ´Ù.
-	 * @param dir Ã¼Å©ÇÒ µğ·ºÅä¸®
+	 * ë””ë ‰í† ë¦¬ ì²´í¬ë¥¼ í•˜ê³  ì—†ìœ¼ë©´ ìƒì„±í•œë‹¤.
+	 * @param dir ì²´í¬í•  ë””ë ‰í† ë¦¬
 	 * @throws IOException
 	 */
 	public static void checkDirectory( String dir ) throws IOException
@@ -48,17 +48,17 @@ public class FileUtil {
 	}
 	
 	/**
-	 * ÆÄÀÏÀ» ÀÌµ¿½ÃÅ²´Ù.
-	 * @param srcFullPath ÆÄÀÏÀÇ ÀüÃ¼°æ·Î
-	 * @param targetDir ´ë»ó µğ·ºÅä¸®
-	 * @param trargetFile ´ë»ó ÆÄÀÏ¸í
+	 * íŒŒì¼ì„ ì´ë™ì‹œí‚¨ë‹¤.
+	 * @param srcFullPath íŒŒì¼ì˜ ì „ì²´ê²½ë¡œ
+	 * @param targetDir ëŒ€ìƒ ë””ë ‰í† ë¦¬
+	 * @param trargetFile ëŒ€ìƒ íŒŒì¼ëª…
 	 * @throws IOException
 	 */
 	public static void moveFile(String srcFullPath, String targetDir, String trargetFile) throws IOException{
 		checkDirectory(targetDir);
 		File file = new File(srcFullPath);
 		if(!file.exists()){
-			System.out.println(srcFullPath + "[ ÆÄÀÏ¾øÀ½]");
+			System.out.println(srcFullPath + "[ íŒŒì¼ì—†ìŒ]");
 			return;
 		}
 		if(!isEndCharSlash(targetDir)){
@@ -67,14 +67,14 @@ public class FileUtil {
 			else
 				targetDir +=  '\\';
 		}
-		System.out.println(targetDir + trargetFile + "[ ·Î ÀÌµ¿ÇÔ]");
+		System.out.println(targetDir + trargetFile + "[ ë¡œ ì´ë™í•¨]");
 		file.renameTo(new File(targetDir + trargetFile));	
 	}
 
 	/**
-	 * Ã·ºÎÆÄÀÏÀÇ ÀÌ¸§À» ÇöÀç ½Ã°¢À» ±âÁØÀ¸·Î º¯°æÇÏ¿© ¹İÈ¯
-	 * @param sPath			¿øº» ÆÄÀÏ°æ·Î
-	 * @param sOrgFileName	¿øº» ÆÄÀÏ¸í
+	 * ì²¨ë¶€íŒŒì¼ì˜ ì´ë¦„ì„ í˜„ì¬ ì‹œê°ì„ ê¸°ì¤€ìœ¼ë¡œ ë³€ê²½í•˜ì—¬ ë°˜í™˜
+	 * @param sPath			ì›ë³¸ íŒŒì¼ê²½ë¡œ
+	 * @param sOrgFileName	ì›ë³¸ íŒŒì¼ëª…
 	 * @return
 	 */
 	public static String getRenameFileNameWithParam(String sPath, String sOrgFileName)
@@ -108,8 +108,8 @@ public class FileUtil {
 		File	fileOld	=	new	File(sFileUrl);
 		File	fileNew =	new File(sReFileUrl);
 
-		// º¯°æÇÏ·Á´Â ÆÄÀÏ¸íÀÌ ±âÁ¸¿¡ Á¸ÀçÇÏ´Â ÆÄÀÏ¸íÀÏ °æ¿ì¿¡ ÆÄÀÏ¸í ¸¶Áö¸·¿¡ "0" ºÙÀÓ
-		// µ¿½Ã¿¡ ¿©·¯°³ÀÇ (È®ÀåÀÚ°¡ °°Àº) ÆÄÀÏÀ» Ã·ºÎÇÏ´Â °æ¿ì¿¡ getTimeInMillis()°¡ ÀÏÄ¡ ÇÒ¼öµµ ÀÖÀ¸¹Ç·Î Áßº¹À» È®ÀÎÇØ¾ß ÇÑ´Ù
+		// ë³€ê²½í•˜ë ¤ëŠ” íŒŒì¼ëª…ì´ ê¸°ì¡´ì— ì¡´ì¬í•˜ëŠ” íŒŒì¼ëª…ì¼ ê²½ìš°ì— íŒŒì¼ëª… ë§ˆì§€ë§‰ì— "0" ë¶™ì„
+		// ë™ì‹œì— ì—¬ëŸ¬ê°œì˜ (í™•ì¥ìê°€ ê°™ì€) íŒŒì¼ì„ ì²¨ë¶€í•˜ëŠ” ê²½ìš°ì— getTimeInMillis()ê°€ ì¼ì¹˜ í• ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ ì¤‘ë³µì„ í™•ì¸í•´ì•¼ í•œë‹¤
 		while (fileNew.exists())
 		{
 			sReFile		=	sReFile + "0";
@@ -120,11 +120,11 @@ public class FileUtil {
 		
 		fileOld.renameTo(fileNew);
 		
-		return	sReFileNm;	// ¡Ø ÁÖÀÇ : ÀüÃ¼ °æ·Î°¡ ¾Æ´Ñ ÆÄÀÏ¸í¸¸ ¹İÈ¯
+		return	sReFileNm;	// â€» ì£¼ì˜ : ì „ì²´ ê²½ë¡œê°€ ì•„ë‹Œ íŒŒì¼ëª…ë§Œ ë°˜í™˜
 	}	
 
 	/*
-	 * ÆÄÀÏ Å©±â ±¸ÇÏ±â
+	 * íŒŒì¼ í¬ê¸° êµ¬í•˜ê¸°
 	 */
 	public static long getFileSize(String sPath, String sFileName)
 	{
@@ -135,8 +135,8 @@ public class FileUtil {
 	}
 	
 	/**
-	 * ÆÄÀÏ ÀÌ¸§ÀÇ ³¡ÀÌ '/'·Î ³¡³ª´Â Áö ÆÇ´ÜÇÑ´Ù.
-	 * @param path ÆÄÀÏÀÌ³ª µğ·ºÅä¸®
+	 * íŒŒì¼ ì´ë¦„ì˜ ëì´ '/'ë¡œ ëë‚˜ëŠ” ì§€ íŒë‹¨í•œë‹¤.
+	 * @param path íŒŒì¼ì´ë‚˜ ë””ë ‰í† ë¦¬
 	 * @return
 	 */
 	public static boolean isEndCharSlash(String path){
@@ -148,10 +148,10 @@ public class FileUtil {
 	}
 	
 	/**
-	 * Ã·ºÎÆÄÀÏ ¾÷·Îµå
-	 * @param sInFullFile	Client ¾ò·Îµå ´ë»óÆÄÀÏ Full °æ·Î
-	 * @param sOutDir		Server ¾ò·Îµå ´ë»óÆÄÀÏ µğ·ºÅä¸® °æ·Î
-	 * @param sOutFileNm	Server¿¡ ÀúÀåÇÒ ÆÄÀÏ¸í
+	 * ì²¨ë¶€íŒŒì¼ ì—…ë¡œë“œ
+	 * @param sInFullFile	Client ì–»ë¡œë“œ ëŒ€ìƒíŒŒì¼ Full ê²½ë¡œ
+	 * @param sOutDir		Server ì–»ë¡œë“œ ëŒ€ìƒíŒŒì¼ ë””ë ‰í† ë¦¬ ê²½ë¡œ
+	 * @param sOutFileNm	Serverì— ì €ì¥í•  íŒŒì¼ëª…
 	 * @return
 	 * @throws IOException 
 	 */

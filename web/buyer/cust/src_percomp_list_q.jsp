@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR"%><%@ include file="init.jsp"%>
+<%@ page contentType="text/html; charset=UTF-8"%><%@ include file="init.jsp"%>
 <%		
-String sMemberNo	= u.request("member_no");	// È¸¿ø¹øÈ£
-String sLSrcCd		= u.request("l_src_cd");		// ´ëºÐ·ùÄÚµå
-String sMSrcCd		= u.request("m_src_cd");		// ÁßºÐ·ùÄÚµå
-String sSSrcCd		= u.request("s_src_cd");		// ¼ÒºÐ·ùÄÚµå
+String sMemberNo	= u.request("member_no");	// íšŒì›ë²ˆí˜¸
+String sLSrcCd		= u.request("l_src_cd");		// ëŒ€ë¶„ë¥˜ì½”ë“œ
+String sMSrcCd		= u.request("m_src_cd");		// ì¤‘ë¶„ë¥˜ì½”ë“œ
+String sSSrcCd		= u.request("s_src_cd");		// ì†Œë¶„ë¥˜ì½”ë“œ
 String sDepth		= u.request("depth");			// depth
 
 DataObject doTcbSrcAdm = new DataObject("tcb_src_adm");

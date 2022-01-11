@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
-String person_seq = u.request("person_seq");  // °© ´ã´çÀÚ
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
+String person_seq = u.request("person_seq");  // ê°‘ ë‹´ë‹¹ì
 if(person_seq.equals(""))
 {
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 f.addElement("s_member_name",null, null);
 f.addElement("s_vendcd",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -18,14 +18,14 @@ list.setTable("tcb_member tm inner join tcb_client tc on tm.member_no = tc.clien
 list.setFields("*");
 list.addWhere(" tm.member_gubun <> '04' ");
 list.addWhere(" nvl(tm.status,'z') <> '90'");
-list.addWhere(" tc.client_seq not in (select client_seq from tcb_client_detail where member_no = '"+_member_no+"' and person_seq = " + person_seq + ")");// ±âÁ¸Ãß°¡µÇ¾î ÀÖ´Â ¾øÃ¼ Á¦¿Ü
+list.addWhere(" tc.client_seq not in (select client_seq from tcb_client_detail where member_no = '"+_member_no+"' and person_seq = " + person_seq + ")");// ê¸°ì¡´ì¶”ê°€ë˜ì–´ ìˆëŠ” ì—†ì²´ ì œì™¸
 list.addSearch("member_name", f.get("s_member_name"), "LIKE");
 list.addSearch("vendcd", f.get("s_vendcd"));
 list.setOrderBy("member_name asc ");
 
 DataSet ds = null;
 if(!u.request("search").equals("")){
-	//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+	//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 	ds = list.getDataSet();
 
 	while(ds.next()){
@@ -36,7 +36,7 @@ if(!u.request("search").equals("")){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_person_search_company");
-p.setVar("popup_title","¾÷Ã¼°Ë»ö");
+p.setVar("popup_title","ì—…ì²´ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

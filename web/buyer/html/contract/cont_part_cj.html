@@ -11,19 +11,19 @@
 	  	<col width="13%">
 	  </colgroup>
 	  <tr>
-	    <th><p>╨н╪╜╦М</p></th>
+	    <th><p>К╤─Л└°К╙┘</p></th>
 	    <td>
 		    <select name="s_field_seq">
-		    <option value="">-╨н╪╜ ╪╠ец-</option>
+		    <option value="">-К╤─Л└° Л└═М┐²-</option>
 		    <!-- LOOP START 'code_field' -->
 		    <option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
 		    <!-- LOOP END 'code_field' -->
 		    </select>    
 	    </td>
-	    <th><p>╟Х╬Ю╪╜а╬╥Ы</p></th>
+	    <th><p>ЙЁ└Л∙╫Л└°Л╒┘К╔≤</p></th>
 	    <td>
 	    	<select name="s_template_cd">
-	    		<option value="">-------╪╠ец-------</option>
+	    		<option value="">-------Л└═М┐²-------</option>
 	    		<!-- LOOP START 'template' -->
 	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 	    		<!-- LOOP END 'template' -->
@@ -32,38 +32,38 @@
 		<td align="right"></td>
 	  </tr>
 	  <tr>
-	    <th><p>╟е╥║цЁ╦М</p></th>
+	    <th><p>Й╠╟К·≤Л╡≤К╙┘</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
-		<th><p>╟Х╬Ю╦М</p></th>
+		<th><p>ЙЁ└Л∙╫К╙┘</p></th>
 	    <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
 	    <td align="right"></td>
 	  </tr>
 	  <tr>
-	  	<th><p>╟Х╬Ююоюз</p></th>
+	  	<th><p>ЙЁ└Л∙╫Л²╪Л·░</p></th>
 	    <td>
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 			<input type="text" name="s_edate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
-	    <th><p>╟Х╬Ю╩Себ</p></th>
+	    <th><p>ЙЁ└Л∙╫Л┐│М┐°</p></th>
 	    <td>
 	    	<select name="s_status">
-	    		<option value="">-╪╠ец-</option>
+	    		<option value="">-Л└═М┐²-</option>
 	    		<!-- LOOP START 'code_status' -->
 	    		<option value="{{code_status.id}}">{{code_status.value}}</option>
 	    		<!-- LOOP END 'code_status' -->
 	    	</select>
 	    </td>
 	    <td align="right">
-	      <button type="submit" class="search_btn">╟к╩Ж</button>
+	      <button type="submit" class="search_btn">Й╡─Л┐┴</button>
 	    </td>
 	  </tr>
 	</table>
 </div>
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>©╒╪©</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>Л≈▒Л┘─</button>
 </div>
 
 <br/>
@@ -81,14 +81,14 @@
 		    <col width="10%">
 		</colgroup>
 		<tr>
-			<th>╪Ь╧Ь</th>
-			<th>╨н╪╜╦М</th>   
-	   		<th>╟Х╬Ю╦М</th>
-	   		<th>╟е╥║цЁ╦М</th>
-			<th>╢Кг╔юз</th>
-	   		<th>╟Х╬Ююоюз</th>
-		    <th>╩Себ</th>
-		    <th>╟Х╬Ю╢Ц╢Гюз</th>
+			<th>Л┬°К╡┬</th>
+			<th>К╤─Л└°К╙┘</th>   
+	   		<th>ЙЁ└Л∙╫К╙┘</th>
+	   		<th>Й╠╟К·≤Л╡≤К╙┘</th>
+			<th>К▄─М▒°Л·░</th>
+	   		<th>ЙЁ└Л∙╫Л²╪Л·░</th>
+		    <th>Л┐│М┐°</th>
+		    <th>ЙЁ└Л∙╫К▀╢К▀╧Л·░</th>
 	 	</tr>
 	 	<!-- IF START 'list' -->
 	 		<!-- LOOP START 'list' -->
@@ -108,7 +108,7 @@
 	 	
 	 	<!-- IFNOT START 'list' -->
 	 		<tr>
-				<td colspan="8" align="center">╟к╩Ж╟А╟З╟║ ╬Ь╫ю╢о╢ы.</td>
+				<td colspan="8" align="center">Й╡─Л┐┴Й╡╟ЙЁ╪Й╟─ Л≈├Л┼╣К▀┬К▀╓.</td>
 	 		</tr>
 	 	<!-- IFNOT END 'list' -->
 	</table>
@@ -126,7 +126,7 @@
 var isSubmit = false;
 function formSubmit(f){
 	if(isSubmit){
-		alert("цЁ╦╝аъют╢о╢ы.юА╫ц ╠Б╢ы╥ааж╪╪©Д.");
+		alert("Л╡≤К╕╛Л╓▒Л·┘К▀┬К▀╓.Л·═Л▀° Й╦╟К▀╓К═╓Лё╪Л└╦Л ■.");
 		return false;
 	}
 	f['mode'].value="";

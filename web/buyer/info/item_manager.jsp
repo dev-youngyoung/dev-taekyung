@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_mat_cd = {"10=>¹°Ç°","20=>°ø»ç","30=>¿ë¿ª"};
+String[] code_mat_cd = {"10=>ë¬¼í’ˆ","20=>ê³µì‚¬","30=>ìš©ì—­"};
 if(true){
-	code_mat_cd[0]= "10=>¸ğºô";
-	code_mat_cd[1]= "20=>¿ÜÁÖ";
-	code_mat_cd[2]= "30=>ÀÚÁ¦";
+	code_mat_cd[0]= "10=>ëª¨ë¹Œ";
+	code_mat_cd[1]= "20=>ì™¸ì£¼";
+	code_mat_cd[2]= "30=>ìì œ";
 }
 
 p.setLayout("default");

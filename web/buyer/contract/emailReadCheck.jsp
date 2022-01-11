@@ -1,17 +1,17 @@
 <%
 /*************************************************************************
-* ÆÄ ÀÏ ¸í : emailReadCheck.jsp
-* ÀÛ ¾÷ ÀÚ : À¯¼ºÈÆ
-* ÀÛ ¾÷ ÀÏ : 2014-08-21
-* ±â    ´É : ÀÌ¸ÞÀÏ ¼ö½Å È®ÀÎ(ÀÏ¹Ý±â¾÷¿ë)
-*            ÀÌ¸ÞÀÏ ¾È¿¡ <img width="0" height="0" src="http://www.nicedocu.com/web/buyer/contract/emailReadCheck.jsp?cont_no=200810020001&cont_chasu=xxx&member_no=xxxxxxx&num=1" /> Ãß°¡
-* ---------------------------- º¯ °æ ÀÌ ·Â -------------------------------
-* ¹øÈ£ ÀÛ ¾÷ ÀÚ   ÀÛ      ¾÷     ÀÏ   º¯°æ³»¿ë                       ºñ°í
+* íŒŒ ì¼ ëª… : emailReadCheck.jsp
+* ìž‘ ì—… ìž : ìœ ì„±í›ˆ
+* ìž‘ ì—… ì¼ : 2014-08-21
+* ê¸°    ëŠ¥ : ì´ë©”ì¼ ìˆ˜ì‹  í™•ì¸(ì¼ë°˜ê¸°ì—…ìš©)
+*            ì´ë©”ì¼ ì•ˆì— <img width="0" height="0" src="http://www.nicedocu.com/web/buyer/contract/emailReadCheck.jsp?cont_no=200810020001&cont_chasu=xxx&member_no=xxxxxxx&num=1" /> ì¶”ê°€
+* ---------------------------- ë³€ ê²½ ì´ ë ¥ -------------------------------
+* ë²ˆí˜¸ ìž‘ ì—… ìž   ìž‘      ì—…     ì¼   ë³€ê²½ë‚´ìš©                       ë¹„ê³ 
 * ------------------------------------------------------------------------
-*   1  À¯¼ºÈÆ     2014-08-21          ½Å±ÔÀÛ¼º
+*   1  ìœ ì„±í›ˆ     2014-08-21          ì‹ ê·œìž‘ì„±
 *************************************************************************/
 %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 
 <%
 	boolean bSuccess = false;
@@ -22,7 +22,7 @@
 
 	if(!cont_no.equals("") && !cont_chasu.equals("") && !member_no.equals("") && !email_seq.equals(""))
 	{
-		System.out.println("ÀÌ¸ÞÀÏ ¼ö½Å È®ÀÎ");
+		System.out.println("ì´ë©”ì¼ ìˆ˜ì‹  í™•ì¸");
 		System.out.println("cont_no : " + cont_no);
 		System.out.println("cont_chasu : " + cont_chasu);
 		System.out.println("member_no : " + member_no);
@@ -33,9 +33,9 @@
 		emailDao.item("recv_dete", u.getTimeString());
 		emailDao.item("status", "03");
 		if(!emailDao.update(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and member_no = '"+member_no+"' and email_seq = '"+email_seq+"' and recv_dete is null"))
-			System.out.print("ÀÏ¹Ý±â¾÷¿ë ÀüÀÚ°è¾à ÀÌ¸ÞÀÏ ¼ö½Å È®ÀÎ ¿¡·¯ - cont_no : " + cont_no + ", cont_chasu : " + cont_chasu);
+			System.out.print("ì¼ë°˜ê¸°ì—…ìš© ì „ìžê³„ì•½ ì´ë©”ì¼ ìˆ˜ì‹  í™•ì¸ ì—ëŸ¬ - cont_no : " + cont_no + ", cont_chasu : " + cont_chasu);
 		else
-			System.out.print("ÀÏ¹Ý±â¾÷¿ë ÀüÀÚ°è¾à ÀÌ¸ÞÀÏ ¼ö½Å È®ÀÎ ¼º°ø");
+			System.out.print("ì¼ë°˜ê¸°ì—…ìš© ì „ìžê³„ì•½ ì´ë©”ì¼ ìˆ˜ì‹  í™•ì¸ ì„±ê³µ");
 	}
 
 %>

@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 
 // http://dev.nicedocu.com/web/buyer/contract/cin_login.jsp
-// co.kr µµ¸ÞÀÎÀ¸·Î µé¾î¿À¸é .com µµ¸ÞÀÎÀ¸·Î º¸³½´Ù. ÀÌÀ¯´Â ssl ÀÎÁõ¼­°¡ .com ¹Û¿¡ ¾ø´Ù.
+// co.kr ë„ë©”ì¸ìœ¼ë¡œ ë“¤ì–´ì˜¤ë©´ .com ë„ë©”ì¸ìœ¼ë¡œ ë³´ë‚¸ë‹¤. ì´ìœ ëŠ” ssl ì¸ì¦ì„œê°€ .com ë°–ì— ì—†ë‹¤.
 String sServerName = request.getServerName();
 String sLoginUrl = "/web/buyer/main/login.jsp?re=/web/buyer/contract/cin.jsp&"+u.getQueryString();
 

@@ -11,7 +11,7 @@ import procure.common.db.SQLManager;
 import procure.common.value.ResultSetValue;
 
 /**
- * Code TableÀ» ManagementÇÏ´Â Class
+ * Code Tableì„ Managementí•˜ëŠ” Class
  * 
  * @author Bryan
  */
@@ -19,8 +19,8 @@ public class CodeManager {
 	private	ResultSetValue	rsv	=	null;
 	
 	/**
-	 * ÄÚµåÅ×ÀÌºíÀÇ data ResultSetValue¿¡ ´ã±â
-	 * @param sCcode	´ëºĞ·ù ÄÚµå
+	 * ì½”ë“œí…Œì´ë¸”ì˜ data ResultSetValueì— ë‹´ê¸°
+	 * @param sCcode	ëŒ€ë¶„ë¥˜ ì½”ë“œ
 	 * @return
 	 * @throws Exception
 	 */
@@ -52,9 +52,9 @@ public class CodeManager {
 	}
 
 	/**
-	 * ÄÚµåÅ×ÀÌºíÀÇ data ResultSetValue¿¡ ´ã±â
-	 * @param sCcode	´ëºĞ·ù ÄÚµå
-	 * @param sWhere	Ãß°¡ Á¶°Ç
+	 * ì½”ë“œí…Œì´ë¸”ì˜ data ResultSetValueì— ë‹´ê¸°
+	 * @param sCcode	ëŒ€ë¶„ë¥˜ ì½”ë“œ
+	 * @param sWhere	ì¶”ê°€ ì¡°ê±´
 	 * @return
 	 * @throws Exception
 	 */
@@ -87,8 +87,8 @@ public class CodeManager {
 	}
 	
 	/**
-	 * ÄÚµåÅ×ÀÌºíÀÇ data ResultSetValue¿¡ ´ã±â
-	 * @param sCcode	´ëºĞ·ù ÄÚµå
+	 * ì½”ë“œí…Œì´ë¸”ì˜ data ResultSetValueì— ë‹´ê¸°
+	 * @param sCcode	ëŒ€ë¶„ë¥˜ ì½”ë“œ
 	 * @return
 	 * @throws Exception
 	 */
@@ -121,8 +121,8 @@ public class CodeManager {
 	}
 
 	/**
-	 * select Tag³»¿¡ »ç¿ëµÇ´Â option TagµéÀ» »ı¼ºÇØ ¹İÈ¯
-	 * @param sCcode	code°ª
+	 * select Tagë‚´ì— ì‚¬ìš©ë˜ëŠ” option Tagë“¤ì„ ìƒì„±í•´ ë°˜í™˜
+	 * @param sCcode	codeê°’
 	 * @return
 	 * @throws Exception
 	 */
@@ -137,12 +137,12 @@ public class CodeManager {
 	}
 
 	/**
-	 * select Tag³»¿¡ »ç¿ëµÇ´Â option TagµéÀ» »ı¼ºÇØ ¹İÈ¯<br>
-	 * option Tag ÀÚÃ¼¸¦ String º¯¼ö¿¡ ´ã¾Æ ¹İÈ¯ÇÑ´Ù.
+	 * select Tagë‚´ì— ì‚¬ìš©ë˜ëŠ” option Tagë“¤ì„ ìƒì„±í•´ ë°˜í™˜<br>
+	 * option Tag ìì²´ë¥¼ String ë³€ìˆ˜ì— ë‹´ì•„ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @param cd_div
-	 * @param defaultValue	option Tag¿¡ default·Î selectedµÉ cd_value °ª
-	 * @param addSql		cd_divÁ¶°Ç ÀÌ¿Ü¿¡ ÇÊ¿äÇÑ Á¶È¸ Á¶°Ç
+	 * @param defaultValue	option Tagì— defaultë¡œ selectedë  cd_value ê°’
+	 * @param addSql		cd_divì¡°ê±´ ì´ì™¸ì— í•„ìš”í•œ ì¡°íšŒ ì¡°ê±´
 	 * @return				option Tag String
 	 * @throws Exception  
 	 */
@@ -158,13 +158,13 @@ public class CodeManager {
 	}
 	
 	/**
-	 * select Tag³»¿¡ »ç¿ëµÇ´Â option TagµéÀ» »ı¼ºÇØ ¹İÈ¯<br>
-	 * option Tag ÀÚÃ¼¸¦ String º¯¼ö¿¡ ´ã¾Æ ¹İÈ¯ÇÑ´Ù.
+	 * select Tagë‚´ì— ì‚¬ìš©ë˜ëŠ” option Tagë“¤ì„ ìƒì„±í•´ ë°˜í™˜<br>
+	 * option Tag ìì²´ë¥¼ String ë³€ìˆ˜ì— ë‹´ì•„ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @param cd_div
-	 * @param defaultValue	option Tag¿¡ default·Î selectedµÉ cd_value °ª
-	 * @param all_name		"ÀüÃ¼","¼±ÅÃ" µî ÀÌ¸§
-	 * @param all_value		"ÀüÃ¼","¼±ÅÃ" µî¿¡ ÇØ´çÇÏ´Â °ª
+	 * @param defaultValue	option Tagì— defaultë¡œ selectedë  cd_value ê°’
+	 * @param all_name		"ì „ì²´","ì„ íƒ" ë“± ì´ë¦„
+	 * @param all_value		"ì „ì²´","ì„ íƒ" ë“±ì— í•´ë‹¹í•˜ëŠ” ê°’
 	 * @return				option Tag String
 	 * @throws Exception 
 	 */
@@ -205,12 +205,12 @@ public class CodeManager {
 	}
 	
 	/**
-	 * select Tag³»¿¡ »ç¿ëµÇ´Â option TagµéÀ» »ı¼ºÇØ ¹İÈ¯<br>
-	 * option Tag ÀÚÃ¼¸¦ String º¯¼ö¿¡ ´ã¾Æ ¹İÈ¯ÇÑ´Ù.
-	 * @param rsv			ÄÚµåÁ¤º¸
-	 * @param defaultValue	selected ÇÒ °ª
-	 * @param all_name		ÀüÃ¼, ¼±ÅÃµîÀÇ Ãß°¡ option ¸í
-	 * @param all_value		ÀüÃ¼, ¼±ÅÃµîÀÇ Ãß°¡ option °ª
+	 * select Tagë‚´ì— ì‚¬ìš©ë˜ëŠ” option Tagë“¤ì„ ìƒì„±í•´ ë°˜í™˜<br>
+	 * option Tag ìì²´ë¥¼ String ë³€ìˆ˜ì— ë‹´ì•„ ë°˜í™˜í•œë‹¤.
+	 * @param rsv			ì½”ë“œì •ë³´
+	 * @param defaultValue	selected í•  ê°’
+	 * @param all_name		ì „ì²´, ì„ íƒë“±ì˜ ì¶”ê°€ option ëª…
+	 * @param all_value		ì „ì²´, ì„ íƒë“±ì˜ ì¶”ê°€ option ê°’
 	 * @return
 	 * @throws Exception
 	 */
@@ -249,10 +249,10 @@ public class CodeManager {
 	}	
 	
 	/**
-	 * select Tag³»¿¡ »ç¿ëµÇ´Â option TagµéÀ» »ı¼ºÇØ ¹İÈ¯<br>
-	 * option Tag ÀÚÃ¼¸¦ String º¯¼ö¿¡ ´ã¾Æ ¹İÈ¯ÇÑ´Ù.
-	 * @param rsv			ÄÚµåÁ¤º¸
-	 * @param defaultValue	selected ÇÒ °ª
+	 * select Tagë‚´ì— ì‚¬ìš©ë˜ëŠ” option Tagë“¤ì„ ìƒì„±í•´ ë°˜í™˜<br>
+	 * option Tag ìì²´ë¥¼ String ë³€ìˆ˜ì— ë‹´ì•„ ë°˜í™˜í•œë‹¤.
+	 * @param rsv			ì½”ë“œì •ë³´
+	 * @param defaultValue	selected í•  ê°’
 	 * @return
 	 * @throws Exception
 	 */
@@ -269,11 +269,11 @@ public class CodeManager {
 	}
 	
 	/**
-	 * select Tag³»¿¡ »ç¿ëµÇ´Â option TagµéÀ» »ı¼ºÇØ ¹İÈ¯<br>
-	 * option Tag ÀÚÃ¼¸¦ String º¯¼ö¿¡ ´ã¾Æ ¹İÈ¯ÇÑ´Ù.
-	 * @param rsv			ÄÚµåÁ¤º¸
+	 * select Tagë‚´ì— ì‚¬ìš©ë˜ëŠ” option Tagë“¤ì„ ìƒì„±í•´ ë°˜í™˜<br>
+	 * option Tag ìì²´ë¥¼ String ë³€ìˆ˜ì— ë‹´ì•„ ë°˜í™˜í•œë‹¤.
+	 * @param rsv			ì½”ë“œì •ë³´
 	 * @param cd_div		code 
-	 * @param defaultValue	selected ÇÒ °ª
+	 * @param defaultValue	selected í•  ê°’
 	 * @return
 	 * @throws Exception
 	 */

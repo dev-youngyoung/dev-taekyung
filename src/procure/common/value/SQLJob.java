@@ -24,7 +24,7 @@ public class SQLJob {
 	private	int				iSize		=	0;
 	
 	/**
-	 * »ı¼ºÀÚ (ÇÏ³ªÀÇ query xmlÀ» »ç¿ëÇÒ°æ¿ì, _bContinue°¡ trueÀÌ¸é connection close¾ÈÇÔ)
+	 * ìƒì„±ì (í•˜ë‚˜ì˜ query xmlì„ ì‚¬ìš©í• ê²½ìš°, _bContinueê°€ trueì´ë©´ connection closeì•ˆí•¨)
 	 * @param sXml
 	 * @param _bContinue
 	 * @throws Exception
@@ -46,7 +46,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * »ı¼ºÀÚ (ÇÏ³ªÀÇ query xmlÀ» »ç¿ëÇÒ°æ¿ì, connection ÀÚµ¿ close)
+	 * ìƒì„±ì (í•˜ë‚˜ì˜ query xmlì„ ì‚¬ìš©í• ê²½ìš°, connection ìë™ close)
 	 * @param sXml
 	 * @throws Exception
 	 */
@@ -66,7 +66,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * »ı¼ºÀÚ (¿©·¯°³ÀÇ query xmlÀ» »ç¿ëÇÒ°æ¿ì, connection close¾ÈÇÔ)
+	 * ìƒì„±ì (ì—¬ëŸ¬ê°œì˜ query xmlì„ ì‚¬ìš©í• ê²½ìš°, connection closeì•ˆí•¨)
 	 * @param _bContinue
 	 * @throws Exception
 	 */
@@ -86,7 +86,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * »ı¼ºÀÚ (¿©·¯°³ÀÇ query xmlÀ» »ç¿ëÇÒ°æ¿ì, connection ÀÚµ¿ close)
+	 * ìƒì„±ì (ì—¬ëŸ¬ê°œì˜ query xmlì„ ì‚¬ìš©í• ê²½ìš°, connection ìë™ close)
 	 * @throws Exception
 	 */
 	public SQLJob() throws Exception
@@ -102,8 +102,8 @@ public class SQLJob {
 
 	
 	/**
-	 * where Á¶°ÇÀı ´ã±â
-	 * @param sKey	Å°
+	 * where ì¡°ê±´ì ˆ ë‹´ê¸°
+	 * @param sKey	í‚¤
 	 */
 	public void setParam(Map map)
 	{
@@ -125,9 +125,9 @@ public class SQLJob {
 	}	
 	
 	/**
-	 * where Á¶°ÇÀı ´ã±â
-	 * @param sKey	Å°
-	 * @param sVal	°ª
+	 * where ì¡°ê±´ì ˆ ë‹´ê¸°
+	 * @param sKey	í‚¤
+	 * @param sVal	ê°’
 	 */
 	public void setParam(String sKey,String sVal)
 	{
@@ -139,9 +139,9 @@ public class SQLJob {
 	}
 	
 	/**
-	 * where Á¶°ÇÀı ´ã±â
-	 * @param sKey	Å°
-	 * @param iVal	°ª
+	 * where ì¡°ê±´ì ˆ ë‹´ê¸°
+	 * @param sKey	í‚¤
+	 * @param iVal	ê°’
 	 */
 	public void setParam(String sKey,int iVal)
 	{
@@ -153,7 +153,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ÃÊ±âÈ­
+	 * ì´ˆê¸°í™”
 	 */
 	public void removeHashMap()
 	{
@@ -165,7 +165,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * arrayList¿¡ ´ã±â
+	 * arrayListì— ë‹´ê¸°
 	 * @param oj
 	 */
 	public void setArray(Object oj)
@@ -178,7 +178,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * arrayList¿¡ ´ã±â
+	 * arrayListì— ë‹´ê¸°
 	 * @param sVal
 	 */
 	public void setReaderArray(String sVal)
@@ -195,7 +195,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ArrayList Áö¿ì±â
+	 * ArrayList ì§€ìš°ê¸°
 	 */
 	public void removeArray()
 	{
@@ -207,7 +207,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ¿©·¯Çà ¹İÈ¯
+	 * ì—¬ëŸ¬í–‰ ë°˜í™˜
 	 * @param sId	id element
 	 * @return
 	 * @throws Exception
@@ -238,7 +238,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ¿©·¯Çà ¹İÈ¯
+	 * ì—¬ëŸ¬í–‰ ë°˜í™˜
 	 * @param sId	id element
 	 * @return
 	 * @throws Exception
@@ -270,7 +270,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ÇÑÇà ¹İÈ¯
+	 * í•œí–‰ ë°˜í™˜
 	 * @param sId	query id
 	 * @return
 	 * @throws Exception
@@ -308,14 +308,14 @@ public class SQLJob {
 			e.printStackTrace();
 			
 			System.out.println("[ERROR "+this.getClass().getName() + ".getOneRow()] :" + e.toString());
-			this.close();  // Äõ¸®¸¦ ºÒ·¯¿ÀÁö ¸øÇØ¼­ ¿¡·¯³µÀ¸¸é close() ÇØÁÖÀÚ.
+			this.close();  // ì¿¼ë¦¬ë¥¼ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í•´ì„œ ì—ëŸ¬ë‚¬ìœ¼ë©´ close() í•´ì£¼ì.
 			throw new Exception("[ERROR "+this.getClass().getName() + ".getOneRow()] :" + e.toString());
 		} 
 		return dsv;
 	}
 	
 	/**
-	 * ÇÑÇà ¹İÈ¯
+	 * í•œí–‰ ë°˜í™˜
 	 * @param sQuery
 	 * @return
 	 * @throws Exception
@@ -328,23 +328,23 @@ public class SQLJob {
 		} catch (UnsupportedEncodingException e) {
 			this.bGSuccess	=	false;
 			System.out.println("[ERROR "+this.getClass().getName() + ".getDataSetValue()] :" + e.toString());
-			this.close();  // Äõ¸®¸¦ ºÒ·¯¿ÀÁö ¸øÇØ¼­ ¿¡·¯³µÀ¸¸é close() ÇØÁÖÀÚ.
+			this.close();  // ì¿¼ë¦¬ë¥¼ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í•´ì„œ ì—ëŸ¬ë‚¬ìœ¼ë©´ close() í•´ì£¼ì.
 			throw new UnsupportedEncodingException("[ERROR "+this.getClass().getName() + ".getDataSetValue()] :" + e.toString());
 		} catch (SQLException e) {
 			this.bGSuccess	=	false;
 			e.printStackTrace();
 			System.out.println("[ERROR "+this.getClass().getName() + ".getDataSetValue()] :" + e.toString());
-			this.close();  // Äõ¸®¸¦ ºÒ·¯¿ÀÁö ¸øÇØ¼­ ¿¡·¯³µÀ¸¸é close() ÇØÁÖÀÚ.
+			this.close();  // ì¿¼ë¦¬ë¥¼ ë¶ˆëŸ¬ì˜¤ì§€ ëª»í•´ì„œ ì—ëŸ¬ë‚¬ìœ¼ë©´ close() í•´ì£¼ì.
 			throw new SQLException("[ERROR "+this.getClass().getName() + ".getDataSetValue()] :" + e.toString());
 		}
 		return dsv;
 	}
 	
 	/**
-	 * ÇØ´çÁ¶°ÇÀÇ ¼ö ±¸ÇÏ±â
-	 * @param sColum	ÄÃ·³¸í
-	 * @param sTable	Å×ÀÌºí¸í
-	 * @param sWhere	Á¶°ÇÀı (EX AND xx = xx)
+	 * í•´ë‹¹ì¡°ê±´ì˜ ìˆ˜ êµ¬í•˜ê¸°
+	 * @param sColum	ì»¬ëŸ¼ëª…
+	 * @param sTable	í…Œì´ë¸”ëª…
+	 * @param sWhere	ì¡°ê±´ì ˆ (EX AND xx = xx)
 	 * @return
 	 * @throws Exception
 	 */
@@ -368,10 +368,10 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ÇØ´çÁ¶°ÇÀÇ ÃÖ´ë¼ö ±¸ÇÏ±â
-	 * @param sColum	ÄÃ·³¸í
-	 * @param sTable	Å×ÀÌºí¸í
-	 * @param sWhere	Á¶°ÇÀı (EX AND xx = xx)
+	 * í•´ë‹¹ì¡°ê±´ì˜ ìµœëŒ€ìˆ˜ êµ¬í•˜ê¸°
+	 * @param sColum	ì»¬ëŸ¼ëª…
+	 * @param sTable	í…Œì´ë¸”ëª…
+	 * @param sWhere	ì¡°ê±´ì ˆ (EX AND xx = xx)
 	 * @return
 	 * @throws Exception
 	 */
@@ -395,7 +395,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * ÇÑÇà ¹İÈ¯
+	 * í•œí–‰ ë°˜í™˜
 	 * @param sId	query id
 	 * @return
 	 * @throws Exception
@@ -438,9 +438,9 @@ public class SQLJob {
 	
 	
 
-	private static final String PARAM_CHAR1 = "#";	//SQL º¯¼ö ±¸ºĞÀÚ ex) #param1#
-	private static final String PARAM_CHAR2 = "$";	//SQL º¯¼ö ±¸ºĞÀÚ ex) $param2$
-	private ArrayList paramInfoAry = null;			//SQL¿¡¼­ ÃßÃâÇÑ ÆÄ¶ó¹ÌÅÍ Á¤º¸
+	private static final String PARAM_CHAR1 = "#";	//SQL ë³€ìˆ˜ êµ¬ë¶„ì ex) #param1#
+	private static final String PARAM_CHAR2 = "$";	//SQL ë³€ìˆ˜ êµ¬ë¶„ì ex) $param2$
+	private ArrayList paramInfoAry = null;			//SQLì—ì„œ ì¶”ì¶œí•œ íŒŒë¼ë¯¸í„° ì •ë³´
 	
 	public String parseQuery(String query) throws Exception{
 
@@ -471,11 +471,11 @@ public class SQLJob {
 			value = ( this.hm.get(param[0]) == null ) ? "" : String.valueOf(this.hm.get(param[0]));
 			
 			if(param[1] == PARAM_CHAR1){
-				//#Àº StringÀ¸·Î ´ëÃ¼
+				//#ì€ Stringìœ¼ë¡œ ëŒ€ì²´
 				this.al.add(value);
 				//System.out.println("["+i+"]"+param[0]+"='"+this.hm.get(param[0])+"'");
 			}else{
-				//$´Â ¼ıÀÚ·Î ´ëÃ¼
+				//$ëŠ” ìˆ«ìë¡œ ëŒ€ì²´
 				this.al.add(new Double( ( value == null || "".equals(value)) ? "0" : value.replaceAll("[^0-9]", "")  ));
 				//System.out.println("["+i+"]"+param[0]+"="+this.hm.get(param[0]));
 			}
@@ -503,10 +503,10 @@ public class SQLJob {
 	}
 	
 	/**
-	 * insert, update, delete ¹® Ã³¸®
-	 * @param 	sQueryDiv	±¸ºĞÀÚ(insert,update,delete)
+	 * insert, update, delete ë¬¸ ì²˜ë¦¬
+	 * @param 	sQueryDiv	êµ¬ë¶„ì(insert,update,delete)
 	 * @param 	sId			query id
-	 * @param 	arr			°ª ArrayList
+	 * @param 	arr			ê°’ ArrayList
 	 * @return
 	 * @throws Exception
 	 */
@@ -527,7 +527,7 @@ public class SQLJob {
 					sQuery	=	this.qm.getQuery(sQueryDiv+"[@id="+sId+"]",hm);
 				}
 				
-				//setParam() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ °æ¿ì ´ÙÀ½¿¡¼­ array·Î º¯°æ
+				//setParam() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ê²½ìš° ë‹¤ìŒì—ì„œ arrayë¡œ ë³€ê²½
 				if(usedMap){
 					sQuery = parseQuery(sQuery);
 				}
@@ -671,9 +671,9 @@ public class SQLJob {
 	}
 	
 	/**
-	 * insert Ã³¸®
+	 * insert ì²˜ë¦¬
 	 * @param sId	query id
-	 * @param arr	arr			°ª ArrayList
+	 * @param arr	arr			ê°’ ArrayList
 	 * @return
 	 * @throws Exception
 	 */
@@ -714,9 +714,9 @@ public class SQLJob {
 	}
 	
 	/**
-	 * update Ã³¸®
+	 * update ì²˜ë¦¬
 	 * @param sId	query id
-	 * @param arr	arr			°ª ArrayList
+	 * @param arr	arr			ê°’ ArrayList
 	 * @return
 	 * @throws Exception
 	 */
@@ -749,9 +749,9 @@ public class SQLJob {
 	}
 	
 	/**
-	 * update Ã³¸®
+	 * update ì²˜ë¦¬
 	 * @param sId	query id
-	 * @param arr	arr			°ª ArrayList
+	 * @param arr	arr			ê°’ ArrayList
 	 * @return
 	 * @throws Exception
 	 */
@@ -780,7 +780,7 @@ public class SQLJob {
 	}
 	
 	/**
-	 * false »óÅÂ setting
+	 * false ìƒíƒœ setting
 	 */
 	public void setFalse()
 	{

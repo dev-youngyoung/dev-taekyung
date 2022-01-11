@@ -147,7 +147,7 @@ public class ListManager {
 		if(where != null) sb.append(" WHERE " + where);
 		String sql = sb.toString();
 
-		//ÀÓ½Ã Ãß°¡Áß
+		//ìž„ì‹œ ì¶”ê°€ì¤‘
 		if(groupby != null) {
 			sb.append(" GROUP BY " + groupby);
 			sql = sb.toString();
@@ -186,7 +186,7 @@ public class ListManager {
 		return this.totalNum;
 	}
 	public String getTotalString() {
-		return "<span style=\"font-family:arial, dotum;font-weight:normal;\">Total : <font color=\"blue\">" + Util.numberFormat(this.totalNum) + "</font> °Ç</span>";
+		return "<span style=\"font-family:arial, dotum;font-weight:normal;\">Total : <font color=\"blue\">" + Util.numberFormat(this.totalNum) + "</font> ê±´</span>";
 	}
 
 	public void setListQuery(String query) {

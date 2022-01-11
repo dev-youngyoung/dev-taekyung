@@ -28,11 +28,11 @@ public class MultiPartManager {
 	private	HttpServletRequest 	request		=	null;
 	private	MultipartRequest	mr			=	null;
 	private	String				sDir		=	"";
-	private	String				sBaseDir	=	"";	//ÇÁ·ÎÆÛÆ¼ Á¤ÀÇ °æ·Î
-	private	String				sXpath		=	"";	//	ÇÁ·ÎÆÛÆ¼ Xpath
+	private	String				sBaseDir	=	"";	//í”„ë¡œí¼í‹° ì •ì˜ ê²½ë¡œ
+	private	String				sXpath		=	"";	//	í”„ë¡œí¼í‹° Xpath
 	
 	/**
-	 * »ı¼ºÀÚ
+	 * ìƒì„±ì
 	 * @param request
 	 * @param sContDiv
 	 */
@@ -46,7 +46,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * »ı¼ºÀÚ
+	 * ìƒì„±ì
 	 * @param request
 	 * @param sXpath
 	 * @param sOtherDir
@@ -62,10 +62,10 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * ÃÊ±âÈ­
+	 * ì´ˆê¸°í™”
 	 * @param request		HttpServletRequest
-	 * @param sXpath		ÆÄÀÏ °æ·Î xpath
-	 * @param sOtherDir		³ª¸ÓÁö °æ·Î
+	 * @param sXpath		íŒŒì¼ ê²½ë¡œ xpath
+	 * @param sOtherDir		ë‚˜ë¨¸ì§€ ê²½ë¡œ
 	 * @throws ConfigurationException 
 	 * @throws IOException 
 	 */
@@ -91,7 +91,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * insert ÇÒ µ¥ÀÌÅ¸
+	 * insert í•  ë°ì´íƒ€
 	 * @return
 	 */
 	public ResultSetValue getData(String sMoveDir)
@@ -106,10 +106,10 @@ public class MultiPartManager {
 		{			
 			String	sKey	=	e.nextElement().toString();
 			
-			String	sOrgFileNm	=	"";		//	¿À¸®Áö³¯ ÆÄÀÏ¸í
-			String	sReFileUrl	=	"";		//	rename ÆÄÀÏ¸í
+			String	sOrgFileNm	=	"";		//	ì˜¤ë¦¬ì§€ë‚  íŒŒì¼ëª…
+			String	sReFileUrl	=	"";		//	rename íŒŒì¼ëª…
 			String	sFileSize	=	"";		//	file size
-			String	sJobType	=	"";	//	¾÷¹«±¸ºĞ I : INSERT
+			String	sJobType	=	"";	//	ì—…ë¬´êµ¬ë¶„ I : INSERT
 			if(this.mr.getFilesystemName(sKey) != null)
 			{
 				System.out.println("sKey["+sKey+"]");
@@ -127,35 +127,35 @@ public class MultiPartManager {
 				
 				hm	=	new	HashMap();
 				
-				sOrgFileNm	=	this.getOriginalFileName(sKey);			//	½ÇÁ¦¾÷·Îµå ÆÄÀÏ¸í
+				sOrgFileNm	=	this.getOriginalFileName(sKey);			//	ì‹¤ì œì—…ë¡œë“œ íŒŒì¼ëª…
 				System.out.println("sOrgFileNm["+sOrgFileNm+"]");
 				System.out.println("sMoveDir["+sMoveDir+"]");
-				sFileSize	=	this.getFileSize(sOrgFileNm) + "";		//	ÆÄÀÏÅ©±â
+				sFileSize	=	this.getFileSize(sOrgFileNm) + "";		//	íŒŒì¼í¬ê¸°
 				if(sMoveDir == null || sMoveDir.length() == 0)
 				{
-					sReFileUrl	=	this.getRenameFileName(sOrgFileNm);				//	º¯°æÇÒ ÆÄÀÏ¸í
+					sReFileUrl	=	this.getRenameFileName(sOrgFileNm);				//	ë³€ê²½í•  íŒŒì¼ëª…
 				}else
 				{
-					sReFileUrl	=	this.getRenameFileName(sOrgFileNm,sMoveDir);	//	º¯°æÇÒ ÆÄÀÏ¸í
+					sReFileUrl	=	this.getRenameFileName(sOrgFileNm,sMoveDir);	//	ë³€ê²½í•  íŒŒì¼ëª…
 				}
-				sJobType	=	"I";									//	¾÷¹«Å¸ÀÔ(I:INSERT, D:DELETE)
+				sJobType	=	"I";									//	ì—…ë¬´íƒ€ì…(I:INSERT, D:DELETE)
 				
-				String	sReFileNm	=	sReFileUrl.substring(sReFileUrl.lastIndexOf(File.separator)+1);	//	ÆÄÀÏ¸í
-				String	sFileExt	=	sReFileNm.substring(sReFileNm.lastIndexOf(".")+1);				//	È®ÀåÀÚ
+				String	sReFileNm	=	sReFileUrl.substring(sReFileUrl.lastIndexOf(File.separator)+1);	//	íŒŒì¼ëª…
+				String	sFileExt	=	sReFileNm.substring(sReFileNm.lastIndexOf(".")+1);				//	í™•ì¥ì
 				
 				int		iLength		=	this.sBaseDir.length();
 
-				String	sFilePath	=	sReFileUrl.substring(iLength);	//	ÆÄÀÏ°æ·Î
+				String	sFilePath	=	sReFileUrl.substring(iLength);	//	íŒŒì¼ê²½ë¡œ
 				
 				sFilePath	=	StrUtil.replace(sFilePath,File.separator,"/");
 				
-				hm.put("DOCU_NM", 	sOrgFileNm);	//	¹®¼­¸í
-				hm.put("FILE_NM", 	sReFileNm);		//	ÆÄÀÏ¸í
-				hm.put("FILE_PATH",	sFilePath);		//	ÆÄÀÏ°æ·Î
-				hm.put("FILE_EXT",	sFileExt);		//	ÆÄÀÏÈ®ÀåÀÚ
-				hm.put("FILE_SIZE",	sFileSize);		//	ÆÄÀÏÅ©±â
-				hm.put("JOB_TYPE", 	sJobType);		//	¾÷¹«Å¸ÀÔ(I:INSERT, D:DELETE)
-				hm.put("FILE_SEQ", 	sSeq);			//	ÆÄÀÏ¼ø¹ø
+				hm.put("DOCU_NM", 	sOrgFileNm);	//	ë¬¸ì„œëª…
+				hm.put("FILE_NM", 	sReFileNm);		//	íŒŒì¼ëª…
+				hm.put("FILE_PATH",	sFilePath);		//	íŒŒì¼ê²½ë¡œ
+				hm.put("FILE_EXT",	sFileExt);		//	íŒŒì¼í™•ì¥ì
+				hm.put("FILE_SIZE",	sFileSize);		//	íŒŒì¼í¬ê¸°
+				hm.put("JOB_TYPE", 	sJobType);		//	ì—…ë¬´íƒ€ì…(I:INSERT, D:DELETE)
+				hm.put("FILE_SEQ", 	sSeq);			//	íŒŒì¼ìˆœë²ˆ
 				
 				al.add(hm);
 			}
@@ -168,13 +168,13 @@ public class MultiPartManager {
 			if(sKey.indexOf("del_file_seq") != -1)
 			{
 				hm	=	new	HashMap();
-				hm.put("DOCU_NM", 	"");					//	¹®¼­¸í
-				hm.put("FILE_NM", 	"");					//	ÆÄÀÏ¸í
-				hm.put("FILE_PATH",	"");					//	ÆÄÀÏ°æ·Î
-				hm.put("FILE_EXT",	"");					//	ÆÄÀÏÈ®ÀåÀÚ
-				hm.put("FILE_SIZE",	"");					//	ÆÄÀÏÅ©±â
-				hm.put("JOB_TYPE", 	"D");					//	¾÷¹«Å¸ÀÔ(I:INSERT, D:DELETE)
-				hm.put("FILE_SEQ", 	this.getString(sKey));	//	ÆÄÀÏ¼ø¹ø
+				hm.put("DOCU_NM", 	"");					//	ë¬¸ì„œëª…
+				hm.put("FILE_NM", 	"");					//	íŒŒì¼ëª…
+				hm.put("FILE_PATH",	"");					//	íŒŒì¼ê²½ë¡œ
+				hm.put("FILE_EXT",	"");					//	íŒŒì¼í™•ì¥ì
+				hm.put("FILE_SIZE",	"");					//	íŒŒì¼í¬ê¸°
+				hm.put("JOB_TYPE", 	"D");					//	ì—…ë¬´íƒ€ì…(I:INSERT, D:DELETE)
+				hm.put("FILE_SEQ", 	this.getString(sKey));	//	íŒŒì¼ìˆœë²ˆ
 				
 				al.add(hm);
 			}
@@ -201,7 +201,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * insert ÇÒ µ¥ÀÌÅ¸
+	 * insert í•  ë°ì´íƒ€
 	 * @return
 	 */
 	public ResultSetValue getData()
@@ -210,7 +210,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * parameter °ª ¹İÈ¯
+	 * parameter ê°’ ë°˜í™˜
 	 * @param sParam
 	 * @return
 	 */
@@ -220,7 +220,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * parameter °ª ¹İÈ¯(¹è¿­) 
+	 * parameter ê°’ ë°˜í™˜(ë°°ì—´) 
 	 * @param sParam
 	 * @return
 	 */
@@ -230,7 +230,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * °ª ¹İÈ¯
+	 * ê°’ ë°˜í™˜
 	 * @param sParam
 	 * @return
 	 */
@@ -240,9 +240,9 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * null °ª ´ëÃ¼ ¹İÈ¯
-	 * @param sParam	Å°
-	 * @param sNullVal	°ª
+	 * null ê°’ ëŒ€ì²´ ë°˜í™˜
+	 * @param sParam	í‚¤
+	 * @param sNullVal	ê°’
 	 * @return
 	 */
 	public String getString(String sParam, String sNullVal)
@@ -259,9 +259,9 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * null °ª ´ëÃ¼ ¹İÈ¯
-	 * @param sParam	Å°
-	 * @param sNullVal	°ª
+	 * null ê°’ ëŒ€ì²´ ë°˜í™˜
+	 * @param sParam	í‚¤
+	 * @param sNullVal	ê°’
 	 * @return
 	 */
 	public String[]	getArrString(String sParam, String sNullVal)
@@ -283,8 +283,8 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * °ª ¹İÈ¯
-	 * @param sParam	Å°
+	 * ê°’ ë°˜í™˜
+	 * @param sParam	í‚¤
 	 * @return
 	 */
 	public int	getInt(String sParam)
@@ -301,9 +301,9 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * °ª ¹İÈ¯
-	 * @param sParam	Å°
-	 * @param iNullVal	´ëÃ³ °ª
+	 * ê°’ ë°˜í™˜
+	 * @param sParam	í‚¤
+	 * @param iNullVal	ëŒ€ì²˜ ê°’
 	 * @return
 	 */
 	public int getInt(String sParam, int iNullVal)
@@ -336,7 +336,7 @@ public class MultiPartManager {
     }	
 	
 	/**
-	 * Parameter °ª ¹İÈ¯
+	 * Parameter ê°’ ë°˜í™˜
 	 * @return
 	 */
 	public	Enumeration	getParameterNames()
@@ -345,7 +345,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * ÆÄÀÏ¸í ¹İÈ¯
+	 * íŒŒì¼ëª… ë°˜í™˜
 	 * @return
 	 */
 	public Enumeration getFileNames()
@@ -374,8 +374,8 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * file °´Ã¼ ¹İÈ¯
-	 * @param sParam	Å°
+	 * file ê°ì²´ ë°˜í™˜
+	 * @param sParam	í‚¤
 	 * @return
 	 */
 	public File	getFile(String sParam)
@@ -384,7 +384,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * ÆÄÀÏ Å©±â ¹İÈ¯
+	 * íŒŒì¼ í¬ê¸° ë°˜í™˜
 	 * @param sFileNm
 	 * @return
 	 */
@@ -400,8 +400,8 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * ÆÄÀÏÀÌ¸§º¯°æ
-	 * @param sFileName	¿øº» ÆÄÀÏ¸í
+	 * íŒŒì¼ì´ë¦„ë³€ê²½
+	 * @param sFileName	ì›ë³¸ íŒŒì¼ëª…
 	 * @return
 	 */
 	public String getRenameFileName(String sFileName)
@@ -424,8 +424,8 @@ public class MultiPartManager {
 		File	fileOld	=	new	File(sFileUrl);
 		File	fileNew =	new File(sReFileUrl);
 
-		// º¯°æÇÏ·Á´Â ÆÄÀÏ¸íÀÌ ±âÁ¸¿¡ Á¸ÀçÇÏ´Â ÆÄÀÏ¸íÀÏ °æ¿ì¿¡ ÆÄÀÏ¸í ¸¶Áö¸·¿¡ "0" ºÙÀÓ
-		// µ¿½Ã¿¡ ¿©·¯°³ÀÇ (È®ÀåÀÚ°¡ °°Àº) ÆÄÀÏÀ» Ã·ºÎÇÏ´Â °æ¿ì¿¡ getTimeInMillis()°¡ ÀÏÄ¡ ÇÒ¼öµµ ÀÖÀ¸¹Ç·Î Áßº¹À» È®ÀÎÇØ¾ß ÇÑ´Ù
+		// ë³€ê²½í•˜ë ¤ëŠ” íŒŒì¼ëª…ì´ ê¸°ì¡´ì— ì¡´ì¬í•˜ëŠ” íŒŒì¼ëª…ì¼ ê²½ìš°ì— íŒŒì¼ëª… ë§ˆì§€ë§‰ì— "0" ë¶™ì„
+		// ë™ì‹œì— ì—¬ëŸ¬ê°œì˜ (í™•ì¥ìê°€ ê°™ì€) íŒŒì¼ì„ ì²¨ë¶€í•˜ëŠ” ê²½ìš°ì— getTimeInMillis()ê°€ ì¼ì¹˜ í• ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ ì¤‘ë³µì„ í™•ì¸í•´ì•¼ í•œë‹¤
 		while (fileNew.exists())
 		{
 			sReFile		=	sReFile + "0";
@@ -439,8 +439,8 @@ public class MultiPartManager {
 	}
 
 	/**
-	 * Ã·ºÎÆÄÀÏÀÇ ÀÌ¸§À» ÇöÀç ½Ã°¢À» ±âÁØÀ¸·Î º¯°æÇÏ¿© ¹İÈ¯
-	 * @param sParam	¿øº» ÆÄÀÏÀ» È¹µæÇÏ±â À§ÇÑ parameter
+	 * ì²¨ë¶€íŒŒì¼ì˜ ì´ë¦„ì„ í˜„ì¬ ì‹œê°ì„ ê¸°ì¤€ìœ¼ë¡œ ë³€ê²½í•˜ì—¬ ë°˜í™˜
+	 * @param sParam	ì›ë³¸ íŒŒì¼ì„ íšë“í•˜ê¸° ìœ„í•œ parameter
 	 * @return
 	 */
 	public String getRenameFileNameWithParam(String sParam)
@@ -474,8 +474,8 @@ public class MultiPartManager {
 		File	fileOld	=	new	File(sFileUrl);
 		File	fileNew =	new File(sReFileUrl);
 
-		// º¯°æÇÏ·Á´Â ÆÄÀÏ¸íÀÌ ±âÁ¸¿¡ Á¸ÀçÇÏ´Â ÆÄÀÏ¸íÀÏ °æ¿ì¿¡ ÆÄÀÏ¸í ¸¶Áö¸·¿¡ "0" ºÙÀÓ
-		// µ¿½Ã¿¡ ¿©·¯°³ÀÇ (È®ÀåÀÚ°¡ °°Àº) ÆÄÀÏÀ» Ã·ºÎÇÏ´Â °æ¿ì¿¡ getTimeInMillis()°¡ ÀÏÄ¡ ÇÒ¼öµµ ÀÖÀ¸¹Ç·Î Áßº¹À» È®ÀÎÇØ¾ß ÇÑ´Ù
+		// ë³€ê²½í•˜ë ¤ëŠ” íŒŒì¼ëª…ì´ ê¸°ì¡´ì— ì¡´ì¬í•˜ëŠ” íŒŒì¼ëª…ì¼ ê²½ìš°ì— íŒŒì¼ëª… ë§ˆì§€ë§‰ì— "0" ë¶™ì„
+		// ë™ì‹œì— ì—¬ëŸ¬ê°œì˜ (í™•ì¥ìê°€ ê°™ì€) íŒŒì¼ì„ ì²¨ë¶€í•˜ëŠ” ê²½ìš°ì— getTimeInMillis()ê°€ ì¼ì¹˜ í• ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ ì¤‘ë³µì„ í™•ì¸í•´ì•¼ í•œë‹¤
 		while (fileNew.exists())
 		{
 			sReFile		=	sReFile + "0";
@@ -486,13 +486,13 @@ public class MultiPartManager {
 		
 		fileOld.renameTo(fileNew);
 		
-		return	sReFileNm;	// ¡Ø ÁÖÀÇ : ÀüÃ¼ °æ·Î°¡ ¾Æ´Ñ ÆÄÀÏ¸í¸¸ ¹İÈ¯
+		return	sReFileNm;	// â€» ì£¼ì˜ : ì „ì²´ ê²½ë¡œê°€ ì•„ë‹Œ íŒŒì¼ëª…ë§Œ ë°˜í™˜
 	}
 
 	/**
-	 * ÆÄÀÏÀÌ¸§ º¯°æ	(°æ·Îµµ º¯°æ)
-	 * @param sFileName	¿øº» ÆÄÀÏ¸í
-	 * @param sMoveDir	ÀÌµ¿ °æ·Î
+	 * íŒŒì¼ì´ë¦„ ë³€ê²½	(ê²½ë¡œë„ ë³€ê²½)
+	 * @param sFileName	ì›ë³¸ íŒŒì¼ëª…
+	 * @param sMoveDir	ì´ë™ ê²½ë¡œ
 	 * @return
 	 * @throws IOException 
 	 */
@@ -555,9 +555,9 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * ÆÄÀÏ °æ·Î °¡Á®¿À±â
-	 * @param sXpath	ÇÁ·ÎÆÛÆ¼ xpath
-	 * @param sOtherDir	³ª¸ÓÁö °æ·Î
+	 * íŒŒì¼ ê²½ë¡œ ê°€ì ¸ì˜¤ê¸°
+	 * @param sXpath	í”„ë¡œí¼í‹° xpath
+	 * @param sOtherDir	ë‚˜ë¨¸ì§€ ê²½ë¡œ
 	 * @return
 	 * @throws ConfigurationException 
 	 */
@@ -584,7 +584,7 @@ public class MultiPartManager {
 	}
 	
 	/**
-	 * ÆÄÀÏ »èÁ¦
+	 * íŒŒì¼ ì‚­ì œ
 	 * @param sFileUrl
 	 */
 	public void	deleteFile(String sFileUrl)

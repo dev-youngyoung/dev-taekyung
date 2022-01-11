@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
     <input type="hidden" name="mode"/>
     <input type="hidden" name="custtype" value="{{custtype}}"/>
     <div class="search_div">
@@ -13,29 +13,29 @@
                 <col width="8%">
             </colgroup>
             <tr>
-                <th><p> ��ü��ϻ���</p></th>
+                <th><p> 업체등록상태</p></th>
                 <td>
                     <select name="s_client_reg_cd" style="width: 90%">
-                        <option value="">-��ü-</option>
+                        <option value="">-전체-</option>
                         <!-- LOOP START 'code_client_reg_cd' -->
                         <option value="{{code_client_reg_cd.id}}">{{code_client_reg_cd.value}}</option>
                         <!-- LOOP END 'code_client_reg_cd' -->
                     </select>
                 </td>
-                <th><p> ��ü�з�</p></th>
+                <th><p> 업체분류</p></th>
                 <td>
                     <select name="s_client_type" style="width: 90%">
-                        <option value="">-��ü-</option>
+                        <option value="">-전체-</option>
                         <!-- LOOP START 'code_client_type' -->
                         <option value="{{code_client_type.id}}">{{code_client_type.value}}</option>
                         <!-- LOOP END 'code_client_type' -->
-                        <option value="-1">�̵��</option>
+                        <option value="-1">미등록</option>
                     </select>
                 </td>
-                <th><p>��ü��</p></th>
+                <th><p>업체명</p></th>
                 <td><input type="text" name="s_member_name" maxlength="100" style="width:90%"></td>
                 <td align="right">
-                    <button type="button" class="search_btn" value="�˻�" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>�˻�</button>
+                    <button type="button" class="search_btn" value="검색" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>검색</button>
                 </td>
             </tr>
         </table>
@@ -44,12 +44,12 @@
 {{form_script}}
 <form name="form2" method="post">
     <div class="push-left">
-        <span class="caution-text">�� ��ü ������ ��ȸ �� �ŷ����� ������ �Է� �Ͻ÷��� ��ü���� Ŭ�� �ϼ���.</span>
+        <span class="caution-text">※ 업체 상세정보 조회 및 거래정지 사유를 입력 하시려면 업체명을 클릭 하세요.</span>
     </div>
     <div class="push-right">
-        <button type="button" class="sbtn color ico-save auth_css" value="����" onclick="form2Save()"><span></span>����</button>
+        <button type="button" class="sbtn color ico-save auth_css" value="저장" onclick="form2Save()"><span></span>저장</button>
         <!-- IF START 'isExcel' -->
-        <button type="button" class="sbtn color ico-download" value="�����ٿ�ε�" onclick="excel()"><span></span>�����ٿ�ε�</button>
+        <button type="button" class="sbtn color ico-download" value="엑셀다운로드" onclick="excel()"><span></span>엑셀다운로드</button>
         <!-- IF END 'isExcel' -->
     </div>
     <br>
@@ -67,14 +67,14 @@
                 <col width="8%">
             </colgroup>
             <tr>
-                <th>����</th>
-                <th>��ü��(�ſ���)</th>
-                <th>��ü�з�</th>
-                <th>����ڹ�ȣ</th>
-                <th>��ǥ��</th>
-                <th>����</th>
-                <th>��ü��ϻ���</th>
-                <th>�ŷ�����</th>
+                <th>순번</th>
+                <th>업체명(신용등급)</th>
+                <th>업체분류</th>
+                <th>사업자번호</th>
+                <th>대표자</th>
+                <th>업종</th>
+                <th>업체등록상태</th>
+                <th>거래정지</th>
             </tr>
             <!-- IF START 'list' -->
             <!-- LOOP START 'list' -->
@@ -100,7 +100,7 @@
             <!-- IF END 'list' -->
             <!-- IFNOT START 'list' -->
             <tr>
-                <td colspan="8" align="center">�˻������ �����ϴ�.</td>
+                <td colspan="8" align="center">검색결과가 없습니다.</td>
             </tr>
             <!-- IFNOT END 'list' -->
         </table>
@@ -109,7 +109,7 @@
 </form>
 <script language="javascript">
     function form2Save(){
-        if(!confirm('�����Ͻðڽ��ϱ�?'))return;
+        if(!confirm('저장하시겠습니까?'))return;
         var f = document.forms['form2'];
         f.action = "cust_list_save.jsp?{{list_query}}&returnUrl=nh_cust_list.jsp";
         f.submit();

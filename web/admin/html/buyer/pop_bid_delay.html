@@ -1,7 +1,7 @@
-<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
 <div style="width:100%;text-align:right;margin: 10px 0px">
-<button type="submit" class="sbtn color ico-cancel"><span></span>¸¶°¨½Ã°£ ¿¬±â</button>
-<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>´Ý±â</button>
+<button type="submit" class="sbtn color ico-cancel"><span></span>ë§ˆê°ì‹œê°„ ì—°ê¸°</button>
+<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 <div class="div_table">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -12,15 +12,15 @@
 		<col width="30%">
 	</colgroup>
 	<tr>
-		<th>º¯°æÀü<br>ÀÔÂû¼­¸¶°¨½Ã°£</th>
+		<th>ë³€ê²½ì „<br>ìž…ì°°ì„œë§ˆê°ì‹œê°„</th>
 		<td>
 			{{bid.str_submit_edate}}
 		</td>
-		<th>¼­¹ö½Ã°£</th>
+		<th>ì„œë²„ì‹œê°„</th>
 		<td><input type="text" id="txt_ServerTime" style="width:200px;color:#FF0000;background-color:#ffffff; border:solid 0px" readonly></td>
 	</tr>
 	<tr>
-		<th class="req-check">º¯°æÈÄ<br>ÀÔÂû¼­¸¶°¨½Ã°£</th>
+		<th class="req-check">ë³€ê²½í›„<br>ìž…ì°°ì„œë§ˆê°ì‹œê°„</th>
 		<td colspan="3">
 			<input type="text" name="submit_edate" id="submit_edate" style="width:100px" maxlength="10" onkeydown="num_only();">
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['submit_edate'])">
@@ -30,7 +30,7 @@
   </tr>
 </table>
 <div style="padding:5px;color:red">
-	¡Ø ¾÷Ã¼¿¡°Ô Åëº¸ ¾øÀÌ ½Ã°£¸¸ º¯°æÃ³¸®.
+	â€» ì—…ì²´ì—ê²Œ í†µë³´ ì—†ì´ ì‹œê°„ë§Œ ë³€ê²½ì²˜ë¦¬.
 </div>
 </form>
 
@@ -39,7 +39,7 @@
 <script language="javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("ÀÔÂû¸¶°¨½Ã°£À» º¯°æ ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ìž…ì°°ë§ˆê°ì‹œê°„ì„ ë³€ê²½ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}

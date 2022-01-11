@@ -11,7 +11,7 @@
 			<col width="13%">
 		</colgroup>
 	  <tr>
-	  	<th><p>°è¾àÀÏÀÚ</p></th>
+	  	<th><p>ê³„ì•½ì¼ìž</p></th>
 	  	<td>
 	  		<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 	  		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -20,33 +20,33 @@
 	  	</td>
 	  </tr>
 	  <tr>
-	    <th><p>°è¾à¼­Á¾·ù</p></th>
+	    <th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 	    <td>
 	    	<select name="s_template_cd" style="width: 80%;">
-	    		<option value="">-------¼±ÅÃ-------</option>
+	    		<option value="">-------ì„ íƒ-------</option>
 	    		<!-- LOOP START 'template' -->
 	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 	    		<!-- LOOP END 'template' -->
 	    	</select>
 		</td>
-		<th><p>°è¾à»óÅÂ</p></th>
+		<th><p>ê³„ì•½ìƒíƒœ</p></th>
 	    <td>
 	    	<select name="s_status" style="width: 80%;">
-	    		<option value="all">-¼±ÅÃ-</option>
+	    		<option value="all">-ì„ íƒ-</option>
 	    		<!-- LOOP START 'code_status' -->
 	    		<option value="{{code_status.id}}">{{code_status.value}}</option>
 	    		<!-- LOOP END 'code_status' -->
 	    	</select>
 	    </td>
 	    <td align="right">
-		   <button type="submit" class="search_btn">°Ë»ö</button>
+		   <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	    </td>
 	  </tr>
 	</table>
 </div>
 
 <div class="util-row" align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 
 </form>
@@ -67,14 +67,14 @@
 			<col width="8%">
 		</colgroup>
 		<tr>
-		   <th>¼ø¹ø</th>
-		   <th>°è¾à¼­¾ç½Ä</th>
-		   <th>°è¾à¸í</th>
-		   <th>°è¾àÀÏÀÚ</th>
-		   <th>°Å·¡Ã³¸í</th>
-		   <th>»ç¾÷ÀÚ¹øÈ£</th>
-		   <th>»óÅÂ</th>
-		   <th>³»ºÎ¹®¼­</th>
+		   <th>ìˆœë²ˆ</th>
+		   <th>ê³„ì•½ì„œì–‘ì‹</th>
+		   <th>ê³„ì•½ëª…</th>
+		   <th>ê³„ì•½ì¼ìž</th>
+		   <th>ê±°ëž˜ì²˜ëª…</th>
+		   <th>ì‚¬ì—…ìžë²ˆí˜¸</th>
+		   <th>ìƒíƒœ</th>
+		   <th>ë‚´ë¶€ë¬¸ì„œ</th>
 	 	</tr>
 	 	<!-- IF START 'list' -->
 	 		<!-- LOOP START 'list' -->
@@ -93,7 +93,7 @@
  		
  		<!-- IFNOT START 'list' -->
  			<tr>
-				<td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+				<td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
  			</tr>
  		<!-- IFNOT END 'list' -->
 	</table>
@@ -110,19 +110,19 @@ function formSubmit(f){
 }
 
 
-// Á¤·Ä¹æ½Ä º¯°æ
+// ì •ë ¬ë°©ì‹ ë³€ê²½
 function fChangeOrder(sortColumn, sortOrder)
 {
 	var form = document.form1;
 
 	form.hdn_sort_column.value = sortColumn;
-    if (sortOrder == "asc") // ¿À¸§Â÷¼ø Á¤·Ä ÀÏ¶§
+    if (sortOrder == "asc") // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ ì¼ë•Œ
     {
-        form.hdn_sort_order.value = "desc"; // ³»¸²Â÷¼ø Á¤·Ä·Î ¼³Á¤
+        form.hdn_sort_order.value = "desc"; // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ë¡œ ì„¤ì •
     }
-    else                        // ³ª¸ÓÁö (³»¸²Â÷¼ø Á¤·Ä ¶Ç´Â ÃÖÃÊ Å¬¸¯½Ã)
+    else                        // ë‚˜ë¨¸ì§€ (ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ ë˜ëŠ” ìµœì´ˆ í´ë¦­ì‹œ)
     {
-        form.hdn_sort_order.value =  "asc";  // ¿À¸§Â÷¼ø Á¤·Ä·Î ¼³Á¤
+        form.hdn_sort_order.value =  "asc";  // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ë¡œ ì„¤ì •
     }
 
     form.submit();

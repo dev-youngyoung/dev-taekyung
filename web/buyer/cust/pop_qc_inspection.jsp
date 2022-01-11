@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String asse_no = u.request("asse_no", "");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject assessmentDao = new DataObject("tcb_assemaster a  inner join tcb_assedetail b on a.asse_no = b.asse_no and b.div_cd = 'Q'");
 DataSet assessment = assessmentDao.find(" a.asse_no = '"+asse_no+"'", "a.*, b.asse_html, b.asse_subhtml, b.div_cd");
 if(!assessment.next()){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -17,7 +17,7 @@ if(u.isPost()&&f.validate()){
 	String result_point = f.get("result_point");
 	String doc_html = new String(Base64Coder.decode(f.get("doc_html")),"UTF-8");;
 	if(asse_no.equals("")){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä1.");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”1.");
 		return;
 	}
 	
@@ -29,10 +29,10 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(assedetailDao.getUpdateQuery("asse_no= '"+asse_no+"' and div_cd = 'Q'"), assedetailDao.record);
 	
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlert("ÀúÀå ÇÏ¿´½À´Ï´Ù."); 
+	u.jsAlert("ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤."); 
 	
 	out.println("<script language='javascript'>");
 	out.println("opener.document.getElementById('inspectionitem1').innerHTML='"+result_point+"';");
@@ -44,7 +44,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_qc_inspection");
-p.setVar("popup_title","QC¾÷Ã¼¼ö½ÃÆò°¡");
+p.setVar("popup_title","QCì—…ì²´ìˆ˜ì‹œí‰ê°€");
 p.setVar("modify", assessment.getString("status").equals("20"));
 p.setVar("cur_date", u.getTimeString("yyyy-MM-dd"));
 p.setVar("assessment", assessment);

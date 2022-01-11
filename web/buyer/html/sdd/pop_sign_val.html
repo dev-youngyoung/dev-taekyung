@@ -1,11 +1,11 @@
-
+﻿
 <form name="form1" method="post" onSubmit="return false;">
   <div class="div_table">
     <table>
       <tr>
         <td>
-          ��༭�� Ȯ���Ͻ÷��� �Ʒ��� ������ �Է� �� Ȯ���� �ֽñ� �ٶ��ϴ�.<br/>
-          - �ֹε�Ϲ�ȣ ���ڸ� 7�ڸ� �Է�
+          계약서를 확인하시려면 아래의 내용을 입력 후 확인해 주시기 바랍니다.<br/>
+          - 주민등록번호 뒷자리 7자리 입력
         </td>
       </tr>
       <tr>
@@ -13,8 +13,8 @@
       </tr>
     </table>
     <div class="btn-section type1">
-      <button type="button" class="sbtn color ico-confirm" onClick="inputok();"><span></span>Ȯ��</button>
-      <button type="button" class="sbtn color ico-cancel" onClick="fLayerPopClose('pop_sign_val');"><span></span>���</button>
+      <button type="button" class="sbtn color ico-confirm" onClick="inputok();"><span></span>확인</button>
+      <button type="button" class="sbtn color ico-cancel" onClick="fLayerPopClose('pop_sign_val');"><span></span>취소</button>
     </div>
   </div>
 </form>
@@ -27,7 +27,7 @@ attachOnload( function() {
 function inputok(){
     var f = document.forms["form1"];
 	if(f['s_input'].value.length != 7){
-		alert("���� 7�ڸ��� �Է����ּ���.");
+		alert("숫자 7자리로 입력해주세요.");
 		f['s_input'].focus();
 		return false;
 	}

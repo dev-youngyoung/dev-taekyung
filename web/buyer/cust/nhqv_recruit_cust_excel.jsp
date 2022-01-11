@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_noti_status = {"10=>¸ğÁıÁß","20=>¸ğÁı¿Ï·á"};
-String[] code_cust_status = {"10=>ÀÓ½ÃÀúÀå","20=>½ÅÃ»Áß","30=>¼öÁ¤¿äÃ»","31=>¼öÁ¤½ÅÃ»","40=>½É»ç¿Ï·á","50=>¿Ï·á"};
+String[] code_noti_status = {"10=>ëª¨ì§‘ì¤‘","20=>ëª¨ì§‘ì™„ë£Œ"};
+String[] code_cust_status = {"10=>ì„ì‹œì €ì¥","20=>ì‹ ì²­ì¤‘","30=>ìˆ˜ì •ìš”ì²­","31=>ìˆ˜ì •ì‹ ì²­","40=>ì‹¬ì‚¬ì™„ë£Œ","50=>ì™„ë£Œ"};
 String noti_seq = u.request("noti_seq");
 if(noti_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -12,7 +12,7 @@ if(noti_seq.equals("")){
 DataObject notiDao = new DataObject("tcb_recruit_noti");
 DataSet noti = notiDao.find("member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"' ");
 if(!noti.next()){
-	u.jsError("°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 noti.put("req_sdate", u.getTimeString("yyyy-MM-dd", noti.getString("req_sdate")));
@@ -28,14 +28,14 @@ while(cust.next()){
 	cust.put("vendcd", u.getBizNo(cust.getString("vendcd")));
 	cust.put("status_nm", u.getItem(cust.getString("status"), code_cust_status));
 	cust.put("tot_point", u.numberFormat(cust.getString("tot_point")));
-	cust.put("succ_tag", cust.getString("succ_yn").equals("Y")?"<font color='red'><b>¥í</b></font>":"");
+	cust.put("succ_tag", cust.getString("succ_yn").equals("Y")?"<font color='red'><b>Î½</b></font>":"");
 	
 }
 
 p.setVar("title", noti.getString("title"));
 p.setLoop("list", cust);
 response.setContentType("application/vnd.ms-excel");
-response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("½ÅÃ»¾÷Ã¼ÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ì‹ ì²­ì—…ì²´í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 out.println(p.fetch("../html/cust/nhqv_recruit_cust_excel.html"));
 return;
 

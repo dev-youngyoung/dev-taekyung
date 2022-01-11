@@ -1,57 +1,57 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String template_cd = u.request("template_cd");
-if(template_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+if (template_cd.equals("")) {
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 boolean user_template = true;
 
-// ¼­½ÄÁ¤º¸ Á¶È¸
+// ì„œì‹ì •ë³´ ì¡°íšŒ
 DataObject templateDao = new DataObject("tcb_cont_template_user a");
 //templateDao.setDebug(out);
-DataSet template= templateDao.find("template_cd ='"+template_cd+"' and member_no = '"+_member_no+"'"," a.*,(select template_name from tcb_cont_template where template_cd = a.template_cd) template_name");
-if(!template.next()){
+DataSet template= templateDao.find(
+		"template_cd ='" + template_cd + "' and member_no = '" + _member_no + "'"
+		, " a.*, (select template_name from tcb_cont_template where template_cd = a.template_cd) template_name");
+if (!template.next()) {
 	user_template = false;
 	templateDao = new DataObject("tcb_cont_template");
-	template = templateDao.find(" status> 0 and template_cd ='"+template_cd+"'");
-	if(!template.next()){
-		u.jsError("°è¾à¼­½Ä Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	template = templateDao.find(" status> 0 and template_cd ='" + template_cd + "'");
+	if (!template.next()) {
+		u.jsError("ê³„ì•½ì„œì‹ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 }
 
-
-if(u.isPost()&&f.validate()){
+if (u.isPost() && f.validate()) {
 	templateDao = new DataObject("tcb_cont_template_user");
 	//templateDao.setDebug(out);
 
-	templateDao.item("template_html", new String(Base64Coder.decode(f.get("template_html")),"UTF-8"));
+	templateDao.item("template_html", new String(Base64Coder.decode(f.get("template_html")), "UTF-8"));
 	templateDao.item("reg_id", auth.getString("_USER_ID"));
 	templateDao.item("reg_date", u.getTimeString());	
-	if(user_template){
-		if(!templateDao.update("template_cd='"+template_cd+"' and member_no = '"+_member_no+"' ")){
-			//u.jsError("ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+	if (user_template) {
+		if (!templateDao.update("template_cd='" + template_cd + "' and member_no = '" + _member_no + "' ")) {
+			//u.jsError("ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
-		}	
-	}else{
+		}
+	} else {
 		templateDao.item("template_cd", template_cd);
 		templateDao.item("member_no", _member_no);
-		if(!templateDao.insert()){
-			//u.jsError("ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+		if (!templateDao.insert()) {
+			//u.jsError("ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.","contract_select_template.jsp");
+	u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "contract_select_template.jsp");
 	return;	
 }
-
 
 p.setLayout("default");
 //p.setDebug(out);
 p.setBody("contract.contract_setting_template");
-p.setVar("menu_cd","000053");
+p.setVar("menu_cd", "000053");
 p.setVar("template", template);
 p.setVar("form_script", f.getScript());
 p.display(out);

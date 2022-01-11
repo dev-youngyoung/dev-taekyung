@@ -1,21 +1,21 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataObject dao = new DataObject("tcb_member");
 DataSet member = dao.find("member_no = '"+_member_no+"'");
 if(!member.next()){
-	u.jsError("»èÁ¦ÇÒ ÆÄÀÏÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì‚­ì œí•  íŒŒì¼ì´ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 dao.item("ci_img_path","");
 if(!dao.update(" member_no = '"+_member_no+"'")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 u.delFile(Startup.conf.getString("file.path.bcont_logo")+member.getString("ci_img_path"));
 
 out.print("<script typt='text/javascript'>");
-out.print(" alert('Á¤»óÀûÀ¸·Î Ã³¸®µÇ¾ú½À´Ï´Ù.');");
+out.print(" alert('ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 out.print(" opener.location.reload(); ");
 out.print(" self.close(); ");
 out.print("</script>");

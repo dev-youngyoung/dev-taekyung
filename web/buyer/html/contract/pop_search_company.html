@@ -1,8 +1,8 @@
 <!-- IF START 'search_type' -->
 <div class="cont_tab">
 	<!-- IF START 'tab_view_cp' -->
-	<span class="tab_on" id="tab_0" onClick="location.href='pop_search_company.jsp?search_type={{search_type}}&sign_seq={{sign_seq}}" style="width:100;padding-top:6">»ç¾÷ÀÚ</span>
-	<span class="tab_off" id="tab_1" onClick="location.href='pop_search_person.jsp?search_type={{search_type}}&sign_seq={{sign_seq}}'" style="width:100;padding-top:6">°³ÀÎ</span>
+	<span class="tab_on" id="tab_0" onClick="location.href='pop_search_company.jsp?search_type={{search_type}}&sign_seq={{sign_seq}}" style="width:100;padding-top:6">ì‚¬ì—…ì</span>
+	<span class="tab_off" id="tab_1" onClick="location.href='pop_search_person.jsp?search_type={{search_type}}&sign_seq={{sign_seq}}'" style="width:100;padding-top:6">ê°œì¸</span>
 	<!-- IF END 'tab_view_cp' -->
 </div>
 
@@ -15,10 +15,8 @@
 <input type="hidden" name="sign_seq" value="{{sign_seq}}">
 
 <div style="width:100%;padding:5px;text-align:right">
-	<!-- IF START 'view_btn_member_insert' -->
-	<button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert.jsp?{{query}}';"><span></span>ºñÈ¸¿ø¾÷Ã¼Ãß°¡</button>
-	<!-- IF END 'view_btn_member_insert' -->
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span> ´İ±â</button>
+	<button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert.jsp?{{query}}';"><span></span>ë¹„íšŒì›ì—…ì²´ì¶”ê°€</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span> ë‹«ê¸°</button>
 </div>
 
 <div class="search_div">
@@ -30,52 +28,15 @@
 		    <col width="29%">
 		    <col width="*">
 		</colgroup>
-		<!-- IF START 'member.src_depth' -->
-		<tr>
-			<th><p>¼Ò½Ì±×·ì</p></th>
-	  		<td colspan="4">
-	  			<!-- IF START 'src_l' -->
-	  			<span id="l_src_area">
-		  			<select name="l_src_cd" onchange="chgSelectBox('m')">
-		  				<option value="">-ÀüÃ¼-</option>
-		  			</select>
-	  			</span>
-	  			<!-- IF END 'src_l' -->
-	  			<!-- IF START 'src_m' -->
-		  		<span id="m_src_area">
-		  			<select name="m_src_cd" onchange="chgSelectBox('s')">
-		  				<option value="">-ÀüÃ¼-</option>
-		  			</select>
-		  		</span>
-		  		<!-- IF END 'src_m' -->
-		  		<!-- IF START 'src_s' -->
-		  		<span id="s_src_area">
-		  			<select name="s_src_cd">
-		  				<option value="">-ÀüÃ¼-</option>
-		  			</select>
-		  		</span>
-	  			<!-- IF END 'src_s' -->
-	  		</td>
-		</tr>
-	  	<!-- IF END 'member.src_depth' -->
-	  	<!-- IF START 'isKTH' -->
-		<tr>
-			<th><p>°Å·¡Ã³ÄÚµå</p></th>
-		    <td colspan="3">
-		    	<input type="text" name="s_cust_detail_code" maxlength="30" style="width: 210px;">
-		    </td>
-			<td align="right"></td>
-		</tr>
-	  	<!-- IF END 'isKTH' -->
 	  	<tr>
-		    <th><p>¾÷Ã¼¸í</p></th>
+		    <th><p>ì—…ì²´ëª…</p></th>
 		    <td>
 		    	<input type="text" name="s_member_name" maxlength="30" style="width: 210px;" id="s_member_name">
 		    </td>
-		    <th><p>»ç¾÷ÀÚ¹øÈ£</p></th>
-		    <td><input type="text" name="s_vendcd" maxlength="30" style="width: 140px;"> (-¾øÀÌ ÀÔ·Â)</td>
+		    <th><p>ì‚¬ì—…ìë²ˆí˜¸</p></th>
+		    <td><input type="text" name="s_vendcd" maxlength="30" style="width: 140px;"> (-ì—†ì´ ì…ë ¥)</td>
 			<td align="right">
-		      <button type="submit" class="search_btn">°Ë»ö</button>
+		      <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 		    </td>
 	  	</tr>
 	</table>
@@ -84,9 +45,9 @@
 </form>
 {{form_script}}
 <script language="javascript">
-function formSubmit(f){
-	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-		alert("¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·Â ÈÄ °Ë»ö ÇÏ¼¼¿ä.");
+function formSubmit(f) {
+	if (f['s_vendcd'].value == "" && f['s_member_name'].value == "") {
+		alert("ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥ í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.");
 		return false;
 	}
 	return true;
@@ -95,7 +56,7 @@ function formSubmit(f){
 
 <div class="util-row">
     <div class="push-left">
-       <span class="caution-text">¡Ø¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·ÂÈÄ °Ë»ö ÇÏ¼¼¿ä.</span>
+       <span class="caution-text">â€»ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.</span>
     </div>
 </div>
 
@@ -117,36 +78,27 @@ function formSubmit(f){
 	<table>
 		<colgroup>
 			<col width="12%">
-			<!-- IF START 'isKTH' -->
-			<col width="15%">
-			<!-- IF END 'isKTH' -->
 			<col width="*">
 			<col width="18%">
 			<col width="18%">
 			<col width="13%">
 		</colgroup>
 		<tr>
-			<th>¼ø¹ø</th>
-			<!-- IF START 'isKTH' -->
-			<th>°Å·¡Ã³ÄÚµå</th>
-			<!-- IF END 'isKTH' -->
-			<th>¾÷Ã¼¸í</th>
-			<th>»ç¾÷ÀÚ¹øÈ£</th>
-			<th>´ëÇ¥ÀÚ</th>
-			<th>Ãß°¡</th>
+			<th>ìˆœë²ˆ</th>
+			<th>ì—…ì²´ëª…</th>
+			<th>ì‚¬ì—…ìë²ˆí˜¸</th>
+			<th>ëŒ€í‘œì</th>
+			<th>ì¶”ê°€</th>
 		</tr>
 		<tr>
 			<td align="center">{{list.__ord}}</td>
-			<!-- IF START 'isKTH' -->
-			<td align="center">{{list.str_cust_detail_code}}</td>
-			<!-- IF END 'isKTH' -->
 			<td>{{list.member_name}}</td>
 			<td align="center">{{list.vendcd}}</td>
 			<td align="center">{{list.boss_name}}</td>
-			<td align="center"><button type="button" class="sbtn ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>Ãß°¡</button></td>
+			<td align="center"><button type="button" class="sbtn ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>ì¶”ê°€</button></td>
 		</tr>
 		<tr>
-			<td <!-- IFNOT START 'isKTH' -->colspan="5"<!-- IFNOT END 'isKTH' --><!-- IF START 'isKTH' -->colspan="6"<!-- IF END 'isKTH' --> align="center" style="padding-top: 3px;">
+			<td colspan="5" align="center" style="padding-top: 3px;">
 				<table>
 					<colgroup>
 						<col width="15%">
@@ -156,11 +108,11 @@ function formSubmit(f){
 						<col width="12%">
 					</colgroup>
 					<tr>
-		  				<th>´ã´çÀÚ¸í</th>
-		  				<th>ÀüÈ­¹øÈ£</th>
-		  				<th>ÈŞ´ëÆù¹øÈ£</th>
+		  				<th>ë‹´ë‹¹ìëª…</th>
+		  				<th>ì „í™”ë²ˆí˜¸</th>
+		  				<th>íœ´ëŒ€í°ë²ˆí˜¸</th>
 		  				<th>E-mail</th>
-		  				<th>¼±ÅÃ <input type="radio" name="person_seq" style="display: none"/></th>
+		  				<th>ì„ íƒ <input type="radio" name="person_seq" style="display: none"/></th>
 	  				</tr>
 	  				<!-- LOOP START 'person' -->
 	  				<tr>
@@ -190,7 +142,7 @@ function formSubmit(f){
 <div class="div_table">
 	<table>
 		<tr>
-			<td align="center" colspan="5">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="5">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 	</table>
 </div>
@@ -201,110 +153,41 @@ function formSubmit(f){
 <br/>
 
 <script language="javascript">
-attachOnload(function() { document.getElementById("s_member_name").focus(); });
+attachOnload(function() {
+	document.getElementById("s_member_name").focus();
+});
 
-function addCompany(member_no){
-
-	var seq = GetFormValue("form_"+member_no,"person_seq");
+function addCompany(member_no) {
+	var seq = GetFormValue("form_" + member_no, "person_seq");
 	var data = null;
-	if(seq){
+	if (seq) {
 		var f = document.forms["form_"+member_no];
 		data = {
-			"member_no" : f['member_no'].value
-		   ,"vendcd" : f['vendcd'].value
-		   ,"member_slno" : f['member_slno'].value
-		   ,"member_name" : f['member_name'].value
-		   ,"post_code" : f['post_code'].value
-		   ,"address" : f['address'].value
-		   ,"boss_name" : f['boss_name'].value
-		   ,"member_gubun" : f['member_gubun'].value
-		   ,"user_name" : f['user_name_'+seq].value
-		   ,"tel_num" : f['tel_num_'+seq].value
-		   ,"hp1" : f['hp1_'+seq].value
-		   ,"hp2" : f['hp2_'+seq].value
-		   ,"hp3" : f['hp3_'+seq].value
-		   ,"email" : f['email_'+seq].value
-		   ,"sign_seq" : "{{sign_seq}}"
-		   ,"jumin_no" : f['jumin_no'].value //ÁÖ¹Îµî·Ï¹øÈ£
-		   ,"cust_detail_code" : f['cust_detail_code'].value	// °Å·¡Ã³ÄÚµå
-		   ,"condition" : f['condition'].value// ¾÷ÅÂ
-		   ,"category" : f['category'].value// ¾÷Á¾
+			 "member_no" : f['member_no'].value
+		   , "vendcd" : f['vendcd'].value
+		   , "member_slno" : f['member_slno'].value
+		   , "member_name" : f['member_name'].value
+		   , "post_code" : f['post_code'].value
+		   , "address" : f['address'].value
+		   , "boss_name" : f['boss_name'].value
+		   , "member_gubun" : f['member_gubun'].value
+		   , "user_name" : f['user_name_'+seq].value
+		   , "tel_num" : f['tel_num_'+seq].value
+		   , "hp1" : f['hp1_'+seq].value
+		   , "hp2" : f['hp2_'+seq].value
+		   , "hp3" : f['hp3_'+seq].value
+		   , "email" : f['email_'+seq].value
+		   , "sign_seq" : "{{sign_seq}}"
+		   , "jumin_no" : f['jumin_no'].value // ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+		   , "cust_detail_code" : f['cust_detail_code'].value // ê±°ë˜ì²˜ì½”ë“œ
+		   , "condition" : f['condition'].value // ì—…íƒœ
+		   , "category" : f['category'].value // ì—…ì¢…
 		}
-	}else{
-		alert("´ã´çÀÚ ¼±ÅÃ ÈÄ ¾÷Ã¼ Ãß°¡ÇÏ¿© ÁÖ¼¼¿ä.");
+	} else {
+		alert("ë‹´ë‹¹ì ì„ íƒ í›„ ì—…ì²´ ì¶”ê°€í•˜ì—¬ ì£¼ì„¸ìš”.");
 		return;
 	}
 	opener.addClientInfo(data);
 	self.close();
 }
-
-function chgSelectBox(gubun){
-	var f = document.forms['form1'];
-	var l_src_cd = f['l_src_cd'].value;
-	var m_src_cd = f['m_src_cd'].value;
-	switch(gubun){
-		case 'l':
-			call("./call_src_selectbox.jsp?gubun=l","l_src_area");
-		case 'm':
-			call("./call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
-		case 's':
-			call("./call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
-			break;
-	}
-}
 </script>
-
-<!-- IF START 'member.src_depth' -->
-<script language="javascript">
-
-var search = "{{search}}";
-var l_src_cd = "{{l_src_cd}}";
-var m_src_cd = "{{m_src_cd}}";
-var s_src_cd = "{{s_src_cd}}";
-if(!search){
-	<!-- IF START 'bInitSrcGrLink' -->
-	if(opener.document.forms['form1']['src_cd']){
-		src_cd = opener.document.forms['form1']['src_cd'].value;
-		l_src_cd = src_cd.substring(0,3);
-		m_src_cd = src_cd.substring(3,6);
-		s_src_cd = src_cd.substring(6,9);
-	}
-	<!-- IF END 'bInitSrcGrLink' -->
-}
-
-<!-- IF START 'src_l' -->
-call("./call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
-function defaultValue_l(){
-	SetFormValue("form1","l_src_cd", l_src_cd);
-	setEnd();
-}
-<!-- IF END 'src_l' -->
-
-<!-- IF START 'src_m' -->
-call("./call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
-function defaultValue_m()
-{
-	SetFormValue("form1","m_src_cd", m_src_cd);
-	setEnd();
-}
-<!-- IF END 'src_m' -->
-
-<!-- IF START 'src_s' -->
-call("./call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
-function defaultValue_s()
-{
-	SetFormValue("form1","s_src_cd", s_src_cd);
-	setEnd();
-}
-<!-- IF END 'src_s' -->
-
-function setEnd(){
-	var f = document.forms['form1'];
-	if(!search){
-		if(f['l_src_cd'].value!=''&&f['m_src_cd'].value!=''&&f['s_src_cd'].value!=''){
-		 document.forms['form1'].submit();
-		}
-	}
-}
-</script>
-<!-- IF END 'member.src_depth' -->

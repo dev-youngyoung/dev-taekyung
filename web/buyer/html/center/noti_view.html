@@ -1,4 +1,4 @@
-
+ï»¿
 <form name="form1" method="get" >
 	<div class="div_table">
 		<table>
@@ -9,20 +9,20 @@
 				<col width="14%">
 			</colgroup>
 			<tr>
-				<th>Á¦¸ñ</th>
+				<th>ì œëª©</th>
 				<td>{{info.title}}</td>
-				<th>°øÁöÀÏÀÚ</th>
+				<th>ê³µì§€ì¼ìž</th>
 				<td>{{info.open_date}}</td>
 			</tr>
 			<tr>
-				<th>³»¿ë</th>
+				<th>ë‚´ìš©</th>
 				<td colspan="3" style="height:200px;" valign="top">
 					{{info.contents}}
 				</td>
 			</tr>
 			<!-- IF START 'info.doc_name' -->
 			<tr>
-				<th>Ã·ºÎÆÄÀÏ</th>
+				<th>ì²¨ë¶€íŒŒì¼</th>
 				<td colspan="3">
 					<table>
 						<colgroup>
@@ -32,7 +32,7 @@
 						<tr>
 							<td colspan="2">
 								<input type="hidden" name="doc_name">{{info.doc_name}}.{{info.file_ext}} ({{info.file_size}})
-								<button type="button" class="btn icon" onclick="filedown('file.path.noti','{{info.file_path}}{{info.file_name}}','{{info.doc_name}}.{{info.file_ext}}')">´Ù¿î·Îµå</button>
+								<button type="button" class="btn icon" onclick="filedown('file.path.noti','{{info.file_path}}{{info.file_name}}','{{info.doc_name}}.{{info.file_ext}}')">ë‹¤ìš´ë¡œë“œ</button>
 							</td>
 						</tr>
 					</table>
@@ -44,5 +44,5 @@
 </form>
 <br>
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-list" onclick="location.href='noti_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='noti_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 </div>

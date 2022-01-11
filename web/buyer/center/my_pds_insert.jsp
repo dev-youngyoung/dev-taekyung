@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
 <%
 f.uploadDir=Startup.conf.getString("file.path.bcont_pds")+_member_no;
 f.maxPostSize= 10*1024;
 
-f.addElement("title", null, "hname:'Á¦¸ñ', required:'Y', maxbyte:'100'");
-f.addElement("_contents", null, "hname:'³»¿ë', required:'Y'");
+f.addElement("title", null, "hname:'ì œëª©', required:'Y', maxbyte:'100'");
+f.addElement("_contents", null, "hname:'ë‚´ìš©', required:'Y'");
 
 if(u.isPost()&&f.validate()){
-	//±Û³»¿ë
+	//ê¸€ë‚´ìš©
 	DB db = new DB();
 	
 	DataObject dao = new DataObject("tcb_member_pds");
@@ -21,7 +21,7 @@ if(u.isPost()&&f.validate()){
 	dao.item("reg_date", u.getTimeString());
 	db.setCommand(dao.getInsertQuery(), dao.record);
 	
-	//ÆÄÀÏ
+	//íŒŒì¼
 	for(int i = 1 ; i <= 3; i ++){
 		File file = f.saveFileTime("file_pds_"+i);
 		if(file != null){
@@ -40,10 +40,10 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»ó Ã³¸®ÇÏ¿´½À´Ï´Ù.","my_pds_list.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì •ìƒ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.","my_pds_list.jsp?"+u.getQueryString());
 	return;	
 }
 

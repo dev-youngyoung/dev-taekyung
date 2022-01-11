@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String seq = u.request("seq");
@@ -11,7 +11,7 @@ String passwd3 = u.request("passwd3");
 DataObject recruitDao = new DataObject("tcb_recruit");
 DataSet recruit = recruitDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' ");
 if(!recruit.next()){
-	u.jsErrClose("¸ğÁı°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ëª¨ì§‘ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -20,7 +20,7 @@ DataSet category = categoryDao.find("member_no = '"+member_no+"' and seq = '"+se
 
 
 if(recruit.getInt("s_date")>Integer.parseInt(u.getTimeString("yyyyMMdd"))|| recruit.getInt("e_date")<Integer.parseInt(u.getTimeString("yyyyMMdd"))){
-	u.jsErrClose("¸ğÁı±â°£ÀÌ ¾Æ´Õ´Ï´Ù.");
+	u.jsErrClose("ëª¨ì§‘ê¸°ê°„ì´ ì•„ë‹™ë‹ˆë‹¤.");
 	return;
 }
 
@@ -28,13 +28,13 @@ if(recruit.getInt("s_date")>Integer.parseInt(u.getTimeString("yyyyMMdd"))|| recr
 DataObject suppDao = new DataObject("tcb_recruit_supp");
 DataSet supp = suppDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' and vendcd = '"+vendcd+"' ");
 if(!supp.next()){
-	u.jsErrClose("½ÅÃ»Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ì‹ ì²­ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!f.get("save").equals("1")){
 	if(!supp.getString("passwd").equals(passwd3)){
-		u.jsError("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù.");
+		u.jsError("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}
 }
@@ -57,24 +57,24 @@ DataSet client = clientDao.find("member_no = '"+member_no+"' and seq = '"+seq+"'
 DataObject itemDao = new DataObject("tcb_recruit_item");
 DataSet item =  itemDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' and vendcd = '"+vendcd+"' ");
 
-f.addElement("vendnm", supp.getString("vendnm"), "hname:'¾÷Ã¼¸í',required:'Y'");
-f.addElement("boss_name", supp.getString("boss_name"), "hname:'´ëÇ¥ÀÚ¸í',required:'Y'");
-f.addElement("worker_cnt", u.numberFormat(supp.getLong("worker_cnt")), "hname:'Á¾¾÷¿ø¼ö',required:'Y'");
-f.addElement("capital", u.numberFormat(supp.getLong("capital")), "hname:'ÀÚº»±İ',required:'Y'");
-f.addElement("sales_amt", u.numberFormat(supp.getLong("sales_amt")), "hname:'³â¸ÅÃâ¾×', required:'Y'");
-f.addElement("post_code", supp.getString("post_code"), "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", supp.getString("address"), "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("category_cd", supp.getString("category_cds"), "hname:'Ãë±ŞºĞ¾ß', required:'Y'");
+f.addElement("vendnm", supp.getString("vendnm"), "hname:'ì—…ì²´ëª…',required:'Y'");
+f.addElement("boss_name", supp.getString("boss_name"), "hname:'ëŒ€í‘œìëª…',required:'Y'");
+f.addElement("worker_cnt", u.numberFormat(supp.getLong("worker_cnt")), "hname:'ì¢…ì—…ì›ìˆ˜',required:'Y'");
+f.addElement("capital", u.numberFormat(supp.getLong("capital")), "hname:'ìë³¸ê¸ˆ',required:'Y'");
+f.addElement("sales_amt", u.numberFormat(supp.getLong("sales_amt")), "hname:'ë…„ë§¤ì¶œì•¡', required:'Y'");
+f.addElement("post_code", supp.getString("post_code"), "hname:'ìš°í¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", supp.getString("address"), "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("category_cd", supp.getString("category_cds"), "hname:'ì·¨ê¸‰ë¶„ì•¼', required:'Y'");
 
-f.addElement("user_name", supp.getString("user_name"), "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("position", supp.getString("position"), "hname:'Á÷Ã¥',requried:'Y'");
-f.addElement("dept_name", supp.getString("dept_name"), "hname:'ºÎ¼­', required:'Y'");
-f.addElement("hp1", supp.getString("hp1"), "hname:'ÈŞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", supp.getString("hp2"), "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", supp.getString("hp3"), "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("tel_num", supp.getString("tel_num"), "hname:'ÀüÈ­¹øÈ£', required:'Y'");
-f.addElement("fax_num", supp.getString("fax_num"), "hname:'ÆÑ½º'");
-f.addElement("passwd", null, "hname:'ºñ¹Ğ¹øÈ£',required:'Y', match:'passwd2', minbyte:'4', mixbyte:'20'");
+f.addElement("user_name", supp.getString("user_name"), "hname:'ë‹´ë‹¹ìëª…',required:'Y'");
+f.addElement("position", supp.getString("position"), "hname:'ì§ì±…',requried:'Y'");
+f.addElement("dept_name", supp.getString("dept_name"), "hname:'ë¶€ì„œ', required:'Y'");
+f.addElement("hp1", supp.getString("hp1"), "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", supp.getString("hp2"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", supp.getString("hp3"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("tel_num", supp.getString("tel_num"), "hname:'ì „í™”ë²ˆí˜¸', required:'Y'");
+f.addElement("fax_num", supp.getString("fax_num"), "hname:'íŒ©ìŠ¤'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸',required:'Y', match:'passwd2', minbyte:'4', mixbyte:'20'");
 
 if(f.get("save").equals("1")){
 	if(u.isPost()&&f.validate()){
@@ -146,10 +146,10 @@ if(f.get("save").equals("1")){
 		}
 		
 		if(!db.executeArray()){
-			u.jsError("¼öÁ¤Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇÏ¼¼¿ä.");
+			u.jsError("ìˆ˜ì •ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•˜ì„¸ìš”.");
 			return;
 		}
-		u.jsErrClose("¼öÁ¤ ÇÏ¿´½À´Ï´Ù.");
+		u.jsErrClose("ìˆ˜ì • í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 }

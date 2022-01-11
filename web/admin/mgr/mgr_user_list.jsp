@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
@@ -7,7 +7,7 @@ list.setListNum(15);
 list.setTable("tcc_admin");
 list.setFields("*");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){

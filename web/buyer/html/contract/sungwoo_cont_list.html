@@ -1,4 +1,4 @@
-<form name="form1" method="get" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="get" onsubmit="return formSubmit(this);">
 <input type="hidden" name="mode">
 <div class="search_div">
 	<table class="search_table">	
@@ -10,19 +10,19 @@
 			<col width="13%">
 		</colgroup>
 		<tr>
-			<th><p>¹ßÁÖ»ç</p></th>
+			<th><p>ë°œì£¼ì‚¬</p></th>
 			<td>
 		    	<select name="s_member_no">
-		  			<option value="">----Àü--Ã¼----</option>
+		  			<option value="">----ì „--ì²´----</option>
 		  			<!-- LOOP START 'code_member_no' -->
 		  			<option value="{{code_member_no.id}}">{{code_member_no.value}}</option>
 		  			<!-- LOOP END 'code_member_no' -->
 		  		</select>
 	   	 	</td>
-		    <th><p>°è¾à¼­Á¾·ù</p></th>
+		    <th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 		    <td>
 		    	<select name="s_template_cd">
-		    		<option value="">-------¼±ÅÃ-------</option>
+		    		<option value="">-------ì„ íƒ-------</option>
 		    		<!-- LOOP START 'template' -->
 		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 		    		<!-- LOOP END 'template' -->
@@ -31,22 +31,22 @@
 			<td align="right"></td>	
 	 	</tr>
 	  	<tr>
-			  <th><p>°è¾àÀÏÀÚ<p></th>
+			  <th><p>ê³„ì•½ì¼ìž<p></th>
 			  <td>
 			  	 <input type="text" name="s_sdate" class="in_readonly" style="width: 36%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 				 <img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 				 <input type="text" name="s_edate" class="in_readonly" style="width: 36%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 				 <img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 			  </td>
-			  <th><p>°Å·¡Ã³¸í</p></th>
+			  <th><p>ê±°ëž˜ì²˜ëª…</p></th>
 			  <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
 			  <td align="right"></td>	
 	  	</tr>
 	  	<tr>
-			<th><p>°è¾à¸í</p></th>
+			<th><p>ê³„ì•½ëª…</p></th>
 			<td colspan="3"><input type="text" name="s_cont_name" maxlength="100" style="width:42%"></td>
 			<td align="right">
-			  <button type="submit" class="search_btn">°Ë»ö</button>
+			  <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 			</td>	
 	  	</tr>
 	</table>
@@ -59,7 +59,7 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<span class="caution-text">¡Ø ¿Ï·áµÈ °è¾à°Ç¸¸ Á¶È¸ µË´Ï´Ù.</span>
+			<span class="caution-text">â€» ì™„ë£Œëœ ê³„ì•½ê±´ë§Œ ì¡°íšŒ ë©ë‹ˆë‹¤.</span>
 		</div>
 	</div>
 	<table>
@@ -72,12 +72,12 @@
 			<col width="12%">
 	 	</colgroup>
 		<tr>
-			<th>¼ø¹ø</th>
-		    <th>¹ßÁÖ»ç</th>
-	   	    <th>°è¾à¸í</th>
-		    <th>°Å·¡Ã³¸í</th>
-		    <th>°è¾àÀÏÀÚ</th>
-		    <th>°è¾à´ã´ç</th>
+			<th>ìˆœë²ˆ</th>
+		    <th>ë°œì£¼ì‚¬</th>
+	   	    <th>ê³„ì•½ëª…</th>
+		    <th>ê±°ëž˜ì²˜ëª…</th>
+		    <th>ê³„ì•½ì¼ìž</th>
+		    <th>ê³„ì•½ë‹´ë‹¹</th>
 	 	</tr>
 	 	<!-- IF START 'list' -->
 	 		<!-- LOOP START 'list' -->
@@ -95,7 +95,7 @@
 	 	
 	 	<!-- IFNOT START 'list' -->
 	 		<tr>
-				<td colspan="6" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+				<td colspan="6" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 	 		</tr>
 	 	<!-- IFNOT END 'list' -->
 	</table>

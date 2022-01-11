@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR"%><%@ include file="init.jsp"%>
+<%@ page contentType="text/html; charset=UTF-8"%><%@ include file="init.jsp"%>
 <%		
-String member_no	= u.request("member_no");	// È¸¿ø¹øÈ£
+String member_no	= u.request("member_no");	// íšŒì›ë²ˆí˜¸
 String src_cd		= u.request("src_cd");
 if(member_no.equals("") || src_cd.equals("")){
     out.print("");

@@ -1,76 +1,76 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-
-if(auth.getString("_FIELD_SEQ")== null || auth.getString("_FIELD_SEQ").equals("")){
-	if(auth.getString("_DEFAULT_YN").equals("Y")){
-		u.jsError("¥„¥Á∫Œº≠ ¡§∫∏∞° æ¯Ω¿¥œ¥Ÿ.\\n\\nªÛ¥‹¿« »∏ªÁ¡§∫∏ºˆ¡§ -> ¥„¥Á¿⁄ ∞¸∏Æ ∏ﬁ¥∫ø°º≠ ∫Œº≠ ¡§∫∏∏¶ ¿‘∑¬ «œø© ¡÷ººø‰.");
+if (auth.getString("_FIELD_SEQ") == null || auth.getString("_FIELD_SEQ").equals("")) {
+	if (auth.getString("_DEFAULT_YN").equals("Y")) {
+		u.jsError("Îã¥ÎãπÎ∂ÄÏÑú Ï†ïÎ≥¥Í∞Ä ÏóÜÏäµÎãàÎã§.\\n\\nÏÉÅÎã®Ïùò ÌöåÏÇ¨Ï†ïÎ≥¥ÏàòÏ†ï -> Îã¥ÎãπÏûê Í¥ÄÎ¶¨ Î©îÎâ¥ÏóêÏÑú Î∂ÄÏÑú Ï†ïÎ≥¥Î•º ÏûÖÎ†• ÌïòÏó¨ Ï£ºÏÑ∏Ïöî.");
 		return;
-	}else{
-		u.jsError("¥„¥Á∫Œº≠ ¡§∫∏∞° æ¯Ω¿¥œ¥Ÿ.\\n\\n±‚∫ª ∞¸∏Æ¿⁄ø°∞‘ ∫Œº≠ ¡§∫∏ ¿‘∑¬¿ª ø‰√ª «œººø‰.");
+	} else {
+		u.jsError("Îã¥ÎãπÎ∂ÄÏÑú Ï†ïÎ≥¥Í∞Ä ÏóÜÏäµÎãàÎã§.\\n\\nÍ∏∞Î≥∏ Í¥ÄÎ¶¨ÏûêÏóêÍ≤å Î∂ÄÏÑú Ï†ïÎ≥¥ ÏûÖÎ†•ÏùÑ ÏöîÏ≤≠ ÌïòÏÑ∏Ïöî.");
 		return;
 	}
 }
 
-// ƒ´ƒ´ø¿, kt m&s, ¿ß∏ﬁ«¡¥¬ ∫Œº≠∫∞∑Œ æÁΩƒ¿ª ¡ˆ¡§«“ ºˆ ¿÷¥Ÿ. (field_seq = null ¿∫ ∞¯≈ÎæÁΩƒ)
+// Ïπ¥Ïπ¥Ïò§, kt m&s, ÏúÑÎ©îÌîÑÎäî Î∂ÄÏÑúÎ≥ÑÎ°ú ÏñëÏãùÏùÑ ÏßÄÏ†ïÌï† Ïàò ÏûàÎã§. (field_seq = null ÏùÄ Í≥µÌÜµÏñëÏãù)
 String sfield_seq = "";
-if(!auth.getString("_DEFAULT_YN").equals("Y")){
-		sfield_seq = " and ( field_seq is null or '^'|| replace(replace(field_seq,' ',''),',','^')||'^' like '%^'||"+auth.getString("_FIELD_SEQ")+"||'^%' )";
+if (!auth.getString("_DEFAULT_YN").equals("Y")) {
+//	sfield_seq = " and ( field_seq is null or '^'|| replace(replace(field_seq,' ',''),',','^')||'^' like '%^'||" + auth.getString("_FIELD_SEQ") + "||'^%' )";
+	if(!"9999".equals(auth.getString("_FIELD_SEQ"))){	//Ï†ÑÏÇ∞Í¥ÄÎ¶¨Ïûê(NDS)
+		sfield_seq 	= " and template_cd in ("
+					+ " select template_cd from tcb_cont_template_field"
+					+ " where field_seq = '0000' or field_seq = "
+					+ auth.getString("_FIELD_SEQ")
+					+ ")";
+	}
 }
 
 DataObject templateDao = new DataObject("tcb_cont_template");
-DataSet ds = null;
-if(_member_no.equals("20130900194")){
-	//ƒ´ƒ´ø¿¥¬ ∫Ø∞Ê∞Ëæ‡¿« ¿«πÃ æ¯¿Ω. ø™¿Œ ∞Ëæ‡¿€º∫ «“¡ˆ Ω≈±‘∑Œ ¿€º∫ «“¡ˆ ¿⁄¿Ø∑”∞‘ «ÆæÓ µ“  skl 20171128 π⁄øπº≠ ø‰√ª
-	ds = templateDao.find(" status > 0 and member_no like '%"+_member_no+"%' and use_yn = 'Y' and (doc_type is null or doc_type=2)" + sfield_seq,"template_cd, nvl(display_name,template_name)template_name"," display_seq asc, template_cd desc");
-}else{
-	ds = templateDao.find(" status > 0 and template_type in ('00','10') and member_no like '%"+_member_no+"%' and use_yn = 'Y' and (doc_type is null or doc_type=2)" + sfield_seq,"template_cd, nvl(display_name,template_name)template_name"," display_seq asc, template_cd desc");
-}
+DataSet ds = templateDao.find(
+		  " status > 0 and template_type in ('00', '10') and member_no like '%" + _member_no + "%' and use_yn = 'Y' and (doc_type is null or doc_type = 2) " + sfield_seq
+		, " template_cd, nvl(display_name,template_name) template_name "
+		, " display_seq asc, template_cd desc");
 
-f.addElement("template_cd", null, "hname:'∞Ëæ‡º≠¡æ∑˘', required:'Y'");
+f.addElement("template_cd", null, "hname:'Í≥ÑÏïΩÏÑúÏ¢ÖÎ•ò', required:'Y'");
 
-if(u.isPost()&&f.validate()){
-
+if (u.isPost() && f.validate()) {
+/* Íµ¨ÎπÑÏÑúÎ•ò ÏòÅÍµ¨ Îì±Î°ù ÏÇ≠Ï†ú
 	DB db = new DB();
-	db.setCommand("delete from tcb_rfile_template where template_cd = '"+f.get("template_cd")+"' and member_no = '"+_member_no+"' and reg_type = '20' ", null);
+	db.setCommand("delete from tcb_rfile_template where template_cd = '" + f.get("template_cd") + "' and member_no = '" + _member_no + "' and reg_type = '20' ", null);
 
 	String[] attch_yn = f.getArr("attch_yn");
 	String[] doc_name = f.getArr("doc_name");
 	String[] reg_type = f.getArr("reg_type");
-	int doc_cnt = doc_name==null?0:doc_name.length;
-	for(int i = 0 ; i < doc_cnt; i ++){
-		if(reg_type[i].equals("10")){
-			continue;
-		}
+	int doc_cnt = doc_name == null ? 0 : doc_name.length;
+	for (int i=0; i<doc_cnt; i++) {
+		if (reg_type[i].equals("10")) continue;
 		DataObject rfile = new DataObject("tcb_rfile_template");
-		rfile.item("template_cd",f.get("template_cd"));
+		rfile.item("template_cd", f.get("template_cd"));
 		rfile.item("member_no", _member_no);
-		rfile.item("rfile_seq", i+1);
+		rfile.item("rfile_seq", i + 1);
 		rfile.item("doc_name", doc_name[i]);
-		rfile.item("attch_yn", attch_yn[i].equals("Y")?"Y":"N");
-		rfile.item("reg_type","20");
+		rfile.item("attch_yn", attch_yn[i].equals("Y") ? "Y" : "N");
+		rfile.item("reg_type", "20");
 		db.setCommand(rfile.getInsertQuery(), rfile.record);
 	}
 
-	if(!db.executeArray()){
-		u.jsError("√≥∏Æø° Ω«∆– «œø¥Ω¿¥œ¥Ÿ. \\n\\n ∞Ì∞¥ºæ≈Õ∑Œ πÆ¿««ÿ ¡÷ººø‰.");
+	if (!db.executeArray()) {
+		u.jsError("Ï≤òÎ¶¨Ïóê Ïã§Ìå® ÌïòÏòÄÏäµÎãàÎã§.\\n\\n Í≥†Í∞ùÏÑºÌÑ∞Î°ú Î¨∏ÏùòÌï¥ Ï£ºÏÑ∏Ïöî.");
 		return;
 	}
-	
-	String sign_types = templateDao.getOne("select sign_types from tcb_cont_template where template_cd='"+f.get("template_cd")+"' ");
-    if(sign_types.equals("")){
-		u.redirect("contract_insert.jsp?template_cd="+f.get("template_cd"));
-    }else{
-		u.redirect("contract_msign_insert.jsp?template_cd="+f.get("template_cd"));
+*/
+	String sign_types = templateDao.getOne("select sign_types from tcb_cont_template where template_cd = '" + f.get("template_cd") + "' ");
+    if (sign_types.equals("")) {
+		u.redirect("contract_insert.jsp?template_cd=" + f.get("template_cd"));
+    } else {
+		u.redirect("contract_msign_insert.jsp?template_cd=" + f.get("template_cd"));
     }
 	return;
 }
 
-
 p.setLayout("default");
 //p.setDebug(out);
 p.setBody("contract.contract_select_template");
-p.setVar("menu_cd","000053");
-p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000053", "btn_auth").equals("10"));
+p.setVar("menu_cd", "000053");
+p.setVar("auth_select", _authDao.getAuthMenuInfoB(_member_no, auth.getString("_AUTH_CD"), "000053", "btn_auth").equals("10"));
 p.setLoop("template", ds);
 p.setVar("form_script", f.getScript());
 p.display(out);

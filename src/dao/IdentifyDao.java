@@ -68,7 +68,7 @@ public class IdentifyDao extends DataObject {
 		}
 		
 		
-		// °¡¸Í Àü¿ë ÄÃ·³
+		// ê°€ë§¹ ì „ìš© ì»¬ëŸ¼
 		if("tcf_identify_log".equals(this.table)){
 			this.item("log_etc", dataSet.getString("log_etc"));
 			this.item("fc_member_no", dataSet.getString("fc_member_no"));

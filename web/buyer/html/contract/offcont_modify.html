@@ -1,51 +1,50 @@
 <form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
 <input type="hidden" name="first_cont_no" value="{{first_cont_no}}">
 <input type="hidden" name="first_cont_chasu" value="{{first_cont_chasu}}">
+<input type="hidden" name="menu_cd" value="{{menu_cd}}">
 
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à±âº»Á¤º¸<!-- IF START 'modify' -->&nbsp;<span style="color:blue">(¼­¸é°è¾à)</span><!-- IF END 'modify' --></h3>
+	        <h3>ê³„ì•½ê¸°ë³¸ì •ë³´<!-- IF START 'modify' -->&nbsp;<span style="color:blue">(ì„œë©´ê³„ì•½)</span><!-- IF END 'modify' --></h3>
 	    </div>
 	    <!-- IF START 'modify' -->
 	    <div class="push-right">
-			°è¾à»óÅÂ: <span class="caution-text">ÀÛ¼ºÁß</span>
+			ê³„ì•½ìƒíƒœ: <span class="caution-text">ì‘ì„±ì¤‘</span>
 	    </div>
 	    <!-- IF END 'modify' -->	    
 	</div>
 	<table>
 		<colgroup>
-			<col width="10%">
-			<col width="52%">
-			<col width="10%">
-			<col width="28%">
+			<col width="15%">
+			<col width="45%">
+			<col width="15%">
+			<col width="23%">
 		</colgroup>
 		<tr>
-			<th class="req-check">°è¾à¸í</th>
-			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>
-				<input type="text" name="cont_name" style="width:95%" >
-			</td>
-			<!-- IF START 'member.src_depth' -->
-			<th>¼Ò½Ì±×·ì</th>
+			<th class="req-check">ê³„ì•½ì„œëª…</th>
 			<td>
-				<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
-				<span id="src_nm">{{cont.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>¼±ÅÃ</button>
+				<!-- IFNOT START 'modify' -->
+				<input type="text" name="cont_name_text" style="width:95%" onchange="javascript:setContName()" value="{{cont.cont_name}}" hname="ê³„ì•½ì„œëª…" required="Y">
+				<!-- IFNOT END 'modify' -->
+				<!-- IF START 'modify' -->
+				<input type="text" name="cont_name_text" style="width:95%" value="{{cont.cont_name}}" readonly="readonly" >
+				<!-- IF END 'modify' -->
+				<input type="hidden" id="cont_name" name="cont_name" value="{{cont.cont_name}}" />
 			</td>
-			<!-- IF END 'member.src_depth' -->
-		</tr>
-		<tr>
-			<th class="req-check">°è¾àÀÏÀÚ</th>
+			<th class="req-check">ê³„ì•½ì¼ì</th>
 			<td>
-				<input type="text" name="cont_date" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
+				<input type="hidden" name="cont_userno" value="{{cont.cont_userno}}" />
+				<input type="text" name="cont_date" value="{{sysdate}}" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_date'])">
 			</td>
-			<th>°è¾à¹øÈ£ </th>
+			<!-- <th>ê³„ì•½ë²ˆí˜¸ </th>
 			<td>
 				<input type="text" name="cont_userno" style="width:100%" maxlength="40" onChange="replaceInput(this, this.name, document.all.__html)">
-			</td>
+			</td> -->
 		</tr>
 		<tr>
-			<th>°è¾à±â°£</th>
+			<th>ê³„ì•½ê¸°ê°„</th>
 			<td>
 				<input type="text" name="cont_sdate" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_sdate'])">
@@ -53,17 +52,44 @@
 				<input type="text" name="cont_edate" class="in_readonly" style="ime-mode:disabled" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_edate'])">
 			</td>
-			<th>°è¾à±İ¾×</th>
+			<th>ê³„ì•½ê¸ˆì•¡</th>
 			<td>
-				<input type="text" name="cont_total"  maxlength="20" style="text-align: right;ime-mode:disabled; width: 120px;" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"> ¿ø 
-				 <!-- IF START 'techcross' -->
-				<select name="cont_etc2" hname="VATÁ¾·ù" style="margin-left: 20px;">
-					<option value="">-¼±ÅÃ-</option>
-					<!-- LOOP START 'code_vat_type' -->
-					<option value="{{code_vat_type.id}}">{{code_vat_type.value}}</option>
-					<!-- LOOP END 'code_vat_type' -->
-				</select>
-				<!-- IF END 'techcross' -->
+				<input type="text" name="cont_total"  maxlength="20" style="text-align: right;ime-mode:disabled; width: 120px;" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"> ì› 
+			</td>
+		</tr>
+		<tr>
+			<th>ì „ìê²°ì¬ì—¬ë¶€</th>
+			<td>
+				<!-- IFNOT START 'modify' -->
+				<!-- IFC START 'menu_cd==000211' -->
+				<input type="hidden" name="appr_yn" value="Y"/>&nbsp;ì‚¬ìš©
+				<!-- IFC END 'menu_cd==000211' -->
+				<!-- IFC START 'menu_cd==000057' -->
+				<input type="hidden" name="appr_yn" value="N"/>&nbsp;ë¯¸ì‚¬ìš©
+				<!-- IFC END 'menu_cd==000057' -->
+				<!-- IFNOT END 'modify' -->
+				
+				<!-- IF START 'modify' -->
+				<input type="radio" name="appr_yn" value="Y" onclick="return(false);">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+				<input type="radio" name="appr_yn" value="N" onclick="return(false);">&nbsp;ë¯¸ì‚¬ìš©
+				<!-- IF END 'modify' -->
+			</td>
+			<th>ì¸ì§€ì„¸ì‚¬ìš©ì—¬ë¶€</th>
+			<td>
+				<!-- IFNOT START 'modify' -->
+				<!-- IFC START 'menu_cd==000211' -->
+				<input type="radio" name="stamp_type" value="Y">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+				<input type="radio" name="stamp_type" value="N">&nbsp;ë¯¸ì‚¬ìš©
+				<!-- IFC END 'menu_cd==000211' -->
+				<!-- IFC START 'menu_cd==000057' -->
+				<input type="hidden" name="stamp_type" value="N"/>&nbsp;ë¯¸ì‚¬ìš©
+				<!-- IFC END 'menu_cd==000057' -->
+				<!-- IFNOT END 'modify' -->
+				
+				<!-- IF START 'modify' -->
+				<input type="radio" name="stamp_type" value="Y">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+				<input type="radio" name="stamp_type" value="N">&nbsp;ë¯¸ì‚¬ìš©
+				<!-- IF END 'modify' -->
 			</td>
 		</tr>
 	</table>
@@ -95,129 +121,189 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à¼­·ù<span class="caution-text">(¡Ø °è¾à¼­ Ã·ºÎ½Ã ²À <u>PDFÆÄÀÏ·Î Ã·ºÎ</u>)</span></h3>
+	        <h3>ê³„ì•½ì„œ</h3>
 	    </div>
-	    <div class="push-right">
-			<button type="button" class="sbtn ico-add auth_css" onclick="addCfileRow();"><span></span>Ãß°¡</button>
-	    </div>
+	    <!-- <div class="push-right">
+			<button type="button" class="sbtn ico-add auth_css" onclick="addCfileRow();"><span></span>ì¶”ê°€</button>
+	    </div> -->
 	</div>
 	<table id="cfile_grid" style="table-layout: fixed;">
+	<!-- IF START 'cfile' -->
 		<colgroup>
-			<col width="10%"/>
+			<col width="15%"/>
 			<col width="35%"/>
-			<col width="45%"/>
-			<col width="10%"/>
+			<col width="35%"/>
+			<col width="15%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th>ÆÄÀÏ±¸ºĞ</th>
-				<th>°è¾à¼­·ù¸í</th>
-				<th>Ã·ºÎ</th>
-				<th>»èÁ¦</th>
+				<th>íŒŒì¼êµ¬ë¶„</th>
+				<th>íŒŒì¼ëª…</th>
+				<th>ì²¨ë¶€</th>
+				<th>ì‚­ì œ</th>
 			</tr>
 		</thead>
-		<tbody>
-			<!-- LOOP START 'cfile' -->
-			<tr>
-				<td align="center">Á÷Á¢Ã·ºÎ</td>
-				<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" style="width:98%" hname="°è¾à¼­·ù¸í" required="Y" /></td>
-				<td align="right">
-					{{cfile.file_size_str}}
-						<!-- IF START 'cfile.pdf_yn' -->
-						 <button type="button" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfile.cfile_seq}}')"><span></span>Á¶È¸(ÀÎ¼â)</button>
-						<!-- IF END 'cfile.pdf_yn' -->
-						<!-- IFNOT START 'cfile.pdf_yn' -->
-						 <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-						<!-- IFNOT END 'cfile.pdf_yn' -->
-						<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
-				</td>
-				<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="cfile_grid.del(this);"><span></span>»èÁ¦</button></td>
-			</tr>
-			<!-- LOOP END 'cfile' -->
-		</tbody>
-	</table>
-</div>
-
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-	        <h3>º¸Áõ¼­·ù<span class="caution-text">(¡Ø ºñ°íÇ×¸ñ¿¡ ¼±ÅÃÇÑ º¸Áõ¼­¿¡ ´ëÇÑ Á¤º¸ÀÔ·Â, ¿¹: º¸Áõ±â°£,º¸Áõ·ü)</span></h3>
-	    </div>
-	    <div class="push-right">
-			<button type="button" class="sbtn ico-add auth_css" onclick="addWarrRow()"><span></span>Ãß°¡</button>
-	    </div>
-	</div>
-	<table id="warr_grid">
+	<!-- IF END 'cfile' -->
+	<!-- IFNOT START 'cfile' -->
 		<colgroup>
-			<col width="10%">
-			<col width="15%">
-			<col width="12%">
-			<col width="12%">
-			<col width="12%">
-			<col width="15%">
-			<col width="12%">
-			<col width="12%">
+			<col width="15%"/>
+			<col width="35%"/>
+			<col width="50%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th>º¸Áõ¼­Á¾·ù</th>
-				<th>¹ß±Ş±â°ü</th>
-				<th>Áõ±Ç¹øÈ£</th>
-				<th>¹ß±ŞÀÏÀÚ</th>
-				<th>º¸Áõ±â°£</th>
-				<th>º¸Áõ±İ¾×</th>
-				<th>º¸Áõ¼­·ù</th>
-				<th>»èÁ¦</th>
+				<th>íŒŒì¼êµ¬ë¶„</th>
+				<th>íŒŒì¼ëª…</th>
+				<th>ì²¨ë¶€</th>
 			</tr>
 		</thead>
+	<!-- IFNOT END 'cfile' -->
 		<tbody>
-			<!-- LOOP START 'warr' -->
+			<!-- IF START 'cfile' -->
 			<tr>
-				<td align="center">
-					<input type="hidden" name="warr_seq" value="{{warr.warr_seq}}">
-					<select name="warr_type" id="warr_type_{{warr.warr_seq}}" hname="º¸Áõ¼­Á¾·ù" required="Y">
-						<option value="">-¼±ÅÃ-</option>
-						<!-- LOOP START 'code_warr_type' -->
-						<option value="{{code_warr_type.id}}">{{code_warr_type.value}}</option>
-						<!-- LOOP END 'code_warr_type' -->
-					</select>
-					<script>for(var i=0; i<document.getElementById("warr_type_{{warr.warr_seq}}").options.length; i++) if(document.getElementById("warr_type_{{warr.warr_seq}}").options[i].value == '{{warr.warr_type}}') document.getElementById("warr_type_{{warr.warr_seq}}").options[i].selected = true;</script>
+				<td align="center">ìµœì´ˆ<span style="color: #ff0000;">*</span></td>
+				<td><input type="text" name="cfile_doc_name" value="{{cfileInfo_1.doc_name}}" style="width:98%" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼ëª…" required="Y"/></td>
+				<td align="right">
+					<!-- IF START 'cfileInfo_1.file_name' -->
+						<input id="file_size_str_{{cfileInfo_1.cfile_seq}}" style = "text-align:right; color: #515151; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" disabled="disabled" value="{{cfileInfo_1.file_size_str}}"/>
+						<!-- IF START 'cfileInfo_1.pdf_yn' -->
+						<!-- <button type="button" id="dnfile_{{cfileInfo_1.cfile_seq}}" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfileInfo_1.cfile_seq}}')"><span></span>ì¡°íšŒ(ì¸ì‡„)</button> -->
+						<!-- IF END 'cfileInfo_1.pdf_yn' -->
+						<!-- IFNOT START 'cfileInfo_1.pdf_yn' -->
+						<!-- <button type="button" id="dnfile_{{cfileInfo_1.cfile_seq}}" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfileInfo_1.file_path}}{{cfileInfo_1.file_name}}','{{cfileInfo_1.doc_name}}.{{cfileInfo_1.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button> -->
+						<!-- IFNOT END 'cfileInfo_1.pdf_yn' -->
+						<input type="file" id="upfile_{{cfileInfo_1.cfile_seq}}" name="cfile_0" style="width:98%; display: none;" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,1);"/>
+						<input type="hidden" name="cfile_seq" value="{{cfileInfo_1.cfile_seq}}"/>
+					<!-- IF END 'cfileInfo_1.file_name' -->	
+					<!-- IFNOT START 'cfileInfo_1.file_name' -->
+						<input type="file" id="upfile_{{cfileInfo_1.cfile_seq}}" name="cfile_0" style="width:98%;" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼" required="Y" onchange="javascript:setDocName(this,1);"/>
+						<input type="hidden" name="cfile_seq" value="0"/>
+					<!-- IFNOT END 'cfileInfo_1.file_name' -->
+					<input type="hidden" name="cfile_org_seq" value="{{cfileInfo_1.cfile_seq}}"/>
 				</td>
 				<td align="center">
-					<select name="warr_office" id="warr_office_{{warr.warr_seq}}" hname="¹ß±Ş±â°ü" required="Y">
-						<option value="">-¼±ÅÃ-</option>
-						<!-- LOOP START 'code_warr_office' -->
-						<option value="{{code_warr_office.id}}">{{code_warr_office.value}}</option>
-						<!-- LOOP END 'code_warr_office' -->
-					</select>
-					<script>for(var i=0; i<document.getElementById("warr_office_{{warr.warr_seq}}").options.length; i++) if(document.getElementById("warr_office_{{warr.warr_seq}}").options[i].value == '{{warr.warr_office}}') document.getElementById("warr_office_{{warr.warr_seq}}").options[i].selected = true;</script>
+					<button type="button" class="sbtn ico-delete auth_css" onclick="cfileReset({{cfileInfo_1.cfile_seq}});"><span></span>ì‚­ì œ</button>
 				</td>
-				<td align="center"><input type="text" name="warr_no" style="width:100%" hname="Áõ±Ç¹øÈ£" required="Y" value="{{warr.warr_no}}"></td>
-				<td align="center"><input type="text" name="warr_date" style="width:100px;ime-mode:disabled" maxlength="10" hname="¹ß±ŞÀÏÀÚ" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" value="{{warr.warr_date}}" fixbyte="10"></td>
-				<td align="center">
-					<input type="text" name="warr_sdate" style="width:90px;ime-mode:disabled" maxlength="10" hname="º¸Áõ±â°£" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" value="{{warr.warr_sdate}}" fixbyte="10"> ~<br> 
-					<input type="text" name="warr_edate" style="width:90px;ime-mode:disabled" maxlength="10" hname="º¸Áõ±â°£" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" value="{{warr.warr_edate}}" fixbyte="10">
-				</td>
-				<td align="right">£Ü<input type="text" name="warr_amt" style="width:90px;text-align: right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()" value="{{warr.warr_amt}}"></td>
-				<td align="center">
-					<div id="str_warr_file_{{warr.warr_seq}}" style="width:90px;overflow: hidden;"><a href="javascript:filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')"><u style="color:blue">{{warr.doc_name}}</u></a></div>
-					<input type="file" name="warr_file_{{warr.warr_seq}}" style="width:80px" hname="º¸Áõ¼­·ù" allow="jpg|gif|png|pdf" onchange="chgWarrFile('{{warr.warr_seq}}')">
-					<input type="hidden" name="warr_doc_name_{{warr.warr_seq}}" value="{{warr.doc_name}}" required="Y" hname="º¸Áõ¼­·ù">
-				</td>
-				<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="warr_grid.del(this);"><span></span>»èÁ¦</button></td>
 			</tr>
-			<!-- LOOP END 'warr' -->
+			<tr>
+				<input type="hidden" name="cfile_doc_name" value="{{cfileInfo_2.doc_name}}" style="width:98%" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼ëª…"/>
+				<input type="hidden" id="file_size_str_{{cfileInfo_2.cfile_seq}}" style = "text-align:right; color: #515151; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" disabled="disabled" value="{{cfileInfo_2.file_size_str}}"/>
+				<input type="hidden" id="upfile_{{cfileInfo_2.cfile_seq}}" name="cfile_1" style="width:98%; display: none;" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,2);"/>
+				<input type="hidden" name="cfile_org_seq" value="{{cfileInfo_2.cfile_seq}}"/>
+				<input type="hidden" name="cfile_seq" value="0"/>
+				<!-- <td align="center">ìˆ˜ì •<span>&nbsp;&nbsp;</span></td>
+				<td><input type="text" name="cfile_doc_name" value="{{cfileInfo_2.doc_name}}" style="width:98%" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼ëª…"/></td>
+				<td align="right"> -->
+					<!-- IF START 'cfileInfo_2.file_name' -->
+						<!-- <input id="file_size_str_{{cfileInfo_2.cfile_seq}}" style = "text-align:right; color: #515151; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" disabled="disabled" value="{{cfileInfo_2.file_size_str}}"/> -->
+						<!-- IF START 'cfileInfo_2.pdf_yn' -->
+						<!-- <button type="button" id="dnfile_{{cfileInfo_2.cfile_seq}}" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfileInfo_2.cfile_seq}}')"><span></span>ì¡°íšŒ(ì¸ì‡„)</button> -->
+						<!-- IF END 'cfileInfo_2.pdf_yn' -->
+						<!-- IFNOT START 'cfileInfo_2.pdf_yn' -->
+						<!-- <button type="button" id="dnfile_{{cfileInfo_2.cfile_seq}}" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfileInfo_2.file_path}}{{cfileInfo_2.file_name}}','{{cfileInfo_2.doc_name}}.{{cfileInfo_2.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button> -->
+						<!-- IFNOT END 'cfileInfo_2.pdf_yn' -->
+						<!-- <input type="file" id="upfile_{{cfileInfo_2.cfile_seq}}" name="cfile_1" style="width:98%; display: none;" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,2);"/> -->
+						<!-- <input type="hidden" name="cfile_seq" value="{{cfileInfo_2.cfile_seq}}"/> -->
+					<!-- IF END 'cfileInfo_2.file_name' -->	
+					<!-- IFNOT START 'cfileInfo_2.file_name' -->
+						<!-- <input type="file" id="upfile_{{cfileInfo_2.cfile_seq}}" name="cfile_1" style="width:98%;" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,2);"/> -->
+						<!-- <input type="hidden" name="cfile_seq" value="0"/> -->
+					<!-- IFNOT END 'cfileInfo_2.file_name' -->
+					<!-- <input type="hidden" name="cfile_org_seq" value="{{cfileInfo_2.cfile_seq}}"/>
+				</td>
+				<td align="center">
+					<button type="button" class="sbtn ico-delete auth_css" onclick="cfileReset({{cfileInfo_2.cfile_seq}});"><span></span>ì‚­ì œ</button>
+				</td> -->
+			</tr>
+			<tr>
+			<!-- IF START 'btnAppr' -->
+				<td align="center">ì™„ë£Œ<span>&nbsp;&nbsp;</span></td>
+			<!-- IF END 'btnAppr' -->
+			<!-- IFNOT START 'btnAppr' -->
+				<td align="center">ì™„ë£Œ<span style="color: #ff0000;">*</span></td>
+			<!-- IFNOT END 'btnAppr' -->
+				<td><input type="text" name="cfile_doc_name" value="{{cfileInfo_3.doc_name}}" style="width:98%" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼ëª…"/></td>
+				<td align="right">
+					<!-- IF START 'cfileInfo_3.file_name' -->
+						<input id="file_size_str_{{cfileInfo_3.cfile_seq}}" style = "text-align:right; color: #515151; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" disabled="disabled" value="{{cfileInfo_3.file_size_str}}"/>
+						<!-- IF START 'cfileInfo_3.pdf_yn' -->
+						<!-- <button type="button" id="dnfile_{{cfileInfo_3.cfile_seq}}" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfileInfo_3.cfile_seq}}')"><span></span>ì¡°íšŒ(ì¸ì‡„)</button> -->
+						<!-- IF END 'cfileInfo_3.pdf_yn' -->
+						<!-- IFNOT START 'cfileInfo_3.pdf_yn' -->
+						<!-- <button type="button" id="dnfile_{{cfileInfo_3.cfile_seq}}" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfileInfo_3.file_path}}{{cfileInfo_3.file_name}}','{{cfileInfo_3.doc_name}}.{{cfileInfo_3.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button> -->
+						<!-- IFNOT END 'cfileInfo_3.pdf_yn' -->
+						<input type="file" id="upfile_{{cfileInfo_3.cfile_seq}}" name="cfile_2" style="width:98%; display: none;" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,3);"/>
+						<input type="hidden" name="cfile_seq" value="{{cfileInfo_3.cfile_seq}}"/>
+					<!-- IF END 'cfileInfo_3.file_name' -->
+					<!-- IFNOT START 'cfileInfo_3.file_name' -->
+						<input type="file" id="upfile_{{cfileInfo_3.cfile_seq}}" name="cfile_2" style="width:98%;" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,3);"/>
+						<input type="hidden" name="cfile_seq" value="0"/>
+					<!-- IFNOT END 'cfileInfo_3.file_name' -->
+					<input type="hidden" name="cfile_org_seq" value="{{cfileInfo_3.cfile_seq}}"/>
+				</td>
+				<td align="center">
+					<button type="button" class="sbtn ico-delete auth_css" onclick="cfileReset({{cfileInfo_3.cfile_seq}});"><span></span>ì‚­ì œ</button>
+				</td>
+			</tr>
+			<!-- IF END 'cfile' -->
+			<!-- IFNOT START 'cfile' --> <!-- ì‹ ê·œ -->
+			<tr>
+			<!-- IFC START 'menu_cd==000211' -->
+				<td class="req-check"  align="center">ìµœì´ˆ<span style="color: #ff0000;">*</span></td>
+				<td><input type="text" name="cfile_doc_name" style="width:98%" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼ëª…" required="Y" maxlength="255"/></td>
+				<td>
+					<input type="file" name="cfile_0" style="width:98%" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼" required="Y" onchange="javascript:setDocName(this,1);"/>
+					<input type="hidden" name="cfile_seq" value="0"/>
+				</td>
+			<!-- IFC END 'menu_cd==000211' -->	
+			<!-- IFC START 'menu_cd==000057' -->
+				<input type="hidden" name="cfile_doc_name" style="width:98%" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼ëª…" maxlength="255"/>
+				<input type="hidden" name="cfile_0" style="width:98%" hname="ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,1);"/>
+				<input type="hidden" name="cfile_seq" value="0"/>
+			<!-- IFC END 'menu_cd==000057' -->
+			</tr>
+			<tr>
+				<input type="hidden" name="cfile_doc_name" style="width:98%" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼ëª…" maxlength="255"/>
+				<input type="hidden" name="cfile_1" style="width:98%" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,2);"/>
+				<input type="hidden" name="cfile_seq" value="1"/>
+				<!-- <td align="center">ìˆ˜ì •<span>&nbsp;&nbsp;</span></td>
+				<td><input type="text" name="cfile_doc_name" style="width:98%" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼ëª…" maxlength="255"/></td>
+				<td>
+					<input type="file" name="cfile_1" style="width:98%" hname="ìˆ˜ì • ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,2);"/>
+					<input type="hidden" name="cfile_seq" value="1"/>
+				</td> -->
+			</tr>
+			<tr>
+			<!-- IFC START 'menu_cd==000211' -->
+				<td align="center">ì™„ë£Œ<span>&nbsp;&nbsp;</span></td>
+				<td><input type="text" name="cfile_doc_name" style="width:98%" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼ëª…" maxlength="255" readonly="readonly" /></td>
+				<td>
+					<span class="caution-text">â€» ìµœì¢…ê³„ì•½ì„œ ì™„ë£Œë³¸ì€ "ì„ì‹œì €ì¥ê³„ì•½"ì—ì„œ ë“±ë¡í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.<br/>(ë¬¸ì„œì¤‘ì•™í™” ì‚¬ìš©ìëŠ” ë¬¸ì„œë°˜ì¶œ í•„ìš”)</span>
+					<input type="hidden" name="cfile_2" style="width:98%" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼" onchange="javascript:setDocName(this,3);"/>
+					<input type="hidden" name="cfile_seq" value="2"/>
+				</td>
+			<!-- IFC END 'menu_cd==000211' -->	
+			<!-- IFC START 'menu_cd==000057' -->
+				<td align="center">ì™„ë£Œ<span style="color: #ff0000;">*</span></td>
+				<td><input type="text" name="cfile_doc_name" style="width:98%" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼ëª…" required="Y" maxlength="255"/></td>
+				<td>
+					<input type="file" name="cfile_2" style="width:98%" hname="ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼" required="Y" onchange="javascript:setDocName(this,3);"/>
+					<input type="hidden" name="cfile_seq" value="2"/>
+				</td>
+			<!-- IFC END 'menu_cd==000057' -->
+			</tr>
+			<!-- IFNOT END 'cfile' -->
 		</tbody>
 	</table>
 </div>
-
+<!-- 
  <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>±¸ºñ¼­·ù<span class="caution-text">(¡Ø °è¾àÃ¼°á½Ã ¹ŞÀº ±¸ºñ¼­·ù, ¿¹: »ç¾÷ÀÚµî·ÏÁõ,³³¼¼Áõ¸í¼­...)</span></h3>
+	        <h3>êµ¬ë¹„ì„œë¥˜<span class="caution-text">(â€» ê³„ì•½ì²´ê²°ì‹œ ë°›ì€ êµ¬ë¹„ì„œë¥˜, ì˜ˆ: ì‚¬ì—…ìë“±ë¡ì¦,ë‚©ì„¸ì¦ëª…ì„œ...)</span></h3>
 	    </div>
 	    <div class="push-right">
-			<button type="button" value="Ãß°¡" class="sbtn ico-add auth_css" onclick="addRfileRow();"><span></span>Ãß°¡</button>
+			<button type="button" value="ì¶”ê°€" class="sbtn ico-add auth_css" onclick="addRfileRow();"><span></span>ì¶”ê°€</button>
 	    </div>
 	</div>
 	<table id="rfile_grid">
@@ -228,9 +314,9 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th>ÇÊ¼ö¿©ºÎ</th>
-				<th>¹®¼­¸í</th>
-				<th>»èÁ¦</th>
+				<th>í•„ìˆ˜ì—¬ë¶€</th>
+				<th>ë¬¸ì„œëª…</th>
+				<th>ì‚­ì œ</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -247,16 +333,16 @@
 						<input type="hidden" name="attch_type" value="1">
 						<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}">
 						<!-- IFNOT START 'rfile.allow_ext' -->
-						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="{{rfile.doc_name_class}}" {{rfile.doc_name_readonly}} style="width:470px" required="Y" hname="±¸ºñ¼­·ù¸í">
+						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="{{rfile.doc_name_class}}" {{rfile.doc_name_readonly}} style="width:470px" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…">
 						<!-- IFNOT END 'rfile.allow_ext' -->
 						<!-- IF START 'rfile.allow_ext' -->
-						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="{{rfile.doc_name_class}}" {{rfile.doc_name_readonly}} style="width:300px" required="Y" hname="±¸ºñ¼­·ù¸í">
-						<span class="caution-text">¡Ø {{rfile.allow_ext}} ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>
+						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="{{rfile.doc_name_class}}" {{rfile.doc_name_readonly}} style="width:300px" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…">
+						<span class="caution-text">â€» {{rfile.allow_ext}} íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>
 						<!-- IF END 'rfile.allow_ext' -->
 					</td>
 					<td align="center">
 						<!-- IF START 'rfile.del_btn_yn' -->
-						<button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>»èÁ¦</button>
+						<button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>ì‚­ì œ</button>
 						<!-- IF END 'rfile.del_btn_yn' -->
 					</td>
 				</tr>
@@ -272,30 +358,37 @@
 					<td align="left">
 						<input type="hidden" name="attch_type" value="3">
 						<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}">
-						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" style="width:300px" required="Y" hname="±¸ºñ¼­·ù¸í" value="{{rfile.doc_name}}"> &nbsp;&nbsp;{{rfile.str_file_size}}
-						&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
+						<input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" style="width:300px" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…" value="{{rfile.doc_name}}"> &nbsp;&nbsp;{{rfile.str_file_size}}
+						&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 						<input type="hidden" name="rfile_file_path_{{rfile.rfile_seq}}" value="{{rfile.file_path}}">
 						<input type="hidden" name="rfile_file_name_{{rfile.rfile_seq}}" value="{{rfile.file_name}}">
 						<input type="hidden" name="rfile_file_size_{{rfile.rfile_seq}}" value="{{rfile.file_size}}">
 						<input type="hidden" name="rfile_file_ext_{{rfile.rfile_seq}}" value="{{rfile.file_ext}}">
-					<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>»èÁ¦</button></td>
+					<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>ì‚­ì œ</button></td>
 				</tr>
 				<!-- IF END 'rfile.file_name' -->
 			<!-- LOOP END 'rfile' -->
 		</tbody>
 	</table>
-</div>
+</div> -->
 
 <div class="btn-group-wrap">	
 	<!-- IFNOT START 'modify' -->
-	<button type="submit" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-cancel" onclick="location.href='offcont_template.jsp';"><span></span>Ãë¼Ò</button>
+	<button type="submit" class="btn color ico-save auth_css"><span></span>ì €ì¥</button>
+	<button type="button" class="btn color ico-cancel" onclick="location.href='offcont_template.jsp';"><span></span>ì·¨ì†Œ</button>
 	<!-- IFNOT END 'modify' -->
 	<!-- IF START 'modify' -->
-	<button type="submit" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-pencil auth_css" onclick="if(confirm('ÀÛ¼º¿Ï·áÃ³¸® ÇÏ½Ã°Ú½À´Ï±î?\n\n¿Ï·áÃ³¸® ÈÄ ´õÀÌ»ó ¼öÁ¤ ÇÒ ¼ö ¾ø½À´Ï´Ù.')){location.href='offcont_complate.jsp?{{query}}';}"><span></span>ÀÛ¼º¿Ï·á</button>
-	<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='contract_delete.jsp?{{query}}'}"><span></span>»èÁ¦</button>
-	<button type="button" class="btn color ico-list" onclick="location.href='contract_writing_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<!-- IF START 'btnSave' -->
+		<button type="submit" class="btn color ico-save auth_css"><span></span>ì €ì¥</button>
+	<!-- IF END 'btnSave' -->
+	<!-- IF START 'btnAppr' -->
+		<button type="button" class="btn color ico-request auth_css" onclick="location.href='contract_approval_send.jsp?jobID=ECS13&{{query}}';"><span></span>ê²°ì¬ìƒì‹ </button>
+	<!-- IF END 'btnAppr' -->
+	<!-- IF START 'btnComplete' -->
+		<button type="button" class="btn color ico-pencil auth_css" onclick="javascript:saveComplete('{{query}}');"><span></span>ì‘ì„±ì™„ë£Œ</button>
+	<!-- IF END 'btnComplete' -->
+	<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='contract_delete.jsp?{{query}}'}"><span></span>ì‚­ì œ</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='contract_writing_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IF END 'modify' -->
 </div>
 
@@ -323,27 +416,27 @@
 				<col width="24%"/>
 			</colgroup>
 			<tr>
-				<th>ÁÖ¼Ò</th>
-				<td colspan="3"><input type="text" name="address" style="width:98%" maxlength="100" hname="ÁÖ¼Ò" required="Y"/></td>
-				<th>´ã´çÀÚ</th>
-				<td><input type="text" name="user_name" style="width:98%" maxlength="30" hname="´ã´çÀÚ" required="Y"/></td>
+				<th>ì£¼ì†Œ</th>
+				<td colspan="3"><input type="text" name="address" style="width:98%" maxlength="100" hname="ì£¼ì†Œ" required="Y"/></td>
+				<th>ë‹´ë‹¹ì</th>
+				<td><input type="text" name="user_name" style="width:98%" maxlength="30" hname="ë‹´ë‹¹ì" required="Y"/></td>
 			</tr>
 			<tr>
-				<th>»óÈ£</th>
-				<td colspan="3"><input type="text" name="member_name" style="width:98%" maxlength="100" hname="»óÈ£" required="Y"/></td>
-				<th>ÀÌ¸ŞÀÏ</th>
-				<td><input type="text" name="email" style="width:98%" maxlength="150" hname="ÀÌ¸ŞÀÏ" option="email" required="Y"/></td>
+				<th>ìƒí˜¸</th>
+				<td colspan="3"><input type="text" name="member_name" style="width:98%" maxlength="100" hname="ìƒí˜¸" required="Y"/></td>
+				<th>ì´ë©”ì¼</th>
+				<td><input type="text" name="email" style="width:98%" maxlength="150" hname="ì´ë©”ì¼" option="email" required="Y"/></td>
 			</tr>
 			<tr>
-				<th>´ëÇ¥ÀÚ</th>
-				<td><input type="text" name="boss_name" style="width:98%" maxlength="50" hname="´ëÇ¥ÀÚ" required="Y"/></td>
-				<th>ÀÏ¹İÀüÈ­</th>
-				<td><input type="text" name="tel_num" style="width:98%" maxlength="20" hname="ÀÏ¹İÀüÈ­" required="Y"/></td>
-				<th>ÈŞ´ëÆù</th>
-				<td>
-					<input type="text" name="hp1" maxlength="3" style="width:28%" hname="ÈŞ´ëÆù" required="Y"/>-
-					<input type="text" name="hp2" maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>-
-					<input type="text" name="hp3" maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>
+				<th>ëŒ€í‘œì</th>
+				<td><input type="text" name="boss_name" style="width:98%" maxlength="50" hname="ëŒ€í‘œì" required="Y"/></td>
+				<th>ì¼ë°˜ì „í™”</th>
+				<td><input type="text" name="tel_num" style="width:98%" maxlength="20" hname="ì¼ë°˜ì „í™”" /></td>
+				<th name="hp_th">íœ´ëŒ€í°</th>
+				<td name="hp_td">
+					<input type="text" name="hp1" maxlength="3" style="width:28%" hname="íœ´ëŒ€í°" required="Y"/><span name="hp_bar1">-</span>
+					<input type="text" name="hp2" maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/><span name="hp_bar2">-</span>
+					<input type="text" name="hp3" maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>
 				</td>
 			</tr>
 		</table>
@@ -373,23 +466,23 @@
 					<col width="23%"/>
 				</colgroup>
 				<tr>
-					<th>ÀÌ¸§</th>
-					<td colspan="3"><input type="text" name="member_name" style="width:98%" maxlength="100" hname="ÀÌ¸§" required="Y"/></td>
+					<th>ì´ë¦„</th>
+					<td colspan="3"><input type="text" name="member_name" style="width:98%" maxlength="100" hname="ì´ë¦„" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>ÁÖ¼Ò</th>
-					<td><input type="text" name="address" style="width:98%" maxlength="100" hname="ÁÖ¼Ò" required="Y"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
-					<td><input type="text" name="email" style="width:98%" maxlength="150" hname="ÀÌ¸ŞÀÏ" option="email" required="Y"/></td>
+					<th>ì£¼ì†Œ</th>
+					<td><input type="text" name="address" style="width:98%" maxlength="100" hname="ì£¼ì†Œ" required="Y"/></td>
+					<th>ì´ë©”ì¼</th>
+					<td><input type="text" name="email" style="width:98%" maxlength="150" hname="ì´ë©”ì¼" option="email" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" style="width:98%" maxlength="20"/></td>
-					<th>ÈŞ´ëÆù</th>
+					<th>íœ´ëŒ€í°</th>
 					<td>
-						<input type="text" name="hp1" maxlength="3" style="width:28%" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp2" maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp3" maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>
+						<input type="text" name="hp1" maxlength="3" style="width:28%" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp2" maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp3" maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>
 					</td>
 				</tr>
 			</table>
@@ -398,55 +491,17 @@
 </table>
 </form>
 
-
 <table id="cfile_template" style="display:none">
 	<tr>
-		<td align="center">Á÷Á¢Ã·ºÎ</td>
-		<td><input type="text" name="cfile_doc_name" style="width:98%" hname="°è¾à¼­·ù¸í" required="Y" maxlength="255"/></td>
+		<td align="center">ì§ì ‘ì²¨ë¶€</td>
+		<td><input type="text" name="cfile_doc_name" style="width:98%" hname="íŒŒì¼ëª…" required="Y" maxlength="255"/></td>
 		<td>
-			<input type="file" name="cfile_[[seq]]" style="width:98%" hname="°è¾à¼­·ù ÆÄÀÏ" required="Y" />
+			<input type="file" name="cfile_[[seq]]" style="width:98%" hname="ê³„ì•½ì„œ íŒŒì¼" required="Y" />
 			<input type="hidden" name="cfile_seq" value="0"/>
 		</td>
-		<td><button type="button" class="sbtn ico-delete auth_css" onclick="cfile_grid.del(this);"><span></span>»èÁ¦</button></td>
+		<td><button type="button" class="sbtn ico-delete auth_css" onclick="cfile_grid.del(this);"><span></span>ì‚­ì œ</button></td>
 	</tr>
 </table>
-
-<form name="temp_warr_form" method="post">
-<table id="warr_template" style="display:none">
-	<tr>
-		<td align="center">
-			<input type="hidden" name="warr_seq" value="[[seq]]">
-			<select name="warr_type" hname="º¸Áõ¼­Á¾·ù" required="Y" style="width:100px">
-				<option value="">-¼±ÅÃ-</option>
-				<!-- LOOP START 'code_warr_type' -->
-				<option value="{{code_warr_type.id}}">{{code_warr_type.value}}</option>
-				<!-- LOOP END 'code_warr_type' -->
-			</select>
-		</td>
-		<td align="center">
-			<select name="warr_office" hname="¹ß±Ş±â°ü" required="Y" style="width:100px">
-				<option value="">-¼±ÅÃ-</option>
-				<!-- LOOP START 'code_warr_office' -->
-				<option value="{{code_warr_office.id}}">{{code_warr_office.value}}</option>
-				<!-- LOOP END 'code_warr_office' -->
-			</select>
-		</td>
-		<td align="center"><input type="text" name="warr_no" style="width:100%" hname="Áõ±Ç¹øÈ£" required="Y"></td>
-		<td align="center"><input type="text" name="warr_date" style="width:100px;ime-mode:disabled" maxlength="10" hname="¹ß±ŞÀÏÀÚ" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)"  fixbyte="10"></td>
-		<td align="center">
-			<input type="text" name="warr_sdate" style="width:90px;ime-mode:disabled" maxlength="10" hname="º¸Áõ±â°£" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" fixbyte="10"> ~<br> 
-			<input type="text" name="warr_edate" style="width:90px;ime-mode:disabled" maxlength="10" hname="º¸Áõ±â°£" required="Y" onkeydown="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this)" fixbyte="10">
-		</td>
-		<td align="right">£Ü<input type="text" name="warr_amt" style="width:90px;text-align: right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"></td>
-		<td align="center">
-			<div id="str_warr_file_[[seq]]" style="display:none;width:90px;overflow: hidden;"></div>
-			<input type="file" name="warr_file_[[seq]]" style="width:80px" hname="º¸Áõ¼­·ù" allow="jpg|gif|png|pdf" onchange="chgWarrFile('[[seq]]')">
-			<input type="hidden" name="warr_doc_name_[[seq]]" required="Y" hname="º¸Áõ¼­·ù">
-		</td>
-		<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="warr_grid.del(this);"><span></span>»èÁ¦</button></td>
-	</tr>
-</table>
-</form>
 
 <table id="rfile_template" style="display:none">
 	<tr>
@@ -457,16 +512,20 @@
 		</td>
 		<td>
 			<input type="hidden" name="rfile_seq" value="[[seq]]">
-			<input type="text" name="rfile_doc_name" style="width:450px" required="Y" hname="±¸ºñ¼­·ù¸í">
-			<input type="file" name="rfile_[[seq]]"  hname="Ã·ºÎÆÄÀÏ" style="width:255px" required="Y" hname="±¸ºñ¼­·ù"/>
+			<input type="text" name="rfile_doc_name" style="width:450px" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…">
+			<input type="file" name="rfile_[[seq]]"  hname="ì²¨ë¶€íŒŒì¼" style="width:255px" required="Y" hname="êµ¬ë¹„ì„œë¥˜"/>
 			<input type="hidden" name="attch_type" value="2">
 			<input type="hidden" name="allow_ext" value="">
 		</td>
-		<td><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>»èÁ¦</button></td>
+		<td><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>ì‚­ì œ</button></td>
 	</tr>
 </table>
 
 <script language="javascript">
+var menu_cd = '{{menu_cd}}';
+if(menu_cd == '000211'){
+	document.title = "ë†ì‹¬ ì „ìê³„ì•½ì‹œìŠ¤í…œ*" ;	
+}
 
 function formSubmit(f){
 	if(validate(f)){
@@ -475,12 +534,12 @@ function formSubmit(f){
 			var table = document.getElementById("comp_grid_"+f["sign_seq"][i].value);
 			var row_cnt = table.rows.length-1;
 			if(row_cnt==0){
-				alert(f['signer_name'][i].value+" ¿¡ ÇØ´çÇÏ´Â  ¾÷Ã¼¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.");
+				alert(f['signer_name'][i].value+" ì— í•´ë‹¹í•˜ëŠ”  ì—…ì²´ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.");
 				return false;
 			}
 		}
 
-		//³ªÆ÷ÇÔ ¿©ºÎ Ã¼Å©
+		//ë‚˜í¬í•¨ ì—¬ë¶€ ì²´í¬
 		var my_chk = false;
 		var cust_cnt = f['member_no'].length;
 		for(var i =0; i < cust_cnt; i ++){
@@ -490,17 +549,17 @@ function formSubmit(f){
 			}
 		}
 		if(!my_chk){
-			alert("·Î±×ÀÎÇÑ ¾÷Ã¼´Â °è¾à°ü°è»ç¿¡ ¹İµå½Ã Æ÷ÇÔ µÇ¾î¾ß ÇÕ´Ï´Ù.");
+			alert("ë¡œê·¸ì¸í•œ ì—…ì²´ëŠ” ê³„ì•½ê´€ê³„ì‚¬ì— ë°˜ë“œì‹œ í¬í•¨ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.");
 			return false;
 		}
 
 		var cfile_cnt = document.getElementById("cfile_grid").rows.length-1;
 		if(cfile_cnt<1){
-			alert("°è¾à¼­·ù¸¦ 1°³ÀÌ»ó Ã·ºÎ ÇÏ¼¼¿ä.");
+			alert("ê³„ì•½ì„œë¥¼ 1ê°œì´ìƒ ì²¨ë¶€ í•˜ì„¸ìš”.");
 			return false;
 		}
 
-		if(!confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(!confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return false;
 		}
 		return true;
@@ -521,117 +580,235 @@ comp_grid_{{sign_template.sign_seq}}.cells = table2array("comp_template");
 var cfile_grid = new MGRID("cfile_grid");
 cfile_grid.cells = table2array("cfile_template");
 
-var warr_grid = new MGRID("warr_grid");
-warr_grid.cells = table2array("warr_template");
+//var rfile_grid = new MGRID("rfile_grid");
+//rfile_grid.cells = table2array("rfile_template");
 
-var rfile_grid = new MGRID("rfile_grid");
-rfile_grid.cells = table2array("rfile_template");
-
-
-function addClient(sign_seq, signer_max, signer_name){
+function addClient(sign_seq, signer_max, signer_name) {
 	var f = document.forms['form1'];
-	var grid_table = document.getElementById("comp_grid_"+sign_seq);
-	if( (grid_table.rows.length-1) >= signer_max){
-		alert(signer_name+"´Â "+signer_max+"°³ÀÇ ¾÷Ã¼±îÁö¸¸ ÁöÁ¤ °¡´É ÇÕ´Ï´Ù.");
+	var grid_table = document.getElementById("comp_grid_" + sign_seq);
+	if ((grid_table.rows.length - 1) >= signer_max) {
+		alert (signer_name + "ëŠ” " + signer_max + "ê°œì˜ ì—…ì²´ê¹Œì§€ë§Œ ì§€ì • ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 		return;
 	}
 	//var result = OpenDialog('pop_search_company.jsp','pop_search_comapny', '700','650','auto');
-	OpenWindows('pop_search_company.jsp?sign_seq='+sign_seq,'pop_search_comapny', '700','650');
+	OpenWindows('pop_search_company.jsp?sign_seq=' + sign_seq, 'pop_search_comapny', '700', '650');
 
-	if(result!=null){
-		if(f["member_no"]){
-			if(f['member_no'].type=="hidden"){
-				if(f["member_no"].value==result[0]){
-					alert("ÀÌ¹Ì Ãß°¡ µÇ¾î ÀÖ´Â ¾÷Ã¼ ÀÔ´Ï´Ù.");
+	if (result!=null) {
+		if (f["member_no"]) {
+			if (f['member_no'].type == "hidden") {
+				if (f["member_no"].value == result[0]) {
+					alert("ì´ë¯¸ ì¶”ê°€ ë˜ì–´ ìˆëŠ” ì—…ì²´ ì…ë‹ˆë‹¤.");
 					return;
 				}
-			}else{
+			} else {
 				var cnt = f['member_no'].length;
-			  	for(var i = 0; i < cnt; i++){
-					if(f["member_no"][i].value==result[0]){
-					alert("ÀÌ¹Ì Ãß°¡ µÇ¾î ÀÖ´Â ¾÷Ã¼ ÀÔ´Ï´Ù.");
-					return;
-				}
+			  	for (var i=0; i<cnt; i++) {
+					if (f["member_no"][i].value == result[0]) {
+						alert("ì´ë¯¸ ì¶”ê°€ ë˜ì–´ ìˆëŠ” ì—…ì²´ ì…ë‹ˆë‹¤.");
+						return;
+					}
 			  	}
 			}
 		}
-		var i =0;
-		SetFormValue("temp_form","member_no",result[i++]);
-		SetFormValue("temp_form","vendcd",result[i++]);
-		SetFormValue("temp_form","member_slno",result[i++]);
-		SetFormValue("temp_form","member_name",result[i++]);
-		SetFormValue("temp_form","post_code",result[i++]);
-		SetFormValue("temp_form","address",result[i++]);
-		SetFormValue("temp_form","boss_name",result[i++]);
-		SetFormValue("temp_form","user_name",result[i++]);
-		SetFormValue("temp_form","tel_num",result[i++]);
-		SetFormValue("temp_form","hp1",result[i++]);
-		SetFormValue("temp_form","hp2",result[i++]);
-		SetFormValue("temp_form","hp3",result[i++]);
-		SetFormValue("temp_form","email",result[i++]);
-		SetFormValue("temp_form","cust_sign_seq",sign_seq);
-		var grid =eval("comp_grid_"+sign_seq);
-		grid.cells = table2array("comp_template", new Array("seq=>"+sign_seq));
+		var i = 0;
+		SetFormValue("temp_form", "member_no", result[i++]);
+		SetFormValue("temp_form", "vendcd", result[i++]);
+		SetFormValue("temp_form", "member_slno", result[i++]);
+		SetFormValue("temp_form", "member_name", result[i++]);
+		SetFormValue("temp_form", "post_code", result[i++]);
+		SetFormValue("temp_form", "address", result[i++]);
+		SetFormValue("temp_form", "boss_name", result[i++]);
+		SetFormValue("temp_form", "user_name", result[i++]);
+		SetFormValue("temp_form", "tel_num", result[i++]);
+		SetFormValue("temp_form", "hp1", result[i++]);
+		SetFormValue("temp_form", "hp2", result[i++]);
+		SetFormValue("temp_form", "hp3", result[i++]);
+		SetFormValue("temp_form", "email", result[i++]);
+		SetFormValue("temp_form", "cust_sign_seq", sign_seq);
+		var grid = eval("comp_grid_" + sign_seq);
+		grid.cells = table2array("comp_template", new Array("seq=>" + sign_seq));
 		grid.addRow();
-
 	}
 }
 
 function addCfileRow(){
-	var data = table2array("cfile_template", new Array("seq=>"+(document.getElementById('cfile_grid').rows.length-1)));
+	var data = table2array("cfile_template", new Array("seq=>"+(document.getElementById('cfile_grid').rows.length - 1)));
 	cfile_grid.addRow(null, data);
 }
 
-function addWarrRow(){
-	var data = table2array("warr_template", new Array("seq=>"+(document.getElementById('warr_grid').rows.length-1)));
-	warr_grid.addRow(null, data);
+function addRfileRow() {
+	var data = table2array("rfile_template", new Array("seq=>" + (document.getElementById('rfile_grid').rows.length)));
+	rfile_grid.addRow(null, data);
 }
-function chgWarrFile(seq){
-	var f = document.forms['form1'];
-	if( f['warr_file_'+seq].value== ""){
-		document.getElementById("str_warr_file_"+seq).innerHTML = "";
-		f['warr_doc_name_'+seq].value="";
-		document.getElementById("str_warr_file_"+seq).style.display="none";
+
+//ê³„ì•½ëª… ìƒì„±
+function setContName(){
+	var vendcd = document.getElementsByName('vendcd');
+	var cont_name_text = document.getElementsByName('cont_name_text');
+	var contName = '';
+	if(cont_name_text[0].value != null && cont_name_text[0].value != ''){
+		contName = cont_name_text[0].value+'-'+vendcd[1].value;
+	}
+	document.form1['cont_name'].value = contName;
+}
+
+//íŒŒì¼ ë¦¬ì…‹
+function cfileReset(cfile_seq){
+	// ê³„ì•½ì„œ ROW ë°ì´í„°ë¥¼ ë¹„ì›€ 
+	document.getElementsByName('cfile_doc_name')[cfile_seq-1].value = '';
+	document.getElementsByName('cfile_seq')[cfile_seq-1].value = '0';
+	$("#file_size_str_"+cfile_seq).val("");
+	
+	// ë‹¤ìš´ë¡œë“œ hide, pdf hide, íŒŒì¼ì„ íƒ show
+	var agent = navigator.userAgent.toLowerCase();
+	if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ) {
+		// ie ì¼ë•Œ 
+		$("#upfile_"+cfile_seq).replaceWith( $("#upfile_"+cfile_seq).clone(true) );
 	}else{
-		document.getElementById("str_warr_file_"+seq).style.display="";
-		var temp = f['warr_file_'+seq].value.split("\\");
-		var file_name = temp[temp.length-1];
-		document.getElementById("str_warr_file_"+seq).innerHTML = file_name;
-		f['warr_doc_name_'+seq].value=file_name;
+		// other browser ì¼ë•Œ
+		$("#upfile_"+cfile_seq).val("");
+	}
+	if($("#upfile_"+cfile_seq).css("display") == "none"){
+		$("#upfile_"+cfile_seq).show();
+		if(cfile_seq == 1){
+			$("#upfile_"+cfile_seq).attr("required" , true);
+		}
+	}
+	if($("#dnfile_"+cfile_seq).css("display") == "inline-block" || $("#file_size_str_"+cfile_seq).css("display") == "inline-block"){
+		$("#dnfile_"+cfile_seq).hide();
+		$("#file_size_str_"+cfile_seq).hide();
 	}
 }
 
-function addRfileRow(){
-	var data = table2array("rfile_template", new Array("seq=>"+(document.getElementById('rfile_grid').rows.length)));
-	rfile_grid.addRow(null, data);
+//ì‘ì„±ì™„ë£Œë²„íŠ¼
+function saveComplete(query){
+	// ìµœì´ˆ ê³„ì•½ì„œ í•„ìˆ˜ ê°’ ì²´í¬
+	if(document.getElementsByName('cfile_doc_name')[0].value == '' || document.getElementsByName('cfile_doc_name')[0].value == null){
+		document.getElementsByName('cfile_doc_name')[0].focus();
+		alert("ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼ëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
+		return;
+	}else if(($("#upfile_1").val() == '' || $("#upfile_1").val() == null) && ($("#file_size_str_1").val() == '' || $("#file_size_str_1").val() == null)){
+		alert("ìµœì´ˆ ê³„ì•½ì„œ íŒŒì¼ì„ ì„ íƒí•´ ì£¼ì„¸ìš”.");
+		return;
+	}
+	// ì™„ë£Œ ê³„ì•½ì„œ í•„ìˆ˜ ê°’ ì²´í¬
+	if(document.getElementsByName('cfile_doc_name')[2].value == '' || document.getElementsByName('cfile_doc_name')[2].value == null){
+		document.getElementsByName('cfile_doc_name')[2].focus();
+		alert("ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼ëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
+		return;
+	}else if(($("#upfile_3").val() == '' || $("#upfile_3").val() == null) && ($("#file_size_str_3").val() == '' || $("#file_size_str_3").val() == null)){
+		alert("ì™„ë£Œ ê³„ì•½ì„œ íŒŒì¼ì„ ì„ íƒí•´ ì£¼ì„¸ìš”.");
+		return;
+	}
+	
+	if (confirm('ì‘ì„±ì™„ë£Œì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\nì™„ë£Œì²˜ë¦¬ í›„ ë”ì´ìƒ ìˆ˜ì • í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.')) {
+		var stampType = '{{cont.stamp_type}}';
+		if (stampType == 'Y') {
+			var url = "./check_stamp_yn.jsp";
+			var data = {"cont_no" : '{{cont.cont_no}}'};
+			document.getElementById("loading").style.display = 'block';
+			callJqueryAjax(url, data);
+		} else {
+			form1.action="offcont_complate.jsp?"+query; 
+			form1.submit();
+		}
+	}
+}
+
+function callJqueryAjax(url, postData) {
+   	$.ajax({
+        url : url,
+        type : "post",
+        data : postData,
+        success : function(data) {
+        	document.getElementById("loading").style.display = 'none';
+            if (data != null && data.trim().length > 0) {
+            	if (data == 'Y') {
+            		form1.action="offcont_complate.jsp?"+query; 
+					form1.submit();
+					//location.href='offcont_complate.jsp?'+query;
+            	} else {
+            		alert("ì¸ì§€ì„¸ ì‹ ì²­ì´ í™•ì¸ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+            		return;
+            	}
+            } else {
+                alert("ì¡°íšŒ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
+            }
+        },
+        error : function(request, status, error) {
+        	document.getElementById("loading").style.display = 'none';
+            alert("code:" + request.status + "\n" + "error:" + error);
+        }
+    });
+}
+
+// íŒŒì¼ëª… setting
+function setDocName(upfile, seq){
+	var filename = upfile.value.split('/').pop().split('\\').pop().split('.'); // íŒŒì¼ëª… ì¶”ì¶œ
+	var setName = "";
+	var length = filename.length;
+	for(var i=0; i < filename.length; i++){
+		if(i+1 != length){
+			if(i==0){
+				setName = setName + filename[i];
+			}else{
+				setName = setName + "." + filename[i];
+			}
+		}
+	}
+	
+	var cfile_doc_name = document.getElementsByName('cfile_doc_name');
+	cfile_doc_name[seq-1].value = setName;
 }
 </script>
 
 <!-- LOOP START 'cust' -->
 <script language="javascript">
-if("02"=="{{cust.cust_gubun}}"){
+if ("02"=="{{cust.cust_gubun}}") {
 	form_name = "person_form";
 	template_name = "person_template";
-}else{
+} else {
 	form_name = "comp_form";
 	template_name = "comp_template";
 }
-SetFormValue(form_name,"member_no","{{cust.member_no}}");
-SetFormValue(form_name,"vendcd","{{cust.vendcd}}");
-SetFormValue(form_name,"post_code","{{cust.post_code}}");
-SetFormValue(form_name,"member_slno","{{cust.member_slno}}");
-SetFormValue(form_name,"cust_sign_seq","{{cust.sign_seq}}");
-SetFormValue(form_name,"address","{{cust.address}}");
-SetFormValue(form_name,"user_name","{{cust.user_name}}");
-SetFormValue(form_name,"member_name","{{cust.member_name}}");
-SetFormValue(form_name,"email","{{cust.email}}");
-SetFormValue(form_name,"boss_name","{{cust.boss_name}}");
-SetFormValue(form_name,"tel_num","{{cust.tel_num}}");
-SetFormValue(form_name,"hp1","{{cust.hp1}}");
-SetFormValue(form_name,"hp2","{{cust.hp2}}");
-SetFormValue(form_name,"hp3","{{cust.hp3}}");
-SetFormValue(form_name,"jumin_no","{{cust.jumin_no}}");
+SetFormValue(form_name, "member_no", "{{cust.member_no}}");
+SetFormValue(form_name, "vendcd", "{{cust.vendcd}}");
+SetFormValue(form_name, "post_code", "{{cust.post_code}}");
+SetFormValue(form_name, "member_slno", "{{cust.member_slno}}");
+SetFormValue(form_name, "cust_sign_seq", "{{cust.sign_seq}}");
+SetFormValue(form_name, "address", "{{cust.address}}");
+SetFormValue(form_name, "user_name", "{{cust.user_name}}");
+SetFormValue(form_name, "member_name", "{{cust.member_name}}");
+SetFormValue(form_name, "email", "{{cust.email}}");
+SetFormValue(form_name, "boss_name", "{{cust.boss_name}}");
+SetFormValue(form_name, "tel_num", "{{cust.tel_num}}");
+SetFormValue(form_name, "hp1", "{{cust.hp1}}");
+SetFormValue(form_name, "hp2", "{{cust.hp2}}");
+SetFormValue(form_name, "hp3", "{{cust.hp3}}");
+SetFormValue(form_name, "jumin_no", "{{cust.jumin_no}}");
 comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}"));
 comp_grid_{{cust.sign_seq}}.addRow();
 </script>
 <!-- LOOP END 'cust' -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	// ë†ì‹¬ readOnly
+	document.getElementsByName('address')[0].readOnly = true;
+	document.getElementsByName('user_name')[0].readOnly = true;
+	document.getElementsByName('member_name')[0].readOnly = true;
+	document.getElementsByName('email')[0].readOnly = true;
+	document.getElementsByName('boss_name')[0].readOnly = true;
+	document.getElementsByName('tel_num')[0].readOnly = true;
+	// ë†ì‹¬ íœ´ëŒ€í° hidden
+	document.getElementsByName('hp_th')[0].style.background = "white";
+	document.getElementsByName('hp_th')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_td')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_th')[0].innerHTML = "";
+	document.getElementsByName('hp_bar1')[0].innerHTML = "";
+	document.getElementsByName('hp_bar2')[0].innerHTML = "";
+	document.getElementsByName('hp1')[0].type= "hidden";
+	document.getElementsByName('hp2')[0].type= "hidden";
+	document.getElementsByName('hp3')[0].type= "hidden";
+});
+</script>

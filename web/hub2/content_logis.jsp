@@ -1,22 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div class="sub-title-block">
 <div class="center-inner">
 	<h1>
-		³ªÀÌ½º´ÙÅ¥ ¹°·ù±â¾÷¿ë
+		ë‚˜ì´ìŠ¤ë‹¤í ë¬¼ë¥˜ê¸°ì—…ìš©
 	</h1>
-	<p>¹°·ù ¾÷Á¾¿¡ ÃÖÀûÈ­µÈ <br class="mobile">ÀüÀÚ°è¾à¼­ºñ½º¸¦ Á¦°øÇÕ´Ï´Ù.</p>
+	<p>ë¬¼ë¥˜ ì—…ì¢…ì— ìµœì í™”ëœ <br class="mobile">ì „ìžê³„ì•½ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•©ë‹ˆë‹¤.</p>
 </div>
 </div>
 <div class="sub-block">
 <div class="sub__section">
 	<div class="inner-container">
-		<h1 class="sub__tit">¹°·ù ÀüÀÚ°è¾à ¼­ºñ½º ¼Ò°³</h1>
+		<h1 class="sub__tit">ë¬¼ë¥˜ ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ ì†Œê°œ</h1>
 		<div class="service-top">
 			<div class="chart pc">
-				<img src="/web/hub2/images/sub/service4_chart1.png" alt="¹°·ù ÀüÀÚ°è¾à ¼­ºñ½º ¼Ò°³ ¾÷¹« ÇÃ·Î¿ì">
+				<img src="/web/hub2/images/sub/service4_chart1.png" alt="ë¬¼ë¥˜ ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ ì†Œê°œ ì—…ë¬´ í”Œë¡œìš°">
 			</div>
 			<div class="chart mobile">
-				<img src="/web/hub2/images/sub/service4_m_chart1.png" alt="¹°·ù ÀüÀÚ°è¾à ¼­ºñ½º ¼Ò°³ ¾÷¹« ÇÃ·Î¿ì">
+				<img src="/web/hub2/images/sub/service4_m_chart1.png" alt="ë¬¼ë¥˜ ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ ì†Œê°œ ì—…ë¬´ í”Œë¡œìš°">
 			</div>
 		</div>
 	</div>
@@ -26,14 +26,14 @@
 		<li>
 			<div class="catalog-area">
 				<div class="icon">
-					<img src="/web/hub2/images/sub/service_icon/icon_s4_01.png" alt="¾ÆÀÌÄÜ">
+					<img src="/web/hub2/images/sub/service_icon/icon_s4_01.png" alt="ì•„ì´ì½˜">
 				</div>
 				<div class="txt-area">
 					<div class="center-inner">
-						<p class="tit">¹°·ù(ÅÃ¹è)»ç¿¡ ÃÖÀûÈ­µÈ ÀüÀÚ°è¾à ¼­ºñ½º Áö¿ø</p>
+						<p class="tit">ë¬¼ë¥˜(íƒë°°)ì‚¬ì— ìµœì í™”ëœ ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ ì§€ì›</p>
 						<p class="txt">
-							Áý¹èÁ¡, °í°´»ç, Çù·Â»ç µîÀÇ °Å·¡Ã³ Æ¯¼º¿¡ ¸Â°Ô²û °è¾à¼­, µ¿ÀÇ¼­,  <br class="pc">
-							Çù¾à¼­, È®ÀÎ¼­, ¼­¾à¼­, ¿¬´ëº¸Áõ¼­ µî °¢Á¾ Á¾ÀÌ¼­·ù¿¡ ´ëÇØ ÀüÀÚ°è¾àÀ» Áö¿øÇÕ´Ï´Ù.
+							ì§‘ë°°ì , ê³ ê°ì‚¬, í˜‘ë ¥ì‚¬ ë“±ì˜ ê±°ëž˜ì²˜ íŠ¹ì„±ì— ë§žê²Œë” ê³„ì•½ì„œ, ë™ì˜ì„œ,  <br class="pc">
+							í˜‘ì•½ì„œ, í™•ì¸ì„œ, ì„œì•½ì„œ, ì—°ëŒ€ë³´ì¦ì„œ ë“± ê°ì¢… ì¢…ì´ì„œë¥˜ì— ëŒ€í•´ ì „ìžê³„ì•½ì„ ì§€ì›í•©ë‹ˆë‹¤.
 						</p>
 					</div>
 				</div>
@@ -42,17 +42,17 @@
 		<li>
 			<div class="catalog-area">
 				<div class="icon">
-					<img src="/web/hub2/images/sub/service_icon/icon_s4_02.png" alt="¾ÆÀÌÄÜ">
+					<img src="/web/hub2/images/sub/service_icon/icon_s4_02.png" alt="ì•„ì´ì½˜">
 				</div>
 				<div class="txt-area">
 					<div class="center-inner">
-						<p class="tit">Ç¥ÁØÈ­µÈ °è¾à¾ç½Ä</p>
+						<p class="tit">í‘œì¤€í™”ëœ ê³„ì•½ì–‘ì‹</p>
 						<p class="txt">
-							½Ã½ºÅÛ¿¡ Á¢¼ÓÇÏ¿© °è¾à¼­¸¦ ÀÛ¼ºÇÏ¿© ÀüÀÚ°è¾àÀ» Ã¼°áÇÕ´Ï´Ù.
+							ì‹œìŠ¤í…œì— ì ‘ì†í•˜ì—¬ ê³„ì•½ì„œë¥¼ ìž‘ì„±í•˜ì—¬ ì „ìžê³„ì•½ì„ ì²´ê²°í•©ë‹ˆë‹¤.
 						</p>
-						<p class="tit">ºñÇ¥ÁØÈ­µÈ °è¾à¾ç½Ä</p>
+						<p class="tit">ë¹„í‘œì¤€í™”ëœ ê³„ì•½ì–‘ì‹</p>
 						<p class="txt">
-							´ã´çÀÚ PC¿¡¼­ ÀÛ¼ºµÈ °è¾àÆÄÀÏ(PDF)À» ½Ã½ºÅÛ¿¡ ¾÷·ÎµåÇÏ¿©  ÀüÀÚ°è¾àÀ» Ã¼°áÇÕ´Ï´Ù.
+							ë‹´ë‹¹ìž PCì—ì„œ ìž‘ì„±ëœ ê³„ì•½íŒŒì¼(PDF)ì„ ì‹œìŠ¤í…œì— ì—…ë¡œë“œí•˜ì—¬  ì „ìžê³„ì•½ì„ ì²´ê²°í•©ë‹ˆë‹¤.
 						</p>
 					</div>
 				</div>
@@ -61,14 +61,14 @@
 		<li>
 			<div class="catalog-area">
 				<div class="icon">
-					<img src="/web/hub2/images/sub/service_icon/icon_s4_03.png" alt="¾ÆÀÌÄÜ">
+					<img src="/web/hub2/images/sub/service_icon/icon_s4_03.png" alt="ì•„ì´ì½˜">
 				</div>
 				<div class="txt-area">
 					<div class="center-inner">
-						<p class="tit">°è¾à »óÅÂº° °ü¸®</p>
+						<p class="tit">ê³„ì•½ ìƒíƒœë³„ ê´€ë¦¬</p>
 						<p class="txt">
-							ÀÓ½ÃÀúÀå, ¼­¸í¿äÃ» µî °è¾àÁøÇà »óÈ²À» ÇÑ´«¿¡ È®ÀÎÇÒ ¼ö ÀÖÀ¸¸ç <br class="pc">
-							Ã¼°áµÈ °è¾àÀÇ º¸Áõ»çÇ×, °è¾à¸¸·á ¿©ºÎ ¹× °è¾à Æó±â ÀÌ·ÂÀ» Æí¸®ÇÏ°Ô °ü¸®ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+							ìž„ì‹œì €ìž¥, ì„œëª…ìš”ì²­ ë“± ê³„ì•½ì§„í–‰ ìƒí™©ì„ í•œëˆˆì— í™•ì¸í•  ìˆ˜ ìžˆìœ¼ë©° <br class="pc">
+							ì²´ê²°ëœ ê³„ì•½ì˜ ë³´ì¦ì‚¬í•­, ê³„ì•½ë§Œë£Œ ì—¬ë¶€ ë° ê³„ì•½ íê¸° ì´ë ¥ì„ íŽ¸ë¦¬í•˜ê²Œ ê´€ë¦¬í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 						</p>
 					</div>
 				</div>
@@ -77,13 +77,13 @@
 		<li>
 			<div class="catalog-area">
 				<div class="icon">
-					<img src="/web/hub2/images/sub/service_icon/icon_s4_04.png" alt="¾ÆÀÌÄÜ">
+					<img src="/web/hub2/images/sub/service_icon/icon_s4_04.png" alt="ì•„ì´ì½˜">
 				</div>
 				<div class="txt-area">
 					<div class="center-inner">
-						<p class="tit">°Å·¡Ã³ À¯Çüº° °ü¸®</p>
+						<p class="tit">ê±°ëž˜ì²˜ ìœ í˜•ë³„ ê´€ë¦¬</p>
 						<p class="txt">
-							Áý¹èÁ¡, °í°´»ç, Çù·Â»ç µî °Å·¡Ã³ ¼º°Ý¿¡ µû¸¥ À¯ÇüºÐ·ù ¹× °¢ °Å·¡Ã³ ÄÚµåÈ­°¡ °¡´ÉÇÕ´Ï´Ù.
+							ì§‘ë°°ì , ê³ ê°ì‚¬, í˜‘ë ¥ì‚¬ ë“± ê±°ëž˜ì²˜ ì„±ê²©ì— ë”°ë¥¸ ìœ í˜•ë¶„ë¥˜ ë° ê° ê±°ëž˜ì²˜ ì½”ë“œí™”ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 						</p>
 					</div>
 				</div>
@@ -92,17 +92,17 @@
 		<li>
 			<div class="catalog-area">
 				<div class="icon">
-					<img src="/web/hub2/images/sub/service_icon/icon_s4_05.png" alt="¾ÆÀÌÄÜ">
+					<img src="/web/hub2/images/sub/service_icon/icon_s4_05.png" alt="ì•„ì´ì½˜">
 				</div>
 				<div class="txt-area">
 					<div class="center-inner">
-						<p class="tit">»ç¿ëÀÚº° ·Î±×ÀÎ ID ºÎ¿©</p>
+						<p class="tit">ì‚¬ìš©ìžë³„ ë¡œê·¸ì¸ ID ë¶€ì—¬</p>
 						<p class="txt">
-							»ç¿ëÅëÁ¦, Á¢¼Ó ÀÌ·Â ¹× ÀÛ¾÷¿¡ ´ëÇÑ ·Î±× °ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.
+							ì‚¬ìš©í†µì œ, ì ‘ì† ì´ë ¥ ë° ìž‘ì—…ì— ëŒ€í•œ ë¡œê·¸ ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 						</p>
-						<p class="tit">IDº°·Î ¼­·Î ´Ù¸¥ ±ÇÇÑÀ» ÁöÁ¤</p>
+						<p class="tit">IDë³„ë¡œ ì„œë¡œ ë‹¤ë¥¸ ê¶Œí•œì„ ì§€ì •</p>
 						<p class="txt">
-							»ç¿ëÀÚ IDº° °è¾à¼­ ¿­¶÷¹üÀ§ ¹× ¾÷¹«±ÇÇÑÀ» ÁöÁ¤ÇÏ¿© ½Ã½ºÅÛÀ» »ç¿ëÇÕ´Ï´Ù.
+							ì‚¬ìš©ìž IDë³„ ê³„ì•½ì„œ ì—´ëžŒë²”ìœ„ ë° ì—…ë¬´ê¶Œí•œì„ ì§€ì •í•˜ì—¬ ì‹œìŠ¤í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 						</p>
 					</div>
 				</div>

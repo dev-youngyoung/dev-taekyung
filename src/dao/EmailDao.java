@@ -1,9 +1,8 @@
 package dao;
 
-import nicelib.util.*;
-import nicelib.db.*;
-
-import java.util.*;
+import nicelib.db.DB;
+import nicelib.db.DataObject;
+import nicelib.util.Util;
 
 public class EmailDao extends DataObject {
 
@@ -22,11 +21,11 @@ public class EmailDao extends DataObject {
 	
 	public boolean insertMail(String system_id,String receiver_email, String receiver_name, String title, String mail_content, String send_req_date,String send_level, String etc1, String etc2) throws Exception{
 		if(system_id ==null || receiver_email == null || title == null|| mail_content == null|| send_req_date == null || send_level == null){
-			this.setError("ÇÊ¼ö°ªÀÌ ¾ø½À´Ï´Ù.");
+			this.setError("í•„ìˆ˜ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
 			return false;
 		}
 		if(system_id.equals("") || receiver_email.equals("") || title.equals("")|| mail_content.equals("")|| send_req_date.equals("")|| send_level.equals("")){
-			this.setError("ÇÊ¼ö°ªÀÌ ¾ø½À´Ï´Ù.");
+			this.setError("í•„ìˆ˜ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
 			return false;
 		}
 		

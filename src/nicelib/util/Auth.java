@@ -22,7 +22,7 @@ public class Auth {
 
 	public String keyName = "AUTHID";
 	public String loginURL = "../member/login.jsp";
-	public int validTime = 3600 * 24 * 1000; // ¹Ğ¸® ¼¼ÄÁµå
+	public int validTime = 3600 * 24 * 1000; // ë°€ë¦¬ ì„¸ì»¨ë“œ
 
 	public Auth(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
@@ -57,7 +57,7 @@ public class Auth {
 		if(arr.length != 2) return false;
 		if(!arr[0].equals(Util.sha256(arr[1] + secretId))) return false;
 		if(!getAuthInfo(arr[1])) return false;
-		//if(!this.getString("_CLIENT_IP").equals(request.getRemoteAddr())) return false; // ·Î±×ÀÎÇÑ client IP¿Í ´Ù¸£¸é ÇØÅ· ¿©Áö°¡ ÀÖÀ¸¹Ç·Î Á¢±Ù ¸øÇÏµµ·Ï ÇÔ.
+		//if(!this.getString("_CLIENT_IP").equals(request.getRemoteAddr())) return false; // ë¡œê·¸ì¸í•œ client IPì™€ ë‹¤ë¥´ë©´ í•´í‚¹ ì—¬ì§€ê°€ ìˆìœ¼ë¯€ë¡œ ì ‘ê·¼ ëª»í•˜ë„ë¡ í•¨.
 		return true;
 	}
 
@@ -95,7 +95,7 @@ public class Auth {
 			sb.append(key + "=>" + value + "|");
 		}
 		//System.out.println("ip:"+request.getRemoteAddr());
-		//sb.append("_CLIENT_IP=>"+request.getRemoteAddr()+"|");  // ·Î±×ÀÎÇÑ Å¬¶óÀÌ¾ğÆ®IP ÀúÀå
+		//sb.append("_CLIENT_IP=>"+request.getRemoteAddr()+"|");  // ë¡œê·¸ì¸í•œ í´ë¼ì´ì–¸íŠ¸IP ì €ì¥
 		//System.out.println("sb:"+sb.toString());
 
 		String info = Security.AESencrypt((sb.toString() + fmt.format(new Date())));
@@ -106,7 +106,7 @@ public class Auth {
 		cookie.setPath("/");
 		response.addCookie(cookie);
 
-		if(data.get("_ADMIN_NAME") == null) { // ¾îµå¹ÎÀ¸·Î ·Î±×ÀÎÇÑ °æ¿ì´Â ¼¼¼ÇÀ¸·Î °ü¸®ÇÏÁö ¾Ê°í ÄíÅ°·Î¸¸ °ü¸®ÇÑ´Ù.  ¼¼¼ÇÀº µ¿½Ã¿¡ 2°³ »ç¿ë ºÒ°¡ÇÔ
+		if(data.get("_ADMIN_NAME") == null) { // ì–´ë“œë¯¼ìœ¼ë¡œ ë¡œê·¸ì¸í•œ ê²½ìš°ëŠ” ì„¸ì…˜ìœ¼ë¡œ ê´€ë¦¬í•˜ì§€ ì•Šê³  ì¿ í‚¤ë¡œë§Œ ê´€ë¦¬í•œë‹¤.  ì„¸ì…˜ì€ ë™ì‹œì— 2ê°œ ì‚¬ìš© ë¶ˆê°€í•¨
 			HttpSession session = this.request.getSession(false);
 			if (session != null) {
 				session.invalidate();
@@ -130,7 +130,7 @@ public class Auth {
 			value = (String)data.get(key);
 			sb.append(key + "=>" + value + "|");
 		}
-		//sb.append("_clientip=>"+request.getRemoteAddr()+"|");  // ·Î±×ÀÎÇÑ Å¬¶óÀÌ¾ğÆ®IP ÀúÀå
+		//sb.append("_clientip=>"+request.getRemoteAddr()+"|");  // ë¡œê·¸ì¸í•œ í´ë¼ì´ì–¸íŠ¸IP ì €ì¥
 		String info = Base64Coder.encodeString(sb.toString() + fmt.format(new Date()));
 		//String md5 = Util.md5(info + secretId);
 		String	sha256	=	Util.sha256(info + secretId);
@@ -138,12 +138,12 @@ public class Auth {
 		//Cookie cookie = new Cookie(keyName, md5 + "|" + info);
 		Cookie cookie = new Cookie(keyName, sha256 + "|" + info);
 		cookie.setPath("/");
-		cookie.setMaxAge(60*60*24*365); // À¯È¿±â°£ ÇÑ´Ş
-		response.addCookie(cookie);    // ÄíÅ°¸¦ ÀÀ´ä¿¡ Ãß°¡ÇØÁÜ
+		cookie.setMaxAge(60*60*24*365); // ìœ íš¨ê¸°ê°„ í•œë‹¬
+		response.addCookie(cookie);    // ì¿ í‚¤ë¥¼ ì‘ë‹µì— ì¶”ê°€í•´ì¤Œ
 
 		HttpSession session = this.request.getSession(false);
 		if(session != null){
-			System.out.println("¼¼¼Ç °ªÀÌ ¾ø¾î¼­ »õ·Î »ı¼ºÇÔ.");
+			System.out.println("ì„¸ì…˜ ê°’ì´ ì—†ì–´ì„œ ìƒˆë¡œ ìƒì„±í•¨.");
 			session.invalidate();
 		}
 		session = this.request.getSession(true);
@@ -159,23 +159,23 @@ public class Auth {
 
 		//if(((new Date()).getTime() - validTime) > Util.strToDate(arr[arr.length - 1]).getTime()) return false;
 
-		if(data.get("_ADMIN_NAME") == null) { // ¾îµå¹ÎÀ¸·Î ·Î±×ÀÎÇÑ °æ¿ì´Â ¼¼¼ÇÀ¸·Î °ü¸®ÇÏÁö ¾Ê°í ÄíÅ°·Î¸¸ °ü¸®ÇÑ´Ù.  ¼¼¼ÇÀº µ¿½Ã¿¡ 2°³ »ç¿ë ºÒ°¡ÇÔ
+		if(data.get("_ADMIN_NAME") == null) { // ì–´ë“œë¯¼ìœ¼ë¡œ ë¡œê·¸ì¸í•œ ê²½ìš°ëŠ” ì„¸ì…˜ìœ¼ë¡œ ê´€ë¦¬í•˜ì§€ ì•Šê³  ì¿ í‚¤ë¡œë§Œ ê´€ë¦¬í•œë‹¤.  ì„¸ì…˜ì€ ë™ì‹œì— 2ê°œ ì‚¬ìš© ë¶ˆê°€í•¨
 			HttpSession session = request.getSession(false);
 			if (session == null) {
-				System.out.println("¼¼¼Ç ¸¸·á [" + data.get("_USER_ID") + "]");
+				System.out.println("ì„¸ì…˜ ë§Œë£Œ [" + data.get("_USER_ID") + "]");
 				delAuthInfo();
 				return false;
 			}
 
 			String user_id = (String) session.getAttribute("user_id");
 			if (user_id == null) {
-				System.out.println("¼¼¼Ç ¼Ó¼º ¸¸·á [" + data.get("_USER_ID") + "]");
+				System.out.println("ì„¸ì…˜ ì†ì„± ë§Œë£Œ [" + data.get("_USER_ID") + "]");
 				session.invalidate();
 				delAuthInfo();
 				return false;
 			}
 			if (!user_id.equals(data.get("_USER_ID"))) {
-				System.out.println("¼¼¼Ç°ú ÄíÅ° ´Ù¸§ : ¼¼¼Ç id[" + user_id + "], ÄíÅ° id[" + data.get("_USER_ID") + "");
+				System.out.println("ì„¸ì…˜ê³¼ ì¿ í‚¤ ë‹¤ë¦„ : ì„¸ì…˜ id[" + user_id + "], ì¿ í‚¤ id[" + data.get("_USER_ID") + "");
 				session.invalidate();
 				delAuthInfo();
 				return false;

@@ -23,10 +23,10 @@ import procure.common.utils.StrUtil;
 public class FileManager { 
 	
 	/**
-	 * Ã·ºÎÆÄÀÏ ¾÷·Îµå
-	 * @param sInFullFile	Client ¾ò·Îµå ´ë»óÆÄÀÏ Full °æ·Î
-	 * @param sOutDir		Server ¾ò·Îµå ´ë»óÆÄÀÏ µğ·ºÅä¸® °æ·Î
-	 * @param sOutFileNm	Server¿¡ ÀúÀåÇÒ ÆÄÀÏ¸í
+	 * ì²¨ë¶€íŒŒì¼ ì—…ë¡œë“œ
+	 * @param sInFullFile	Client ì–»ë¡œë“œ ëŒ€ìƒíŒŒì¼ Full ê²½ë¡œ
+	 * @param sOutDir		Server ì–»ë¡œë“œ ëŒ€ìƒíŒŒì¼ ë””ë ‰í† ë¦¬ ê²½ë¡œ
+	 * @param sOutFileNm	Serverì— ì €ì¥í•  íŒŒì¼ëª…
 	 * @return
 	 * @throws IOException 
 	 */
@@ -77,9 +77,9 @@ public class FileManager {
 	}
 	
 	/**
-	 * Ã·ºÎÆÄÀÏ ¾÷·Îµå
-	 * @param sInFullFile	Client ¾ò·Îµå ´ë»óÆÄÀÏ Full °æ·Î
-	 * @param sOutDir		Server ¾ò·Îµå ´ë»óÆÄÀÏ µğ·ºÅä¸® °æ·Î
+	 * ì²¨ë¶€íŒŒì¼ ì—…ë¡œë“œ
+	 * @param sInFullFile	Client ì–»ë¡œë“œ ëŒ€ìƒíŒŒì¼ Full ê²½ë¡œ
+	 * @param sOutDir		Server ì–»ë¡œë“œ ëŒ€ìƒíŒŒì¼ ë””ë ‰í† ë¦¬ ê²½ë¡œ
 	 * @return
 	 * @throws Exception 
 	 */
@@ -110,9 +110,9 @@ public class FileManager {
 	}
 	
 	/**
-	 * ÆÄÀÏ ¾÷·Îµå
+	 * íŒŒì¼ ì—…ë¡œë“œ
 	 * @param in				gauce inputstream
-	 * @param sOutFullFileName	Server ¾÷·Îµå ´ë»óÆÄÀÏ µğ·ºÅä¸® °æ·Î(ÆÄÀÏÆ÷ÇÔ)
+	 * @param sOutFullFileName	Server ì—…ë¡œë“œ ëŒ€ìƒíŒŒì¼ ë””ë ‰í† ë¦¬ ê²½ë¡œ(íŒŒì¼í¬í•¨)
 	 * @return
 	 * @throws IOException 
 	 */
@@ -144,10 +144,10 @@ public class FileManager {
 	}
 	
 	/**
-	 * Ã·ºÎÆÄÀÏ ¾÷·Îµå
-	 * @param in		·ÎÄÃ InputStream
-	 * @param sKey		¾÷·Îµå ÇÁ·ÎÆÛÆ¼ °æ·Î
-	 * @param sSubUrl	°æ·Î
+	 * ì²¨ë¶€íŒŒì¼ ì—…ë¡œë“œ
+	 * @param in		ë¡œì»¬ InputStream
+	 * @param sKey		ì—…ë¡œë“œ í”„ë¡œí¼í‹° ê²½ë¡œ
+	 * @param sSubUrl	ê²½ë¡œ
 	 * @return
 	 * @throws ConfigurationException 
 	 * @throws IOException 
@@ -174,7 +174,7 @@ public class FileManager {
 	}
 	
 	/**
-	 * ÆÄÀÏ º¹»ç
+	 * íŒŒì¼ ë³µì‚¬
 	 * @param in			InputStream
 	 * @param out			OutputStream
 	 * @param bufferSize	
@@ -247,8 +247,8 @@ public class FileManager {
 		
 	}
 	/**
-	 * Ã·ºÎÆÄÀÏ »èÁ¦
-	 * @param sOutFullFile	»èÁ¦´ë»ó ÆÄÀÏ Full °æ·Î
+	 * ì²¨ë¶€íŒŒì¼ ì‚­ì œ
+	 * @param sOutFullFile	ì‚­ì œëŒ€ìƒ íŒŒì¼ Full ê²½ë¡œ
 	 * @return
 	 */
 	public boolean	delFile(String	sOutFullFile)
@@ -273,9 +273,9 @@ public class FileManager {
 	}
 	
 	/**
-	 * Ã·ºÎÆÄÀÏ »èÁ¦
-	 * @param sKey		»èÁ¦ÇÒ ÆÄÀÏÀÇ ÇÁ·ÎÆÄÆ¼¸í
-	 * @param sSubURL	³ª¸ÓÁö °æ·Î
+	 * ì²¨ë¶€íŒŒì¼ ì‚­ì œ
+	 * @param sKey		ì‚­ì œí•  íŒŒì¼ì˜ í”„ë¡œíŒŒí‹°ëª…
+	 * @param sSubURL	ë‚˜ë¨¸ì§€ ê²½ë¡œ
 	 * @return
 	 * @throws ConfigurationException 
 	 */
@@ -297,8 +297,8 @@ public class FileManager {
 	
 
 	/**
-	 * µğ·ºÅä¸® »èÁ¦
-	 * @param sKey		»èÁ¦ÇÒ ÆÄÀÏÀÇ ÇÁ·ÎÆÄÆ¼¸í 
+	 * ë””ë ‰í† ë¦¬ ì‚­ì œ
+	 * @param sKey		ì‚­ì œí•  íŒŒì¼ì˜ í”„ë¡œíŒŒí‹°ëª… 
 	 * @param sDir
 	 */
 	public boolean delDir(String sKey, String sDir)
@@ -321,7 +321,7 @@ public class FileManager {
 	}		
 	
 	/**
-	 * µğ·ºÅä¸® »èÁ¦
+	 * ë””ë ‰í† ë¦¬ ì‚­ì œ
 	 * @param sDir
 	 */
 	public boolean delDir(String sDir)
@@ -364,8 +364,8 @@ public class FileManager {
 	}
 	
 	/**
-	 * ÇÏÀ§Æú´õ ¹× ÆÄÀÏ ¸ğµÎ »èÁ¦
-	 * @param file	»èÁ¦ÇÒ Æú´õ ¹× ÆÄÀÏ
+	 * í•˜ìœ„í´ë” ë° íŒŒì¼ ëª¨ë‘ ì‚­ì œ
+	 * @param file	ì‚­ì œí•  í´ë” ë° íŒŒì¼
 	 * @return
 	 */
 	public boolean	delAllFile(File file)
@@ -398,8 +398,8 @@ public class FileManager {
 	}
 
 	/**
-	 * Hash Á¤º¸ °¡Á®¿À±â
-	 * @param sXpath		°æ·Î
+	 * Hash ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	 * @param sXpath		ê²½ë¡œ
 	 * @param sOtherFullDir
 	 * @return
 	 * @throws ConfigurationException 
@@ -463,7 +463,7 @@ public class FileManager {
 	}
 	
 	/**
-	 * top µğ·ºÅä¸® °æ·Î °¡Á®¿À±â
+	 * top ë””ë ‰í† ë¦¬ ê²½ë¡œ ê°€ì ¸ì˜¤ê¸°
 	 * @param _sDirPath
 	 * @return
 	 */
@@ -501,8 +501,8 @@ public class FileManager {
 	}
 	
 	/**
-	 * ¼Ò½ºÆÄÀÏ¸í °¡Á®¿À±â
-	 * @param _sDirPath	´ë»ó°æ·Î
+	 * ì†ŒìŠ¤íŒŒì¼ëª… ê°€ì ¸ì˜¤ê¸°
+	 * @param _sDirPath	ëŒ€ìƒê²½ë¡œ
 	 * @return
 	 */
 	public ArrayList	getArrFileNm(String _sDirPath)

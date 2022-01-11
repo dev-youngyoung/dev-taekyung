@@ -1,9 +1,9 @@
-<form name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data">
 <div style="width:100%;text-align:right;padding:10px 10px">
 	<!-- IF START 'btn' -->
-	<button type="button" class="sbtn color ico-delete" onclick="if(confirm('»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?')){location.href='pop_stamp_delete.jsp?{{query}}';}"><span></span>»èÁ¦</button>
+	<button type="button" class="sbtn color ico-delete" onclick="if(confirm('ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='pop_stamp_delete.jsp?{{query}}';}"><span></span>ì‚­ì œ</button>
 	<!-- IF END 'btn' -->
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 <div class="div_table">
 	<table>
@@ -12,56 +12,56 @@
 		  <col width="76%">
 		</colgroup>
 		<tr>
-			<th> ³³ºÎ¾÷Ã¼¸í</th>
+			<th> ë‚©ë¶€ì—…ì²´ëª…</th>
 			<td>
 				{{cont.member_name}}
 			</td>
 		</tr>
 		<tr>
-			<th> »ç¾÷ÀÚµî·Ï¹øÈ£</th>
+			<th> ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</th>
 			<td>
 				{{cont.vendcd}}
 			</td>
 		</tr>
 		<tr>
-			<th> °è¾à±İ¾×</th>
+			<th> ê³„ì•½ê¸ˆì•¡</th>
 			<td>
-				£Ü{{cont.cont_total}}
+				ï¿¦{{cont.cont_total}}
 			</td>
 		</tr>
 		<tr>
-			<th> ÀÎÁö¼¼¾×</th>
+			<th> ì¸ì§€ì„¸ì•¡</th>
 			<td>
-				£Ü{{stamp.stamp_money}}
+				ï¿¦{{stamp.stamp_money}}
 			</td>
 		</tr>
 		<tr>
-			<th> °íÀ¯(Á¢¼ö)¹øÈ£</th>
+			<th> ê³ ìœ (ì ‘ìˆ˜)ë²ˆí˜¸</th>
 			<td>
 				{{stamp.cert_no}}
 			</td>
 		</tr>
 		<tr>
-			<th> ¹ß±ŞÃ³</th>
+			<th> ë°œê¸‰ì²˜</th>
 			<td>
 				{{stamp.channel}}
 			</td>
 		</tr>
 		<tr>
-			<th> ¹ß±ŞÀÏ</th>
+			<th> ë°œê¸‰ì¼</th>
 			<td>
 				{{stamp.issue_date}}
 			</td>
 		</tr>
 		<tr>
-			<th> Ã·ºÎÆÄÀÏ</th>
+			<th> ì²¨ë¶€íŒŒì¼</th>
 			<td>
 				<!-- IFNOT START 'stamp.file_name' -->
-				¹ÌÃ·ºÎ
+				ë¯¸ì²¨ë¶€
 				<!-- IFNOT END 'stamp.file_name' -->
 				<!-- IF START 'stamp.file_name' -->
 				{{stamp.file_title}}&nbsp;&nbsp;({{stamp.file_size}})&nbsp;
-                <button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_pdf','{{stamp.file_path}}{{stamp.file_name}}','{{stamp.file_title}}')"><span></span>´Ù¿î·Îµå</button>
+                <button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_pdf','{{stamp.file_path}}{{stamp.file_name}}','{{stamp.file_title}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 				<!-- IF END 'stamp.file_name' -->
 			</td>
 		</tr>

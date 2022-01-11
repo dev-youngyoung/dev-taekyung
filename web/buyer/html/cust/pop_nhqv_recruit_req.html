@@ -1,14 +1,14 @@
-<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
 <input type="hidden" name="status">
 
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>°ø°íÁ¤º¸</h3>
+			<h3>ê³µê³ ì •ë³´</h3>
 		</div>
 		<div class="push-right">
 			<!-- IF START 'modify' -->
-			<font color="#93a700">[½ÅÃ»»óÅÂ: <b>{{cust.status_nm}}</b>]</font>
+			<font color="#93a700">[ì‹ ì²­ìƒíƒœ: <b>{{cust.status_nm}}</b>]</font>
 			<!-- IF END 'modify' -->
 		</div>
 	</div>
@@ -18,26 +18,26 @@
 			<col width="85%">
 		</colgroup>
 		<tr>
-			<th>°ø°í¸í</th>
+			<th>ê³µê³ ëª…</th>
 			<td colspan="3">{{noti.title}}</td>
 		</tr>
 		<tr>
-			<th>¸ðÁý±â°£</th>
+			<th>ëª¨ì§‘ê¸°ê°„</th>
 			<td colspan="3">
 				{{noti.req_sdate}} ~ {{noti.req_edate}}
 			</td>
 		</tr>
 		<tr>
-			<th>¸ðÁý°øÁ¾</th>
+			<th>ëª¨ì§‘ê³µì¢…</th>
 			<td colspan="3">
 				{{noti.cate_name}}
 			</td>
 		</tr>
 		<tr>
-			<th>°ø°í¹®</th>
+			<th>ê³µê³ ë¬¸</th>
 			<td colspan="3">
 				{{noti.noti_doc_name}}
-				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.recruit','{{noti.noti_file_path}}','{{noti.noti_doc_name}}')"><span></span>´Ù¿î·Îµå</button>
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.recruit','{{noti.noti_file_path}}','{{noti.noti_doc_name}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 			</td>
 		</tr>
 	</table>
@@ -45,7 +45,7 @@
 	<!-- IF START 'cust.mod_req_date' -->
 	<div class="util-row">
 		<div class="push-left">
-			<h3>¼öÁ¤¿äÃ»Á¤º¸</h3>
+			<h3>ìˆ˜ì •ìš”ì²­ì •ë³´</h3>
 		</div>
 	</div>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -56,13 +56,13 @@
 			<col width="30%">
 		</colgroup>
 		<tr>
-			<td>¿äÃ»ÀÏ½Ã</td>
+			<td>ìš”ì²­ì¼ì‹œ</td>
 			<td>{{cust.mod_req_date}}</td>
-			<td>¿äÃ»ÀÚ</td>
+			<td>ìš”ì²­ìž</td>
 			<td>{{cust.mod_req_name}}</td>
 		</tr>
 		<tr>
-			<td>»çÀ¯</td>
+			<td>ì‚¬ìœ </td>
 			<td colspan="3">{{cust.mod_req_reason}}</td>
 		</tr>
 	</table>
@@ -70,7 +70,7 @@
 
 	<div class="util-row">
 		<div class="push-right">
-			¡Ø<span style="background-color:yellow;text-align:center">³ë¶û»ö</span>Àº ÇÊ¼öÀÔ·Â»çÇ× ÀÔ´Ï´Ù.
+			â€»<span style="background-color:yellow;text-align:center">ë…¸ëž‘ìƒ‰</span>ì€ í•„ìˆ˜ìž…ë ¥ì‚¬í•­ ìž…ë‹ˆë‹¤.
 		</div>
 	</div>
 </div>
@@ -100,19 +100,19 @@
 
 <div class="btn-group-wrap">
 	<!-- IFNOT START 'modify' -->
-	<button type="submit" class="sbtn color ico-save"><span></span>ÀúÀå</button>
+	<button type="submit" class="sbtn color ico-save"><span></span>ì €ìž¥</button>
 	<!-- IFNOT END 'modify' -->
 
 	<!-- IF START 'modify' -->
 	<!-- IF START 'btn_save' -->
-	<button type="submit" class="sbtn color ico-save"><span></span>ÀúÀå</button>
+	<button type="submit" class="sbtn color ico-save"><span></span>ì €ìž¥</button>
 	<!-- IF END 'btn_save' -->
-	<button type="button" class="sbtn color ico-print" onclick="OpenWindow('{{print_url}}','pdf_viewer',830,800);"><span></span>½ÅÃ»¼­ÀÎ¼â</button>
+	<button type="button" class="sbtn color ico-print" onclick="OpenWindow('{{print_url}}','pdf_viewer',830,800);"><span></span>ì‹ ì²­ì„œì¸ì‡„</button>
 	<!-- IF START 'btn_req' -->
-	<button type="button" class="sbtn color ico-confirm" onclick="recruitReq()"><span></span>½ÅÃ»¼­Á¦Ãâ</button>
+	<button type="button" class="sbtn color ico-confirm" onclick="recruitReq()"><span></span>ì‹ ì²­ì„œì œì¶œ</button>
 	<!-- IF END 'btn_req' -->
 	<!-- IF END 'modify' -->
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´Ý±â</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 
 </form>
@@ -121,13 +121,13 @@
 
 function formSubmit(f){
 	if(validate(f)){
-		var msg = "ÀúÀåÇÏ½Ã°Ú½À´Ï±î?";
+		var msg = "ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		if(f['status'].value == "20"){
-			msg = "ÀÔ·ÂÇÏ½Å Á¤º¸·Î µî·Ï¾÷Ã¼ ½ÅÃ»¼­¸¦ Á¦Ãâ ÇÏ½Ã°Ú½À´Ï±î?";
+			msg = "ìž…ë ¥í•˜ì‹  ì •ë³´ë¡œ ë“±ë¡ì—…ì²´ ì‹ ì²­ì„œë¥¼ ì œì¶œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		}
 		if(confirm(msg)){
 			if(!calcPoint()){
-				alert("Æò°¡Á¤º¸ Á¡°Ë¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+				alert("í‰ê°€ì •ë³´ ì ê²€ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 				return false;
 			}
 			setDivInputValue("__html");

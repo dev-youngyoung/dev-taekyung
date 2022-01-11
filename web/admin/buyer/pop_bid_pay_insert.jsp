@@ -1,21 +1,21 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 
-f.addElement("main_member_no", null, "hname:'°ø°íÈ¸¿ø¹øÈ£', required:'Y'");
-f.addElement("bid_no", null, "hname:'°ø°í¹øÈ£', required:'Y'");
-f.addElement("bid_deg", null, "hname:'Â÷¼ö', required:'Y'");
-f.addElement("bid_name", null, "hname:'°ø°í¸í', required:'Y'");
-f.addElement("member_no", null, "hname:'°áÁ¦¾÷Ã¼È¸¿ø¹øÈ£', required:'Y'");
-f.addElement("member_name", null, "hname:'°áÁ¦¾÷Ã¼', required:'Y'");
-f.addElement("pay_type", null, "hname:'°áÁ¦ÇüÅÂ', required:'Y'");
-f.addElement("member_name", null, "hname:'°áÁ¦¾÷Ã¼¸í', required:'Y'");
+f.addElement("main_member_no", null, "hname:'ê³µê³ íšŒì›ë²ˆí˜¸', required:'Y'");
+f.addElement("bid_no", null, "hname:'ê³µê³ ë²ˆí˜¸', required:'Y'");
+f.addElement("bid_deg", null, "hname:'ì°¨ìˆ˜', required:'Y'");
+f.addElement("bid_name", null, "hname:'ê³µê³ ëª…', required:'Y'");
+f.addElement("member_no", null, "hname:'ê²°ì œì—…ì²´íšŒì›ë²ˆí˜¸', required:'Y'");
+f.addElement("member_name", null, "hname:'ê²°ì œì—…ì²´', required:'Y'");
+f.addElement("pay_type", null, "hname:'ê²°ì œí˜•íƒœ', required:'Y'");
+f.addElement("member_name", null, "hname:'ê²°ì œì—…ì²´ëª…', required:'Y'");
 f.addElement("tid", null, "hname:'TID', required:'Y', minbyte:'30'");
-f.addElement("pay_amount", null, "hname:'°áÁ¦±İ¾×', required:'Y'");
-f.addElement("accept_date", u.getTimeString("yyyy-MM-dd"), "hname:'°áÁ¦ÀÏÀÚ', required:'Y'");
-f.addElement("accept_hh", "00", "hname:'°áÁ¦½Ã°£', required:'Y'");
-f.addElement("accept_mm", "00", "hname:'°áÁ¦½Ã°£', required:'Y'");
-f.addElement("accept_ss", "00", "hname:'°áÁ¦½Ã°£', required:'Y'");
+f.addElement("pay_amount", null, "hname:'ê²°ì œê¸ˆì•¡', required:'Y'");
+f.addElement("accept_date", u.getTimeString("yyyy-MM-dd"), "hname:'ê²°ì œì¼ì', required:'Y'");
+f.addElement("accept_hh", "00", "hname:'ê²°ì œì‹œê°„', required:'Y'");
+f.addElement("accept_mm", "00", "hname:'ê²°ì œì‹œê°„', required:'Y'");
+f.addElement("accept_ss", "00", "hname:'ê²°ì œì‹œê°„', required:'Y'");
 
 
 if(u.isPost()&&f.validate()){
@@ -52,12 +52,12 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(supp.getUpdateQuery("main_member_no='"+f.get("main_member_no")+"' and bid_no= '"+f.get("bid_no")+"' and bid_deg = '"+f.get("bid_deg")+"' and member_no = '"+f.get("member_no")+"'  "), supp.record);
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
 	out.println("<script>");
-	out.println("alert('ÀúÀåÇÏ¿´½À´Ï´Ù.');");
+	out.println("alert('ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.');");
 	out.println("opener.location.reload();");
 	out.println("self.close();");
 	out.println("</script>");
@@ -67,7 +67,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_bid_pay_insert");
-p.setVar("popup_title","°áÁ¦³»¿ª ¼öµ¿ÀÔ·Â");
+p.setVar("popup_title","ê²°ì œë‚´ì—­ ìˆ˜ë™ì…ë ¥");
 p.setVar("sysdate", u.getTimeString());
 p.setVar("form_script",f.getScript());
 p.display(out);

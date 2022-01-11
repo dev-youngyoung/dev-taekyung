@@ -1,9 +1,17 @@
+ï»¿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
 
 <form name="form1" method="post">
 	<input type="hidden" name="grid" />
@@ -12,17 +20,17 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>Å©·¹Å¾ Á¤º¸</h3>
+			<h3>í¬ë ˆíƒ‘ ì •ë³´</h3>
 		</div>
 		<div class="push-right">
-			¡Ø ¿¢¼¿´Ù¿î·Îµå¸¦ ÇÑ ÆÄÀÏ¿¡ Å©·¹Å¾ Á¤º¸¸¦ ÀÔ·Â ÈÄ ¾÷·Îµå ÇÏ¼¼¿ä (´ÜÀ§:Ãµ¿ø)
+			â€» ì—‘ì…€ë‹¤ìš´ë¡œë“œë¥¼ í•œ íŒŒì¼ì— í¬ë ˆíƒ‘ ì •ë³´ë¥¼ ì…ë ¥ í›„ ì—…ë¡œë“œ í•˜ì„¸ìš” (ë‹¨ìœ„:ì²œì›)
 		</div>
 	</div>
 	<div class="util-row">
 		<div class="push-right">
 			<div style="z-index:10;position: relative; float: left; top:3px;left:250px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:140px; cursor:pointer;" onchange="excelRead();this.value='';"></div>
-			<button type="button" class="sbtn color ico-download" onclick="fDownXLS();"><span></span>¿¢¼¿´Ù¿î·Îµå</button>
-			<button type="button" class="sbtn color ico-save auth_css"><span></span>¿¢¼¿¾÷·Îµå</button>
+			<button type="button" class="sbtn color ico-download" onclick="fDownXLS();"><span></span>ì—‘ì…€ë‹¤ìš´ë¡œë“œ</button>
+			<button type="button" class="sbtn color ico-save auth_css"><span></span>ì—‘ì…€ì—…ë¡œë“œ</button>
 		</div>
 	</div>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -34,8 +42,8 @@
 	</table>
 	<div class="btn-group-wrap">
 		<!-- IF START 'rfile' -->
-		<button type="button" class="btn color ico-save auth_css" onClick="fSaveItem();"><span></span>Å©·¹Å¾Á¤º¸ µî·Ï</button>
-		<button type="button" class="btn color ico-list" onClick="location.href='add_cust_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="button" class="btn color ico-save auth_css" onClick="fSaveItem();"><span></span>í¬ë ˆíƒ‘ì •ë³´ ë“±ë¡</button>
+		<button type="button" class="btn color ico-list" onClick="location.href='add_cust_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 </div>
 
@@ -104,23 +112,23 @@ function setStyle(){
 
 function setColumns() {
 	var columns = [];
-    columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"»ç¾÷ÀÚ¹øÈ£" ,width: 80 ,editable:true , movable:false ,sortable:false, visible:true});
-    columns.push({name:"setup_date" ,fieldName:"setup_date" ,header:"¼³¸³ÀÏÀÚ" ,width: 80 ,editable:true , movable:false ,sortable:false, visible:true});
-    columns.push({name:"worker_num" ,fieldName:"worker_num" ,header:"ÀÎ·Â¼ö" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"major_cust" ,fieldName:"major_cust" ,header:"ÁÖ¿äÁÖÁÖ(ÁöºĞÀ²)" ,width: 100 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"sales_amt" ,fieldName:"sales_amt" ,header:"¸ÅÃâ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"biz_profit" ,fieldName:"biz_profit" ,header:"¿µ¾ïÀÌÀÍ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"net_profit" ,fieldName:"net_profit" ,header:"´ç±â¼øÀÌÀÍ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"asset" ,fieldName:"asset" ,header:"ÀÚ»êÃÑ°è" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"capital" ,fieldName:"capital" ,header:"ÀÚº»ÃÑ°è" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"debt" ,fieldName:"debt" ,header:"ºÎÃ¤ÃÑ°è" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"liquid_asset" ,fieldName:"liquid_asset" ,header:"À¯µ¿ÀÚ»ê" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"liquid_debt" ,fieldName:"liquid_debt" ,header:"À¯µ¿ºÎÃ¤" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"credit_rating" ,fieldName:"credit_rating" ,header:"½Å¿ëµî±Ş" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"tax_delay_yn" ,fieldName:"tax_delay_yn" ,header:"¼¼±İÃ¼³³" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"ì‚¬ì—…ìë²ˆí˜¸" ,width: 80 ,editable:true , movable:false ,sortable:false, visible:true});
+    columns.push({name:"setup_date" ,fieldName:"setup_date" ,header:"ì„¤ë¦½ì¼ì" ,width: 80 ,editable:true , movable:false ,sortable:false, visible:true});
+    columns.push({name:"worker_num" ,fieldName:"worker_num" ,header:"ì¸ë ¥ìˆ˜" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"major_cust" ,fieldName:"major_cust" ,header:"ì£¼ìš”ì£¼ì£¼(ì§€ë¶„ìœ¨)" ,width: 100 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"sales_amt" ,fieldName:"sales_amt" ,header:"ë§¤ì¶œ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"biz_profit" ,fieldName:"biz_profit" ,header:"ì˜ì–µì´ìµ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"net_profit" ,fieldName:"net_profit" ,header:"ë‹¹ê¸°ìˆœì´ìµ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"asset" ,fieldName:"asset" ,header:"ìì‚°ì´ê³„" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"capital" ,fieldName:"capital" ,header:"ìë³¸ì´ê³„" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"debt" ,fieldName:"debt" ,header:"ë¶€ì±„ì´ê³„" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"liquid_asset" ,fieldName:"liquid_asset" ,header:"ìœ ë™ìì‚°" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"liquid_debt" ,fieldName:"liquid_debt" ,header:"ìœ ë™ë¶€ì±„" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"credit_rating" ,fieldName:"credit_rating" ,header:"ì‹ ìš©ë“±ê¸‰" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"tax_delay_yn" ,fieldName:"tax_delay_yn" ,header:"ì„¸ê¸ˆì²´ë‚©" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
 
     dataProvider.setFields(columns);
-	gridView.setColumns(columns);	// ÄÃ·³À» TreeView¿¡ ÀÔ·Â
+	gridView.setColumns(columns);	// ì»¬ëŸ¼ì„ TreeViewì— ì…ë ¥
     gridView.addCellRenderers(
 		[{
 			"id": "chk_use_yn",
@@ -141,7 +149,7 @@ function excelRead(){
         files = window.event.srcElement.files;
 
     if(!files) {
-        alert("³»¿ª¾÷·Îµå ±â´ÉÀº Internet Explorer 10 ÀÌ»ó ¶Ç´Â Å©·Ò(chrome)¿¡¼­¸¸ ÀÌ¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+        alert("ë‚´ì—­ì—…ë¡œë“œ ê¸°ëŠ¥ì€ Internet Explorer 10 ì´ìƒ ë˜ëŠ” í¬ë¡¬(chrome)ì—ì„œë§Œ ì´ìš©í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
         return true;
     }
 
@@ -175,14 +183,14 @@ function process_wb(wb) {
 
     var sheetNames = Object.keys(output);
     if(!sheetNames){
-        alert("Çü½Ä¿¡ ¸ÂÁö ¾Ê´Â ÆÄÀÏÀÔ´Ï´Ù.\n\n¾÷·Îµå ÆÄÀÏÀ» È®ÀÎ ÇÏ¼¼¿ä.");
+        alert("í˜•ì‹ì— ë§ì§€ ì•ŠëŠ” íŒŒì¼ì…ë‹ˆë‹¤.\n\nì—…ë¡œë“œ íŒŒì¼ì„ í™•ì¸ í•˜ì„¸ìš”.");
         return;
     }
     if (sheetNames.length > 0) {
         try {
             output[sheetNames][0];
         } catch (e) {
-            alert("Çü½Ä¿¡ ¸ÂÁö ¾Ê´Â ÆÄÀÏÀÔ´Ï´Ù.\n\n¾÷·Îµå ÆÄÀÏÀ» È®ÀÎ ÇÏ¼¼¿ä.");
+            alert("í˜•ì‹ì— ë§ì§€ ì•ŠëŠ” íŒŒì¼ì…ë‹ˆë‹¤.\n\nì—…ë¡œë“œ íŒŒì¼ì„ í™•ì¸ í•˜ì„¸ìš”.");
             return;
         }
         var colObj = output[sheetNames][0];
@@ -220,15 +228,15 @@ function fDownXLS(){
 	 gridView.exportGrid({
 	        type: "excel",
 	        target: "local",
-	        fileName: "Å©·¹Å¾Á¤º¸.xlsx",
+	        fileName: "í¬ë ˆíƒ‘ì •ë³´.xlsx",
 	        showProgress: false,
 	        applyDynamicStyles: false,
-	        progressMessage: "´Ù¿î·Îµå ÁøÇà ÁßÀÔ´Ï´Ù.",
+	        progressMessage: "ë‹¤ìš´ë¡œë“œ ì§„í–‰ ì¤‘ì…ë‹ˆë‹¤.",
 	        indicator: "hidden",
 	        header: "visible",
 	        footer: "hidden",
 	        compatibility: "2007",
-	        done: function () {  //³»º¸³»±â ¿Ï·á ÈÄ ½ÇÇàµÇ´Â ÇÔ¼ö
+	        done: function () {  //ë‚´ë³´ë‚´ê¸° ì™„ë£Œ í›„ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
 	        }
 	    });
 }

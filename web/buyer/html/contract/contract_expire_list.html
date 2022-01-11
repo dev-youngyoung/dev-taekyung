@@ -11,9 +11,9 @@
 			<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th><p>°Ε·΅Γ³Έν</p></th>
+	    <th><p>κ±°λμ²λª…</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100" style="width:95%"></td>
-	    <th><p>°θΎΰΈΈ·αΐΟ</p></th>
+	    <th><p>κ³„μ•½λ§λ£μΌ</p></th>
 	    <td>
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -23,24 +23,24 @@
 	    <td></td>
 	  </tr>
 	  <tr>
-	    <th><p>°θΎΰΈν</p></th>
+	    <th><p>κ³„μ•½λª…</p></th>
 	    <td><input type="text" name="s_cont_name" maxlength="100" style="width:95%"></td>
 		<!-- IF START 'detail_cd' -->
-		    <th><p>°θΎΰΓ³ΔΪµε</p></th>
+		    <th><p>κ³„μ•½μ²μ½”λ“</p></th>
 		    <td><input type="text" name="s_cust_detail_code" style="width:50%"></td>
 		<!-- IF END 'detail_cd' -->
 		<!-- IFNOT START 'detail_cd' -->
 			<td colspan="2"></td>
 		<!-- IFNOT END 'detail_cd' -->
 		<td align="right" rowspan="2">
-	      <button type="submit" class="search_btn">°Λ»φ</button>
+	      <button type="submit" class="search_btn">κ²€μƒ‰</button>
 	    </td>
 	  </tr>
 	</table>
 </div>
 
 <div class="util-row" align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ΏΆΌΏ</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>μ—‘μ…€</button>
 </div>
 
 <br/>
@@ -61,14 +61,14 @@
 			<col width="12%">
 		</colgroup>
 		<tr>
-			<th>ΌψΉψ</th>
-			<th>°θΎΰΈν</th>
-			<th>°Ε·΅Γ³Έν</th>
+			<th>μλ²</th>
+			<th>κ³„μ•½λª…</th>
+			<th>κ±°λμ²λª…</th>
 			<!-- IF START 'detail_cd' -->
-				<th>°θΎΰΓ³ΔΪµε</th>
+				<th>κ³„μ•½μ²μ½”λ“</th>
 			<!-- IF END 'detail_cd' -->
-	   		<th>°θΎΰΐΟΐΪ</th>
-	   		<th>°θΎΰΈΈ·αΐΟ</th>
+	   		<th>κ³„μ•½μΌμ</th>
+	   		<th>κ³„μ•½λ§λ£μΌ</th>
 	 	</tr>
 	 	<!-- IF START 'list' -->
 	 		<!-- LOOP START 'list' -->
@@ -87,7 +87,7 @@
 		
 		 <!-- IFNOT START 'list' -->
 		<tr>
-			<td colspan="6" align="center">°Λ»φ°α°ϊ°΅ Ύψ½ΐ΄Ο΄Ω.</td>
+			<td colspan="6" align="center">κ²€μƒ‰κ²°κ³Όκ°€ μ—†μµλ‹λ‹¤.</td>
 	 	</tr>
 	 	<!-- IFNOT END 'list' -->
 	</table>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -20,8 +20,17 @@ SmsDao smsDao= new SmsDao();
 RandomString rndStr = new RandomString();
 String sRandomString = rndStr.getString(6, "1");
 try {
-	smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), "ÀÎÁõ¹øÈ£: "+sRandomString + " ÀÎÁõ¹øÈ£¸¦ ÀÔ·Â ÈÄ °è¾à¼­ Á¶È¸ ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä.");
-//System.out.println(sRandomString+" À» ÀÔ·ÂÇÏ½Ã¸é µË´Ï´Ù.");
+	String systemGubn	= "";
+	String subject 		= "ë†ì‹¬ ì „ìžê³„ì•½ ì¸ì¦ë²ˆí˜¸ ì•ˆë‚´";
+	String message 		= "[ì „ìžê³„ì•½][ë†ì‹¬] ì¸ì¦ë²ˆí˜¸ ì•ˆë‚´\n"
+			+ "[ë†ì‹¬] ì¸ì¦ë²ˆí˜¸ [" + sRandomString + "]ë¥¼ ìž…ë ¥ í›„ ê³„ì•½ì„œ ì¡°íšŒ ë²„íŠ¼ì„ í´ë¦­í•˜ì„¸ìš”.";
+	// smsDao.sendKakaoTalk
+	// ì¸ì¦ë²ˆí˜¸ ì „ì†¡
+	
+	// 2021.02.02 SMS ë¡œ ì „í™˜
+	//smsDao.sendKakaoTalk(cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), "ESC-SD-0005", subject, message, message);
+	smsDao.sendSMS(systemGubn,cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"),message );
+	
 } catch (Exception e) {
 	out.print(false);
 }

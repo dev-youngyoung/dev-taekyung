@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String auth_cd = u.request("auth_cd");
 String default_yn= u.request("default_yn");
@@ -15,7 +15,7 @@ if(auth_cd.equals("")&&!default_yn.equals("Y")){
 DataObject menuDao = new DataObject("tcb_menu");
 DataSet menu = null;
 DataSet treeMenu = new DataSet();
-String auth_nm = "ÀüÃ¼°ü¸®ÀÚ"; 
+String auth_nm = "ì „ì²´ê´€ë¦¬ìž"; 
 if(default_yn.equals("Y")){
 	 menu = menuDao.query(
 			 "	select p_menu_cd                                    "
@@ -61,7 +61,7 @@ if(default_yn.equals("Y")){
 	DataObject authDao = new DataObject("tcb_auth");
 	DataSet authInfo = authDao.find(" member_no = '"+_member_no+"' and auth_cd = '"+auth_cd+"' ");
 	if(!authInfo.next()){
-		u.jsAlert("±ÇÇÑÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+		u.jsAlert("ê¶Œí•œì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	auth_nm = authInfo.getString("auth_nm");
@@ -140,8 +140,8 @@ while(menu.next()){
 			depth = menu.getString("depth");
 			treeMenu.put("s_menu_nm", menu.getString("menu_nm"));
 			treeMenu.put("menu_cd", menu.getString("menu_cd"));
-			treeMenu.put("select_auth",default_yn.equals("Y")?"ÀüÃ¼Á¶È¸":u.getItem(menu.getString("select_auth"), code_select_auth));
-			treeMenu.put("btn_auth",default_yn.equals("Y")?"±â´É»ç¿ë":u.getItem(menu.getString("btn_auth"), code_btn_auth));
+			treeMenu.put("select_auth",default_yn.equals("Y")?"ì „ì²´ì¡°íšŒ":u.getItem(menu.getString("select_auth"), code_select_auth));
+			treeMenu.put("btn_auth",default_yn.equals("Y")?"ê¸°ëŠ¥ì‚¬ìš©":u.getItem(menu.getString("btn_auth"), code_btn_auth));
 		}
 	}else{
 		if(menu.getString("depth").equals("3")){
@@ -152,8 +152,8 @@ while(menu.next()){
 			treeMenu.put("m_row_span", "");
 			treeMenu.put("s_menu_nm", menu.getString("menu_nm"));
 			treeMenu.put("menu_cd", menu.getString("menu_cd"));
-			treeMenu.put("select_auth",default_yn.equals("Y")?"ÀüÃ¼Á¶È¸":u.getItem(menu.getString("select_auth"), code_select_auth));
-			treeMenu.put("btn_auth",default_yn.equals("Y")?"±â´É»ç¿ë":u.getItem(menu.getString("btn_auth"), code_btn_auth));
+			treeMenu.put("select_auth",default_yn.equals("Y")?"ì „ì²´ì¡°íšŒ":u.getItem(menu.getString("select_auth"), code_select_auth));
+			treeMenu.put("btn_auth",default_yn.equals("Y")?"ê¸°ëŠ¥ì‚¬ìš©":u.getItem(menu.getString("btn_auth"), code_btn_auth));
 			
 		}
 	}

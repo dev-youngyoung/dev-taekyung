@@ -25,10 +25,10 @@ import procure.common.utils.StrUtil;
 public class EnDecryption {
 	
 	/**
-	 * ÆÄÀÏ¾ÏÈ£È­
-	 * @param sInFilePath		¾ÏÈ£È­´ë»óÆÄÀÏ
-	 * @param sOutFilePath	¾ÏÈ£È­ÈÄÆÄÀÏ
-	 * @param sPwd					ºñ¹Ğ¹øÈ£
+	 * íŒŒì¼ì•”í˜¸í™”
+	 * @param sInFilePath		ì•”í˜¸í™”ëŒ€ìƒíŒŒì¼
+	 * @param sOutFilePath	ì•”í˜¸í™”í›„íŒŒì¼
+	 * @param sPwd					ë¹„ë°€ë²ˆí˜¸
 	 * @return 
 	 * @throws IOException 
 	 * @throws InvalidKeyException 
@@ -71,14 +71,14 @@ public class EnDecryption {
 			File	fOutFile	=	new	File(sOutFilePath);
 			fos = new FileOutputStream(fOutFile);
 			
-			// Key »ı¼º
+			// Key ìƒì„±
 			byte[]						bKey				=	sPwd.getBytes();
 			
 			DESKeySpec				keySpec			=	new	DESKeySpec(bKey);
 			SecretKeyFactory	skeyFactory	=	SecretKeyFactory.getInstance("DES");
 			SecretKey					skey				=	skeyFactory.generateSecret(keySpec);
 			
-			//	cipher »ı¼º
+			//	cipher ìƒì„±
 			Cipher						ciper				=	Cipher.getInstance("DES/ECB/PKCS5Padding");
 			if(sDiv.equals("ENC"))
 			{
@@ -90,7 +90,7 @@ public class EnDecryption {
 			
 			cipher1	=	new	CipherOutputStream(fos,ciper);
 			
-			// ÆÄÀÏÀ» ¾ÏÈ£È­ÇØ¼­ ÀúÀå
+			// íŒŒì¼ì„ ì•”í˜¸í™”í•´ì„œ ì €ì¥
 			int r = 0;
 			while((r = fis.read()) != -1)
 			{
@@ -143,10 +143,10 @@ public class EnDecryption {
 	}
 	
 	/**
-	 * ÆÄÀÏ¾ÏÈ£È­
-	 * @param sInFilePath		¾ÏÈ£È­´ë»óÆÄÀÏ
-	 * @param sOutFilePath	¾ÏÈ£È­ÈÄÆÄÀÏ
-	 * @param sPwd					ºñ¹Ğ¹øÈ£
+	 * íŒŒì¼ì•”í˜¸í™”
+	 * @param sInFilePath		ì•”í˜¸í™”ëŒ€ìƒíŒŒì¼
+	 * @param sOutFilePath	ì•”í˜¸í™”í›„íŒŒì¼
+	 * @param sPwd					ë¹„ë°€ë²ˆí˜¸
 	 * @return 
 	 * @throws IOException 
 	 * @throws InvalidKeyException 
@@ -180,14 +180,14 @@ public class EnDecryption {
 			fos	=	new FileOutputStream(sOutFilePath);
 			fis	=	(FileInputStream)in;
 			
-			// Key »ı¼º
+			// Key ìƒì„±
 			byte[]						bKey				=	sPwd.getBytes();
 			
 			DESKeySpec				keySpec			=	new	DESKeySpec(bKey);
 			SecretKeyFactory	skeyFactory	=	SecretKeyFactory.getInstance("DES");
 			SecretKey					skey				=	skeyFactory.generateSecret(keySpec);
 			
-			//	cipher »ı¼º
+			//	cipher ìƒì„±
 			Cipher						ciper				=	Cipher.getInstance("DES/ECB/PKCS5Padding");
 			if(sDiv.equals("ENC"))
 			{
@@ -199,7 +199,7 @@ public class EnDecryption {
 			
 			cipher1	=	new	CipherOutputStream(fos,ciper);
 			
-			// ÆÄÀÏÀ» ¾ÏÈ£È­ÇØ¼­ ÀúÀå
+			// íŒŒì¼ì„ ì•”í˜¸í™”í•´ì„œ ì €ì¥
 			int r = 0;
 			while((r = fis.read()) != -1)
 			{
@@ -318,10 +318,10 @@ public class EnDecryption {
 	}
 	
 	/**
-	 * ÆÄÀÏ¾ÏÈ£È­
-	 * @param sInFilePath		´ë»óÆÄÀÏ
-	 * @param sOutFilePath	º¹È£È­ÆÄÀÏ
-	 * @param sPwd					ºñ¹Ğ¹øÈ£
+	 * íŒŒì¼ì•”í˜¸í™”
+	 * @param sInFilePath		ëŒ€ìƒíŒŒì¼
+	 * @param sOutFilePath	ë³µí˜¸í™”íŒŒì¼
+	 * @param sPwd					ë¹„ë°€ë²ˆí˜¸
 	 * @return
 	 */
 	public boolean getEnDecryption(String sInFilePath, String sOutFilePath, String sPwd)
@@ -349,11 +349,11 @@ public class EnDecryption {
 	}
 	
 	/**
-	 * ÆÄÀÏ¾ÏÈ£È­
-	 * @param sKey							ÇÁ·ÎÆÛÆ¼Å°
-	 * @param sInOtherFilePath	ÆÄÀÏ°æ·Î
-	 * @param sOutOtherFilePath	ÆÄÀÏ°æ·Î
-	 * @param sPwd							ºñ¹Ğ¹øÈ£
+	 * íŒŒì¼ì•”í˜¸í™”
+	 * @param sKey							í”„ë¡œí¼í‹°í‚¤
+	 * @param sInOtherFilePath	íŒŒì¼ê²½ë¡œ
+	 * @param sOutOtherFilePath	íŒŒì¼ê²½ë¡œ
+	 * @param sPwd							ë¹„ë°€ë²ˆí˜¸
 	 * @return
 	 */
 	public boolean getEncryption(String sKey, String sInOtherFilePath, String sOutOtherFilePath, String sPwd)
@@ -390,10 +390,10 @@ public class EnDecryption {
 	}
 	
 	/**
-	 * ÆÄÀÏº¹È£È­
-	 * @param sInFilePath		¾ÏÈ£È­ÆÄÀÏ
-	 * @param sOutFilePath	ÆÄÀÏ
-	 * @param sPwd					ºñ¹Ğ¹øÈ£
+	 * íŒŒì¼ë³µí˜¸í™”
+	 * @param sInFilePath		ì•”í˜¸í™”íŒŒì¼
+	 * @param sOutFilePath	íŒŒì¼
+	 * @param sPwd					ë¹„ë°€ë²ˆí˜¸
 	 * @return
 	 */
 	public boolean getDecryption(String sInFilePath, String sOutFilePath, String sPwd)
@@ -421,11 +421,11 @@ public class EnDecryption {
 	}
 	
 	/**
-	 * ÆÄÀÏ º¹È£È­
-	 * @param sKey							ÇÁ·ÎÆÛÆ¼ Å°
-	 * @param sInOtherFilePath	ÆÄÀÏ°æ·Î
-	 * @param sOutOtherFilePath	ÆÄÀÏ°æ·Î
-	 * @param sPwd							ºñ¹Ğ¹øÈ£
+	 * íŒŒì¼ ë³µí˜¸í™”
+	 * @param sKey							í”„ë¡œí¼í‹° í‚¤
+	 * @param sInOtherFilePath	íŒŒì¼ê²½ë¡œ
+	 * @param sOutOtherFilePath	íŒŒì¼ê²½ë¡œ
+	 * @param sPwd							ë¹„ë°€ë²ˆí˜¸
 	 * @return
 	 */
 	public boolean getDecryption(String sKey, String sInOtherFilePath, String sOutOtherFilePath, String sPwd)

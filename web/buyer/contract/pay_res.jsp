@@ -1,122 +1,122 @@
-<%@ page contentType="text/html; charset=EUC-KR"%><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8"%><%@ include file="init.jsp" %>
 <%@ page import="
 				 kr.co.nicepay.module.lite.NicePayWebConnector,
 				 nicelib.util.*
                  " %>
 <%
-request.setCharacterEncoding("euc-kr");
+request.setCharacterEncoding("UTF-8");
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String insteadyn = u.request("insteadyn");
 String member_no = u.request("member_no");
 if(cont_no.equals("")||cont_chasu.equals("")||insteadyn.equals("")||member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 if(!_member_no.equals(member_no)){
-	u.jsErrClose("·Î±×ÀÎ»ç¿ëÀÚ°¡ º¯°æ µÇ¾ú½À´Ï´Ù.\\n\\n°áÁ¦¸¦ ´Ù½Ã ÁøÇà ÇÏ¼¼¿ä.");
+	u.jsErrClose("ë¡œê·¸ì¸ì‚¬ìš©ìê°€ ë³€ê²½ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nê²°ì œë¥¼ ë‹¤ì‹œ ì§„í–‰ í•˜ì„¸ìš”.");
 	return;
 }
 
 String where = " cont_no = '"+cont_no+"' and cont_chasu= '"+cont_chasu+"' ";
 
-//°è¾àÁ¤º¸ È®ÀÎ 
+//ê³„ì•½ì •ë³´ í™•ì¸ 
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsAlert("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù");
+	u.jsAlert("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤");
 	return;
 }
 
-////////////////////////////¼ÒÄÏ Åë½Å ½ÃÀÛ///////////////////////////////////////////////
+////////////////////////////ì†Œì¼“ í†µì‹  ì‹œì‘///////////////////////////////////////////////
 
 String nicePayHome = "/user2/tax/WEB-INF";
 //String nicePayHome = "D:/nicedata_git/git-repository/nicedocu/WEB-INF";
 
 NicePayWebConnector connector = new NicePayWebConnector();
 
-// 1. ·Î±× µğ·ºÅä¸® »ı¼º
+// 1. ë¡œê·¸ ë””ë ‰í† ë¦¬ ìƒì„±
 connector.setNicePayHome(nicePayHome);
 
-// 2. ¿äÃ» ÆäÀÌÁö ÆÄ¶ó¸ŞÅÍ ¼ÂÆÃ
+// 2. ìš”ì²­ í˜ì´ì§€ íŒŒë¼ë©”í„° ì…‹íŒ…
 connector.setRequestData(request);
 
-// 3. Ãß°¡ ÆÄ¶ó¸ŞÅÍ ¼ÂÆÃ
-connector.addRequestData("MID", "docu00002m");	// »óÁ¡¾ÆÀÌµğ
-connector.addRequestData("actionType", "PY0");  // actionType : CL0 Ãë¼Ò, PY0 ½ÂÀÎ
-connector.addRequestData("MallIP", request.getRemoteAddr());	// »óÁ¡ °íÀ¯ ip
+// 3. ì¶”ê°€ íŒŒë¼ë©”í„° ì…‹íŒ…
+connector.addRequestData("MID", "docu00002m");	// ìƒì ì•„ì´ë””
+connector.addRequestData("actionType", "PY0");  // actionType : CL0 ì·¨ì†Œ, PY0 ìŠ¹ì¸
+connector.addRequestData("MallIP", request.getRemoteAddr());	// ìƒì  ê³ ìœ  ip
 connector.addRequestData("CancelPwd", "0140");
 
 
-// 4. NICEPAY Lite ¼­¹ö Á¢¼ÓÇÏ¿© Ã³¸®
+// 4. NICEPAY Lite ì„œë²„ ì ‘ì†í•˜ì—¬ ì²˜ë¦¬
 connector.requestAction();
 
-// 5. °á°ú Ã³¸®
-String resultCode = connector.getResultData("ResultCode");	// °á°úÄÚµå (Á¤»ó :3001 , ±× ¿Ü ¿¡·¯)
-String resultMsg = connector.getResultData("ResultMsg");	// °á°ú¸Ş½ÃÁö
-String authDate = connector.getResultData("AuthDate");		// ½ÂÀÎÀÏ½Ã YYMMDDHH24mmss
-String authCode = connector.getResultData("AuthCode");		// ½ÂÀÎ¹øÈ£
-String buyerName = connector.getResultData("BuyerName");	// ±¸¸ÅÀÚ¸í
-String mallUserID = connector.getResultData("MallUserID");	// È¸¿ø»ç°í°´ID
-String payMethod = connector.getResultData("PayMethod");	// °áÁ¦¼ö´Ü  ('CARD':½Å¿ëÄ«µå, 'BANK':°èÁÂÀÌÃ¼)
-String mid = connector.getResultData("MID");				// »óÁ¡ID
-String tid = connector.getResultData("TID");				// °Å·¡ID
-String moid = connector.getResultData("Moid");				// ÁÖ¹®¹øÈ£
-String amt = connector.getResultData("Amt");				// ±İ¾×
+// 5. ê²°ê³¼ ì²˜ë¦¬
+String resultCode = connector.getResultData("ResultCode");	// ê²°ê³¼ì½”ë“œ (ì •ìƒ :3001 , ê·¸ ì™¸ ì—ëŸ¬)
+String resultMsg = connector.getResultData("ResultMsg");	// ê²°ê³¼ë©”ì‹œì§€
+String authDate = connector.getResultData("AuthDate");		// ìŠ¹ì¸ì¼ì‹œ YYMMDDHH24mmss
+String authCode = connector.getResultData("AuthCode");		// ìŠ¹ì¸ë²ˆí˜¸
+String buyerName = connector.getResultData("BuyerName");	// êµ¬ë§¤ìëª…
+String mallUserID = connector.getResultData("MallUserID");	// íšŒì›ì‚¬ê³ ê°ID
+String payMethod = connector.getResultData("PayMethod");	// ê²°ì œìˆ˜ë‹¨  ('CARD':ì‹ ìš©ì¹´ë“œ, 'BANK':ê³„ì¢Œì´ì²´)
+String mid = connector.getResultData("MID");				// ìƒì ID
+String tid = connector.getResultData("TID");				// ê±°ë˜ID
+String moid = connector.getResultData("Moid");				// ì£¼ë¬¸ë²ˆí˜¸
+String amt = connector.getResultData("Amt");				// ê¸ˆì•¡
 
-// Ä«µå °áÁ¦
-String cardCode = connector.getResultData("CardCode");		// Ä«µå»ç ÄÚµå
-String cardName = connector.getResultData("CardName");		// °áÁ¦Ä«µå»ç¸í
-String cardQuota = connector.getResultData("CardQuota");	//00:ÀÏ½ÃºÒ,02:2°³¿ù
+// ì¹´ë“œ ê²°ì œ
+String cardCode = connector.getResultData("CardCode");		// ì¹´ë“œì‚¬ ì½”ë“œ
+String cardName = connector.getResultData("CardName");		// ê²°ì œì¹´ë“œì‚¬ëª…
+String cardQuota = connector.getResultData("CardQuota");	//00:ì¼ì‹œë¶ˆ,02:2ê°œì›”
 
-// ½Ç½Ã°£ °èÁÂÀÌÃ¼
-String bankCode = connector.getResultData("BankCode");		// ÀºÇà ÄÚµå
-String bankName = connector.getResultData("BankName");		// ÀºÇà¸í
-String rcptType = connector.getResultData("RcptType");		// Çö±İ ¿µ¼öÁõ Å¸ÀÔ (0:¹ßÇàµÇÁö¾ÊÀ½,1:¼Òµæ°øÁ¦,2:ÁöÃâÁõºù)
-String rcptAuthCode = connector.getResultData("RcptAuthCode");	//Çö±İ¿µ¼öÁõ ½ÂÀÎ ¹øÈ£
-String rcptTID = connector.getResultData("RcptTID");		//Çö±İ ¿µ¼öÁõ TID
+// ì‹¤ì‹œê°„ ê³„ì¢Œì´ì²´
+String bankCode = connector.getResultData("BankCode");		// ì€í–‰ ì½”ë“œ
+String bankName = connector.getResultData("BankName");		// ì€í–‰ëª…
+String rcptType = connector.getResultData("RcptType");		// í˜„ê¸ˆ ì˜ìˆ˜ì¦ íƒ€ì… (0:ë°œí–‰ë˜ì§€ì•ŠìŒ,1:ì†Œë“ê³µì œ,2:ì§€ì¶œì¦ë¹™)
+String rcptAuthCode = connector.getResultData("RcptAuthCode");	//í˜„ê¸ˆì˜ìˆ˜ì¦ ìŠ¹ì¸ ë²ˆí˜¸
+String rcptTID = connector.getResultData("RcptTID");		//í˜„ê¸ˆ ì˜ìˆ˜ì¦ TID
 
-// ÈŞ´ëÆù °áÁ¦
-String carrier = connector.getResultData("Carrier");		// ÀÌÅë»ç±¸ºĞ
-String dstAddr = connector.getResultData("DstAddr");		// ÈŞ´ëÆù¹øÈ£
+// íœ´ëŒ€í° ê²°ì œ
+String carrier = connector.getResultData("Carrier");		// ì´í†µì‚¬êµ¬ë¶„
+String dstAddr = connector.getResultData("DstAddr");		// íœ´ëŒ€í°ë²ˆí˜¸
 
-// °¡»ó°èÁÂ °áÁ¦
-String vbankBankCode = connector.getResultData("VbankBankCode");	// °¡»ó°èÁÂÀºÇàÄÚµå
-String vbankBankName = connector.getResultData("VbankBankName");	// °¡»ó°èÁÂÀºÇà¸í
-String vbankNum = connector.getResultData("VbankNum");				// °¡»ó°èÁÂ¹øÈ£
-String vbankExpDate = connector.getResultData("VbankExpDate");		// °¡»ó°èÁÂÀÔ±İ¿¹Á¤ÀÏ
+// ê°€ìƒê³„ì¢Œ ê²°ì œ
+String vbankBankCode = connector.getResultData("VbankBankCode");	// ê°€ìƒê³„ì¢Œì€í–‰ì½”ë“œ
+String vbankBankName = connector.getResultData("VbankBankName");	// ê°€ìƒê³„ì¢Œì€í–‰ëª…
+String vbankNum = connector.getResultData("VbankNum");				// ê°€ìƒê³„ì¢Œë²ˆí˜¸
+String vbankExpDate = connector.getResultData("VbankExpDate");		// ê°€ìƒê³„ì¢Œì…ê¸ˆì˜ˆì •ì¼
 
 
-boolean paySuccess = false;		// °áÁ¦ ¼º°ø ¿©ºÎ
+boolean paySuccess = false;		// ê²°ì œ ì„±ê³µ ì—¬ë¶€
 
-/** À§ÀÇ ÀÀ´ä µ¥ÀÌÅÍ ¿Ü¿¡µµ Àü¹® Header¿Í °³º°ºÎ µ¥ÀÌÅÍ Get °¡´É */
-if(payMethod.equals("CARD"))	//½Å¿ëÄ«µå
+/** ìœ„ì˜ ì‘ë‹µ ë°ì´í„° ì™¸ì—ë„ ì „ë¬¸ Headerì™€ ê°œë³„ë¶€ ë°ì´í„° Get ê°€ëŠ¥ */
+if(payMethod.equals("CARD"))	//ì‹ ìš©ì¹´ë“œ
 {
-	if(resultCode.equals("3001")) paySuccess = true;	// °á°úÄÚµå (Á¤»ó :3001 , ±× ¿Ü ¿¡·¯)
+	if(resultCode.equals("3001")) paySuccess = true;	// ê²°ê³¼ì½”ë“œ (ì •ìƒ :3001 , ê·¸ ì™¸ ì—ëŸ¬)
 }
-else if(payMethod.equals("BANK"))	//°èÁÂÀÌÃ¼
+else if(payMethod.equals("BANK"))	//ê³„ì¢Œì´ì²´
 {
-	if(resultCode.equals("4000")) paySuccess = true;	// °á°úÄÚµå (Á¤»ó :4000 , ±× ¿Ü ¿¡·¯)
+	if(resultCode.equals("4000")) paySuccess = true;	// ê²°ê³¼ì½”ë“œ (ì •ìƒ :4000 , ê·¸ ì™¸ ì—ëŸ¬)
 }
-else if(payMethod.equals("CELLPHONE"))	//ÈŞ´ëÆù
+else if(payMethod.equals("CELLPHONE"))	//íœ´ëŒ€í°
 {
-	if(resultCode.equals("A000")) paySuccess = true;	//°á°úÄÚµå (Á¤»ó : A000, ±× ¿Ü ºñÁ¤»ó)
+	if(resultCode.equals("A000")) paySuccess = true;	//ê²°ê³¼ì½”ë“œ (ì •ìƒ : A000, ê·¸ ì™¸ ë¹„ì •ìƒ)
 }
-else if(payMethod.equals("VBANK"))	//°¡»ó°èÁÂ
+else if(payMethod.equals("VBANK"))	//ê°€ìƒê³„ì¢Œ
 {
-	if(resultCode.equals("4100")) paySuccess = true;	// °á°úÄÚµå (Á¤»ó :4100 , ±× ¿Ü ¿¡·¯)
+	if(resultCode.equals("4100")) paySuccess = true;	// ê²°ê³¼ì½”ë“œ (ì •ìƒ :4100 , ê·¸ ì™¸ ì—ëŸ¬)
 }
 
-//-------------------------  ¿©±â¼­ºÎÅÍ DB ÀúÀåÀ» À§ÇÑ ºÎºĞ ---------------------------------
+//-------------------------  ì—¬ê¸°ì„œë¶€í„° DB ì €ì¥ì„ ìœ„í•œ ë¶€ë¶„ ---------------------------------
 
 if(!paySuccess){
 	u.jsErrClose(resultMsg);
 	return;
 }
 
-String pay_type = "";  // °áÁ¦ Å¸ÀÔ ÄÚµå
+String pay_type = "";  // ê²°ì œ íƒ€ì… ì½”ë“œ
 
 if(payMethod.equals("CARD"))
 	pay_type = "01";
@@ -125,18 +125,18 @@ else if(payMethod.equals("BANK"))
 
 
 DB db = new DB();
-//°áÁ¦ ¿©ºÎ ÄÃ·³  update
+//ê²°ì œ ì—¬ë¶€ ì»¬ëŸ¼  update
 DataObject custDao = new DataObject("tcb_cust");
 custDao.item("pay_yn", "Y");
 db.setCommand(custDao.getUpdateQuery(where+" and member_no = '"+_member_no+"' "), custDao.record);
 
-//tcb_pay DataÀÔ·Â
+//tcb_pay Dataì…ë ¥
 DataObject payDao = new DataObject("tcb_pay");
 payDao.item("cont_no",cont_no);
 payDao.item("cont_chasu",cont_chasu);
 payDao.item("member_no",_member_no);
 if(insteadyn.equals("Y")){
-	payDao.item("cont_name","(´ë³³Æ÷ÇÔ)"+cont.getString("cont_name"));
+	payDao.item("cont_name","(ëŒ€ë‚©í¬í•¨)"+cont.getString("cont_name"));
 }else{
 	payDao.item("cont_name",cont.getString("cont_name"));
 }
@@ -153,12 +153,12 @@ payDao.item("receit_type",rcptType);
 db.setCommand(payDao.getInsertQuery(), payDao.record);
 
 if(!db.executeArray()){
-	u.jsErrClose("DB ÀÛ¾÷Áß¿¡ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù. \\n\\n³ªÀÌ½º´ÙÅ¥ °í°´¼¾ÅÍ(02-788-9097)·Î ¹®ÀÇÇÏ¼¼¿ä.");
+	u.jsErrClose("DB ì‘ì—…ì¤‘ì— ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤. \\n\\në‚˜ì´ìŠ¤ë‹¤í ê³ ê°ì„¼í„°(02-788-9097)ë¡œ ë¬¸ì˜í•˜ì„¸ìš”.");
 	return;
 }
 
 out.println("<script>");
-out.println("alert('°áÁ¦µÇ¾ú½À´Ï´Ù.\\n\\n°è¾à¼­¿¡ ¼­¸íÇØ ÁÖ¼¼¿ä.');");
+out.println("alert('ê²°ì œë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nê³„ì•½ì„œì— ì„œëª…í•´ ì£¼ì„¸ìš”.');");
 out.println("opener.focus();");
 out.println("opener.fSign();");
 out.println("self.close();");

@@ -1,4 +1,4 @@
-<form name="form1" method="post">
+ï»¿<form name="form1" method="post">
 <input type="hidden" name="cont_no">
 <input type="hidden" name="cont_chasu">
 
@@ -18,12 +18,12 @@
 <col width="15%">
 </colgroup>
 <tr>
-	<th>Á¾·ù</th>
-	<th>¼ö½ÅÀÚ¸í</th>
-	<th>ÀÌ¸ŞÀÏ</th>
-	<th>ÃÖ±Ù Àü¼ÛÀÏ½Ã</th>
-	<th>¼ö½ÅÈ®ÀÎ</th>
-	<th>ÀçÀü¼Û</th>
+	<th>ì¢…ë¥˜</th>
+	<th>ìˆ˜ì‹ ìëª…</th>
+	<th>ì´ë©”ì¼</th>
+	<th>ìµœê·¼ ì „ì†¡ì¼ì‹œ</th>
+	<th>ìˆ˜ì‹ í™•ì¸</th>
+	<th>ì¬ì „ì†¡</th>
 </tr>
 <!-- IF START 'list' -->
   <!-- LOOP START 'list' -->
@@ -34,7 +34,7 @@
 	<td align="center">{{list.send_date}}</td>
 	<td align="center">{{list.recv_dete}}</td>
 	<td align="center">
-		<button type="button" class="sbtn color ico-change"  onclick="fReSend('{{list.member_no}}', {{list.__ord}});"><span></span>ÀçÀü¼Û</button>
+		<button type="button" class="sbtn color ico-change"  onclick="fReSend('{{list.member_no}}', {{list.__ord}});"><span></span>ì¬ì „ì†¡</button>
 	</td>
 </tr>
   <!-- LOOP END 'list' -->
@@ -43,7 +43,7 @@
 </div>
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 
 </form>
@@ -56,17 +56,17 @@ function fReSend(member_no, no){
 	var cust_email = eval("document.form1.sEmail" + no);
 
 	if(cust_name.value == "") {
-		alert("¼ö½ÅÀÚ¸íÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+		alert("ìˆ˜ì‹ ìëª…ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”");
 		cust_name.focus();
 		return;
 	}
 	if(cust_email.value == "") {
-		alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+		alert("ì´ë©”ì¼ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”");
 		cust_email.focus();
 		return;
 	}
 
-	if(confirm("ÀÌ¸ŞÀÏÀ» ÀçÀü¼Û ÇÏ½Ã°Ú½À´Ï±î?"))
+	if(confirm("ì´ë©”ì¼ì„ ì¬ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
 	{
 		document.form1.cust_member_no.value = cust_member_no;
 		document.form1.cust_name.value = cust_name.value;

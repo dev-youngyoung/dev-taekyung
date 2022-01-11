@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
-// ÀüÀÚ°áÀç ½ÂÀÎ ´ë»ó ¸ñ·Ï
+// ì „ìžê²°ìž¬ ìŠ¹ì¸ ëŒ€ìƒ ëª©ë¡
 if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").equals("03")){
 	f.addElement("s_template_cd", null, null);
 	
-	String s_status = u.inArray(_member_no, new String[]{"20171101813","20130500457"}) ? "'21'" : "'11','21','30'";  // skºê·Îµå¹êµå´Â ½ÂÀÎ´ë±â°Ç¸¸
+	String s_status = u.inArray(_member_no, new String[]{"20171101813","20130500457"}) ? "'21'" : "'11','21','30'";  // skë¸Œë¡œë“œë°´ë“œëŠ” ìŠ¹ì¸ëŒ€ê¸°ê±´ë§Œ
 	
 	DataObject templateDao = new DataObject();
 	DataSet template = templateDao.query("select template_name, template_cd from tcb_cont_template where template_cd in (select template_cd from tcb_contmaster where member_no = '"+_member_no+"' and status in ('11','20','21','30','40','41') group by template_cd) order by display_seq asc, template_cd desc");
@@ -41,7 +41,7 @@ if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").e
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.pop_agree");
-p.setVar("popup_title","°ËÅä/½ÂÀÎ ´ë±â °è¾à");
+p.setVar("popup_title","ê²€í† /ìŠ¹ì¸ ëŒ€ê¸° ê³„ì•½");
 p.display(out);
 
 

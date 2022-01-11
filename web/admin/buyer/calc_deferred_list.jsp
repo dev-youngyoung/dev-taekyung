@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_pay_type_cd = codeDao.getCodeArray("M006");
@@ -7,7 +7,7 @@ String[] code_calc_day = codeDao.getCodeArray("M048");
 String s_yyyymm = u.request("s_yyyymm", u.getTimeString("yyyy-MM"));
 String pre_yyyymm =  u.getTimeString("yyyyMM",u.addDate("M",-1, u.strToDate(s_yyyymm+"-01")));
 
-f.addElement("s_yyyymm", s_yyyymm, "rquired:'Y', hname:'Á¤»ê±âÁØ³â¿ù', fixbyte:'7'");
+f.addElement("s_yyyymm", s_yyyymm, "rquired:'Y', hname:'ì •ì‚°ê¸°ì¤€ë…„ì›”', fixbyte:'7'");
 f.addElement("s_calc_day", null, null);
 f.addElement("s_sdate", null, null);
 f.addElement("s_edate", null, null);
@@ -84,16 +84,16 @@ while(ds.next()){
     }
 
 	if(ds.getString("field_seq").equals("")){
-        ds.put("field_name","ÀüÃ¼");
+        ds.put("field_name","ì „ì²´");
     }else{
-        ds.put("field_name","ºÎ¼­ÁöÁ¤");
+        ds.put("field_name","ë¶€ì„œì§€ì •");
     }
     ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
     ds.put("use_edate", u.getTimeString("yyyy-MM-dd", ds.getString("use_edate")));
     if(u.request("mode").equals("excel")){
-        ds.put("calc_day_nm", ds.getString("calc_day").equals("") ? "<span style='color:red'>¹Ìµî·Ï</span>" : u.getItem(ds.getString("calc_day"), code_calc_day));
+        ds.put("calc_day_nm", ds.getString("calc_day").equals("") ? "<span style='color:red'>ë¯¸ë“±ë¡</span>" : u.getItem(ds.getString("calc_day"), code_calc_day));
     }else {
-        ds.put("calc_day_nm", ds.getString("calc_day").equals("") ? "<span style='color:red'>¹Ìµî·Ï</span>" : u.getItem(ds.getString("calc_day"), code_calc_day).replaceAll("\\(", "<br>("));
+        ds.put("calc_day_nm", ds.getString("calc_day").equals("") ? "<span style='color:red'>ë¯¸ë“±ë¡</span>" : u.getItem(ds.getString("calc_day"), code_calc_day).replaceAll("\\(", "<br>("));
     }
     if(!ds.getString("calc_day").equals("")) {
         ds.put("pay_sdate", u.getTimeString("yyyy-MM-dd", ds.getString("pay_sdate")));
@@ -128,9 +128,9 @@ while(ds.next()){
         ds.put("str_pay_tax", "");
     }
     if(ds.getLong("pay_amount")>0 && !ds.getString("user_name").equals("")){
-    	String btn_name = "Á¤»ê¹ß¼Û";
+    	String btn_name = "ì •ì‚°ë°œì†¡";
     	if(!ds.getString("calc_date").equals("")){
-    		btn_name = "ÀçÀü¼Û";
+    		btn_name = "ì¬ì „ì†¡";
         }
     	String btn_send =
                 "<button type=\"button\" onclick=\"sendReq('"+s_yyyymm+"','"+ds.getString("member_no")+"','"+ds.getString("pay_sdate")+"','"+ds.getString("pay_edate")+"','"+ds.getString("pay_amount")+"','"+ds.getString("calc_person_seq")+"')\" class=\"sbtn\">"
@@ -153,11 +153,11 @@ sumInfo.put("str_pay_supp", u.numberFormat(sum_pay_amount/11*10));
 sumInfo.put("str_pay_tax", u.numberFormat(sum_pay_amount/11));
 
 if(u.request("mode").equals("excel")){
-    p.setVar("title", s_yyyymm+"ÈÄºÒÁ¤»ê³»¿ª");
+    p.setVar("title", s_yyyymm+"í›„ë¶ˆì •ì‚°ë‚´ì—­");
     p.setVar("sumInfo", sumInfo);
     p.setLoop("list", ds);
     response.setContentType("application/vnd.ms-excel");
-    response.setHeader("Content-Disposition", "attachment; filename=\"" + new String((s_yyyymm+"ÈÄºÒÁ¤»ê³»¿ª.xls").getBytes("KSC5601"),"8859_1") + "\"");
+    response.setHeader("Content-Disposition", "attachment; filename=\"" + new String((s_yyyymm+"í›„ë¶ˆì •ì‚°ë‚´ì—­.xls").getBytes("KSC5601"),"8859_1") + "\"");
     out.println(p.fetch("../html/buyer/calc_deferred_list_excel.html"));
     return;
 }

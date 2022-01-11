@@ -1,14 +1,14 @@
-@charset 'EUC-KR';
-
+@charset 'UTF-8';
+html, body {padding: 0; margin: 0; height: 100%;}
 //font
 $base-font: 'Noto Sans KR';
 $base-font-bold: 'Noto Sans KR';
 $base-font-ex: 'Noto Sans KR';
 
 //color
-$main-color: #0676bd;
+$main-color: #965f4f;
 $base-font-color: #484848; 
-$brand-color: #0676bd !default;
+$brand-color: #965f4f !default;
 $hover-color: #025691;
 $accent-color: #e3273b;
 
@@ -413,7 +413,7 @@ button {
 
 /*
 * Noto Sans KR (korean) http://www.google.com/fonts/earlyaccess
-	¸ÁºÐ¸®ÀÇ °æ¿ì °í°´»ç ³×Æ®¿÷¿¡¼­ googleÂÊÀ» ¸·¾Æ ³õÀº °æ¿ì ÀÖÀ½.
+	ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½?ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ googleï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/eot/NotoSansKR-Regular-Hestia.eot),
     url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/eot/NotoSansKR-Regular-Hestia.eot?#iefix) format('embedded-opentype'),
     url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/woff/NotoSansKR-Regular-Hestia.woff) format('woff'),
@@ -592,7 +592,7 @@ button {
     padding-top: 10px;
     position: relative;
     padding-bottom: 6px;
-    background:  url(/web/buyer/html/images/common/header_bottom_line.gif) center bottom no-repeat;
+    background:  url(/web/buyer/html/images/common/header_bottom_line.png) center bottom no-repeat;
 }
 .page-header-bottom2 {
     position: relative;
@@ -667,7 +667,7 @@ button {
     left: 0;
     width: 100%;
     z-index: 11;
-    background: #06589b;
+    background: #b49b94;
     }
 }
 
@@ -705,7 +705,7 @@ button {
     left: 0;
     width: 100%;
     z-index: 11;
-    background: #06589b;
+    background: #b49b94;
     }
 }
 
@@ -744,7 +744,7 @@ button {
         margin-top: 10px;
         margin-bottom: 6px;
         a {
-            color: #c6c6c6;
+            color: #7f5841;
             &:hover {
                 color: #fff;
             }
@@ -769,7 +769,7 @@ button {
 			-webkit-border-radius: 5px 5px 0 0;
 		    -moz-border-radius: 5px 5px 0 0;
 		    border-radius: 5px 5px 0 0;
-		    background: #0676bd;
+		    background: #965f4f;
 		    color: #fff;
 		    text-align: center;
 		    line-height: 50px;
@@ -779,7 +779,7 @@ button {
 	  		>li{
 	  			p{
 	  				margin:0px;
-	  				background: #06589b;
+	  				background: #b49b94;
 	  				color: #fff;
 	  				padding: 0 20px;
 	  				line-height: 32px;
@@ -797,10 +797,10 @@ button {
 	  			}
 	  		}
 	  		>li{
-	  			background: #f9fbfb;
+	  			background: #fff;
 	  			padding: 0 20px;
 	  			&:hover{
-	  				background: #dbe0e4;
+	  				background: #f6edea;
 	  			}
 	  			a{
 	  				color: #000;
@@ -830,7 +830,7 @@ button {
 		font-weight: bold;
 		line-height: 24px;
 		padding: 0 0 0 25px;
-		background: url(/web/buyer/html/images/common/sub_title_icon.png) left center no-repeat;
+		background: url(/web/buyer/html/images/sub_title_icon.png) left center no-repeat;
 	}
 	.con-breadcrumb{
 		display: inline-block;
@@ -949,7 +949,7 @@ button {
         width: 48px;
         height: 48px;
         font-size: 12px;
-        background: #0676bd url(/web/buyer/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
+        background: #965f4f url(/web/buyer/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
         padding-top: 12px;
     }
 }
@@ -1002,7 +1002,7 @@ button {
 }
 /**********************layout  end***********************/
 
-/**********************°è¾àÁøÇàÁ¤º¸  start***********************/
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  start***********************/
 .contract-info {
     @include clearfix;
     border-top: 2px solid #dbdbdb;
@@ -1103,7 +1103,7 @@ button {
         }
     }
 }
-/**********************°è¾àÁøÇàÁ¤º¸  end***********************/
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  end***********************/
 
 
 /**********************quick menu start***********************/
@@ -1207,7 +1207,7 @@ button {
           width: 14px;
           height: 14px;
           display: inline-block;
-          background: url(/web/buyer/html/images/common/title_bul.png) 0 0 no-repeat;
+          background: url(/web/buyer/html/images/title_bul.png) 0 0 no-repeat;
           margin-right: 5px;
           vertical-align: -1px
         }
@@ -1444,7 +1444,7 @@ button {
   }
   
   &:before {
-    content: 'Ã£¾Æº¸±â';
+    content: 'Ã£ï¿½Æºï¿½ï¿½ï¿½';
     position: absolute;
     top: 0;
     right: 0;
@@ -1482,10 +1482,10 @@ button {
 
 .search_div {
     @include clearfix;
-    border-top: 3px solid #333;
-    background: #f2f2f2;
-    padding: 23px 27px 12px 27px;
-    margin-bottom: 20px;
+  border-top: 3px solid #333;
+  background: #f2f2f2;
+  padding: 23px 27px 12px 27px;
+  margin-bottom: 20px;
     p {
         margin: 0px;
         padding: 0px;
@@ -1677,7 +1677,7 @@ button {
 
 .search_btn {
      display: block;
-     background: url(/web/buyer/html/images/common/common_search_btn.gif) 0 0 no-repeat;
+     background: url(/web/buyer/html/images/common/common_search_btn.png) 0 0 no-repeat;
      width: 81px;
      height: 35px;
      text-indent: -9999em;
@@ -2470,8 +2470,8 @@ button {
 
 /**********************main end***********************/
 
-/**********************ÀÎÁõ¼­ µî·Ï°»½Å start***********************/
-// °øÀÎÀÎÁõ¼­ ¾È³»
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ start***********************/
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È³ï¿½
 .common-cert {
     h3 {
         font-size: 18px;
@@ -2481,7 +2481,7 @@ button {
             width: 14px;
             height: 14px;
             display: inline-block;
-            background: url(/web/buyer/html/images/common/title_bul.png) 0 0 no-repeat;
+            background: url(/web/buyer/html/images/title_bul.png) 0 0 no-repeat;
             margin-right: 5px;
             vertical-align: -1px;
         }
@@ -2653,7 +2653,7 @@ button {
         }
     }
 }
-/**********************ÀÎÁõ¼­ µî·Ï°»½Å end***********************/
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ end***********************/
 
 /**********************html template start***********************/
 .cont_tab{
@@ -2716,7 +2716,7 @@ button {
 	 }
 	 input {
 	 color: #000000;
-	 FONT-FAMILY: "µ¸¿ò","Dotum", "Arial";
+	 FONT-FAMILY: "ï¿½ï¿½ï¿½ï¿½","Dotum", "Arial";
 	 FONT-SIZE: 12px;
 	 text-decoration: none;
 	 border: 0px;
@@ -2724,7 +2724,7 @@ button {
 	
 	textarea {
 		color: #707070;
-		FONT-FAMILY: "µ¸¿ò","Dotum", "Arial";
+		FONT-FAMILY: "ï¿½ï¿½ï¿½ï¿½","Dotum", "Arial";
 		FONT-SIZE: 12px;
 		line-height:150%;
 		border: 1px solid;
@@ -2732,7 +2732,7 @@ button {
 	}
 	.glabel {
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  line-height:150%;
 	  border: 1px solid;
@@ -2742,7 +2742,7 @@ button {
 	.label {
 	  line-height:150%;
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2754,7 +2754,7 @@ button {
 	 .label_none {
 	  line-height:150%;
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 0px solid;
 	  border-color: #d7d5ca;
@@ -2766,17 +2766,17 @@ button {
 	.label_n {
 	  line-height:150%;
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
 	}
 	
-	/* °è¾à ÇÊ¼ö ÀÔ·Â »çÇ× */
+	/* ï¿½ï¿½ï¿½ ï¿½Ê¼ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	.input_r {
 	  line-height:150%;
 	  color: #000000;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2788,11 +2788,11 @@ button {
 	  vertical-align: middle;
 	}
 	
-	/* °è¾à ¼±ÅÃ ÀÔ·Â »çÇ× */
+	/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	.input_n {
 	  line-height:150%;
 	  color: #000000;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2803,11 +2803,11 @@ button {
 	  ime-mode: active;
 	  background-color: #FFFFFF;
 	}
-	/* °è¾à ¼±ÅÃ ÀÔ·Â »çÇ× */
+	/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	.in_readonly {
 	  line-height:150%;
 	  color: #000000;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2843,7 +2843,7 @@ button {
 /**********************html template end***********************/
 
 
-// µµ¿ò¸» ÆË¾÷
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½
 .help-popup {
   &-header {
     background: $brand-color;

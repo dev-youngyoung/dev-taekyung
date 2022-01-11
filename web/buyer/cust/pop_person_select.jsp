@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 DataObject personDao = new DataObject("tcb_person");
 //personDao.setDebug(out);
 
@@ -13,7 +13,7 @@ String sQuery =  " select b.field_name "
 				+"   and a.status=1"
 				+"   and nvl(default_yn,'N') <> 'Y' ";
 
-if(!auth.getString("_DEFAULT_YN").equals("Y")){	// °ü¸®ÀÚ°¡ ¾Æ´Ï¸é ÀÚ±â°Í¸¸.
+if(!auth.getString("_DEFAULT_YN").equals("Y")){	// ê´€ë¦¬ìê°€ ì•„ë‹ˆë©´ ìê¸°ê²ƒë§Œ.
 	sQuery += "   and a.person_seq = " + auth.getString("_PERSON_SEQ");
 }
 sQuery += "  order by b.field_seq";
@@ -23,7 +23,7 @@ DataSet person = personDao.query(sQuery);
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_person_select");
-p.setVar("popup_title","´ã´çÀÚ °Ë»ö");
+p.setVar("popup_title","ë‹´ë‹¹ì ê²€ìƒ‰");
 p.setLoop("person", person);
 p.setVar("form_script",f.getScript());
 p.display(out);

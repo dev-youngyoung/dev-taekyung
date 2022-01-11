@@ -1,40 +1,40 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String seq = u.request("seq");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject calcPersonDao = new DataObject("tcb_calc_person");
 DataSet calcPerson = calcPersonDao.find(" member_no = '"+member_no+"' and seq = '"+seq+"' ");
 if(!calcPerson.next()){
-	u.jsErrClose("Á¤»ê´ã´çÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ì •ì‚°ë‹´ë‹¹ì ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject calcMonthDao = new DataObject("tcb_calc_month");
 if(calcMonthDao.findCount(" member_no = '"+member_no+"'  and calc_person_seq = '"+seq+"' ") > 0 ){
-	u.jsErrClose("ÇØ´ç ´ã´çÀÚ·Î Á¤»êµÈ °ÇÀÌ ÀÖ¾î »èÁ¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	u.jsErrClose("í•´ë‹¹ ë‹´ë‹¹ìë¡œ ì •ì‚°ëœ ê±´ì´ ìˆì–´ ì‚­ì œ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 calcPersonDao = new DataObject("tcb_calc_person");
 if(!calcPersonDao.delete(" member_no = '"+member_no+"' and seq = '"+seq+"' ")) {
-	u.jsError("»èÁ¦ Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿³½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
 	return;
 }
 out.println("<script>");
 out.println("opener.location.reload();");
-out.println("alert('»èÁ¦ Ã³¸® µÇ¾ú½À´Ï´Ù.');");
+out.println("alert('ì‚­ì œ ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 out.println("self.close();");
 out.println("</script>");
 return;

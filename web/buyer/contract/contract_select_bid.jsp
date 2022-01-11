@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String _menu_cd = "000052";
 
-String[] code_bid_kind = {"10=>¹°Ç°","20=>¿ë¿ª","30=>°ø»ç","90=>°ßÀû"};
+String[] code_bid_kind = {"10=>ë¬¼í’ˆ","20=>ìš©ì—­","30=>ê³µì‚¬","90=>ê²¬ì "};
 
 DataObject templateDao = new DataObject("tcb_cont_template");
 DataSet template = templateDao.find(" status > 0 and template_type in ('00','10') and member_no like '%"+_member_no+"%' and use_yn ='Y' ","template_cd, nvl(display_name,template_name)template_name","display_seq asc");
@@ -12,7 +12,7 @@ String s_edate = u.request("s_edate", u.getTimeString("yyyy-MM-dd"));
 f.addElement("s_bid_name",null, null);
 f.addElement("s_member_name", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -23,16 +23,16 @@ list.addWhere(" a.bid_kind_cd in ('10','20','30','90')");
 list.addWhere(" a.main_member_no = b.main_member_no ");
 list.addWhere(" a.bid_no = b.bid_no ");
 list.addWhere(" a.bid_deg = b.bid_deg ");
-list.addWhere(" a.status = '07' ");//³«ÂûÀÎ°Ç¸¸
-list.addWhere(" b.bid_succ_yn = 'Y'"); //³«ÂûµÈ ¾÷Ã¼¸¸.
-list.addWhere(" a.cont_yn = 'Y'");// °è¾à´ë»óÀÎ °Ç¸¸.
-list.addWhere(" b.cont_no is null ");// °è¾à¾ÈµÈ°Í¸¸.
+list.addWhere(" a.status = '07' ");//ë‚™ì°°ì¸ê±´ë§Œ
+list.addWhere(" b.bid_succ_yn = 'Y'"); //ë‚™ì°°ëœ ì—…ì²´ë§Œ.
+list.addWhere(" a.cont_yn = 'Y'");// ê³„ì•½ëŒ€ìƒì¸ ê±´ë§Œ.
+list.addWhere(" b.cont_no is null ");// ê³„ì•½ì•ˆëœê²ƒë§Œ.
 list.addWhere(" a.main_member_no = '"+_member_no+"' ");
 list.addSearch("a.bid_name", f.get("s_bid_name"), "LIKE");
 list.addSearch("b.member_name", f.get("s_member_name"), "LIKE");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}

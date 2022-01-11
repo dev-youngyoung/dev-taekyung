@@ -1,372 +1,470 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-if(auth.getString("_MEMBER_NO")==null||auth.getString("_MEMBER_NO").equals("")){
+if (auth.getString("_MEMBER_NO") == null || auth.getString("_MEMBER_NO").equals("")) {
 	u.redirect("index.jsp");
 	return;
 }
 
-//¾Ë¸²¹æ
-boolean view_gap_pds = false;
-boolean view_eul_pds = false;
-boolean view_slist = false;
-boolean view_rlist = false;
-boolean useCont = false;
+int step1 = 0; // ê³„ì•½ì‘ì„± ê°¯ìˆ˜
+int step2 = 0; // ì„œëª…ìš”ì²­ ê°¯ìˆ˜
+int step3 = 0; // ì„œëª…ëŒ€ê¸° ê°¯ìˆ˜
+int step4 = 0; // ê³„ì•½ì™„ë£Œ ê°¯ìˆ˜
+int step5 = 0; // ì—°ì¥ê³„ì•½ ê°¯ìˆ˜
 
-DataSet slist = new DataSet();
+DataSet sList = new DataSet(); // ê³„ì•½ì§„í–‰ì´ë ¥(ì§„í–‰ì¤‘(ë³´ë‚¸/ë°›ì€ê³„ì•½)) ëª©ë¡
+DataSet nList = new DataSet(); // ê³µì§€ì‚¬í•­ ëª©ë¡
 
-if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").equals("03")){//°©»ç
-	view_gap_pds = true;
-	view_slist = true;
-	CodeDao codeDao = new CodeDao("tcb_comcode");
+String tLink = ""; // ì„ì‹œì €ì¥ê³„ì•½ ë§í¬
+String sLink = ""; // ê³„ì•½ì§„í–‰ì´ë ¥(ì§„í–‰ì¤‘(ë³´ë‚¸/ë°›ì€ê³„ì•½)) ë§í¬
+String eLink = ""; // ê³„ì•½ì™„ë£Œ ë§í¬
+String nLink = ""; // ê³µì§€ì‚¬í•­ ë§í¬
+
+if (auth.getString("_MEMBER_TYPE").equals("01") || auth.getString("_MEMBER_TYPE").equals("03")) { // ê°‘ì‚¬
+	// ê³„ì•½ì‘ì„±(ì„ì‹œì €ì¥, status=10) ê°¯ìˆ˜
+	DataObject step1Dao = new DataObject();
+	String step1Query = 
+			"select count(*) as step1cnt " +
+			"  from tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu " +
+			" where b.list_cust_yn = 'Y' and a.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '10' ";
+	// ì¡°íšŒê¶Œí•œì— ë”°ë¥¸ whereì ˆ ì¶”ê°€
+	if (!auth.getString("_DEFAULT_YN").equals("Y")) {
+		// 10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000059", "select_auth").equals("10")) {
+			step1Query = step1Query + "and a.reg_id = '" + auth.getString("_USER_ID") + "' ";
+		}
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000059", "select_auth").equals("20")) {
+			step1Query = step1Query + "and a.field_seq in ( select field_seq from tcb_field start with member_no = '" + auth.getString("_MEMBER_NO") + "' and field_seq = '" + auth.getString("_FIELD_SEQ") + "' connect by prior member_no = member_no and prior field_seq = p_field_seq) ";
+		}
+	}
+	DataSet step1Cnt = step1Dao.query(step1Query);
+	if (step1Cnt.next()) step1 = step1Cnt.getInt("step1cnt");
 	
+	// ì„œëª…ìš”ì²­(status=20) ê°¯ìˆ˜
+	DataObject step2Dao = new DataObject();
+	String step2Query = 
+			"select count(*) as step2cnt " +
+			"  from tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu " +
+			" where b.list_cust_yn = 'Y' and a.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '20' and a.subscription_yn is null ";
+	// ì¡°íšŒê¶Œí•œì— ë”°ë¥¸ whereì ˆ ì¶”ê°€
+	if (!auth.getString("_DEFAULT_YN").equals("Y")) {
+		// 10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000060", "select_auth").equals("10")) {
+			step2Query = step2Query + 
+					"and ( " +
+					"       a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " +
+					"    or a.reg_id = '" + auth.getString("_USER_ID") + "' " +
+					"    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000060') " +
+				    ") ";
+		}
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000060", "select_auth").equals("20")) {
+			step2Query = step2Query +
+					"and ( " +
+					"       a.agree_field_seqs like '%|" + auth.getString("_FIELD_SEQ") + "|%' " +
+					"    or a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " + // ê²°ì œ ë¼ì¸ ì¡°íšŒ ê¶Œí•œì€ ë¶€ì—¬ëœ ê¶Œí•œ ë³´ë‹¤ ìš°ì„  í•œë‹¤.
+					"    or a.field_seq in (select field_seq from tcb_field start with member_no = '" + auth.getString("_MEMBER_NO") + "' and field_seq = '" + auth.getString("_FIELD_SEQ") + "' connect by prior member_no = member_no and prior field_seq = p_field_seq) " +
+					"    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000060') " +
+					") ";
+		}
+	}
+	DataSet step2Cnt = step2Dao.query(step2Query);
+	if (step2Cnt.next()) step2 = step2Cnt.getInt("step2cnt");
 	
-	DataObject menuMemberDao = new DataObject("tcb_menu_member");
-	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd in ('000033','000036') ")>0){//ÀÔÂû»ç¿ë¿©ºÎ
-		String[] code_bid_status = codeDao.getCodeArray("M022");
-		String[] code_bid_link = {"01=>gap_plan_list.jsp","02=>gap_field_list.jsp","03=>gap_field_list.jsp","04=>gap_bid_list.jsp","05=>gap_bid_list.jsp","06=>gap_select_list.jsp"};
-		String[] code_esti_status = codeDao.getCodeArray("M034");
+	// ì„œëª…ëŒ€ê¸°(ì„ ì„œëª…ì™„ë£Œ, status=30) ê°¯ìˆ˜
+	DataObject step3Dao = new DataObject();
+	String step3Query = 
+			"select count(*) as step3cnt " +
+			"  from tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu " +
+			" where b.list_cust_yn = 'Y' and a.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '30' and a.subscription_yn is null ";
+	// ì¡°íšŒê¶Œí•œì— ë”°ë¥¸ whereì ˆ ì¶”ê°€
+	if (!auth.getString("_DEFAULT_YN").equals("Y")) {
+		// 10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000060", "select_auth").equals("10")) {
+			step3Query = step3Query + 
+					"and ( " +
+					"       a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " +
+					"    or a.reg_id = '" + auth.getString("_USER_ID") + "' " +
+					"    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000060') " +
+				    ") ";
+		}
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000060", "select_auth").equals("20")) {
+			step3Query = step3Query +
+					"and ( " +
+					"       a.agree_field_seqs like '%|" + auth.getString("_FIELD_SEQ") + "|%' " +
+					"    or a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " + // ê²°ì œ ë¼ì¸ ì¡°íšŒ ê¶Œí•œì€ ë¶€ì—¬ëœ ê¶Œí•œ ë³´ë‹¤ ìš°ì„  í•œë‹¤.
+					"    or a.field_seq in (select field_seq from tcb_field start with member_no = '" + auth.getString("_MEMBER_NO") + "' and field_seq = '" + auth.getString("_FIELD_SEQ") + "' connect by prior member_no = member_no and prior field_seq = p_field_seq) " +
+					"    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000060') " +
+					") ";
+		}
+	}
+	DataSet step3Cnt = step3Dao.query(step3Query);
+	if (step3Cnt.next()) step3 = step3Cnt.getInt("step3cnt");
+	
+	// ê³„ì•½ì™„ë£Œ(ê°‘/ì„ ì„œëª…ì™„ë£Œ, status=50,91,99) ê°¯ìˆ˜
+	DataObject step4Dao = new DataObject();
+	String step4Query = 
+			"select count(*) as step4cnt " +
+			"  from tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.paper_yn is null " +
+			" where b.list_cust_yn = 'Y' and a.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status in ('50', '91', '99') and a.subscription_yn is null " +
+			"   and a.cont_date >= '" + u.getTimeString("yyyyMM") + "01" + "' " +
+			"   and a.cont_date <= '" + u.getTimeString("yyyyMMdd") + "' ";
+	// ì¡°íšŒê¶Œí•œì— ë”°ë¥¸ whereì ˆ ì¶”ê°€
+	if (!auth.getString("_DEFAULT_YN").equals("Y")) {
+		// 10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000063", "select_auth").equals("10")) {
+			step4Query = step4Query + 
+					"and ( " +
+					"       a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " +
+				    "    or a.reg_id = '" + auth.getString("_USER_ID") + "' " +
+				    "    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000063') " +
+			    	") ";
+		}
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000063", "select_auth").equals("20")) {
+			step4Query = step4Query +
+					"and ( " +
+					"       a.agree_field_seqs like '%|" + auth.getString("_FIELD_SEQ") + "|%' " +
+					"    or a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " + // ê²°ì œ ë¼ì¸ ì¡°íšŒ ê¶Œí•œì€ ë¶€ì—¬ëœ ê¶Œí•œ ë³´ë‹¤ ìš°ì„  í•œë‹¤.
+					"    or a.field_seq in (select field_seq from tcb_field start with member_no = '" + auth.getString("_MEMBER_NO") + "' and field_seq = '" + auth.getString("_FIELD_SEQ") + "' connect by prior member_no = member_no and prior field_seq = p_field_seq) " + 
+					"    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000063') " +
+					") ";
+		}
+	}
+	DataSet step4Cnt = step4Dao.query(step4Query);
+	if (step4Cnt.next()) step4 = step4Cnt.getInt("step4cnt");
+	
+	// ì—°ì¥ê³„ì•½(ê³„ì•½ë§Œë£Œì¼ 45ì¼ì „ ê³„ì•½ì™„ë£Œê±´ìˆ˜)
+	DataObject step5Dao = new DataObject();
+	String step5Query = 
+			"select count(*) as step5cnt " +
+			"  from tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.paper_yn is null " +
+			" where b.list_cust_yn = 'Y' and a.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status in ('50', '91', '99') and a.subscription_yn is null " +
+			"   and TO_CHAR(SYSDATE,'YYYYMMDD') BETWEEN TO_CHAR((TO_DATE(a.cont_date,'YYYYMMDD') + (INTERVAL '1' YEAR) - 45),'YYYYMMDD') AND TO_CHAR(TO_DATE(a.cont_date,'YYYYMMDD') + (INTERVAL '1' YEAR),'YYYYMMDD')";
+
+	// ì¡°íšŒê¶Œí•œì— ë”°ë¥¸ whereì ˆ ì¶”ê°€
+	if (!auth.getString("_DEFAULT_YN").equals("Y")) {
+		// 10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000063", "select_auth").equals("10")) {
+			step5Query = step5Query + 
+					"and ( " +
+					"       a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " +
+				    "    or a.reg_id = '" + auth.getString("_USER_ID") + "' " +
+				    "    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000063') " +
+			    	") ";
+		}
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000063", "select_auth").equals("20")) {
+			step5Query = step5Query +
+					"and ( " +
+					"       a.agree_field_seqs like '%|" + auth.getString("_FIELD_SEQ") + "|%' " +
+					"    or a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' " + // ê²°ì œ ë¼ì¸ ì¡°íšŒ ê¶Œí•œì€ ë¶€ì—¬ëœ ê¶Œí•œ ë³´ë‹¤ ìš°ì„  í•œë‹¤.
+					"    or a.field_seq in (select field_seq from tcb_field start with member_no = '" + auth.getString("_MEMBER_NO") + "' and field_seq = '" + auth.getString("_FIELD_SEQ") + "' connect by prior member_no = member_no and prior field_seq = p_field_seq) " + 
+					"    or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000063') " +
+					") ";
+		}
+	}
+	DataSet step5Cnt = step5Dao.query(step5Query);
+	if (step5Cnt.next()) step5 = step5Cnt.getInt("step5cnt");
+	
+	// ê³„ì•½ì§„í–‰ì´ë ¥(ì§„í–‰ì¤‘(ë³´ë‚¸/ë°›ì€ê³„ì•½)) ëª©ë¡
+	DataObject sListDao = new DataObject();
+	StringBuffer sListSql = new StringBuffer();
+	sListSql.append("select cont_name, cont_date, status "); 
+	sListSql.append("from ");
+	sListSql.append("( ");
+	sListSql.append("    select a.cont_name, a.cont_date, a.status ");
+	sListSql.append("    from tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu ");
+	sListSql.append("    where b.list_cust_yn = 'Y' ");
+	sListSql.append("      and a.member_no = '" + auth.getString("_MEMBER_NO") + "' ");
+	sListSql.append("      and a.status in ('11', '12', '20', '21', '30', '40', '41') ");
+	sListSql.append("      and a.subscription_yn is null "); // ì‹ ì²­ì„œ ì œì™¸
+	if (!auth.getString("_DEFAULT_YN").equals("Y")) { // ì¡°íšŒê¶Œí•œ
+		// 10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000060", "select_auth").equals("10")) {
+			sListSql.append("      and ( ");
+			sListSql.append("          a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' ");
+			sListSql.append("          or a.reg_id = '" + auth.getString("_USER_ID") + "' ");
+			sListSql.append("          or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000060') ");
+			sListSql.append("      ) ");
+		}
+		if (_authDao.getAuthMenuInfoB(auth.getString("_MEMBER_NO"), auth.getString("_AUTH_CD"), "000060", "select_auth").equals("20")) {
+			sListSql.append("      and (  ");
+			sListSql.append("          a.agree_field_seqs like '%|" + auth.getString("_FIELD_SEQ") + "|%' ");
+			sListSql.append("          or a.agree_person_ids like '%" + auth.getString("_USER_ID") + "|%' "); // ê²°ì œ ë¼ì¸ ì¡°íšŒ ê¶Œí•œì€ ë¶€ì—¬ëœ ê¶Œí•œ ë³´ë‹¤ ìš°ì„  í•œë‹¤.
+			sListSql.append("          or a.field_seq in (select field_seq from tcb_auth_field where member_no = '" + auth.getString("_MEMBER_NO") + "' and auth_cd = '" + auth.getString("_AUTH_CD") + "' and menu_cd = '000060') ");
+			sListSql.append("      ) ");
+		}
+	}
+	sListSql.append("    order by a.reg_date desc ");
+	sListSql.append(") ");
+	sListSql.append("where rownum <= 5");
+	sList = sListDao.query(sListSql.toString());
+	while (sList.next()) {
+		String name = sList.getString("cont_name");
+		if (name.length() > 20) {
+			sList.put("cont_name_short", name.substring(0, 20) + "...");
+			sList.put("tooltip_yn", "Y");
+		} else {
+			sList.put("cont_name_short", name);
+			sList.put("tooltip_yn", "N");
+		}
+		sList.put("cont_date", u.getTimeString("yyyy-MM-dd", sList.getString("cont_date")));
+		String status = sList.getString("status");
+		if (status.equals("11")) {
+			sList.put("status_name", "ê²€í† ì¤‘");
+		} else if (status.equals("12")) {
+			sList.put("status_name", "ë‚´ë¶€ë°˜ë ¤");
+		} else if (status.equals("20")) {
+			sList.put("status_name", "ì„œëª…ìš”ì²­");
+		} else if (status.equals("21")) {
+			sList.put("status_name", "ìŠ¹ì¸ëŒ€ê¸°");
+		} else if (status.equals("30")) {
+			sList.put("status_name", "ì„œëª…ëŒ€ê¸°");
+		} else if (status.equals("40")) {
+			sList.put("status_name", "ìˆ˜ì •ìš”ì²­");
+		} else if (status.equals("41")) {
+			sList.put("status_name", "ë°˜ë ¤");
+		} else {
+			sList.put("status_name", "");
+		}
+	}
+	if (sList.size() < 5) {
+		for (int i=sList.size(); i<5; i++) {
+			sList.addRow();
+			sList.put("cont_name", "");
+			sList.put("cont_name_short", "");
+			sList.put("cont_date", "");
+			sList.put("status", "");
+			sList.put("status_name", "");
+		}
+	}
+	tLink = "/web/buyer/contract/contract_writing_list.jsp";
+	sLink = "/web/buyer/contract/contract_send_list.jsp";
+	eLink = "/web/buyer/contract/contend_send_list.jsp";
+}
+
+if (auth.getString("_MEMBER_TYPE").equals("02") || auth.getString("_MEMBER_TYPE").equals("03")) { //ì„ì‚¬
+	// ê³„ì•½ì‘ì„±(ì„ì‹œì €ì¥, status=10) ê°¯ìˆ˜
+	step1 = 0; // ì„ì—ëŠ” ì„ì‹œì €ì¥ì´ ì—†ìŒ
+	DataObject sListDao = new DataObject();
+	StringBuffer sListSql = new StringBuffer();
+	
+	if(auth.getString("_MEMBER_NO").equals("20201000002")){
+		// ë†ì‹¬(ì„) ë¡œê·¸ì¸ ì‹œ ì´ë¦„ê³¼ íœ´ëŒ€í° ë²ˆí˜¸ë¡œ ê³„ì•½ ê±´ ë…¸ì¶œ
+		DataObject ssoUserDao = new DataObject("sso_user_info");
+		DataSet ssoUser = ssoUserDao.find("user_id = '" + auth.getString("_USER_ID") + "' ");
+		if (!ssoUser.next()) {
+			u.jsError("ì‚¬ìš©ì ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			return;
+		}
+		String userName = ssoUser.getString("user_name");
+		String celNo = ssoUser.getString("cel_no");
+		String celNo1 = celNo.replaceAll("-", "").substring(0, 3);
+		String celNo2 = celNo.replaceAll("-", "").substring(3, 7);
+		String celNo3 = celNo.replaceAll("-", "").substring(7);
 		
-		DataObject bidDao = new DataObject("tcb_bid_master");
-		DataSet bid = bidDao.query(
-				 " select bid_kind_cd, bid_name, submit_edate, status  "
-				+"   from tcb_bid_master                                     "
-				+"  where main_member_no = '"+auth.getString("_MEMBER_NO")+"'" 
-				+"    and status in ('01','02','03','04','05','06')          "
-				+"    and reg_id = '"+auth.getString("_USER_ID")+"'          "
-				+"  order by bid_no desc                                     "
-				,10);
-		while(bid.next()){
-			slist.addRow();
-			if(bid.getString("bid_kind_cd").equals("90")){
-				slist.put("gubun", "ÀüÀÚ°ßÀû");
-				slist.put("link", "/web/buyer/esti/gap_esti_list.jsp");
-				slist.put("status_nm", u.getItem(bid.getString("status"), code_esti_status));
-				if(bid.getString("status").equals("05")&&bid.getLong("submit_edate")<=Long.parseLong(u.getTimeString())){
-					slist.put("status_nm","°ßÀû¸¶°¨");
-				}
-			}else{
-				slist.put("gubun", "ÀüÀÚÀÔÂû" );
-				slist.put("link", "/web/buyer/bid/"+u.getItem(bid.getString("status"),code_bid_link));
-				if(bid.getString("status").equals("06")){
-					slist.put("status_nm", "³«Âû¾÷Ã¼¼±Á¤´ë»ó");
-				}else{
-					slist.put("status_nm", u.getItem(bid.getString("status"), code_bid_status));
-				}
-			}
-			slist.put("name", bid.getString("bid_name"));
-		}
+		// ì„œëª…ìš”ì²­(status=20) ê°¯ìˆ˜
+		DataObject step2Dao = new DataObject();
+		String step2Query = 
+				"select count(*) as step2cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no  and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '20' " +
+				"   and b.user_name = '" + userName + "' and b.hp1 = '" + celNo1 + "' and b.hp2 = '" + celNo2 + "' and b.hp3 = '" + celNo3 + "' ";
+		DataSet step2Cnt = step2Dao.query(step2Query);
+		if (step2Cnt.next()) step2 = step2Cnt.getInt("step2cnt");
 		
-		DataSet openbid = bidDao.query(
-				 " select  bid_kind_cd, bid_name, submit_edate, status  "
-				+"   from tcb_bid_master                                     "
-				+"  where main_member_no = '"+auth.getString("_MEMBER_NO")+"'" 
-				+"    and bid_kind_cd in ('10','20','30') "
-				+"    and status in ('05')          "
-				+"    and submit_edate <  '"+u.getTimeString()+"'            "
-				+"    and open_user_id = '"+auth.getString("_USER_ID")+"'    "
-				+"  order by bid_no desc                                     "
-				,10);
-		while(openbid.next()){
-			slist.addRow();
-			slist.put("gubun", "ÀüÀÚÀÔÂû" );
-			slist.put("link", "/web/buyer/bid/gap_open_list.jsp");
-			slist.put("status_nm", "<span class='caution-text'>°³Âû´ë»ó</span>");
-			slist.put("name", openbid.getString("bid_name"));
-		}
-	}
-	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd = '000053'  ") >0){//ÀüÀÚ°è¾à »ç¿ë¿©ºÎ
-		useCont = true;
-		String[] code_cont_status = codeDao.getCodeArray("M008");
-		String[] code_recv_status = new String[] {"30=>½ÅÃ»Áß","41=>¹İ·Á","50=>¿Ï·á"};
-
-		DataObject contDao = new DataObject("tcb_contmaster");
-		DataSet cont = contDao.query(
-			   " select  a.template_cd, a.cont_no, a.cont_chasu , a.cont_name, a.status, a.subscription_yn "
-			  +"      , b.member_name                                          "
-			  +"   from tcb_contmaster a, tcb_cust b                           "
-			  +"  where a.cont_no = b.cont_no                                  "
-			  +"    and a.cont_chasu = b.cont_chasu                            "
-			  +"    and b.member_no <> a.member_no                             "
-			  +"    and b.list_cust_yn = 'Y'                                   "
-			  +"    and a.status in ('10','11','12','20','21','30','40','41')  "
-			  +"    and a.member_no = '"+auth.getString("_MEMBER_NO")+"'       "
-			  +"    and a.reg_id = '"+auth.getString("_USER_ID")+"'            "
-			  +"  order by a.cont_no desc                                      "
-			 ,10);
-		while(cont.next()){
-			slist.addRow();
-			if(cont.getString("subscription_yn").equals("Y")) {
-				slist.put("gubun", "ÀüÀÚ¹®¼­");
-				slist.put("link", "/web/buyer/contract/subscription_view.jsp?cont_no="+u.aseEnc(cont.getString("cont_no"))+"&cont_chasu="+cont.getString("cont_chasu") );
-				slist.put("status_nm", u.getItem(cont.getString("status"), code_recv_status));
-			} else {
-				slist.put("gubun", "ÀüÀÚ°è¾à");
-				slist.put("status_nm", u.getItem(cont.getString("status"), code_cont_status));
-
-				String link_page = "";
-				if(cont.getString("paper_yn").equals("Y")){
-					link_page = "offcont_modify.jsp";
-				}else{
-				    if(cont.getString("status").equals("10")) {
-						link_page = cont.getString("template_cd").trim().equals("") ? "contract_free_modify.jsp" : "contract_modify.jsp";
-					} else {
-						link_page = cont.getString("template_cd").trim().equals("") ? "contract_free_sendview.jsp" : "contract_sendview.jsp";
-					}
-				}
-
-				slist.put("link", "/web/buyer/contract/"+ link_page + "?cont_no="+u.aseEnc(cont.getString("cont_no"))+"&cont_chasu="+cont.getString("cont_chasu"));
-
-			}
-
-			if(cont.getString("status").equals("40")){
-				slist.put("status_nm", "<span style='color:blue'>¼öÁ¤¿äÃ»</span>");
-			}
-			slist.put("name", cont.getString("cont_name")+" (°Å·¡¾÷Ã¼ : "+cont.getString("member_name")+")");
-		}
-	}
-	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd = '000078'  ") >0){//Ã¤±ÇÀÜ¾× »ç¿ë¿©ºÎ
-		DataObject debtGroupDao = new DataObject("tcb_debt_group");
-		DataSet debtGroup = debtGroupDao.query(
-				 " select group_name, send_yn                   "
-				+"   from tcb_debt_group                                "
-				+"  where member_no = '"+auth.getString("_MEMBER_NO")+"'"
-				+"    and reg_id = '"+auth.getString("_USER_ID")+"'     "
-				+"    and send_yn = 'N'                                 "
-				+"  order by group_no desc                              "
-				,5);
-		while(debtGroup.next()){
-			slist.addRow();
-			slist.put("gubun", "Ã¤±ÇÀÜ¾×" );
-			slist.put("link", "/web/buyer/debt/debt_group_list.jsp" );
-			slist.put("status_nm", "¹ÌÀü¼Û");
-			slist.put("name", debtGroup.getString("group_name"));
-		}
-	}
-}
-
-DataSet rlist = new DataSet();
-if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").equals("03")){//À»»ç
-	//view_gap_pds = false;
-	view_eul_pds = true;
-	view_rlist = true;
-	
-	boolean findBid = true;
-	boolean findCont = true;
-	boolean findDebt = true;
-	if(auth.getString("_MEMBER_TYPE").equals("03")&&!auth.getString("_DEFAULT_YN").equals("Y")){
-		DataObject authMenuDao = new DataObject("tcb_auth_menu");
-		findBid = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '000050' ")>0?true:false;//À»»ç ÀÔÂû°ø°í¸Ş´º
-		findCont = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '000061' ")>0?true:false;//À»»ç ÁøÇàÁßÀÎ ¹ŞÀº°è¾à
-		//findDebt = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '' ")>0?true:false;
-		view_eul_pds = view_rlist = findCont;
-	}
-	
-	//ÀÔÂû °Ë»ç
-	if(findBid){
-		DataObject bidDao = new DataObject("tcb_bid_master");
-		//bidDao.setDebug(out);
-		DataSet bid = bidDao.query(
-				 " select a.main_member_no, a.bid_no, a.bid_deg    "
-			    +"      , a.bid_kind_cd, a.bid_name , a.submit_edate   "
-			    +"      , a.status ,a.public_bid_yn, c.member_name     "
-			    +"  from tcb_bid_master a, tcb_bid_supp b, tcb_member c"
-			    +" where a.main_member_no = b.main_member_no           "
-			    +"   and a.bid_no = b.bid_no                           "
-			    +"   and a.bid_deg = b.bid_deg                         "
-			    +"   and a.main_member_no = c.member_no                "
-			    +"   and (                                             " 
-			    +"         (a.status = '03' and (b.field_enter_yn is null) and a.field_date >= '"+u.getTimeString("yyyyMMdd")+"000000'  )  "// Çö¼³ÀÎ °æ¿ì
-			    +"      or (a.status = '05' and b.status = '10' and a.submit_edate >= '"+u.getTimeString()+"'  )  ) " // ÀÔÂûÀÎ°æ¿ì
-			    +"   and b.member_no = '"+auth.getString("_MEMBER_NO")+"' "
-			    +" order by a.submit_edate asc                        "
-				, 5);
-		while(bid.next()){
-			rlist.addRow();
-			if(bid.getString("bid_kind_cd").equals("90")){
-				rlist.put("gubun", "°ßÀû");
-				rlist.put("link", "/web/buyer/bid/eul_bid_list.jsp");
-				rlist.put("status_nm", "°ßÀû¿äÃ»Áß");
-			}else{
-				rlist.put("gubun", "ÀÔÂû");
-				rlist.put("link", bid.getString("public_bid_yn").equals("Y")?"/web/buyer/bid/eul_obid_list.jsp":"/web/buyer/bid/eul_bid_list.jsp");
-				rlist.put("status_nm", bid.getString("status").equals("03")?"Çö¼³°ø°íÁß":"ÀÔÂû°ø°íÁß");
-			}
-			rlist.put("client_name",  bid.getString("member_name"));
-			rlist.put("name", bid.getString("bid_name"));
-		}
-	}
-	
-	//°è¾à°Ë»ç
-	if(findCont){
-		DataObject contDao = new DataObject("tcb_contmaster");
-		DataSet cont = contDao.query(
-				 " select a.cont_no, a.cont_chasu , a.cont_name    "
-				+"      , b.member_name, a.status                          "
-			    +"   from tcb_contmaster a, tcb_cust b, tcb_cust c         "
-			    +"  where a.cont_no = b.cont_no                            "
-			    +"    and a.cont_chasu = b.cont_chasu                      "
-			    +"    and a.member_no = b.member_no                        "
-			    +"    and a.cont_no = c.cont_no                            "
-			    +"    and a.cont_chasu = c.cont_chasu                      "
-			    +"    and a.member_no <> c.member_no                       "
-			    +"    and a.status in ('20','41')                          "
-			    +"    and a.member_no <> '"+auth.getString("_MEMBER_NO")+"' "
-			    +"    and c.member_no = '"+auth.getString("_MEMBER_NO")+"' "
-			    +"  order by cont_date desc, cont_no desc, cont_chasu desc "
-				,5);
-		while(cont.next()){
-			rlist.addRow();
-			rlist.put("gubun","°è¾à");
-			rlist.put("link","/web/buyer/contract/contract_recv_list.jsp");
-			rlist.put("client_name", cont.getString("member_name"));
-			rlist.put("name", cont.getString("cont_name"));
-			rlist.put("status_nm", cont.getString("status").equals("20")?"<span class='caution-text'>¼­¸í¿äÃ»</span>":"<span style='color:blue'>¹İ·Á</span>");
-		}
-	}
-	
-	//Ã¤±ÇÀÜ¾×
-	if(findDebt){
-		DataObject debtDao = new DataObject("tcb_debt");
-		DataSet debt = debtDao.query(
-			  " select a.debt_no,  d.group_name, b.member_name, a.status        "
-			 +"   from tcb_debt a, tcb_debt_cust b, tcb_debt_cust c, tcb_debt_group  d  "
-			 +"  where a.debt_no = b.debt_no                                            "
-			 +"    and  a.member_no = b.member_no                                       "
-			 +"    and  a.debt_no = c.debt_no                                           "
-			 +"    and  a.group_no = d.group_no                                         "
-			 +"    and a.status in ('20')                                               "
-			 +"    and  c.member_no = '"+auth.getString("_MEMBER_NO")+"'                "
-			,5	);
-		while(debt.next()){
-			rlist.addRow();
-			rlist.put("gubun","Ã¤±ÇÀÜ¾×");
-			rlist.put("link","/web/buyer/debt/debt_recv_list.jsp");
-			rlist.put("client_name", debt.getString("member_name"));
-			rlist.put("name", debt.getString("group_name"));
-			rlist.put("status_nm","<span class='caution-text'>¼­¸í¿äÃ»</span>");
-		}
-	}
-}
-
-
-if(auth.getString("_MEMBER_TYPE").equals("03")&&!auth.getString("_DEFAULT_YN").equals("Y")){//°©À»»çÀÎ °æ¿ì ±âº» »ç¿ëÀÚ°¡ ¾Æ´Ò¶§ ±ÇÇÑ¿¡ µû¸¥ ¾Ë¸²¹æ Á¶È¸
-	DataObject authMenuDao = new DataObject("tcb_auth_menu");
-	view_gap_pds = authMenuDao.findCount("member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd in ('000036','000060') ") > 0;//°©»ç ¾Ë¸²¹æ('ÀÔÂû°èÈ¹','ÁøÇàÁßÀÎº¸³½°è¾à')
-	view_eul_pds = authMenuDao.findCount("member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd in ('000050','000061') ") > 0;//À»»ç ¾Ë¸²¹æ('ÀÓÂû°ø°íÁ¶È¸','ÁøÇàÁßÀÎ ¹ŞÀº°è¾à')
-	view_slist = view_gap_pds; 
-	view_rlist = view_eul_pds; 
-}
-
-
-//¾Ë¸²¹æ
-DataSet gap_pds = new DataSet();
-DataSet eul_pds = new DataSet();
-if(view_gap_pds){
-	DataObject pdsDao = new DataObject("tcb_member_pds a, tcb_person b, tcb_member c");
-	gap_pds = pdsDao.find(
-	 "a.member_no= '"+auth.getString("_MEMBER_NO")+"' "+
-	 "and a.member_no = b. member_no "+
-	 "and b.member_no = c.member_no "+
-	 "and a.reg_id = b.user_id"
-	,"a.*, b.user_name"
-	,"a.reg_date desc"
-	,5
-	);
-	pdsDao = new DataObject("tcb_member_pds");
-	int gap_pds_seq = pdsDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' ");
-	while(gap_pds.next()){
-		gap_pds.put("__ord", gap_pds_seq --);
-		gap_pds.put("reg_date", u.getTimeString("yyyy-MM-dd", gap_pds.getString("reg_date")));
-	}
-}
-if(view_eul_pds){
-	DataObject pdsDao = new DataObject("tcb_member a, tcb_client b, tcb_member_pds c");
-	eul_pds = pdsDao.find(
-	 "b.client_no = '"+auth.getString("_MEMBER_NO")+"' "+
-	 "and b.member_no = a.member_no  "+
-	 "and b.member_no = c.member_no "
-	,"c.*, a.member_name"
-	,"c.reg_date desc"
-	,5
-	);
-	int eul_pds_seq = pdsDao.getOneInt(
-			"select count(*) from tcb_member a, tcb_client b, tcb_member_pds c where  a.member_no=b.member_no and b.member_no = c.member_no and b.client_no = '"+auth.getString("_MEMBER_NO")+"' "
-			);
-	while(eul_pds.next()){
-		eul_pds.put("__ord", eul_pds_seq--);
-		eul_pds.put("reg_date", u.getTimeString("yyyy-MM-dd", eul_pds.getString("reg_date")));
-	}
-}
-
-
-
-String cert_msg = "";
-if(auth.getString("_CERT_END_DATE")==null){
-	/*
-	if(auth.getString("_MEMBER_GUBUN").equals("04")){
-		cert_msg = "ÀÎÁõ¼­°¡ µî·Ï µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [³»Á¤º¸¼öÁ¤]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
+		// ì„œëª…ëŒ€ê¸°(ì„ ì„œëª…ì™„ë£Œ, status=30) ê°¯ìˆ˜
+		DataObject step3Dao = new DataObject();
+		String step3Query = 
+				"select count(*) as step3cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no  and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '30' " +
+				"   and b.user_name = '" + userName + "' and b.hp1 = '" + celNo1 + "' and b.hp2 = '" + celNo2 + "' and b.hp3 = '" + celNo3 + "' ";
+		DataSet step3Cnt = step3Dao.query(step3Query);
+		if (step3Cnt.next()) step3 = step3Cnt.getInt("step3cnt");
+		
+		// ê³„ì•½ì™„ë£Œ(ê°‘/ì„ ì„œëª…ì™„ë£Œ, status=50,91) ê°¯ìˆ˜
+		DataObject step4Dao = new DataObject();
+		String step4Query = 
+				"select count(*) as step4cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status in ('50', '91') " + 
+				"   and b.user_name = '" + userName + "' and b.hp1 = '" + celNo1 + "' and b.hp2 = '" + celNo2 + "' and b.hp3 = '" + celNo3 + "' ";
+		DataSet step4Cnt = step4Dao.query(step4Query);
+		if (step4Cnt.next()) step4 = step4Cnt.getInt("step4cnt");
+		
+		// ì—°ì¥ê³„ì•½ ê°¯ìˆ˜
+		DataObject step5Dao = new DataObject();
+		String step5Query = 
+				"select count(*) as step5cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status in ('50', '91') " +
+				"   and TO_CHAR(SYSDATE,'YYYYMMDD') BETWEEN TO_CHAR((TO_DATE(a.cont_date,'YYYYMMDD') + (INTERVAL '1' YEAR) - 45),'YYYYMMDD') AND TO_CHAR(TO_DATE(a.cont_date,'YYYYMMDD') + (INTERVAL '1' YEAR),'YYYYMMDD')" +
+				"   and b.user_name = '" + userName + "' and b.hp1 = '" + celNo1 + "' and b.hp2 = '" + celNo2 + "' and b.hp3 = '" + celNo3 + "' ";
+		DataSet step5Cnt = step5Dao.query(step5Query);
+		if (step5Cnt.next()) step5 = step4Cnt.getInt("step5cnt");
+		
+		// ê³„ì•½ì§„í–‰ì´ë ¥(ì§„í–‰ì¤‘(ë³´ë‚¸/ë°›ì€ê³„ì•½)) ëª©ë¡
+		sListSql.append("select cont_name, cont_date, status, sign_dn "); 
+		sListSql.append("from ");
+		sListSql.append("( ");
+		sListSql.append("    select a.cont_name, a.cont_date, a.status, b.sign_dn ");
+		sListSql.append("    from tcb_contmaster a, tcb_cust b, tcb_member c ");
+		sListSql.append("    where a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu ");
+		sListSql.append("      and a.member_no <> b.member_no ");
+		sListSql.append("      and a.member_no = c.member_no ");
+		sListSql.append("      and b.member_no = '" + auth.getString("_MEMBER_NO") + "' ");
+		sListSql.append("      and a.status in ('20','21','30','40','41') "); // 20:ì„œëª…ìš”ì²­, 21:ì„ì‚¬ì„œëª… í›„ ê°‘ê²€í† ëŒ€ìƒ, 30:ì„ì‚¬ ì„œëª… ì™„ë£Œ í›„ ê°‘ì„œëª…ëŒ€ìƒ, 40:ë°˜ë ¤
+		sListSql.append("      and b.user_name = '" + userName + "' and b.hp1 = '" + celNo1 + "' and b.hp2 = '" + celNo2 + "' and b.hp3 = '" + celNo3 + "' ");
+		sListSql.append("    order by a.cont_date desc, a.cont_no desc ");
+		sListSql.append(") ");
+		sListSql.append("where rownum <= 5");
 	}else{
-		cert_msg = "ÀÎÁõ¼­°¡ µî·Ï µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [È¸»çÁ¤º¸º¯°æ]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
-	} ktm&s »ç¿ë½ÃÁ¡ºÎ¼­ Á¦¿Ü
-	*/
-}else{
-	if(!auth.getString("_CERT_END_DATE").equals("")){
-		if(Integer.parseInt(auth.getString("_CERT_END_DATE"))<Integer.parseInt(u.getTimeString("yyyyMMdd"))){
-			if(auth.getString("_MEMBER_GUBUN").equals("04"))
-			{
-				cert_msg = "Á¦ÃâÇÑ ÀÎÁõ¼­ÀÇ À¯È¿±â°£ÀÌ ¸¸·á µÇ¾ú½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [³»Á¤º¸¼öÁ¤]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
-			}else
-			{
-				cert_msg = "Á¦ÃâÇÑ ÀÎÁõ¼­ÀÇ À¯È¿±â°£ÀÌ ¸¸·á µÇ¾ú½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [È¸»çÁ¤º¸º¯°æ]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
+		// ì„œëª…ìš”ì²­(status=20) ê°¯ìˆ˜
+		DataObject step2Dao = new DataObject();
+		String step2Query = 
+				"select count(*) as step2cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no  and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '20' ";
+		DataSet step2Cnt = step2Dao.query(step2Query);
+		if (step2Cnt.next()) step2 = step2Cnt.getInt("step2cnt");
+		
+		// ì„œëª…ëŒ€ê¸°(ì„ ì„œëª…ì™„ë£Œ, status=30) ê°¯ìˆ˜
+		DataObject step3Dao = new DataObject();
+		String step3Query = 
+				"select count(*) as step3cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no  and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status = '30' ";
+		DataSet step3Cnt = step3Dao.query(step3Query);
+		if (step3Cnt.next()) step3 = step3Cnt.getInt("step3cnt");
+		
+		// ê³„ì•½ì™„ë£Œ(ê°‘/ì„ ì„œëª…ì™„ë£Œ, status=50,91) ê°¯ìˆ˜
+		DataObject step4Dao = new DataObject();
+		String step4Query = 
+				"select count(*) as step4cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status in ('50', '91') ";
+		DataSet step4Cnt = step4Dao.query(step4Query);
+		if (step4Cnt.next()) step4 = step4Cnt.getInt("step4cnt");
+		
+		// ì—°ì¥ê³„ì•½ ê°¯ìˆ˜
+		DataObject step5Dao = new DataObject();
+		String step5Query = 
+				"select count(*) as step5cnt " +
+				"  from tcb_contmaster a, tcb_cust b, tcb_member c " +
+				" where a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu and a.member_no <> b.member_no and a.member_no = c.member_no " +
+				"   and b.member_no = '" + auth.getString("_MEMBER_NO") + "' and a.status in ('50', '91') " +
+				"   and TO_CHAR(SYSDATE,'YYYYMMDD') BETWEEN TO_CHAR((TO_DATE(a.cont_date,'YYYYMMDD') + (INTERVAL '1' YEAR) - 45),'YYYYMMDD') AND TO_CHAR(TO_DATE(a.cont_date,'YYYYMMDD') + (INTERVAL '1' YEAR),'YYYYMMDD')";
+		DataSet step5Cnt = step5Dao.query(step5Query);
+		if (step5Cnt.next()) step5 = step4Cnt.getInt("step5cnt");
+		
+		// ê³„ì•½ì§„í–‰ì´ë ¥(ì§„í–‰ì¤‘(ë³´ë‚¸/ë°›ì€ê³„ì•½)) ëª©ë¡
+		sListSql.append("select cont_name, cont_date, status, sign_dn "); 
+		sListSql.append("from ");
+		sListSql.append("( ");
+		sListSql.append("    select a.cont_name, a.cont_date, a.status, b.sign_dn ");
+		sListSql.append("    from tcb_contmaster a, tcb_cust b, tcb_member c ");
+		sListSql.append("    where a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu ");
+		sListSql.append("      and a.member_no <> b.member_no ");
+		sListSql.append("      and a.member_no = c.member_no ");
+		sListSql.append("      and b.member_no = '" + auth.getString("_MEMBER_NO") + "' ");
+		sListSql.append("      and a.status in ('20','21','30','40','41') "); // 20:ì„œëª…ìš”ì²­, 21:ì„ì‚¬ì„œëª… í›„ ê°‘ê²€í† ëŒ€ìƒ, 30:ì„ì‚¬ ì„œëª… ì™„ë£Œ í›„ ê°‘ì„œëª…ëŒ€ìƒ, 40:ë°˜ë ¤
+		sListSql.append("    order by a.cont_date desc, a.cont_no desc ");
+		sListSql.append(") ");
+		sListSql.append("where rownum <= 5");
+	}
+	
+	sList = sListDao.query(sListSql.toString());
+	while (sList.next()) {
+		String name = sList.getString("cont_name");
+		if (name.length() > 20) {
+			sList.put("cont_name_short", name.substring(0, 20) + "...");
+			sList.put("tooltip_yn", "Y");
+		} else {
+			sList.put("cont_name_short", name);
+			sList.put("tooltip_yn", "N");
+		}
+		sList.put("cont_date", u.getTimeString("yyyy-MM-dd", sList.getString("cont_date")));
+		String status = sList.getString("status");
+		if (status.equals("20") || status.equals("21") || status.equals("30")) {
+			if (sList.getString("sign_dn").equals("")) {
+				sList.put("status_name", "ì„œëª…ìš”ì²­");
+			} else {
+				sList.put("status_name", "ì„œëª…ì§„í–‰ì¤‘");
 			}
+		} else if (status.equals("40")) {
+			sList.put("status_name", "ìˆ˜ì •ìš”ì²­");
+		} else if (status.equals("41")) {
+			sList.put("status_name", "ë°˜ë ¤");
+		} else {
+			sList.put("status_name", "");
 		}
 	}
+	if (sList.size() < 5) {
+		for (int i=sList.size(); i<5; i++) {
+			sList.addRow();
+			sList.put("cont_name", "");
+			sList.put("cont_name_short", "");
+			sList.put("cont_date", "");
+			sList.put("status", "");
+			sList.put("status_name", "");
+		}
+	}
+	sLink = "/web/buyer/contract/contract_recv_list.jsp";
+	eLink = "/web/buyer/contract/contend_recv_list.jsp";
 }
 
-
-if((!useCont)&&(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").equals("03"))){
-	cert_msg = "";
+//ê³µì§€ì‚¬í•­ ëª©ë¡
+DataObject nListDao = new DataObject();
+StringBuffer nListSql = new StringBuffer();
+nListSql.append("select title, reg_date ");
+nListSql.append("from ");
+nListSql.append("( ");
+nListSql.append("    select title, reg_date "); 
+nListSql.append("    from tcb_board ");
+nListSql.append("    where category = 'noti' and open_yn= 'Y' ");
+nListSql.append("    order by open_date desc ");
+nListSql.append(") ");
+nListSql.append("where rownum <= 5 ");
+nList = nListDao.query(nListSql.toString());
+while (nList.next()) {
+	String title = nList.getString("title");
+	if (title.length() > 20) {
+		nList.put("title_short", title.substring(0, 20) + "...");
+		nList.put("tooltip_yn", "Y");
+	} else {
+		nList.put("title_short", title);
+		nList.put("tooltip_yn", "N");
+	}
+	nList.put("reg_date", u.getTimeString("yyyy-MM-dd", nList.getString("reg_date")));
 }
-
-
-// ÀüÀÚ°áÀç ½ÂÀÎ ´ë»ó ¸ñ·Ï
-if(useCont){
-	String s_status = auth.getString("_MEMBER_NO").equals("20171101813") ? "'21'" : "'11','21','30'";  // skºê·Îµå¹êµå´Â ½ÂÀÎ´ë±â°Ç¸¸
-	
-	DataObject daoAgree = new DataObject();
-	//daoAgree.setDebug(out);
-	DataSet dsAgree = daoAgree.query(
-			"select count(*) agree_cnt from" 
-		    +"("
-		    +"    select agree_seq, "
-		    +"            (select min(agree_seq) from tcb_cont_agree where cont_no=ta.cont_no and cont_chasu=ta.cont_chasu and ag_md_date is null) confirm_seq"
-		    +"    from tcb_cont_agree ta inner join tcb_contmaster tm on ta.cont_no=tm.cont_no and ta.cont_chasu=tm.cont_chasu"
-		    +"    where ag_md_date is null"
-		    +"      and tm.status in (" + s_status + ")"
-		    +"      and agree_person_id = '"+auth.getString("_USER_ID")+"'"
-		    +")"
-    		+"where agree_seq = confirm_seq "
-			);
-	if(dsAgree.next()){
-		p.setVar("view_agree", dsAgree.getInt("agree_cnt") > 0 ? true : false);
+if (nList.size() < 5) {
+	for (int i=nList.size(); i<5; i++) {
+		nList.addRow();
+		nList.put("title", "");
+		nList.put("title_short", "");
+		nList.put("reg_date", "");
 	}
 }
-
+nLink = "/web/buyer/center/noti_list.jsp";
 
 p.setLayout("default");
 //p.setDebug(out);
 p.setBody("main.index2");
-if(auth.getString("_CERT_END_DATE")!=null){
-p.setVar("cert_end_date", u.getTimeString("yyyy-MM-dd",auth.getString("_CERT_END_DATE")));
-}
-p.setVar("view_gap_pds", view_gap_pds);
-p.setVar("view_eul_pds", view_eul_pds);
-p.setVar("view_slist", view_slist);
-p.setVar("view_rlist", view_rlist);
-p.setLoop("gap_pds", gap_pds);
-p.setLoop("eul_pds", eul_pds);
-p.setLoop("slist", slist);
-p.setLoop("rlist", rlist);
-p.setVar("cert_msg", cert_msg);
+p.setVar("step1", step1);
+p.setVar("step2", step2);
+p.setVar("step3", step3);
+p.setVar("step4", step4);
+p.setVar("step5", step5);
+p.setLoop("sList", sList);
+p.setLoop("nList", nList);
+p.setVar("tLink", tLink);
+p.setVar("sLink", sLink);
+p.setVar("eLink", eLink);
+p.setVar("nLink", nLink);
 p.display(out);
 %>

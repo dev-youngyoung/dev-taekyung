@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String agree_seq = u.request("agree_seq");
 
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -13,7 +13,7 @@ DataObject contDao = new DataObject("tcb_contmaster");
 //contDao.setDebug(out);
 DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'  ","tcb_contmaster.*,(select member_name from tcb_member where member_no = mod_req_member_no) req_member_name");
 if(!cont.next()){
-	u.jsErrClose("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -22,7 +22,7 @@ String spliter = "\r\n-------------------------------------------------------\r\
 if(!cont.getString("mod_req_reason").equals(""))
 	cont.put("mod_req_reason", spliter+cont.getString("mod_req_reason"));
 
-f.addElement("mod_req_reason", cont.getString("mod_req_reason"), "hname:'»çÀ¯', required:'Y', maxbyte:'1000'");
+f.addElement("mod_req_reason", cont.getString("mod_req_reason"), "hname:'ì‚¬ìœ ', required:'Y', maxbyte:'1000'");
 
 if(u.isPost()&&f.validate()){
 	String next_status = u.inArray(cont.getString("status"),new String[]{"21","30","40"})?"41":"40";
@@ -38,7 +38,7 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(dao.getUpdateQuery(" cont_no='"+cont_no+"' and cont_chasu='"+cont_chasu+"' "), dao.record);
 	db.setCommand("update tcb_cust set sign_date=null, sign_dn=null,sign_data=null where cont_no='"+cont_no+"' and cont_chasu='"+cont_chasu+"' ", null);
 
-	// ³»ºÎ °áÀç
+	// ë‚´ë¶€ ê²°ìž¬
 	DataObject agreeDao = new DataObject("tcb_cont_agree");
 	agreeDao.item("ag_md_date", u.getTimeString());
 	agreeDao.item("mod_reason", f.get("mod_req_reason"));
@@ -50,11 +50,12 @@ if(u.isPost()&&f.validate()){
 		db.setCommand( agreeDao.getUpdateQuery(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and agree_cd=0"),agreeDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	//SMSÀü¼Û
+	/* 20201014 : ì´ë©”ì¼ì „ì†¡/SMSì „ì†¡ ì œì™¸
+	//SMSì „ì†¡
 	SmsDao smsDao= new SmsDao();
 	String sender_name = auth.getString("_MEMBER_NAME");
 	DataObject custDao = new DataObject("tcb_cust");
@@ -77,23 +78,23 @@ if(u.isPost()&&f.validate()){
 			p.setVar("emailChk", "/web/buyer/contract/emailReadCheck.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&member_no="+cust.getString("member_no")+"&num="+email_seq);
 			String mail_body = p.fetch("../html/mail/subscription_ret.html");
 			System.out.println(mail_body);
-			u.mail(cust.getString("email"), "[¾Ë¸²] "+cont.getString("cont_name")+" ¹®¼­°¡ ¹Ý·ÁµÇ¾ú½À´Ï´Ù.", mail_body );
+			u.mail(cust.getString("email"), "[ì•Œë¦¼] "+cont.getString("cont_name")+" ë¬¸ì„œê°€ ë°˜ë ¤ë˜ì—ˆìŠµë‹ˆë‹¤.", mail_body );
 
 			emailDao.item("cont_no", cont_no);
 			emailDao.item("cont_chasu", cont_chasu);
 			emailDao.item("member_no", cust.getString("member_no"));
 			emailDao.item("email_seq", email_seq);
 			emailDao.item("send_date", u.getTimeString());
-			emailDao.item("member_name", "¹Ý·Á");
+			emailDao.item("member_name", "ë°˜ë ¤");
 			emailDao.item("user_name", cust.getString("user_name"));
 			emailDao.item("email", cust.getString("email"));
 			emailDao.item("status", "01");
 			emailDao.insert();
 		}
 
-		// sms Àü¼Û
-		smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), sender_name+" ¿¡¼­ "+cont.getString("cont_name")+" ¹®¼­¸¦ ¹Ý·Á ÇÏ¿´½À´Ï´Ù.");
-	}
+		// sms ì „ì†¡
+		smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), sender_name+" ì—ì„œ "+cont.getString("cont_name")+" ë¬¸ì„œë¥¼ ë°˜ë ¤ í•˜ì˜€ìŠµë‹ˆë‹¤.");
+	} */
 	
 	out.println("<script language=\"javascript\" >");
 	out.println("opener.location.reload();");
@@ -106,8 +107,8 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_subscr_ret");
-p.setVar("popup_title",u.inArray(cont.getString("status"),new String[]{"30","40"})?"¹Ý·Á":"¼öÁ¤¿äÃ»");
-p.setVar("req_name",u.inArray(cont.getString("status"),new String[]{"30","40"})?"¹Ý·Á":"¼öÁ¤¿äÃ»");
+p.setVar("popup_title",u.inArray(cont.getString("status"),new String[]{"30","40"})?"ë°˜ë ¤":"ìˆ˜ì •ìš”ì²­");
+p.setVar("req_name",u.inArray(cont.getString("status"),new String[]{"30","40"})?"ë°˜ë ¤":"ìˆ˜ì •ìš”ì²­");
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());

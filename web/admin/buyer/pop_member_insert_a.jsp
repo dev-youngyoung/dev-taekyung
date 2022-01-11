@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import=" java.util.ArrayList
 				 ,nicelib.db.DataSet
 				 ,nicelib.util.Util
@@ -6,7 +6,6 @@
 				 ,nicelib.db.DB
 				 ,java.net.URLDecoder
 "%>
-<%@ include file = "../../../inc/funUtil.inc" %>
 <%
 
 	Util u = new Util(request, response, out);
@@ -20,31 +19,31 @@
 
 	try
 	{
-		String	sMemberNo	= 	u.request("member_no");	// È¸¿ø¹øÈ£
+		String	sMemberNo	= 	u.request("member_no");	// íšŒì›ë²ˆí˜¸
 
-		String  custMemberNo	=	""; //  °Å·¡Ã³ È¸¿ø¹øÈ£
-		String	member_gubun 	= 	"";			// È¸¿ø±¸ºĞ (01 : ¹ıÀÎ(º»»ç), 02 : ¹ıÀÎ(Áö»ç), 03 : °³ÀÎ»ç¾÷ÀÚ)
-		String	member_type		= 	"02";		// È¸¿øÁ¾·ù (02 : À»»ç¾÷ÀÚ)
-		String  status			= 	"02";		// È¸¿ø»óÅÂ (02 : ºñÈ¸¿ø)
+		String  custMemberNo	=	""; //  ê±°ë˜ì²˜ íšŒì›ë²ˆí˜¸
+		String	member_gubun 	= 	"";			// íšŒì›êµ¬ë¶„ (01 : ë²•ì¸(ë³¸ì‚¬), 02 : ë²•ì¸(ì§€ì‚¬), 03 : ê°œì¸ì‚¬ì—…ì)
+		String	member_type		= 	"02";		// íšŒì›ì¢…ë¥˜ (02 : ì„ì‚¬ì—…ì)
+		String  status			= 	"02";		// íšŒì›ìƒíƒœ (02 : ë¹„íšŒì›)
 
-		String 	vendcd			=	"";	//	»ç¾÷ÀÚ¹øÈ£
-		String	member_name		=	"";	//	¾÷Ã¼¸í
-		String	boss_name		=	"";	//	´ëÇ¥ÀÚ¸í
-		String	post_code		=	"";	//	¿ìÆí¹øÈ£
-		String	address			=	"";	//	ÁÖ¼Ò
+		String 	vendcd			=	"";	//	ì‚¬ì—…ìë²ˆí˜¸
+		String	member_name		=	"";	//	ì—…ì²´ëª…
+		String	boss_name		=	"";	//	ëŒ€í‘œìëª…
+		String	post_code		=	"";	//	ìš°í¸ë²ˆí˜¸
+		String	address			=	"";	//	ì£¼ì†Œ
 
 		String  person_seq		=   "";
-		String	user_name		=	"";	//	´ã´çÀÚ¸í
-		String	tel_num			=	"";	//	ÀüÈ­¹øÈ£
-		String	hp1				=	"";	//	ÈŞ´ë¹øÈ£
+		String	user_name		=	"";	//	ë‹´ë‹¹ìëª…
+		String	tel_num			=	"";	//	ì „í™”ë²ˆí˜¸
+		String	hp1				=	"";	//	íœ´ëŒ€ë²ˆí˜¸
 		String	hp2				=	"";	//
 		String	hp3				=	"";	//
-		String	email			=	"";	//	ÀÌ¸ŞÀÏ
+		String	email			=	"";	//	ì´ë©”ì¼
 		
-		String condition		= "";	// ¾÷ÅÂ
-		String category			= "";	// ¾÷Á¾
+		String condition		= "";	// ì—…íƒœ
+		String category			= "";	// ì—…ì¢…
 
-		String[] arr = {"81","82","83","84","86","87","88"};  // ¹ıÀÎ»ç¾÷ÀÚ ±¸ºĞ
+		String[] arr = {"81","82","83","84","86","87","88"};  // ë²•ì¸ì‚¬ì—…ì êµ¬ë¶„
 
 		System.out.println("realGrid.getRowCnt["+data.size()+"]");
 
@@ -54,32 +53,32 @@
 
 			vendcd	=	data.getString("vendcd").replaceAll("-", "");
 
-			// 1. È¸¿øÀÎÁö Ã¼Å©
+			// 1. íšŒì›ì¸ì§€ ì²´í¬
 			DataObject doMember = new DataObject("tcb_member");
 			DataSet dsMember = doMember.find("vendcd = '"+vendcd+"'", "member_no");
 			
 			
-			if(dsMember.next()) // È¸¿ø
+			if(dsMember.next()) // íšŒì›
 			{
-				System.out.println("±âÁ¸¿¡ °¡ÀÔµÈ È¸¿øÀÔ´Ï´Ù.  »ç¾÷ÀÚ¹øÈ£->" + vendcd);
+				System.out.println("ê¸°ì¡´ì— ê°€ì…ëœ íšŒì›ì…ë‹ˆë‹¤.  ì‚¬ì—…ìë²ˆí˜¸->" + vendcd);
 				custMemberNo = dsMember.getString("member_no");
 
 				DataObject daoPerson = new DataObject("tcb_person");
 				int nExitPerson = daoPerson.getOneInt("select count(*) from tcb_person where member_no = '"+custMemberNo+"' and user_name = '"+ data.getString("user_name").trim() +"'");
 				if(nExitPerson > 0)
 				{
-					System.out.println("±âÁ¸¿¡ °¡ÀÔµÈ »ç¿ëÀÚÀÔ´Ï´Ù.  : »ç¿ëÀÚ¸í ->" + data.getString("user_name"));
+					System.out.println("ê¸°ì¡´ì— ê°€ì…ëœ ì‚¬ìš©ìì…ë‹ˆë‹¤.  : ì‚¬ìš©ìëª… ->" + data.getString("user_name"));
 				}
 				else
 				{
 					person_seq = daoPerson.getOne("select nvl(max(person_seq),0)+1 person_seq from tcb_person where member_no = '"+custMemberNo+"'");
 					if(person_seq.equals("")){
-						System.out.println("´ã´çÀÚ SEQ »ı¼º ¿À·ù : »ç¾÷ÀÚ¹øÈ£->" + vendcd);
+						System.out.println("ë‹´ë‹¹ì SEQ ìƒì„± ì˜¤ë¥˜ : ì‚¬ì—…ìë²ˆí˜¸->" + vendcd);
 						continue;
 					}
 
 					if(!person_seq.equals("1") && data.getString("user_name").equals("")){
-						System.out.println("±âÁ¸ ´ã´çÀÚ Á¤º¸°¡ ÀÖ¾î ´ã´çÀÚ´Â Ãß°¡ ÇÏÁö ¾Ê½À´Ï´Ù.->" + vendcd);
+						System.out.println("ê¸°ì¡´ ë‹´ë‹¹ì ì •ë³´ê°€ ìˆì–´ ë‹´ë‹¹ìëŠ” ì¶”ê°€ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.->" + vendcd);
 					} else {
 						daoPerson.item("member_no", custMemberNo);
 						daoPerson.item("person_seq", person_seq);
@@ -96,25 +95,25 @@
 						daoPerson.item("use_yn","N");
 						daoPerson.item("reg_date", u.getTimeString());
 						daoPerson.item("reg_id", "systemadmin");
-						daoPerson.item("user_gubun", "10");		// 10-º»»ç, 20-Áö»ç
+						daoPerson.item("user_gubun", "10");		// 10-ë³¸ì‚¬, 20-ì§€ì‚¬
 						daoPerson.item("status", "1");
 						db.setCommand(daoPerson.getInsertQuery(), daoPerson.record);
 					}
 				}
 			}
 			else
-			{	// ¹Ì°¡ÀÔÈ¸¿ø
+			{	// ë¯¸ê°€ì…íšŒì›
 				custMemberNo = doMember.getOne(
 							"SELECT TO_CHAR(SYSDATE, 'yyyymm') || LPAD( (NVL(MAX(SUBSTR(member_no, 7)), 0) + 1),5,'0' ) member_no"+
-				    		"  FROM tcb_member WHERE  member_no like '"+u.getTimeString("yyyyMM")+"%'"
+				    		"  FROM IF_MMBAT100 WHERE  member_no like '"+u.getTimeString("yyyyMM")+"%'"
 							);
 				String vendcd2 = vendcd.substring(3,5);
 
 				if( u.inArray(vendcd2,arr) ){
-					member_gubun = "01";	// ¹ıÀÎ»ç¾÷ÀÚ(º»»ç)
+					member_gubun = "01";	// ë²•ì¸ì‚¬ì—…ì(ë³¸ì‚¬)
 				}else if(vendcd2.equals("85")){
-					member_gubun = "02";	// ¹ıÀÎ»ç¾÷ÀÚ(Áö»ç)
-				}else{						// °³ÀÎ»ç¾÷ÀÚ
+					member_gubun = "02";	// ë²•ì¸ì‚¬ì—…ì(ì§€ì‚¬)
+				}else{						// ê°œì¸ì‚¬ì—…ì
 					member_gubun = "03";
 				}
 				member_name = data.getString("member_name");
@@ -142,7 +141,7 @@
 				DataObject daoPerson = new DataObject("tcb_person");
 				person_seq = daoPerson.getOne("select nvl(max(person_seq),0)+1 person_seq from tcb_person where member_no = '"+custMemberNo+"'");
 				if(person_seq.equals("")){
-					System.out.println("´ã´çÀÚ SEQ »ı¼º ¿À·ù : »ç¾÷ÀÚ¹øÈ£->" + vendcd);
+					System.out.println("ë‹´ë‹¹ì SEQ ìƒì„± ì˜¤ë¥˜ : ì‚¬ì—…ìë²ˆí˜¸->" + vendcd);
 					continue;
 				}
 
@@ -161,21 +160,21 @@
 				daoPerson.item("use_yn","N");
 				daoPerson.item("reg_date", u.getTimeString());
 				daoPerson.item("reg_id", "systemadmin");
-				daoPerson.item("user_gubun", "10");		// 10-º»»ç, 20-Áö»ç
+				daoPerson.item("user_gubun", "10");		// 10-ë³¸ì‚¬, 20-ì§€ì‚¬
 				daoPerson.item("status", "1");
 				db.setCommand(daoPerson.getInsertQuery(), daoPerson.record);
 			}
 
-			// 2. ÀÌ¹Ì µî·ÏµÈ °Å·¡Ã³ÀÎÁö Ã¼Å©
+			// 2. ì´ë¯¸ ë“±ë¡ëœ ê±°ë˜ì²˜ì¸ì§€ ì²´í¬
 			DataObject daoClient = new DataObject("tcb_client");
 			int nExistCust = daoClient.getOneInt("select count(*) from tcb_client where member_no='"+sMemberNo+"' and client_no='"+custMemberNo+"'");
 			if(nExistCust > 0)
 			{
-				System.out.println("ÀÌ¹Ì °Å·¡Ã³·Î µî·ÏµÇ¾î ÀÖ¾î µî·ÏÇÏÁö ¾Ê½À´Ï´Ù. »ç¾÷ÀÚ¹øÈ£->" + vendcd);
+				System.out.println("ì´ë¯¸ ê±°ë˜ì²˜ë¡œ ë“±ë¡ë˜ì–´ ìˆì–´ ë“±ë¡í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ì‚¬ì—…ìë²ˆí˜¸->" + vendcd);
 				continue;
 			}
 
-			// 3. °Å·¡Ã³·Î µî·Ï
+			// 3. ê±°ë˜ì²˜ë¡œ ë“±ë¡
 			int client_seq = daoClient.getOneInt(" select nvl(max(client_seq),0)+1 from tcb_client where member_no='"+sMemberNo+"' ");
 			daoClient.item("member_no", sMemberNo);
 			daoClient.item("client_seq", client_seq);
@@ -185,7 +184,7 @@
 			db.setCommand(daoClient.getInsertQuery(), daoClient.record);
 			
 			/*
-			// 4. °Å·¡Ã³ »ó¼¼ µî·Ï
+			// 4. ê±°ë˜ì²˜ ìƒì„¸ ë“±ë¡
 			if(!wgs.getString("detailcode",i).equals(""))
 			{
 				DataObject daoClientDetail = new DataObject("tcb_client_detail");

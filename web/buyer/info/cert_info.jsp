@@ -1,47 +1,30 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataObject mdao = new DataObject("tcb_member tm inner join tcb_person tp on tm.member_no=tp.member_no");
 //mdao.setDebug(out);
-DataSet member = mdao.find("tm.member_no = '"+_member_no+"' and tp.default_yn='Y'", "tm.member_gubun, tm.cert_end_date, tp.jumin_no, tm.vendcd");
-if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
-	return;
-}else{
-	if(member.getString("member_gubun").equals("04")) //°³ÀÎÈ¸¿ø
-	{
-		Security	security	=	new	Security();
+DataSet member = mdao.find(
+		  "tm.member_no = '" + _member_no + "' and tp.default_yn='Y'"
+		, "tm.member_gubun, tm.member_type, tm.cert_end_date, tp.jumin_no, tm.vendcd");
+if (!member.next()) {
+	//íšŒì›ì •ë³´ í™•ì¸ ì•ˆí•¨ by jun
+	//u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+	//return;
+} else {
+	if (member.getString("member_gubun").equals("04")) { //ê°œì¸íšŒì›
+		Security security = new	Security();
 		member.put("jumin_no", security.AESdecrypt(member.getString("jumin_no")).substring(0, 6));
-	} 
-	
+	}
 	member.put("cert_end_date", u.getTimeString("yyyy-MM-dd",member.getString("cert_end_date")));
 }
-
-DataObject clientDao = new DataObject("tcb_client");
-//ktm&s °³ÀÎ»ç¾÷ÀÚÀÎ °æ¿ì
-if(clientDao.findCount(" client_no = '"+_member_no+"' and member_no = '20140900004' ")>0&&auth.getString("_MEMBER_GUBUN").equals("03")){
-	u.jsError("¡ØÀÎÁõ¼­¾È³»\\n\\nktm&s¿Í °Å·¡ÇÏ½Ã´Â °³ÀÎ»ç¾÷ÀÚÀÌ½Å °æ¿ì\\n\\nÀÎÁõ¼­ µî·Ï¾øÀÌ ´ëÇ¥ÀÚºĞÀÇ °³ÀÎ¹ü¿ë °øÀÎ ÀÎÁõ¼­·Î\\n\\n°è¾à¼­¿¡ ¼­¸í ÇÏ¼Å¾ß ÇÕ´Ï´Ù.\\n\\n°³ÀÎ¹ü¿ë ÀÎÁõ¼­´Â ´ëÇ¥ÀÚºĞÀÌ °³ÀÎÀ¸·Î\\n\\n°Å·¡ÇÏ½Ã´Â ÀºÇà °øÀÎÀÎÁõ¼¾ÅÍ¿¡¼­ ¹ß±Ş °¡´ÉÇÕ´Ï´Ù.\\n\\n(°³ÀÎ¹ü¿ë°øÀÎÀÎÁõ¼­ ¹ß±Şºñ¿ë :4,400¿ø-ºÎ°¡¼¼Æ÷ÇÔ)");
-	return;
-}else if(clientDao.findCount(" client_no = '"+_member_no+"' and member_no = '20130400333' ")>0&&auth.getString("_MEMBER_GUBUN").equals("03")){
-	u.jsAlert("¡ØÀÎÁõ¼­¾È³»\\n\\n¾¾Á¦ÀÌ´ëÇÑÅë¿î°ú °Å·¡ÇÏ½Ã´Â °³ÀÎ»ç¾÷ÀÚÀÌ½Å °æ¿ì\\n°è¾à°Ç¿¡ µû¶ó »ç¿ë°¡´É ÀÎÁõ¼­°¡ ´Ù¸¨´Ï´Ù.\\n¾Æ·¡ ³»¿ëÀ» ²À Âü°í ÇÏ¼¼¿ä.\\n\\n*¼ö¼ÛºÎ °ü·Ã°è¾à : ´ëÇ¥ÀÚÀÇ °³ÀÎ¹ü¿ë°øÀÎÀÎÁõ¼­( ÀÎÁõ¼­µî·Ï ºÒÇÊ¿ä / ¹ß±Şºñ¿ë :4,400¿ø-ºÎ°¡¼¼Æ÷ÇÔ)\\n*±¸¸ÅÆÀ/ÀÎÇÁ¶ó ÆÀ°ü·Ã°è¾à : »ç¾÷ÀÚ¿ëÀÎÁõ¼­(ÀÎÁõ¼­µî·Ï ÇÊ¿ä)");
-// ¾Æ°¡¹æÀÇ ³³Ç°°è¾à¼­ÀÇ °æ¿ì '»ç¾÷ÀÚ'ÀÎÁõ¼­·Î ('¿ìÁØ½Ä'°úÀå´Ô°ú ÅëÈ­ ÈÄ ¼öÁ¤ÇÔ. (¿ìÁØ½Ä °úÀå´Ôµµ Àß ¸ğ¸£½É.. ¤Ğ¤Ğ;; ))
-//}else if(clientDao.findCount(" client_no = '"+_member_no+"' and member_no = '20151101164' ")>0&&auth.getString("_MEMBER_GUBUN").equals("03")){
-//	u.jsError("¡ØÀÎÁõ¼­¾È³»\\n\\n(ÁÖ)¾Æ°¡¹æ¾ØÄÄÆÛ´Ï¿Í °Å·¡ÇÏ½Ã´Â °³ÀÎ»ç¾÷ÀÚÀÌ½Å °æ¿ì\\n\\nÀÎÁõ¼­ µî·Ï¾øÀÌ ´ëÇ¥ÀÚºĞÀÇ °³ÀÎ¹ü¿ë °øÀÎ ÀÎÁõ¼­·Î\\n\\n°è¾à¼­¿¡ ¼­¸í ÇÏ¼Å¾ß ÇÕ´Ï´Ù.\\n\\n°³ÀÎ¹ü¿ë ÀÎÁõ¼­´Â ´ëÇ¥ÀÚºĞÀÌ °³ÀÎÀ¸·Î\\n\\n°Å·¡ÇÏ½Ã´Â ÀºÇà °øÀÎÀÎÁõ¼¾ÅÍ¿¡¼­ ¹ß±Ş °¡´ÉÇÕ´Ï´Ù.\\n\\n(°³ÀÎ¹ü¿ë°øÀÎÀÎÁõ¼­ ¹ß±Şºñ¿ë :4,400¿ø-ºÎ°¡¼¼Æ÷ÇÔ)");
-}else if(clientDao.findCount(" client_no = '"+_member_no+"' and member_no = '20171100251' ")>0&&auth.getString("_MEMBER_GUBUN").equals("03")){
-	u.jsError("¡ØÀÎÁõ¼­¾È³»\\n\\nÁ¦½ÃÄ«ºí¶û°ú °Å·¡ÇÏ½Ã´Â °³ÀÎ»ç¾÷ÀÚÀÌ½Å °æ¿ì\\n\\nÀÎÁõ¼­ µî·Ï¾øÀÌ ´ëÇ¥ÀÚºĞÀÇ °³ÀÎ¹ü¿ë °øÀÎ ÀÎÁõ¼­·Î\\n\\n°è¾à¼­¿¡ ¼­¸í ÇÏ¼Å¾ß ÇÕ´Ï´Ù.\\n\\n°³ÀÎ¹ü¿ë ÀÎÁõ¼­´Â ´ëÇ¥ÀÚºĞÀÌ °³ÀÎÀ¸·Î\\n\\n°Å·¡ÇÏ½Ã´Â ÀºÇà °øÀÎÀÎÁõ¼¾ÅÍ¿¡¼­ ¹ß±Ş °¡´ÉÇÕ´Ï´Ù.\\n\\n(°³ÀÎ¹ü¿ë°øÀÎÀÎÁõ¼­ ¹ß±Şºñ¿ë :4,400¿ø-ºÎ°¡¼¼Æ÷ÇÔ)");
-	return;
-}else if(clientDao.findCount(" client_no = '"+_member_no+"' and member_no = '20191101572' ")>0&&auth.getString("_MEMBER_GUBUN").equals("03")){
-	u.jsError("¡ØÀÎÁõ¼­¾È³»\\n\\n´ë¿ø°­¾÷(ÁÖ)°ú °Å·¡ÇÏ½Ã´Â °³ÀÎ»ç¾÷ÀÚÀÌ½Å °æ¿ì\\n\\nÀÎÁõ¼­ µî·Ï¾øÀÌ ´ëÇ¥ÀÚºĞÀÇ °³ÀÎ¹ü¿ë °øÀÎ ÀÎÁõ¼­·Î\\n\\n°è¾à¼­¿¡ ¼­¸í ÇÏ¼Å¾ß ÇÕ´Ï´Ù.\\n\\n°³ÀÎ¹ü¿ë ÀÎÁõ¼­´Â ´ëÇ¥ÀÚºĞÀÌ °³ÀÎÀ¸·Î\\n\\n°Å·¡ÇÏ½Ã´Â ÀºÇà °øÀÎÀÎÁõ¼¾ÅÍ¿¡¼­ ¹ß±Ş °¡´ÉÇÕ´Ï´Ù.\\n\\n(°³ÀÎ¹ü¿ë°øÀÎÀÎÁõ¼­ ¹ß±Şºñ¿ë :4,400¿ø-ºÎ°¡¼¼Æ÷ÇÔ)");
-	return;
-}
-
 
 p.setLayout("default");
 //p.setDebug(out);
 p.setBody("info.cert_info");
 p.setVar("menu_cd","000109");
-p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000108", "btn_auth").equals("10"));
-p.setVar("member",member);
-p.setVar("person_yn", member.getString("member_gubun").equals("04"));
+p.setVar("auth_select",_authDao.getAuthMenuInfoB(_member_no, auth.getString("_AUTH_CD"), "000108", "btn_auth").equals("10"));
+p.setVar("member", member);
+p.setVar("isNongshim", member.getString("member_type").equals("01")); // ê°‘(ë†ì‹¬)ì¸ ê²½ìš°
+p.setVar("person_yn", member.getString("member_gubun").equals("04")); // ê°œì¸ì¸ ê²½ìš°
 p.setVar("sys_date", u.getTimeString());
 p.setVar("form_script", f.getScript());
 p.display(out);

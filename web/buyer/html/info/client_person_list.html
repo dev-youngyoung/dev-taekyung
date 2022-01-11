@@ -8,10 +8,10 @@
                 <col width="10%"/>
             </colgroup>
             <tr>
-                <th><p>´ã´çÀÚ¸í</p></th>
+                <th><p>ë‹´ë‹¹ìžëª…</p></th>
                 <td><input type="text" name="s_user_name" maxlength="30" style="width:98%"></td>
                 <td align="right">
-                    <button type="submit" class="search_btn"><span></span>°Ë»ö</button>
+                    <button type="submit" class="search_btn"><span></span>ê²€ìƒ‰</button>
                 </td>
             </tr>
         </table>
@@ -20,15 +20,16 @@
 {{form_script}}
 <br/>
 <div class="div_table">
+<!-- 
     <div class="util-row">
         <div class="push-left">
-            <span class="caution-text">¡Ø ´ã´çÀÚ¸¦ Å¬¸¯ÇÏ½Ã¸é ´ã´çÀÚÁ¤º¸¸¦ "º¯°æ" ¶Ç´Â "»èÁ¦" ÇÒ ¼ö ÀÖ½À´Ï´Ù.</span>
+            <span class="caution-text">â€» ë‹´ë‹¹ìžë¥¼ í´ë¦­í•˜ì‹œë©´ ë‹´ë‹¹ìžì •ë³´ë¥¼ "ë³€ê²½" ë˜ëŠ” "ì‚­ì œ" í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</span>
         </div>
         <div class="push-right">
-            <button type="button" class="sbtn color ico-add" onClick="location.href='client_person_insert.jsp';"><span></span>Ãß°¡</button>
+            <button type="button" class="sbtn color ico-add" onClick="location.href='client_person_insert.jsp';"><span></span>ì¶”ê°€</button>
         </div>
     </div>
-
+ -->
     <table>
         <colgroup>
           <col width="8%">
@@ -41,14 +42,14 @@
           <col width="15%">
         </colgroup>
         <tr>
-            <th>¼ø¹ø</th>
-            <th>´ã´çÀÚ ID</th>
-            <th>´ã´çÀÚ¸í</th>
-            <th>Á÷À§</th>
-            <th>ºÎ¼­</th>
-            <th>ÀüÈ­¹øÈ£</th>
-            <th>»óÅÂ</th>
-            <th>µî·Ï(º¯°æ)ÀÏÀÚ</th>
+            <th>ìˆœë²ˆ</th>
+            <th>ë‹´ë‹¹ìž ID</th>
+            <th>ë‹´ë‹¹ìžëª…</th>
+            <th>ì§ìœ„</th>
+            <th>ë¶€ì„œ</th>
+            <th>ì „í™”ë²ˆí˜¸</th>
+            <th>ìƒíƒœ</th>
+            <th>ë“±ë¡(ë³€ê²½)ì¼ìž</th>
         </tr>
 
         <!-- LOOP START 'list' -->
@@ -65,7 +66,7 @@
         <!-- LOOP END 'list' -->
         <!-- IFNOT START 'list' -->
         <tr>
-            <td align="center" colspan="8">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+            <td align="center" colspan="8">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
         </tr>
         <!-- IFNOT END 'list' -->
     </table>

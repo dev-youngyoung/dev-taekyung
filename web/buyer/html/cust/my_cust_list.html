@@ -1,75 +1,51 @@
 <form name="form1" method="get">
 <input type="hidden" name="mode">
-<input type="hidden" name="custtype" value="{{custtype}}"/>
 
 <div class="search_div">
     <table class="search_table">
-    <colgroup>
-        <col width="13%">
-        <col width="49%">
-        <col width="13%">
-        <col width="15%">
-        <col width="10%">
-    </colgroup>
-    <!-- IF START 'isDetailCode' -->
-    <tr>
-        <th><p>°Å·¡Ã³ÄÚµå</p></th>
-        <td colspan="3"><input type="text" name="s_cust_detail_code" maxlength="100" size="20"></td>
-        <td align="right">
-        </td>
-    </tr>
-    <!-- IF END 'isDetailCode' -->
-    <!-- IF START 'isLicense' -->
-    <tr>
-    <th><p>º¸À¯¸éÇã</p></th>
-    <td colspan="3">
-    	<select name="s_tech_cd">
-			<option value="">-ÀüÃ¼-</option>
-			<!-- LOOP START 'userCode' -->
-			<option value="{{userCode.code}}">{{userCode.code_nm}}</option>
-			<!-- LOOP END 'userCode' -->
-		</select>
-    </td>
-    <td align="right">
-    </td>
-  </tr>
-  <!-- IF END 'isLicense' -->
-  <!-- IF START 'isCategory' -->
-    <tr>
-        <td colspan="4">
-            <table class="search_table">
-            <colgroup>
-                <col width="14.5%">
-                <col width="35.5%">
-                <col width="14%">
-                <col width="36%">
-            </colgroup>
-            <th><p>¾÷ÅÂ</p></th>
-            <td><input type="text" name="s_condition" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}"></td>
-            <th><p>Á¾¸ñ</p></th>
-            <td><input type="text" name="s_category" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}"></td>
-            </table>
-        </td>
-        <td align="right"></td>
-    </tr>
-  <!-- IF END 'isCategory' -->
-  <tr>
-    <th><p>¾÷Ã¼¸í</p></th>
-    <td><input type="text" name="s_member_name" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}"></td>
-    <th><p>È¸¿ø»óÅÂ</p></th>
-    <td>
-		<select name="s_status">
-			<option value="">-ÀüÃ¼-</option>
-			<!-- LOOP START 'status_code' -->
-			<option value="{{status_code.id}}">{{status_code.name}}</option>
-			<!-- LOOP END 'status_code' -->
-		</select>
-    </td>
-    <td align="right">
-      <button type="button" class="search_btn" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>°Ë»ö</button>
-    </td>
-  </tr>
-</table>
+	    <colgroup>
+	        <col width="13%">
+	        <col width="15%">
+	        <col width="13%">
+	        <col width="49%">
+	        <col width="10%">
+	    </colgroup>
+	    <tr>
+	    	<th>
+	    		<p>ì‚¬ì—…ìë²ˆí˜¸</p>
+	    	</th>
+	    	<td>
+	    		<input type="text" name="s_vendcd" maxlength="10" style="width:90%" onKeyDown="num_only()" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}">
+	    	</td>
+	    	<th>
+				<p>ì—…ì²´ëª…</p>
+			</th>
+			<td>
+				<input type="text" name="s_member_name" maxlength="100" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}">
+			</td>
+			<td rowspan="2" align="right">
+			    <button type="button" class="search_btn" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>ê²€ìƒ‰</button>
+			</td>
+	    </tr>
+		<tr>
+			<th>
+	    		<p>ëŒ€í‘œì</p>
+	    	</th>
+	    	<td>
+	    		<input type="text" name="s_boss_name" maxlength="10" style="width:90%" onkeyup="if(event.keyCode=='13'){document.forms['form1']['mode'].value='';document.forms['form1'].submit();}">
+	    	</td>
+			<th>
+				<p>ê±°ë˜ì²˜êµ¬ë¶„</p>
+			</th>
+			<td>
+				<select name="s_gubun">
+					<option value="">-ì „ì²´-</option>
+					<option value="01">-íŒë§¤ì²˜-</option>
+					<option value="02">-ê³µê¸‰ì²˜-</option>
+				</select>
+			</td>
+		</tr>
+	</table>
 </div>
 </form>
 {{form_script}}
@@ -77,106 +53,57 @@
 <form name="form2" method="post">
 <div class="div_table">
     <div class="util-row">
-        <div class="push-left"><span class="caution-text">¡Ø ¾÷Ã¼ »ó¼¼Á¤º¸ Á¶È¸ ¹× °Å·¡Á¤Áö »çÀ¯¸¦ ÀÔ·Â ÇÏ½Ã·Á¸é ¾÷Ã¼¸íÀ» Å¬¸¯ ÇÏ¼¼¿ä.</span></div>
+        <div class="push-left"><span class="caution-text">â€» ì—…ì²´ ìƒì„¸ì •ë³´ë¥¼ ì¡°íšŒ í•˜ì‹œë ¤ë©´ ì—…ì²´ëª…ì„ í´ë¦­ í•˜ì„¸ìš”.</span></div>
         <div class="push-right">
-            <button type="submit" class="sbtn color ico-save auth_css" onclick="form2Save()"><span></span>ÀúÀå</button>
-            <button type="button" class="sbtn color ico-excel" onclick="excel()"><span></span>¿¢¼¿</button>
+            <!-- <button type="submit" class="sbtn color ico-save auth_css" onclick="form2Save()"><span></span>ì €ì¥</button> -->
+            <button type="button" class="sbtn color2 ico-excel" onclick="excel()"><span></span>ì—‘ì…€</button>
         </div>
     </div>
     <table>
-    <colgroup>
-        <col width="10%">
-        <!-- IF START 'isDetailCode' -->
-        <col width="10%">
-        <!-- IF END 'isDetailCode' -->
-        <col width="*%">
-        <col width="10%">
-        <col width="10%">
-        <col width="12%">
-        <col width="7%">
-        <!-- IF START 'isLicense' -->
-        <col width="10%">
-        <!-- IF END 'isLicense' -->
-        <col width="8%">
-        <col width="8%">
-        <col width="8%">
-        <col width="8%">
-    </colgroup>
-    <tr>
-        <th>¼ø¹ø</th>
-        <!-- IF START 'isDetailCode' -->
-        <th>°Å·¡Ã³ÄÚµå</th>
-        <!-- IF END 'isDetailCode' -->
-        <th>¾÷Ã¼¸í</th>
-        <th>¾÷ÅÂ</th>
-        <th>Á¾¸ñ</th>
-        <th>»ç¾÷ÀÚ¹øÈ£</th>
-        <th>´ëÇ¥ÀÚ</th>
-        <!-- IF START 'isLicense' -->
-        <th>º¸À¯¸éÇã</th>
-        <!-- IF END 'isLicense' -->
-        <!-- IF START 'isCredit' -->
-        <th>½Å¿ëµî±Ş</th>
-        <!-- IF END 'isCredit' -->
-        <th>°Å·¡Á¤Áö</th>
-        <th>ÀÏÈ¸¼º</th>
-        <th>È¸¿ø»óÅÂ</th>
-    </tr>
-    <!-- IF START 'list' -->
-    <!-- LOOP START 'list' -->
-    <tr align="center" onMouseOver="this.style.backgroundColor='#EFEFEF';" onMouseOut="this.style.backgroundColor='';" style="cursor:pointer" onclick="location.href='cust_view.jsp?member_no={{list.client_no}}&custtype={{custtype}}&{{list_query}}';">
-        <td>{{list.__ord}}</td>
-        <!-- IF START 'isDetailCode' -->
-        <td>{{list.cust_detail_code}}</td>
-        <!-- IF END 'isDetailCode' -->
-        <td align="left">
-        	{{list.member_name}}
-        	<!-- IF START 'list.clip_grd' -->
-			<iframe frameborder=0 marginwidth="0" marginheight="0" hspace="0" vspace="-9" scrolling="no" src="http://interface.nicednb.com/serv/docuCri.do?bz={{list.clip_grd}}" style="width:35px;height:13px;vert-align:middle"></iframe>
-			<!-- IF END 'list.clip_grd' -->
-        </td>
-        <td>{{list.condition}}</td>
-        <td>{{list.category}}</td>
-        <td>{{list.vendcd}}</td>
-        <td>{{list.boss_name}}</td>
-        <!-- IF START 'isLicense' -->
-        <td onclick="event.cancelBubble=true;">
-            <button type="button" class="sbtn color ico-monitor" onclick="OpenWindows('./pop_license_view.jsp?client_no={{list.client_no}}&code_gubun=A','pop_license_view','750','400')"><span></span>º¸±â</button>
-        </td>
-        <!-- IF END 'isLicense' -->
-        <!-- IF START 'isCredit' -->
-        <td onclick="event.cancelBubble=true;">
-            <a href="{{list.xlink}}" target="_NEW" style="text-decoration: underline;color: blue;">{{list.grade}}<br>{{list.cashgrade}}</a>
-        </td>
-        <!-- IF END 'isCredit' -->
-        <td onclick="event.cancelBubble=true;">
-            <input type="hidden" name="client_no" value="{{list.client_no}}"/>
-            <input type="checkbox" value="90" name="client_status_{{list.client_no}}" {{list.check_status}}>
-        </td>
-        <td onclick="event.cancelBubble=true;">
-            <input type="checkbox" value="Y" name="temp_yn_{{list.client_no}}" {{list.temp_checked}}>
-        </td>
-        <td>{{list.member_gubun_name}}</td>
-    </tr>
-    <!-- LOOP END 'list' -->
-    <!-- IF END 'list' -->
-    <!-- IFNOT START 'list' -->
-    <tr>
-        <td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
-    </tr>
-    <!-- IFNOT END 'list' -->
+	    <colgroup>
+	        <col width="12%">
+	        <col width="*%">
+	        <col width="15%">
+	        <col width="20%">
+	        <col width="7%">
+	        <col width="10%">
+	        <col width="10%">
+	    </colgroup>
+	    <tr>
+	        <th>ì‚¬ì—…ìë²ˆí˜¸</th>
+	        <th>ì—…ì²´ëª…</th>
+	        <th>ì—…íƒœ</th>
+	        <th>ì¢…ëª©</th>
+	        <th>ëŒ€í‘œì</th>
+	        <th>ê±°ë˜ì²˜êµ¬ë¶„</th>
+	        <th>ì¸ì¦ì„œë“±ë¡</th>
+	    </tr>
+	    <!-- IF START 'list' -->
+	    <!-- LOOP START 'list' -->
+	    <tr align="center" onMouseOver="this.style.backgroundColor='#EFEFEF';" onMouseOut="this.style.backgroundColor='';" style="cursor:pointer" onclick="location.href='cust_view.jsp?custcode={{list.cust_code}}&{{list_query}}';">
+	        <td>{{list.vendcd}}</td>
+	        <td align="left">
+	        	{{list.member_name}}
+	        </td>
+	        <td>{{list.condition}}</td>
+	        <td>{{list.category}}</td>
+	        <td>{{list.boss_name}}</td>
+	        <td>{{list.gubun_name}}</td>
+	        <td>{{list.cert_dn_yn}}</td>
+	    </tr>
+	    <!-- LOOP END 'list' -->
+	    <!-- IF END 'list' -->
+	    <!-- IFNOT START 'list' -->
+	    <tr>
+	        <td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
+	    </tr>
+	    <!-- IFNOT END 'list' -->
     </table>
 </div>
 <div class="common-paging">{{pagerbar}}</div>
 </form>
-<script language="javascript">
-function form2Save(){
-	if(!confirm('ÀúÀåÇÏ½Ã°Ú½À´Ï±î?'))return;
-	var f = document.forms['form2'];
-	f.action = "cust_list_save.jsp?{{list_query}}";
-	f.submit();
-}
 
+<script language="javascript">
 function excel(){
 	var f = document.forms['form1'];
 	f['mode'].value="excel";

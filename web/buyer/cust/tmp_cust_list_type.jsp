@@ -1,30 +1,30 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String[] code_client_type = null;
 String sClientWhere = "";
-if(_member_no.equals("20130400091")) // ´ëº¸Á¤º¸Åë½Å
-	code_client_type = new String[]{"0=>¹°Ç°","1=>¿ë¿ª"};
-else if(_member_no.equals("20140300055"))  // ÇÑ±¹À¯¸®°ø¾÷
-	code_client_type = new String[]{"0=>°ø±Ş»ç","1=>´ë¸®Á¡"};
-else if(u.inArray(_member_no, new String[]{"20121200116", "20140101025", "20120200001","20170602171"}))  // ÇÑ±¹Á¦Áö, ½Å¼¼°è, Å×½ºÆ®,´ë¸²¾¾¿£¿¡½º
-	code_client_type = new String[]{"0=>¹°Ç°","1=>°ø»ç","2=>¿ë¿ª"};
-else if(_member_no.equals("20140101025"))  // ½Å¼¼°è¹éÈ­Á¡
-	code_client_type = new String[]{"0=>¹°Ç°","1=>°ø»ç","2=>¿ë¿ª"};
-else if(_member_no.equals("20170101031"))  // ¼öÇùÀºÇà
-	code_client_type = new String[]{"0=>¹°Ç°","1=>°ø»ç","2=>¿ë¿ª"};
-else if(_member_no.equals("20121204063"))  // È¨ÇÃ·¯½º
-	code_client_type = new String[]{"0=>¹°Ç°","1=>°ø»ç","2=>¿ë¿ª"};
-else if(u.inArray(_member_no, new String[]{"20180203437", "20181002679","20191200612"}))  // ÇÏÀÌ¿£ÅØ, (Àç)°æ±âÅ×Å©³ëÆÄÅ©, ¸ŞÆ®·Î9È£¼±
+if(_member_no.equals("20130400091")) // ëŒ€ë³´ì •ë³´í†µì‹ 
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ìš©ì—­"};
+else if(_member_no.equals("20140300055"))  // í•œêµ­ìœ ë¦¬ê³µì—…
+	code_client_type = new String[]{"0=>ê³µê¸‰ì‚¬","1=>ëŒ€ë¦¬ì "};
+else if(u.inArray(_member_no, new String[]{"20121200116", "20140101025", "20120200001","20170602171"}))  // í•œêµ­ì œì§€, ì‹ ì„¸ê³„, í…ŒìŠ¤íŠ¸,ëŒ€ë¦¼ì”¨ì—”ì—ìŠ¤
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ê³µì‚¬","2=>ìš©ì—­"};
+else if(_member_no.equals("20140101025"))  // ì‹ ì„¸ê³„ë°±í™”ì 
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ê³µì‚¬","2=>ìš©ì—­"};
+else if(_member_no.equals("20170101031"))  // ìˆ˜í˜‘ì€í–‰
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ê³µì‚¬","2=>ìš©ì—­"};
+else if(_member_no.equals("20121204063"))  // í™ˆí”ŒëŸ¬ìŠ¤
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ê³µì‚¬","2=>ìš©ì—­"};
+else if(u.inArray(_member_no, new String[]{"20180203437", "20181002679","20191200612"}))  // í•˜ì´ì—”í…, (ì¬)ê²½ê¸°í…Œí¬ë…¸íŒŒí¬, ë©”íŠ¸ë¡œ9í˜¸ì„ 
 	code_client_type = new String[]{};
 else
 {
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 f.addElement("s_member_name", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);

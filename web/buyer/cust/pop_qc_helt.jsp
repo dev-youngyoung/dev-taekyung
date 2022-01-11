@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_qc_helt");
-p.setVar("popup_title","Æò°¡±âÁØÂüÁ¶");
+p.setVar("popup_title","í‰ê°€ê¸°ì¤€ì°¸ì¡°");
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());

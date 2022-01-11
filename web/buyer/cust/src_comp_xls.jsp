@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="procure.common.db.SQLManager
 								,procure.common.value.DataSetValue
 								,procure.common.value.ResultSetValue
@@ -13,10 +13,10 @@
 	int							iMaxMemberCnt	=	0;
 	try
 	{
-		String	sMemberNo	= _member_no;	//	ȸ����ȣ
+		String	sMemberNo	= _member_no;	//	회원번호
 		if(sMemberNo == null || sMemberNo.length() < 1)
 		{
-			throw new Exception("�������� ��η� ���� �ϼ���.");
+			throw new Exception("정상적인 경로로 접근 하세요.");
 		}
 		
 		sqlm	=	new	SQLManager();
@@ -25,7 +25,7 @@
 		
 		DataSetValue	dsv		=	null;
 		
-		//	�ҽ�ī�װ����� �ִ� ��ü�� ���ϱ�
+		//	소싱카테고리의 최대 업체수 구하기
 		sb						=	new	StringBuffer();
 		sb.append("select max(src_cd_cnt) max_member_cnt \n");
 		sb.append("	 from( \n");
@@ -38,13 +38,13 @@
 		dsv	=	sqlm.getOneRow(sb.toString(),true);
 		if(dsv == null || dsv.size() < 1)
 		{
-			throw new Exception("�ҽ�ī�װ����� ��Ͼ�ü�� �������� �ʾƼ� �ٿ�ε带 �����Ǽ� �����ϴ�.");
+			throw new Exception("소싱카테고리별 등록업체가 존재하지 않아서 다운로드를 받으실수 없습니다.");
 		}else
 		{
 			iMaxMemberCnt	=	dsv.getInt("max_member_cnt");
 		}
 		
-		//	�ҽ�ī�װ��� ���� ���ϱ�
+		//	소싱카테고리 정보 구하기
 		sb	=	new	StringBuffer();
 		sb.append("select a.src_cd \n");
 		sb.append("       ,a.l_src_cd \n");
@@ -70,7 +70,7 @@
 		ResultSetValue	rSrc	=	sqlm.getRows(sb.toString(),true);
 		if(rSrc == null || rSrc.size() < 1)
 		{
-			throw new Exception("�ҽ�ī�װ����� �������� �ʾƼ� �ٿ�ε带 �����Ǽ� �����ϴ�.");
+			throw new Exception("소싱카테고리가 존재하지 않아서 다운로드를 받으실수 없습니다.");
 		}else
 		{
 			HashMap	hm	=	null;
@@ -121,7 +121,7 @@
 		}
 		
 		response.setHeader("Content-Type", "application/vnd.ms-xls");
-		response.setHeader("Content-Disposition", "attachment; filename=" + StrUtil.k2a("�ҽ�ī�װ����� ��Ͼ�ü ��Ȳ.xls"));
+		response.setHeader("Content-Disposition", "attachment; filename=" + StrUtil.k2a("소싱카테고리별 등록업체 현황.xls"));
 	}catch(Exception e)
 	{
 		u.jsError(e.toString());
@@ -134,12 +134,12 @@
 <html>
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 <table width="<%=652-163+(163*iMaxMemberCnt)%>" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td align="center"><b style="font-size:18pt">�ҽ�ī�װ����� ��Ͼ�ü ��Ȳ<b></td>
+    <td align="center"><b style="font-size:18pt">소싱카테고리별 등록업체 현황<b></td>
   </tr>
   <tr>
     <td><br></td>
@@ -148,10 +148,10 @@
     <td>
       <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
         <tr align="center">
-					<td height="30" bgcolor="#cccccc">��з�</td>
-					<td height="30" bgcolor="#cccccc">�ߺз�</td>
-					<td height="30" bgcolor="#cccccc">�Һз�</td>
-					<td height="30" bgcolor="#cccccc" colspan=<%=iMaxMemberCnt%>>��Ͼ�ü</td>
+					<td height="30" bgcolor="#cccccc">대분류</td>
+					<td height="30" bgcolor="#cccccc">중분류</td>
+					<td height="30" bgcolor="#cccccc">소분류</td>
+					<td height="30" bgcolor="#cccccc" colspan=<%=iMaxMemberCnt%>>등록업체</td>
 				</tr>
 <%
 	String	_sLSrcCd	=	"";

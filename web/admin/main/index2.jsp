@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(auth.getString("_ADMIN_ID")==null||auth.getString("_ADMIN_ID").equals("")){
 	u.redirect("index.jsp");
@@ -61,37 +61,37 @@ DataSet sumMemberSpe = memDao.query(
 " select "+
 		"(" +
 				"    select sum(cnt) from (" +
-					"    select count(*)-511 cnt from tck_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"'  " + // -- ¼ö±Þ»ç¾÷ÀÚ (°Ç¼³)
+					"    select count(*)-511 cnt from tck_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"'  " + // -- ìˆ˜ê¸‰ì‚¬ì—…ìž (ê±´ì„¤)
 					"    union" +
-					"    select count(*)-55 cnt from tcb_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"' " + //-- ºñ°Ç¼³ (¼ö±Þ)
+					"    select count(*)-55 cnt from tcb_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"' " + //-- ë¹„ê±´ì„¤ (ìˆ˜ê¸‰)
 					"    union" +
-					"    select count(*)-5 cnt from tcl_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"' " + //-- ¹°·ù(¼ö±Þ)
+					"    select count(*)-5 cnt from tcl_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"' " + //-- ë¬¼ë¥˜(ìˆ˜ê¸‰)
 					"    union" +
-					"    select count(*) cnt from tcf_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"' " + // -- ÇÁ·£Â÷ÀÌÁî(¼ö±Þ)
+					"    select count(*) cnt from tcf_member where member_type not IN ('01', '03') and  member_gubun in ('01','02') and join_date < '"+edate+"' " + // -- í”„ëžœì°¨ì´ì¦ˆ(ìˆ˜ê¸‰)
 				"    )" +
-		") member_type1, " +  // ¹ýÀÎ»ç¾÷(03)
+		") member_type1, " +  // ë²•ì¸ì‚¬ì—…(03)
 		"( " +
 				"    select sum(cnt) from (" +
-					"    select count(*) cnt from tck_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ¼ö±Þ»ç¾÷ÀÚ (°Ç¼³)
+					"    select count(*) cnt from tck_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ìˆ˜ê¸‰ì‚¬ì—…ìž (ê±´ì„¤)
 					"    union" +
-					"    select count(*) cnt from tcb_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ºñ°Ç¼³ (¼ö±Þ)
+					"    select count(*) cnt from tcb_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ë¹„ê±´ì„¤ (ìˆ˜ê¸‰)
 					"    union" +
-					"    select count(*) cnt from tcl_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ¹°·ù(¼ö±Þ)
+					"    select count(*) cnt from tcl_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ë¬¼ë¥˜(ìˆ˜ê¸‰)
 					"    union" +
-					"    select count(*) cnt from tcf_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- ÇÁ·£Â÷ÀÌÁî(¼ö±Þ)
+					"    select count(*) cnt from tcf_member where member_type not IN ('01', '03') and  member_gubun in ('03') and join_date < '"+edate+"' " + // -- í”„ëžœì°¨ì´ì¦ˆ(ìˆ˜ê¸‰)
 				"    ) " +
-		") member_type2, " + // °³ÀÎ»ç¾÷(03)
+		") member_type2, " + // ê°œì¸ì‚¬ì—…(03)
 		"( " +
 				"    select sum(cnt) from (" +
-					"    select count(*) cnt from tck_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ¼ö±Þ»ç¾÷ÀÚ (°Ç¼³)
+					"    select count(*) cnt from tck_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ìˆ˜ê¸‰ì‚¬ì—…ìž (ê±´ì„¤)
 					"    union" +
-					"    select count(*) cnt from tcb_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ºñ°Ç¼³ (¼ö±Þ)
+					"    select count(*) cnt from tcb_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ë¹„ê±´ì„¤ (ìˆ˜ê¸‰)
 					"    union" +
-					"    select count(*) cnt from tcl_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ¹°·ù(¼ö±Þ)
+					"    select count(*) cnt from tcl_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ë¬¼ë¥˜(ìˆ˜ê¸‰)
 					"    union" +
-					"    select count(*) cnt from tcf_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- ÇÁ·£Â÷ÀÌÁî(¼ö±Þ)
+					"    select count(*) cnt from tcf_member where member_type not IN ('01', '03') and  member_gubun in ('04') and join_date < '"+edate+"' " + // -- í”„ëžœì°¨ì´ì¦ˆ(ìˆ˜ê¸‰)
 				"    ) " +
-		") member_type3 "  // °³ÀÎ(04)
+		") member_type3 "  // ê°œì¸(04)
 +"from dual "
 );
 if(!sumMemberSpe.next()){

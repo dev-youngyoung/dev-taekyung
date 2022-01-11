@@ -21,8 +21,8 @@ import	sun.misc.BASE64Encoder;
 
 public class DnbSign {
 	/**
-     * ÁöÁ¤µÈ ºñ¹ĞÅ°¸¦ °¡Áö°í ¿À´Â ¸Ş¼­µå
-     * @return  Key ºñ¹ĞÅ° Å¬·¡½º
+     * ì§€ì •ëœ ë¹„ë°€í‚¤ë¥¼ ê°€ì§€ê³  ì˜¤ëŠ” ë©”ì„œë“œ
+     * @return  Key ë¹„ë°€í‚¤ í´ë˜ìŠ¤
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
 	 * @throws ConfigurationException 
@@ -34,7 +34,7 @@ public class DnbSign {
 		try {
 			CompositeConfiguration  conf = Config.getInstance();
     		
-			String FileURL = conf.getString("sign_key");  //key ÆÄÀÏ °æ·Î ¼öÁ¤ÇÊ¿ä
+			String FileURL = conf.getString("sign_key");  //key íŒŒì¼ ê²½ë¡œ ìˆ˜ì •í•„ìš”
         
 			in = new ObjectInputStream(new FileInputStream(FileURL));
 			key = (java.security.Key)in.readObject();
@@ -57,9 +57,9 @@ public class DnbSign {
    }
 	
 	/**
-     * ¹®ÀÚ¿­ ´ëÄª ¾ÏÈ£È­
-     * @param   ID  ºñ¹ĞÅ° ¾ÏÈ£È­¸¦ Èñ¸ÁÇÏ´Â ¹®ÀÚ¿­
-     * @return  String  ¾ÏÈ£È­µÈ ID
+     * ë¬¸ìì—´ ëŒ€ì¹­ ì•”í˜¸í™”
+     * @param   ID  ë¹„ë°€í‚¤ ì•”í˜¸í™”ë¥¼ í¬ë§í•˜ëŠ” ë¬¸ìì—´
+     * @return  String  ì•”í˜¸í™”ëœ ID
 	 * @throws Exception 
      * @exception Exception
      */

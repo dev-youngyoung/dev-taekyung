@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="java.net.URLDecoder" %>
 <%
 String yyyymm = u.request("yyyymm");
@@ -6,18 +6,18 @@ String yyyymm = u.request("yyyymm");
 DataObject evaluateDao = new DataObject("tcb_samsong_evaluate");
 DataSet evaluate = evaluateDao.find("yyyymm = '"+yyyymm+"' ");
 if(!evaluate.next()){
-	u.jsError("»èÁ¦ ´ë»ó °ÇÀÌ ¾ø½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ëŒ€ìƒ ê±´ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(evaluate.getString("status").equals("status")){
-	u.jsError("ÀÛ¼ºÁß »óÅÂ¿¡¼­¸¸ ¼®Á¦ °¡´É ÇÕ´Ï´Ù.");
+	u.jsError("ì‘ì„±ì¤‘ ìƒíƒœì—ì„œë§Œ ì„ì œ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 	return;
 }
 
 DataObject bidDao = new DataObject("tcb_bid_master");
 if(bidDao.findCount("main_member_no = '20121203450' and yyyymm='"+yyyymm+"'")>0){
-	u.jsError("ÇØ´çÁ¤º¸·Î Æò°¡ÁøÇàµÈ ÀÔÂû°ÇÀÌ ÀÖ½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ì •ë³´ë¡œ í‰ê°€ì§„í–‰ëœ ì…ì°°ê±´ì´ ìˆìŠµë‹ˆë‹¤.");
 	 return;
 	
 }
@@ -26,11 +26,11 @@ DB db = new DB();
 db.setCommand("delete from tcb_samsong_evaluate_supp where yyyymm='"+yyyymm+"' ", null);
 db.setCommand("delete from tcb_samsong_evaluate where yyyymm='"+yyyymm+"' ", null);
 if(!db.executeArray()){
-	u.jsError("»èÁ¦ Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦Ã³¸® ÇÏ¿´½À´Ï´Ù.", "./samsong_evaluate_list.jsp?"+u.getQueryString("yyyymm,mode"));
+u.jsAlertReplace("ì‚­ì œì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./samsong_evaluate_list.jsp?"+u.getQueryString("yyyymm,mode"));
 
 
 

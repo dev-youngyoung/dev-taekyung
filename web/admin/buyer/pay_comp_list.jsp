@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_pay_type_cd = codeDao.getCodeArray("M006");
@@ -10,7 +10,7 @@ f.addElement("s_edate", null, null);
 f.addElement("s_pay_type_cd", null, null);
 f.addElement("s_member_name",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -19,8 +19,8 @@ list.setTable("tcb_member a, tcb_useinfo b");
 list.setFields(
 		 "a.*"
 		+", b.paytypecd,b.useendday "
-		+", (select count(member_no) from tcb_menu_member where member_no = a.member_no and menu_cd = '000036') bid_cnt"//°ßÀû°ü¸® ¸Þ´º°¡ ÀÖÀ» °æ¿ì¸¸.ÀÔÂû¼³Á¤ÇÔ.
-		+", (select count(member_no) from tcb_menu_member where member_no = a.member_no and menu_cd = '000033') esti_cnt"//°ßÀû¿äÃ»ÇöÈ² ¸Þ´º°¡ ÀÖÀ» °æ¿ì¸¸.°ßÀû¼³Á¤.
+		+", (select count(member_no) from tcb_menu_member where member_no = a.member_no and menu_cd = '000036') bid_cnt"//ê²¬ì ê´€ë¦¬ ë©”ë‰´ê°€ ìžˆì„ ê²½ìš°ë§Œ.ìž…ì°°ì„¤ì •í•¨.
+		+", (select count(member_no) from tcb_menu_member where member_no = a.member_no and menu_cd = '000033') esti_cnt"//ê²¬ì ìš”ì²­í˜„í™© ë©”ë‰´ê°€ ìžˆì„ ê²½ìš°ë§Œ.ê²¬ì ì„¤ì •.
 		+", (select count(member_no) from tcb_useinfo where member_no = a.member_no) use_cnt"
 		);
 list.addWhere("a.member_type in ('01','03')");
@@ -35,7 +35,7 @@ list.addSearch("b.paytypecd", f.get("s_pay_type_cd"));
 list.addSearch("a.member_name", f.get("s_member_name"), "LIKE");
 list.setOrderBy("b.useendday asc, a.member_no desc");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000068";
 
@@ -68,9 +68,9 @@ if(!f.get("s_cust_name").equals("")) sb.append("  and b.member_name like '%"+f.g
 if(!f.get("s_code_warr_type").equals("")) sb.append("  and c.warr_type like '%"+f.get("s_code_warr_type")+"%' \n");
 if(f.get("s_reg_gubun").equals("Y"))sb.append(" and c.warr_no is not null");
 if(f.get("s_reg_gubun").equals("N"))sb.append(" and c.warr_no is null");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		sb.append(" and a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -84,13 +84,13 @@ String sSortOrder = f.get("hdn_sort_order");
 String sSortCustNameIconName = "";
 if(!sSortColumn.equals("")) {
 	if(sSortOrder.equals("asc"))
-		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>¡è</font>";
+		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>â†‘</font>";
 	else
-		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>¡é</font>";
+		sSortCustNameIconName =  "<font style='color:blue;font-weight:bold'>â†“</font>";
 		sb.append(" order by " + sSortColumn + " " + sSortOrder + " , cont_no desc, cont_chasu , c.warr_seq asc	\n");
 } else {
 	sb.append(" order by a.cont_no desc, cont_no desc, cont_chasu , c.warr_seq asc	\n");
-	sSortCustNameIconName = "<font style='color:blue;font-weight:bold'>¢Õ</font>";
+	sSortCustNameIconName = "<font style='color:blue;font-weight:bold'>â†•</font>";
 }
 
 DataSet ds = dao.query(sb.toString());
@@ -123,11 +123,11 @@ while(ds.next()){
 	if(ds.getString("warr_no").equals("")){
 		//if(ds.getString("warr_status").equals("")){
 		if(ds.getString("warr_status").equals("")){
-			String btn = "<button type=\"button\" class=\"sbtn ico-save\" onclick=\"contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>Á÷Á¢Ã·ºÎ</button>";
-		           btn+= "<br><button type=\"button\" class=\"sbtn ico-request\" onclick=\"warrReq('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>º¸Áõ¿äÃ»</button>";
+			String btn = "<button type=\"button\" class=\"sbtn ico-save\" onclick=\"contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>ì§ì ‘ì²¨ë¶€</button>";
+		           btn+= "<br><button type=\"button\" class=\"sbtn ico-request\" onclick=\"warrReq('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>ë³´ì¦ìš”ì²­</button>";
 			ds.put("btn", btn);
 		}else if(ds.getString("warr_status").equals("10")) {
-			String btn = "<button type=\"button\" class=\"sbtn ico-save\" onclick=\"contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>Á÷Á¢Ã·ºÎ</button>";
+			String btn = "<button type=\"button\" class=\"sbtn ico-save\" onclick=\"contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>ì§ì ‘ì²¨ë¶€</button>";
 			ds.put("btn", btn);
 		}else{
 			ds.put("btn", "<a href=\"javascript:contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><u>"+u.getItem(ds.getString("warr_status"), code_warr_status)+"</u></a>");
@@ -135,7 +135,7 @@ while(ds.next()){
 		
 	}else{
 		if(ds.getString("warr_status").equals("")||ds.getString("warr_status").equals("30")){
-			ds.put("btn", "<button type=\"button\" class=\"sbtn ico-search\" onclick=\"contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>Á¶È¸</button>");
+			ds.put("btn", "<button type=\"button\" class=\"sbtn ico-search\" onclick=\"contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><span></span>ì¡°íšŒ</button>");
 		}else{
 			ds.put("btn", "<a href=\"javascript:contWarr('"+ds.getString("cont_no")+"','"+ds.getString("cont_chasu")+"','"+ds.getString("warr_seq")+"')\"><u>"+u.getItem(ds.getString("warr_status"), code_warr_status)+"</u></a>");
 		}
@@ -146,7 +146,7 @@ while(ds.next()){
 if(u.request("mode").equals("excel")){
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("º¸Áõº¸Çè°ü¸®.xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë³´ì¦ë³´í—˜ê´€ë¦¬.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/contend_warr_excel.html"));
 	return;
 }

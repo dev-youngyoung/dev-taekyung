@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../init.jsp" %>
 <%
 String cont_no = "";
@@ -7,13 +7,13 @@ try {
 	cont_no = u.aseDec(u.request("c"));
 	cont_chasu = "0";
 	if(cont_no.equals("")){
-		u.jsError("±ÇÇÑÀÌ ¾ø´Â Á¢±ÙÀÔ´Ï´Ù.");
+		u.jsError("ê¶Œí•œì´ ì—†ëŠ” ì ‘ê·¼ìž…ë‹ˆë‹¤.");
 		return;
 	}
 }
 catch(Exception e) 
 {
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -29,47 +29,47 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find( where );
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject cfileDao = new DataObject("tcb_cfile");
 DataSet cfile = cfileDao.find(where);
 if(!cfile.next()){
-	u.jsErrClose("ÆÄÀÏÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsErrClose("íŒŒì¼ì •ë³´ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 
-//ci_img ¼³Á¤
+//ci_img ì„¤ì •
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+cont.getString("member_no")+"' ");
 if(!member.next()){
-	u.jsErrClose("°è¾à¼­ ÀÛ¼º ¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ê³„ì•½ì„œ ìž‘ì„± ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 if(!member.getString("ci_img_path").equals("")){
 	ci_img = u.aseEnc(Startup.conf.getString("file.path.buyer.ci_img")+member.getString("ci_img_path"));
 }
 
-//ÆÄÀÏ °æ·Î
+//íŒŒì¼ ê²½ë¡œ
 full_file_path = u.aseEnc(Startup.conf.getString("file.path.bcont_pdf")+cfile.getString("file_path")+cfile.getString("file_name"));
 down_file_name = u.aseEnc(cfile.getString("doc_name"));
 
 
 /*
-	00	°è¾à»óÅÂ(ÀÏ¹Ý±â¾÷¿ë)
-	10	ÀÛ¼ºÁß
-	11	°ËÅäÁß
-	12	³»ºÎ¹Ý·Á
-	20	¼­¸í¿äÃ»
-	21	½ÂÀÎ´ë±â
-	30	¼­¸í´ë±â
-	40	¼öÁ¤¿äÃ»
-	41	¹Ý·Á
-	50	°è¾à¿Ï·á
-	90	Á¾·á°è¾à
-	91	°è¾àÇØÁö
+	00	ê³„ì•½ìƒíƒœ(ì¼ë°˜ê¸°ì—…ìš©)
+	10	ìž‘ì„±ì¤‘
+	11	ê²€í† ì¤‘
+	12	ë‚´ë¶€ë°˜ë ¤
+	20	ì„œëª…ìš”ì²­
+	21	ìŠ¹ì¸ëŒ€ê¸°
+	30	ì„œëª…ëŒ€ê¸°
+	40	ìˆ˜ì •ìš”ì²­
+	41	ë°˜ë ¤
+	50	ê³„ì•½ì™„ë£Œ
+	90	ì¢…ë£Œê³„ì•½
+	91	ê³„ì•½í•´ì§€
 */
 	String[] code_stamp_img = {
 			"10=>pdf_watermark_edit.gif"
@@ -88,7 +88,8 @@ down_file_name = u.aseEnc(cfile.getString("doc_name"));
 stamp_img = u.aseEnc(Startup.conf.getString("dir")+"/web/buyer/html/images/"+u.getItem(cont.getString("status"), code_stamp_img));
 
 
-String url = "/servlets/nicelib.pdf.PDFDown?";
+// String url = "/servlets/nicelib.pdf.PDFDown?";
+String url = "/PDFDown?";
        url+= "system=buyer";
        url+= "&full_file_path="+full_file_path;
        url+= "&down_file_name="+down_file_name;

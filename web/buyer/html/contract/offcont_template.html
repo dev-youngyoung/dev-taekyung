@@ -3,30 +3,45 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à°ü°è</h3>
-	    </div>
-	    <div class="push-right">
-	        <!-- IF START 'detail_person' -->
-				<button type="button" class="sbtn ico-add auth_css" onclick="OpenWindows('pop_search_company2.jsp','pop_search_comapny', '860','700');"><span></span>°è¾à¾÷Ã¼Ãß°¡</button>
-			<!-- IF END 'detail_person' -->
-			<!-- IFNOT START 'detail_person' -->
-				<button type="button" class="sbtn ico-add auth_css" onclick="OpenWindows('pop_search_company.jsp','pop_search_comapny', '860','700');"><span></span>°è¾à¾÷Ã¼Ãß°¡</button>
-			<!-- IFNOT END 'detail_person' -->
+	        <h3>ë†ì‹¬</h3>
 	    </div>
 	</div>
-	<div>
-	<table id="comp_grid" class="inner_table" style="border-top:0px;border-bottom:0px">
-		<thead>
-			<tr style="display: none;"><td style="height: 0px;border:0px;"></td></tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
+	<div style="border-top: 2px solid #333;border-bottom: 1px solid #e0e0e0;">
+		<table id="comp_grid_ns" class="inner_table" style="border-top:0px;border-bottom:0px;">
+			<thead>
+				<tr style="display: none;"><td style="height: 0px;border:0px;"></td></tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>ì—…ì²´</h3>
+	    </div>
+	    <!-- <div class="push-right">
+			<button type="button" class="sbtn ico-add auth_css" onclick="addClientnBlank();"><span></span>ë¹„íšŒì› ì¶”ê°€</button>
+	    </div> -->
+	    <div class="push-right">
+			<button type="button" class="sbtn ico-add auth_css" onclick="javascript:addCustInfo();"><span></span>ì¶”ê°€</button>
+	    </div>
+	</div>
+	<div style="border-top: 2px solid #333;border-bottom: 1px solid #e0e0e0;">
+		<table id="comp_grid" class="inner_table" style="border-top:0px;border-bottom:0px;">
+			<thead>
+				<tr style="display: none;"><td style="height: 0px;border:0px;"></td></tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
 	</div>
 </div>
 
 <div class="btn-group-wrap">
-	<button type="submit" class="btn color ico-pencil auth_css"><span></span>ÀÛ¼º</button>
+	<button type="submit" class="btn color ico-pencil auth_css"><span></span>ì‘ì„±</button>
 </div>
 
 </form>
@@ -46,7 +61,67 @@
 			<span id="cont_date"></span>
 		</td>
 		<td>
-			<button type="button" class="sbtn ico-delete auth_css" onclick="cont_grid.del(this);"><span></span>»èÁ¦</button>
+			<button type="button" class="sbtn ico-delete auth_css" onclick="cont_grid.del(this);"><span></span>ì‚­ì œ</button>
+		</td>
+	</tr>
+</table>
+</form>
+
+<form name="temp_form_ns" method="post">
+<table id="comp_template_ns" style="display: none">
+	<tr>
+		<td>
+			<input type="hidden" name="member_no"/>
+			<input type="hidden" name="cust_gubun" value="10"/>
+			<input type="hidden" name="vendcd"/>
+			<input type="hidden" name="post_code"/>
+			<input type="hidden" name="member_slno"/>
+			<input type="hidden" name="cust_sign_seq"/>
+			<table style="width:100%;border-top:0px;border-bottom:0px;">
+				<tr>
+					<td align="left" style="border: 0px;">
+						<!-- <b>ì—…ì²´êµ¬ë¶„:</b> -->
+						<input type="hidden" name="signer_name" required="Y" hname="ì—…ì²´êµ¬ë¶„" size="15" maxlength="15"/><!--  <span class="caution-text">â€» ê³„ì•½ ê´€ê³„ëª…ì„ ì…ë ¥í•˜ì„¸ìš”. (ê°‘,ì„,ê³µê¸‰ì,ê³µê¸‰ë°›ëŠ”ì ...ë“±)</span> -->
+					</td>
+					<!-- <td align="right" style="border: 0px;">
+						<button type="button" name="del_comp" class="sbtn ico-delete auth_css" onclick="comp_grid.del(this)"><span></span>ì—…ì²´ì‚­ì œ</button>
+					</td> -->
+				</tr>
+			</table>
+			<table class="inner_table">
+				<colgroup>
+					<col width="10%"/>
+					<col width="23%"/>
+					<col width="10%"/>
+					<col width="23%"/>
+					<col width="10%"/>
+					<col width="24%"/>
+				</colgroup>
+				<tr>
+					<th>ì£¼ì†Œ</th>
+					<td colspan="3"><input type="text" name="address" style="width:98%" required="Y"/></td>
+					<th>ë‹´ë‹¹ì</th>
+					<td><input type="text" name="user_name"style="width:98%" required="Y"/></td>
+				</tr>
+				<tr>
+					<th>ìƒí˜¸</th>
+					<td colspan="3"><input type="text" name="member_name" style="width:98%" required="Y"/></td>
+					<th>ì´ë©”ì¼</th>
+					<td><input type="text" name="email"style="width:98%" required="Y" option="email"/></td>
+				</tr>
+				<tr>
+					<th>ëŒ€í‘œì</th>
+					<td><input type="text" name="boss_name"style="width:98%" required="Y"/></td>
+					<th>ì¼ë°˜ì „í™”</th>
+					<td><input type="text" name="tel_num"style="width:98%" /></td>
+					<th name="hp_th">íœ´ëŒ€í°</th>
+					<td name="hp_td">
+						<input type="text" name="hp1"maxlength="3" style="width:28%" required="Y"/><span name="hp_bar1">-</span>
+						<input type="text" name="hp2"maxlength="4" style="width:30%" required="Y"/><span name="hp_bar2">-</span>
+						<input type="text" name="hp3"maxlength="4" style="width:30%" required="Y"/>
+					</td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 </table>
@@ -62,18 +137,18 @@
 			<input type="hidden" name="post_code"/>
 			<input type="hidden" name="member_slno"/>
 			<input type="hidden" name="cust_sign_seq"/>
-			<table style="width: 100%">
+			<table style="width:100%;border-top:0px;border-bottom:0px;">
 				<tr>
 					<td align="left" style="border: 0px;">
-						<b>¾÷Ã¼±¸ºĞ:</b>
-						<input type="text" name="signer_name" required="Y" hname="¾÷Ã¼±¸ºĞ" size="15" maxlength="15"/> <span class="caution-text">¡Ø °è¾à °ü°è¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä. (°©,À»,°ø±ŞÀÚ,°ø±Ş¹Ş´ÂÀÚ ...µî)</span>
+						<!-- <b>ì—…ì²´êµ¬ë¶„:</b> -->
+						<input type="hidden" name="signer_name" required="Y" hname="ì—…ì²´êµ¬ë¶„" size="15" maxlength="15"/><!--  <span class="caution-text">â€» ê³„ì•½ ê´€ê³„ëª…ì„ ì…ë ¥í•˜ì„¸ìš”. (ê°‘,ì„,ê³µê¸‰ì,ê³µê¸‰ë°›ëŠ”ì ...ë“±)</span> -->
 					</td>
 					<td align="right" style="border: 0px;">
-						<button type="button" class="sbtn ico-delete auth_css" onclick="comp_grid.del(this)"><span></span>¾÷Ã¼»èÁ¦</button>
+						<button type="button" name="del_comp" class="sbtn ico-delete auth_css" onclick="comp_grid.del(this)"><span></span>ì‚­ì œ</button>
 					</td>
 				</tr>
 			</table>
-			<table class="inner_table" style="margin-bottom:10px">
+			<table class="inner_table">
 				<colgroup>
 					<col width="10%"/>
 					<col width="23%"/>
@@ -83,26 +158,26 @@
 					<col width="24%"/>
 				</colgroup>
 				<tr>
-					<th>ÁÖ¼Ò</th>
+					<th>ì£¼ì†Œ</th>
 					<td colspan="3"><input type="text" name="address" style="width:98%" required="Y"/></td>
-					<th>´ã´çÀÚ</th>
+					<th>ë‹´ë‹¹ì</th>
 					<td><input type="text" name="user_name"style="width:98%" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>»óÈ£</th>
+					<th>ìƒí˜¸</th>
 					<td colspan="3"><input type="text" name="member_name" style="width:98%" required="Y"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
+					<th>ì´ë©”ì¼</th>
 					<td><input type="text" name="email"style="width:98%" required="Y" option="email"/></td>
 				</tr>
 				<tr>
-					<th>´ëÇ¥ÀÚ</th>
+					<th>ëŒ€í‘œì</th>
 					<td><input type="text" name="boss_name"style="width:98%" required="Y"/></td>
-					<th>ÀÏ¹İÀüÈ­</th>
-					<td><input type="text" name="tel_num"style="width:98%" required="Y"/></td>
-					<th>ÈŞ´ëÆù</th>
-					<td>
-						<input type="text" name="hp1"maxlength="3" style="width:28%" required="Y"/>-
-						<input type="text" name="hp2"maxlength="4" style="width:30%" required="Y"/>-
+					<th>ì¼ë°˜ì „í™”</th>
+					<td><input type="text" name="tel_num"style="width:98%" /></td>
+					<th name="hp_th">íœ´ëŒ€í°</th>
+					<td name="hp_td">
+						<input type="text" name="hp1"maxlength="3" style="width:28%" required="Y"/><span name="hp_bar1">-</span>
+						<input type="text" name="hp2"maxlength="4" style="width:30%" required="Y"/><span name="hp_bar2">-</span>
 						<input type="text" name="hp3"maxlength="4" style="width:30%" required="Y"/>
 					</td>
 				</tr>
@@ -115,37 +190,43 @@
 <br/><br/><br/>
 
 <div class="help-content">
-    <h3>NOTICE<span>À¯¿ëÇÑ Á¤º¸! »ç¿ëÀü¿¡ ¾Ë¾ÆµÎ¼¼¿ä~ </span></h3>
+    <h3>NOTICE<span>ìœ ìš©í•œ ì •ë³´! ì‚¬ìš©ì „ì— ì•Œì•„ë‘ì„¸ìš”~ </span></h3>
     <div class="help-content-body">
-        <h4>ÀÛ¼º¾È³»</h4>
+        <h4>ì‘ì„±ì•ˆë‚´</h4>
         <ul>
-            <li>¿ÀÇÁ¶óÀÎ¿¡¼­ ¼­¸é(Á¾ÀÌ)À¸·Î Ã¼°áÇÑ °è¾à¼­ÀÇ »çº»À» ÀúÀåÇÏ½Ç ¶§ »ç¿ëÇÏ´Â ±â´É ÀÔ´Ï´Ù.</li>
-			<li>¼­¸é °è¾à¼­¸¦ ½ºÄ³³Ê¸¦ ÅëÇØ ÆÄÀÏ·Î ¸¸µç ÈÄ ±× ÆÄÀÏÀ» ÀúÀåÇØ¾ß ÇÏ¸ç ¾÷Ã¼¿¡°Ô Àü¼ÛµÇÁö ¾Ê½À´Ï´Ù.</li>
-			<li>[°è¾à¾÷Ã¼Ãß°¡] ¹öÆ°À» ´­·¯ °Å·¡Ã³¸¦ ¼±ÅÃ ÈÄ [ÀÛ¼º] ¹öÆ°À» ´©¸£¼¼¿ä.</li>
-			<li>ÀúÀåÇÑ °è¾àÀº ¿Ï·á(º¸³½°è¾à) ¸Ş´º¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</li>
+        	<!-- IFC START 'menu_cd==000211' -->
+			<li>ë²•ë¬´íŒ€ì— ì¢…ì´ê³„ì•½ê²€í† ë¥¼ ìš”ì²­í•˜ëŠ” ë©”ë‰´ì…ë‹ˆë‹¤. (ê·¸ë£¹ì›¨ì–´ - ì„œì‹ì„ íƒ - ê²½ì˜ì§€ì› - ê³„ì•½ê²€í† ìš”ì²­ì„œ ë§í¬ì—°ê²°)</li>
+			<li>ì—…ì²´ëª…ì„ ì¶”ê°€í•˜ê³ , ìµœì´ˆê³„ì•½ì„œë¥¼ ì²¨ë¶€í•˜ì—¬ ê³„ì•½ê²€í† ë¥¼ ì§„í–‰í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.</li>
+			<li>ìµœì¢… ê²°ì¬ ì™„ë£Œ í›„ ì„ì‹œì €ì¥ê³„ì•½ì—ì„œ ìµœì¢…ê³„ì•½ì„œ ìŠ¤ìº”ë³¸ì„ ë“±ë¡í•˜ì—¬ì•¼ ê³„ì•½ì´ ì™„ë£Œë©ë‹ˆë‹¤.</li>
+			<li>íŒŒì¼ì€ ì—…ì²´ì— ë³„ë„ë¡œ ì „ì†¡ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(ë¬¸ì„œì¤‘ì•™í™” ì‚¬ìš©ì ë°˜ì¶œì‹ ì²­ í•„ìš”)</li>
+			<!-- IFC END 'menu_cd==000211' -->
+			<!-- IFC START 'menu_cd==000057' -->
+			<li>ì˜¤í”„ë¼ì¸ì—ì„œ ì„œë©´(ì¢…ì´)ìœ¼ë¡œ ì²´ê²°í•œ ê³„ì•½ì„œì˜ ì‚¬ë³¸ì„ ì €ì¥í•˜ì‹¤ ë•Œ ì‚¬ìš©í•˜ëŠ” ê¸°ëŠ¥ ì…ë‹ˆë‹¤.</li>
+			<li>ì„œë©´ ê³„ì•½ì„œë¥¼ ìŠ¤ìºë„ˆë¥¼ í†µí•´ íŒŒì¼ë¡œ ë§Œë“  í›„ ê·¸ íŒŒì¼ì„ ì €ì¥í•´ì•¼ í•˜ë©° ì—…ì²´ì—ê²Œ ì „ì†¡ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(ë¬¸ì„œì¤‘ì•™í™” ì‚¬ìš©ì ë°˜ì¶œì‹ ì²­ í•„ìš”)</li>
+			<li>[ì¶”ê°€] ë²„íŠ¼ì„ ëˆŒëŸ¬ ê±°ë˜ì²˜ë¥¼ ì„ íƒ í›„ [ì‘ì„±] ë²„íŠ¼ì„ ëˆ„ë¥´ì„¸ìš”.</li>
+			<!-- IFC END 'menu_cd==000057' -->
         </ul>
     </div>
 </div>
 
 <script language="javascript">
-
-function formSubmit(f){
-	if(validate(f)){
+function formSubmit(f) {
+	if (validate(f)) {
 		var table = document.getElementById("comp_grid");
-		if(table.rows.length <3){
-			alert("°è¾à°ü°è»ç¸¦ 2°³ ÀÌ»ó ¼±ÅÃÇØ ÁÖ¼¼¿ä.");
+		if (table.rows.length < 2) {
+			alert("ê±°ë˜ì²˜ë¥¼ 1ê°œ ì´ìƒ ì„ íƒí•´ ì£¼ì„¸ìš”.");
 			return false;
 		}
-		var comp_cnt = table.rows.length-1;
+		var comp_cnt = table.rows.length - 1;
 		var chk = false;
 		var my_no = "{{_auth._MEMBER_NO}}";
-		for(var i=0; i <comp_cnt; i ++){
-			if(f["member_no"][i].value == my_no&& !chk){
-				chk=true;
+		for (var i=0; i<comp_cnt; i++) {
+			if (f["member_no"][i].value == my_no && !chk) {
+				chk = true;
 			}
 		}
-		if(!chk){
-			alert("·Î±×ÀÎÇÑ ¾÷Ã¼´Â °è¾à°ü°è»ç¿¡ ¹İµå½Ã Æ÷ÇÔ µÇ¾î¾ß ÇÕ´Ï´Ù.");
+		if (!chk) {
+			alert("ë¡œê·¸ì¸í•œ ì—…ì²´ëŠ” ê³„ì•½ê´€ê³„ì‚¬ì— ë°˜ë“œì‹œ í¬í•¨ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.");
 			return false;
 		}
 		return true;
@@ -153,47 +234,83 @@ function formSubmit(f){
 	return false;
 }
 
+var comp_grid_ns = new MGRID("comp_grid_ns");
+comp_grid_ns.cells = table2array("comp_template_ns");
+comp_grid_ns.cellClassName = "comp_grid_cell";
 
 var comp_grid = new MGRID("comp_grid");
 comp_grid.cells = table2array("comp_template");
 comp_grid.cellClassName = "comp_grid_cell";
 
-function addClientInfo(data){
+function addClientInfo(data) {
 	var f = document.forms['form1'];
-	if(data!=null){
-		if(f["member_no"]){
-			if(f['member_no'].type=="hidden"){
-				if(f["member_no"].value==data["member_no"]){
-					alert("ÀÌ¹Ì Ãß°¡ µÇ¾î ÀÖ´Â ¾÷Ã¼ ÀÔ´Ï´Ù.");
+	if (data != null) {
+		if (f["member_no"]) {
+			if (f['member_no'].type == "hidden") {
+				if (f["member_no"].value == data["member_no"]) {
+					alert("ì´ë¯¸ ì¶”ê°€ ë˜ì–´ ìˆëŠ” ì—…ì²´ ì…ë‹ˆë‹¤.");
 					return;
 				}
-			}else{
+			} else {
 				var cnt = f['member_no'].length;
-			  	for(var i = 0; i < cnt; i++){
-					if(f["member_no"][i].value==data["member_no"]){
-					alert("ÀÌ¹Ì Ãß°¡ µÇ¾î ÀÖ´Â ¾÷Ã¼ ÀÔ´Ï´Ù.");
-					return;
-				}
+			  	for(var i=0; i<cnt; i++) {
+					if (f["member_no"][i].value == data["member_no"]) {
+						alert("ì´ë¯¸ ì¶”ê°€ ë˜ì–´ ìˆëŠ” ì—…ì²´ ì…ë‹ˆë‹¤.");
+						return;
+					}
 			  	}
 			}
 		}
-		var i =0;
-		SetFormValue("temp_form","member_no",data["member_no"]);
-		SetFormValue("temp_form","vendcd",data["vendcd"]);
-		SetFormValue("temp_form","member_slno",data["member_slno"]);
-		SetFormValue("temp_form","member_name",data["member_name"]);
-		SetFormValue("temp_form","post_code",data["post_code"]);
-		SetFormValue("temp_form","address",data["address"]);
-		SetFormValue("temp_form","boss_name",data["boss_name"]);
-		SetFormValue("temp_form","member_gubun",data["member_gubun"]);
-		SetFormValue("temp_form","user_name",data["user_name"]);
-		SetFormValue("temp_form","tel_num", data["tel_num"]);
-		SetFormValue("temp_form","hp1", data["hp1"]);
-		SetFormValue("temp_form","hp2", data["hp2"]);
-		SetFormValue("temp_form","hp3", data["hp3"]);
-		SetFormValue("temp_form","email", data["email"]);
+		var i = 0;
+		SetFormValue("temp_form", "member_no", data["member_no"]);
+		SetFormValue("temp_form", "vendcd", data["vendcd"]);
+		SetFormValue("temp_form", "member_slno", data["member_slno"]);
+		SetFormValue("temp_form", "member_name", data["member_name"]);
+		SetFormValue("temp_form", "post_code", data["post_code"]);
+		SetFormValue("temp_form", "address", data["address"]);
+		SetFormValue("temp_form", "boss_name", data["boss_name"]);
+		SetFormValue("temp_form", "member_gubun", data["member_gubun"]);
+		SetFormValue("temp_form", "user_name", data["user_name"]);
+		SetFormValue("temp_form", "tel_num", data["tel_num"]);
+		SetFormValue("temp_form", "hp1", data["hp1"]);
+		SetFormValue("temp_form", "hp2", data["hp2"]);
+		SetFormValue("temp_form", "hp3", data["hp3"]);
+		SetFormValue("temp_form", "email", data["email"]);
+		SetFormValue("temp_form", "signer_name", "ì—…ì²´"); // ì—…ì²´êµ¬ë¶„ ê¸°ë³¸ê°’
 		comp_grid.cells = table2array("comp_template");
 		comp_grid.addRow();
+	}
+}
+
+/* function addClientnBlank() {//ë¹„íšŒì›
+	var f = document.forms['form1'];
+		SetFormValue("temp_form", "member_no", "");
+		SetFormValue("temp_form", "vendcd", "");
+		SetFormValue("temp_form", "member_slno", "");
+		SetFormValue("temp_form", "member_name", "");
+		SetFormValue("temp_form", "post_code", "");
+		SetFormValue("temp_form", "address", "");
+		SetFormValue("temp_form", "boss_name", "");
+		SetFormValue("temp_form", "member_gubun", "");
+		SetFormValue("temp_form", "user_name", "");
+		SetFormValue("temp_form", "tel_num", "");
+		SetFormValue("temp_form", "hp1", "");
+		SetFormValue("temp_form", "hp2", "");
+		SetFormValue("temp_form", "hp3", "");
+		SetFormValue("temp_form", "email", "");
+		SetFormValue("temp_form", "signer_name", "ì—…ì²´"); // ì—…ì²´êµ¬ë¶„ ê¸°ë³¸ê°’
+		comp_grid.cells = table2array("comp_template");
+		comp_grid.addRow();
+} */
+
+//ì—…ì²´ ì¶”ê°€
+function addCustInfo(){
+	var table = document.getElementById("comp_grid");
+	if(table.rows.length < 2){
+		OpenWindows('pop_search_cust.jsp', 'pop_search_cust', '1100','700');
+	}else{
+		alert("í•œê°œì˜ ì—…ì²´ë§Œ ì¶”ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+		return;
 	}
 }
 
@@ -201,21 +318,42 @@ function addClientInfo(data){
 
 <!-- LOOP START 'cust' -->
 <script language="javascript">
-SetFormValue("temp_form","member_no","{{cust.member_no}}");
-SetFormValue("temp_form","vendcd","{{cust.vendcd}}");
-SetFormValue("temp_form","post_code","{{cust.post_code}}");
-SetFormValue("temp_form","member_slno","{{cust.member_slno}}");
-SetFormValue("temp_form","cust_sign_seq","{{cust.sign_seq}}");
-SetFormValue("temp_form","address","{{cust.address}}");
-SetFormValue("temp_form","user_name","{{cust.user_name}}");
-SetFormValue("temp_form","member_name","{{cust.member_name}}");
-SetFormValue("temp_form","email","{{cust.email}}");
-SetFormValue("temp_form","boss_name","{{cust.boss_name}}");
-SetFormValue("temp_form","tel_num","{{cust.tel_num}}");
-SetFormValue("temp_form","hp1","{{cust.hp1}}");
-SetFormValue("temp_form","hp2","{{cust.hp2}}");
-SetFormValue("temp_form","hp3","{{cust.hp3}}");
-comp_grid.cells = table2array("comp_template");
-comp_grid.addRow();
+SetFormValue("temp_form_ns", "member_no", "{{cust.member_no}}");
+SetFormValue("temp_form_ns", "vendcd", "{{cust.vendcd}}");
+SetFormValue("temp_form_ns", "post_code", "{{cust.post_code}}");
+SetFormValue("temp_form_ns", "member_slno", "{{cust.member_slno}}");
+SetFormValue("temp_form_ns", "cust_sign_seq", "{{cust.sign_seq}}");
+SetFormValue("temp_form_ns", "address", "{{cust.address}}");
+SetFormValue("temp_form_ns", "user_name", "{{cust.user_name}}");
+SetFormValue("temp_form_ns", "member_name", "{{cust.member_name}}");
+SetFormValue("temp_form_ns", "email", "{{cust.email}}");
+SetFormValue("temp_form_ns", "boss_name", "{{cust.boss_name}}");
+SetFormValue("temp_form_ns", "tel_num", "{{cust.tel_num}}");
+SetFormValue("temp_form_ns", "hp1", "{{cust.hp1}}");
+SetFormValue("temp_form_ns", "hp2", "{{cust.hp2}}");
+SetFormValue("temp_form_ns", "hp3", "{{cust.hp3}}");
+SetFormValue("temp_form_ns", "signer_name", "ë†ì‹¬"); // ì—…ì²´êµ¬ë¶„ ê¸°ë³¸ê°’
+comp_grid_ns.cells = table2array("comp_template_ns");
+comp_grid_ns.addRow();
+
+// ë†ì‹¬ ì—…ì²´ ì‚­ì œë²„íŠ¼ ì œê±°, readOnly
+// document.getElementsByName('del_comp')[0].style.display = "none";
+document.getElementsByName('address')[0].readOnly = true;
+document.getElementsByName('user_name')[0].readOnly = true;
+document.getElementsByName('member_name')[0].readOnly = true;
+document.getElementsByName('email')[0].readOnly = true;
+document.getElementsByName('boss_name')[0].readOnly = true;
+document.getElementsByName('tel_num')[0].readOnly = true;
+
+// ë†ì‹¬ íœ´ëŒ€í° hidden
+document.getElementsByName('hp_th')[0].style.background = "white";
+document.getElementsByName('hp_th')[0].style.borderLeft = "none";
+document.getElementsByName('hp_td')[0].style.borderLeft = "none";
+document.getElementsByName('hp_th')[0].innerHTML = "";
+document.getElementsByName('hp_bar1')[0].innerHTML = "";
+document.getElementsByName('hp_bar2')[0].innerHTML = "";
+document.getElementsByName('hp1')[0].type= "hidden";
+document.getElementsByName('hp2')[0].type= "hidden";
+document.getElementsByName('hp3')[0].type= "hidden";
 </script>
 <!-- LOOP END 'cust' -->

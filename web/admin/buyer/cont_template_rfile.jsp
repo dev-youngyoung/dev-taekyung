@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_allow_ext = {"pdf=>PDF","jpg,jpeg,pdf,png,gif=>ÀÌ¹ÌÁöÆÄÀÏ","xls,xlsx=>¿¢¼¿","doc,docx=>¿öµå","hwp=>ÇÑ±Û"};
+String[] code_allow_ext = {"pdf=>PDF","jpg,jpeg,pdf,png,gif=>ì´ë¯¸ì§€íŒŒì¼","xls,xlsx=>ì—‘ì…€","doc,docx=>ì›Œë“œ","hwp=>í•œê¸€"};
 String template_cd = u.request("template_cd");
 String member_no = u.request("member_no");
 if(template_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -12,7 +12,7 @@ DataObject templateDao = new DataObject("tcb_cont_template");
 //templateDao.setDebug(out);
 DataSet template = templateDao.find("template_cd = '"+template_cd+"'  " );
 if(!template.next()){
-	u.jsError("°è¾à¼­½Ä Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì„œì‹ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -49,7 +49,7 @@ while(rfile.next()){
 f.uploadDir=Startup.conf.getString("file.path.bcont_template")+template_cd+"/"+member_no;
 f.maxPostSize= 10*1024;
 
-f.addElement("member_no", member_no, "hname:'´ë»ó¾÷Ã¼', required:'Y'");
+f.addElement("member_no", member_no, "hname:'ëŒ€ìƒì—…ì²´', required:'Y'");
 if(u.isPost()&&f.validate()){
 	
 	DB db = new DB();
@@ -75,11 +75,11 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.", "cont_template_rfile.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "cont_template_rfile.jsp?"+u.getQueryString());
 	return;
 }
 

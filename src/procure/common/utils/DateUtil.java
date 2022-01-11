@@ -15,13 +15,13 @@ import procure.common.db.SQLManager;
  * <pre>
  * 
  * 
- *  ÆÄÀÏ¸í : DateUtil
- *  ±â   ´É : ³¯Â¥Ã³¸® °ü·Ã À¯Æ¿
- *   ÃÖÃÊ ÀÛ¼ºÀÏ  : 2000. 06. 08
- *  Comments : ³¯Â¥Ã³¸® °ü·Ã À¯Æ¿
+ *  íŒŒì¼ëª… : DateUtil
+ *  ê¸°   ëŠ¥ : ë‚ ì§œì²˜ë¦¬ ê´€ë ¨ ìœ í‹¸
+ *   ìµœì´ˆ ì‘ì„±ì¼  : 2000. 06. 08
+ *  Comments : ë‚ ì§œì²˜ë¦¬ ê´€ë ¨ ìœ í‹¸
  *  @version : 1.0
- *  @author      : ¹Ú º´ ÅÂ
- *  ¼öÁ¤³»¿ª     : 
+ *  @author      : ë°• ë³‘ íƒœ
+ *  ìˆ˜ì •ë‚´ì—­     : 
  * 
  * 
  * </pre>
@@ -37,9 +37,9 @@ public class DateUtil {
 	public DateUtil() {
 	}
 
-	/** MiliSecond·Î È¯»êÇÑ ÇÏ·ç */
+	/** MiliSecondë¡œ í™˜ì‚°í•œ í•˜ë£¨ */
 
-	/** ¿À´Ã³¯Â¥¸¦ YYYY-MM-DD·Î µ¹·ÁÁØ´Ù. */
+	/** ì˜¤ëŠ˜ë‚ ì§œë¥¼ YYYY-MM-DDë¡œ ëŒë ¤ì¤€ë‹¤. */
 	public static String getToday() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		return formatter.format(new java.util.Date());
@@ -54,7 +54,7 @@ public class DateUtil {
 		return formatter.format(new java.util.Date());
 	}
 
-	/** ¿À´Ã³¯Â¥¸¦ YYYY-MM-DD·Î µ¹·ÁÁØ´Ù. */
+	/** ì˜¤ëŠ˜ë‚ ì§œë¥¼ YYYY-MM-DDë¡œ ëŒë ¤ì¤€ë‹¤. */
 	public static String getToMonth() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMM");
 		return formatter.format(new java.util.Date());
@@ -129,7 +129,7 @@ public class DateUtil {
 	}	
 	
 	/**
-	 * 	¿À´Ã³¯Â¥¿¡ ´ëÇØ ³â,¿ù,ÀÏº° Á¶°ÇÀ» ¹Ş¾Æ Ã³¸®ÇÏ¿© YYYY-MM-DD·Î µ¹·ÁÁØ´Ù. --kyj(2004.02.14) 
+	 * 	ì˜¤ëŠ˜ë‚ ì§œì— ëŒ€í•´ ë…„,ì›”,ì¼ë³„ ì¡°ê±´ì„ ë°›ì•„ ì²˜ë¦¬í•˜ì—¬ YYYY-MM-DDë¡œ ëŒë ¤ì¤€ë‹¤. --kyj(2004.02.14) 
 	 * @throws SQLException 
 	 * @param out
 	 * @param stmt
@@ -192,7 +192,7 @@ public class DateUtil {
 		return sdate;
 	}
 
-	/** ¾î¶²³¯Â¥¸¦ YYYY-MM-DD·Î µ¹·ÁÁØ´Ù. */
+	/** ì–´ë–¤ë‚ ì§œë¥¼ YYYY-MM-DDë¡œ ëŒë ¤ì¤€ë‹¤. */
 	public static String getSomeday(long day) {
 		d1 = new java.util.Date(today + day * ONEDAY);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -201,7 +201,7 @@ public class DateUtil {
 		// sAdd0(d1.getDate());
 	}
 
-	/** YYYYMMDD¸¦ YYYY-MM-DD·Î µ¹·ÁÁØ´Ù. */
+	/** YYYYMMDDë¥¼ YYYY-MM-DDë¡œ ëŒë ¤ì¤€ë‹¤. */
 	public static String formatYmd(String str, boolean bEdit) {
 		if (str == null) {
 			if (bEdit)
@@ -215,8 +215,8 @@ public class DateUtil {
 				+ str.substring(6, 8);
 	}
 
-	/** 7¿ù 9ÀÏ Ãß°¡(±è°æ¹Ì) */
-	/** YYYYMMÀ» YYYY-MMÀ¸·Î µ¹·ÁÁØ´Ù. */
+	/** 7ì›” 9ì¼ ì¶”ê°€(ê¹€ê²½ë¯¸) */
+	/** YYYYMMì„ YYYY-MMìœ¼ë¡œ ëŒë ¤ì¤€ë‹¤. */
 	public static String formatYmm(String str, boolean bEdit) {
 		if (str == null) {
 			if (bEdit)
@@ -229,7 +229,7 @@ public class DateUtil {
 		return str.substring(0, 4) + "-" + str.substring(4, 6);
 	}
 
-	/** ÀÚ¹ÙÀÇ µğÆúÆ® ³¯Â¥±¸ºĞÀÚ¸¦ º¯È¯ */
+	/** ìë°”ì˜ ë””í´íŠ¸ ë‚ ì§œêµ¬ë¶„ìë¥¼ ë³€í™˜ */
 	public static String getYymmdd(Date date1) {
 		if (date1 == null)
 			return "&nbsp;";
@@ -245,7 +245,7 @@ public class DateUtil {
 			return nNum + "";
 	}
 
-	/** ´ÙÀ½ ¼ø¹ø(10ÀÚ¸®)À» ±¸ÇÑ´Ù.(¼ø¹ø±ÔÄ¢:³âµµ(4)+¼ø¹ø(6)) */
+	/** ë‹¤ìŒ ìˆœë²ˆ(10ìë¦¬)ì„ êµ¬í•œë‹¤.(ìˆœë²ˆê·œì¹™:ë…„ë„(4)+ìˆœë²ˆ(6)) */
 	public static String getSeq10(String str) {
 		String sResult = "";
 		java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -258,7 +258,7 @@ public class DateUtil {
 		return sResult;
 	}
 
-	/** ³¯Â¥ °£°İ±¸ÇÏ±â. */
+	/** ë‚ ì§œ ê°„ê²©êµ¬í•˜ê¸°. */
 	public static long compareDay(String strDate, String strComp) {
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
@@ -277,8 +277,8 @@ public class DateUtil {
 		return gapday;
 	}
 
-	//ÀÎ»ç¿¡¼­ »ç¿ëÇÑ´Ù
-	//¸¶Áö¸· ³¯ ±¸ÇÏ±â
+	//ì¸ì‚¬ì—ì„œ ì‚¬ìš©í•œë‹¤
+	//ë§ˆì§€ë§‰ ë‚  êµ¬í•˜ê¸°
 	public static int getMonthLastDay(PrintWriter out, int year, int month) {
 		int mon = 0;
 		mon = month + 1;
@@ -300,16 +300,16 @@ public class DateUtil {
 
 		default:
 			if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
-				return (29); // 2¿ù À±³â°è»êÀ» À§ÇØ¼­
+				return (29); // 2ì›” ìœ¤ë…„ê³„ì‚°ì„ ìœ„í•´ì„œ
 			else
 				return (28);
 		}
 	}
 
 	/*
-	 * ¿À´Ã ³¯Â¥¸¦ pattern Çü½ÄÀ¸·Î ¹İÈ¯ 
+	 * ì˜¤ëŠ˜ ë‚ ì§œë¥¼ pattern í˜•ì‹ìœ¼ë¡œ ë°˜í™˜ 
 	 * pattern : yyyyMMdd, yyyy.MM.dd, yyyyMMddHHmmss
-	 * @author : ¹ÚÁ¤Ãâ
+	 * @author : ë°•ì •ì¶œ
 	 */
 
 	public static String getFormatString(String pattern) {
@@ -322,8 +322,8 @@ public class DateUtil {
 	}
 	
 	/*
-	 * ³¯Â¥Â÷ÀÌ¸¦ ±¸ÇÑ´Ù. (ÀÏ¼ö)
-	 * @author : ¹ÚÁ¤Ãâ
+	 * ë‚ ì§œì°¨ì´ë¥¼ êµ¬í•œë‹¤. (ì¼ìˆ˜)
+	 * @author : ë°•ì •ì¶œ
 	 */
     public static int getDiffDate(String frDate, String toDate) {
         int f_year  = Integer.parseInt(frDate.substring(0,4));
@@ -344,8 +344,8 @@ public class DateUtil {
     }	
 
 	/*
-	 * Date ÇüÅÂ·Î ¸¸µé±â
-	 * @author : À¯¼ºÈÆ
+	 * Date í˜•íƒœë¡œ ë§Œë“¤ê¸°
+	 * @author : ìœ ì„±í›ˆ
 	 */   
     public static java.util.Date check(String s, String format) throws java.text.ParseException {
 		if ( s == null )
@@ -373,8 +373,8 @@ public class DateUtil {
 	}
 
 	/*
-	 * ³¯Â¥Â÷ÀÌ¸¦ ±¸ÇÑ´Ù.(¿ù¼ö)
-	 * @author : À¯¼ºÈÆ
+	 * ë‚ ì§œì°¨ì´ë¥¼ êµ¬í•œë‹¤.(ì›”ìˆ˜)
+	 * @author : ìœ ì„±í›ˆ
 	 */    
     public static int monthsBetween(String from, String to) throws java.text.ParseException {
         return monthsBetween(from, to, "yyyyMMdd");
@@ -407,20 +407,20 @@ public class DateUtil {
         result += ((toYear - fromYear) * 12);
         result += (toMonth - fromMonth);
 
-        // ceil°ú floorÀÇ È¿°ú
+        // ceilê³¼ floorì˜ íš¨ê³¼
         if (((toDay - fromDay) > 0) ) result += toDate.compareTo(fromDate);
 
         return result;
     }    
     
     /**
-     * ´ÙÀ½ ´ŞÀ» yyyymm Æ÷¸ËÀ¸·Î ¹İÈ¯ÇÑ´Ù
-     * @param ym yyyymm ÀÌ»óÀÇ µ¥ÀÌÅ¸
+     * ë‹¤ìŒ ë‹¬ì„ yyyymm í¬ë§·ìœ¼ë¡œ ë°˜í™˜í•œë‹¤
+     * @param ym yyyymm ì´ìƒì˜ ë°ì´íƒ€
      * @return
      */
     public static String nextMonth(String ym){
     	if(ym == null || ym.length() < 6){
-    		System.out.println("³¯Â¥ Çü½ÄÀÌ Àß ¸ø µÇ¾ú½À´Ï´Ù");
+    		System.out.println("ë‚ ì§œ í˜•ì‹ì´ ì˜ ëª» ë˜ì—ˆìŠµë‹ˆë‹¤");
     		return ym;
     	}
     	
@@ -442,8 +442,8 @@ public class DateUtil {
     }
 
     /*
-	 * ¸¶Áö¸· ³¯Â¥ ±¸ÇÏ±â
-	 * date : °Ë»ö³â¿ù (ex : 201011)
+	 * ë§ˆì§€ë§‰ ë‚ ì§œ êµ¬í•˜ê¸°
+	 * date : ê²€ìƒ‰ë…„ì›” (ex : 201011)
 	*/
 	public static String maxDay(String date){
 		GregorianCalendar gc = new GregorianCalendar();
@@ -452,7 +452,7 @@ public class DateUtil {
 	}    
     
     /**
-     * Çö³â Çö¿ùÀÇ 1ÀÏ ±¸ÇÏ±â
+     * í˜„ë…„ í˜„ì›”ì˜ 1ì¼ êµ¬í•˜ê¸°
      * @param sPattern	format
      * @return
      */
@@ -487,7 +487,7 @@ public class DateUtil {
     }    
     
     /**
-     * Çö³â Çö¿ùÀÇ ¸»ÀÏ ±¸ÇÏ±â
+     * í˜„ë…„ í˜„ì›”ì˜ ë§ì¼ êµ¬í•˜ê¸°
      * @param sPattern	format
      * @return
      */
@@ -520,8 +520,8 @@ public class DateUtil {
     }    
     
     /**
-     * ¿À´Ã³¯Â¥ ±¸ÇÏ±â
-     * @param sPattern	³¯Â¥ ÆĞÅÏ
+     * ì˜¤ëŠ˜ë‚ ì§œ êµ¬í•˜ê¸°
+     * @param sPattern	ë‚ ì§œ íŒ¨í„´
      * @return
      */
     public static String getCurDay(String sPattern)
@@ -547,7 +547,7 @@ public class DateUtil {
         return bfday;
     }   
     
-    /* YYYYMMDDÇü½ÄÀÇ ³¯Â¥¸¦ Æ¯Á¤ ³¯Â¥ Æ÷¸ËÀ¸·Î º¯È¯ÇÏ¿© ¸®ÅÏ */
+    /* YYYYMMDDí˜•ì‹ì˜ ë‚ ì§œë¥¼ íŠ¹ì • ë‚ ì§œ í¬ë§·ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ë¦¬í„´ */
     public static String getFormatDate(String	YYYYMMDD, String	sFormat)
 	{
 		String	_sYYYYMMDD	=	"";

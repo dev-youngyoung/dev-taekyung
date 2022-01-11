@@ -1,22 +1,249 @@
 package dao;
 
-import nicelib.util.*;
-import nicelib.db.*;
+import nicelib.db.DB;
+import nicelib.db.DataObject;
+import nicelib.db.DataSet;
+import nicelib.util.Util;
 
 public class SmsDao extends DataObject {
 
-	public String sender_key = "db7a13360184505cb51b9c511b7d18f2b253934c";//Ä«Ä«¿À ÇÁ·ÎÇÊ Å°
+	private final String SENDER_KEY = "cdd9d60e07d7f276c9ec1880967f432bfb2bd9e7"; // ì¹´ì¹´ì˜¤ í”„ë¡œí•„ í‚¤
+	private final String CHANNEL = "A"; // ì±„ë„(A:ì•Œë¦¼í†¡)
+	private final String SND_TYPE = "P"; // ì „ì†¡ íƒ€ì…(P:Push, R:Realtime)
+	private final String SMS_SND_NUM = "028207114"; // ë°œì‹ ì ë²ˆí˜¸
+	private final String REQ_USR_ID = "ADMIN"; // ë°œì†¡ìš”ì²­ì
+	private final String REQ_DEPT_CD = "ECS"; // ì‹œìŠ¤í…œ êµ¬ë¶„
+	private final String SLOT2 = "ECS"; // ì‹œìŠ¤í…œ ìƒì„¸ êµ¬ë¶„
 	
 	public SmsDao() {
-		this.table = "em_tran";
+		this.table = "MZSENDTRAN";
 	}
 	
+	/*
+	 * @param : phoneNum1(ìˆ˜ì‹ ë²ˆí˜¸ ì²«ìë¦¬)
+	 * @param : phoneNum2(ìˆ˜ì‹ ë²ˆí˜¸ ë‘˜ì§¸ìë¦¬)
+	 * @param : phoneNum3(ìˆ˜ì‹ ë²ˆí˜¸ ì…‹ì§¸ìë¦¬)
+	 * @param : tmplCd(í…œí”Œë¦¿ì½”ë“œ)
+	 * @param : subject(LMSì œëª©)
+	 * @param : sndMsg(ì•Œë¦¼í†¡ì „ì†¡ë©”ì‹œì§€)
+	 * @param : smsSndMsg(LMS/SMSì „ì†¡ë©”ì‹œì§€)
+	 */
+	public boolean sendKakaoTalk(String phoneNum1, 
+								 String phoneNum2, 
+								 String phoneNum3, 
+								 String tmplCd, 
+								 String subject, 
+								 String sndMsg, 
+								 String smsSndMsg) {
+		boolean result = this.sendKakaoTalk(CHANNEL, 
+											SND_TYPE, 
+											phoneNum1, 
+											phoneNum2, 
+											phoneNum3, 
+											tmplCd, 
+											subject, 
+											sndMsg, 
+											smsSndMsg, 
+											SMS_SND_NUM, 
+											REQ_DEPT_CD, 
+											REQ_USR_ID, 
+											"Y", 
+											SLOT2);
+		return result;
+	}
+	
+	/*
+	 * @param : phoneNum1(ìˆ˜ì‹ ë²ˆí˜¸ ì²«ìë¦¬)
+	 * @param : phoneNum2(ìˆ˜ì‹ ë²ˆí˜¸ ë‘˜ì§¸ìë¦¬)
+	 * @param : phoneNum3(ìˆ˜ì‹ ë²ˆí˜¸ ì…‹ì§¸ìë¦¬)
+	 * @param : tmplCd(í…œí”Œë¦¿ì½”ë“œ)
+	 * @param : subject(LMSì œëª©)
+	 * @param : sndMsg(ì•Œë¦¼í†¡ì „ì†¡ë©”ì‹œì§€)
+	 * @param : smsSndMsg(LMS/SMSì „ì†¡ë©”ì‹œì§€)
+	 * @param : smsSndNum(ë°œì‹ ìë²ˆí˜¸)
+	 * @param : reqUsrId(ë°œì†¡ìID)
+	 */
+	public boolean sendKakaoTalk(String phoneNum1, 
+								 String phoneNum2, 
+								 String phoneNum3, 
+								 String tmplCd, 
+								 String subject, 
+								 String sndMsg, 
+								 String smsSndMsg, 
+								 String smsSndNum, 
+								 String reqUsrId) {
+		boolean result = this.sendKakaoTalk(CHANNEL, 
+											SND_TYPE, 
+											phoneNum1, 
+											phoneNum2, 
+											phoneNum3, 
+											tmplCd, 
+											subject, 
+											sndMsg, 
+											smsSndMsg, 
+											smsSndNum, 
+											REQ_DEPT_CD, 
+											reqUsrId, 
+											"Y", 
+											SLOT2);
+		return result;
+	}
+	
+	/*
+	 * @param : channel(ì±„ë„ê°’)
+	 * @param : sndType(ì „ì†¡íƒ€ì…)
+	 * @param : phoneNum1(ìˆ˜ì‹ ë²ˆí˜¸ ì²«ìë¦¬)
+	 * @param : phoneNum2(ìˆ˜ì‹ ë²ˆí˜¸ ë‘˜ì§¸ìë¦¬)
+	 * @param : phoneNum3(ìˆ˜ì‹ ë²ˆí˜¸ ì…‹ì§¸ìë¦¬)
+	 * @param : tmplCd(í…œí”Œë¦¿ì½”ë“œ)
+	 * @param : subject(LMSì œëª©)
+	 * @param : sndMsg(ì•Œë¦¼í†¡ì „ì†¡ë©”ì‹œì§€)
+	 * @param : smsSndMsg(LMS/SMSì „ì†¡ë©”ì‹œì§€)
+	 * @param : smsSndNum(ë°œì‹ ìë²ˆí˜¸)
+	 * @param : reqDeptCd(ì‹œìŠ¤í…œêµ¬ë¶„)
+	 * @param : reqUsrId(ë°œì†¡ìID)
+	 * @param : smsSndYn(LMSë°œì†¡ì—¬ë¶€/ì•Œë¦¼í†¡ì‹¤íŒ¨ì‹œ)
+	 * @param : slot2(ì‹œìŠ¤í…œìƒì„¸êµ¬ë¶„)
+	 */
+	public boolean sendKakaoTalk(String channel, 
+								 String sndType, 
+								 String phoneNum1, 
+								 String phoneNum2, 
+								 String phoneNum3, 
+								 String tmplCd, 
+								 String subject, 
+								 String sndMsg, 
+								 String smsSndMsg, 
+								 String smsSndNum, 
+								 String reqDeptCd, 
+								 String reqUsrId, 
+								 String smsSndYn, 
+								 String slot2) {
+		System.out.println("[SmsDao][sendKakaoTalk] START");
+		
+		boolean result = false;
+		
+		System.out.println("[SmsDao][sendKakaoTalk] channel(ì±„ë„ê°’) : " + channel);
+		System.out.println("[SmsDao][sendKakaoTalk] sndType(ì „ì†¡íƒ€ì…) : " + sndType);
+		System.out.println("[SmsDao][sendKakaoTalk] phoneNum1(ìˆ˜ì‹ ë²ˆí˜¸ ì²«ìë¦¬) : " + phoneNum1);
+		System.out.println("[SmsDao][sendKakaoTalk] phoneNum2(ìˆ˜ì‹ ë²ˆí˜¸ ë‘˜ì§¸ìë¦¬) : " + phoneNum2);
+		System.out.println("[SmsDao][sendKakaoTalk] phoneNum3(ìˆ˜ì‹ ë²ˆí˜¸ ì…‹ì§¸ìë¦¬) : " + phoneNum3);
+		System.out.println("[SmsDao][sendKakaoTalk] tmplCd(í…œí”Œë¦¿ì½”ë“œ) : " + tmplCd);
+		System.out.println("[SmsDao][sendKakaoTalk] subject(LMSì œëª©) : " + subject);
+		System.out.println("[SmsDao][sendKakaoTalk] sndMsg(ì•Œë¦¼í†¡ì „ì†¡ë©”ì‹œì§€) : " + sndMsg);
+		System.out.println("[SmsDao][sendKakaoTalk] smsSndMsg(LMS/SMSì „ì†¡ë©”ì‹œì§€) : " + smsSndMsg);
+		System.out.println("[SmsDao][sendKakaoTalk] smsSndNum(ë°œì‹ ìë²ˆí˜¸) : " + smsSndNum);
+		System.out.println("[SmsDao][sendKakaoTalk] reqDeptCd(ì‹œìŠ¤í…œêµ¬ë¶„) : " + reqDeptCd);
+		System.out.println("[SmsDao][sendKakaoTalk] reqUsrId(ë°œì†¡ìID) : " + reqUsrId);
+		System.out.println("[SmsDao][sendKakaoTalk] smsSndYn(LMSë°œì†¡ì—¬ë¶€/ì•Œë¦¼í†¡ì‹¤íŒ¨ì‹œ) : " + smsSndYn);
+		System.out.println("[SmsDao][sendKakaoTalk] slot2(ì‹œìŠ¤í…œìƒì„¸êµ¬ë¶„) : " + slot2);
+		
+		// ì •ìƒì ì¸ íœ´ëŒ€í° ì²«ìë¦¬ ë²ˆí˜¸ ëª©ë¡
+		String[] codePhone1 = {"010", "011", "016", "017", "018", "019"};
+		
+		// íœ´ëŒ€í°ë²ˆí˜¸ ê²€ì¦
+		if ( (phoneNum1 == null || phoneNum1.length() != 3) || 
+			 (phoneNum2 == null || !(phoneNum2.length() >= 3) || phoneNum2.equals("0000")) || 
+			 (phoneNum3 == null || !(phoneNum3.length() >= 3)) || 
+			 !Util.inArray(phoneNum1, codePhone1) ) {
+			System.out.println("[SmsDao][sendKakaoTalk] invalid phone number");
+			return false;
+		}
+		
+		// í…œí”Œë¦¿ ì½”ë“œ ê²€ì¦
+		if (tmplCd == null || tmplCd.isEmpty()) {
+			System.out.println("[SmsDao][sendKakaoTalk] template code is empty");
+			return false;
+		}
+		
+		// ë©”ì‹œì§€ ê²€ì¦
+		if (sndMsg == null || sndMsg.isEmpty()) {
+			System.out.println("[SmsDao][sendKakaoTalk] send message is empty");
+			return false;
+		}
+		
+		try {
+			// ë©”ì‹œì§€ ê°œí–‰ë¬¸ì ì²˜ë¦¬
+			smsSndMsg = smsSndMsg.replaceAll("\\n", "\'||CHR(13)||CHR(10)||\'");
+			smsSndMsg = "\'" + smsSndMsg + "\'";
+			System.out.println("[SmsDao][sendKakaoTalk] replaced smsSndMsg(LMS/SMSì „ì†¡ë©”ì‹œì§€) : " + smsSndMsg);
+			
+			SmsDao smsDao = new SmsDao();
+			smsDao.item("SENDER_KEY", SENDER_KEY);
+			smsDao.item("CHANNEL", channel);
+			smsDao.item("SND_TYPE", sndType);
+			smsDao.item("PHONE_NUM", phoneNum1 + phoneNum2 + phoneNum3);
+			smsDao.item("TMPL_CD", tmplCd);
+			smsDao.item("SUBJECT", subject);
+			smsDao.item("SND_MSG", sndMsg);
+			smsDao.item("SMS_SND_NUM", smsSndNum);
+			smsDao.item("REQ_DEPT_CD", reqDeptCd);
+			smsDao.item("REQ_USR_ID", reqUsrId);
+			smsDao.item("SMS_SND_YN", smsSndYn);
+			smsDao.item("SLOT2", slot2);
+			
+			DB db = new DB();
+			String query = "INSERT INTO MZSENDTRAN "
+						 + "("
+						 + "    SN"
+						 + "  , SENDER_KEY"
+						 + "  , CHANNEL"
+						 + "  , SND_TYPE"
+						 + "  , PHONE_NUM"
+						 + "  , TMPL_CD"
+						 + "  , SUBJECT"
+						 + "  , SND_MSG"
+						 + "  , SMS_SND_MSG"
+						 + "  , SMS_SND_NUM"
+						 + "  , REQ_DEPT_CD"
+						 + "  , REQ_USR_ID"
+						 + "  , REQ_DTM"
+						 + "  , SMS_SND_YN"
+						 + "  , SLOT2"
+						 + ") VALUES ("
+						 + "    NAECS.MZSENDTRAN_SEQ.NEXTVAL"
+						 + "  , $SENDER_KEY$"
+						 + "  , $CHANNEL$"
+						 + "  , $SND_TYPE$"
+						 + "  , $PHONE_NUM$"
+						 + "  , $TMPL_CD$"
+						 + "  , $SUBJECT$"
+						 + "  , $SND_MSG$"
+						 + "  , " + smsSndMsg
+						 + "  , $SMS_SND_NUM$"
+						 + "  , $REQ_DEPT_CD$"
+						 + "  , $REQ_USR_ID$"
+						 + "  , TO_CHAR(SYSDATE, 'yyyymmddhh24miss')"
+						 + "  , $SMS_SND_YN$"
+						 + "  , $SLOT2$"
+						 + ")";
+			db.setCommand(query, smsDao.record);
+		
+			if (db.executeArray()) {
+				result = true;
+				System.out.println("[SmsDao][sendKakaoTalk] send kakaotalk is success.");
+				System.out.println("[SmsDao][sendKakaoTalk] send number : " + phoneNum1 + phoneNum2 + phoneNum3);
+				System.out.println("[SmsDao][sendKakaoTalk] send message : " + sndMsg);
+			}
+		} catch (Exception e) {
+			System.out.println("[SmsDao][sendKakaoTalk] send kakaotalk is fail.");
+			System.out.println("[SmsDao][sendKakaoTalk] send template code : " + tmplCd);
+			System.out.println("[SmsDao][sendKakaoTalk] send number : " + phoneNum1 + phoneNum2 + phoneNum3);
+			System.out.println("[SmsDao][sendKakaoTalk] send message : " + sndMsg);
+			e.printStackTrace();
+		}
+		
+		System.out.println("[SmsDao][sendKakaoTalk] send kakaotalk result : " + result);
+		System.out.println("[SmsDao][sendKakaoTalk] END");
+		
+		return result;
+	}
 	
 	public boolean sendSMS(String systemGubun,String recvHp1, String recvHp2, String recvHp3, String smsMsg)
 	{
 		boolean bSuccess = false;
 		String[] code_hp1 = {"010","011","016","017","018","019"}; 
-		// Àü´ŞµÈ °ªÀÌ Á¤»óÀû ÀÏ¶§¸¸ Ã³¸®
+		// ì „ë‹¬ëœ ê°’ì´ ì •ìƒì  ì¼ë•Œë§Œ ì²˜ë¦¬
 		if ( 	
 			 (recvHp1 != null) && (recvHp1.length() == 3)
 			 &&	(recvHp2 != null) && (recvHp2.length() >= 3)
@@ -25,73 +252,94 @@ public class SmsDao extends DataObject {
 			 && Util.inArray(recvHp1, code_hp1)
 			)
 		{
-			String tran_callback = "027889097"; //
-			String tran_phone = recvHp1+ recvHp2+ recvHp3;// "-" Á¦°ÅÇÑ 12ÀÚ¸® º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
+			String tran_callback = "028208282"; //
+			String tran_phone = recvHp1+ recvHp2+ recvHp3;// "-" ì œê±°í•œ 12ìë¦¬ ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ (ìš°ì¸¡ì— ê³µë°±ì¶”ê°€)
 			
 			try {
-				String sHostName;
-				sHostName = java.net.InetAddress.getLocalHost().getHostName();
-				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
-				{
-					DB db = new DB();
-					//db.setDebug(out);
-					DataObject smsDao = new DataObject("em_tran");
-					smsDao.item("tran_phone", tran_phone.trim());
-					smsDao.item("tran_callback", tran_callback);					
-					smsDao.item("tran_status", "1");
-					//smsDao.item("tran_date", Util.getTimeString("yyyyMMddHHmmss"));
-					smsDao.item("tran_msg", smsMsg);
-					smsDao.item("tran_type", "4");
-					smsDao.item("tran_id", "NDD002");
-					
-					String query = 
-					 " INSERT INTO em_tran       "
-					+"          (                "
-					+"            tran_pr        "
-					+"          , tran_phone     "
-					+"          , tran_callback  "
-					+"          , tran_status    "
-					+"          , tran_date      "
-					+"          , tran_msg       "
-					+"          , tran_type      "
-					+"          , tran_id        "
-					+"          ) VALUES (       "
-					+"          seq_sms.nextval  "
-					+"          , $tran_phone$   "
-					+"          , $tran_callback$"
-					+"          , $tran_status$  "
-					+"			, SYSDATE        "
-					+"		    , $tran_msg$     "
-					+"		    , $tran_type$    "
-					+"		    , $tran_id$      "
-					+"          )                ";
-					System.out.println(query);
-					db.setCommand(query, smsDao.record);
-					if(!db.executeArray()){
-						System.out.println("//-------------------- [SMSÀü¼Û ¿À·ù] --------------------//");
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
-						System.out.println("//--------------------------------------------------//");
-					} 
-					else
-					{
-						System.out.println("//-------------------- [SMSÀü¼Û] --------------------//");
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
-						System.out.println("//--------------------------------------------------//");
-					}
-					bSuccess = true;					
-				}
+				DB db = new DB();
+				//db.setDebug(out);
+				DataObject smsDao = new DataObject("em_tran");
+				smsDao.item("tran_phone", tran_phone.trim());
+				smsDao.item("tran_callback", tran_callback);					
+				smsDao.item("tran_status", "1");
+				//smsDao.item("tran_date", Util.getTimeString("yyyyMMddHHmmss"));
+				smsDao.item("tran_msg", smsMsg);
+				smsDao.item("tran_type", "4");
+				smsDao.item("tran_id", "NDD002");
+				
+				String query =                                     
+				"	INSERT INTO SDK_SMS_SEND					"  
+				+"	(                                           "  
+				+"	     MSG_ID                                 "  
+				+"	,    USER_ID                                "  
+				+"	,    SCHEDULE_TYPE                          "  
+				+"	,    NOW_DATE                               "  
+				+"	,    SEND_DATE                              "  
+				+"	,    CALLBACK                               "  
+				+"	,    DEST_COUNT                             "  
+				+"	,    DEST_INFO                              "  
+				+"	,    SMS_MSG                                "  
+				+"	,    RESERVED1                              "  
+				+"	,    RESERVED2                              "  
+				+"	)                                           "  
+				+"	VALUES                                      "  
+				+"	(                                           "  
+				+"	     SDK_SMS_SEQ.NEXTVAL                    "  
+				+"	,    'SD'                                   "  
+				+"	,    0                                      "  
+				+"	,    TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')    "  
+				+"	,    TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')    "  
+				+"	,    $tran_callback$                        "  
+				+"	,    1                                      "  
+				+"	,    '^' || $tran_phone$                    "  
+				+"	,    $tran_msg$                      		"  
+				+"	,    'SD_NAECS'                             "  
+				+"	,    'NAECS'                                "  
+				+"	)                                           "; 
+
+				
+				/*
+				String query = 
+				 " INSERT INTO em_tran       "
+				+"          (                "
+				+"            tran_pr        "
+				+"          , tran_phone     "
+				+"          , tran_callback  "
+				+"          , tran_status    "
+				+"          , tran_date      "
+				+"          , tran_msg       "
+				+"          , tran_type      "
+				+"          , tran_id        "
+				+"          ) VALUES (       "
+				+"          seq_sms.nextval  "
+				+"          , $tran_phone$   "
+				+"          , $tran_callback$"
+				+"          , $tran_status$  "
+				+"			, SYSDATE        "
+				+"		    , $tran_msg$     "
+				+"		    , $tran_type$    "
+				+"		    , $tran_id$      "
+				+"          )                ";
+				
+				*/
+				
+				System.out.println(query);
+				db.setCommand(query, smsDao.record);
+				if(!db.executeArray()){
+					System.out.println("//-------------------- [SMSì „ì†¡ ì˜¤ë¥˜] --------------------//");
+					System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + tran_phone);
+					System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + smsMsg);
+					System.out.println("//--------------------------------------------------//");
+				} 
 				else
 				{
-					System.out.println("//-------------------- [°¡»ó SMSÀü¼Û:°³¹ß¿ë] --------------------//");
-					System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-					System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
+					System.out.println("//-------------------- [SMSì „ì†¡] --------------------//");
+					System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + tran_phone);
+					System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + smsMsg);
 					System.out.println("//--------------------------------------------------//");
-					bSuccess = true;
 				}
-		
-				
+				bSuccess = true;					
+						
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			
@@ -99,7 +347,7 @@ public class SmsDao extends DataObject {
 		}
 		else
 		{
-			System.out.println("[ERROR "+this.getClass()+".sendSMS()] : Àü´ŞµÈ parmater¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.");
+			System.out.println("[ERROR "+this.getClass()+".sendSMS()] : ì „ë‹¬ëœ parmaterì— ì˜¤ë¥˜ê°€ ìˆìŠµë‹ˆë‹¤.");
 			System.out.println("recvHp1:"+recvHp1);
 			System.out.println("recvHp2:"+recvHp2);
 			System.out.println("recvHp3:"+recvHp3);
@@ -114,7 +362,7 @@ public class SmsDao extends DataObject {
 	{
 		boolean bSuccess = false;
 		String[] code_hp1 = {"010","011","016","017","018","019"}; 
-		// Àü´ŞµÈ °ªÀÌ Á¤»óÀû ÀÏ¶§¸¸ Ã³¸®
+		// ì „ë‹¬ëœ ê°’ì´ ì •ìƒì  ì¼ë•Œë§Œ ì²˜ë¦¬
 		if ( 	
 			 (recvHp1 != null) && (recvHp1.length() == 3)
 			 &&	(recvHp2 != null) && (recvHp2.length() >= 3)
@@ -124,12 +372,12 @@ public class SmsDao extends DataObject {
 			)
 		{
 			String tran_callback = "027889097"; //
-			String tran_phone = recvHp1+ recvHp2+ recvHp3;// "-" Á¦°ÅÇÑ 12ÀÚ¸® º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
+			String tran_phone = recvHp1+ recvHp2+ recvHp3;// "-" ì œê±°í•œ 12ìë¦¬ ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ (ìš°ì¸¡ì— ê³µë°±ì¶”ê°€)
 			
 			try {
 				String sHostName;
 				sHostName = java.net.InetAddress.getLocalHost().getHostName();
-				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
+				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ì‹¤ì„œë²„ë§Œ sms ë³´ëƒ„
 				{
 				
 
@@ -182,9 +430,9 @@ public class SmsDao extends DataObject {
 					db.setCommand(mmsDao.getInsertQuery(), mmsDao.record);
 					
 					if(!db.executeArray()){
-						System.out.println("//-------------------- [LMSÀü¼Û ¿À·ù] --------------------//");
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
+						System.out.println("//-------------------- [LMSì „ì†¡ ì˜¤ë¥˜] --------------------//");
+						System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + tran_phone);
+						System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + smsMsg);
 						System.out.println("//--------------------------------------------------//");
 					}
 					
@@ -192,9 +440,9 @@ public class SmsDao extends DataObject {
 				}
 				else
 				{
-					System.out.println("//-------------------- [°¡»ó LMSÀü¼Û:°³¹ß¿ë] --------------------//");
-					System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-					System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
+					System.out.println("//-------------------- [ê°€ìƒ LMSì „ì†¡:ê°œë°œìš©] --------------------//");
+					System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + tran_phone);
+					System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + smsMsg);
 					System.out.println("//--------------------------------------------------//");
 					bSuccess = true;
 				}
@@ -207,117 +455,7 @@ public class SmsDao extends DataObject {
 		}
 		else
 		{
-			System.out.println("[ERROR "+this.getClass()+".sendLMS()] : Àü´ŞµÈ parmater¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.");
-			System.out.println("recvHp1:"+recvHp1);
-			System.out.println("recvHp2:"+recvHp2);
-			System.out.println("recvHp3:"+recvHp3);
-			System.out.println("smsMsg:"+smsMsg);
-		}
-		
-		return bSuccess;
-		
-	}
-	
-	public boolean sendKakaoTalk(String systemGubun, String recvHp1, String recvHp2, String recvHp3, String smsMsg,String re_type, String re_body) {
-		boolean bSuccess = false;
-		String[] code_hp1 = {"010","011","016","017","018","019"}; 
-		// Àü´ŞµÈ °ªÀÌ Á¤»óÀû ÀÏ¶§¸¸ Ã³¸®
-		if ( 	
-			 (recvHp1 != null) && (recvHp1.length() == 3)
-			 &&	(recvHp2 != null) && (recvHp2.length() >= 3)
-			 &&	(recvHp3 != null) && (recvHp3.length() >= 3) && !recvHp3.equals("0000")
-			 && (smsMsg != null) && !smsMsg.equals("")
-			 && Util.inArray(recvHp1, code_hp1)
-			)
-		{
-			
-			String template_code = "";
-			
-			String tran_callback = "027889097"; //
-			String tran_phone = recvHp1+ recvHp2+ recvHp3;// "-" Á¦°ÅÇÑ 12ÀÚ¸® º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
-			
-			try {
-				String sHostName;
-				sHostName = java.net.InetAddress.getLocalHost().getHostName();
-				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
-				{
-				
-
-					DB db = new DB();
-					
-					DataObject smsDao = new DataObject("em_tran");
-					DataSet ds= smsDao.query("select em_tran_kko_seq.nextval kko_seq from dual");
-					while(!ds.next()){
-					}
-					String kko_seq = ds.getString("kko_seq");
-					smsDao.item("tran_phone", tran_phone.trim());
-					smsDao.item("tran_callback", tran_callback);					
-					smsDao.item("tran_status", "1");
-					smsDao.item("tran_type", "7");
-					smsDao.item("tran_id", "NDD002");
-					smsDao.item("tran_ etc4", kko_seq);
-					
-					String query = 
-					 " INSERT INTO em_tran       "
-					+"          (                "
-					+"            tran_pr        "
-					+"          , tran_phone     "
-					+"          , tran_callback  "
-					+"          , tran_status    "
-					+"          , tran_date      "
-					+"          , tran_type      "
-					+"          , tran_id        "
-					+"          , tran_etc4      "
-					+"          ) VALUES (       "
-					+"          seq_sms.nextval  "
-					+"          , $tran_phone$   "
-					+"          , $tran_callback$"
-					+"          , $tran_status$  "
-					+"			, SYSDATE        "
-					+"		    , $tran_type$    "
-					+"		    , $tran_id$      "
-					+"		    , $tran_ etc4$   "
-					+"          )                ";
-					
-					db.setCommand(query, smsDao.record);
-					
-					DataObject kkoDao = new DataObject("em_tran_kko");
-					kkoDao.item("mms_seq", kko_seq);
-					kkoDao.item("sender_key",sender_key);
-					kkoDao.item("template_code", template_code);
-					kkoDao.item("nation_code", "82");
-					kkoDao.item("message",smsMsg);
-					kkoDao.item("re_type", re_type);
-					kkoDao.item("re_body", re_body);
-					db.setCommand(kkoDao.getInsertQuery(), kkoDao.record);
-					
-					if(!db.executeArray()){
-						System.out.println("//-------------------- [LMSÀü¼Û ¿À·ù] --------------------//");
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
-						System.out.println("//--------------------------------------------------//");
-					}
-					
-					bSuccess = true;					
-				}
-				else
-				{
-					System.out.println("//-------------------- [°¡»ó LMSÀü¼Û:°³¹ß¿ë] --------------------//");
-					System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + tran_phone);
-					System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + smsMsg);
-					System.out.println("//--------------------------------------------------//");
-					bSuccess = true;
-				}
-		
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}			
-
-		}
-		else
-		{
-			System.out.println("[ERROR "+this.getClass()+".sendLMS()] : Àü´ŞµÈ parmater¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.");
+			System.out.println("[ERROR "+this.getClass()+".sendLMS()] : ì „ë‹¬ëœ parmaterì— ì˜¤ë¥˜ê°€ ìˆìŠµë‹ˆë‹¤.");
 			System.out.println("recvHp1:"+recvHp1);
 			System.out.println("recvHp2:"+recvHp2);
 			System.out.println("recvHp3:"+recvHp3);
@@ -326,7 +464,4 @@ public class SmsDao extends DataObject {
 		
 		return bSuccess;
 	}
-	
-	
-
 }

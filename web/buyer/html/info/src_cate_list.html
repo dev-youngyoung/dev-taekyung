@@ -1,19 +1,26 @@
+ï»¿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+
 <form novalidate name="form1" method="post" >
 
 <div>
 <div  class="push-left">
 <span class="caution-text" style="line-height:25px">
-	* ¸ñ·ÏÀÇ ¼Ò½ÌÄ«Å×°í¸®¸í¿¡¼­ ¿À¸¥ÂÊ ¸¶¿ì½º¸¦ Å¬¸¯ÇÏ¸é ¼Ò½ÌºĞ·ù¸¦ <u>Ãß°¡</u>,<u>»èÁ¦</u> ÇÏ½Ç¼ö ÀÖ½À´Ï´Ù.<br>  
-	* <u>¼öÁ¤</u>Àº ¼Ò½ÌÄ«Å×°í¸®¸íÀ» ´õºíÅ¬¸¯ÇÏ¿© ¼öÁ¤ÇÏ½Ã¸é µË´Ï´Ù. <br>
-	* µî·ÏµÈ ¾÷Ã¼¼Ò½ÌÄ«Å×°í¸®¿¡ ´ëÇØ '°Å·¡¾÷Ã¼°ü¸®' -> '¾÷Ã¼¼Ò½Ì±×·ì°ü¸®' ¸Ş´º¿¡¼­ ¾÷Ã¼¸¦ ¸ÅÇÎÇÏ¼¼¿ä.
+	* ëª©ë¡ì˜ ì†Œì‹±ì¹´í…Œê³ ë¦¬ëª…ì—ì„œ ì˜¤ë¥¸ìª½ ë§ˆìš°ìŠ¤ë¥¼ í´ë¦­í•˜ë©´ ì†Œì‹±ë¶„ë¥˜ë¥¼ <u>ì¶”ê°€</u>,<u>ì‚­ì œ</u> í•˜ì‹¤ìˆ˜ ìˆìŠµë‹ˆë‹¤.<br>  
+	* <u>ìˆ˜ì •</u>ì€ ì†Œì‹±ì¹´í…Œê³ ë¦¬ëª…ì„ ë”ë¸”í´ë¦­í•˜ì—¬ ìˆ˜ì •í•˜ì‹œë©´ ë©ë‹ˆë‹¤. <br>
+	* ë“±ë¡ëœ ì—…ì²´ì†Œì‹±ì¹´í…Œê³ ë¦¬ì— ëŒ€í•´ 'ê±°ë˜ì—…ì²´ê´€ë¦¬' -> 'ì—…ì²´ì†Œì‹±ê·¸ë£¹ê´€ë¦¬' ë©”ë‰´ì—ì„œ ì—…ì²´ë¥¼ ë§¤í•‘í•˜ì„¸ìš”.
 </span> 
 </div>
 <div class="push-right" style="padding-top:30px">
-	<button type="button" class="btn color ico-save" onclick="if(confirm('ÀúÀåÇÏ½Ã°Ú½À´Ï±î?'))saveMenu();"><span></span> ÀúÀå</button>
+	<button type="button" class="btn color ico-save" onclick="if(confirm('ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?'))saveMenu();"><span></span> ì €ì¥</button>
 </div>
 </div>
 
@@ -29,9 +36,9 @@ $(document).ready( function(){
 	RealGridJS.setRootContext("{{realgrid_path}}");   //  cab/realgrid
 	//RealGridJS.setTrace(true);
 
-	// filed´Â µ¥ÀÌÅ¸ ¿µ¿ª, ÄÃ·³Àº view¿µ¿ª
+	// filedëŠ” ë°ì´íƒ€ ì˜ì—­, ì»¬ëŸ¼ì€ viewì˜ì—­
 
-	treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source °´Ã¼
+	treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source ê°ì²´
 	treeView			= new RealGridJS.TreeView("realgrid");
 	treeView.setDataSource(treeDataProvider);
 
@@ -58,7 +65,7 @@ function setOptions(){
 			updatable: true,
 			deletable: true,
 			deleteRowsConfirm: true,
-			deleteRowsMessage: "»èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?"
+			deleteRowsMessage: "ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?"
 		}
 		,displayOptions:{
 			//columnWidth : 200
@@ -66,11 +73,11 @@ function setOptions(){
 	};
 	treeView.setOptions(options);
 
-	//Æú´õ ÀÌ¹ÌÁö µî·Ï
+	//í´ë” ì´ë¯¸ì§€ ë“±ë¡
 	var imgFiles = ["folder_close.gif","folder_open.gif","unknown.gif"];
 	var imageList = new RealGridJS.ImageList("images", "/cab/realgrid/resource/");
 	imageList.addUrls(imgFiles);
-	// Æ®¸®ºä¿¡ ÀÌ¹ÌÁö ¸®½ºÆ® µî·ÏÇÏ±â
+	// íŠ¸ë¦¬ë·°ì— ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ë“±ë¡í•˜ê¸°
 	treeView.registerImageList(imageList);
 	treeView.setTreeOptions({
 		iconImages: imageList.getName(),
@@ -100,26 +107,26 @@ function setStyle(){
 function setColumns() {
 	var columns = [];
 	columns.push({name:"icon" ,fieldName:"icon" ,header:"icon" ,width:120 ,editable:true ,movable:false ,sortable:false, visible:false});
-	columns.push({name:"src_nm" ,fieldName:"src_nm" ,header:"¼Ò½ÌÄ«Å×°í¸®¸í" ,width: 450 ,editable:true ,movable:false ,sortable:false,
+	columns.push({name:"src_nm" ,fieldName:"src_nm" ,header:"ì†Œì‹±ì¹´í…Œê³ ë¦¬ëª…" ,width: 450 ,editable:true ,movable:false ,sortable:false,
 		validations  : {
 			criteria : "value is not empty"
-			, message  : "ºÎ¼­¸íÀº ¹İµå½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä."
+			, message  : "ë¶€ì„œëª…ì€ ë°˜ë“œì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”."
 			, mode     : "always"
 			, level    : "warning"
 		}});
 
-	columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"¼Ò½ÌÄÚµå" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-	columns.push({name:"l_src_cd" ,fieldName:"l_src_cd" ,header:"¼Ò½ÌÄÚµå1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-	columns.push({name:"m_src_cd" ,fieldName:"m_src_cd" ,header:"¼Ò½ÌÄÚµå1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-	columns.push({name:"s_src_cd" ,fieldName:"s_src_cd" ,header:"¼Ò½ÌÄÚµå1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-	columns.push({name:"p_src_cd" ,fieldName:"p_src_cd" ,header:"ºÎ¸ğ¼Ò½ÌÄÚµå" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+	columns.push({name:"src_cd" ,fieldName:"src_cd" ,header:"ì†Œì‹±ì½”ë“œ" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+	columns.push({name:"l_src_cd" ,fieldName:"l_src_cd" ,header:"ì†Œì‹±ì½”ë“œ1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+	columns.push({name:"m_src_cd" ,fieldName:"m_src_cd" ,header:"ì†Œì‹±ì½”ë“œ1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+	columns.push({name:"s_src_cd" ,fieldName:"s_src_cd" ,header:"ì†Œì‹±ì½”ë“œ1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+	columns.push({name:"p_src_cd" ,fieldName:"p_src_cd" ,header:"ë¶€ëª¨ì†Œì‹±ì½”ë“œ" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
 	columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,width:50 ,editable:true ,movable:false ,sortable:false, visible:false});
-    columns.push({name:"src_cnt" ,fieldName:"src_cnt" ,header: "¾÷Ã¼¼Ò½Ì ¼ö" ,width:80 ,editable:false,movable:false ,sortable:false, visible:true});
-    columns.push({name:"use_yn" ,fieldName:"use_yn" ,header:"»ç¿ë¿©ºÎ" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
-    columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "¸¶Áö¸· ³ëµå¿©ºÎ" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
+    columns.push({name:"src_cnt" ,fieldName:"src_cnt" ,header: "ì—…ì²´ì†Œì‹± ìˆ˜" ,width:80 ,editable:false,movable:false ,sortable:false, visible:true});
+    columns.push({name:"use_yn" ,fieldName:"use_yn" ,header:"ì‚¬ìš©ì—¬ë¶€" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:true});
+    columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "ë§ˆì§€ë§‰ ë…¸ë“œì—¬ë¶€" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
 
 	treeDataProvider.setFields(columns);
-	treeView.setColumns(columns);	// ÄÃ·³À» TreeView¿¡ ÀÔ·Â
+	treeView.setColumns(columns);	// ì»¬ëŸ¼ì„ TreeViewì— ì…ë ¥
 	treeView.addCellRenderers(
 		[{
 			"id": "chk_use_yn",
@@ -167,7 +174,7 @@ function getSrcCd(p_src_cd) {
             if (data != null) {
                 max_src_cd = data.trim();
             } else {
-                alert("Ã³¸®¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+                alert("ì²˜ë¦¬ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
             }
         },
         error : function(request, status, error) {
@@ -178,19 +185,19 @@ function getSrcCd(p_src_cd) {
 
 function setContextMenu(){
 	treeView.setContextMenu(
-		[{label: "Ãß°¡"}, {label: "ÇÏÀ§Ç×¸ñÃß°¡"}, {label: "»èÁ¦"}]
+		[{label: "ì¶”ê°€"}, {label: "í•˜ìœ„í•­ëª©ì¶”ê°€"}, {label: "ì‚­ì œ"}]
 	);
 
 	treeView.onContextMenuItemClicked = function (grid, label, index) {
 		treeView.commit();
-		//alert("Context menu°¡ Å¬¸¯µÆ½À´Ï´Ù: " + label.label + "\n" + JSON.stringify(index, null, 4));
+		//alert("Context menuê°€ í´ë¦­ëìŠµë‹ˆë‹¤: " + label.label + "\n" + JSON.stringify(index, null, 4));
 		var row_id= index['dataRow'];
 		var icon_index = 1;
 		var depth = treeDataProvider.getValue(row_id,"depth");
 		var childId = null;
 		var p_row_id = null;
 		var p_src_cd = null;
-		if(label["label"]=="Ãß°¡"){
+		if(label["label"]=="ì¶”ê°€"){
 			if(treeDataProvider.getAncestors(row_id)!= null){
 				p_row_id = treeDataProvider.getAncestors(row_id)[0];
 			}
@@ -198,28 +205,28 @@ function setContextMenu(){
             depth = row_id==-1?"1":treeDataProvider.getValue(row_id,"depth");
 			if(depth == "3") icon_index= 2;
 		}
-		if(label["label"]=="ÇÏÀ§Ç×¸ñÃß°¡"){
+		if(label["label"]=="í•˜ìœ„í•­ëª©ì¶”ê°€"){
 			p_row_id = row_id;
 			p_src_cd = row_id==-1?"999999999":treeDataProvider.getValue(row_id,"src_cd");
 			depth = row_id==-1?"1":Number(treeDataProvider.getValue(row_id,"depth"))+1;
 			user_yn = "Y";
 			icon_index= 2;
 
-			treeDataProvider.setValue(row_id,"end_node_yn", "N");	// ÇÏÀ§ºÎ¼­ Ãß°¡½Ã ÇöÀç ³ëµåÀÇ end_node_yn = Nº¯°æ
+			treeDataProvider.setValue(row_id,"end_node_yn", "N");	// í•˜ìœ„ë¶€ì„œ ì¶”ê°€ì‹œ í˜„ì¬ ë…¸ë“œì˜ end_node_yn = Në³€ê²½
 			treeDataProvider.setValue(row_id,"use_yn", "Y");
-			//var row_id2 = index['dataRow'];							// ÇöÀç id
-			//var parent_row_id2 = treeDataProvider.getParent(row_id2);	// ºÎ¸ğ id
+			//var row_id2 = index['dataRow'];							// í˜„ì¬ id
+			//var parent_row_id2 = treeDataProvider.getParent(row_id2);	// ë¶€ëª¨ id
 			//treeDataProvider.setValue(parent_row_id2,"use_yn", "");
 		}
 
-		if(label["label"]=="Ãß°¡"||label["label"]=="ÇÏÀ§Ç×¸ñÃß°¡"){
+		if(label["label"]=="ì¶”ê°€"||label["label"]=="í•˜ìœ„í•­ëª©ì¶”ê°€"){
 			var chileCnt = treeDataProvider.getChildCount(p_row_id);
 			display_seq = chileCnt+1;
 			new_row_id = treeDataProvider.addChildRow(
 				p_row_id,     // parent rowId
-				["¼Ò½ÌÄ«Å×°í¸®¸íÀÔ·Â"],
+				["ì†Œì‹±ì¹´í…Œê³ ë¦¬ëª…ì…ë ¥"],
 				icon_index,      // icon index
-				false   // children(ÀÚ½Ä º¸À¯ ¿©ºÎ)
+				false   // children(ìì‹ ë³´ìœ  ì—¬ë¶€)
 			);
             getSrcCd(p_src_cd);
 			treeDataProvider.setValue(new_row_id,"src_cd", max_src_cd);
@@ -231,27 +238,27 @@ function setContextMenu(){
 			treeDataProvider.setValue(new_row_id,"use_yn","Y");
 			treeDataProvider.setValue(new_row_id,"end_node_yn", "Y");
 
-			if(label["label"]=="ÇÏÀ§¼Ò½ÌÄ«Å×°í¸®Ãß°¡"){
+			if(label["label"]=="í•˜ìœ„ì†Œì‹±ì¹´í…Œê³ ë¦¬ì¶”ê°€"){
 				treeView.expand(treeView.getItemIndex(row_id), true, true);
 			}
 			treeView.setCurrent({dataRow:new_row_id});
 			treeView.showEditor();
 		}
 
-		if(label["label"]=="»èÁ¦"){
-			if(confirm("¼±ÅÃµÈ ÇàÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(label["label"]=="ì‚­ì œ"){
+			if(confirm("ì„ íƒëœ í–‰ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 
-				var row_id = index['dataRow'];							// ÇöÀç id
-				var parent_row_id = treeDataProvider.getParent(row_id);	// ºÎ¸ğ id
+				var row_id = index['dataRow'];							// í˜„ì¬ id
+				var parent_row_id = treeDataProvider.getParent(row_id);	// ë¶€ëª¨ id
 
-				// »èÁ¦½Ã ÀÚ½Ä°¹¼ö¿¡ µû¸¥ end_node_yn ¼³Á¤
+				// ì‚­ì œì‹œ ìì‹ê°¯ìˆ˜ì— ë”°ë¥¸ end_node_yn ì„¤ì •
 				treeDataProvider.removeRow(row_id);
 
-				var chiCnt	= treeDataProvider.getChildCount(parent_row_id);	// »èÁ¦ ÈÄ ºÎ¸ğÀÇ ÀÚ½Ä °³¼ö
+				var chiCnt	= treeDataProvider.getChildCount(parent_row_id);	// ì‚­ì œ í›„ ë¶€ëª¨ì˜ ìì‹ ê°œìˆ˜
 
-				// ÀÚ½Ä ³ëµå ¾øÀ» °æ¿ì
+				// ìì‹ ë…¸ë“œ ì—†ì„ ê²½ìš°
 				if(chiCnt < 1){
-					treeDataProvider.setValue(parent_row_id,"end_node_yn", "Y");	// ºÎ¸ğ ³ëµåÀÇ end_node_yn = Yº¯°æ
+					treeDataProvider.setValue(parent_row_id,"end_node_yn", "Y");	// ë¶€ëª¨ ë…¸ë“œì˜ end_node_yn = Yë³€ê²½
 					treeDataProvider.setValue(parent_row_id,"use_yn","Y");
 				}
 
@@ -287,11 +294,11 @@ function saveMenu(){
 		data : data,
 		success : function(data) {
 			if (data > 0) {
-				alert("Ã³¸®µÇ¾ú½À´Ï´Ù.");
+				alert("ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				treeDataProvider.clearRowStates(true);
 				loadData();
 			} else {
-				alert("Ã³¸®¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+				alert("ì²˜ë¦¬ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 		},
 		error : function(request, status, error) {

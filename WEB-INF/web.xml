@@ -1,31 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
-	<filter>  
-		<filter-name>XSS</filter-name>  
-		<filter-class>nicednb.xss.XssFilter</filter-class>  
-	</filter>  
-	<filter-mapping>  
-		<filter-name>XSS</filter-name>  
-		<url-pattern>/*</url-pattern>  
+	<filter>
+		<filter-name>XSS</filter-name>
+		<filter-class>nicednb.xss.XssFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XSS</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
 
 	<servlet>
 		<servlet-name>StartLoader</servlet-name>
 		<servlet-class>procure.common.conf.Startup</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>ConfigServlet</servlet-name>
 		<servlet-class>nicelib.util.Config</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-    <error-page>
-        <error-code>501</error-code>
-        <location>/error/501.jsp</location>
-    </error-page>  
+	<servlet>
+		<servlet-name>FileDownLoad</servlet-name>
+		<servlet-class>procure.common.file.FileDownLoad</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FileDownLoad</servlet-name>
+		<url-pattern>/FileDownLoad</url-pattern>
+	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>PDFDown</servlet-name>
+		<servlet-class>nicelib.pdf.PDFDown</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PDFDown</servlet-name>
+		<url-pattern>/PDFDown</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ApprovalReceiver</servlet-name>
+		<servlet-class>nicelib.groupware.ApprovalReceiver</servlet-class>
+		<load-on-startup>4</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApprovalReceiver</servlet-name>
+		<url-pattern>/ApprovalReceiver</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Quartz -->
+	<context-param>
+		<param-name>quartz:shutdown-on-unload</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:wait-on-shutdown</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:start-on-load</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>quartz:config-file</param-name>
+		<param-value>quartz.properties</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>quartz.QuartzScheduler</listener-class>
+	</listener>
+	
+	<!-- <servlet>
+		<display-name>QuartzInitializerServlet</display-name>
+		<servlet-name>QuartzInitializer</servlet-name>
+		<servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
+		<init-param>
+			<param-name>config-file</param-name>
+			<param-value>quartz.properties</param-value>
+		</init-param>
+		<init-param>
+			<param-name>shutdown-on-unload</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>start-scheduler-on-load</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<display-name>QuartzSchedulerServlet</display-name>
+		<servlet-name>QuartzSchedulerServlet</servlet-name>
+		<servlet-class>quartz.QuartzScheduler</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet> -->
+
+	<error-page>
+		<error-code>501</error-code>
+		<location>/error/501.jsp</location>
+	</error-page>
 
 </web-app>

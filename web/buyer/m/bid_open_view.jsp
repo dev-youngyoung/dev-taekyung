@@ -1,37 +1,37 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = auth.getString("_MEMBER_NO");
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
 if (bid_no.equals("")) {
-	u.jsError("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 String where = "main_member_no = '"+ main_member_no +"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"'";
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
-String[] code_bid_status = {"05=>°³Âû´ë»ó","06=>°³Âû¿Ï·á"};
+String[] code_bid_status = {"05=>ê°œì°°ëŒ€ìƒ","06=>ê°œì°°ì™„ë£Œ"};
 
 DataObject bidDao = new DataObject("tcb_bid_master");
 //bidDao.setDebug(out);
 DataSet bid = bidDao.find(where+" and status in('05','06')");
 if(bid.next()){
 	if (!auth.getString("_USER_ID").equals(bid.getString("open_user_id"))) {
-		u.jsAlertReplace("ÇØ´ç ÀÔÂû¼­ÀÇ °³ÂûÀÚ °èÁ¤ÀÌ ¾Æ´Õ´Ï´Ù.\\n\\n·Î±×ÀÎ Á¤º¸¸¦ È®ÀÎÇÏ¼¼¿ä.", "logout.jsp?" + u.getQueryString());
+		u.jsAlertReplace("í•´ë‹¹ ì…ì°°ì„œì˜ ê°œì°°ì ê³„ì •ì´ ì•„ë‹™ë‹ˆë‹¤.\\n\\në¡œê·¸ì¸ ì •ë³´ë¥¼ í™•ì¸í•˜ì„¸ìš”.", "logout.jsp?" + u.getQueryString());
 		return;
 	}
 } else {
-	u.jsError("ÀÔÂûÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì…ì°°ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-//´ã´çÀÚÁ¤º¸
+//ë‹´ë‹¹ìì •ë³´
 DataObject chargeDao = new DataObject("tcb_bid_charge");
 //chargeDao.setDebug(out);
 DataSet charge = chargeDao.find(where+" and charge_cd in ('02','03')");
 while(charge.next()){
-	if(charge.getString("charge_cd").equals("02")){// ÀÔÂû´ã´çÀÚ
+	if(charge.getString("charge_cd").equals("02")){// ì…ì°°ë‹´ë‹¹ì
 		bid.put("bid_charge", charge.getString("charge_name"));
 		bid.put("bid_tel_num", charge.getString("tel_num"));
 	}
@@ -39,59 +39,59 @@ while(charge.next()){
 
 bid.put("open_yn", bid.getString("status").equals("06"));
 
-/*´ë»ó¾÷Ã¼*/
+/*ëŒ€ìƒì—…ì²´*/
 DataObject suppDao = new DataObject("tcb_bid_supp a");
 int submit_cnt = suppDao.findCount(where+ " and status = '30'");
 bid.put("btn_open", bid.getString("status").equals("05")&&submit_cnt> 0 );
 
 DataSet supp = new DataSet();
-//°³ÂûÀü
+//ê°œì°°ì „
 if(bid.getString("status").equals("05")) {
 	supp = suppDao.find(where + "  and a.status not in ('91')", "a.*", " a.display_seq asc");
 	while(supp.next()){
 		supp.put("vendcd",u.getBizNo(supp.getString("vendcd")));
-		if(supp.getString("status").equals("30")){	//	ÀÔÂûÂü°¡»óÅÂÄÚµå[ÀÔÂû¼­Á¦Ãâ]
-			supp.put("status_nm","<font color='#75BAFF'><b>ÅõÂû</b></font>");
-		}else if(supp.getString("status").equals("92")){	//	ÀÔÂûÂü°¡»óÅÂÄÚµå[ÀÔÂûÆ÷±â]
-			supp.put("status_nm","<font color='#FF0000'><b>ÀÔÂûÆ÷±â</b></font>");
+		if(supp.getString("status").equals("30")){	//	ì…ì°°ì°¸ê°€ìƒíƒœì½”ë“œ[ì…ì°°ì„œì œì¶œ]
+			supp.put("status_nm","<font color='#75BAFF'><b>íˆ¬ì°°</b></font>");
+		}else if(supp.getString("status").equals("92")){	//	ì…ì°°ì°¸ê°€ìƒíƒœì½”ë“œ[ì…ì°°í¬ê¸°]
+			supp.put("status_nm","<font color='#FF0000'><b>ì…ì°°í¬ê¸°</b></font>");
 		}else{
-			supp.put("status_nm","<font color='#E08036'>¹ÌÅõÂû</font>");
+			supp.put("status_nm","<font color='#E08036'>ë¯¸íˆ¬ì°°</font>");
 		}
-		//°ø°íÁ¶È¸¿©ºÎ '-' °ªÀÎ °æ¿ì´Â ±âÁ¸ dataÀÌ´Ù.
+		//ê³µê³ ì¡°íšŒì—¬ë¶€ '-' ê°’ì¸ ê²½ìš°ëŠ” ê¸°ì¡´ dataì´ë‹¤.
 		if(!supp.getString("bid_view_date").equals("-")){
-			supp.put("bid_view_date", supp.getString("bid_view_date").equals("")?"Á¶È¸¾ÈÇÔ":u.getTimeString("yyyy-MM-dd", supp.getString("bid_view_date")));
+			supp.put("bid_view_date", supp.getString("bid_view_date").equals("")?"ì¡°íšŒì•ˆí•¨":u.getTimeString("yyyy-MM-dd", supp.getString("bid_view_date")));
 		}
 	}
 }
 
-// °³ÂûÈÄ
+// ê°œì°°í›„
 if(bid.getString("status").equals("06")) {
 	p.setVar("open_after_view", true);
-	bid.put("vat_info", bid.getString("vat_yn").equals("Y") ? "(VATÆ÷ÇÔ)":"(VATº°µµ)");
+	bid.put("vat_info", bid.getString("vat_yn").equals("Y") ? "(VATí¬í•¨)":"(VATë³„ë„)");
 	bid.put("btn_esti_comp", bid.getString("item_form_gubun").equals("20"));
 
 	supp = suppDao.find(where + " and a.status not in ('91')","a.*, decode(a.status,'30',1,2) status_order ","status_order asc, a.total_cost asc");
 	while(supp.next()){
 		supp.put("vendcd",u.getBizNo(supp.getString("vendcd")));
-		if(supp.getString("status").equals("30")){	//	ÀÔÂûÂü°¡»óÅÂÄÚµå[ÀÔÂû¼­Á¦Ãâ]
+		if(supp.getString("status").equals("30")){	//	ì…ì°°ì°¸ê°€ìƒíƒœì½”ë“œ[ì…ì°°ì„œì œì¶œ]
 			supp.put("status_nm", "<font color='#75BAFF'><b>"+u.numberFormat(supp.getString("total_cost"))+"&nbsp;</b></font>");
 			supp.put("align","right");
-		}else if(supp.getString("status").equals("92")){	//	ÀÔÂûÂü°¡»óÅÂÄÚµå[ÀÔÂûÆ÷±â]
-			supp.put("status_nm","<font color='#FF0000'><b>ÀÔÂûÆ÷±â</b></font>");
+		}else if(supp.getString("status").equals("92")){	//	ì…ì°°ì°¸ê°€ìƒíƒœì½”ë“œ[ì…ì°°í¬ê¸°]
+			supp.put("status_nm","<font color='#FF0000'><b>ì…ì°°í¬ê¸°</b></font>");
 			supp.put("align","center");
 		}else{
-			supp.put("status_nm","<font color='#E08036'>¹ÌÅõÂû</font>");
+			supp.put("status_nm","<font color='#E08036'>ë¯¸íˆ¬ì°°</font>");
 			supp.put("align","center");
 		}
 	}
 }
 
 if(u.isPost()&&f.validate()){
-	//º¹¼ö¿¹°¡ ±¸ÇÏ±â
-	/*¿À¶óÅ¬ º¯È¯½Ã random select ÀÌ¿ë*/
+	//ë³µìˆ˜ì˜ˆê°€ êµ¬í•˜ê¸°
+	/*ì˜¤ë¼í´ ë³€í™˜ì‹œ random select ì´ìš©*/
 	if(bid.getString("expect_gubun").equals("20")&&bid.getString("expect_amt").equals("")){
 
-		/*º¹¼ö¿¹°¡ ¹øÈ£ ºÎ¿© START*/
+		/*ë³µìˆ˜ì˜ˆê°€ ë²ˆí˜¸ ë¶€ì—¬ START*/
 		DB db = new DB();
 		DataObject multiAmtDao = new DataObject("tcb_bid_multi_amt");
 		DataSet multiAmt = multiAmtDao.find(where,"*", " dbms_random.value");
@@ -103,7 +103,7 @@ if(u.isPost()&&f.validate()){
 			display_seq ++;
 		}
 		if(!db.executeArray()){
-			u.jsError("º¹¼ö¿¹°¡ È®Á¤¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ë³µìˆ˜ì˜ˆê°€ í™•ì •ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 
@@ -127,29 +127,29 @@ if(u.isPost()&&f.validate()){
 			db.setCommand(multiAmtDao.getUpdateQuery("main_member_no = '"+bid.getString("main_member_no")+"' and bid_no = '"+bid.getString("bid_no")+"' and bid_deg = '"+bid.getString("bid_deg")+"' and amt_seq = '"+multiAmt.getString("amt_seq")+"' ") , multiAmtDao.record);
 		}
 		if(!db.executeArray()){
-			u.jsError("º¹¼ö¿¹°¡ È®Á¤¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ë³µìˆ˜ì˜ˆê°€ í™•ì •ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
-		/*º¹¼ö¿¹°¡ ¹øÈ£ ºÎ¿© END*/
+		/*ë³µìˆ˜ì˜ˆê°€ ë²ˆí˜¸ ë¶€ì—¬ END*/
 
 		multiAmt = multiAmtDao.find(" main_member_no = '"+bid.getString("main_member_no")+"' and bid_no = '"+bid.getString("bid_no")+"' and bid_deg = '"+bid.getString("bid_deg")+"'","*"," select_cnt desc, multi_amt asc",4);
 		double sum_amt = 0D;
 		while(multiAmt.next()){
 			sum_amt += multiAmt.getDouble("multi_amt");
 		}
-		long expect_amt =  (long)Math.ceil(sum_amt / 4) ;//NH°³¹ß ¿¹Á¤°¡°İÀº Àı»ó ÇÑ´Ù. 20170209
+		long expect_amt =  (long)Math.ceil(sum_amt / 4) ;//NHê°œë°œ ì˜ˆì •ê°€ê²©ì€ ì ˆìƒ í•œë‹¤. 20170209
 		bidDao = new DataObject("tcb_bid_master");
 		bidDao.item("expect_amt",expect_amt);
 		if(!bidDao.update(where)){
-			u.jsError("º¹¼ö¿¹°¡ È®Á¤¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ë³µìˆ˜ì˜ˆê°€ í™•ì •ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
 
 	DB db = new DB();
-	//ÀÔÂû³»¿ªdata»èÁ¦
+	//ì…ì°°ë‚´ì—­dataì‚­ì œ
 	db.setCommand(	"delete from tcb_bid_suppitem where " + where , null);
-	/* Ã·ºÎÆÄÀÏÁ¤º¸ »èÁ¦ */
+	/* ì²¨ë¶€íŒŒì¼ì •ë³´ ì‚­ì œ */
 	db.setCommand(	"delete from tcb_bid_estm_file where "+ where, null);
 
 	Crosscert crosscert	= new Crosscert();
@@ -162,34 +162,34 @@ if(u.isPost()&&f.validate()){
 
 	DataObject suppItem	= null;
 	while(supp.next()){
-		if(!supp.getString("status").equals("30")){	//	ÀÔÂû¼­Á¦ÃâÇÑ ¾÷Ã¼¸¸ °³Âû
+		if(!supp.getString("status").equals("30")){	//	ì…ì°°ì„œì œì¶œí•œ ì—…ì²´ë§Œ ê°œì°°
 			continue;
 		}
 
 		sEncodeSignData = StrUtil.ConfCharset(supp.getString("estm_sign_data"));
 		sDecodeSignData = crosscert.decryptData(sEncodeSignData);
-		if(sDecodeSignData.indexOf("¦À")<0){//¸®´º¾ó ÀÌÈÄ ´Â base64 µğÄÚµù ÇÑ´Ù.
+		if(sDecodeSignData.indexOf("â•‚")<0){//ë¦¬ë‰´ì–¼ ì´í›„ ëŠ” base64 ë””ì½”ë”© í•œë‹¤.
 			sDecodeSignData = new String(Base64Coder.decode(sDecodeSignData),"UTF-8");
 		}
 
-		String sColumDelimiter = "¦­";
-		String sRowDelimiter = "¢Õ";
-		String sSumDelimiter = "¦À";
-		String sEncDelimiter = "¢¢";
+		String sColumDelimiter = "â”ƒ";
+		String sRowDelimiter = "â†•";
+		String sSumDelimiter = "â•‚";
+		String sEncDelimiter = "â‡”";
 
 		System.out.println("sDecodeSignData " + sDecodeSignData);
 		String sSector[] = sDecodeSignData.split(sEncDelimiter);
 
 		int i,j;
-		// ÀÔÂû³»¿ª, ÆÄÀÏ°æ·Î ºĞ¸®
+		// ì…ì°°ë‚´ì—­, íŒŒì¼ê²½ë¡œ ë¶„ë¦¬
 		String sRows1[]  = sSector[0].split(sRowDelimiter);
 
-		//±İ¾×Á¤º¸ ÀúÀå
-		if(bid.getString("item_form_gubun").equals("10")){//ÃÑ¾× ÀÔÂû NH°³¹ß ¶§¹®¿¡ item_form_cd µµ check
-			// ÃÑ¾× ÀúÀå
+		//ê¸ˆì•¡ì •ë³´ ì €ì¥
+		if(bid.getString("item_form_gubun").equals("10")){//ì´ì•¡ ì…ì°° NHê°œë°œ ë•Œë¬¸ì— item_form_cd ë„ check
+			// ì´ì•¡ ì €ì¥
 			String sTotColumns[] = sRows1[0].split(sSumDelimiter);
-			//20120200001¦À201607003¦À0¦À20120600094¦À10000000
-			//¹ßÁÖÈ¸¿ø¹øÈ£¦Àbid_no¦À°ø°íÂ÷¼ö¦À¾÷Ã¼È¸¿ø¹øÈ£¦ÀÀÔÂû±İ¾×
+			//20120200001â•‚201607003â•‚0â•‚20120600094â•‚10000000
+			//ë°œì£¼íšŒì›ë²ˆí˜¸â•‚bid_noâ•‚ê³µê³ ì°¨ìˆ˜â•‚ì—…ì²´íšŒì›ë²ˆí˜¸â•‚ì…ì°°ê¸ˆì•¡
 			if(sTotColumns.length == 5)
 			{
 				suppDao = new DataObject("tcb_bid_supp");
@@ -197,8 +197,8 @@ if(u.isPost()&&f.validate()){
 				suppDao.item("total_cost", sTotColumns[4]);
 				db.setCommand(suppDao.getUpdateQuery(where + " and member_no = '"+sTotColumns[3]+"'"), suppDao.record);
 			}
-		}else if(bid.getString("item_form_gubun").equals("20")||(!bid.getString("item_form_cd").equals(""))){// ³»¿ªÀÔÂû
-			// ÀÔÂû´Ü°¡ ÀÔ·Â
+		}else if(bid.getString("item_form_gubun").equals("20")||(!bid.getString("item_form_cd").equals(""))){// ë‚´ì—­ì…ì°°
+			// ì…ì°°ë‹¨ê°€ ì…ë ¥
 			for(i=0; i<sRows1.length - 1; i++){
 				System.out.println("insertEstmItem sRows1["+i+"]: " + sRows1[i]);
 				String sColumns1[] = sRows1[i].split(sColumDelimiter);
@@ -220,9 +220,9 @@ if(u.isPost()&&f.validate()){
 				}
 			}
 
-			// ÃÑ¾× ÀúÀå
+			// ì´ì•¡ ì €ì¥
 			String sTotColumns[] = sRows1[i].split(sSumDelimiter);
-			System.out.println("insertEstm ÃÑ¾×["+i+"]: " + sRows1[i]);
+			System.out.println("insertEstm ì´ì•¡["+i+"]: " + sRows1[i]);
 			if(sTotColumns.length == 8)
 			{
 				suppDao = new DataObject("tcb_bid_supp");
@@ -234,7 +234,7 @@ if(u.isPost()&&f.validate()){
 			}
 		}
 
-		// ÆÄÀÏ°æ·Î µî·Ï
+		// íŒŒì¼ê²½ë¡œ ë“±ë¡
 		if(sSector.length > 1){
 			String sRows2[]  = sSector[1].split(sRowDelimiter);
 			for(int m=0; m<sRows2.length; m++){
@@ -245,14 +245,14 @@ if(u.isPost()&&f.validate()){
 				if(sColumns2.length == 10){
 					f.uploadDir =	Startup.conf.getString("file.path.bid.no_build") +	sColumns2[7];
 
-					// ÆÄÀÏ ÀÌ¸§À» ½Ã°£ÆÄÀÏ¸íÀ¸·Î º¯°æ
+					// íŒŒì¼ ì´ë¦„ì„ ì‹œê°„íŒŒì¼ëª…ìœ¼ë¡œ ë³€ê²½
 					String sOrgFile = f.uploadDir + "/" + sColumns2[5];
 					String sTimeFileName = sColumns2[4] + u.getUploadFileName(sColumns2[5]);
 					String sNewFile = f.uploadDir + "/" + sTimeFileName;
-					System.out.println("ÆÄÀÏº¹»ç");
+					System.out.println("íŒŒì¼ë³µì‚¬");
 					u.copyFile(sOrgFile, sNewFile);
 					if(!(new File(sNewFile).exists())){
-						u.jsError("¾÷Ã¼°¡ Á¦ÃâÇÑ ÇÊ¼ö Ã·ºÎÆÄÀÏÀÌ º¹»çµÇÁö ¾Ê¾Ò½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇÏ¼¼¿ä.");
+						u.jsError("ì—…ì²´ê°€ ì œì¶œí•œ í•„ìˆ˜ ì²¨ë¶€íŒŒì¼ì´ ë³µì‚¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•˜ì„¸ìš”.");
 						return;
 					}
 
@@ -278,11 +278,11 @@ if(u.isPost()&&f.validate()){
 	bidDao.item("status","06");
 	db.setCommand(bidDao.getUpdateQuery( where ), bidDao.record);
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	//ÀÔÂû´ã´çÀÚ¿¡°Ô °³Âû¿Ï·á ¸ŞÀÏ º¸³»±â
+	//ì…ì°°ë‹´ë‹¹ìì—ê²Œ ê°œì°°ì™„ë£Œ ë©”ì¼ ë³´ë‚´ê¸°
 	bidDao = new DataObject(" tcb_bid_master a");
 	bid = bidDao.find(where,"a.*,(select user_name from tcb_person where member_no = a.main_member_no and user_id = a.open_user_id) open_user_name");
 	if(!bid.next()){}
@@ -298,9 +298,9 @@ if(u.isPost()&&f.validate()){
 	p.setVar("bid", bid);
 	p.setVar("to_bid_charge", true);
 	String mail_body = p.fetch("../html/mail/bid_in_noti_mail.html");
-	u.mail(bidCharge.getString("email"), "[³ªÀÌ½º´ÙÅ¥]ÀÔÂû°ø°í¿¡ ´ëÇØ °³ÂûÀÚ°¡ °³ÂûÀ» ÇÏ¿´½À´Ï´Ù.", mail_body );
+	u.mail(bidCharge.getString("email"), "[ë‚˜ì´ìŠ¤ë‹¤í]ì…ì°°ê³µê³ ì— ëŒ€í•´ ê°œì°°ìê°€ ê°œì°°ì„ í•˜ì˜€ìŠµë‹ˆë‹¤.", mail_body );
 
-	u.jsAlertReplace("ÇØ´çÀÔÂû°ÇÀÇ °³ÂûÀ» ¿Ï·áÇÏ¿´½À´Ï´Ù.","bid_open_view.jsp?" + u.getQueryString());
+	u.jsAlertReplace("í•´ë‹¹ì…ì°°ê±´ì˜ ê°œì°°ì„ ì™„ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤.","bid_open_view.jsp?" + u.getQueryString());
 	return;
 }
 

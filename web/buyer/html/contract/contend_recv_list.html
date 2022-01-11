@@ -10,14 +10,14 @@
 		<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th><p>°Ε·΅Γ³Έν</p></th>
+	    <th><p>κ±°λμ²λª…</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100" style="width:95%"></td>
-	    <th><p>°θΎΰΈν</p></th>
+	    <th><p>κ³„μ•½λª…</p></th>
 	    <td><input type="text" name="s_cont_name" maxlength="100" style="width:95%"></td>
 	    <td align="right"></td>
 	  </tr>
 	  <tr>
-	  	<th><p>°θΎΰΐΟΐΪ</p></th>  
+	  	<th><p>κ³„μ•½μΌμ</p></th>  
 	    <td colspan="3">
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -25,14 +25,14 @@
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
 	     <td align="right">
-	      <button type="submit" class="search_btn">°Λ»φ</button>
+	      <button type="submit" class="search_btn">κ²€μƒ‰</button>
 	    </td>
 	  </tr>
 	</table>
 </div>
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onclick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ΏΆΌΏ</button>
+	<button type="button" class="sbtn color2 ico-excel" onclick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>μ—‘μ…€</button>
 </div>
 <br/>
 
@@ -48,10 +48,10 @@
 	   <col width="13%">
 	 </colgroup>
 	 <tr>
-	   <th>ΌψΉψ</th>
-	   <th>°θΎΰΈν</th>
-	   <th>°Ε·΅Γ³</th>
-	   <th>°θΎΰΐΟΐΪ</th>
+	   <th>μλ²</th>
+	   <th>κ³„μ•½λª…</th>
+	   <th>κ±°λμ²</th>
+	   <th>κ³„μ•½μΌμ</th>
 	 </tr>
 	 <!-- IF START 'list' -->
 		 <!-- LOOP START 'list' -->
@@ -67,7 +67,7 @@
 	 
 	 <!-- IFNOT START 'list' -->
 	 <tr>
-		<td colspan="5" align="center">°Λ»φ°α°ϊ°΅ Ύψ½ΐ΄Ο΄Ω.</td>
+		<td colspan="5" align="center">κ²€μƒ‰κ²°κ³Όκ°€ μ—†μµλ‹λ‹¤.</td>
 	 </tr>
 	 <!-- IFNOT END 'list' -->
 	 

@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../init.jsp" %>
 <%
     NiceID.Check.CPClient niceCheck = new  NiceID.Check.CPClient();
 
-    String sSiteCode = "BE065";			// NICE·ÎºÎÅÍ ºÎ¿©¹ÞÀº »çÀÌÆ® ÄÚµå
-    String sSitePassword = "CSgXDvODNC9D";		// NICE·ÎºÎÅÍ ºÎ¿©¹ÞÀº »çÀÌÆ® ÆÐ½º¿öµå
+    String sSiteCode = "BE065";			// NICEë¡œë¶€í„° ë¶€ì—¬ë°›ì€ ì‚¬ì´íŠ¸ ì½”ë“œ
+    String sSitePassword = "CSgXDvODNC9D";		// NICEë¡œë¶€í„° ë¶€ì—¬ë°›ì€ ì‚¬ì´íŠ¸ íŒ¨ìŠ¤ì›Œë“œ
 
-    String sRequestNumber = niceCheck.getRequestNO(sSiteCode);   	// ¿äÃ» ¹øÈ£, ÀÌ´Â ¼º°ø/½ÇÆÐÈÄ¿¡ °°Àº °ªÀ¸·Î µÇµ¹·ÁÁÖ°Ô µÇ¹Ç·Î
+    String sRequestNumber = niceCheck.getRequestNO(sSiteCode);   	// ìš”ì²­ ë²ˆí˜¸, ì´ëŠ” ì„±ê³µ/ì‹¤íŒ¨í›„ì— ê°™ì€ ê°’ìœ¼ë¡œ ë˜ëŒë ¤ì£¼ê²Œ ë˜ë¯€ë¡œ
     String member_no = u.request("member_no");
     String cont_no = u.aseDec(u.request("cont_no"));
     String cont_chasu = u.request("cont_chasu");
 
-    session.setAttribute("REQ_SEQ" , sRequestNumber);	// ÇØÅ·µîÀÇ ¹æÁö¸¦ À§ÇÏ¿© ¼¼¼ÇÀ» ¾´´Ù¸é, ¼¼¼Ç¿¡ ¿äÃ»¹øÈ£¸¦ ³Ö´Â´Ù.
+    session.setAttribute("REQ_SEQ" , sRequestNumber);	// í•´í‚¹ë“±ì˜ ë°©ì§€ë¥¼ ìœ„í•˜ì—¬ ì„¸ì…˜ì„ ì“´ë‹¤ë©´, ì„¸ì…˜ì— ìš”ì²­ë²ˆí˜¸ë¥¼ ë„£ëŠ”ë‹¤.
     session.setAttribute("member_no", member_no);
     session.setAttribute("cont_no", cont_no);
     session.setAttribute("cont_chasu", cont_chasu);
@@ -24,28 +24,28 @@
     System.out.println("start="+sRequestNumber);
     */
 
-    // ¾÷Ã¼¿¡¼­ ÀûÀýÇÏ°Ô º¯°æÇÏ¿© ¾²°Å³ª, ¾Æ·¡¿Í °°ÀÌ »ý¼ºÇÑ´Ù.
-    //member_no|cont_no|contchasu ¹æ½ÄÀ¸·Î º¯°æ
-    //if(sRequestNumber.equals("")){//È¸¿ø°¡ÀÔ½Ã¿¡´Â Á¤º¸ ½Å±Ô »ý¼º
+    // ì—…ì²´ì—ì„œ ì ì ˆí•˜ê²Œ ë³€ê²½í•˜ì—¬ ì“°ê±°ë‚˜, ì•„ëž˜ì™€ ê°™ì´ ìƒì„±í•œë‹¤.
+    //member_no|cont_no|contchasu ë°©ì‹ìœ¼ë¡œ ë³€ê²½
+    //if(sRequestNumber.equals("")){//íšŒì›ê°€ìž…ì‹œì—ëŠ” ì •ë³´ ì‹ ê·œ ìƒì„±
     //	sRequestNumber = niceCheck.getRequestNO(sSiteCode);
     //}
     
-    //session.setAttribute("REQ_SEQ" , sRequestNumber);	// ÇØÅ·µîÀÇ ¹æÁö¸¦ À§ÇÏ¿© ¼¼¼ÇÀ» ¾´´Ù¸é, ¼¼¼Ç¿¡ ¿äÃ»¹øÈ£¸¦ ³Ö´Â´Ù.
+    //session.setAttribute("REQ_SEQ" , sRequestNumber);	// í•´í‚¹ë“±ì˜ ë°©ì§€ë¥¼ ìœ„í•˜ì—¬ ì„¸ì…˜ì„ ì“´ë‹¤ë©´, ì„¸ì…˜ì— ìš”ì²­ë²ˆí˜¸ë¥¼ ë„£ëŠ”ë‹¤.
 
-    String sAuthType = "";      	// ¾øÀ¸¸é ±âº» ¼±ÅÃÈ­¸é, M: ÇÚµåÆù, C: ½Å¿ëÄ«µå, X: °øÀÎÀÎÁõ¼­
+    String sAuthType = "";      	// ì—†ìœ¼ë©´ ê¸°ë³¸ ì„ íƒí™”ë©´, M: í•¸ë“œí°, C: ì‹ ìš©ì¹´ë“œ, X: ê³µì¸ì¸ì¦ì„œ
 
-    String popgubun 	= "N";		//Y : Ãë¼Ò¹öÆ° ÀÖÀ½ / N : Ãë¼Ò¹öÆ° ¾øÀ½
-    String customize 	= "";		//¾øÀ¸¸é ±âº» À¥ÆäÀÌÁö / Mobile : ¸ð¹ÙÀÏÆäÀÌÁö
+    String popgubun 	= "N";		//Y : ì·¨ì†Œë²„íŠ¼ ìžˆìŒ / N : ì·¨ì†Œë²„íŠ¼ ì—†ìŒ
+    String customize 	= "";		//ì—†ìœ¼ë©´ ê¸°ë³¸ ì›¹íŽ˜ì´ì§€ / Mobile : ëª¨ë°”ì¼íŽ˜ì´ì§€
 
-    String sGender = ""; 			//¾øÀ¸¸é ±âº» ¼±ÅÃ °ª, 0 : ¿©ÀÚ, 1 : ³²ÀÚ
+    String sGender = ""; 			//ì—†ìœ¼ë©´ ê¸°ë³¸ ì„ íƒ ê°’, 0 : ì—¬ìž, 1 : ë‚¨ìž
 
-    // CheckPlus(º»ÀÎÀÎÁõ) Ã³¸® ÈÄ, °á°ú µ¥ÀÌÅ¸¸¦ ¸®ÅÏ ¹Þ±âÀ§ÇØ ´ÙÀ½¿¹Á¦¿Í °°ÀÌ httpºÎÅÍ ÀÔ·ÂÇÕ´Ï´Ù.
-    //¸®ÅÏurlÀº ÀÎÁõ Àü ÀÎÁõÆäÀÌÁö¸¦ È£ÃâÇÏ±â Àü url°ú µ¿ÀÏÇØ¾ß ÇÕ´Ï´Ù. ex) ÀÎÁõ Àü url : http://www.~ ¸®ÅÏ url : http://www.~
+    // CheckPlus(ë³¸ì¸ì¸ì¦) ì²˜ë¦¬ í›„, ê²°ê³¼ ë°ì´íƒ€ë¥¼ ë¦¬í„´ ë°›ê¸°ìœ„í•´ ë‹¤ìŒì˜ˆì œì™€ ê°™ì´ httpë¶€í„° ìž…ë ¥í•©ë‹ˆë‹¤.
+    //ë¦¬í„´urlì€ ì¸ì¦ ì „ ì¸ì¦íŽ˜ì´ì§€ë¥¼ í˜¸ì¶œí•˜ê¸° ì „ urlê³¼ ë™ì¼í•´ì•¼ í•©ë‹ˆë‹¤. ex) ì¸ì¦ ì „ url : http://www.~ ë¦¬í„´ url : http://www.~
     String url = request.getRequestURL().toString().replace(request.getRequestURI(), "");
-    String sReturnUrl = url + "/web/buyer/identify/identifyCheckplusSuccess.jsp";      // ¼º°ø½Ã ÀÌµ¿µÉ URL
-    String sErrorUrl = url + "/web/buyer/identify/identifyCheckplusFail.jsp";       // ½ÇÆÐ½Ã ÀÌµ¿µÉ URL
+    String sReturnUrl = url + "/web/buyer/identify/identifyCheckplusSuccess.jsp";      // ì„±ê³µì‹œ ì´ë™ë  URL
+    String sErrorUrl = url + "/web/buyer/identify/identifyCheckplusFail.jsp";       // ì‹¤íŒ¨ì‹œ ì´ë™ë  URL
 
-    // ÀÔ·ÂµÉ plain µ¥ÀÌÅ¸¸¦ ¸¸µç´Ù.n
+    // ìž…ë ¥ë  plain ë°ì´íƒ€ë¥¼ ë§Œë“ ë‹¤.n
     String sPlainData = "7:REQ_SEQ" + sRequestNumber.getBytes().length + ":" + sRequestNumber +
             "8:SITECODE" + sSiteCode.getBytes().length + ":" + sSiteCode +
             "9:AUTH_TYPE" + sAuthType.getBytes().length + ":" + sAuthType +
@@ -65,28 +65,28 @@
     }
     else if( iReturn == -1)
     {
-        sMessage = "¾ÏÈ£È­ ½Ã½ºÅÛ ¿¡·¯ÀÔ´Ï´Ù.";
+        sMessage = "ì•”í˜¸í™” ì‹œìŠ¤í…œ ì—ëŸ¬ìž…ë‹ˆë‹¤.";
     }
     else if( iReturn == -2)
     {
-        sMessage = "¾ÏÈ£È­ Ã³¸®¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ì•”í˜¸í™” ì²˜ë¦¬ì˜¤ë¥˜ìž…ë‹ˆë‹¤.";
     }
     else if( iReturn == -3)
     {
-        sMessage = "¾ÏÈ£È­ µ¥ÀÌÅÍ ¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ì•”í˜¸í™” ë°ì´í„° ì˜¤ë¥˜ìž…ë‹ˆë‹¤.";
     }
     else if( iReturn == -9)
     {
-        sMessage = "ÀÔ·Â µ¥ÀÌÅÍ ¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ìž…ë ¥ ë°ì´í„° ì˜¤ë¥˜ìž…ë‹ˆë‹¤.";
     }
     else
     {
-        sMessage = "¾Ë¼ö ¾ø´Â ¿¡·¯ ÀÔ´Ï´Ù. iReturn : " + iReturn;
+        sMessage = "ì•Œìˆ˜ ì—†ëŠ” ì—ëŸ¬ ìž…ë‹ˆë‹¤. iReturn : " + iReturn;
     }
 %>
 <html>
 <head>
-    <title>NICEÆò°¡Á¤º¸ - CheckPlus</title>
+    <title>NICEí‰ê°€ì •ë³´ - CheckPlus</title>
     <script language='javascript'>
         window.name ="Parent_window";
         /*
@@ -107,12 +107,12 @@
 <body>
 <!--
 <%= sMessage %><br><br>
-¾÷Ã¼Á¤º¸ ¾ÏÈ£È­ µ¥ÀÌÅ¸ : [<%= sEncData %>]<br><br>
+ì—…ì²´ì •ë³´ ì•”í˜¸í™” ë°ì´íƒ€ : [<%= sEncData %>]<br><br>
 -->
-<!-- º»ÀÎÀÎÁõ ¼­ºñ½º ÆË¾÷À» È£ÃâÇÏ±â À§ÇØ¼­´Â ´ÙÀ½°ú °°Àº formÀÌ ÇÊ¿äÇÕ´Ï´Ù. -->
+<!-- ë³¸ì¸ì¸ì¦ ì„œë¹„ìŠ¤ íŒì—…ì„ í˜¸ì¶œí•˜ê¸° ìœ„í•´ì„œëŠ” ë‹¤ìŒê³¼ ê°™ì€ formì´ í•„ìš”í•©ë‹ˆë‹¤. -->
 <form name="form1" method="post">
-    <input type="hidden" name="m" value="checkplusSerivce">				<!-- ÇÊ¼ö µ¥ÀÌÅ¸·Î, ´©¶ôÇÏ½Ã¸é ¾ÈµË´Ï´Ù. -->
-<input type="hidden" name="EncodeData" value="<%= sEncData %>">		<!-- À§¿¡¼­ ¾÷Ã¼Á¤º¸¸¦ ¾ÏÈ£È­ ÇÑ µ¥ÀÌÅ¸ÀÔ´Ï´Ù. -->
+    <input type="hidden" name="m" value="checkplusSerivce">				<!-- í•„ìˆ˜ ë°ì´íƒ€ë¡œ, ëˆ„ë½í•˜ì‹œë©´ ì•ˆë©ë‹ˆë‹¤. -->
+<input type="hidden" name="EncodeData" value="<%= sEncData %>">		<!-- ìœ„ì—ì„œ ì—…ì²´ì •ë³´ë¥¼ ì•”í˜¸í™” í•œ ë°ì´íƒ€ìž…ë‹ˆë‹¤. -->
 </form>
 </body>
 </html>

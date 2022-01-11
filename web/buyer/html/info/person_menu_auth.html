@@ -1,4 +1,4 @@
-<form name="form1" method="post" onsubmit="return false;">
+ï»¿<form name="form1" method="post" onsubmit="return false;">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" >
 	<colgroup>
 		<col width="35%">
@@ -10,18 +10,18 @@
 			<div class="div_table">
 				<div class="util-row">
 					<div class="push-left">
-						<h3>´ã´çÀÚ ¸ñ·Ï</h3>
+						<h3>ë‹´ë‹¹ìž ëª©ë¡</h3>
 					</div>
 					<div class="push-right">
-						¡Ø±ÇÇÑÀ» º¯°æ ÇÒ ´ã´çÀÚ¸¦ Å¬¸¯ÇÏ¼¼¿ä.
+						â€»ê¶Œí•œì„ ë³€ê²½ í•  ë‹´ë‹¹ìžë¥¼ í´ë¦­í•˜ì„¸ìš”.
 					</div>
 				</div>
 				<table>
 				<tr>
-					<th>ÀÌ¸§</th>
+					<th>ì´ë¦„</th>
 					<td>
 						<input type="text" style="width: 150px" name="s_user_name" onkeyup="if(event.keyCode==13){search();}">
-						<button type="button" class="sbtn color" onclick="search();">°Ë»ö</button>
+						<button type="button" class="sbtn color" onclick="search();">ê²€ìƒ‰</button>
 					</td>
 				</tr>
 				</table>
@@ -37,10 +37,10 @@
 					<col width="19%">
 				  </colgroup>
 				  <tr>
-					<th>¼±ÅÃ</th>
-					<th>ºÎ¼­</th>
-					<th>ÀÌ¸§</th>
-					<th>Á÷±Þ</th>
+					<th>ì„ íƒ</th>
+					<th>ë¶€ì„œ</th>
+					<th>ì´ë¦„</th>
+					<th>ì§ê¸‰</th>
 				  </tr>
 				  <!-- LOOP START 'person' -->
 				  <tr id="row_{{person.person_seq}}" hname="{{person.user_name}}" onclick="personSelect('{{person.person_seq}}','{{person.field_name}}','{{person.user_name}}','{{person.position}}')"  style="cursor:pointer">
@@ -52,7 +52,7 @@
 				  <!-- LOOP END 'person' -->
 				  <!-- IFNOT START 'person' -->
 				  <tr>
-					<td align="center" colspan="4">±ÇÇÑÀ» ºÎ¿©ÇÒ ´ã´çÀÚ°¡ ¾ø½À´Ï´Ù.</td>
+					<td align="center" colspan="4">ê¶Œí•œì„ ë¶€ì—¬í•  ë‹´ë‹¹ìžê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 				  </tr>
 				  <!-- IFNOT END 'person' -->
 				</table>
@@ -65,7 +65,7 @@
 			<div class="div_table">
 				<div class="util-row">
 					<div class="push-left">
-						<h3>¸Þ´ºº°±ÇÇÑ</h3>
+						<h3>ë©”ë‰´ë³„ê¶Œí•œ</h3>
 					</div>
 				</div>
 				<table style="margin-bottom:3px;">
@@ -76,9 +76,9 @@
 					</colgroup>
 					<tr>
 						<td id="info_area"></td>
-						<td> <span id="search_area">¸Þ´º¸í:
+						<td> <span id="search_area">ë©”ë‰´ëª…:
 							<select name="l_div_cd" onchange="chgDiv(this.value)">
-								<option value="">-ÀüÃ¼-</option>
+								<option value="">-ì „ì²´-</option>
 								<!-- LOOP START 'l_div' -->
 								<option value="{{l_div.l_div_cd}}">{{l_div.menu_nm}}</option>
 								<!-- LOOP END 'l_div' -->
@@ -86,7 +86,7 @@
 							</span>
 						</td>
 						<td align="right">
-							<button type="button" class="sbtn color" onclick="fsave();">ÀúÀå</button>
+							<button type="button" class="sbtn color" onclick="fsave();">ì €ìž¥</button>
 						</td>
 					</tr>
 				</table>

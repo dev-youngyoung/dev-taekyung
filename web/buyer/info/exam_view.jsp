@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_exam_type = {"10=>Á¤±âÆò°¡","20=>¼ö½ÃÆò°¡"};
-boolean isCJ = _member_no.equals("20130400333");  // ¾¾Á¦ÀÌ´ëÇÑÅë¿î
+String[] code_exam_type = {"10=>ì •ê¸°í‰ê°€","20=>ìˆ˜ì‹œí‰ê°€"};
+boolean isCJ = _member_no.equals("20130400333");  // ì”¨ì œì´ëŒ€í•œí†µìš´
 
 String exam_cd = u.request("exam_cd");
 if(exam_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject examDao = new DataObject("tcb_exam");
 DataSet exam = examDao.find(" member_no = '"+_member_no+"' and exam_cd = '"+exam_cd+"' ");
 if(!exam.next()){
-	u.jsError("Æò°¡Áö Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ì§€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 exam.put("exam_type", u.getItem(exam.getString("exam_type"), code_exam_type));

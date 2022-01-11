@@ -1,4 +1,4 @@
-<form name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="print_content">
 	<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
 	<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
@@ -9,7 +9,7 @@
 		<style type="text/css" id="__html_style">
 		.glabel {
 			color: #707070;
-			FONT-FAMILY: "µ¸¿ò", "Arial";
+			FONT-FAMILY: "ë‹ì›€", "Arial";
 			FONT-SIZE: 9pt;
 			/*LINE-HEIGHT: 13pt;*/
 			border: 1px solid;
@@ -35,18 +35,18 @@
 
 <div class="btn-group-wrap">
 	<!-- IF START 'del' -->
-	<button type="button" class="btn color ico-delete" onclick="del()"><span></span>ÀÌÀü´Ü°è·Î</button>
+	<button type="button" class="btn color ico-delete" onclick="del()"><span></span>ì´ì „ë‹¨ê³„ë¡œ</button>
 	<!-- IF END 'del' -->
 	<!-- IF START 'modify' -->
-	<button type="button" class="btn color ico-save" onclick="save('20')"><span></span>ÀÓ½ÃÀúÀå</button>
-	<button type="button" class="btn color ico-confirm" onclick="save('50')"><span></span>Æò°¡¿Ï·á</button>
-	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" class="btn color ico-list" onclick="javascript:history.back()"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-save" onclick="save('20')"><span></span>ì„ì‹œì €ì¥</button>
+	<button type="button" class="btn color ico-confirm" onclick="save('50')"><span></span>í‰ê°€ì™„ë£Œ</button>
+	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" class="btn color ico-list" onclick="javascript:history.back()"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IF END 'modify' -->
 	<!-- IFNOT START 'modify' -->
-	<button type="button" class="btn color ico-confirm" onclick="save1('90')"><span></span>°á°úÀü¼Û</button>
-	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" class="btn color ico-list" onclick="javascript:history.back()"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-confirm" onclick="save1('90')"><span></span>ê²°ê³¼ì „ì†¡</button>
+	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" class="btn color ico-list" onclick="javascript:history.back()"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IFNOT END 'modify' -->
 </div>
 
@@ -68,12 +68,12 @@ function hex(x) {
 
 function selectCheck(div){
 
-	if(div=="20") return true; // ÀÓ½ÃÀúÀåÀº ¼±ÅÃ°ª ´Ù ÀÔ·Â¾ÈÇØµµ ÀúÀå °¡´ÉÇÏµµ·Ï
+	if(div=="20") return true; // ì„ì‹œì €ì¥ì€ ì„ íƒê°’ ë‹¤ ì…ë ¥ì•ˆí•´ë„ ì €ì¥ ê°€ëŠ¥í•˜ë„ë¡
 
-	//¾ÈÀü ½ÃÆ® ¸ğµÎ ¼±ÅÃÇß´ÂÁö Check
-	for(var i=1; i<12; i++){	//Çà
+	//ì•ˆì „ ì‹œíŠ¸ ëª¨ë‘ ì„ íƒí–ˆëŠ”ì§€ Check
+	for(var i=1; i<12; i++){	//í–‰
 		var checkYn = "n";
-		for(var j=1; j<=4; j++){	//¿­
+		for(var j=1; j<=4; j++){	//ì—´
 			var checkItem = $("#safetyitem"+i+"_"+j).css("background-color");
             if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
                 checkYn = "y";
@@ -82,15 +82,15 @@ function selectCheck(div){
 		}
 
 		if(checkYn == "n"){
-			alert("ÀÏ¹İ°ü¸® Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+			alert("ì¼ë°˜ê´€ë¦¬ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
 			return;
 		}
 	}
 
-	//Ç°Áú ½ÃÆ® ¸ğµÎ ¼±ÅÃÇß´ÂÁö Check
+	//í’ˆì§ˆ ì‹œíŠ¸ ëª¨ë‘ ì„ íƒí–ˆëŠ”ì§€ Check
 	for(var i=1; i<8; i++){
 		var checkYn = "n";
-		for(var j=1; j<=4; j++){	//¿­
+		for(var j=1; j<=4; j++){	//ì—´
 			var checkItem = $("#deliveryitem"+i+"_"+j).css("background-color");
             if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
                 checkYn = "y";
@@ -98,15 +98,15 @@ function selectCheck(div){
            }
 		}
 		if(checkYn == "n"){
-			alert("Ç°Áú°ü¸® Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+			alert("í’ˆì§ˆê´€ë¦¬ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
 			return;
 		}
 	}
 
-	//³³±â ½ÃÆ® ¸ğµÎ ¼±ÅÃÇß´ÂÁö Check
+	//ë‚©ê¸° ì‹œíŠ¸ ëª¨ë‘ ì„ íƒí–ˆëŠ”ì§€ Check
 	for(var i=1; i<5; i++){
 		var checkYn = "n";
-		for(var j=1; j<=4; j++){	//¿­
+		for(var j=1; j<=4; j++){	//ì—´
 			var checkItem = $("#qualityitem"+i+"_"+j).css("background-color");
             if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
                 checkYn = "y";
@@ -114,7 +114,7 @@ function selectCheck(div){
            }
 		}
 		if(checkYn == "n"){
-			alert("³³±â°ü¸® Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+			alert("ë‚©ê¸°ê´€ë¦¬ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
 			return;
 		}
 	}
@@ -137,7 +137,7 @@ function onItemSet(obj, sheetId){
 
 	var sheetNm = "";
 	var rowCnt = 0;
-	if(sheetId == "1"){	//ÀÏ¹İ
+	if(sheetId == "1"){	//ì¼ë°˜
 		if(itemSeq == "1"){			//S
 			itemPoint = 5.2;
 		}else if(itemSeq == "2"){	//A
@@ -150,7 +150,7 @@ function onItemSet(obj, sheetId){
 	
 		sheetNm = "safetyitem";
 		rowCnt = 12;
-	}else if(sheetId == "2"){	//Ç°Áú
+	}else if(sheetId == "2"){	//í’ˆì§ˆ
 		if(itemSeq == "1"){			//S
 			itemPoint = 3.2;
 		}else if(itemSeq == "2"){	//A
@@ -163,7 +163,7 @@ function onItemSet(obj, sheetId){
 	
 		sheetNm = "deliveryitem";
 		rowCnt = 8;
-	}else if(sheetId == "3"){	//³³±â
+	}else if(sheetId == "3"){	//ë‚©ê¸°
 		if(itemSeq == "1"){			//S
 			itemPoint = 2.2;
 		}else if(itemSeq == "2"){	//A
@@ -177,7 +177,7 @@ function onItemSet(obj, sheetId){
 		sheetNm = "qualityitem";
 		rowCnt = 5;
 	}
-	$("#"+itemId).html(itemPoint);	//Ç×¸ñÆò°¡
+	$("#"+itemId).html(itemPoint);	//í•­ëª©í‰ê°€
 	
 	sumSafetyItemPoint(sheetNm, rowCnt);
 	culRatingPoint();
@@ -188,20 +188,20 @@ function sumSafetyItemPoint(sheetNm, rowCnt){
 
 	var sumPoint = 0;
 	for(var i=1; i<rowCnt; i++){
-		sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//Ç×¸ñÆò°¡ Á¡¼ö
+		sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//í•­ëª©í‰ê°€ ì ìˆ˜
 	}
 	$("#"+sheetNm+"SumPoint").html(sumPoint.toFixed(1));
 }
 
 function culRatingPoint(){
 
-	var totalPoitn = 0;	//ÃÖÁ¾Á¡¼ö
+	var totalPoitn = 0;	//ìµœì¢…ì ìˆ˜
 	var Rating = "";
 	var totalRating = 0;
-	var safetySumPoint = parseFloat($("#safetyitemSumPoint").html()) / 1.1;		//¾ÈÀü½ÃÆ®ÀÇ ÃÖÁ¾ÆÇÁ¤ Á¡¼ö
-	var deliverySumPoint = parseFloat($("#deliveryitemSumPoint").html()) / 0.7;	//³³±â½ÃÆ®ÀÇ ÃÖÁ¾ÆÇÁ¤ Á¡¼ö
-	var qualitySumPoint = parseFloat($("#qualityitemSumPoint").html()) / 0.4;	//Ç°Áú½ÃÆ®ÀÇ ÃÖÁ¾ÆÇÁ¤ Á¡¼ö
-	totalPoitn = safetySumPoint + deliverySumPoint + qualitySumPoint;		//ÇÕ»ê(ÃÖÁ¾Á¡¼ö)
+	var safetySumPoint = parseFloat($("#safetyitemSumPoint").html()) / 1.1;		//ì•ˆì „ì‹œíŠ¸ì˜ ìµœì¢…íŒì • ì ìˆ˜
+	var deliverySumPoint = parseFloat($("#deliveryitemSumPoint").html()) / 0.7;	//ë‚©ê¸°ì‹œíŠ¸ì˜ ìµœì¢…íŒì • ì ìˆ˜
+	var qualitySumPoint = parseFloat($("#qualityitemSumPoint").html()) / 0.4;	//í’ˆì§ˆì‹œíŠ¸ì˜ ìµœì¢…íŒì • ì ìˆ˜
+	totalPoitn = safetySumPoint + deliverySumPoint + qualitySumPoint;		//í•©ì‚°(ìµœì¢…ì ìˆ˜)
 
 	if(Number(totalPoitn.toFixed(1))>=100){
 		totalRating = 50;
@@ -226,7 +226,7 @@ function save1(div){
 
 	var f = document.forms['form1'];
 	f.action = 'assessment_result_sendmail_enc.jsp?asse_no={{assessment.asse_no}}';
-	var message = "°á°ú Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?";
+	var message = "ê²°ê³¼ ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 	if(confirm(message)){
 		//fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 1130);
         OpenWindow("pop_sendEmailSet.jsp", "sendEmailSet", 450, 250);
@@ -241,23 +241,23 @@ function save(div){
 		if(validate(f)){
 			/* var d = f['date'].value;
 		    if(!isDateFormat(d)) {
-		    	alert("YYYY-MM-DD Æò°¡ÀÏ¸¦ È®ÀÎÇØÁÖ¼¼¿ä.");
+		    	alert("YYYY-MM-DD í‰ê°€ì¼ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”.");
 		    	f['date'].focus();
 		        return false;
 		    } */
 		    var message = "";
-		    if(div == "20"){	//ÀÓ½ÃÀúÀå
-		    	message = "ÀÓ½Ã ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?";
+		    if(div == "20"){	//ì„ì‹œì €ì¥
+		    	message = "ì„ì‹œ ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		    }else if(div == "50"){
-		    	message = "Æò°¡ ¿Ï·á ÇÏ½Ã°Ú½À´Ï±î?";
+		    	message = "í‰ê°€ ì™„ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		    }else if(div == "90"){
-		    	message = "Æò°¡ ¿Ï·á ÈÄ °á°ú Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?";
+		    	message = "í‰ê°€ ì™„ë£Œ í›„ ê²°ê³¼ ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		    }
 			if(confirm(message)){
                 setDivInputValue("__html");
 				splitHtml(f, 'doc_html', false);
-				//alert(f['sector'].value);		//¼Ò¼Ó
-				//alert(f['assessor'].value);	//Æò°¡¿ø
+				//alert(f['sector'].value);		//ì†Œì†
+				//alert(f['assessor'].value);	//í‰ê°€ì›
 				if(div == "90"){
                     OpenWindow("pop_sendEmailSet.jsp", "sendEmailSet", 420, 200);
 					//fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 1130);
@@ -272,13 +272,13 @@ function save(div){
 function del(){
 	var f = document.forms['form2'];
 	var message = "";
-	if(f['mstatus'].value == "20")  // Æò°¡Áß -> Æò°¡´ë»ó
+	if(f['mstatus'].value == "20")  // í‰ê°€ì¤‘ -> í‰ê°€ëŒ€ìƒ
 	{
-		message = "´Ù½Ã Æò°¡´ë»ó µî·ÏÀ» ÇÏ½Ã°Ú½À´Ï±î?\nÆò°¡ ÁøÇàÁßÀÎ ¸ğµç ±â·ÏÀÌ »èÁ¦µË´Ï´Ù.";
+		message = "ë‹¤ì‹œ í‰ê°€ëŒ€ìƒ ë“±ë¡ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\ní‰ê°€ ì§„í–‰ì¤‘ì¸ ëª¨ë“  ê¸°ë¡ì´ ì‚­ì œë©ë‹ˆë‹¤.";
 	}
-	else if(f['mstatus'].value == "50")  // Æò°¡¿Ï·á -> Æò°¡Áß
+	else if(f['mstatus'].value == "50")  // í‰ê°€ì™„ë£Œ -> í‰ê°€ì¤‘
 	{
-		message = "´Ù½Ã Æò°¡ÇÒ ¼ö ÀÖµµ·Ï [Æò°¡Áß] »óÅÂ·Î µ¹¸®½Ã°Ú½À´Ï±î?";
+		message = "ë‹¤ì‹œ í‰ê°€í•  ìˆ˜ ìˆë„ë¡ [í‰ê°€ì¤‘] ìƒíƒœë¡œ ëŒë¦¬ì‹œê² ìŠµë‹ˆê¹Œ?";
 	}
 
 	if(confirm(message)){
@@ -293,7 +293,7 @@ function isDateFormat(d) {
 }
 
 function print(){
-	alert('¹è°æ»öÀ» ÀÎ¼âÇÏ·Á¸é ºê¶ó¿ìÀúÀÇ [ÆÄÀÏ] -> [ÆäÀÌÁö ¼³Á¤] ¸Ş´º¿¡¼­ "¹è°æ»ö ¹× ÀÌ¹ÌÁö ÀÎ¼â"¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä."');
+	alert('ë°°ê²½ìƒ‰ì„ ì¸ì‡„í•˜ë ¤ë©´ ë¸Œë¼ìš°ì €ì˜ [íŒŒì¼] -> [í˜ì´ì§€ ì„¤ì •] ë©”ë‰´ì—ì„œ "ë°°ê²½ìƒ‰ ë° ì´ë¯¸ì§€ ì¸ì‡„"ë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”."');
 	var f = document.forms['form1'];
 	removeInput(document.getElementById("__html_0"), f['print_content']);
 	var printPop = window.open("","_blank","width=748, height=700");

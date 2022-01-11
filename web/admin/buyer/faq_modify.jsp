@@ -1,26 +1,26 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String id = u.request("id");
 if(id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 DataObject pDao = new DataObject("tcb_board");
 DataSet ds = pDao.find("board_id=" + id + " and category = 'faq'");
 if(!ds.next()){
-	u.jsError("ÇØ´ç °³½Ã¹°ÀÌ ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ ê°œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("title", ds.getString("title"), "hname:'Á¦¸ñ', required:'Y', maxbyte:'255'");
-f.addElement("open_date", u.getTimeString("yyyy-MM-dd", ds.getString("open_date")), "hname:'°øÁöÀÏÀÚ', required:'Y'");
-f.addElement("open_yn", ds.getString("open_yn"), "hname:'°ø°³¿©ºÎ'");
-f.addElement("reg_id", ds.getString("reg_id"), "hname:'µî·ÏÀÚ', required:'Y', maxbyte:'12'");
-f.addElement("contents", ds.getString("contents"), "hname:'°øÁö³»¿ë', required:'Y'");
+f.addElement("title", ds.getString("title"), "hname:'ì œëª©', required:'Y', maxbyte:'255'");
+f.addElement("open_date", u.getTimeString("yyyy-MM-dd", ds.getString("open_date")), "hname:'ê³µì§€ì¼ìž', required:'Y'");
+f.addElement("open_yn", ds.getString("open_yn"), "hname:'ê³µê°œì—¬ë¶€'");
+f.addElement("reg_id", ds.getString("reg_id"), "hname:'ë“±ë¡ìž', required:'Y', maxbyte:'12'");
+f.addElement("contents", ds.getString("contents"), "hname:'ê³µì§€ë‚´ìš©', required:'Y'");
 
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DataObject dao = new DataObject("tcb_board");
@@ -43,11 +43,11 @@ if(u.isPost() && f.validate())
 	dao.item("reg_date", u.getTimeString());
 
 	if(!dao.update("category='faq' and board_id='"+id+"'")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀå µÇ¾ú½À´Ï´Ù.", "./faq_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./faq_modify.jsp?"+u.getQueryString());
 	//u.redirect("./place_modify.jsp?"+u.getQueryString());
 	return;
 }
@@ -60,7 +60,7 @@ p.setVar("menu_cd","000051");
 p.setVar("modify", true);
 p.setVar("ds", ds);
 p.setVar("list_query", u.getQueryString("id"));
-p.setVar("query",u.getQueryString());			// »èÁ¦
+p.setVar("query",u.getQueryString());			// ì‚­ì œ
 p.setVar("form_script",f.getScript());
 p.display(out);
 %>

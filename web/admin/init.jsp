@@ -58,7 +58,7 @@ if(auth.isValid()) {
 }
 p.setVar("_sysdate", u.getTimeString());
 
-p.setVar("realgrid_path", "/cab/realgrid/");
+p.setVar("realgrid_path", "../../../../cab/realgrid/");
 
 p.setVar("SYS_HTTPHOST", request.getServerName());
 p.setVar("SYS_PAGE_URL", request.getRequestURL() + (!"".equals(u.getQueryString()) ? "?" + u.getQueryString() : ""));

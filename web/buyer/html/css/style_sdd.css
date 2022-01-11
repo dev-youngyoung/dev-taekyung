@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+ï»¿@charset "UTF-8";
 /**********************@include start***********************/
 .width-5 {
   width: 5px !important; }
@@ -725,7 +725,7 @@ button {
     width: 48px;
     height: 48px;
     font-size: 12px;
-    background: #0676bd url(/web/supplier/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
+    background: #965f4f url(/web/supplier/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
     padding-top: 12px; }
 
 .page-footer-info {
@@ -775,7 +775,7 @@ button {
   right: 0; }
 
 /**********************layout  end***********************/
-/**********************°è¾àÁøÇàÁ¤º¸  start***********************/
+/**********************æ€¨ê¾©ë¹Ÿï§ê¾ªë»¾?ëº£ë‚«  start***********************/
 .contract-info {
   border-top: 1px solid #dbdbdb;
   background: #f6f6f6;
@@ -851,7 +851,7 @@ button {
     .contract-info li.is-active span {
       margin-top: 5px; }
 
-/**********************°è¾àÁøÇàÁ¤º¸  end***********************/
+/**********************æ€¨ê¾©ë¹Ÿï§ê¾ªë»¾?ëº£ë‚«  end***********************/
 /**********************quick menu start***********************/
 .quick-menu {
   position: absolute;
@@ -1105,7 +1105,7 @@ button {
     color: #999;
     border: 1px solid #cbcbcb; }
   .file-upload-wrapper:before {
-    content: 'Ã£¾Æº¸±â';
+    content: 'ï§¡ì– ë¸˜è¹‚ë‹¿ë¦°';
     position: absolute;
     top: 0;
     right: 0;
@@ -2138,7 +2138,7 @@ button {
       font-weight: bold; }
 
 /**********************main end***********************/
-/**********************ÀÎÁõ¼­ µî·Ï°»½Å start***********************/
+/**********************?ëª„ì¬†???ê¹…ì¤‰åª›ê¹†ë–Š start***********************/
 .common-cert h3 {
   font-size: 18px;
   margin-bottom: 10px; }
@@ -2281,7 +2281,7 @@ button {
         display: block;
         margin-top: 5px; }
 
-/**********************ÀÎÁõ¼­ µî·Ï°»½Å end***********************/
+/**********************?ëª„ì¬†???ê¹…ì¤‰åª›ê¹†ë–Š end***********************/
 /**********************html template start***********************/
 .tab_on {
   font-size: 15px;
@@ -2313,9 +2313,9 @@ button {
   padding: 50px;
   border: 1px solid black;
   width: 845px;
-  /* °è¾à ÇÊ¼ö ÀÔ·Â »çÇ× */
-  /* °è¾à ¼±ÅÃ ÀÔ·Â »çÇ× */
-  /* °è¾à ¼±ÅÃ ÀÔ·Â »çÇ× */ }
+  /* æ€¨ê¾©ë¹Ÿ ?ê¾©ë‹” ?ë‚…ì ° ?Ñ‹ë¹† */
+  /* æ€¨ê¾©ë¹Ÿ ?ì¢ê¹® ?ë‚…ì ° ?Ñ‹ë¹† */
+  /* æ€¨ê¾©ë¹Ÿ ?ì¢ê¹® ?ë‚…ì ° ?Ñ‹ë¹† */ }
   #__html table {
     border: 0px; }
   #__html p {
@@ -2335,7 +2335,7 @@ button {
     height: 23px;
     line-height: 23px;
     color: #707070;
-    FONT-FAMILY: µ¸¿ò, Arial;
+    FONT-FAMILY: ?ë—­?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2345,7 +2345,7 @@ button {
     height: 23px;
     line-height: 19px;
     color: #707070;
-    FONT-FAMILY: µ¸¿ò, Arial;
+    FONT-FAMILY: ?ë—­?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2355,7 +2355,7 @@ button {
     height: 23px;
     line-height: 19px;
     color: #707070;
-    FONT-FAMILY: µ¸¿ò, Arial;
+    FONT-FAMILY: ?ë—­?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2364,7 +2364,7 @@ button {
     height: 23px;
     line-height: 19px;
     color: #000000;
-    FONT-FAMILY: µ¸¿ò, Arial;
+    FONT-FAMILY: ?ë—­?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2376,7 +2376,7 @@ button {
     height: 23px;
     line-height: 19px;
     color: #000000;
-    FONT-FAMILY: µ¸¿ò, Arial;
+    FONT-FAMILY: ?ë—­?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2388,7 +2388,7 @@ button {
     height: 23px;
     line-height: 19px;
     color: #000000;
-    FONT-FAMILY: µ¸¿ò, Arial;
+    FONT-FAMILY: ?ë—­?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;

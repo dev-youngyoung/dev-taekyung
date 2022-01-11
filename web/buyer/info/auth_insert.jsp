@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_select_auth = codeDao.getCodeArray("M045");
@@ -6,7 +6,7 @@ String[] code_btn_auth = codeDao.getCodeArray("M046");
 
 
 
-// ¸Ş´ºÁ¤º¸ Á¶È¸
+// ë©”ë‰´ì •ë³´ ì¡°íšŒ
 DataObject menuDao = new DataObject("tcb_menu");
 DataSet menu = menuDao.query(
 		 "	select p_menu_cd                                    "
@@ -112,10 +112,10 @@ DataObject fieldDao = new DataObject("tcb_field");
 DataSet field = fieldDao.find(" member_no = '"+_member_no+"' and use_yn = 'Y'  and status > '0' ");
 
 
-f.addElement("auth_nm",null, "hname:'±ÇÇÑ¸í', required:'Y'");
+f.addElement("auth_nm",null, "hname:'ê¶Œí•œëª…', required:'Y'");
 
 if(u.isPost()&&f.validate()){
-	//±ÇÇÑ ÀúÀå
+	//ê¶Œí•œ ì €ì¥
 	DB db = new DB();
 	
 	DataObject authDao = new DataObject("tcb_auth");
@@ -170,10 +170,10 @@ if(u.isPost()&&f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù.","./auth_modify.jsp?auth_cd="+auth_cd+"&"+u.getQueryString("auth_cd"));
+	u.jsAlertReplace("ì •ìƒì ìœ¼ë¡œ ì €ì¥ ë˜ì—ˆìŠµë‹ˆë‹¤.","./auth_modify.jsp?auth_cd="+auth_cd+"&"+u.getQueryString("auth_cd"));
 	return;
 }
 

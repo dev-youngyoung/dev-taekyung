@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-// ¸Þ´ºÁ¤º¸ Á¶È¸
+// ë©”ë‰´ì •ë³´ ì¡°íšŒ
 DataObject menuDao = new DataObject("tcc_menu");
 DataSet menu = menuDao.query(
 		 "	select p_menu_cd                                    "
@@ -70,10 +70,10 @@ while(menu.next()){
 	}
 }
 
-f.addElement("auth_nm",null, "hname:'±ÇÇÑ¸í', required:'Y'");
+f.addElement("auth_nm",null, "hname:'ê¶Œí•œëª…', required:'Y'");
 
 if(u.isPost()&&f.validate()){
-	//±ÇÇÑ ÀúÀå
+	//ê¶Œí•œ ì €ìž¥
 	DB db = new DB();
 	
 	DataObject authDao = new DataObject("tcc_auth");
@@ -108,10 +108,10 @@ if(u.isPost()&&f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù.","./auth_modify.jsp?auth_cd="+auth_cd+"&"+u.getQueryString("auth_cd"));
+	u.jsAlertReplace("ì •ìƒì ìœ¼ë¡œ ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.","./auth_modify.jsp?auth_cd="+auth_cd+"&"+u.getQueryString("auth_cd"));
 	return;
 }
 

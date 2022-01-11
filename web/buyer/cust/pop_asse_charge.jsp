@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
@@ -6,7 +6,7 @@ String[] code_user_level = codeDao.getCodeArray("M013");
 
 f.addElement("s_user_name", null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -20,7 +20,7 @@ list.addWhere( "(a.default_yn = 'Y' or auth_cd in (select auth_cd from tcb_auth_
 list.addSearch("a.user_name",f.get("s_user_name"),"LIKE");
 list.setOrderBy("user_name asc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){
@@ -29,7 +29,7 @@ while(ds.next()){
 
 p.setLayout("popup");
 p.setBody("cust.pop_asse_charge");
-p.setVar("popup_title","´ã´çÀÚ°Ë»ö");
+p.setVar("popup_title","ë‹´ë‹¹ìžê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("menu_cd",u.request("menu_cd"));

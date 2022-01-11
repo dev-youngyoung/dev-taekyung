@@ -41,7 +41,7 @@ public class ExcelWriter {
 	}
 
 	public ExcelWriter(HttpServletResponse response, String filename) throws Exception {
-		//jsp¿¡¼­ ²À out.clear(); ÇØÁà¾ß ÇÔ.
+		//jspì—ì„œ ê¼­ out.clear(); í•´ì¤˜ì•¼ í•¨.
 		response.setContentType("application/octet-stream");
 	    response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(filename.getBytes("KSC5601"),"8859_1") + "\"");
 		workbook = Workbook.createWorkbook(response.getOutputStream());
@@ -58,7 +58,7 @@ public class ExcelWriter {
 
 	public void setData(DataSet rs, String[] cols) throws Exception {
 
-		//String[] w_cols = new String[] {"vendcd=>¿ø»ç¾÷ÀÚ", "fieldname=>°ø»ç¸í","cont_name=>°è¾à¸í","cont_name=>°è¾àÀÏ","cust_name=>¾÷Ã¼¸í","cust_vendcd=>¼ö±Ş»ç¾÷ÀÚ"};
+		//String[] w_cols = new String[] {"vendcd=>ì›ì‚¬ì—…ì", "fieldname=>ê³µì‚¬ëª…","cont_name=>ê³„ì•½ëª…","cont_name=>ê³„ì•½ì¼","cust_name=>ì—…ì²´ëª…","cust_vendcd=>ìˆ˜ê¸‰ì‚¬ì—…ì"};
 		for(int i=0; i<cols.length; i++) {
 			String[] arr = cols[i].split("=>");
 			this.put(i, 0, arr[1], setCellFormat("center", null, "gray"));
@@ -101,7 +101,7 @@ public class ExcelWriter {
 			}
 		}
 		if(backgroundColor != null){
-			cellFormat.setBackground(Colour.GRAY_25);//»ö»ó º¯°æ API¾øÀ½.
+			cellFormat.setBackground(Colour.GRAY_25);//ìƒ‰ìƒ ë³€ê²½ APIì—†ìŒ.
 		}
 		return cellFormat;
 	}

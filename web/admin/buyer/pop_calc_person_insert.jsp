@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -18,12 +18,12 @@ DataSet field = fieldDao.find(" member_no = '"+member_no+"' and status > 0 ");
 while(field.next()){
 }
 
-f.addElement("user_name", null, "hname:'´ã´çÀÚ¸í', required:'Y'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("hp1", null, "hname:'ÈŞ´ëÆù', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈŞ´ëÆù', required:'Y'");
-f.addElement("hp3", null, "hname:'ÈŞ´ëÆù', required:'Y'");
-f.addElement("email", null, "hname:'ÈŞ´ëÆù', required:'Y'");
+f.addElement("user_name", null, "hname:'ë‹´ë‹¹ìëª…', required:'Y'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€í°', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€í°', required:'Y'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€í°', required:'Y'");
+f.addElement("email", null, "hname:'íœ´ëŒ€í°', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 
@@ -40,12 +40,12 @@ if(u.isPost()&&f.validate()){
 	calcPersonDao.item("field_seq", f.get("field_seqs"));
 	calcPersonDao.item("status", "10");
 	if(!calcPersonDao.insert()) {
-		u.jsError("ÀúÀå Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿³½À´Ï´Ù.");
+		u.jsError("ì €ì¥ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	out.println("<script>");
 	out.println("opener.location.reload();");
-	out.println("alert('ÀúÀå Ã³¸® µÇ¾ú½À´Ï´Ù.');");
+	out.println("alert('ì €ì¥ ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 	out.println("location.href='pop_calc_person_modify.jsp?member_no="+member_no+"&seq="+seq+"';");
 	out.println("</script>");
 	return;
@@ -54,7 +54,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_calc_person_modify");
-p.setVar("popup_title","Á¤»ê´ã´çÀÚ µî·Ï");
+p.setVar("popup_title","ì •ì‚°ë‹´ë‹¹ì ë“±ë¡");
 p.setVar("member", member);
 p.setLoop("field", field);
 p.setVar("form_script",f.getScript());

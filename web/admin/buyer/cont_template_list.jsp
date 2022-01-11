@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 f.addElement("s_member_name", null, null);
@@ -21,7 +21,7 @@ list.setFields(
 		+"	   and member_no not in (                  "
 		+"			   select member_no                "
 		+"			     from tcb_member               "
-		+"			    where member_name like '%Å×½ºÆ®%'"
+		+"			    where member_name like '%í…ŒìŠ¤íŠ¸%'"
 		+"			                 )                 "
 		+"  ) cont_cnt                                 "
 		);
@@ -36,7 +36,7 @@ DataSet ds = list.getDataSet();
 
 DataObject memberDao = new DataObject("tcb_member");
 while(ds.next()){
-	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"»ç¿ë":"¹Ì»ç¿ë");
+	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"ì‚¬ìš©":"ë¯¸ì‚¬ìš©");
 	ds.put("cont_cnt", u.numberFormat(ds.getString("cont_cnt")));
 	if(!ds.getString("member_no").equals("")&&ds.getString("member_name").equals("")){
 		String[] member_nos = ds.getString("member_no").split(",");

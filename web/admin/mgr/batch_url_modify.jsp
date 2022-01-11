@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String batch_seq = u.request("batch_seq"); 
@@ -24,10 +24,10 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(batchTemplateDao.getUpdateQuery("member_no = '"+member_no+"' and batch_seq = "+batch_seq), batchTemplateDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù.","./batch_url_list.jsp");
+	u.jsAlertReplace("ì •ìƒì ìœ¼ë¡œ ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.","./batch_url_list.jsp");
 	return;
 }
 

@@ -10,48 +10,22 @@
 			<col width="32%">
 			<col width="10%">
 		</colgroup>
-		<!-- IF START 'detail_cd' -->
 		<tr>
-		    <th><p>°è¾àÃ³ÄÚµå</p></th>
-		    <td><input type="text" name="s_cust_detail_code" style="width: 35%"></td>
-		    <th><p>KPP´ã´çÀÚ¸í</p></th>
-		    <td><input type="text" name="s_user_name" style="width: 35%"></td>
-		    <td></td>
-		</tr>
-		<!-- IF END 'detail_cd' -->
-		<!-- IF START 'isKTH' -->
-		<tr>
-			<th><p>°Å·¡Ã³ÄÚµå</p></th>
-		    <td><input type="text" name="s_cust_detail_code" style="width: 35%"></td>
-		    <th><p>´ã´çÀÚ¸í</p></th>
-		    <td><input type="text" name="s_user_name" style="width: 35%"></td>
-		    <td></td>
-		</tr>
-		<!-- IF END 'isKTH' -->
-		<tr>
-			<th><p>°Å·¡Ã³¸í</p></th>
+			<th><p>ê±°ë˜ì²˜ëª…</p></th>
 		    <td><input type="text" name="s_cust_name" maxlength="100" style="width: 90%"></td>
-		    <th><p>»ç¾÷ÀÚµî·Ï¹øÈ£</p></th>
+		    <th><p>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</p></th>
 		    <td><input type="text" name="s_vendcd" maxlength="12" style="width: 90%;ime-mode:disabled" onkeydown="num_minus_only()" onkeyupress="num_minus_only()"></td>
 		    <td></td>
 		</tr>
 		<tr>
-		    <th><p>°è¾à¸í</p></th>
+		    <th><p>ê³„ì•½ëª…</p></th>
 		    <td colspan="3"><input type="text" name="s_cont_name" maxlength="100" style="width: 96%"></td>
 		    <td align="right">
-				<button type="submit" class="search_btn">°Ë»ö</button>
+				<button type="submit" class="search_btn">ê²€ìƒ‰</button>
 		    </td>
 		</tr>
 	</table>
 </div>
-
-<!-- IF START 'isSKB' -->				
-<div class="util-row" align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
-	<button type="button" class="sbtn color ico-request auth_css" onClick="fSend();"><span></span>¼­¸í¿äÃ»</button>
-</div>
-<br/>
-<!-- IF END 'isSKB' -->
 
 {{form_script}}
 
@@ -60,80 +34,35 @@
 <div class="div_table">
 	<table>
 		<colgroup>
-			<!-- IF START 'view_checkbox' -->  
-				<col width="7%">
-			<!-- IF END 'view_checkbox' -->   
-			<!-- IFNOT START 'view_checkbox' -->
-				<col width="7%">  
-			<!-- IFNOT END 'view_checkbox' -->
+			    <col width="13%"> 
 				<col width="*">
 				<col width="14%">   
-			<!-- IF START 'detail_cd' -->
-				<col width="7%">
-				<col width="8%">
-			<!-- IF END 'detail_cd' -->
-			<!-- IF START 'isKTH' -->
-				<col width="7%">
-				<col width="7%">
-			<!-- IF END 'isKTH' -->
 			    <col width="10%">
-			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->    
-			    <col width="13%">
-			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
+			    <col width="10%">
 		</colgroup>
 		<tr>
-			<!-- IF START 'view_checkbox' -->  
-				<th><input type="checkbox" onclick="AutoCheck('form1','cont','cont_all')"  name="cont_all" /></th>
-			<!-- IF END 'view_checkbox' -->   
-			<!-- IFNOT START 'view_checkbox' -->  
-				<th>¼ø¹ø</th>
-			<!-- IFNOT END 'view_checkbox' -->   
-			    <th>°è¾à¸í</th>
-			    <th>°Å·¡Ã³¸í</th>
-			<!-- IF START 'detail_cd' -->
-				<th>°è¾àÃ³<br>ÄÚµå</th>
-				<th>KPP´ã´ç</th>
-			<!-- IF END 'detail_cd' -->
-			<!-- IF START 'isKTH' -->
-				<th>°Å·¡Ã³<br>ÄÚµå</th>
-				<th>´ã´çÀÚ</th>
-			<!-- IF END 'isKTH' -->
-			    <th>°è¾àÀÏÀÚ</th>
-			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->    
-			    <th>°è¾à¹øÈ£</th>
-			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->        
+			    <th>ê³„ì•½ë²ˆí˜¸</th>
+			    <th>ê³„ì•½ëª…</th>
+			    <th>ê±°ë˜ì²˜ëª…</th>
+			    <th>ê³„ì•½ì¼ì</th>
+			    <th>ìƒíƒœ</th>
 		</tr>
 		
 		<!-- IF START 'list' -->
 			<!-- LOOP START 'list' -->
 	  			<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
-					<!-- IF START 'view_checkbox' -->  
-						<td align="center" onclick="event.cancelBubble=true;"><input type="checkbox" name="cont" value="{{list.cont_no}}_{{list.cont_chasu}}"/></td>
-					<!-- IF END 'view_checkbox' -->   
-					<!-- IFNOT START 'view_checkbox' -->  
-						<td align="center">{{list.__ord}}</td>
-					<!-- IFNOT END 'view_checkbox' -->      
+						<td align="center">{{list.cont_userno}}</td>
 						<td>{{list.cont_name}}</td>
 						<td>{{list.cust_name}}</td>
-					<!-- IF START 'detail_cd' -->
-						<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCD('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'detail_cd' -->
-					<!-- IF START 'isKTH' -->
-						<td align="center" >{{list.cust_detail_code}}</td>
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'isKTH' -->
 						<td align="center">{{list.cont_date}}</td>
-					<!-- IFC START '_auth._MEMBER_NO!=20130500619' --> 	
-						<td align="center">{{list.cont_userno}}</td>
-					<!-- IFC END '_auth._MEMBER_NO!=20130500619' --> 	
+						<td align="center">{{list.appr_status_name}}</td>
 				</tr>
 			<!-- LOOP END 'list' -->
 		<!-- IF END 'list' -->
 	  	
 	  	<!-- IFNOT START 'list' -->
 	  		<tr>
-				<td colspan="10" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+				<td colspan="10" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 	  		</tr>
 	  	<!-- IFNOT END 'list' -->
 	  	
@@ -145,20 +74,18 @@
 </form>
 
 <script>
- 
- function fSend(){
+function fSend() {
 	var f = document.forms['form1'];
-	var cont_select = GetFormValue("form1","cont");
-	if(cont_select == ""){
-		alert("¼­¸í¿äÃ»ÇÒ °è¾àÀ» ¼±ÅÃ(Ã¼Å©) ÇØÁÖ¼¼¿ä.");
+	var cont_select = GetFormValue("form1", "cont");
+	if (cont_select == "") {
+		alert("ì„œëª…ìš”ì²­í•  ê³„ì•½ì„ ì„ íƒ(ì²´í¬) í•´ì£¼ì„¸ìš”.");
 	 	return;	
 	}
 
- 	if(confirm("°Å·¡Ã³¿¡°Ô °è¾à¼­ ¼­¸í¿äÃ» ÇÏ½Ã°Ú½À´Ï±î?")){
- 		f.method="post";
+ 	if (confirm("ê±°ë˜ì²˜ì—ê²Œ ê³„ì•½ì„œ ì„œëª…ìš”ì²­ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
+ 		f.method = "post";
 	 	f.action = "./contract_send_select.jsp";
 	 	f.submit();
  	}
- 	
- }
- </script>
+}
+</script>

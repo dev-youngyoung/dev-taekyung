@@ -1,11 +1,11 @@
-<form novalidate name="form1" method="post">
+ï»¿<form novalidate name="form1" method="post">
 
 <input type="hidden" name="template_cd">
 
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>¾÷Ã¼Á¤º¸</h3>
+	        <h3>ì—…ì²´ì •ë³´</h3>
 	    </div>
 	</div>
 	<table>
@@ -16,18 +16,18 @@
 		    <col width="35%">
 		  </colgroup>
 		<tr>
-			<th>»ç¾÷ÀÚ¸í</th>
-			<td><input type="text" name="w_member_name" class="in_readonly"  style="width:98%" readonly hname="¿ø»ç¾÷ÀÚ¸í" required="Y"></td>
-			<th>È¸¿ø¹øÈ£</th>
+			<th>ì‚¬ì—…ìëª…</th>
+			<td><input type="text" name="w_member_name" class="in_readonly"  style="width:98%" readonly hname="ì›ì‚¬ì—…ìëª…" required="Y"></td>
+			<th>íšŒì›ë²ˆí˜¸</th>
 			<td>
-				<input type="text" name="w_member_no" class="in_readonly"  style="width:190px" readonly hname="¿ø»ç¾÷ÀÚ¹øÈ£" required="Y">
-				<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_send_company.jsp?callback=setMember','pop_search_company', '1000','700','yes');"><span></span>¾÷Ã¼°Ë»ö</button> 
+				<input type="text" name="w_member_no" class="in_readonly"  style="width:190px" readonly hname="ì›ì‚¬ì—…ìë²ˆí˜¸" required="Y">
+				<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_send_company.jsp?callback=setMember','pop_search_company', '1000','700','yes');"><span></span>ì—…ì²´ê²€ìƒ‰</button> 
 			</td>
 		</tr>
 		<tr>
-			<th>ºÎ¼­¸í</th>
+			<th>ë¶€ì„œëª…</th>
 			<td><input type="text" name="w_dept_name" class="in_readonly"  style="width:98%" readonly></td>
-			<th>¾ÆÀÌµğ</th>
+			<th>ì•„ì´ë””</th>
 			<td>
 				<input type="text" name="w_userid" class="in_readonly"  style="width:190px" readonly>
 			</td>
@@ -46,7 +46,7 @@
 
 <div class="div_table">
 	<div class="util-row">
-		<div class="push-left"><h3>¼­½Ä¼±ÅÃ</h3></div>
+		<div class="push-left"><h3>ì„œì‹ì„ íƒ</h3></div>
 	</div>
 	<table>
 	<colgroup>
@@ -54,10 +54,10 @@
 		<col width="70%">
 	</colgroup>
 		<tr>
-			<th>°è¾à¼­ Á¾·ù</th>
+			<th>ê³„ì•½ì„œ ì¢…ë¥˜</th>
 			<td>
-				<select name="template_cd" hname="°è¾à¼­Á¾·ù" required="Y" onchange="getFieldList()">
-				<option value="">------------------ ¼±&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÅÃ ------------------</option>
+				<select name="template_cd" hname="ê³„ì•½ì„œì¢…ë¥˜" required="Y" onchange="getFieldList()">
+				<option value="">------------------ ì„ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;íƒ ------------------</option>
 				<!-- LOOP START 'templateDs' -->
 				<option value="{{templateDs.template_cd}}" {{templateDs.select}}>{{templateDs.template_name}}</option>
 				<!-- LOOP END 'templateDs' -->
@@ -70,7 +70,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à¼­·ù¼³Á¤</h3>
+	        <h3>ê³„ì•½ì„œë¥˜ì„¤ì •</h3>
 	    </div>
 	</div>
 	<table id="file_grid">
@@ -80,8 +80,8 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>¹®¼­¸í</th>
-			<th>´Ù¿î·Îµå</th>
+			<th>ë¬¸ì„œëª…</th>
+			<th>ë‹¤ìš´ë¡œë“œ</th>
 		</tr>
 		</thead>
 		<!-- LOOP START 'cfile' -->
@@ -89,11 +89,11 @@
 			<td>{{cfile.doc_name}}</td>
 			<td align="right">
 				<!-- IFNOT START 'cfile.file_name' -->
-				¹ÌÃ·ºÎ
+				ë¯¸ì²¨ë¶€
 				<!-- IFNOT END 'cfile.file_name' -->
 				<!-- IF START 'cfile.file_name' -->
 				{{cfile.str_file_size}}&nbsp;&nbsp;
-				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_template','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcont_template','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 				<!-- IF END 'cfile.file_name' -->
 			</td>
 		</tr>
@@ -104,7 +104,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>±¸ºñ¼­·ù¼³Á¤</h3>
+	        <h3>êµ¬ë¹„ì„œë¥˜ì„¤ì •</h3>
 	    </div>
 	</div>
 	<table id="rfile_grid">
@@ -115,9 +115,9 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ÇÊ¼ö¿©ºÎ</th>
-			<th>±¸ºñ¼­·ù¸í</th>
-			<th>Ã·ºÎ°¡´ÉÆÄÀÏ</th>
+			<th>í•„ìˆ˜ì—¬ë¶€</th>
+			<th>êµ¬ë¹„ì„œë¥˜ëª…</th>
+			<th>ì²¨ë¶€ê°€ëŠ¥íŒŒì¼</th>
 		</tr>
 		</thead>
 		<!-- LOOP START 'rfile' -->
@@ -126,7 +126,7 @@
 			<td align="left">{{rfile.doc_name}}</td>
 			<td align="center" >
 				<select name="allow_ext" disabled="disabled">
-					<option value="">-ÀüÃ¼-</option>
+					<option value="">-ì „ì²´-</option>
 					<!-- LOOP START 'code_allow' -->
 					<option value="{{code_allow.id}}" {{code_allow.selected}}>{{code_allow.value}}</option>
 					<!-- LOOP END 'code_allow' -->
@@ -140,10 +140,10 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>ÀÔ·Â°ª ¼³Á¤</h3>
+	        <h3>ì…ë ¥ê°’ ì„¤ì •</h3>
 	    </div>
 	    <div class="push-right">
-	    	<button type="button" class="sbtn color ico-add" onclick="field_grid.addRow();"><span></span>Ãß°¡</button>
+	    	<button type="button" class="sbtn color ico-add" onclick="field_grid.addRow();"><span></span>ì¶”ê°€</button>
 	    </div>
 	</div>
 	<table id="field_grid">
@@ -155,18 +155,18 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ÇÊµå¸í(¿µ¹®)</th>
-			<th>ÇÊµå¸í(ÇÑ±Û)</th>
-			<th>ÇÊµåÅ¸ÀÔ</th>
-			<th>»èÁ¦</th>
+			<th>í•„ë“œëª…(ì˜ë¬¸)</th>
+			<th>í•„ë“œëª…(í•œê¸€)</th>
+			<th>í•„ë“œíƒ€ì…</th>
+			<th>ì‚­ì œ</th>
 		</tr>
 		</thead>
 		<!-- LOOP START 'fieldList' -->
 		<tr>
-			<td><input type="text" name="input_eng" value="{{fieldList.input_eng}}" class="label" style="width:98%" hname="ÇÊµå¸í(¿µ¹®)" required="Y" /></td>
-			<td><input type="text" name="input_kor" value="{{fieldList.input_kor}}" class="label" style="width:98%" hname="ÇÊµå¸í(ÇÑ±Û)" required="Y" /></td>
+			<td><input type="text" name="input_eng" value="{{fieldList.input_eng}}" class="label" style="width:98%" hname="í•„ë“œëª…(ì˜ë¬¸)" required="Y" /></td>
+			<td><input type="text" name="input_kor" value="{{fieldList.input_kor}}" class="label" style="width:98%" hname="í•„ë“œëª…(í•œê¸€)" required="Y" /></td>
 			<td align="center">
-				<select name="input_type" id="input_type_{{fieldList.b_seq}}" hname="ÇÊµåÅ¸ÀÔ" required="Y">
+				<select name="input_type" id="input_type_{{fieldList.b_seq}}" hname="í•„ë“œíƒ€ì…" required="Y">
 					<option value="input">input</option>
 					<option value="checkbox">checkbox</option>
 					<option value="radio">radio</option>
@@ -174,7 +174,7 @@
 				</select>
 				<script>document.getElementById("input_type_{{fieldList.b_seq}}").value="{{fieldList.input_type}}";</script>
 			</td>
-			<td align="center"><button type="button" class="sbtn color ico-delete" onclick="field_grid.del(this);"><span></span>»èÁ¦</button></td>
+			<td align="center"><button type="button" class="sbtn color ico-delete" onclick="field_grid.del(this);"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<!-- LOOP END 'fieldList' -->
 		<tbody>
@@ -183,7 +183,7 @@
 </div>
 
 <div align="center">
-	<button type="button" class="btn color ico-save" onclick="goTemplate()"><span></span>ÀÛ¼º</button>
+	<button type="button" class="btn color ico-save" onclick="goTemplate()"><span></span>ì‘ì„±</button>
 </div>
 
 </form>
@@ -194,10 +194,10 @@
 
 var field_grid = new MGRID("field_grid");
 field_grid.cells = new Array(
-	 '<input type="text" name="input_eng" class="label" style="width:98%" hname="ÇÊµå¸í(¿µ¹®)" required="Y" />'
-	,'<input type="text" name="input_kor" class="label" style="width:98%" hname="ÇÊµå¸í(ÇÑ±Û)" required="Y" />'
-	,'<select name="input_type" hname="ÇÊµåÅ¸ÀÔ" required="Y"><option value="input">input</option><option value="checkbox">checkbox</option><option value="radio">radio</option><option value="select">select</option></select>'
-	,'<button type="button" class="sbtn color ico-delete" onclick="field_grid.del(this);"><span></span>»èÁ¦</button>'
+	 '<input type="text" name="input_eng" class="label" style="width:98%" hname="í•„ë“œëª…(ì˜ë¬¸)" required="Y" />'
+	,'<input type="text" name="input_kor" class="label" style="width:98%" hname="í•„ë“œëª…(í•œê¸€)" required="Y" />'
+	,'<select name="input_type" hname="í•„ë“œíƒ€ì…" required="Y"><option value="input">input</option><option value="checkbox">checkbox</option><option value="radio">radio</option><option value="select">select</option></select>'
+	,'<button type="button" class="sbtn color ico-delete" onclick="field_grid.del(this);"><span></span>ì‚­ì œ</button>'
 );
 
 function setMember(member){
@@ -229,7 +229,7 @@ function goTemplate(){
 	
 	if(validate(f1)&&validate(f2)){
 
-		if(confirm("ÀÔ·ÂÇÑ °ªÀ¸·Î ÁøÇàÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì…ë ¥í•œ ê°’ìœ¼ë¡œ ì§„í–‰í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			f2['w_member_no'].value = f1['w_member_no'].value; 
 			f2['w_userid'].value = f1['w_userid'].value; 
 			f2.submit();

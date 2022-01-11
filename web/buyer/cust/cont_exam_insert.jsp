@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String cont_no = u.request("cont_no");
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ");
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 cont.put("cont_date", u.getTimeString("yyyy-MM-dd", cont.getString("cont_date")));
@@ -19,14 +19,14 @@ cont.put("cont_date", u.getTimeString("yyyy-MM-dd", cont.getString("cont_date"))
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and sign_seq = '2' ");
 if(!cust.next()){
-	u.jsError("°Å·¡Ã³ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê±°ëž˜ì²˜ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject examDao = new DataObject("tcb_exam");
 DataSet exam = examDao.find(" member_no = '"+_member_no+"' and exam_type='20' and use_yn='Y'");
 if(!exam.next()){
-	u.jsError("Æò°¡Áö Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ì§€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 String exam_cd = exam.getString("exam_cd");
@@ -117,7 +117,7 @@ if(u.isPost()&&f.validate()){
 							+" and min_point<= '"+f.get("result_point")+"' "
 			);
 			if(!grade.next()){
-				u.jsError("Æò°¡µî±ÞÀ» ¾Ë ¼ö ¾ø½À´Ï´Ù.");
+				u.jsError("í‰ê°€ë“±ê¸‰ì„ ì•Œ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 				return;
 			}
 			grade_seq = grade.getString("seq");
@@ -150,7 +150,7 @@ if(u.isPost()&&f.validate()){
 	examResultDao.item("grade_seq", grade_seq);
 	db.setCommand(examResultDao.getInsertQuery(), examResultDao.record);
 
-	// ¾ç½Ä ÀúÀå
+	// ì–‘ì‹ ì €ìž¥
 	StringBuffer query = new StringBuffer();
 	query.append(" insert into tcb_exam_result_question (member_no,result_seq,question_cd,l_div_cd,m_div_cd,s_div_cd,depth,question,point,result_point,etc)  \n");
 	query.append(" select member_no                       \n");
@@ -212,12 +212,12 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(query.toString(), null);
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	String msg = "ÀúÀåÇÏ¿´½À´Ï´Ù.";
+	String msg = "ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.";
 	if(status.equals("20")){
-		msg = "Æò°¡ ¿Ï·á Ã³¸® ÇÏ¿´½À´Ï´Ù.";
+		msg = "í‰ê°€ ì™„ë£Œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 	}
 	u.jsAlertReplace(msg,"cont_exam_list.jsp?"+u.getQueryString("cont_no, cont_chasu, result_seq"));
 	return;

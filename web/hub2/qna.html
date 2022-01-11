@@ -1,39 +1,39 @@
-<div class="layerpop">
+ï»¿<div class="layerpop">
 <form novalidate name="form1" method="post" onsubmit="return formSubmit(this)" action="/web/hub2/qna_insert.jsp" target="ifm_qna">
 <script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback'></script>
 	<div class="layerpop__wrap">
 		<div class="layerpop__inner">
 			<div class="layerpop__contents qna">
 				<div class="layerpop__close">
-					<button type="button" onclick="ajaxClose('.layerpop');">´Ý±â</button>
+					<button type="button" onclick="ajaxClose('.layerpop');">ë‹«ê¸°</button>
 				</div>
-				<div class="layerpop__header">¹®ÀÇ ¹× »ó´ã</div>
+				<div class="layerpop__header">ë¬¸ì˜ ë° ìƒë‹´</div>
 				<div class="layerpop__con">
 					<div class="layerpop__section">
 						<div class="lp__qna">
 							<p class="qna-tit">
-								½Ã½ºÅÛ ÀÌ¿ë¿¡ ´ëÇÑ ¹®ÀÇ ¹× »ó´ã ±ÛÀ» <br class="mobile">³²°ÜÁÖ½Ã¸é ºü¸¥ »ó´ãÀ» µµ¿Í µå¸®°Ú½À´Ï´Ù.
+								ì‹œìŠ¤í…œ ì´ìš©ì— ëŒ€í•œ ë¬¸ì˜ ë° ìƒë‹´ ê¸€ì„ <br class="mobile">ë‚¨ê²¨ì£¼ì‹œë©´ ë¹ ë¥¸ ìƒë‹´ì„ ë„ì™€ ë“œë¦¬ê² ìŠµë‹ˆë‹¤.
 							</p>
 							<div class="qna-con">
 								<div class="qna-section">
-									<div class="tit">È¸»ç¸í <span>*</span></div>
+									<div class="tit">íšŒì‚¬ëª… <span>*</span></div>
 									<div class="input">
-										<input type="text" name="companynm"  required="Y" hname="È¸»ç¸í" style="width:98%" maxlength="50">
+										<input type="text" name="companynm"  required="Y" hname="íšŒì‚¬ëª…" style="width:98%" maxlength="50">
 									</div>
 								</div>
 								<div class="qna-section">
-									<div class="tit">´ã´çÀÚ¸í <span>*</span></div>
+									<div class="tit">ë‹´ë‹¹ìžëª… <span>*</span></div>
 									<div class="input">
-										<input type="text" name="personnm" required="Y" hname="´ã´çÀÚ¸í" style="width:98%" maxlength="50">
+										<input type="text" name="personnm" required="Y" hname="ë‹´ë‹¹ìžëª…" style="width:98%" maxlength="50">
 									</div>
 								</div>
 								<div class="qna-section">
-									<div class="tit">´ã´çÀÚ ¿¬¶ôÃ³ <span>*</span></div>
+									<div class="tit">ë‹´ë‹¹ìž ì—°ë½ì²˜ <span>*</span></div>
 									<div class="input">
 										<div class="phone">
 											<div class="phone-input">
-												<select name="hp1"  required="Y" hname="´ã´çÀÚ¿¬¶ôÃ³" onChange="document.forms['form1']['hp2'].focus()">
-													<option value="">¼±ÅÃ</option>
+												<select name="hp1"  required="Y" hname="ë‹´ë‹¹ìžì—°ë½ì²˜" onChange="document.forms['form1']['hp2'].focus()">
+													<option value="">ì„ íƒ</option>
 													<option value="010">010</option>
 													<option value="011">011</option>
 													<option value="016">016</option>
@@ -61,39 +61,39 @@
 											</div>
 											<div class="input-txt">-</div>
 											<div class="phone-input">
-												<input type="text" name="hp2" size="4" maxlength="4" required="Y" hname="´ã´çÀÚ¿¬¶ôÃ³" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')">
+												<input type="text" name="hp2" size="4" maxlength="4" required="Y" hname="ë‹´ë‹¹ìžì—°ë½ì²˜" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')">
 											</div>
 											<div class="input-txt">-</div>
 											<div class="phone-input">
-												<input type="text" name="hp3" size="4" maxlength="4" required="Y" hname="´ã´çÀÚ¿¬¶ôÃ³" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('hp2')">
+												<input type="text" name="hp3" size="4" maxlength="4" required="Y" hname="ë‹´ë‹¹ìžì—°ë½ì²˜" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('hp2')">
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="qna-section">
-									<div class="tit">¹®ÀÇ³»¿ë <span>*</span></div>
+									<div class="tit">ë¬¸ì˜ë‚´ìš© <span>*</span></div>
 									<div class="input">
-										<textarea name="contents" style="width:100%;height:100px" required="Y" hname="¹®ÀÇ³»¿ë"></textarea>
+										<textarea name="contents" style="width:100%;height:100px" required="Y" hname="ë¬¸ì˜ë‚´ìš©"></textarea>
 									</div>
 								</div>
 							</div>
 							<div class="qna-con terms">
 								<div class="terms-txt">
-									[°³ÀÎÁ¤º¸ ¼öÁý¡¤ÀÌ¿ë µ¿ÀÇ]<br>
-									1. °³ÀÎÁ¤º¸ ¼öÁý ¸ñÀû<br>
-									: ³ªÀÌ½ºµð¾Ø¾Ë¢ß´Â ½Ã½ºÅÛ ÀÌ¿ë ¹× ½Ã½ºÅÛ ±¸Ãà ¹®ÀÇ¿¡ ´ëÇÑ »ó´ãÀ» ¸ñÀûÀ¸·Î °³ÀÎ Á¤º¸¸¦ ¼öÁýÇÕ´Ï´Ù.<br><br>
-									2. Ã³¸®ÇÏ´Â °³ÀÎÁ¤º¸ Ç×¸ñ<br>
-									- ÇÊ¼öÇ×¸ñ : È¸»ç¸í, ´ã´çÀÚ¸í, ´ã´çÀÚ¿¬¶ôÃ³<br><br>
-									3. ÀÌ¿ë ¹× º¸À¯±â°£<br>
-									: »ó´ã½ÅÃ»½Ã ºÎÅÍ »ó´ã ¿Ï·á½Ã±îÁö<br><br>
-									4. µ¿ÀÇ°ÅºÎÇÒ ±Ç¸®¿Í ¹Ì µ¿ÀÇ ½Ã ±×¿¡ µû¸¥ ºÒÀÌÀÍ »çÇ× ¹®ÀÇ ³»¿ë µî·Ï ºÒ°¡
+									[ê°œì¸ì •ë³´ ìˆ˜ì§‘Â·ì´ìš© ë™ì˜]<br>
+									1. ê°œì¸ì •ë³´ ìˆ˜ì§‘ ëª©ì <br>
+									: ë‚˜ì´ìŠ¤ë””ì•¤ì•ŒãˆœëŠ” ì‹œìŠ¤í…œ ì´ìš© ë° ì‹œìŠ¤í…œ êµ¬ì¶• ë¬¸ì˜ì— ëŒ€í•œ ìƒë‹´ì„ ëª©ì ìœ¼ë¡œ ê°œì¸ ì •ë³´ë¥¼ ìˆ˜ì§‘í•©ë‹ˆë‹¤.<br><br>
+									2. ì²˜ë¦¬í•˜ëŠ” ê°œì¸ì •ë³´ í•­ëª©<br>
+									- í•„ìˆ˜í•­ëª© : íšŒì‚¬ëª…, ë‹´ë‹¹ìžëª…, ë‹´ë‹¹ìžì—°ë½ì²˜<br><br>
+									3. ì´ìš© ë° ë³´ìœ ê¸°ê°„<br>
+									: ìƒë‹´ì‹ ì²­ì‹œ ë¶€í„° ìƒë‹´ ì™„ë£Œì‹œê¹Œì§€<br><br>
+									4. ë™ì˜ê±°ë¶€í•  ê¶Œë¦¬ì™€ ë¯¸ ë™ì˜ ì‹œ ê·¸ì— ë”°ë¥¸ ë¶ˆì´ìµ ì‚¬í•­ ë¬¸ì˜ ë‚´ìš© ë“±ë¡ ë¶ˆê°€
 								</div>
 							</div>
 							<div class="qna-con terms">
 								<div class="terms-check">
 									<label>
-										<input type="checkbox" name="chk_confirm1" required="Y" hname="°³ÀÎÁ¤º¸ ¼öÁý/ÀÌ¿ë µ¿ÀÇ" value="1" id="chk_confirm1">
-										À§ ÀÌ¿ë¾à°ü¿¡ µ¿ÀÇÇÕ´Ï´Ù.(ÇÊ¼ö»çÇ×)
+										<input type="checkbox" name="chk_confirm1" required="Y" hname="ê°œì¸ì •ë³´ ìˆ˜ì§‘/ì´ìš© ë™ì˜" value="1" id="chk_confirm1">
+										ìœ„ ì´ìš©ì•½ê´€ì— ë™ì˜í•©ë‹ˆë‹¤.(í•„ìˆ˜ì‚¬í•­)
 									</label>
 								</div>
 							</div>
@@ -101,7 +101,7 @@
 							<div class="g-recaptcha" data-sitekey="6LduZXUUAAAAAPXpYHXRWEvS8JJHGBmbRrXnOOIy" style="width: 305px;display:inline-block" onload="ScaleReCaptcha()"></div>
 							</div>
 							<div class="qna-btn btn-wrap">
-								<button type="submit" class="common-btn">¹®ÀÇÇÏ±â</button>
+								<button type="submit" class="common-btn">ë¬¸ì˜í•˜ê¸°</button>
 							</div>
 						</div>
 					</div>
@@ -116,10 +116,10 @@
 	function formSubmit(f){
 		if(validate(f)){
 			if(f['g-recaptcha-response'].value==''){
-				alert("·Îº¿ÀÌ ¾Æ´Õ´Ï´Ù Ç×¸ñÀ» Ã¼Å©ÇÏ¿© °ËÁõÀ» ÁøÇà ÇÏ¼¼¿ä.");
+				alert("ë¡œë´‡ì´ ì•„ë‹™ë‹ˆë‹¤ í•­ëª©ì„ ì²´í¬í•˜ì—¬ ê²€ì¦ì„ ì§„í–‰ í•˜ì„¸ìš”.");
 				return false;
 			}
-			if(confirm("ÇØ´ç³»¿ëÀ¸·Î ¹®ÀÇ ÇÏ½Ã°Ú½À´Ï±î?")){
+			if(confirm("í•´ë‹¹ë‚´ìš©ìœ¼ë¡œ ë¬¸ì˜ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 				return true;
 			}
 		}

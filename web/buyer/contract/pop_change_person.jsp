@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String member_no = u.request("member_no");
 String sign_seq = u.request("sign_seq");
@@ -6,7 +6,7 @@ String sign_seq = u.request("sign_seq");
 f.addElement("s_member_name",null, null);
 
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -19,14 +19,14 @@ list.setOrderBy("member_name asc ");
 
 DataSet ds = null;
 if(!u.request("search").equals("")){
-	//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+	//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 	ds = list.getDataSet();
 }
 
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_change_person");
-p.setVar("popup_title","´ã´çÀÚ °Ë»ö");
+p.setVar("popup_title","ë‹´ë‹¹ìž ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

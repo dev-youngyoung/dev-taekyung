@@ -21,7 +21,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ½Ã½ºÅÛ »ç¿ëÀÚ ·Î±×ÀÎÁ¤º¸
+	 * ì‹œìŠ¤í…œ ì‚¬ìš©ì ë¡œê·¸ì¸ì •ë³´
 	 * @return
 	 */
 	public RecordSet getSysLoginMenu() 
@@ -34,7 +34,7 @@ public class MenuManager {
 			
 			String	sQuery	=	qm.getSelectQuery("get_sys_login_menu", hm);
 			
-			//¸ñ·Ï »ı¼º
+			//ëª©ë¡ ìƒì„±
 			ListManager list = new ListManager();
 
 			//list.setDebug(out);
@@ -48,7 +48,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ¿ø»ç¾÷ÀÚ ·Î±×ÀÎÈÄ ¸Ş´ºÁ¤º¸
+	 * ì›ì‚¬ì—…ì ë¡œê·¸ì¸í›„ ë©”ë‰´ì •ë³´
 	 * @return
 	 */
 	public RecordSet getWonLoginMenu() 
@@ -64,7 +64,7 @@ public class MenuManager {
 			
 			String	sQuery	=	qm.getSelectQuery("get_won_login_menu", hm);
 			
-			//¸ñ·Ï »ı¼º
+			//ëª©ë¡ ìƒì„±
 			ListManager list = new ListManager();
 
 			//list.setDebug(out);
@@ -78,7 +78,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ¼ö±Ş»ç¾÷ÀÚ ·Î±×ÀÎÈÄ ¸Ş´ºÁ¤º¸
+	 * ìˆ˜ê¸‰ì‚¬ì—…ì ë¡œê·¸ì¸í›„ ë©”ë‰´ì •ë³´
 	 * @return
 	 */
 	public RecordSet getSooLoginMenu() 
@@ -91,7 +91,7 @@ public class MenuManager {
 			
 			String	sQuery	=	qm.getSelectQuery("get_soo_login_menu", hm);
 			
-			//¸ñ·Ï »ı¼º
+			//ëª©ë¡ ìƒì„±
 			ListManager list = new ListManager();
 
 			//list.setDebug(out);
@@ -105,7 +105,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ¿ø»ç¾÷ÀÚ ·Î±×ÀÎÈÄ ¸Ş´ºÁ¤º¸
+	 * ì›ì‚¬ì—…ì ë¡œê·¸ì¸í›„ ë©”ë‰´ì •ë³´
 	 * @return
 	 */
 	public RecordSet getNotLoginMenu() 
@@ -118,7 +118,7 @@ public class MenuManager {
 			
 			String	sQuery	=	qm.getSelectQuery("get_not_login_menu", hm); 
 			
-			//¸ñ·Ï »ı¼º
+			//ëª©ë¡ ìƒì„±
 			ListManager list = new ListManager();
 
 			//list.setDebug(out);
@@ -132,7 +132,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ¼¼¼ÇÁ¸Àç¿©ºÎ È®ÀÎ
+	 * ì„¸ì…˜ì¡´ì¬ì—¬ë¶€ í™•ì¸
 	 * @return
 	 */
 	public boolean isSession()
@@ -141,7 +141,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * session Á¸Àç¿©ºÎ
+	 * session ì¡´ì¬ì—¬ë¶€
 	 * @param sKey
 	 * @return
 	 */
@@ -162,7 +162,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * session Á¤º¸ ´ã±â
+	 * session ì •ë³´ ë‹´ê¸°
 	 * @param sKey
 	 * @param oj
 	 */
@@ -172,7 +172,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * RecordSet ¹İÈ¯
+	 * RecordSet ë°˜í™˜
 	 * @param sKey
 	 * @return
 	 */
@@ -182,7 +182,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * Object °´Ã¼ ¹İÈ¯
+	 * Object ê°ì²´ ë°˜í™˜
 	 * @param sKey
 	 * @return
 	 */
@@ -192,7 +192,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * String °´Ã¼ º¯È¯
+	 * String ê°ì²´ ë³€í™˜
 	 * @param sKey
 	 * @return
 	 */
@@ -202,14 +202,14 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ¸Ş´ºÁ¤º¸ °¡Á®¿À±â
+	 * ë©”ë‰´ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	 * @return
 	 */
 	public RecordSet getMenu() throws Exception
 	{		
-		if(this.auth.isValid())	//	·Î±×ÀÎÇÑ °æ¿ì
+		if(this.auth.isValid())	//	ë¡œê·¸ì¸í•œ ê²½ìš°
 		{
-			if(this.auth.getString("_USER_ID").equals(Startup.conf.getString("adminid")))	//	½Ã½ºÅÛ °ü¸®ÀÚÀÇ °æ¿ì
+			if(this.auth.getString("_USER_ID").equals(Startup.conf.getString("adminid")))	//	ì‹œìŠ¤í…œ ê´€ë¦¬ìì˜ ê²½ìš°
 			{
 				if(this.getString("LOGIN_STATUS") == null || !this.getString("LOGIN_STATUS").equals("SYSTEM_LOGIN"))
 				{
@@ -218,14 +218,14 @@ public class MenuManager {
 				}
 			}else
 			{
-				if(this.auth.getString("_MEMBER_TYPE").equals("01"))	//	¿ø»ç¾÷ÀÚÀÇ °æ¿ì
+				if(this.auth.getString("_MEMBER_TYPE").equals("01"))	//	ì›ì‚¬ì—…ìì˜ ê²½ìš°
 				{
 					if(this.getString("LOGIN_STATUS") == null || !this.getString("LOGIN_STATUS").equals("WON_LOGIN"))
 					{
 						this.setSession("RS", this.getWonLoginMenu());
 						this.setSession("LOGIN_STATUS","WON_LOGIN");
 					}
-				}else	//	¼ö±Ş»ç¾÷ÀÚÀÇ °æ¿ì
+				}else	//	ìˆ˜ê¸‰ì‚¬ì—…ìì˜ ê²½ìš°
 				{	
 					if(this.getString("LOGIN_STATUS") == null || !this.getString("LOGIN_STATUS").equals("SOO_LOGIN"))
 					{
@@ -247,7 +247,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * »óÀ§¸Ş´º °¡Á®¿À±â
+	 * ìƒìœ„ë©”ë‰´ ê°€ì ¸ì˜¤ê¸°
 	 * @return
 	 */
 	public DataSet getTopMenu() throws Exception
@@ -282,10 +282,10 @@ public class MenuManager {
 					{
 						if(this.getString("LOGIN_STATUS").equals("NOT_LOGIN"))
 						{
-							ds.put("href","javascript:alert('·Î±×ÀÎ ÈÄ ÀÌ¿ë °¡´É ÇÕ´Ï´Ù.');");
+							ds.put("href","javascript:alert('ë¡œê·¸ì¸ í›„ ì´ìš© ê°€ëŠ¥ í•©ë‹ˆë‹¤.');");
 						}else
 						{
-							ds.put("href","javascript:alert('ÀÌ¿ë±ÇÇÑÀÌ ¾ø¾î »ç¿ëÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.');");
+							ds.put("href","javascript:alert('ì´ìš©ê¶Œí•œì´ ì—†ì–´ ì‚¬ìš©í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');");
 						}
 					}
 					sDir	=	rs.getString("dir");
@@ -331,7 +331,7 @@ public class MenuManager {
 	}
 	
 	/**
-	 * ¼¼¼ÇÁ¾·ù
+	 * ì„¸ì…˜ì¢…ë¥˜
 	 */
 	public void clearManu()
 	{

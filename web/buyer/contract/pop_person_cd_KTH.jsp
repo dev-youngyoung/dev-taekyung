@@ -1,22 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String cust_member_no = u.request("cust_member_no");
 
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find("cont_no='"+cont_no+"' and cont_chasu="+cont_chasu+" and member_no = '" + cust_member_no + "'", "cust_detail_code");
 if(!cust.next()) {
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
-f.addElement("cust_detail_code", cust.getString("cust_detail_code"), "hname:'°Å·¡Ã³ ÄÚµå', required:'Y'");
+f.addElement("cust_detail_code", cust.getString("cust_detail_code"), "hname:'ê±°ëž˜ì²˜ ì½”ë“œ', required:'Y'");
 
 
 //u.p("cust_detail_code : "+ cust.getString("cust_detail_code"));
@@ -44,10 +44,10 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	} else {
-		u.jsAlert("Ã³¸® µÇ¾ú½À´Ï´Ù.");
+		u.jsAlert("ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	}
 
 	out.println("<script language=\"javascript\" >");
@@ -60,7 +60,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_person_cd_KTH");
-p.setVar("popup_title","°Å·¡Ã³ ÄÚµå");
+p.setVar("popup_title","ê±°ëž˜ì²˜ ì½”ë“œ");
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());

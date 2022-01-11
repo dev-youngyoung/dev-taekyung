@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String callback = u.request("callback");
 if(callback.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 DataObject memberDao = new DataObject("tcb_member a");
@@ -11,7 +11,7 @@ DataObject memberDao = new DataObject("tcb_member a");
 f.addElement("s_member_name",null, null);
 f.addElement("s_vendcd",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -26,7 +26,7 @@ list.setOrderBy("member_name asc ");
 
 DataSet ds = null;
 if(!u.request("search").equals("")){	
-	//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+	//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 	ds = list.getDataSet();
 	
 	while(ds.next()){
@@ -37,7 +37,7 @@ if(!u.request("search").equals("")){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("info.pop_search_company");
-p.setVar("popup_title","¾÷Ã¼°Ë»ö");
+p.setVar("popup_title","ì—…ì²´ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("callback", callback);
 p.setVar("pagerbar", list.getPaging());

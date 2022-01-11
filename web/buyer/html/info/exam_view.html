@@ -1,8 +1,8 @@
-<form name="form1" method="post" >
+ï»¿<form name="form1" method="post" >
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>Æò°¡Áö±âº»Á¤º¸</h3>
+				<h3>í‰ê°€ì§€ê¸°ë³¸ì •ë³´</h3>
 			</div>
 		</div>
 		<table>
@@ -13,17 +13,17 @@
 				<col width="35%">
 			</colgroup>
 			<tr>
-				<th>Æò°¡Áö¸í</th>
+				<th>í‰ê°€ì§€ëª…</th>
 				<td colspan="3">&nbsp;{{exam.exam_name}}</td>
 			</tr>
 			<tr>
-				<th>¹®Ç×DEPTH</th>
+				<th>ë¬¸í•­DEPTH</th>
 				<td>&nbsp;{{exam.question_depth}}depth</td>
-				<th>Æò°¡ Ç×¸ñ¼ö</th>
-				<td>&nbsp;<span id="question_cnt_area">{{exam.question_cnt}}</span> °³ Ç×¸ñ</td>
+				<th>í‰ê°€ í•­ëª©ìˆ˜</th>
+				<td>&nbsp;<span id="question_cnt_area">{{exam.question_cnt}}</span> ê°œ í•­ëª©</td>
 			</tr>
 			<tr>
-				<th>Æò°¡ À¯Çü</th>
+				<th>í‰ê°€ ìœ í˜•</th>
 				<td colspan="3">&nbsp;{{exam.exam_type}}</td>
 			</tr>
 		</table>
@@ -33,7 +33,7 @@
 		<div class="div_table">
 			<div class="util-row">
 				<div class="push-left">
-					<h3>Æò°¡Ç×¸ñ(2depth)</h3>
+					<h3>í‰ê°€í•­ëª©(2depth)</h3>
 				</div>
 			</div>
 			<table>
@@ -50,15 +50,15 @@
 				</colgroup>
 				<thead>
 				<tr>
-					<th>ºÐ·ù</th>
-					<th>¼¼ºÎÇ×¸ñ</th>
-					<th>¹èÁ¡</th>
+					<th>ë¶„ë¥˜</th>
+					<th>ì„¸ë¶€í•­ëª©</th>
+					<th>ë°°ì </th>
 					<!-- IF START 'isCJ' -->
-					<th>°¡ÁßÄ¡</th>
-					<th>È¯»ê¹èÁ¡</th>
+					<th>ê°€ì¤‘ì¹˜</th>
+					<th>í™˜ì‚°ë°°ì </th>
 					<!-- IF END 'isCJ' -->
-					<th>ºñ°í</th>
-					<th>ÆòÁ¡</th>
+					<th>ë¹„ê³ </th>
+					<th>í‰ì </th>
 				</tr>
 				</thead>
 				<tbody>
@@ -77,15 +77,15 @@
 					<td align="center">
 						<!-- IF START 'item' -->
 						<select name="item" style="width:80px">
-							<option value="">-¼±ÅÃ-</option>
+							<option value="">-ì„ íƒ-</option>
 							<!-- LOOP START 'item' -->
 							<option value="{{item.point}}">{{item.item_text}}</option>
 							<!-- LOOP END 'item' -->
 						</select>&nbsp;
-						<button type="button" class="sbtn ico-write auth_css" onclick="openItem('{{question.question_cd}}')" style="margin-top:5px;"><span></span>¼öÁ¤</button>
+						<button type="button" class="sbtn ico-write auth_css" onclick="openItem('{{question.question_cd}}')" style="margin-top:5px;"><span></span>ìˆ˜ì •</button>
 						<!-- IF END 'item' -->
 						<!-- IFNOT START 'item' -->
-						<button type="button" class="sbtn ico-save auht_css" onclick="openItem('{{question.question_cd}}')"><span></span>µî·Ï</button>
+						<button type="button" class="sbtn ico-save auht_css" onclick="openItem('{{question.question_cd}}')"><span></span>ë“±ë¡</button>
 						<!-- IFNOT END 'item' -->
 					</td>
 				</tr>
@@ -99,7 +99,7 @@
 		<div class="div_table">
 			<div class="util-row">
 				<div class="push-left">
-					<h3>Æò°¡Ç×¸ñ(3depth)</h3>
+					<h3>í‰ê°€í•­ëª©(3depth)</h3>
 				</div>
 			</div>
 			<table>
@@ -117,16 +117,16 @@
 				</colgroup>
 				<thead>
 				<tr>
-					<th>´ëºÐ·ù</th>
-					<th>ÁßºÐ·ù</th>
-					<th>¼¼ºÎÇ×¸ñ</th>
-					<th>¹èÁ¡</th>
+					<th>ëŒ€ë¶„ë¥˜</th>
+					<th>ì¤‘ë¶„ë¥˜</th>
+					<th>ì„¸ë¶€í•­ëª©</th>
+					<th>ë°°ì </th>
 					<!-- IF START 'isCJ' -->
-					<th>°¡ÁßÄ¡</th>
-					<th>È¯»ê¹èÁ¡</th>
+					<th>ê°€ì¤‘ì¹˜</th>
+					<th>í™˜ì‚°ë°°ì </th>
 					<!-- IF END 'isCJ' -->
-					<th>ºñ°í</th>
-					<th>ÆòÁ¡</th>
+					<th>ë¹„ê³ </th>
+					<th>í‰ì </th>
 				</tr>
 				</thead>
 				<tbody>
@@ -148,15 +148,15 @@
 					<td align="center">
 						<!-- IF START 'item' -->
 						<select name="item" style="width:70px;">
-							<option value="">-¼±ÅÃ-</option>
+							<option value="">-ì„ íƒ-</option>
 							<!-- LOOP START 'item' -->
 							<option value="{{item.point}}">{{item.item_text}}</option>
 							<!-- LOOP END 'item' -->
 						</select>
-						<button type="button" class="sbtn ico-write auth_css" onclick="openItem('{{question.question_cd}}')" style="margin-top:5px;"><span></span>¼öÁ¤</button>
+						<button type="button" class="sbtn ico-write auth_css" onclick="openItem('{{question.question_cd}}')" style="margin-top:5px;"><span></span>ìˆ˜ì •</button>
 						<!-- IF END 'item' -->
 						<!-- IFNOT START 'item' -->
-						<button type="button" class="sbtn ico-save auth_css" onclick="openItem('{{question.question_cd}}')" style="margin-top:5px;"><span></span>µî·Ï</button>
+						<button type="button" class="sbtn ico-save auth_css" onclick="openItem('{{question.question_cd}}')" style="margin-top:5px;"><span></span>ë“±ë¡</button>
 						<!-- IFNOT END 'item' -->
 					</td>
 				</tr>
@@ -167,9 +167,9 @@
 		<!-- IF END '3depth' -->
 	</div>
 	<div class="btn-group-wrap">
-		<button type="button" class="btn color ico-save auth_css" onclick="location.href='exam_modify.jsp?{{query}}'"><span></span>¼öÁ¤</button>
-		<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='exam_delete.jsp?{{query}}'}"><span></span>»èÁ¦</button>
-		<button type="button" class="btn color ico-list" onclick="location.href='exam_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="button" class="btn color ico-save auth_css" onclick="location.href='exam_modify.jsp?{{query}}'"><span></span>ìˆ˜ì •</button>
+		<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='exam_delete.jsp?{{query}}'}"><span></span>ì‚­ì œ</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='exam_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 </form>
 {{form_script}}

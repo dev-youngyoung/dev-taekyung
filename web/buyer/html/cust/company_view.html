@@ -1,10 +1,10 @@
-<form name="form1" method="post" enctype="multipart/form-data" action="rfile_insert.jsp?{{query}}" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data" action="rfile_insert.jsp?{{query}}" onsubmit="return formSubmit(this);">
 <input type="hidden" name="from_page" value="company_view.jsp"/>
 
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>¾÷Ã¼Á¤º¸</h3>
+            <h3>ì—…ì²´ì •ë³´</h3>
         </div>
     </div>
     <table>
@@ -15,29 +15,29 @@
         <col width="33%">
       </colgroup>
       <tr>
-        <th>»ç¾÷ÀÚ±¸ºĞ</th>
+        <th>ì‚¬ì—…ìêµ¬ë¶„</th>
         <td colspan="3">{{member.member_gubun_name}}</td>
       </tr>
       <tr>
-        <th>»ç¾÷ÀÚ¹øÈ£</th>
+        <th>ì‚¬ì—…ìë²ˆí˜¸</th>
         <td>{{member.vendcd}}</td>
-        <th>¹ıÀÎ¹øÈ£</th>
+        <th>ë²•ì¸ë²ˆí˜¸</th>
         <td>{{member.member_slno}}</td>
       </tr>
       <tr>
-        <th>¾÷Ã¼¸í</th>
+        <th>ì—…ì²´ëª…</th>
         <td>{{member.member_name}}</td>
-        <th>´ëÇ¥ÀÚ¸í</th>
+        <th>ëŒ€í‘œìëª…</th>
         <td>{{member.boss_name}}</td>
       </tr>
       <tr>
-        <th>¾÷ÅÂ</th>
+        <th>ì—…íƒœ</th>
         <td>{{member.condition}}</td>
-        <th>Á¾¸ñ</th>
+        <th>ì¢…ëª©</th>
         <td>{{member.category}}</td>
       </tr>
       <tr>
-        <th>ÁÖ¼Ò</th>
+        <th>ì£¼ì†Œ</th>
         <td colspan="3">
           ({{member.post_code}})&nbsp;&nbsp;
           {{member.address}}
@@ -50,7 +50,7 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>±¸ºñ¼­·ù</h3>
+            <h3>êµ¬ë¹„ì„œë¥˜</h3>
         </div>
     </div>
     <table id="rfile_grid">
@@ -61,9 +61,9 @@
         </colgroup>
         <thead>
         <tr>
-            <th>ÇÊ¼ö¿©ºÎ</th>
-            <th>¹®¼­¸í</th>
-            <th>Ã·ºÎÆÄÀÏ</th>
+            <th>í•„ìˆ˜ì—¬ë¶€</th>
+            <th>ë¬¸ì„œëª…</th>
+            <th>ì²¨ë¶€íŒŒì¼</th>
         </tr>
         </thead>
         <tbody>
@@ -77,16 +77,16 @@
                 <td align="center" id="rfile_area_{{rfile.rfile_seq}}">
                     <!-- IFNOT START 'rfile.file_name' -->
                     <input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
-                    <input type="file" name="rfile_{{rfile.rfile_seq}}"  hname="Ã·ºÎÆÄÀÏ" style="width:95%" allow="{{rfile.allow_ext}}"/>
+                    <input type="file" name="rfile_{{rfile.rfile_seq}}"  hname="ì²¨ë¶€íŒŒì¼" style="width:95%" allow="{{rfile.allow_ext}}"/>
                     <input type="hidden" name="rfile_required" value="{{rfile.attch_yn}}"/>
                         <!-- IF START 'rfile.allow_ext' -->
-                    <br><span class="caution-text"> ¡Ø {{rfile.allow_ext}} ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>
+                    <br><span class="caution-text"> â€» {{rfile.allow_ext}} íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>
                         <!-- IF END 'rfile.allow_ext' -->
                     <!-- IFNOT END 'rfile.file_name' -->
                     <!-- IF START 'rfile.file_name' -->
-                    <font color="#0000ff">µî·Ï¿Ï·á</font>(ÆÄÀÏÅ©±â:{{rfile.file_size}})<br>
-                    &nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcompany','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-                    &nbsp;<button type="button" class="sbtn ico-delete" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}','{{rfile.attch_yn}}')"><span></span>»èÁ¦</button>
+                    <font color="#0000ff">ë“±ë¡ì™„ë£Œ</font>(íŒŒì¼í¬ê¸°:{{rfile.file_size}})<br>
+                    &nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcompany','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
+                    &nbsp;<button type="button" class="sbtn ico-delete" onclick="delFile('{{rfile.rfile_seq}}','{{rfile.allow_ext}}','{{rfile.attch_yn}}')"><span></span>ì‚­ì œ</button>
                     <!-- IF END 'rfile.file_name' -->
                 </td>
             </tr>
@@ -98,13 +98,13 @@
 
 <div class="btn-group-wrap">
     <!-- IF START 'rfile' -->
-    <button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
+    <button type="submit" class="btn color ico-save"><span></span>ì €ì¥</button>
     <!-- IF END 'rfile' -->
     <!-- IF START 'btn_reg_doc' -->
-    <button type="button" class="btn color ico-save" onclick="OpenWindows('pop_reg_doc.jsp?member_no={{member_no}}&client_no={{_auth._MEMBER_NO}}','pop_reg_doc',1000,700)"><span></span>°Å·¡Ã³µî·ÏÈ®ÀÎ¿ø</button>
+    <button type="button" class="btn color ico-save" onclick="OpenWindows('pop_reg_doc.jsp?member_no={{member_no}}&client_no={{_auth._MEMBER_NO}}','pop_reg_doc',1000,700)"><span></span>ê±°ë˜ì²˜ë“±ë¡í™•ì¸ì›</button>
     <!-- IF END 'btn_reg_doc' -->
     {{recruitNoti.btn}}
-    <button type="button" class="btn color ico-list" onclick="location.href='cust_list.jsp?{{list}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+    <button type="button" class="btn color ico-list" onclick="location.href='cust_list.jsp?{{list}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 </div>
 
 </form>
@@ -130,11 +130,11 @@ function formSubmit(f){
 			}
 		}
 		if(rfile_chk){
-			alert("ÇÊ¼ö ±¸ºñ¼­·ù¸¦ Ã·ºÎ ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.\n\nÃ·ºÎ ÈÄ ÁøÇà ÇÏ¼¼¿ä.");
+			alert("í•„ìˆ˜ êµ¬ë¹„ì„œë¥˜ë¥¼ ì²¨ë¶€ í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n\nì²¨ë¶€ í›„ ì§„í–‰ í•˜ì„¸ìš”.");
 			return false;
 		}		
 		
-		if(confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -143,11 +143,11 @@ function formSubmit(f){
 
 function delFile(seq, file_ext, attch_yn){
 	var area = document.getElementById("rfile_area_"+seq);
-	var html = '<input type="file" name="rfile_'+seq+'"  hname="Ã·ºÎÆÄÀÏ" style="width:95%" allow="'+file_ext+'"/>';
+	var html = '<input type="file" name="rfile_'+seq+'"  hname="ì²¨ë¶€íŒŒì¼" style="width:95%" allow="'+file_ext+'"/>';
 	    html += '<input type="hidden" name="rfile_seq" value="'+seq+'"/>';
 	    html += '<input type="hidden" name="rfile_required" value="'+attch_yn+'"/>';
 	if(file_ext !=''){
-		html += '<br><span class="caution-text"> ¡Ø '+file_ext+' ÆÄÀÏ¸¸ Ã·ºÎ °¡´É</span>'
+		html += '<br><span class="caution-text"> â€» '+file_ext+' íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥</span>'
 	}
 	area.innerHTML = html;
 }

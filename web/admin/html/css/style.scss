@@ -1,4 +1,4 @@
-@charset 'EUC-KR';
+@charset 'UTF-8';
 
 //font
 $base-font: 'Noto Sans KR';
@@ -412,7 +412,7 @@ button {
 
 /*
 * Noto Sans KR (korean) http://www.google.com/fonts/earlyaccess
-	¸ÁºÐ¸®ÀÇ °æ¿ì °í°´»ç ³×Æ®¿÷¿¡¼­ googleÂÊÀ» ¸·¾Æ ³õÀº °æ¿ì ÀÖÀ½.
+	ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½?ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ googleï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/eot/NotoSansKR-Regular-Hestia.eot),
     url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/eot/NotoSansKR-Regular-Hestia.eot?#iefix) format('embedded-opentype'),
     url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/woff/NotoSansKR-Regular-Hestia.woff) format('woff'),
@@ -766,7 +766,7 @@ button {
         width: 48px;
         height: 48px;
         font-size: 12px;
-        background: #0676bd url(/web/admin/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
+        background: #965f4f url(/web/admin/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
         padding-top: 12px;
     }
 }
@@ -819,7 +819,7 @@ button {
 }
 /**********************layout  end***********************/
 
-/**********************°è¾àÁøÇàÁ¤º¸  start***********************/
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  start***********************/
 .contract-info {
     @include clearfix;
     border-top: 1px solid #dbdbdb;
@@ -908,7 +908,7 @@ button {
         }
     }
 }
-/**********************°è¾àÁøÇàÁ¤º¸  end***********************/
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  end***********************/
 
 
 /**********************quick menu start***********************/
@@ -1244,7 +1244,7 @@ button {
   }
   
   &:before {
-    content: 'Ã£¾Æº¸±â';
+    content: 'Ã£ï¿½Æºï¿½ï¿½ï¿½';
     position: absolute;
     top: 0;
     right: 0;
@@ -2309,8 +2309,8 @@ button {
 /**********************main end***********************/
 
 
-/**********************ÀÎÁõ¼­ µî·Ï°»½Å start***********************/
-// °øÀÎÀÎÁõ¼­ ¾È³»
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ start***********************/
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È³ï¿½
 .common-cert {
     h3 {
         font-size: 18px;
@@ -2492,7 +2492,7 @@ button {
         }
     }
 }
-/**********************ÀÎÁõ¼­ µî·Ï°»½Å end***********************/
+/**********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ end***********************/
 
 
 /**********************html template start***********************/
@@ -2551,7 +2551,7 @@ button {
 	  height:23px;
 	  line-height:23px;
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2562,7 +2562,7 @@ button {
 	  height:23px;
 	  line-height:19px;
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2573,19 +2573,19 @@ button {
 	  height:23px;
 	  line-height:19px;
 	  color: #707070;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
 	  padding: 1px;
 	}
 	
-	/* °è¾à ÇÊ¼ö ÀÔ·Â »çÇ× */
+	/* ï¿½ï¿½ï¿½ ï¿½Ê¼ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	.input_r {
 	  height:23px;
 	  line-height:19px;
 	  color: #000000;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2595,12 +2595,12 @@ button {
 	  padding:1px
 	}
 	
-	/* °è¾à ¼±ÅÃ ÀÔ·Â »çÇ× */
+	/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	.input_n {
 	  height:23px;
 	  line-height:19px;
 	  color: #000000;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2609,12 +2609,12 @@ button {
 	  background-color: #FFFFFF;
 	  padding: 1px;
 	}
-	/* °è¾à ¼±ÅÃ ÀÔ·Â »çÇ× */
+	/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	.in_readonly {
 	  height:23px;
 	  line-height:19px;
 	  color: #000000;
-	  FONT-FAMILY: µ¸¿ò, Arial;
+	  FONT-FAMILY: ï¿½ï¿½ï¿½ï¿½, Arial;
 	  FONT-SIZE: 12px;
 	  border: 1px solid;
 	  border-color: #d7d5ca;
@@ -2636,7 +2636,7 @@ button {
 /**********************html template end***********************/
 
 
-// µµ¿ò¸» ÆË¾÷
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½
 .help-popup {
   &-header {
     background: $brand-color;

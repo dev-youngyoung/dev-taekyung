@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String member_no = u.aseDec(u.request("member_no"));
 String cert_seq = u.request("cert_seq");
 if(member_no.equals("")||cert_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,7 +12,7 @@ String where = " member_no = '"+member_no+"' and cert_seq = '"+cert_seq+"'";
 DataObject certDao = new DataObject("tcb_cert_add");
 DataSet cert = certDao.find(" member_no = '"+member_no+"' and cert_seq = '"+cert_seq+"' ");
 if(!cert.next()){
-	u.jsError("Àß¸øµÈ Á¤º¸ÀÔ´Ï´Ù.");
+	u.jsError("ìž˜ëª»ëœ ì •ë³´ìž…ë‹ˆë‹¤.");
 	return;
 }
 
@@ -23,12 +23,12 @@ if(!Startup.conf.getString("file.path.bcompany").equals("") && !cert.getString("
 }
 
 if(!certDao.delete(" member_no = '"+member_no+"' and cert_seq = '"+cert_seq+"' ")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 out.print("<script>");
-out.print("alert(\"Ã³¸® ÇÏ¿´½À´Ï´Ù.\");");
+out.print("alert(\"ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 out.print("opener.location.reload();");
 out.print("self.close();");
 out.print("</script>");

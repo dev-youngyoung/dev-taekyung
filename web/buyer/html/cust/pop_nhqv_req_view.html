@@ -1,11 +1,11 @@
-<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
 <input type="hidden" name="status">
 <input type="hidden" name="req_html">
 <input type="hidden" name="evaluate_html">
 
 <div class="util-row">
 	<div class="push-right">
-		<font color="#93a700">[½ÅÃ»»óÅÂ: <b>{{cust.status_nm}}</b>]</font>
+		<font color="#93a700">[ì‹ ì²­ìƒíƒœ: <b>{{cust.status_nm}}</b>]</font>
 	</div>
 </div>
 
@@ -13,7 +13,7 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>¼öÁ¤¿äÃ»Á¤º¸</h3>
+			<h3>ìˆ˜ì •ìš”ì²­ì •ë³´</h3>
 		</div>
 		<table>
 			<colgroup>
@@ -23,13 +23,13 @@
 				<col width="30%">
 			</colgroup>
 			<tr>
-				<th>¿äÃ»ÀÏ½Ã</th>
+				<th>ìš”ì²­ì¼ì‹œ</th>
 				<td>{{cust.mod_req_date}}</td>
-				<th>¿äÃ»ÀÚ</th>
+				<th>ìš”ì²­ì</th>
 				<td>{{cust.mod_req_name}}</td>
 			</tr>
 			<tr>
-				<th>»çÀ¯</th>
+				<th>ì‚¬ìœ </th>
 				<td colspan="3">{{cust.mod_req_reason}}</td>
 			</tr>
 		</table>
@@ -52,7 +52,7 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>±âÅ¸ Æò°¡ »çÇ×</h3>
+			<h3>ê¸°íƒ€ í‰ê°€ ì‚¬í•­</h3>
 		</div>
 		<table>
 			<tr>
@@ -70,20 +70,20 @@
 </div>
 <!-- IF END 'view_evaludate_etc' -->
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-print" onclick="evalPdfViewer();"><span></span>ÀÎ¼â</button>
+	<button type="button" class="btn color ico-print" onclick="evalPdfViewer();"><span></span>ì¸ì‡„</button>
 	<!-- IF START 'btn_modify_req' -->
-	<button type="button" class="btn color ico-request" onclick="OpenWindow('pop_nhqv_mod_req.jsp?{{query}}','mod_req',600,500)"><span></span>¼öÁ¤¿äÃ»</button>
+	<button type="button" class="btn color ico-request" onclick="OpenWindow('pop_nhqv_mod_req.jsp?{{query}}','mod_req',600,500)"><span></span>ìˆ˜ì •ìš”ì²­</button>
 	<!-- IF END 'btn_modify_req' -->
 	<!-- IF START 'btn_modify_confirm' -->
-	<button type="button" class="btn color ico-confirm" onclick="if(confirm('¼öÁ¤È®ÀÎÃ³¸® ÇÏ½Ã°Ú½À´Ï±î?\n\n¼öÁ¤È®ÀÎÃ³¸®½Ã ½ÅÃ»Áß»óÅÂ·Î º¯°æ µË´Ï´Ù.')){location.href='pop_nhqv_mod_confirm.jsp?{{query}}';}"><span></span>¼öÁ¤È®ÀÎ</button>
+	<button type="button" class="btn color ico-confirm" onclick="if(confirm('ìˆ˜ì •í™•ì¸ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\nìˆ˜ì •í™•ì¸ì²˜ë¦¬ì‹œ ì‹ ì²­ì¤‘ìƒíƒœë¡œ ë³€ê²½ ë©ë‹ˆë‹¤.')){location.href='pop_nhqv_mod_confirm.jsp?{{query}}';}"><span></span>ìˆ˜ì •í™•ì¸</button>
 	<!-- IF END 'btn_modify_confirm' -->
 	<!-- IF START 'btn_save' -->
-	<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
+	<button type="submit" class="btn color ico-save"><span></span>ì €ì¥</button>
 	<!-- IF END 'btn_save' -->
 	<!-- IF START 'btn_evaluate' -->
-	<button type="button" class="btn color ico-check" onclick="evaluateEnd()"><span></span>½É»ç¿Ï·á</button>
+	<button type="button" class="btn color ico-check" onclick="evaluateEnd()"><span></span>ì‹¬ì‚¬ì™„ë£Œ</button>
 	<!-- IF END 'btn_evaluate' -->
-	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 </form>
 {{form_script}}
@@ -94,12 +94,12 @@ function formSubmit(f){
 		if(f['point13']){
 			if(f['point13'].value==""){
 				f['point13'].focus();
-				alert("±âÅ¸Æò°¡ Á¡¼ö¸¦ ÀÔ·Â ÇÏ¼¼¿ä.");
+				alert("ê¸°íƒ€í‰ê°€ ì ìˆ˜ë¥¼ ì…ë ¥ í•˜ì„¸ìš”.");
 				return false;
 			}
 		}
-		var msg = "ÀúÀåÇÏ½Ã°Ú½À´Ï±î?";
-		if(f['status'].value == "40") msg = "½É»ç¿Ï·á Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?\n\n¿Ï·áÃ³¸® ½Ã ´õÀÌ»ó ¼öÁ¤ ÇÒ ¼ö ¾ø½À´Ï´Ù"; 
+		var msg = "ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+		if(f['status'].value == "40") msg = "ì‹¬ì‚¬ì™„ë£Œ ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\nì™„ë£Œì²˜ë¦¬ ì‹œ ë”ì´ìƒ ìˆ˜ì • í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤"; 
 		if(confirm(msg)){
 			setDivInputValue("__html");
 			f['req_html'].value= Base64.encode(document.getElementById("__html_0").innerHTML);

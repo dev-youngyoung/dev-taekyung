@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <script>
 function changContent(gubun){
 	$(".sub-block").hide();
@@ -30,9 +30,9 @@ function changContent(gubun){
 <div class="sub-title-block">
 	<div class="center-inner">
 		<h1>
-			³ªÀÌ½º´ÙÅ¥ ÀÏ¹Ý±â¾÷¿ë
+			ë‚˜ì´ìŠ¤ë‹¤í ì¼ë°˜ê¸°ì—…ìš©
 		</h1>
-		<p>ÃÖ°íÀÇ ¸¸Á·µµ ÃÖ»óÀÇ ¼­ºñ½º¸¦ °æÇèÇÏ¼¼¿ä</p>
+		<p>ìµœê³ ì˜ ë§Œì¡±ë„ ìµœìƒì˜ ì„œë¹„ìŠ¤ë¥¼ ê²½í—˜í•˜ì„¸ìš”</p>
 	</div>
 </div>
 <div class="sub-link-block">
@@ -42,13 +42,13 @@ function changContent(gubun){
 				<a href="javascript:changContent('bid');">
 					<div class="link-inner">
 						<div class="icon">
-							<img src="/web/hub2/images/sub/icon_service_link_1_1.gif" alt="¾ÆÀÌÄÜ">
+							<img src="/web/hub2/images/sub/icon_service_link_1_1.gif" alt="ì•„ì´ì½˜">
 						</div>
 						<div class="txt-area">
-							<p class="tit">ÀüÀÚÀÔÂû</p>
+							<p class="tit">ì „ìžìž…ì°°</p>
 							<div class="link">
 								<p>
-									<span>ÀÚ¼¼È÷ º¸±â</span>
+									<span>ìžì„¸ížˆ ë³´ê¸°</span>
 									<i class="fas fa-angle-right"></i>
 								</p>
 							</div>
@@ -61,13 +61,13 @@ function changContent(gubun){
 				<a href="javascript:changContent('cont');">
 					<div class="link-inner">
 						<div class="icon">
-							<img src="/web/hub2/images/sub/icon_service_link_1_2.gif" alt="¾ÆÀÌÄÜ">
+							<img src="/web/hub2/images/sub/icon_service_link_1_2.gif" alt="ì•„ì´ì½˜">
 						</div>
 						<div class="txt-area">
-							<p class="tit">ÀüÀÚ°è¾à</p>
+							<p class="tit">ì „ìžê³„ì•½</p>
 							<div class="link">
 								<p>
-									<span>ÀÚ¼¼È÷ º¸±â</span>
+									<span>ìžì„¸ížˆ ë³´ê¸°</span>
 									<i class="fas fa-angle-right"></i>
 								</p>
 							</div>
@@ -80,13 +80,13 @@ function changContent(gubun){
 				<a href="javascript:changContent('work');">
 					<div class="link-inner">
 						<div class="icon">
-							<img src="/web/hub2/images/sub/icon_service_link_1_3.gif" alt="¾ÆÀÌÄÜ">
+							<img src="/web/hub2/images/sub/icon_service_link_1_3.gif" alt="ì•„ì´ì½˜">
 						</div>
 						<div class="txt-area">
-							<p class="tit">ÀüÀÚ±Ù·Î°è¾à</p>
+							<p class="tit">ì „ìžê·¼ë¡œê³„ì•½</p>
 							<div class="link">
 								<p>
-									<span>ÀÚ¼¼È÷ º¸±â</span>
+									<span>ìžì„¸ížˆ ë³´ê¸°</span>
 									<i class="fas fa-angle-right"></i>
 								</p>
 							</div>
@@ -105,13 +105,13 @@ function changContent(gubun){
 <div class="sub-block content_bid">
 	<div class="sub__section">
 		<div class="inner-container">
-			<h1 class="sub__tit">ÀüÀÚÀÔÂû ¼­ºñ½º ¼Ò°³</h1>
+			<h1 class="sub__tit">ì „ìžìž…ì°° ì„œë¹„ìŠ¤ ì†Œê°œ</h1>
 			<div class="service-top">
 				<div class="chart pc">
-					<img src="/web/hub2/images/sub/service1_chart1.png" alt="ÀüÀÚÀÔÂû ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_chart1.png" alt="ì „ìžìž…ì°° ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 				<div class="chart mobile">
-					<img src="/web/hub2/images/sub/service1_m_chart1.png" alt="ÀüÀÚÀÔÂû ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_m_chart1.png" alt="ì „ìžìž…ì°° ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 			</div>
 		</div>
@@ -121,15 +121,15 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_01.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_01.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">°ßÀû/ÀÔÂû ÇÁ·Î¼¼½ºÀÇ <br class="mobile">Ç¥ÁØÈ­/ÀÚµ¿È­ Áö¿ø</p>
+							<p class="tit">ê²¬ì /ìž…ì°° í”„ë¡œì„¸ìŠ¤ì˜ <br class="mobile">í‘œì¤€í™”/ìžë™í™” ì§€ì›</p>
 							<p class="txt">
-								±¸¸Å Ç°¸ñ¿¡ ´ëÇØ °¡Àå ÀûÇÕÇÑ °ø±Þ»ç¸¦ <br class="mobile">¹ß±¼ÇÏ¿© Æò°¡ÇÏ°í, <br class="pc">
-								ÀûÁ¤ÇÑ ¿ø°¡¸¦ ºÐ¼®ÇÏ°í <br class="mobile">»êÁ¤ÇØ ÃÖÀûÀÇ °¡°ÝÀ» ÃßÁ¤ÇÏ´Â µî <br class="pc">
-								±¸¸ÅÇÁ·Î¼¼½º <br class="mobile">Àü¹ÝÀÇ ¾÷¹« Á¤ÇüÈ­, Ç¥ÁØÈ­, ÀÚµ¿È­, <br class="mobile">PaperlessÈ­¸¦ Áö¿øÇÕ´Ï´Ù. 
+								êµ¬ë§¤ í’ˆëª©ì— ëŒ€í•´ ê°€ìž¥ ì í•©í•œ ê³µê¸‰ì‚¬ë¥¼ <br class="mobile">ë°œêµ´í•˜ì—¬ í‰ê°€í•˜ê³ , <br class="pc">
+								ì ì •í•œ ì›ê°€ë¥¼ ë¶„ì„í•˜ê³  <br class="mobile">ì‚°ì •í•´ ìµœì ì˜ ê°€ê²©ì„ ì¶”ì •í•˜ëŠ” ë“± <br class="pc">
+								êµ¬ë§¤í”„ë¡œì„¸ìŠ¤ <br class="mobile">ì „ë°˜ì˜ ì—…ë¬´ ì •í˜•í™”, í‘œì¤€í™”, ìžë™í™”, <br class="mobile">Paperlessí™”ë¥¼ ì§€ì›í•©ë‹ˆë‹¤. 
 							</p>
 						</div>
 					</div>
@@ -138,14 +138,14 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_02.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_02.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">Á÷¤ý°£Á¢±¸¸Å¿¡ ´ëÇÑ ´Ù¾çÇÑ <br class="mobile">ÀÔÂû¹æ¹ý/³«ÂûÀÚ¼±Á¤¹æ¹ý Áö¿ø </p>
+							<p class="tit">ì§ã†ê°„ì ‘êµ¬ë§¤ì— ëŒ€í•œ ë‹¤ì–‘í•œ <br class="mobile">ìž…ì°°ë°©ë²•/ë‚™ì°°ìžì„ ì •ë°©ë²• ì§€ì› </p>
 							<p class="txt">
-								±â¾÷º°·Î °íÀ¯ÇÑ ±¸¸Å ÇÁ·Î¼¼½º°¡ <br class="mobile">Á¸ÀçÇÏ´Â »óÈ²¿¡¼­ <br class="pc">
-								Ç¥ÁØ ±¸¸Å ÇÁ·Î¼¼½º¸¦ <br class="mobile">Á¤ÀÇÇÏ¿© ¸ðµç ±â¾÷¿¡ Àû¿ë °¡´ÉÇÑ °øÅë <br class="mobile">±â´ÉÀ» ±âº»À¸·Î Á¦°øÇÏ¸ç,<br class="pc"> ±â¾÷º° °íÀ¯ ±â´ÉÀº <br class="mobile">º°µµ Ãß°¡ °³¹ßÀ» ÅëÇØ Áö¿øÀ» ÇÕ´Ï´Ù.
+								ê¸°ì—…ë³„ë¡œ ê³ ìœ í•œ êµ¬ë§¤ í”„ë¡œì„¸ìŠ¤ê°€ <br class="mobile">ì¡´ìž¬í•˜ëŠ” ìƒí™©ì—ì„œ <br class="pc">
+								í‘œì¤€ êµ¬ë§¤ í”„ë¡œì„¸ìŠ¤ë¥¼ <br class="mobile">ì •ì˜í•˜ì—¬ ëª¨ë“  ê¸°ì—…ì— ì ìš© ê°€ëŠ¥í•œ ê³µí†µ <br class="mobile">ê¸°ëŠ¥ì„ ê¸°ë³¸ìœ¼ë¡œ ì œê³µí•˜ë©°,<br class="pc"> ê¸°ì—…ë³„ ê³ ìœ  ê¸°ëŠ¥ì€ <br class="mobile">ë³„ë„ ì¶”ê°€ ê°œë°œì„ í†µí•´ ì§€ì›ì„ í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -154,15 +154,15 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_03.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_03.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">±¹°¡¤ýÁö¹æ°è¾à¹ý <br class="mobile">±¸¸Å¾÷¹« Ã³¸® ±ÔÁ¤ Áö¿ø</p>
+							<p class="tit">êµ­ê°€ã†ì§€ë°©ê³„ì•½ë²• <br class="mobile">êµ¬ë§¤ì—…ë¬´ ì²˜ë¦¬ ê·œì • ì§€ì›</p>
 							<p class="txt">
-								¡®±¹°¡¸¦ ´ç»çÀÚ·Î ÇÏ´Â °è¾à¿¡ °üÇÑ ¹ý·ü¡¯, <br class="mobile">¡®Áö¹æÀÚÄ¡´ÜÃ¼¸¦ ´ç»çÀÚ·Î ÇÏ´Â
-								°è¾à¿¡ °üÇÑ ¹ý·ü¡¯¿¡  <br>±Ù°ÅÇÏ¿© ÁøÇàµÇ´Â º¹¼ö¿¹°¡, Àû°Ý½É»ç µî
-								<br class="pc mobile">°¢Á¾ ±¸¸Å ÇÁ·Î¼¼½º¸¦ Áö¿øÇÕ´Ï´Ù.
+								â€˜êµ­ê°€ë¥¼ ë‹¹ì‚¬ìžë¡œ í•˜ëŠ” ê³„ì•½ì— ê´€í•œ ë²•ë¥ â€™, <br class="mobile">â€˜ì§€ë°©ìžì¹˜ë‹¨ì²´ë¥¼ ë‹¹ì‚¬ìžë¡œ í•˜ëŠ”
+								ê³„ì•½ì— ê´€í•œ ë²•ë¥ â€™ì—  <br>ê·¼ê±°í•˜ì—¬ ì§„í–‰ë˜ëŠ” ë³µìˆ˜ì˜ˆê°€, ì ê²©ì‹¬ì‚¬ ë“±
+								<br class="pc mobile">ê°ì¢… êµ¬ë§¤ í”„ë¡œì„¸ìŠ¤ë¥¼ ì§€ì›í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -171,15 +171,15 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_04.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_04.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">Çù·Â»ç ¸®½ºÅ© »çÀü¿¹Ãø Áö¿ø</p>
+							<p class="tit">í˜‘ë ¥ì‚¬ ë¦¬ìŠ¤í¬ ì‚¬ì „ì˜ˆì¸¡ ì§€ì›</p>
 							<p class="txt">
-								½Å¿ëÆò°¡Á¤º¸¸¦ ¿¬°èÇÏ¿© Çù·Â¾÷Ã¼ <br class="mobile">¸®½ºÅ© °ü¸®¸¦ À§ÇÑ °¢Á¾ Á¤º¸¸¦ Á¦°øÇÕ´Ï´Ù.<br>
-								ºÎÁ¤´ç¾÷ÀÚ Á¦ÀçÃ³ºÐÁ¤º¸, ÇàÁ¤Ã³ºÐÁ¤º¸ <br class="mobile">¿¬°è¸¦ ÅëÇØ °ßÀû/ÀÔÂû Âü¿©¾÷Ã¼ÀÇ <br>
-								ÀáÀçÀû À§ÇèÀ» »çÀü¿¡ ÆÄ¾ÇÇÏ¿© °ø±Þ <br class="mobile">¾ÈÁ¤¼º È®º¸¸¦ Áö¿øÇÕ´Ï´Ù.
+								ì‹ ìš©í‰ê°€ì •ë³´ë¥¼ ì—°ê³„í•˜ì—¬ í˜‘ë ¥ì—…ì²´ <br class="mobile">ë¦¬ìŠ¤í¬ ê´€ë¦¬ë¥¼ ìœ„í•œ ê°ì¢… ì •ë³´ë¥¼ ì œê³µí•©ë‹ˆë‹¤.<br>
+								ë¶€ì •ë‹¹ì—…ìž ì œìž¬ì²˜ë¶„ì •ë³´, í–‰ì •ì²˜ë¶„ì •ë³´ <br class="mobile">ì—°ê³„ë¥¼ í†µí•´ ê²¬ì /ìž…ì°° ì°¸ì—¬ì—…ì²´ì˜ <br>
+								ìž ìž¬ì  ìœ„í—˜ì„ ì‚¬ì „ì— íŒŒì•…í•˜ì—¬ ê³µê¸‰ <br class="mobile">ì•ˆì •ì„± í™•ë³´ë¥¼ ì§€ì›í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -188,14 +188,14 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_05.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_05.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">½Å±Ô ¾÷Ã¼ ¼Ò½ÌÀ» À§ÇÑ <br class="mobile">Vendor Pool Á¦°ø</p>
+							<p class="tit">ì‹ ê·œ ì—…ì²´ ì†Œì‹±ì„ ìœ„í•œ <br class="mobile">Vendor Pool ì œê³µ</p>
 							<p class="txt">
-								´Ù¾çÇÑ ±¸¸Å Ç°¸ñ À¯Çü¿¡ µû¶ó ½ÇÁ¦ °Å·¡ °¡´ÉÇÑ <br>
-								°ËÁõµÈ ³ªÀÌ½º´ÙÅ¥ Vendor PoolÀ» Á¦°øÇÕ´Ï´Ù.
+								ë‹¤ì–‘í•œ êµ¬ë§¤ í’ˆëª© ìœ í˜•ì— ë”°ë¼ ì‹¤ì œ ê±°ëž˜ ê°€ëŠ¥í•œ <br>
+								ê²€ì¦ëœ ë‚˜ì´ìŠ¤ë‹¤í Vendor Poolì„ ì œê³µí•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -204,26 +204,26 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_06.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_06.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">¼öÀÛ¾÷ ¾÷¹« Ã³¸®ÀÇ ÀÚµ¿È­ Áö¿ø</p>
+							<p class="tit">ìˆ˜ìž‘ì—… ì—…ë¬´ ì²˜ë¦¬ì˜ ìžë™í™” ì§€ì›</p>
 							<ul class="list">
 								<li>
-									ÀÌ¸ÞÀÏÀ» ÅëÇÑ ¾÷¹« Ã³¸®¿¡¼­ ½Ã½ºÅÛÀ» ÀÌ¿ëÇÑ ¾÷¹« Ã³¸®
+									ì´ë©”ì¼ì„ í†µí•œ ì—…ë¬´ ì²˜ë¦¬ì—ì„œ ì‹œìŠ¤í…œì„ ì´ìš©í•œ ì—…ë¬´ ì²˜ë¦¬
 									<ul>
-										<li>°ßÀû¿äÃ», ¼³¸íÈ¸°ø°í, ÀÔÂû°ø°í ¾È³»</li>
+										<li>ê²¬ì ìš”ì²­, ì„¤ëª…íšŒê³µê³ , ìž…ì°°ê³µê³  ì•ˆë‚´</li>
 									</ul>
 								</li>
 								<li>
-									Çù·Â»ç ´ã´çÀÚ¿¡°Ô ½Ç½Ã°£À¸·Î ¾÷¹« ¿äÃ» ¾È³»
+									í˜‘ë ¥ì‚¬ ë‹´ë‹¹ìžì—ê²Œ ì‹¤ì‹œê°„ìœ¼ë¡œ ì—…ë¬´ ìš”ì²­ ì•ˆë‚´
 									<ul>
-										<li>¾÷¹« ´Ü°èº° SMS, e-mail, Ä«Ä«¿ÀÅå ¹ß¼Û</li>
+										<li>ì—…ë¬´ ë‹¨ê³„ë³„ SMS, e-mail, ì¹´ì¹´ì˜¤í†¡ ë°œì†¡</li>
 									</ul>
 								</li>
-								<li>ÅõÂû¾÷Ã¼ÀÇ ÀÔÂû¼­¸¦ ±â¹ÝÀ¸·Î ÀÔÂû´ëºñÇ¥ ÀÚµ¿»ý¼º</li>
-								<li>±¸¸Å´ã´çÀÚ ¹× Çù·Â»çµéÀº ¿Â¶óÀÎ»ó¿¡¼­ Æ®·£Àè¼Ç Á¤º¸µéÀ» ¾ðÁ¦µçÁö Á¶È¸</li>
+								<li>íˆ¬ì°°ì—…ì²´ì˜ ìž…ì°°ì„œë¥¼ ê¸°ë°˜ìœ¼ë¡œ ìž…ì°°ëŒ€ë¹„í‘œ ìžë™ìƒì„±</li>
+								<li>êµ¬ë§¤ë‹´ë‹¹ìž ë° í˜‘ë ¥ì‚¬ë“¤ì€ ì˜¨ë¼ì¸ìƒì—ì„œ íŠ¸ëžœìž­ì…˜ ì •ë³´ë“¤ì„ ì–¸ì œë“ ì§€ ì¡°íšŒ</li>
 							</ul>
 						</div>
 					</div>
@@ -237,13 +237,13 @@ function changContent(gubun){
 <div class="sub-block content_cont" style="display:none">
 	<div class="sub__section">
 		<div class="inner-container">
-			<h1 class="sub__tit">ÀüÀÚ°è¾à ¼­ºñ½º ¼Ò°³</h1>
+			<h1 class="sub__tit">ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ ì†Œê°œ</h1>
 			<div class="service-top">
 				<div class="chart pc">
-					<img src="/web/hub2/images/sub/service1_chart2.png" alt="ÀüÀÚ°è¾à ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_chart2.png" alt="ì „ìžê³„ì•½ ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 				<div class="chart mobile">
-					<img src="/web/hub2/images/sub/service1_m_chart2.png" alt="ÀüÀÚ°è¾à ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_m_chart2.png" alt="ì „ìžê³„ì•½ ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 			</div>
 		</div>
@@ -253,14 +253,14 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_07.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_07.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">PC ¹× ¸ð¹ÙÀÏ »ó¿¡¼­ °è¾à Ã¼°á</p>
+							<p class="tit">PC ë° ëª¨ë°”ì¼ ìƒì—ì„œ ê³„ì•½ ì²´ê²°</p>
 							<p class="txt">
-								±â¾÷°ú ±â¾÷, ±â¾÷°ú °³ÀÎ °£ °è¾à¿¡ ´ëÇØ ¾ðÁ¦ ¾îµð¼­µç PC¿Í ÈÞ´ëÆùÀ» ÅëÇØ <br class="pc">
-								È¸¿ø°¡ÀÔ ÀýÂ÷ ¾øÀÌ °è¾à¼­¸¦ È®ÀÎÇÏ°í ¹Ù·Î °è¾àÀ» Ã¼°áÇÒ ¼ö ÀÖ½À´Ï´Ù.
+								ê¸°ì—…ê³¼ ê¸°ì—…, ê¸°ì—…ê³¼ ê°œì¸ ê°„ ê³„ì•½ì— ëŒ€í•´ ì–¸ì œ ì–´ë””ì„œë“  PCì™€ íœ´ëŒ€í°ì„ í†µí•´ <br class="pc">
+								íšŒì›ê°€ìž… ì ˆì°¨ ì—†ì´ ê³„ì•½ì„œë¥¼ í™•ì¸í•˜ê³  ë°”ë¡œ ê³„ì•½ì„ ì²´ê²°í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -269,17 +269,17 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_08.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_08.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">Ç¥ÁØÈ­µÈ °è¾à¾ç½Ä</p>
+							<p class="tit">í‘œì¤€í™”ëœ ê³„ì•½ì–‘ì‹</p>
 							<p class="txt">
-								½Ã½ºÅÛ¿¡ Á¢¼ÓÇÏ¿© °è¾à¼­¸¦ ÀÛ¼ºÇÏ¿© ÀüÀÚ°è¾àÀ» Ã¼°áÇÕ´Ï´Ù.
+								ì‹œìŠ¤í…œì— ì ‘ì†í•˜ì—¬ ê³„ì•½ì„œë¥¼ ìž‘ì„±í•˜ì—¬ ì „ìžê³„ì•½ì„ ì²´ê²°í•©ë‹ˆë‹¤.
 							</p>
-							<p class="tit">ºñÇ¥ÁØÈ­µÈ °è¾à¾ç½Ä</p>
+							<p class="tit">ë¹„í‘œì¤€í™”ëœ ê³„ì•½ì–‘ì‹</p>
 							<p class="txt">
-								´ã´çÀÚ PC¿¡¼­ ÀÛ¼ºµÈ °è¾àÆÄÀÏ(PDF)À» ½Ã½ºÅÛ¿¡ ¾÷·ÎµåÇÏ¿© ÀüÀÚ°è¾àÀ» Ã¼°áÇÕ´Ï´Ù.
+								ë‹´ë‹¹ìž PCì—ì„œ ìž‘ì„±ëœ ê³„ì•½íŒŒì¼(PDF)ì„ ì‹œìŠ¤í…œì— ì—…ë¡œë“œí•˜ì—¬ ì „ìžê³„ì•½ì„ ì²´ê²°í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -288,13 +288,13 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_09.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_09.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">¾ç½Äº° °áÀç¶óÀÎ °ü¸®</p>
+							<p class="tit">ì–‘ì‹ë³„ ê²°ìž¬ë¼ì¸ ê´€ë¦¬</p>
 							<p class="txt">
-								°è¾à ¾ç½Äº° À¯¿¬ÇÑ °áÀç(½ÂÀÎ)¶óÀÎ ±â´ÉÀ» Àû¿ëÇÏ¿© ÀüÀÚ°è¾à Ã¼°áÀÌ °¡´ÉÇÕ´Ï´Ù.
+								ê³„ì•½ ì–‘ì‹ë³„ ìœ ì—°í•œ ê²°ìž¬(ìŠ¹ì¸)ë¼ì¸ ê¸°ëŠ¥ì„ ì ìš©í•˜ì—¬ ì „ìžê³„ì•½ ì²´ê²°ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -303,13 +303,13 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_10.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_10.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">°è¾à ±¸ºñ¼­·ù ÀüÀÚÈ­ °ü¸®</p>
+							<p class="tit">ê³„ì•½ êµ¬ë¹„ì„œë¥˜ ì „ìží™” ê´€ë¦¬</p>
 							<p class="txt">
-								°è¾àÃ¼°á ½Ã ¹Þ´Â º¸Áõº¸ÇèÁõ±Ç, ±¸ºñ¼­·ù µî °¢Á¾ °è¾à¼­·ù¿¡ ´ëÇØ ÀüÀÚÈ­°¡ °¡´ÉÇÕ´Ï´Ù.
+								ê³„ì•½ì²´ê²° ì‹œ ë°›ëŠ” ë³´ì¦ë³´í—˜ì¦ê¶Œ, êµ¬ë¹„ì„œë¥˜ ë“± ê°ì¢… ê³„ì•½ì„œë¥˜ì— ëŒ€í•´ ì „ìží™”ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -318,17 +318,17 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_11.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_11.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">»ç¿ëÀÚº° ·Î±×ÀÎ ID ºÎ¿©</p>
+							<p class="tit">ì‚¬ìš©ìžë³„ ë¡œê·¸ì¸ ID ë¶€ì—¬</p>
 							<p class="txt">
-								»ç¿ëÅëÁ¦, Á¢¼Ó ÀÌ·Â ¹× ÀÛ¾÷¿¡ ´ëÇÑ ·Î±× °ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.
+								ì‚¬ìš©í†µì œ, ì ‘ì† ì´ë ¥ ë° ìž‘ì—…ì— ëŒ€í•œ ë¡œê·¸ ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
-							<p class="tit">IDº°·Î ¼­·Î ´Ù¸¥ ±ÇÇÑÀ» ÁöÁ¤</p>
+							<p class="tit">IDë³„ë¡œ ì„œë¡œ ë‹¤ë¥¸ ê¶Œí•œì„ ì§€ì •</p>
 							<p class="txt">
-								»ç¿ëÀÚ IDº° °è¾à¼­ ¿­¶÷¹üÀ§ ¹× ¾÷¹«±ÇÇÑÀ» ÁöÁ¤ÇÏ¿© ½Ã½ºÅÛÀ» »ç¿ëÇÕ´Ï´Ù.
+								ì‚¬ìš©ìž IDë³„ ê³„ì•½ì„œ ì—´ëžŒë²”ìœ„ ë° ì—…ë¬´ê¶Œí•œì„ ì§€ì •í•˜ì—¬ ì‹œìŠ¤í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -337,16 +337,16 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_12.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_12.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">°è¾à°á°ú¿¡ ´ëÇÑ ÇöÈ² ¹× Åë°èÀÚ·á</p>
-							<p class="txt">°è¾à°á°ú Á¤º¸¿¡ ´ëÇØ ¿ùº°, ±Ù·ÎÀÚº° µî ´Ù¾çÇÑ ÇöÈ² ¹× Åë°è ÀÚ·á¸¦ Á¦°øÇÕ´Ï´Ù.</p>
-							<p class="tit">³»ºÎ ¾÷¹«½Ã½ºÅÛ°ú µ¥ÀÌÅÍ ¿¬µ¿</p>
+							<p class="tit">ê³„ì•½ê²°ê³¼ì— ëŒ€í•œ í˜„í™© ë° í†µê³„ìžë£Œ</p>
+							<p class="txt">ê³„ì•½ê²°ê³¼ ì •ë³´ì— ëŒ€í•´ ì›”ë³„, ê·¼ë¡œìžë³„ ë“± ë‹¤ì–‘í•œ í˜„í™© ë° í†µê³„ ìžë£Œë¥¼ ì œê³µí•©ë‹ˆë‹¤.</p>
+							<p class="tit">ë‚´ë¶€ ì—…ë¬´ì‹œìŠ¤í…œê³¼ ë°ì´í„° ì—°ë™</p>
 							<p class="txt">
-								ERP µî ³»ºÎ ¾÷¹«½Ã½ºÅÛ°úÀÇ µ¥ÀÌÅÍ ¿¬µ¿À» ÅëÇÏ¿© »ç¿ëÀÚÀÇ °á°úÁ¤º¸ ¼ö±âÀÔ·Â ÃÖ¼ÒÈ­°¡ °¡´ÉÇÕ´Ï´Ù.<br>
-								³»ºÎ ¾÷¹«½Ã½ºÅÛ¿¡¼­ ÀÚµ¿ ·Î±×ÀÎ(SSO) Áö¿ø
+								ERP ë“± ë‚´ë¶€ ì—…ë¬´ì‹œìŠ¤í…œê³¼ì˜ ë°ì´í„° ì—°ë™ì„ í†µí•˜ì—¬ ì‚¬ìš©ìžì˜ ê²°ê³¼ì •ë³´ ìˆ˜ê¸°ìž…ë ¥ ìµœì†Œí™”ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.<br>
+								ë‚´ë¶€ ì—…ë¬´ì‹œìŠ¤í…œì—ì„œ ìžë™ ë¡œê·¸ì¸(SSO) ì§€ì›
 							</p>
 						</div>
 					</div>
@@ -360,13 +360,13 @@ function changContent(gubun){
 <div class="sub-block content_work" style="display:none">
 	<div class="sub__section">
 		<div class="inner-container">
-			<h1 class="sub__tit">ÀüÀÚ±Ù·Î°è¾à ¼­ºñ½º ¼Ò°³</h1>
+			<h1 class="sub__tit">ì „ìžê·¼ë¡œê³„ì•½ ì„œë¹„ìŠ¤ ì†Œê°œ</h1>
 			<div class="service-top">
 				<div class="chart pc">
-					<img src="/web/hub2/images/sub/service1_chart3.png" alt="ÀüÀÚ±Ù·Î°è¾à ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_chart3.png" alt="ì „ìžê·¼ë¡œê³„ì•½ ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 				<div class="chart mobile">
-					<img src="/web/hub2/images/sub/service1_m_chart3.png" alt="ÀüÀÚ±Ù·Î°è¾à ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_m_chart3.png" alt="ì „ìžê·¼ë¡œê³„ì•½ ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 			</div>
 		</div>
@@ -375,13 +375,13 @@ function changContent(gubun){
 		<div class="inner-container">
 			<div class="service-top">
 				<p class="sub__tit sub__tit--type2">
-					<strong>±Ù·ÎÀÚ´Â È¸¿ø°¡ÀÔ ¾øÀÌ ÈÞ´ëÆù»ó¿¡¼­ <br class="mobile">½±°í ºü¸£°Ô <br class="pc">3ºÐ¸¸¿¡ °è¾à Ã¼°á</strong>À» <br class="mobile">ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+					<strong>ê·¼ë¡œìžëŠ” íšŒì›ê°€ìž… ì—†ì´ íœ´ëŒ€í°ìƒì—ì„œ <br class="mobile">ì‰½ê³  ë¹ ë¥´ê²Œ <br class="pc">3ë¶„ë§Œì— ê³„ì•½ ì²´ê²°</strong>ì„ <br class="mobile">í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 				</p>
 				<div class="chart pc">
-					<img src="/web/hub2/images/sub/service1_chart4.png" alt="ÀüÀÚ±Ù·Î°è¾à ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_chart4.png" alt="ì „ìžê·¼ë¡œê³„ì•½ ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 				<div class="chart mobile">
-					<img src="/web/hub2/images/sub/service1_m_chart4.png" alt="ÀüÀÚ±Ù·Î°è¾à ¾÷¹« ÇÃ·Î¿ì">
+					<img src="/web/hub2/images/sub/service1_m_chart4.png" alt="ì „ìžê·¼ë¡œê³„ì•½ ì—…ë¬´ í”Œë¡œìš°">
 				</div>
 			</div>
 		</div>
@@ -391,14 +391,14 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_13.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_13.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">¼Õ½±°Ô ¸ð¹ÙÀÏ, PC¿¡¼­ ±Ù·Î°è¾à Ã¼°á</p>
+							<p class="tit">ì†ì‰½ê²Œ ëª¨ë°”ì¼, PCì—ì„œ ê·¼ë¡œê³„ì•½ ì²´ê²°</p>
 							<p class="txt">
-								±Ù·ÎÀÚ´Â ¸ð¹ÙÀÏ ¹× PC¿¡¼­ ÈÞ´ëÆùº»ÀÎÀÎÁõÀ¸·Î <br class="pc">
-								½±°í ºü¸£°Ô ±Ù·Î°è¾àÀ» Ã¼°áÇÕ´Ï´Ù.
+								ê·¼ë¡œìžëŠ” ëª¨ë°”ì¼ ë° PCì—ì„œ íœ´ëŒ€í°ë³¸ì¸ì¸ì¦ìœ¼ë¡œ <br class="pc">
+								ì‰½ê³  ë¹ ë¥´ê²Œ ê·¼ë¡œê³„ì•½ì„ ì²´ê²°í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -407,13 +407,13 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_14.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_14.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">´ë·® ±Ù·Î°è¾à ÀÏ°ý»ý¼º ¹× ¹ß¼Û</p>
+							<p class="tit">ëŒ€ëŸ‰ ê·¼ë¡œê³„ì•½ ì¼ê´„ìƒì„± ë° ë°œì†¡</p>
 							<p class="txt">
-								¿¢¼¿ÆÄÀÏÀ» ¾÷·ÎµåÇÏ¿© °è¾à¼­ ÀÏ°ý»ý¼º°ú ´ë·®¹ß¼ÛÀÌ °¡´ÉÇÕ´Ï´Ù.
+								ì—‘ì…€íŒŒì¼ì„ ì—…ë¡œë“œí•˜ì—¬ ê³„ì•½ì„œ ì¼ê´„ìƒì„±ê³¼ ëŒ€ëŸ‰ë°œì†¡ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -422,17 +422,17 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_15.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_15.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">°è¾à ¾÷¹«´ã´çÀÚÀÇ ·Î±×ÀÎ ID ºÎ¿©</p>
+							<p class="tit">ê³„ì•½ ì—…ë¬´ë‹´ë‹¹ìžì˜ ë¡œê·¸ì¸ ID ë¶€ì—¬</p>
 							<p class="txt">
-								»ç¿ëÅëÁ¦, Á¢¼Ó ÀÌ·Â ¹× ÀÛ¾÷¿¡ ´ëÇÑ ·Î±× °ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.
+								ì‚¬ìš©í†µì œ, ì ‘ì† ì´ë ¥ ë° ìž‘ì—…ì— ëŒ€í•œ ë¡œê·¸ ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
-							<p class="tit">IDº°·Î ¼­·Î ´Ù¸¥ ±ÇÇÑÀ» ÁöÁ¤</p>
+							<p class="tit">IDë³„ë¡œ ì„œë¡œ ë‹¤ë¥¸ ê¶Œí•œì„ ì§€ì •</p>
 							<p class="txt">
-								»ç¿ëÀÚ IDº° °è¾à¼­ ¿­¶÷¹üÀ§ ¹× ¾÷¹«±ÇÇÑÀ» ÁöÁ¤ÇÏ¿© ½Ã½ºÅÛÀ» »ç¿ëÇÕ´Ï´Ù.
+								ì‚¬ìš©ìž IDë³„ ê³„ì•½ì„œ ì—´ëžŒë²”ìœ„ ë° ì—…ë¬´ê¶Œí•œì„ ì§€ì •í•˜ì—¬ ì‹œìŠ¤í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -441,18 +441,18 @@ function changContent(gubun){
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s1_16.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s1_16.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">ÇØÃËÁõ¸í¼­ ¹× ±Ù·ÎÀÚ¸íºÎ °ü¸®</p>
+							<p class="tit">í•´ì´‰ì¦ëª…ì„œ ë° ê·¼ë¡œìžëª…ë¶€ ê´€ë¦¬</p>
 							<p class="txt">
-								ÀüÀÚ±Ù·Î°è¾à Ã¼°á Á¤º¸¸¦ ±â¹ÝÀ¸·Î ÇÑ ÇØÃËÁõ¸í¼­ ¹ß±Þ ¹× ±Ù·ÎÀÚ¸íºÎ°ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.
+								ì „ìžê·¼ë¡œê³„ì•½ ì²´ê²° ì •ë³´ë¥¼ ê¸°ë°˜ìœ¼ë¡œ í•œ í•´ì´‰ì¦ëª…ì„œ ë°œê¸‰ ë° ê·¼ë¡œìžëª…ë¶€ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
-							<p class="tit">ÀÎ»ç½Ã½ºÅÛ°ú µ¥ÀÌÅÍ ¿¬µ¿</p>
+							<p class="tit">ì¸ì‚¬ì‹œìŠ¤í…œê³¼ ë°ì´í„° ì—°ë™</p>
 							<p class="txt">
-								ERP µî ³»ºÎ ¾÷¹«½Ã½ºÅÛ°úÀÇ µ¥ÀÌÅÍ ¿¬µ¿À» ÅëÇÏ¿© »ç¿ëÀÚÀÇ °á°úÁ¤º¸ ¼ö±âÀÔ·Â ÃÖ¼ÒÈ­°¡ °¡´ÉÇÕ´Ï´Ù.<br class="pc">
-								³»ºÎ ¾÷¹«½Ã½ºÅÛ¿¡¼­ ÀÚµ¿ ·Î±×ÀÎ(SSO) Áö¿ø
+								ERP ë“± ë‚´ë¶€ ì—…ë¬´ì‹œìŠ¤í…œê³¼ì˜ ë°ì´í„° ì—°ë™ì„ í†µí•˜ì—¬ ì‚¬ìš©ìžì˜ ê²°ê³¼ì •ë³´ ìˆ˜ê¸°ìž…ë ¥ ìµœì†Œí™”ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.<br class="pc">
+								ë‚´ë¶€ ì—…ë¬´ì‹œìŠ¤í…œì—ì„œ ìžë™ ë¡œê·¸ì¸(SSO) ì§€ì›
 							</p>
 						</div>
 					</div>

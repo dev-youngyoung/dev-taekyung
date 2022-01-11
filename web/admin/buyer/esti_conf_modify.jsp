@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -13,7 +13,7 @@ boolean isUpdate = false;
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' and member_type in ('01','03')");
 if(!member.next()){
-	u.jsError("¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -35,14 +35,14 @@ if(info.next()){
 
 
 
-f.addElement("vat_yn", vat_yn, "hname:'VATÆ÷ÇÔ¿©ºÎ', required:'Y'");
-f.addElement("nego_yn", nego_yn, "hname:'°ßÀû¼öÁ¤»ç¿ë¿©ºÎ', required:'Y'");
-f.addElement("succ_pay_yn", succ_pay_yn, "hname:'³«Âû¼ö¼ö·á °ú±Ý¿©ºÎ'");
+f.addElement("vat_yn", vat_yn, "hname:'VATí¬í•¨ì—¬ë¶€', required:'Y'");
+f.addElement("nego_yn", nego_yn, "hname:'ê²¬ì ìˆ˜ì •ì‚¬ìš©ì—¬ë¶€', required:'Y'");
+f.addElement("succ_pay_yn", succ_pay_yn, "hname:'ë‚™ì°°ìˆ˜ìˆ˜ë£Œ ê³¼ê¸ˆì—¬ë¶€'");
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 	if(f.get("conf_text").equals("")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
@@ -52,7 +52,7 @@ if(u.isPost() && f.validate()){
 	if(isUpdate){
 		bidConfDao.item("conf_text", conf_text);
 		if(!bidConfDao.update(" member_no = '"+member_no+"' and conf_gubun = 'esti' ")){
-			u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}else{
@@ -61,12 +61,12 @@ if(u.isPost() && f.validate()){
 		bidConfDao.item("conf_text", conf_text);
 		bidConfDao.item("status", "10");
 		if(!bidConfDao.insert()){
-			u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		
 	}
-	u.jsAlertReplace("ÀúÀå Ã³¸® ÇÏ¿´½À´Ï´Ù.", "esti_conf_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "esti_conf_modify.jsp?"+u.getQueryString());
 	return;
 }
 

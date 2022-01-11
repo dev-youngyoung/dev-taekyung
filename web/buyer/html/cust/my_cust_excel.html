@@ -1,68 +1,40 @@
-<html>
+ï»¿<html>
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<table width="800" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center"><b style="font-size:18pt">Çù·Â¾÷Ã¼ ¸íºÎÇöÈ²<b></td>
-  </tr>
-  <tr>
-    <td><br></td>
-  </tr>
-  <tr>
-    <td>
-
-      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
-        <tr align="center">
-			<td height="30" bgcolor="#cccccc">¼ø¹ø</td>
-			<td bgcolor="#cccccc">¾÷Ã¼¸í</td>
-			<td bgcolor="#cccccc">¾÷ÅÂ</td>
-			<td bgcolor="#cccccc">Á¾¸ñ</td>
-			<!-- IF START 'isDetailCode' -->
-			<td bgcolor="#cccccc">°Å·¡Ã³ÄÚµå</td>
-			<!-- IF END 'isDetailCode' -->
-			<td bgcolor="#cccccc">»ç¾÷ÀÚ¹øÈ£</td>
-			<td bgcolor="#cccccc">´ëÇ¥ÀÚ</td>
-			<td bgcolor="#cccccc">ÁÖ¼Ò</td>
-			<td bgcolor="#cccccc">´ã´çÀÚ¸í</td>
-			<td bgcolor="#cccccc">ÀÌ¸ŞÀÏ</td>
-			<td bgcolor="#cccccc">ÀüÈ­¹øÈ£</td>
-			<td bgcolor="#cccccc">ÈŞ´ëÆù</td>
-			<td bgcolor="#cccccc">ÆÑ½º</td>
-			<!-- IF START 'view_clienttype' -->
-			<td bgcolor="#cccccc">¾÷Ã¼À¯Çü</td>
-			<!-- IF END 'view_clienttype' -->
-			<td bgcolor="#cccccc">È¸¿ø»óÅÂ</td>
-        </tr>
-		<!-- LOOP START 'list' -->
-        <tr>
-			<td align="center" style="cursor:pointer">{{list.__ord}}</td>
-			<td>{{list.member_name}}</td>
-			<td>{{list.condition}}</td>
-			<td>{{list.category}}</td>
-			<!-- IF START 'isDetailCode' -->
-			<td align="center">{{list.cust_detail_code}}</td>
-			<!-- IF END 'isDetailCode' -->
-			<td align="center">{{list.vendcd}}</td>
-			<td align="center">{{list.boss_name}}</td>
-			<td>{{list.address}}</td>
-			<td align="center">{{list.user_name}}</td>
-			<td align="center">{{list.email}}</td>
-			<td align="center">{{list.tel_num}}</td>
-			<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
-			<td align="center">{{list.fax_num}}</td>
-			<!-- IF START 'view_clienttype' -->
-			<td align="center">{{list.client_type}}</td>
-			<!-- IF END 'view_clienttype' -->
-			<td align="center">{{list.member_gubun_name}}</td>
-        </tr>
-		<!-- LOOP END 'list' -->
-      </table>
-
-    </td>
-  </tr>
-</table>
+	<table width="800" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td align="center"><b style="font-size:18pt">ê±°ë˜ì²˜ ëª…ë¶€í˜„í™©<b></td>
+		</tr>
+		<tr>
+			<td><br></td>
+		</tr>
+		<tr>
+			<td>
+				<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
+					<tr align="center">
+						<td height="30" bgcolor="#cccccc">ì‚¬ì—…ìë²ˆí˜¸</td>
+						<td bgcolor="#cccccc">ì—…ì²´ëª…</td>
+						<td bgcolor="#cccccc">ì—…íƒœ</td>
+						<td bgcolor="#cccccc">ì¢…ëª©</td>
+						<td bgcolor="#cccccc">ëŒ€í‘œì</td>
+						<td bgcolor="#cccccc">ê±°ë˜ì²˜êµ¬ë¶„</td>
+					</tr>
+					<!-- LOOP START 'list' -->
+					<tr>
+						<td align="center">{{list.vendcd}}</td>
+						<td>{{list.member_name}}</td>
+						<td>{{list.condition}}</td>
+						<td>{{list.category}}</td>
+						<td align="center">{{list.boss_name}}</td>
+						<td align="center">{{list.gubun_name}}</td>
+					</tr>
+					<!-- LOOP END 'list' -->
+				</table>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

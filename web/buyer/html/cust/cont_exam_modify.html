@@ -1,17 +1,17 @@
-<form name="form1" method="post" >
+ï»¿<form name="form1" method="post" >
 	<input type="hidden" name="status"/>
 
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>±âº»Á¤º¸<span class="caution-text"></span></h3>
+				<h3>ê¸°ë³¸ì •ë³´<span class="caution-text"></span></h3>
 			</div>
 			<div class="push-right">
 				<!-- IFNOT START 'modify' -->
-				<td align="right"><font color="#93a700"><b>[»óÅÂ:Æò°¡´ë»ó]</b></font></td>
+				<td align="right"><font color="#93a700"><b>[ìƒíƒœ:í‰ê°€ëŒ€ìƒ]</b></font></td>
 				<!-- IFNOT END 'modify' -->
 				<!-- IF START 'modify' -->
-				<td align="right"><font color="#93a700"><b>[»óÅÂ:{{exam.status_name}}]</b></font></td>
+				<td align="right"><font color="#93a700"><b>[ìƒíƒœ:{{exam.status_name}}]</b></font></td>
 				<!-- IF END 'modify' -->
 			</div>
 		</div>
@@ -24,20 +24,20 @@
 				<col width="35%">
 			</colgroup>
 			<tr>
-				<th>°è¾à¸í</th>
+				<th>ê³„ì•½ëª…</th>
 				<td colspan="3">&nbsp;{{cont.cont_name}}</td>
 			</tr>
 			<tr>
-				<th>°Å·¡Ã³¸í</th>
+				<th>ê±°ë˜ì²˜ëª…</th>
 				<td>&nbsp;{{cust.member_name}}</td>
-				<th>°è¾àÀÏÀÚ</th>
+				<th>ê³„ì•½ì¼ì</th>
 				<td>&nbsp;{{cont.cont_date}}</td>
 			</tr>
 			<!-- IF START 'modify' -->
 			<tr>
-				<th>Æò°¡ÀÚ</th>
+				<th>í‰ê°€ì</th>
 				<td>&nbsp;{{exam.exam_user_name}}</td>
-				<th>Æò°¡ÀÏÀÚ</th>
+				<th>í‰ê°€ì¼ì</th>
 				<td>&nbsp;{{exam.result_date}}</td>
 			</tr>
 			<!-- IF END 'modify' -->
@@ -47,7 +47,7 @@
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>Æò°¡Ç×¸ñ<span class="caution-text"></span></h3>
+				<h3>í‰ê°€í•­ëª©<span class="caution-text"></span></h3>
 			</div>
 			<div class="push-right">
 			</div>
@@ -62,11 +62,11 @@
 			</colgroup>
 			<thead>
 			<tr >
-				<th>ºĞ·ù</th>
-				<th>¼¼ºÎÇ×¸ñ</th>
-				<th>ÃÑÁ¡</th>
-				<th>Á¡¼ö</th>
-				<th>ºñ°í</th>
+				<th>ë¶„ë¥˜</th>
+				<th>ì„¸ë¶€í•­ëª©</th>
+				<th>ì´ì </th>
+				<th>ì ìˆ˜</th>
+				<th>ë¹„ê³ </th>
 			</tr>
 			</thead>
 			<tbody>
@@ -79,8 +79,8 @@
 				<td align="center">{{question.point}}</td>
 				<td align="center">
 					<input type="hidden" name="question_cd" value="{{question.question_cd}}"/>
-					<select name="item_point" onchange="calcPoint()" hname="Á¡¼ö" <!-- IFNOT START 'edit' -->disabled<!-- IFNOT END 'edit' -->>
-					<option value="">-¼±ÅÃ-</option>
+					<select name="item_point" onchange="calcPoint()" hname="ì ìˆ˜" <!-- IFNOT START 'edit' -->disabled<!-- IFNOT END 'edit' -->>
+					<option value="">-ì„ íƒ-</option>
 					<!-- LOOP START 'item' -->
 					<option value="{{item.point}}" {{item.selected}}>{{item.item_text}}</option>
 					<!-- LOOP END 'item' -->
@@ -90,10 +90,10 @@
 			</tr>
 			<!-- LOOP END 'question' -->
 			<tr>
-				<td align="center" colspan="2">ÇÕ°è</td>
+				<td align="center" colspan="2">í•©ê³„</td>
 				<td align="center">100</td>
 				<td align="center" style="background-color:yellow;">
-					<span id="point_area"></span>Á¡
+					<span id="point_area"></span>ì 
 					<input type="hidden" name="result_point"/>
 				</td>
 				<td></td>
@@ -107,7 +107,7 @@
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>Æò°¡Ç×¸ñ<span class="caution-text"></span></h3>
+				<h3>í‰ê°€í•­ëª©<span class="caution-text"></span></h3>
 			</div>
 			<div class="push-right">
 			</div>
@@ -123,12 +123,12 @@
 			</colgroup>
 			<thead>
 			<tr class="ltitle">
-				<th>´ëºĞ·ù</th>
-				<th>ÁßºĞ·ù</th>
-				<th>¼¼ºÎÇ×¸ñ</th>
-				<th>ÃÑÁ¡</th>
-				<th>Á¡¼ö</th>
-				<th>ºñ°í</th>
+				<th>ëŒ€ë¶„ë¥˜</th>
+				<th>ì¤‘ë¶„ë¥˜</th>
+				<th>ì„¸ë¶€í•­ëª©</th>
+				<th>ì´ì </th>
+				<th>ì ìˆ˜</th>
+				<th>ë¹„ê³ </th>
 			</tr>
 			</thead>
 			<tbody>
@@ -144,8 +144,8 @@
 				<td align="center">{{question.point}}</td>
 				<td align="center">
 					<input type="hidden" name="question_cd" value="{{question.question_cd}}"/>
-					<select name="item_point" onchange="calcPoint()" hname="Á¡¼ö" <!-- IFNOT START 'edit' -->disabled<!-- IFNOT END 'edit' -->>
-					<option value="">-¼±ÅÃ-</option>
+					<select name="item_point" onchange="calcPoint()" hname="ì ìˆ˜" <!-- IFNOT START 'edit' -->disabled<!-- IFNOT END 'edit' -->>
+					<option value="">-ì„ íƒ-</option>
 					<!-- LOOP START 'item' -->
 					<option value="{{item.point}}" {{item.selected}}>{{item.item_text}}</option>
 					<!-- LOOP END 'item' -->
@@ -155,10 +155,10 @@
 			</tr>
 			<!-- LOOP END 'question' -->
 			<tr>
-				<td align="center" colspan="3">ÇÕ°è</td>
+				<td align="center" colspan="3">í•©ê³„</td>
 				<td align="center">100</td>
 				<td align="center" style="background-color:yellow;">
-					<span id="point_area"></span>Á¡
+					<span id="point_area"></span>ì 
 					<input type="hidden" name="result_point"/>
 				</td>
 				<td></td>
@@ -173,25 +173,25 @@
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>Æò°¡°á°ú</h3>
+				<h3>í‰ê°€ê²°ê³¼</h3>
 			</div>
 		</div>
 		<table>
 			<tr>
-				<th rowspan="3">Æò°¡°á°úµî±Ş</th>
-				<th>µî±Ş</th>
+				<th rowspan="3">í‰ê°€ê²°ê³¼ë“±ê¸‰</th>
+				<th>ë“±ê¸‰</th>
 				<!-- LOOP START 'grade' -->
 				<td align="center">{{grade.grade}}</td>
 				<!-- LOOP END 'grade' -->
 			</tr>
 			<tr>
-				<th>µî±Ş¼öÁØ</th>
+				<th>ë“±ê¸‰ìˆ˜ì¤€</th>
 				<!-- LOOP START 'grade' -->
 				<td align="center">{{grade.level_o}}</td>
 				<!-- LOOP END 'grade' -->
 			</tr>
 			<tr>
-				<th>ÆòÁ¡(100Á¡±âÁØ)</th>
+				<th>í‰ì (100ì ê¸°ì¤€)</th>
 				<!-- LOOP START 'grade' -->
 				<th>{{grade.grade_text}}</th>
 				<!-- LOOP END 'grade' -->
@@ -206,9 +206,9 @@
 				<col width="25%">
 			</colgroup>
 			<tr>
-				<th>Æò°¡°á°ú</th>
-				<td align="center" style="background-color:yellow;">{{exam.rpoint}}Á¡</td>
-				<th>µî±Ş</th>
+				<th>í‰ê°€ê²°ê³¼</th>
+				<td align="center" style="background-color:yellow;">{{exam.rpoint}}ì </td>
+				<th>ë“±ê¸‰</th>
 				<td align="center" style="background-color:yellow;">{{exam.grade_name}}</td>
 			</tr>
 		</table>
@@ -217,17 +217,17 @@
 	<!-- IF END 'end' -->
 	<div class="btn-group-wrap">
 		<!-- IFNOT START 'modify' -->
-		<button type="button" class="btn color ico-save auth_css" value="ÀÓ½ÃÀúÀå" onclick="btnAction('10');"/><span></span>ÀÓ½ÃÀúÀå</button>
-		<button type="button" class="btn color ico-confirm auth_css" value="Æò°¡¿Ï·á" onclick="btnAction('20')"/><span></span>Æò°¡¿Ï·á</button>
+		<button type="button" class="btn color ico-save auth_css" value="ì„ì‹œì €ì¥" onclick="btnAction('10');"/><span></span>ì„ì‹œì €ì¥</button>
+		<button type="button" class="btn color ico-confirm auth_css" value="í‰ê°€ì™„ë£Œ" onclick="btnAction('20')"/><span></span>í‰ê°€ì™„ë£Œ</button>
 		<!-- IFNOT END 'modify' -->
 		<!-- IF START 'modify' -->
 		<!-- IF START 'btn' -->
-		<button type="button" class="btn color ico-save auth_css" value="ÀÓ½ÃÀúÀå" onclick="btnAction('10');"/><span></span>ÀÓ½ÃÀúÀå</button>
-		<button type="button" class="btn color ico-confirm auth_css" value="Æò°¡¿Ï·á" onclick="btnAction('20')"/><span></span>Æò°¡¿Ï·á</button>
-		<button type="button" class="btn color ico-cancel auth_css" value="Æò°¡Ãë¼Ò" onclick="if(confirm('Æò°¡Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?')){location.href='cont_exam_delete.jsp?{{query}}'}"><span></span>Æò°¡Ãë¼Ò</button>
+		<button type="button" class="btn color ico-save auth_css" value="ì„ì‹œì €ì¥" onclick="btnAction('10');"/><span></span>ì„ì‹œì €ì¥</button>
+		<button type="button" class="btn color ico-confirm auth_css" value="í‰ê°€ì™„ë£Œ" onclick="btnAction('20')"/><span></span>í‰ê°€ì™„ë£Œ</button>
+		<button type="button" class="btn color ico-cancel auth_css" value="í‰ê°€ì·¨ì†Œ" onclick="if(confirm('í‰ê°€ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='cont_exam_delete.jsp?{{query}}'}"><span></span>í‰ê°€ì·¨ì†Œ</button>
 		<!-- IF END 'btn' -->
 		<!-- IF END 'modify' -->
-		<button type="button" class="btn color ico-list" value="¸ñ·ÏÀ¸·Î" onclick="location.href='cont_exam_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="button" class="btn color ico-list" value="ëª©ë¡ìœ¼ë¡œ" onclick="location.href='cont_exam_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 </form>
 {{form_script}}
@@ -257,8 +257,8 @@
     }
 
     function formSubmit(f){
-        var msg = "ÀÓ½ÃÀúÀå  Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?";
-        if(f['status'].value=="20")msg = "Æò°¡¿Ï·á ÇÏ½Ã°Ú½À´Ï±î?\n\nÆò°¡¿Ï·á ÈÄ¿¡´Â º¯°æ ÇÒ ¼ö ¾ø½À´Ï´Ù.";
+        var msg = "ì„ì‹œì €ì¥  ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+        if(f['status'].value=="20")msg = "í‰ê°€ì™„ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\ní‰ê°€ì™„ë£Œ í›„ì—ëŠ” ë³€ê²½ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.";
         if(validate(f)){
             if(confirm(msg)){
                 return true;

@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String person_seq = u.request("person_seq");
 
 f.addElement("s_field_name", null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -27,13 +27,13 @@ list.setOrderBy("field_seq desc ");
 
 DataSet ds = list.getDataSet();
 while(ds.next()){
-	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"»ç¿ë":"»ç¿ëÁßÁö");
+	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"ì‚¬ìš©":"ì‚¬ìš©ì¤‘ì§€");
 }
 
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("info.pop_search_place");
-p.setVar("popup_title","ÁöÁ¡°Ë»ö");
+p.setVar("popup_title","ì§€ì ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("form_script", f.getScript());
 p.setVar("pagerbar",list.getPaging());

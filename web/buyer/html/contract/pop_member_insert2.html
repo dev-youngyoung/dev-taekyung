@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
 
 <div class="div_table">
 	<table>
@@ -7,14 +7,14 @@
 			<col width="82%">
 		</colgroup>
 		<tr>
-			<th>»ç¾÷ÀÚµî·Ï¹øÈ£</th>
+			<th>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</th>
 			<td colspan="3">
 				<input type="text" name="vendcd1" size="3" maxlength="3" style="ime-mode:disabled" onKeyDown="num_only();document.forms['form1']['chk_vendcd'].value='';" onKeyUp="moveNext('vendcd2')"> -
 			    <input type="text" name="vendcd2" size="2" maxlength="2" style="ime-mode:disabled" onKeyDown="num_only();document.forms['form1']['chk_vendcd'].value='';" onKeyUp="moveNext('vendcd3'); movePrv('vendcd1')"> -
 			    <input type="text" name="vendcd3" size="5" maxlength="5" style="ime-mode:disabled" onKeyDown="num_only();document.forms['form1']['chk_vendcd'].value='';" onKeyUp="movePrv('vendcd2')">
 			    <input type="hidden" name="chk_vendcd"/>
 			    <input type="hidden" name="chk_member_no"/>
-			    <button type="button" name="btn_chk" class="sbtn color ico-confirm" onclick="chkVendcd()"><span></span>È®ÀÎ</button>
+			    <button type="button" name="btn_chk" class="sbtn color ico-confirm" onclick="chkVendcd()"><span></span>í™•ì¸</button>
 			</td>
 		</tr>
 	</table>
@@ -23,7 +23,7 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-		  	<h3>¾÷Ã¼Á¤º¸</h3>
+		  	<h3>ì—…ì²´ì •ë³´</h3>
 		</div>
 	</div>
 	<table>
@@ -34,29 +34,29 @@
 			<col width="32%">
 		</colgroup>
 		<tr>
-			<th class="req-check">¾÷Ã¼¸í</th>
+			<th class="req-check">ì—…ì²´ëª…</th>
 			<td>
 				<input type="text" name="member_name" style="width:95%" maxlength="30" >
 			</td>
-			<th class="req-check">´ëÇ¥ÀÚ¸í</th>
+			<th class="req-check">ëŒ€í‘œìëª…</th>
 			<td>
 				<input type="text" name="boss_name" style="width:95%" maxlength="30" >
 			</td>
 		</tr>
 	   	<tr>
-		    <th class="req-check">ÁÖ¼Ò</th>
+		    <th class="req-check">ì£¼ì†Œ</th>
 		    <td colspan="3">
 				<input type="text" name="post_code" class="in_readonly" size="6" readonly>
-				<button type="button" class="sbtn color ico-search" onclick="jusoPopup();"><span></span>¿ìÆí¹øÈ£Ã£±â</button>
+				<button type="button" class="sbtn color ico-search" onclick="jusoPopup();"><span></span>ìš°í¸ë²ˆí˜¸ì°¾ê¸°</button>
 				<input type="text" name="address" style="width:95%" maxlength="150">
 		    </td>
 	   	</tr>
 		<tr>
-			<th>°è¾àÃ³ÄÚµå</th>
+			<th>ê³„ì•½ì²˜ì½”ë“œ</th>
 			<td>
 				<input type="text" name="cust_detail_code" size="6" maxlength="6" >
 			</td>
-			<th class="req-check">°è¾àÃ³ÄÚµå¸í</th>
+			<th class="req-check">ê³„ì•½ì²˜ì½”ë“œëª…</th>
 			<td>
 				<input type="text" name="cust_detail_name" style="width:95%" maxlength="30" >
 			</td>
@@ -67,7 +67,7 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-		  	<h3>´ã´çÀÚÁ¤º¸</h3>
+		  	<h3>ë‹´ë‹¹ìì •ë³´</h3>
 		</div>
 	</div>
 	<table>
@@ -78,22 +78,22 @@
 			<col width="32%">
 		</colgroup>
 		<tr>
-			<th class="req-check">´ã´çÀÚ¸í</th>
+			<th class="req-check">ë‹´ë‹¹ìëª…</th>
 			<td colspan="3">
 				<input type="text" name="user_name" style="width:100px;" maxlength="30" >
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">ÀüÈ­¹øÈ£</th>
+			<th class="req-check">ì „í™”ë²ˆí˜¸</th>
 			<td>
 				<input type="text" name="tel_num" style="width: 140px;" maxlength="15">
 				<p>
-	      		<font color="gray">¿¹) 02-788-9097</font>
+	      		<font color="gray">ì˜ˆ) 02-788-9097</font>
 			</td>
-			<th class="req-check">ÈŞ´ëÀüÈ­</th>
+			<th class="req-check">íœ´ëŒ€ì „í™”</th>
 		    <td>
 				<select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
-			        <option value="">¼±ÅÃ</option>
+			        <option value="">ì„ íƒ</option>
 			        <option value="010">010</option>
 			        <option value="011">011</option>
 			        <option value="016">016</option>
@@ -106,15 +106,15 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">ÀÌ¸ŞÀÏ</th>
+			<th class="req-check">ì´ë©”ì¼</th>
 	    	<td colspan="3"><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:220px;"></td>
 		</tr>
 	</table>
 </div>
 
 <div class="btn-group-wrap">
-	<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>Ãë¼Ò</button>
+	<button type="submit" class="btn color ico-save"><span></span>ì €ì¥</button>
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>ì·¨ì†Œ</button>
 </div>
 
 </form>
@@ -128,10 +128,10 @@ attachOnload(function(){
 function formSubmit(f){
 	if(validate(f)){
 		if( !(f['chk_vendcd'].value=="1"||f['chk_vendcd'].value=="2") ){
-			alert("»ç¾÷ÀÚµî·Ï¹øÈ£ Áßº¹ È®ÀÎÀ» ÇØ ÁÖ½Ê½Ã¿À.");
+			alert("ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ ì¤‘ë³µ í™•ì¸ì„ í•´ ì£¼ì‹­ì‹œì˜¤.");
 			return false;
 		}
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?"))
+		if(confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
 			return true;
 	}
 	return false;
@@ -149,7 +149,7 @@ function chkVendcd(){
 	var f = document.forms['form1'];
 	var vendcd = f['vendcd1'].value+f['vendcd2'].value+f['vendcd3'].value;
 	if(vendcd.length!=10){
-		alert("»ç¾÷ÀÚµî·Ï¹øÈ£¸¦ Á¤È®È÷ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
+		alert("ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ë¥¼ ì •í™•íˆ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
 		f["vendcd1"].focus();
 		return;
 	}

@@ -1,16 +1,16 @@
 <%
 /*************************************************************************
-	* ÆÄ ÀÏ ¸í : Calendar.jsp
-	* ÀÛ ¾÷ ÀÚ : ÀÌÁ¾È¯
-	* ÀÛ ¾÷ ÀÏ : 2008.02.04
-	* ±â    ´É : ´Þ·Â ÆäÀÌÁö
-	* ---------------------------- º¯ °æ ÀÌ ·Â --------------------------------
-	* ¹øÈ£ ÀÛ ¾÷ ÀÚ   ÀÛ      ¾÷     ÀÏ   º¯°æ³»¿ë                       ºñ°í
+	* íŒŒ ì¼ ëª… : Calendar.jsp
+	* ìž‘ ì—… ìž : ì´ì¢…í™˜
+	* ìž‘ ì—… ì¼ : 2008.02.04
+	* ê¸°    ëŠ¥ : ë‹¬ë ¥ íŽ˜ì´ì§€
+	* ---------------------------- ë³€ ê²½ ì´ ë ¥ --------------------------------
+	* ë²ˆí˜¸ ìž‘ ì—… ìž   ìž‘      ì—…     ì¼   ë³€ê²½ë‚´ìš©                       ë¹„ê³ 
 	* -----------------------------------------------------------------------
-	*   1  ÀÌÁ¾È¯			½Å±ÔÀÛ¼º
+	*   1  ì´ì¢…í™˜			ì‹ ê·œìž‘ì„±
  **************************************************************************/
 %>
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file = "../../../inc/funUtil.inc"%>
 <%
 	String	sYYYYMMDD		=	_chkNull(request.getParameter("yyyymmdd"));
@@ -26,7 +26,7 @@
 %>
 <html>
 	<head>
-		<TITLE>´Þ·Â</TITLE>
+		<TITLE>ë‹¬ë ¥</TITLE>
 		<link href="./basic.css" rel="stylesheet" type="text/css">
 
 		<script language="javascript">
@@ -83,13 +83,13 @@
 				calobj+="	</tr>";
 				calobj+="	<tr><td class='dot' colspan='7'></td></tr>";
 				calobj+="	<tr align='center'>";
-				calobj+="		<td width='25' height='20' class='cal_redbold'>ÀÏ</td>";
-				calobj+="		<td width='25' class='cal_graybold'>¿ù</td>";
-				calobj+="		<td width='25' class='cal_graybold'>È­</td>";
-				calobj+="		<td width='25' class='cal_graybold'>¼ö</td>";
-				calobj+="		<td width='25' class='cal_graybold'>¸ñ</td>";
-				calobj+="		<td width='25' class='cal_graybold'>±Ý</td>";
-				calobj+="		<td width='25' class='cal_graybold'>Åä</td>";
+				calobj+="		<td width='25' height='20' class='cal_redbold'>ì¼</td>";
+				calobj+="		<td width='25' class='cal_graybold'>ì›”</td>";
+				calobj+="		<td width='25' class='cal_graybold'>í™”</td>";
+				calobj+="		<td width='25' class='cal_graybold'>ìˆ˜</td>";
+				calobj+="		<td width='25' class='cal_graybold'>ëª©</td>";
+				calobj+="		<td width='25' class='cal_graybold'>ê¸ˆ</td>";
+				calobj+="		<td width='25' class='cal_graybold'>í† </td>";
 				calobj+="	</tr>";
 				calobj+=" <tr><td class='dot' colspan='7'></td></tr>";
 				calobj+="	<tr><td id='td_calendar' colspan='7'></td></tr>";
@@ -417,7 +417,7 @@
 			}
 
 			/*****************************
-				´Þ·Â¿¡ ¼±ÅÃÇÑ ³»¿ë  EMEDIT·Î Àü¼Û
+				ë‹¬ë ¥ì— ì„ íƒí•œ ë‚´ìš©  EMEDITë¡œ ì „ì†¡
 			*****************************/
 			function message(cell)
 			{

@@ -1,26 +1,26 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String id = u.request("id");
 String mode = u.request("mode");
 
 if(id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 DataObject oDao = new DataObject("tcb_contmaster");
 DataSet ds = oDao.find("member_no = '"+_member_no+"' and order_field_seq > 0");
 if(ds.next()){
-	u.jsError("ÇØ´ç ÇöÀåÀº »ç¿ëÁßÀÎ ÇöÀåÀÌ¶ó »èÁ¦¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ í˜„ìž¥ì€ ì‚¬ìš©ì¤‘ì¸ í˜„ìž¥ì´ë¼ ì‚­ì œë¥¼ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject dao = new DataObject("tcb_order_field");
 
 if(!dao.delete("member_no='"+_member_no+"' and field_seq="+id)){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦ µÇ¾ú½À´Ï´Ù.", "./construction_site.jsp?"+u.getQueryString("id"));
+u.jsAlertReplace("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./construction_site.jsp?"+u.getQueryString("id"));
 %>

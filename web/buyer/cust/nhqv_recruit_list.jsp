@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"10=>¸ğÁıÁß","20=>¸ğÁı¿Ï·á"};
+String[] code_status = {"10=>ëª¨ì§‘ì¤‘","20=>ëª¨ì§‘ì™„ë£Œ"};
 
 f.addElement("s_title", u.request("s_title"), null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);

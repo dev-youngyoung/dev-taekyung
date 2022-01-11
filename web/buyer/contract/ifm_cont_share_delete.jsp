@@ -1,30 +1,30 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String seq = u.request("seq");
 if(cont_no.equals("")||cont_chasu.equals("")||seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject shareDao = new DataObject("tcb_share");
 DataSet share = shareDao.find("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and seq = '"+seq+"' ");
 if(!share.next()){
-	u.jsError("°ø¶÷ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³µëžŒ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!share.getString("status").equals("10")){
-	u.jsError("»èÁ¦ °¡´ÉÇÑ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.");
+	u.jsError("ì‚­ì œ ê°€ëŠ¥í•œ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.");
 	return;
 }
 
 shareDao.item("status","-1");
 if(!shareDao.update("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and seq = '"+seq+"' ")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦Ã³¸® ÇÏ¿´½À´Ï´Ù.", "ifm_cont_share.jsp?"+u.getQueryString("seq"));
+u.jsAlertReplace("ì‚­ì œì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "ifm_cont_share.jsp?"+u.getQueryString("seq"));
 
 %>

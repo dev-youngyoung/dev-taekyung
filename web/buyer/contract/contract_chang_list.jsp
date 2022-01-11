@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000058";
 
@@ -12,7 +12,7 @@ f.addElement("s_cust_name",null, null);
 f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -32,31 +32,31 @@ list.setFields(
 
 list.addWhere(" a.member_no = '"+_member_no+"' ");
 
-String[] ing_cont_member = //º¯°æ°è¾àÀ» ¿Ï·áµÇÁö ¾ÊÀº °ÇÀ¸·Îµµ ÀÛ¼º ÇÏ´Â È¸¿ø
+String[] ing_cont_member = //ë³€ê²½ê³„ì•½ì„ ì™„ë£Œë˜ì§€ ì•Šì€ ê±´ìœ¼ë¡œë„ ì‘ì„± í•˜ëŠ” íšŒì›
 {
-		 "20121000003"//(ÁÖ)¾ÆÀÌÆ¼¿¥¹İµµÃ¼
-		,"20121000046"//ÇÑ±¹ÆÄ·¿Æ®Ç® ÁÖ½ÄÈ¸»ç
-		,"20130700108"//(ÁÖ)ÀÎÅÍÆÄÅ©ºñÁî¸¶ÄÏ
-		,"20130900194"//(ÁÖ)Ä«Ä«¿À
-		,"20140300055"//ÇÑ±¹À¯¸®°ø¾÷(ÁÖ)
-		,"20140900004"//(ÁÖ)ÄÉÀÌÆ¼¿¥¾Ø¿¡½º
-		,"20150900434"//³ªµğ¾ÆÆÛ½ÃÇÈ ÁÖ½ÄÈ¸»ç
+		 "20121000003"//(ì£¼)ì•„ì´í‹°ì— ë°˜ë„ì²´
+		,"20121000046"//í•œêµ­íŒŒë ›íŠ¸í’€ ì£¼ì‹íšŒì‚¬
+		,"20130700108"//(ì£¼)ì¸í„°íŒŒí¬ë¹„ì¦ˆë§ˆì¼“
+		,"20130900194"//(ì£¼)ì¹´ì¹´ì˜¤
+		,"20140300055"//í•œêµ­ìœ ë¦¬ê³µì—…(ì£¼)
+		,"20140900004"//(ì£¼)ì¼€ì´í‹°ì— ì•¤ì—ìŠ¤
+		,"20150900434"//ë‚˜ë””ì•„í¼ì‹œí”½ ì£¼ì‹íšŒì‚¬
 };
 if(u.inArray(_member_no,ing_cont_member)){
 	list.addWhere(" a.status in ('20','30','31','40','41','50')");
 }else{
 	list.addWhere(" a.status = '50'");
 }
-list.addWhere(" a.subscription_yn is null");//½ÅÃ»¼­ Á¦¿Ü
+list.addWhere(" a.subscription_yn is null");//ì‹ ì²­ì„œ ì œì™¸
 list.addWhere(" a.cont_chasu = (select max(cont_chasu) from tcb_contmaster where cont_no = a.cont_no) ");
 if(!s_sdate.equals(""))list.addWhere(" a.cont_date >= '"+s_sdate.replaceAll("-","")+"'");
 if(!s_edate.equals(""))list.addWhere(" a.cont_date <= '"+s_edate.replaceAll("-","")+"'");
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 list.addSearch("a.cont_userno",  f.get("s_cust_userno"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_cust_name"), "LIKE");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -75,7 +75,7 @@ if(!auth.getString("_DEFAULT_YN").equals("Y")){
 	}
 }
 
-/* ¼º´ÉÀ» À§ÇØ Á¤·Ä ¾ÈÇÔ. º¯°æ°è¾àÀº ¾îÂ÷ÇÇ ¾÷Ã¼ °Ë»öÀ» ÇÏ°Ô ¸¶·ÃÀÌ±â ¶§¹® 2018.09.18
+/* ì„±ëŠ¥ì„ ìœ„í•´ ì •ë ¬ ì•ˆí•¨. ë³€ê²½ê³„ì•½ì€ ì–´ì°¨í”¼ ì—…ì²´ ê²€ìƒ‰ì„ í•˜ê²Œ ë§ˆë ¨ì´ê¸° ë•Œë¬¸ 2018.09.18
 list.setOrderBy("a.cont_no desc, a.cont_chasu asc");
 */
 
@@ -84,17 +84,17 @@ DataObject templateDao = new DataObject("tcb_cont_template");
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cont_chasu")>0)
-		ds.put("cont_name",ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+		ds.put("cont_name",ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 	//ds.put("link", ds.getString("template_cd").equals("")?"contract_chang_insert.jsp":"contract_free_chang_insert.jsp");
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
 	DataSet template = new DataSet();
-	if(!ds.getString("template_cd").equals("")){//ÀÏ¹İ¼­½Ä °è¾àÀÎ °æ¿ì
-		if(ds.getString("template_type").equals("00")){//º¯°æ°è¾à¼­½ÄÀÌ ¾ø´Â °æ¿ì ÀÚ±â ¾ç½Ä¸¸-> ³»²¨ ¶Ç´Â ÁöÁ¤µÈ ¼­½Ä Áö´Ï¹ÂÁ÷ ¶§¹®¿¡ º¯°æ 20191111
+	if(!ds.getString("template_cd").equals("")){//ì¼ë°˜ì„œì‹ ê³„ì•½ì¸ ê²½ìš°
+		if(ds.getString("template_type").equals("00")){//ë³€ê²½ê³„ì•½ì„œì‹ì´ ì—†ëŠ” ê²½ìš° ìê¸° ì–‘ì‹ë§Œ-> ë‚´êº¼ ë˜ëŠ” ì§€ì •ëœ ì„œì‹ ì§€ë‹ˆë®¤ì§ ë•Œë¬¸ì— ë³€ê²½ 20191111
 			template = templateDao.find(
 					 "    member_no like '%"+_member_no+"%' "
 					+" and ("
@@ -109,8 +109,8 @@ while(ds.next()){
 					, "display_seq asc"
 			);
 		}
-		if(u.inArray(ds.getString("template_type"), new String[]{"10","20"})){//ÃÖÃÊ ¹× º¯°æ °è¾à
-			String template_cd = ds.getString("org_template_cd");//¿ªÀÎ°è¾àÀÇ ±â´É¶§¹®¿¡ ÃÖÃÊ°è¾àÀÇ org_template_cd¸¦ ºÎ¸£´Âµí.. À¯ÆÀÀå´Ô ¸Â³ª¿ä?
+		if(u.inArray(ds.getString("template_type"), new String[]{"10","20"})){//ìµœì´ˆ ë° ë³€ê²½ ê³„ì•½
+			String template_cd = ds.getString("org_template_cd");//ì—­ì¸ê³„ì•½ì˜ ê¸°ëŠ¥ë•Œë¬¸ì— ìµœì´ˆê³„ì•½ì˜ org_template_cdë¥¼ ë¶€ë¥´ëŠ”ë“¯.. ìœ íŒ€ì¥ë‹˜ ë§ë‚˜ìš”?
 			if(template_cd.equals("")){
 				template_cd = ds.getString("template_cd");
 			}
@@ -123,7 +123,7 @@ while(ds.next()){
 			);
 		}
 	}else{  
-		template = templateDao.find(" member_no like '%"+_member_no+"%' and use_yn = 'Y' ", "template_cd, nvl(display_name,template_name) template_name, sign_types", "display_seq asc");  // º¯°æ(20), Ãë¼Ò(30) ¾ç½Ä
+		template = templateDao.find(" member_no like '%"+_member_no+"%' and use_yn = 'Y' ", "template_cd, nvl(display_name,template_name) template_name, sign_types", "display_seq asc");  // ë³€ê²½(20), ì·¨ì†Œ(30) ì–‘ì‹
 	}
 	ds.put(".template", template);
 }

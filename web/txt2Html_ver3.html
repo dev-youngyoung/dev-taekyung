@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="EUC-KR">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=10">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title>¢Æ ³ªÀÌ½º´ÙÅ¥ (ÀüÀÚ±¸¸Å½Ã½ºÅÛ)¢Æ</title>
+    <title>â–’ ë‚˜ì´ìŠ¤ë‹¤í (ì „ìžêµ¬ë§¤ì‹œìŠ¤í…œ)â–’</title>
     <link rel="stylesheet" type="text/css" href="http://www.nicedocu.com/web/buyer/html/css/style.css">
     <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery-3.1.1.min.js"></script>
     <script language="javascript" type="text/javascript" src="http://www.nicedocu.com/web/buyer/html/js/jquery/jquery-ui.min.js"></script>
@@ -13,7 +13,7 @@
 <style type="text/css">
 .glabel {
 	color: #707070;
-	FONT-FAMILY: "µ¸¿ò", "Arial";
+	FONT-FAMILY: "ë‹ì›€", "Arial";
 	FONT-SIZE: 9pt;
 	/*LINE-HEIGHT: 13pt;*/
 	border: 1 solid;
@@ -21,7 +21,7 @@
 	text-align: left;
 	background-color: #ffff00
 }
-td {  font-family: "³ª´®°íµñ, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+td {  font-family: "ë‚˜ëˆ”ê³ ë”•, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
 .lineTable { border-collapse:collapse; border:1px solid black }
 .lineTable td { border:1px solid black }
 .lineTable .noborder { border:0 }
@@ -30,16 +30,16 @@ td {  font-family: "³ª´®°íµñ, Arial"; font-size:12px; font-style: normal; letter
 <script type="text/javascript">
 function text2html(){
 	var f = document.forms['form1'];
-	var txt = f['txt'].value.replaceAll(" \n","\n").replaceAll("\n\n\n","\n\n");//°ø¹é ÀÔ·Â ÁÙ , ¿£ÅÍ 2¹ø ÇÑ°Å º¯È¯ Ã³¸®
+	var txt = f['txt'].value.replaceAll(" \n","\n").replaceAll("\n\n\n","\n\n");//ê³µë°± ìž…ë ¥ ì¤„ , ì—”í„° 2ë²ˆ í•œê±° ë³€í™˜ ì²˜ë¦¬
 	var html = "";
 
-	var groups = txt.split("\n\n");//Á¶Ç×´ÜÀ§·Î ÂÉ°³±â
+	var groups = txt.split("\n\n");//ì¡°í•­ë‹¨ìœ„ë¡œ ìª¼ê°œê¸°
 
 	for(var i = 0 ; i < groups.length; i ++){
 		var group = groups[i];
 		var rows = group.split("\n");
 		var tdCnt = 0;
-		//td ¼ö ±¸ÇÏ±â
+		//td ìˆ˜ êµ¬í•˜ê¸°
 		for(var j = 0 ; j< rows.length; j++){
 			var cells = rows[j].split("\t");
 			if(tdCnt < cells.length){
@@ -47,7 +47,7 @@ function text2html(){
 			}
 		}
 
-		//table header ÀÔ·Â ½ÃÀÛ
+		//table header ìž…ë ¥ ì‹œìž‘
 		html += '\n';
 		html += '\n<p>';
 		html += '\n<table width="100%" border="0" cellpadding="0" cellspacing="0">'
@@ -58,26 +58,26 @@ function text2html(){
 		html +='<col>';
 		html +='</colgroup>';
 
-		//³»¿ëÃ¤¿ì±â
+		//ë‚´ìš©ì±„ìš°ê¸°
 		for(var j = 0 ; j< rows.length; j++){
 			html+="\n<tr>";
 			var cells = rows[j].split("\t");
 			var isBold = false;
 
-			if(cells[0].replaceAll(" ","").trim()!="\t"&&j==0){//ÀÏ¹Ý³»¿ë
+			if(cells[0].replaceAll(" ","").trim()!="\t"&&j==0){//ì¼ë°˜ë‚´ìš©
 				isBold = true;
 			}
 			var colspan = tdCnt - cells.length+1;
 			for(var c = 0 ; c< cells.length; c++){
 				var cell = cells[c].trim();
 				if(isBold) cell = "<b>"+cell+"</b>";
-				if( c == cells.length-1){// ¸¶Áö¸·cell
+				if( c == cells.length-1){// ë§ˆì§€ë§‰cell
 					if(colspan!=1){
 						html+='\n\t<td colspan="'+colspan+'" style="text-align:justify">'+cell+'</td>';
 					}else{
 						html+='\n\t<td style="text-align:justify">'+cell+'</td>';
 					}
-				}else{// Áß°£ cell
+				}else{// ì¤‘ê°„ cell
 					if(cell==""){
 						html+='\n\t<td>'+cell+'</td>';
 					}else{
@@ -95,16 +95,16 @@ function text2html(){
 }
 
 function grid2html(txt){
-    txt = txt.replaceAll(" \n","\n").replaceAll("\n\n\n","\n\n");//°ø¹é ÀÔ·Â ÁÙ , ¿£ÅÍ 2¹ø ÇÑ°Å º¯È¯ Ã³¸®
+    txt = txt.replaceAll(" \n","\n").replaceAll("\n\n\n","\n\n");//ê³µë°± ìž…ë ¥ ì¤„ , ì—”í„° 2ë²ˆ í•œê±° ë³€í™˜ ì²˜ë¦¬
     var html = "";
 
-    var groups = txt.split("\n\n");//Á¶Ç×´ÜÀ§·Î ÂÉ°³±â
+    var groups = txt.split("\n\n");//ì¡°í•­ë‹¨ìœ„ë¡œ ìª¼ê°œê¸°
 
     for(var i = 0 ; i < groups.length; i ++){
         var group = groups[i];
         var rows = group.split("\n");
         var tdCnt = 0;
-        //td ¼ö ±¸ÇÏ±â
+        //td ìˆ˜ êµ¬í•˜ê¸°
         for(var j = 0 ; j< rows.length; j++){
             var cells = rows[j].split("\t");
             if(tdCnt < cells.length){
@@ -112,7 +112,7 @@ function grid2html(txt){
             }
         }
 
-        //table header ÀÔ·Â ½ÃÀÛ
+        //table header ìž…ë ¥ ì‹œìž‘
         html += '<table>'
         html +='\n<colgroup>';
         for(var k = 0 ; k< tdCnt-1 ; k++){
@@ -122,7 +122,7 @@ function grid2html(txt){
         html +='</colgroup>';
         html +='\n<tbody>';
 
-        //³»¿ëÃ¤¿ì±â
+        //ë‚´ìš©ì±„ìš°ê¸°
         for(var j = 0 ; j< rows.length; j++){
             html += "\n<tr>";
             var cells = rows[j].split("\t");
@@ -131,13 +131,13 @@ function grid2html(txt){
 
             for(var c = 0 ; c< cells.length; c++){
                 var cell = cells[c].trim();
-                if( c == cells.length-1){// ¸¶Áö¸·cell
+                if( c == cells.length-1){// ë§ˆì§€ë§‰cell
                     if(colspan!=1){
                         html+='\n\t<td colspan="'+colspan+'" align="center">'+cell+'</td>';
                     }else{
                         html+='\n\t<td align="center">'+cell+'</td>';
                     }
-                }else{// Áß°£ cell
+                }else{// ì¤‘ê°„ cell
                     if(cell==""){
                         html+='\n\t<td align="center">'+cell+'</td>';
                     }else{
@@ -156,7 +156,7 @@ function grid2html(txt){
 function removeAttr(){
 	document.getElementById("__html_0").innerHTML = document.querySelector("#__html_0 table").outerHTML;
 
-    //table ºÒÇÊ¿ä Ç×¸ñ Á¦°Å
+    //table ë¶ˆí•„ìš” í•­ëª© ì œê±°
     var tableObj = document.querySelector("#__html_0 table");
 	var table_att_names = tableObj.getAttributeNames();
     var col;
@@ -175,7 +175,7 @@ function removeAttr(){
     tableObj.innerHTML = tableObj.innerHTML.replace(/^\s*/, "\n");
     tableObj.innerHTML = tableObj.innerHTML + "\n";
 
-	//tr ºÒÇÊ¿ä Ç×¸ñ Á¦°Å
+	//tr ë¶ˆí•„ìš” í•­ëª© ì œê±°
     var arr_tr = document.querySelectorAll("#__html_0 table tr");
 	for(var i = 0 ; i < arr_tr.length ; i++){
 		var trObj = arr_tr[i];
@@ -200,7 +200,7 @@ function removeAttr(){
 		}
 	}
 
-	//td ºÒÇÊ¿ä Ç×¸ñ Á¦°Å
+	//td ë¶ˆí•„ìš” í•­ëª© ì œê±°
     var arr_td = document.querySelectorAll("#__html_0 table tr td");
 	for(var i = 0 ; i < arr_td.length ; i++){
 		var tdObj = arr_td[i];
@@ -241,32 +241,32 @@ function inputGridHtml() {
 	</div>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
-		<th width="50">¿øº»</th>
-		<td><textarea name="txt" style="width:100%;height:100px">Á¦ 9 Á¶ [°è¾à±â°£]
-		¨ç	°è¾à±â°£Àº (20    ³â    ¿ù    ÀÏ·ÎºÎÅÍ 20    ³â    ¿ù    ÀÏ)·Î "°¡¸Íº»ºÎ"¿Í "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ ÇùÀÇÇÏ¿© Á¤ÇÑ °è¾à±â°£ÀÇ ½ÃÀÛÀÏ·ÎºÎÅÍ ¸¸ 2³âÀ¸·Î ÇÑ´Ù. ´Ü, ÀÜ¿©±â°£À¸·Î ¾çµµ¾ç¼öÀÇ °è¾àÀ» Ã¼°áÇÒ °æ¿ì °è¾à±â°£Àº ¸¸ 2³âÀÌ ¾Æ´Ñ º» Ç×¿¡¼­ ÇùÀÇ ÇÑ ±â°£À¸·Î ÇÑ´Ù.
-		¨è	"°¡¸ÍÁ¡»ç¾÷ÀÚ"´Â °è¾à°»½Å ½Ã ´ÙÀ½ °¢ È£¸¦ °è¾à°»½ÅÀÏ Àü±îÁö ÀÌÇàÇÏ¿©¾ß ÇÑ´Ù. 
-			1.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"´Â "°¡¸Íº»ºÎ"ÀÇ ½Ã½ºÅÛ º¯°æÀÌ ÀÖÀ» °æ¿ì º¯°æµÈ ½Ã½ºÅÛÀ¸·Î ±³Ã¼ ¶Ç´Â ¼ö¸®ÇÏ¿©¾ß ÇÏ°í, "°¡¸Íº»ºÎ"·ÎºÎÅÍ ¸ÅÀåÀÇ ³ëÈÄ ¼³ºñÀÇ º¸¼ö, ±³Ã¼¸¦ ÅëÁö¹ÞÀº °æ¿ì, ÀÌ¸¦ ÀÌÇàÇÏ¿©¾ß ÇÑ´Ù.
-			2.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"´Â "°¡¸Íº»ºÎ"¿¡ ´ëÇÑ »óÇ°´ë±Ý, ´ë¿©±Ý ¹× ±âÅ¸ºñ¿ë µî ¸ðµç ±ÝÀ¶»óÀÇ Ã¤¹«¸¦ ¿ÏÀüÈ÷ º¯Á¦ÇÏ¿©¾ß ÇÑ´Ù.
-			3.	°è¾à°»½Å ½Ã "°¡¸Íº»ºÎ"¿Í "°¡¸ÍÁ¡»ç¾÷ÀÚ"´Â ´çÇØ ´Ù¸¥ °¡¸ÍÁ¡»ç¾÷ÀÚ¿¡°Ô Åë»óÀûÀ¸·Î Àû¿ëµÇ´Â Á¶°ÇÀ¸·Î »õ·Î¿î °¡¸Í°è¾à¼­¸¦ ÀÛ¼ºÇÏ¿©¾ß ÇÑ´Ù.
-		¨é	"°¡¸Íº»ºÎ"´Â "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ °¡¸Í°è¾à±â°£ ¸¸·á Àü 180ÀÏºÎÅÍ 90ÀÏ±îÁö »çÀÌ¿¡ °¡¸Í°è¾àÀÇ °»½ÅÀ» ¿ä±¸ÇÏ´Â °æ¿ì Á¤´çÇÑ »çÀ¯ ¾øÀÌ ÀÌ¸¦ °ÅÀýÇÏÁö ¸øÇÑ´Ù. ´Ù¸¸, "°¡¸Íº»ºÎ"´Â "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ ´ÙÀ½ °¢ È£ÀÇ ¾î´À ÇÏ³ª¿¡ ÇØ´çÇÏ´Â °æ¿ì¿¡´Â "°¡¸Íº»ºÎ"´Â "°¡¸ÍÁ¡»ç¾÷ÀÚ"ÀÇ °»½Å¿ä±¸¸¦ ¹ÞÀº ³¯ºÎÅÍ 15ÀÏ ÀÌ³»¿¡ °ÅÀý»çÀ¯¸¦ ÀûÀº ¼­¸éÀ¸·Î °¡¸Í°è¾àÀÇ °»½ÅÀ» °ÅºÎÇÒ ¼ö ÀÖ´Ù.
-			1.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ º» °è¾à¼­»óÀÇ ±ÝÀüÀû Áö±ÞÀÇ¹«¸¦ ÁöÅ°Áö ¾Æ´ÏÇÑ °æ¿ì
-			2.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ ´Ù¸¥ °¡¸ÍÁ¡»ç¾÷ÀÚ¿¡°Ô Åë»óÀûÀ¸·Î Àû¿ëµÇ´Â °è¾àÁ¶°ÇÀÌ³ª ¿µ¾÷¹æÄ§À» ¼ö¶ôÇÏÁö ¾Æ´ÏÇÑ °æ¿ì
-			3.	°¡¸Í»ç¾÷ÀÇ À¯Áö¸¦ À§ÇÏ¿© ÇÊ¿äÇÏ´Ù°í ÀÎÁ¤µÇ´Â °ÍÀ¸·Î¼­ ´ÙÀ½ °¢ ¸ñÀÇ ¾î´À ÇÏ³ª¿¡ ÇØ´çÇÏ´Â "°¡¸Íº»ºÎ"ÀÇ Áß¿äÇÑ ¿µ¾÷¹æÄ§À» "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ ÁöÅ°Áö ¾Æ´ÏÇÑ °æ¿ì
-				°¡.	°¡¸ÍÁ¡ÀÇ ¿î¿µ¿¡ ÇÊ¿äÇÑ Á¡Æ÷¤ý¼³ºñÀÇ È®º¸³ª ¹ý·É»ó ÇÊ¿äÇÑ ÀÚ°Ý¤ý¸éÇã¤ýÇã°¡ÀÇ Ãëµæ¿¡ °üÇÑ »çÇ×
-				³ª.	ÆÇ¸ÅÇÏ´Â »óÇ°ÀÌ³ª ¿ë¿ªÀÇ Ç°ÁúÀ» À¯ÁöÇÏ±â À§ÇÏ¿© ÇÊ¿äÇÑ Á¦Á¶°ø¹ý ¶Ç´Â ¼­ºñ½º±â¹ýÀÇ ÁØ¼ö¿¡ °üÇÑ »çÇ×
-				´Ù.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ °¡¸Í»ç¾÷À» Á¤»óÀûÀ¸·Î À¯ÁöÇÏ±â À§ÇÏ¿© ÇÊ¿äÇÏ´Ù°í ÀÎÁ¤µÇ´Â °ÍÀ¸·Î¼­ "°¡¸Íº»ºÎ"°¡ °¡¸Í»ç¾÷À» ¿µÀ§ÇÏ´Âµ¥ ÇÊ¼öÀûÀÎ ÁöÀûÀç»ê±ÇÀÇ º¸È£¿¡ °üÇÑ »çÇ×
-				¶ó.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ °¡¸Í»ç¾÷À» Á¤»óÀûÀ¸·Î À¯ÁöÇÏ±â À§ÇÏ¿© ÇÊ¿äÇÏ´Ù°í ÀÎÁ¤µÇ´Â °ÍÀ¸·Î½á  "°¡¸Íº»ºÎ"°¡ "°¡¸ÍÁ¡»ç¾÷ÀÚ"¿¡°Ô Á¤±âÀûÀ¸·Î ½Ç½ÃÇÏ´Â ±³À°ÈÆ·ÃÀÇ ÁØ¼ö¿¡ °üÇÑ »çÇ×. ´Ù¸¸, "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ ºÎ´ãÇÏ´Â ±³À°¡¤ÈÆ·Ãºñ¿ëÀÌ °°Àº ¾÷Á¾ÀÇ ´Ù¸¥ °¡¸Íº»ºÎ°¡ Åë»óÀûÀ¸·Î ¿ä±¸ÇÏ´Â ºñ¿ëº¸´Ù ¶Ñ·ÇÇÏ°Ô ³ôÀº °æ¿ì´Â Á¦¿ÜÇÑ´Ù.
-		¨ê	"°¡¸Íº»ºÎ"°¡ Á¦3Ç×ÀÇ °ÅÀý ÅëÁö¸¦ ÇÏÁö ¾Æ´ÏÇÏ°Å³ª °¡¸Í°è¾à±â°£ ¸¸·á Àü 180ÀÏºÎÅÍ 90ÀÏ±îÁö »çÀÌ¿¡ "°¡¸ÍÁ¡»ç¾÷ÀÚ"¿¡°Ô Á¶°ÇÀÇ º¯°æ¿¡ ´ëÇÑ ÅëÁö³ª °¡¸Í°è¾àÀ» °»½ÅÇÏÁö ¾Æ´ÏÇÑ´Ù´Â »ç½ÇÀÇ ÅëÁö¸¦ ¼­¸éÀ¸·Î ÇÏÁö ¾Æ´ÏÇÏ´Â °æ¿ì¿¡´Â °è¾à ¸¸·á ÀüÀÇ °¡¸Í°è¾à°ú °°Àº Á¶°ÇÀ¸·Î ´Ù½Ã °¡¸Í°è¾àÀ» Ã¼°áÇÑ °ÍÀ¸·Î º»´Ù. ´Ù¸¸, "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ °è¾àÀÌ ¸¸·áµÇ´Â ³¯ºÎÅÍ 60ÀÏ Àü±îÁö ÀÌÀÇ¸¦ Á¦±âÇÏ°Å³ª "°¡¸Íº»ºÎ"³ª "°¡¸ÍÁ¡»ç¾÷ÀÚ"¿¡°Ô ÃµÀçÁöº¯ÀÌ³ª ±×¹Û¿¡ ´ÙÀ½°ú °°Àº ºÎµæÀÌÇÑ »çÀ¯°¡ ÀÖ´Â °æ¿ì¿¡´Â ±×·¯ÇÏÁö ¾Æ´ÏÇÑ´Ù.
-			1.	"°¡¸Íº»ºÎ"³ª "°¡¸ÍÁ¡»ç¾÷ÀÚ"¿¡°Ô ÆÄ»ê ½ÅÃ»ÀÌ ÀÖ°Å³ª °­Á¦ÁýÇàÀýÂ÷ ¶Ç´Â È¸»ýÀýÂ÷°¡ °³½ÃµÈ °æ¿ì
-			2.	"°¡¸Íº»ºÎ"³ª "°¡¸ÍÁ¡»ç¾÷ÀÚ"°¡ ¹ßÇàÇÑ ¾îÀ½¤ý¼öÇ¥°¡ ºÎµµ µîÀ¸·Î Áö±Þ°ÅÀýÀÌ µÈ °æ¿ì
-			3.	"°¡¸ÍÁ¡»ç¾÷ÀÚ"¿¡°Ô Áß´ëÇÑ ÀÏ½Å»óÀÇ »çÀ¯ µîÀÌ ¹ß»ýÇÏ¿© ´õ ÀÌ»ó °¡¸Í»ç¾÷À» °æ¿µÇÒ ¼ö ¾ø°Ô µÈ °æ¿ì
-		¨ë	¡°°¡¸ÍÁ¡»ç¾÷ÀÚ¡±ÀÇ °»½Å¿ä±¸´Â ÃÖÃÊ °¡¸Í°è¾àÀÏ·ÎºÎÅÍ 10³âÀ» ÃÊ°úÇÏÁö ¾Æ´ÏÇÏ´Â ¹üÀ§ ³»¿¡¼­¸¸ Çà»çÇÒ ¼ö ÀÖ´Ù.</textarea></td>
+		<th width="50">ì›ë³¸</th>
+		<td><textarea name="txt" style="width:100%;height:100px">ì œ 9 ì¡° [ê³„ì•½ê¸°ê°„]
+		â‘ 	ê³„ì•½ê¸°ê°„ì€ (20    ë…„    ì›”    ì¼ë¡œë¶€í„° 20    ë…„    ì›”    ì¼)ë¡œ "ê°€ë§¹ë³¸ë¶€"ì™€ "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ í˜‘ì˜í•˜ì—¬ ì •í•œ ê³„ì•½ê¸°ê°„ì˜ ì‹œìž‘ì¼ë¡œë¶€í„° ë§Œ 2ë…„ìœ¼ë¡œ í•œë‹¤. ë‹¨, ìž”ì—¬ê¸°ê°„ìœ¼ë¡œ ì–‘ë„ì–‘ìˆ˜ì˜ ê³„ì•½ì„ ì²´ê²°í•  ê²½ìš° ê³„ì•½ê¸°ê°„ì€ ë§Œ 2ë…„ì´ ì•„ë‹Œ ë³¸ í•­ì—ì„œ í˜‘ì˜ í•œ ê¸°ê°„ìœ¼ë¡œ í•œë‹¤.
+		â‘¡	"ê°€ë§¹ì ì‚¬ì—…ìž"ëŠ” ê³„ì•½ê°±ì‹  ì‹œ ë‹¤ìŒ ê° í˜¸ë¥¼ ê³„ì•½ê°±ì‹ ì¼ ì „ê¹Œì§€ ì´í–‰í•˜ì—¬ì•¼ í•œë‹¤. 
+			1.	"ê°€ë§¹ì ì‚¬ì—…ìž"ëŠ” "ê°€ë§¹ë³¸ë¶€"ì˜ ì‹œìŠ¤í…œ ë³€ê²½ì´ ìžˆì„ ê²½ìš° ë³€ê²½ëœ ì‹œìŠ¤í…œìœ¼ë¡œ êµì²´ ë˜ëŠ” ìˆ˜ë¦¬í•˜ì—¬ì•¼ í•˜ê³ , "ê°€ë§¹ë³¸ë¶€"ë¡œë¶€í„° ë§¤ìž¥ì˜ ë…¸í›„ ì„¤ë¹„ì˜ ë³´ìˆ˜, êµì²´ë¥¼ í†µì§€ë°›ì€ ê²½ìš°, ì´ë¥¼ ì´í–‰í•˜ì—¬ì•¼ í•œë‹¤.
+			2.	"ê°€ë§¹ì ì‚¬ì—…ìž"ëŠ” "ê°€ë§¹ë³¸ë¶€"ì— ëŒ€í•œ ìƒí’ˆëŒ€ê¸ˆ, ëŒ€ì—¬ê¸ˆ ë° ê¸°íƒ€ë¹„ìš© ë“± ëª¨ë“  ê¸ˆìœµìƒì˜ ì±„ë¬´ë¥¼ ì™„ì „ížˆ ë³€ì œí•˜ì—¬ì•¼ í•œë‹¤.
+			3.	ê³„ì•½ê°±ì‹  ì‹œ "ê°€ë§¹ë³¸ë¶€"ì™€ "ê°€ë§¹ì ì‚¬ì—…ìž"ëŠ” ë‹¹í•´ ë‹¤ë¥¸ ê°€ë§¹ì ì‚¬ì—…ìžì—ê²Œ í†µìƒì ìœ¼ë¡œ ì ìš©ë˜ëŠ” ì¡°ê±´ìœ¼ë¡œ ìƒˆë¡œìš´ ê°€ë§¹ê³„ì•½ì„œë¥¼ ìž‘ì„±í•˜ì—¬ì•¼ í•œë‹¤.
+		â‘¢	"ê°€ë§¹ë³¸ë¶€"ëŠ” "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ê°€ë§¹ê³„ì•½ê¸°ê°„ ë§Œë£Œ ì „ 180ì¼ë¶€í„° 90ì¼ê¹Œì§€ ì‚¬ì´ì— ê°€ë§¹ê³„ì•½ì˜ ê°±ì‹ ì„ ìš”êµ¬í•˜ëŠ” ê²½ìš° ì •ë‹¹í•œ ì‚¬ìœ  ì—†ì´ ì´ë¥¼ ê±°ì ˆí•˜ì§€ ëª»í•œë‹¤. ë‹¤ë§Œ, "ê°€ë§¹ë³¸ë¶€"ëŠ” "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ë‹¤ìŒ ê° í˜¸ì˜ ì–´ëŠ í•˜ë‚˜ì— í•´ë‹¹í•˜ëŠ” ê²½ìš°ì—ëŠ” "ê°€ë§¹ë³¸ë¶€"ëŠ” "ê°€ë§¹ì ì‚¬ì—…ìž"ì˜ ê°±ì‹ ìš”êµ¬ë¥¼ ë°›ì€ ë‚ ë¶€í„° 15ì¼ ì´ë‚´ì— ê±°ì ˆì‚¬ìœ ë¥¼ ì ì€ ì„œë©´ìœ¼ë¡œ ê°€ë§¹ê³„ì•½ì˜ ê°±ì‹ ì„ ê±°ë¶€í•  ìˆ˜ ìžˆë‹¤.
+			1.	"ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ë³¸ ê³„ì•½ì„œìƒì˜ ê¸ˆì „ì  ì§€ê¸‰ì˜ë¬´ë¥¼ ì§€í‚¤ì§€ ì•„ë‹ˆí•œ ê²½ìš°
+			2.	"ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ë‹¤ë¥¸ ê°€ë§¹ì ì‚¬ì—…ìžì—ê²Œ í†µìƒì ìœ¼ë¡œ ì ìš©ë˜ëŠ” ê³„ì•½ì¡°ê±´ì´ë‚˜ ì˜ì—…ë°©ì¹¨ì„ ìˆ˜ë½í•˜ì§€ ì•„ë‹ˆí•œ ê²½ìš°
+			3.	ê°€ë§¹ì‚¬ì—…ì˜ ìœ ì§€ë¥¼ ìœ„í•˜ì—¬ í•„ìš”í•˜ë‹¤ê³  ì¸ì •ë˜ëŠ” ê²ƒìœ¼ë¡œì„œ ë‹¤ìŒ ê° ëª©ì˜ ì–´ëŠ í•˜ë‚˜ì— í•´ë‹¹í•˜ëŠ” "ê°€ë§¹ë³¸ë¶€"ì˜ ì¤‘ìš”í•œ ì˜ì—…ë°©ì¹¨ì„ "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ì§€í‚¤ì§€ ì•„ë‹ˆí•œ ê²½ìš°
+				ê°€.	ê°€ë§¹ì ì˜ ìš´ì˜ì— í•„ìš”í•œ ì í¬ã†ì„¤ë¹„ì˜ í™•ë³´ë‚˜ ë²•ë ¹ìƒ í•„ìš”í•œ ìžê²©ã†ë©´í—ˆã†í—ˆê°€ì˜ ì·¨ë“ì— ê´€í•œ ì‚¬í•­
+				ë‚˜.	íŒë§¤í•˜ëŠ” ìƒí’ˆì´ë‚˜ ìš©ì—­ì˜ í’ˆì§ˆì„ ìœ ì§€í•˜ê¸° ìœ„í•˜ì—¬ í•„ìš”í•œ ì œì¡°ê³µë²• ë˜ëŠ” ì„œë¹„ìŠ¤ê¸°ë²•ì˜ ì¤€ìˆ˜ì— ê´€í•œ ì‚¬í•­
+				ë‹¤.	"ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ê°€ë§¹ì‚¬ì—…ì„ ì •ìƒì ìœ¼ë¡œ ìœ ì§€í•˜ê¸° ìœ„í•˜ì—¬ í•„ìš”í•˜ë‹¤ê³  ì¸ì •ë˜ëŠ” ê²ƒìœ¼ë¡œì„œ "ê°€ë§¹ë³¸ë¶€"ê°€ ê°€ë§¹ì‚¬ì—…ì„ ì˜ìœ„í•˜ëŠ”ë° í•„ìˆ˜ì ì¸ ì§€ì ìž¬ì‚°ê¶Œì˜ ë³´í˜¸ì— ê´€í•œ ì‚¬í•­
+				ë¼.	"ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ê°€ë§¹ì‚¬ì—…ì„ ì •ìƒì ìœ¼ë¡œ ìœ ì§€í•˜ê¸° ìœ„í•˜ì—¬ í•„ìš”í•˜ë‹¤ê³  ì¸ì •ë˜ëŠ” ê²ƒìœ¼ë¡œì¨  "ê°€ë§¹ë³¸ë¶€"ê°€ "ê°€ë§¹ì ì‚¬ì—…ìž"ì—ê²Œ ì •ê¸°ì ìœ¼ë¡œ ì‹¤ì‹œí•˜ëŠ” êµìœ¡í›ˆë ¨ì˜ ì¤€ìˆ˜ì— ê´€í•œ ì‚¬í•­. ë‹¤ë§Œ, "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ë¶€ë‹´í•˜ëŠ” êµìœ¡Â·í›ˆë ¨ë¹„ìš©ì´ ê°™ì€ ì—…ì¢…ì˜ ë‹¤ë¥¸ ê°€ë§¹ë³¸ë¶€ê°€ í†µìƒì ìœ¼ë¡œ ìš”êµ¬í•˜ëŠ” ë¹„ìš©ë³´ë‹¤ ëšœë ·í•˜ê²Œ ë†’ì€ ê²½ìš°ëŠ” ì œì™¸í•œë‹¤.
+		â‘£	"ê°€ë§¹ë³¸ë¶€"ê°€ ì œ3í•­ì˜ ê±°ì ˆ í†µì§€ë¥¼ í•˜ì§€ ì•„ë‹ˆí•˜ê±°ë‚˜ ê°€ë§¹ê³„ì•½ê¸°ê°„ ë§Œë£Œ ì „ 180ì¼ë¶€í„° 90ì¼ê¹Œì§€ ì‚¬ì´ì— "ê°€ë§¹ì ì‚¬ì—…ìž"ì—ê²Œ ì¡°ê±´ì˜ ë³€ê²½ì— ëŒ€í•œ í†µì§€ë‚˜ ê°€ë§¹ê³„ì•½ì„ ê°±ì‹ í•˜ì§€ ì•„ë‹ˆí•œë‹¤ëŠ” ì‚¬ì‹¤ì˜ í†µì§€ë¥¼ ì„œë©´ìœ¼ë¡œ í•˜ì§€ ì•„ë‹ˆí•˜ëŠ” ê²½ìš°ì—ëŠ” ê³„ì•½ ë§Œë£Œ ì „ì˜ ê°€ë§¹ê³„ì•½ê³¼ ê°™ì€ ì¡°ê±´ìœ¼ë¡œ ë‹¤ì‹œ ê°€ë§¹ê³„ì•½ì„ ì²´ê²°í•œ ê²ƒìœ¼ë¡œ ë³¸ë‹¤. ë‹¤ë§Œ, "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ê³„ì•½ì´ ë§Œë£Œë˜ëŠ” ë‚ ë¶€í„° 60ì¼ ì „ê¹Œì§€ ì´ì˜ë¥¼ ì œê¸°í•˜ê±°ë‚˜ "ê°€ë§¹ë³¸ë¶€"ë‚˜ "ê°€ë§¹ì ì‚¬ì—…ìž"ì—ê²Œ ì²œìž¬ì§€ë³€ì´ë‚˜ ê·¸ë°–ì— ë‹¤ìŒê³¼ ê°™ì€ ë¶€ë“ì´í•œ ì‚¬ìœ ê°€ ìžˆëŠ” ê²½ìš°ì—ëŠ” ê·¸ëŸ¬í•˜ì§€ ì•„ë‹ˆí•œë‹¤.
+			1.	"ê°€ë§¹ë³¸ë¶€"ë‚˜ "ê°€ë§¹ì ì‚¬ì—…ìž"ì—ê²Œ íŒŒì‚° ì‹ ì²­ì´ ìžˆê±°ë‚˜ ê°•ì œì§‘í–‰ì ˆì°¨ ë˜ëŠ” íšŒìƒì ˆì°¨ê°€ ê°œì‹œëœ ê²½ìš°
+			2.	"ê°€ë§¹ë³¸ë¶€"ë‚˜ "ê°€ë§¹ì ì‚¬ì—…ìž"ê°€ ë°œí–‰í•œ ì–´ìŒã†ìˆ˜í‘œê°€ ë¶€ë„ ë“±ìœ¼ë¡œ ì§€ê¸‰ê±°ì ˆì´ ëœ ê²½ìš°
+			3.	"ê°€ë§¹ì ì‚¬ì—…ìž"ì—ê²Œ ì¤‘ëŒ€í•œ ì¼ì‹ ìƒì˜ ì‚¬ìœ  ë“±ì´ ë°œìƒí•˜ì—¬ ë” ì´ìƒ ê°€ë§¹ì‚¬ì—…ì„ ê²½ì˜í•  ìˆ˜ ì—†ê²Œ ëœ ê²½ìš°
+		â‘¤	â€œê°€ë§¹ì ì‚¬ì—…ìžâ€ì˜ ê°±ì‹ ìš”êµ¬ëŠ” ìµœì´ˆ ê°€ë§¹ê³„ì•½ì¼ë¡œë¶€í„° 10ë…„ì„ ì´ˆê³¼í•˜ì§€ ì•„ë‹ˆí•˜ëŠ” ë²”ìœ„ ë‚´ì—ì„œë§Œ í–‰ì‚¬í•  ìˆ˜ ìžˆë‹¤.</textarea></td>
 	</tr>
 	<tr>
-		 <td align="center" colspan="2" style="padding:10px"><button type="button" class="sbtn color ico-request" onclick="text2html()"><span></span>Txt -> html º¯È¯</button></td>
+		 <td align="center" colspan="2" style="padding:10px"><button type="button" class="sbtn color ico-request" onclick="text2html()"><span></span>Txt -> html ë³€í™˜</button></td>
 	</tr>
 	<tr>
-		<th>»ý¼º</th>
+		<th>ìƒì„±</th>
 		<td><textarea name="html" style="width:100%;height:100px"></textarea></td>
 	</tr>
 	</table>

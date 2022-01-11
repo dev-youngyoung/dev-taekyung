@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String key = u.request("key");
 
 if(key.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 DataSet ds = u.json2Dataset(u.aseDec(key));
@@ -15,15 +15,15 @@ String pay_sdate = ds.getString("pay_sdate");
 String pay_edate = ds.getString("pay_edate");
 String field_seq = ds.getString("field_seq");
 
-String[] pay_type_code = {"01=>Ä«µå", "02=>°èÁÂ", "03=>ÅëÀå", "04=>Æ÷ÀÎÆ®", "05=>ÈÄºÒ"};
+String[] pay_type_code = {"01=>ì¹´ë“œ", "02=>ê³„ì¢Œ", "03=>í†µì¥", "04=>í¬ì¸íŠ¸", "05=>í›„ë¶ˆ"};
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member= memberDao.find(" member_no = '"+member_no+"' and (member_type='01' or member_type='03')", "member_no, member_name");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 }
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -63,42 +63,42 @@ if(!pay_edate.equals(""))
 	list.addSearch("a.accept_date", pay_edate.replaceAll("-","")+"999999", "<=");
 list.addSearch("a.pay_type", f.get("s_pay_type"), "=");
 list.setOrderBy("a.accept_date asc ");
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet rs = list.getDataSet();
 
 String btnReceitStr = "";
 int __ord2 = 1;
 while(rs.next()){
-	//°áÁ¦¼ö´Ü (01:½Å¿ëÄ«µå, 02:°èÁÂÀÌÃ¼)
+	//ê²°ì œìˆ˜ë‹¨ (01:ì‹ ìš©ì¹´ë“œ, 02:ê³„ì¢Œì´ì²´)
 	if(rs.getString("pay_type").equals("01"))
 	{
-		btnReceitStr = "½Å¿ë";
+		btnReceitStr = "ì‹ ìš©";
 	}
 	else if(rs.getString("pay_type").equals("02"))
 	{
-		//Çö±İ¿µ¼öÁõÀ¯Çü(0:¹Ì¹ßÇà, 1:¼Òµæ°øÁ¦, 2:ÁöÃâÁõºù)
+		//í˜„ê¸ˆì˜ìˆ˜ì¦ìœ í˜•(0:ë¯¸ë°œí–‰, 1:ì†Œë“ê³µì œ, 2:ì§€ì¶œì¦ë¹™)
 		if( rs.getString("receit_type").equals("0") || rs.getString("receit_type").equals("") )
-			btnReceitStr = "°Å·¡";
+			btnReceitStr = "ê±°ë˜";
 		else if( rs.getString("receit_type").equals("1") )
-			btnReceitStr = "¼Òµæ";
+			btnReceitStr = "ì†Œë“";
 		else if( rs.getString("receit_type").equals("2") )
-			btnReceitStr = "ÁöÃâ";
+			btnReceitStr = "ì§€ì¶œ";
 	}
 	else if(rs.getString("pay_type").equals("03"))
 	{
-		btnReceitStr = "ÅëÀå";
+		btnReceitStr = "í†µì¥";
 	}
 	else if(rs.getString("pay_type").equals("04"))
 	{
-		btnReceitStr = "Æ÷ÀÎÆ®";
+		btnReceitStr = "í¬ì¸íŠ¸";
 	}
 	else if(rs.getString("pay_type").equals("05"))
 	{
-		btnReceitStr = "ÈÄºÒ";
+		btnReceitStr = "í›„ë¶ˆ";
 	}
 	
 	if(rs.getInt("cust_cnt") > 1)
-		rs.put("member_name", rs.getString("member_name") + " ¿Ü " + (rs.getInt("cust_cnt"))+"¸í");
+		rs.put("member_name", rs.getString("member_name") + " ì™¸ " + (rs.getInt("cust_cnt"))+"ëª…");
 	
 	rs.put("btnReceitStr", btnReceitStr);
 	rs.put("accept_date", u.getTimeString("yyyy-MM-dd HH:mm:ss",rs.getString("accept_date")));
@@ -113,7 +113,7 @@ while(rs.next()){
 	rs.put("__ord2", __ord2++);
 }
 
-String title = member.getString("member_name") + "_°áÁ¦³»¿ª("+pay_sdate+"~"+pay_edate+")";
+String title = member.getString("member_name") + "_ê²°ì œë‚´ì—­("+pay_sdate+"~"+pay_edate+")";
 p.setVar("title", title);
 p.setLoop("list", rs);
 

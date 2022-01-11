@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("title", null, "hname:'Á¦¸ñ', required:'Y', maxbyte:'255'");
-f.addElement("open_date", null, "hname:'°øÁöÀÏÀÚ', required:'Y'");
-f.addElement("open_yn", null, "hname:'°ø°³¿©ºÎ'");
-f.addElement("reg_id", null, "hname:'µî·ÏÀÚ', required:'Y', maxbyte:'12'");
-f.addElement("contents", null, "hname:'°øÁö³»¿ë', required:'Y'");
+f.addElement("title", null, "hname:'ì œëª©', required:'Y', maxbyte:'255'");
+f.addElement("open_date", null, "hname:'ê³µì§€ì¼ìž', required:'Y'");
+f.addElement("open_yn", null, "hname:'ê³µê°œì—¬ë¶€'");
+f.addElement("reg_id", null, "hname:'ë“±ë¡ìž', required:'Y', maxbyte:'12'");
+f.addElement("contents", null, "hname:'ê³µì§€ë‚´ìš©', required:'Y'");
 
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DataObject dao = new DataObject("tcb_board");
@@ -35,11 +35,11 @@ if(u.isPost() && f.validate())
 	dao.item("reg_date", u.getTimeString());
 
 	if(!dao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
-	u.jsAlert("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù. ");
+	u.jsAlert("ì •ìƒì ìœ¼ë¡œ ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤. ");
 	u.jsReplace("faq_list.jsp");
 	return;
 }

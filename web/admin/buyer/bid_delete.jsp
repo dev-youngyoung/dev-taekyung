@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = u.request("main_member_no");
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
 if(main_member_no.equals("")||bid_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -13,102 +13,102 @@ String where = "main_member_no = '"+main_member_no+"' and bid_no = '"+bid_no+"' 
 DataObject bidDao = new DataObject("tcb_bid_master");
 DataSet bid = bidDao.find(where);
 if(!bid.next()){
-	u.jsError("ÀÔÂû Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ìž…ì°° ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 
 DB db = new DB();
 
-/*ÀÔÂû°ø¶÷»èÁ¦*/
+/*ìž…ì°°ê³µëžŒì‚­ì œ*/
 DataObject shareDao = new DataObject("tcb_bid_share");
 db.setCommand(shareDao.getDeleteQuery(where), null);
 
-/* ¿äÃ» Ã·ºÎÆÄÀÏ(µî·ÏÆò°¡) »èÁ¦*/
+/* ìš”ì²­ ì²¨ë¶€íŒŒì¼(ë“±ë¡í‰ê°€) ì‚­ì œ*/
 DataObject doTBJEF = new DataObject("tcb_bid_join_estm_file");
 db.setCommand(doTBJEF.getDeleteQuery(where),null);
 
-/* ¿äÃ»ÆÄÀÏ(µî·ÏÆò°¡) »èÁ¦*/
+/* ìš”ì²­íŒŒì¼(ë“±ë¡í‰ê°€) ì‚­ì œ*/
 DataObject doTBJRF = new DataObject("tcb_bid_join_req_file");
 db.setCommand(doTBJRF.getDeleteQuery(where),null);
 
-/* ¾÷Ã¼Ã·ºÎÆÄÀÏ(±â¼úÆò°¡) »èÁ¦*/
+/* ì—…ì²´ì²¨ë¶€íŒŒì¼(ê¸°ìˆ í‰ê°€) ì‚­ì œ*/
 DataObject doTBSEF = new DataObject("tcb_bid_skill_estm_file");
 db.setCommand(doTBSEF.getDeleteQuery(where),null);
 
-/* ¾÷Ã¼Ã·ºÎÆÄÀÏ »èÁ¦*/
+/* ì—…ì²´ì²¨ë¶€íŒŒì¼ ì‚­ì œ*/
 DataObject doTBEF = new DataObject("tcb_bid_estm_file");
 db.setCommand(doTBEF.getDeleteQuery(where),null);
 
-/* ¾÷Ã¼°ßÀû¼­ »èÁ¦ */
+/* ì—…ì²´ê²¬ì ì„œ ì‚­ì œ */
 DataObject doTBST = new DataObject("tcb_bid_suppitem_term");
 db.setCommand(doTBST.getDeleteQuery(where),doTBST.record);
 
-/* ¾÷Ã¼°ßÀû¼­ »èÁ¦ */
+/* ì—…ì²´ê²¬ì ì„œ ì‚­ì œ */
 DataObject doTBS = new DataObject("tcb_bid_suppitem");
 db.setCommand(doTBS.getDeleteQuery(where),doTBS.record);
 
-/* ´ë»ó¾÷Ã¼Á¤º¸ »ó¼¼ »èÁ¦ */
+/* ëŒ€ìƒì—…ì²´ì •ë³´ ìƒì„¸ ì‚­ì œ */
 DataObject doTBSuppSub = new DataObject("tcb_bid_supp_sub");
 db.setCommand(doTBSuppSub.getDeleteQuery(where),doTBSuppSub.record);
 
-/* ´ë»ó¾÷Ã¼Á¤º¸ »èÁ¦ */
+/* ëŒ€ìƒì—…ì²´ì •ë³´ ì‚­ì œ */
 DataObject doTBSupp = new DataObject("tcb_bid_supp");
 db.setCommand(doTBSupp.getDeleteQuery(where),doTBSupp.record);
 
-/* ¾÷Ã¼ÇÊ¼öÁ¦Ãâ¼­·ù(±â¼úÆò°¡) »èÁ¦ */
+/* ì—…ì²´í•„ìˆ˜ì œì¶œì„œë¥˜(ê¸°ìˆ í‰ê°€) ì‚­ì œ */
 DataObject doTBSRF = new DataObject("tcb_bid_skill_req_file");
 db.setCommand(doTBSRF.getDeleteQuery(where),doTBSRF.record);
 
-/* ¾÷Ã¼ÇÊ¼öÁ¦Ãâ¼­·ù »èÁ¦ */
+/* ì—…ì²´í•„ìˆ˜ì œì¶œì„œë¥˜ ì‚­ì œ */
 DataObject doTBRF = new DataObject("tcb_bid_req_file");
 db.setCommand(doTBRF.getDeleteQuery(where),doTBRF.record);
 
-/* °ßÀû³»¿ª »èÁ¦ */
+/* ê²¬ì ë‚´ì—­ ì‚­ì œ */
 DataObject doTBIT = new DataObject("tcb_bid_item_term");
 db.setCommand(doTBIT.getDeleteQuery(where),doTBIT.record);
 
-/* °ßÀû³»¿ª »èÁ¦ */
+/* ê²¬ì ë‚´ì—­ ì‚­ì œ */
 DataObject doTBI = new DataObject("tcb_bid_item");
 db.setCommand(doTBI.getDeleteQuery(where),doTBI.record);
 
-/* Ã·ºÎÆÄÀÏ »èÁ¦ */
+/* ì²¨ë¶€íŒŒì¼ ì‚­ì œ */
 DataObject doTBF = new DataObject("tcb_bid_file");
 db.setCommand(doTBF.getDeleteQuery(where),doTBF.record);
 
-/* ÀÔÂû´ã´çÀÚÁ¤º¸ »èÁ¦ */
+/* ìž…ì°°ë‹´ë‹¹ìžì •ë³´ ì‚­ì œ */
 DataObject doTBC = new DataObject("tcb_bid_charge");
 db.setCommand(doTBC.getDeleteQuery(where),doTBC.record);
 
-/* À§¸ÞÇÁ ÀÔÂûÁ¤º¸ »èÁ¦ */
+/* ìœ„ë©”í”„ ìž…ì°°ì •ë³´ ì‚­ì œ */
 DataObject doTBIN = new DataObject("tcb_bid_info");
 db.setCommand(doTBIN.getDeleteQuery(where),doTBIN.record);
 
-/* À§¸ÞÇÁ EMAIL »èÁ¦ */
+/* ìœ„ë©”í”„ EMAIL ì‚­ì œ */
 DataObject doTBE = new DataObject("tcb_bid_email");
 db.setCommand(doTBE.getDeleteQuery(where),doTBE.record);
 
-/*º¹¼ö¿¹°¡ ±Ý¾× »èÁ¦*/
+/*ë³µìˆ˜ì˜ˆê°€ ê¸ˆì•¡ ì‚­ì œ*/
 DataObject doTBMA = new DataObject("tcb_bid_multi_amt");
 db.setCommand(doTBMA.getDeleteQuery(where),doTBMA.record);
 
-/*º¹¼ö¿¹°¡ Á¤º¸ »èÁ¦*/
+/*ë³µìˆ˜ì˜ˆê°€ ì •ë³´ ì‚­ì œ*/
 DataObject doTBMI = new DataObject("tcb_bid_multi_info");
 db.setCommand(doTBMI.getDeleteQuery(where),doTBMI.record);
 
-/*¿ª°æ¸Å ÅõÂûÁ¤º¸ »èÁ¦*/
+/*ì—­ê²½ë§¤ íˆ¬ì°°ì •ë³´ ì‚­ì œ*/
 DataObject doTBSR = new DataObject("tcb_bid_supp_rev");
 db.setCommand(doTBSR.getDeleteQuery(where),doTBSR.record);
 
-/* ÀÔÂû±âº»Á¤º¸ »èÁ¦ */
+/* ìž…ì°°ê¸°ë³¸ì •ë³´ ì‚­ì œ */
 DataObject doTBM = new DataObject("tcb_bid_master");
 db.setCommand(doTBM.getDeleteQuery(where),doTBM.record);
 
 
 if(!db.executeArray()){
-	u.jsError("»èÁ¦ Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦ ÇÏ¿´½À´Ï´Ù.", "bid_list.jsp?"+u.getQueryString("main_member_no,bid_no,bid_deg"));
+u.jsAlertReplace("ì‚­ì œ í•˜ì˜€ìŠµë‹ˆë‹¤.", "bid_list.jsp?"+u.getQueryString("main_member_no,bid_no,bid_deg"));
 %>

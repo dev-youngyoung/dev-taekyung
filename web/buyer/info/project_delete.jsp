@@ -1,22 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String project_seq = u.request("project_seq");
 if(project_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
-//ÀÔÂû¿¡ »ç¿ëµÈ °Ç È®ÀÎ
+//ìž…ì°°ì— ì‚¬ìš©ëœ ê±´ í™•ì¸
 DataObject bidDao = new DataObject("tcb_bid_master");
 if(bidDao.findCount("main_member_no = '"+_member_no+"' and project_seq = '"+project_seq+"' ")>0){
-	u.jsError("ÇØ´ç ÇÁ·ÎÁ§Æ®·Î ÁøÇàµÈ ÀÔÂû °ÇÀÌ ÀÖ½À´Ï´Ù.\\n\\n»èÁ¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ í”„ë¡œì íŠ¸ë¡œ ì§„í–‰ëœ ìž…ì°° ê±´ì´ ìžˆìŠµë‹ˆë‹¤.\\n\\nì‚­ì œ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-//°è¾à¿¡ »ç¿ëµÈ °Ç È®ÀÎ
+//ê³„ì•½ì— ì‚¬ìš©ëœ ê±´ í™•ì¸
 DataObject contDao = new DataObject("tcb_contmaster");
 if(contDao.findCount("member_no = '"+_member_no+"' and project_seq = '"+project_seq+"' ")>0){
-	u.jsError("ÇØ´ç ÇÁ·ÎÁ§Æ®·Î ÁøÇàµÈ °è¾à °ÇÀÌ ÀÖ½À´Ï´Ù.\\n\\n»èÁ¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ í”„ë¡œì íŠ¸ë¡œ ì§„í–‰ëœ ê³„ì•½ ê±´ì´ ìžˆìŠµë‹ˆë‹¤.\\n\\nì‚­ì œ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -24,10 +24,10 @@ if(contDao.findCount("member_no = '"+_member_no+"' and project_seq = '"+project_
 
 DataObject projectDao = new DataObject("tcb_project");
 if(!projectDao.delete("member_no = '"+_member_no+"' and project_seq = '"+project_seq+"' ")){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 
-u.jsAlertReplace("»èÁ¦ µÇ¾ú½À´Ï´Ù.", "./project_list.jsp?"+u.getQueryString("project_seq"));
+u.jsAlertReplace("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./project_list.jsp?"+u.getQueryString("project_seq"));
 %>

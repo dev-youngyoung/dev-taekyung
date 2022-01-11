@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
-//top menu ¼³Á¤
+//top menu ì„¤ì •
 
 String[] menu_font_color = {"supplier=>#c6c6c6","buyer=>#90E4FF","fc=>#FFBA85","logis=>#86E57F"};
 

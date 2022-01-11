@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.*;
 
 public class Security {
-	public static String aeskey = "nicednb passwd12";  // AESÀÇ key´Â 16(128),24(192),32(256)byteÁß ÇÏ³ª·Î ÀÌ·ç¾îÁ®¾ß ÇÑ´Ù.
+	public static String aeskey = "nicednb passwd12";  // AESì˜ keyëŠ” 16(128),24(192),32(256)byteì¤‘ í•˜ë‚˜ë¡œ ì´ë£¨ì–´ì ¸ì•¼ í•œë‹¤.
 
     public static void main(String[] args)
     {
@@ -42,7 +42,7 @@ public class Security {
         		Provider provider = pro[i];
         		String sProviderName = provider.getName();
         		
-        		// ½Ã½ºÅÛ¿¡¼­ ÂüÁ¶ÇÏ´Â ProviderµéÀ» ¸ğµÎ Ãâ·ÂÇÑ´Ù.
+        		// ì‹œìŠ¤í…œì—ì„œ ì°¸ì¡°í•˜ëŠ” Providerë“¤ì„ ëª¨ë‘ ì¶œë ¥í•œë‹¤.
         		System.out.println("---------------------------------" + sProviderName + "[" + i + "]" + "----------------------------");
 
         		Iterator iter = provider.entrySet().iterator();
@@ -54,7 +54,7 @@ public class Security {
         		System.out.println("\n\n\n");
         	}
         	
-        	// Default provider°¡ Sun²² ¾Æ´Ï¸é Sun²¨·Î º¯°æÇÑ´Ù.
+        	// Default providerê°€ Sunê»˜ ì•„ë‹ˆë©´ Sunêº¼ë¡œ ë³€ê²½í•œë‹¤.
         	Provider sunProv = null;
         	
         	sunProv = new sun.security.provider.Sun();
@@ -62,9 +62,9 @@ public class Security {
         	{
         		java.security.Security.removeProvider(sunProv.getName());
         		if(java.security.Security.insertProviderAt(sunProv, 1) == 1)
-        			System.out.println("Default Provier º¹¿ø¼º°ø");
+        			System.out.println("Default Provier ë³µì›ì„±ê³µ");
         		else
-        			System.out.println("Default Provier º¹¿ø½ÇÆĞ");
+        			System.out.println("Default Provier ë³µì›ì‹¤íŒ¨");
         	}
 */
 
@@ -76,7 +76,7 @@ public class Security {
     }
 	
     /**
-     * hex to byte[] : 16Áø¼ö ¹®ÀÚ¿­À» ¹ÙÀÌÆ® ¹è¿­·Î º¯È¯ÇÑ´Ù.
+     * hex to byte[] : 16ì§„ìˆ˜ ë¬¸ìì—´ì„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
      * 
      * @param hex    hex string
      * @return
@@ -94,7 +94,7 @@ public class Security {
     }
 
     /**
-     * byte[] to hex : unsigned byte(¹ÙÀÌÆ®) ¹è¿­À» 16Áø¼ö ¹®ÀÚ¿­·Î ¹Ù²Û´Ù.
+     * byte[] to hex : unsigned byte(ë°”ì´íŠ¸) ë°°ì—´ì„ 16ì§„ìˆ˜ ë¬¸ìì—´ë¡œ ë°”ê¾¼ë‹¤.
      * 
      * @param ba        byte[]
      * @return
@@ -115,7 +115,7 @@ public class Security {
     } 
 
     /**
-     * AES ¹æ½ÄÀÇ ¾ÏÈ£È­
+     * AES ë°©ì‹ì˜ ì•”í˜¸í™”
      * 
      * @param message
      * @return
@@ -135,7 +135,7 @@ public class Security {
     }
 
     /**
-     * AES ¹æ½ÄÀÇ º¹È£È­
+     * AES ë°©ì‹ì˜ ë³µí˜¸í™”
      * 
      * @param
      * @return
@@ -154,7 +154,7 @@ public class Security {
     }
 
     /***
-     * Md5 ¾ÏÈ£È­ 
+     * Md5 ì•”í˜¸í™” 
      */
     public static String MD5encrypt(String src){
           java.security.MessageDigest md5 = null;
@@ -180,7 +180,7 @@ public class Security {
     }
 
     /**
-     * sha256 ¾ÏÈ£È­
+     * sha256 ì•”í˜¸í™”
      * @param src
      * @return
      */
@@ -211,7 +211,7 @@ public class Security {
     }
 
     /*
-    *  nicepay 1¿øÀÎÁõ¿¡¼­ »ç¿ë
+    *  nicepay 1ì›ì¸ì¦ì—ì„œ ì‚¬ìš©
     * */
 	public static String SHA256encrypt(String rawString, String salt) {
 
@@ -233,7 +233,7 @@ public class Security {
 	}
 
 	/*
-	 *  nicepay 1¿øÀÎÁõ¿¡¼­ »ç¿ë
+	 *  nicepay 1ì›ì¸ì¦ì—ì„œ ì‚¬ìš©
 	 * */
 	public static String Nicepay_AES_Encode(String str, String key) throws java.io.UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 		key = key.substring(0, 16);

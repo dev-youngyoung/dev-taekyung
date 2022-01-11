@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String field_seq = u.request("field_seq");
 String person_seq = u.request("person_seq");
@@ -9,7 +9,7 @@ if(!field_seq.equals("")&&!person_seq.equals("")){
 	if(
 	!dao.delete("member_no = '"+_member_no+"' and field_seq = '"+field_seq+"' and person_seq = '"+person_seq+"'")
 	){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¼¼¿ä.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì„¸ìš”.");
 		return;
 	}
 }

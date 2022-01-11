@@ -1,16 +1,16 @@
 package dao;
 
-import crosscert.Hash;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import nicelib.db.DataObject;
 import nicelib.db.DataSet;
 import nicelib.pdf.PDFMaker;
 import procure.common.conf.Startup;
 import procure.common.utils.StrUtil;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import crosscert.Hash;
 
 public class ProofDao extends DataObject {
 
@@ -54,7 +54,7 @@ public class ProofDao extends DataObject {
 		documentContentsBefore.append("<head>");
 		documentContentsBefore.append("<style>");
 		documentContentsBefore.append("<!--");
-		documentContentsBefore.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0px; color: black;line-height:150%}");
+		documentContentsBefore.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0px; color: black;line-height:150%}");
 		documentContentsBefore.append("		.lineTable { border-collapse:collapse; border:1px solid black }");
 		documentContentsBefore.append("		.lineTable td { border:1px solid black }");
 		documentContentsBefore.append("		.lineTable .noborder { border:0px }");	
@@ -62,11 +62,12 @@ public class ProofDao extends DataObject {
 		documentContentsBefore.append("</style>");
 		documentContentsBefore.append("</head><body>");
 		
-		pdfMaker.setHeader("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* ¹ß±Ş¹øÈ£: "+info.getString("proof_no")+"</font></td></tr></table>");
+		pdfMaker.setHeader("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* ë°œê¸‰ë²ˆí˜¸: "+info.getString("proof_no")+"</font></td></tr></table>");
 		pdfMaker.setHtmlWidth(750);
 		
 		  
-		pdfMaker.setFooter("*º» ¹®¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı  µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© ÀüÀÚ¼­¸íÀ¸·Î ¿Ï·áµÈ ÀüÀÚ¹®¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ¹®¼­ ÁøÀ§¿©ºÎ´Â ³ªÀÌ½º´ÙÅ¥(°Ç¼³±â¾÷¿ë)(http://www.nicedocu.com)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+		//pdfMaker.setFooter("*ë³¸ ë¬¸ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì™„ë£Œëœ ì „ìë¬¸ì„œì…ë‹ˆë‹¤.<br>&nbsp;&nbsp;ì „ìë¬¸ì„œ ì§„ìœ„ì—¬ë¶€ëŠ” ë‚˜ì´ìŠ¤ë‹¤í(ê±´ì„¤ê¸°ì—…ìš©)(http://www.nicedocu.com)ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+		pdfMaker.setFooter("*ë³¸ ë¬¸ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì™„ë£Œëœ ì „ìë¬¸ì„œì…ë‹ˆë‹¤.");
 		
 		String html = documentContentsBefore.toString()+info.getString("html")+"</body></html>";
 		boolean result = pdfMaker.generatePDF(html, pdfDir+fileDir, fileName);
@@ -113,7 +114,7 @@ public class ProofDao extends DataObject {
 		documentContentsBefore.append("<head>");
 		documentContentsBefore.append("<style>");
 		documentContentsBefore.append("<!--");
-		documentContentsBefore.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0px; color: black;line-height:150%}");
+		documentContentsBefore.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0px; color: black;line-height:150%}");
 		documentContentsBefore.append("		.lineTable { border-collapse:collapse; border:1px solid black }");
 		documentContentsBefore.append("		.lineTable td { border:1px solid black }");
 		documentContentsBefore.append("		.lineTable .noborder { border:0px }");
@@ -121,11 +122,12 @@ public class ProofDao extends DataObject {
 		documentContentsBefore.append("</style>");
 		documentContentsBefore.append("</head><body>");
 
-		pdfMaker.setHeader("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* ¹ß±Ş¹øÈ£: "+info.getString("proof_no")+"</font></td></tr></table>");
+		pdfMaker.setHeader("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* ë°œê¸‰ë²ˆí˜¸: "+info.getString("proof_no")+"</font></td></tr></table>");
 		pdfMaker.setHtmlWidth(750);
 
 
-		pdfMaker.setFooter("*º» ¹®¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı  µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© ÀüÀÚ¼­¸íÀ¸·Î ¿Ï·áµÈ ÀüÀÚ¹®¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ¹®¼­ ÁøÀ§¿©ºÎ´Â ³ªÀÌ½º´ÙÅ¥(ÀÏ¹İ±â¾÷¿ë)(http://www.nicedocu.com)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+//		pdfMaker.setFooter("*ë³¸ ë¬¸ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì™„ë£Œëœ ì „ìë¬¸ì„œì…ë‹ˆë‹¤.<br>&nbsp;&nbsp;ì „ìë¬¸ì„œ ì§„ìœ„ì—¬ë¶€ëŠ” ë‚˜ì´ìŠ¤ë‹¤í(ì¼ë°˜ê¸°ì—…ìš©)(http://www.nicedocu.com)ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+		pdfMaker.setFooter("*ë³¸ ë¬¸ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì™„ë£Œëœ ì „ìë¬¸ì„œì…ë‹ˆë‹¤.");
 
 		String html = documentContentsBefore.toString()+info.getString("html")+"</body></html>";
 		boolean result = pdfMaker.generatePDF(html, pdfDir+fileDir, fileName);
@@ -144,7 +146,7 @@ public class ProofDao extends DataObject {
 	}
 
 	/**
-	 * ½ÇÀûÁõ¸í HASHÁ¤º¸ °¡Á®¿À±â
+	 * ì‹¤ì ì¦ëª… HASHì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	 * @param sXpath
 	 * @param sOtherFullDir
 	 * @return

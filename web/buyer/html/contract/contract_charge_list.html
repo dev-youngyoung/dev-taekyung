@@ -1,4 +1,4 @@
-<form name="form1" method="get" enctype="multipart/form-data">
+ο»Ώ<form name="form1" method="get" enctype="multipart/form-data">
 <div class="search_div">
 	<table class="search_table">
 	  <colgroup>
@@ -9,19 +9,19 @@
 	    <col width="13%">
 	  </colgroup>
 	  <tr>
-	    <th><p>°θΎΰΌ­ΑΎ·ω</p></th>
+	    <th><p>κ³„μ•½μ„μΆ…λ¥</p></th>
 	    <td>
 	    	<select name="s_template_cd">
-	    		<option value="">-------Ό±ΕΓ-------</option>
+	    		<option value="">-------μ„ νƒ-------</option>
 	    		<!-- LOOP START 'template' -->
 	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 	    		<!-- LOOP END 'template' -->
 	    	</select>
 		</td>
-	    <th><p>°θΎΰ»σΕΒ</p></th>
+	    <th><p>κ³„μ•½μƒνƒ</p></th>
 	    <td>
           <select name="s_status">
-              <option value="">-Ό±ΕΓ-</option>
+              <option value="">-μ„ νƒ-</option>
               <!-- LOOP START 'code_status' -->
               <option value="{{code_status.id}}">{{code_status.value}}</option>
               <!-- LOOP END 'code_status' -->
@@ -30,24 +30,24 @@
 	    <td align="right"></td>
 	  </tr>
 	  <tr>
-	    <th><p>°Ε·΅Γ³Έν</p></th>
+	    <th><p>κ±°λμ²λª…</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
-	    <th><p>°θΎΰΈν</p></th>
+	    <th><p>κ³„μ•½λª…</p></th>
 	    <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
 	    <td align="right"></td>
 	  </tr>
 	  <tr>
-	    <th><p>°θΎΰΐΟΐΪ</p></th>
+	    <th><p>κ³„μ•½μΌμ</p></th>
 	    <td>
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 			<input type="text" name="s_edate" class="in_readonly" style="width: 35%;" maxlength="10" onkeyup="dateFormat(this)" readonly/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
-	    <th><p>°θΎΰΉψΘ£</p></th>
+	    <th><p>κ³„μ•½λ²νΈ</p></th>
 	    <td><input type="text" name="s_user_no" maxlength="100" style="width: 50%;"></td>
 	    <td align="right">
-	      <button type="submit" class="search_btn">°Λ»φ</button>
+	      <button type="submit" class="search_btn">κ²€μƒ‰</button>
 	    </td>
 	  </tr>  
 	</table>
@@ -66,12 +66,12 @@
 		    <col width="30%">
 		</colgroup>
 		<tr>  
-			<th>ΌψΉψ</th>
-	   		<th>°θΎΰΈν</th>
-		    <th>°Ε·΅Γ³Έν</th>
-		    <th>°θΎΰΐΟΐΪ</th>
-		    <th>»σΕΒ</th>
-		    <th>°αΐηΐΪ</th>
+			<th>μλ²</th>
+	   		<th>κ³„μ•½λª…</th>
+		    <th>κ±°λμ²λª…</th>
+		    <th>κ³„μ•½μΌμ</th>
+		    <th>μƒνƒ</th>
+		    <th>κ²°μ¬μ</th>
 		</tr>
 	 	<!-- IF START 'list' -->
 	 		<!-- LOOP START 'list' -->
@@ -109,7 +109,7 @@
 		
 		<!-- IFNOT START 'list' -->
 			<tr>
-				<td colspan="6" align="center">°Λ»φ°α°ϊ°΅ Ύψ½ΐ΄Ο΄Ω.</td>
+				<td colspan="6" align="center">κ²€μƒ‰κ²°κ³Όκ°€ μ—†μµλ‹λ‹¤.</td>
 			</tr>
 		<!-- IFNOT END 'list' -->
 	</table>

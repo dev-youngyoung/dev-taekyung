@@ -53,17 +53,17 @@ public class MailManager {
 
 	
 	/****************************************
-	 * ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸í ¿äÃ» ¸ŞÀÏ Àü¼Û(ÀÏ¹İ±â¾÷¿ë)
+	 * ì „ìê³„ì•½ì„œ ì „ìì„œëª… ìš”ì²­ ë©”ì¼ ì „ì†¡(ì¼ë°˜ê¸°ì—…ìš©)
 	 *
-	 * @param cont_no °è¾à¹øÈ£
-	 * @param cont_chasu °è¾àÂ÷¼ö
-	 * @param cust_vendcd ¹Ş´Â¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£
-	 * @param sSendName Àü¼Û¾÷Ã¼¸í
-	 * @param sRecvName ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ¸í(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @param sRecvEmail ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ ÀÌ¸ŞÀÏ(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @return 100 : Àü¼ÛÇÒ µ¥ÀÌÅÍ°¡ TCO_CUST Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
-	 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-	 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
+	 * @param cont_no ê³„ì•½ë²ˆí˜¸
+	 * @param cont_chasu ê³„ì•½ì°¨ìˆ˜
+	 * @param cust_vendcd ë°›ëŠ”ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸
+	 * @param sSendName ì „ì†¡ì—…ì²´ëª…
+	 * @param sRecvName ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ìëª…(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @param sRecvEmail ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì ì´ë©”ì¼(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @return 100 : ì „ì†¡í•  ë°ì´í„°ê°€ TCO_CUST í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+	 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+	 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
 	 */
 	public boolean sendContBMail(String cont_no, String cont_chasu, String member_no, String sSendName, String sRecvName, String sRecvEmail)
 	{
@@ -83,7 +83,7 @@ public class MailManager {
 			
 			if(ds.size() < 1)
 			{
-				System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
+				System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
 				sqlj.close();
 				return false;
 			}
@@ -95,7 +95,7 @@ public class MailManager {
 			String sEmailRandom = "";
 			String sContName = "";
 			String sContDay = "";
-			String member_status = "";//È¸¿ø°­ÀÔ »óÅÂ 01:Á¤È¸¿ø 02:ºñÈ¸¿ø
+			String member_status = "";//íšŒì›ê°•ì… ìƒíƒœ 01:ì •íšŒì› 02:ë¹„íšŒì›
 
 			sFromCompanyName = sSendName;
 			sToCompanyName = ds.getString("member_name");
@@ -103,7 +103,7 @@ public class MailManager {
 			sContDay = ds.getString("cont_date");
 			member_status = ds.getString("member_status");
 
-			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //¹Ş´Â »ç¶÷À» ÀÓÀÇ·Î ÁöÁ¤ÇÑ °æ¿ì
+			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //ë°›ëŠ” ì‚¬ëŒì„ ì„ì˜ë¡œ ì§€ì •í•œ ê²½ìš°
 			{
 				sToPersonName = sRecvName;
 				sToEmail = sRecvEmail;
@@ -114,7 +114,7 @@ public class MailManager {
 				sToPersonName = ds.getString("user_name");
 				sToEmail = ds.getString("email");
 				RandomString rndStr = new RandomString();
-				sEmailRandom = rndStr.getString(30,"");  // »õ·Î º¸³»´Â °æ¿ì´Â ·¥´ı ¹®ÀÚ¿­ »ı¼º ÈÄ ÀúÀå
+				sEmailRandom = rndStr.getString(30,"");  // ìƒˆë¡œ ë³´ë‚´ëŠ” ê²½ìš°ëŠ” ë¨ë¤ ë¬¸ìì—´ ìƒì„± í›„ ì €ì¥
 				
 				sqlj.removeArray();
 				sqlj.setArray(sEmailRandom);
@@ -135,17 +135,17 @@ public class MailManager {
 			String _sImg = _sUrl + "/images/email/20110620/";
 			String _sEmailChk = _sUrl + "/web/buyer/emailReadCheck.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&member_no="+member_no+"&num="+sEmailSeq;
 			String _sEmailRet = "";
-			if(member_no.substring(0,9).equals("000000000")) // ¿¬´ëº¸ÁõÀÎÀº ÀÌ¸ŞÀÏ·Î ¹Ù·Î ¼­¸í °¡´ÉÇÏ°í È¸¿øÀº »çÀÌÆ®·Î ·Î±×ÀÎÇÏµµ·Ï
+			if(member_no.substring(0,9).equals("000000000")) // ì—°ëŒ€ë³´ì¦ì¸ì€ ì´ë©”ì¼ë¡œ ë°”ë¡œ ì„œëª… ê°€ëŠ¥í•˜ê³  íšŒì›ì€ ì‚¬ì´íŠ¸ë¡œ ë¡œê·¸ì¸í•˜ë„ë¡
 			{
 				_sEmailRet = _sUrl + "/web/buyer/contract/emailView.jsp?rs="+ sEmailRandom;
 			}
 			else
 			{
-				if(member_status.equals("02"))  // ºñÈ¸¿ø
+				if(member_status.equals("02"))  // ë¹„íšŒì›
 				{
 					_sEmailRet = _sUrl + "/web/buyer/member/join_agree.jsp";
 				}
-				else  // È¸¿ø
+				else  // íšŒì›
 				{
 					_sEmailRet = _sUrl + "/web/buyer/index.jsp";
 				}
@@ -154,12 +154,12 @@ public class MailManager {
 			String html = "";
 			html+="	<html>																																		";						
 			html+="	<head>                                                                                                                                      ";
-			html+="	<title>ÀüÀÚ°è¾à ¼­¸í ¿äÃ»</title>                                                                                                         ";
-			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">";
+			html+="	<title>ì „ìê³„ì•½ ì„œëª… ìš”ì²­</title>                                                                                                         ";
+			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
 			html+="	<style type=\"text/css\">                                                                                                                   ";
 			html+="	<!--                                                                                                                                        ";
-			html+="	td {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
-			html+="	.b {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
+			html+="	td {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
+			html+="	.b {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
 			html+="	-->                                                                                                                                         ";
 			html+="	</style>                                                                                                                                    ";
 			html+="	</head>                                                                                                                                     ";
@@ -185,15 +185,15 @@ public class MailManager {
 			html+="	                <td bgcolor=\"#fafafa\">                                                                                                    ";
 			html+="	                  <table width=\"100%\" border=\"0\" cellspacing=\"1\" cellpadding=\"3\">                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td width=\"20%\" align=\"center\"><b>°è¾à¾÷Ã¼¸í</b></td>                                                                 ";
+			html+="	                      <td width=\"20%\" align=\"center\"><b>ê³„ì•½ì—…ì²´ëª…</b></td>                                                                 ";
 			html+="	                      <td width=\"50%\" align=\"left\">: "+sFromCompanyName+"<br/></td>                                                                       ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td width=\"20%\" align=\"center\"><b>°è¾à¸í</b></td>                                                                               ";
+			html+="	                      <td width=\"20%\" align=\"center\"><b>ê³„ì•½ëª…</b></td>                                                                               ";
 			html+="	                      <td width=\"80%\" align=\"left\">: "+sContName+"<br/></td>                                                                          ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td width=\"20%\" align=\"center\"><b>°è¾àÀÏ</b></td>                                                                               ";
+			html+="	                      <td width=\"20%\" align=\"center\"><b>ê³„ì•½ì¼</b></td>                                                                               ";
 			html+="	                      <td width=\"80%\" align=\"left\">: "+sContDay+"<br/></td>                                                                            ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                  </table>                                                                                                                  ";
@@ -204,12 +204,12 @@ public class MailManager {
 			html+="	            <br>                                                                                                                            ";
 			html+="	            <table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">                                                         ";
 			html+="	              <tr>                                                                                                                          ";
-			html+="	                <td ><span class=\"b\">"+sFromCompanyName+"</span>´ÔÀÌ <span class=\"b\">"+sToPersonName+"</span>                                                       ";
-			html+="	                  ´Ô²² °è¾à¼­ ¼­¸íÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù.                                                                                         ";
+			html+="	                <td ><span class=\"b\">"+sFromCompanyName+"</span>ë‹˜ì´ <span class=\"b\">"+sToPersonName+"</span>                                                       ";
+			html+="	                  ë‹˜ê»˜ ê³„ì•½ì„œ ì„œëª…ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.                                                                                         ";
 			if(member_status.equals("02")){
-				html+="	                  <p>¾Æ·¡ 'È¸¿ø°¡ÀÔ' ¹öÆ°À» Å¬¸¯ÇÏ¿© ³ªÀÌ½º³ªÀÌ½º ´ÙÅ¥¿¡ È¸¿ø °¡ÀÔ ÈÄ °è¾à¼­¸¦ Á¶È¸ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>                                                              ";	
+				html+="	                  <p>ì•„ë˜ 'íšŒì›ê°€ì…' ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ ë‚˜ì´ìŠ¤ë‚˜ì´ìŠ¤ ë‹¤íì— íšŒì› ê°€ì… í›„ ê³„ì•½ì„œë¥¼ ì¡°íšŒ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>                                                              ";	
 			}else{
-				html+="	                  <p>¾Æ·¡ '»ó¼¼º¸±â' ¹öÆ°À» Å¬¸¯ÇÏ¿© È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>                                                              ";
+				html+="	                  <p>ì•„ë˜ 'ìƒì„¸ë³´ê¸°' ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>                                                              ";
 			}
 			html+="	                  </p>                                                                                                                      ";
 			html+="	                </td>                                                                                                                       ";
@@ -240,8 +240,8 @@ public class MailManager {
 //			String[] strCc= null;
 //			String[] strBcc= null;
 //			String strFrom = Startup.conf.getString("email.mailFrom");
-//			String strFromName = "³ªÀÌ½º´ÙÅ¥(ÀÏ¹İ±â¾÷¿ë)";
-			String strSubject = sFromCompanyName + "´ÔÀÌ " + sToPersonName + "´Ô¿¡°Ô ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸íÀ» ¿äÃ»ÇÏ¿´½À´Ï´Ù.";
+//			String strFromName = "ë‚˜ì´ìŠ¤ë‹¤í(ì¼ë°˜ê¸°ì—…ìš©)";
+			String strSubject = sFromCompanyName + "ë‹˜ì´ " + sToPersonName + "ë‹˜ì—ê²Œ ì „ìê³„ì•½ì„œ ì „ìì„œëª…ì„ ìš”ì²­í•˜ì˜€ìŠµë‹ˆë‹¤.";
 //			String attchFile= "";
 			
 			//String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, strFromName, strSubject, html, attchFile);
@@ -249,9 +249,9 @@ public class MailManager {
 
 			String sStatus = "";
 			if(bSuccess)
-				sStatus = "01";  //¼º°ø 
+				sStatus = "01";  //ì„±ê³µ 
 			else
-				sStatus = "02";  // ½ÇÆĞ			
+				sStatus = "02";  // ì‹¤íŒ¨			
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String sysdate =  sdf.format((new GregorianCalendar()).getTime());
@@ -278,17 +278,17 @@ public class MailManager {
 	}	
 	
 	/****************************************
-	 * ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸í ¿äÃ» ¸ŞÀÏ Àü¼Û(¹°·ù)
+	 * ì „ìê³„ì•½ì„œ ì „ìì„œëª… ìš”ì²­ ë©”ì¼ ì „ì†¡(ë¬¼ë¥˜)
 	 *
-	 * @param cont_no °è¾à¹øÈ£
-	 * @param cont_chasu °è¾àÂ÷¼ö
-	 * @param cust_vendcd ¹Ş´Â¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£
-	 * @param sSendName Àü¼Û¾÷Ã¼¸í
-	 * @param sRecvName ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ¸í(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @param sRecvEmail ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ ÀÌ¸ŞÀÏ(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @return 100 : Àü¼ÛÇÒ µ¥ÀÌÅÍ°¡ TCO_CUST Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
-	 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-	 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
+	 * @param cont_no ê³„ì•½ë²ˆí˜¸
+	 * @param cont_chasu ê³„ì•½ì°¨ìˆ˜
+	 * @param cust_vendcd ë°›ëŠ”ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸
+	 * @param sSendName ì „ì†¡ì—…ì²´ëª…
+	 * @param sRecvName ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ìëª…(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @param sRecvEmail ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì ì´ë©”ì¼(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @return 100 : ì „ì†¡í•  ë°ì´í„°ê°€ TCO_CUST í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+	 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+	 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
 	 */
 	public boolean sendContLMail(String cont_no, String cont_chasu, String member_no, String sSendName, String sRecvName, String sRecvEmail)
 	{
@@ -308,7 +308,7 @@ public class MailManager {
 			
 			if(ds.size() < 1)
 			{
-				System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
+				System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
 				sqlj.close();
 				return false;
 			}
@@ -326,7 +326,7 @@ public class MailManager {
 			sContName = ds.getString("cont_name");
 			sContDay = ds.getString("cont_date");
 
-			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //¹Ş´Â »ç¶÷À» ÀÓÀÇ·Î ÁöÁ¤ÇÑ °æ¿ì
+			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //ë°›ëŠ” ì‚¬ëŒì„ ì„ì˜ë¡œ ì§€ì •í•œ ê²½ìš°
 			{
 				sToPersonName = sRecvName;
 				sToEmail = sRecvEmail;
@@ -343,7 +343,7 @@ public class MailManager {
 				sToPersonName = ds.getString("user_name");
 				sToEmail = ds.getString("email");
 				RandomString rndStr = new RandomString();
-				sEmailRandom = rndStr.getString(10,"");  // »õ·Î º¸³»´Â °æ¿ì´Â ·¥´ı ¹®ÀÚ¿­ »ı¼º ÈÄ ÀúÀå
+				sEmailRandom = rndStr.getString(10,"");  // ìƒˆë¡œ ë³´ë‚´ëŠ” ê²½ìš°ëŠ” ë¨ë¤ ë¬¸ìì—´ ìƒì„± í›„ ì €ì¥
 				
 				sqlj.removeArray();
 				sqlj.setArray(sEmailRandom);
@@ -365,7 +365,7 @@ public class MailManager {
 			String _sEmailChk = _sUrl + "/web/logis/contract/emailReadCheck.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&member_no="+member_no+"&num="+sEmailSeq;
 			
 			String _sEmailRet = "";
-			if(member_no.substring(0,10).equals("0000000000")) // ºñÈ¸¿øÀÎ °æ¿ì¸¸ ÀÌ¸ŞÀÏ·Î ¹Ù·Î ¼­¸í °¡´ÉÇÏ°í È¸¿øÀº »çÀÌÆ®·Î ·Î±×ÀÎÇÏµµ·Ï
+			if(member_no.substring(0,10).equals("0000000000")) // ë¹„íšŒì›ì¸ ê²½ìš°ë§Œ ì´ë©”ì¼ë¡œ ë°”ë¡œ ì„œëª… ê°€ëŠ¥í•˜ê³  íšŒì›ì€ ì‚¬ì´íŠ¸ë¡œ ë¡œê·¸ì¸í•˜ë„ë¡
 				_sEmailRet = _sUrl + "/web/logis/contract/emailView.jsp?rs="+ sEmailRandom;
 			else
 				_sEmailRet = _sUrl;
@@ -373,12 +373,12 @@ public class MailManager {
 			String html = "";
 			html+="	<html>																																		";						
 			html+="	<head>                                                                                                                                      ";
-			html+="	<title>ÀüÀÚ°è¾à ¼­¸í ¿äÃ»</title>                                                                                                         ";
-			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">";
+			html+="	<title>ì „ìê³„ì•½ ì„œëª… ìš”ì²­</title>                                                                                                         ";
+			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
 			html+="	<style type=\"text/css\">                                                                                                                   ";
 			html+="	<!--                                                                                                                                        ";
-			html+="	td {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
-			html+="	.b {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
+			html+="	td {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
+			html+="	.b {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
 			html+="	-->                                                                                                                                         ";
 			html+="	</style>                                                                                                                                    ";
 			html+="	</head>                                                                                                                                     ";
@@ -404,15 +404,15 @@ public class MailManager {
 			html+="	                <td bgcolor=\"#fafafa\">                                                                                                    ";
 			html+="	                  <table width=\"100%\" border=\"0\" cellspacing=\"1\" cellpadding=\"3\">                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td width=\"20%\" align=\"center\"><b>°è¾à¾÷Ã¼¸í</b></td>                                                                 ";
+			html+="	                      <td width=\"20%\" align=\"center\"><b>ê³„ì•½ì—…ì²´ëª…</b></td>                                                                 ";
 			html+="	                      <td>: "+sFromCompanyName+"<br/></td>                                                                       ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td align=\"center\"><b>°è¾à¸í</b></td>                                                                               ";
+			html+="	                      <td align=\"center\"><b>ê³„ì•½ëª…</b></td>                                                                               ";
 			html+="	                      <td>: "+sContName+"<br/></td>                                                                          ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td align=\"center\"><b>°è¾àÀÏ</b></td>                                                                               ";
+			html+="	                      <td align=\"center\"><b>ê³„ì•½ì¼</b></td>                                                                               ";
 			html+="	                      <td>: "+sContDay+"<br/></td>                                                                            ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                  </table>                                                                                                                  ";
@@ -423,9 +423,9 @@ public class MailManager {
 			html+="	            <br>                                                                                                                            ";
 			html+="	            <table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">                                                         ";
 			html+="	              <tr>                                                                                                                          ";
-			html+="	                <td><span class=\"b\">"+sFromCompanyName+"</span>´ÔÀÌ <span class=\"b\">"+sToCompanyName+"</span>                                                       ";
-			html+="	                  ´Ô²² °è¾à¼­ ¼­¸íÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù.                                                                                         ";
-			html+="	                  <p>¾Æ·¡ '»ó¼¼º¸±â' ¹öÆ°À» Å¬¸¯ÇÏ¿© È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>                                                              ";
+			html+="	                <td><span class=\"b\">"+sFromCompanyName+"</span>ë‹˜ì´ <span class=\"b\">"+sToCompanyName+"</span>                                                       ";
+			html+="	                  ë‹˜ê»˜ ê³„ì•½ì„œ ì„œëª…ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.                                                                                         ";
+			html+="	                  <p>ì•„ë˜ 'ìƒì„¸ë³´ê¸°' ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>                                                              ";
 			html+="	                  </p>                                                                                                                      ";
 			html+="	                </td>                                                                                                                       ";
 			html+="	              </tr>                                                                                                                         ";
@@ -452,18 +452,18 @@ public class MailManager {
 			String[] strCc= null;
 			String[] strBcc= null;
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strFromName = "³ªÀÌ½º´ÙÅ¥(¹°·ù)";
-			String strSubject = sFromCompanyName + "´ÔÀÌ " + sToPersonName + "´Ô¿¡°Ô ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸íÀ» ¿äÃ»ÇÏ¿´½À´Ï´Ù.";
+			String strFromName = "ë‚˜ì´ìŠ¤ë‹¤í(ë¬¼ë¥˜)";
+			String strSubject = sFromCompanyName + "ë‹˜ì´ " + sToPersonName + "ë‹˜ì—ê²Œ ì „ìê³„ì•½ì„œ ì „ìì„œëª…ì„ ìš”ì²­í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			String attchFile= "";
 			
 			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, strFromName, strSubject, html, attchFile);
-			System.out.println("¹°·ù ÀüÀÚ°è¾à ¿äÃ» ¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			System.out.println("ë¬¼ë¥˜ ì „ìê³„ì•½ ìš”ì²­ ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 	
 			String sStatus = "";
 			if(strRtn[0].equals("ok"))
-				sStatus = "01";  //¼º°ø 
+				sStatus = "01";  //ì„±ê³µ 
 			else
-				sStatus = "02";  // ½ÇÆĞ
+				sStatus = "02";  // ì‹¤íŒ¨
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String sysdate =  sdf.format((new GregorianCalendar()).getTime());
@@ -490,15 +490,15 @@ public class MailManager {
 	}	
 	
 	/****************************************
-	 * ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸í È®ÀÎ/¼­¸í ¿äÃ» ¸ŞÀÏ(¹°·ù)
+	 * ì „ìê³„ì•½ì„œ ì „ìì„œëª… í™•ì¸/ì„œëª… ìš”ì²­ ë©”ì¼(ë¬¼ë¥˜)
 	 *
-	 * @param mailType ¸ŞÀÏ Á¾·ù (1:È®ÀÎ¿äÃ», 2:¼­¸í¿äÃ», 3:°ËÅä¿äÃ»)
-	 * @param cont_no °è¾à¹øÈ£
-	 * @param cont_chasu °è¾àÂ÷¼ö
-	 * @param member_no ¹ŞÀ»¾÷Ã¼ È¸¿ø¹øÈ£
-	 * @return 100 : Àü¼ÛÇÒ µ¥ÀÌÅÍ°¡ TCL_CUST Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
-	 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-	 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
+	 * @param mailType ë©”ì¼ ì¢…ë¥˜ (1:í™•ì¸ìš”ì²­, 2:ì„œëª…ìš”ì²­, 3:ê²€í† ìš”ì²­)
+	 * @param cont_no ê³„ì•½ë²ˆí˜¸
+	 * @param cont_chasu ê³„ì•½ì°¨ìˆ˜
+	 * @param member_no ë°›ì„ì—…ì²´ íšŒì›ë²ˆí˜¸
+	 * @return 100 : ì „ì†¡í•  ë°ì´í„°ê°€ TCL_CUST í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+	 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+	 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
 	 */
 	public boolean sendContLNoti(int mailType, String cont_no, String cont_chasu, String member_no)
 	{
@@ -516,21 +516,21 @@ public class MailManager {
 		int	nCustCnt = 0;
 		
 		String sTitle = "";
-		String sPostPosition = "ÀÌ"; // Á¶»ç
+		String sPostPosition = "ì´"; // ì¡°ì‚¬
 
 		try {		
 			sqlj = new SQLJob("lct_email.xml", true);
 			
-			if(mailType == 1) // È®ÀÎ¿äÃ»
+			if(mailType == 1) // í™•ì¸ìš”ì²­
 			{
-				sTitle = "È®ÀÎ";
+				sTitle = "í™•ì¸";
 				sqlj.setParam("cont_no", cont_no);
 				sqlj.setParam("cont_chasu", cont_chasu);
 				ds = sqlj.getOneRow("email_confirm_user");
 
 				if(ds.size() < 1)
 				{
-					System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
+					System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
 					sqlj.close();
 					return false;
 				}
@@ -540,8 +540,8 @@ public class MailManager {
 				sContName = ds.getString("cont_name");
 				sContDay = ds.getString("cont_date");				
 				
-			} else if(mailType == 2) {// ¼­¸í¿äÃ»
-				sTitle = "¼­¸í";
+			} else if(mailType == 2) {// ì„œëª…ìš”ì²­
+				sTitle = "ì„œëª…";
 				sqlj.setParam("cont_no", cont_no);
 				sqlj.setParam("cont_chasu", cont_chasu);
 				sqlj.setParam("member_no", member_no);
@@ -549,7 +549,7 @@ public class MailManager {
 
 				if(ds.size() < 1)
 				{
-					System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
+					System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", member_no : "+ member_no +")");
 					sqlj.close();
 					return false;
 				}
@@ -558,16 +558,16 @@ public class MailManager {
 				sToEmail = ds.getString("email");
 				sContName = ds.getString("cont_name");
 				sContDay = ds.getString("cont_date");				
-			} else if(mailType == 3) {// °ËÅä¿äÃ»
-				sTitle = "°ËÅä";
-				sPostPosition = "°¡";
+			} else if(mailType == 3) {// ê²€í† ìš”ì²­
+				sTitle = "ê²€í† ";
+				sPostPosition = "ê°€";
 				sqlj.setParam("cont_no", cont_no);
 				sqlj.setParam("cont_chasu", cont_chasu);
 				ds = sqlj.getOneRow("email_review_user");
 
 				if(ds.size() < 1)
 				{
-					System.out.println("°ËÅäÀÚ(°ü¸®ÀÚ)°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ")");
+					System.out.println("ê²€í† ì(ê´€ë¦¬ì)ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ")");
 					sqlj.close();
 					return false;
 				}
@@ -587,7 +587,7 @@ public class MailManager {
 			nCustCnt = ds1.getInt("cust_cnt");
 			
 			if(nCustCnt > 1)
-				sFromCompanyName += "¿Ü " + (nCustCnt-1) + "¸í";
+				sFromCompanyName += "ì™¸ " + (nCustCnt-1) + "ëª…";
 			
 			String _sUrl = "http://logis.nicedocu.com";
 			String _sImg = _sUrl + "/images/email/20110620/";
@@ -598,12 +598,12 @@ public class MailManager {
 			String html = "";
 			html+="	<html>																																		";
 			html+="	<head>                                                                                                                                      ";
-			html+="	<title>ÀüÀÚ°è¾à "+sTitle+" ¿äÃ»</title>                                                                                                         ";
-			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">";
+			html+="	<title>ì „ìê³„ì•½ "+sTitle+" ìš”ì²­</title>                                                                                                         ";
+			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
 			html+="	<style type=\"text/css\">                                                                                                                   ";
 			html+="	<!--                                                                                                                                        ";
-			html+="	td {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
-			html+="	.b {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
+			html+="	td {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
+			html+="	.b {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
 			html+="	-->                                                                                                                                         ";
 			html+="	</style>                                                                                                                                    ";
 			html+="	</head>                                                                                                                                     ";
@@ -629,15 +629,15 @@ public class MailManager {
 			html+="	                <td bgcolor=\"#fafafa\">                                                                                                    ";
 			html+="	                  <table width=\"100%\" border=\"0\" cellspacing=\"1\" cellpadding=\"3\">                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td width=\"20%\" align=\"center\"><b>°è¾àÀÚ¸í</b></td>                                                                 ";
+			html+="	                      <td width=\"20%\" align=\"center\"><b>ê³„ì•½ìëª…</b></td>                                                                 ";
 			html+="	                      <td>: "+sFromCompanyName+"<br/></td>                                                                       ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td align=\"center\"><b>°è¾à¸í</b></td>                                                                               ";
+			html+="	                      <td align=\"center\"><b>ê³„ì•½ëª…</b></td>                                                                               ";
 			html+="	                      <td>: "+sContName+"<br/></td>                                                                          ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td align=\"center\"><b>°è¾àÀÏ</b></td>                                                                               ";
+			html+="	                      <td align=\"center\"><b>ê³„ì•½ì¼</b></td>                                                                               ";
 			html+="	                      <td>: "+sContDay+"<br/></td>                                                                            ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                  </table>                                                                                                                  ";
@@ -649,8 +649,8 @@ public class MailManager {
 			html+="	            <table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">                                                         ";
 			html+="	              <tr>                                                                                                                          ";
 			html+="	                <td><span class=\"b\">"+sToPersonName+"</span>                                                                              ";
-			html+="	                  ´Ô »ó±â ÀüÀÚ°è¾à°Ç¿¡ ´ëÇØ °è¾à¼­ "+ sTitle + sPostPosition+" ÇÊ¿äÇÕ´Ï´Ù.                                                  ";
-			html+="	                  <p>¾Æ·¡ '»ó¼¼º¸±â' ¹öÆ°À» Å¬¸¯ÇÏ¿© È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>                                                              ";
+			html+="	                  ë‹˜ ìƒê¸° ì „ìê³„ì•½ê±´ì— ëŒ€í•´ ê³„ì•½ì„œ "+ sTitle + sPostPosition+" í•„ìš”í•©ë‹ˆë‹¤.                                                  ";
+			html+="	                  <p>ì•„ë˜ 'ìƒì„¸ë³´ê¸°' ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>                                                              ";
 			html+="	                  </p>                                                                                                                      ";
 			html+="	                </td>                                                                                                                       ";
 			html+="	              </tr>                                                                                                                         ";
@@ -673,12 +673,12 @@ public class MailManager {
 			String[] strCc= null;
 			String[] strBcc= null;
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strFromName = "³ªÀÌ½º´ÙÅ¥(¹°·ù)";
-			String strSubject = sToPersonName + "´Ô ["+sContName+"-"+sFromCompanyName+"] ÀüÀÚ°è¾à¼­¿¡ ["+sTitle+"] Ã³¸® ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
+			String strFromName = "ë‚˜ì´ìŠ¤ë‹¤í(ë¬¼ë¥˜)";
+			String strSubject = sToPersonName + "ë‹˜ ["+sContName+"-"+sFromCompanyName+"] ì „ìê³„ì•½ì„œì— ["+sTitle+"] ì²˜ë¦¬ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
 			String attchFile= "";
 			
 			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, strFromName, strSubject, html, attchFile);
-			System.out.println("¹°·ù ÀüÀÚ°è¾à "+sTitle+" ¿äÃ» ¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			System.out.println("ë¬¼ë¥˜ ì „ìê³„ì•½ "+sTitle+" ìš”ì²­ ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 		
 			sqlj.close();
 			succes = true;
@@ -693,16 +693,16 @@ public class MailManager {
 	
 	
 	/****************************************
-	 * ÀüÀÚ°è¾à¼­ È®ÀÎ¿äÃ»  ¸ŞÀÏ Àü¼Û
+	 * ì „ìê³„ì•½ì„œ í™•ì¸ìš”ì²­  ë©”ì¼ ì „ì†¡
 	 *
-	 * @param sFromCompanyName Àü¼Û¾÷Ã¼¸í
-	 * @param sToCompanyName ¹Ş´Â¾÷Ã¼¸í  
-	 * @param sToPersonName ¹Ş´Â¾÷Ã¼ ´ã´ãÀÚ¸í
-	 * @param sToPersonEmail ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ ÀÌ¸ŞÀÏ
+	 * @param sFromCompanyName ì „ì†¡ì—…ì²´ëª…
+	 * @param sToCompanyName ë°›ëŠ”ì—…ì²´ëª…  
+	 * @param sToPersonName ë°›ëŠ”ì—…ì²´ ë‹´ë‹´ìëª…
+	 * @param sToPersonEmail ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì ì´ë©”ì¼
 	 * @return 
-	 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-	 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
-	 *         400 : ÀÌ¸ŞÀÏ Àü¼Û ¿¡·¯
+	 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+	 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
+	 *         400 : ì´ë©”ì¼ ì „ì†¡ ì—ëŸ¬
 	 */
 	public int sendContMail(String sFromCompanyName, String sToCompanyName, String sToPersonName, String sToPersonEmail)
 	{
@@ -717,13 +717,13 @@ public class MailManager {
 			
 			String strContents = "<html>"
 				+"<head>"
-				+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+				+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 				+"<style>"
 				+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 				+"{"
 				+"	font-size:9pt;"
-				+"	font-family:±¼¸²,±¼¸²Ã¼;"
+				+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 				+"	line-height: 120%;"
 				+"}"
 				+"</style>"
@@ -737,9 +737,9 @@ public class MailManager {
 				+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sImg + "bg1.gif'><br/>"
 				+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>"
 				+"      <tr>"
-				+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ´ÔÀÌ <strong>" + sToCompanyName + "</strong> ´Ô²² <br />"
-				+"          ÀüÀÚ°è¾à¼­ È®ÀÎ ¿äÃ» ÇÏ¿´½À´Ï´Ù.</p>"
-				+"          <p>¾Æ·¡ <span style='color: #3333FF;font-weight: bold'>¡°È®ÀÎÇÏ±â¡± </span>¹öÆ°À» ´­·¯ °è¾à¼­¸¦ °ËÅäÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br />"
+				+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ë‹˜ì´ <strong>" + sToCompanyName + "</strong> ë‹˜ê»˜ <br />"
+				+"          ì „ìê³„ì•½ì„œ í™•ì¸ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.</p>"
+				+"          <p>ì•„ë˜ <span style='color: #3333FF;font-weight: bold'>â€œí™•ì¸í•˜ê¸°â€ </span>ë²„íŠ¼ì„ ëˆŒëŸ¬ ê³„ì•½ì„œë¥¼ ê²€í† í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br />"
 				+"              <br />"
 				+"          </p></td>"
 				+"      </tr>"
@@ -755,7 +755,7 @@ public class MailManager {
 				+"  	<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 				+"  	  <tr>"
 				+"  		<td width='125'><img src='"+ _sImg + "bottom.gif' height='65' /></td>"
-				+"  		<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+				+"  		<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 				+"  						Copyright(c) 2010 NICE D&B All Rights Reserved"
 				+"  		</td>"
 				+"  		<td width='10'></td>"
@@ -772,16 +772,16 @@ public class MailManager {
 			String[] strCc= null;//{"drought@dreamwiz.com"};
 			String[] strBcc= null;//{"drought@dreamwiz.com"};
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = sFromCompanyName + "´ÔÀÌ " + sToPersonName + "´Ô¿¡°Ô ÀüÀÚ°è¾à¼­¸¦ È®ÀÎ ¿äÃ» ÇÏ¿´½À´Ï´Ù.";
+			String strSubject = sFromCompanyName + "ë‹˜ì´ " + sToPersonName + "ë‹˜ì—ê²Œ ì „ìê³„ì•½ì„œë¥¼ í™•ì¸ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			String attchFile= "";
 			
-			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
-			System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
+			System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 	
 			if(strRtn[0].equals("ok"))
-				sReturn = 200;  //¼º°ø 
+				sReturn = 200;  //ì„±ê³µ 
 			else
-				sReturn = 400;  //½ÇÆĞ
+				sReturn = 400;  //ì‹¤íŒ¨
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -792,17 +792,17 @@ public class MailManager {
 	}	
 	
 	/****************************************
-	 * ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸í ¿äÃ» ¸ŞÀÏ Àü¼Û
+	 * ì „ìê³„ì•½ì„œ ì „ìì„œëª… ìš”ì²­ ë©”ì¼ ì „ì†¡
 	 *
-	 * @param cont_no °è¾à¹øÈ£
-	 * @param cont_chasu °è¾àÂ÷¼ö
-	 * @param cust_vendcd ¹Ş´Â¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£
-	 * @param sSendName Àü¼Û¾÷Ã¼¸í
-	 * @param sRecvName ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ¸í(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @param sRecvEmail ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ ÀÌ¸ŞÀÏ(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @return 100 : Àü¼ÛÇÒ µ¥ÀÌÅÍ°¡ TCO_CUST Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
-	 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-	 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
+	 * @param cont_no ê³„ì•½ë²ˆí˜¸
+	 * @param cont_chasu ê³„ì•½ì°¨ìˆ˜
+	 * @param cust_vendcd ë°›ëŠ”ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸
+	 * @param sSendName ì „ì†¡ì—…ì²´ëª…
+	 * @param sRecvName ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ìëª…(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @param sRecvEmail ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì ì´ë©”ì¼(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @return 100 : ì „ì†¡í•  ë°ì´í„°ê°€ TCO_CUST í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+	 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+	 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
 	 */
 	public int sendContMail(String cont_no, String cont_chasu, String cust_vendcd, String sSendName, String sRecvName, String sRecvEmail)
 	{
@@ -821,7 +821,7 @@ public class MailManager {
 			
 			if(ds.size() < 1)
 			{
-				System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", cust_vendcd : "+ cust_vendcd +")");
+				System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(cont_no : " + cont_no + ", cont_chasu : "+ cont_chasu + ", cust_vendcd : "+ cust_vendcd +")");
 				sqlj.close();
 				return 100;
 			}
@@ -835,7 +835,7 @@ public class MailManager {
 			sFromCompanyName = sSendName;
 			sToCompanyName = ds.getString("CUST_NAME");
 
-			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //¹Ş´Â »ç¶÷À» ÀÓÀÇ·Î ÁöÁ¤ÇÑ °æ¿ì
+			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //ë°›ëŠ” ì‚¬ëŒì„ ì„ì˜ë¡œ ì§€ì •í•œ ê²½ìš°
 			{
 				sToPersonName = sRecvName;
 				sToEmail = sRecvEmail;
@@ -846,7 +846,7 @@ public class MailManager {
 				sToPersonName = ds.getString("PER_NAME");
 				sToEmail = ds.getString("PER_EMAIL");
 				RandomString rndStr = new RandomString();
-				sEmailRandom = rndStr.getString(30,"");  // »õ·Î º¸³»´Â °æ¿ì´Â ·¥´ı ¹®ÀÚ¿­ »ı¼º ÈÄ ÀúÀå
+				sEmailRandom = rndStr.getString(30,"");  // ìƒˆë¡œ ë³´ë‚´ëŠ” ê²½ìš°ëŠ” ë¨ë¤ ë¬¸ìì—´ ìƒì„± í›„ ì €ì¥
 				
 				sqlj.removeArray();
 				sqlj.setArray(sEmailRandom);
@@ -871,13 +871,13 @@ public class MailManager {
 			
 			String strContents = "<html>"
 				+"<head>"
-				+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+				+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 				+"<style>"
 				+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 				+"{"
 				+"	font-size:9pt;"
-				+"	font-family:±¼¸²,±¼¸²Ã¼;"
+				+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 				+"	line-height: 120%;"
 				+"}"
 				+"</style>"
@@ -891,9 +891,9 @@ public class MailManager {
 				+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sImg + "bg1.gif'><br/>"
 				+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>"
 				+"      <tr>"
-				+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ´ÔÀÌ <strong>" + sToCompanyName + "</strong> ´Ô²² <br />"
-				+"          ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸íÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù.</p>"
-				+"          <p>¾Æ·¡ <span style='color: #3333FF;font-weight: bold'>¡°ÀüÀÚ¼­¸íÇÏ±â¡± </span>¹öÆ°À» ´­·¯ È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br />"
+				+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ë‹˜ì´ <strong>" + sToCompanyName + "</strong> ë‹˜ê»˜ <br />"
+				+"          ì „ìê³„ì•½ì„œ ì „ìì„œëª…ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.</p>"
+				+"          <p>ì•„ë˜ <span style='color: #3333FF;font-weight: bold'>â€œì „ìì„œëª…í•˜ê¸°â€ </span>ë²„íŠ¼ì„ ëˆŒëŸ¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br />"
 				+"              <br />"
 				+"          </p></td>"
 				+"      </tr>"
@@ -910,7 +910,7 @@ public class MailManager {
 				+"  	<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 				+"  	  <tr>"
 				+"  		<td width='125'><img src='"+ _sImg + "bottom.gif' height='65' /></td>"
-				+"  		<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+				+"  		<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 				+"  						Copyright(c) 2010 NICE D&B All Rights Reserved"
 				+"  		</td>"
 				+"  		<td width='10'></td>"
@@ -927,17 +927,17 @@ public class MailManager {
 			String[] strCc= null;//{"drought@dreamwiz.com"};
 			String[] strBcc= null;//{"drought@dreamwiz.com"};
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = sFromCompanyName + "´ÔÀÌ " + sToPersonName + "´Ô¿¡°Ô ÀüÀÚ°è¾à¼­ ÀüÀÚ¼­¸íÀ» ¿äÃ»ÇÏ¿´½À´Ï´Ù.";
+			String strSubject = sFromCompanyName + "ë‹˜ì´ " + sToPersonName + "ë‹˜ì—ê²Œ ì „ìê³„ì•½ì„œ ì „ìì„œëª…ì„ ìš”ì²­í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			String attchFile= "";
 			
-			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
-			System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
+			System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 	
 			String sStatus = "";
 			if(strRtn[0].equals("ok"))
-				sStatus = "01";  //¼º°ø 
+				sStatus = "01";  //ì„±ê³µ 
 			else
-				sStatus = "02";  // ½ÇÆĞ
+				sStatus = "02";  // ì‹¤íŒ¨
 	
 			sqlj.removeArray();
 			sqlj.setArray(cont_no);
@@ -961,16 +961,16 @@ public class MailManager {
 
 	
 	/****************************************
-	 * ÀüÀÚ¹®¼­ ÀüÀÚ¼­¸í ¿äÃ» ¸ŞÀÏ Àü¼Û
+	 * ì „ìë¬¸ì„œ ì „ìì„œëª… ìš”ì²­ ë©”ì¼ ì „ì†¡
 	 *
-	 * @param docu_no ¹®¼­¹øÈ£
-	 * @param supp_vendcd ¹Ş´Â¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£
-	 * @param sSendName Àü¼Û¾÷Ã¼¸í
-	 * @param sRecvName ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ¸í(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @param sRecvEmail ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ ÀÌ¸ŞÀÏ(ÀçÀü¼Û½Ã »ç¿ë, ÀÏ¹İÀü¼Û½Ã "")
-	 * @return 100 : Àü¼ÛÇÒ µ¥ÀÌÅÍ°¡ ELE_DOCU Å×ÀÌºí¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
-	 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-	 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
+	 * @param docu_no ë¬¸ì„œë²ˆí˜¸
+	 * @param supp_vendcd ë°›ëŠ”ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸
+	 * @param sSendName ì „ì†¡ì—…ì²´ëª…
+	 * @param sRecvName ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ìëª…(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @param sRecvEmail ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì ì´ë©”ì¼(ì¬ì „ì†¡ì‹œ ì‚¬ìš©, ì¼ë°˜ì „ì†¡ì‹œ "")
+	 * @return 100 : ì „ì†¡í•  ë°ì´í„°ê°€ ELE_DOCU í…Œì´ë¸”ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
+	 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+	 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
 	 */
 	public int sendElecMail(String docu_no, String supp_vendcd, String sSendName, String sRecvName, String sRecvEmail)
 	{
@@ -987,7 +987,7 @@ public class MailManager {
 			
 			if(ds.size() < 1)
 			{
-				System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(docu_no : " + docu_no + ", supp_vendcd : "+ supp_vendcd +")");
+				System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(docu_no : " + docu_no + ", supp_vendcd : "+ supp_vendcd +")");
 				sqlj.close();
 				return 100;
 			}
@@ -1001,7 +1001,7 @@ public class MailManager {
 			sFromCompanyName = sSendName;
 			sToCompanyName = ds.getString("SUPP_VENDNM");
 
-			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //¹Ş´Â »ç¶÷À» ÀÓÀÇ·Î ÁöÁ¤ÇÑ °æ¿ì
+			if(!sRecvName.equals("") && !sRecvEmail.equals(""))  //ë°›ëŠ” ì‚¬ëŒì„ ì„ì˜ë¡œ ì§€ì •í•œ ê²½ìš°
 			{
 				sToPersonName = sRecvName;
 				sToEmail = sRecvEmail;
@@ -1012,7 +1012,7 @@ public class MailManager {
 				sToPersonName = ds.getString("PER_NAME");
 				sToEmail = ds.getString("PER_EMAIL");
 				RandomString rndStr = new RandomString();
-				sEmailRandom = rndStr.getString(30,"");  // »õ·Î º¸³»´Â °æ¿ì´Â ·¥´ı ¹®ÀÚ¿­ »ı¼º ÈÄ ÀúÀå
+				sEmailRandom = rndStr.getString(30,"");  // ìƒˆë¡œ ë³´ë‚´ëŠ” ê²½ìš°ëŠ” ë¨ë¤ ë¬¸ìì—´ ìƒì„± í›„ ì €ì¥
 				
 				sqlj.removeArray();
 				sqlj.setArray(sEmailRandom);
@@ -1030,13 +1030,13 @@ public class MailManager {
 			
 			String strContents = "<html>"
 				+"<head>"
-				+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+				+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 				+"<style>"
 				+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 				+"{"
 				+"	font-size:9pt;"
-				+"	font-family:±¼¸²,±¼¸²Ã¼;"
+				+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 				+"	line-height: 120%;"
 				+"}"
 				+"</style>"
@@ -1050,9 +1050,9 @@ public class MailManager {
 				+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sImg + "bg1.gif'><br/>"
 				+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>"
 				+"      <tr>"
-				+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ´ÔÀÌ <strong>" + sToCompanyName + "</strong> ´Ô²² <br />"
-				+"          ÀüÀÚ¹®¼­ ÀüÀÚ¼­¸íÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù.</p>"
-				+"          <p>¾Æ·¡ <span style='color: #3333FF;font-weight: bold'>¡°ÀüÀÚ¼­¸íÇÏ±â¡± </span>¹öÆ°À» ´­·¯ È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br />"
+				+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ë‹˜ì´ <strong>" + sToCompanyName + "</strong> ë‹˜ê»˜ <br />"
+				+"          ì „ìë¬¸ì„œ ì „ìì„œëª…ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.</p>"
+				+"          <p>ì•„ë˜ <span style='color: #3333FF;font-weight: bold'>â€œì „ìì„œëª…í•˜ê¸°â€ </span>ë²„íŠ¼ì„ ëˆŒëŸ¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br />"
 				+"              <br />"
 				+"          </p></td>"
 				+"      </tr>"
@@ -1069,7 +1069,7 @@ public class MailManager {
 				+"  	<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 				+"  	  <tr>"
 				+"  		<td width='125'><img src='"+ _sImg + "bottom.gif' height='65' /></td>"
-				+"  		<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+				+"  		<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 				+"  						Copyright(c) 2010 NICE D&B All Rights Reserved"
 				+"  		</td>"
 				+"  		<td width='10'></td>"
@@ -1086,12 +1086,12 @@ public class MailManager {
 			String[] strCc= null;//{"drought@dreamwiz.com"};
 			String[] strBcc= null;//{"drought@dreamwiz.com"};
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = sFromCompanyName + "´ÔÀÌ " + sToPersonName + "´Ô¿¡°Ô ÀüÀÚ¹®¼­ ¼­¸íÀ» ¿äÃ»ÇÏ¿´½À´Ï´Ù.";
-			//String strSubject = "ÀüÀÚ¹®¼­ TEST";
+			String strSubject = sFromCompanyName + "ë‹˜ì´ " + sToPersonName + "ë‹˜ì—ê²Œ ì „ìë¬¸ì„œ ì„œëª…ì„ ìš”ì²­í•˜ì˜€ìŠµë‹ˆë‹¤.";
+			//String strSubject = "ì „ìë¬¸ì„œ TEST";
 			String attchFile= "";
 			
-			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
-			System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
+			System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 	
 			sqlj.close();
 		} catch (Exception e) {
@@ -1120,7 +1120,7 @@ public class MailManager {
 			
 			if(ds.size() < 1)
 			{
-				System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(issuenum : " + issueNum + ")");
+				System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(issuenum : " + issueNum + ")");
 				sqlj.close();
 				return 100;
 			}
@@ -1136,20 +1136,20 @@ public class MailManager {
 				sItems = sItems.substring(0,sItems.length()-1);
 			
 			
-			String billTypeCd = ds.getString("BILLTYPECD");  // °è»ê¼­Á¾·ùÄÚµå(01:¼¼±İ°è»ê¼­,02:¼öÁ¤¼¼±İ°è»ê¼­,03:°è»ê¼­,04:¼öÁ¤°è»ê¼­)
-			String issueDivCD = ds.getString("ISSUEDIVCD");  // Á¤¹ßÇà, ¿ª¹ßÇà
+			String billTypeCd = ds.getString("BILLTYPECD");  // ê³„ì‚°ì„œì¢…ë¥˜ì½”ë“œ(01:ì„¸ê¸ˆê³„ì‚°ì„œ,02:ìˆ˜ì •ì„¸ê¸ˆê³„ì‚°ì„œ,03:ê³„ì‚°ì„œ,04:ìˆ˜ì •ê³„ì‚°ì„œ)
+			String issueDivCD = ds.getString("ISSUEDIVCD");  // ì •ë°œí–‰, ì—­ë°œí–‰
 			String sFromName = "";
 			String sToName = "";
 			String sToEmail = "";
 			String sToVendCD = "";
-			String sIssueDivStr1 = "";  // (Á¤)¹ßÇà, (¿ª)¹ßÇà
-			String sIssueDivStr2 = "";  // ½ÂÀÎ, ¼­¸í
+			String sIssueDivStr1 = "";  // (ì •)ë°œí–‰, (ì—­)ë°œí–‰
+			String sIssueDivStr2 = "";  // ìŠ¹ì¸, ì„œëª…
 			String sEmailSeq = "";
 			String sToPersonName = "";
 			
-			//Á¤¹ßÇà(IssueDivCD = 01)ÀÌ¸é °ø±Ş¹Ş´ÂÀÚ°¡ ºÁ¾ßÇÏ°í
-			//¿ª¹ßÇà(IssueDivCD = 02)ÀÌ¸é °ø±ŞÀÚ°¡ ºÁ¾ß ÇÑ´Ù.
-			String viewUser = "";  // °ø±ŞÀÚ°¡ º¼ °æ¿ì:01, °ø±Ş¹Ş´ÂÀÚ°¡ º¼ °æ¿ì:02
+			//ì •ë°œí–‰(IssueDivCD = 01)ì´ë©´ ê³µê¸‰ë°›ëŠ”ìê°€ ë´ì•¼í•˜ê³ 
+			//ì—­ë°œí–‰(IssueDivCD = 02)ì´ë©´ ê³µê¸‰ìê°€ ë´ì•¼ í•œë‹¤.
+			String viewUser = "";  // ê³µê¸‰ìê°€ ë³¼ ê²½ìš°:01, ê³µê¸‰ë°›ëŠ”ìê°€ ë³¼ ê²½ìš°:02
 			if(issueDivCD.equals("01"))
 			{
 				viewUser = "02";
@@ -1158,8 +1158,8 @@ public class MailManager {
 				sToPersonName = ds.getString("RECV_PERSONNM");
 				sToEmail = ds.getString("RECV_EMAIL");
 				sToVendCD = ds.getString("RECV_VENDCD");
-				sIssueDivStr1 = "(Á¤)¹ßÇà";
-				sIssueDivStr2 = "½ÂÀÎ";
+				sIssueDivStr1 = "(ì •)ë°œí–‰";
+				sIssueDivStr2 = "ìŠ¹ì¸";
 			}
 			else
 			{
@@ -1169,8 +1169,8 @@ public class MailManager {
 				sToPersonName = ds.getString("SUPP_PERSONNM");
 				sToEmail = ds.getString("SUPP_EMAIL");
 				sToVendCD = ds.getString("SUPP_VENDCD");
-				sIssueDivStr1 = "(¿ª)¹ßÇà";
-				sIssueDivStr2 = "¼­¸í";
+				sIssueDivStr1 = "(ì—­)ë°œí–‰";
+				sIssueDivStr2 = "ì„œëª…";
 			}
 
 			sqlj.removeArray();
@@ -1184,13 +1184,13 @@ public class MailManager {
 			
 			String strContents = "<html>"
 				+"<head>"
-				+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+				+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 				+"<style>"
 				+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 				+"{"
 				+"	font-size:9pt;"
-				+"	font-family:±¼¸²,±¼¸²Ã¼;"
+				+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 				+"	line-height: 120%;"
 				+"}"
 				+"</style>"
@@ -1204,9 +1204,9 @@ public class MailManager {
 				+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sImg + "bg1.gif'><br/>"
 				+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>"
 				+"      <tr>"
-				+"        <td align='center'><p><strong>" + sFromName + "</strong> ´ÔÀÌ <strong>" + sToName + "</strong> ´Ô²² <br />"
-				+"          ¼¼±İ°è»ê¼­ " + sIssueDivStr2 + "À» ¿äÃ» ÇÏ¿´½À´Ï´Ù.</p>"
-				+"          <p>¾Æ·¡ <span style='color: #3333FF;font-weight: bold'>¡°¼¼±İ°è»ê¼­ º¸±â¡± </span>¹öÆ°À» ´­·¯ È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br />"
+				+"        <td align='center'><p><strong>" + sFromName + "</strong> ë‹˜ì´ <strong>" + sToName + "</strong> ë‹˜ê»˜ <br />"
+				+"          ì„¸ê¸ˆê³„ì‚°ì„œ " + sIssueDivStr2 + "ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.</p>"
+				+"          <p>ì•„ë˜ <span style='color: #3333FF;font-weight: bold'>â€œì„¸ê¸ˆê³„ì‚°ì„œ ë³´ê¸°â€ </span>ë²„íŠ¼ì„ ëˆŒëŸ¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br />"
 				+"              <br />"
 				+"          </p></td>"
 				+"      </tr>"
@@ -1230,27 +1230,27 @@ public class MailManager {
 				+"        <tr>"
 				+"          <td bgcolor='#FFFFFF'><table width='100%' border='0' cellspacing='1' cellpadding='2' bgcolor='#FFFFFF'>"
 				+"              <tr>"
-				+"                <td width='27%' align='center' bgcolor='#DFF7F9'>»óÈ£</td>"
+				+"                <td width='27%' align='center' bgcolor='#DFF7F9'>ìƒí˜¸</td>"
 				+"                <td width='73%' align='left'>"+ ds.getString("SUPP_VENDNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>´ã´çÀÚ</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ë‹´ë‹¹ì</td>"
 				+"                <td align='left'>"+ ds.getString("SUPP_PERSONNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>¿¬¶ôÃ³</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ì—°ë½ì²˜</td>"
 				+"                <td align='left'>"+ ds.getString("SUPP_HP") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>ÀÌ¸ŞÀÏ</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ì´ë©”ì¼</td>"
 				+"                <td align='left'>"+ ds.getString("SUPP_EMAIL") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>±İ¾×</td>"
-				+"                <td align='left'>"+ NumUtil.sAddComma(StringManager.doubleToIntString(Double.parseDouble(ds.getString("TOTALAMOUNT"))), true) +" ¿ø</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ê¸ˆì•¡</td>"
+				+"                <td align='left'>"+ NumUtil.sAddComma(StringManager.doubleToIntString(Double.parseDouble(ds.getString("TOTALAMOUNT"))), true) +" ì›</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>Ç°¸ñ</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>í’ˆëª©</td>"
 				+"                <td align='left'>"+ sItems +"</td>"
 				+"              </tr>"
 				+"          </table></td>"
@@ -1268,19 +1268,19 @@ public class MailManager {
 				+"        <tr>"
 				+"          <td bgcolor='#FFFFFF'><table width='100%' border='0' cellspacing='1' cellpadding='2' bgcolor='#FFFFFF'>"
 				+"              <tr>"
-				+"                <td width='27%' align='center' bgcolor='#DFECF9'>»óÈ£</td>"
+				+"                <td width='27%' align='center' bgcolor='#DFECF9'>ìƒí˜¸</td>"
 				+"                <td width='73%' align='left'>"+ ds.getString("RECV_VENDNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFECF9'>´ã´çÀÚ</td>"
+				+"                <td align='center' bgcolor='#DFECF9'>ë‹´ë‹¹ì</td>"
 				+"                <td align='left'>"+ ds.getString("RECV_PERSONNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFECF9'>¿¬¶ôÃ³</td>"
+				+"                <td align='center' bgcolor='#DFECF9'>ì—°ë½ì²˜</td>"
 				+"                <td align='left'>"+ ds.getString("RECV_HP") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFECF9'>ÀÌ¸ŞÀÏ</td>"
+				+"                <td align='center' bgcolor='#DFECF9'>ì´ë©”ì¼</td>"
 				+"                <td align='left'>"+ ds.getString("RECV_EMAIL") +"</td>"
 				+"              </tr>"
 				+"          </table></td>"
@@ -1294,7 +1294,7 @@ public class MailManager {
 				+"  	<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 				+"  	  <tr>"
 				+"  		<td width='125'><img src='"+ _sImg + "bottom.gif' height='65' /></td>"
-				+"  		<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+				+"  		<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 				+"  						Copyright(c) 2010 NICE D&B All Rights Reserved"
 				+"  		</td>"
 				+"  		<td width='10'></td>"
@@ -1307,7 +1307,7 @@ public class MailManager {
 				+"</html>";  
 			
 			//out.print(strContents);
-			if(!recvName.equals("") && !recvMail.equals(""))  //¹Ş´Â »ç¶÷À» ÀÓÀÇ·Î ÁöÁ¤ÇÑ °æ¿ì
+			if(!recvName.equals("") && !recvMail.equals(""))  //ë°›ëŠ” ì‚¬ëŒì„ ì„ì˜ë¡œ ì§€ì •í•œ ê²½ìš°
 			{
 				sToPersonName = recvName;
 				sToEmail = recvMail; 
@@ -1317,7 +1317,7 @@ public class MailManager {
 			String[] strCc= null;//{"drought@dreamwiz.com"};
 			String[] strBcc= null;//{"drought@dreamwiz.com"};
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = sFromName + "´ÔÀÌ " + sToName + "´Ô¿¡°Ô ÀüÀÚ¼¼±İ°è»ê¼­¸¦ "+sIssueDivStr1+"ÇÏ¿´½À´Ï´Ù.";
+			String strSubject = sFromName + "ë‹˜ì´ " + sToName + "ë‹˜ì—ê²Œ ì „ìì„¸ê¸ˆê³„ì‚°ì„œë¥¼ "+sIssueDivStr1+"í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			String attchFile= "";
 			if(attachMode != null && attachMode.length() > 0){
 				if(attachMode.equals("taxXml")){
@@ -1326,18 +1326,18 @@ public class MailManager {
 					String sFileName = issueNum + ".xml";
 					attchFile = Startup.conf.getString("file.path.tax") +  sFilePath + sFileName;
 					
-					System.out.println("MailManager xml ÆÄÀÏÃ·ºÎ:" + attchFile);
+					System.out.println("MailManager xml íŒŒì¼ì²¨ë¶€:" + attchFile);
 				}
 			}
 			
-			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
-			System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
+			System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 
 			String sStatus = "";
 			if(strRtn[0].equals("ok"))
-				sStatus = "01";  //¼º°ø 
+				sStatus = "01";  //ì„±ê³µ 
 			else
-				sStatus = "02";  // ½ÇÆĞ
+				sStatus = "02";  // ì‹¤íŒ¨
 
 			sqlj.removeArray();
 			sqlj.setArray(issueNum); 
@@ -1374,7 +1374,7 @@ public class MailManager {
 			
 			if(ds.size() < 1)
 			{
-				System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀÌ¸ŞÀÏÀ» Àü¼ÛÇÒ ¼ö ¾ø½À´Ï´Ù.(issuenum : " + issueNum + ")");
+				System.out.println("ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì´ë©”ì¼ì„ ì „ì†¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.(issuenum : " + issueNum + ")");
 				sqlj.close();
 				return 100;
 			}
@@ -1390,14 +1390,14 @@ public class MailManager {
 				sItems = sItems.substring(0,sItems.length()-1);
 			
 			
-			String billTypeCd = ds.getString("BILLTYPECD");  // °è»ê¼­Á¾·ùÄÚµå(01:¼¼±İ°è»ê¼­,02:¼öÁ¤¼¼±İ°è»ê¼­,03:°è»ê¼­,04:¼öÁ¤°è»ê¼­)
-			String issueDivCD = ds.getString("ISSUEDIVCD");  // Á¤¹ßÇà, ¿ª¹ßÇà
+			String billTypeCd = ds.getString("BILLTYPECD");  // ê³„ì‚°ì„œì¢…ë¥˜ì½”ë“œ(01:ì„¸ê¸ˆê³„ì‚°ì„œ,02:ìˆ˜ì •ì„¸ê¸ˆê³„ì‚°ì„œ,03:ê³„ì‚°ì„œ,04:ìˆ˜ì •ê³„ì‚°ì„œ)
+			String issueDivCD = ds.getString("ISSUEDIVCD");  // ì •ë°œí–‰, ì—­ë°œí–‰
 			String sFromName = "";
 			String sToName = "";
 			String sToEmail = "";
 			String sToVendCD = "";
-			String sIssueDivStr1 = "";  // (Á¤)¹ßÇà, (¿ª)¹ßÇà
-			String sIssueDivStr2 = "";  // ½ÂÀÎ, ¼­¸í
+			String sIssueDivStr1 = "";  // (ì •)ë°œí–‰, (ì—­)ë°œí–‰
+			String sIssueDivStr2 = "";  // ìŠ¹ì¸, ì„œëª…
 			String sEmailSeq = "";
 			String sToPersonName = "";
 			
@@ -1406,7 +1406,7 @@ public class MailManager {
 			sToPersonName = ds.getString("RECV_PERSONNM");
 			sToEmail = ds.getString("RECV_EMAIL");
 			sToVendCD = ds.getString("RECV_VENDCD");
-			sIssueDivStr1 = "¹ßÇà";
+			sIssueDivStr1 = "ë°œí–‰";
 
 			sqlj.removeArray();
 			sqlj.setParam("issuenum", issueNum); 
@@ -1419,13 +1419,13 @@ public class MailManager {
 			
 			String strContents = "<html>"
 				+"<head>"
-				+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+				+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 				+"<style>"
 				+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 				+"{"
 				+"	font-size:9pt;"
-				+"	font-family:±¼¸²,±¼¸²Ã¼;"
+				+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 				+"	line-height: 120%;"
 				+"}"
 				+"</style>"
@@ -1439,9 +1439,9 @@ public class MailManager {
 				+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sImg + "bg1.gif'><br/>"
 				+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>"
 				+"      <tr>"
-				+"        <td align='center'><p><strong>" + sFromName + "</strong> ´ÔÀÌ <strong>" + sToName + "</strong> ´Ô²² <br />"
-				+"          ¼¼±İ°è»ê¼­¸¦ ¹ßÇà ÇÏ¿´½À´Ï´Ù.</p>"
-				+"          <p>¾Æ·¡ <span style='color: #3333FF;font-weight: bold'>¡°¼¼±İ°è»ê¼­ º¸±â¡± </span>¹öÆ°À» ´­·¯ È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br />"
+				+"        <td align='center'><p><strong>" + sFromName + "</strong> ë‹˜ì´ <strong>" + sToName + "</strong> ë‹˜ê»˜ <br />"
+				+"          ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ ë°œí–‰ í•˜ì˜€ìŠµë‹ˆë‹¤.</p>"
+				+"          <p>ì•„ë˜ <span style='color: #3333FF;font-weight: bold'>â€œì„¸ê¸ˆê³„ì‚°ì„œ ë³´ê¸°â€ </span>ë²„íŠ¼ì„ ëˆŒëŸ¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br />"
 				+"              <br />"
 				+"          </p></td>"
 				+"      </tr>"
@@ -1465,27 +1465,27 @@ public class MailManager {
 				+"        <tr>"
 				+"          <td bgcolor='#FFFFFF'><table width='100%' border='0' cellspacing='1' cellpadding='2' bgcolor='#FFFFFF'>"
 				+"              <tr>"
-				+"                <td width='27%' align='center' bgcolor='#DFF7F9'>»óÈ£</td>"
+				+"                <td width='27%' align='center' bgcolor='#DFF7F9'>ìƒí˜¸</td>"
 				+"                <td width='73%' align='left'>"+ ds.getString("SUPP_VENDNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>´ã´çÀÚ</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ë‹´ë‹¹ì</td>"
 				+"                <td align='left'>"+ ds.getString("SUPP_PERSONNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>¿¬¶ôÃ³</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ì—°ë½ì²˜</td>"
 				+"                <td align='left'>"+ ds.getString("SUPP_HP") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>ÀÌ¸ŞÀÏ</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ì´ë©”ì¼</td>"
 				+"                <td align='left'>"+ ds.getString("SUPP_EMAIL") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>±İ¾×</td>"
-				+"                <td align='left'>"+ NumUtil.sAddComma(StringManager.doubleToIntString(Double.parseDouble(ds.getString("TOTALAMOUNT"))), true) +" ¿ø</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>ê¸ˆì•¡</td>"
+				+"                <td align='left'>"+ NumUtil.sAddComma(StringManager.doubleToIntString(Double.parseDouble(ds.getString("TOTALAMOUNT"))), true) +" ì›</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFF7F9'>Ç°¸ñ</td>"
+				+"                <td align='center' bgcolor='#DFF7F9'>í’ˆëª©</td>"
 				+"                <td align='left'>"+ sItems +"</td>"
 				+"              </tr>"
 				+"          </table></td>"
@@ -1503,19 +1503,19 @@ public class MailManager {
 				+"        <tr>"
 				+"          <td bgcolor='#FFFFFF'><table width='100%' border='0' cellspacing='1' cellpadding='2' bgcolor='#FFFFFF'>"
 				+"              <tr>"
-				+"                <td width='27%' align='center' bgcolor='#DFECF9'>»óÈ£</td>"
+				+"                <td width='27%' align='center' bgcolor='#DFECF9'>ìƒí˜¸</td>"
 				+"                <td width='73%' align='left'>"+ ds.getString("RECV_VENDNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFECF9'>´ã´çÀÚ</td>"
+				+"                <td align='center' bgcolor='#DFECF9'>ë‹´ë‹¹ì</td>"
 				+"                <td align='left'>"+ ds.getString("RECV_PERSONNM") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFECF9'>¿¬¶ôÃ³</td>"
+				+"                <td align='center' bgcolor='#DFECF9'>ì—°ë½ì²˜</td>"
 				+"                <td align='left'>"+ ds.getString("RECV_HP") +"</td>"
 				+"              </tr>"
 				+"              <tr>"
-				+"                <td align='center' bgcolor='#DFECF9'>ÀÌ¸ŞÀÏ</td>"
+				+"                <td align='center' bgcolor='#DFECF9'>ì´ë©”ì¼</td>"
 				+"                <td align='left'>"+ ds.getString("RECV_EMAIL") +"</td>"
 				+"              </tr>"
 				+"          </table></td>"
@@ -1529,7 +1529,7 @@ public class MailManager {
 				+"  	<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 				+"  	  <tr>"
 				+"  		<td width='125'><img src='"+ _sImg + "bottom.gif' height='65' /></td>"
-				+"  		<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+				+"  		<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 				+"  						Copyright(c) 2010 NICE D&B All Rights Reserved"
 				+"  		</td>"
 				+"  		<td width='10'></td>"
@@ -1542,7 +1542,7 @@ public class MailManager {
 				+"</html>";  
 			
 			//out.print(strContents);
-			if(!recvName.equals("") && !recvMail.equals(""))  //¹Ş´Â »ç¶÷À» ÀÓÀÇ·Î ÁöÁ¤ÇÑ °æ¿ì
+			if(!recvName.equals("") && !recvMail.equals(""))  //ë°›ëŠ” ì‚¬ëŒì„ ì„ì˜ë¡œ ì§€ì •í•œ ê²½ìš°
 			{
 				sToPersonName = recvName;
 				sToEmail = recvMail; 
@@ -1552,7 +1552,7 @@ public class MailManager {
 			String[] strCc= null;//{"drought@dreamwiz.com"};
 			String[] strBcc= null;//{"drought@dreamwiz.com"};
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = sFromName + "´ÔÀÌ " + sToName + "´Ô¿¡°Ô ÀüÀÚ¼¼±İ°è»ê¼­¸¦ "+sIssueDivStr1+"ÇÏ¿´½À´Ï´Ù.";
+			String strSubject = sFromName + "ë‹˜ì´ " + sToName + "ë‹˜ì—ê²Œ ì „ìì„¸ê¸ˆê³„ì‚°ì„œë¥¼ "+sIssueDivStr1+"í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			String attchFile= "";
 			if(attachMode != null && attachMode.length() > 0){
 				if(attachMode.equals("taxXml")){
@@ -1561,18 +1561,18 @@ public class MailManager {
 					String sFileName = issueNum + ".xml";
 					attchFile = Startup.conf.getString("file.path.tax") +  sFilePath + sFileName;
 					
-					System.out.println("MailManager xml ÆÄÀÏÃ·ºÎ:" + attchFile);
+					System.out.println("MailManager xml íŒŒì¼ì²¨ë¶€:" + attchFile);
 				}
 			}
 			
-			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
-			System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
+			System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 
 			String sStatus = "";
 			if(strRtn[0].equals("ok"))
-				sStatus = "01";  //¼º°ø 
+				sStatus = "01";  //ì„±ê³µ 
 			else
-				sStatus = "02";  // ½ÇÆĞ
+				sStatus = "02";  // ì‹¤íŒ¨
 
 			sqlj.removeArray();
 			sqlj.setArray(issueNum); 
@@ -1650,19 +1650,19 @@ public class MailManager {
 		if( ds.size() == 1)
 		{
 			String _sUrl = "http://www.nicedocu.com";
-			String sFromName = "³ªÀÌ½º´ÙÅ¥";
+			String sFromName = "ë‚˜ì´ìŠ¤ë‹¤í";
 			String sToName = name;
 			String sToEmail = email;
 			
 			String strContents = "<html>"
 			+"<head>"
-			+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+			+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 			+"<style>"
 			+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 			+"{"
 			+"	font-size:9pt;"
-			+"	font-family:±¼¸²,±¼¸²Ã¼;"
+			+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 			+"	line-height: 120%;"
 			+"}"
 			+"</style>"
@@ -1680,15 +1680,15 @@ public class MailManager {
 			{
 				
 			strContents += "      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(NiceDocu) È¨ÆäÀÌÁöÀÇ ¾ÆÀÌµğ(ID)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		¾ÆÀÌµğ(ID) : <strong>"+sPrint+"</strong> </p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu) í™ˆí˜ì´ì§€ì˜ ì•„ì´ë””(ID)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì•„ì´ë””(ID) : <strong>"+sPrint+"</strong> </p>"
 			+"        </td>"
 			+"      </tr>";
 			} else {
 			strContents +="      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(NiceDocu) È¨ÆäÀÌÁöÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£(PW)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		ÀÓ½Ãºñ¹Ğ¹øÈ£(PW) : <strong>"+sPrint+"</strong> </p>"
-			+"		<p>·Î±×ÀÎ ÈÄ [³» Á¤º¸°ü¸®]¸Ş´ºÀÇ [´ã´çÀÚÁ¤º¸º¯°æ]¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu) í™ˆí˜ì´ì§€ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW) : <strong>"+sPrint+"</strong> </p>"
+			+"		<p>ë¡œê·¸ì¸ í›„ [ë‚´ ì •ë³´ê´€ë¦¬]ë©”ë‰´ì˜ [ë‹´ë‹¹ìì •ë³´ë³€ê²½]ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>"
 			+"        </td>"
 			+"      </tr>";
 			}
@@ -1700,7 +1700,7 @@ public class MailManager {
 			+"		<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 			+"		<tr>"
 			+"			<td width='125'><img src='"+ _sUrl + "/images/email/20100403/bottom.gif' height='65' /></td>"
-			+"			<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+			+"			<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 			+"					Copyright(c) 2010 NICE D&B All Rights Reserved"
 			+"			</td>"
 			+"			<td width='10'></td>"
@@ -1718,9 +1718,9 @@ public class MailManager {
 			String[] strCc= null;//{"drought@dreamwiz.com"};
 			String[] strBcc= null;//{"drought@dreamwiz.com"};
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = "["+ sFromName + "] " + sToName + "´ÔÀÌ ¿äÃ»ÇÏ½Å È¸¿ø Á¤º¸ÀÔ´Ï´Ù.";
+			String strSubject = "["+ sFromName + "] " + sToName + "ë‹˜ì´ ìš”ì²­í•˜ì‹  íšŒì› ì •ë³´ì…ë‹ˆë‹¤.";
 			String attchFile= "";
-			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
+			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
 		}
 		else
 		{
@@ -1731,15 +1731,15 @@ public class MailManager {
 	}		
 
 	/**
-	 * ÀÏ¹İ±â¾÷¿ë ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â
-	 * @param id ¾ÆÀÌµğ
-	 * @param vendcd »ç¾÷ÀÚ¹øÈ£ ¶Ç´Â ÁÖ¹Îµî·Ï¹øÈ£
-	 * @param name ÀÌ¸§
-	 * @param email ÀÌ¸ŞÀÏ
-	 * @return 100: Á¤»óÀûÀÎ ÀÔ·Â°ªÀÌ ¾Æ´Õ´Ï´Ù.
-	 *         200: ½Ã½ºÅÛ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.
-	 *         300: ÀÔ·ÂÇÏ½Å »ç¾÷ÀÚ¹øÈ£, ÀÌ¸§, ÀÌ¸ŞÀÏÀº\n½Ã½ºÅÛ¿¡ µî·ÏµÈ Á¤º¸¿Í ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n\n´Ù½ÃÇÑ¹ø È®ÀÎÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-	 *         400: Á¤»óÀûÀÎ ¹ß¼Û
+	 * ì¼ë°˜ê¸°ì—…ìš© ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	 * @param id ì•„ì´ë””
+	 * @param vendcd ì‚¬ì—…ìë²ˆí˜¸ ë˜ëŠ” ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+	 * @param name ì´ë¦„
+	 * @param email ì´ë©”ì¼
+	 * @return 100: ì •ìƒì ì¸ ì…ë ¥ê°’ì´ ì•„ë‹™ë‹ˆë‹¤.
+	 *         200: ì‹œìŠ¤í…œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.
+	 *         300: ì…ë ¥í•˜ì‹  ì‚¬ì—…ìë²ˆí˜¸, ì´ë¦„, ì´ë©”ì¼ì€\nì‹œìŠ¤í…œì— ë“±ë¡ëœ ì •ë³´ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\në‹¤ì‹œí•œë²ˆ í™•ì¸í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
+	 *         400: ì •ìƒì ì¸ ë°œì†¡
 	 */
 	public int sendIdPwB(String id, String vendcd, String name, String email)
 	{
@@ -1753,7 +1753,7 @@ public class MailManager {
 		try {
 			SQLJob sqlj = new SQLJob("email.xml", true);
 
-			if(!vendcd.equals(""))  // ¾ÆÀÌµğ Ã£±â
+			if(!vendcd.equals(""))  // ì•„ì´ë”” ì°¾ê¸°
 			{
 				sType = "id";
 				sqlj.setParam("vendcd", vendcd);  
@@ -1761,7 +1761,7 @@ public class MailManager {
 				sqlj.setParam("email", email);
 				ds = sqlj.getOneRow("searchBID");
 			}
-			else if(!id.equals(""))	// ºñ¹Ğ¹øÈ£ Ã£±â
+			else if(!id.equals(""))	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 			{
 				sType = "pw";
 				sqlj.setParam("user_id", id);  
@@ -1800,19 +1800,19 @@ public class MailManager {
 		if( ds.size() == 1)
 		{
 			String _sUrl = "http://www.nicedocu.com";
-			String sFromName = "³ªÀÌ½º´ÙÅ¥(ÀÏ¹İ±â¾÷¿ë)";
+			String sFromName = "ë‚˜ì´ìŠ¤ë‹¤í(ì¼ë°˜ê¸°ì—…ìš©)";
 			String sToName = name;
 			String sToEmail = email;
 			
 			String strContents = "<html>"
 			+"<head>"
-			+"<title>³ªÀÌ½º´ÙÅ¥(ÀÏ¹İ±â¾÷¿ë)</title>"
-			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+			+"<title>ë‚˜ì´ìŠ¤ë‹¤í(ì¼ë°˜ê¸°ì—…ìš©)</title>"
+			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 			+"<style>"
 			+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 			+"{"
 			+"	font-size:9pt;"
-			+"	font-family:±¼¸²,±¼¸²Ã¼;"
+			+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 			+"	line-height: 120%;"
 			+"}"
 			+"</style>"
@@ -1830,15 +1830,15 @@ public class MailManager {
 			{
 				
 			strContents += "      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(NICEDocu) È¨ÆäÀÌÁöÀÇ ¾ÆÀÌµğ(ID)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		¾ÆÀÌµğ(ID) : <strong>"+sPrint+"</strong> </p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(NICEDocu) í™ˆí˜ì´ì§€ì˜ ì•„ì´ë””(ID)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì•„ì´ë””(ID) : <strong>"+sPrint+"</strong> </p>"
 			+"        </td>"
 			+"      </tr>";
 			} else {
 			strContents +="      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(NICEDocu) È¨ÆäÀÌÁöÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£(PW)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		ÀÓ½Ãºñ¹Ğ¹øÈ£(PW) : <strong>"+sPrint+"</strong> </p>"
-			+"		<p>·Î±×ÀÎ ÈÄ [È¸¿øÁ¤º¸¼öÁ¤] - [³»Á¤º¸¼öÁ¤]¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(NICEDocu) í™ˆí˜ì´ì§€ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW) : <strong>"+sPrint+"</strong> </p>"
+			+"		<p>ë¡œê·¸ì¸ í›„ [íšŒì›ì •ë³´ìˆ˜ì •] - [ë‚´ì •ë³´ìˆ˜ì •]ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>"
 			+"        </td>"
 			+"      </tr>";
 			}
@@ -1850,7 +1850,7 @@ public class MailManager {
 			+"		<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 			+"		<tr>"
 			+"			<td width='125'><img src='"+ _sUrl + "/images/email/20100403/bottom.gif' height='65' /></td>"
-			+"			<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+			+"			<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 			+"					Copyright(c) 2010 NICE D&B All Rights Reserved"
 			+"			</td>"
 			+"			<td width='10'></td>"
@@ -1868,9 +1868,9 @@ public class MailManager {
 			String[] strCc= null;
 			String[] strBcc= null;
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = "["+ sFromName + "] " + sToName + "´ÔÀÌ ¿äÃ»ÇÏ½Å È¸¿ø Á¤º¸ÀÔ´Ï´Ù.";
+			String strSubject = "["+ sFromName + "] " + sToName + "ë‹˜ì´ ìš”ì²­í•˜ì‹  íšŒì› ì •ë³´ì…ë‹ˆë‹¤.";
 			String attchFile= "";
-			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
+			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
 		}
 		else
 		{
@@ -1882,15 +1882,15 @@ public class MailManager {
 
 	
 	/**
-	 * ÇÁ·£Â÷ÀÌÁî ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â
-	 * @param id ¾ÆÀÌµğ
-	 * @param vendcd »ç¾÷ÀÚ¹øÈ£ ¶Ç´Â ÁÖ¹Îµî·Ï¹øÈ£
-	 * @param name ÀÌ¸§
-	 * @param email ÀÌ¸ŞÀÏ
-	 * @return 100: Á¤»óÀûÀÎ ÀÔ·Â°ªÀÌ ¾Æ´Õ´Ï´Ù.
-	 *         200: ½Ã½ºÅÛ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.
-	 *         300: ÀÔ·ÂÇÏ½Å »ç¾÷ÀÚ¹øÈ£, ÀÌ¸§, ÀÌ¸ŞÀÏÀº\n½Ã½ºÅÛ¿¡ µî·ÏµÈ Á¤º¸¿Í ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n\n´Ù½ÃÇÑ¹ø È®ÀÎÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-	 *         400: Á¤»óÀûÀÎ ¹ß¼Û
+	 * í”„ëœì°¨ì´ì¦ˆ ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	 * @param id ì•„ì´ë””
+	 * @param vendcd ì‚¬ì—…ìë²ˆí˜¸ ë˜ëŠ” ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+	 * @param name ì´ë¦„
+	 * @param email ì´ë©”ì¼
+	 * @return 100: ì •ìƒì ì¸ ì…ë ¥ê°’ì´ ì•„ë‹™ë‹ˆë‹¤.
+	 *         200: ì‹œìŠ¤í…œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.
+	 *         300: ì…ë ¥í•˜ì‹  ì‚¬ì—…ìë²ˆí˜¸, ì´ë¦„, ì´ë©”ì¼ì€\nì‹œìŠ¤í…œì— ë“±ë¡ëœ ì •ë³´ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\në‹¤ì‹œí•œë²ˆ í™•ì¸í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
+	 *         400: ì •ìƒì ì¸ ë°œì†¡
 	 */
 	public int sendIdPwF(String id, String vendcd, String name, String email)
 	{
@@ -1904,7 +1904,7 @@ public class MailManager {
 		try {
 			SQLJob sqlj = new SQLJob("email.xml", true);
 
-			if(!vendcd.equals(""))  // ¾ÆÀÌµğ Ã£±â
+			if(!vendcd.equals(""))  // ì•„ì´ë”” ì°¾ê¸°
 			{
 				sType = "id";
 				sqlj.setParam("vendcd", vendcd);  
@@ -1912,7 +1912,7 @@ public class MailManager {
 				sqlj.setParam("email", email);
 				ds = sqlj.getOneRow("searchFID");
 			}
-			else if(!id.equals(""))	// ºñ¹Ğ¹øÈ£ Ã£±â
+			else if(!id.equals(""))	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 			{
 				sType = "pw";
 				sqlj.setParam("user_id", id);  
@@ -1951,19 +1951,19 @@ public class MailManager {
 		if( ds.size() == 1)
 		{
 			String _sUrl = "http://www.nicedocu.com";
-			String sFromName = "³ªÀÌ½º´ÙÅ¥(ÇÁ·£Â÷ÀÌÁî)";
+			String sFromName = "ë‚˜ì´ìŠ¤ë‹¤í(í”„ëœì°¨ì´ì¦ˆ)";
 			String sToName = name;
 			String sToEmail = email;
 			
 			String strContents = "<html>"
 			+"<head>"
-			+"<title>³ªÀÌ½º´ÙÅ¥(ÇÁ·£Â÷ÀÌÁî)</title>"
-			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+			+"<title>ë‚˜ì´ìŠ¤ë‹¤í(í”„ëœì°¨ì´ì¦ˆ)</title>"
+			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 			+"<style>"
 			+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 			+"{"
 			+"	font-size:9pt;"
-			+"	font-family:±¼¸²,±¼¸²Ã¼;"
+			+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 			+"	line-height: 120%;"
 			+"}"
 			+"</style>"
@@ -1981,15 +1981,15 @@ public class MailManager {
 			{
 				
 			strContents += "      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(NICEDocu) È¨ÆäÀÌÁöÀÇ ¾ÆÀÌµğ(ID)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		¾ÆÀÌµğ(ID) : <strong>"+sPrint+"</strong> </p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(NICEDocu) í™ˆí˜ì´ì§€ì˜ ì•„ì´ë””(ID)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì•„ì´ë””(ID) : <strong>"+sPrint+"</strong> </p>"
 			+"        </td>"
 			+"      </tr>";
 			} else {
 			strContents +="      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(NICEDocu) È¨ÆäÀÌÁöÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£(PW)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		ÀÓ½Ãºñ¹Ğ¹øÈ£(PW) : <strong>"+sPrint+"</strong> </p>"
-			+"		<p>·Î±×ÀÎ ÈÄ [È¸¿øÁ¤º¸¼öÁ¤] - [³»Á¤º¸¼öÁ¤]¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(NICEDocu) í™ˆí˜ì´ì§€ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW) : <strong>"+sPrint+"</strong> </p>"
+			+"		<p>ë¡œê·¸ì¸ í›„ [íšŒì›ì •ë³´ìˆ˜ì •] - [ë‚´ì •ë³´ìˆ˜ì •]ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>"
 			+"        </td>"
 			+"      </tr>";
 			}
@@ -2001,7 +2001,7 @@ public class MailManager {
 			+"		<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 			+"		<tr>"
 			+"			<td width='125'><img src='"+ _sUrl + "/images/email/20100403/bottom.gif' height='65' /></td>"
-			+"			<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+			+"			<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 			+"					Copyright(c) 2010 NICE D&B All Rights Reserved"
 			+"			</td>"
 			+"			<td width='10'></td>"
@@ -2019,9 +2019,9 @@ public class MailManager {
 			String[] strCc= null;
 			String[] strBcc= null;
 			String strFrom = Startup.conf.getString("email.mailFrom");
-			String strSubject = "["+ sFromName + "] " + sToName + "´ÔÀÌ ¿äÃ»ÇÏ½Å È¸¿ø Á¤º¸ÀÔ´Ï´Ù.";
+			String strSubject = "["+ sFromName + "] " + sToName + "ë‹˜ì´ ìš”ì²­í•˜ì‹  íšŒì› ì •ë³´ì…ë‹ˆë‹¤.";
 			String attchFile= "";
-			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
+			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
 		}
 		else
 		{
@@ -2032,15 +2032,15 @@ public class MailManager {
 	}	
 	
 	/**
-	 * ¹°·ù ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â
-	 * @param id ¾ÆÀÌµğ
-	 * @param vendcd »ç¾÷ÀÚ¹øÈ£ ¶Ç´Â ÁÖ¹Îµî·Ï¹øÈ£
-	 * @param name ÀÌ¸§
-	 * @param email ÀÌ¸ŞÀÏ
-	 * @return 100: Á¤»óÀûÀÎ ÀÔ·Â°ªÀÌ ¾Æ´Õ´Ï´Ù.
-	 *         200: ½Ã½ºÅÛ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.
-	 *         300: ÀÔ·ÂÇÏ½Å »ç¾÷ÀÚ¹øÈ£, ÀÌ¸§, ÀÌ¸ŞÀÏÀº\n½Ã½ºÅÛ¿¡ µî·ÏµÈ Á¤º¸¿Í ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n\n´Ù½ÃÇÑ¹ø È®ÀÎÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-	 *         400: Á¤»óÀûÀÎ ¹ß¼Û
+	 * ë¬¼ë¥˜ ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	 * @param id ì•„ì´ë””
+	 * @param vendcd ì‚¬ì—…ìë²ˆí˜¸ ë˜ëŠ” ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+	 * @param name ì´ë¦„
+	 * @param email ì´ë©”ì¼
+	 * @return 100: ì •ìƒì ì¸ ì…ë ¥ê°’ì´ ì•„ë‹™ë‹ˆë‹¤.
+	 *         200: ì‹œìŠ¤í…œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.
+	 *         300: ì…ë ¥í•˜ì‹  ì‚¬ì—…ìë²ˆí˜¸, ì´ë¦„, ì´ë©”ì¼ì€\nì‹œìŠ¤í…œì— ë“±ë¡ëœ ì •ë³´ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\në‹¤ì‹œí•œë²ˆ í™•ì¸í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
+	 *         400: ì •ìƒì ì¸ ë°œì†¡
 	 */
 	public String sendIdPwL(String id, String vendcd, String name)
 	{
@@ -2055,14 +2055,14 @@ public class MailManager {
 		DataSetValue ds = new DataSetValue();
 		try {
 			SQLJob sqlj = new SQLJob("email.xml", true);
-			if(id == null || id.length() < 1)	//	¾ÆÀÌµğÃ£±â
+			if(id == null || id.length() < 1)	//	ì•„ì´ë””ì°¾ê¸°
 			{
 				sType = "id";
 				sqlj.setParam("vendcd", vendcd);  
 				sqlj.setParam("user_name", name);
 				ds = sqlj.getOneRow("searchLID");
 				sPrint = ds.getString("user_id");
-			}else	//	ºñ¹Ğ¹øÈ£ Ã£±â
+			}else	//	ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 			{
 				sType = "pw";
 				sqlj.setParam("user_id", id);  
@@ -2083,25 +2083,25 @@ public class MailManager {
 			}
 			sqlj.close();
 			
-			if(ds == null || ds.size() < 1)	//	µ¥ÀÌÅ¸°¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
+			if(ds == null || ds.size() < 1)	//	ë°ì´íƒ€ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 			{
-				sRtnMsg	=	"³ªÀÌ½º´ÙÅ¥(¹°·ù) È¸¿øÀ¸·Î µî·ÏµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.\\n\\n´Ù½ÃÇÑ¹ø ÀÔ·Â°ªÀ» È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
+				sRtnMsg	=	"ë‚˜ì´ìŠ¤ë‹¤í(ë¬¼ë¥˜) íšŒì›ìœ¼ë¡œ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\në‹¤ì‹œí•œë²ˆ ì…ë ¥ê°’ì„ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
 			}else
 			{
 				String _sUrl = "http://logis.nicedocu.com";
-				String sFromName = "³ªÀÌ½º´ÙÅ¥";
+				String sFromName = "ë‚˜ì´ìŠ¤ë‹¤í";
 				String sToName = name;
 				String sToEmail = ds.getString("email");
 				
 				String strContents = "<html>"
 				+"<head>"
-				+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+				+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+				+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 				+"<style>"
 				+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 				+"{"
 				+"	font-size:9pt;"
-				+"	font-family:±¼¸²,±¼¸²Ã¼;"
+				+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 				+"	line-height: 120%;"
 				+"}"
 				+"</style>"
@@ -2115,19 +2115,19 @@ public class MailManager {
 				+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sUrl + "/images/email/20100403/bg1.gif'><br/>"
 				+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>";
 				
-				if(sType.equals("id"))	//	ID Ã£±â ¸ŞÀÏ ³»¿ë
+				if(sType.equals("id"))	//	ID ì°¾ê¸° ë©”ì¼ ë‚´ìš©
 				{
 					strContents += "      <tr>"
-					+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(¹°·ù) È¨ÆäÀÌÁöÀÇ ¾ÆÀÌµğ(ID)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-					+"		¾ÆÀÌµğ(ID) : <strong>"+sPrint+"</strong> </p>"
+					+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(ë¬¼ë¥˜) í™ˆí˜ì´ì§€ì˜ ì•„ì´ë””(ID)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+					+"		ì•„ì´ë””(ID) : <strong>"+sPrint+"</strong> </p>"
 					+"        </td>"
 					+"      </tr>";
-				} else 	//	ºñ¹Ğ¹øÈ£ Ã£±â ¸ŞÀÏ ³»¿ë
+				} else 	//	ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ë©”ì¼ ë‚´ìš©
 				{
 					strContents +="      <tr>"
-					+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ³ªÀÌ½º´ÙÅ¥(¹°·ù) È¨ÆäÀÌÁöÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£(PW)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-					+"		ÀÓ½Ãºñ¹Ğ¹øÈ£(PW) : <strong>"+sPrint+"</strong> </p>"
-					+"		<p>·Î±×ÀÎ ÈÄ [È¸¿øÁ¤º¸¼öÁ¤]¸Ş´ºÀÇ [´ã´çÀÚÁ¤º¸º¯°æ]¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</p>"
+					+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ë‚˜ì´ìŠ¤ë‹¤í(ë¬¼ë¥˜) í™ˆí˜ì´ì§€ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+					+"		ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW) : <strong>"+sPrint+"</strong> </p>"
+					+"		<p>ë¡œê·¸ì¸ í›„ [íšŒì›ì •ë³´ìˆ˜ì •]ë©”ë‰´ì˜ [ë‹´ë‹¹ìì •ë³´ë³€ê²½]ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>"
 					+"        </td>"
 					+"      </tr>";
 				}
@@ -2139,7 +2139,7 @@ public class MailManager {
 				+"		<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 				+"		<tr>"
 				+"			<td width='125'><img src='"+ _sUrl + "/images/email/20100403/bottom.gif' height='65' /></td>"
-				+"			<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+				+"			<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 				+"					Copyright(c) 2010 NICE D&B All Rights Reserved"
 				+"			</td>"
 				+"			<td width='10'></td>"
@@ -2157,17 +2157,17 @@ public class MailManager {
 				String[] strCc= null;//{"drought@dreamwiz.com"};
 				String[] strBcc= null;//{"drought@dreamwiz.com"};
 				String strFrom = Startup.conf.getString("email.mailFrom");
-				String strSubject = "["+ sFromName + "] " + sToName + "´ÔÀÌ ¿äÃ»ÇÏ½Å È¸¿ø Á¤º¸ÀÔ´Ï´Ù.";
+				String strSubject = "["+ sFromName + "] " + sToName + "ë‹˜ì´ ìš”ì²­í•˜ì‹  íšŒì› ì •ë³´ì…ë‹ˆë‹¤.";
 				String attchFile= "";
-				OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
+				OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
 				
-				sRtnMsg	=	"["+sToName+"]´ÔÀÇ ¸ŞÀÏ["+sToEmail+"]·Î ¿äÃ»ÇÏ½Å È¸¿øÁ¤º¸¸¦ Àü¼ÛÇÏ¿´½À´Ï´Ù";
+				sRtnMsg	=	"["+sToName+"]ë‹˜ì˜ ë©”ì¼["+sToEmail+"]ë¡œ ìš”ì²­í•˜ì‹  íšŒì›ì •ë³´ë¥¼ ì „ì†¡í•˜ì˜€ìŠµë‹ˆë‹¤";
 			}
 		} catch (Exception e) {
 		
 			e.printStackTrace();
 			System.out.println("[ERROR "+this.getClass()+"]:" + e.toString());
-			sRtnMsg	=	"½Ã½ºÅÛ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.\\n°í°´¼¾ÅÍ(02-788-9097)¿¡ ¹®ÀÇÇÏ¼¼¿ä.";
+			sRtnMsg	=	"ì‹œìŠ¤í…œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.\\nê³ ê°ì„¼í„°(02-788-9097)ì— ë¬¸ì˜í•˜ì„¸ìš”.";
 		}
 		
 		return sRtnMsg;
@@ -2175,15 +2175,15 @@ public class MailManager {
 	
 	
 	/**
-	 * ¾ÆÆÄÆ® ¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â
-	 * @param id ¾ÆÀÌµğ
-	 * @param vendcd »ç¾÷ÀÚ¹øÈ£ ¶Ç´Â ÁÖ¹Îµî·Ï¹øÈ£
-	 * @param name ÀÌ¸§
-	 * @param email ÀÌ¸ŞÀÏ
-	 * @return 100: Á¤»óÀûÀÎ ÀÔ·Â°ªÀÌ ¾Æ´Õ´Ï´Ù.
-	 *         200: ½Ã½ºÅÛ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.
-	 *         300: ÀÔ·ÂÇÏ½Å »ç¾÷ÀÚ¹øÈ£, ÀÌ¸§, ÀÌ¸ŞÀÏÀº\n½Ã½ºÅÛ¿¡ µî·ÏµÈ Á¤º¸¿Í ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n\n´Ù½ÃÇÑ¹ø È®ÀÎÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-	 *         400: Á¤»óÀûÀÎ ¹ß¼Û
+	 * ì•„íŒŒíŠ¸ ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	 * @param id ì•„ì´ë””
+	 * @param vendcd ì‚¬ì—…ìë²ˆí˜¸ ë˜ëŠ” ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+	 * @param name ì´ë¦„
+	 * @param email ì´ë©”ì¼
+	 * @return 100: ì •ìƒì ì¸ ì…ë ¥ê°’ì´ ì•„ë‹™ë‹ˆë‹¤.
+	 *         200: ì‹œìŠ¤í…œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.
+	 *         300: ì…ë ¥í•˜ì‹  ì‚¬ì—…ìë²ˆí˜¸, ì´ë¦„, ì´ë©”ì¼ì€\nì‹œìŠ¤í…œì— ë“±ë¡ëœ ì •ë³´ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\në‹¤ì‹œí•œë²ˆ í™•ì¸í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
+	 *         400: ì •ìƒì ì¸ ë°œì†¡
 	 */
 	public int sendIdPwA(String id, String vendcd, String name, String email)
 	{
@@ -2198,7 +2198,7 @@ public class MailManager {
 		try {
 			//SQLJob sqlj = new SQLJob("email.xml", true);
 
-			if(!vendcd.equals("")){  // ¾ÆÀÌµğ Ã£±â
+			if(!vendcd.equals("")){  // ì•„ì´ë”” ì°¾ê¸°
 				sType = "id";
 				//sqlj.setParam("vendcd", vendcd);  
 				//sqlj.setParam("user_name", name);  
@@ -2218,7 +2218,7 @@ public class MailManager {
 				}
 				ds.put("size", tca_member.size());
 				
-			}else if(!id.equals("")){	// ºñ¹Ğ¹øÈ£ Ã£±â
+			}else if(!id.equals("")){	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 			
 				sType = "pw";
 				//sqlj.setParam("user_id", id);  
@@ -2274,19 +2274,19 @@ public class MailManager {
 		if( ds.size() == 1){
 			
 /*			String _sUrl = "http://www.niceaptbid.com";
-			String sFromName = "¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû";
+			String sFromName = "ì•„íŒŒíŠ¸ ì „ì ì…ì°°";
 			String sToName = name;
 			String sToEmail = email;
 			
 			String strContents = "<html>"
 			+"<head>"
-			+"<title>¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû</title>"
+			+"<title>ì•„íŒŒíŠ¸ ì „ì ì…ì°°</title>"
 			+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
 			+"<style>"
 			+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 			+"{"
 			+"	font-size:9pt;"
-			+"	font-family:±¼¸²,±¼¸²Ã¼;"
+			+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 			+"	line-height: 120%;"
 			+"}"
 			+"</style>"
@@ -2304,15 +2304,15 @@ public class MailManager {
 			{
 				
 			strContents += "      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû(niceaptbid) È¨ÆäÀÌÁöÀÇ ¾ÆÀÌµğ(ID)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		¾ÆÀÌµğ(ID) : <strong>"+sPrint+"</strong> </p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ì•„íŒŒíŠ¸ ì „ì ì…ì°°(niceaptbid) í™ˆí˜ì´ì§€ì˜ ì•„ì´ë””(ID)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì•„ì´ë””(ID) : <strong>"+sPrint+"</strong> </p>"
 			+"        </td>"
 			+"      </tr>";
 			} else {
 			strContents +="      <tr>"
-			+"        <td align='center'><p><strong>"+name+"</strong> ´Ô ¾È³çÇÏ¼¼¿ä?<br>¿äÃ»ÇÏ½Å ¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû(niceaptbid) È¨ÆäÀÌÁöÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£(PW)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.<br><br>"
-			+"		ÀÓ½Ãºñ¹Ğ¹øÈ£(PW) : <strong>"+sPrint+"</strong> </p>"
-			+"		<p>·Î±×ÀÎ ÈÄ [Á¤º¸°ü¸®] - [±âº»Á¤º¸°ü¸®]¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</p>"
+			+"        <td align='center'><p><strong>"+name+"</strong> ë‹˜ ì•ˆë…•í•˜ì„¸ìš”?<br>ìš”ì²­í•˜ì‹  ì•„íŒŒíŠ¸ ì „ì ì…ì°°(niceaptbid) í™ˆí˜ì´ì§€ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.<br><br>"
+			+"		ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW) : <strong>"+sPrint+"</strong> </p>"
+			+"		<p>ë¡œê·¸ì¸ í›„ [ì •ë³´ê´€ë¦¬] - [ê¸°ë³¸ì •ë³´ê´€ë¦¬]ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>"
 			+"        </td>"
 			+"      </tr>";
 			}
@@ -2324,7 +2324,7 @@ public class MailManager {
 			+"		<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 			+"		<tr>"
 			+"			<td width='125'><img src='"+ _sUrl + "/images/email/20100403/bottom.gif' height='65' /></td>"
-			+"			<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+			+"			<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 			+"					Copyright(c) 2010 NICE D&B All Rights Reserved"
 			+"			</td>"
 			+"			<td width='10'></td>"
@@ -2337,14 +2337,14 @@ public class MailManager {
 			+"</html>";*/
 			
 			String _sUrl = "http://www.niceaptbid.com";
-			String sFromName = "¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû";
+			String sFromName = "ì•„íŒŒíŠ¸ ì „ì ì…ì°°";
 			String sToName = name;
 			String sToEmail = email;
 			
 			String strContents = "<!doctype html>"
 			+"<html lang=\"ko\">																								"
 			+"<head>																											"
-			+"<meta charset=\"euc-kr\">																							"
+			+"<meta charset=\"UTF-8\">																							"
 			+"<title>NICE ART BID</title>																						"
 			+"<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\" />												"
 			+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=medium-dpi\" />				"
@@ -2361,8 +2361,8 @@ public class MailManager {
 			+", caption, tbody, tfoot, thead, tr, th, td,																		"
 			+"article, aside, canvas, details, figcaption, figure,																"
 			+"footer, header, hgroup, menu, nav, section, summary,																"
-			+"time, mark, audio, video {margin:0; padding:0; border:0; font-size:100%; font-family:\"¸¼Àº °íµñ\", \"µ¸¿ò\", Dotum, AppleSDGothicNeo ,Droid Sans, arial, sans-serif; vertical-align:baseline; background:transparent; list-style:none;}	"
-			+"body {line-height:1; -webkit-text-size-adjust:none; font-family:\"¸¼Àº °íµñ\", \"µ¸¿ò\", Dotum, AppleSDGothicNeo ,Droid Sans, arial, sans-serif; color:#4d4d4d; font-size:12px;}				"
+			+"time, mark, audio, video {margin:0; padding:0; border:0; font-size:100%; font-family:\"ë§‘ì€ ê³ ë”•\", \"ë‹ì›€\", Dotum, AppleSDGothicNeo ,Droid Sans, arial, sans-serif; vertical-align:baseline; background:transparent; list-style:none;}	"
+			+"body {line-height:1; -webkit-text-size-adjust:none; font-family:\"ë§‘ì€ ê³ ë”•\", \"ë‹ì›€\", Dotum, AppleSDGothicNeo ,Droid Sans, arial, sans-serif; color:#4d4d4d; font-size:12px;}				"
 			+"article, aside, details, figcaption, figure,																		"
 			+"footer, header, hgroup, menu, nav, section {display:block;}														"
 			+"fieldset, img, abbr, acronym {border:0;}																			"
@@ -2394,31 +2394,31 @@ public class MailManager {
 			+"  	<td colspan=\"2\">"
 			+"  		<p style=\"text-align:right; line-height:24px; padding-right:10px; font-size:14px;\"><a href=\"http://www.niceaptbid.com/\">www.niceaptbid.com</a></p>"
 			+"    		<div style=\"position:relative; margin:10px; padding:0 15px 10px 15px; border:solid 2px #b0cbeb;\">"
-			+"      		<h2 style=\"font-size:20px; color:#333; text-align:center; padding:20px 0;\">ÀÓ½Ãºñ¹Ğ¹øÈ£</h2>"
+			+"      		<h2 style=\"font-size:20px; color:#333; text-align:center; padding:20px 0;\">ì„ì‹œë¹„ë°€ë²ˆí˜¸</h2>"
 			+"      		<div style=\"position:relative; background:#eee; border-bottom:solid 1px #ddd; border-top:solid 1px #ddd; padding:20px; line-height:18px;\">";
 			
 			if(sType.equals("id"))
 			{
 				
-			strContents += "      <p>"+name+" È¸¿ø´ÔÀÇ <br>¿äÃ»ÇÏ½Å ¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû(niceaptbid) È¨ÆäÀÌÁöÀÇ ¾ÆÀÌµğ(ID)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.</p>"
-			+"        			  <p>¾ÆÀÌµğ(ID) : <strong>"+sPrint+"</strong> </p>"
+			strContents += "      <p>"+name+" íšŒì›ë‹˜ì˜ <br>ìš”ì²­í•˜ì‹  ì•„íŒŒíŠ¸ ì „ì ì…ì°°(niceaptbid) í™ˆí˜ì´ì§€ì˜ ì•„ì´ë””(ID)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.</p>"
+			+"        			  <p>ì•„ì´ë””(ID) : <strong>"+sPrint+"</strong> </p>"
 			+"					  <br>"
 			+"      			  <br>";
 			} else {
-			strContents +="      <p>"+name+" È¸¿ø´ÔÀÇ <br>¿äÃ»ÇÏ½Å ¾ÆÆÄÆ® ÀüÀÚ ÀÔÂû(niceaptbid) È¨ÆäÀÌÁöÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£(PW)¸¦ ¾È³»ÇØ µå¸³´Ï´Ù.</p>"
-			+"        			 <p>ÀÓ½Ãºñ¹Ğ¹øÈ£(PW) : <strong>"+sPrint+"</strong> </p>"
-			+"		             <p>·Î±×ÀÎ ÈÄ Á¤º¸°ü¸® ÆäÀÌÁö¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</p>"
+			strContents +="      <p>"+name+" íšŒì›ë‹˜ì˜ <br>ìš”ì²­í•˜ì‹  ì•„íŒŒíŠ¸ ì „ì ì…ì°°(niceaptbid) í™ˆí˜ì´ì§€ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW)ë¥¼ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.</p>"
+			+"        			 <p>ì„ì‹œë¹„ë°€ë²ˆí˜¸(PW) : <strong>"+sPrint+"</strong> </p>"
+			+"		             <p>ë¡œê·¸ì¸ í›„ ì •ë³´ê´€ë¦¬ í˜ì´ì§€ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•´ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.</p>"
 			+"		             <br>"
-			+"		             <p>-ºñ¹Ğ¹øÈ£ º¯°æ¹æ¹ı-</p>"
-			+"		             <p>È¨ÆäÀÌÁö Á¢¼Ó -> ·Î±×ÀÎ(¾ÆÀÌµğ/ÀÓ½Ãºñ¹Ğ¹øÈ£ ÀÔ·Â) -> ¿ìÃø »ó´Ü Á¤º¸°ü¸® Å¬¸¯</p>"
-			+"		             <p>-> ±âº»Á¤º¸°ü¸® ÇÏ´Ü ¼öÁ¤ÇÏ±â Å¬¸¯ -> º¯°æÇÒ ºñ¹Ğ¹øÈ£ ¼³Á¤ ¹× È®ÀÎ -> ÀúÀå</p>"
+			+"		             <p>-ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ë°©ë²•-</p>"
+			+"		             <p>í™ˆí˜ì´ì§€ ì ‘ì† -> ë¡œê·¸ì¸(ì•„ì´ë””/ì„ì‹œë¹„ë°€ë²ˆí˜¸ ì…ë ¥) -> ìš°ì¸¡ ìƒë‹¨ ì •ë³´ê´€ë¦¬ í´ë¦­</p>"
+			+"		             <p>-> ê¸°ë³¸ì •ë³´ê´€ë¦¬ í•˜ë‹¨ ìˆ˜ì •í•˜ê¸° í´ë¦­ -> ë³€ê²½í•  ë¹„ë°€ë²ˆí˜¸ ì„¤ì • ë° í™•ì¸ -> ì €ì¥</p>"
 			+"					 <br>"
 			+"      			 <br>";
 			}
 			strContents +="	"
 			+"          	</div>"
 			+"          	<p style=\"text-align:center; margin:20px 0;\"><a href=\"http://www.niceaptbid.com/\"><img src=\"http://www.niceaptbid.com/web/apt/html/images/mail/btn_goHome.gif\" ></a></p>"
-			+"          	<div class=\"m_footer\">°í°´¼¾ÅÍ 02-788-9029 / ÀÌ¿ë½Ã°£-ÆòÀÏ:09:00~18:00(Åä.ÀÏ¿äÀÏ ¹× ¹ıÁ¤°øÈŞÀÏ ÈŞ¹«)</div>"
+			+"          	<div class=\"m_footer\">ê³ ê°ì„¼í„° 02-788-9029 / ì´ìš©ì‹œê°„-í‰ì¼:09:00~18:00(í† .ì¼ìš”ì¼ ë° ë²•ì •ê³µíœ´ì¼ íœ´ë¬´)</div>"
 			+"  		</div>"
 			+"    	</td>"
 			+"	</tr>"
@@ -2432,7 +2432,7 @@ public class MailManager {
 			String[] strCc= null;
 			String[] strBcc= null;
 			String strFrom = Startup.conf.getString("email.mailFrom"); //"niceaptbid@nicednb.com";
-			String strSubject = "["+ sFromName + "] " + sToName + "´ÔÀÌ ¿äÃ»ÇÏ½Å È¸¿ø Á¤º¸ÀÔ´Ï´Ù.";
+			String strSubject = "["+ sFromName + "] " + sToName + "ë‹˜ì´ ìš”ì²­í•˜ì‹  íšŒì› ì •ë³´ì…ë‹ˆë‹¤.";
 			String attchFile= "";
 			
 			System.out.print("strTo["+strTo+"]");
@@ -2441,7 +2441,7 @@ public class MailManager {
 			System.out.print("strSubject["+strSubject+"]");
 			
 			
-			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "¾ÆÆÄÆ®ÀüÀÚÀÔÂû", strSubject, strContents, attchFile);
+			OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ì•„íŒŒíŠ¸ì „ìì…ì°°", strSubject, strContents, attchFile);
 		}
 		else
 		{
@@ -2454,17 +2454,17 @@ public class MailManager {
 	
 	
 	/**
-	 * ¸ŞÀÏ Àü¼Û
+	 * ë©”ì¼ ì „ì†¡
 	 * @param request			HttpServletRequest
-	 * @param sFrom				Àü¼ÛÀÚ ÀÌ¸ŞÀÏ ÁÖ¼Ò
-	 * @param sWriter			Àü¼ÛÀÚ ¸í
-	 * @param sTo					¹Ş´ÂÀÌ ÀÌ¸ŞÀÏ ÁÖ¼Ò
-	 * @param sMailTitle	Àü¼Û ¸ŞÀÏ Á¦¸ñ
-	 * @param sPage				ÅÛÇÃ¸´ÁÖ¼Ò
-	 * @param sTitle			¸ŞÀÏ³»¿ë(Á¦¸ñ)
-	 * @param sContent		¸ŞÀÏ³»¿ë(³»¿ë)
-	 * @param aSubTitle		¸ŞÀÏ³»¿ë(¼ÒÁ¦¸ñ)
-	 * @param aSubContent	¸ŞÀÏ³»¿ë(¼ÒÁ¦¸ñÀÇ ³»¿ë)
+	 * @param sFrom				ì „ì†¡ì ì´ë©”ì¼ ì£¼ì†Œ
+	 * @param sWriter			ì „ì†¡ì ëª…
+	 * @param sTo					ë°›ëŠ”ì´ ì´ë©”ì¼ ì£¼ì†Œ
+	 * @param sMailTitle	ì „ì†¡ ë©”ì¼ ì œëª©
+	 * @param sPage				í…œí”Œë¦¿ì£¼ì†Œ
+	 * @param sTitle			ë©”ì¼ë‚´ìš©(ì œëª©)
+	 * @param sContent		ë©”ì¼ë‚´ìš©(ë‚´ìš©)
+	 * @param aSubTitle		ë©”ì¼ë‚´ìš©(ì†Œì œëª©)
+	 * @param aSubContent	ë©”ì¼ë‚´ìš©(ì†Œì œëª©ì˜ ë‚´ìš©)
 	 * @return
 	 */
 	public boolean sendMail(HttpServletRequest request, String sFrom, String sWriter, String sTo, String sMailTitle, String sPage
@@ -2479,7 +2479,7 @@ public class MailManager {
 			//else	sCharSet	=	"KSC5601";
 			/*String	sHost			=	this.ccf.getString("mail.host");		//	send mail host
 			
-			String	sParams	=	"";	//	ÆÄ¶ó¸ŞÅ¸°ª
+			String	sParams	=	"";	//	íŒŒë¼ë©”íƒ€ê°’
 			
 			
 			System.out.println("sendMail mCompanyType : " + mCompanyType);
@@ -2502,7 +2502,7 @@ public class MailManager {
 			
 			sParams	=	"?" + sParams.substring(0, sParams.length()-1);
 			
-			String	sCurUrl	=	request.getRequestURL().toString(); // ÇöÀçÆäÀÌÁö °æ·Î
+			String	sCurUrl	=	request.getRequestURL().toString(); // í˜„ì¬í˜ì´ì§€ ê²½ë¡œ
 			sCurUrl	=	sCurUrl.substring(0,sCurUrl.indexOf("/web")) + sPage + sParams; 
 			
 			//sCurUrl	=	"http://srm.kolon-kesco.com"+ sPage + sParams;
@@ -2526,7 +2526,7 @@ public class MailManager {
 			
 			
 			
-			// ±âº» SessionÀ» »ı¼ºÇÏ°í ÇÒ´çÇÕ´Ï´Ù.
+			// ê¸°ë³¸ Sessionì„ ìƒì„±í•˜ê³  í• ë‹¹í•©ë‹ˆë‹¤.
 			Session msgSession = Session.getDefaultInstance(props, auth);*/
 			
 			/*Properties props = new Properties();
@@ -2607,13 +2607,13 @@ public class MailManager {
 
 
 	/**
-	 * SMS Àü¼Û
-	 * @param sSenderName    º¸³»´Â»ç¶÷ ÀÌ¸§
-	 * @param sSenderPhoneNo º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£
-	 * @param sReceiverCpNo1 ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¼­ºñ½º¹øÈ£
-	 * @param sReceiverCpNo2 ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ±¹¹ø
-	 * @param sReceiverCpNo3 ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¹øÈ£
-	 * @param sSmsMsg        Àü¼Û ¸Ş½ÃÁö
+	 * SMS ì „ì†¡
+	 * @param sSenderName    ë³´ë‚´ëŠ”ì‚¬ëŒ ì´ë¦„
+	 * @param sSenderPhoneNo ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸
+	 * @param sReceiverCpNo1 ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ì„œë¹„ìŠ¤ë²ˆí˜¸
+	 * @param sReceiverCpNo2 ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” êµ­ë²ˆ
+	 * @param sReceiverCpNo3 ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ë²ˆí˜¸
+	 * @param sSmsMsg        ì „ì†¡ ë©”ì‹œì§€
 	 * @return
 	 */
 	public boolean sendSMS(String sSenderName, String sSenderPhoneNo, String sReceiverCpNo1, String sReceiverCpNo2, String sReceiverCpNo3, String sSmsMsg)
@@ -2621,7 +2621,7 @@ public class MailManager {
 		boolean bSuccess = false;
 		
 		
-		// Àü´ŞµÈ °ªÀÌ Á¤»óÀû ÀÏ¶§¸¸ Ã³¸®
+		// ì „ë‹¬ëœ ê°’ì´ ì •ìƒì  ì¼ë•Œë§Œ ì²˜ë¦¬
 		if ( 	(sSenderName != null)
 			 &&	(sSenderPhoneNo != null) && !sSenderPhoneNo.equals("")
 			 &&	(sReceiverCpNo1 != null) && (sReceiverCpNo1.length() == 3)
@@ -2631,14 +2631,14 @@ public class MailManager {
 			 && (sReceiverCpNo1.equals("010") || sReceiverCpNo1.equals("011") || sReceiverCpNo1.equals("016") || sReceiverCpNo1.equals("017") || sReceiverCpNo1.equals("018") || sReceiverCpNo1.equals("019"))
 			)
 		{
-			String sHmCallbackNo = "027889097"; // sSenderPhoneNo;	// "-" Á¦°ÅÇÑ 12ÀÚ¸® º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
-			String sHmPhoneNo = sReceiverCpNo1 + sReceiverCpNo2 + sReceiverCpNo3;		// ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¹øÈ£ ÇÕÄ£°Í
-			String sHmHp1 = sReceiverCpNo1;			// 4ÀÚ¸® ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¼­ºñ½º¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
+			String sHmCallbackNo = "027889097"; // sSenderPhoneNo;	// "-" ì œê±°í•œ 12ìë¦¬ ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ (ìš°ì¸¡ì— ê³µë°±ì¶”ê°€)
+			String sHmPhoneNo = sReceiverCpNo1 + sReceiverCpNo2 + sReceiverCpNo3;		// ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ë²ˆí˜¸ í•©ì¹œê²ƒ
+			String sHmHp1 = sReceiverCpNo1;			// 4ìë¦¬ ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ì„œë¹„ìŠ¤ë²ˆí˜¸ (ìš°ì¸¡ì— ê³µë°±ì¶”ê°€)
 			
 			try {
 				String sHostName;
 				sHostName = java.net.InetAddress.getLocalHost().getHostName();
-				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
+				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ì‹¤ì„œë²„ë§Œ sms ë³´ëƒ„
 				{
 					DB db = new DB();
 					//db.setDebug(out);
@@ -2675,28 +2675,28 @@ public class MailManager {
 					System.out.println(query);
 					db.setCommand(query, sms.record);
 					if(!db.executeArray()){
-						System.out.println("//-------------------- [SMSÀü¼Û ¿À·ù] --------------------//");
-						System.out.println("  - º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ : " + sHmCallbackNo);
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + sHmPhoneNo);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + sSmsMsg);
+						System.out.println("//-------------------- [SMSì „ì†¡ ì˜¤ë¥˜] --------------------//");
+						System.out.println("  - ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : " + sHmCallbackNo);
+						System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + sHmPhoneNo);
+						System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + sSmsMsg);
 						System.out.println("//--------------------------------------------------//");
 					} 
 					else
 					{
-						System.out.println("//-------------------- [SMSÀü¼Û] --------------------//");
-						System.out.println("  - º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ : " + sHmCallbackNo);
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + sHmPhoneNo);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + sSmsMsg);
+						System.out.println("//-------------------- [SMSì „ì†¡] --------------------//");
+						System.out.println("  - ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : " + sHmCallbackNo);
+						System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + sHmPhoneNo);
+						System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + sSmsMsg);
 						System.out.println("//--------------------------------------------------//");
 					}
 					bSuccess = true;					
 				}
 				else
 				{
-					System.out.println("//-------------------- [°¡»ó SMSÀü¼Û:°³¹ß¿ë] --------------------//");
-					System.out.println("  - º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ : " + sHmCallbackNo);
-					System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + sHmPhoneNo);
-					System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + sSmsMsg);
+					System.out.println("//-------------------- [ê°€ìƒ SMSì „ì†¡:ê°œë°œìš©] --------------------//");
+					System.out.println("  - ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : " + sHmCallbackNo);
+					System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + sHmPhoneNo);
+					System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + sSmsMsg);
 					System.out.println("//--------------------------------------------------//");
 					bSuccess = true;
 				}
@@ -2709,7 +2709,7 @@ public class MailManager {
 		}
 		else
 		{
-			System.out.println("[ERROR "+this.getClass()+".sendSMS()] : Àü´ŞµÈ parmater¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.");
+			System.out.println("[ERROR "+this.getClass()+".sendSMS()] : ì „ë‹¬ëœ parmaterì— ì˜¤ë¥˜ê°€ ìˆìŠµë‹ˆë‹¤.");
 		}
 		
 		return bSuccess;
@@ -2717,20 +2717,20 @@ public class MailManager {
 	}
 
 	/**
-	 * SMS Àü¼Û
-	 * @param sSenderName    º¸³»´Â»ç¶÷ ÀÌ¸§
-	 * @param sSenderPhoneNo º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£
-	 * @param sReceiverCpNo1 ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¼­ºñ½º¹øÈ£
-	 * @param sReceiverCpNo2 ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ±¹¹ø
-	 * @param sReceiverCpNo3 ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¹øÈ£
-	 * @param sSmsMsg        Àü¼Û ¸Ş½ÃÁö
+	 * SMS ì „ì†¡
+	 * @param sSenderName    ë³´ë‚´ëŠ”ì‚¬ëŒ ì´ë¦„
+	 * @param sSenderPhoneNo ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸
+	 * @param sReceiverCpNo1 ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ì„œë¹„ìŠ¤ë²ˆí˜¸
+	 * @param sReceiverCpNo2 ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” êµ­ë²ˆ
+	 * @param sReceiverCpNo3 ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ë²ˆí˜¸
+	 * @param sSmsMsg        ì „ì†¡ ë©”ì‹œì§€
 	 * @return 
 	 */
 	public boolean sendSMS_apt(String sSenderName, String sSenderPhoneNo, String sReceiverCpNo1, String sReceiverCpNo2, String sReceiverCpNo3, String sSmsMsg)
 	{
 		boolean bSuccess = false;
 		
-		// Àü´ŞµÈ °ªÀÌ Á¤»óÀû ÀÏ¶§¸¸ Ã³¸®
+		// ì „ë‹¬ëœ ê°’ì´ ì •ìƒì  ì¼ë•Œë§Œ ì²˜ë¦¬
 		if ( 	(sSenderName != null)
 				&&	(sSenderPhoneNo != null) && !sSenderPhoneNo.equals("")
 				&&	(sReceiverCpNo1 != null) && (sReceiverCpNo1.length() == 3)
@@ -2741,14 +2741,14 @@ public class MailManager {
 		{
 			HashMap<String, String> hm = new HashMap<String, String>();
 			
-			String sHmCallbackNo = "027889029";//sSenderPhoneNo;	// "-" Á¦°ÅÇÑ 12ÀÚ¸® º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
-			String sHmPhoneNo = sReceiverCpNo1 + sReceiverCpNo2 + sReceiverCpNo3;		// ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¹øÈ£ ÇÕÄ£°Í
-			String sHmHp1 = sReceiverCpNo1;			// 4ÀÚ¸® ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ ¼­ºñ½º¹øÈ£ (¿ìÃø¿¡ °ø¹éÃß°¡)
+			String sHmCallbackNo = "027889029";//sSenderPhoneNo;	// "-" ì œê±°í•œ 12ìë¦¬ ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ (ìš°ì¸¡ì— ê³µë°±ì¶”ê°€)
+			String sHmPhoneNo = sReceiverCpNo1 + sReceiverCpNo2 + sReceiverCpNo3;		// ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ë²ˆí˜¸ í•©ì¹œê²ƒ
+			String sHmHp1 = sReceiverCpNo1;			// 4ìë¦¬ ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” ì„œë¹„ìŠ¤ë²ˆí˜¸ (ìš°ì¸¡ì— ê³µë°±ì¶”ê°€)
 			
 			try {
 				String sHostName;
 				sHostName = java.net.InetAddress.getLocalHost().getHostName();
-				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
+				if(sHostName.equals("docu01") || sHostName.equals("docu02")) // ì‹¤ì„œë²„ë§Œ sms ë³´ëƒ„
 				{
 					DB db = new DB();
 					//db.setDebug(out);
@@ -2785,28 +2785,28 @@ public class MailManager {
 					System.out.println(query);
 					db.setCommand(query, sms.record);
 					if(!db.executeArray()){						
-						System.out.println("//-------------------- [SMSÀü¼Û ¿À·ù] --------------------//");
-						System.out.println("  - º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ : " + sHmCallbackNo);
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + sHmPhoneNo);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + sSmsMsg);
+						System.out.println("//-------------------- [SMSì „ì†¡ ì˜¤ë¥˜] --------------------//");
+						System.out.println("  - ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : " + sHmCallbackNo);
+						System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + sHmPhoneNo);
+						System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + sSmsMsg);
 						System.out.println("//--------------------------------------------------//");
 					} 
 					else
 					{
-						System.out.println("//-------------------- [SMSÀü¼Û] --------------------//");
-						System.out.println("  - º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ : " + sHmCallbackNo);
-						System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + sHmPhoneNo);
-						System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + sSmsMsg);
+						System.out.println("//-------------------- [SMSì „ì†¡] --------------------//");
+						System.out.println("  - ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : " + sHmCallbackNo);
+						System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + sHmPhoneNo);
+						System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + sSmsMsg);
 						System.out.println("//--------------------------------------------------//");
 					}
 					bSuccess = true;						
 				}
 				else
 				{
-					System.out.println("//-------------------- [°¡»ó SMSÀü¼Û:°³¹ß¿ë] --------------------//");
-					System.out.println("  - º¸³»´Â»ç¶÷ ÀüÈ­¹øÈ£ : " + sHmCallbackNo);
-					System.out.println("  - ¹Ş´Â»ç¶÷ ÈŞ´ëÀüÈ­ : " + sHmPhoneNo);
-					System.out.println("  - Àü¼Û ¸Ş½ÃÁö : " + sSmsMsg);
+					System.out.println("//-------------------- [ê°€ìƒ SMSì „ì†¡:ê°œë°œìš©] --------------------//");
+					System.out.println("  - ë³´ë‚´ëŠ”ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : " + sHmCallbackNo);
+					System.out.println("  - ë°›ëŠ”ì‚¬ëŒ íœ´ëŒ€ì „í™” : " + sHmPhoneNo);
+					System.out.println("  - ì „ì†¡ ë©”ì‹œì§€ : " + sSmsMsg);
 					System.out.println("//--------------------------------------------------//");
 					bSuccess = true;
 				}			
@@ -2817,7 +2817,7 @@ public class MailManager {
 		}
 		else
 		{
-			System.out.println("[ERROR "+this.getClass()+".sendSMS()] : Àü´ŞµÈ parmater¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.");
+			System.out.println("[ERROR "+this.getClass()+".sendSMS()] : ì „ë‹¬ëœ parmaterì— ì˜¤ë¥˜ê°€ ìˆìŠµë‹ˆë‹¤.");
 		}
 		
 		return bSuccess;
@@ -2826,9 +2826,9 @@ public class MailManager {
 	
 
 	/**
-	 * MimeBodyPart ÆÄÀÏÃ·ºÎ
-	 * @param sFullUrl		ÆÄÀÏÆ÷ÇÔ ÀüÃ¼°æ·Î
-	 * @param sReNameFile	ÆÄÀÏ¸í
+	 * MimeBodyPart íŒŒì¼ì²¨ë¶€
+	 * @param sFullUrl		íŒŒì¼í¬í•¨ ì „ì²´ê²½ë¡œ
+	 * @param sReNameFile	íŒŒì¼ëª…
 	 * @return
 	 * @throws Exception
 	 */
@@ -2836,7 +2836,7 @@ public class MailManager {
 	{
 		MimeBodyPart	mbpFile	=	null;
 		try {
-			/*	¸ŞÀÏ ÆÄÀÏ Ã·ºÎ */
+			/*	ë©”ì¼ íŒŒì¼ ì²¨ë¶€ */
 			mbpFile	=	new	MimeBodyPart();
 			FileDataSource	fds	=	new	FileDataSource(sFullUrl);
 			mbpFile.setDataHandler(new DataHandler(fds));
@@ -2854,8 +2854,8 @@ public class MailManager {
 
 
 	/**
-	 * MimeBodyPart ¹è¿­ ¹İÈ¯
-	 * @param hm	key : °¡Á®¿Ã ÆÄÀÏ ÀüÁ¦ °æ·Î(ÆÄÀÏ¸í Æ÷ÇÔ), value: rename file ¸í
+	 * MimeBodyPart ë°°ì—´ ë°˜í™˜
+	 * @param hm	key : ê°€ì ¸ì˜¬ íŒŒì¼ ì „ì œ ê²½ë¡œ(íŒŒì¼ëª… í¬í•¨), value: rename file ëª…
 	 * @throws Exception
 	 */
 	public ArrayList getMultipart(HashMap hm)
@@ -2864,7 +2864,7 @@ public class MailManager {
 		try {
 			Iterator	it	=	hm.keySet().iterator();
 
-			String	sFullUrl	=	"";	//	°æ·Î¸í
+			String	sFullUrl	=	"";	//	ê²½ë¡œëª…
 			String	sReNameFile	=	"";	//	rename file name
 
 			al	=	new	ArrayList();
@@ -2886,7 +2886,7 @@ public class MailManager {
 	}
 
 	/**
-	 * HTML ¼Ò½º°¡Á®¿Í StringÀ¸·Î ¸¸µé±â
+	 * HTML ì†ŒìŠ¤ê°€ì ¸ì™€ Stringìœ¼ë¡œ ë§Œë“¤ê¸°
 	 * @param url
 	 * @return
 	 * @throws Exception
@@ -2917,7 +2917,7 @@ public class MailManager {
 	}
 
 	/**
-	 * parameter °ª ¸¸µé±â
+	 * parameter ê°’ ë§Œë“¤ê¸°
 	 * @param hm
 	 * @return
 	 * @throws Exception
@@ -2940,10 +2940,10 @@ public class MailManager {
 
 				if(i == 1)
 				{
-					sb.append("?" + sKey + "=" + java.net.URLEncoder.encode(sVal,"EUC-KR"));
+					sb.append("?" + sKey + "=" + java.net.URLEncoder.encode(sVal,"UTF-8"));
 				}else
 				{
-					sb.append("&" + sKey + "=" + java.net.URLEncoder.encode(sVal,"EUC-KR"));
+					sb.append("&" + sKey + "=" + java.net.URLEncoder.encode(sVal,"UTF-8"));
 				}
 				i++;
 			}
@@ -2955,8 +2955,8 @@ public class MailManager {
 	}
 	
 	
-	// ÀüÀÚÀÔÂû ¸ŞÀÏ
-	public boolean sendBidMail(int mailType, DataSetValue mailInfo){// mailType 1:Çö¼³ 2:ÀÔÂû°ø°í 3:¿¬±â°ø°í 4:Á¤Á¤°ø°í 5:Ãë¼Ò°ø°í
+	// ì „ìì…ì°° ë©”ì¼
+	public boolean sendBidMail(int mailType, DataSetValue mailInfo){// mailType 1:í˜„ì„¤ 2:ì…ì°°ê³µê³  3:ì—°ê¸°ê³µê³  4:ì •ì •ê³µê³  5:ì·¨ì†Œê³µê³ 
 		boolean succes = false;
 		
 		try{
@@ -2967,36 +2967,36 @@ public class MailManager {
 			String content = "";
 			String subject = "";
 			if(mailType == 1){
-				title = "Çö¼³°ø°í";
-				content = "ÇöÀå¼³¸í Âü¼®À» ¿äÃ» ÇÏ¿´½À´Ï´Ù.";
-				subject = "["+mailInfo.getString("mainVendNm")+"] ÇöÀå ¼³¸í Âü¼®¿äÃ» ¾È³»";
+				title = "í˜„ì„¤ê³µê³ ";
+				content = "í˜„ì¥ì„¤ëª… ì°¸ì„ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.";
+				subject = "["+mailInfo.getString("mainVendNm")+"] í˜„ì¥ ì„¤ëª… ì°¸ì„ìš”ì²­ ì•ˆë‚´";
 			}else if(mailType == 2){
-				title = "ÀÔÂû°ø°í";
-				content = "°ßÀû¼­ Á¦ÃâÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù.";
-				subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í °ßÀû¼­ Á¦Ãâ ¿äÃ» ¾È³»";
+				title = "ì…ì°°ê³µê³ ";
+				content = "ê²¬ì ì„œ ì œì¶œì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.";
+				subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ê²¬ì ì„œ ì œì¶œ ìš”ì²­ ì•ˆë‚´";
 			}else if(mailType == 3){
-				title = "¿¬±â°ø°í";
-				content = "¿¬±â°ø°í ¾Ë·Áµå¸³´Ï´Ù.";
-				subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í ¸¶°¨½Ã°£ ¿¬±â ¾È³»";
+				title = "ì—°ê¸°ê³µê³ ";
+				content = "ì—°ê¸°ê³µê³  ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+				subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ë§ˆê°ì‹œê°„ ì—°ê¸° ì•ˆë‚´";
 			}else if(mailType == 4){
-				title = "Á¤Á¤°ø°í È®ÀÎÀ»";
-				content = "Á¤Á¤°ø°í ¾Ë·Áµå¸³´Ï´Ù.";
-				subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í Á¤Á¤ ¾È³»";
+				title = "ì •ì •ê³µê³  í™•ì¸ì„";
+				content = "ì •ì •ê³µê³  ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+				subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ì •ì • ì•ˆë‚´";
 			}else if(mailType == 5){
-				title = "Ãë¼Ò°ø°í";
-				content = "°ø°íÃë¼Ò ¾Ë·Áµå¸³´Ï´Ù.";
-				subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í Ãë¼Ò ¾È³»";
+				title = "ì·¨ì†Œê³µê³ ";
+				content = "ê³µê³ ì·¨ì†Œ ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+				subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ì·¨ì†Œ ì•ˆë‚´";
 			}
 			
 			String html = "";
 			html+="	<html>																																		";						
 			html+="	<head>                                                                                                                                      ";
-			html+="	<title>"+title+" Á¤º¸ ¾È³»</title>                                                                                                         ";
-			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">";
+			html+="	<title>"+title+" ì •ë³´ ì•ˆë‚´</title>                                                                                                         ";
+			html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
 			html+="	<style type=\"text/css\">                                                                                                                   ";
 			html+="	<!--                                                                                                                                        ";
-			html+="	td {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
-			html+="	.b {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
+			html+="	td {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
+			html+="	.b {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
 			html+="	-->                                                                                                                                         ";
 			html+="	</style>                                                                                                                                    ";
 			html+="	</head>                                                                                                                                     ";
@@ -3022,25 +3022,25 @@ public class MailManager {
 			html+="	                <td bgcolor=\"#fafafa\">                                                                                                    ";
 			html+="	                  <table width=\"100%\" border=\"0\" cellspacing=\"1\" cellpadding=\"3\">                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td width=\"15%\" align=\"center\"><b>¹ßÁÖÀÚ</b></td>                                                                 ";
+			html+="	                      <td width=\"15%\" align=\"center\"><b>ë°œì£¼ì</b></td>                                                                 ";
 			html+="	                      <td>: "+mailInfo.getString("mainVendNm")+"</td>                                                                       ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td align=\"center\"><b>ÇöÀå¸í</b></td>                                                                               ";
+			html+="	                      <td align=\"center\"><b>í˜„ì¥ëª…</b></td>                                                                               ";
 			html+="	                      <td>: "+mailInfo.getString("fieldNm")+"</td>                                                                          ";
 			html+="	                    </tr>                                                                                                                   ";
 			html+="	                    <tr>                                                                                                                    ";
-			html+="	                      <td align=\"center\"><b>°ø°í¸í</b></td>                                                                               ";
+			html+="	                      <td align=\"center\"><b>ê³µê³ ëª…</b></td>                                                                               ";
 			html+="	                      <td>: "+mailInfo.getString("bidNm")+"</td>                                                                            ";
 			html+="	                    </tr>                                                                                                                   ";
 			if(mailType == 1){
 				html+="	                    <tr>                                                                                                                ";
-				html+="	                      <td align=\"center\"><b>Çö¼³ÀÏ½Ã</b></td>                                                                         ";
+				html+="	                      <td align=\"center\"><b>í˜„ì„¤ì¼ì‹œ</b></td>                                                                         ";
 				html+="	                      <td>: "+mailInfo.getString("field_expl_ymd")+"</td>                                                               ";
 				html+="	                    </tr>                                                                                                               ";
 			}else{
 				html+="	                    <tr>                                                                                                                ";
-				html+="	                      <td align=\"center\"><b>°ø°íÀÏÀÚ</b></td>                                                                         ";
+				html+="	                      <td align=\"center\"><b>ê³µê³ ì¼ì</b></td>                                                                         ";
 				html+="	                      <td>: "+mailInfo.getString("noti_date")+"</td>                                                                    ";
 				html+="	                    </tr>                                                                                                               ";
 			}
@@ -3052,9 +3052,9 @@ public class MailManager {
 			html+="	            <br>                                                                                                                            ";
 			html+="	            <table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">                                                         ";
 			html+="	              <tr>                                                                                                                          ";
-			html+="	                <td><span class=\"b\">"+mailInfo.getString("mainVendNm")+"</span>´ÔÀÌ <span class=\"b\">"+mailInfo.getString("suppNm")+"</span>                                                       ";
-			html+="	                  ´Ô²² "+content+"                                                                                         ";
-			html+="	                  <p>¾Æ·¡ '»ó¼¼º¸±â' ¹öÆ°À» Å¬¸¯ÇÏ¿© È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>                                                              ";
+			html+="	                <td><span class=\"b\">"+mailInfo.getString("mainVendNm")+"</span>ë‹˜ì´ <span class=\"b\">"+mailInfo.getString("suppNm")+"</span>                                                       ";
+			html+="	                  ë‹˜ê»˜ "+content+"                                                                                         ";
+			html+="	                  <p>ì•„ë˜ 'ìƒì„¸ë³´ê¸°' ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>                                                              ";
 			html+="	                  </p>                                                                                                                      ";
 			html+="	                </td>                                                                                                                       ";
 			html+="	              </tr>                                                                                                                         ";
@@ -3076,12 +3076,12 @@ public class MailManager {
 			html+="	</body>                                                                                                                                     ";
 			html+="	</html>                                                                                                                                     ";
 			
-			String strRtn[] = OkkiMail.sendJavaMail(mailInfo.getString("mail_to"), null, Startup.conf.getString("email.mailFrom"),"³ªÀÌ½º´ÙÅ¥", subject, html);
-			System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+			String strRtn[] = OkkiMail.sendJavaMail(mailInfo.getString("mail_to"), null, Startup.conf.getString("email.mailFrom"),"ë‚˜ì´ìŠ¤ë‹¤í", subject, html);
+			System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 			if(strRtn[0].equals("ok"))
-				succes = true;  //¼º°ø 
+				succes = true;  //ì„±ê³µ 
 			else
-				succes = false;  // ½ÇÆĞ
+				succes = false;  // ì‹¤íŒ¨
 		}catch (Exception e) {
 			System.out.println("[ERROR "+this.getClass()+".sendBidMail()] :" + e.toString());
 		}
@@ -3090,8 +3090,8 @@ public class MailManager {
 		return succes;
 	}
 	
-	// ÀüÀÚÀÔÂû ¸ŞÀÏ
-		public boolean sendNoBuildBidMail(String _sUrl, int mailType, DataSetValue mailInfo){// mailType 1:Çö¼³ 2:ÀÔÂû°ø°í 3:¿¬±â°ø°í 4:Á¤Á¤°ø°í 5:Ãë¼Ò°ø°í
+	// ì „ìì…ì°° ë©”ì¼
+		public boolean sendNoBuildBidMail(String _sUrl, int mailType, DataSetValue mailInfo){// mailType 1:í˜„ì„¤ 2:ì…ì°°ê³µê³  3:ì—°ê¸°ê³µê³  4:ì •ì •ê³µê³  5:ì·¨ì†Œê³µê³ 
 			boolean succes = false;
 			
 			try{
@@ -3102,44 +3102,44 @@ public class MailManager {
 				String content = "";
 				String subject = "";
 				if(mailType == 1){
-					title = "Çö¼³°ø°í";
-					content = "ÇöÀå¼³¸í Âü¼®À» ¿äÃ» ÇÏ¿´½À´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÇöÀå ¼³¸í Âü¼®¿äÃ» ¾È³»";
+					title = "í˜„ì„¤ê³µê³ ";
+					content = "í˜„ì¥ì„¤ëª… ì°¸ì„ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] í˜„ì¥ ì„¤ëª… ì°¸ì„ìš”ì²­ ì•ˆë‚´";
 				}else if(mailType == 2){
-					title = "ÀÔÂû°ø°í";
-					content = "°ßÀû¼­ Á¦ÃâÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í °ßÀû¼­ Á¦Ãâ ¿äÃ» ¾È³»";
+					title = "ì…ì°°ê³µê³ ";
+					content = "ê²¬ì ì„œ ì œì¶œì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ê²¬ì ì„œ ì œì¶œ ìš”ì²­ ì•ˆë‚´";
 				}else if(mailType == 3){
-					title = "¿¬±â°ø°í";
-					content = "¿¬±â°ø°í ¾Ë·Áµå¸³´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í ¸¶°¨½Ã°£ ¿¬±â ¾È³»";
+					title = "ì—°ê¸°ê³µê³ ";
+					content = "ì—°ê¸°ê³µê³  ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ë§ˆê°ì‹œê°„ ì—°ê¸° ì•ˆë‚´";
 				}else if(mailType == 4){
-					title = "Á¤Á¤°ø°í È®ÀÎÀ»";
-					content = "Á¤Á¤°ø°í ¾Ë·Áµå¸³´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í Á¤Á¤ ¾È³»";
+					title = "ì •ì •ê³µê³  í™•ì¸ì„";
+					content = "ì •ì •ê³µê³  ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ì •ì • ì•ˆë‚´";
 				}else if(mailType == 5){
-					title = "Ãë¼Ò°ø°í";
-					content = "°ø°íÃë¼Ò ¾Ë·Áµå¸³´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°ø°í Ãë¼Ò ¾È³»";
+					title = "ì·¨ì†Œê³µê³ ";
+					content = "ê³µê³ ì·¨ì†Œ ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê³µê³  ì·¨ì†Œ ì•ˆë‚´";
 				}else if(mailType == 6){
-					title = "ÀÔÂû°á°ú";
-					content = "ÀÔÂû°á°ú  ¾Ë·Áµå¸³´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÀÔÂû°á°ú  ¾È³»";
+					title = "ì…ì°°ê²°ê³¼";
+					content = "ì…ì°°ê²°ê³¼  ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] ì…ì°°ê²°ê³¼  ì•ˆë‚´";
 				}else if(mailType == 7){
-					title = "ÀçÀÔÂû°ø°í";
-					content = "ÀçÀÔÂû°ø°í ¾Ë·Áµå¸³´Ï´Ù.";
-					subject = "["+mailInfo.getString("mainVendNm")+"] ÀçÀÔÂû°ø°í ¾È³»";
+					title = "ì¬ì…ì°°ê³µê³ ";
+					content = "ì¬ì…ì°°ê³µê³  ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.";
+					subject = "["+mailInfo.getString("mainVendNm")+"] ì¬ì…ì°°ê³µê³  ì•ˆë‚´";
 				}
 				
 				String html = "";
 				html+="	<html>																																		";						
 				html+="	<head>                                                                                                                                      ";
-				html+="	<title>"+title+" Á¤º¸ ¾È³»</title>                                                                                                         ";
-				html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">";
+				html+="	<title>"+title+" ì •ë³´ ì•ˆë‚´</title>                                                                                                         ";
+				html+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
 				html+="	<style type=\"text/css\">                                                                                                                   ";
 				html+="	<!--                                                                                                                                        ";
-				html+="	td {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
-				html+="	.b {  font-family: \"µ¸¿ò\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
+				html+="	td {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; line-height: normal; color: #5B5B5B}       ";
+				html+="	.b {  font-family: \"ë‹ì›€\", \"Helvetica\", \"sans-serif\"; font-size: 12px; font-style: normal; font-weight: bold; color: #3662B8}         ";
 				html+="	-->                                                                                                                                         ";
 				html+="	</style>                                                                                                                                    ";
 				html+="	</head>                                                                                                                                     ";
@@ -3165,30 +3165,30 @@ public class MailManager {
 				html+="	                <td bgcolor=\"#fafafa\">                                                                                                    ";
 				html+="	                  <table width=\"100%\" border=\"0\" cellspacing=\"1\" cellpadding=\"3\">                                                   ";
 				html+="	                    <tr>                                                                                                                    ";
-				html+="	                      <td width=\"15%\" align=\"center\"><b>¹ßÁÖÀÚ</b></td>                                                                 ";
+				html+="	                      <td width=\"15%\" align=\"center\"><b>ë°œì£¼ì</b></td>                                                                 ";
 				html+="	                      <td>: "+mailInfo.getString("mainVendNm")+"</td>                                                                       ";
 				html+="	                    </tr>                                                                                                                   ";
 				html+="	                    <tr>                                                                                                                    ";
-				html+="	                      <td align=\"center\"><b>°ø°í¸í</b></td>                                                                               ";
+				html+="	                      <td align=\"center\"><b>ê³µê³ ëª…</b></td>                                                                               ";
 				html+="	                      <td>: "+mailInfo.getString("bidNm")+"</td>                                                                            ";
 				html+="	                    </tr>                                                                                                                   ";
 				if(mailType == 1){
 					html+="	                    <tr>                                                                                                                ";
-					html+="	                      <td align=\"center\"><b>Çö¼³ÀÏ½Ã</b></td>                                                                         ";
+					html+="	                      <td align=\"center\"><b>í˜„ì„¤ì¼ì‹œ</b></td>                                                                         ";
 					html+="	                      <td>: "+mailInfo.getString("field_expl_ymd")+"</td>                                                               ";
 					html+="	                    </tr>                                                                                                               ";
 					html+="	                    <tr>                                                                                                                ";
-					html+="	                      <td align=\"center\"><b>Çö¼³Àå¼Ò</b></td>                                                                         ";
+					html+="	                      <td align=\"center\"><b>í˜„ì„¤ì¥ì†Œ</b></td>                                                                         ";
 					html+="	                      <td>: "+mailInfo.getString("field_place")+"</td>                                                               ";
 					html+="	                    </tr>                                                                                                               ";
 				}else{
 					html+="	                    <tr>                                                                                                                ";
-					html+="	                      <td align=\"center\"><b>°ø°íÀÏÀÚ</b></td>                                                                         ";
+					html+="	                      <td align=\"center\"><b>ê³µê³ ì¼ì</b></td>                                                                         ";
 					html+="	                      <td>: "+mailInfo.getString("noti_date")+"</td>                                                                    ";
 					html+="	                    </tr>                                                                                                               ";
 					if(mailType == 2||mailType == 3||mailType == 7){
 						html+="	                    <tr>                                                                                                                ";
-						html+="	                      <td align=\"center\"><b>¸¶°¨ÀÏ½Ã</b></td>                                                                         ";
+						html+="	                      <td align=\"center\"><b>ë§ˆê°ì¼ì‹œ</b></td>                                                                         ";
 						html+="	                      <td>: <b><span style='color:#75baff'>"+mailInfo.getString("submit_edate")+"</span></b></td>                   ";
 						html+="	                    </tr>                                                                                                               ";	
 					}
@@ -3201,9 +3201,9 @@ public class MailManager {
 				html+="	            <br>                                                                                                                            ";
 				html+="	            <table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">                                                         ";
 				html+="	              <tr>                                                                                                                          ";
-				html+="	                <td><span class=\"b\">"+mailInfo.getString("mainVendNm")+"</span>´ÔÀÌ <span class=\"b\">"+mailInfo.getString("suppNm")+"</span>                                                       ";
-				html+="	                  ´Ô²² "+content+"                                                                                         ";
-				html+="	                  <p>¾Æ·¡ '»ó¼¼º¸±â' ¹öÆ°À» Å¬¸¯ÇÏ¿© È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>                                                              ";
+				html+="	                <td><span class=\"b\">"+mailInfo.getString("mainVendNm")+"</span>ë‹˜ì´ <span class=\"b\">"+mailInfo.getString("suppNm")+"</span>                                                       ";
+				html+="	                  ë‹˜ê»˜ "+content+"                                                                                         ";
+				html+="	                  <p>ì•„ë˜ 'ìƒì„¸ë³´ê¸°' ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ í™•ì¸ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>                                                              ";
 				html+="	                  </p>                                                                                                                      ";
 				html+="	                </td>                                                                                                                       ";
 				html+="	              </tr>                                                                                                                         ";
@@ -3225,12 +3225,12 @@ public class MailManager {
 				html+="	</body>                                                                                                                                     ";
 				html+="	</html>                                                                                                                                     ";
 				
-				String strRtn[] = OkkiMail.sendJavaMail(mailInfo.getString("mail_to"), null, Startup.conf.getString("email.mailFrom"),"³ªÀÌ½º´ÙÅ¥", subject, html);
-				System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+				String strRtn[] = OkkiMail.sendJavaMail(mailInfo.getString("mail_to"), null, Startup.conf.getString("email.mailFrom"),"ë‚˜ì´ìŠ¤ë‹¤í", subject, html);
+				System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 				if(strRtn[0].equals("ok"))
-					succes = true;  //¼º°ø 
+					succes = true;  //ì„±ê³µ 
 				else
-					succes = false;  // ½ÇÆĞ
+					succes = false;  // ì‹¤íŒ¨
 			}catch (Exception e) {
 				System.out.println("[ERROR "+this.getClass()+".sendBidMail()] :" + e.toString());
 			}
@@ -3240,16 +3240,16 @@ public class MailManager {
 		}
 		
 		/****************************************
-		 * ÀüÀÚ°è¾à¼­ È®ÀÎ¿äÃ»  ¸ŞÀÏ Àü¼Û
+		 * ì „ìê³„ì•½ì„œ í™•ì¸ìš”ì²­  ë©”ì¼ ì „ì†¡
 		 *
-		 * @param sFromCompanyName Àü¼Û¾÷Ã¼¸í
-		 * @param sToCompanyName ¹Ş´Â¾÷Ã¼¸í  
-		 * @param sToPersonName ¹Ş´Â¾÷Ã¼ ´ã´ãÀÚ¸í
-		 * @param sToPersonEmail ¹Ş´Â¾÷Ã¼ ´ã´çÀÚ ÀÌ¸ŞÀÏ
+		 * @param sFromCompanyName ì „ì†¡ì—…ì²´ëª…
+		 * @param sToCompanyName ë°›ëŠ”ì—…ì²´ëª…  
+		 * @param sToPersonName ë°›ëŠ”ì—…ì²´ ë‹´ë‹´ìëª…
+		 * @param sToPersonEmail ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì ì´ë©”ì¼
 		 * @return 
-		 *         500 : ÀÌ¸ŞÀÏ Àü¼Û ½Ã½ºÅÛ ¿¡·¯
-		 *         200 : ÀÌ¸ŞÀÏ Àü¼Û ¼º°ø
-		 *         400 : ÀÌ¸ŞÀÏ Àü¼Û ¿¡·¯
+		 *         500 : ì´ë©”ì¼ ì „ì†¡ ì‹œìŠ¤í…œ ì—ëŸ¬
+		 *         200 : ì´ë©”ì¼ ì „ì†¡ ì„±ê³µ
+		 *         400 : ì´ë©”ì¼ ì „ì†¡ ì—ëŸ¬
 		 */
 		public int sendRejectContMail(String sFromCompanyName, String sToCompanyName, String sToPersonName, String sToPersonEmail)
 		{
@@ -3264,13 +3264,13 @@ public class MailManager {
 				
 				String strContents = "<html>"
 					+"<head>"
-					+"<title>³ªÀÌ½º´ÙÅ¥(NiceDocu)</title>"
-					+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=euc-kr\">"
+					+"<title>ë‚˜ì´ìŠ¤ë‹¤í(NiceDocu)</title>"
+					+"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"
 					+"<style>"
 					+"table, tr, td, div, INPUT, SELECT, form, Textarea"
 					+"{"
 					+"	font-size:9pt;"
-					+"	font-family:±¼¸²,±¼¸²Ã¼;"
+					+"	font-family:êµ´ë¦¼,êµ´ë¦¼ì²´;"
 					+"	line-height: 120%;"
 					+"}"
 					+"</style>"
@@ -3284,9 +3284,9 @@ public class MailManager {
 					+"    <td height='200' align='center' bgcolor='#FFFFFF' background='"+ _sImg + "bg1.gif'><br/>"
 					+"      <table width='600' border='0' cellspacing='0' cellpadding='2'>"
 					+"      <tr>"
-					+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ´ÔÀÌ <strong>" + sToCompanyName + "</strong> ´Ô²² <br />"
-					+"          ÀüÀÚ°è¾à¼­ È®ÀÎ ¿äÃ» ÇÏ¿´½À´Ï´Ù.</p>"
-					+"          <p>¾Æ·¡ <span style='color: #3333FF;font-weight: bold'>¡°È®ÀÎÇÏ±â¡± </span>¹öÆ°À» ´­·¯ °è¾à¼­¸¦ °ËÅäÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br />"
+					+"        <td align='center'><p><strong>" + sFromCompanyName + "</strong> ë‹˜ì´ <strong>" + sToCompanyName + "</strong> ë‹˜ê»˜ <br />"
+					+"          ì „ìê³„ì•½ì„œ í™•ì¸ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.</p>"
+					+"          <p>ì•„ë˜ <span style='color: #3333FF;font-weight: bold'>â€œí™•ì¸í•˜ê¸°â€ </span>ë²„íŠ¼ì„ ëˆŒëŸ¬ ê³„ì•½ì„œë¥¼ ê²€í† í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br />"
 					+"              <br />"
 					+"          </p></td>"
 					+"      </tr>"
@@ -3302,7 +3302,7 @@ public class MailManager {
 					+"  	<table width='100%' border='0' cellpadding='0' cellspacing='0' bgcolor='#EBF3F4'>"
 					+"  	  <tr>"
 					+"  		<td width='125'><img src='"+ _sImg + "bottom.gif' height='65' /></td>"
-					+"  		<td align='right' style='font-size:11px'>¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ ±¹È¸´ë·Î 66±æ 9 (¿©ÀÇµµµ¿,NICE2»ç¿Á) 9Ãş&nbsp; °í°´¼¾ÅÍ (02)788-9097<br>"
+					+"  		<td align='right' style='font-size:11px'>ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ êµ­íšŒëŒ€ë¡œ 66ê¸¸ 9 (ì—¬ì˜ë„ë™,NICE2ì‚¬ì˜¥) 9ì¸µ&nbsp; ê³ ê°ì„¼í„° (02)788-9097<br>"
 					+"  						Copyright(c) 2010 NICE D&B All Rights Reserved"
 					+"  		</td>"
 					+"  		<td width='10'></td>"
@@ -3319,16 +3319,16 @@ public class MailManager {
 				String[] strCc= null;//{"drought@dreamwiz.com"};
 				String[] strBcc= null;//{"drought@dreamwiz.com"};
 				String strFrom = Startup.conf.getString("email.mailFrom");
-				String strSubject = sFromCompanyName + "´ÔÀÌ " + sToPersonName + "´Ô¿¡°Ô ÀüÀÚ°è¾à¼­¸¦ È®ÀÎ ¿äÃ» ÇÏ¿´½À´Ï´Ù.";
+				String strSubject = sFromCompanyName + "ë‹˜ì´ " + sToPersonName + "ë‹˜ì—ê²Œ ì „ìê³„ì•½ì„œë¥¼ í™•ì¸ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 				String attchFile= "";
 				
-				String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "³ªÀÌ½º´ÙÅ¥", strSubject, strContents, attchFile);
-				System.out.println("¸ŞÀÏ Àü¼Û °á°ú : " + strRtn[0]);
+				String strRtn[] = OkkiMail.sendJavaMail(strTo, strCc,strBcc,strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", strSubject, strContents, attchFile);
+				System.out.println("ë©”ì¼ ì „ì†¡ ê²°ê³¼ : " + strRtn[0]);
 		
 				if(strRtn[0].equals("ok"))
-					sReturn = 200;  //¼º°ø 
+					sReturn = 200;  //ì„±ê³µ 
 				else
-					sReturn = 400;  //½ÇÆĞ
+					sReturn = 400;  //ì‹¤íŒ¨
 				
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String mode = u.request("mode");
 
@@ -10,7 +10,7 @@ f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -36,7 +36,7 @@ if(!s_edate.equals(""))
 list.addSearch("c.member_name", f.get("s_member_name"), "LIKE");
 list.setOrderBy("a.reg_date desc, a.debt_no desc");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet rs = list.getDataSet();
 
 String btnReceitStr = "";
@@ -49,7 +49,7 @@ while(rs.next()){
 
 if(mode.equals("excel")){
 	if(rs.size()<1){
-		u.jsError("°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.");
+		u.jsError("ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	DataObject payDao = new DataObject("tcb_pay");
@@ -69,12 +69,12 @@ if(mode.equals("excel")){
 	p.setVar("sum", sum);
 
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("Ã¤±ÇÀÜ¾× °áÁ¦ÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ì±„ê¶Œìž”ì•¡ ê²°ì œí˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/admin/debt_pay_list_excel.html"));
 	return;
 }
 
-//ÇÕ°è±Ý¾×
+//í•©ê³„ê¸ˆì•¡
 DataObject payDao = new DataObject("tcb_pay");
 //payDao.setDebug(out);
 DataSet sum = payDao.query(" select nvl(sum(pay_amount*10/11),0) total_pay from "+ list.table + " where 1=1 and "+list.where );

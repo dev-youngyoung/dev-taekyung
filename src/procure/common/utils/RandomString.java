@@ -6,14 +6,14 @@ public class RandomString {
  
     public static void main(String[] args) {
         RandomString rndStr = new RandomString();
-        System.out.println("[·£´ı ¹®ÀÚ¿­]");
-        System.out.println("¼ıÀÚ (50ÀÚ¸®) : " + rndStr.getString(50,"1"));
-        System.out.println("´ë¹®ÀÚ (16ÀÚ¸®) : " + rndStr.getString(16,"A"));
-        System.out.println("¼Ò¹®ÀÚ (16ÀÚ¸®) : " + rndStr.getString(16,"a"));
-        System.out.println("´ë¹®ÀÚ + ¼ıÀÚ (32ÀÚ¸®) : " + rndStr.getString(32,"A1"));
-        System.out.println("¼Ò¹®ÀÚ + ¼ıÀÚ (32ÀÚ¸®) : " + rndStr.getString(32,"a1"));
-        System.out.println("´ë¹®ÀÚ + ¼Ò¹®ÀÚ + ¼ıÀÚ (32ÀÚ¸®) : " + rndStr.getString(32,""));
-        System.out.println("´ë¹®ÀÚ + ¼Ò¹®ÀÚ + ¼ıÀÚ (20ÀÚ¸®) : " + rndStr.getString(30,""));
+        System.out.println("[ëœë¤ ë¬¸ìì—´]");
+        System.out.println("ìˆ«ì (50ìë¦¬) : " + rndStr.getString(50,"1"));
+        System.out.println("ëŒ€ë¬¸ì (16ìë¦¬) : " + rndStr.getString(16,"A"));
+        System.out.println("ì†Œë¬¸ì (16ìë¦¬) : " + rndStr.getString(16,"a"));
+        System.out.println("ëŒ€ë¬¸ì + ìˆ«ì (32ìë¦¬) : " + rndStr.getString(32,"A1"));
+        System.out.println("ì†Œë¬¸ì + ìˆ«ì (32ìë¦¬) : " + rndStr.getString(32,"a1"));
+        System.out.println("ëŒ€ë¬¸ì + ì†Œë¬¸ì + ìˆ«ì (32ìë¦¬) : " + rndStr.getString(32,""));
+        System.out.println("ëŒ€ë¬¸ì + ì†Œë¬¸ì + ìˆ«ì (20ìë¦¬) : " + rndStr.getString(30,""));
     }
  
     //Overload Constructor

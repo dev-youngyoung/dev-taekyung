@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../init.jsp" %>
 <%
     NiceID.Check.CPClient niceCheck = new  NiceID.Check.CPClient();
 
     String sEncodeData = requestReplace(request.getParameter("EncodeData"), "encodeData");
 
-    String sSiteCode = "";				// NICE�κ��� �ο����� ����Ʈ �ڵ�
-    String sSitePassword = "";			// NICE�κ��� �ο����� ����Ʈ �н�����
+    String sSiteCode = "";				// NICE로부터 부여받은 사이트 코드
+    String sSitePassword = "";			// NICE로부터 부여받은 사이트 패스워드
 
-    String sCipherTime = "";			// ��ȣȭ�� �ð�
-    String sRequestNumber = "";			// ��û ��ȣ
-    String sErrorCode = "";				// ���� ����ڵ�
-    String sAuthType = "";				// ���� ����
+    String sCipherTime = "";			// 복호화한 시간
+    String sRequestNumber = "";			// 요청 번호
+    String sErrorCode = "";				// 인증 결과코드
+    String sAuthType = "";				// 인증 수단
     String sMessage = "";
     String sPlainData = "";
     
@@ -22,7 +22,7 @@
         sPlainData = niceCheck.getPlainData();
         sCipherTime = niceCheck.getCipherDateTime();
         
-        // ����Ÿ�� �����մϴ�.
+        // 데이타를 추출합니다.
         java.util.HashMap mapresult = niceCheck.fnParse(sPlainData);
         
         sRequestNumber 	= (String)mapresult.get("REQ_SEQ");
@@ -31,31 +31,31 @@
     }
     else if( iReturn == -1)
     {
-        sMessage = "��ȣȭ �ý��� �����Դϴ�.";
+        sMessage = "복호화 시스템 에러입니다.";
     }    
     else if( iReturn == -4)
     {
-        sMessage = "��ȣȭ ó�������Դϴ�.";
+        sMessage = "복호화 처리오류입니다.";
     }    
     else if( iReturn == -5)
     {
-        sMessage = "��ȣȭ �ؽ� �����Դϴ�.";
+        sMessage = "복호화 해쉬 오류입니다.";
     }    
     else if( iReturn == -6)
     {
-        sMessage = "��ȣȭ ������ �����Դϴ�.";
+        sMessage = "복호화 데이터 오류입니다.";
     }    
     else if( iReturn == -9)
     {
-        sMessage = "�Է� ������ �����Դϴ�.";
+        sMessage = "입력 데이터 오류입니다.";
     }    
     else if( iReturn == -12)
     {
-        sMessage = "����Ʈ �н����� �����Դϴ�.";
+        sMessage = "사이트 패스워드 오류입니다.";
     }    
     else
     {
-        sMessage = "�˼� ���� ���� �Դϴ�. iReturn : " + iReturn;
+        sMessage = "알수 없는 에러 입니다. iReturn : " + iReturn;
     }
 
 %>
@@ -102,16 +102,16 @@ public String requestReplace (String paramValue, String gubun) {
 
 <html>
 <head>
-    <title>NICE������ - CheckPlus �Ƚɺ������� �׽�Ʈ</title>
+    <title>NICE평가정보 - CheckPlus 안심본인인증 테스트</title>
 </head>
 <body>
 <br/>
 <div style="font-size: 14px;">
-	<b>����Ȯ�ο� ���� �Ͽ����ϴ�.</b><br/><br/>
-	- ���� �Ͻ� ��Ż簡 ���Ե� ��Ż����� Ȯ�� �ϼ���.<br/>
-	- �Է� �Ͻ� ������ ��Ȯ ���� Ȯ�� �ϼ���.<br/>
-	- �޴��� ���� ������ ������ ���� �����θ� ���� �մϴ�.<br/>
-	- ���л��� : <%=sMessage %> (CODE : <%= iReturn%> )
+	<b>본인확인에 실패 하였습니다.</b><br/><br/>
+	- 선택 하신 통신사가 가입된 통신사인지 확인 하세요.<br/>
+	- 입력 하신 정보가 정확 한지 확인 하세요.<br/>
+	- 휴대폰 본인 인증은 명의자 본인 정보로만 가능 합니다.<br/>
+	- 실패사유 : <%=sMessage %> (CODE : <%= iReturn%> )
 </div>
 </body>
 </html>

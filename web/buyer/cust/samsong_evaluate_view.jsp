@@ -1,7 +1,7 @@
 <%@page import="java.net.URLDecoder"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"10=>ÀÛ¼ºÁß","20=>È®Á¤"};
+String[] code_status = {"10=>ì‘ì„±ì¤‘","20=>í™•ì •"};
 
 String yyyymm = u.request("yyyymm");
 String mode =  u.request("mode");
@@ -10,20 +10,20 @@ DataSet evaluate = new DataSet();
 if(!mode.equals("new")){
 	evaluate = evaluateDao.find(" yyyymm = '" + yyyymm + "' ");
 	if(!evaluate.next()){
-		u.jsError("Æò°¡Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+		u.jsError("í‰ê°€ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	evaluate.put("status_nm", u.getItem(evaluate.getString("status"),code_status));
 	evaluate.put("end_yn", evaluate.getString("status").equals("20"));
 }else{
 	evaluate.addRow();
-	evaluate.put("status_nm", "ÀÛ¼ºÁß");
+	evaluate.put("status_nm", "ì‘ì„±ì¤‘");
 	yyyymm=u.getTimeString("yyyyMM");
 }
 
 
 
-f.addElement("yyyymm", yyyymm, "required:'Y',hname:'±âÁØ³â¿ù',fixbyte:'6'");
+f.addElement("yyyymm", yyyymm, "required:'Y',hname:'ê¸°ì¤€ë…„ì›”',fixbyte:'6'");
 if (u.isPost()&&f.validate()) {
 	
 	String grid = URLDecoder.decode(f.get("data"),"UTF-8"); 
@@ -31,7 +31,7 @@ if (u.isPost()&&f.validate()) {
 	DB db = new DB();
 	
 	if(mode.equals("new")&&evaluateDao.findCount("yyyymm='"+f.get("yyyymm")+"'")>0){
-		u.jsError("ÀÌ¹Ìµî·ÏµÈ Æò°¡³â¿ùÀÔ´Ï´Ù.\\n\\nÇØ´ç°ÇÀ» °Ë»öÇÏ¿© ¼öÁ¤ÇÏ¼¼¿ä.");
+		u.jsError("ì´ë¯¸ë“±ë¡ëœ í‰ê°€ë…„ì›”ì…ë‹ˆë‹¤.\\n\\ní•´ë‹¹ê±´ì„ ê²€ìƒ‰í•˜ì—¬ ìˆ˜ì •í•˜ì„¸ìš”.");
 		return;
 	}
 	
@@ -67,10 +67,10 @@ if (u.isPost()&&f.validate()) {
     }
 
     if(!db.executeArray()){
-    	u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+    	u.jsError("ì €ì¥ì²˜ë¦¬ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
     	return;
     }
-    u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù", "./samsong_evaluate_view.jsp?yyyymm="+f.get("yyyymm")+"&"+u.getQueryString("yyyymm,mode"));
+    u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤", "./samsong_evaluate_view.jsp?yyyymm="+f.get("yyyymm")+"&"+u.getQueryString("yyyymm,mode"));
     return;
 }
 

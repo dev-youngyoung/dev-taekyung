@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_cert = codeDao.getCodeArray("M301");
 
-f.addElement("cert_name", null, "hname:'ÀÎÇã°¡¸í', required:'Y'");
-f.addElement("cert_no", null, "hname:'µî·Ï/Çã°¡¹øÈ£', required:'Y'");
-f.addElement("cert_org", null, "hname:'°ü·Ã±â°ü', required:'Y'");
-f.addElement("cert_sdate", null, "hname:'À¯È¿±â°£', required:'Y'");
-f.addElement("cert_edate", null, "hname:'À¯È¿±â°£', required:'Y'");
-f.addElement("cert_file", null, "hname:'Ã·ºÎÆÄÀÏ', required:'Y', allow:'jpg|gif|png|pdf'");
-f.addElement("etc", null, "hname:'±âÅ¸'");
+f.addElement("cert_name", null, "hname:'ì¸í—ˆê°€ëª…', required:'Y'");
+f.addElement("cert_no", null, "hname:'ë“±ë¡/í—ˆê°€ë²ˆí˜¸', required:'Y'");
+f.addElement("cert_org", null, "hname:'ê´€ë ¨ê¸°ê´€', required:'Y'");
+f.addElement("cert_sdate", null, "hname:'ìœ íš¨ê¸°ê°„', required:'Y'");
+f.addElement("cert_edate", null, "hname:'ìœ íš¨ê¸°ê°„', required:'Y'");
+f.addElement("cert_file", null, "hname:'ì²¨ë¶€íŒŒì¼', required:'Y', allow:'jpg|gif|png|pdf'");
+f.addElement("etc", null, "hname:'ê¸°íƒ€'");
 
 if(u.isPost()&&f.validate()){
 	f.uploadDir = Startup.conf.getString("file.path.bcompany")+_member_no;
@@ -43,12 +43,12 @@ if(u.isPost()&&f.validate()){
 	certDao.item("reg_id", auth.getString("_USER_ID"));
 
 	if(!certDao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 	
 	out.print("<script>");
-	out.print("alert(\"ÀúÀåÇÏ¿´½À´Ï´Ù.\");");
+	out.print("alert(\"ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 	out.print("opener.location.reload();");
 	out.print("self.close();");
 	out.print("</script>");
@@ -58,7 +58,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("info.pop_cert_modify");
-p.setVar("popup_title","ÀÎÇã°¡ Á¤º¸");
+p.setVar("popup_title","ì¸í—ˆê°€ ì •ë³´");
 p.setVar("modify", false);
 p.setLoop("code_cert", u.arr2loop(code_cert));
 p.setVar("form_script",f.getScript());

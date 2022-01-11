@@ -5,7 +5,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Password {
-	private String aeskey = "nicednb passwd12";  // AESÀÇ key´Â 16(128),24(192),32(256)byteÁß ÇÏ³ª·Î ÀÌ·ç¾îÁ®¾ß ÇÑ´Ù.
+	private String aeskey = "nicednb passwd12";  // AESì˜ keyëŠ” 16(128),24(192),32(256)byteì¤‘ í•˜ë‚˜ë¡œ ì´ë£¨ì–´ì ¸ì•¼ í•œë‹¤.
 	private String _value; 
 	 
 	public void addText(String value) 
@@ -30,7 +30,7 @@ public class Password {
 	}
 	
     /**
-     * hex to byte[] : 16Áø¼ö ¹®ÀÚ¿­À» ¹ÙÀÌÆ® ¹è¿­·Î º¯È¯ÇÑ´Ù.
+     * hex to byte[] : 16ì§„ìˆ˜ ë¬¸ìì—´ì„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ë³€í™˜í•œë‹¤.
      * 
      * @param hex    hex string
      * @return
@@ -48,7 +48,7 @@ public class Password {
     }
 
     /**
-     * byte[] to hex : unsigned byte(¹ÙÀÌÆ®) ¹è¿­À» 16Áø¼ö ¹®ÀÚ¿­·Î ¹Ù²Û´Ù.
+     * byte[] to hex : unsigned byte(ë°”ì´íŠ¸) ë°°ì—´ì„ 16ì§„ìˆ˜ ë¬¸ìì—´ë¡œ ë°”ê¾¼ë‹¤.
      * 
      * @param ba        byte[]
      * @return
@@ -69,7 +69,7 @@ public class Password {
     } 
 
     /**
-     * AES ¹æ½ÄÀÇ ¾ÏÈ£È­
+     * AES ë°©ì‹ì˜ ì•”í˜¸í™”
      * 
      * @param message
      * @return
@@ -89,7 +89,7 @@ public class Password {
     }
 
     /**
-     * AES ¹æ½ÄÀÇ º¹È£È­
+     * AES ë°©ì‹ì˜ ë³µí˜¸í™”
      * 
      * @param message
      * @return
@@ -107,7 +107,7 @@ public class Password {
         return originalString;
     }
     
-    /** ½ÇÇà
+    /** ì‹¤í–‰
      * 
      * 
      * @param args 

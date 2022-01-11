@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String auth_cd = u.request("auth_cd");
 if(auth_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
-//±ÇÇÑÁ¶È¸
+//ê¶Œí•œì¡°íšŒ
 DataObject authDao = new DataObject("tcc_auth");
 DataSet authInfo = authDao.find("auth_cd=" + auth_cd);
 if(!authInfo.next()){
-	u.jsError("¼±ÅÃÇÏ½Å ±ÇÇÑÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì„ íƒí•˜ì‹  ê¶Œí•œì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -28,11 +28,11 @@ DataSet person = personDao.query(
 		+"  order by a.admin_id asc "
 		);
 
-//¸Þ´º±ÇÇÑÁ¶È¸
+//ë©”ë‰´ê¶Œí•œì¡°íšŒ
 DataObject authMenuDao = new DataObject("tcc_auth_menu");
 DataSet authMenu = authMenuDao.find("auth_cd='" + auth_cd+"'");
 
-//¸Þ´ºÁ¤º¸ Á¶È¸
+//ë©”ë‰´ì •ë³´ ì¡°íšŒ
 DataObject menuDao = new DataObject("tcc_menu");
 //menuDao.setDebug(out);
 DataSet menu = menuDao.query(
@@ -116,11 +116,11 @@ while(menu.next()){
 	}
 }
 
-f.addElement("auth_nm", authInfo.getString("auth_nm") , "hname:'±ÇÇÑ¸í', required:'Y'");
-f.addElement("etc", null, "hname:'ºñ°í'");
+f.addElement("auth_nm", authInfo.getString("auth_nm") , "hname:'ê¶Œí•œëª…', required:'Y'");
+f.addElement("etc", null, "hname:'ë¹„ê³ '");
 
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DB db = new DB();
@@ -147,10 +147,10 @@ if(u.isPost() && f.validate())
 	}
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀå µÇ¾ú½À´Ï´Ù.", "./auth_modify.jsp?"+u.getQueryString());	
+	u.jsAlertReplace("ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./auth_modify.jsp?"+u.getQueryString());	
 	return;
 }
 

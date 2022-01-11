@@ -10,10 +10,10 @@
 		    <col width="*">
 		</colgroup>
 		<tr>
-			<th><p>°è¾à¼­Á¾·ù</p></th>
+			<th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 		    <td>
 		    	<select name="s_template_cd">
-		    		<option value="">-------¼±ÅÃ-------</option>
+		    		<option value="">-------ì„ íƒ-------</option>
 		    		<!-- LOOP START 'template' -->
 		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 		    		<!-- LOOP END 'template' -->
@@ -22,17 +22,17 @@
 			<td></td>
 		</tr>
   		<tr>
-  			<th><p>°è¾àÀÏÀÚ</p></th>
+  			<th><p>ê³„ì•½ì¼ì</p></th>
 		    <td>
 		    	<input type="text" name="s_sdate" class="in_readonly" size="10" maxlength="10" onkeyup="dateFormat(this)"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 				<input type="text" name="s_edate" class="in_readonly" size="10" maxlength="10" onkeyup="dateFormat(this)"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 		    </td>
-		    <th><p>»óÅÂ</p></th>
+		    <th><p>ìƒíƒœ</p></th>
 		    <td>
 		    	<select name="s_status">
-		    		<option value="">-ÀüÃ¼-</option>
+		    		<option value="">-ì „ì²´-</option>
 		    		<!-- LOOP START 'code_status' -->
 		    		<option value="{{code_status.id}}">{{code_status.value}}</option>
 		    		<!-- LOOP END 'code_status' -->
@@ -41,12 +41,12 @@
 		    <td></td>
   		</tr>
   		<tr>
-  			<th><p>°Å·¡Ã³¸í</p></th>
+  			<th><p>ê±°ë˜ì²˜ëª…</p></th>
 		    <td><input type="text" name="s_cust_name" maxlength="100" style="width:97%"></td>
-		    <th><p>°è¾à¸í</p></th>
+		    <th><p>ê³„ì•½ëª…</p></th>
 		    <td><input type="text" name="s_cont_name" maxlength="100" style="width:97%"></td>
 		    <td align="right">
-		      <button type="submit" class="search_btn">°Ë»ö</button>
+		      <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 		    </td>
 		</tr>
 	</table>
@@ -55,9 +55,9 @@
 </form>
 {{form_script}}
 <script language="javascript">
-function formSubmit(f){
-	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-		alert("¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·Â ÈÄ °Ë»ö ÇÏ¼¼¿ä.");
+function formSubmit(f) {
+	if (f['s_vendcd'].value == "" && f['s_member_name'].value == "") {
+		alert("ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥ í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.");
 		return false;
 	}
 	return true;
@@ -66,7 +66,7 @@ function formSubmit(f){
 
 <div class="util-row">
     <div class="push-left">
-        <span class="caution-text">¡Ø¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·ÂÈÄ °Ë»ö ÇÏ¼¼¿ä.</span>
+        <span class="caution-text">â€»ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.</span>
     </div>
 </div>
 
@@ -83,12 +83,12 @@ function formSubmit(f){
 			<col width="10%">
 		</colgroup>
 		<tr>
-			<th>¼­½Ä¸í</th>
-			<th>°è¾à¸í</th>
-			<th>°Å·¡Ã³¸í</th>
-			<th>°è¾àÀÏÀÚ</th>
-			<th>»óÅÂ</th>
-			<th>¼±ÅÃ</th>
+			<th>ì„œì‹ëª…</th>
+			<th>ê³„ì•½ëª…</th>
+			<th>ê±°ë˜ì²˜ëª…</th>
+			<th>ê³„ì•½ì¼ì</th>
+			<th>ìƒíƒœ</th>
+			<th>ì„ íƒ</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr>
@@ -97,12 +97,12 @@ function formSubmit(f){
 			<td>{{list.cust_name}}</td>
 			<td align="center">{{list.cont_date}}</td>
 			<td align="center">{{list.status_nm}}</td>
-			<td align="center"><button type="button" class="sbtn ico-confirm" onclick="selContract('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.cont_name}}', '{{list.cust_name}}', '{{list.cont_date}}');"><span></span>¼±ÅÃ</button></td>
+			<td align="center"><button type="button" class="sbtn ico-confirm" onclick="selContract('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.cont_name}}', '{{list.cust_name}}', '{{list.cont_date}}');"><span></span>ì„ íƒ</button></td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td align="center" colspan="6">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="6">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>
@@ -113,14 +113,14 @@ function formSubmit(f){
 <br/>
 
 <script language="javascript">
-function selContract(cont_no, cont_chasu, cont_name, cust_name, cont_date){
+function selContract(cont_no, cont_chasu, cont_name, cust_name, cont_date) {
 	var data = {
-			   "cont_no":cont_no
-			, "cont_chasu":cont_chasu 
-			, "cont_name":cont_name 
-			, "cust_name":cust_name 
-			, "cont_date":cont_date 
-			}
+			  "cont_no" : cont_no
+			, "cont_chasu" : cont_chasu 
+			, "cont_name" : cont_name 
+			, "cust_name" : cust_name 
+			, "cont_date" : cont_date 
+	}
 	opener.{{callback}}(data);
 	self.close();
 }

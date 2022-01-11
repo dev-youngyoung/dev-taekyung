@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String seq = u.request("seq");
@@ -6,11 +6,11 @@ String seq = u.request("seq");
 DataObject recruitDao = new DataObject("tcb_recruit");
 DataSet recruit = recruitDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' ");
 if(!recruit.next()){
-	u.jsErrClose("¸ðÁý°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ëª¨ì§‘ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 if(recruit.getInt("s_date")>Integer.parseInt(u.getTimeString("yyyyMMdd"))|| recruit.getInt("e_date")<Integer.parseInt(u.getTimeString("yyyyMMdd"))){
-	u.jsErrClose("¸ðÁý±â°£ÀÌ ¾Æ´Õ´Ï´Ù.");
+	u.jsErrClose("ëª¨ì§‘ê¸°ê°„ì´ ì•„ë‹™ë‹ˆë‹¤.");
 	return;
 }
 
@@ -18,28 +18,28 @@ DataObject categoryDao =  new DataObject("tcb_recruit_category");
 DataSet category = categoryDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' ");
 
 
-f.addElement("vendcd1", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y',option:'number',fixbyte:'3' ");
-f.addElement("vendcd2", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y',option:'number',fixbyte:'2'");
-f.addElement("vendcd3", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y',option:'number',fixbyte:'5'");
-f.addElement("vendnm", null, "hname:'¾÷Ã¼¸í',required:'Y'");
-f.addElement("boss_name", null, "hname:'´ëÇ¥ÀÚ¸í',required:'Y'");
-f.addElement("worker_cnt", null, "hname:'Á¾¾÷¿ø¼ö',required:'Y'");
-f.addElement("capital", null, "hname:'ÀÚº»±Ý',required:'Y'");
-f.addElement("sales_amt", null, "hname:'³â¸ÅÃâ¾×', required:'Y'");
-f.addElement("post_code1", null, "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("post_code2", null, "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", null, "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("category_cds", null, "hname:'Ãë±ÞºÐ¾ß', required:'Y'");
+f.addElement("vendcd1", null, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸', required:'Y',option:'number',fixbyte:'3' ");
+f.addElement("vendcd2", null, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸', required:'Y',option:'number',fixbyte:'2'");
+f.addElement("vendcd3", null, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸', required:'Y',option:'number',fixbyte:'5'");
+f.addElement("vendnm", null, "hname:'ì—…ì²´ëª…',required:'Y'");
+f.addElement("boss_name", null, "hname:'ëŒ€í‘œìžëª…',required:'Y'");
+f.addElement("worker_cnt", null, "hname:'ì¢…ì—…ì›ìˆ˜',required:'Y'");
+f.addElement("capital", null, "hname:'ìžë³¸ê¸ˆ',required:'Y'");
+f.addElement("sales_amt", null, "hname:'ë…„ë§¤ì¶œì•¡', required:'Y'");
+f.addElement("post_code1", null, "hname:'ìš°íŽ¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("post_code2", null, "hname:'ìš°íŽ¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", null, "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("category_cds", null, "hname:'ì·¨ê¸‰ë¶„ì•¼', required:'Y'");
 
-f.addElement("user_name", null, "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("position", null, "hname:'Á÷À§',requried:'Y'");
-f.addElement("dept_name", null, "hname:'ºÎ¼­', required:'Y'");
-f.addElement("hp1", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£', required:'Y'");
-f.addElement("fax_num", null, "hname:'ÆÑ½º'");
-f.addElement("passwd", null, "hname:'ºñ¹Ð¹øÈ£',required:'Y', match:'passwd2', minbyte:'4', mixbyte:'20'");
+f.addElement("user_name", null, "hname:'ë‹´ë‹¹ìžëª…',required:'Y'");
+f.addElement("position", null, "hname:'ì§ìœ„',requried:'Y'");
+f.addElement("dept_name", null, "hname:'ë¶€ì„œ', required:'Y'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸', required:'Y'");
+f.addElement("fax_num", null, "hname:'íŒ©ìŠ¤'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸',required:'Y', match:'passwd2', minbyte:'4', mixbyte:'20'");
 
 if(u.isPost()&&f.validate()){
 	DB db = new DB();
@@ -113,10 +113,10 @@ if(u.isPost()&&f.validate()){
 	
 	
 	if(!db.executeArray()){
-		u.jsError("½ÅÃ»Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇÏ¼¼¿ä.");
+		u.jsError("ì‹ ì²­ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•˜ì„¸ìš”.");
 		return;
 	}
-	u.jsErrClose("½ÅÃ»Ã³¸® ÇÏ¿´½À´Ï´Ù.");
+	u.jsErrClose("ì‹ ì²­ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 

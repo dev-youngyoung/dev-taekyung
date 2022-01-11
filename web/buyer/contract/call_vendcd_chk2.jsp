@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String vendcd = u.request("vendcd");
 if(vendcd.equals("")){
@@ -9,17 +9,17 @@ DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao .find(" vendcd = '"+vendcd+"' ");
 if(!member.next()){
 	out.print("<script language=\"javascript\">");
-	out.print(" alert('µî·Ï°¡´ÉÇÑ »ç¾÷ÀÚ µî·Ï ¹øÈ£ ÀÔ´Ï´Ù.');");
+	out.print(" alert('ë“±ë¡ê°€ëŠ¥í•œ ì‚¬ì—…ì ë“±ë¡ ë²ˆí˜¸ ì…ë‹ˆë‹¤.');");
 	out.print(" document.forms['form1']['chk_vendcd'].value='1';");
 	out.print("</script>");
 }else{
-	if(member.getString("status").equals("01") || member.getString("status").equals("02")){  // Á¤È¸¿ø ¶Ç´Â ºñÈ¸¿øÀ¸·Î ¾÷Ã¼ Á¤º¸ Á¸Àç.
+	if(member.getString("status").equals("01") || member.getString("status").equals("02")){  // ì •íšŒì› ë˜ëŠ” ë¹„íšŒì›ìœ¼ë¡œ ì—…ì²´ ì •ë³´ ì¡´ì¬.
 		/*
 		DataObject clientDao = new DataObject("tcb_client");
 		int client_cnt = clientDao.findCount(" client_no = '"+member.getString("member_no")+"' ");
 		if(client_cnt > 0){
 			out.print("<script>");
-			out.print("alert('Çù·Â¾÷Ã¼·Î µî·ÏµÈ ¾÷Ã¼ ÀÔ´Ï´Ù.\\n\\n¾÷Ã¼°Ë»öÀ» ÅëÇØ ¾÷Ã¼¸¦ Ãß°¡ÇØ ÁÖ¼¼¿ä.'); self.close();");
+			out.print("alert('í˜‘ë ¥ì—…ì²´ë¡œ ë“±ë¡ëœ ì—…ì²´ ì…ë‹ˆë‹¤.\\n\\nì—…ì²´ê²€ìƒ‰ì„ í†µí•´ ì—…ì²´ë¥¼ ì¶”ê°€í•´ ì£¼ì„¸ìš”.'); self.close();");
 			out.print("</script>");
 			return;
 		}
@@ -32,7 +32,7 @@ if(!member.next()){
 		}
 		out.print("<script>");
 		out.print(" document.forms['form1']['chk_vendcd'].value='2';");
-		out.print(" if(confirm('±âÁ¸¿¡ µî·ÏµÈ ¾÷Ã¼ Á¤º¸°¡ ÀÖ½À´Ï´Ù.\\n\\n±âÁ¸ Á¤º¸¸¦ ÀÚµ¿À¸·Î ÀÔ·Â ÇÏ½Ã°Ú½À´Ï±î?')){");
+		out.print(" if(confirm('ê¸°ì¡´ì— ë“±ë¡ëœ ì—…ì²´ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤.\\n\\nê¸°ì¡´ ì •ë³´ë¥¼ ìë™ìœ¼ë¡œ ì…ë ¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){");
 		out.print("	document.forms['form1']['chk_member_no'].value='"+member.getString("member_no")+"';");
 		out.print("	document.forms['form1']['member_name'].value='"+member.getString("member_name")+"';");
 		out.print("	document.forms['form1']['boss_name'].value='"+member.getString("boss_name")+"';");
@@ -47,10 +47,10 @@ if(!member.next()){
 		out.print("	}");
 		out.print("</script>");
 	}
-	if(member.getString("status").equals("00")){//DB·Î ¾Èº¸ÀÌ°Ô Ã³¸® ÇÑ³ğ
+	if(member.getString("status").equals("00")){//DBë¡œ ì•ˆë³´ì´ê²Œ ì²˜ë¦¬ í•œë†ˆ
 		out.print("<script>");
 		out.print(" document.forms['form1']['chk_vendcd'].value='';");
-		out.print(" alert('µî·ÏÇÒ ¼ö ¾ø´Â ¾÷Ã¼ ÀÔ´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.');");
+		out.print(" alert('ë“±ë¡í•  ìˆ˜ ì—†ëŠ” ì—…ì²´ ì…ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
 		out.print("</script>");
 	}
 

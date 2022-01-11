@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String cont_no = u.aseDec(u.request("cont_no"));
 if(cont_no.equals("")){
 	return;
@@ -11,12 +11,12 @@ DataObject contDao = new DataObject("tcb_contmaster");
 DataSet list = contDao.find("member_no = '"+_member_no+"' and cont_no = '"+cont_no+"' and status <> '00' ", "*" , "cont_chasu asc");
 
 while(list.next()){
-	list.put("cont_chasu_nm", "0".equals(list.getString("cont_chasu")) ? "ÃÖÃÊ" : list.getString("cont_chasu"));
+	list.put("cont_chasu_nm", "0".equals(list.getString("cont_chasu")) ? "ìµœì´ˆ" : list.getString("cont_chasu"));
 	list.put("cont_date", u.getTimeString("yyyy-MM-dd", list.getString("cont_date")));
 	list.put("cont_status_nm", u.getItem(list.getString("status"), code_status));
 	
 	String link = "";
-	if(list.getString("sign_types").equals("")){//ÀÏ¹İÀûÀÎ °è¾à
+	if(list.getString("sign_types").equals("")){//ì¼ë°˜ì ì¸ ê³„ì•½
 		if(!list.getString("template_cd").equals("")) {
 			if (list.getString("status").equals("10")) {
 				link = "contract_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + list.getString("cont_chasu") + "&template_cd=" + list.getString("template_cd");
@@ -34,7 +34,7 @@ while(list.next()){
 				link = "contend_free_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + list.getString("cont_chasu");
 			}
 		}
-	}else{//ÆĞµå ¼­¸í °è¾à
+	}else{//íŒ¨ë“œ ì„œëª… ê³„ì•½
 		if(list.getString("status").equals("10")){
 			link = "contract_msign_modify.jsp?cont_no="+u.aseEnc(cont_no)+"&cont_chasu="+list.getString("cont_chasu")+"&template_cd="+list.getString("template_cd");
 		}else if(u.inArray(list.getString("status"), new String[]{"11","12","20","21","30","40","41"})){

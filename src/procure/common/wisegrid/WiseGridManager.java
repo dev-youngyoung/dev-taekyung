@@ -22,7 +22,7 @@ public class WiseGridManager
 			this.gdReq	=	gdReq;
 			this.aGh	=	this.gdReq.getHeaders();
 			
-			/* Å°°ª, row size±¸ÇÏ±â */
+			/* í‚¤ê°’, row sizeêµ¬í•˜ê¸° */
 			for(int i=0; i < this.aGh.length; i++)
 			{
 				if(i == 0)

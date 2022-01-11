@@ -1,7 +1,7 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
 	<input type="hidden" name="search" value="1">
 	<div style="text-align:right;margin: 5px 0px" >
-		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 	</div>
 	<div class="search_div">
 		<table class="search_table">
@@ -11,9 +11,9 @@
 				<col width="20%">
 			</colgroup>
 			<tr>
-				<th><p>¾÷Ã¼¸í</p></th>
+				<th><p>ì—…ì²´ëª…</p></th>
 				<td><input type="text" name="s_member_name" maxlength="30" style="width:98%"></td>
-				<td align="right"><button type="submit" class="search_btn" value="°Ë»ö"><span></span>°Ë»ö</button></td>
+				<td align="right"><button type="submit" class="search_btn" value="ê²€ìƒ‰"><span></span>ê²€ìƒ‰</button></td>
 			</tr>
 		</table>
 	</div>
@@ -26,18 +26,18 @@
 			<col width="30%">
 		</colgroup>
 		<tr class="ltitle">
-			<th>¾÷Ã¼¸í</th>
-			<th>¼±ÅÃ</th>
+			<th>ì—…ì²´ëª…</th>
+			<th>ì„ íƒ</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr>
 			<td align="left">{{list.member_name}}</td>
-			<td align="center"><button type="button" class="sbtn color ico-add" value="Ãß°¡" onclick="addCompany('{{list.member_no}}', '{{list.member_name}}');"><span></span>Ãß°¡</button></td>
+			<td align="center"><button type="button" class="sbtn color ico-add" value="ì¶”ê°€" onclick="addCompany('{{list.member_no}}', '{{list.member_name}}');"><span></span>ì¶”ê°€</button></td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td align="center" colspan="2">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="2">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>
@@ -48,7 +48,7 @@
 <script language="javascript">
 function formSubmit(f){
 	/* 	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-			alert("¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·Â ÈÄ °Ë»ö ÇÏ¼¼¿ä.");
+			alert("ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥ í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.");
 			return false;
 		}
 		return true; */

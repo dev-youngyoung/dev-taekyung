@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 p.setLayout("popup_email_contract");
 //p.setDebug(out);
-p.setVar("popup_title","³ªÀÌ½º´ÙÅ¥ º»ÀÎÈ®ÀÎ ÀÎÁõÃ¢");
+p.setVar("popup_title","ë‚˜ì´ìŠ¤ë‹¤í ë³¸ì¸í™•ì¸ ì¸ì¦ì°½");
 p.setBody("sdd.pop_sign_val");
 p.display(out);
 %>

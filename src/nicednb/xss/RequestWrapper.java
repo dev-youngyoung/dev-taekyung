@@ -49,7 +49,7 @@ public class RequestWrapper extends HttpServletRequestWrapper
         /*
         String method = super.getMethod();
         if(!method.equals("GET") && !super.getMethod().equals("POST")) {
-            System.out.println("----- ¿¡·¯ ---");
+            System.out.println("----- ì—ëŸ¬ ---");
             return "";
         }
         */

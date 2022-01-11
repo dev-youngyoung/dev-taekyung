@@ -1,17 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_member_gubun = code.getCodeArray("M001");
-String[] code_client_type = code.getCodeArray("M210");  // Àü¹®ºĞ¾ß
-String[] code_client_reg_cd = {"1=>Á¤½Äµî·Ï","0=>°¡µî·Ï"};
-
-boolean src_view = false;
+String[] code_client_type = code.getCodeArray("M210");  // ì „ë¬¸ë¶„ì•¼
+String[] code_client_reg_cd = {"1=>ì •ì‹ë“±ë¡","0=>ê°€ë“±ë¡"};
 
 String member_slno1= "";
 String member_slno2= "";
@@ -40,7 +38,7 @@ DataSet member = mdao.query(
 				+"    and b.client_no = '"+member_no+"'      "
 );
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 member.put("vendcd", u.getBizNo(member.getString("vendcd")));
@@ -64,42 +62,12 @@ member.put("reason_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", member.getStrin
 DataObject personDao = new DataObject("tcb_person");
 DataSet person = personDao.find(" member_no = '"+member_no+"' and status > 0  ", "*"," person_seq asc ");
 
-DataSet src = new DataSet();
-if( u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"})){
-	DataSet login_member = mdao.find(" member_no = '"+_member_no+"' ");
-	if(!login_member.next()){
-	}
-	if(!login_member.getString("src_depth").equals("")){
-		src_view = true;
-		src = mdao.query(
-				"  select                                                                                                                        "
-						+"         (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = substr(a.src_cd ,0,3)||'000000') l_src_nm   "
-						+"       , (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = substr(a.src_cd ,0,6)||'000') m_src_nm      "
-						+"       , (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = a.src_cd ) s_src_nm                         "
-						+"  from tcb_src_member a                                                                                                         "
-						+" where member_no = '"+_member_no+"'                                                                                             "
-						+"   and src_member_no = '"+member_no+"'                                                                                          "
-		);
-	}
-	while(src.next()){
-		if(login_member.getString("src_depth").equals("01")){
-			src.put("src_nm", src.getString("l_src_nm"));
-		}
-		if(login_member.getString("src_depth").equals("02")){
-			src.put("src_nm", src.getString("l_src_nm")+">"+src.getString("m_src_nm"));
-		}
-		if(login_member.getString("src_depth").equals("03")){
-			src.put("src_nm", src.getString("l_src_nm")+" > "+src.getString("m_src_nm")+" > "+src.getString("s_src_nm"));
-		}
-	}
-}
-
-f.addElement("client_reg_cd", member.getString("client_reg_cd"), "hname:'¾÷Ã¼µî·Ï»óÅÂ', required:'Y'");
-f.addElement("client_type", member.getString("client_type"), "hname:'¾÷Ã¼ºĞ·ù'");
-f.addElement("debt_rate", member.getString("debt_rate"), "hname:'ºÎÃ¤ºñÀ²'");
-f.addElement("liquid_rate", member.getString("liquid_rate"), "hname:'À¯µ¿ºñÀ²'");
-f.addElement("client_status", member.getString("client_status"), "hname:'°Å·¡Á¤Áö'");
-f.addElement("temp_yn", member.getString("temp_yn"), "hname:'ÀÏÈ¸¼º¾÷Ã¼'");
+f.addElement("client_reg_cd", member.getString("client_reg_cd"), "hname:'ì—…ì²´ë“±ë¡ìƒíƒœ', required:'Y'");
+f.addElement("client_type", member.getString("client_type"), "hname:'ì—…ì²´ë¶„ë¥˜'");
+f.addElement("debt_rate", member.getString("debt_rate"), "hname:'ë¶€ì±„ë¹„ìœ¨'");
+f.addElement("liquid_rate", member.getString("liquid_rate"), "hname:'ìœ ë™ë¹„ìœ¨'");
+f.addElement("client_status", member.getString("client_status"), "hname:'ê±°ë˜ì •ì§€'");
+f.addElement("temp_yn", member.getString("temp_yn"), "hname:'ì¼íšŒì„±ì—…ì²´'");
 
 if(u.isPost()&& f.validate()){
 
@@ -129,10 +97,10 @@ if(u.isPost()&& f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "./nh_cust_view.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./nh_cust_view.jsp?"+u.getQueryString());
 	return;
 }
 
@@ -143,8 +111,6 @@ p.setVar("menu_cd","000083");
 p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000083", "btn_auth").equals("10"));
 p.setVar("member",member);
 p.setLoop("person", person);
-p.setVar("src_view", src_view);
-p.setLoop("src", src);
 p.setLoop("code_client_type", u.arr2loop(code_client_type));
 p.setLoop("code_client_reg_cd", u.arr2loop(code_client_reg_cd));
 p.setVar("sys_date", u.getTimeString());

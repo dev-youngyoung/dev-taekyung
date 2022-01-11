@@ -101,30 +101,12 @@
 		</colgroup>
 		<tr>
 			<th class="req-check">계약명</th>
-			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>
+			<td colspan="3">
 				<input type="text" name="cont_name" style="width:90%" onChange="replaceInput(this, this.name, document.all.__html)" onblur="replaceInput(this, this.name, document.all.__html)">
 				<!-- IF START 'ktmns_etc' -->
 				<br><span class="caution-text">{{ktmns_etc}}</span>
 				<!-- IF END 'ktmns_etc' -->
 			</td>
-			<!-- IF START 'member.src_depth' -->
-			<th>소싱그룹</th>
-			<td>
-				<!-- IF START 'change_cont' -->
-					{{cont.src_nm}}<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
-				<!-- IF END 'change_cont' -->
-				<!-- IFNOT START 'change_cont' -->
-					<!-- IFNOT START 'modify' -->
-						<input type="hidden" name="src_cd" value="{{bid.src_cd}}"/>
-						<span id="src_nm">{{bid.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>선택</button>
-					<!-- IFNOT END 'modify' -->
-					<!-- IF START 'modify' -->
-						<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
-						<span id="src_nm">{{cont.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>선택</button>
-					<!-- IF END 'modify' -->
-				<!-- IFNOT END 'change_cont' -->
-			</td>
-			<!-- IF END 'member.src_depth' -->
 		</tr>
 		<tr>
 			<th>계약일자</th>

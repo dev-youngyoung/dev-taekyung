@@ -1,22 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String qnaseq = u.request("qnaseq");
 if(qnaseq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject qnaDao = new DataObject("tcb_qna");
 DataSet qna = qnaDao.find("qnaseq = '"+qnaseq+"' ");
 if(!qna.next()){
-	u.jsError("½Ã½ºÅÛ±¸Ãà¹®ÀÇ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì‹œìŠ¤í…œêµ¬ì¶•ë¬¸ì˜ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!qnaDao.delete(" qnaseq = '"+qnaseq+"' ")){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦Ã³¸® ÇÏ¿´½À´Ï´Ù.", "si_qna_list.jsp?"+u.getQueryString("qnaseq"));
+u.jsAlertReplace("ì‚­ì œì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "si_qna_list.jsp?"+u.getQueryString("qnaseq"));
 %>

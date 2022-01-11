@@ -1,152 +1,114 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
+<%@ page import="nicelib.groupware.*"%>
 <%@ include file="../contract/include_cont_push.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
-String cont_chasu = u.request("cont_chasu","0");
-if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+String cont_chasu = u.request("cont_chasu", "0");
+if (cont_no.equals("") || cont_chasu.equals("")) {
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
-String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'";
+String where = " cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "'";
 DataObject contDao = new DataObject("tcb_contmaster");
-DataSet cont = contDao.find(where+" and member_no = "+_member_no+" ");
-if(!cont.next()){
-	u.jsError("°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+DataSet cont = contDao.find(where + " and member_no = " + _member_no + " ");
+if (!cont.next()) {
+	u.jsError("ê³„ì•½ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
-}
-
-String supp_member_no = "";
-if(!cont.getString("bid_no").equals("")){
-	DataObject custDao = new DataObject("tcb_cust");
-	DataSet cust = custDao.find( where + " and sign_seq = '2' " );//À»»ç È¸¿ø¹øÈ£ ±¸ÇÏ±â
-	if(!cust.next()){
-		u.jsError("°è¾à¾÷Ã¼ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-	}
-	supp_member_no = cust.getString("member_no");
 }
 
 String del_status = "10";
-String del_mst = "ÀÛ¼ºÁß";
+String del_mst = "ìž‘ì„±ì¤‘";
 String link = "contract_writing_list.jsp?";
-if("Y".equals(cont.getString("subscription_yn"))){
+if ("Y".equals(cont.getString("subscription_yn"))) {
 	del_status = "30";
-	del_mst = "½ÅÃ»Áß";
+	del_mst = "ì‹ ì²­ì¤‘";
 	link = "subscription_list.jsp?";
 }
 
-if(!cont.getString("status").equals(del_status)){// ÀÛ¼ºÁß(subscription : ½ÅÃ»Áß)¸¸ »èÁ¦ °¡´É
-	u.jsError("°è¾à°ÇÀº "+del_mst+" »óÅÂ¿¡¼­¸¸ »èÁ¦ °¡´É ÇÕ´Ï´Ù.");
+if (!cont.getString("status").equals(del_status)) {// ìž‘ì„±ì¤‘(subscription : ì‹ ì²­ì¤‘)ë§Œ ì‚­ì œ ê°€ëŠ¥
+	u.jsError("ê³„ì•½ê±´ì€ " + del_mst + " ìƒíƒœì—ì„œë§Œ ì‚­ì œ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 	return;
 }
 
-DataObject payDao = new DataObject("tcb_pay");
-DataSet pay = payDao.find(where);
-if(pay.next()){
-	u.jsError("ÇØ´ç °è¾à°ÇÀ¸·Î ÁøÇàµÈ °áÀç³»¿ªÀÌ ÀÖ½À´Ï´Ù.\\n\\n°è¾à°ÇÀ» »èÁ¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+/* ê¸°ì¡´ì— ê³„ì•½ ì‚­ì œì‹œì—ëŠ” ì •ë§ ë°ì´í„°ë¥¼ ì‚­ì œ í•¨, í˜¹ì‹œ ëª°ë¼ì„œ ì£¼ì„ìœ¼ë¡œ ë‚¨ê²¨ë‘ .
+DataObject cfileDao = new DataObject("tcb_cfile");
+DataSet cfile = cfileDao.find(where + " and cfile_seq = 1");
+if (cfile.next()) {
+	if (!Startup.conf.getString("file.path.bcont_pdf").equals("") && !cfile.getString("file_path").equals("") && !cfile.getString("file_name").equals("")) {
+		//System.out.println("DELETE FILE : " + Startup.conf.getString("file.path.bcont_pdf")+cfile.getString("file_path")+cfile.getString("file_name"));
+		//u.delFile(Startup.conf.getString("file.path.bcont_pdf")+cfile.getString("file_path")+cfile.getString("file_name"));
+	}
+}
+
+DataObject custSignImgDao = new DataObject("tcb_cust_sign_img"); // ê³„ì•½ì„œëª…ì´ë¯¸ì§€ì •ë³´
+DataObject contSubDao = new DataObject("tcb_cont_sub"); // ê³„ì•½ë¶€ê°€ì„œì‹
+DataObject rfileCustDao = new DataObject("tcb_rfile_cust"); // ê³„ì•½êµ¬ë¹„ì„œë¥˜íŒŒì¼ì •ë³´
+DataObject rfileDao = new DataObject("tcb_rfile"); // ê³„ì•½êµ¬ë¹„ì„œë¥˜ì •ë³´
+cfileDao = new DataObject("tcb_cfile"); // ê³„ì•½ì„œë¥˜
+DataObject StampDao = new DataObject("tcb_stamp"); // ê³„ì•½ì¸ì§€ì„¸ì •ë³´
+DataObject warrDao = new DataObject("tcb_warr"); // ê³„ì•½ë³´ì¦ì •ë³´
+DataObject emailDao = new DataObject("tcb_cont_email"); // ê³„ì•½ì´ë©”ì¼ì „ì†¡ì´ë ¥
+DataObject custDao = new DataObject("tcb_cust"); // ê³„ì•½ê´€ê³„ì—…ì²´ì •ë³´
+DataObject contSignDao = new DataObject("tcb_cont_sign"); // ê³„ì•½ê´€ê³„ì„¤ì •ì •ë³´
+DataObject contAgreeDao = new DataObject("tcb_cont_agree"); // ê³„ì•½ê²°ì œë¼ì¸ì •ë³´
+DataObject contAddDao = new DataObject("tcb_cont_add"); // ê³„ì•½DBí™”ì»¬ëŸ¼ì •ë³´
+DataObject contLogDao = new DataObject("tcb_cont_log"); // ê³„ì•½ì§„í–‰ë¡œê·¸
+contDao = new DataObject("tcb_contmaster"); // ê³„ì•½ì •ë³´
+
+DB db = new DB();
+//db.setDebug(out);
+db.setCommand(custSignImgDao.getDeleteQuery(where), null);
+db.setCommand(contSubDao.getDeleteQuery(where), null);
+db.setCommand(rfileCustDao.getDeleteQuery(where), null);
+db.setCommand(rfileDao.getDeleteQuery(where), null);
+db.setCommand(cfileDao.getDeleteQuery(where), null);
+db.setCommand(StampDao.getDeleteQuery(where), null);
+db.setCommand(warrDao.getDeleteQuery(where), null);
+db.setCommand(emailDao.getDeleteQuery(where), null);
+db.setCommand(custDao.getDeleteQuery(where), null);
+db.setCommand(contSignDao.getDeleteQuery(where), null);
+db.setCommand(contAgreeDao.getDeleteQuery(where), null);
+db.setCommand(contAddDao.getDeleteQuery(where), null);
+db.setCommand(contLogDao.getDeleteQuery(where), null);
+db.setCommand(contDao.getDeleteQuery(where), null);
+*/
+
+/* ìš°ë¦¬ ì‹œìŠ¤í…œì˜ ì‚­ì œëŠ” ê³„ì•½ì‚­ì œì´ë¯€ë¡œ ê·¸ë£¹ì›¨ì–´ì— ê¸°ì•ˆ ì‚­ì œëŠ” ì „ì†¡í•˜ì§€ ì•ŠëŠ”ë‹¤.
+boolean sendResult = true;
+// ê²°ìž¬ì‚¬ìš©ì¸ ê²½ìš°
+if (cont.getString("appr_yn").equals("Y")) {
+	if (!u.inArray(cont.getString("appr_status"), new String[]{"10"})) {
+		DataSet approvalInfo = new DataSet();
+		approvalInfo.addRow();
+		approvalInfo.put("userID", auth.getString("_USER_ID"));
+		approvalInfo.put("userName", auth.getString("_USER_NAME"));
+		approvalInfo.put("jobID", Config.getApprovalDocumentType(););
+		approvalInfo.put("contNo", cont_no);
+		approvalInfo.put("contChasu", cont_chasu);
+		approvalInfo.put("docID", cont_no);
+		ApprovalSender approvalSender = new ApprovalSender();
+		sendResult = approvalSender.sendApprovalDelete(approvalInfo);
+	} else {
+		sendResult = false;
+	}
+}
+
+if (sendResult) {
+	contDao = new DataObject("tcb_contmaster"); // ê³„ì•½ì •ë³´
+	contDao.item("status", "10"); // ìž¬ê¸°ì•ˆì´ ê°€ëŠ¥í•˜ë„ë¡ ìƒì‹ ëŒ€ê¸°(10)ìœ¼ë¡œ
+	if (!contDao.update(where + " and member_no = " + _member_no + " ")) {
+		u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
+		return;
+	}
+} */
+
+contDao = new DataObject("tcb_contmaster"); // ê³„ì•½ì •ë³´
+contDao.item("status", "95");
+if (!contDao.update(where + " and member_no = " + _member_no + " ")) {
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-
-//°è¾à¼­ push
-if(u.inArray(cont.getString("member_no"), new String[]{"20171101813","20130500457"})) {  //SK½ºÅä¾Æ, ¿¡½ºÄÉÀÌºê·Îµå¹êµåÀÏ °æ¿ì
-	DataSet result = contPush_skstoa(cont_no, cont_chasu,"99");//°è¾à¿Ï·á push
-	if(!result.getString("succ_yn").equals("Y")){
-		u.sp(" skstore °è¾àÁ¤º¸ Àü¼Û ½ÇÆÐ!!!\npage:contract_delete.jsp\ncont_no: "+cont_no+"-"+ cont_chasu);
-		u.mail("nicedocu@nicednr.co.kr","skstore °è¾àÁ¤º¸ Àü¼Û ½ÇÆÐ!!! ", " skstore °è¾àÁ¤º¸ Àü¼Û ½ÇÆÐ!!!\npage:contract_delete.jsp\ncont_no: "+cont_no+"-"+ cont_chasu);
-	}
-}
-
-//´õºíÀ¯ ¼îÇÎ »èÁ¦ ÀÌ·Â ¿¬µ¿À¸·Î ÀÎÇá¿© »óÅÂ ÄÚµå¸¸ 00 À¸·Î º¯°æ ¾÷Ã¼¿¡ ÁÙ¶§´Â »èÁ¦ ÄÚµå 98·Î decodeÇÏ¿© ¿¬µ¿
-//¾Æ¿öÈ¨ »èÁ¦ ÀÌ·Â ¿¬µ¿À¸·Î ÀÎÇá¿© »óÅÂ ÄÚµå¸¸ 00 À¸·Î º¯°æ ¾÷Ã¼¿¡ ÁÙ¶§´Â »èÁ¦ ÄÚµå 98·Î decodeÇÏ¿© ¿¬µ¿
-//¸Þ¸®Ã÷  »èÁ¦ ÀÌ·Â ¿¬µ¿À¸·Î ÀÎÇÏ¿© »óÅÂ ÄÚµå¸¸ 00 À¸·Î º¯°æ
-if(u.inArray( _member_no , new String[]{"20150500312","20170501348","20190802206"})){
-	DB db = new DB();
-	contDao = new DataObject("tcb_contmaster");
-	contDao.item("reg_date", u.getTimeString());
-	contDao.item("status", "00");
-	db.setCommand(contDao.getUpdateQuery(where), contDao.record);
-	/* °è¾à·Î±× START*/
-	ContBLogDao logDao = new ContBLogDao();
-	logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ÀüÀÚ¹®¼­ »èÁ¦",  "", "00", "10");
-	/* °è¾à·Î±× END*/
-	if(!db.executeArray()){
-		u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
-		return;
-	}
-	
-}else{
-	DataObject cfileDao = new DataObject("tcb_cfile");
-	DataSet cfile = cfileDao.find(where+" and cfile_seq=1");
-	if(cfile.next()){
-		if(!Startup.conf.getString("file.path.bcont_pdf").equals("") && !cfile.getString("file_path").equals("") && !cfile.getString("file_name").equals(""))
-		{
-			//System.out.println("DELETE FILE : " + Startup.conf.getString("file.path.bcont_pdf")+cfile.getString("file_path")+cfile.getString("file_name"));
-			//u.delFile(Startup.conf.getString("file.path.bcont_pdf")+cfile.getString("file_path")+cfile.getString("file_name"));
-		}
-	}
-	
-	DataObject shareDao = new DataObject("tcb_share");
-	DataObject custSignImgDao = new DataObject("tcb_cust_sign_img");
-	DataObject contSubDao = new DataObject("tcb_cont_sub");
-	DataObject efileDao = new DataObject("tcb_efile");
-	DataObject rfileCustDao = new DataObject("tcb_rfile_cust");
-	DataObject rfileDao = new DataObject("tcb_rfile");
-	cfileDao = new DataObject("tcb_cfile");
-	DataObject StampDao = new DataObject("tcb_stamp");
-	DataObject warrDao = new DataObject("tcb_warr");
-	DataObject emailDao = new DataObject("tcb_cont_email");
-	DataObject custDao = new DataObject("tcb_cust");
-	DataObject contSignDao = new DataObject("tcb_cont_sign");
-	DataObject contAgreeDao = new DataObject("tcb_cont_agree");
-	DataObject contAddDao = new DataObject("tcb_cont_add");
-	DataObject contLogDao = new DataObject("tcb_cont_log");
-	contDao = new DataObject("tcb_contmaster");
-	
-	DB db = new DB();
-	//db.setDebug(out);
-	db.setCommand(shareDao.getDeleteQuery(where) ,null);
-	db.setCommand(custSignImgDao.getDeleteQuery(where) ,null);
-	db.setCommand(contSubDao.getDeleteQuery(where),null);
-	db.setCommand(efileDao.getDeleteQuery(where),null);
-	db.setCommand(rfileCustDao.getDeleteQuery(where),null);
-	db.setCommand(rfileDao.getDeleteQuery(where),null);
-	db.setCommand(cfileDao.getDeleteQuery(where),null);
-	db.setCommand(StampDao.getDeleteQuery(where),null);
-	db.setCommand(warrDao.getDeleteQuery(where),null);
-	db.setCommand(emailDao.getDeleteQuery(where),null);
-	db.setCommand(custDao.getDeleteQuery(where),null);
-	db.setCommand(contSignDao.getDeleteQuery(where),null);
-	db.setCommand(contAgreeDao.getDeleteQuery(where),null);
-	db.setCommand(contAddDao.getDeleteQuery(where),null);
-	db.setCommand(contLogDao.getDeleteQuery(where),null);
-	db.setCommand(contDao.getDeleteQuery(where),null);
-	if((!cont.getString("bid_no").equals(""))&&!cont.getString("bid_deg").equals("")){
-	db.setCommand(
-			       " update tcb_bid_supp set cont_no = null          "
-	              +"  where main_member_no = '"+_member_no+"'        "
-	              +"    and bid_no = '"+cont.getString("bid_no")+"' "
-	              +"    and bid_deg = '"+cont.getString("bid_deg")+"'"
-	              +"    and member_no = '"+supp_member_no+"'         "
-	              +"    and cont_no = '"+cont_no+"' 				 "
-	               ,null);
-	}
-	
-	
-	// PBÀÔ»çÁö¿ø °è¾à¼­ 
-	if("2019112".equals(cont.getString("template_cd"))){
-		DataObject applyPersonDao = new DataObject("tcb_apply_person");
-		applyPersonDao.item(" status ", "40");
-		applyPersonDao.item(" cont_no ", "");
-		db.setCommand(applyPersonDao.getUpdateQuery(" cont_no = '"+cont_no+"'"), applyPersonDao.record);
-	}
-
-	if(!db.executeArray()){
-		u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
-		return;
-	}
-}
-
-u.jsAlertReplace("»èÁ¦ Ã³¸® ÇÏ¿´½À´Ï´Ù.",link+u.getQueryString("cont_no,cont_chasu,template_cd"));
-
+u.jsAlertReplace("ì‚­ì œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", link + u.getQueryString("cont_no,cont_chasu,template_cd"));
 %>

@@ -2,14 +2,14 @@
 <%@page import="javax.crypto.spec.IvParameterSpec"%>
 <%@page import="javax.crypto.Cipher"%>
 <%@page import="javax.crypto.spec.SecretKeySpec"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%!
 
 public static String sgicKey = "N!ceDocu&N!ceDoc";
 public static String iv = "reacTiveJava9Sep";
 
 /**
- * º¸Áõº¸Çè ½ÅÃ» ¾ÏÈ£È­
+ * ë³´ì¦ë³´í—˜ ì‹ ì²­ ì•”í˜¸í™”
  * @param message
  * @return
  * @throws Exception
@@ -38,23 +38,23 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ ¾÷½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì—…ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject custDao = new DataObject("tcb_cust");
 
-// ÇÇº¸ÇèÀÚ
+// í”¼ë³´í—˜ìž
 DataSet cust1 = custDao.find(where + " and member_no = '"+cont.getString("member_no")+"' ");
 if(!cust1.next()){
-	u.jsError("ÇÇº¸ÇèÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í”¼ë³´í—˜ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-// º¸ÇèÀÚ
+// ë³´í—˜ìž
 DataSet cust2 = custDao.find(where + " and member_no = '"+_member_no+"' ");
 if(!cust2.next()){
-	u.jsError("º¸Çè°¡ÀÔÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ë³´í—˜ê°€ìž…ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 %>

@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-String[] code_status = new String[] {"10=>¿¬Àç¿¹Á¤","20=>¿¬ÀçÁß","30=>Àå±âÈŞÀçÁß","40=>¿¬Àç¿Ï·á"};
+String[] code_status = new String[] {"10=>ì—°ì¬ì˜ˆì •","20=>ì—°ì¬ì¤‘","30=>ì¥ê¸°íœ´ì¬ì¤‘","40=>ì—°ì¬ì™„ë£Œ"};
 String cont_no = u.aseDec(u.request("cont_no"));
 String type = u.request("type");
 
 f.addElement("status", null, null);
-f.addElement("sday", null, "hname:'¿¬Àç °³½ÃÀÏ', required:'Y'");
-f.addElement("eday", null, "hname:'¿¬Àç ¿Ï·áÀÏ'");
-f.addElement("fday", null, "hname:'¼­ºñ½º±Ç ¸¸·áÀÏ'");
+f.addElement("sday", null, "hname:'ì—°ì¬ ê°œì‹œì¼', required:'Y'");
+f.addElement("eday", null, "hname:'ì—°ì¬ ì™„ë£Œì¼'");
+f.addElement("fday", null, "hname:'ì„œë¹„ìŠ¤ê¶Œ ë§Œë£Œì¼'");
 f.addElement("auto", null, null);
 f.addElement("etc", null, null);
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DataObject dao = new DataObject("tcb_cont_resin");
@@ -31,18 +31,18 @@ if(u.isPost() && f.validate())
 
     if(bUpdate) {
         if (!dao.update("cont_no='"+cont_no+"'") ){
-            u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. ");
+            u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
             return;
         }
     } else {
         dao.item("cont_no", cont_no);
         if (!dao.insert()) {
-            u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. ");
+            u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
             return;
         }
     }
 
-    u.jsAlert("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù. ");
+    u.jsAlert("ì •ìƒì ìœ¼ë¡œ ì €ì¥ ë˜ì—ˆìŠµë‹ˆë‹¤. ");
     out.print("<script>");
     out.print("opener.location.reload();");
     out.print("window.close();");
@@ -52,18 +52,18 @@ if(u.isPost() && f.validate())
 
 String sTitle = "";
 if(type.equals("e")) {
-    sTitle = "¿µ¾î¹ø¿ª";
+    sTitle = "ì˜ì–´ë²ˆì—­";
 } else if(type.equals("j")) {
-    sTitle = "ÀÏº»¾î¹ø¿ª ";
+    sTitle = "ì¼ë³¸ì–´ë²ˆì—­ ";
 } else if(type.equals("c")) {
-    sTitle = "Áß±¹¾î¹ø¿ª ";
+    sTitle = "ì¤‘êµ­ì–´ë²ˆì—­ ";
 }
 
 
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.resin_series");
-p.setVar("popup_title", sTitle + "¿¬ÀçÁ¤º¸");
+p.setVar("popup_title", sTitle + "ì—°ì¬ì •ë³´");
 p.setVar("modify", false);
 p.setLoop("code_status", u.arr2loop(code_status));
 p.setVar("form_script", f.getScript());

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="  java.util.ArrayList
 			 	  ,nicelib.db.DataSet
 				  ,nicelib.util.Util
@@ -6,7 +6,6 @@
 				  ,nicelib.db.DB
 				  ,java.net.URLDecoder
 "%>
-<%@ include file = "../../../inc/funUtil.inc" %>
 <%
 	
 	Util u = new Util(request, response, out);
@@ -20,7 +19,7 @@
 	
 	try{
 		
-		String	sMemberNo	= u.request("member_no");	// È¸¿ø¹øÈ£
+		String	sMemberNo	= u.request("member_no");	// íšŒì›ë²ˆí˜¸
 	
 		DataObject dItem = new DataObject("tcb_src_adm");
 		
@@ -36,25 +35,25 @@
 										+	" where member_no = '"+sMemberNo+"'", null);
 		}
 		
-		String 	sLSrcNm		=	"";	//	´ëºÐ·ù¸í
-		String	sMSrcNm		=	"";	//	ÁßºÐ·ù¸í
-		String	sSSrcNm		=	"";	//	¼ÒºÐ·ù¸í
-		String	sSrcNm		=	"";	//	ºÐ·ù¸í
+		String 	sLSrcNm		=	"";	//	ëŒ€ë¶„ë¥˜ëª…
+		String	sMSrcNm		=	"";	//	ì¤‘ë¶„ë¥˜ëª…
+		String	sSSrcNm		=	"";	//	ì†Œë¶„ë¥˜ëª…
+		String	sSrcNm		=	"";	//	ë¶„ë¥˜ëª…
 		
-		String 	_sLSrcNm	=	"";	//	´ëºÐ·ù¸í
-		String	_sMSrcNm	=	"";	//	ÁßºÐ·ù¸í
-		String	_sSSrcNm	=	"";	//	¼ÒºÐ·ù¸í
+		String 	_sLSrcNm	=	"";	//	ëŒ€ë¶„ë¥˜ëª…
+		String	_sMSrcNm	=	"";	//	ì¤‘ë¶„ë¥˜ëª…
+		String	_sSSrcNm	=	"";	//	ì†Œë¶„ë¥˜ëª…
 	
-		int			iLSrcCd	=	0;	//	´ëºÐ·ùÄÚµå
-		int			iMSrcCd	=	0;	//	ÁßºÐ·ùÄÚµå
-		int			iSSrcCd	=	0;	//	¼ÒºÐ·ùÄÚµå
+		int			iLSrcCd	=	0;	//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+		int			iMSrcCd	=	0;	//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+		int			iSSrcCd	=	0;	//	ì†Œë¶„ë¥˜ì½”ë“œ
 		int			iDepth		=	0;	//	DEPTH
 		
-		ArrayList	alLSrcCd	=	null;	//	´ëºÐ·ùÄÚµå	
-		ArrayList	alMSrcCd	=	null;	//	ÁßºÐ·ùÄÚµå	 
-		ArrayList	alSSrcCd	=	null;	//	¼ÒºÐ·ùÄÚµå
+		ArrayList	alLSrcCd	=	null;	//	ëŒ€ë¶„ë¥˜ì½”ë“œ	
+		ArrayList	alMSrcCd	=	null;	//	ì¤‘ë¶„ë¥˜ì½”ë“œ	 
+		ArrayList	alSSrcCd	=	null;	//	ì†Œë¶„ë¥˜ì½”ë“œ
 		ArrayList	alDepth		=	null;	//	DEPTH
-		ArrayList	alSrcNm		=	null;	//	ºÐ·ù¸í
+		ArrayList	alSrcNm		=	null;	//	ë¶„ë¥˜ëª…
 		
 		System.out.println("realGrid.getRowCnt["+data.size()+"]"); 
 
@@ -64,9 +63,9 @@
 			
 			if(i == 0)
 			{
-				alLSrcCd	=	new ArrayList();	//	´ëºÐ·ùÄÚµå
-				alMSrcCd	=	new ArrayList();	//	ÁßºÐ·ùÄÚµå
-				alSSrcCd	=	new ArrayList();	//	¼ÒºÐ·ùÄÚµå
+				alLSrcCd	=	new ArrayList();	//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+				alMSrcCd	=	new ArrayList();	//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+				alSSrcCd	=	new ArrayList();	//	ì†Œë¶„ë¥˜ì½”ë“œ
 				alDepth		=	new ArrayList();	//	DEPTH				
 				alSrcNm		=	new ArrayList();	//	DEPTH				
 			}
@@ -77,7 +76,7 @@
 			
 			if(!sLSrcNm.equals(_sLSrcNm))
 			{
-				/* ´ëºÐ·ù */
+				/* ëŒ€ë¶„ë¥˜ */
 				sLSrcNm	=	_sLSrcNm;
 				iLSrcCd++;
 				iMSrcCd	=	0;
@@ -91,7 +90,7 @@
 				alSrcNm.add(sSrcNm);
 				alDepth.add(iDepth+"");
 				
-				/* ÁßºÐ·ù */
+				/* ì¤‘ë¶„ë¥˜ */
 				sMSrcNm	=	_sMSrcNm;
 				iMSrcCd++;
 				iSSrcCd	=	0;
@@ -104,7 +103,7 @@
 				alSrcNm.add(sSrcNm);
 				alDepth.add(iDepth+"");
 				
-				/* ¼ÒºÐ·ù */
+				/* ì†Œë¶„ë¥˜ */
 				sSSrcNm	=	_sSSrcNm;
 				iSSrcCd++;
 				iDepth	=	3;
@@ -119,7 +118,7 @@
 			{
 				if(!sMSrcNm.equals(_sMSrcNm))
 				{
-					/* ÁßºÐ·ù */
+					/* ì¤‘ë¶„ë¥˜ */
 					sMSrcNm	=	_sMSrcNm;
 					iMSrcCd++;
 					iSSrcCd	=	0;
@@ -132,7 +131,7 @@
 					alSrcNm.add(sSrcNm);
 					alDepth.add(iDepth+"");
 					
-					/* ¼ÒºÐ·ù */
+					/* ì†Œë¶„ë¥˜ */
 					sSSrcNm	=	_sSSrcNm;
 					iSSrcCd++;
 					iDepth	=	3;
@@ -145,7 +144,7 @@
 					alDepth.add(iDepth+"");
 				}else
 				{
-					/* ¼ÒºÐ·ù */
+					/* ì†Œë¶„ë¥˜ */
 					sSSrcNm	=	_sSSrcNm;
 					iSSrcCd++;
 					iDepth	=	3;
@@ -163,14 +162,14 @@
 			
 		}
 		
-		String	sLSrcCd		=	"";	//	´ëºÐ·ùÄÚµå
-		String	sMSrcCd		=	"";	//	ÁßºÐ·ùÄÚµå
-		String	sSSrcCd		=	"";	//	¼ÒºÐ·ùÄÚµå
-		String	sSrcCd		=	"";	//	ºÐ·ùÄÚµå
+		String	sLSrcCd		=	"";	//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+		String	sMSrcCd		=	"";	//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+		String	sSSrcCd		=	"";	//	ì†Œë¶„ë¥˜ì½”ë“œ
+		String	sSrcCd		=	"";	//	ë¶„ë¥˜ì½”ë“œ
 		
-		String	_sLSrcCd	=	"";	//	´ëºÐ·ùÄÚµå
-		String	_sMSrcCd	=	"";	//	ÁßºÐ·ùÄÚµå
-		String	_sSSrcCd	=	"";	//	¼ÒºÐ·ùÄÚµå
+		String	_sLSrcCd	=	"";	//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+		String	_sMSrcCd	=	"";	//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+		String	_sSSrcCd	=	"";	//	ì†Œë¶„ë¥˜ì½”ë“œ
 		
 		for(int j=0; j < alDepth.size(); j++)
 		{
@@ -178,9 +177,9 @@
 			sMSrcCd	=	"000";
 			sSSrcCd	=	"000";
 			
-			_sLSrcCd		=	alLSrcCd.get(j).toString();		//	´ëºÐ·ùÄÚµå
-			_sMSrcCd		=	alMSrcCd.get(j).toString();		//	ÁßºÐ·ùÄÚµå
-			_sSSrcCd		=	alSSrcCd.get(j).toString();		//	¼ÒºÐ·ùÄÚµå
+			_sLSrcCd		=	alLSrcCd.get(j).toString();		//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+			_sMSrcCd		=	alMSrcCd.get(j).toString();		//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+			_sSSrcCd		=	alSSrcCd.get(j).toString();		//	ì†Œë¶„ë¥˜ì½”ë“œ
 			
 			sLSrcCd	=	sLSrcCd.substring(0,3-(_sLSrcCd.length()))+_sLSrcCd;
 			sMSrcCd	=	sMSrcCd.substring(0,3-(_sMSrcCd.length()))+_sMSrcCd;

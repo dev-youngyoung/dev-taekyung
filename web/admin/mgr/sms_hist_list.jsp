@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] gubun = {"0=>¼º°ø", "1=>Å¸ÀÓ¾Æ¿ô", "2=>Àß¸øµÈ ÀüÈ­¹øÈ£", "v=>¹ß½Å¹øÈ£ »çÀü µî·ÏÁ¦¿¡ ÀÇÇÑ ¹Ìµî·Ï Â÷´Ü", "w=>¹ß½Å¹øÈ£ »çÀü µî·ÏÁ¦ ¹øÈ£±ÔÄ¢ À§¹İ",
-		"a=>´Ü¸»±â ÀÏ½Ã ¼­ºñ½º Á¤Áö", "b=>±âÅ¸ ´Ü¸»±â ¹®Á¦", "c=>´Ü¸»±â¿¡¼­ Âø½Ç °ÅÀı", "d=>±âÅ¸", "e=>¸Á ¿¡·¯", "f>SMTS Æ÷¸Ë¿¡·¯", "g=>SMS ¼­ºñ½º ºÒ°¡ ´Ü¸»±â",
-		"h=>Âø½Å ÃøÀÇ È£ºÒ°¡ »óÅÂ", "i=>SMS ¿î¿µÀÚ°¡ »èÁ¦ÇÑ ¸Ş½ÃÁö", "j=>½ºÄÉÁÙ·¯¿Í ASE »çÀÌÀÇ ¸Ş½ÃÁö Å¥", "k=>ÀÌÅë»ç¿¡¼­ SPAM Ã³¸®",
-		"l=>www.nospam.go.kr¿¡ µî·ÏµÈ ¼ö½Å°ÅºÎ ¹øÈ£", "m=>¸Ş½ÃÁö SPAM Â÷´Ü", "p=>Æù ¹øÈ£°¡ Çü½Ä¿¡ ¾î±ß³­ °æ¿ì", "t=>2°³ ÀÌ»óÀÇ SPAM Â÷´Ü",
-		"q=>ÇÊµå Çü½ÄÀÌ Àß¸øµÈ °æ¿ì(¿¹:¸Ş½ÃÁö ³»¿ë¾øÀ½)", "s=>¸Ş½ÃÁö ½ºÆÔÂ÷´Ü", "A=>ÇÚµåÆù È£ Ã³¸®Áß", "B=>À½¿µÁö¿ª", "C=>´Ü¸»±â POWER OFF",
-		"z=>±× ¿Ü ¿À·ù"};
+String[] gubun = {"0=>ì„±ê³µ", "1=>íƒ€ì„ì•„ì›ƒ", "2=>ì˜ëª»ëœ ì „í™”ë²ˆí˜¸", "v=>ë°œì‹ ë²ˆí˜¸ ì‚¬ì „ ë“±ë¡ì œì— ì˜í•œ ë¯¸ë“±ë¡ ì°¨ë‹¨", "w=>ë°œì‹ ë²ˆí˜¸ ì‚¬ì „ ë“±ë¡ì œ ë²ˆí˜¸ê·œì¹™ ìœ„ë°˜",
+		"a=>ë‹¨ë§ê¸° ì¼ì‹œ ì„œë¹„ìŠ¤ ì •ì§€", "b=>ê¸°íƒ€ ë‹¨ë§ê¸° ë¬¸ì œ", "c=>ë‹¨ë§ê¸°ì—ì„œ ì°©ì‹¤ ê±°ì ˆ", "d=>ê¸°íƒ€", "e=>ë§ ì—ëŸ¬", "f>SMTS í¬ë§·ì—ëŸ¬", "g=>SMS ì„œë¹„ìŠ¤ ë¶ˆê°€ ë‹¨ë§ê¸°",
+		"h=>ì°©ì‹  ì¸¡ì˜ í˜¸ë¶ˆê°€ ìƒíƒœ", "i=>SMS ìš´ì˜ìê°€ ì‚­ì œí•œ ë©”ì‹œì§€", "j=>ìŠ¤ì¼€ì¤„ëŸ¬ì™€ ASE ì‚¬ì´ì˜ ë©”ì‹œì§€ í", "k=>ì´í†µì‚¬ì—ì„œ SPAM ì²˜ë¦¬",
+		"l=>www.nospam.go.krì— ë“±ë¡ëœ ìˆ˜ì‹ ê±°ë¶€ ë²ˆí˜¸", "m=>ë©”ì‹œì§€ SPAM ì°¨ë‹¨", "p=>í° ë²ˆí˜¸ê°€ í˜•ì‹ì— ì–´ê¸‹ë‚œ ê²½ìš°", "t=>2ê°œ ì´ìƒì˜ SPAM ì°¨ë‹¨",
+		"q=>í•„ë“œ í˜•ì‹ì´ ì˜ëª»ëœ ê²½ìš°(ì˜ˆ:ë©”ì‹œì§€ ë‚´ìš©ì—†ìŒ)", "s=>ë©”ì‹œì§€ ìŠ¤íŒ¸ì°¨ë‹¨", "A=>í•¸ë“œí° í˜¸ ì²˜ë¦¬ì¤‘", "B=>ìŒì˜ì§€ì—­", "C=>ë‹¨ë§ê¸° POWER OFF",
+		"z=>ê·¸ ì™¸ ì˜¤ë¥˜"};
 
 String s_tran_date = u.request("s_tran_date", u.getTimeString("yyyyMM"));
 
-f.addElement("s_tran_date", s_tran_date, "hname:'±âÁØ³â¿ù', required:'Y', fixbyte:'6'");
+f.addElement("s_tran_date", s_tran_date, "hname:'ê¸°ì¤€ë…„ì›”', required:'Y', fixbyte:'6'");
 f.addElement("s_tran_rslt", null, null);
 f.addElement("s_tran_phone", null, null);
 f.addElement("s_tran_msg", null, null);
@@ -29,7 +29,7 @@ list.addWhere("(a.tran_msg like '%" + f.get("s_tran_msg") + "%' or b.mms_body li
 list.addSearch("a.tran_phone", f.get("s_tran_phone").replaceAll("-", ""), "LIKE");
 list.setOrderBy("a.tran_id desc");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){
@@ -41,7 +41,7 @@ p.setLoop("list", ds);
 
 if (u.request("mode").equals("excel")) {
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("SMSÀü¼ÛÀÌ·Â.xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("SMSì „ì†¡ì´ë ¥.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/mgr/sms_hist_list_excel.html"));
 	return;
 }

@@ -1,8 +1,8 @@
-<form novalidate name="form1" method="post"  onsubmit="return formSubmit(this);">
+ï»¿<form novalidate name="form1" method="post"  onsubmit="return formSubmit(this);">
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>±âº»Á¤º¸</h3>
+				<h3>ê¸°ë³¸ì •ë³´</h3>
 			</div>
 		</div>
 		<table>
@@ -13,23 +13,23 @@
 			<col width="35%">
 		</colgroup>
 		<tr>
-			<th>Æò°¡Áö¸í</th>
+			<th>í‰ê°€ì§€ëª…</th>
 			<td colspan="3"><input type="text" name="exam_name" style="width: 98%"/></td>
 		</tr>
 		<tr>
-			<th>¹®Ç×DEPTH</th>
+			<th>ë¬¸í•­DEPTH</th>
 			<td>
 				<select name="question_depth" onchange="chgDepth(this.value)">
 					<option value="2">2depth</option>
 					<option value="3">3depth</option>
 				</select>
 			</td>
-			<th>Æò°¡ Ç×¸ñ¼ö</th>
-			<td> &nbsp;<span id="question_cnt_area"></span> °³ Ç×¸ñ <input type="hidden" name="question_cnt"/></td>
+			<th>í‰ê°€ í•­ëª©ìˆ˜</th>
+			<td> &nbsp;<span id="question_cnt_area"></span> ê°œ í•­ëª© <input type="hidden" name="question_cnt"/></td>
 		</tr>
 		<!-- IFNOT START 'isCJ' -->
 		<tr>
-			<th>Æò°¡ À¯Çü</th>
+			<th>í‰ê°€ ìœ í˜•</th>
 			<td colspan="3">
 				<!-- LOOP START 'code_exam_type' -->
 				&nbsp;<input type="radio" name="exam_type" value="{{code_exam_type.id}}"/>{{code_exam_type.value}}
@@ -44,13 +44,13 @@
 
 	<div class="btn-group-wrap">
 		<!-- IFNOT START 'modify' -->
-		<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-		<button type="button" class="btn color ico-cancel" onclick="location.href='exam_list.jsp?{{list_query}}';"><span></span>Ãë¼Ò</button>
+		<button type="submit" class="btn color ico-save"><span></span>ì €ìž¥</button>
+		<button type="button" class="btn color ico-cancel" onclick="location.href='exam_list.jsp?{{list_query}}';"><span></span>ì·¨ì†Œ</button>
 		<!-- IFNOT END 'modify' -->
 		<!-- IF START 'modify' -->
-		<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-		<button type="button" class="btn color ico-cancel" onclick="location.href='exam_view.jsp?{{query}}';"><span></span>Ãë¼Ò</button>
-		<button type="button" class="btn color ico-list" onclick="location.href='exam_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="submit" class="btn color ico-save"><span></span>ì €ìž¥</button>
+		<button type="button" class="btn color ico-cancel" onclick="location.href='exam_view.jsp?{{query}}';"><span></span>ì·¨ì†Œ</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='exam_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 		<!-- IF END 'modify' -->
 	</div>
 </form>
@@ -59,10 +59,10 @@
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>Æò°¡Ç×¸ñ(2depth)</h3>
+				<h3>í‰ê°€í•­ëª©(2depth)</h3>
 			</div>
 			<div class="push-right">
-				<button type="button" class="sbtn ico-add" onclick="addRow()"><span></span>Ãß°¡</button>
+				<button type="button" class="sbtn ico-add" onclick="addRow()"><span></span>ì¶”ê°€</button>
 			</div>
 		</div>
 		<table id="depth2_html">
@@ -79,45 +79,45 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ºÐ·ù</th>
-			<th>¼¼ºÎÇ×¸ñ</th>
-			<th>¹èÁ¡</th>
+			<th>ë¶„ë¥˜</th>
+			<th>ì„¸ë¶€í•­ëª©</th>
+			<th>ë°°ì </th>
 			<!-- IF START 'isCJ' -->
-			<th>°¡ÁßÄ¡</th>
-			<th>È¯»ê¹èÁ¡</th>
+			<th>ê°€ì¤‘ì¹˜</th>
+			<th>í™˜ì‚°ë°°ì </th>
 			<!-- IF END 'isCJ' -->
-			<th>ºñ°í</th>
-			<th>»èÁ¦</th>
+			<th>ë¹„ê³ </th>
+			<th>ì‚­ì œ</th>
 		</tr>
 		</thead>
 		<tbody>
 		<!-- IFNOT START 'modify' -->
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%"  required="Y" hname="ºÐ·ù" value=""></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%"  required="Y" hname="¼¼ºÎÇ×¸ñ" value=""></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="100" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%"  required="Y" hname="ë¶„ë¥˜" value=""></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%"  required="Y" hname="ì„¸ë¶€í•­ëª©" value=""></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="100" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
 			<!-- IF START 'isCJ' -->
-				<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="30" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-				<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="30" size="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
+				<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="30" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+				<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="30" size="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
 			<!-- IF END 'isCJ' -->
 			<td align="center"><textarea name="etc" style="width:98%" rows="2"></textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<!-- IFNOT END 'modify' -->
 		<!-- IF START 'modify' -->
 			<!-- LOOP START 'question' -->
 			<tr style="height: 40px;">
-				<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%" value="{{question.l_div_nm}}"  required="Y" hname="ºÐ·ù"></td>
-				<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%" value="{{question.m_div_nm}}" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
+				<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%" value="{{question.l_div_nm}}"  required="Y" hname="ë¶„ë¥˜"></td>
+				<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%" value="{{question.m_div_nm}}" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
 				<td align="center">
 					<input type="hidden" name="question_cd" value="{{question.question_cd}}"/>
-					<input type="text" name="point" maxlength="3" size="2" value="{{question.point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
+					<input type="text" name="point" maxlength="3" size="2" value="{{question.point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
 				<!-- IF START 'isCJ' -->
-				<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="{{question.rate}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-				<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="{{question.rate_point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
+				<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="{{question.rate}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+				<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="{{question.rate_point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
 				<!-- IF END 'isCJ' -->
 				<td align="center"><textarea name="etc"  style="width:98%" rows="2">{{question.etc}}</textarea></td>
-				<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+				<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 			</tr>
 			<!-- LOOP END 'question' -->
 		<!-- IF END 'modify' -->
@@ -130,10 +130,10 @@
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>Æò°¡Ç×¸ñ(3depth)</h3>
+				<h3>í‰ê°€í•­ëª©(3depth)</h3>
 			</div>
 			<div class="push-right">
-				<button type="button" class="sbtn ico-add" onclick="addRow()"><span></span>Ãß°¡</button>
+				<button type="button" class="sbtn ico-add" onclick="addRow()"><span></span>ì¶”ê°€</button>
 			</div>
 		</div>
 		<table id="depth3_html">
@@ -151,16 +151,16 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>´ëºÐ·ù</th>
-			<th>ÁßºÐ·ù</th>
-			<th>¼¼ºÎÇ×¸ñ</th>
-			<th>¹èÁ¡</th>
+			<th>ëŒ€ë¶„ë¥˜</th>
+			<th>ì¤‘ë¶„ë¥˜</th>
+			<th>ì„¸ë¶€í•­ëª©</th>
+			<th>ë°°ì </th>
 			<!-- IF START 'isCJ' -->
-			<th>°¡ÁßÄ¡</th>
-			<th>È¯»ê¹èÁ¡</th>
+			<th>ê°€ì¤‘ì¹˜</th>
+			<th>í™˜ì‚°ë°°ì </th>
 			<!-- IF END 'isCJ' -->
-			<th>ºñ°í</th>
-			<th>»èÁ¦</th>
+			<th>ë¹„ê³ </th>
+			<th>ì‚­ì œ</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -168,85 +168,85 @@
 
 		<!-- IF START 'isCJ' -->
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="Àç¹«»óÅÂ Æò°¡" style="width:98%" required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="¼öÀÍ¼ºÁöÇ¥" style="width:98%" required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="¿µ¾÷ÀÌÀÍ·ü" style="width:98%" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
-			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">Å©·¹Å¾ ÀÚµ¿Æò°¡ Ç×¸ñ</textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)" style="margin-top:5px;"><span></span>»èÁ¦</button></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ìž¬ë¬´ìƒíƒœ í‰ê°€" style="width:98%" required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ìˆ˜ìµì„±ì§€í‘œ" style="width:98%" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ì˜ì—…ì´ìµë¥ " style="width:98%" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
+			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">í¬ë ˆíƒ‘ ìžë™í‰ê°€ í•­ëª©</textarea></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)" style="margin-top:5px;"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="Àç¹«»óÅÂ Æò°¡" style="width:98%" required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="¾ÈÁ¤¼ºÁöÇ¥¥°" style="width:98%" required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ºÎÃ¤ºñÀ²" style="width:98%" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
-			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">Å©·¹Å¾ ÀÚµ¿Æò°¡ Ç×¸ñ</textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ìž¬ë¬´ìƒíƒœ í‰ê°€" style="width:98%" required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ì•ˆì •ì„±ì§€í‘œâ… " style="width:98%" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ë¶€ì±„ë¹„ìœ¨" style="width:98%" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
+			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">í¬ë ˆíƒ‘ ìžë™í‰ê°€ í•­ëª©</textarea></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="Àç¹«»óÅÂ Æò°¡" style="width:98%" required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="¾ÈÁ¤¼ºÁöÇ¥¥±" style="width:98%" required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="À¯µ¿ºñÀ²" style="width:98%" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
-			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">Å©·¹Å¾ ÀÚµ¿Æò°¡ Ç×¸ñ</textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ìž¬ë¬´ìƒíƒœ í‰ê°€" style="width:98%" required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ì•ˆì •ì„±ì§€í‘œâ…¡" style="width:98%" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ìœ ë™ë¹„ìœ¨" style="width:98%" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
+			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">í¬ë ˆíƒ‘ ìžë™í‰ê°€ í•­ëª©</textarea></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="Àç¹«»óÅÂ Æò°¡" style="width:98%" required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="¾ÈÁ¤¼ºÁöÇ¥¥²" style="width:98%" required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="½Å¿ëµî±Þ" style="width:98%" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
-			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">Å©·¹Å¾ ÀÚµ¿Æò°¡ Ç×¸ñ</textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ìž¬ë¬´ìƒíƒœ í‰ê°€" style="width:98%" required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ì•ˆì •ì„±ì§€í‘œâ…¢" style="width:98%" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ì‹ ìš©ë“±ê¸‰" style="width:98%" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
+			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">í¬ë ˆíƒ‘ ìžë™í‰ê°€ í•­ëª©</textarea></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="Àç¹«»óÅÂ Æò°¡" style="width:98%" required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="¼¼±ÞÃ¼³³" style="width:98%" required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ÃÖ±Ù 1°³³â" style="width:98%" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
-			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">Å©·¹Å¾ ÀÚµ¿Æò°¡ Ç×¸ñ</textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ìž¬ë¬´ìƒíƒœ í‰ê°€" style="width:98%" required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ì„¸ê¸‰ì²´ë‚©" style="width:98%" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ìµœê·¼ 1ê°œë…„" style="width:98%" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="20" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="10" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
+			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">í¬ë ˆíƒ‘ ìžë™í‰ê°€ í•­ëª©</textarea></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="°¡°ÝÁ¡¼ö Æò°¡" style="width:98%" required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="°¡°Ý" style="width:98%" required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="1¼øÀ§´ëºñ" style="width:98%" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="100" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="60" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="60" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
-			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">ÅõÂû°¡ ÀÚµ¿Æò°¡ Ç×¸ñ</textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ê°€ê²©ì ìˆ˜ í‰ê°€" style="width:98%" required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ê°€ê²©" style="width:98%" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="1ìˆœìœ„ëŒ€ë¹„" style="width:98%" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="100" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="60" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="60" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
+			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2">íˆ¬ì°°ê°€ ìžë™í‰ê°€ í•­ëª©</textarea></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="¿î¿µ´É·Â Æò°¡" style="width:98%"  required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="¿î¼Û½ÇÀû" style="width:98%"  required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="À¯»ç ´ëÇü¹°·®" style="width:98%"  required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="100" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡"></td>
-			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="30" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="30" size="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" value="ìš´ì˜ëŠ¥ë ¥ í‰ê°€" style="width:98%"  required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" value="ìš´ì†¡ì‹¤ì " style="width:98%"  required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" value="ìœ ì‚¬ ëŒ€í˜•ë¬¼ëŸ‰" style="width:98%"  required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="3" size="2" value="100" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì "></td>
+			<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="30" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+			<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="30" size="2" readonly class="label_none" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
 			<td align="center"><textarea name="etc" style="width:98%;overflow:hidden" rows="2"></textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<!-- IF END 'isCJ' -->
 
 		<!-- IFNOT START 'isCJ' -->
 		<tr style="height: 40px;">
-			<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%"  required="Y" hname="´ëºÐ·ù"></td>
-			<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%"  required="Y" hname="Áßºå·ù"></td>
-			<td align="center"><input type="text" name="s_div_nm" maxlength="200" style="width:98%"  required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
-			<td align="center"><input type="text" name="point" maxlength="2" size="2"  style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="¹èÁ¡"></td>
+			<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%"  required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+			<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%"  required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+			<td align="center"><input type="text" name="s_div_nm" maxlength="200" style="width:98%"  required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
+			<td align="center"><input type="text" name="point" maxlength="2" size="2"  style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="ë°°ì "></td>
 			<td align="center"><textarea name="etc" style="width:98%" rows="2"></textarea></td>
-			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+			<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<!-- IFNOT END 'isCJ' -->
 
@@ -254,19 +254,19 @@
 		<!-- IF START 'modify' -->
 			<!-- LOOP START 'question' -->
 			<tr style="height: 40px;">
-				<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%" value="{{question.l_div_nm}}"  required="Y" hname="´ëºÐ·ù"></td>
-				<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%" value="{{question.m_div_nm}}" required="Y" hname="Áßºå·ù"></td>
-				<td align="center"><input type="text" name="s_div_nm" maxlength="200" style="width:98%" value="{{question.question}}" required="Y" hname="¼¼ºÎÇ×¸ñ"></td>
+				<td align="center"><input type="text" name="l_div_nm" maxlength="200" style="width:98%" value="{{question.l_div_nm}}"  required="Y" hname="ëŒ€ë¶„ë¥˜"></td>
+				<td align="center"><input type="text" name="m_div_nm" maxlength="200" style="width:98%" value="{{question.m_div_nm}}" required="Y" hname="ì¤‘ë·´ë¥˜"></td>
+				<td align="center"><input type="text" name="s_div_nm" maxlength="200" style="width:98%" value="{{question.question}}" required="Y" hname="ì„¸ë¶€í•­ëª©"></td>
 				<td align="center">
 					<input type="hidden" name="question_cd" value="{{question.question_cd}}"/>
-					<input type="text" name="point" maxlength="3" size="2" value="{{question.point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="¹èÁ¡">
+					<input type="text" name="point" maxlength="3" size="2" value="{{question.point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ë°°ì ">
 				</td>
 				<!-- IF START 'isCJ' -->
-				<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="{{question.rate}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="°¡ÁßÄ¡">%</td>
-				<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="{{question.rate_point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="È¯»êÁ¡¼ö"></td>
+				<td align="center"><input type="text" name="rate" maxlength="2" size="2" value="{{question.rate}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" onChange="cal()" hname="ê°€ì¤‘ì¹˜">%</td>
+				<td align="center"><input type="text" name="rate_point" maxlength="5" size="5" value="{{question.rate_point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_only()" onkeypress="num_only()" hname="í™˜ì‚°ì ìˆ˜"></td>
 				<!-- IF END 'isCJ' -->
 				<td align="center"><textarea name="etc"  style="width:98%" rows="2">{{question.etc}}</textarea></td>
-				<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>»èÁ¦</button></td>
+				<td align="center"><button type="button" class="sbtn ico-delete" onclick="delRow(this)"><span></span>ì‚­ì œ</button></td>
 			</tr>
 			<!-- LOOP END 'question' -->
 		<!-- IF END 'modify' -->
@@ -279,16 +279,16 @@
 
 <br/>
 <div class="help-content">
-    <h3>NOTICE<span>À¯¿ëÇÑ Á¤º¸! »ç¿ëÀü¿¡ ¾Ë¾ÆµÎ¼¼¿ä~ </span></h3>
+    <h3>NOTICE<span>ìœ ìš©í•œ ì •ë³´! ì‚¬ìš©ì „ì— ì•Œì•„ë‘ì„¸ìš”~ </span></h3>
     <div class="help-content-body">
-        <h4>ÀÛ¼º¾È³»</h4>
+        <h4>ìž‘ì„±ì•ˆë‚´</h4>
         <ul>
-			<li>È¯»êÁ¡¼ö´Â °¢ Ç×¸ñº° ¹èÁ¡ °¡ÁßÄ¡¸¦ ¹Ý¿µÇÑ ½ÇÆò°¡ ¹èÁ¡ÀÌ¸ç, È¯»êÁ¡¼öÀÇ ÃÑÇÕÀº 100Á¡ ¸¸Á¡ÀÌ¾î¾ß ÇÕ´Ï´Ù.</li>
-			<li>"Å©·¹Å¾ ÀÚµ¿Æò°¡ Ç×¸ñ"Àº [°Å·¡¾÷Ã¼°ü¸®-±â¾÷ÇöÈ²Á¶È¸] ¸Þ´º¿¡ µî·ÏµÈ Á¡¼ö¸¦ ±â¹ÝÀ¸·Î ³«Âû¾÷Ã¼ Æò°¡½Ã ÀÚµ¿ Æò°¡µË´Ï´Ù.</li>
+			<li>í™˜ì‚°ì ìˆ˜ëŠ” ê° í•­ëª©ë³„ ë°°ì  ê°€ì¤‘ì¹˜ë¥¼ ë°˜ì˜í•œ ì‹¤í‰ê°€ ë°°ì ì´ë©°, í™˜ì‚°ì ìˆ˜ì˜ ì´í•©ì€ 100ì  ë§Œì ì´ì–´ì•¼ í•©ë‹ˆë‹¤.</li>
+			<li>"í¬ë ˆíƒ‘ ìžë™í‰ê°€ í•­ëª©"ì€ [ê±°ëž˜ì—…ì²´ê´€ë¦¬-ê¸°ì—…í˜„í™©ì¡°íšŒ] ë©”ë‰´ì— ë“±ë¡ëœ ì ìˆ˜ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë‚™ì°°ì—…ì²´ í‰ê°€ì‹œ ìžë™ í‰ê°€ë©ë‹ˆë‹¤.</li>
 			<li>
-				"ÅõÂû°¡ ÀÚµ¿Æò°¡ Ç×¸ñ"Àº ³«Âû¾÷Ã¼ Æò°¡½Ã 1¼øÀ§ ÅõÂû¾÷Ã¼ÀÇ ±Ý¾×¿¡ µû¶ó ÀÚµ¿ Æò°¡µË´Ï´Ù.<br>
-				 - 10¾ï¹Ì¸¸ : Æò°¡Á¡¼ö = 100 - ( (Æò°¡¾÷Ã¼±Ý¾× - 1¼øÀ§ ±Ý¾×) ¡À 1¼øÀ§ ±Ý¾× ¡¿ 100 )<br>
-				 - 10¾ïÀÌ»ó : Æò°¡Á¡¼ö = 100 - ( (Æò°¡¾÷Ã¼±Ý¾× - 1¼øÀ§ ±Ý¾×) ¡À 1¼øÀ§ ±Ý¾× ¡¿ 100 ) - ( (Æò°¡¾÷Ã¼±Ý¾× - 1¼øÀ§ ±Ý¾×) ¡À 1Ãµ¸¸¿ø) ¡¿ 0.2 )
+				"íˆ¬ì°°ê°€ ìžë™í‰ê°€ í•­ëª©"ì€ ë‚™ì°°ì—…ì²´ í‰ê°€ì‹œ 1ìˆœìœ„ íˆ¬ì°°ì—…ì²´ì˜ ê¸ˆì•¡ì— ë”°ë¼ ìžë™ í‰ê°€ë©ë‹ˆë‹¤.<br>
+				 - 10ì–µë¯¸ë§Œ : í‰ê°€ì ìˆ˜ = 100 - ( (í‰ê°€ì—…ì²´ê¸ˆì•¡ - 1ìˆœìœ„ ê¸ˆì•¡) Ã· 1ìˆœìœ„ ê¸ˆì•¡ Ã— 100 )<br>
+				 - 10ì–µì´ìƒ : í‰ê°€ì ìˆ˜ = 100 - ( (í‰ê°€ì—…ì²´ê¸ˆì•¡ - 1ìˆœìœ„ ê¸ˆì•¡) Ã· 1ìˆœìœ„ ê¸ˆì•¡ Ã— 100 ) - ( (í‰ê°€ì—…ì²´ê¸ˆì•¡ - 1ìˆœìœ„ ê¸ˆì•¡) Ã· 1ì²œë§Œì›) Ã— 0.2 )
 		 	</li>
         </ul>
     </div>
@@ -302,7 +302,7 @@ function formSubmit(f){
 	if(validate(f)){
 		var cnt = document.getElementById('question_grid').rows.length -1;
 		if(cnt < 2){
-			alert("Æò°¡  Ç×¸ñÀ» 2°¡Áö ÀÌ»ó ÀÔ·Â ÇÏ¼¼¿ä.");
+			alert("í‰ê°€  í•­ëª©ì„ 2ê°€ì§€ ì´ìƒ ìž…ë ¥ í•˜ì„¸ìš”.");
 			return false;
 		}
 		var l_div_nm = "";
@@ -314,12 +314,12 @@ function formSubmit(f){
 				if(i == j) continue;
 				if(f['s_div_nm']){
 					if(f['l_div_nm'][i].value == f['l_div_nm'][j].value && f['m_div_nm'][i].value == f['m_div_nm'][j].value && f['s_div_nm'][i].value == f['s_div_nm'][j].value){
-						alert("Áßº¹ Ç×¸ñÀÌ ÀÖ½À´Ï´Ù. Æò°¡ Ç×¸ñÀ» È®ÀÎÇØ ÁÖ¼¼¿ä.");
+						alert("ì¤‘ë³µ í•­ëª©ì´ ìžˆìŠµë‹ˆë‹¤. í‰ê°€ í•­ëª©ì„ í™•ì¸í•´ ì£¼ì„¸ìš”.");
 						return false;
 					}
 				}else{
 					if(f['l_div_nm'][i].value == f['l_div_nm'][j].value && f['m_div_nm'][i].value == f['m_div_nm'][j].value){
-						alert("Áßº¹ Ç×¸ñÀÌ ÀÖ½À´Ï´Ù. Æò°¡ Ç×¸ñÀ» È®ÀÎÇØ ÁÖ¼¼¿ä.");
+						alert("ì¤‘ë³µ í•­ëª©ì´ ìžˆìŠµë‹ˆë‹¤. í‰ê°€ í•­ëª©ì„ í™•ì¸í•´ ì£¼ì„¸ìš”.");
 						return false;
 					}
 				}
@@ -332,7 +332,7 @@ function formSubmit(f){
 			point += parseInt(f['point'][i].value,10);
 		}
 		if(point != 100){
-			alert("¹èÁ¡ÀÇ ÇÕÀº 100Á¡ÀÌ¿©¾ß ÇÕ´Ï´Ù.");
+			alert("ë°°ì ì˜ í•©ì€ 100ì ì´ì—¬ì•¼ í•©ë‹ˆë‹¤.");
 			return false;
 		}
 		<!-- IFNOT END 'isCJ' -->
@@ -343,12 +343,12 @@ function formSubmit(f){
 			rate_point += parseInt(f['rate_point'][i].value,10);
 		}
 		if(rate_point != 100){
-			alert("È¯»ê ¹èÁ¡ÀÇ Á¡¼ö°¡ "+rate_point+"Á¡ÀÔ´Ï´Ù.\n\nÈ¯»ê ¹èÁ¡À» 100Á¡À¸·Î ¼³Á¤ÇØÁÖ¼¼¿ä.");
+			alert("í™˜ì‚° ë°°ì ì˜ ì ìˆ˜ê°€ "+rate_point+"ì ìž…ë‹ˆë‹¤.\n\ní™˜ì‚° ë°°ì ì„ 100ì ìœ¼ë¡œ ì„¤ì •í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		<!-- IF END 'isCJ' -->
 		
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?"))
+		if(confirm("ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
 			return true;
 	}
 	return false;	
@@ -363,7 +363,7 @@ function chgDepth(inVal){
 	var area = document.getElementById("qustion_area");
 	if(area.innerHTML.trim() != ""){
 		if(area.innerHTML !=document.getElementById("depth"+depth).innerHTML){
-			if(!confirm("º¯°æ½Ã ÀúÀåÇÏÁö ¾ÊÀº Á¤º¸´Â »èÁ¦ µË´Ï´Ù.\n\nº¯°æ ÇÏ½Ã°Ú½À´Ï±î?")){
+			if(!confirm("ë³€ê²½ì‹œ ì €ìž¥í•˜ì§€ ì•Šì€ ì •ë³´ëŠ” ì‚­ì œ ë©ë‹ˆë‹¤.\n\në³€ê²½ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 				return;
 			}
 		}
@@ -396,7 +396,7 @@ function addRow(){
 		}
 		f['point'][question_grid.rowIndex-1].value = "";
 		<!-- IF START 'isCJ' -->
-		f['l_div_nm'][question_grid.rowIndex-1].value = "¿î¿µ´É·Â Æò°¡";
+		f['l_div_nm'][question_grid.rowIndex-1].value = "ìš´ì˜ëŠ¥ë ¥ í‰ê°€";
 		f['rate'][question_grid.rowIndex-1].value = "";
 		f['rate_point'][question_grid.rowIndex-1].value = "";
 		<!-- IF END 'isCJ' -->
@@ -408,7 +408,7 @@ function delRow(obj){
 	<!-- IF START 'isCJ' -->
 	var row = question_grid.findRow(obj);
 	if(row.rowIndex < 7) {
-		alert("±âº» Æò°¡ Ç×¸ñÀº »èÁ¦ÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.");
+		alert("ê¸°ë³¸ í‰ê°€ í•­ëª©ì€ ì‚­ì œí•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	<!-- IF END 'isCJ' -->
@@ -433,7 +433,7 @@ function cal(){
 	
 	for(var i=0; i<point.length; i++)
 	{
-		rate_point[i].value = (point[i].value * (rate[i].value / 100)).toFixed(2);  // ¼Ò¼öÁ¡ 3Â°¿¡¼­ ¹Ý¿Ã¸²
+		rate_point[i].value = (point[i].value * (rate[i].value / 100)).toFixed(2);  // ì†Œìˆ˜ì  3ì§¸ì—ì„œ ë°˜ì˜¬ë¦¼
 	}
 	
 }

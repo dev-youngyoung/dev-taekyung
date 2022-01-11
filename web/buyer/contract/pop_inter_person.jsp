@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String template_cd = u.request("template_cd");
 String agree_seq = u.request("agree_seq");
 String cont_no = u.request("cont_no");
@@ -7,14 +7,14 @@ if(!cont_no.equals("")) cont_no = u.aseDec(cont_no);
 String addWhere = "";
 
 DataSet agreeTemplate = null;
-if(! (template_cd.startsWith("999999")||template_cd.equals("") )){//ÀÏ¹İ °è¾à
+if(! (template_cd.startsWith("999999")||template_cd.equals("") )){//ì¼ë°˜ ê³„ì•½
 	DataObject agreeTemplateDao = new DataObject("tcb_agree_template");
 	agreeTemplate= agreeTemplateDao.find("template_cd ='"+template_cd+"' and agree_seq="+agree_seq, "*", "agree_field_seq");
 	if(agreeTemplate.size()==0) {
 		DataObject contAgreeDao = new DataObject("tcb_cont_agree");
 		agreeTemplate= contAgreeDao.find("cont_no ='"+cont_no+"' and cont_chasu = '"+cont_chasu+"'  and agree_seq="+agree_seq, "*", "agree_field_seq");
 	}
-}else{// ÀÚÀ¯ ¼­½Ä °è¾à
+}else{// ììœ  ì„œì‹ ê³„ì•½
 	if(!cont_no.equals("")){
 		DataObject contAgreeDao = new DataObject("tcb_cont_agree");
 		agreeTemplate= contAgreeDao.find("cont_no ='"+cont_no+"' and cont_chasu = '"+cont_chasu+"'  and agree_seq="+agree_seq, "*", "agree_field_seq");
@@ -25,18 +25,18 @@ if(! (template_cd.startsWith("999999")||template_cd.equals("") )){//ÀÏ¹İ °è¾à
 }
 
 if(!agreeTemplate.next()){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇØ ÁÖ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 
 f.addElement("s_member_name",null, null);
 
-if(!agreeTemplate.getString("agree_field_seq").equals("")) // ºÎ¼­Á¦ÇÑÀÎ °æ¿ì
+if(!agreeTemplate.getString("agree_field_seq").equals("")) // ë¶€ì„œì œí•œì¸ ê²½ìš°
 {
 	if(_member_no.equals("20140900004")){ // kt m&n s
-		if(agree_seq.equals("5"))//°© ¼­¸í	
+		if(agree_seq.equals("5"))//ê°‘ ì„œëª…	
 			addWhere = " and field_seq in (" + agreeTemplate.getString("agree_field_seq") + ", 18, 24, 25, 29, 31)";
-		else if(u.inArray(template_cd, new String[]{"2014060","2018023" ,"2018024","2019327"})) // °© ¼ø¹øÀÌ 4,3¹øÂ°
+		else if(u.inArray(template_cd, new String[]{"2014060","2018023" ,"2018024","2019327"})) // ê°‘ ìˆœë²ˆì´ 4,3ë²ˆì§¸
 			addWhere = " and field_seq in (" + agreeTemplate.getString("agree_field_seq") + ", 18, 24, 25, 29, 31,28)";
 		else if(u.inArray(template_cd, new String[]{"2015141"}))
 			addWhere = " and field_seq in (" + agreeTemplate.getString("agree_field_seq") + ", 24, 29 ,8 ,28)";
@@ -65,29 +65,29 @@ while(field.next())
 		+" where status>0 and use_yn = 'Y' and member_no = '" + _member_no + "'"
 		+"   and field_seq = '"+field.getString("field_seq")+"'";
 
-	if(u.inArray(template_cd, new String[]{"2015059","2015060"}) && agree_seq.equals("3"))  //¾¾Á¦ÀÌ¿Ã¸®ºê³×Æ®¿÷½º ÁÖ½ÄÈ¸»ç
-		sQuery += " and user_id in ('oy_ckpark','oy_jin7','oy_kju747','oy_sunjung','oy_bksun','oy_minjung24','oy_minjunglee')";  // ¹ÚÃ¢±â´Ô, Áø¼¼ÈÆ´Ô, ±èÁ¤¾ğ´Ô, ÀÌ¼±Á¤´Ô, ¼±º¸°æ´Ô, ±è¹ÎÁ¤´Ô, ÀÌ¹ÎÁ¤´Ô  
+	if(u.inArray(template_cd, new String[]{"2015059","2015060"}) && agree_seq.equals("3"))  //ì”¨ì œì´ì˜¬ë¦¬ë¸Œë„¤íŠ¸ì›ìŠ¤ ì£¼ì‹íšŒì‚¬
+		sQuery += " and user_id in ('oy_ckpark','oy_jin7','oy_kju747','oy_sunjung','oy_bksun','oy_minjung24','oy_minjunglee')";  // ë°•ì°½ê¸°ë‹˜, ì§„ì„¸í›ˆë‹˜, ê¹€ì •ì–¸ë‹˜, ì´ì„ ì •ë‹˜, ì„ ë³´ê²½ë‹˜, ê¹€ë¯¼ì •ë‹˜, ì´ë¯¼ì •ë‹˜  
 
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("18")) // kt m&ns
-		sQuery += " and user_id in ('mns1122014','mns1132019','mns1152006','mns1102022','mns1142013','mns1092008','mns1098863','mns1082057','mns1132014','mns1072021','mns1122013','mns1122008','mns1172017','mns1142019','mns1162018')"; // ±è¼ºÈ£,±è¿øÀç, ·ù¼±ÀÌ, ¾ÈÁ¾½Ä, ÀÌ°æÈ£, ÃÖ¿ì¿µ, ±è¼¼Çö, ÀÌÃ¢¿µ, È²¼øÃ¶ ,Àå¼ºÅÂ, ±è½Â¼±, ·ù°ø¼ö, ³ª±¤¿¬,±è±âÅÂ,È«¼º¿ë
+		sQuery += " and user_id in ('mns1122014','mns1132019','mns1152006','mns1102022','mns1142013','mns1092008','mns1098863','mns1082057','mns1132014','mns1072021','mns1122013','mns1122008','mns1172017','mns1142019','mns1162018')"; // ê¹€ì„±í˜¸,ê¹€ì›ì¬, ë¥˜ì„ ì´, ì•ˆì¢…ì‹, ì´ê²½í˜¸, ìµœìš°ì˜, ê¹€ì„¸í˜„, ì´ì°½ì˜, í™©ìˆœì²  ,ì¥ì„±íƒœ, ê¹€ìŠ¹ì„ , ë¥˜ê³µìˆ˜, ë‚˜ê´‘ì—°,ê¹€ê¸°íƒœ,í™ì„±ìš©
 		
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("24")) // kt m&ns
-		sQuery += " and user_id in ('mns1152060')"; // Á¶ÇÏ¿¬
+		sQuery += " and user_id in ('mns1152060')"; // ì¡°í•˜ì—°
 		
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("25")) // kt m&ns
-		sQuery += " and user_id in ('mns1162048','mns1132014','mns1072006','mns1122006','mns1072033','mns1152007','mns1122013','mns1088767','mns118056')"; // ÀÓÅÂ¿µ,È²¼øÃ¶,È«¼®Áø,Àå¼ºÅÂ,Á¶Á¤¿±,±è±âºÀ,±¸ÅÂÇÑ,±è½Â¼±,±èÁö¼÷,ÀÌÃ¶¿í
+		sQuery += " and user_id in ('mns1162048','mns1132014','mns1072006','mns1122006','mns1072033','mns1152007','mns1122013','mns1088767','mns118056')"; // ì„íƒœì˜,í™©ìˆœì² ,í™ì„ì§„,ì¥ì„±íƒœ,ì¡°ì •ì—½,ê¹€ê¸°ë´‰,êµ¬íƒœí•œ,ê¹€ìŠ¹ì„ ,ê¹€ì§€ìˆ™,ì´ì² ìš±
 	
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("31")) // kt m&ns 
-		sQuery += " and user_id in ('mns1142021','mns1082024','mns1072020')"; // ±è¹Î¼®, ¼ºº´Áø, ¹ÚÁøÇö
+		sQuery += " and user_id in ('mns1142021','mns1082024','mns1072020')"; // ê¹€ë¯¼ì„, ì„±ë³‘ì§„, ë°•ì§„í˜„
 
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("29")) // kt m&ns 	
-		sQuery += " and user_id in ('mns1168122')"; // ÀÌÁØ¿±
+		sQuery += " and user_id in ('mns1168122')"; // ì´ì¤€ì—½
 	
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("8")) // kt m&ns 	
-			sQuery += " and user_id in ('mns1182012','mns1092007')"; // °í´ö³ç, Àå¹Î¿µ
+			sQuery += " and user_id in ('mns1182012','mns1092007')"; // ê³ ë•ë…•, ì¥ë¯¼ì˜
 	
 	if(_member_no.equals("20140900004") && field.getString("field_seq").equals("28")) // kt m&ns 	
-		sQuery += " and user_id in ('mns1188715','mns1092006','mns1148278')"; // ±è¸¸¼·, Á¶°æ¿ë , ¹Ú¹ÌÁø
+		sQuery += " and user_id in ('mns1188715','mns1092006','mns1148278')"; // ê¹€ë§Œì„­, ì¡°ê²½ìš© , ë°•ë¯¸ì§„
 
 	if(!f.get("s_member_name").equals(""))
 		sQuery += " and user_name like '%" + f.get("s_member_name") + "%'";
@@ -116,7 +116,7 @@ while(person.next())
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_inter_person");
-p.setVar("popup_title","»ç¿ëÀÚ ¼±ÅÃ");
+p.setVar("popup_title","ì‚¬ìš©ì ì„ íƒ");
 p.setLoop("person", person);
 p.setVar("form_script",f.getScript());
 p.display(out);

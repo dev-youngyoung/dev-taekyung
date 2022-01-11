@@ -1,16 +1,16 @@
 <%@page import="java.net.URLDecoder"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp"%>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp"%>
 <%
-// ±âº»Á¤º¸
-String w_member_no = auth.getString("_MEMBER_NO");  // ÀÛ¼ºÀÚ È¸¿ø¹øÈ£
-String w_user_id = auth.getString("_USER_ID"); // ÀÛ¼ºÀÚ¾ÆÀÌµð
+// ê¸°ë³¸ì •ë³´
+String w_member_no = auth.getString("_MEMBER_NO");  // ìž‘ì„±ìž íšŒì›ë²ˆí˜¸
+String w_user_id = auth.getString("_USER_ID"); // ìž‘ì„±ìžì•„ì´ë””
 
-// µî·Ï¾÷Ã¼ Á¤º¸ Á¶È¸
+// ë“±ë¡ì—…ì²´ ì •ë³´ ì¡°íšŒ
 DataObject daoMember = new DataObject("tcb_member");
 DataSet dsWMember = daoMember.find("member_no = '"+w_member_no+"'");
 if(!dsWMember.next())
 {
-	System.out.println("µî·Ï ¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù. µî·Ï¾÷Ã¼ È¸¿ø¹øÈ£ : " + w_member_no);
+	System.out.println("ë“±ë¡ ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤. ë“±ë¡ì—…ì²´ íšŒì›ë²ˆí˜¸ : " + w_member_no);
 	return;
 }
 
@@ -20,32 +20,32 @@ if(!grid.equals("")){
 }
 DataSet loop = u.grid2dataset(grid);
 
-// ¿¢¼¿¿¡¼­ ÀÔ·Â¹Þ´Â °ª
-String vendcd = ""; // »ç¾÷ÀÚ¹øÈ£
-String setup_date = ""; // ¼³¸³ÀÏÀÚ
-String worker_num = ""; // ÀÎ·Â¼ö
-String major_cust = ""; // ÁÖ¿äÁÖÁÖ(ÁöºÐÀ²)
-String sales_amt = ""; // ¸ÅÃâ
-String biz_profit = ""; // ¿µ¾ïÀÌÀÍ
-String net_profit = ""; // ´ç±â¼øÀÌÀÍ
-String asset = ""; // ÀÚ»êÃÑ°è
-String capital = ""; // ÀÚº»ÃÑ°è
-String debt = ""; // ºÎÃ¤ÃÑ°è
-String liquid_asset = ""; // À¯µ¿ÀÚ»ê
-String liquid_debt = ""; // À¯µ¿ºÎÃ¤
-String credit_rating = ""; // ½Å¿ëµî±Þ
-String tax_delay_yn = ""; // ¼¼±ÝÃ¼³³¿©ºÎ
+// ì—‘ì…€ì—ì„œ ìž…ë ¥ë°›ëŠ” ê°’
+String vendcd = ""; // ì‚¬ì—…ìžë²ˆí˜¸
+String setup_date = ""; // ì„¤ë¦½ì¼ìž
+String worker_num = ""; // ì¸ë ¥ìˆ˜
+String major_cust = ""; // ì£¼ìš”ì£¼ì£¼(ì§€ë¶„ìœ¨)
+String sales_amt = ""; // ë§¤ì¶œ
+String biz_profit = ""; // ì˜ì–µì´ìµ
+String net_profit = ""; // ë‹¹ê¸°ìˆœì´ìµ
+String asset = ""; // ìžì‚°ì´ê³„
+String capital = ""; // ìžë³¸ì´ê³„
+String debt = ""; // ë¶€ì±„ì´ê³„
+String liquid_asset = ""; // ìœ ë™ìžì‚°
+String liquid_debt = ""; // ìœ ë™ë¶€ì±„
+String credit_rating = ""; // ì‹ ìš©ë“±ê¸‰
+String tax_delay_yn = ""; // ì„¸ê¸ˆì²´ë‚©ì—¬ë¶€
 
-// ¼ö½ÄÀ¸·Î °è»êµÇ´Â °Í
+// ìˆ˜ì‹ìœ¼ë¡œ ê³„ì‚°ë˜ëŠ” ê²ƒ
 String member_no = "";
-double biz_profit_rate=0; // ¿µ¾÷ÀÌÀÍ·ü
-double debt_rate=0; // ºÎÃ¤ºñÀ²
-double liquid_rate=0; // À¯µ¿ºñÀ²
+double biz_profit_rate=0; // ì˜ì—…ì´ìµë¥ 
+double debt_rate=0; // ë¶€ì±„ë¹„ìœ¨
+double liquid_rate=0; // ìœ ë™ë¹„ìœ¨
 
 DB db = new DB();
 while(loop.next()){
-	// ÃÊ±âÈ­
-	member_no = "";  //  °Å·¡Ã³ È¸¿ø¹øÈ£
+	// ì´ˆê¸°í™”
+	member_no = "";  //  ê±°ëž˜ì²˜ íšŒì›ë²ˆí˜¸
 	vendcd = loop.getString("vendcd").replaceAll("-","");
 	setup_date = loop.getString("setup_date").replaceAll("-","");
 	worker_num = loop.getString("worker_num");
@@ -67,31 +67,31 @@ while(loop.next()){
 	double dcapital = 0;
 	double dliquid_asset = 0;
 	double dliquid_debt = 0;
-	if(!sales_amt.equals("")) dsales_amt = Double.parseDouble(sales_amt); // ¸ÅÃâ
-	if(!biz_profit.equals("")) dbiz_profit = Double.parseDouble(biz_profit); // ¿µ¾÷ÀÌÀÍ
-	if(!debt.equals("")) ddebt = Double.parseDouble(debt);  // ºÎÃ¤
-	if(!capital.equals("")) dcapital = Double.parseDouble(capital); // ÀÚº»
-	if(!liquid_asset.equals("")) dliquid_asset = Double.parseDouble(liquid_asset); // À¯µ¿ÀÚ»ê
-	if(!liquid_debt.equals("")) dliquid_debt = Double.parseDouble(liquid_debt); // À¯µ¿ºÎÃ¤
+	if(!sales_amt.equals("")) dsales_amt = Double.parseDouble(sales_amt); // ë§¤ì¶œ
+	if(!biz_profit.equals("")) dbiz_profit = Double.parseDouble(biz_profit); // ì˜ì—…ì´ìµ
+	if(!debt.equals("")) ddebt = Double.parseDouble(debt);  // ë¶€ì±„
+	if(!capital.equals("")) dcapital = Double.parseDouble(capital); // ìžë³¸
+	if(!liquid_asset.equals("")) dliquid_asset = Double.parseDouble(liquid_asset); // ìœ ë™ìžì‚°
+	if(!liquid_debt.equals("")) dliquid_debt = Double.parseDouble(liquid_debt); // ìœ ë™ë¶€ì±„
 
-	if(dbiz_profit>0 && dsales_amt>0) biz_profit_rate = dbiz_profit / dsales_amt * 100;  // ¿µ¾÷ÀÌÀÍ·ü(%) = ¿µ¾÷ÀÌÀÍ/¸ÅÃâ*100
-	if(ddebt>0 && dcapital>0) debt_rate = ddebt / dcapital * 100; // ºÎÃ¤ºñÀ² = ºÎÃ¤/ÀÚº»*100
-	if(dliquid_asset>0 && dliquid_debt>0) liquid_rate = dliquid_asset / dliquid_debt * 100;  // À¯µ¿ºñÀ² = À¯µ¿ÀÚ»ê/À¯µ¿ºÎÃ¤¡¿100
+	if(dbiz_profit>0 && dsales_amt>0) biz_profit_rate = dbiz_profit / dsales_amt * 100;  // ì˜ì—…ì´ìµë¥ (%) = ì˜ì—…ì´ìµ/ë§¤ì¶œ*100
+	if(ddebt>0 && dcapital>0) debt_rate = ddebt / dcapital * 100; // ë¶€ì±„ë¹„ìœ¨ = ë¶€ì±„/ìžë³¸*100
+	if(dliquid_asset>0 && dliquid_debt>0) liquid_rate = dliquid_asset / dliquid_debt * 100;  // ìœ ë™ë¹„ìœ¨ = ìœ ë™ìžì‚°/ìœ ë™ë¶€ì±„Ã—100
 
-	// 1. È¸¿øÀÎÁö Ã¼Å©
+	// 1. íšŒì›ì¸ì§€ ì²´í¬
 	DataSet dsRMember = daoMember.find("vendcd = '"+vendcd+"'");
-	if(dsRMember.next()) // È¸¿ø
+	if(dsRMember.next()) // íšŒì›
 	{
 		member_no = dsRMember.getString("member_no");
 	}
 	else
 	{
-		// ¹Ì°¡ÀÔÈ¸¿ø ·Î±× Ãâ·Â
-		Util.log(loop.getString("vendcd") + "\tÈ¸»ç Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+		// ë¯¸ê°€ìž…íšŒì› ë¡œê·¸ ì¶œë ¥
+		Util.log(loop.getString("vendcd") + "\tíšŒì‚¬ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 		continue;
 	}
 
-	// È¸¿øºÎ°¡Á¤º¸
+	// íšŒì›ë¶€ê°€ì •ë³´
 	DataObject memberAddDao = new DataObject("tcb_member_add");
 	memberAddDao.item("setup_date", setup_date);
 	memberAddDao.item("worker_num", worker_num);
@@ -113,10 +113,10 @@ while(loop.next()){
 }
 
 if(!db.executeArray()){
-	u.jsError("ÀúÀå Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì €ìž¥ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("Ã³¸® ÇÏ¿´½À´Ï´Ù.", "cretop_insert.jsp");
+u.jsAlertReplace("ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "cretop_insert.jsp");
 %>
 

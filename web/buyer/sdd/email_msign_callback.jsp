@@ -1,8 +1,8 @@
 <%@ page import="java.net.URLEncoder" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-//https°¡ ÀÌ´Ñ°æ¿ì https·Îº¯°æ
+//httpsê°€ ì´ë‹Œê²½ìš° httpsë¡œë³€ê²½
 if(request.getServerName().endsWith("www.nicedocu.com")&&!request.isSecure()){
 	u.redirect(request.getRequestURL().toString().replaceAll("http://", "https://")+"?"+u.getQueryString());
 	return;
@@ -20,9 +20,9 @@ if(cont_no.equals("")||cont_chasu.equals("")||email_random.equals("")){
 }
 boolean sign_able = false;
 
-f.addElement("member_name",null, "hname:'ÀÌ¸§', required:'Y'");
-f.addElement("birth_date", null, "hname:'»ý³â¿ùÀÏ', required:'Y', fixbyte:'8'");
-f.addElement("hp", null, "hname:'ÈÞ´ëÆù¹øÈ£', required:'Y'");
+f.addElement("member_name",null, "hname:'ì´ë¦„', required:'Y'");
+f.addElement("birth_date", null, "hname:'ìƒë…„ì›”ì¼', required:'Y', fixbyte:'8'");
+f.addElement("hp", null, "hname:'íœ´ëŒ€í°ë²ˆí˜¸', required:'Y'");
 
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.query("select a.status, a.cont_no, a.cont_chasu, a.cont_name, c.member_name, c.user_name, c.tel_num from tcb_contmaster a, tcb_cont_template b, tcb_cust c "
@@ -33,13 +33,13 @@ DataSet cont = contDao.query("select a.status, a.cont_no, a.cont_chasu, a.cont_n
 			+ "and b.send_type='20' "
 			+ "and a.cont_no='"+cont_no+"' and a.cont_chasu='"+cont_chasu+"' ");
 if(!cont.next()){
-	u.jsAlert("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 cont.put("cont_no", u.aseEnc(cont.getString("cont_no")));
 
 if(!u.inArray( cont.getString("status"), new String[]{"20","21","30","40","41","50"})){
-	u.jsAlert("°è¾àÁ¶È¸°¡ °¡´ÉÇÑ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ì¡°íšŒê°€ ê°€ëŠ¥í•œ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.");
 	return;
 }
 
@@ -48,7 +48,7 @@ String where = "cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(where+" and email_random = '"+email_random+"'");
 if(!cust.next()){
-	u.jsAlert("°è¾à°ü°èÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ê´€ê³„ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 } else {
     cust.put("email_random", email_random);

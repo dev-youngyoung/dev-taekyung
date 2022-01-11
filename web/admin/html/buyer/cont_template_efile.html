@@ -1,11 +1,11 @@
-<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this)">
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-        <h3>³»ºÎ°ü¸®¼­·ù
+        <h3>ë‚´ë¶€ê´€ë¦¬ì„œë¥˜
         <span>
         <select name="member_no" onchange="location.href='cont_template_efile.jsp?{{list_query}}&member_no='+this.value">
-        	<option value="">-¼±ÅÃ-</option>
+        	<option value="">-ì„ íƒ-</option>
         	<!-- LOOP START 'member' -->
         	<option value="{{member.member_no}}">{{member.member_name}}</option>
         	<!-- LOOP END 'member' -->
@@ -14,8 +14,8 @@
         </h3>
     </div>
     <div class="push-right">
-		<button type="button" class="sbtn color ico-add" onclick="addEFileRow();"><span></span>Ãß°¡</button>
-		<button type="submit" class="sbtn color ico-save""><span></span>ÀúÀå</button>
+		<button type="button" class="sbtn color ico-add" onclick="addEFileRow();"><span></span>ì¶”ê°€</button>
+		<button type="submit" class="sbtn color ico-save""><span></span>ì €ì¥</button>
     </div>
 </div>
 <table id="efile_grid">
@@ -26,17 +26,17 @@
 </colgroup>
 <thead>
 <tr>
-	<th>ÇÊ¼ö¿©ºÎ</th>
-	<th>¹®¼­¸í</th>
-	<th>»èÁ¦</th>
+	<th>í•„ìˆ˜ì—¬ë¶€</th>
+	<th>ë¬¸ì„œëª…</th>
+	<th>ì‚­ì œ</th>
 </tr>
 </thead>
 <tbody>
 <!-- LOOP START 'efile' -->
 <tr>
 	<td align="center" ><input type="checkbox" name="efile_attach" {{efile.checked}} onclick="chkClick(this,'form1','efile_attach_yn','Y')"><input type="hidden" name="efile_attach_yn" value="{{efile.attach_yn}}"></td>
-	<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" class="label" style="width:98%" hname="¹®¼­¸í" required="Y" /></td>
-	<td align="center"><button type="button" class="sbtn color ico-delete" onclick="delEFileRow(this);"><span></span>»èÁ¦</button></td>
+	<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" class="label" style="width:98%" hname="ë¬¸ì„œëª…" required="Y" /></td>
+	<td align="center"><button type="button" class="sbtn color ico-delete" onclick="delEFileRow(this);"><span></span>ì‚­ì œ</button></td>
 </tr>
 <!-- LOOP END 'efile' -->
 </tbody>
@@ -51,7 +51,7 @@
 
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm('ÀúÀåÇÏ½Ã°Ú½À´Ï±î?')){
+		if(confirm('ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
 			return true;;
 		}
 	}
@@ -61,13 +61,13 @@ function formSubmit(f){
 var efile_grid = new MGRID("efile_grid");
 efile_grid.cells = new Array(
 	 '<input type="checkbox" name="efile_attach" onclick="chkClick(this,\'form1\',\'efile_attach_yn\',\'Y\')"><input type="hidden" name="efile_attach_yn" >'
-	,'<input type="text" name="efile_doc_name"  class="label" style="width:98%" hname="¹®¼­¸í" required="Y" />'
-	,'<button type="button" class="sbtn color ico-delete" onclick="delEFileRow(this);"><span></span>»èÁ¦</button>	'
+	,'<input type="text" name="efile_doc_name"  class="label" style="width:98%" hname="ë¬¸ì„œëª…" required="Y" />'
+	,'<button type="button" class="sbtn color ico-delete" onclick="delEFileRow(this);"><span></span>ì‚­ì œ</button>	'
 );
 
 function addEFileRow(){
 	if(document.getElementById('efile_grid').rows.length >5){
-		alert("´õÀÌ»ó Ãß°¡ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+		alert("ë”ì´ìƒ ì¶”ê°€ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	efile_grid.addRow();

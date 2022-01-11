@@ -89,7 +89,7 @@ public class PagerApt {
 		
 		sb.append("<div class='divPageNum'><ol>");
 
-		//Ã¹ ÆäÀÌÁö
+		//ì²« í˜ì´ì§€
 		sb.append("<li class='PageNumBtn'>");
 		if(pageNum > 1) {
 			sb.append("<a href='"+getPageLink(1)+"' class='on'>" + firstImg + "</a>");
@@ -99,7 +99,7 @@ public class PagerApt {
 		}
 		sb.append("</li>");
 
-		//ÀÌÀü ºí·° ÆäÀÌÁö
+		//ì´ì „ ë¸”ëŸ­ í˜ì´ì§€
 		sb.append("<li class='PageNumBtn'>");
 		if(firstPage > 1) {
 			sb.append("<a href='"+getPageLink(firstPage-1)+"' class='on'>" + prevImg + "</a>");
@@ -120,7 +120,7 @@ public class PagerApt {
 			//if(i < lastPage) sb.append("<td>" + separator + "</td>");
 		}
 
-		//´ÙÀ½ ºí·° ÆäÀÌÁö
+		//ë‹¤ìŒ ë¸”ëŸ­ í˜ì´ì§€
 		sb.append("<li class='PageNumBtn'>");
 		if(lastPage < totalPage) {
 			sb.append("<a href='"+getPageLink(lastPage+1)+"' class='on'>" + nextImg + "</a>");
@@ -130,7 +130,7 @@ public class PagerApt {
 		}
 		sb.append("</li>");
 
-		//¸¶Áö¸· ÆäÀÌÁö
+		//ë§ˆì§€ë§‰ í˜ì´ì§€
 		sb.append("<li class='PageNumBtn'>");
 		if(pageNum < totalPage) {
 			sb.append("<a href='"+getPageLink(totalPage)+"' class='on'>" + lastImg + "</a>");

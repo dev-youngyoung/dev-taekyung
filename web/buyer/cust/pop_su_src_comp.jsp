@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String	src_cd	= u.request("src_cd");
 String	sLSrcNm	= u.request("l_src_nm");
@@ -8,7 +8,7 @@ String	sSSrcNm	= u.request("s_src_nm");
 f.addElement("s_member_name",null, null);
 f.addElement("s_vendcd",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -26,7 +26,7 @@ list.addSearch("a.vendcd", f.get("s_vendcd"));
 list.setOrderBy("a.member_name asc ");
 
 DataSet ds = null;
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 ds = list.getDataSet();
 while(ds.next()){
 	ds.put("vendcd2",ds.getString("vendcd"));
@@ -43,18 +43,18 @@ if(u.request("mode").equals("save")){
 	db.setCommand(srcDao.getInsertQuery(),srcDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	out.print("<script>opener.loadDetailData();</script>");
-	u.jsAlertReplace("ÀúÀå µÇ¾ú½À´Ï´Ù.", "./pop_su_src_comp.jsp?"+u.getQueryString("mode"));
+	u.jsAlertReplace("ì €ì¥ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./pop_su_src_comp.jsp?"+u.getQueryString("mode"));
 	return;
 }
 
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_su_src_comp");
-p.setVar("popup_title","¾÷Ã¼°Ë»ö");
+p.setVar("popup_title","ì—…ì²´ê²€ìƒ‰");
 p.setVar("src_cd",src_cd);
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());

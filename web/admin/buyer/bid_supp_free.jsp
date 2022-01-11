@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = u.request("main_member_no");
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
 String member_no = u.request("member_no");
 if(main_member_no.equals("")||bid_no.equals("")||bid_deg.equals("")||member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,14 +14,14 @@ DataObject bidDao = new DataObject("tcb_bid_master");
 //bidDao.setDebug(out);
 DataSet bid = bidDao.find(where);
 if(!bid.next()){
-	u.jsError("ÀÔÂûÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ìž…ì°°ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject suppSubDao = new DataObject("tcb_bid_supp");
 DataSet suppSubDs = suppSubDao.find(where+" and member_no='"+member_no+"' and pay_yn='Y' ");
 if(suppSubDs.next()) {
-	u.jsError("ÀÌ¹Ì °áÁ¦µÈ ¾÷Ã¼ÀÔ´Ï´Ù. °³¹ßÆÀÀ¸·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.");
+	u.jsError("ì´ë¯¸ ê²°ì œëœ ì—…ì²´ìž…ë‹ˆë‹¤. ê°œë°œíŒ€ìœ¼ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -30,9 +30,9 @@ DataObject suppDao = new DataObject("tcb_bid_supp");
 suppDao.item("pay_yn", "Y");
 db.setCommand(suppDao.getUpdateQuery(where+" and member_no='"+member_no+"' "), suppDao.record);
 if(!db.executeArray()){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("ÀÔÂû ¹«·áÃ³¸® µÇ¾ú½À´Ï´Ù.", "./pop_bid_supp.jsp?"+u.getQueryString());
+u.jsAlertReplace("ìž…ì°° ë¬´ë£Œì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./pop_bid_supp.jsp?"+u.getQueryString());
 %>

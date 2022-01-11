@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_field_gubun = {"01=>ºÎ¼­","02=>ÁöÁ¡"};
+String[] code_field_gubun = {"01=>ë¶€ì„œ","02=>ì§€ì "};
 
 String id = u.request("id");
 if(id.equals("")){
-	//u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	//u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,20 +12,20 @@ if(id.equals("")){
 DataObject fieldDao = new DataObject("tcb_field");
 DataSet field = fieldDao.find(" status > 0 and member_no="+_member_no+" and field_seq="+id);
 if(!field.next()){
-	u.jsError("ºÎ¼­/ÁöÁ¡ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ë¶€ì„œ/ì§€ì  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("field_gubun", field.getString("field_gubun"), "hname:'±¸ºÐ'");
-f.addElement("field_name", field.getString("field_name"), "hname:'ºÎ¼­/ÁöÁ¡¸í', required:'Y'");
-f.addElement("boss_name", field.getString("boss_name"), "hname:'´ëÇ¥ÀÚ¸í'");
-f.addElement("telnum", field.getString("telnum"), "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("post_code", field.getString("post_code"), "hname:'¿ìÆí¹øÈ£', option:'number'");
-f.addElement("address", field.getString("address"), "hname:'ÁÖ¼Ò'");
-f.addElement("use_yn", field.getString("use_yn"), "hname:'»ç¿ë¿©ºÎ', required:'Y'");
+f.addElement("field_gubun", field.getString("field_gubun"), "hname:'êµ¬ë¶„'");
+f.addElement("field_name", field.getString("field_name"), "hname:'ë¶€ì„œ/ì§€ì ëª…', required:'Y'");
+f.addElement("boss_name", field.getString("boss_name"), "hname:'ëŒ€í‘œìžëª…'");
+f.addElement("telnum", field.getString("telnum"), "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("post_code", field.getString("post_code"), "hname:'ìš°íŽ¸ë²ˆí˜¸', option:'number'");
+f.addElement("address", field.getString("address"), "hname:'ì£¼ì†Œ'");
+f.addElement("use_yn", field.getString("use_yn"), "hname:'ì‚¬ìš©ì—¬ë¶€', required:'Y'");
 
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	fieldDao = new DataObject("tcb_field");
@@ -42,11 +42,11 @@ if(u.isPost() && f.validate())
 	fieldDao.item("use_yn", f.get("use_yn"));
 	fieldDao.item("field_gubun", f.get("field_gubun"));
 	if(!fieldDao.update("member_no='"+_member_no+"' and field_seq="+id)){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀå µÇ¾ú½À´Ï´Ù.", "./place_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./place_modify.jsp?"+u.getQueryString());
 	return;
 }
 
@@ -59,8 +59,8 @@ p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_A
 p.setVar("modify", true);
 p.setVar("field", field);
 p.setLoop("code_field_gubun",u.arr2loop(code_field_gubun));
-p.setVar("list_query",u.getQueryString("id"));	// ¸®½ºÆ®·Î µ¹¾Æ°¥¶§
-p.setVar("query",u.getQueryString());			// »èÁ¦
+p.setVar("list_query",u.getQueryString("id"));	// ë¦¬ìŠ¤íŠ¸ë¡œ ëŒì•„ê°ˆë•Œ
+p.setVar("query",u.getQueryString());			// ì‚­ì œ
 p.setVar("form_script", f.getScript());
 p.display(out);
 %>

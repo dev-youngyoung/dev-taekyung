@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("info.pop_crosscert");
-p.setVar("popup_title", "ÀÎÁõ¼­ È®ÀÎÇÏ±â");
+p.setVar("popup_title", "ì¸ì¦ì„œ í™•ì¸í•˜ê¸°");
 p.display(out);
 %>

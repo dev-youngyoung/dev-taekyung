@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
     <div class="search_div">
         <table class="search_table">
             <colgroup>
@@ -7,10 +7,10 @@
                 <col width="10%">
             </colgroup>
             <tr>
-                <th><p>°ø°í¸í</p></th>
+                <th><p>ê³µê³ ëª…</p></th>
                 <td><input type="text" name="s_title" maxlength="100" style="width:95%"></td>
                 <td align="right">
-                    <button type="submit" class="search_btn"><span></span>°Ë»ö</button>
+                    <button type="submit" class="search_btn"><span></span>ê²€ìƒ‰</button>
                 </td>
             </tr>
         </table>
@@ -19,7 +19,7 @@
 {{form_script}}
 
 <div style="text-align:left;margin: 5px 0px" >
-    ¡Ø °ø°í¸íÀ» Å¬¸¯ ÇÏ½Ã¸é ¸ğÁıµÈ ¾÷Ã¼¸¦ Á¶È¸ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.
+    â€» ê³µê³ ëª…ì„ í´ë¦­ í•˜ì‹œë©´ ëª¨ì§‘ëœ ì—…ì²´ë¥¼ ì¡°íšŒ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 </div>
 <div class="div_table">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -32,12 +32,12 @@
             <col width="10%">
         </colgroup>
         <tr>
-            <th>¼ø¹ø</th>
-            <th>°ø°í¸í</th>
-            <th>¸ğÁı±â°£</th>
-            <th>´ã´çÀÚ</th>
-            <th>¸ğÁı¾÷Ã¼</th>
-            <th>»óÅÂ</th>
+            <th>ìˆœë²ˆ</th>
+            <th>ê³µê³ ëª…</th>
+            <th>ëª¨ì§‘ê¸°ê°„</th>
+            <th>ë‹´ë‹¹ì</th>
+            <th>ëª¨ì§‘ì—…ì²´</th>
+            <th>ìƒíƒœ</th>
         </tr>
         <!-- IF START 'list' -->
         <!-- LOOP START 'list' -->
@@ -46,14 +46,14 @@
             <td>{{list.title}}</td>
             <td align="center">{{list.s_date}} ~ {{list.e_date}}</td>
             <td align="center">{{list.charge_name}}</td>
-            <td align="right">{{list.supp_cnt}} °³»ç</td>
+            <td align="right">{{list.supp_cnt}} ê°œì‚¬</td>
             <td align="center">{{list.status}}</td>
         </tr>
         <!-- LOOP END 'list' -->
         <!-- IF END 'list' -->
         <!-- IFNOT START 'list' -->
         <tr>
-            <td colspan="6" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+            <td colspan="6" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
         </tr>
         <!-- IFNOT END 'list' -->
     </table>

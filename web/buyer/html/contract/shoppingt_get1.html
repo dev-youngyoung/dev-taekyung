@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
 <div class="search_div">
 <table class="search_table">
   <colgroup>
@@ -7,11 +7,11 @@
     <col width="50%"/>
   </colgroup>
   <tr>
-    <th><p>��ǰ�ڵ�</p></th>
+    <th><p>상품코드</p></th>
     <td><input type="text" name="s_code" maxlength="30" style="width:95%"></td>
     <td align="right">
-      <button type="submit" class="btn color ico-search"><span></span>�˻�</button>
-      <button type="button" class="btn color ico-add" onclick="addCompany();"><span></span>����</button>
+      <button type="submit" class="btn color ico-search"><span></span>검색</button>
+      <button type="button" class="btn color ico-add" onclick="addCompany();"><span></span>선택</button>
     </td>
   </tr>
 </table>
@@ -24,7 +24,7 @@
 <div class="div_table">
 <div class="util-row">
 	<div class="push-left">
-		<span class="caution-text">�ػ�ǰ�ڵ带 �Է��� �˻� �ϼ���.</span>
+		<span class="caution-text">※상품코드를 입력후 검색 하세요.</span>
 	</div>
 </div>
 <table>
@@ -36,11 +36,11 @@
 		<col width="10%">
 	</colgroup>
 	<tr>
-		<th>��۽���<br>�Ͻ�</th>
-		<th>�������<br>�Ͻ�</th>
-		<th>���α׷���</th>
-		<th>��ǰ����</th>
-		<th>�Ǹ��غ����</th>
+		<th>방송시작<br>일시</th>
+		<th>방송종료<br>일시</th>
+		<th>프로그램명</th>
+		<th>상품구분</th>
+		<th>판매준비수량</th>
 	</tr>
 	<!-- LOOP START 'list' -->
 	<tr>
@@ -60,7 +60,7 @@
 	<!-- LOOP END 'list' -->
 	<!-- IFNOT START 'list' -->
 	<tr>
-		<td align="center" colspan="5">��ȸ ����� �����ϴ�.</td>
+		<td align="center" colspan="5">조회 결과가 없습니다.</td>
 	</tr>
 	<!-- IFNOT END 'list' -->
 </table>

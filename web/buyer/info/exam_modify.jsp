@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_exam_type = {"10=>Á¤±âÆò°¡","20=>¼ö½ÃÆò°¡"};
-boolean isCJ = _member_no.equals("20130400333");  // ¾¾Á¦ÀÌ´ëÇÑÅë¿î
+String[] code_exam_type = {"10=>ì •ê¸°í‰ê°€","20=>ìˆ˜ì‹œí‰ê°€"};
+boolean isCJ = _member_no.equals("20130400333");  // ì”¨ì œì´ëŒ€í•œí†µìš´
 
 String exam_cd = u.request("exam_cd");
 if(exam_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,7 +14,7 @@ String where= " member_no = '"+_member_no+"' and exam_cd ='"+exam_cd+"' ";
 DataObject examDao = new DataObject("tcb_exam");
 DataSet exam = examDao.find( where );
 if(!exam.next()){
-	u.jsError("Æò°¡Áö Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ì§€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -54,9 +54,9 @@ DataSet question = examDao.query(
 
 
 
-f.addElement("exam_name", exam.getString("exam_name"), "hname:'Æò°¡Áö¸í', required:'Y'");
-f.addElement("question_depth", exam.getString("question_depth"), "hname:'¹®Ç×depth', required:'Y'");
-f.addElement("exam_type", exam.getString("exam_type"), "hname:'Æò°¡À¯Çü'");
+f.addElement("exam_name", exam.getString("exam_name"), "hname:'í‰ê°€ì§€ëª…', required:'Y'");
+f.addElement("question_depth", exam.getString("question_depth"), "hname:'ë¬¸í•­depth', required:'Y'");
+f.addElement("exam_type", exam.getString("exam_type"), "hname:'í‰ê°€ìœ í˜•'");
 
 
 if(u.isPost()&&f.validate()){
@@ -80,8 +80,8 @@ if(u.isPost()&&f.validate()){
 	String[] arr_m_div = f.getArr("m_div_nm");
 	String[] arr_s_div = f.getArr("s_div_nm");
 	String[] arr_point = f.getArr("point");
-	String[] arr_rate = f.getArr("rate"); // °¡ÁßÄ¡
-	String[] arr_rate_point = f.getArr("rate_point");  //È¯»êÁ¡¼ö	
+	String[] arr_rate = f.getArr("rate"); // ê°€ì¤‘ì¹˜
+	String[] arr_rate_point = f.getArr("rate_point");  //í™˜ì‚°ì ìˆ˜	
 	String[] arr_etc = f.getArr("etc");
 	String[] arr_question_cd = f.getArr("question_cd");
 	
@@ -93,9 +93,9 @@ if(u.isPost()&&f.validate()){
 	String _m_div_nm = "";
 	String _s_div_nm = "";
 	
-	int	l_div_cd = 0;	//	´ëºĞ·ùÄÚµå
-	int	m_div_cd = 0;	//	ÁßºĞ·ùÄÚµå
-	int	s_div_cd = 0;	//	¼ÒºĞ·ùÄÚµå
+	int	l_div_cd = 0;	//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+	int	m_div_cd = 0;	//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+	int	s_div_cd = 0;	//	ì†Œë¶„ë¥˜ì½”ë“œ
 	int	depth =	0;	//	DEPTH 
 	
 	
@@ -234,10 +234,10 @@ if(u.isPost()&&f.validate()){
 		}
 	}
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.", "exam_view.jsp?exam_cd="+exam_cd);
+	u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "exam_view.jsp?exam_cd="+exam_cd);
 	return;	
 }
 

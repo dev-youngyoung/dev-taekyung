@@ -1,19 +1,19 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = u.request("main_member_no");
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
 if(main_member_no.equals("")||bid_no.equals("")||bid_deg.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
-if(main_member_no.equals("20120500023")){//µ¿Èñ ¿ÀÅä´Â ¼öÀÛ¾÷ ÇØ¾ß ÇÔ.
-	u.jsErrClose("µ¿Èñ ¿ÀÅä´Â ¼öÀÛ¾÷ ÇÏ¼¼¿ä.¾÷Ã¼ Ãß°¡ ¾ÈµÇ¿ä..~~!");
+if(main_member_no.equals("20120500023")){//ë™í¬ ì˜¤í† ëŠ” ìˆ˜ì‘ì—… í•´ì•¼ í•¨.
+	u.jsErrClose("ë™í¬ ì˜¤í† ëŠ” ìˆ˜ì‘ì—… í•˜ì„¸ìš”.ì—…ì²´ ì¶”ê°€ ì•ˆë˜ìš”..~~!");
 	return;
 }
 
-String[] code_supp_status = {"10=>¹ÌÅõÂû","30=>ÅõÂû","91=>Çö¼³ºÒÂü","92=>ÀÔÂûÆ÷±â","93=>¹ÌÅõÂû"};
+String[] code_supp_status = {"10=>ë¯¸íˆ¬ì°°","30=>íˆ¬ì°°","91=>í˜„ì„¤ë¶ˆì°¸","92=>ì…ì°°í¬ê¸°","93=>ë¯¸íˆ¬ì°°"};
 
 String where = "main_member_no = '"+main_member_no+"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"'";
 
@@ -21,7 +21,7 @@ DataObject bidDao = new DataObject("tcb_bid_master");
 //bidDao.setDebug(out);
 DataSet bid = bidDao.find(where);
 if(!bid.next()){
-	u.jsError("ÀÔÂûÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì…ì°°ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -30,9 +30,9 @@ DataSet supp = suppDao.find(where,"*"," display_seq asc");
 while(supp.next()){
 	supp.put("vendcd", u.getBizNo(supp.getString("vendcd")));
 	if(u.inArray( bid.getString("status"), new String[]{"04","05","06","07","91","92","94"})){
-		if(bid.getString("field_yn").equals("Y")){//Çö¼³ÀÌ ÀÖÀ» °æ¿ì
+		if(bid.getString("field_yn").equals("Y")){//í˜„ì„¤ì´ ìˆì„ ê²½ìš°
 			if(!supp.getString("field_conf_yn").equals("Y")){
-				supp.put("status_nm", "Çö¼³ºÒÂü");
+				supp.put("status_nm", "í˜„ì„¤ë¶ˆì°¸");
 			}else{
 				supp.put("status_nm", u.getItem(supp.getString("status"),code_supp_status));
 			}
@@ -50,12 +50,12 @@ while(supp.next()){
 if(u.isPost()&&f.validate()){
 	int cnt = suppDao.getOneInt(" select count(member_no) from tcb_bid_supp where main_member_no = '"+main_member_no+"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"' and member_no='"+f.get("member_no")+"' ");
 	if(cnt > 0){
-		u.jsError("ÀÌ¹Ì Ãß°¡µÈ ¾÷Ã¼ÀÔ´Ï´Ù.");
+		u.jsError("ì´ë¯¸ ì¶”ê°€ëœ ì—…ì²´ì…ë‹ˆë‹¤.");
 		return;
 	}
 	String display_seq = suppDao.getOne(" select nvl(max(display_seq),0)+1 from tcb_bid_supp where main_member_no = '"+main_member_no+"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"' ");
 	if(display_seq.equals("")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	suppDao = new DataObject("tcb_bid_supp");
@@ -72,24 +72,24 @@ if(u.isPost()&&f.validate()){
 	suppDao.item("hp3", f.get("hp3"));
 	suppDao.item("email", f.get("email"));
 	suppDao.item("display_seq", display_seq);
-	suppDao.item("status", "10");	//¹ÌÅõÂû »óÅÂ
+	suppDao.item("status", "10");	//ë¯¸íˆ¬ì°° ìƒíƒœ
 	if(bid.getString("field_yn").equals("Y")){
 		suppDao.item("field_conf_yn","Y");
 	}
 
 	if(!suppDao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("¾÷Ã¼ Ãß°¡ Ã³¸® µÇ¾ú½À´Ï´Ù.", "pop_bid_supp.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì—…ì²´ ì¶”ê°€ ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.", "pop_bid_supp.jsp?"+u.getQueryString());
 	return;
 }
 
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_bid_supp");
-p.setVar("popup_title","Âü¿©¾÷Ã¼Á¶È¸");
+p.setVar("popup_title","ì°¸ì—¬ì—…ì²´ì¡°íšŒ");
 p.setVar("bid",bid);
 p.setLoop("supp", supp);
 p.setVar("btn_add", u.inArray(bid.getString("status"), new String[]{"03","05"}) );

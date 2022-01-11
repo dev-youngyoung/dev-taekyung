@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="post" enctype="multipart/form-data" action="financeUpdate.jsp">
+ï»¿<form novalidate name="form1" method="post" enctype="multipart/form-data" action="financeUpdate.jsp">
 	<input type="hidden" name="print_content">
 	<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
 	<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
@@ -7,7 +7,7 @@
 	<style type="text/css" id="__html_style">
 	.glabel {
 		color: #707070;
-		FONT-FAMILY: "µ¸¿ò", "Arial";
+		FONT-FAMILY: "ë‹ì›€", "Arial";
 		FONT-SIZE: 9pt;
 		/*LINE-HEIGHT: 13pt;*/
 		border: 1px solid;
@@ -15,7 +15,7 @@
 		text-align: left;
 		background-color: #ffff00
 	}
-	td {  font-family: "³ª´®°íµñ, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+	td {  font-family: "ë‚˜ëˆ”ê³ ë”•, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
 	.lineTable { border-collapse:collapse; border:1px solid black }
 	.lineTable td { border:1px solid black }
 	.lineTable .noborder { border:0 }
@@ -30,13 +30,13 @@
 </form>
 <div class="btn-group-wrap">
 	<!-- IF START 'modify' -->
-	<button type="button" class="btn color ico-save" onclick="save()" ><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" class="btn color ico-list" onclick="javascript:window.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-save" onclick="save()" ><span></span>ì €ì¥</button>
+	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" class="btn color ico-list" onclick="javascript:window.close();"><span></span>ë‹«ê¸°</button>
 	<!-- IF END 'modify' -->
 	<!-- IFNOT START 'modify' -->
-	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" class="btn color ico-list" onclick="javascript:window.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" class="btn color ico-list" onclick="javascript:window.close();"><span></span>ë‹«ê¸°</button>
 	<!-- IFNOT END 'modify' -->
 </div>
 
@@ -50,12 +50,12 @@ function hex(x) {
   return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
 }
 
-//¼±ÅÃ¾ÈÇÑ Ç×¸ñÀÌ ÀÖ´ÂÁö Check
+//ì„ íƒì•ˆí•œ í•­ëª©ì´ ìˆëŠ”ì§€ Check
 function selectCheck(){
 
-	for(var i=1; i<5; i++){	//Çà
+	for(var i=1; i<5; i++){	//í–‰
 		var checkYn = "n";
-		for(var j=1; j<=5; j++){	//¿­
+		for(var j=1; j<=5; j++){	//ì—´
 			var checkItem = $("#operationitem"+i+"_"+j).css("background-color");
             if(checkItem == "yellow" || checkItem == "rgb(255, 255, 0)"){
                 checkYn = "y";
@@ -63,7 +63,7 @@ function selectCheck(){
            }
 		}
 		if(checkYn == "n"){
-			alert("Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+			alert("í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
 			return false;
 		}
 	}
@@ -79,29 +79,29 @@ function calculation(){
 	var rcnt = 5;
 	<!-- IF END 'rtype' -->
 	
-	//¼öÀÍ¼º °è»ê
+	//ìˆ˜ìµì„± ê³„ì‚°
 	calcProfitability(rcnt);
 
-	//¾ÈÀü¼º °è»ê
+	//ì•ˆì „ì„± ê³„ì‚°
 	calcSafety(rcnt);
 
-	//È°µ¿¼º °è»ê
+	//í™œë™ì„± ê³„ì‚°
 	calcActivity(rcnt);
 
-	//Áö±¸·Â °è»ê
+	//ì§€êµ¬ë ¥ ê³„ì‚°
 	calcEndurance(rcnt);
 
 	<!-- IFNOT START 'rtype' -->
-	//¼ºÀå¼º °è»ê
+	//ì„±ì¥ì„± ê³„ì‚°
 	calcGrowth(rcnt);
 	<!-- IFNOT END 'rtype' -->
 	
-	//Á¾ÇÕ °è»ê
+	//ì¢…í•© ê³„ì‚°
 	calcTotal(rcnt);
 }
 
 function calcProfitability(rcnt){
-	//¼öÀÍ¼º = ¸ÅÃâ¾× / (ÃÑºñ¿ë ¸ÅÃâ¿ø°¡ + ÃÑºñ¿ë ÆÇ¸Å¿Í°ü¸®ºñ)
+	//ìˆ˜ìµì„± = ë§¤ì¶œì•¡ / (ì´ë¹„ìš© ë§¤ì¶œì›ê°€ + ì´ë¹„ìš© íŒë§¤ì™€ê´€ë¦¬ë¹„)
 	var sales1 = $("#sales1").val().replace(/,/g, '');
 	var sales2 = $("#sales2").val().replace(/,/g, '');
 	var sales3 = $("#sales3").val().replace(/,/g, '');
@@ -121,33 +121,33 @@ function calcProfitability(rcnt){
 	var profitabilityPoint1 = Number(sales1) / Number(tCost1);
 	if(isFinite(profitabilityPoint1)){
 		$("#profitabilityPoint1").html(profitabilityPoint1.toFixed(3));
-		var profitabilityRating1 = "¾çÈ£";
+		var profitabilityRating1 = "ì–‘í˜¸";
 		if(profitabilityPoint1.toFixed(2) > 1.5){
-			profitabilityRating1 = "¿ì¼ö";
+			profitabilityRating1 = "ìš°ìˆ˜";
 		}else if(profitabilityPoint1.toFixed(2) < 0.8){
-			profitabilityRating1 = "ÀúÁ¶";
+			profitabilityRating1 = "ì €ì¡°";
 		}
 		$("#profitabilityRating1").html(profitabilityRating1);
 	}
 	var profitabilityPoint2 = Number(sales2) / Number(tCost2);
 	if(isFinite(profitabilityPoint2)){
 		$("#profitabilityPoint2").html(profitabilityPoint2.toFixed(3));
-		var profitabilityRating2 = "¾çÈ£";
+		var profitabilityRating2 = "ì–‘í˜¸";
 		if(profitabilityPoint2.toFixed(2) > 1.5){
-			profitabilityRating2 = "¿ì¼ö";
+			profitabilityRating2 = "ìš°ìˆ˜";
 		}else if(profitabilityPoint2.toFixed(2) < 0.8){
-			profitabilityRating2 = "ÀúÁ¶";
+			profitabilityRating2 = "ì €ì¡°";
 		}
 		$("#profitabilityRating2").html(profitabilityRating2);
 	}
 	var profitabilityPoint3 = Number(sales3) / Number(tCost3);
 	if(isFinite(profitabilityPoint3)){
 		$("#profitabilityPoint3").html(profitabilityPoint3.toFixed(3));
-		var profitabilityRating3 = "¾çÈ£";
+		var profitabilityRating3 = "ì–‘í˜¸";
 		if(profitabilityPoint3.toFixed(2) > 1.5){
-			profitabilityRating3 = "¿ì¼ö";
+			profitabilityRating3 = "ìš°ìˆ˜";
 		}else if(profitabilityPoint3.toFixed(2) < 0.8){
-			profitabilityRating3 = "ÀúÁ¶";
+			profitabilityRating3 = "ì €ì¡°";
 		}
 		$("#profitabilityRating3").html(profitabilityRating3);
 	}
@@ -176,7 +176,7 @@ function calcProfitability(rcnt){
 }
 
 function calcSafety(rcnt){
-	//¾ÈÀü¼º = À¯µ¿ÀÚ»ê / ÃÑºÎÃ¤
+	//ì•ˆì „ì„± = ìœ ë™ìì‚° / ì´ë¶€ì±„
 	var currentAssets1 = $("#currentAssets1").val().replace(/,/g, '');
 	var currentAssets2 = $("#currentAssets2").val().replace(/,/g, '');
 	var currentAssets3 = $("#currentAssets3").val().replace(/,/g, '');
@@ -188,11 +188,11 @@ function calcSafety(rcnt){
 	var safetyPoint1 = Number(currentAssets1) / Number(liabilities1);
 	if(isFinite(safetyPoint1)){
 		$("#safetyPoint1").html(safetyPoint1.toFixed(3));
-		var safetyRating1 = "¾çÈ£";
+		var safetyRating1 = "ì–‘í˜¸";
 		if(safetyPoint1.toFixed(2) > 1.5){
-			safetyRating1 = "¿ì¼ö";
+			safetyRating1 = "ìš°ìˆ˜";
 		}else if(safetyPoint1.toFixed(2) < 0.8){
-			safetyRating1 = "ÀúÁ¶";
+			safetyRating1 = "ì €ì¡°";
 		}
 		$("#safetyRating1").html(safetyRating1);
 	}
@@ -200,11 +200,11 @@ function calcSafety(rcnt){
 	var safetyPoint2 = Number(currentAssets2) / Number(liabilities2);
 	if(isFinite(safetyPoint2)){
 		$("#safetyPoint2").html(safetyPoint2.toFixed(3));
-		var safetyRating2 = "¾çÈ£";
+		var safetyRating2 = "ì–‘í˜¸";
 		if(safetyPoint2.toFixed(2) > 1.5){
-			safetyRating2 = "¿ì¼ö";
+			safetyRating2 = "ìš°ìˆ˜";
 		}else if(safetyPoint2.toFixed(2) < 0.8){
-			safetyRating2 = "ÀúÁ¶";
+			safetyRating2 = "ì €ì¡°";
 		}
 		$("#safetyRating2").html(safetyRating2);
 	}
@@ -212,11 +212,11 @@ function calcSafety(rcnt){
 	var safetyPoint3 = Number(currentAssets3) / Number(liabilities3);
 	if(isFinite(safetyPoint3)){
 		$("#safetyPoint3").html(safetyPoint3.toFixed(3));
-		var safetyRating3 = "¾çÈ£";
+		var safetyRating3 = "ì–‘í˜¸";
 		if(safetyPoint3.toFixed(2) > 1.5){
-			safetyRating3 = "¿ì¼ö";
+			safetyRating3 = "ìš°ìˆ˜";
 		}else if(safetyPoint3.toFixed(2) < 0.8){
-			safetyRating3 = "ÀúÁ¶";
+			safetyRating3 = "ì €ì¡°";
 		}
 		$("#safetyRating3").html(safetyRating3);
 	}
@@ -245,7 +245,7 @@ function calcSafety(rcnt){
 }
 
 function calcActivity(rcnt){
-	//È°µ¿¼º = ¸ÅÃâ¾× / ÃÑÀÚ»ê
+	//í™œë™ì„± = ë§¤ì¶œì•¡ / ì´ìì‚°
 	var sales1 = $("#sales1").val().replace(/,/g, '');
 	var sales2 = $("#sales2").val().replace(/,/g, '');
 	var sales3 = $("#sales3").val().replace(/,/g, '');
@@ -257,11 +257,11 @@ function calcActivity(rcnt){
 	var activityPoint1 = Number(sales1) / Number(assets1);
 	if(isFinite(activityPoint1)){
 		$("#activityPoint1").html(activityPoint1.toFixed(3));
-		var activityRating1 = "¾çÈ£";
+		var activityRating1 = "ì–‘í˜¸";
 		if(activityPoint1.toFixed(2) > 1.5){
-			activityRating1 = "¿ì¼ö";
+			activityRating1 = "ìš°ìˆ˜";
 		}else if(activityPoint1.toFixed(2) < 0.8){
-			activityRating1 = "ÀúÁ¶";
+			activityRating1 = "ì €ì¡°";
 		}
 		$("#activityRating1").html(activityRating1);
 	}
@@ -269,11 +269,11 @@ function calcActivity(rcnt){
 	var activityPoint2 = Number(sales2) / Number(assets2);
 	if(isFinite(activityPoint2)){
 		$("#activityPoint2").html(activityPoint2.toFixed(3));
-		var activityRating2 = "¾çÈ£";
+		var activityRating2 = "ì–‘í˜¸";
 		if(activityPoint2.toFixed(2) > 1.5){
-			activityRating2 = "¿ì¼ö";
+			activityRating2 = "ìš°ìˆ˜";
 		}else if(activityPoint2.toFixed(2) < 0.8){
-			activityRating2 = "ÀúÁ¶";
+			activityRating2 = "ì €ì¡°";
 		}
 		$("#activityRating2").html(activityRating2);
 	}
@@ -281,11 +281,11 @@ function calcActivity(rcnt){
 	var activityPoint3 = Number(sales3) / Number(assets3);
 	if(isFinite(activityPoint3)){
 		$("#activityPoint3").html(activityPoint3.toFixed(3));
-		var activityRating3 = "¾çÈ£";
+		var activityRating3 = "ì–‘í˜¸";
 		if(activityPoint3.toFixed(2) > 1.5){
-			activityRating3 = "¿ì¼ö";
+			activityRating3 = "ìš°ìˆ˜";
 		}else if(activityPoint3.toFixed(2) < 0.8){
-			activityRating3 = "ÀúÁ¶";
+			activityRating3 = "ì €ì¡°";
 		}
 		$("#activityRating3").html(activityRating3);
 	}
@@ -314,7 +314,7 @@ function calcActivity(rcnt){
 }
 
 function calcEndurance(rcnt){
-	//Áö±¸·Â = ÃÑÀÚº» / ÃÑºÎÃ¤
+	//ì§€êµ¬ë ¥ = ì´ìë³¸ / ì´ë¶€ì±„
 	var capital1 = $("#capital1").val().replace(/,/g, '');
 	var capital2 = $("#capital2").val().replace(/,/g, '');
 	var capital3 = $("#capital3").val().replace(/,/g, '');
@@ -326,11 +326,11 @@ function calcEndurance(rcnt){
 	var endurancePoint1 = Number(capital1) / Number(liabilities1);
 	if(isFinite(endurancePoint1)){
 		$("#endurancePoint1").html(endurancePoint1.toFixed(3));
-		var enduranceRating1 = "¾çÈ£";
+		var enduranceRating1 = "ì–‘í˜¸";
 		if(endurancePoint1.toFixed(2) > 1.5){
-			enduranceRating1 = "¿ì¼ö";
+			enduranceRating1 = "ìš°ìˆ˜";
 		}else if(endurancePoint1.toFixed(2) < 0.8){
-			enduranceRating1 = "ÀúÁ¶";
+			enduranceRating1 = "ì €ì¡°";
 		}
 		$("#enduranceRating1").html(enduranceRating1);
 	}
@@ -338,11 +338,11 @@ function calcEndurance(rcnt){
 	var endurancePoint2 = Number(capital2) / Number(liabilities2);
 	if(isFinite(endurancePoint2)){
 		$("#endurancePoint2").html(endurancePoint2.toFixed(3));
-		var enduranceRating2 = "¾çÈ£";
+		var enduranceRating2 = "ì–‘í˜¸";
 		if(endurancePoint2.toFixed(2) > 1.5){
-			enduranceRating2 = "¿ì¼ö";
+			enduranceRating2 = "ìš°ìˆ˜";
 		}else if(endurancePoint2.toFixed(2) < 0.8){
-			enduranceRating2 = "ÀúÁ¶";
+			enduranceRating2 = "ì €ì¡°";
 		}
 		$("#enduranceRating2").html(enduranceRating2);
 	}
@@ -350,11 +350,11 @@ function calcEndurance(rcnt){
 	var endurancePoint3 = Number(capital3) / Number(liabilities3);
 	if(isFinite(endurancePoint3)){
 		$("#endurancePoint3").html(endurancePoint3.toFixed(3));
-		var enduranceRating3 = "¾çÈ£";
+		var enduranceRating3 = "ì–‘í˜¸";
 		if(endurancePoint3.toFixed(2) > 1.5){
-			enduranceRating3 = "¿ì¼ö";
+			enduranceRating3 = "ìš°ìˆ˜";
 		}else if(endurancePoint3.toFixed(2) < 0.8){
-			enduranceRating3 = "ÀúÁ¶";
+			enduranceRating3 = "ì €ì¡°";
 		}
 		$("#enduranceRating3").html(enduranceRating3);
 	}
@@ -384,7 +384,7 @@ function calcEndurance(rcnt){
 }
 
 function calcGrowth(rcnt){
-	//¼ºÀå¼º = ÃÑÀÚº» / (ÃÑÀÚº» - ´ç±â¼øÀÌÀÍ)
+	//ì„±ì¥ì„± = ì´ìë³¸ / (ì´ìë³¸ - ë‹¹ê¸°ìˆœì´ìµ)
 
 	var capital1 = $("#capital1").val().replace(/,/g, '');
 	var capital2 = $("#capital2").val().replace(/,/g, '');
@@ -401,33 +401,33 @@ function calcGrowth(rcnt){
 	var growthPoint1 = Number(capital1) / ( Number(capital1_1) - Number(netIncome1) );
 	if(isFinite(growthPoint1)){
 		$("#growthPoint1").html(growthPoint1.toFixed(3));
-		var growthRating1 = "¾çÈ£";
+		var growthRating1 = "ì–‘í˜¸";
 		if(growthPoint1.toFixed(2) > 1.5){
-			growthRating1 = "¿ì¼ö";
+			growthRating1 = "ìš°ìˆ˜";
 		}else if(growthPoint1.toFixed(2) < 0.8){
-			growthRating1 = "ÀúÁ¶";
+			growthRating1 = "ì €ì¡°";
 		}
 		$("#growthRating1").html(growthRating1);
 	}
 	var growthPoint2 = Number(capital2) / ( Number(capital2_1) - Number(netIncome2) );
 	if(isFinite(growthPoint2)){
 		$("#growthPoint2").html(growthPoint2.toFixed(3));
-		var growthRating2 = "¾çÈ£";
+		var growthRating2 = "ì–‘í˜¸";
 		if(growthPoint2.toFixed(2) > 1.5){
-			growthRating2 = "¿ì¼ö";
+			growthRating2 = "ìš°ìˆ˜";
 		}else if(growthPoint2.toFixed(2) < 0.8){
-			growthRating2 = "ÀúÁ¶";
+			growthRating2 = "ì €ì¡°";
 		}
 		$("#growthRating2").html(growthRating2);
 	}
 	var growthPoint3 = Number(capital3) / ( Number(capital3_1) - Number(netIncome3) );
 	if(isFinite(growthPoint3)){
 		$("#growthPoint3").html(growthPoint3.toFixed(3));
-		var growthRating3 = "¾çÈ£";
+		var growthRating3 = "ì–‘í˜¸";
 		if(growthPoint3.toFixed(2) > 1.5){
-			growthRating3 = "¿ì¼ö";
+			growthRating3 = "ìš°ìˆ˜";
 		}else if(growthPoint3.toFixed(2) < 0.8){
-			growthRating3 = "ÀúÁ¶";
+			growthRating3 = "ì €ì¡°";
 		}
 		$("#growthRating3").html(growthRating3);
 	}
@@ -457,7 +457,7 @@ function calcGrowth(rcnt){
 }
 
 function calcTotal(rcnt){
-	//Á¾ÇÕ = (¼öÀÍ¼º + ¾ÈÀü¼º + È°µ¿¼º + Áö±¸·Â) / 5
+	//ì¢…í•© = (ìˆ˜ìµì„± + ì•ˆì „ì„± + í™œë™ì„± + ì§€êµ¬ë ¥) / 5
 	var profitabilityPoint1 = $("#profitabilityPoint1").html();
 	var profitabilityPoint2 = $("#profitabilityPoint2").html();
 	var profitabilityPoint3 = $("#profitabilityPoint3").html();
@@ -548,7 +548,7 @@ function onItemSet(obj, sheetId){
 		itemPoint = 1.0;
 	}
 	
-	$("#"+itemId).html(itemPoint);	//ÆòÁ¡
+	$("#"+itemId).html(itemPoint);	//í‰ì 
 	var sheetNm = "";
 	var rowCnt = 0;
 	if(sheetId == "1"){
@@ -564,17 +564,17 @@ function sumSafetyItemPoint(sheetNm, rowCnt){
 	
 	var sumPoint = 0;
 	for(var i=1; i<rowCnt; i++){
-		sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//Ç×¸ñÆò°¡ Á¡¼ö
+		sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//í•­ëª©í‰ê°€ ì ìˆ˜
 	}
 	$("#"+sheetNm+"SumPoint").html(sumPoint.toFixed(1));	
 }
 
 function culRatingPoint(){
 	
-	var totalPoitn = 0;	//ÃÖÁ¾Á¡¼ö
+	var totalPoitn = 0;	//ìµœì¢…ì ìˆ˜
 	var totalRating = 0;
-	var operationSumPoint = parseFloat($("#operationitemSumPoint").html());		//¾ÈÀü½ÃÆ®ÀÇ ÃÖÁ¾ÆÇÁ¤ Á¡¼ö
-	totalPoitn = operationSumPoint;		//ÇÕ»ê(ÃÖÁ¾Á¡¼ö)
+	var operationSumPoint = parseFloat($("#operationitemSumPoint").html());		//ì•ˆì „ì‹œíŠ¸ì˜ ìµœì¢…íŒì • ì ìˆ˜
+	totalPoitn = operationSumPoint;		//í•©ì‚°(ìµœì¢…ì ìˆ˜)
 
 	$("#rating").val(totalPoitn.toFixed(1));
 	$("#point").val(totalPoitn.toFixed(1));
@@ -599,19 +599,19 @@ function save(){
 			<!-- IF START 'rtype' -->
 			var d = f['createDate'].value;
 		    if(!isDateFormat(d)) {
-		    	alert("YYYY-MM-DD ÀÛ¼ºÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä.");
+		    	alert("YYYY-MM-DD ì‘ì„±ì¼ì„ í™•ì¸í•´ì£¼ì„¸ìš”.");
 		    	f['createDate'].focus();
 		        return false;
 		    }
 		    <!-- IF END 'rtype' -->
 			var d = f['ratingDate'].value;
 		    if(!isDateFormat(d)) {
-		    	alert("YYYY-MM-DD Æò°¡ÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä.");
+		    	alert("YYYY-MM-DD í‰ê°€ì¼ì„ í™•ì¸í•´ì£¼ì„¸ìš”.");
 		    	f['ratingDate'].focus();
 		        return false;
 		    }
 		    
-			if(confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+			if(confirm("ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 setDivInputValue("__html");
 				splitHtml(f, 'doc_html', false);
 				f.submit();
@@ -626,7 +626,7 @@ function isDateFormat(d) {
 }
 
 function print(){
-	alert('¹è°æ»öÀ» ÀÎ¼âÇÏ·Á¸é ºê¶ó¿ìÀúÀÇ [ÆÄÀÏ] -> [ÆäÀÌÁö ¼³Á¤] ¸Ş´º¿¡¼­ "¹è°æ»ö ¹× ÀÌ¹ÌÁö ÀÎ¼â"¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä."');
+	alert('ë°°ê²½ìƒ‰ì„ ì¸ì‡„í•˜ë ¤ë©´ ë¸Œë¼ìš°ì €ì˜ [íŒŒì¼] -> [í˜ì´ì§€ ì„¤ì •] ë©”ë‰´ì—ì„œ "ë°°ê²½ìƒ‰ ë° ì´ë¯¸ì§€ ì¸ì‡„"ë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”."');
 	var f = document.forms['form1'];
 	removeInput(document.getElementById("__html_0"), f['print_content']);
 	var printPop = window.open("","_blank","width=748, height=700");

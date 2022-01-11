@@ -1,7 +1,7 @@
 <%@page import="net.sf.json.JSONArray"%>
 <%@page import="net.sf.json.JSONObject"%>
 <%@page import="java.net.URLDecoder"%><%@ include file="init.jsp"%>
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="	 java.util.*
 					,nicelib.db.*
 					,nicelib.util.*

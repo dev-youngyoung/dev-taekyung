@@ -3,7 +3,8 @@
 // 기존에 저장된 로고 이미지 불러오기
 function fLoadLogo()
 {
-    document.getElementById("img_logo").src = "/servlets/procure.common.file.FileDownLoad?FILE_KEY=file.path.bcont_logo&FILE_NAME={{member.ci_img_path}}";
+    // document.getElementById("img_logo").src = "/servlets/procure.common.file.FileDownLoad?FILE_KEY=file.path.bcont_logo&FILE_NAME={{member.ci_img_path}}";
+    document.getElementById("img_logo").src = "/FileDownLoad?FILE_KEY=file.path.bcont_logo&FILE_NAME={{member.ci_img_path}}";
     return;
 }
 

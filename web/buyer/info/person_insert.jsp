@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000120";
 String select_auth_cd = _authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), _menu_cd, "select_auth");
 
-String[] code_cj_division = {"CL1=>CL1","CL2=>CL2","ÇØ¿îÇ×¸¸=>ÇØ¿îÇ×¸¸","Æ÷¿öµù=>Æ÷¿öµù","½ºÅÜ=>½ºÅÜ","ÅÃ¹è=>ÅÃ¹è","±¸¸Å=>±¸¸Å","ÀÎÇÁ¶ó=>ÀÎÇÁ¶ó"};
-boolean isCJT = u.inArray(_member_no, new String[]{"20130400333"}); // CJ´ëÇÑÅë¿î
+String[] code_cj_division = {"CL1=>CL1","CL2=>CL2","í•´ìš´í•­ë§Œ=>í•´ìš´í•­ë§Œ","í¬ì›Œë”©=>í¬ì›Œë”©","ìŠ¤í…=>ìŠ¤í…","íƒë°°=>íƒë°°","êµ¬ë§¤=>êµ¬ë§¤","ì¸í”„ë¼=>ì¸í”„ë¼"};
+boolean isCJT = u.inArray(_member_no, new String[]{"20130400333"}); // CJëŒ€í•œí†µìš´
 
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_user_gubun = code.getCodeArray("M005");
@@ -12,7 +12,7 @@ String[] code_user_level = code_user_level = code.getCodeArray("M013", " and cod
 
 DataObject fieldDao = new DataObject("tcb_field");
 DataSet field = null;
-if(!auth.getString("_DEFAULT_YN").equals("Y") && select_auth_cd.equals("20")){//ºÎ¼­Á¶È¸ ±ÇÇÑÀÎ°æ¿ì ÀÚ±â ºÎ¼­¸¸ Á¶È¸
+if(!auth.getString("_DEFAULT_YN").equals("Y") && select_auth_cd.equals("20")){//ë¶€ì„œì¡°íšŒ ê¶Œí•œì¸ê²½ìš° ìê¸° ë¶€ì„œë§Œ ì¡°íšŒ
 	field = fieldDao.find(" status > 0 and member_no = '"+_member_no+"' and ( field_seq = '"+auth.getString("_FIELD_SEQ")+"' or field_seq in ( select field_seq from tcb_auth_field where member_no = '"+_member_no+"' and menu_cd = '"+_menu_cd+"'  and auth_cd = '"+auth.getString("_AUTH_CD")+"' ) )" );
 }else{
 	field = fieldDao.find(" status > 0  and member_no = '"+_member_no+"'");
@@ -32,24 +32,24 @@ if( auth.getString("_DEFAULT_YN").equals("Y")||authMenuDao.findCount(" member_no
 }
 
 
-f.addElement("user_id", null, "hname:'¾ÆÀÌµğ', required:'Y', option:'userid', func:'validChkId'");
-f.addElement("passwd", null, "hname:'ºñ¹Ğ¹øÈ£',required:'Y', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
-f.addElement("user_name", null, "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("position", null, "hname:'Á÷À§'");
-f.addElement("email", null, "hname:'ÀÌ¸ŞÀÏ', required:'Y',option:'email'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£', required:'Y'");
-f.addElement("fax_num", null, "hname:'ÆÑ½º'");
-f.addElement("hp1", null, "hname:'ÈŞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", null, "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("user_level", "30", "hname:'»ç¿ëÀÚÀ¯Çü', required:'Y'");
-f.addElement("use_yn", "Y", "hname:'»ç¿ë¿©ºÎ', required:'Y'");
+f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y', option:'userid', func:'validChkId'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸',required:'Y', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
+f.addElement("user_name", null, "hname:'ë‹´ë‹¹ìëª…',required:'Y'");
+f.addElement("position", null, "hname:'ì§ìœ„'");
+f.addElement("email", null, "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸', required:'Y'");
+f.addElement("fax_num", null, "hname:'íŒ©ìŠ¤'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("user_level", "30", "hname:'ì‚¬ìš©ììœ í˜•', required:'Y'");
+f.addElement("use_yn", "Y", "hname:'ì‚¬ìš©ì—¬ë¶€', required:'Y'");
 if(isCJT){
-	f.addElement("division", "", "hname:'ºÎ¹®', required:'Y'");
+	f.addElement("division", "", "hname:'ë¶€ë¬¸', required:'Y'");
 }
-f.addElement("field_seq", null, "hname:'ºÎ¼­', required:'Y'");
-f.addElement("user_gubun", "10", "hname:'»ç¿ëÀÚ±¸ºĞ', requried:'Y'");
-f.addElement("auth_cd", null, "hname:'»ç¿ëÀÚ±ÇÇÑ', requried:'Y'");
+f.addElement("field_seq", null, "hname:'ë¶€ì„œ', required:'Y'");
+f.addElement("user_gubun", "10", "hname:'ì‚¬ìš©ìêµ¬ë¶„', requried:'Y'");
+f.addElement("auth_cd", null, "hname:'ì‚¬ìš©ìê¶Œí•œ', requried:'Y'");
 
 
 if(u.isPost()&&f.validate()){
@@ -57,7 +57,7 @@ if(u.isPost()&&f.validate()){
 	//personDao.setDebug(out);
 	String person_seq = personDao.getOne("select nvl(max(person_seq),0)+1 person_seq from tcb_person where member_no = '"+_member_no+"' ");
 	if(person_seq.equals("")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
@@ -65,7 +65,7 @@ if(u.isPost()&&f.validate()){
 	personDao.item("person_seq", person_seq);
 	personDao.item("user_id", f.get("user_id"));
 	personDao.item("passwd", u.sha256(f.get("passwd")));
-	personDao.item("passdate", u.getTimeString());  // ºñ¹Ğ¹øÈ£ º¯°æ½Ã°£ ±â·Ï
+	personDao.item("passdate", u.getTimeString());  // ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì‹œê°„ ê¸°ë¡
 	personDao.item("user_name",f.get("user_name"));
 	personDao.item("position",f.get("position"));
 	if(isCJT){
@@ -96,11 +96,11 @@ if(u.isPost()&&f.validate()){
 	}
 	db.setCommand(personDao.getInsertQuery(), personDao.record);
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "./person_modify.jsp?person_seq="+person_seq);
+	u.jsAlertReplace("ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./person_modify.jsp?person_seq="+person_seq);
 	return;
 }
 
@@ -116,7 +116,7 @@ p.setLoop("code_field", field);
 p.setLoop("code_user_level", u.arr2loop(code_user_level));
 p.setLoop("code_user_gubun", u.arr2loop(code_user_gubun));
 p.setLoop("authInfo", authInfo);
-p.setVar("isCJT",isCJT);//CJ´ëÇÑÅë¿î
+p.setVar("isCJT",isCJT);//CJëŒ€í•œí†µìš´
 p.setVar("btn_dept", btn_dept);
 p.setVar("form_script", f.getScript());
 p.setVar("query", u.getQueryString());

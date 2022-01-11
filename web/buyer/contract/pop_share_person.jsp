@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -36,20 +36,20 @@ if(u.isPost()&&f.validate()&&!f.get("gubun").equals("")){
 	
 	if(gubun.equals("field")){
 		if(shareDao.findCount("cont_no='"+cont_no+"' and cont_chasu="+cont_chasu+" and recv_field_seq='"+field_seq+"' and status > 0 ")>0){
-			u.jsError("ÀÌ °è¾àÀº "+ f.get("field_name") +"¿¡°Ô ÀÌ¹Ì °ø¶÷µÇ¾î ÀÖ½À´Ï´Ù.");
+			u.jsError("ì´ ê³„ì•½ì€ "+ f.get("field_name") +"ì—ê²Œ ì´ë¯¸ ê³µëŒë˜ì–´ ìˆìŠµë‹ˆë‹¤.");
 			return;		
 		}
 	}
 	if(gubun.equals("person")){
 		if(shareDao.findCount("cont_no='"+cont_no+"' and cont_chasu="+cont_chasu+" and (recv_field_seq='"+field_seq+"' or recv_user_id = '"+user_id+"') and status > 0 ")>0){
-			u.jsError("ÀÌ °è¾àÀº "+ f.get("user_name") +"¿¡°Ô ÀÌ¹Ì °ø¶÷µÇ¾î ÀÖ½À´Ï´Ù.");
+			u.jsError("ì´ ê³„ì•½ì€ "+ f.get("user_name") +"ì—ê²Œ ì´ë¯¸ ê³µëŒë˜ì–´ ìˆìŠµë‹ˆë‹¤.");
 			return;		
 		}
 	}
 	
 	String seq = shareDao.getOne(" select nvl(max(seq),0)+1 from tcb_share where cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'  ");
 	if(seq.equals("")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 	
@@ -68,12 +68,12 @@ if(u.isPost()&&f.validate()&&!f.get("gubun").equals("")){
 	shareDao.item("status", "10");
 	
 	if(!shareDao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
 	out.println("<script>");
-	out.println("alert('°ø¶÷Ã³¸® ÇÏ¿´½À´Ï´Ù.');");
+	out.println("alert('ê³µëŒì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.');");
 	out.println("opener.location.reload();");
 	out.println("self.close();");
 	out.println("</script>");
@@ -83,7 +83,7 @@ if(u.isPost()&&f.validate()&&!f.get("gubun").equals("")){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_share_person");
-p.setVar("popup_title","»ç¿ëÀÚ ¼±ÅÃ");
+p.setVar("popup_title","ì‚¬ìš©ì ì„ íƒ");
 p.setLoop("field", field);
 p.setVar("form_script",f.getScript());
 p.display(out);

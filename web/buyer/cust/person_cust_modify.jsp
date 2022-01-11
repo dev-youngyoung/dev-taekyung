@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String client_seq = u.request("client_seq");
 String person_seq = u.request("person_seq");
 
 if(client_seq.equals("") || person_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 if(u.isPost()){
-	// ´ã´çÀÚ ¾÷Ã¼ µî·Ï
+	// ë‹´ë‹¹ìž ì—…ì²´ ë“±ë¡
 	DataObject dao = new DataObject("tcb_client_detail");
 	//dao.setDebug(out);
 
@@ -17,7 +17,7 @@ if(u.isPost()){
 	dao.item("client_seq", client_seq);
 	dao.item("person_seq", person_seq);
 	if(!dao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´ ¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê° ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.");
 		return;
 	}
 }

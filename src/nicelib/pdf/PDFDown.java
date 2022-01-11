@@ -67,24 +67,24 @@ public class PDFDown extends HttpServlet {
 				/*response.setContentType("text/html; charset=euc-kr");
 				PrintWriter out =  response.getWriter();
 				out.println("<script>");
-				out.print("alert('·Î±×ÀÎ µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.');history.go(-1)");
+				out.print("alert('ë¡œê·¸ì¸ ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.');history.go(-1)");
 				out.println("</script>");
 				return;*/
 			}
 			String _member_no = auth.getString("_MEMBER_NO");
 			
 			if(full_file_path.equals("")||down_file_name.equals("")){
-				response.setContentType("text/html; charset=euc-kr");
+				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out =  response.getWriter();
 				out.println("<script>");
-				out.print("alert('Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.');history.go(-1)");
+				out.print("alert('ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.');history.go(-1)");
 				out.println("</script>");
 				return;
 			}
 			
 			response.setContentType("application/pdf");
 			if(!attach_mode.equals("off")) {
-				response.setHeader("Content-Disposition", "attachment;filename=\""+new String((down_file_name+".pdf").getBytes("EUC-KR"), "ISO-8859-1")+"\";");
+				response.setHeader("Content-Disposition", "attachment;filename=\""+new String((down_file_name+".pdf").getBytes("UTF-8"), "ISO-8859-1")+"\";");
 			}
 			
 			outputStream = response.getOutputStream();

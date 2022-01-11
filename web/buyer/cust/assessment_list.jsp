@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] kind_cd = {"N=>½Å±Ô","S=>¼ö½Ã","R=>Á¤±â"};
+String[] kind_cd = {"N=>ì‹ ê·œ","S=>ìˆ˜ì‹œ","R=>ì •ê¸°"};
 
 f.addElement("s_member_name",null, null);
 f.addElement("s_asse_year",null, null);
@@ -8,7 +8,7 @@ f.addElement("s_project_name", null, null);
 
 DataSet asse_year = new DataSet();
 asse_year.addRow();
-asse_year.put("", "----¼±ÅÃ----");
+asse_year.put("", "----ì„ íƒ----");
 String lastYear = u.getTimeString("yyyy",u.addDate("Y",-1));
 String thisYear = u.getTimeString("yyyy");
 String nextYear = u.getTimeString("yyyy",u.addDate("Y",+1));
@@ -19,7 +19,7 @@ asse_year.addRow();
 asse_year.put("year", nextYear);
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -41,13 +41,13 @@ while(ds.next()){
 	ds.put("f_yn", "Y".equals(ds.getString("f_yn"))?"V":"-");
 	ds.put("asse_kind_cd", u.getItem(ds.getString("kind_cd"), kind_cd));
 	String goUrl = "";
-	if("10".equals(ds.getString("status"))){	//ÀÛ¼ºÁß
-		System.out.println("ÀÛ¼ºÁß");
+	if("10".equals(ds.getString("status"))){	//ì‘ì„±ì¤‘
+		System.out.println("ì‘ì„±ì¤‘");
 		goUrl = "assessment_insert.jsp";
 
 	}else{
 		if("1".equals(auth.getString("_FIELD_SEQ"))){
-			System.out.println("±¸¸ÅÆÀ");
+			System.out.println("êµ¬ë§¤íŒ€");
 			goUrl = "assessment_checking_slist.jsp";
 
 		}else if("2".equals(auth.getString("_FIELD_SEQ"))){
@@ -58,7 +58,7 @@ while(ds.next()){
 			System.out.println("ENC");
 			goUrl = "assessment_checking_elist.jsp";
 		}else{
-			System.out.println("¾ÈÀü");
+			System.out.println("ì•ˆì „");
 			goUrl = "assessment_checking_flist.jsp";
 		}
 	}

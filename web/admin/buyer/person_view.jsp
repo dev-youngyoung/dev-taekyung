@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,7 +14,7 @@ f.addElement("s_user_name",null,null);
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -26,22 +26,22 @@ DataSet person = personDao.find(
 		);
 while(person.next()){
 	person.put("user_level", u.getItem(person.getString("user_level"), code_user_level));
-	person.put("use_yn",  person.getInt("status")> 0 ? person.getString("use_yn").equals("Y")?"»ç¿ë":"¹Ì»ç¿ë" :"»èÁ¦");
+	person.put("use_yn",  person.getInt("status")> 0 ? person.getString("use_yn").equals("Y")?"ì‚¬ìš©":"ë¯¸ì‚¬ìš©" :"ì‚­ì œ");
 	
 }
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 
 	DB db = new DB();
 	
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.","member_view.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","member_view.jsp?"+u.getQueryString());
 	return;
 }
 

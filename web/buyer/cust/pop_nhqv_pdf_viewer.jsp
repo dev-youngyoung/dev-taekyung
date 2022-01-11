@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String gubun =  u.aseDec(u.request("gubun"));
 String noti_seq = u.aseDec(u.request("noti_seq"));
 String member_no = u.aseDec(u.request("member_no"));
 if(noti_seq.equals("")||member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -12,12 +12,12 @@ if(noti_seq.equals("")||member_no.equals("")){
 String down_file_name = "";
 
 if(gubun.equals("req")){
-	down_file_name = "µî·Ï¾÷Ã¼½ÅÃ»¼­";
+	down_file_name = "ë“±ë¡ì—…ì²´ì‹ ì²­ì„œ";
 }else{
-	down_file_name = "µî·Ï¾÷Ã¼ ½É»ç Æò°¡Ç¥";
+	down_file_name = "ë“±ë¡ì—…ì²´ ì‹¬ì‚¬ í‰ê°€í‘œ";
 }
 
-//ci_img ¼³Á¤
+//ci_img ì„¤ì •
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find(" member_no = '20160901598' ");
 if(!member.next()){}

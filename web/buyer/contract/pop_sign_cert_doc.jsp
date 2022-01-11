@@ -3,12 +3,12 @@
 <%@page import="java.awt.Insets"%>
 <%@page import="org.zefer.pd4ml.PD4PageMark"%>
 <%@page import="org.zefer.pd4ml.PD4ML"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")|| cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -18,7 +18,7 @@ String where =" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsErrClose("´ë»ó°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsErrClose("ëŒ€ìƒê³„ì•½ê±´ì´ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -61,13 +61,13 @@ DataSet contLog = contLogDao.query(
 		);
 DataSet logInfo = new DataSet();
 while(contLog.next()){
-	//»ı¼º½Ã°£ »ı¼ºÀÚ ·Î±×¿¡¼­ ÃßÃâ
+	//ìƒì„±ì‹œê°„ ìƒì„±ì ë¡œê·¸ì—ì„œ ì¶”ì¶œ
 	if(contLog.getString("log_seq").equals("1")&& contLog.getString("cont_status").equals("10")){
 		cont.put("reg_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", contLog.getString("log_date")));
 		cont.put("reg_name", contLog.getString("user_name"));
 	}
 	
-	//ÃÖÁ¾ Àü¼Û½Ã°£ ·Î±×¿¡¼­ ÃßÃâ
+	//ìµœì¢… ì „ì†¡ì‹œê°„ ë¡œê·¸ì—ì„œ ì¶”ì¶œ
 	if(contLog.getString("member_no").equals(cont.getString("member_no"))&&contLog.getString("cont_status").equals("20")){
 		cust1.put("send_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", contLog.getString("log_date")));
 		cust1.put("send_user_name", contLog.getString("user_name"));
@@ -97,7 +97,7 @@ String doc_html =  new String(Base64Coder.decode(f.get("doc_html_rm")),"UTF-8");
 StringBuffer html = new StringBuffer();
 html.append("<html><head><style type=\"text/css\">");
 html.append("<!--");
-html.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
+html.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
 html.append("		.lineTable { border-collapse:collapse; border:1 solid black }");
 html.append("		.lineTable td { border:1 solid black }");
 html.append("		.lineTable .noborder { border:0 }");	
@@ -117,24 +117,24 @@ PD4ML pd4ml = new PD4ML();
 
 
 PD4PageMark headerMark = new PD4PageMark();
-headerMark.setAreaHeight( 30 );				//header ¿µ¿ª ¼³Á¤
+headerMark.setAreaHeight( 30 );				//header ì˜ì—­ ì„¤ì •
 
-//header µ¥ÀÌÅÍ ¼ÂÆÃ
+//header ë°ì´í„° ì…‹íŒ…
 headerMark.setHtmlTemplate("");
 pd4ml.setPageHeader(headerMark);
 
-//footer ¿µ¿ª¼³Á¤
+//footer ì˜ì—­ì„¤ì •
 //PD4PageMark footerMark = new PD4PageMark();
 //footerMark.setAreaHeight( 35 );
-//footerMark.setHtmlTemplate("<span><font style=\"font-size:12px\" color=\"#5B5B5B\">*º» ¹®¼­´Â ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com)¸¦ ÅëÇØ »ı¼º µÇ¾ú½À´Ï´Ù.</font></span>");20170623 ÀÌÆÀÀå´Ô ¿äÃ»À¸·Î Á¦°Å
+//footerMark.setHtmlTemplate("<span><font style=\"font-size:12px\" color=\"#5B5B5B\">*ë³¸ ë¬¸ì„œëŠ” ë‚˜ì´ìŠ¤ë‹¤í(http://www.nicedocu.com)ë¥¼ í†µí•´ ìƒì„± ë˜ì—ˆìŠµë‹ˆë‹¤.</font></span>");20170623 ì´íŒ€ì¥ë‹˜ ìš”ì²­ìœ¼ë¡œ ì œê±°
 
 //pd4ml.setPageFooter(footerMark);
-pd4ml.setPageInsets(new Insets(10,20,5,20));						//¿©¹é¼³Á¤
-pd4ml.setHtmlWidth(750);									//º¯È¯ÇÒ htmlÀÇ width Á¤º¸
-pd4ml.setPageSize(PD4Constants.A4);									//¿ëÁö¸ğ¾ç A4¼³Á¤
-//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//°¡·Î·Î ¼³Á¤
-pd4ml.useTTF("java:fonts", true);									//ÁöÁ¤ÇÑ ÆùÆ® »ç¿ë
-pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
+pd4ml.setPageInsets(new Insets(10,20,5,20));						//ì—¬ë°±ì„¤ì •
+pd4ml.setHtmlWidth(750);									//ë³€í™˜í•  htmlì˜ width ì •ë³´
+pd4ml.setPageSize(PD4Constants.A4);									//ìš©ì§€ëª¨ì–‘ A4ì„¤ì •
+//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//ê°€ë¡œë¡œ ì„¤ì •
+pd4ml.useTTF("java:fonts", true);									//ì§€ì •í•œ í°íŠ¸ ì‚¬ìš©
+pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
 pd4ml.enableDebugInfo();
 
 
@@ -142,7 +142,7 @@ String mimeType = "application/octet-stream";
 response.setContentType(mimeType);
 response.setHeader("Access-Control-Allow-Credentials", "true");
 //response.setHeader("Content-Disposition", "attachment;filename="+StrUtil.ConfCharset(sFileTarFile)+"\"");
-response.setHeader("Content-Disposition", "attachment;filename="+new String(("¼­¸í»ç½Ç_È®ÀÎ¼­.pdf").getBytes("EUC-KR"), "ISO-8859-1")+";");
+response.setHeader("Content-Disposition", "attachment;filename="+new String(("ì„œëª…ì‚¬ì‹¤_í™•ì¸ì„œ.pdf").getBytes("UTF-8"), "ISO-8859-1")+";");
 //response.setContentLength(fileSize);
 ByteArrayOutputStream byteOuterupStream = new ByteArrayOutputStream();
 pd4ml.render(new StringReader(html.toString()), byteOuterupStream);
@@ -160,7 +160,7 @@ outputStream.close();
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_sign_cert_doc");
-p.setVar("popup_title","¼­¸í»ç½Ç È®ÀÎ¼­");
+p.setVar("popup_title","ì„œëª…ì‚¬ì‹¤ í™•ì¸ì„œ");
 p.setVar("cont", cont);
 p.setVar("cust1", cust1);
 p.setVar("cust2", cust2);

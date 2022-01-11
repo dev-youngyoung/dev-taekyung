@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String batch_seq = u.request("batch_seq");
 
 if(batch_seq.equals("") || member_no.equals("") ){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,14 +12,14 @@ DB db = new DB();
 
 DataObject batchTemplateDao = new DataObject("tcb_batch_url");
 
-batchTemplateDao.item("status", "-1"); // »èÁ¦½Ã STATS = 1
+batchTemplateDao.item("status", "-1"); // ì‚­ì œì‹œ STATS = 1
 db.setCommand(batchTemplateDao.getUpdateQuery("member_no = '"+member_no+"' and batch_seq = "+batch_seq), batchTemplateDao.record);
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦ µÇ¾ú½À´Ï´Ù.", "./batch_url_list.jsp?");
+u.jsAlertReplace("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./batch_url_list.jsp?");
 
 %>

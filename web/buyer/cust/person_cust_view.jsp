@@ -1,18 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String client_no = u.request("client_no");
 String person_seq = u.request("person_seq");
 String cust_person_seq = u.request("cust_person_seq");
 String client_detail_seq = u.request("client_detail_seq");
 if(client_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_member_gubun = code.getCodeArray("M001");
-
-boolean src_view = false;
 
 String member_slno1= "";
 String member_slno2= "";
@@ -34,7 +32,7 @@ DataSet member = mdao.query(
 				+"    and b.client_no = '"+client_no+"'"
 );
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 member.put("vendcd", u.getBizNo(member.getString("vendcd")));
@@ -54,7 +52,7 @@ if(member.getString("post_code").trim().length() == 6){
 
 client_seq = member.getString("client_seq");
 
-// À» ¾÷Ã¼ ´ã´çÀÚ
+// ì„ ì—…ì²´ ë‹´ë‹¹ì
 DataObject personDao = new DataObject();
 //personDao.setDebug(out);
 String sQuery = "select member_no, person_seq, user_name, hp1, hp2, hp3, division, position, tel_num, email, fax_num"
@@ -64,7 +62,7 @@ if( !cust_person_seq.equals("") )
 	sQuery += " and person_seq = " + cust_person_seq;
 DataSet person = personDao.query(sQuery);
 
-// °© ¾÷Ã¼ ´ã´çÀÚ
+// ê°‘ ì—…ì²´ ë‹´ë‹¹ì
 DataObject orgpersonDao = new DataObject();
 DataSet orgperson = orgpersonDao.query(
 		" select td.*, tp.user_name, tf.field_name"
@@ -81,43 +79,12 @@ while(orgperson.next()) {
 	orgperson.put("orguserinfo", orgperson.getString("field_name") + " / " + orgperson.getString("user_name"));
 }
 
-DataSet src = new DataSet();
-if( u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"})){
-	DataSet login_member = mdao.find(" member_no = '"+_member_no+"' ");
-	if(!login_member.next()){
-	}
-	if(!login_member.getString("src_depth").equals("")){
-		src_view = true;
-		src = mdao.query(
-				"  select                                                                                                                        "
-						+"         (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = substr(a.src_cd ,0,3)||'000000') l_src_nm   "
-						+"       , (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = substr(a.src_cd ,0,6)||'000') m_src_nm      "
-						+"       , (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = a.src_cd ) s_src_nm                         "
-						+"  from tcb_src_member a                                                                                                         "
-						+" where member_no = '"+_member_no+"'                                                                                             "
-						+"   and src_member_no = '"+client_no+"'                                                                                          "
-		);
-	}
-	while(src.next()){
-		if(login_member.getString("src_depth").equals("01")){
-			src.put("src_nm", src.getString("l_src_nm"));
-		}
-		if(login_member.getString("src_depth").equals("02")){
-			src.put("src_nm", src.getString("l_src_nm")+">"+src.getString("m_src_nm"));
-		}
-		if(login_member.getString("src_depth").equals("03")){
-			src.put("src_nm", src.getString("l_src_nm")+" > "+src.getString("m_src_nm")+" > "+src.getString("s_src_nm"));
-		}
-	}
-}
-
-
-f.addElement("client_status", orgperson.getString("status"), "hname:'°Å·¡Á¤Áö'");
-f.addElement("reason", orgperson.getString("reason"), "hname:'°Å·¡Á¤Áö»çÀ¯'");
-f.addElement("temp_yn", orgperson.getString("temp_yn"), "hname:'ÀÏÈ¸¼º¾÷Ã¼'");
-f.addElement("cust_detail_name", orgperson.getString("cust_detail_name"), "hname:'°è¾àÃ³¸í'");
-f.addElement("cust_detail_code", orgperson.getString("cust_detail_code"), "hname:'°è¾àÃ³ÄÚµå'");
-f.addElement("update_person_seq", orgperson.getString("person_seq"), "hname:'°è¾àÃ³ÄÚµå'");
+f.addElement("client_status", orgperson.getString("status"), "hname:'ê±°ë˜ì •ì§€'");
+f.addElement("reason", orgperson.getString("reason"), "hname:'ê±°ë˜ì •ì§€ì‚¬ìœ '");
+f.addElement("temp_yn", orgperson.getString("temp_yn"), "hname:'ì¼íšŒì„±ì—…ì²´'");
+f.addElement("cust_detail_name", orgperson.getString("cust_detail_name"), "hname:'ê³„ì•½ì²˜ëª…'");
+f.addElement("cust_detail_code", orgperson.getString("cust_detail_code"), "hname:'ê³„ì•½ì²˜ì½”ë“œ'");
+f.addElement("update_person_seq", orgperson.getString("person_seq"), "hname:'ê³„ì•½ì²˜ì½”ë“œ'");
 
 if(u.isPost()&& f.validate()){
 
@@ -125,7 +92,7 @@ if(u.isPost()&& f.validate()){
 	boolean bInsert = false;
 	DataObject clientDao = new DataObject("tcb_client_detail");
 
-	if(client_detail_seq.equals(""))  // ´ã´çÀÚ°¡ ÁöÁ¤µÇÁö ¾ÊÀº °æ¿ì
+	if(client_detail_seq.equals(""))  // ë‹´ë‹¹ìê°€ ì§€ì •ë˜ì§€ ì•Šì€ ê²½ìš°
 	{
 		client_detail_seq = clientDao.getOne(
 				"  select nvl(max(client_detail_seq),0)+1 client_detail_seq "
@@ -170,7 +137,7 @@ if(u.isPost()&& f.validate()){
 		db.setCommand(uPersonDao.getUpdateQuery(" member_no = '"+client_no+"' and person_seq = " + f.get("s_cust_person_seq")), uPersonDao.record);
 	}
 
-	// ´ã´çÀÚ°¡ ¼³Á¤ µÇ¾úÀ¸¹Ç·Î ±âÁ¸ °è¾à¼­°¡ ÀÖÀ¸¸é Á¤º¸µµ °°ÀÌ º¯°æÇÑ´Ù.
+	// ë‹´ë‹¹ìê°€ ì„¤ì • ë˜ì—ˆìœ¼ë¯€ë¡œ ê¸°ì¡´ ê³„ì•½ì„œê°€ ìˆìœ¼ë©´ ì •ë³´ë„ ê°™ì´ ë³€ê²½í•œë‹¤.
 	DataObject contDao = new DataObject("tcb_contmaster");
 	DataObject custDao = new DataObject("tcb_cust");
 	DataObject person2Dao = new DataObject("tcb_person");
@@ -185,7 +152,7 @@ if(u.isPost()&& f.validate()){
 	{
 		if(!dsPerson2.getString("field_seq").equals("")){
 			contDao.item("field_seq", dsPerson2.getString("field_seq"));
-			db.setCommand(contDao.getUpdateQuery("cont_no='"+dsCust.getString("cont_no")+"' and cont_chasu=" + dsCust.getString("cont_chasu")), contDao.record); // °è¾à ¸¶½ºÅÍ
+			db.setCommand(contDao.getUpdateQuery("cont_no='"+dsCust.getString("cont_no")+"' and cont_chasu=" + dsCust.getString("cont_chasu")), contDao.record); // ê³„ì•½ ë§ˆìŠ¤í„°
 
 			custDao.item("user_name", dsPerson2.getString("user_name"));
 			custDao.item("tel_num", dsPerson2.getString("tel_num"));
@@ -193,16 +160,16 @@ if(u.isPost()&& f.validate()){
 			custDao.item("hp2", dsPerson2.getString("hp2"));
 			custDao.item("hp3", dsPerson2.getString("hp3"));
 			custDao.item("email", dsPerson2.getString("email"));
-			db.setCommand(custDao.getUpdateQuery("cont_no='"+dsCust.getString("cont_no")+"' and cont_chasu=" + dsCust.getString("cont_chasu") + " and member_no='"+_member_no+"'"), custDao.record); // °è¾à´ã´çÀÚ
+			db.setCommand(custDao.getUpdateQuery("cont_no='"+dsCust.getString("cont_no")+"' and cont_chasu=" + dsCust.getString("cont_chasu") + " and member_no='"+_member_no+"'"), custDao.record); // ê³„ì•½ë‹´ë‹¹ì
 		}
 	}
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "./person_my_cust_list.jsp?"+u.getQueryString("client_no,client_detail_seq,person_seq,cust_person_seq"));
+	u.jsAlertReplace("ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./person_my_cust_list.jsp?"+u.getQueryString("client_no,client_detail_seq,person_seq,cust_person_seq"));
 	return;
 }
 
@@ -214,11 +181,9 @@ p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_A
 p.setVar("member",member);
 p.setLoop("person", person);
 p.setVar("orgperson", orgperson);
-p.setVar("src_view", src_view);
-p.setLoop("src", src);
 p.setVar("sys_date", u.getTimeString());
-p.setVar("person_modify", client_detail_seq.equals("") ? false : true );  // ´ã´çÀÚ°¡ ÁöÁ¤µÈ °æ¿ì (È¸¿ø°¡ÀÔÁ÷ÈÄ°¡ ¾Æ´Ñ °æ¿ì¿¡¸¸) ¼öÁ¤°¡´É
-p.setVar("comment", person.size() > 1 ? true : false);  // ´ã´çÀÚ°¡ 1¸í ÀÌ»óÀÎ °æ¿ì ¼±ÅÃÇÏ¶ó´Â ÄÚ¸àÆ® º¸¿©ÁÜ..
+p.setVar("person_modify", client_detail_seq.equals("") ? false : true );  // ë‹´ë‹¹ìê°€ ì§€ì •ëœ ê²½ìš° (íšŒì›ê°€ì…ì§í›„ê°€ ì•„ë‹Œ ê²½ìš°ì—ë§Œ) ìˆ˜ì •ê°€ëŠ¥
+p.setVar("comment", person.size() > 1 ? true : false);  // ë‹´ë‹¹ìê°€ 1ëª… ì´ìƒì¸ ê²½ìš° ì„ íƒí•˜ë¼ëŠ” ì½”ë©˜íŠ¸ ë³´ì—¬ì¤Œ..
 p.setVar("form_script", f.getScript());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("member_no"));

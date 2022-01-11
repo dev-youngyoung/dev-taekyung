@@ -6,12 +6,12 @@ import java.text.DecimalFormat;
 /**
  * 
  *
- * @author  <A Href="mailto:imkms77@empal.com">±ËπŒºÆ</A>
+ * @author  <A Href="mailto:imkms77@empal.com">ÍπÄÎØºÏÑù</A>
  * @version 1.0
  * @since       1.0
  * 
  * History<br>
- * 1.0  2005.05.19      ±ËπŒºÆ          initial version
+ * 1.0  2005.05.19      ÍπÄÎØºÏÑù          initial version
  */
 public final class StringManager {
  
@@ -23,7 +23,7 @@ public final class StringManager {
     }
     
     /**
-     * Null¿Œ ∞ÊøÏ "" √≥∏Æ ∏ﬁº“µÂ
+     * NullÏù∏ Í≤ΩÏö∞ "" Ï≤òÎ¶¨ Î©îÏÜåÎìú
      * 
      * @param   java.lang.String
      * @return  fixed string
@@ -42,7 +42,7 @@ public final class StringManager {
     
 
     /**
-     * Null¿Œ ∞ÊøÏ "" √≥∏Æ ∏ﬁº“µÂ
+     * NullÏù∏ Í≤ΩÏö∞ "" Ï≤òÎ¶¨ Î©îÏÜåÎìú
      * 
      * @param   java.lang.Object
      * @return  fixed string
@@ -65,7 +65,7 @@ public final class StringManager {
     }
     
     /**
-     * Null¿Œ ∞ÊøÏ "0" √≥∏Æ ∏ﬁº“µÂ
+     * NullÏù∏ Í≤ΩÏö∞ "0" Ï≤òÎ¶¨ Î©îÏÜåÎìú
      * 
      * @param   java.lang.Object
      * @return  fixed string
@@ -85,7 +85,7 @@ public final class StringManager {
     
     
     /**
-     * Null¿Œ ∞ÊøÏ "0" √≥∏Æ ∏ﬁº“µÂ
+     * NullÏù∏ Í≤ΩÏö∞ "0" Ï≤òÎ¶¨ Î©îÏÜåÎìú
      * 
      * @param   java.lang.Object
      * @return  fixed string
@@ -109,8 +109,8 @@ public final class StringManager {
 
     
     /**
-     * º“ºˆ¡° ¿Ã«œ √≥∏Æ ∏ﬁº“µÂ
-     * double -> int «¸¿« String ¿∏∑Œ π›»Ø (π›ø√∏≤)
+     * ÏÜåÏàòÏ†ê Ïù¥Ìïò Ï≤òÎ¶¨ Î©îÏÜåÎìú
+     * double -> int ÌòïÏùò String ÏúºÎ°ú Î∞òÌôò (Î∞òÏò¨Î¶º)
      * @param   java.lang.Object
      * @return  fixed string
      * @since   1.0
@@ -125,8 +125,8 @@ public final class StringManager {
     
     
     /**
-     * º“ºˆ¡° ¿Ã«œ √≥∏Æ ∏ﬁº“µÂ
-     * double -> º“º˝¡° ¿Ã«œ∏¶ int∏∏≈≠ √≥∏Æ«œø© double «¸¿∏∑Œ π›»Ø (π›ø√∏≤)
+     * ÏÜåÏàòÏ†ê Ïù¥Ìïò Ï≤òÎ¶¨ Î©îÏÜåÎìú
+     * double -> ÏÜåÏà´Ï†ê Ïù¥ÌïòÎ•º intÎßåÌÅº Ï≤òÎ¶¨ÌïòÏó¨ double ÌòïÏúºÎ°ú Î∞òÌôò (Î∞òÏò¨Î¶º)
      * @param   java.lang.Object
      * @return  fixed string
      * @since   1.0
@@ -146,8 +146,8 @@ public final class StringManager {
     
     
     /**
-     * º“ºˆ¡° ¿Ã«œ √≥∏Æ ∏ﬁº“µÂ
-     * double -> º“º˝¡° ¿Ã«œ∏¶ Format √≥∏Æ«œø© double «¸¿∏∑Œ π›»Ø (π›ø√∏≤)
+     * ÏÜåÏàòÏ†ê Ïù¥Ìïò Ï≤òÎ¶¨ Î©îÏÜåÎìú
+     * double -> ÏÜåÏà´Ï†ê Ïù¥ÌïòÎ•º Format Ï≤òÎ¶¨ÌïòÏó¨ double ÌòïÏúºÎ°ú Î∞òÌôò (Î∞òÏò¨Î¶º)
      * @param   java.lang.Object
      * @return  fixed string
      * @since   1.0
@@ -161,8 +161,8 @@ public final class StringManager {
     
     
     /**
-     * º“ºˆ¡° ¿Ã«œ √≥∏Æ ∏ﬁº“µÂ
-     * double -> º“º˝¡° ¿Ã«œ∏¶ int∏∏≈≠ √≥∏Æ«œø© String «¸¿∏∑Œ π›»Ø (π›ø√∏≤)
+     * ÏÜåÏàòÏ†ê Ïù¥Ìïò Ï≤òÎ¶¨ Î©îÏÜåÎìú
+     * double -> ÏÜåÏà´Ï†ê Ïù¥ÌïòÎ•º intÎßåÌÅº Ï≤òÎ¶¨ÌïòÏó¨ String ÌòïÏúºÎ°ú Î∞òÌôò (Î∞òÏò¨Î¶º)
      * @param   java.lang.Object
      * @return  fixed string
      * @since   1.0
@@ -182,8 +182,8 @@ public final class StringManager {
     
     
     /**
-     * º“ºˆ¡° ¿Ã«œ √≥∏Æ ∏ﬁº“µÂ
-     * double -> º“º˝¡° ¿Ã«œ∏¶ Format √≥∏Æ«œø© String «¸¿∏∑Œ π›»Ø (π›ø√∏≤)
+     * ÏÜåÏàòÏ†ê Ïù¥Ìïò Ï≤òÎ¶¨ Î©îÏÜåÎìú
+     * double -> ÏÜåÏà´Ï†ê Ïù¥ÌïòÎ•º Format Ï≤òÎ¶¨ÌïòÏó¨ String ÌòïÏúºÎ°ú Î∞òÌôò (Î∞òÏò¨Î¶º)
      * @param   java.lang.Object
      * @return  fixed string
      * @since   1.0
@@ -196,7 +196,7 @@ public final class StringManager {
     }
     
     /**
-     * º˝¿⁄(String Type) "," ¬ÔæÓº≠ ∏Æ≈œ
+     * Ïà´Ïûê(String Type) "," Ï∞çÏñ¥ÏÑú Î¶¨ÌÑ¥
      * @param sVal
      * @return
      */
@@ -221,7 +221,7 @@ public final class StringManager {
     }
     
     /**
-     * º˝¿⁄(double dVal) "," ¬ÔæÓº≠ ∏Æ≈œ
+     * Ïà´Ïûê(double dVal) "," Ï∞çÏñ¥ÏÑú Î¶¨ÌÑ¥
      * @param iVal
      * @return
      */
@@ -244,25 +244,25 @@ public final class StringManager {
 
       if(errormsg.indexOf("ORA-00000") > 0)
       {
-       message = "«ÿ¥Á¿⁄∑·∞° æ¯Ω¿¥œ¥Ÿ.";
+       message = "Ìï¥ÎãπÏûêÎ£åÍ∞Ä ÏóÜÏäµÎãàÎã§.";
       }else if(errormsg.indexOf("ORA-00001") > 0)
       {
-       message = "¿⁄∑·µÓ∑œ¿Ã ¡ﬂ∫πµ«æ˙Ω¿¥œ¥Ÿ.";
+       message = "ÏûêÎ£åÎì±Î°ùÏù¥ Ï§ëÎ≥µÎêòÏóàÏäµÎãàÎã§.";
       }else if(errormsg.indexOf("ORA-00150") > 0)
       {
-       message = "¿⁄∑·µÓ∑œ¿Ã ¡ﬂ∫πµ«æ˙Ω¿¥œ¥Ÿ.";
+       message = "ÏûêÎ£åÎì±Î°ùÏù¥ Ï§ëÎ≥µÎêòÏóàÏäµÎãàÎã§.";
       }else if(errormsg.indexOf("ORA-01400") > 0)
       {
-       message = "≈◊¿Ã∫Ì¿« NOT NULLƒ√∑≥ø° NULL∞™¿Ã ¿‘∑¬µ«æ˙Ω¿¥œ¥Ÿ.";
+       message = "ÌÖåÏù¥Î∏îÏùò NOT NULLÏª¨ÎüºÏóê NULLÍ∞íÏù¥ ÏûÖÎ†•ÎêòÏóàÏäµÎãàÎã§.";
       }else if(errormsg.indexOf("ORA-01401") > 0)
       {
-       message = "≈◊¿Ã∫Ì¿« ƒ√∑≥≈©±‚∫∏¥Ÿ ≈´ µ•¿Ã≈Õ∞° ¿‘∑¬µ«æ˙Ω¿¥œ¥Ÿ.";
+       message = "ÌÖåÏù¥Î∏îÏùò Ïª¨ÎüºÌÅ¨Í∏∞Î≥¥Îã§ ÌÅ∞ Îç∞Ïù¥ÌÑ∞Í∞Ä ÏûÖÎ†•ÎêòÏóàÏäµÎãàÎã§.";
       }else if(errormsg.indexOf("ORA-02292") > 0)
       {
-       message = "∞¸∑√µ» ¿⁄∑·∞° ¿÷æÓ ªË¡¶«“ ºˆ æ¯Ω¿¥œ¥Ÿ.";
+       message = "Í¥ÄÎ†®Îêú ÏûêÎ£åÍ∞Ä ÏûàÏñ¥ ÏÇ≠Ï†úÌï† Ïàò ÏóÜÏäµÎãàÎã§.";
       }else if(errormsg.indexOf("ORA-00904") > 0)
       {
-       message = "≈◊¿Ã∫Ì ∂«¥¬ ƒ√∑≥∏Ì¿Ã ¡∏¿Á«œ¡ˆ æ Ω¿¥œ¥Ÿ.";
+       message = "ÌÖåÏù¥Î∏î ÎòêÎäî Ïª¨ÎüºÎ™ÖÏù¥ Ï°¥Ïû¨ÌïòÏßÄ ÏïäÏäµÎãàÎã§.";
       }else{
        message = errormsg;
       }
@@ -270,7 +270,7 @@ public final class StringManager {
      }
      
     /**
-    * «—±€ √≥∏Æ ∏ﬁº“µÂ
+    * ÌïúÍ∏Ä Ï≤òÎ¶¨ Î©îÏÜåÎìú
     * @param    java.lang.String
     * @return   fixed string
      * @throws UnsupportedEncodingException 
@@ -292,15 +292,15 @@ public final class StringManager {
         
     }
 	/**
-	 * ∞™¿Ã null ¿œ ∞ÊøÏ ¥ÎΩ≈ πÆ¿⁄∏¶ ¥Î√≥«ÿº≠ ∫∏≥ø
-	 * @param sVal	∞™
-	 * @param sInstead	¥ÎΩ≈«“ ∞™  
+	 * Í∞íÏù¥ null Ïùº Í≤ΩÏö∞ ÎåÄÏã† Î¨∏ÏûêÎ•º ÎåÄÏ≤òÌï¥ÏÑú Î≥¥ÎÉÑ
+	 * @param sVal	Í∞í
+	 * @param sInstead	ÎåÄÏã†Ìï† Í∞í  
 	 * @return
 	 * @throws UnsupportedEncodingException 
 	 */
 	public static String checkString(String	sVal, String sInstead) throws UnsupportedEncodingException  
 	{
-		String	sRtn	=	"";	//∏Æ≈œ∞™
+		String	sRtn	=	"";	//Î¶¨ÌÑ¥Í∞í
 		try {
 			if(sVal != null && sVal.length() > 0) 
 			{

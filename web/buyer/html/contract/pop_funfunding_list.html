@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="post"  onsubmit="return false;">
+ï»¿<form novalidate name="form1" method="post"  onsubmit="return false;">
 <input type="hidden" name="id">
 <div class="div_table">
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -8,22 +8,22 @@
 		<col width="15%">
 	</colgroup>
 	<tr>
-		<th>°è¾à¹øÈ£</th>
-		<th>°è¾à¸í</th>
-		<th>¼±ÅÃ</th>
+		<th>ê³„ì•½ë²ˆí˜¸</th>
+		<th>ê³„ì•½ëª…</th>
+		<th>ì„ íƒ</th>
 	</tr>
 	<!-- LOOP START 'list' -->
 	<tr>
 		<td align="center">{{list.contractNumber}}</td>
 		<td align="left">{{list.name}}</td>
 		<td align="center">
-			<button type="button" class="sbtn color ico-add" onclick="setContInfo('{{list.id}}')"><span></span>¼±ÅÃ</button>
+			<button type="button" class="sbtn color ico-add" onclick="setContInfo('{{list.id}}')"><span></span>ì„ íƒ</button>
 		</td>
 	</tr>
 	<!-- LOOP END 'list' -->
 	<!-- IFNOT START 'list' -->
 	<tr>
-		<td align="center" colspan="9">Á¶È¸ °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+		<td align="center" colspan="9">ì¡°íšŒ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 	</tr>
 <!-- IFNOT END 'list' -->
 </table>
@@ -37,7 +37,7 @@
 function setContInfo(id){
 	var f = document.forms['form1'];
 	if(validate(f)){
-		if(confirm('ÇØ´çÁ¤º¸·Î °è¾à¼­ ³»¿ëÀ» ÀÛ¼º ÇÏ½Ã°Ú½À´Ï±î?')){
+		if(confirm('í•´ë‹¹ì •ë³´ë¡œ ê³„ì•½ì„œ ë‚´ìš©ì„ ì‘ì„± í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
 			f['id'].value = id;
 			f.submit();
 		}

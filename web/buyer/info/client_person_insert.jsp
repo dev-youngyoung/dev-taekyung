@@ -1,28 +1,28 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_user_level =  codeDao.getCodeArray("M013", " and code in ('10','30')");
 
-f.addElement("user_id", null, "hname:'¾ÆÀÌµð', required:'Y', option:'userid', func:'validChkId'");
-f.addElement("passwd", null, "hname:'ºñ¹Ð¹øÈ£',required:'Y', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
-f.addElement("user_name", null, "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("position", null, "hname:'Á÷À§'");
-f.addElement("email", null, "hname:'ÀÌ¸ÞÀÏ', required:'Y',option:'email'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£', required:'Y'");
-f.addElement("fax_num", null, "hname:'ÆÑ½º'");
-f.addElement("hp1", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("division", null, "hname:'ºÎ¼­', required:'Y'");
-f.addElement("user_level", "30", "hname:'»ç¿ëÀÚÀ¯Çü ', required:'Y'");
-f.addElement("use_yn", "Y", "hname:'»ç¿ë¿©ºÎ', required:'Y'");
+f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y', option:'userid', func:'validChkId'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸',required:'Y', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
+f.addElement("user_name", null, "hname:'ë‹´ë‹¹ìžëª…',required:'Y'");
+f.addElement("position", null, "hname:'ì§ìœ„'");
+f.addElement("email", null, "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸', required:'Y'");
+f.addElement("fax_num", null, "hname:'íŒ©ìŠ¤'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("division", null, "hname:'ë¶€ì„œ', required:'Y'");
+f.addElement("user_level", "30", "hname:'ì‚¬ìš©ìžìœ í˜• ', required:'Y'");
+f.addElement("use_yn", "Y", "hname:'ì‚¬ìš©ì—¬ë¶€', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 	DataObject personDao = new DataObject("tcb_person");
 	//personDao.setDebug(out);
 	String person_seq = personDao.getOne("select nvl(max(person_seq),0)+1 person_seq from tcb_person where member_no = '"+_member_no+"' ");
 	if(person_seq.equals("")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
@@ -31,7 +31,7 @@ if(u.isPost()&&f.validate()){
 	personDao.item("user_id", f.get("user_id"));
 	//personDao.item("passwd", u.md5(f.get("passwd")));
 	personDao.item("passwd", u.sha256(f.get("passwd")));
-	personDao.item("passdate", u.getTimeString());  // ºñ¹Ð¹øÈ£ º¯°æ½Ã°£ ±â·Ï
+	personDao.item("passdate", u.getTimeString());  // ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì‹œê°„ ê¸°ë¡
 	personDao.item("user_name",f.get("user_name"));
 	personDao.item("position",f.get("position"));
 	personDao.item("division",f.get("division"));
@@ -57,13 +57,13 @@ if(u.isPost()&&f.validate()){
 	}
 	db.setCommand(personDao.getInsertQuery(), personDao.record);
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 	if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").equals("03")) {
-		u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.\\n\\n±ÇÇÑ ºÎ¿©´Â ´ã´çÀÚº° ±ÇÇÑ°ü¸® ¸Þ´º¿¡¼­ ºÎ¿©ÇÏ¼¼¿ä.", "/web/buyer/info/person_list.jsp");
+		u.jsAlertReplace("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nê¶Œí•œ ë¶€ì—¬ëŠ” ë‹´ë‹¹ìžë³„ ê¶Œí•œê´€ë¦¬ ë©”ë‰´ì—ì„œ ë¶€ì—¬í•˜ì„¸ìš”.", "/web/buyer/info/person_list.jsp");
 	}else{
-		u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "/web/buyer/info/person_list.jsp");
+		u.jsAlertReplace("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "/web/buyer/info/person_list.jsp");
 	}
 	return;
 }

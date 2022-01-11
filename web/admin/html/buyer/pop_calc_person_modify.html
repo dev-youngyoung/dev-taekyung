@@ -1,12 +1,12 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);" novalidate>
+﻿<form name="form1" method="post" onsubmit="return formSubmit(this);" novalidate>
 <input type="hidden" name="field_seqs">
 	<div class="div_table">
 		<div style="width:100%;text-align:right;margin: 10px 0px">
-			<button type="submit" class= 'sbtn color ico-add'><span></span>����</button>
+			<button type="submit" class= 'sbtn color ico-add'><span></span>저장</button>
 			<!-- IF START 'modify' -->
-			<button type="button" class= 'sbtn color ico-add' onclick="if(confirm('�����Ͻðڽ��ϱ�?')){location.href='pop_calc_person_delete.jsp?{{query}}'};"><span></span>����</button>
+			<button type="button" class= 'sbtn color ico-add' onclick="if(confirm('삭제하시겠습니까?')){location.href='pop_calc_person_delete.jsp?{{query}}'};"><span></span>삭제</button>
 			<!-- IF END 'modify' -->
-			<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>�ݱ�</button>
+			<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>닫기</button>
 		</div>
 		<table>
 			<colgroup>
@@ -14,15 +14,15 @@
 				<col width="75%">
 			</colgroup>
 			<tr>
-				<th class="req-check">����ڸ�</th>
+				<th class="req-check">담당자명</th>
 				<td><input type="text" name="user_name" style="width:90%" /></td>
 			</tr>
 			<tr>
-				<th>��ȭ��ȣ</th>
+				<th>전화번호</th>
 				<td><input type="text" name="tel_num" style="width:90%" /></td>
 			</tr>
 			<tr>
-				<th class="req-check">�޴���</th>
+				<th class="req-check">휴대폰</th>
 				<td>
 					<input type="text" name="hp1" size="3" />-
 					<input type="text" name="hp2" size="4" />-
@@ -30,21 +30,21 @@
 				</td>
 			</tr>
 			<tr>
-				<th class="req-check">�̸���</th>
+				<th class="req-check">이메일</th>
 				<td><input type="text" name="email" style="width:90%" /></td>
 			</tr>
 			<tr>
-				<th class="req-check">����μ�</th>
+				<th class="req-check">정산부서</th>
 				<td>
-					�� �̼��� �� ��ü ����
+					※ 미선택 시 전체 정산
 					<table>
 						<colgroup>
 							<col width="20%">
 							<col width="80%">
 						</colgroup>
 						<tr>
-							<th>����</th>
-							<th>�μ���</th>
+							<th>선택</th>
+							<th>부서명</th>
 						</tr>
 						<!-- LOOP START 'field' -->
 						<tr>
@@ -64,7 +64,7 @@
 <script language="javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("���� �Ͻðڽ��ϱ�?")){
+		if(confirm("저장 하시겠습니까?")){
             f['field_seqs'].value = "";
 		    if(GetFormValue("form1", "field_seq")){
 				f['field_seqs'].value = GetFormValue("form1", "field_seq");

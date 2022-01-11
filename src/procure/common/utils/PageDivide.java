@@ -3,48 +3,48 @@ package procure.common.utils;
 public class PageDivide {
 	
 	/**
-	*	±â´É ÇÒ´ç º¯¼ö
-	*	0 : ÀÌÀü,ÆäÀÌÁö,´ÙÀ½ 
-	*	1 : Ã³À½,ÀÌÀü,ÆäÀÌÁö,´ÙÀ½,¸¶Áö¸·
+	*	ê¸°ëŠ¥ í• ë‹¹ ë³€ìˆ˜
+	*	0 : ì´ì „,í˜ì´ì§€,ë‹¤ìŒ 
+	*	1 : ì²˜ìŒ,ì´ì „,í˜ì´ì§€,ë‹¤ìŒ,ë§ˆì§€ë§‰
 	*/
 	private int i_navy_mode = 1; 
 
 	/**
-	*	ÀüÃ¼ ÆäÀÌÁö º¯¼ö
+	*	ì „ì²´ í˜ì´ì§€ ë³€ìˆ˜
 	*/
 	private int i_total_page = 0;
 
 	/**
-	*	ÀÌ¹ÌÁö ¹öÆ° °æ·Î
+	*	ì´ë¯¸ì§€ ë²„íŠ¼ ê²½ë¡œ
 	*/
 	private String str_btn_Path = "";
 	/**
-	*	ÀÌÀü¹öÆ° °æ·Î º¯¼ö
+	*	ì´ì „ë²„íŠ¼ ê²½ë¡œ ë³€ìˆ˜
 	*/
 	private String btn_Prev = str_btn_Path + "/images/board_b_before.gif";
 	/**
-	*	´ÙÀ½¹öÆ° °æ·Î º¯¼ö
+	*	ë‹¤ìŒë²„íŠ¼ ê²½ë¡œ ë³€ìˆ˜
 	*/
 	private String btn_Next = str_btn_Path + "/images/board_b_next.gif";
 	/**
-	*	Ã³À½¹öÆ° °æ·Î º¯¼ö
+	*	ì²˜ìŒë²„íŠ¼ ê²½ë¡œ ë³€ìˆ˜
 	*/
 	private String btn_First = str_btn_Path + "/images/board_b_first.gif";
 	/**
-	*	¸¶Áö¸·¹öÆ° °æ·Î º¯¼ö
+	*	ë§ˆì§€ë§‰ë²„íŠ¼ ê²½ë¡œ ë³€ìˆ˜
 	*/
 	private String btn_Last = str_btn_Path + "/images/board_b_last.gif";
 
 
 	/**
-	*±â´É :		i_navy_mode, btn_Prev, btn_Next, btn_First, btn_Last º¯¼ö °ªÀ» default·Î »ı¼º
+	*ê¸°ëŠ¥ :		i_navy_mode, btn_Prev, btn_Next, btn_First, btn_Last ë³€ìˆ˜ ê°’ì„ defaultë¡œ ìƒì„±
 	*/
 	public PageDivide() {}
 
 	/**
-	*±â´É :		i_navy_mode  º¯¼ö °ª ¼³Á¤
-	*			btn_Prev, btn_Next, btn_First, btn_Last º¯¼ö °ªÀ» default·Î »ı¼º
-	*@param   i_navy_mode		±â´É ¼³Á¤
+	*ê¸°ëŠ¥ :		i_navy_mode  ë³€ìˆ˜ ê°’ ì„¤ì •
+	*			btn_Prev, btn_Next, btn_First, btn_Last ë³€ìˆ˜ ê°’ì„ defaultë¡œ ìƒì„±
+	*@param   i_navy_mode		ê¸°ëŠ¥ ì„¤ì •
 	*/
 	public PageDivide(int i_navy_mode) throws Exception {
 		if(i_navy_mode < 0) throw new Exception();
@@ -52,10 +52,10 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :		btn_Prev, btn_Next  º¯¼ö °ª ¼³Á¤
-	*			i_navy_mode, btn_First, btn_Last º¯¼ö °ªÀ» default·Î »ı¼º
-	*@param   btn_Prev		ÀÌÀüÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_Next		´ÙÀ½ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
+	*ê¸°ëŠ¥ :		btn_Prev, btn_Next  ë³€ìˆ˜ ê°’ ì„¤ì •
+	*			i_navy_mode, btn_First, btn_Last ë³€ìˆ˜ ê°’ì„ defaultë¡œ ìƒì„±
+	*@param   btn_Prev		ì´ì „í˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_Next		ë‹¤ìŒí˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
 	*/
 	public PageDivide(String btn_Prev, String btn_Next) throws Exception {
 		if(btn_Prev == null || "".equals(btn_Prev) || btn_Next == null || "".equals(btn_Next)) throw new Exception();
@@ -64,11 +64,11 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :		i_navy_mode, btn_Prev, btn_Next  º¯¼ö °ª ¼³Á¤
-	*			btn_First, btn_Last º¯¼ö °ªÀ» default·Î »ı¼º
-	*@param   i_navy_mode		±â´É ¼³Á¤
-	*@param   btn_Prev		ÀÌÀüÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_Next		´ÙÀ½ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
+	*ê¸°ëŠ¥ :		i_navy_mode, btn_Prev, btn_Next  ë³€ìˆ˜ ê°’ ì„¤ì •
+	*			btn_First, btn_Last ë³€ìˆ˜ ê°’ì„ defaultë¡œ ìƒì„±
+	*@param   i_navy_mode		ê¸°ëŠ¥ ì„¤ì •
+	*@param   btn_Prev		ì´ì „í˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_Next		ë‹¤ìŒí˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
 	*/
 	public PageDivide(int i_navy_mode, String btn_Prev, String btn_Next) throws Exception {
 		if(i_navy_mode < 0 || btn_Prev == null || "".equals(btn_Prev) || btn_Prev == null || "".equals(btn_Prev)) throw new Exception();
@@ -78,12 +78,12 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :		btn_Prev, btn_Next, btn_First, btn_Last  º¯¼ö °ª ¼³Á¤
-	*			i_navy_mode º¯¼ö °ªÀ» default·Î »ı¼º
-	*@param   btn_Prev		ÀÌÀüÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_Next		´ÙÀ½ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_First		Ã³À½ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_Last		¸¶Áö¸·ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
+	*ê¸°ëŠ¥ :		btn_Prev, btn_Next, btn_First, btn_Last  ë³€ìˆ˜ ê°’ ì„¤ì •
+	*			i_navy_mode ë³€ìˆ˜ ê°’ì„ defaultë¡œ ìƒì„±
+	*@param   btn_Prev		ì´ì „í˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_Next		ë‹¤ìŒí˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_First		ì²˜ìŒí˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_Last		ë§ˆì§€ë§‰í˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
 	*/
 	public PageDivide(String btn_Prev, String btn_Next, String btn_First, String btn_Last) throws Exception {
 		if(btn_Prev == null || "".equals(btn_Prev) || btn_Next == null || "".equals(btn_Next) || btn_First == null || "".equals(btn_First) || btn_Last == null || "".equals(btn_Last)) throw new Exception();
@@ -95,12 +95,12 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :		i_navy_mode, btn_Prev, btn_Next, btn_First, btn_Last  º¯¼ö °ª ¼³Á¤
-	*@param   i_navy_mode		±â´É ¼³Á¤
-	*@param   btn_Prev		ÀÌÀüÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_Next		´ÙÀ½ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_First		Ã³À½ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
-	*@param   btn_Last		¸¶Áö¸·ÆäÀÌÁö ¹öÆ° ÀÌ¹ÌÁö
+	*ê¸°ëŠ¥ :		i_navy_mode, btn_Prev, btn_Next, btn_First, btn_Last  ë³€ìˆ˜ ê°’ ì„¤ì •
+	*@param   i_navy_mode		ê¸°ëŠ¥ ì„¤ì •
+	*@param   btn_Prev		ì´ì „í˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_Next		ë‹¤ìŒí˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_First		ì²˜ìŒí˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
+	*@param   btn_Last		ë§ˆì§€ë§‰í˜ì´ì§€ ë²„íŠ¼ ì´ë¯¸ì§€
 	*/
 	public PageDivide(int i_navy_mode, String btn_Prev, String btn_Next, String btn_First, String btn_Last) throws Exception {
 		if(i_navy_mode < 1 || btn_Prev == null || "".equals(btn_Prev) || btn_Next == null || "".equals(btn_Next) || btn_First == null || "".equals(btn_First) || btn_Last == null || "".equals(btn_Last)) throw new Exception();
@@ -112,27 +112,27 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :   list È­¸éÀÇ ÆäÀÌÁö ³ª´©´Â ÇÔ¼ö
-	*@param   i_total_row_cnt	ÀüÃ¼ °Ë»öµÈ µ¥ÀÌÅ¸ °¹¼ö
-	*@param   i_bbs_row_cnt		ÇÑ È­¸é¿¡ ³ªÅ¸³»´Â ÀÚ·áÀÇ °¹¼ö
-	*@param   i_page_num		ÇöÀç ÆäÀÌÁö¹øÈ£
-	*@return  String			ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
+	*ê¸°ëŠ¥ :   list í™”ë©´ì˜ í˜ì´ì§€ ë‚˜ëˆ„ëŠ” í•¨ìˆ˜
+	*@param   i_total_row_cnt	ì „ì²´ ê²€ìƒ‰ëœ ë°ì´íƒ€ ê°¯ìˆ˜
+	*@param   i_bbs_row_cnt		í•œ í™”ë©´ì— ë‚˜íƒ€ë‚´ëŠ” ìë£Œì˜ ê°¯ìˆ˜
+	*@param   i_page_num		í˜„ì¬ í˜ì´ì§€ë²ˆí˜¸
+	*@return  String			í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
 	*/
 	public String getPageDivide(int i_total_row_cnt, int i_bbs_row_cnt, int i_page_num) throws Exception {
 		if(i_total_row_cnt < 0 || i_bbs_row_cnt < 0 || i_page_num < 0) return "&nbsp;";
 
-		int i_page_navi = 10;				// navigation °¹¼ö
+		int i_page_navi = 10;				// navigation ê°¯ìˆ˜
 
 		return makePageDivide(i_total_row_cnt, i_bbs_row_cnt, i_page_num, i_page_navi);
 	}
 	
 	/**
-	*±â´É :   list È­¸éÀÇ ÆäÀÌÁö ³ª´©´Â ÇÔ¼ö
-	*@param   i_total_row_cnt	ÀüÃ¼ °Ë»öµÈ µ¥ÀÌÅ¸ °¹¼ö
-	*@param   i_bbs_row_cnt		ÇÑ È­¸é¿¡ ³ªÅ¸³»´Â ÀÚ·áÀÇ °¹¼ö
-	*@param   i_page_num		ÇöÀç ÆäÀÌÁö¹øÈ£
-	*@param   i_page_navi		ÆäÀÌÁö¸¦ Å¬¸¯ÇÏ´Â°÷¿¡ ³ªÅ¸³ª´Â ¼ıÀÚµéÀÇ °¹¼ö(³×ºñ°ÔÀÌ¼Ç(?))
-	*@return  String			ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
+	*ê¸°ëŠ¥ :   list í™”ë©´ì˜ í˜ì´ì§€ ë‚˜ëˆ„ëŠ” í•¨ìˆ˜
+	*@param   i_total_row_cnt	ì „ì²´ ê²€ìƒ‰ëœ ë°ì´íƒ€ ê°¯ìˆ˜
+	*@param   i_bbs_row_cnt		í•œ í™”ë©´ì— ë‚˜íƒ€ë‚´ëŠ” ìë£Œì˜ ê°¯ìˆ˜
+	*@param   i_page_num		í˜„ì¬ í˜ì´ì§€ë²ˆí˜¸
+	*@param   i_page_navi		í˜ì´ì§€ë¥¼ í´ë¦­í•˜ëŠ”ê³³ì— ë‚˜íƒ€ë‚˜ëŠ” ìˆ«ìë“¤ì˜ ê°¯ìˆ˜(ë„¤ë¹„ê²Œì´ì…˜(?))
+	*@return  String			í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
 	*/
 	public String getPageDivide(int i_total_row_cnt, int i_bbs_row_cnt, int i_page_num, int i_page_navi) throws Exception {
 		if(i_total_row_cnt < 0 || i_bbs_row_cnt < 0 || i_page_num < 0 || i_page_navi < 0) return "&nbsp;";
@@ -140,12 +140,12 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :   ½ÇÁ¦·Î Navigation À» ¸¸µé¾î ÁÖ´Â ÇÔ¼ö
-	*@param   i_total_row_cnt	ÀüÃ¼ °Ë»öµÈ µ¥ÀÌÅ¸ °¹¼ö
-	*@param   i_bbs_row_cnt		ÇÑ È­¸é¿¡ ³ªÅ¸³»´Â ÀÚ·áÀÇ °¹¼ö
-	*@param   i_page_num		ÇöÀç ÆäÀÌÁö¹øÈ£
-	*@param   i_page_navi		ÆäÀÌÁö¸¦ Å¬¸¯ÇÏ´Â°÷¿¡ ³ªÅ¸³ª´Â ¼ıÀÚµéÀÇ °¹¼ö(³×ºñ°ÔÀÌ¼Ç(?))
-	*@return  String			ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
+	*ê¸°ëŠ¥ :   ì‹¤ì œë¡œ Navigation ì„ ë§Œë“¤ì–´ ì£¼ëŠ” í•¨ìˆ˜
+	*@param   i_total_row_cnt	ì „ì²´ ê²€ìƒ‰ëœ ë°ì´íƒ€ ê°¯ìˆ˜
+	*@param   i_bbs_row_cnt		í•œ í™”ë©´ì— ë‚˜íƒ€ë‚´ëŠ” ìë£Œì˜ ê°¯ìˆ˜
+	*@param   i_page_num		í˜„ì¬ í˜ì´ì§€ë²ˆí˜¸
+	*@param   i_page_navi		í˜ì´ì§€ë¥¼ í´ë¦­í•˜ëŠ”ê³³ì— ë‚˜íƒ€ë‚˜ëŠ” ìˆ«ìë“¤ì˜ ê°¯ìˆ˜(ë„¤ë¹„ê²Œì´ì…˜(?))
+	*@return  String			í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
 	*/
 	private String makePageDivide(int i_total_row_cnt, int i_bbs_row_cnt, int i_page_num, int i_page_navi) {
 
@@ -198,12 +198,12 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :   ½ÇÁ¦·Î Navigation À» ¸¸µé¾î ÁÖ´Â ÇÔ¼ö
-	*@param   i_total_row_cnt	ÀüÃ¼ °Ë»öµÈ µ¥ÀÌÅ¸ °¹¼ö
-	*@param   i_bbs_row_cnt		ÇÑ È­¸é¿¡ ³ªÅ¸³»´Â ÀÚ·áÀÇ °¹¼ö
-	*@param   i_page_num		ÇöÀç ÆäÀÌÁö¹øÈ£
-	*@param   i_page_navi		ÆäÀÌÁö¸¦ Å¬¸¯ÇÏ´Â°÷¿¡ ³ªÅ¸³ª´Â ¼ıÀÚµéÀÇ °¹¼ö(³×ºñ°ÔÀÌ¼Ç(?))
-	*@return  String			ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
+	*ê¸°ëŠ¥ :   ì‹¤ì œë¡œ Navigation ì„ ë§Œë“¤ì–´ ì£¼ëŠ” í•¨ìˆ˜
+	*@param   i_total_row_cnt	ì „ì²´ ê²€ìƒ‰ëœ ë°ì´íƒ€ ê°¯ìˆ˜
+	*@param   i_bbs_row_cnt		í•œ í™”ë©´ì— ë‚˜íƒ€ë‚´ëŠ” ìë£Œì˜ ê°¯ìˆ˜
+	*@param   i_page_num		í˜„ì¬ í˜ì´ì§€ë²ˆí˜¸
+	*@param   i_page_navi		í˜ì´ì§€ë¥¼ í´ë¦­í•˜ëŠ”ê³³ì— ë‚˜íƒ€ë‚˜ëŠ” ìˆ«ìë“¤ì˜ ê°¯ìˆ˜(ë„¤ë¹„ê²Œì´ì…˜(?))
+	*@return  String			í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
 	*/
 	public String makeEngPageDivide(int i_total_row_cnt, int i_bbs_row_cnt, int i_page_num, int i_page_navi) {
 		StringBuffer sb_PageDivide = new StringBuffer();
@@ -258,12 +258,12 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :   Navigation¿¡ Ã³À½, ¸¶Áö¸· ±â´ÉÀ» ºÙ¿© ÁÖ´Â ÇÔ¼ö
-	*@param   str_PageDivide	ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
-	*@param   i_loop			ÇÑ È­¸é¿¡¼­ ½ÃÀÛµÇ´Â ÆäÀÌÁö ¹øÈ£
-	*@param   i_page_navi		ÇÑ È­¸é¿¡ ³ªÅ¸³»´Â ÀÚ·áÀÇ °¹¼ö
-	*@param   i_total_page		ÃÑ ÆäÀÌÁö
-	*@return  String			ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
+	*ê¸°ëŠ¥ :   Navigationì— ì²˜ìŒ, ë§ˆì§€ë§‰ ê¸°ëŠ¥ì„ ë¶™ì—¬ ì£¼ëŠ” í•¨ìˆ˜
+	*@param   str_PageDivide	í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
+	*@param   i_loop			í•œ í™”ë©´ì—ì„œ ì‹œì‘ë˜ëŠ” í˜ì´ì§€ ë²ˆí˜¸
+	*@param   i_page_navi		í•œ í™”ë©´ì— ë‚˜íƒ€ë‚´ëŠ” ìë£Œì˜ ê°¯ìˆ˜
+	*@param   i_total_page		ì´ í˜ì´ì§€
+	*@return  String			í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
 	*/
 	private String attachFirstLast(String str_PageDivide, int i_loop, int i_page_navi, int i_total_page) {
 		StringBuffer sb_PageDivide = new StringBuffer();
@@ -279,12 +279,12 @@ public class PageDivide {
 	}
 
 	/**
-	*±â´É :   Navigation¿¡ Ã³À½, ¸¶Áö¸· ±â´ÉÀ» ºÙ¿© ÁÖ´Â ÇÔ¼ö
-	*@param   str_PageDivide	ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
-	*@param   i_loop			ÇÑ È­¸é¿¡¼­ ½ÃÀÛµÇ´Â ÆäÀÌÁö ¹øÈ£
-	*@param   i_page_navi		ÇÑ È­¸é¿¡ ³ªÅ¸³»´Â ÀÚ·áÀÇ °¹¼ö
-	*@param   i_total_page		ÃÑ ÆäÀÌÁö
-	*@return  String			ÆäÀÌÁö ³×ºñ°ÔÀÌ¼Ç
+	*ê¸°ëŠ¥ :   Navigationì— ì²˜ìŒ, ë§ˆì§€ë§‰ ê¸°ëŠ¥ì„ ë¶™ì—¬ ì£¼ëŠ” í•¨ìˆ˜
+	*@param   str_PageDivide	í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
+	*@param   i_loop			í•œ í™”ë©´ì—ì„œ ì‹œì‘ë˜ëŠ” í˜ì´ì§€ ë²ˆí˜¸
+	*@param   i_page_navi		í•œ í™”ë©´ì— ë‚˜íƒ€ë‚´ëŠ” ìë£Œì˜ ê°¯ìˆ˜
+	*@param   i_total_page		ì´ í˜ì´ì§€
+	*@return  String			í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜
 	*/
 	private String attachEngFirstLast(String str_PageDivide, int i_loop, int i_page_navi, int i_total_page) {
 		StringBuffer sb_PageDivide = new StringBuffer();

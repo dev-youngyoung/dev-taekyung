@@ -1,22 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String sign_seq = u.request("sign_seq");
 
-f.addElement("vendcd1", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y'");
-f.addElement("vendcd2", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y'");
-f.addElement("vendcd3", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y'");
-f.addElement("member_name", null, "hname:'»óÈ£', required:'Y'");
-f.addElement("boss_name", null, "hname:'´ëÇ¥ÀÚ¸í', required:'Y'");
-f.addElement("post_code", null, "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", null, "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("user_name", null, "hname:'´ã´çÀÚ¸í', required:'Y'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£', required:'Y'");
-f.addElement("hp1", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("email", null, "hname:'ÀÌ¸ÞÀÏ', required:'Y',option:'email'");
+f.addElement("vendcd1", null, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸', required:'Y'");
+f.addElement("vendcd2", null, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸', required:'Y'");
+f.addElement("vendcd3", null, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸', required:'Y'");
+f.addElement("member_name", null, "hname:'ìƒí˜¸', required:'Y'");
+f.addElement("boss_name", null, "hname:'ëŒ€í‘œìžëª…', required:'Y'");
+f.addElement("post_code", null, "hname:'ìš°íŽ¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", null, "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("user_name", null, "hname:'ë‹´ë‹¹ìžëª…', required:'Y'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸', required:'Y'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("email", null, "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
 f.addElement("cust_detail_code", null, null);
-f.addElement("cust_detail_name", null, "hname:'°è¾àÃ³¸í', required:'Y'");
+f.addElement("cust_detail_name", null, "hname:'ê³„ì•½ì²˜ëª…', required:'Y'");
 
 if(u.isPost()&& f.validate()){
 	boolean bNewMember = false;
@@ -41,14 +41,19 @@ if(u.isPost()&& f.validate()){
 	DataObject memberDao = new DataObject("tcb_member");
 	DataSet member= memberDao.find("vendcd = '"+vendcd+"' ");
 	if(!member.next()){
-		// È¸¿ø¹øÈ£ ±¸ÇÏ±â
+		// íšŒì›ë²ˆí˜¸ êµ¬í•˜ê¸°
 		member_no= memberDao.getOne(
-		"SELECT TO_CHAR(SYSDATE, 'yyyymm') || LPAD( (NVL(MAX(TO_NUMBER(SUBSTR(member_no, 7))), 0) + 1),5,'0' ) member_no"+
-	    "  FROM tcb_member WHERE  member_no like '"+u.getTimeString("yyyyMM")+"%'"
+				" SELECT MAX(MEMBER_NO) AS MEMBER_NO FROM( "
+			   +	" SELECT TO_CHAR(SYSDATE, 'yyyymm') || LPAD( (NVL(MAX(SUBSTR(member_no, 7)), 0) + 1),5,'0' ) member_no "
+			   +	" FROM TCB_MEMBER WHERE  member_no like '" + u.getTimeString("yyyyMM") + "%' "
+			   +	" UNION "
+			   +	" SELECT TO_CHAR(SYSDATE, 'yyyymm') || LPAD( (NVL(MAX(SUBSTR(member_no, 7)), 0) + 1),5,'0' ) member_no "
+			   +	" FROM IF_MMBAT100 WHERE  member_no like '" + u.getTimeString("yyyyMM") + "%' "
+			   +")"
 	    );
 
 		if(member_no.equals("")){
-			u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+			u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 			return;
 		}
 		bNewMember = true;
@@ -109,10 +114,10 @@ if(u.isPost()&& f.validate()){
 
 		bNewPerson = true;
 	} else {
-		// °°Àº ÀÌ¸§ÀÇ »ç¿ëÀÚ Á¶»ç
+		// ê°™ì€ ì´ë¦„ì˜ ì‚¬ìš©ìž ì¡°ì‚¬
 		person_seq= personDao.getOneInt("SELECT person_seq FROM tcb_person WHERE member_no = '" +member_no+ "' and user_name = '"+ f.get("user_name")+"'");
 
-		if(person_seq == 0) // °°Àº »ç¿ëÀÚ°¡ ¾øÀ¸¸é Ãß°¡
+		if(person_seq == 0) // ê°™ì€ ì‚¬ìš©ìžê°€ ì—†ìœ¼ë©´ ì¶”ê°€
 		{
 			person_seq = personDao.getOneInt(" select nvl(max(person_seq),0)+1 from tcb_person where member_no='"+member_no+"' ");
 			bNewPerson = true;
@@ -140,7 +145,7 @@ if(u.isPost()&& f.validate()){
 	//clientDao.setDebug(out);
 	int client_seq = 0;
 	client_seq= clientDao.getOneInt("SELECT client_seq FROM tcb_client WHERE member_no = '" +_member_no+ "' and client_no = '"+ member_no+"'");
-	if(client_seq == 0) // °Å·¡Ã³·Î µî·ÏµÇ¾î ÀÖÁö ¾Ê´Ù¸é
+	if(client_seq == 0) // ê±°ëž˜ì²˜ë¡œ ë“±ë¡ë˜ì–´ ìžˆì§€ ì•Šë‹¤ë©´
 	{
 		client_seq = clientDao.getOneInt(" select nvl(max(client_seq),0)+1 from tcb_client where member_no='"+_member_no+"' ");
 		clientDao.item("member_no", _member_no);
@@ -156,12 +161,12 @@ if(u.isPost()&& f.validate()){
 	//clientDetailDao.setDebug(out);
 	int client_Detail_seq = 0;
 	client_Detail_seq= clientDetailDao.getOneInt("SELECT client_detail_seq FROM tcb_client_detail WHERE member_no = '" +_member_no+ "' and client_seq = '"+ client_seq+"' and cust_detail_code = '"+f.get("cust_detail_code")+"'");
-	if(client_Detail_seq == 0) // °Å·¡Ã³ ÄÚµå°¡ µî·ÏµÇ¾î ÀÖÁö ¾Ê´Ù¸é
+	if(client_Detail_seq == 0) // ê±°ëž˜ì²˜ ì½”ë“œê°€ ë“±ë¡ë˜ì–´ ìžˆì§€ ì•Šë‹¤ë©´
 	{
 		client_Detail_seq = clientDao.getOneInt(" select nvl(max(client_detail_seq),0)+1 from tcb_client_detail where member_no = '" +_member_no+ "' and client_seq = '"+ client_seq+"' and person_seq = " + auth.getString("_PERSON_SEQ") );
 		bNewClientDetail = true;
 	} else {
-		u.jsError("ÀÌ¹Ì µî·ÏµÈ °è¾àÃ³ ÄÚµåÀÔ´Ï´Ù. ´Ù½Ã ÇÑ¹ø È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+		u.jsError("ì´ë¯¸ ë“±ë¡ëœ ê³„ì•½ì²˜ ì½”ë“œìž…ë‹ˆë‹¤. ë‹¤ì‹œ í•œë²ˆ í™•ì¸í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.");
 		return;
 	}
 	clientDetailDao.item("member_no", _member_no);
@@ -195,7 +200,7 @@ if(u.isPost()&& f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 	
@@ -226,7 +231,7 @@ if(u.isPost()&& f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_member_insert2");
-p.setVar("popup_title","½Å±Ô°è¾àÃ³µî·Ï");
+p.setVar("popup_title","ì‹ ê·œê³„ì•½ì²˜ë“±ë¡");
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());

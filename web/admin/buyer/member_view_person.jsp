@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
-String[] code_status = {"00=>Å»Åğ", "01=>Á¤È¸¿ø", "02=>ºñÈ¸¿ø", "03=>Àç°¡ÀÔ"};  // È¸¿ø»óÅÂ
+String[] code_status = {"00=>íƒˆí‡´", "01=>ì •íšŒì›", "02=>ë¹„íšŒì›", "03=>ì¬ê°€ì…"};  // íšŒì›ìƒíƒœ
 String[] code_member_type = codeDao.getCodeArray("M002");
 String[] code_member_gubun = codeDao.getCodeArray("M001");
 
@@ -18,14 +18,14 @@ DataSet member = memberDao.query(" select a.*, b.jumin_no, b.hp1, b.hp2, b.hp3, 
 		                        +" where a.member_no = b.member_no "
 		                        +" and   a.member_no = '"+ member_no + "'");
 if(!member.next()){
-	u.jsError("È¸¿ø Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì› ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("member_gubun", member.getString("member_gubun"),"hname:'¾÷Ã¼À¯Çü', required:'Y'");
-f.addElement("status", member.getString("status"),"hname:'È¸¿ø»óÅÂ', required:'Y'");
-f.addElement("member_type", member.getString("member_type"),"hname:'È¸¿øÀ¯Çü', required:'Y'");
-f.addElement("member_name", member.getString("member_name"), "hname:'ÀÌ¸§',required:'Y'");
+f.addElement("member_gubun", member.getString("member_gubun"),"hname:'ì—…ì²´ìœ í˜•', required:'Y'");
+f.addElement("status", member.getString("status"),"hname:'íšŒì›ìƒíƒœ', required:'Y'");
+f.addElement("member_type", member.getString("member_type"),"hname:'íšŒì›ìœ í˜•', required:'Y'");
+f.addElement("member_name", member.getString("member_name"), "hname:'ì´ë¦„',required:'Y'");
 
 Security security = new	Security();
 
@@ -45,16 +45,16 @@ if(!"".equals(member.getString("jumin_no"))){
 		jumin_no = "20" + jumin_no.substring(0,2)+"-"+jumin_no.substring(2,4)+"-"+jumin_no.substring(4,6);
 }
 
-f.addElement("jumin_no", u.getTimeString("yyyy-MM-dd", jumin_no), "hname:'»ı³â¿ùÀÏ',required:'Y'");
-f.addElement("gender", gender, "hname:'¼ºº°', required:'Y'");
-f.addElement("post_code", member.getString("post_code"), "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", member.getString("address"), "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("hp1", member.getString("hp1"), "hname:'ÈŞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", member.getString("hp2"), "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", member.getString("hp3"), "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("email", member.getString("email"), "hname:'ÀÌ¸ŞÀÏ', required:'Y'");
-f.addElement("tel_num", member.getString("tel_num"), "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("fax_num", member.getString("fax_num"), "hname:'ÆÑ½º¹øÈ£'");
+f.addElement("jumin_no", u.getTimeString("yyyy-MM-dd", jumin_no), "hname:'ìƒë…„ì›”ì¼',required:'Y'");
+f.addElement("gender", gender, "hname:'ì„±ë³„', required:'Y'");
+f.addElement("post_code", member.getString("post_code"), "hname:'ìš°í¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", member.getString("address"), "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("hp1", member.getString("hp1"), "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", member.getString("hp2"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", member.getString("hp3"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("email", member.getString("email"), "hname:'ì´ë©”ì¼', required:'Y'");
+f.addElement("tel_num", member.getString("tel_num"), "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("fax_num", member.getString("fax_num"), "hname:'íŒ©ìŠ¤ë²ˆí˜¸'");
 
 member.put("cert_end_date", u.getTimeString("yyyy-MM-dd", member.getString("cert_end_date")));
 
@@ -67,7 +67,7 @@ if(memberBoss.next()){
 	memberBoss.put("ci_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", memberBoss.getString("ci_date")));
 }
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 
 	DB db = new DB();
@@ -109,11 +109,11 @@ if(u.isPost() && f.validate()){
 	
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.","member_view_person.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","member_view_person.jsp?"+u.getQueryString());
 	return;
 }
 

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_status = codeDao.getCodeArray("M008");
@@ -14,7 +14,7 @@ f.addElement("s_cont_name",null, null);
 f.addElement("s_cust_name",null, null);
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -52,17 +52,17 @@ DataSet ds = list.getDataSet();
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cont_chasu")>0){
-		ds.put("cont_name", "<img src='../html/images/re.jpg' align='absmiddle'> " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+		ds.put("cont_name", "<img src='../html/images/re.jpg' align='absmiddle'> " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 	}
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 	ds.put("status", u.getItem(ds.getString("status"), code_status));
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
 	ds.put("send_date", u.getTimeString("yyyy-MM-dd HH:mm",ds.getString("send_date")));
-	ds.put("recv_date", ds.getString("recv_date").equals("")?"<span style='color:red'>¹ÌÈ®ÀÎ</span>":u.getTimeString("yyyy-MM-dd HH:mm",ds.getString("recv_date")));
+	ds.put("recv_date", ds.getString("recv_date").equals("")?"<span style='color:red'>ë¯¸í™•ì¸</span>":u.getTimeString("yyyy-MM-dd HH:mm",ds.getString("recv_date")));
 }
 
 p.setLayout("default");

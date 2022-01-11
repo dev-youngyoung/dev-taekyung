@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"10=>ÀÛ¼ºÁß","20=>È®Á¤"};
+String[] code_status = {"10=>ì‘ì„±ì¤‘","20=>í™•ì •"};
 
 
 f.addElement("s_yyyymm", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -15,7 +15,7 @@ list.setFields(" a.*, (select count(*) from tcb_samsong_evaluate_supp where yyyy
 list.addSearch(" a.yyyymm", f.get("s_yyyymm"), "LIKE");
 list.setOrderBy("a.yyyymm desc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 while(ds.next()){
     ds.put("yyyymm_str", ds.getString("yyyymm").substring(0,4) + "-" + ds.getString("yyyymm").substring(4,6));

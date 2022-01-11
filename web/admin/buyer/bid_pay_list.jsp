@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
-String[] code_pay_type = {"01=>Ä«µå", "02=>°èÁÂ", "03=>ÅëÀå", "04=>Æ÷ÀÎÆ®", "05=>ÈÄºÒ"};
-String[] code_receit_type = {"0=>°Å·¡","1=>¼Òµæ","2=>ÁöÃâ","3=>ÅëÀå"};
+String[] code_pay_type = {"01=>ì¹´ë“œ", "02=>ê³„ì¢Œ", "03=>í†µì¥", "04=>í¬ì¸íŠ¸", "05=>í›„ë¶ˆ"};
+String[] code_receit_type = {"0=>ê±°ë˜","1=>ì†Œë“","2=>ì§€ì¶œ","3=>í†µì¥"};
 
 String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM")+"-01");
 
@@ -11,7 +11,7 @@ f.addElement("s_edate", null, null);
 f.addElement("s_member_name", null, null);
 f.addElement("s_pay_type", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -31,7 +31,7 @@ if(!f.get("s_edate").equals("")){
 }
 list.addSearch("c.member_name", f.get("s_member_name"),"LIKE");
 list.addSearch("c.vendcd", f.get("s_vendcd").replaceAll("-", ""));
-if(f.get("s_pay_type").equals("03"))  // ÅëÀåÀÌ¸é
+if(f.get("s_pay_type").equals("03"))  // í†µì¥ì´ë©´
 {
 	list.addSearch("a.pay_type", "02", "=");
 	list.addSearch("a.receit_type", "3", "=");
@@ -40,7 +40,7 @@ else
 	list.addSearch("a.pay_type", f.get("s_pay_type"), "=");
 list.setOrderBy("a.accept_date desc, a.bid_no desc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){
@@ -60,7 +60,7 @@ while(ds.next()){
 
 if(u.request("mode").equals("excel")){
 	if(ds.size()<1){
-		u.jsError("°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.");
+		u.jsError("ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	DataObject payDao = new DataObject("tcb_bid_pay");
@@ -83,12 +83,12 @@ if(u.request("mode").equals("excel")){
 	p.setVar("sum", sum);
 
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("¸ÅÃâ³»¿ª.xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë§¤ì¶œë‚´ì—­.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/buyer/pay_list_excel.html"));
 	return;
 }
 
-//ÇÕ°è±İ¾×
+//í•©ê³„ê¸ˆì•¡
 DataObject payDao = new DataObject("tcb_pay");
 //payDao.setDebug(out);
 DataSet sum = payDao.query(" select nvl(sum(pay_amount*10/11),0) total_pay from "+ list.table + " where 1=1 and "+list.where );

@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String qnaseq = u.request("qnaseq");
 if(qnaseq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
-String[] gubun = {"01=>±¸Ãà¹®ÀÇ","02=>±³À°½ÅÃ»"};
+String[] gubun = {"01=>êµ¬ì¶•ë¬¸ì˜","02=>êµìœ¡ì‹ ì²­"};
 
 DataObject qnaDao = new DataObject("tcb_qna");
 DataSet qna = qnaDao.find("qnaseq = '"+qnaseq+"' ", "qnaseq,companynm,personnm,mobile,contents,to_char(insertdate,'YYYY-MM-DD HH24:MI:SS') insertdate,gubun");
@@ -14,11 +14,11 @@ if(qna.next()){
     qna.put("gubun_nm", u.getItem(qna.getString("gubun"), gubun));
     qna.put("contents", qna.getString("contents").replaceAll("&quot;", "\"").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("\r\n","<br>"));
 } else {
-    u.jsError("½Ã½ºÅÛ±¸Ãà¹®ÀÇ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    u.jsError("ì‹œìŠ¤í…œêµ¬ì¶•ë¬¸ì˜ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     return;
 }
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 }
 

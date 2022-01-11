@@ -8,18 +8,18 @@ Calendar = function (obj, fc, adjTop, adjLeft) {
     this.calendarAdjLeft = adjLeft ? adjLeft : 0;
     if (!this.avail) return;
 
-    this._setDateSeperator = "-";   // ³¯Â¥ ±¸ºĞÀÚ
+    this._setDateSeperator = "-";   // ë‚ ì§œ êµ¬ë¶„ì
 
-    this._setPrevColor = "#999999"; // ÀÌÀü´Ş ³¯Â¥ »ö
-    this._setPrevBackground = "";   // ÀÌÀü´Ş ³¯Â¥ ¹è°æ»ö
-    this._setNextColor = "#999999"; // ´ÙÀ½´Ş ³¯Â¥ »ö
-    this._setNextBackground = "";   // ´ÙÀ½´Ş ³¯Â¥ ¹è°æ»ö
-    this._setNowBold = true;        // ¼±ÅÃ ³¯Â¥ Bold¿©ºÎ
-    this._setNowColor = "#FF7200";     // ¼±ÅÃ ³¯Â¥ »ö
-    this._setNowBackground = "";    // ¼±ÅÃ ³¯Â¥ ¹è°æ»ö
-    this._setTodayBold = true;      // ¿À´Ã ³¯Â¥ Bold¿©ºÎ
-    this._setTodayColor = "#00A1CF";    // ¿À´Ã ³¯Â¥ »ö
-    this._setTodayBackground = "";  // ¿À´Ã ³¯Â¥ ¹è°æ»ö
+    this._setPrevColor = "#999999"; // ì´ì „ë‹¬ ë‚ ì§œ ìƒ‰
+    this._setPrevBackground = "";   // ì´ì „ë‹¬ ë‚ ì§œ ë°°ê²½ìƒ‰
+    this._setNextColor = "#999999"; // ë‹¤ìŒë‹¬ ë‚ ì§œ ìƒ‰
+    this._setNextBackground = "";   // ë‹¤ìŒë‹¬ ë‚ ì§œ ë°°ê²½ìƒ‰
+    this._setNowBold = true;        // ì„ íƒ ë‚ ì§œ Boldì—¬ë¶€
+    this._setNowColor = "#FF7200";     // ì„ íƒ ë‚ ì§œ ìƒ‰
+    this._setNowBackground = "";    // ì„ íƒ ë‚ ì§œ ë°°ê²½ìƒ‰
+    this._setTodayBold = true;      // ì˜¤ëŠ˜ ë‚ ì§œ Boldì—¬ë¶€
+    this._setTodayColor = "#00A1CF";    // ì˜¤ëŠ˜ ë‚ ì§œ ìƒ‰
+    this._setTodayBackground = "";  // ì˜¤ëŠ˜ ë‚ ì§œ ë°°ê²½ìƒ‰
 
     var classObj = this;
     this.layerObj = parent.document.getElementById("CalendarLayer");
@@ -142,19 +142,19 @@ Calendar.prototype.linkDay = function (layer, year, month, day, monthTab) {
     var classObj = this;
     var d = new Date();
     layer.innerHTML = day;
-    if (this.yearSet == year && this.monthSet == month && this.daySet == day) { // ¼±ÅÃ³¯Â¥ È¿°ú
+    if (this.yearSet == year && this.monthSet == month && this.daySet == day) { // ì„ íƒë‚ ì§œ íš¨ê³¼
         layer.style.fontWeight = (this._setNowBold == true) ? "bold" : "";
         layer.style.color      = (this._setNowColor) ? this._setNowColor : "";
         layer.style.background = (this._setNowBackground) ? this._setNowBackground : "";
-    } else if (d.getFullYear() == year && d.getMonth() == month && d.getDate() == day) { // ¿À´Ã³¯Â¥ È¿°ú
+    } else if (d.getFullYear() == year && d.getMonth() == month && d.getDate() == day) { // ì˜¤ëŠ˜ë‚ ì§œ íš¨ê³¼
         layer.style.fontWeight = (this._setTodayBold == true) ? "bold" : "";
         layer.style.color      = (this._setTodayColor) ? this._setTodayColor : "";
         layer.style.background = (this._setTodayBackground) ? this._setTodayBackground : "";
-    } else if (monthTab == 'prev') {   // ÀÌÀü´Ş È¿°ú
+    } else if (monthTab == 'prev') {   // ì´ì „ë‹¬ íš¨ê³¼
         layer.style.fontWeight = "";
         layer.style.color      = (this._setPrevColor) ?  this._setPrevColor : "";;
         layer.style.background = (this._setPrevBackground) ? this._setPrevBackground : "";
-    } else if (monthTab == 'next') { // ´ÙÀ½´Ş È¿°ú
+    } else if (monthTab == 'next') { // ë‹¤ìŒë‹¬ íš¨ê³¼
         layer.style.fontWeight = "";
         layer.style.color      = (this._setNextColor) ? this._setNextColor: "";
         layer.style.background = (this._setNextBackground) ? this._setNextBackground : "";
@@ -174,7 +174,7 @@ Calendar.prototype.linkDay = function (layer, year, month, day, monthTab) {
 Calendar.prototype.setYear = function (yearObj) {
     yearObj.options.length = 0;
     for (var i=this.year-5, j=0; i<=this.year+5; i++, j++) {
-        yearObj.options[j] = new Option(i + "³â", i, false);
+        yearObj.options[j] = new Option(i + "ë…„", i, false);
         if (i == this.year) yearObj.options[j].selected = true;
     }
 }
@@ -239,9 +239,9 @@ Calendar.prototype.destroy = function () {
 </script>
 
 <style>
-    table, td {font-size: 8pt; font-family: ±¼¸²}
+    table, td {font-size: 8pt; font-family: êµ´ë¦¼}
     div, form {margin:0; padding:0}
-    select {font-size:8pt; font-family:±¼¸²; background-color:#FFFFFF}
+    select {font-size:8pt; font-family:êµ´ë¦¼; background-color:#FFFFFF}
     a:hover {text-decoration:underline; color:#FF7200}
     a:link { text-decoration:none; color:#9999ff;}
     a:visited { text-decoration:none;}
@@ -258,37 +258,37 @@ Calendar.prototype.destroy = function () {
     <table border="0" cellspacing="0" cellpadding="0" width="170" bgcolor="#FFFFFF">
     <tr height="25">
     <td align="right" width="20">
-        <div id="CalendarPrevMonth"><font color="#000000">¢¸</font></div></td>
+        <div id="CalendarPrevMonth"><font color="#000000">â—€</font></div></td>
     <td align="center" width="130">
         <select name="cal_year"></select>
         <select name="cal_month">
-            <option value="0">1¿ù</option>
-            <option value="1">2¿ù</option>
-            <option value="2">3¿ù</option>
-            <option value="3">4¿ù</option>
-            <option value="4">5¿ù</option>
-            <option value="5">6¿ù</option>
-            <option value="6">7¿ù</option>
-            <option value="7">8¿ù</option>
-            <option value="8">9¿ù</option>
-            <option value="9">10¿ù</option>
-            <option value="10">11¿ù</option>
-            <option value="11">12¿ù</option>
+            <option value="0">1ì›”</option>
+            <option value="1">2ì›”</option>
+            <option value="2">3ì›”</option>
+            <option value="3">4ì›”</option>
+            <option value="4">5ì›”</option>
+            <option value="5">6ì›”</option>
+            <option value="6">7ì›”</option>
+            <option value="7">8ì›”</option>
+            <option value="8">9ì›”</option>
+            <option value="9">10ì›”</option>
+            <option value="10">11ì›”</option>
+            <option value="11">12ì›”</option>
         </select>
     </td>
     <td align="left" width="20">
-        <div id="CalendarNextMonth"><font color="#000000">¢º</font></div></td></td>
+        <div id="CalendarNextMonth"><font color="#000000">â–¶</font></div></td></td>
     </tr>
     </table>
     <table border="0" cellspacing="0" cellpadding="0" width="160">
     <tr align="center" height="24">
-    <th width="24">ÀÏ</th>
-    <th width="24">¿ù</th>
-    <th width="24">È­</th>
-    <th width="24">¼ö</th>
-    <th width="24">¸ñ</th>
-    <th width="24">±İ</th>
-    <th width="24">Åä</th>
+    <th width="24">ì¼</th>
+    <th width="24">ì›”</th>
+    <th width="24">í™”</th>
+    <th width="24">ìˆ˜</th>
+    <th width="24">ëª©</th>
+    <th width="24">ê¸ˆ</th>
+    <th width="24">í† </th>
     </tr>
     </table>
     <table border="1" bordercolor="#EAEAEA" width="160" style="border-collapse:collapse" bgcolor="#FFFFFF">
@@ -352,8 +352,8 @@ Calendar.prototype.destroy = function () {
     <tr>
     <td height="24" colspan="7" align="center">
         <font color="#00A1CF" style="font-weight:bold"><div id="CalendarToday" style="display:inline"></div></font>&nbsp;|
-        <div id="CalendarEraser" style="display:inline">Áö¿ò</div>&nbsp;|
-        <div id="CalendarClose" style="display:inline">´İ±â</div>
+        <div id="CalendarEraser" style="display:inline">ì§€ì›€</div>&nbsp;|
+        <div id="CalendarClose" style="display:inline">ë‹«ê¸°</div>
     </td>
     </tr>
     </table>

@@ -1,9 +1,9 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
 <input type="hidden" name="main_member_no" value="{{main_member_no}}">
 <input type="hidden" name="code_gubun" value="{{code_gubun}}">
 	<div class="util-row">
 		<div class="push-right">
-			<button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>�ݱ�</button>
+			<button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>닫기</button>
 		</div>
 	</div>
 	<div class="search_div">
@@ -14,10 +14,10 @@
 				<col width="30%"/>
 			</colgroup>
 			<tr>
-				<th><p>�з�</p></th>
+				<th><p>분류</p></th>
 				<td colspan="2">
 					<select name="m_cd" onchange="callSelectBox(this.value)">
-						<option value="">-��з� ��ü-</option>
+						<option value="">-대분류 전체-</option>
 						<!-- LOOP START 'code_m' -->
 						<option value="{{code_m.m_cd}}">{{code_m.code_nm}}</option>
 						<!-- LOOP END 'code_m' -->
@@ -25,20 +25,20 @@
 				</td>
 			</tr>
 			<tr>
-				<th><p>�ߺз�</p></th>
+				<th><p>중분류</p></th>
 				<td colspan="2">
 					<span id="s_cd_area">
 						<select name="s_cd">
-							<option value="">-�ߺз� ��ü-</option>
+							<option value="">-중분류 전체-</option>
 						</select>
 					</span>
 				</td>
 			</tr>
 			<tr>
-				<th><p>�Һз�</p></th>
+				<th><p>소분류</p></th>
 				<th><input type="text" name="code_nm" style="width:98%"></th>
 				<td align="right">
-					<button type="submit" class="sbtn color ico-search" value="�˻�"><span></span>�˻�</button>
+					<button type="submit" class="sbtn color ico-search" value="검색"><span></span>검색</button>
 				</td>
 			</tr>
 		</table>
@@ -56,10 +56,10 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>��з�</th>
-			<th>�ߺз�</th>
-			<th>�Һз�</th>
-			<th>����</th>
+			<th>대분류</th>
+			<th>중분류</th>
+			<th>소분류</th>
+			<th>선택</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -73,7 +73,7 @@
 			<!-- IF END 'list.s_rowspan' -->
 			<td align="center">{{list.code_nm}}</td>
 			<td align="center">
-				<button type="button" class="sbtn color" onclick="setCode('{{list.code}}','{{list.m_nm}}','{{list.s_nm}}','{{list.code_nm}}')">����</button>
+				<button type="button" class="sbtn color" onclick="setCode('{{list.code}}','{{list.m_nm}}','{{list.s_nm}}','{{list.code_nm}}')">선택</button>
 			</td>
 		</tr>
 		<!-- LOOP END 'list' -->

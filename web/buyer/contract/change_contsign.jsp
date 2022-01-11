@@ -2,7 +2,7 @@
 <%@page import="org.jsoup.Jsoup"%>
 <%@page import="org.jsoup.nodes.Element"%>
 <%@page import="org.jsoup.nodes.Document"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -19,7 +19,7 @@ if(cust.next()){
 if(chkMember.next()){
 	
 	if(!"04".equals(chkMember.getString("member_gubun"))){
-		u.jsErrClose("°³ÀÎÈ¸¿ø¸¸ ¼­¸íÅ¸ÀÔ º¯°æÀÌ °¡´ÉÇÕ´Ï´Ù.");
+		u.jsErrClose("ê°œì¸íšŒì›ë§Œ ì„œëª…íƒ€ìž… ë³€ê²½ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		return;
 	}
 	
@@ -29,14 +29,14 @@ if(chkMember.next()){
 }else{
 
 	if(!"".equals(cust.getString("vendcd")) ){
-		u.jsErrClose("°³ÀÎÈ¸¿ø¸¸ ¼­¸íÅ¸ÀÔ º¯°æÀÌ °¡´ÉÇÕ´Ï´Ù.");
+		u.jsErrClose("ê°œì¸íšŒì›ë§Œ ì„œëª…íƒ€ìž… ë³€ê²½ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		return;
 	}
 
 	String jumin = cust.getString("boss_birth_date").substring(2,8);
 	jumin =   " jumin_no in ('"+u.aseEnc(jumin+"1")+"','"+u.aseEnc(jumin+"2")+"','"+u.aseEnc(jumin+"3")+"','"+u.aseEnc(jumin+"4")+"')";
 	
-	//¸ñ·Ï »ý¼º
+	//ëª©ë¡ ìƒì„±
 	ListManager list = new ListManager();
 	list.setRequest(request);
 	//list.setDebug(out);
@@ -63,7 +63,7 @@ if(chkMember.next()){
 		db.setCommand(custDao.getUpdateQuery(where+ " and member_no != '"+_member_no+"' "),custDao.record);
 		
 		if(!db.executeArray()){
-			u.jsErrClose("°è¾à¼­ ¼­¸í ÀüÈ¯¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+			u.jsErrClose("ê³„ì•½ì„œ ì„œëª… ì „í™˜ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		
@@ -77,7 +77,7 @@ if(chkMember.next()){
 	p.setLayout("popup");
 	p.setDebug(out);
 	p.setBody("contract.pop_change_contsign");
-	p.setVar("popup_title","¼­¸íÅ¸ÀÔ ÀüÈ¯(°øÀÎÀÎÁõ¼­)´ë»ó È¸¿ø");
+	p.setVar("popup_title","ì„œëª…íƒ€ìž… ì „í™˜(ê³µì¸ì¸ì¦ì„œ)ëŒ€ìƒ íšŒì›");
 	p.setLoop("list", ds);
 	p.setVar("pagerbar", list.getPaging());
 	p.setVar("query", u.getQueryString());
@@ -105,18 +105,18 @@ public String removeSign(String html){
 	return cont_html_rm;
 }
 
-//input box µîÀ» Á¦°Å
+//input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String cont_html_rm = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
-	// PDF¿ë
-	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box °ª ¸ðµÎ Á¦°Å
+	// PDFìš©
+	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box ê°’ ëª¨ë‘ ì œê±°
 	for( Element elem : cont_doc.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
-	cont_doc.select(".no_pdf").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+	cont_doc.select(".no_pdf").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 	
 	cont_html_rm = cont_doc.getElementsByTag("body").html().toString();
 	String style = cont_doc.getElementsByTag("style").html();

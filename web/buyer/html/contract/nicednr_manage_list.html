@@ -11,17 +11,17 @@
 		<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th><p>°è¾àÀÏÀÚ</p></th>
+	    <th><p>ê³„ì•½ì¼ìž</p></th>
 	    <td  >
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 			<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
-	    <th><p>°è¾à»óÅÂ</p></th>
+	    <th><p>ê³„ì•½ìƒíƒœ</p></th>
 	    <td>
 	    	<select name="s_status">
-	    		<option value="">ÀüÃ¼</option>
+	    		<option value="">ì „ì²´</option>
 	    		<!-- LOOP START 'code_status' -->
 				<option value="{{code_status.id}}">{{code_status.value}}</option>
 				<!-- LOOP END 'code_status' -->
@@ -30,47 +30,47 @@
 	   <td></td>
 	  </tr>
 	  <tr>
-	  	<th><p>°è¾à¸í</p></th>
+	  	<th><p>ê³„ì•½ëª…</p></th>
 	    <td>
 	    	<input type="text" name="s_cont_name" maxlength="100" style="width:95%">
 	    </td>
-	  	<th><p>ÇÁ·ÎÁ§Æ® ÄÚµå</p></th>
+	  	<th><p>í”„ë¡œì íŠ¸ ì½”ë“œ</p></th>
 	    <td><input type="text" name="s_project_cd" maxlength="100" style="width:95%"></td>
 	    <td></td>
 	  </tr>
 	  <tr>
-	  	<th><p>µµ±ÞÀÎ</p></th>
+	  	<th><p>ë„ê¸‰ì¸</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100" style="width:95%"></td>
-	  	   <td><p  style="font-size: 13px;line-height:23px">µµ±ÞÀÎ ÄÚµå<br />(°íÀ¯ ¹øÈ£)</p></td>
+	  	   <td><p  style="font-size: 13px;line-height:23px">ë„ê¸‰ì¸ ì½”ë“œ<br />(ê³ ìœ  ë²ˆí˜¸)</p></td>
 	    <td><input type="text" name="s_cust_cd" maxlength="100" style="width:95%"></td> 
 	  </tr>
 	  <tr>
-	  	<th><p>°è¾à¼­Á¾·ù</p></th>
+	  	<th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 	    <td>
 			<select name="s_template_cd">
-	    		<option value="">-------ÀüÃ¼-------</option>
+	    		<option value="">-------ì „ì²´-------</option>
 	    		<!-- LOOP START 'template' -->
 	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 	    		<!-- LOOP END 'template' -->
 	    	</select>
 		</td>
-	  	   <td><p>Á¶»ç±¸ºÐ</p></td>
+	  	   <td><p>ì¡°ì‚¬êµ¬ë¶„</p></td>
 	       <td>
 	       	<select name="s_sel"> 
-	    		<option value="">ÀüÃ¼</option>
+	    		<option value="">ì „ì²´</option>
 	    		<!-- LOOP START 's_sel' -->
 				<option value="{{s_sel.id}}">{{s_sel.value}}</option>
 				<!-- LOOP END 's_sel' -->
 	    	</select></td>
 	     <td align="right">
-	          <button type="submit" class="search_btn">°Ë»ö</button>
+	          <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	      </td>
 	  </tr>
 	</table>
 </div>
 
 <div class="util-row">
-	<div class="push-right"><button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button></div>
+	<div class="push-right"><button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button></div>
 </div>
 
 <div class="div_table">
@@ -86,13 +86,13 @@
 				<col width="9%"/>
 			</colgroup>
 			<tr>
-				<th>¼ø¹ø</th>
-				<th>°è¾à¸í</th>
-				<th>ÇÁ·ÎÁ§Æ®¸í<br/>(ÄÚµå)</th>
-				<th>µµ±ÞÀÎ<br/>(ÄÚµå/°íÀ¯¹øÈ£)</th>
-				<th>°è¾àÀÏÀÚ</th>
-				<th>ÀÛ¼ºÀÚ</th>
-				<th>°è¾à»óÅÂ</th>
+				<th>ìˆœë²ˆ</th>
+				<th>ê³„ì•½ëª…</th>
+				<th>í”„ë¡œì íŠ¸ëª…<br/>(ì½”ë“œ)</th>
+				<th>ë„ê¸‰ì¸<br/>(ì½”ë“œ/ê³ ìœ ë²ˆí˜¸)</th>
+				<th>ê³„ì•½ì¼ìž</th>
+				<th>ìž‘ì„±ìž</th>
+				<th>ê³„ì•½ìƒíƒœ</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -109,7 +109,7 @@
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td colspan="7" align="center">Á¶È¸°á°ú°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.</td>
+			<td colspan="7" align="center">ì¡°íšŒê²°ê³¼ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 		</tbody>

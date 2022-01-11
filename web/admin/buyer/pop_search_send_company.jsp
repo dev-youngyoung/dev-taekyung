@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 f.addElement("s_member_name",null, null);
 f.addElement("s_vendcd",null, null);
 f.addElement("s_member_type",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -21,7 +21,7 @@ list.setOrderBy("a.member_name asc ");
 
 DataSet ds = new DataSet();
 if(!u.request("search").equals("")){
-	//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+	//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 	ds = list.getDataSet();
 	while(ds.next()){
 		ds.put("vendcd",u.getBizNo(ds.getString("vendcd")));
@@ -40,7 +40,7 @@ if(!u.request("search").equals("")){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("buyer.pop_search_send_company");
-p.setVar("popup_title","¾÷Ã¼°Ë»ö");
+p.setVar("popup_title","ì—…ì²´ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

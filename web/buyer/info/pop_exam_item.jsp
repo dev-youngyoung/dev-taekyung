@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String exam_cd= u.request("exam_cd");
 String question_cd = u.request("question_cd");
 if(exam_cd.equals("")|| question_cd.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -37,7 +37,7 @@ DataSet question = questionDao.query(
 );
 
 if(!question.next()){
-	u.jsErrClose("Æò°¡ Ç×¸ñÀÌ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("í‰ê°€ í•­ëª©ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -67,7 +67,7 @@ if(u.isPost()&& f.validate()){
 		db.setCommand(itemDao.getInsertQuery(), itemDao.record);	
 	}
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	out.print("<script>opener.location.reload();self.close();</script>");
@@ -78,7 +78,7 @@ if(u.isPost()&& f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("info.pop_exam_item");
-p.setVar("popup_title","Æò°¡Ç×¸ñ ¹èÁ¡°ü¸®");
+p.setVar("popup_title","í‰ê°€í•­ëª© ë°°ì ê´€ë¦¬");
 p.setVar("2depth", question.getString("depth").equals("2"));
 p.setVar("3depth", question.getString("depth").equals("3"));
 p.setVar("question", question);

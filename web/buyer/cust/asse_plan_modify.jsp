@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_kind_cd = { "S=>¼ö½ÃÆò°¡","R=>Á¤±âÆò°¡"}; 
-String[] code_div_cd = {"S=>º»»ç", "Q=>ÇöÀå"};
+String[] code_kind_cd = { "S=>ìˆ˜ì‹œí‰ê°€","R=>ì •ê¸°í‰ê°€"}; 
+String[] code_div_cd = {"S=>ë³¸ì‚¬", "Q=>í˜„ì¥"};
 
 String asse_no = u.request("asse_no");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject asseDao = new DataObject("tcb_assemaster");
 DataSet asse = asseDao.find("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"' and status = '10'");
 if(!asse.next()){
-	u.jsError("Æò°¡°èÈ¹ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ê³„íš ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 DataObject detailDao = new DataObject("tcb_assedetail");
@@ -33,13 +33,13 @@ while(detail.next()){
 DataObject templateDao = new DataObject("tcb_asse_template");
 DataSet templateQ = templateDao.find("member_no = '"+_member_no+"' and template_div_cd= 'Q' and template_use_yn = 'Y' ", "template_cd, template_name", " template_cd asc");
 
-f.addElement("project_name", asse.getString("project_name"), "hname:'Æò°¡¸í', required:'Y'");
-f.addElement("member_name", asse.getString("member_name"), "hname:'Æò°¡¾÷Ã¼', required:'Y'");
-f.addElement("kind_cd", asse.getString("kind_cd"), "hname:'Æò°¡Á¾·ù', required:'Y'");
-f.addElement("s_yn", asse.getString("s_yn"), "hname:'º»»çÆò°¡'");
-f.addElement("qc_yn", asse.getString("qc_yn"), "hname:'ÇöÀåÆò°¡'");
+f.addElement("project_name", asse.getString("project_name"), "hname:'í‰ê°€ëª…', required:'Y'");
+f.addElement("member_name", asse.getString("member_name"), "hname:'í‰ê°€ì—…ì²´', required:'Y'");
+f.addElement("kind_cd", asse.getString("kind_cd"), "hname:'í‰ê°€ì¢…ë¥˜', required:'Y'");
+f.addElement("s_yn", asse.getString("s_yn"), "hname:'ë³¸ì‚¬í‰ê°€'");
+f.addElement("qc_yn", asse.getString("qc_yn"), "hname:'í˜„ì¥í‰ê°€'");
 
-f.addElement("qc_temlate_cd", asse.getString("qc_template_cd"), "hname:'ÇöÀåÆò°¡¹æ¹ı'");
+f.addElement("qc_temlate_cd", asse.getString("qc_template_cd"), "hname:'í˜„ì¥í‰ê°€ë°©ë²•'");
 
 if(u.isPost()&&f.validate()){		
 	DB db = new DB();
@@ -61,7 +61,7 @@ if(u.isPost()&&f.validate()){
 	if(f.get("s_yn").equals("Y")){
 		DataSet template = templateDao.find("member_no = '"+_member_no+"' and template_div_cd= 'S' and template_kind_cd = '"+f.get("kind_cd")+"' and template_use_yn = 'Y' ");
 		if(!template.next()){
-			u.jsError("µî·ÏµÈ Æò°¡Áö°¡ ¾ø½À´Ï´Ù.");
+			u.jsError("ë“±ë¡ëœ í‰ê°€ì§€ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		detailDao = new DataObject("tcb_assedetail");
@@ -78,7 +78,7 @@ if(u.isPost()&&f.validate()){
 	if(f.get("qc_yn").equals("Y")){
 		DataSet template = templateDao.find("member_no = '"+_member_no+"' and template_div_cd= 'Q' and template_kind_cd = '"+f.get("kind_cd")+"' and template_use_yn = 'Y' and template_cd = '"+f.get("qc_temlate_cd")+"'  ");
 		if(!template.next()){
-			u.jsError("µî·ÏµÈ Æò°¡Áö°¡ ¾ø½À´Ï´Ù.");
+			u.jsError("ë“±ë¡ëœ í‰ê°€ì§€ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		detailDao = new DataObject("tcb_assedetail");
@@ -94,10 +94,10 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.","asse_plan_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.","asse_plan_modify.jsp?"+u.getQueryString());
 	return;
 }
 

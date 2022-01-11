@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 f.addElement("s_member_name",null, null);
 f.addElement("s_cretop",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -14,8 +14,8 @@ list.setFields(		"a.client_no  \n"
 		+	",b.vendcd \n"
 		+	",b.boss_name \n"
 		+	",c.post_address"
-		+	",decode(c.post_address, null, '<font color=red>¹Ìµî·Ï</font>', 'µî·Ï') cust_insert"
-		+	",decode(c.credit_rating, null, '<font color=red>¹Ìµî·Ï</font>', 'µî·Ï') cretop_insert"
+		+	",decode(c.post_address, null, '<font color=red>ë¯¸ë“±ë¡</font>', 'ë“±ë¡') cust_insert"
+		+	",decode(c.credit_rating, null, '<font color=red>ë¯¸ë“±ë¡</font>', 'ë“±ë¡') cretop_insert"
 );
 list.addWhere(" a.member_no = '"+_member_no+"'");
 list.addSearch("b.member_name", f.get("s_member_name"), "LIKE");
@@ -37,7 +37,7 @@ if(u.request("mode").equals("excel")){
 		ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
 	}
 	String fileName = "";
-	fileName = "±â¾÷ÇöÈ².xls";
+	fileName = "ê¸°ì—…í˜„í™©.xls";
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
 	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("KSC5601"),"8859_1") + "\"");
@@ -60,6 +60,6 @@ p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString());
 p.setVar("form_script",f.getScript());
-p.setVar("isExcel", auth.getString("_USER_LEVEL").equals("30")?false:true);  // ÀÏ¹İ»ç¿ëÀÚ´Â ¿¢¼¿´Ù¿î ¸øÇÔ
+p.setVar("isExcel", auth.getString("_USER_LEVEL").equals("30")?false:true);  // ì¼ë°˜ì‚¬ìš©ìëŠ” ì—‘ì…€ë‹¤ìš´ ëª»í•¨
 p.display(out);
 %>

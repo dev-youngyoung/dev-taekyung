@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String member_no = u.request("member_no");
 if(cont_no.equals("")||cont_chasu.equals("")||member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇØ ÁÖ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -15,7 +15,7 @@ DataObject contDao = new DataObject("tcb_contmaster tm inner join tcb_cust tc on
 //contDao.setDebug(out);
 DataSet cont = contDao.find("tc.member_no='"+ member_no +"' and tm.cont_no = '"+cont_no+"' and tm.cont_chasu = '"+cont_chasu+"' ", "tm.stamp_type, tc.member_name, tc.vendcd, tm.member_no, tm.status, tm.cont_total");
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 } else {
 	cont.put("cont_total", u.numberFormat(cont.getDouble("cont_total"),0));
@@ -25,7 +25,7 @@ if(!cont.next()){
 DataObject cfileDao = new DataObject("tcb_cfile");
 DataSet cfile = cfileDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ", "file_path");
 if(!cfile.next()){
-	u.jsError("°è¾à¼­·ù ÀúÀåÀ§Ä¡°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì„œë¥˜ ì €ì¥ìœ„ì¹˜ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }else{
 	fileDir = cfile.getString("file_path");
@@ -34,37 +34,37 @@ if(!cfile.next()){
 DataObject stampDao = new DataObject("tcb_stamp");
 DataSet stamp = stampDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and member_no = '"+member_no+"' ");
 if(!stamp.next()){
-	u.jsError("ÀÎÁö¼¼ Á¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì¸ì§€ì„¸ ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 stamp.put("issue_date", u.getTimeString("yyyy-MM-dd", stamp.getString("issue_date")));
 stamp.put("file_size", u.getFileSize(stamp.getLong("file_size")));
 
-f.addElement("cert_no", stamp.getString("cert_no"), "hname:'°íÀ¯(Á¢¼ö)¹øÈ£', minbyte:'15', maxbyte:'20', required:'Y'");
-f.addElement("channel", stamp.getString("channel"), "hname:'¹ß±ŞÃ³', required:'Y'");
-f.addElement("issue_date", stamp.getString("issue_date"), "hname:'¹ß±ŞÀÏ', required:'Y'");
+f.addElement("cert_no", stamp.getString("cert_no"), "hname:'ê³ ìœ (ì ‘ìˆ˜)ë²ˆí˜¸', minbyte:'15', maxbyte:'20', required:'Y'");
+f.addElement("channel", stamp.getString("channel"), "hname:'ë°œê¸‰ì²˜', required:'Y'");
+f.addElement("issue_date", stamp.getString("issue_date"), "hname:'ë°œê¸‰ì¼', required:'Y'");
 
-// °è¾à±İ¾×¿¡ µû¸¥ ÀÎÁö¼¼¾× ÀÚµ¿°è»ê
+// ê³„ì•½ê¸ˆì•¡ì— ë”°ë¥¸ ì¸ì§€ì„¸ì•¡ ìë™ê³„ì‚°
 String stamp_money = stamp.getString("stamp_money");
-if(stamp_money.equals("")&&cont.getInt("cont_chasu")==0)// Ã³À½ ÀÔ·ÂÀÎ °æ¿ì/ ÃÖÃÊ°è¾à¸¸ ÀÚµ¿ °è»ê NH°³¹ß ÇùÀÇ °úÁ¤¿¡¼­ º¯°æ°è¾à½Ã ÀÚµ¿»êÃâÀÌ È¥µ¿À» ÁÙ¼ö ÀÖ´Ù°íÇÔ.20170629
+if(stamp_money.equals("")&&cont.getInt("cont_chasu")==0)// ì²˜ìŒ ì…ë ¥ì¸ ê²½ìš°/ ìµœì´ˆê³„ì•½ë§Œ ìë™ ê³„ì‚° NHê°œë°œ í˜‘ì˜ ê³¼ì •ì—ì„œ ë³€ê²½ê³„ì•½ì‹œ ìë™ì‚°ì¶œì´ í˜¼ë™ì„ ì¤„ìˆ˜ ìˆë‹¤ê³ í•¨.20170629
 {
 	double dCont_total = Double.parseDouble(cont.getString("cont_total").replaceAll(",",""));
 	long dStamp_money = 0L;		
 	
 	//System.out.println("dCont_total : "+dCont_total);
 	
-	if(dCont_total <= 10000000) // 1000¸¸¿ø ÀÌÇÏ
+	if(dCont_total <= 10000000) // 1000ë§Œì› ì´í•˜
 		dStamp_money = 0;
-	else if(dCont_total > 10000000 && dCont_total <= 30000000) // 1000¸¸¿ø ÀÌÇÏ
+	else if(dCont_total > 10000000 && dCont_total <= 30000000) // 1000ë§Œì› ì´í•˜
 		dStamp_money = 20000;
-	else if(dCont_total > 30000000 && dCont_total <= 50000000) // 5000¸¸¿ø ÀÌÇÏ
+	else if(dCont_total > 30000000 && dCont_total <= 50000000) // 5000ë§Œì› ì´í•˜
 		dStamp_money = 40000;
-	else if(dCont_total > 50000000 && dCont_total <= 100000000) // 1¾ï ÀÌÇÏ
+	else if(dCont_total > 50000000 && dCont_total <= 100000000) // 1ì–µ ì´í•˜
 		dStamp_money = 70000;
-	else if(dCont_total > 100000000 && dCont_total <= 1000000000) // 10¾ï ÀÌÇÏ
+	else if(dCont_total > 100000000 && dCont_total <= 1000000000) // 10ì–µ ì´í•˜
 		dStamp_money = 150000;
-	else if(dCont_total > 1000000000) // 10¾ï ÃÊ°ú
+	else if(dCont_total > 1000000000) // 10ì–µ ì´ˆê³¼
 		dStamp_money = 350000;
 	
 	System.out.println("dStamp_money:"+dStamp_money);
@@ -77,10 +77,10 @@ if(stamp_money.equals("")&&cont.getInt("cont_chasu")==0)// Ã³À½ ÀÔ·ÂÀÎ °æ¿ì/ ÃÖÃ
 } else {
 	stamp.put("stamp_money", Util.numberFormat(stamp.getString("stamp_money")));
 }
-f.addElement("stamp_money", stamp_money, "hname:'³³ºÎÇÑ ÀÎÁö¼¼¾×', required:'Y', option:'money'");
+f.addElement("stamp_money", stamp_money, "hname:'ë‚©ë¶€í•œ ì¸ì§€ì„¸ì•¡', required:'Y', option:'money'");
 
 if(stamp.getString("file_name").equals("")){
-	f.addElement("stamp_file", null, "hname:'Ã·ºÎÆÄÀÏ', required:'Y', allow:'jpg|gif|png|pdf'");
+	f.addElement("stamp_file", null, "hname:'ì²¨ë¶€íŒŒì¼', required:'Y', allow:'jpg|gif|png|pdf'");
 }
 
 if(u.isPost()&&f.validate()){
@@ -101,12 +101,12 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!stampDao.update(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and member_no = '"+member_no+"' ")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	out.print("<script>");
-	out.print("alert(\"ÀúÀå ÇÏ¿´½À´Ï´Ù.\");");
+	out.print("alert(\"ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 	out.print("opener.location.reload();");
 	out.print("self.close();");
 	out.print("</script>");
@@ -118,12 +118,12 @@ boolean btn = false;
 boolean gap_yn = cont.getString("member_no").equals(_member_no);
 
 
-if(gap_yn){ // °©
+if(gap_yn){ // ê°‘
 	btn = true;
-}else{ // À»
+}else{ // ì„
 	if(member_no.equals(_member_no)){
-		if(cont.getString("status").equals("50")) {  // °è¾à¿Ï·á
-			if(stamp.getString("cert_no").equals("")){// °è¾à ¿Ï·á »óÅÂ¿¡¼­ ÀÎÁö¼¼¸¦ µî·Ï ¾ÈÇßÀ» °æ¿ì ÃÖÃÊ 1È¸¸¸ µî·Ï °¡´É ÇÏµµ·Ï ÇÔ.
+		if(cont.getString("status").equals("50")) {  // ê³„ì•½ì™„ë£Œ
+			if(stamp.getString("cert_no").equals("")){// ê³„ì•½ ì™„ë£Œ ìƒíƒœì—ì„œ ì¸ì§€ì„¸ë¥¼ ë“±ë¡ ì•ˆí–ˆì„ ê²½ìš° ìµœì´ˆ 1íšŒë§Œ ë“±ë¡ ê°€ëŠ¥ í•˜ë„ë¡ í•¨.
 				btn = true;
 			}
 		}else{
@@ -139,7 +139,7 @@ if(stamp.getString("cert_no").equals("")){
 }else{
 	p.setBody("contract.pop_stamp_view");
 }
-p.setVar("popup_title","ÀÎÁö¼¼ Á¤º¸");
+p.setVar("popup_title","ì¸ì§€ì„¸ ì •ë³´");
 p.setVar("btn",btn);
 //p.setVar("btn_confirm", stamp.getString("status").equals("20")&&gap_yn&&!stamp.getString("stamp_no").equals(""));
 p.setVar("stamp", stamp);

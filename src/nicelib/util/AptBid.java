@@ -25,78 +25,78 @@ public class AptBid {
 		LinkedHashMap<String, String> aptInfo = new LinkedHashMap<String, String>();
 		LinkedHashMap<String, String> bidInfo = new LinkedHashMap<String, String>();
 		
-		// ¾ÆÆÄÆ® Á¤º¸
+		// ì•„íŒŒíŠ¸ ì •ë³´
 		aptInfo.put("code_way", "01");  // 
-		aptInfo.put("apt_code", "23");  // ´ÜÁöÄÚµå
-		aptInfo.put("apt_name", "´ÜÁö¸í");  // ´ÜÁö¸í
-		aptInfo.put("apt_addr", "°ü¸®»ç¹«¼Ò ÁÖ¼Ò");  // °ü¸®»ç¹«¼Ò ÁÖ¼Ò
-		aptInfo.put("apt_man", "¾ÆÆÄÆ® ´ã´çÀÚ");  // ¾ÆÆÄÆ® ´ã´çÀÚ 
-		aptInfo.put("apt_tel", "ÀüÈ­¹øÈ£");  // ÀüÈ­¹øÈ£
-		aptInfo.put("apt_fax", "ÆÑ½º¹øÈ£");  // ÆÑ½º¹øÈ£
-		aptInfo.put("apt_dong", "µ¿¼ö");  // µ¿¼ö(¿É¼Ç)
-		aptInfo.put("apt_house", "¼¼´ë ¼ö");  // ¼¼´ë¼ö(¿É¼Ç)
+		aptInfo.put("apt_code", "23");  // ë‹¨ì§€ì½”ë“œ
+		aptInfo.put("apt_name", "ë‹¨ì§€ëª…");  // ë‹¨ì§€ëª…
+		aptInfo.put("apt_addr", "ê´€ë¦¬ì‚¬ë¬´ì†Œ ì£¼ì†Œ");  // ê´€ë¦¬ì‚¬ë¬´ì†Œ ì£¼ì†Œ
+		aptInfo.put("apt_man", "ì•„íŒŒíŠ¸ ë‹´ë‹¹ì");  // ì•„íŒŒíŠ¸ ë‹´ë‹¹ì 
+		aptInfo.put("apt_tel", "ì „í™”ë²ˆí˜¸");  // ì „í™”ë²ˆí˜¸
+		aptInfo.put("apt_fax", "íŒ©ìŠ¤ë²ˆí˜¸");  // íŒ©ìŠ¤ë²ˆí˜¸
+		aptInfo.put("apt_dong", "ë™ìˆ˜");  // ë™ìˆ˜(ì˜µì…˜)
+		aptInfo.put("apt_house", "ì„¸ëŒ€ ìˆ˜");  // ì„¸ëŒ€ìˆ˜(ì˜µì…˜)
 			
-		bidInfo.put("bid_num", "M43400001");  // ÀÔÂû¹øÈ£
-		bidInfo.put("state", "1");  // ÀÔÂûÁøÇà»óÈ²(1:½Å±Ô, 2:¼öÁ¤, 3:ÀçÀÔÂû, 4:À¯Âû, 5:³«Âû, 6:Ãë¼Ò, 7:¼öÁ¤Ãë¼Ò, 8:³«Âû:°è¾àÁøÇà, 9:°è¾àÃë¼Ò(ÀÔÂû¹«È¿)
-		bidInfo.put("area", "½ÃµµÄÚµå");  // ½ÃµµÄÚµå
-		bidInfo.put("title", "ÀÔÂûÁ¦¸ñ");  // ÀÔÂûÁ¦¸ñ
-		bidInfo.put("url", "http://www.niceaptbid.com/web/apt/bid/kapt_view.jsp?q=");  // http ÁÖ¼Ò
-		bidInfo.put("deadline", "2016-03-31 10:00:00");  // ÀÔÂû¸¶°¨ÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD HH24:MI:SS)
-		bidInfo.put("reg_date", "2016-03-20 10:25:10");  // °ø°íÀÏ½Ã(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD HH24:MI:SS)
-		bidInfo.put("code_classify_type_1", "01");  // ÀÔÂû ±¸ºĞ Å¸ÀÔ ´ëºĞ·ù(01:ÁÖÅÃ°ü¸®¾÷ÀÚ, 02:»ç¾÷ÀÚ)
-		bidInfo.put("code_classify_type_2", "01");  // ÀÔÂû ±¸ºĞ Å¸ÀÔ ÁßºĞ·ù(01:°øµ¿ÁÖÅÃÀ§Å¹°ü¸®,	02:°ø»ç,03:¿ë¿ª, 04:¹°Ç°, 05:±âÅ¸)
-		bidInfo.put("code_classify_type_3", "");  // ÀÔÂû ±¸ºĞ Å¸ÀÔ ¼ÒºĞ·ù
+		bidInfo.put("bid_num", "M43400001");  // ì…ì°°ë²ˆí˜¸
+		bidInfo.put("state", "1");  // ì…ì°°ì§„í–‰ìƒí™©(1:ì‹ ê·œ, 2:ìˆ˜ì •, 3:ì¬ì…ì°°, 4:ìœ ì°°, 5:ë‚™ì°°, 6:ì·¨ì†Œ, 7:ìˆ˜ì •ì·¨ì†Œ, 8:ë‚™ì°°:ê³„ì•½ì§„í–‰, 9:ê³„ì•½ì·¨ì†Œ(ì…ì°°ë¬´íš¨)
+		bidInfo.put("area", "ì‹œë„ì½”ë“œ");  // ì‹œë„ì½”ë“œ
+		bidInfo.put("title", "ì…ì°°ì œëª©");  // ì…ì°°ì œëª©
+		bidInfo.put("url", "http://www.niceaptbid.com/web/apt/bid/kapt_view.jsp?q=");  // http ì£¼ì†Œ
+		bidInfo.put("deadline", "2016-03-31 10:00:00");  // ì…ì°°ë§ˆê°ì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD HH24:MI:SS)
+		bidInfo.put("reg_date", "2016-03-20 10:25:10");  // ê³µê³ ì¼ì‹œ(ë°ì´íƒ€í¬ë§· YYYY-MM-DD HH24:MI:SS)
+		bidInfo.put("code_classify_type_1", "01");  // ì…ì°° êµ¬ë¶„ íƒ€ì… ëŒ€ë¶„ë¥˜(01:ì£¼íƒê´€ë¦¬ì—…ì, 02:ì‚¬ì—…ì)
+		bidInfo.put("code_classify_type_2", "01");  // ì…ì°° êµ¬ë¶„ íƒ€ì… ì¤‘ë¶„ë¥˜(01:ê³µë™ì£¼íƒìœ„íƒê´€ë¦¬,	02:ê³µì‚¬,03:ìš©ì—­, 04:ë¬¼í’ˆ, 05:ê¸°íƒ€)
+		bidInfo.put("code_classify_type_3", "");  // ì…ì°° êµ¬ë¶„ íƒ€ì… ì†Œë¶„ë¥˜
 		/*
-		01:ÇÏÀÚº¸¼ö / code_classify_type_2="02"ÀÏ¶§
-		02:Àå±â¼ö¼± / code_classify_type_2="02"ÀÏ¶§
-		03:ÀÏ¹İº¸¼ö / code_classify_type_2="02"ÀÏ¶§
-		04:°æºñ / code_classify_type_2="03"ÀÏ¶§
-		05:Ã»¼Ò / code_classify_type_2="03"ÀÏ¶§
-		06:½Â°­±âÀ¯Áö / code_classify_type_2="03"ÀÏ¶§
-		07:Áö´ÉÇüÈ¨³×Æ®¿öÅ© / code_classify_type_2="03"ÀÏ¶§
-		08:Àü±â¾ÈÀü°ü¸® / code_classify_type_2="03"ÀÏ¶§
-		09:Á¤È­Á¶Ã»¼Ò, °ü¸® / code_classify_type_2="03"ÀÏ¶§
-		10:Àú¼öÁ¶ Ã»¼Ò / code_classify_type_2="03"ÀÏ¶§
-		11:°ÇÃà¹° ¾ÈÀüÁø´Ü / code_classify_type_2="03"ÀÏ¶§
-		12:±âÅ¸ ¿ë¿ª / code_classify_type_2="03"ÀÏ¶§
-		13:±¸ÀÔ / code_classify_type_2="04"ÀÏ¶§
-		14:¸Å°¢ / code_classify_type_2="04"ÀÏ¶§
-		15:Àâ¼öÀÔ / code_classify_type_2="05"ÀÏ¶§
-		16:º¸Çè°è¾à / code_classify_type_2="05"ÀÏ¶§
-		13:¼Òµ¶ / code_classify_type_2="05"ÀÏ¶§
-		14:ÁÖ¹Î¿îµ¿½Ã¼³ÀÇ À§Å¹ / code_classify_type_2="05"ÀÏ¶§
+		01:í•˜ìë³´ìˆ˜ / code_classify_type_2="02"ì¼ë•Œ
+		02:ì¥ê¸°ìˆ˜ì„  / code_classify_type_2="02"ì¼ë•Œ
+		03:ì¼ë°˜ë³´ìˆ˜ / code_classify_type_2="02"ì¼ë•Œ
+		04:ê²½ë¹„ / code_classify_type_2="03"ì¼ë•Œ
+		05:ì²­ì†Œ / code_classify_type_2="03"ì¼ë•Œ
+		06:ìŠ¹ê°•ê¸°ìœ ì§€ / code_classify_type_2="03"ì¼ë•Œ
+		07:ì§€ëŠ¥í˜•í™ˆë„¤íŠ¸ì›Œí¬ / code_classify_type_2="03"ì¼ë•Œ
+		08:ì „ê¸°ì•ˆì „ê´€ë¦¬ / code_classify_type_2="03"ì¼ë•Œ
+		09:ì •í™”ì¡°ì²­ì†Œ, ê´€ë¦¬ / code_classify_type_2="03"ì¼ë•Œ
+		10:ì €ìˆ˜ì¡° ì²­ì†Œ / code_classify_type_2="03"ì¼ë•Œ
+		11:ê±´ì¶•ë¬¼ ì•ˆì „ì§„ë‹¨ / code_classify_type_2="03"ì¼ë•Œ
+		12:ê¸°íƒ€ ìš©ì—­ / code_classify_type_2="03"ì¼ë•Œ
+		13:êµ¬ì… / code_classify_type_2="04"ì¼ë•Œ
+		14:ë§¤ê° / code_classify_type_2="04"ì¼ë•Œ
+		15:ì¡ìˆ˜ì… / code_classify_type_2="05"ì¼ë•Œ
+		16:ë³´í—˜ê³„ì•½ / code_classify_type_2="05"ì¼ë•Œ
+		13:ì†Œë… / code_classify_type_2="05"ì¼ë•Œ
+		14:ì£¼ë¯¼ìš´ë™ì‹œì„¤ì˜ ìœ„íƒ / code_classify_type_2="05"ì¼ë•Œ
 		*/
-		bidInfo.put("code_way", "01");  // ÀÔÂû¹æ¹ı(00:Á÷Á¢ÀÔÂû, 01:ÀüÀÚÀÔÂû)
-		bidInfo.put("code_kind", "01");  // ÀÔÂûÁ¾·ù(01:ÀÏ¹İ°æÀï, 02:Á¦ÇÑ°æÀï, 03:Áö¸í°æÀï)
-		bidInfo.put("code_suc_way", "01");  // ³«Âû¹æ¹ı(01:ÃÖÀú(°í) ³«Âû, 02:Àû°İ½É»ç)
-		bidInfo.put("terms_of_payment", "01");  // Áö±Ş Á¶°Ç(¿É¼Ç)
-		bidInfo.put("guarantee_yn", "Y");  // ÀÔÂûº¸Áõº¸ÇèÁõ±Ç À¯¹«(Y:À¯, N:¹«)
-		bidInfo.put("credit_conf_yn", "Y");  // ½Å¿ëÆò°¡ µî±ŞÈ®ÀÎ¼­ Á¦Ãâ¿©ºÎ(Y : Á¦Ãâ, N:¹ÌÁ¦Ãâ)
-		bidInfo.put("mng_cert_yn", "Y");  // °ü¸®(°ø»ç¿ë¿ª) ½ÇÀûÁõ¸í¼­ Á¦Ãâ ¿©ºÎ(Y : Á¦Ãâ, N:¹ÌÁ¦Ãâ)
-		bidInfo.put("cert_open_yn", "Y");  // ÀÔÂû¼­ °³ºÀ ¿©ºÎ(Y:°³ºÀ, N:¹Ì°³ºÀ)
-		bidInfo.put("emrg_yn", "N");  // ±ä±ŞÀÔÂû¿©ºÎ(Y:±ä±Ş, N:ÀÏ¹İ)
-		bidInfo.put("contract_date", "2016-04-08");  // °è¾àÃ¼°á³¯Â¥(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD) (¿É¼Ç)
-		bidInfo.put("contract_regdt", "2016-03-22 10:25:10");  // °è¾àÃ¼°áµî·ÏÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD HH24:MI:SS) (¿É¼Ç)
-		bidInfo.put("field_des_loc", "¾ÆÆÄÆ® °ü¸®»ç¹«¼Ò");  // ÇöÀå¼³¸íÀå¼Ò (¿É¼Ç)
-		bidInfo.put("field_des_date", "2016-03-25 10:25:10");  // ÇöÀå¼³¸í ÀÏ½Ã(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD HH24:MI:SS) (¿É¼Ç)
-		bidInfo.put("field_des_ess", "N");  // ÇöÀå¼³¸íÈ¸Âü¼®ÇÊ¼ö¿©ºÎ(P:ÇÊ¼ö, Y:ÀÓÀÇ, N:¾øÀ½)
-		bidInfo.put("req_docs", "±¸ºñ¼­·ù");  // ±¸ºñ¼­·ù¸í (¿É¼Ç)
-		bidInfo.put("docs_deadline", "2016-03-26 10:00:10");  // ¼­·ùÁ¦Ãâ¸¶°¨ÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD HH24:MI:SS) (¿É¼Ç)
-		bidInfo.put("org_num", "2016-03-26 10:00:10");  // Àç°ø°í½Ã ORG ÀÔÂû ¹øÈ£ (¼öÁ¤, Àç°ø°íÀÏ ¶§ ÇÊ¼ö)
+		bidInfo.put("code_way", "01");  // ì…ì°°ë°©ë²•(00:ì§ì ‘ì…ì°°, 01:ì „ìì…ì°°)
+		bidInfo.put("code_kind", "01");  // ì…ì°°ì¢…ë¥˜(01:ì¼ë°˜ê²½ìŸ, 02:ì œí•œê²½ìŸ, 03:ì§€ëª…ê²½ìŸ)
+		bidInfo.put("code_suc_way", "01");  // ë‚™ì°°ë°©ë²•(01:ìµœì €(ê³ ) ë‚™ì°°, 02:ì ê²©ì‹¬ì‚¬)
+		bidInfo.put("terms_of_payment", "01");  // ì§€ê¸‰ ì¡°ê±´(ì˜µì…˜)
+		bidInfo.put("guarantee_yn", "Y");  // ì…ì°°ë³´ì¦ë³´í—˜ì¦ê¶Œ ìœ ë¬´(Y:ìœ , N:ë¬´)
+		bidInfo.put("credit_conf_yn", "Y");  // ì‹ ìš©í‰ê°€ ë“±ê¸‰í™•ì¸ì„œ ì œì¶œì—¬ë¶€(Y : ì œì¶œ, N:ë¯¸ì œì¶œ)
+		bidInfo.put("mng_cert_yn", "Y");  // ê´€ë¦¬(ê³µì‚¬ìš©ì—­) ì‹¤ì ì¦ëª…ì„œ ì œì¶œ ì—¬ë¶€(Y : ì œì¶œ, N:ë¯¸ì œì¶œ)
+		bidInfo.put("cert_open_yn", "Y");  // ì…ì°°ì„œ ê°œë´‰ ì—¬ë¶€(Y:ê°œë´‰, N:ë¯¸ê°œë´‰)
+		bidInfo.put("emrg_yn", "N");  // ê¸´ê¸‰ì…ì°°ì—¬ë¶€(Y:ê¸´ê¸‰, N:ì¼ë°˜)
+		bidInfo.put("contract_date", "2016-04-08");  // ê³„ì•½ì²´ê²°ë‚ ì§œ(ë°ì´íƒ€í¬ë§· YYYY-MM-DD) (ì˜µì…˜)
+		bidInfo.put("contract_regdt", "2016-03-22 10:25:10");  // ê³„ì•½ì²´ê²°ë“±ë¡ì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD HH24:MI:SS) (ì˜µì…˜)
+		bidInfo.put("field_des_loc", "ì•„íŒŒíŠ¸ ê´€ë¦¬ì‚¬ë¬´ì†Œ");  // í˜„ì¥ì„¤ëª…ì¥ì†Œ (ì˜µì…˜)
+		bidInfo.put("field_des_date", "2016-03-25 10:25:10");  // í˜„ì¥ì„¤ëª… ì¼ì‹œ(ë°ì´íƒ€í¬ë§· YYYY-MM-DD HH24:MI:SS) (ì˜µì…˜)
+		bidInfo.put("field_des_ess", "N");  // í˜„ì¥ì„¤ëª…íšŒì°¸ì„í•„ìˆ˜ì—¬ë¶€(P:í•„ìˆ˜, Y:ì„ì˜, N:ì—†ìŒ)
+		bidInfo.put("req_docs", "êµ¬ë¹„ì„œë¥˜");  // êµ¬ë¹„ì„œë¥˜ëª… (ì˜µì…˜)
+		bidInfo.put("docs_deadline", "2016-03-26 10:00:10");  // ì„œë¥˜ì œì¶œë§ˆê°ì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD HH24:MI:SS) (ì˜µì…˜)
+		bidInfo.put("org_num", "2016-03-26 10:00:10");  // ì¬ê³µê³ ì‹œ ORG ì…ì°° ë²ˆí˜¸ (ìˆ˜ì •, ì¬ê³µê³ ì¼ ë•Œ í•„ìˆ˜)
 		
-		// À¯Âû, ³«Âû, Ãë¼Ò, ³«Âû¹«È¿½Ã
-		bidInfo.put("reason", "³«Âû,À¯Âû,Ãë¼Ò »çÀ¯");  // ³«Âû,À¯Âû,Ãë¼Ò »çÀ¯ (ÇÊ¼ö)
-		bidInfo.put("com_name", "¾÷Ã¼ ¸í");  // ¾÷Ã¼ ¸í (³«Âû, Ãë¼Ò½Ã ÇÊ¼ö)
-		bidInfo.put("com_owner", "´ëÇ¥ÀÚ ¸í");  // ´ëÇ¥ÀÚ ¸í (¿É¼Ç)
-		bidInfo.put("com_addr", "ÁÖ¼Ò");  // ÁÖ¼Ò (¿É¼Ç)
-		bidInfo.put("com_tel", "¿¬¶ôÃ³");  // ¿¬¶ôÃ³ (¿É¼Ç)
-		bidInfo.put("con_period_sdate", "2016-04-08");  // °è¾à ½ÃÀÛÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD) (¿É¼Ç)
-		bidInfo.put("con_period_edate", "2017-04-07");  // °è¾à Á¾·áÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD) (¿É¼Ç)
-		bidInfo.put("con_prog_period_sdate", "2016-04-08");  // °è¾à Ã¼°á±â°£ ½ÃÀÛÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD) (¿É¼Ç)
-		bidInfo.put("con_prog_period_edate", "2016-04-08");  // °è¾à Ã¼°á±â°£ Á¾·áÀÏ(µ¥ÀÌÅ¸Æ÷¸Ë YYYY-MM-DD) (¿É¼Ç)
-		bidInfo.put("con_amount", "10000000");  // °è¾à ±İ¾× (³«Âû, Ãë¼Ò½Ã ÇÊ¼ö)
-		bidInfo.put("con_type", "01");  // ¼±Á¤ ¹æ¹ı(01:°æÀïÀÔÂû, 02:¼öÀÇ°è¾à) (³«Âû, Ãë¼Ò½Ã ÇÊ¼ö)
-		bidInfo.put("etc", "±âÅ¸ ³»¿ë");  // ³»¿ë (¿É¼Ç)
+		// ìœ ì°°, ë‚™ì°°, ì·¨ì†Œ, ë‚™ì°°ë¬´íš¨ì‹œ
+		bidInfo.put("reason", "ë‚™ì°°,ìœ ì°°,ì·¨ì†Œ ì‚¬ìœ ");  // ë‚™ì°°,ìœ ì°°,ì·¨ì†Œ ì‚¬ìœ  (í•„ìˆ˜)
+		bidInfo.put("com_name", "ì—…ì²´ ëª…");  // ì—…ì²´ ëª… (ë‚™ì°°, ì·¨ì†Œì‹œ í•„ìˆ˜)
+		bidInfo.put("com_owner", "ëŒ€í‘œì ëª…");  // ëŒ€í‘œì ëª… (ì˜µì…˜)
+		bidInfo.put("com_addr", "ì£¼ì†Œ");  // ì£¼ì†Œ (ì˜µì…˜)
+		bidInfo.put("com_tel", "ì—°ë½ì²˜");  // ì—°ë½ì²˜ (ì˜µì…˜)
+		bidInfo.put("con_period_sdate", "2016-04-08");  // ê³„ì•½ ì‹œì‘ì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD) (ì˜µì…˜)
+		bidInfo.put("con_period_edate", "2017-04-07");  // ê³„ì•½ ì¢…ë£Œì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD) (ì˜µì…˜)
+		bidInfo.put("con_prog_period_sdate", "2016-04-08");  // ê³„ì•½ ì²´ê²°ê¸°ê°„ ì‹œì‘ì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD) (ì˜µì…˜)
+		bidInfo.put("con_prog_period_edate", "2016-04-08");  // ê³„ì•½ ì²´ê²°ê¸°ê°„ ì¢…ë£Œì¼(ë°ì´íƒ€í¬ë§· YYYY-MM-DD) (ì˜µì…˜)
+		bidInfo.put("con_amount", "10000000");  // ê³„ì•½ ê¸ˆì•¡ (ë‚™ì°°, ì·¨ì†Œì‹œ í•„ìˆ˜)
+		bidInfo.put("con_type", "01");  // ì„ ì • ë°©ë²•(01:ê²½ìŸì…ì°°, 02:ìˆ˜ì˜ê³„ì•½) (ë‚™ì°°, ì·¨ì†Œì‹œ í•„ìˆ˜)
+		bidInfo.put("etc", "ê¸°íƒ€ ë‚´ìš©");  // ë‚´ìš© (ì˜µì…˜)
 		
 		apt.createAptXml(5, aptInfo, bidInfo);
 		
@@ -122,7 +122,7 @@ public class AptBid {
 	
 	public String createAptXml(int state, LinkedHashMap<String, String> aptInfo, LinkedHashMap<String, String> bidInfo) {
 		
-		// 1. Document »ı¼º
+		// 1. Document ìƒì„±
 		Document doc = new Document();
 		Element apt_info = new Element("apt_info");
 		Element bid_info = new Element("bidding_info");
@@ -130,15 +130,15 @@ public class AptBid {
 		Iterator<String> it = aptInfo.keySet().iterator();
 		Iterator<String> it2 = bidInfo.keySet().iterator();
 		
-		// 2. Root Element »ı¼º
+		// 2. Root Element ìƒì„±
 		Element root = new Element("g2b");
 		doc.setContent(root);
 		 
-		// 3. Child Element »ı¼º
+		// 3. Child Element ìƒì„±
 		switch(state) {
-		case 1: // ½Å±Ô
-		case 2: // ¼öÁ¤
-		case 3: // Àç°ø°í
+		case 1: // ì‹ ê·œ
+		case 2: // ìˆ˜ì •
+		case 3: // ì¬ê³µê³ 
 			root.setAttribute("cmd", "insert");
 			root.setAttribute("key", key);
 			
@@ -157,10 +157,10 @@ public class AptBid {
 			break;
 		
 			
-		case 4: // À¯Âû
-		case 5: // ³«Âû
-		case 6: // Ãë¼Ò
-		case 9: // ³«Âû¹«È¿
+		case 4: // ìœ ì°°
+		case 5: // ë‚™ì°°
+		case 6: // ì·¨ì†Œ
+		case 9: // ë‚™ì°°ë¬´íš¨
 			root.setAttribute("cmd", "result");
 			root.setAttribute("key", key);
 			
@@ -172,11 +172,11 @@ public class AptBid {
 			root.addContent(bid_info);
 			break;			
 			
-		case 7: // ¼öÁ¤Ãë¼Ò
+		case 7: // ìˆ˜ì •ì·¨ì†Œ
 			
 			break;
 			
-		case 8: // ³«Âû:°è¾àÁøÇà(»ç¿ë¾ÈÇÔ)
+		case 8: // ë‚™ì°°:ê³„ì•½ì§„í–‰(ì‚¬ìš©ì•ˆí•¨)
 			
 			break;
 			

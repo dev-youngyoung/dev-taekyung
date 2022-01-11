@@ -1,15 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String member_no = u.request("member_no"); // ¿ø»ç¾÷ÀÚ È¸¿ø¹øÈ£
+String member_no = u.request("member_no"); // ì›ì‚¬ì—…ì íšŒì›ë²ˆí˜¸
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_member_gubun = code.getCodeArray("M001");
-
-boolean src_view = false;
 
 String member_slno1= "";
 String member_slno2= "";
@@ -18,7 +16,7 @@ String member_slno2= "";
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find(" member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 member.put("vendcd", u.getBizNo(member.getString("vendcd")));
@@ -37,39 +35,8 @@ DataSet person = personDao.find(" member_no = '"+member_no+"'", "*"," person_seq
 DataObject clientDao = new DataObject("tcb_client");
 DataSet client = clientDao.find("member_no = '"+member_no+"' and client_no = '"+_member_no+"' ");
 if(!client.next()){
-	u.jsError("µî·ÏµÈ °Å·¡Ã³°¡ ¾Æ´Õ´Ï´Ù.");
+	u.jsError("ë“±ë¡ëœ ê±°ë˜ì²˜ê°€ ì•„ë‹™ë‹ˆë‹¤.");
 	return;
-}
-
-
-DataSet src = new DataSet();
-if( u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"})){
-	DataSet login_member = memberDao.find(" member_no = '"+_member_no+"' ");
-	if(!login_member.next()){
-	}
-	if(!login_member.getString("src_depth").equals("")){
-		src_view = true;
-		src = memberDao.query(
-		 "  select                                                                                                                        "
-		+"         (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = substr(a.src_cd ,0,3)||'000000') l_src_nm   "
-		+"       , (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = substr(a.src_cd ,0,6)||'000') m_src_nm      "
-		+"       , (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = a.src_cd ) s_src_nm                         "
-		+"  from tcb_src_member a                                                                                                         "
-		+" where member_no = '"+_member_no+"'                                                                                             "
-		+"   and src_member_no = '"+member_no+"'                                                                                          "
-		);
-	}
-	while(src.next()){
-		if(login_member.getString("src_depth").equals("01")){
-			src.put("src_nm", src.getString("l_src_nm"));
-		}
-		if(login_member.getString("src_depth").equals("02")){
-			src.put("src_nm", src.getString("l_src_nm")+">"+src.getString("m_src_nm"));
-		}
-		if(login_member.getString("src_depth").equals("03")){
-			src.put("src_nm", src.getString("l_src_nm")+">"+src.getString("m_src_nm")+">"+src.getString("s_src_nm"));
-		}
-	}
 }
 
 
@@ -89,23 +56,23 @@ while(rfile.next()){
 	rfile.put("file_size", u.getFileSize(rfile.getLong("file_size")));
 }
 
-//NHÅõÀÚÁõ±Ç Çù·Â¾÷Ã¼>µî·Ï¾÷Ã¼ ÀüÈ¯ ½ÅÃ»
+//NHíˆ¬ìì¦ê¶Œ í˜‘ë ¥ì—…ì²´>ë“±ë¡ì—…ì²´ ì „í™˜ ì‹ ì²­
 DataSet recruitNoti = new DataSet();
 if(!client.getString("client_type").equals("1")&&!client.getString("status").equals("10")){
 	if(member_no.equals("20160901598")){
 		DataObject notiDao = new DataObject("tcb_recruit_noti");
 		recruitNoti  = notiDao.find("member_no = '20160901598' and req_sdate <= '"+u.getTimeString("yyyyMMdd")+"' and req_edate >= '"+u.getTimeString("yyyyMMdd")+"' and status = '10'");
 		if(recruitNoti.next()){
-			String[] code_status = {"10=>ÀÓ½ÃÀúÀå","20=>½ÅÃ»Áß","30=>¼öÁ¤¿äÃ»","31=>¼öÁ¤½ÅÃ»","40=>½É»ç¿Ï·á","50=>¿Ï·á"};
+			String[] code_status = {"10=>ì„ì‹œì €ì¥","20=>ì‹ ì²­ì¤‘","30=>ìˆ˜ì •ìš”ì²­","31=>ìˆ˜ì •ì‹ ì²­","40=>ì‹¬ì‚¬ì™„ë£Œ","50=>ì™„ë£Œ"};
 			DataObject recruitCustDao = new DataObject("tcb_recruit_cust");
 			DataSet recruitCust = recruitCustDao.find("member_no = '20160901598' and noti_seq = '"+recruitNoti.getString("noti_seq")+"' and client_no = '"+_member_no+"' ");
 			if(recruitCust.next()){
 				if(u.inArray(recruitCust.getString("status"), new String[]{"10","20","30","31"})   ){
-					String btn = " <button type=\"button\" class=\"btn color\" onclick=\"OpenWindows('pop_nhqv_recruit_req.jsp?noti_seq="+recruitNoti.getString("noti_seq")+"','pop_nhqv_recruit_req','1000','700');\">µî·Ï¾÷Ã¼ÀüÈ¯½ÅÃ»¼­("+u.getItem(recruitCust.getString("status"), code_status)+")</button>";
+					String btn = " <button type=\"button\" class=\"btn color\" onclick=\"OpenWindows('pop_nhqv_recruit_req.jsp?noti_seq="+recruitNoti.getString("noti_seq")+"','pop_nhqv_recruit_req','1000','700');\">ë“±ë¡ì—…ì²´ì „í™˜ì‹ ì²­ì„œ("+u.getItem(recruitCust.getString("status"), code_status)+")</button>";
 					recruitNoti.put("btn", btn);
 				}
 			}else{
-				String btn = " <button type=\"button\" class=\"btn color\" onclick=\"OpenWindows('pop_nhqv_recruit_req.jsp?noti_seq="+recruitNoti.getString("noti_seq")+"','pop_nhqv_recruit_req','1000','700');\">µî·Ï¾÷Ã¼ÀüÈ¯Æò°¡½ÅÃ»</button>";
+				String btn = " <button type=\"button\" class=\"btn color\" onclick=\"OpenWindows('pop_nhqv_recruit_req.jsp?noti_seq="+recruitNoti.getString("noti_seq")+"','pop_nhqv_recruit_req','1000','700');\">ë“±ë¡ì—…ì²´ì „í™˜í‰ê°€ì‹ ì²­</button>";
 				recruitNoti.put("btn", btn);
 			}
 		}
@@ -122,10 +89,8 @@ p.setLayout("default");
 p.setBody("cust.company_view");
 p.setVar("menu_cd","000099");
 p.setVar("member",member);
-p.setVar("src_view", src_view);
-p.setLoop("src", src);
 p.setLoop("rfile", rfile);
-p.setVar("btn_reg_doc", u.inArray(member_no, new String[]{"20151101243"})&&client.getString("client_reg_cd").equals("1"));//³óÇù³×Æ®¿÷½º Á¤½Äµî·Ï¾÷Ã¼¸¸
+p.setVar("btn_reg_doc", u.inArray(member_no, new String[]{"20151101243"})&&client.getString("client_reg_cd").equals("1"));//ë†í˜‘ë„¤íŠ¸ì›ìŠ¤ ì •ì‹ë“±ë¡ì—…ì²´ë§Œ
 p.setVar("recruitNoti", recruitNoti);
 p.setVar("list", u.getQueryString("member_no"));
 p.setVar("query", u.getQueryString());

@@ -1,19 +1,19 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String id = u.request("id");
 String mode = u.request("mode");
 
 if(id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 DataObject dao = new DataObject("tcb_board");
 
-// Ã·ºÎÆÄÀÏ »èÁ¦
+// ì²¨ë¶€íŒŒì¼ ì‚­ì œ
 DataSet ds = dao.find("board_id=" + id + " and category = 'noti'");
 if(!ds.next()){
-	u.jsError("ÇØ´ç °³½Ã¹°ÀÌ ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ ê°œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 u.delFile(Startup.conf.getString("file.path.noti")+ds.getString("file_path")+ds.getString("file_name"));
@@ -28,20 +28,20 @@ if(mode.equals("file"))
 	dao.item("file_size", "");
 
 	if(!dao.update("category='noti' and board_id='"+id+"'")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
-	u.jsAlertReplace("ÆÄÀÏÀÌ »èÁ¦ µÇ¾ú½À´Ï´Ù.", "./noti_modify.jsp?"+u.getQueryString("mode"));
+	u.jsAlertReplace("íŒŒì¼ì´ ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./noti_modify.jsp?"+u.getQueryString("mode"));
 }
-else	// °Ô½Ã¹° »èÁ¦
+else	// ê²Œì‹œë¬¼ ì‚­ì œ
 {
 	if(!dao.delete("board_id="+id)){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	u.jsAlertReplace("»èÁ¦ µÇ¾ú½À´Ï´Ù.", "./noti_list.jsp?"+u.getQueryString("id"));
+	u.jsAlertReplace("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./noti_list.jsp?"+u.getQueryString("id"));
 }
 
 %>

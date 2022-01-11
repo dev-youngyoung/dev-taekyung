@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-if(u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){//°©»ç°¡ ¾Æ´Ï¸é À»»ç °ü¸® ¸ñ·ÏÀ¸·Î
+if(u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){//ê°‘ì‚¬ê°€ ì•„ë‹ˆë©´ ì„ì‚¬ ê´€ë¦¬ ëª©ë¡ìœ¼ë¡œ
 	u.redirect("./person_list.jsp");
 	return;
 }
 
 f.addElement("s_user_name",null,null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -24,7 +24,7 @@ list.setOrderBy("a.person_seq desc ");
 DataSet ds = list.getDataSet();
 while(ds.next()){
 	ds.put("reg_date", u.getTimeString("yyyy-MM-dd", ds.getString("reg_date")));
-	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"»ç¿ë":"¹Ì»ç¿ë");
+	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"ì‚¬ìš©":"ë¯¸ì‚¬ìš©");
 }
 
 

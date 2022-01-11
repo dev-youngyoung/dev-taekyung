@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_status = codeDao.getCodeArray("M008", "and code in ('50','91')");
@@ -31,7 +31,7 @@ sQuery = "select "
 + "  and a.member_no = '"+_member_no+"' ";
 
 
-sQuery += " and a.status in ('50','91')";	//50:¿Ï·áµÈ °è¾à 91:°è¾àÇØÁö
+sQuery += " and a.status in ('50','91')";	//50:ì™„ë£Œëœ ê³„ì•½ 91:ê³„ì•½í•´ì§€
 if(!f.get("s_sdate").equals("")) sQuery += " and a.cont_date >= '"+f.get("s_sdate").replaceAll("-","")+"'";
 if(!f.get("s_edate").equals("")) sQuery += " and a.cont_date >= '"+f.get("s_edate").replaceAll("-","")+"'";
 if(!f.get("s_cont_name").equals("")) sQuery += " and a.cont_name like '%" + f.get("s_cont_name") + "%'";
@@ -52,16 +52,16 @@ if(!sSortColumn.equals("")) {
 
 System.out.println(sQuery);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 DataObject mdao = new DataObject();
 DataSet cont = mdao.query(sQuery);
 
 String member_slno = "";
 while(cont.next()){
 	if(cont.getInt("cont_chasu")>0)
-		cont.put("cont_name", cont.getString("cont_name") + " ("+cont.getString("cont_chasu")+"Â÷)");
+		cont.put("cont_name", cont.getString("cont_name") + " ("+cont.getString("cont_chasu")+"ì°¨)");
 	if(cont.getInt("cust_cnt")-2>0){
-		cont.put("cust_name", cont.getString("member_name")+ "¿Ü"+(cont.getInt("cust_cnt")-2)+"°³»ç");
+		cont.put("cust_name", cont.getString("member_name")+ "ì™¸"+(cont.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		cont.put("cust_name", cont.getString("member_name"));
 	}
@@ -75,7 +75,7 @@ while(cont.next()){
 }
 
 cont.first();
-String sTitle = "¿Ï·áµÈ °è¾à";
+String sTitle = "ì™„ë£Œëœ ê³„ì•½";
 response.setHeader("Content-Type", "application/vnd.ms-xls");
 response.setHeader("Content-Disposition", "attachment; filename=" + StrUtil.k2a(sTitle)+".xls");
 %>
@@ -97,20 +97,20 @@ response.setHeader("Content-Disposition", "attachment; filename=" + StrUtil.k2a(
   <td>
 	<table width="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
   	<tr align="center">
-    <td>¼ø¹ø</td>
-    <td>°è¾à¸í</td>
-    <td>°Å·¡Ã³¸í</td>
-    <td>°è¾àÀÏÀÚ</td>
-    <td>°è¾à½ÃÀÛ</td>
-    <td>°è¾àÁ¾·á</td>
-    <td>°è¾à±Ý¾×</td>
-    <td>°è¾à¹øÈ£</td>
-    <td>»óÅÂ</td>
+    <td>ìˆœë²ˆ</td>
+    <td>ê³„ì•½ëª…</td>
+    <td>ê±°ëž˜ì²˜ëª…</td>
+    <td>ê³„ì•½ì¼ìž</td>
+    <td>ê³„ì•½ì‹œìž‘</td>
+    <td>ê³„ì•½ì¢…ë£Œ</td>
+    <td>ê³„ì•½ê¸ˆì•¡</td>
+    <td>ê³„ì•½ë²ˆí˜¸</td>
+    <td>ìƒíƒœ</td>
   	</tr>
 <%
-	String	sVendCd				=	"";	//	»ç¾÷ÀÚµî·Ï¹øÈ£
-	String	sMemberSlno		=	"";	//	¹ýÀÎ/ÁÖ¹Îµî·Ï¹øÈ£
-	String	sBizPostCode	=	"";	//	¿ìÆí¹øÈ£
+	String	sVendCd				=	"";	//	ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸
+	String	sMemberSlno		=	"";	//	ë²•ì¸/ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+	String	sBizPostCode	=	"";	//	ìš°íŽ¸ë²ˆí˜¸
 
 	for(int i=1; cont.next(); i++)
 	{

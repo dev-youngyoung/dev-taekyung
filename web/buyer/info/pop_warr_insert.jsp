@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_warr = codeDao.getCodeArray("M301");
 
-f.addElement("warr_office", null, "hname:'¹ß±Ş±â°ü', required:'Y'");
-f.addElement("warr_no", null, "hname:'Áõ±Ç¹øÈ£', required:'Y'");
-f.addElement("warr_amt", null, "hname:'º¸Áõ±İ¾×', required:'Y', option:'money'");
-f.addElement("warr_sdate", null, "hname:'º¸Áõ±â°£', required:'Y'");
-f.addElement("warr_edate", null, "hname:'º¸Áõ±â°£', required:'Y'");
-f.addElement("warr_date", null, "hname:'¹ß±ŞÀÏ', required:'Y'");
-f.addElement("warr_file", null, "hname:'Ã·ºÎÆÄÀÏ', required:'Y', allow:'jpg|gif|png|pdf'");
-f.addElement("etc", null, "hname:'±âÅ¸'");
+f.addElement("warr_office", null, "hname:'ë°œê¸‰ê¸°ê´€', required:'Y'");
+f.addElement("warr_no", null, "hname:'ì¦ê¶Œë²ˆí˜¸', required:'Y'");
+f.addElement("warr_amt", null, "hname:'ë³´ì¦ê¸ˆì•¡', required:'Y', option:'money'");
+f.addElement("warr_sdate", null, "hname:'ë³´ì¦ê¸°ê°„', required:'Y'");
+f.addElement("warr_edate", null, "hname:'ë³´ì¦ê¸°ê°„', required:'Y'");
+f.addElement("warr_date", null, "hname:'ë°œê¸‰ì¼', required:'Y'");
+f.addElement("warr_file", null, "hname:'ì²¨ë¶€íŒŒì¼', required:'Y', allow:'jpg|gif|png|pdf'");
+f.addElement("etc", null, "hname:'ê¸°íƒ€'");
 
 if(u.isPost()&&f.validate()){
 	f.uploadDir = Startup.conf.getString("file.path.bcompany")+_member_no;
@@ -47,12 +47,12 @@ if(u.isPost()&&f.validate()){
 	warrDao.item("reg_id", auth.getString("_USER_ID"));
 
 	if(!warrDao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 	
 	out.print("<script>");
-	out.print("alert(\"ÀúÀåÇÏ¿´½À´Ï´Ù.\");");
+	out.print("alert(\"ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 	out.print("opener.location.reload();");
 	out.print("self.close();");
 	out.print("</script>");
@@ -62,7 +62,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("info.pop_warr_modify");
-p.setVar("popup_title","º¸Áõ¼­ Á¤º¸");
+p.setVar("popup_title","ë³´ì¦ì„œ ì •ë³´");
 p.setVar("modify", false);
 p.setLoop("code_warr", u.arr2loop(code_warr));
 p.setVar("form_script",f.getScript());

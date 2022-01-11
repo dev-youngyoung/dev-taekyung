@@ -1,4 +1,4 @@
-<style>
+ï»¿<style>
 .popup-layer { border:1px solid black;height:500px}
 </style>
 <form name="form1" method="get">
@@ -11,17 +11,17 @@
 			<col width="20%">
 		</colgroup>
 		<tr>
-		    <th><p>°è¾à¼­Á¾·ù</p></th>
+		    <th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 		    <td>
 		    	<select name="s_template_cd" style="width: 95%;">
-		    		<option value="">-------¼±ÅÃ-------</option>
+		    		<option value="">-------ì„ íƒ-------</option>
 		    		<!-- LOOP START 'template' -->
 		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 		    		<!-- LOOP END 'template' -->
 		    	</select>
 			</td>
 		    <td align="right">
-		      <button type="submit" class="search_btn">°Ë»ö</button>
+		      <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 		    </td>	
 	  	</tr>
 	</table>
@@ -34,10 +34,10 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<span class="caution-text">¡Ø °è¾à¼­¸¦ '°ËÅä/½ÂÀÎ' ÇÏ½Ã·Á¸é [»ó¼¼º¸±â] ¹öÆ°À» ´©¸£¼¼¿ä.</span>
+			<span class="caution-text">â€» ê³„ì•½ì„œë¥¼ 'ê²€í† /ìŠ¹ì¸' í•˜ì‹œë ¤ë©´ [ìƒì„¸ë³´ê¸°] ë²„íŠ¼ì„ ëˆ„ë¥´ì„¸ìš”.</span>
 		</div>
 		<div class="push-right">
-			<button type="button" class="sbtn color ico-cancel" onClick="fLayerPopClose('pop_agree');"><span></span>´Ý±â</button>
+			<button type="button" class="sbtn color ico-cancel" onClick="fLayerPopClose('pop_agree');"><span></span>ë‹«ê¸°</button>
 		</div>
 	</div>
 	<table>
@@ -49,11 +49,11 @@
 			<col width="20%">
 		</colgroup>
 		<tr>
-			<th>¹øÈ£</th>
-			<th>°è¾à¸í</th>
-			<th>¾÷Ã¼¸í</th>
-			<th>ÃÖÁ¾½ÂÀÎ½Ã°£</th>
-			<th>±â´É</th>
+			<th>ë²ˆí˜¸</th>
+			<th>ê³„ì•½ëª…</th>
+			<th>ì—…ì²´ëª…</th>
+			<th>ìµœì¢…ìŠ¹ì¸ì‹œê°„</th>
+			<th>ê¸°ëŠ¥</th>
 		</tr>
 		<!-- LOOP START 'agree' -->
 			<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
@@ -62,14 +62,14 @@
 				<td>{{agree.member_name}}</td>
 				<td align="center">{{agree.last_agree_date}}</td>
 				<td align="center">
-					<button type="button" class="sbtn color ico-monitor" onClick="go('{{agree.cont_no}}','{{agree.cont_chasu}}','{{agree.template_cd}}')"><span></span>»ó¼¼º¸±â</button>
+					<button type="button" class="sbtn color ico-monitor" onClick="go('{{agree.cont_no}}','{{agree.cont_chasu}}','{{agree.template_cd}}')"><span></span>ìƒì„¸ë³´ê¸°</button>
 				</td>
 			</tr>
 		<!-- LOOP END 'agree' -->
 		
 		<!-- IFNOT START 'agree' -->
 			<tr>
-				<td align="center" colspan="5">°ËÅä/½ÂÀÎ ´ë±â °è¾àÀÌ ¾ø½À´Ï´Ù.</td>
+				<td align="center" colspan="5">ê²€í† /ìŠ¹ì¸ ëŒ€ê¸° ê³„ì•½ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 			</tr>
 		<!-- IFNOT END 'agree' -->
 	</table>

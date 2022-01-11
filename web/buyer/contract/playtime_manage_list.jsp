@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000205"; 
 String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM-dd",u.addDate("M",-1)));
@@ -6,7 +6,7 @@ String s_edate = u.request("s_edate");
 
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_status = code.getCodeArray("M008", " and code in ('10','20','30','40','41','50')"); 
-String[] cont_radio = {"1=>°³ÀÎ»çÀ¯","2=>°¡Á¤, °Ç°­»çÀ¯","3=>°è¾àÁ¾·á","4=>»ç¾÷ÀåÆó¼â","5=>±âÅ¸"};	
+String[] cont_radio = {"1=>ê°œì¸ì‚¬ìœ ","2=>ê°€ì •, ê±´ê°•ì‚¬ìœ ","3=>ê³„ì•½ì¢…ë£Œ","4=>ì‚¬ì—…ì¥íì‡„","5=>ê¸°íƒ€"};	
   
 f.addElement("s_cont_name", null, null); 
 f.addElement("s_cust_name", null, null); 
@@ -17,7 +17,7 @@ f.addElement("s_template_cd", null, null);
   
 String isTemplate =  f.get("s_template_cd") ; 
 if(isTemplate.equals("")){isTemplate = "A";}
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -48,9 +48,9 @@ if(!f.get("s_template_cd").equals("")){
 	list.addWhere(" a.template_cd in ('2020041','2020042') ");
 }   
 
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -83,13 +83,13 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "°è¾àÇöÈ²");
+	p.setVar("title", "ê³„ì•½í˜„í™©");
 	String xlsFile = "playtime_manage_excel.html";
  
 	p.setLoop("list", ds);
-	p.setVar("isTemplate", isTemplate);   // ¼­½Ä ¸ñ·Ï ºĞ¸®
+	p.setVar("isTemplate", isTemplate);   // ì„œì‹ ëª©ë¡ ë¶„ë¦¬
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ÇÃ·¹ÀÌÅ¸ÀÓ±×·ì °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("í”Œë ˆì´íƒ€ì„ê·¸ë£¹ ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/"+xlsFile));
 	return;
 }
@@ -106,7 +106,7 @@ p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_A
 p.setVar("auth_form", false);
 p.setLoop("code_status", u.arr2loop(code_status)); 
 p.setLoop("list", ds);
-p.setVar("isTemplate", isTemplate);   // ¼­½Ä ¸ñ·Ï ºĞ¸®
+p.setVar("isTemplate", isTemplate);   // ì„œì‹ ëª©ë¡ ë¶„ë¦¬
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("cont_no,cont_chasu"));

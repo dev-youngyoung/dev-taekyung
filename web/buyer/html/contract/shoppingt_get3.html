@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
 
 <div class="search_div">
 <table class="search_table">
@@ -8,10 +8,10 @@
     <col width="50%"/>
   </colgroup>
   <tr>
-    <th><p>����ڹ�ȣ</p></th>
+    <th><p>사업자번호</p></th>
     <td><input type="text" name="s_indo" maxlength="30" style="width:95%"></td>
     <td align="right">
-      <button type="submit" class="search_btn">�˻�</button>
+      <button type="submit" class="search_btn">검색</button>
     </td>
   </tr>
 </table>
@@ -25,7 +25,7 @@
 <div class="div_table">
 <div class="util-row">
 	<div class="push-left">
-		<span class="caution-text">�ػ���ڹ�ȣ�� �Է��� �˻� �ϼ���.</span>
+		<span class="caution-text">※사업자번호를 입력후 검색 하세요.</span>
 	</div>
 </div>
 <table>
@@ -37,10 +37,10 @@
 		<col width="15%">
 	</colgroup>
 	<tr>
-		<th>��ü�ڵ�</th>
-		<th>��ü��</th>
-		<th>����ڹ�ȣ</th>
-		<th>���ຸ���Ⱓ</th>
+		<th>업체코드</th>
+		<th>업체명</th>
+		<th>사업자번호</th>
+		<th>이행보증기간</th>
 		<th></th>
 	</tr>
 	<!-- LOOP START 'list' -->
@@ -53,13 +53,13 @@
 			<input type="hidden" name="entpCode_{{list.entpCode}}" value="{{list.entpCode}}"/>
 			<input type="hidden" name="entpName_{{list.entpCode}}" value="{{list.entpName}}"/>
 			<input type="hidden" name="sIdno_{{list.entpCode}}" value="{{list.sIdno}}"/>
-			<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.entpCode}}');"><span></span>����</button>
+			<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.entpCode}}');"><span></span>선택</button>
 		</td>
 	</tr>
 	<!-- LOOP END 'list' -->
 	<!-- IFNOT START 'list' -->
 	<tr>
-		<td align="center" colspan="5">��ȸ ����� �����ϴ�.</td>
+		<td align="center" colspan="5">조회 결과가 없습니다.</td>
 	</tr>
 <!-- IFNOT END 'list' -->
 </table>

@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 if(u.isPost()&&f.validate()) {
     String sRandomString = (String) session.getAttribute("_sRandomString");
     if (sRandomString==null || sRandomString.equals("")) {
         out.print("<script>");
-        out.print("alert('ÀÎÁõÄÚµå Àü¼Û ÈÄ ÀÎÁõÀ» ÁøÇàÇÏ¼Å¾ß ÇÕ´Ï´Ù.');");
+        out.print("alert('ì¸ì¦ì½”ë“œ ì „ì†¡ í›„ ì¸ì¦ì„ ì§„í–‰í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.');");
         out.print("</script>");
     } else if(f.get("s_input").equals(sRandomString)) {
         out.print("<script>");
@@ -14,13 +14,13 @@ if(u.isPost()&&f.validate()) {
         return;
     } else {
         out.print("<script>");
-        out.print("alert('ÀÎÁõÄÚµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.');");
+        out.print("alert('ì¸ì¦ì½”ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');");
         out.print("</script>");
     }
 }
 p.setLayout("popup_email_contract");
 //p.setDebug(out);
-p.setVar("popup_title","³ªÀÌ½º´ÙÅ¥ ÇÚµåÆù º»ÀÎÀÎÁõ");
+p.setVar("popup_title","ë‚˜ì´ìŠ¤ë‹¤í í•¸ë“œí° ë³¸ì¸ì¸ì¦");
 p.setBody("sdd.pop_random_val");
 p.setVar("query", u.getQueryString());
 p.display(out);

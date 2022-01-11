@@ -10,175 +10,48 @@
 			<col width="13%">
 			<col width="20%">
 			<col width="10%">
-		  </colgroup>
-		<!-- IF START 'member.src_depth' -->
+		</colgroup>
 		<tr>
-	  		<th><p>¼Ò½Ì±×·ì{{subdomain}}</p></th>
-		  	<td colspan="3">
-		  		<!-- IF START 'src_l' -->
-		  		<span id="l_src_area">
-		  			<select name="l_src_cd" onchange="chgSelectBox('m')">
-		  				<option value="">-ÀüÃ¼-</option>
-		  			</select>
-		  		</span>
-		  		<!-- IF END 'src_l' -->
-		  		<!-- IF START 'src_m' -->
-		  		<span id="m_src_area">
-		  			<select name="m_src_cd" onchange="chgSelectBox('s')">
-		  				<option value="">-ÀüÃ¼-</option>
-		  			</select>
-		  		</span>
-		  		<!-- IF END 'src_m' -->
-		  		<!-- IF START 'src_s' -->
-		  		<span id="s_src_area">
-		  			<select name="s_src_cd">
-		  				<option value="">-ÀüÃ¼-</option>
-		  			</select>
-		  		</span>
-		  		<!-- IF END 'src_s' -->
-		  	</td>
-	  		<td align="right"></td>
-	  	</tr>
-	  	<!-- IF END 'member.src_depth' -->
-	  	<tr>
-		    <th><p>°è¾à¼­Á¾·ù</p></th>
-		    <td <!-- IFNOT START 'bviewContNo' -->colspan="4"<!-- IFNOT END 'bviewContNo' -->>
-		    	<select name="s_template_cd">
-		    		<option value="">-------¼±ÅÃ-------</option>
-		    		<!-- LOOP START 'template' -->
-		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
-		    		<!-- LOOP END 'template' -->
-		    	</select>
-			</td>
-			<!-- IF START 'bviewContNo' -->	
-				<th><p>°è¾à°ü¸®¹øÈ£</p></th>
-				<td><input type="text" name="s_manage_no" style="width: 50%;"></td>
-			<!-- IF END 'bviewContNo' -->
-		</tr>
-		<!-- IF START 'isCJT' -->
-		<tr>
-			<!-- IF START 'isDefaultYn' -->
-		 	<th><p>ºÎ¹®/ºÎ¼­</p></th>
-		   	<td>
-			    <select name="s_division">
-				    <option value="">-ºÎ¹® ¼±ÅÃ-</option>
-				    <!-- LOOP START 'code_cj_division' -->
-				    <option value="{{code_cj_division.id}}">{{code_cj_division.name}}</option>
-				    <!-- LOOP END 'code_cj_division' -->
-			    </select>/<select name="s_field_seq">
-				    <option value="">-ºÎ¼­ ¼±ÅÃ-</option>
-				    <!-- LOOP START 'code_field' -->
-				    <option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
-				    <!-- LOOP END 'code_field' -->
-			    </select>
-			</td>    
-			<!-- IF END 'isDefaultYn' -->
-			<th>
-				<p>
-				<select name="cj_searh_col" >
-					<option value="boss_name">´ëÇ¥ÀÚ</option>
-					<option value="vendcd">»ç¾÷ÀÚ¹øÈ£</option>
-				</select>
-				</p> 
-			</th>
-			<td><input type="text" name="cj_search_keyword" maxlength="100" style="width: 50%;"></td>
-			<td align="right"></td>
-		</tr>
-		<!-- IF END 'isCJT' -->
-		<!-- IF START 'isKTH' -->
-		<tr>
-			<th><p>°Å·¡Ã³ÄÚµå</p></th>
-			<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
-			<th><p>´ã´çÀÚ¸í</p></th>
-			<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
-			<td></td>
-		</tr>
-		<!-- IF END 'isKTH' -->
-		
-		<!-- IF START 'isLGH' -->
-		<tr>
-		    <th><p>ÇÁ·ÎÁ§Æ® ÄÚµå</p></th>
-		    <td colspan="3"><input type="text" name="s_project_cd" size="20" style="width: 20%;"></td>
-			<td align="right">
-	    	</td>
-		</tr>
-		<!-- IF END 'isLGH' -->
-		
-		<!-- IF START 'detail_cd' -->
-		<tr>
-			<th><p>°è¾àÃ³ÄÚµå</p></th>
-			<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
-			<th><p>KPP´ã´çÀÚ¸í</p></th>
-			<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
-			<td></td>
-		</tr>
-		<!-- IF END 'detail_cd' -->
-		<!-- IF START 'isPersonView' -->
-		<tr>
-			<th><p>´ã´çÀÚ¸í</p></th>
-			<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
-			<td></td>
-		</tr>
-		<!-- IF END 'isPersonView' -->
-		<!-- IF START 'isNHhanaro' -->
-		<tr>
-			<th><p>´ã´çÀÚ¸í</p></th>
-			<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
-			<td></td>
-		</tr>
-		<!-- IF END 'isNHhanaro' -->
-		<tr>
-		   <th><p>°Å·¡Ã³¸í</p></th>
+		   <th><p>ê±°ë˜ì²˜ëª…</p></th>
 		   <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
-		   <th><p>»ç¾÷ÀÚµî·Ï¹øÈ£</p></th>
+		   <th><p>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</p></th>
 		   <td><input type="text" name="s_vendcd" maxlength="100" style="width: 90%;"></td>
 		   <td align="right">
 		   </td>
 		</tr>
 		<tr>
-		    <td><p>°è¾àÀÏÀÚ</p></td>
+		    <td><p>ê³„ì•½ì¼ì</p></td>
 		    <td>
 		    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 				<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 		    </td>
-		    <th><p>°è¾à¹øÈ£</p></th>
-		    <td><input type="text" name="s_user_no" maxlength="100" style="width: 90%;">
+		    <th><p>ë‹´ë‹¹ì</p></th>
+		    <td><input type="text" name="s_user_name" maxlength="100" style="width: 90%;">
 		    </td>
 		</tr>
-		<!-- IF START 'view_status' -->
 		<tr>
-		    <td><p>°è¾à»óÅÂ</p></td>
-		    <td colspan="3">
-		    	<select name="s_status">
-		    		<option value="">-ÀüÃ¼-</option>
-		    		<!-- LOOP START 'code_status' -->
-		    		<option value="{{code_status.id}}">{{code_status.value}}</option>
-		    		<!-- LOOP END 'code_status' -->
-		    	</select>
-		    </td>
-		    <td></td>
-		</tr>
-		<!-- IF END 'view_status' -->
-		<tr>
-		    <th><p>°è¾à¸í</p></th>
-		    <td colspan="3"><input type="text" name="s_cont_name" maxlength="100" style="width: 97%;"></td>
-		    <td align="right">
-		      <button type="submit" class="search_btn">°Ë»ö</button>
+		    <th><p>ê³„ì•½ëª…</p></th>
+		    <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
+		    <th><p>ê³„ì•½êµ¬ë¶„</p></th>
+		   	<td>
+		   		<select name="s_cont_gubun">
+		   			<option value="">-ì „ì²´-</option>
+		   			<option value="P">í‘œì¤€</option>
+		   			<option value="B">ììœ ê³„ì•½</option>
+		   			<option value="A">ìë™ì—°ì¥</option>
+				</select>
+		  	</td>
+		  	<td align="right">
+		      <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 		    </td>
 		</tr>
 	</table>
 </div>
 
 <div style="width:100%" align="right">
-	<!-- IF START 'isDongheeGroup' -->
-		<button type="button" class="sbtn color ico-list" onClick="document.forms['form1']['mode'].value='report';document.forms['form1'].submit();"><span></span>°è¾àÇöÈ²</button>
-	<!-- IF END 'isDongheeGroup' -->
-	<button type="button" class="sbtn color ico-excel"onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
-	<!-- IF START 'view_checkbox' -->
-		<button type="button" class="sbtn color ico-download" onClick="fSave();"><span></span>´Ù¿î·Îµå</button>
-	<!-- IF END 'view_checkbox' -->
+	<button type="button" class="sbtn color2 ico-excel"onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 
 <br/>
@@ -187,179 +60,68 @@
 	<table>
 	
 		<colgroup>
-			<!-- IF START 'view_checkbox' -->  
-				<col width="7%">
-			<!-- IF END 'view_checkbox' -->   
-			<!-- IFNOT START 'view_checkbox' -->  
-				<col width="7%">
-			<!-- IFNOT END 'view_checkbox' -->
-			<!-- IF START 'isLGH' -->
-				<col width="15%"> 
-			<!-- IF END 'isLGH' -->   
-			    <col>
-			    <col width="15">
-			<!-- IF START 'isCJT' -->     
-				<col width="7%">
-			<!-- IF END 'isCJT' --> 
-			<!-- IF START 'detail_cd' -->
-				<col width="8%">
-				<col width="7%">
-			<!-- IF END 'detail_cd' -->
-			<!-- IF START 'isKTH' -->
-				<col width="8%">
-				<col width="7%">
-			<!-- IF END 'isKTH' -->
-			<!-- IF START 'isPersonView' -->
-				<col width="10%">
-			<!-- IF END 'isPersonView' -->
-			<!-- IF START 'isNHhanaro' -->
-				<col width="10%">
-			<!-- IF END 'isNHhanaro' -->
-			<!-- IF START 'isTES' -->
-				<col width="10%">
-			<!-- IF END 'isTES' -->
-			<!-- IF START 'isLGH' --> 
-				<col width="10%">
-			<!-- IF END 'isLGH' -->   
-		    	<col width="10%">
-			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
-				<!-- IF START 'bviewContNo' -->
-				    <col width="18%">
-				<!-- IF END 'bviewContNo' -->	
-				<col width="10%">
-			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
-			<!-- IF START 'view_status' -->
-			  <col width="10%">
-			<!-- IF END 'view_status' -->
+			<col width="13%">
+		    <col>
+		    <col width="7%">
+		    <col width="12%">
+		    <col width="15%">
+	    	<col width="10%">
+	    	<col width="8%">
 		</colgroup>
 		
 		<tr>
-			<!-- IF START 'view_checkbox' -->  
-				<th width="7%"><input type="checkbox" name="all" onClick="fAllCheck()"/></th>
-			<!-- IF END 'view_checkbox' -->   
-			<!-- IFNOT START 'view_checkbox' -->  
-				<th width="7%">¼ø¹ø</th>
-			<!-- IFNOT END 'view_checkbox' -->
-			<!-- IF START 'isLGH' -->
-				<th width="15%">ÇÁ·ÎÁ§Æ®<br>ÄÚµå</th> 
-			<!-- IF END 'isLGH' -->   
-			    <th width="%">°è¾à¸í</th>
-			    <th width="15%">°Å·¡Ã³¸í</th>
-			<!-- IF START 'isCJT' -->     
-				<th width="7%">´ëÇ¥ÀÚ¸í</th>
-			<!-- IF END 'isCJT' --> 
-			<!-- IF START 'detail_cd' -->
-				<th width="8%">°è¾àÃ³<br>ÄÚµå</th>
-				<th width="7%">KPP´ã´ç</th>
-			<!-- IF END 'detail_cd' -->
-			<!-- IF START 'isKTH' -->
-				<th width="8%">°Å·¡Ã³<br>ÄÚµå</th>
-				<th width="8%">´ã´çÀÚ</th>
-			<!-- IF END 'isKTH' -->
-			<!-- IF START 'isPersonView' -->
-				<th>´ã´çÀÚ</th>
-			<!-- IF END 'isPersonView' -->
-			<!-- IF START 'isNHhanaro' -->
-				<th>´ã´çÀÚ</th>
-			<!-- IF END 'isNHhanaro' -->
-			<!-- IF START 'isTES' -->
-				<th>´ã´çÀÚ</th>
-			<!-- IF END 'isTES' -->
-			<!-- IF START 'isLGH' --> 
-				<th>´ã´çÀÚ</th>
-			<!-- IF END 'isLGH' -->   
-			
-		    <th width="10%">
+		    <th>
+				<a href="javascript:fChangeOrder('a.cont_userno', '{{sSortOrder}}')">
+				ê³„ì•½ë²ˆí˜¸
+				<!-- IFC START 'sSortColumn==a.cont_userno' -->
+					{{sSortCustNameIconName}}
+				<!-- IFC END 'sSortColumn==a.cont_userno' -->
+				<!-- IFC START 'sSortColumn!=a.cont_userno' -->
+					<font style='color:blue;font-weight:bold'>â†•</font>
+				<!-- IFC END 'sSortColumn!=a.cont_userno' -->
+				</a>
+			</th>
+		    <th>ê³„ì•½ëª…</th>
+		    <th>ë‹´ë‹¹ì</th>
+		    <th>ë¶€ì„œ</th>
+		    <th>ê±°ë˜ì²˜ëª…</th>
+		    <th>
 				<a href="javascript:fChangeOrder('a.cont_date', '{{sSortOrder}}')">
-				°è¾àÀÏÀÚ
+				ê³„ì•½ì¼ì
 				<!-- IFC START 'sSortColumn==a.cont_date' -->
 					{{sSortCustNameIconName}}
 				<!-- IFC END 'sSortColumn==a.cont_date' -->
 				<!-- IFC START 'sSortColumn!=a.cont_date' -->
-					<font style='color:blue;font-weight:bold'>¢Õ</font>
+					<font style='color:blue;font-weight:bold'>â†•</font>
 				<!-- IFC END 'sSortColumn!=a.cont_date' -->
 				</a>
 			</th>
-			
-			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
-				<!-- IF START 'bviewContNo' -->
-				    <th width="18%">°è¾à°ü¸®¹øÈ£</th>
-				<!-- IF END 'bviewContNo' -->	
-			    <th width="10%">
-					<a href="javascript:fChangeOrder('a.cont_userno', '{{sSortOrder}}')">
-					°è¾à¹øÈ£
-					<!-- IFC START 'sSortColumn==a.cont_userno' -->
-						{{sSortCustNameIconName}}
-					<!-- IFC END 'sSortColumn==a.cont_userno' -->
-					<!-- IFC START 'sSortColumn!=a.cont_userno' -->
-						<font style='color:blue;font-weight:bold'>¢Õ</font>
-					<!-- IFC END 'sSortColumn!=a.cont_userno' -->
-					</a>
-				</th>
-			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
-			
-			
-			<!-- IF START 'view_status' -->
-				<th>°è¾à»óÅÂ</th>
-			<!-- IF END 'view_status' -->  
+			<th>ìƒíƒœ</th>
 		</tr>
 		
 		<!-- IF START 'list' -->
 			<!-- LOOP START 'list' -->
 				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
 		    		onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
-					<!-- IF START 'view_checkbox' -->  
-						<td align="center" onclick="event.cancelBubble=true;"><input type="checkbox" name="save" value="{{list.cont_no}}_{{list.cont_chasu}}"/></td>
-					<!-- IF END 'view_checkbox' -->   
-					<!-- IFNOT START 'view_checkbox' -->  
-						<td align="center">{{list.__ord}}</td>
-					<!-- IFNOT END 'view_checkbox' -->
-					<!-- IF START 'isLGH' -->
-						<!-- <td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopPJCD('{{list.cont_no}}', '{{list.cont_chasu}}')">{{list.cont_etc1}}</a></td> -->
-						<td align="center" >{{list.project_cd}}</td>
-					 <!-- IF END 'isLGH' -->         
-					<td>{{list.cont_name}}</td>
-					<td>{{list.cust_name}}</td>
-					<!-- IF START 'isCJT' -->     
-						<td align="center">{{list.boss_name}}</td>
-					<!-- IF END 'isCJT' --> 	
-					<!-- IF START 'detail_cd' -->
-						<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCD('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'detail_cd' -->
-					<!-- IF START 'isKTH' -->
-						<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCDKTH('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'isKTH' -->
-					<!-- IF START 'isPersonView' -->
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'isPersonView' -->
-					<!-- IF START 'isNHhanaro' -->
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'isNHhanaro' -->
-					<!-- IF START 'isTES' -->
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'isTES' -->
-					<!-- IF START 'isLGH' -->  
-						<td align="center">{{list.user_name}}</td>
-					<!-- IF END 'isLGH' -->         
-						<td align="center">{{list.cont_date}}</td>
-					<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
-					<!-- IF START 'bviewContNo' -->
-					    <td width="10%">{{list.manage_no}}</td>
-					<!-- IF END 'bviewContNo' -->	
-						<td align="center">{{list.cont_userno}}</td>
-					<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
-					<!-- IF START 'view_status' -->
-					    <td align="center">{{list.status_nm}}</td>
-					<!-- IF END 'view_status' -->
+					<td align="center">{{list.cont_userno}}</td>
+					<td>
+					<!-- IFC START 'list.auto_yn==Y' -->
+					<img src="/web/buyer/html/images/common/i_contexp.gif" style="width:17px; height:17px; vertical-align: middle;" /> 
+					<!-- IFC END 'list.auto_yn==Y' -->
+					&nbsp;{{list.cont_name}}
+					</td>
+					<td align="center">{{list.user_name}}</td>
+					<td align="center">{{list.division}}</td>
+					<td align="center">{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.status_nm}}</td>
 		  		</tr>
 			<!-- LOOP END 'list' -->
 		<!-- IF END 'list' -->
 		
 		<!-- IFNOT START 'list' -->
 			<tr>
-				<td colspan="10" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+				<td colspan="10" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		  	</tr>
 		<!-- IFNOT END 'list' -->
 		
@@ -379,20 +141,19 @@ function formSubmit(f){
 	return true;
 }
 
-
-// Á¤·Ä¹æ½Ä º¯°æ
+// ì •ë ¬ë°©ì‹ ë³€ê²½
 function fChangeOrder(sortColumn, sortOrder)
 {
 	var form = document.form1;
  
 	form.hdn_sort_column.value = sortColumn;
-    if (sortOrder == "asc") // ¿À¸§Â÷¼ø Á¤·Ä ÀÏ¶§
+    if (sortOrder == "asc") // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ ì¼ë•Œ
     {
-        form.hdn_sort_order.value = "desc"; // ³»¸²Â÷¼ø Á¤·Ä·Î ¼³Á¤
+        form.hdn_sort_order.value = "desc"; // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ë¡œ ì„¤ì •
     }
-    else                        // ³ª¸ÓÁö (³»¸²Â÷¼ø Á¤·Ä ¶Ç´Â ÃÖÃÊ Å¬¸¯½Ã)
+    else                        // ë‚˜ë¨¸ì§€ (ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ ë˜ëŠ” ìµœì´ˆ í´ë¦­ì‹œ)
     {
-        form.hdn_sort_order.value =  "asc";  // ¿À¸§Â÷¼ø Á¤·Ä·Î ¼³Á¤
+        form.hdn_sort_order.value =  "asc";  // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ë¡œ ì„¤ì •
     }
 
     form.submit();
@@ -400,35 +161,20 @@ function fChangeOrder(sortColumn, sortOrder)
     return;
 }
 
-function chgSelectBox(gubun){
-	var f = document.forms('form1');
-	var l_src_cd = f['l_src_cd'].value;
-	var m_src_cd = f['m_src_cd'].value;
-	switch(gubun){
-		case 'l':
-			call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area");
-		case 'm':
-			call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
-		case 's':
-			call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
-			break;
-	}
-}
-
-//°Å·¡Ã³ ÄÚµå ÀÔ·Â
+//ê±°ë˜ì²˜ ì½”ë“œ ì…ë ¥
 function fPopCDKTH(cont_no, cont_chasu, cust_member_no)
 {
 	var	xpos  = event.x;
-	var	ypos  = event.y + document.body.scrollTop;  // scroll °í·Á
+	var	ypos  = event.y + document.body.scrollTop;  // scroll ê³ ë ¤
 	fLayerPopClose('agent_cd');
 	fLayerPop('agent_cd', './pop_person_cd_KTH.jsp?cont_no='+cont_no+'&cont_chasu='+cont_chasu+'&cust_member_no='+cust_member_no, 400, 230, xpos, ypos);
 }
 
-//ÇÁ·ÎÁ§Æ® ÄÚµå ÀÔ·Â
+//í”„ë¡œì íŠ¸ ì½”ë“œ ì…ë ¥
 function fPopPJCD(cont_no, cont_chasu)
 {
 	var	xpos  = event.x;
-	var	ypos  = event.y + document.body.scrollTop;  // scroll °í·Á
+	var	ypos  = event.y + document.body.scrollTop;  // scroll ê³ ë ¤
 	fLayerPopClose('agent_cd');
 	fLayerPop('agent_cd', './pop_project_cd.jsp?cont_no='+cont_no+'&cont_chasu='+cont_chasu, 400, 230, xpos, ypos);
 }
@@ -451,7 +197,7 @@ function fSave()
 {
 	if($(":checkbox[name='save']:checked").length==0)
 	{
-		alert("´Ù¿î·ÎµåÇÒ °è¾àÀ» ¸ÕÀú ¼±ÅÃÇØÁÖ¼¼¿ä.");
+		alert("ë‹¤ìš´ë¡œë“œí•  ê³„ì•½ì„ ë¨¼ì € ì„ íƒí•´ì£¼ì„¸ìš”.");
 		return;
 	}
 
@@ -460,37 +206,4 @@ function fSave()
 	document.forms['form1'].submit();
 	document.form1.target = "_self";
 }
-
 </script>
-
-
-<!-- IF START 'member.src_depth' -->
-<script language="javascript">
-
-var l_src_cd = "{{l_src_cd}}";
-var m_src_cd = "{{m_src_cd}}";
-var s_src_cd = "{{s_src_cd}}";
-
-<!-- IF START 'src_l' -->
-call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
-function defaultValue_l(){
-	SetFormValue("form1","l_src_cd", l_src_cd);
-}
-<!-- IF END 'src_l' -->
-
-<!-- IF START 'src_m' -->
-call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
-function defaultValue_m(){
-	SetFormValue("form1","m_src_cd", m_src_cd);
-}
-<!-- IF END 'src_m' -->
-
-<!-- IF START 'src_s' -->
-function defaultValue_s(){
-	SetFormValue("form1","s_src_cd", s_src_cd);
-}
-call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
-
-<!-- IF END 'src_s' -->
-</script>
-<!-- IF END 'member.src_depth' -->

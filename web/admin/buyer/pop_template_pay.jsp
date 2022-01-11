@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String useseq = u.request("useseq");
@@ -6,10 +6,10 @@ String useseq = u.request("useseq");
 DataObject templateDao = new DataObject("tcb_cont_template tt");
 DataSet template = templateDao.find(" status>0 and tt.member_no like '%"+member_no+"%' and tt.template_cd not in (select template_cd from tcb_useinfo_add where member_no='"+member_no+"' ) and use_yn = 'Y'", "template_cd, nvl(display_name,template_name) template_name", "display_seq asc, template_cd desc");
 
-f.addElement("template_cd", null, "hname:'°è¾à¼­ Á¾·ù', required:'Y'");
-f.addElement("recpmoneyamt", null, "hname:'¿ø»ç¾÷ÀÚ ÀÌ¿ë¿ä±İ', required:'Y', option:'money'");
-f.addElement("suppmoneyamt", null, "hname:'¼ö±Ş»ç¾÷ÀÚ ÀÌ¿ë¿ä±İ', required:'Y', option:'money'");
-f.addElement("insteadyn", null, "hname:'¼ö±Ş»ç¾÷ÀÚ ¿ä±İ Ã³¸®', required:'Y'");
+f.addElement("template_cd", null, "hname:'ê³„ì•½ì„œ ì¢…ë¥˜', required:'Y'");
+f.addElement("recpmoneyamt", null, "hname:'ì›ì‚¬ì—…ì ì´ìš©ìš”ê¸ˆ', required:'Y', option:'money'");
+f.addElement("suppmoneyamt", null, "hname:'ìˆ˜ê¸‰ì‚¬ì—…ì ì´ìš©ìš”ê¸ˆ', required:'Y', option:'money'");
+f.addElement("insteadyn", null, "hname:'ìˆ˜ê¸‰ì‚¬ì—…ì ìš”ê¸ˆ ì²˜ë¦¬', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 
@@ -25,18 +25,18 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(dao.getInsertQuery(), dao.record);
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
-	out.print("<script>alert('Ãß°¡ µÇ¾ú½À´Ï´Ù.');opener.location.reload();window.close();</script>");
+	out.print("<script>alert('ì¶”ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.');opener.location.reload();window.close();</script>");
 	return;
 }
 
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_template_pay");
-p.setVar("popup_title","¿ä±İÁ¤º¸");
+p.setVar("popup_title","ìš”ê¸ˆì •ë³´");
 p.setLoop("template", template);
 p.setVar("form_script", f.getScript());
 p.display(out);

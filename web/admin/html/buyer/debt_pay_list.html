@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
 <input type="hidden" name="mode" />
 <div class="search_div">
 <table class="search_table">
@@ -10,16 +10,16 @@
         <col width="22%"/>
     </colgroup>
     <tr>
-        <th><p>¹ßÇà¾÷Ã¼</p></th>
+        <th><p>ë°œí–‰ì—…ì²´</p></th>
         <td><input type="text" name="s_member_name" maxlength="60" class="label" style="width:90%"></td>
-        <th><p>±â°£</p></th>
+        <th><p>ê¸°ê°„</p></th>
         <td>
             <input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
             <input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
         </td>
         <td align="right">
-            <button type="button" class="btn color ico-excel" onclick="excel()"><span></span>¿¢¼¿</button>
-            <button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+            <button type="button" class="btn color ico-excel" onclick="excel()"><span></span>ì—‘ì…€</button>
+            <button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
         </td>
     </tr>
 </table>
@@ -28,7 +28,7 @@
 {{form_script}}
 <div class="util-row">
     <div class="push-right">
-        ¸ÅÃâ±Ý¾×: {{total_num}}°Ç/ {{total_amt}}¿ø
+        ë§¤ì¶œê¸ˆì•¡: {{total_num}}ê±´/ {{total_amt}}ì›
     </div>
 </div>
 <div class="div_table">
@@ -44,14 +44,14 @@
     <col width="10%">
 </colgroup>
 <tr>
-    <th>¼ø¹ø</th>
-    <th>¹ßÇà¾÷Ã¼</th>
-    <th>°Å·¡Ã³¸í(¼ö½Å¾÷Ã¼¸í)</th>
-    <th>¹®¼­¸í</th>
-    <th>°áÁ¦±Ý¾×</th>
-    <th>°ø±Þ°¡</th>
-    <th>ºÎ°¡¼¼</th>
-    <th>°ú±ÝÀÏ½Ã</th>
+    <th>ìˆœë²ˆ</th>
+    <th>ë°œí–‰ì—…ì²´</th>
+    <th>ê±°ëž˜ì²˜ëª…(ìˆ˜ì‹ ì—…ì²´ëª…)</th>
+    <th>ë¬¸ì„œëª…</th>
+    <th>ê²°ì œê¸ˆì•¡</th>
+    <th>ê³µê¸‰ê°€</th>
+    <th>ë¶€ê°€ì„¸</th>
+    <th>ê³¼ê¸ˆì¼ì‹œ</th>
 </tr>
 <!-- IF START 'list' -->
 <!-- LOOP START 'list' -->
@@ -69,7 +69,7 @@
 <!-- IF END 'list' -->
 <!-- IFNOT START 'list' -->
 <tr class="cel">
-    <td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+    <td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 </tr>
 <!-- IFNOT END 'list' -->
 </table>

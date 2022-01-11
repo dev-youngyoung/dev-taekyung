@@ -74,9 +74,9 @@ function ajaxLink(href,type,idx){
 		type: type,
 		url: href,
 		data : idx,
-		contentType: "application/x-www-form-urlencoded; charset=euc-kr",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		beforeSend : function(jqXHR){
-			jqXHR.overrideMimeType("application/x-www-form-urlencoded; charset=euc-kr");
+			jqXHR.overrideMimeType("application/x-www-form-urlencoded; charset=UTF-8");
 		},
 		success : function(data) {
 			$('body').find('.layerpop').remove().end().append(data);

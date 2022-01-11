@@ -1,26 +1,26 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("project_name", null, "hname:'ÇÁ·ÎÁ§Æ®¸í', required:'Y'");
-f.addElement("use_yn", "Y", "hname:'»ç¿ë¿©ºÎ', required:'Y'");
-f.addElement("project_cd", null, "hname:'ÇÁ·ÎÁ§Æ®ÄÚµå'");
-f.addElement("order_comp_nm", null, "hname:'¹ßÁÖÃ³'");
-f.addElement("project_cont_date", null, "hname:'°è¾àÀÏÀÚ'");
-f.addElement("project_loc", null, "hname:'À§Ä¡'");
-f.addElement("etc1", null, "hname:'ºñ°í1'");
-f.addElement("etc2", null, "hname:'ºñ°í2'");
+f.addElement("project_name", null, "hname:'í”„ë¡œì íŠ¸ëª…', required:'Y'");
+f.addElement("use_yn", "Y", "hname:'ì‚¬ìš©ì—¬ë¶€', required:'Y'");
+f.addElement("project_cd", null, "hname:'í”„ë¡œì íŠ¸ì½”ë“œ'");
+f.addElement("order_comp_nm", null, "hname:'ë°œì£¼ì²˜'");
+f.addElement("project_cont_date", null, "hname:'ê³„ì•½ì¼ì'");
+f.addElement("project_loc", null, "hname:'ìœ„ì¹˜'");
+f.addElement("etc1", null, "hname:'ë¹„ê³ 1'");
+f.addElement("etc2", null, "hname:'ë¹„ê³ 2'");
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 	DataObject projectDao = new DataObject("tcb_project");
 	if(!f.get("project_cd").equals("")){
 		if(projectDao.findCount(" member_no = '"+_member_no+"' and upper(project_cd) = '"+f.get("project_cd").toUpperCase()+"' ")> 0 ){
-			u.jsError("ÀÌ¹Ì µî·ÏµÈ ÇÁ·ÎÁ§Æ® ÄÚµå ÀÔ´Ï´Ù.");
+			u.jsError("ì´ë¯¸ ë“±ë¡ëœ í”„ë¡œì íŠ¸ ì½”ë“œ ì…ë‹ˆë‹¤.");
 			return;
 		}
 	}
 	String project_seq = projectDao.getOne("select nvl(max(project_seq),0)+1 from tcb_project where member_no = '"+_member_no+"' ");
 	if(project_seq.equals("")){
-		u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
@@ -39,10 +39,10 @@ if(u.isPost() && f.validate()){
 	projectDao.item("reg_id", auth.getString("_USER_ID"));
 	projectDao.item("status", "10");
 	if(!projectDao.insert()){
-		u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.", "project_modify.jsp?project_seq="+project_seq);
+	u.jsAlertReplace("ì €ì¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "project_modify.jsp?project_seq="+project_seq);
 	return;
 }
 

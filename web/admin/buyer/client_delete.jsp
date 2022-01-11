@@ -1,21 +1,21 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = u.request("main_member_no");
 String client_seq = u.request("client_seq");
 if(main_member_no.equals("")&&client_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject clientDao = new DataObject("tcb_client");
 DataSet client = clientDao.find("member_no = '"+main_member_no+"' and client_seq = '"+client_seq+"' ");
 if(!client.next()){
-	u.jsError("»èÁ¦ ´ë»ó µ¥ÀÌÅÍ°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ëŒ€ìƒ ë°ì´í„°ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 if(!clientDao.delete("member_no = '"+main_member_no+"' and client_seq = '"+client_seq+"'")){
-	u.jsError("»èÁ¦ Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("»èÁ¦ Ã³¸® ÇÏ¿´½À´Ï´Ù.", "client_view.jsp?"+u.getQueryString("main_member_no,client_seq"));
+u.jsAlertReplace("ì‚­ì œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "client_view.jsp?"+u.getQueryString("main_member_no,client_seq"));
 %>

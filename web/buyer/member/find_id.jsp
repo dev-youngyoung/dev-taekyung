@@ -1,38 +1,34 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("vendcd1", null, "hname:'»ç¾÷ÀÚ¹øÈ£', required:'Y', maxbyte:'3'");
-f.addElement("vendcd2", null, "hname:'»ç¾÷ÀÚ¹øÈ£', required:'Y', maxbyte:'2'");
-f.addElement("vendcd3", null, "hname:'»ç¾÷ÀÚ¹øÈ£', required:'Y', maxbyte:'5'");
+f.addElement("vendcd1", null, "hname:'ì‚¬ì—…ìžë²ˆí˜¸', required:'Y', maxbyte:'3'");
+f.addElement("vendcd2", null, "hname:'ì‚¬ì—…ìžë²ˆí˜¸', required:'Y', maxbyte:'2'");
+f.addElement("vendcd3", null, "hname:'ì‚¬ì—…ìžë²ˆí˜¸', required:'Y', maxbyte:'5'");
 
 DataSet person = new DataSet();
-if(u.isPost() && f.validate())
-{
-	String vendcd = f.get("vendcd1")+f.get("vendcd2")+f.get("vendcd3");
-	if(vendcd.length() != 10){
-		u.jsError("»ç¾÷ÀÚµî·Ï ¹øÈ£¸¦ Á¤È®È÷ ÀÔ·Â ÇÏ¼¼¿ä.");
+if (u.isPost() && f.validate()) {
+	String vendcd = f.get("vendcd1") + f.get("vendcd2") + f.get("vendcd3");
+	if (vendcd.length() != 10) {
+		u.jsError("ì‚¬ì—…ìžë“±ë¡ ë²ˆí˜¸ë¥¼ ì •í™•ížˆ ìž…ë ¥ í•˜ì„¸ìš”.");
 		return;
 	}
 	
-	
 	String mode = f.get("mode");
-	if(mode.equals("1")){
+	if (mode.equals("1")) {
 		DataObject personDao = new DataObject("tcb_person");
 		//personDao.setDebug(out);
-		//À§¸ÞÇÁ°¡ 2°³ ³ª¿Â´Ù.
-		person = personDao.find(" member_no = (select max(member_no) from tcb_member where vendcd = '"+vendcd+"' and status in ('01','03')) and user_id is not null");
-		if(person.size()==0)
-		{
-			u.jsError("È¸¿øÀ¸·Î µî·ÏµÈ »ç¾÷ÀÚ°¡ ¾Æ´Õ´Ï´Ù.\\n»ç¾÷ÀÚµî·Ï ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä.");
+		//ìœ„ë©”í”„ê°€ 2ê°œ ë‚˜ì˜¨ë‹¤.
+		person = personDao.find(" member_no in (select member_no from tcb_member where vendcd = '"+vendcd+"' and status in ('01','03') and member_type = '02') and passwd is not null");
+		if (person.size() == 0) {
+			u.jsError("íšŒì›ìœ¼ë¡œ ë“±ë¡ëœ ì‚¬ì—…ìžê°€ ì•„ë‹™ë‹ˆë‹¤.\\nì‚¬ì—…ìžë“±ë¡ ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”.");
 			return;
 		}
-		while(person.next()){
+		while (person.next()) {
 			String user_id = person.getString("user_id");
 			
 			String secret = "";
-			for(int i=3; i<user_id.length()-1;i++)
-				secret += "*";
+			for (int i = 3; i < user_id.length()-1; i++) secret += "*";
 			
-			user_id = user_id.substring(0,3)+secret+user_id.substring(user_id.length()-1,user_id.length());
+			user_id = user_id.substring(0,3) + secret + user_id.substring(user_id.length()-1, user_id.length());
 			
 			person.put("user_id", user_id);
 
@@ -40,50 +36,46 @@ if(u.isPost() && f.validate())
 			
 			String[] emailArray = email.split("@");
 			 
-			if(emailArray[0].length() > 2){ 
+			if (emailArray[0].length() > 2) {
 				email = emailArray[0].substring(0, 2);  
-				for (int i = 2; i < emailArray[0].length()-1; i++) {
-					email += "*";
-				}
-			}else{  
+				for (int i = 2; i < emailArray[0].length()-1; i++) email += "*";
+			} else {
 				email = emailArray[0].substring(0, 0);
-				for (int i = 0; i < emailArray[0].length()-1; i++) {
-					email += "*";
-				}
-			 }  
+				for (int i = 0; i < emailArray[0].length()-1; i++) email += "*";
+			}
 			 
 			email += emailArray[0].substring(emailArray[0].length()-1, emailArray[0].length()) + "@" + emailArray[1];
 
 			person.put("email", email);
 		}
-	}else if(mode.equals("2")){
+	} else if (mode.equals("2")) {
 		String member_no = f.get("member_no");
 		String person_seq = f.get("person_seq");
-		if(member_no.equals("")||person_seq.equals("")){
-			u.jsError("¸ÞÀÏÀü¼Û Á¤º¸°¡ ºÎÁ¤È® ÇÕ´Ï´Ù.");
+		if (member_no.equals("") || person_seq.equals("")) {
+			u.jsError("ë©”ì¼ì „ì†¡ ì •ë³´ê°€ ë¶€ì •í™• í•©ë‹ˆë‹¤.");
 			return;
 		}
 		DataObject personDao = new DataObject("tcb_person a");
 		person = personDao.find(
-				" member_no = '"+member_no+"' and person_seq = '"+person_seq+"' "
+				" member_no = '" + member_no + "' and person_seq = '" + person_seq + "' "
 				,"a.*,(select member_name from tcb_member where member_no = a.member_no) member_name"
-		);
-		if(!person.next()){
-			u.jsError("´ã´çÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+				);
+		if (!person.next()) {
+			u.jsError("ë‹´ë‹¹ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
-		if(person.getString("email").equals("")){
-			u.jsError("ÇØ´ç»ç¿ëÀÚ·Î µî·ÏµÈ ÀÌ¸ÞÀÏ ¾ø½À´Ï´Ù.");
+		if (person.getString("email").equals("")) {
+			u.jsError("í•´ë‹¹ì‚¬ìš©ìžë¡œ ë“±ë¡ëœ ì´ë©”ì¼ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
 
-		p.setVar("server_name", request.getServerName());
+		p.setVar("server_name", Config.getWebUrl());
 		p.setVar("return_url", "/web/buyer/");
 		p.setVar("person", person);
 		String mail_body = p.fetch("../html/mail/find_id_mail.html");
-		u.mail(person.getString("email"), "[³ªÀÌ½º´ÙÅ¥] °èÁ¤Á¤º¸ ¾È³»", mail_body );
+		u.mail(person.getString("email"), "[ë†ì‹¬] ê³„ì •ì •ë³´ ì•ˆë‚´", mail_body);
 
-		u.jsAlertReplace("¸ÞÀÏÀÌ ¹ß¼Û µÇ¾ú½À´Ï´Ù.", "/web/buyer/main/index.jsp");
+		u.jsAlertReplace("ë©”ì¼ì´ ë°œì†¡ ë˜ì—ˆìŠµë‹ˆë‹¤.", "/web/buyer/main/index.jsp");
 		return;
 	}
 }
@@ -91,7 +83,7 @@ if(u.isPost() && f.validate())
 p.setLayout("default");
 //p.setDebug(out);
 p.setBody("member.find_id");
-p.setVar("menu_cd","000128");
+p.setVar("menu_cd","000127");
 p.setLoop("person", person);
 p.setVar("form_script",f.getScript());
 p.display(out);

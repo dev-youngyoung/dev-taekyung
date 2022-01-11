@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String member_no = u.aseDec(u.request("member_no"));
 String warr_seq = u.request("warr_seq");
 if(member_no.equals("")||warr_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,7 +12,7 @@ String where = " member_no = '"+member_no+"' and warr_seq = '"+warr_seq+"'";
 DataObject warrDao = new DataObject("tcb_warr_add");
 DataSet warr = warrDao.find(" member_no = '"+member_no+"' and warr_seq = '"+warr_seq+"' ");
 if(!warr.next()){
-	u.jsError("Àß¸øµÈ Á¤º¸ÀÔ´Ï´Ù.");
+	u.jsError("ìž˜ëª»ëœ ì •ë³´ìž…ë‹ˆë‹¤.");
 	return;
 }
 
@@ -23,12 +23,12 @@ if(!Startup.conf.getString("file.path.bcompany").equals("") && !warr.getString("
 }
 
 if(!warrDao.delete(" member_no = '"+member_no+"' and warr_seq = '"+warr_seq+"' ")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 out.print("<script>");
-out.print("alert(\"Ã³¸® ÇÏ¿´½À´Ï´Ù.\");");
+out.print("alert(\"ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 out.print("opener.location.reload();");
 out.print("self.close();");
 out.print("</script>");

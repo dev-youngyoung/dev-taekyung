@@ -9,11 +9,11 @@ import java.util.Locale;
 
 public class Tsa {
 
-	String ServerCertDN = "cn=³ªÀÌ½ºµğ¾Ø¾Ë,ou=¼­¹ö,ou=ÇÑ±¹ÀüÀÚÀÎÁõ,ou=AccreditedCA,o=CrossCert,c=KR";
-    String ServerCertPwd = "ekzb096094$";//´ÙÅ¥096094$
+	String ServerCertDN = "cn=ë‚˜ì´ìŠ¤ë””ì•¤ì•Œ,ou=ì„œë²„,ou=í•œêµ­ì „ìì¸ì¦,ou=AccreditedCA,o=CrossCert,c=KR";
+    String ServerCertPwd = "ekzb096094$";//ë‹¤í096094$
 
     /**
-     * TSA¿äÃ»
+     * TSAìš”ì²­
      * @param originData
      * @return DataSet - gentime, hashvalue
      */
@@ -23,12 +23,12 @@ public class Tsa {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
             Date c_date = new Date();
             String c_time = formatter.format(c_date);
-            long start = System.currentTimeMillis();//½ÃÀÛ½Ã°£ : 1970³âºÎÅÍ ÇöÀç±îÁö °É¸°½Ã°£Àº 1/1000ÃÊ(¹Ğ¸®ÃÊ)·Î ¹İÈ¯
+            long start = System.currentTimeMillis();//ì‹œì‘ì‹œê°„ : 1970ë…„ë¶€í„° í˜„ì¬ê¹Œì§€ ê±¸ë¦°ì‹œê°„ì€ 1/1000ì´ˆ(ë°€ë¦¬ì´ˆ)ë¡œ ë°˜í™˜
 
             int nRet;
             CCTsp cCCTsp = new CCTsp();
 
-            //¶óÀÌ¼¾½º °æ·Î¼³Á¤(2.1)
+            //ë¼ì´ì„¼ìŠ¤ ê²½ë¡œì„¤ì •(2.1)
             //cCCTsp.SetConfPath("C:/testfile");
 
             nRet = cCCTsp.GetTimeStampToken(originData.getBytes(),
@@ -40,58 +40,58 @@ public class Tsa {
                     0);
 
             if (nRet != 0) {
-                System.out.println("GetTimeStampToken  ½ÇÆĞ  " + nRet);
+                System.out.println("GetTimeStampToken  ì‹¤íŒ¨  " + nRet);
                 System.out.println("GetTimeStampToken Class errmessage ==> : " + cCCTsp.errmessage);
                 System.out.println("GetTimeStampToken Class errdetailmessage ==> : " + cCCTsp.errdetailmessage);
             } else {
-                System.out.println("Å¸ÀÓ½ºÅÆÇÁ ¿äÃ»  ¼º°ø : " + nRet);
-                System.out.println("DB¿¡ ÀúÀåÇØ¾ß ÇÒ Å¸ÀÓ½ºÅÛ½º ÅäÅ«  : " + new String(cCCTsp.contentbuf));
+                System.out.println("íƒ€ì„ìŠ¤íƒ¬í”„ ìš”ì²­  ì„±ê³µ : " + nRet);
+                System.out.println("DBì— ì €ì¥í•´ì•¼ í•  íƒ€ì„ìŠ¤í…œìŠ¤ í† í°  : " + new String(cCCTsp.contentbuf));
                 long end = 0;
                 Date f_date = new Date();
                 String f_time = formatter.format(f_date);
-                //System.out.println("ÃÖÁ¾½Ã°£: " + f_time);
-                end = System.currentTimeMillis();     //³¡½Ã°£
+                //System.out.println("ìµœì¢…ì‹œê°„: " + f_time);
+                end = System.currentTimeMillis();     //ëì‹œê°„
                 long total = 0;
                 total = end - start;
                 String str = total + "";
                 if (str.length() == 3) {
                     String sec = "0";
                     String sec2 = str.substring(0);
-                    //System.out.println("ÀÀ´ä½Ã°£: "+sec+"ÃÊ" + sec2 );
+                    //System.out.println("ì‘ë‹µì‹œê°„: "+sec+"ì´ˆ" + sec2 );
                 } else if (str.length() == 4) {
                     String sec = str.substring(0, 1);
                     String sec2 = str.substring(1);
-                    //System.out.println("ÀÀ´ä½Ã°£: "+sec+"ÃÊ" + sec2 );
+                    //System.out.println("ì‘ë‹µì‹œê°„: "+sec+"ì´ˆ" + sec2 );
                 } else if (str.length() == 5) {
                     String sec = str.substring(0, 2);
                     String sec2 = str.substring(2);
-                    //System.out.println("ÀÀ´ä½Ã°£: "+sec+"ÃÊ" + sec2 );
+                    //System.out.println("ì‘ë‹µì‹œê°„: "+sec+"ì´ˆ" + sec2 );
                 }
 
-                // Å¸ÀÓ½ºÅÆÇÁ °ËÁõÇÏ±â.....
+                // íƒ€ì„ìŠ¤íƒ¬í”„ ê²€ì¦í•˜ê¸°.....
                 nRet = cCCTsp.VerifyTimeStampToken(originData.getBytes(),
                         originData.getBytes().length,
                         cCCTsp.contentbuf,
                         cCCTsp.contentlen,
                         1);
                 if (nRet != 0) {
-                    System.out.println("VerifyTimeStampToken  °ËÁõ½ÇÆĞ  " + nRet);
+                    System.out.println("VerifyTimeStampToken  ê²€ì¦ì‹¤íŒ¨  " + nRet);
                     System.out.println("VerifyTimeStampToken Class errmessage ==> : " + cCCTsp.errmessage);
                     System.out.println("VerifyTimeStampToken Class errdetailmessage ==> : " + cCCTsp.errdetailmessage);
                     //return;
                 } else {
-                    System.out.println("VerifyTimeStampToken °ËÁõ ¼º°ø : " + nRet);
-                    //System.out.println("GetTimeStampTokenInfo  ±æÀÌ  " + cCCTsp.contentlen);
+                    System.out.println("VerifyTimeStampToken ê²€ì¦ ì„±ê³µ : " + nRet);
+                    //System.out.println("GetTimeStampTokenInfo  ê¸¸ì´  " + cCCTsp.contentlen);
                     nRet = cCCTsp.GetTimeStampTokenInfo(cCCTsp.contentbuf,
                             cCCTsp.contentlen,
                             1);
                     if (nRet != 0) {
-                        System.out.println("GetTimeStampTokenInfo  ÅäÅ«Á¤º¸ÃßÃâ½ÇÆĞ  " + nRet);
+                        System.out.println("GetTimeStampTokenInfo  í† í°ì •ë³´ì¶”ì¶œì‹¤íŒ¨  " + nRet);
                         System.out.println("GetTimeStampTokenInfo Class errmessage ==> : " + cCCTsp.errmessage);
                         System.out.println("GetTimeStampTokenInfo Class errdetailmessage ==> : " + cCCTsp.errdetailmessage);
                         //return;
                     } else {
-                        System.out.println("GetTimeStampTokenInfo ÅäÅ«Á¤º¸ÃßÃâ ¼º°ø : " + nRet);
+                        System.out.println("GetTimeStampTokenInfo í† í°ì •ë³´ì¶”ì¶œ ì„±ê³µ : " + nRet);
                         System.out.println("[gentime]      " + cCCTsp.gentime);
                         System.out.println("[hashvalue] " + cCCTsp.hashvalue);
                         /*
@@ -108,7 +108,7 @@ public class Tsa {
                 }
             }
         } catch (Exception e) {
-            System.out.println("tsaRequest ¿¡·¯ : " + e.getMessage());
+            System.out.println("tsaRequest ì—ëŸ¬ : " + e.getMessage());
             return null;
         }
 

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.*" %>
 <%@ page import="org.jsoup.nodes.*" %>
 <%@ page import="org.jsoup.select.*" %>
@@ -35,7 +35,7 @@ while(dsDonghee.next()){
 	}
 }
 if(!memberChk){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -47,7 +47,7 @@ f.addElement("s_edate", s_edate, null);
 f.addElement("s_status", null, null);
 
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -70,9 +70,9 @@ list.addSearch("a.member_no", f.get("s_main_member_no"));
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_cust_name"), "LIKE");
 list.addSearch("a.status", f.get("s_status"));
-/*Á¶È¸±ÇÇÑ*/
-if(!auth.getString("_DEFAULT_YN").equals("Y")){//±ÇÇÑÀ» °¡Áú¼ö ¾øÀ½.
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+/*ì¡°íšŒê¶Œí•œ*/
+if(!auth.getString("_DEFAULT_YN").equals("Y")){//ê¶Œí•œì„ ê°€ì§ˆìˆ˜ ì—†ìŒ.
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	/* if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -87,13 +87,13 @@ DataSet ds = list.getDataSet();
 while(ds.next()){
 	if(ds.getInt("cont_chasu")>0){
 		if(!u.request("mode").equals("excel")){
-			ds.put("cont_name", "<img src='../html/images/re.jpg' align='absmiddle'> " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+			ds.put("cont_name", "<img src='../html/images/re.jpg' align='absmiddle'> " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 		}else{
-			ds.put("cont_name", "¦¦ " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+			ds.put("cont_name", "â”” " +ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 		}
 	}
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
@@ -106,10 +106,10 @@ while(ds.next()){
 
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "°è¾àÁøÇàÇöÈ²");
+	p.setVar("title", "ê³„ì•½ì§„í–‰í˜„í™©");
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("°è¾àÁøÇàÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ê³„ì•½ì§„í–‰í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/contract_view_list_excel.html"));
 	return;
 }
@@ -150,10 +150,10 @@ if(u.request("mode").equals("report")){
 		ds.put("cont_total", u.numberFormat(ds.getDouble("cont_total"), 0));
 	}
 	
-	p.setVar("title", "°è&nbsp;&nbsp;¾à&nbsp;&nbsp;Çö&nbsp;&nbsp;È²");
+	p.setVar("title", "ê³„&nbsp;&nbsp;ì•½&nbsp;&nbsp;í˜„&nbsp;&nbsp;í™©");
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("°è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/contract_view_list_report.html"));
 	return;
 }

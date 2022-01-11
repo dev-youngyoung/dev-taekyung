@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String cont_no = u.aseDec(u.request("cont_no"));
@@ -6,7 +6,7 @@ String cont_no = u.aseDec(u.request("cont_no"));
 DataObject pDao = new DataObject("tcb_cust");
 DataSet ds = pDao.find("cont_no='"+cont_no+"' and member_no <> '" + _member_no + "'");
 if(!ds.next()){
-    u.jsError("ÇØ´ç ÀÛ°¡Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    u.jsError("í•´ë‹¹ ì‘ê°€ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     return;
 }
 
@@ -14,7 +14,7 @@ if(!ds.getString("jumin_no").equals("")) {
 
     String birthday = u.aseDec(ds.getString("jumin_no"));
 
-    ds.put("birthday",  birthday.substring(0,2)+"³â "+birthday.substring(2,4)+"¿ù "+birthday.substring(4)+ "ÀÏ");
+    ds.put("birthday",  birthday.substring(0,2)+"ë…„ "+birthday.substring(2,4)+"ì›” "+birthday.substring(4)+ "ì¼");
 
 }
 
@@ -22,7 +22,7 @@ if(!ds.getString("jumin_no").equals("")) {
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.resin_writer");
-p.setVar("popup_title", "ÀÛ°¡Á¤º¸");
+p.setVar("popup_title", "ì‘ê°€ì •ë³´");
 p.setVar("cust", ds);
 p.setVar("form_script", f.getScript());
 p.display(out);

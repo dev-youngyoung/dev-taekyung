@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataObject personDao = new DataObject("tcb_person");
 //personDao.setDebug(out);
@@ -12,7 +12,7 @@ String sQuery =  " select b.field_name              "
 		+"   and a.member_no = '"+_member_no+"'"
 		+"   and nvl(default_yn,'N') <> 'Y' ";
 
-if(!auth.getString("_DEFAULT_YN").equals("Y")){	// °ü¸®ÀÚ°¡ ¾Æ´Ï¸é ÀÚ±â°Í¸¸.
+if(!auth.getString("_DEFAULT_YN").equals("Y")){	// ê´€ë¦¬ìê°€ ì•„ë‹ˆë©´ ìê¸°ê²ƒë§Œ.
 	sQuery += "   and a.person_seq = " + auth.getString("_PERSON_SEQ");
 }
 sQuery += "  order by b.field_seq";
@@ -31,7 +31,7 @@ p.setVar("menu_cd","000086");
 p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000086", "btn_auth").equals("10"));
 p.setVar("auth_form", false);
 p.setLoop("person", person);
-p.setVar("fperson",fperson);  // Ã¹
+p.setVar("fperson",fperson);  // ì²«
 p.setVar("form_script", f.getScript());
 p.setVar("list_query", u.getQueryString(""));
 p.display(out);

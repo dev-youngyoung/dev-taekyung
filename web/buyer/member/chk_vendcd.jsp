@@ -1,239 +1,333 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 	String vendcd = u.request("vendcd");
 
 	DataObject dao = new DataObject("tcb_member a");
 
-	StringBuffer	sb	=	new	StringBuffer();
+	StringBuffer sb	= new StringBuffer();
 	sb.append("SELECT A.* \n");
-	sb.append("        ,B.PERSON_SEQ \n");
-	sb.append("        ,B.USER_ID \n");
-	sb.append("        ,B.USER_NAME \n");
-	sb.append("        ,B.POSITION \n");
-	sb.append("        ,B.EMAIL \n");
-	sb.append("        ,B.TEL_NUM \n");
-	sb.append("        ,B.DIVISION \n");
-	sb.append("        ,B.FAX_NUM \n");
-	sb.append("        ,B.HP1 \n");
-	sb.append("        ,B.HP2 \n");
-	sb.append("        ,B.HP3 \n");
+	sb.append("     , B.PERSON_SEQ \n");
+	sb.append("     , B.USER_ID \n");
+	sb.append("     , B.USER_NAME \n");
+	sb.append("     , B.POSITION \n");
+	sb.append("     , B.EMAIL \n");
+	sb.append("     , B.TEL_NUM \n");
+	sb.append("     , B.DIVISION \n");
+	sb.append("     , B.FAX_NUM \n");
+	sb.append("     , B.HP1 \n");
+	sb.append("     , B.HP2 \n");
+	sb.append("     , B.HP3 \n");
 	sb.append("FROM TCB_MEMBER A \n");
-	sb.append("  LEFT OUTER JOIN TCB_PERSON B ON A.MEMBER_NO = B.MEMBER_NO AND DEFAULT_YN = 'Y' \n");
-	sb.append("WHERE  A.VENDCD = '"+vendcd+"'");
+	sb.append("LEFT OUTER JOIN TCB_PERSON B ON A.MEMBER_NO = B.MEMBER_NO AND DEFAULT_YN = 'Y' \n");
+	sb.append("WHERE A.VENDCD = '" + vendcd + "'");
+	sb.append("AND ROWNUM = 1");
 	DataSet ds = dao.query(sb.toString());
 
-	String	sVendcd2	=	"";
-	if(vendcd != null && vendcd.length() == 10)
-	{
-		sVendcd2	=	vendcd.substring(3,5);
-	}
+	String	sVendcd2 = "";
+	if (vendcd != null && vendcd.length() == 10) sVendcd2 = vendcd.substring(3,5);
 %>
 	<script>
-		var	sVendMsg				=	"";	//	»ç¾÷ÀÚÁßº¹Ã¼Å© ¸Ş¼¼Áö
-		var	sMemberGubunNm	=	"";	//	»ç¾÷ÀÚ±¸ºĞ
-		var	sVendcd2				=	"<%=sVendcd2%>";	//	»ç¾÷ÀÚ¹øÈ£ 4,5ÀÚ¸®
-		var	sMemberGubun		=	"";
+		var	sVendMsg = ""; // ì‚¬ì—…ìì¤‘ë³µì²´í¬ ë©”ì„¸ì§€
+		var	sMemberGubunNm = ""; // ì‚¬ì—…ìêµ¬ë¶„
+		var	sVendcd2 = "<%=sVendcd2%>"; // ì‚¬ì—…ìë²ˆí˜¸ 4,5ìë¦¬
+		var	sMemberGubun = "";
 
-		if(sVendcd2.length == 2)
-		{
-			if(	sVendcd2 == "81" ||
-					sVendcd2 == "82" ||
-					sVendcd2 == "83" ||
-					sVendcd2 == "84" ||
-					sVendcd2 == "86" ||
-					sVendcd2 == "87" ||
-					sVendcd2 == "88")
-			{
-				sMemberGubunNm	=	"¹ıÀÎ»ç¾÷ÀÚ(º»»ç)";
-				member_gubun 		= "01";
-			}else if(sVendcd2 == "85")
-			{
-				sMemberGubunNm	=	"¹ıÀÎ»ç¾÷ÀÚ(Áö»ç)";
-				member_gubun 		= "02";
-			}else
-			{
-				sMemberGubunNm	=	"°³ÀÎ»ç¾÷ÀÚ";
-				member_gubun 		= "03";
+		if (sVendcd2.length == 2) {
+			if (sVendcd2 == "81" ||
+				sVendcd2 == "82" ||
+				sVendcd2 == "83" ||
+				sVendcd2 == "84" ||
+				sVendcd2 == "86" ||
+				sVendcd2 == "87" ||
+				sVendcd2 == "88") {
+				sMemberGubunNm = "ë²•ì¸ì‚¬ì—…ì(ë³¸ì‚¬)";
+				member_gubun = "01";
+			} else if(sVendcd2 == "85") {
+				sMemberGubunNm = "ë²•ì¸ì‚¬ì—…ì(ì§€ì‚¬)";
+				member_gubun = "02";
+			} else {
+				sMemberGubunNm = "ê°œì¸ì‚¬ì—…ì";
+				member_gubun = "03";
 			}
 		}
-		document.forms['form1']['member_gubun'].value=member_gubun;
+		document.forms['form1']['member_gubun'].value = member_gubun;
 <%
-	if(ds != null && ds.size() > 0)
-	{
-		if(ds.next())
-		{
-			if(ds.getString("status").equals("00"))	// 00:Å»Åğ 01:Á¤È¸¿ø 02:ºñÈ¸¿ø 03:Àç°¡ÀÔ
-			{
-%>
-				sVendMsg	=	"ÇØ´ç »ç¾÷ÀÚ¹øÈ£´Â È¸¿øÅ»Åğ »óÅÂÀÔ´Ï´Ù.<br>´Ù½Ã È¸¿øÀ¸·Î °¡ÀÔÇÏ½Ã·Á¸é, °í°´Áö¿ø¼¾ÅÍ¿¡ ¹®ÀÇÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
-				document.forms['form1']['member_slno1'].value		=	"";
-				document.forms['form1']['member_slno2'].value		=	"";
-				document.forms['form1']['member_name'].value		=	"";
-				document.forms['form1']['boss_name'].value			=	"";
-				document.forms['form1']['condition'].value			=	"";
-				document.forms['form1']['category'].value				=	"";
-				document.forms['form1']['post_code'].value			=	"";
-				document.forms['form1']['address'].value				=	"";
-				document.forms['form1']['user_id'].value				=	"";
-				document.forms['form1']['user_name'].value			=	"";
-				document.forms['form1']['position'].value				=	"";
-				document.forms['form1']['email'].value					=	"";
-				document.forms['form1']['tel_num'].value				=	"";
-				document.forms['form1']['division'].value				=	"";
-				document.forms['form1']['fax_num'].value				=	"";
-				document.forms['form1']['hp1'].value						=	"";
-				document.forms['form1']['hp2'].value						=	"";
-				document.forms['form1']['hp3'].value						=	"";
-				document.forms['form1']['hdn_mode'].value				=	"BREAK";
-				document.forms['form1']['hdn_member_no'].value	=	"";
-				document.forms['form1']['hdn_person_seq'].value	=	"";
-				document.forms['form1']['user_id'].readOnly 				= false;
-				document.forms['form1']['user_id'].className 				= "label";
-				document.getElementById("btn_chkid").style.display	=	"";
-				document.forms['form1']['chk_id'].value							=	"";
-<%
-			}else
-			{
-				if(ds.getString("status").equals("01")||ds.getString("status").equals("03"))
-				{
-%>
-					sVendMsg	=	"ÇØ´ç »ç¾÷ÀÚ¹øÈ£´Â ÀÌ¹Ì È¸¿ø°¡ÀÔÀÌ µÇ¾î ÀÖ½À´Ï´Ù.<br>¾Æ·¡ÀÇ ´ã´çÀÚ¿¡°Ô »ç¿ëÀÚµî·ÏÀ» ¿äÃ»ÇÏ¼¼¿ä. <br>´ã´çÀÚ¸í : <%=ds.getString("user_name")%>, ÀüÈ­¹øÈ£ : <%=ds.getString("tel_num")%>";
-					document.forms['form1']['member_slno1'].value		=	"";
-					document.forms['form1']['member_slno2'].value		=	"";
-					document.forms['form1']['member_name'].value		=	"";
-					document.forms['form1']['boss_name'].value			=	"";
-					document.forms['form1']['condition'].value			=	"";
-					document.forms['form1']['category'].value				=	"";
-					document.forms['form1']['post_code'].value			=	"";
-					document.forms['form1']['address'].value				=	"";
-					document.forms['form1']['user_id'].value				=	"";
-					document.forms['form1']['user_name'].value			=	"";
-					document.forms['form1']['position'].value				=	"";
-					document.forms['form1']['email'].value					=	"";
-					document.forms['form1']['tel_num'].value				=	"";
-					document.forms['form1']['division'].value				=	"";
-					document.forms['form1']['fax_num'].value				=	"";
-					document.forms['form1']['hp1'].value						=	"";
-					document.forms['form1']['hp2'].value						=	"";
-					document.forms['form1']['hp3'].value						=	"";
-					document.forms['form1']['hdn_mode'].value				=	"JOIN";
-					document.forms['form1']['hdn_member_no'].value	=	"";
-					document.forms['form1']['hdn_person_seq'].value	=	"";
-					document.forms['form1']['user_id'].readOnly 				= false;
-					document.forms['form1']['user_id'].className 				= "label";
-					document.getElementById("btn_chkid").style.display	=	"";
-					document.forms['form1']['chk_id'].value							=	"";
-<%
-				}else
-				{
-	    		if(ds.getString("status").equals("02"))
-	    		{
-	    			String	sMemberSlno1	=	"";
-	    			String	sMemberSlno2	=	"";
-	    			if(ds.getString("member_slno").length()==13){
-	    				sMemberSlno1= ds.getString("member_slno").substring(0,6);
-	    				sMemberSlno2= ds.getString("member_slno").substring(6);
-	    			}
-
-%>
-						sVendMsg	=	"ÇØ´ç »ç¾÷ÀÚ¹øÈ£´Â °Å·¡Ã³¿¡¼­ ¹Ì¸® ÀÔ·ÂÇÑ Á¤º¸°¡ ÀÖ½À´Ï´Ù. ³ª¸ÓÁö Á¤º¸¸¦ ÀÔ·Â ÈÄ È¸¿ø°¡ÀÔ ¹öÆ°À» ´­·¯ÁÖ¼¼¿ä.";
-						document.forms['form1']['member_slno1'].value		=	"<%=sMemberSlno1%>";
-						document.forms['form1']['member_slno2'].value		=	"<%=sMemberSlno2%>";
-						document.forms['form1']['member_name'].value		=	"<%=ds.getString("member_name")%>";
-						document.forms['form1']['boss_name'].value			=	"<%=ds.getString("boss_name")%>";
-						document.forms['form1']['condition'].value			=	"<%=ds.getString("condition")%>";
-						document.forms['form1']['category'].value				=	"<%=ds.getString("category")%>";
-						document.forms['form1']['post_code'].value			=	"<%=ds.getString("post_code")%>";
-						document.forms['form1']['address'].value				=	"<%=ds.getString("address")%>";
-						document.forms['form1']['user_id'].value				=	"<%=ds.getString("user_id")%>";
-						document.forms['form1']['user_name'].value			=	"<%=ds.getString("user_name")%>";
-						document.forms['form1']['position'].value				=	"<%=ds.getString("position")%>";
-						document.forms['form1']['email'].value					=	"<%=ds.getString("email")%>";
-						document.forms['form1']['tel_num'].value				=	"<%=ds.getString("tel_num")%>";
-						document.forms['form1']['division'].value				=	"<%=ds.getString("division")%>";
-						document.forms['form1']['fax_num'].value				=	"<%=ds.getString("fax_num")%>";
-						document.forms['form1']['hp1'].value						=	"<%=ds.getString("hp1")%>";
-						document.forms['form1']['hp2'].value						=	"<%=ds.getString("hp2")%>";
-						document.forms['form1']['hp3'].value						=	"<%=ds.getString("hp3")%>";
-						document.forms['form1']['hdn_mode'].value				=	"UPDATE";
-						document.forms['form1']['hdn_member_no'].value	=	"<%=ds.getString("member_no")%>";
-						document.forms['form1']['hdn_person_seq'].value	=	"<%=ds.getString("person_seq")%>";
-
-<%
-						if(ds.getString("user_id") != null &&  ds.getString("user_id").length() > 0)
-						{
-%>
-							document.forms['form1']['user_id'].readOnly = true;
-							document.forms['form1']['user_id'].className = "in_readonly";
-							document.getElementById("btn_chkid").style.display	=	"none";
-							document.forms['form1']['chk_id'].value			=	"1";
-<%
+	if (ds != null && ds.size() > 0) {
+		if (ds.next()) {
+			// ê°€ì…ëœ ì •ë³´ê°€ IF_100 í…Œì´ë¸”ì— ì—¬ëŸ¬ê°œì¸ì§€ í™•ì¸ í•„ìš”
+			sb	= new StringBuffer();
+			sb.append("SELECT MEMBER_NO \n");
+			sb.append("     , LTRIM(CUST_CODE, '000') AS CUST_CODE \n");
+			sb.append("     , COM_NAME \n");
+			sb.append("     , BOSS_NAME \n");
+			sb.append("     , SITE_ITEM \n");
+			sb.append("     , BIZ_TYPE \n");
+			sb.append("     , REPLACE(HEAD_OFCE_POST,'-','') AS HEAD_OFCE_POST \n");
+			sb.append("     , HEAD_OFCE_ADRS \n");
+			sb.append("     , COMM_NO \n");
+			sb.append("FROM IF_MMBAT100 \n");
+			sb.append("WHERE COMM_NO = '" + vendcd + "'");
+			//sb.append("AND ROWNUM = 1");
+			DataSet dsMmbat = dao.query(sb.toString());
+			if(dsMmbat.size() > 1){
+				// popup í˜¸ì¶œ í›„ ì„ íƒí•œ ì‚¬ì—…ìê°€ ê°€ì…ëœ ë©¤ë²„ì¸ì§€ check í•„ìš”
+	%>
+				OpenWindows('pop_search_join.jsp?s_vendcd='+<%=vendcd%>,'pop_search_cust', '870','700');
+	<%				
+			}else{
+				if (ds.getString("status").equals("00")) { // 00:íƒˆí‡´ 01:ì •íšŒì› 02:ë¹„íšŒì› 03:ì¬ê°€ì… (í˜„ì¬ 02ëŠ” ë¯¸ì¡´ì¬)
+	%>
+					sVendMsg = "í•´ë‹¹ ì‚¬ì—…ìë²ˆí˜¸ëŠ” íšŒì›íƒˆí‡´ ìƒíƒœì…ë‹ˆë‹¤.<br>ë‹¤ì‹œ íšŒì›ìœ¼ë¡œ ê°€ì…í•˜ì‹œë ¤ë©´, ê³ ê°ì§€ì›ì„¼í„°ì— ë¬¸ì˜í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
+					document.forms['form1']['member_slno1'].value = "";
+					document.forms['form1']['member_slno2'].value = "";
+					document.forms['form1']['member_name'].value = "";
+					document.forms['form1']['boss_name'].value = "";
+					document.forms['form1']['condition'].value = "";
+					document.forms['form1']['category'].value = "";
+					document.forms['form1']['post_code'].value = "";
+					document.forms['form1']['address'].value = "";
+					document.forms['form1']['user_id'].value = "";
+					document.forms['form1']['user_name'].value = "";
+					document.forms['form1']['position'].value = "";
+					document.forms['form1']['email'].value = "";
+					document.forms['form1']['tel_num'].value = "";
+					document.forms['form1']['division'].value = "";
+					document.forms['form1']['fax_num'].value = "";
+					document.forms['form1']['hp1'].value = "";
+					document.forms['form1']['hp2'].value = "";
+					document.forms['form1']['hp3'].value = "";
+					document.forms['form1']['hdn_mode'].value = "BREAK";
+					document.forms['form1']['hdn_member_no'].value = "";
+					document.forms['form1']['hdn_person_seq'].value = "";
+					document.forms['form1']['user_id'].readOnly = false;
+					document.forms['form1']['user_id'].className = "label";
+					document.getElementById("btn_chkid").style.display = "";
+					document.forms['form1']['chk_id'].value = "";
+	<%
+				} else {
+					if (ds.getString("status").equals("01") || ds.getString("status").equals("03")) {
+						if (dsMmbat.next()) {
+	%>
+						sVendMsg = "ë“±ë¡ê°€ëŠ¥í•œ ì‚¬ì—…ì ë²ˆí˜¸ ì…ë‹ˆë‹¤.<br> ë‹´ë‹¹ì ì •ë³´ë¥¼ ì…ë ¥ í›„  íšŒì›ê°€ì… ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.";
+						document.forms['form1']['member_slno1'].value = "";
+						document.forms['form1']['member_slno2'].value = "";
+						document.forms['form1']['member_name'].value = "<%=dsMmbat.getString("com_name")%>";
+						document.forms['form1']['boss_name'].value = "<%=dsMmbat.getString("boss_name")%>";
+						document.forms['form1']['condition'].value = "<%=dsMmbat.getString("site_item")%>";
+						document.forms['form1']['category'].value = "<%=dsMmbat.getString("biz_type")%>";
+						document.forms['form1']['post_code'].value = "<%=dsMmbat.getString("head_ofce_post")%>";
+						document.forms['form1']['address'].value = "<%=dsMmbat.getString("head_ofce_adrs")%>";
+						document.forms['form1']['user_id'].value = "<%=dsMmbat.getString("comm_no")%>";
+						document.forms['form1']['user_name'].value = "";
+						document.forms['form1']['position'].value = "";
+						document.forms['form1']['email'].value = "";
+						document.forms['form1']['tel_num'].value = "";
+						document.forms['form1']['division'].value = "";
+						document.forms['form1']['fax_num'].value = "";
+						document.forms['form1']['hp1'].value = "";
+						document.forms['form1']['hp2'].value = "";
+						document.forms['form1']['hp3'].value = "";
+						document.forms['form1']['hdn_mode'].value = "NEW_P";
+						document.forms['form1']['hdn_member_no'].value = "<%=dsMmbat.getString("member_no")%>";
+						document.forms['form1']['hdn_person_seq'].value = "";
+						document.forms['form1']['user_id'].readOnly = false;
+						document.forms['form1']['user_id'].className = "label";
+						document.getElementById("btn_chkid").style.display = "";
+						document.forms['form1']['chk_id'].value = "";
+	<%
 						}
+					} else {
+		    			if (ds.getString("status").equals("02")) {
+		    				String sMemberSlno1 = "";
+		    				String sMemberSlno2 = "";
+			    			if (ds.getString("member_slno").length() == 13) {
+			    				sMemberSlno1 = ds.getString("member_slno").substring(0,6);
+			    				sMemberSlno2 = ds.getString("member_slno").substring(6);
+			    			}
+	%>
+							sVendMsg = "í•´ë‹¹ ì‚¬ì—…ìë²ˆí˜¸ëŠ” ê±°ë˜ì²˜ì—ì„œ ë¯¸ë¦¬ ì…ë ¥í•œ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤. ë‚˜ë¨¸ì§€ ì •ë³´ë¥¼ ì…ë ¥ í›„ íšŒì›ê°€ì… ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.";
+							document.forms['form1']['member_slno1'].value = "<%=sMemberSlno1%>";
+							document.forms['form1']['member_slno2'].value = "<%=sMemberSlno2%>";
+							document.forms['form1']['member_name'].value = "<%=ds.getString("member_name")%>";
+							document.forms['form1']['boss_name'].value = "<%=ds.getString("boss_name")%>";
+							document.forms['form1']['condition'].value = "<%=ds.getString("condition")%>";
+							document.forms['form1']['category'].value = "<%=ds.getString("category")%>";
+							document.forms['form1']['post_code'].value = "<%=ds.getString("post_code")%>";
+							document.forms['form1']['address'].value = "<%=ds.getString("address")%>";
+							document.forms['form1']['user_id'].value = "<%=ds.getString("user_id")%>";
+							document.forms['form1']['user_name'].value = "<%=ds.getString("user_name")%>";
+							document.forms['form1']['position'].value = "<%=ds.getString("position")%>";
+							document.forms['form1']['email'].value = "<%=ds.getString("email")%>";
+							document.forms['form1']['tel_num'].value = "<%=ds.getString("tel_num")%>";
+							document.forms['form1']['division'].value = "<%=ds.getString("division")%>";
+							document.forms['form1']['fax_num'].value = "<%=ds.getString("fax_num")%>";
+							document.forms['form1']['hp1'].value = "<%=ds.getString("hp1")%>";
+							document.forms['form1']['hp2'].value = "<%=ds.getString("hp2")%>";
+							document.forms['form1']['hp3'].value = "<%=ds.getString("hp3")%>";
+							document.forms['form1']['hdn_mode'].value = "UPDATE";
+							document.forms['form1']['hdn_member_no'].value = "<%=ds.getString("member_no")%>";
+							document.forms['form1']['hdn_person_seq'].value = "<%=ds.getString("person_seq")%>";
+	<%
+							if (ds.getString("user_id") != null && ds.getString("user_id").length() > 0) {
+	%>
+								document.forms['form1']['user_id'].readOnly = true;
+								document.forms['form1']['user_id'].className = "in_readonly";
+								document.getElementById("btn_chkid").style.display = "none";
+								document.forms['form1']['chk_id'].value = "1";
+	<%
+							}
+						} else {
+	%>
+							sVendMsg = "ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
+							document.forms['form1']['member_slno1'].value = "";
+							document.forms['form1']['member_slno2'].value = "";
+							document.forms['form1']['member_name'].value = "";
+							document.forms['form1']['boss_name'].value = "";
+							document.forms['form1']['condition'].value = "";
+							document.forms['form1']['category'].value = "";
+							document.forms['form1']['post_code'].value = "";
+							document.forms['form1']['address'].value = "";
+							document.forms['form1']['user_id'].value = "";
+							document.forms['form1']['user_name'].value = "";
+							document.forms['form1']['position'].value = "";
+							document.forms['form1']['email'].value = "";
+							document.forms['form1']['tel_num'].value = "";
+							document.forms['form1']['division'].value = "";
+							document.forms['form1']['fax_num'].value = "";
+							document.forms['form1']['hp1'].value = "";
+							document.forms['form1']['hp2'].value = "";
+							document.forms['form1']['hp3'].value = "";
+							document.forms['form1']['hdn_mode'].value = "ERROR";
+							document.forms['form1']['hdn_member_no'].value = "";
+							document.forms['form1']['hdn_person_seq'].value = "";
+							document.forms['form1']['user_id'].readOnly = false;
+							document.forms['form1']['user_id'].className = "label";
+							document.getElementById("btn_chkid").style.display = "";
+							document.forms['form1']['chk_id'].value = "";
+	<%
+						}
+					}
+				}	
+			}
+		}
+	} else {
+		sb	= new StringBuffer();
+		sb.append("SELECT MEMBER_NO \n");
+		sb.append("     , LTRIM(CUST_CODE, '000') AS CUST_CODE \n");
+		sb.append("     , COM_NAME \n");
+		sb.append("     , BOSS_NAME \n");
+		sb.append("     , SITE_ITEM \n");
+		sb.append("     , BIZ_TYPE \n");
+		sb.append("     , REPLACE(HEAD_OFCE_POST,'-','') AS HEAD_OFCE_POST \n");
+		sb.append("     , HEAD_OFCE_ADRS \n");
+		sb.append("     , COMM_NO \n");
+		sb.append("FROM IF_MMBAT100 \n");
+		sb.append("WHERE COMM_NO = '" + vendcd + "'");
+		//sb.append("AND ROWNUM = 1");
+		ds = dao.query(sb.toString());
+		
+		if (ds != null && ds.size() > 0) {
+			if(ds.size() > 1){
+				// ì‚¬ì—…ìë²ˆí˜¸ íŒì—… í˜¸ì¶œ
+	%>
+				OpenWindows('pop_search_join.jsp?s_vendcd='+<%=vendcd%>,'pop_search_cust', '870','700');
+	<%				
+			}else{
+				// íŒì—…í˜¸ì¶œ ì—†ì´ ì •ë³´ ì…‹íŒ…
+				if (ds.next()) {
+					if(!ds.getString("member_no").isEmpty() && ds.getString("member_no") != null){
+	%>
+						sVendMsg = "ë“±ë¡ê°€ëŠ¥í•œ ì‚¬ì—…ì ë²ˆí˜¸ ì…ë‹ˆë‹¤.<br> ë‹´ë‹¹ì ì •ë³´ë¥¼ ì…ë ¥ í›„  íšŒì›ê°€ì… ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.";
+						document.forms['form1']['member_slno1'].value = "";
+						document.forms['form1']['member_slno2'].value = "";
+						document.forms['form1']['member_name'].value = "<%=ds.getString("com_name")%>";
+						document.forms['form1']['boss_name'].value = "<%=ds.getString("boss_name")%>";
+						document.forms['form1']['condition'].value = "<%=ds.getString("site_item")%>";
+						document.forms['form1']['category'].value = "<%=ds.getString("biz_type")%>";
+						document.forms['form1']['post_code'].value = "<%=ds.getString("head_ofce_post")%>";
+						document.forms['form1']['address'].value = "<%=ds.getString("head_ofce_adrs")%>";
+						document.forms['form1']['user_id'].value = "<%=ds.getString("comm_no")%>";
+						document.forms['form1']['user_name'].value = "";
+						document.forms['form1']['position'].value = "";
+						document.forms['form1']['email'].value = "";
+						document.forms['form1']['tel_num'].value = "";
+						document.forms['form1']['division'].value = "";
+						document.forms['form1']['fax_num'].value = "";
+						document.forms['form1']['hp1'].value = "";
+						document.forms['form1']['hp2'].value = "";
+						document.forms['form1']['hp3'].value = "";
+						document.forms['form1']['hdn_mode'].value = "NEW_M";
+						document.forms['form1']['hdn_member_no'].value = "<%=ds.getString("member_no")%>";
+						document.forms['form1']['hdn_person_seq'].value = "";
+						document.forms['form1']['user_id'].readOnly = false;
+						document.forms['form1']['user_id'].className = "label";
+						document.getElementById("btn_chkid").style.display = "";
+						document.forms['form1']['chk_id'].value = "";
+	<%
 					}else{
-%>
-						sVendMsg	=	"°í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
-						document.forms['form1']['member_slno1'].value		=	"";
-						document.forms['form1']['member_slno2'].value		=	"";
-						document.forms['form1']['member_name'].value		=	"";
-						document.forms['form1']['boss_name'].value			=	"";
-						document.forms['form1']['condition'].value			=	"";
-						document.forms['form1']['category'].value				=	"";
-						document.forms['form1']['post_code'].value			=	"";
-						document.forms['form1']['address'].value				=	"";
-						document.forms['form1']['user_id'].value				=	"";
-						document.forms['form1']['user_name'].value			=	"";
-						document.forms['form1']['position'].value				=	"";
-						document.forms['form1']['email'].value					=	"";
-						document.forms['form1']['tel_num'].value				=	"";
-						document.forms['form1']['division'].value				=	"";
-						document.forms['form1']['fax_num'].value				=	"";
-						document.forms['form1']['hp1'].value						=	"";
-						document.forms['form1']['hp2'].value						=	"";
-						document.forms['form1']['hp3'].value						=	"";
-						document.forms['form1']['hdn_mode'].value				=	"ERROR";
-						document.forms['form1']['hdn_member_no'].value	=	"";
-						document.forms['form1']['hdn_person_seq'].value	=	"";
-						document.forms['form1']['user_id'].readOnly 				= false;
-						document.forms['form1']['user_id'].className 				= "label";
-						document.getElementById("btn_chkid").style.display	=	"";
-						document.forms['form1']['chk_id'].value							=	"";
-<%
+	%>
+						sVendMsg = "í•´ë‹¹ ì‚¬ì—…ìë²ˆí˜¸ì˜ ê°€ì…ì´ ë¶ˆê°€í•©ë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
+						document.forms['form1']['member_slno1'].value = "";
+						document.forms['form1']['member_slno2'].value = "";
+						document.forms['form1']['member_name'].value = "";
+						document.forms['form1']['boss_name'].value = "";
+						document.forms['form1']['condition'].value = "";
+						document.forms['form1']['category'].value = "";
+						document.forms['form1']['post_code'].value = "";
+						document.forms['form1']['address'].value = "";
+						document.forms['form1']['user_id'].value = "";
+						document.forms['form1']['user_name'].value = "";
+						document.forms['form1']['position'].value = "";
+						document.forms['form1']['email'].value = "";
+						document.forms['form1']['tel_num'].value = "";
+						document.forms['form1']['division'].value = "";
+						document.forms['form1']['fax_num'].value = "";
+						document.forms['form1']['hp1'].value = "";
+						document.forms['form1']['hp2'].value = "";
+						document.forms['form1']['hp3'].value = "";
+						document.forms['form1']['hdn_mode'].value = "ERROR";
+						document.forms['form1']['hdn_member_no'].value = "";
+						document.forms['form1']['hdn_person_seq'].value = "";
+						document.forms['form1']['user_id'].readOnly = false;
+						document.forms['form1']['user_id'].className = "label";
+						document.getElementById("btn_chkid").style.display = "";
+						document.forms['form1']['chk_id'].value = "";
+	<%
 					}
 				}
 			}
-		}
-	}else
-	{
+		}else{
 %>
-		sVendMsg	=	"µî·Ï°¡´ÉÇÑ ½Å±Ô»ç¾÷ÀÚÀÔ´Ï´Ù.";
-		document.forms['form1']['member_slno1'].value		=	"";
-		document.forms['form1']['member_slno2'].value		=	"";
-		document.forms['form1']['member_name'].value		=	"";
-		document.forms['form1']['boss_name'].value			=	"";
-		document.forms['form1']['condition'].value			=	"";
-		document.forms['form1']['category'].value				=	"";
-		document.forms['form1']['post_code'].value			=	"";
-		document.forms['form1']['address'].value				=	"";
-		document.forms['form1']['user_id'].value				=	"";
-		document.forms['form1']['user_name'].value			=	"";
-		document.forms['form1']['position'].value				=	"";
-		document.forms['form1']['email'].value					=	"";
-		document.forms['form1']['tel_num'].value				=	"";
-		document.forms['form1']['division'].value				=	"";
-		document.forms['form1']['fax_num'].value				=	"";
-		document.forms['form1']['hp1'].value						=	"";
-		document.forms['form1']['hp2'].value						=	"";
-		document.forms['form1']['hp3'].value						=	"";
-		document.forms['form1']['hdn_mode'].value				=	"NEW";
-		document.forms['form1']['hdn_member_no'].value	=	"";
-		document.forms['form1']['hdn_person_seq'].value	=	"";
-		document.forms['form1']['user_id'].readOnly 				= false;
-		document.forms['form1']['user_id'].className 				= "label";
-		document.getElementById("btn_chkid").style.display	=	"";
-		document.forms['form1']['chk_id'].value							=	"";
-<%
+			sVendMsg = "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì‚¬ì—…ìì…ë‹ˆë‹¤. ê³ ê°ì§€ì›ì„¼í„°ì— ë¬¸ì˜í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
+			document.forms['form1']['member_slno1'].value = "";
+			document.forms['form1']['member_slno2'].value = "";
+			document.forms['form1']['member_name'].value = "";
+			document.forms['form1']['boss_name'].value = "";
+			document.forms['form1']['condition'].value = "";
+			document.forms['form1']['category'].value = "";
+			document.forms['form1']['post_code'].value = "";
+			document.forms['form1']['address'].value = "";
+			document.forms['form1']['user_id'].value = "";
+			document.forms['form1']['user_name'].value = "";
+			document.forms['form1']['position'].value = "";
+			document.forms['form1']['email'].value = "";
+			document.forms['form1']['tel_num'].value = "";
+			document.forms['form1']['division'].value = "";
+			document.forms['form1']['fax_num'].value = "";
+			document.forms['form1']['hp1'].value = "";
+			document.forms['form1']['hp2'].value = "";
+			document.forms['form1']['hp3'].value = "";
+			document.forms['form1']['hdn_mode'].value = "ERROR";
+			document.forms['form1']['hdn_member_no'].value = "";
+			document.forms['form1']['hdn_person_seq'].value = "";
+			document.forms['form1']['user_id'].readOnly = false;
+			document.forms['form1']['user_id'].className = "label";
+			document.getElementById("btn_chkid").style.display = "";
+			document.forms['form1']['chk_id'].value = "";
+<%			
+		}
 	}
 %>
-		document.getElementById("font_vendcd_msg").innerHTML			=	sVendMsg;
-		document.getElementById("span_memner_gubun_nm").innerHTML	=	sMemberGubunNm;
+		document.getElementById("font_vendcd_msg").innerHTML = sVendMsg;
+		document.getElementById("span_memner_gubun_nm").innerHTML = sMemberGubunNm;
 	</script>

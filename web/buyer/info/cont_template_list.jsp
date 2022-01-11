@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataObject templateDao = new DataObject("tcb_cont_template");
 //templateDao.setDebug(out);
-DataSet template = templateDao.find(" member_no like '%"+_member_no+"%' and status > '0' " ,"*", " template_cd asc ");
+DataSet template = templateDao.find(" member_no like '%"+_member_no+"%' and status > '0' " ,"*", " use_yn desc, display_seq asc ");
 
 int cnt = template.size();
 while(template.next()){
 	template.put("__ord", cnt--);
-	template.put("use_yn", template.getString("use_yn").equals("Y")?"»ç¿ë":"¹Ì»ç¿ë");
+	template.put("use_yn", template.getString("use_yn").equals("Y")?"ì‚¬ìš©":"ë¯¸ì‚¬ìš©");
 	if(!template.getString("display_name").equals("")){
 		template.put("template_name",template.getString("display_name"));	
 	}

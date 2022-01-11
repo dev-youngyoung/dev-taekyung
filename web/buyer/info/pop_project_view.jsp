@@ -1,26 +1,26 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String project_seq = u.request("project_seq");
 if(project_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 }
 DataObject projectDao = new DataObject("tcb_project");
 DataSet project = projectDao.find(" member_no = '"+_member_no+"' and project_seq = '"+project_seq+"' ");
 if(!project.next()){
-	u.jsError("ÇÁ·ÎÁ§Æ® Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í”„ë¡œì íŠ¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 project.put("project_cont_date", u.getTimeString("yyyy-MM-dd",project.getString("project_cont_date")));
 project.put("etc1", u.nl2br(project.getString("etc1")));
 project.put("etc2", u.nl2br(project.getString("etc2")));
-project.put("use_yn_nm", project.getString("use_yn").equals("Y")?"ÁøÇàÁß":"Á¾·á");
+project.put("use_yn_nm", project.getString("use_yn").equals("Y")?"ì§„í–‰ì¤‘":"ì¢…ë£Œ");
 
 project.put("reg_date", u.getTimeString("yyyy-MM-dd", project.getString("reg_date")));
 DataObject peronDao= new DataObject("tcb_person");
 project.put("reg_name", projectDao.getOne("select user_name from tcb_person where member_no = '"+_member_no+"' and user_id = '"+project.getString("reg_id")+"' "));
 
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 }
 
@@ -28,7 +28,7 @@ if(u.isPost() && f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("info.pop_project_view");
-p.setVar("popup_title","ÇÁ·ÎÁ§Æ® Á¶È¸");
+p.setVar("popup_title","í”„ë¡œì íŠ¸ ì¡°íšŒ");
 p.setVar("modify", true);
 p.setVar("project",project);
 p.setVar("form_script", f.getScript());

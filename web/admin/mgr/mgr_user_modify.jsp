@@ -1,28 +1,28 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String admin_id = u.request("admin_id");
 if(admin_id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject mgrUserDao = new DataObject("tcc_admin");
 DataSet mgr_user = mgrUserDao.find("admin_id = '"+admin_id+"' ");
 if(!mgr_user.next()){
-	u.jsError("°ü¸®ÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê´€ë¦¬ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("admin_id", mgr_user.getString("admin_id"),"hname:'°ü¸®ÀÚ¾ÆÀÌµð', required:'Y'");
-f.addElement("admin_name", mgr_user.getString("admin_name"),"hname:'°ü¸®ÀÚ¸í' , required:'Y'");
-f.addElement("passwd", null,"hname:'ºñ¹Ð¹øÈ£',option:'userpw', match:'passwd2'");
-f.addElement("admin_ip", mgr_user.getString("admin_ip"),"hname:'°ü¸®ÀÚIP' ");
-f.addElement("auth_cd", mgr_user.getString("auth_cd"),"hname:'±ÇÇÑÄÚµå' , required:'Y'");
+f.addElement("admin_id", mgr_user.getString("admin_id"),"hname:'ê´€ë¦¬ìžì•„ì´ë””', required:'Y'");
+f.addElement("admin_name", mgr_user.getString("admin_name"),"hname:'ê´€ë¦¬ìžëª…' , required:'Y'");
+f.addElement("passwd", null,"hname:'ë¹„ë°€ë²ˆí˜¸',option:'userpw', match:'passwd2'");
+f.addElement("admin_ip", mgr_user.getString("admin_ip"),"hname:'ê´€ë¦¬ìžIP' ");
+f.addElement("auth_cd", mgr_user.getString("auth_cd"),"hname:'ê¶Œí•œì½”ë“œ' , required:'Y'");
 
 DataObject authDao = new DataObject("tcc_auth");
 DataSet authInfo = authDao.find("status = '10' ","*","auth_nm asc");
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 
 	DB db = new DB();
@@ -36,11 +36,11 @@ if(u.isPost() && f.validate()){
 	db.setCommand(mgrUserDao.getUpdateQuery(" admin_id = '"+admin_id+"' "), mgrUserDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.","mgr_user_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","mgr_user_modify.jsp?"+u.getQueryString());
 	return;
 }
 

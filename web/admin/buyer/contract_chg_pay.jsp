@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String member_no = u.request("member_no");
 if(cont_no.equals("")||cont_chasu.equals("")||member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,7 +12,7 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'";
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsError("°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -22,7 +22,7 @@ DB db = new DB();
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(where + " and member_no = '"+member_no+"' " );
 if(!cust.next()){
-	u.jsError("¹«·áÃ³¸® ´ë»ó ¾÷Ã¼°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ë¬´ë£Œì²˜ë¦¬ ëŒ€ìƒ ì—…ì²´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 custDao.item("pay_yn","Y");
@@ -32,9 +32,9 @@ db.setCommand(custDao.getUpdateQuery(where+" and member_no = '"+member_no+"' "),
 
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("Ã³¸® ÇÏ¿´½À´Ï´Ù.","contract_list.jsp?"+u.getQueryString("cont_no,cont_chasu,member_no"));
+u.jsAlertReplace("ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","contract_list.jsp?"+u.getQueryString("cont_no,cont_chasu,member_no"));
 return;
 %>

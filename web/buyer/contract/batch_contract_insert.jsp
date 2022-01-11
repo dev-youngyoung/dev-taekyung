@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-//¿¡½ºÄÉÀÌ½ºÅä¾ÆÁÖ½ÄÈ¸»ç Ã»±¸¼­
+//ì—ìŠ¤ì¼€ì´ìŠ¤í† ì•„ì£¼ì‹íšŒì‚¬ ì²­êµ¬ì„œ
 
 DataObject doTM = new DataObject("tcb_member");
 DataSet dsTM = doTM.find("member_no = '"+_member_no+"'");
 if(!dsTM.next()){
-	u.jsError("ÀÛ¼º ¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ìž‘ì„± ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }else
 {

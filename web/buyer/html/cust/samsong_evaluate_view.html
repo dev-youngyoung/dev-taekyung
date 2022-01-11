@@ -1,9 +1,17 @@
+ï»¿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
 
 <form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
 <input type="hidden" name="data">
@@ -14,7 +22,7 @@
     <div class="div_table">
         <div class="util-row">
             <div class="push-left">
-                <h3>Çù·Â»çÆò°¡Á¤º¸</h3>
+                <h3>í˜‘ë ¥ì‚¬í‰ê°€ì •ë³´</h3>
             </div>
         </div>
         <table>
@@ -25,11 +33,11 @@
                 <col width="35%">
             </colgroup>
             <tr>
-                <th class="req-check">±âÁØ³â¿ù</th>
+                <th class="req-check">ê¸°ì¤€ë…„ì›”</th>
                 <td>
                     <input type="text" id="yyyymm" name="yyyymm" maxlength="6" onkeydown="num_only()" style="width: 100px;ime-mode:disabled;" <!-- IF START 'yyyymm' -->class="in_readonly" readonly<!-- IF END 'yyyymm' -->/>
                 </td>
-                <th>»óÅÂ</th>
+                <th>ìƒíƒœ</th>
                 <td>{{evaluate.status_nm}}</td>
             </tr>
         </table>
@@ -37,10 +45,10 @@
         
         <div class="util-row">
         <div class="push-right" style="z-index:1">
-                <button type="button" name="btn_close" class="sbtn color ico-download" value="¿¢¼¿´Ù¿î" onClick="javascript:excelDown();"><span></span>¿¢¼¿´Ù¿î</button>
+                <button type="button" name="btn_close" class="sbtn color ico-download" value="ì—‘ì…€ë‹¤ìš´" onClick="javascript:excelDown();"><span></span>ì—‘ì…€ë‹¤ìš´</button>
                 <!-- IFNOT START 'evaluate.end_yn' -->
                 <div style="z-index:10;position: relative; float: left; top:3px;left:210px;opacity:0;"><input type="file" name="upload_xls" style="width:120px; cursor:pointer;" onchange="excelRead();this.value='';"></div>
-                <button type="button" name="btn_close" class="sbtn color ico-save auth_css" value="¿¢¼¿¾÷·Îµå" onclick="excelRead();"><span></span>¿¢¼¿¾÷·Îµå</button>
+                <button type="button" name="btn_close" class="sbtn color ico-save auth_css" value="ì—‘ì…€ì—…ë¡œë“œ" onclick="excelRead();"><span></span>ì—‘ì…€ì—…ë¡œë“œ</button>
                 <!-- IFNOT END 'evaluate.end_yn' -->
                 
             </div>
@@ -49,13 +57,13 @@
 
         <div class="btn-group-wrap">
             <!-- IFNOT START 'evaluate.end_yn' -->
-            <button type="submit" class="btn color ico-save" ><span></span> ÀúÀå</button>
+            <button type="submit" class="btn color ico-save" ><span></span> ì €ì¥</button>
             <!-- IF START 'modify' -->
-            <button type="button" class="btn color ico-save" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='./samsong_evaluate_delete.jsp?{{query}}'}"><span></span> »èÁ¦</button>
-            <button type="button" class="btn color ico-confirm auth_css" onclick="if(confirm('È®Á¤Ã³¸®ÇÏ½Ã°Ú½À´Ï±î?')){location.href='./samsong_evaluate_end.jsp?{{query}}'}"><span></span>È®Á¤</button>
+            <button type="button" class="btn color ico-save" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='./samsong_evaluate_delete.jsp?{{query}}'}"><span></span> ì‚­ì œ</button>
+            <button type="button" class="btn color ico-confirm auth_css" onclick="if(confirm('í™•ì •ì²˜ë¦¬í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='./samsong_evaluate_end.jsp?{{query}}'}"><span></span>í™•ì •</button>
             <!-- IF END 'modify' -->
             <!-- IFNOT END 'evaluate.end_yn' -->
-            <button type="button" name="btn_close" class="btn color ico-list" value="¸ñ·ÏÀ¸·Î" onclick="location.href = 'samsong_evaluate_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+            <button type="button" name="btn_close" class="btn color ico-list" value="ëª©ë¡ìœ¼ë¡œ" onclick="location.href = 'samsong_evaluate_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
         </div>
 
     </div>
@@ -91,7 +99,7 @@
         }
 
         if(!files) {
-            alert("³»¿ª¾÷·Îµå ±â´ÉÀº Internet Explorer 10 ÀÌ»ó ¶Ç´Â Å©·Ò(chrome)¿¡¼­¸¸ ÀÌ¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+            alert("ë‚´ì—­ì—…ë¡œë“œ ê¸°ëŠ¥ì€ Internet Explorer 10 ì´ìƒ ë˜ëŠ” í¬ë¡¬(chrome)ì—ì„œë§Œ ì´ìš©í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
             return true;
         }
 
@@ -126,7 +134,7 @@
 
         var sheetNames = Object.keys(output);
         if(!sheetNames){
-            alert("Çü½Ä¿¡ ¸ÂÁö ¾Ê´Â ÆÄÀÏÀÔ´Ï´Ù.\n\n¾÷·Îµå ÆÄÀÏÀ» È®ÀÎ ÇÏ¼¼¿ä.");
+            alert("í˜•ì‹ì— ë§ì§€ ì•ŠëŠ” íŒŒì¼ì…ë‹ˆë‹¤.\n\nì—…ë¡œë“œ íŒŒì¼ì„ í™•ì¸ í•˜ì„¸ìš”.");
             return;
         }
         if(sheetNames.length > 0) {
@@ -134,7 +142,7 @@
             try {
                 output[sheetNames][0];
             } catch (e) {
-                alert("Çü½Ä¿¡ ¸ÂÁö ¾Ê´Â ÆÄÀÏÀÔ´Ï´Ù.\n\n¾÷·Îµå ÆÄÀÏÀ» È®ÀÎ ÇÏ¼¼¿ä.");
+                alert("í˜•ì‹ì— ë§ì§€ ì•ŠëŠ” íŒŒì¼ì…ë‹ˆë‹¤.\n\nì—…ë¡œë“œ íŒŒì¼ì„ í™•ì¸ í•˜ì„¸ìš”.");
                 return;
             }
 
@@ -156,7 +164,7 @@
             dataProvider.setRows(data);
             gridView.closeProgress();
         }
-        //alert("Çù·Â»çÆò°¡Á¤º¸ÆÄÀÏÀÌ ¾÷·Îµå µÇ¾ú½À´Ï´Ù.");
+        //alert("í˜‘ë ¥ì‚¬í‰ê°€ì •ë³´íŒŒì¼ì´ ì—…ë¡œë“œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
     }
 
     function to_json(workbook) {
@@ -172,21 +180,21 @@
         return result;
     }
 
-    // ¿¢¼¿ ´Ù¿î
+    // ì—‘ì…€ ë‹¤ìš´
     function excelDown(){
 
         gridView.exportGrid({
             type: "excel",
             target: "local",
-            fileName: "Çù·Â»çÆò°¡Á¤º¸°ü¸®.xlsx",
+            fileName: "í˜‘ë ¥ì‚¬í‰ê°€ì •ë³´ê´€ë¦¬.xlsx",
             showProgress: true,
             applyDynamicStyles: false,
-            progressMessage: "´Ù¿î·Îµå ÁøÇà ÁßÀÔ´Ï´Ù.",
+            progressMessage: "ë‹¤ìš´ë¡œë“œ ì§„í–‰ ì¤‘ì…ë‹ˆë‹¤.",
             indicator: "hidden",
             header: "visible",
             footer: "hidden",
             compatibility: "2007",
-            done: function () {  //³»º¸³»±â ¿Ï·á ÈÄ ½ÇÇàµÇ´Â ÇÔ¼ö
+            done: function () {  //ë‚´ë³´ë‚´ê¸° ì™„ë£Œ í›„ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
                 // preview();
             }
         });
@@ -207,7 +215,7 @@
                 updatable: true,
                 deletable: true,
                 deleteRowsConfirm: true,
-                deleteRowsMessage: "»èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?"
+                deleteRowsMessage: "ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?"
             }
             ,displayOptions:{
                 //columnWidth : 200
@@ -239,11 +247,11 @@
     function setColumns() {
 
         var columns = [];
-        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"»ç¾÷ÀÚ¹øÈ£" ,width:200 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,styles :{textAlignment : "center"}});
-        columns.push({name:"member_name" ,fieldName:"member_name" ,header:"¾÷Ã¼¸í" ,width:200 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,styles :{textAlignment : "center"}});
-        columns.push({name:"q_point" ,fieldName:"q_point" ,header:"Ç°Áú(Q) ÆòÁ¡" ,width:100 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,dataType:"number",styles:{textAlignment:"far" ,numberFormat:"###.#"}});
-        columns.push({name:"s_point" ,fieldName:"s_point" ,header:"¼­ºñ½º(S) ÆòÁ¡" ,width:100 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,dataType:"number",styles:{textAlignment:"far" ,numberFormat:"###.#"}});
-        columns.push({name:"t_point" ,fieldName:"t_point" ,header:"±â¼ú(T) ÆòÁ¡" ,width:100 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,dataType:"number",styles:{textAlignment:"far" ,numberFormat:"###.#"}});
+        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"ì‚¬ì—…ìë²ˆí˜¸" ,width:200 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,styles :{textAlignment : "center"}});
+        columns.push({name:"member_name" ,fieldName:"member_name" ,header:"ì—…ì²´ëª…" ,width:200 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,styles :{textAlignment : "center"}});
+        columns.push({name:"q_point" ,fieldName:"q_point" ,header:"í’ˆì§ˆ(Q) í‰ì " ,width:100 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,dataType:"number",styles:{textAlignment:"far" ,numberFormat:"###.#"}});
+        columns.push({name:"s_point" ,fieldName:"s_point" ,header:"ì„œë¹„ìŠ¤(S) í‰ì " ,width:100 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,dataType:"number",styles:{textAlignment:"far" ,numberFormat:"###.#"}});
+        columns.push({name:"t_point" ,fieldName:"t_point" ,header:"ê¸°ìˆ (T) í‰ì " ,width:100 ,editable:true ,movable:false ,sortable:true, visible:true,readOnly:false,dataType:"number",styles:{textAlignment:"far" ,numberFormat:"###.#"}});
 
         dataProvider.setFields(columns);
         gridView.setColumns(columns);
@@ -279,10 +287,10 @@
         if(validate(f)){
         	gridView.commit();
         	if(dataProvider.getRowCount()<1){
-        		alert("Æò°¡Á¤º¸¸¦ 1°³ ÀÌ»ó µî·Ï ÇÏ¼¼¿ä.");
+        		alert("í‰ê°€ì •ë³´ë¥¼ 1ê°œ ì´ìƒ ë“±ë¡ í•˜ì„¸ìš”.");
         		return false;
         	}
-        	if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+        	if(confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
         		var jRowsData = dataProvider.getJsonRows(0,dataProvider.getRowCount()-1);
         		var grid_string = encodeURIComponent(JSON.stringify(jRowsData));
         		f['data'].value=grid_string;

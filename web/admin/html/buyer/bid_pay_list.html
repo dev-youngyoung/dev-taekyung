@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get">
+ï»¿<form novalidate name="form1" method="get">
 <input type="hidden" name="mode" />
 <div class="search_div">
 <table class="search_table">
@@ -10,7 +10,7 @@
     <col width="15%">
   </colgroup>
   <tr>
-    <th><p>°Å·¡ÀÏ½Ã</p></th>
+    <th><p>ê±°ëž˜ì¼ì‹œ</p></th>
     <td>
 		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
@@ -18,10 +18,10 @@
     <td colspan="3">
         <table width="100%">
             <tr>
-                <th width="124"><p>°áÁ¦¼ö´Ü</p></th>
+                <th width="124"><p>ê²°ì œìˆ˜ë‹¨</p></th>
                 <td align="left">
                     <select name="s_pay_type">
-                        <option value="">ÀüÃ¼</option>
+                        <option value="">ì „ì²´</option>
                         <!-- LOOP START 'code_pay_type' -->
                         <option value="{{code_pay_type.id}}">{{code_pay_type.value}}</option>
                         <!-- LOOP END 'code_pay_type' -->
@@ -34,12 +34,12 @@
     </td>
   </tr>
   <tr>
-	<th><p>¾÷Ã¼¸í</p></th>
+	<th><p>ì—…ì²´ëª…</p></th>
     <td><input type="text" name="s_member_name"  style="width:95%"></td>
-	<th><p>»ç¾÷ÀÚ¹øÈ£</p></th>
+	<th><p>ì‚¬ì—…ìžë²ˆí˜¸</p></th>
     <td><input type="text" name="s_vendcd" style="width:95%"></td>
     <td align="right">
-       <button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+       <button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
     </td>    
   </tr>
 </table>
@@ -48,7 +48,7 @@
 {{form_script}}
 <div class="util-row">
 <div class="push-right">	  
-	  <button type="button" class="sbtn color ico-write" value="¼öµ¿" onClick="fWrite()"><span></span>¼öµ¿</button>
+	  <button type="button" class="sbtn color ico-write" value="ìˆ˜ë™" onClick="fWrite()"><span></span>ìˆ˜ë™</button>
 </div>
 </div>
 
@@ -58,7 +58,7 @@
     </div>
     
  <div class="push-right">
- 		¸ÅÃâ±Ý¾×: {{total_num}}°Ç/ {{total_amt}}¿ø
+ 		ë§¤ì¶œê¸ˆì•¡: {{total_num}}ê±´/ {{total_amt}}ì›
  </div>
  </div>
  <div class="div_table">
@@ -74,14 +74,14 @@
     <col width="12%">
   </colgroup>
   <tr>
-    <th>°áÁ¦¾÷Ã¼</th>
-    <th>¹ßÁÖÃ³</th>
-    <th>°ø°í¸í</th>
-    <th>°áÁ¦±Ý¾×</th>
-    <th>¼ö´Ü</th>
-    <th>¿µ¼öÁõ</th>
-    <th>°Å·¡ÀÏ½Ã</th>
-    <th>ºñ°í</th>
+    <th>ê²°ì œì—…ì²´</th>
+    <th>ë°œì£¼ì²˜</th>
+    <th>ê³µê³ ëª…</th>
+    <th>ê²°ì œê¸ˆì•¡</th>
+    <th>ìˆ˜ë‹¨</th>
+    <th>ì˜ìˆ˜ì¦</th>
+    <th>ê±°ëž˜ì¼ì‹œ</th>
+    <th>ë¹„ê³ </th>
   </tr>
   <!-- IF START 'list' -->
   <!-- LOOP START 'list' -->
@@ -101,7 +101,7 @@
   <!-- IF END 'list' -->
   <!-- IFNOT START 'list' -->
   <tr>
-	<td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+	<td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
   </tr>
   <!-- IFNOT END 'list' -->
  </table>
@@ -129,7 +129,7 @@
  function fDownExcelCust(){
      var f = document.forms['form1'];
      if(f['s_member_name'].value=='') {
-         alert('¾÷Ã¼¸íÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä');
+         alert('ì—…ì²´ëª…ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”');
          return;
      }
      f.action = "./pay_info_list_excel.jsp";

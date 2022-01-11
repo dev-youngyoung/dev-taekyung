@@ -1,9 +1,9 @@
-<form name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data">
 <div style="width:100%;text-align:right;padding:10px 10px">
 	<!-- IF START 'btn' -->
-	<button type="button" class="sbtn color ico-delete" onclick="if(confirm('»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?')){location.href='pop_warr_delete.jsp?{{query}}';}"><span></span>»èÁ¦</button>
+	<button type="button" class="sbtn color ico-delete" onclick="if(confirm('ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='pop_warr_delete.jsp?{{query}}';}"><span></span>ì‚­ì œ</button>
 	<!-- IF END 'btn' -->
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 <div class="div_table">
 	<table>
@@ -12,49 +12,49 @@
 			<col width="75%"/>
 		</colgroup>
 		<tr>
-			<th> º¸Áõ¼­Á¾·ù</th>
+			<th> ë³´ì¦ì„œì¢…ë¥˜</th>
 			<td>
 				{{warr.warr_type_name}}
 			</td>
 		</tr>
 		<tr>
-			<th> ¹ß±Ş±â°ü</th>
+			<th> ë°œê¸‰ê¸°ê´€</th>
 			<td>{{warr.warr_office}}</td>
 		</tr>
 		<tr>
-			<th> Áõ±Ç¹øÈ£</th>
+			<th> ì¦ê¶Œë²ˆí˜¸</th>
 			<td>{{warr.warr_no}}</td>
 		</tr>
 		<tr>
-			<th> º¸Áõ±â°£</th>
+			<th> ë³´ì¦ê¸°ê°„</th>
 			<td>{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
 		</tr>
 		<tr>
-			<th> º¸Áõ±İ¾×</th>
+			<th> ë³´ì¦ê¸ˆì•¡</th>
 			<td>
-				£Ü {{warr.warr_amt}}
+				ï¿¦ {{warr.warr_amt}}
 			</td>
 		</tr>
 		<tr>
-			<th> ¹ß±ŞÀÏ</th>
+			<th> ë°œê¸‰ì¼</th>
 			<td>
 				{{warr.warr_date}}
 			</td>
 		</tr>
 		<tr>
-			<th> Ã·ºÎÆÄÀÏ</th>
+			<th> ì²¨ë¶€íŒŒì¼</th>
 			<td>
 					<!-- IFNOT START 'warr.file_name' -->
-					¹ÌÃ·ºÎ
+					ë¯¸ì²¨ë¶€
 					<!-- IFNOT END 'warr.file_name' -->
 					<!-- IF START 'warr.file_name' -->
 				{{warr.doc_name}}&nbsp;&nbsp;({{warr.file_size}})&nbsp;
-				<input type="button" class="down4" value="´Ù¿î·Îµå" onclick="filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')""/>
+				<input type="button" class="down4" value="ë‹¤ìš´ë¡œë“œ" onclick="filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')""/>
 					<!-- IF END 'warr.file_name' -->
 			</td>
 		</tr>
 		<tr>
-			<th> ºñ°í</th>
+			<th> ë¹„ê³ </th>
 			<td>
 				{{warr.etc}}
 			</td>
@@ -65,16 +65,16 @@
 {{form_script}}
 
 <script language="javascript">
-// ¼­¿ïº¸Áõº¸ÇèÀÌ¸é ÇÊ¼ö Ã¼Å© ¾ÈÇÔ.(µ¿Èñ¿ÀÅä)
+// ì„œìš¸ë³´ì¦ë³´í—˜ì´ë©´ í•„ìˆ˜ ì²´í¬ ì•ˆí•¨.(ë™í¬ì˜¤í† )
 function warrCheck()
 {
 	var warr_office = document.form1.warr_office.value;
-	if(warr_office != "¼­¿ïº¸Áõº¸Çè")
+	if(warr_office != "ì„œìš¸ë³´ì¦ë³´í—˜")
 	{
 		var el = document.form1.warr_file;
 		if (el.value == null || el.value == "")
 		{
-			alert("º¸Áõ¼­ ÆÄÀÏÀ» Ã·ºÎÇØÁÖ¼¼¿ä.");
+			alert("ë³´ì¦ì„œ íŒŒì¼ì„ ì²¨ë¶€í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 	}

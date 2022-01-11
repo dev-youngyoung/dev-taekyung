@@ -14,10 +14,15 @@ public class XssFilter implements Filter
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hReq = (HttpServletRequest) req;
 		String method = hReq.getMethod();
-		if(method.equals("GET") || method.equals("POST")) {
-			chain.doFilter(new RequestWrapper((HttpServletRequest) req), resp);
+		if (method.equals("GET") || method.equals("POST")) {
+			String path = ((HttpServletRequest) req).getRequestURI();
+			if (path.contains("/ApprovalReceiver")) {
+				chain.doFilter(req, resp);
+			} else {
+				chain.doFilter(new RequestWrapper((HttpServletRequest) req), resp);
+			}
 		} else {
-			System.out.println("----- Çã¿ëÇÏÁö ¾Ê´Â method ---> " + method);
+			System.out.println("----- í—ˆìš©í•˜ì§€ ì•ŠëŠ” method ---> " + method);
 			//((HttpServletResponse)resp).sendRedirect("/501.html");
 			hReq.getRequestDispatcher("/error/501.jsp").forward(req, resp);
 			return;

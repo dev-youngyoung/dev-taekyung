@@ -4,19 +4,19 @@ import java.text.*;
 /**
  *<pre>
  *
- * ÆÄÀÏ¸í : NumUtil
- * ±â   ´É : ¼ıÀÚ °ü·Ã Ã³¸® À¯Æ¿
- *	ÃÖÃÊ ÀÛ¼ºÀÏ	: 2000. 06. 08
- * Comments	: ¼ıÀÚ °ü·Ã À¯Æ¿
+ * íŒŒì¼ëª… : NumUtil
+ * ê¸°   ëŠ¥ : ìˆ«ì ê´€ë ¨ ì²˜ë¦¬ ìœ í‹¸
+ *	ìµœì´ˆ ì‘ì„±ì¼	: 2000. 06. 08
+ * Comments	: ìˆ«ì ê´€ë ¨ ìœ í‹¸
  * @version	: 1.0
- * ¼öÁ¤³»¿ª		: 
+ * ìˆ˜ì •ë‚´ì—­		: 
  *
  *</pre>
  */
 
 public class NumUtil
 {
-	/**	NullÀ» 0À¸·Î ¹Ù²Û´Ù	*/
+	/**	Nullì„ 0ìœ¼ë¡œ ë°”ê¾¼ë‹¤	*/
 	public static Double Null2Zero(Double pValue)
 	{
 		Double zValue = new Double(0);
@@ -27,7 +27,7 @@ public class NumUtil
 	}
 
 
-	/** ¼ıÀÚÇü ¾Õ¿¡ 0 SET. */
+	/** ìˆ«ìí˜• ì•ì— 0 SET. */
 	public static String formatZero(String str, int nNum) 
 	{  
 		int iCnt = 0;  	
@@ -50,7 +50,7 @@ public class NumUtil
 		}
 	}   
 
-	/** ¼ıÀÚ¿¡ ÄŞ¸¶ ³Ö±â */
+	/** ìˆ«ìì— ì½¤ë§ˆ ë„£ê¸° */
 	public static String sAddComma(String sData, boolean bEdit) 
 	{		
 		if (sData==null) 
@@ -81,7 +81,7 @@ public class NumUtil
 	}
 
 
-	/** DoubleÇü ¼ıÀÚ¸¦ ¹Ş¾Æ¼­ ³ª´©±â */
+	/** Doubleí˜• ìˆ«ìë¥¼ ë°›ì•„ì„œ ë‚˜ëˆ„ê¸° */
 	public static double dDivide(double dNum1,double dNum2)
 	{
 		if (dNum1==0.0) return 0.0;
@@ -89,45 +89,45 @@ public class NumUtil
 	}
 
 
-	//doubleÇü ÀÚ¸®¼ö¿¡ µû¸¥ ¹İ¿Ã¸², ¿Ã¸², ¹ö¸²
-	public static double decimal_ctl(double value, int place, int type) { //place °ªÀÌ º¯°æÇÒ °ªÀÇ ÀÚ¸®¼ö¸¦ ¹ş¾î³¯¶§ Ã³¸® Ãß°¡ÇØ¾ßÇÔ()
+	//doubleí˜• ìë¦¬ìˆ˜ì— ë”°ë¥¸ ë°˜ì˜¬ë¦¼, ì˜¬ë¦¼, ë²„ë¦¼
+	public static double decimal_ctl(double value, int place, int type) { //place ê°’ì´ ë³€ê²½í•  ê°’ì˜ ìë¦¬ìˆ˜ë¥¼ ë²—ì–´ë‚ ë•Œ ì²˜ë¦¬ ì¶”ê°€í•´ì•¼í•¨()
 		if(value == 0)
 			return 0 ;
 
 		double multi = 1 ;
-		if(place < 0 ) {		//¼Ò¼öÁ¡ ÀÌÇÏ
+		if(place < 0 ) {		//ì†Œìˆ˜ì  ì´í•˜
 			place = place+1 ;
 			while (place++ < 0) 
 				multi *= 10.0; 
-		}else{					//¼Ò¼öÁ¡ ÀÌ»ó
+		}else{					//ì†Œìˆ˜ì  ì´ìƒ
 			while (place-- > 0)
 				multi /= 10.0; 
 		}
 		switch(type) {
-			case 1 :			//¹İ¿Ã¸²
-				return Math.round(value * multi)/ multi;	//¸®ÅÏ¹Ş´Â ÂÊ¿¡¼­ intÇüÀ¸·Î Çüº¯È¯ ÇÊ¿ä
-			case 2 :					//¿Ã¸²
+			case 1 :			//ë°˜ì˜¬ë¦¼
+				return Math.round(value * multi)/ multi;	//ë¦¬í„´ë°›ëŠ” ìª½ì—ì„œ intí˜•ìœ¼ë¡œ í˜•ë³€í™˜ í•„ìš”
+			case 2 :					//ì˜¬ë¦¼
 				return Math.ceil(value * multi)/ multi;		
-			case 3 :					//¹ö¸²
+			case 3 :					//ë²„ë¦¼
 				return Math.floor(value * multi)/ multi;	
-			default :					//¾Æ¹«°Íµµ ¾Æ´Ò¶§
+			default :					//ì•„ë¬´ê²ƒë„ ì•„ë‹ë•Œ
 				return value ;
 		}
 	}
 
-	public static String decimal_ctl1(double value, int place, int type) { //place °ªÀÌ º¯°æÇÒ °ªÀÇ ÀÚ¸®¼ö¸¦ ¹ş¾î³¯¶§ Ã³¸® Ãß°¡ÇØ¾ßÇÔ()
+	public static String decimal_ctl1(double value, int place, int type) { //place ê°’ì´ ë³€ê²½í•  ê°’ì˜ ìë¦¬ìˆ˜ë¥¼ ë²—ì–´ë‚ ë•Œ ì²˜ë¦¬ ì¶”ê°€í•´ì•¼í•¨()
 		return Double.toString(decimal_ctl(value, place, type));
 	}
 
-	/** DoubleÇü ¼ıÀÚ¸¦ ¹Ş¾Æ¼­ ¼Ò¼öÁ¡ÀÚ¸® ¿©ºÎ¿¡ µû¶ó ¼Ò¼ıÁ¡ ÀÚ¸´¼ö ¼³Á¤ÇÏ±â 
-	    ±âÁ¸ÀÇ FormatNum ÇÔ¼ö¸¦ ¼öÁ¤ÇÔ*/
+	/** Doubleí˜• ìˆ«ìë¥¼ ë°›ì•„ì„œ ì†Œìˆ˜ì ìë¦¬ ì—¬ë¶€ì— ë”°ë¼ ì†Œìˆ«ì  ìë¦¿ìˆ˜ ì„¤ì •í•˜ê¸° 
+	    ê¸°ì¡´ì˜ FormatNum í•¨ìˆ˜ë¥¼ ìˆ˜ì •í•¨*/
 	public static String FormatNum(double dNum, int digit)
 	{
 		NumberFormat myFormat = NumberFormat.getInstance();
 		String sSosu = Double.toString(dNum);		
 		int nCnt = 0;		
 		if (sSosu.equals("0.0") || digit == 0)
-		{//°ªÀÌ 0 ÀÌ°Å³ª ¼Ò½º¿¡¼­ÀÇ ÀÚ¸´¼ö¸¦ 0À¸·Î ÇÏ¿´À¸¸é ¼Ò¼ıÁ¡ÀÚ¸´¼ö´Â ¹«Á¶°Ç 0ÀÌ´Ù.
+		{//ê°’ì´ 0 ì´ê±°ë‚˜ ì†ŒìŠ¤ì—ì„œì˜ ìë¦¿ìˆ˜ë¥¼ 0ìœ¼ë¡œ í•˜ì˜€ìœ¼ë©´ ì†Œìˆ«ì ìë¦¿ìˆ˜ëŠ” ë¬´ì¡°ê±´ 0ì´ë‹¤.
 			myFormat.setMaximumFractionDigits(0);
 			myFormat.setMinimumFractionDigits(0);
 			return myFormat.format(dNum);
@@ -136,14 +136,14 @@ public class NumUtil
 		{			
 			nCnt = sSosu.substring(sSosu.indexOf(".")+1,sSosu.length()).length();
 			if (nCnt == 1)
-			{//¼Ò¼öÁ¡ÀÚ¸´¼ö°¡ 1°³ÀÏ°æ¿ì
+			{//ì†Œìˆ˜ì ìë¦¿ìˆ˜ê°€ 1ê°œì¼ê²½ìš°
 				if (sSosu.substring(sSosu.length()-1,sSosu.length()).equals("0"))
-				{//³¡ÀÚ¸®°¡ 0 ÀÏ¶§´Â ÀÚ¸´¼ö´Â 0(´õºíÇüÀ» ½ºÆ®¸µÀ¸·Î ÀüÈ¯½Ã¿¡ Á¤¼öÀÏÁö¶óµµ ¼Ò¼öÁ¡ÀÌ ±âº»À¸·Î ºÙ´Â´Ù.)
+				{//ëìë¦¬ê°€ 0 ì¼ë•ŒëŠ” ìë¦¿ìˆ˜ëŠ” 0(ë”ë¸”í˜•ì„ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ì „í™˜ì‹œì— ì •ìˆ˜ì¼ì§€ë¼ë„ ì†Œìˆ˜ì ì´ ê¸°ë³¸ìœ¼ë¡œ ë¶™ëŠ”ë‹¤.)
 					digit = 0;						
 				}
 				else
-				{//³¡ÀÚ¸®°¡ 0ÀÌ ¾Æ´Ï¶ó¸é ¼Ò¼ıÁ¡ÀÌ ÀÖ´Ù´Â ¾Ö±â, Áï ÀÚ¸´¼ö¸¦ Àâ¾ÆÁà¾ß ÇÑ´Ù. 
-				 //´Ü, ½ÇÁ¦ ¼Ò¼ıÁ¡ÀÚ¸´¼ö´Â »ó°ü¾øÀÌ °¢ ¼Ò½º»ó¿¡¼­ÀÇ ÀÚ¸´¼ö¸¦ ±âÁØÀ¸·Î ÇÑ´Ù. 
+				{//ëìë¦¬ê°€ 0ì´ ì•„ë‹ˆë¼ë©´ ì†Œìˆ«ì ì´ ìˆë‹¤ëŠ” ì• ê¸°, ì¦‰ ìë¦¿ìˆ˜ë¥¼ ì¡ì•„ì¤˜ì•¼ í•œë‹¤. 
+				 //ë‹¨, ì‹¤ì œ ì†Œìˆ«ì ìë¦¿ìˆ˜ëŠ” ìƒê´€ì—†ì´ ê° ì†ŒìŠ¤ìƒì—ì„œì˜ ìë¦¿ìˆ˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í•œë‹¤. 
 					if (digit > 0)
 						digit = 1; 
 				}

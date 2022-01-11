@@ -1,30 +1,30 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 f.addElement("s_member_name",null, null);
 f.addElement("s_vendcd",null, null);
 
-String s_member_name = f.get("s_member_name").toLowerCase().replace("kth","ÄÉÀÌÆ¼ÇÏÀÌÅÚ").replace("3m","¾²¸®¿¥").replace("nhÅõÀÚ","¿£¿¡ÀÌÄ¡ÅõÀÚ");
+String s_member_name = f.get("s_member_name").toLowerCase().replace("kth","ì¼€ì´í‹°í•˜ì´í…”").replace("3m","ì“°ë¦¬ì— ").replace("nhíˆ¬ì","ì—”ì—ì´ì¹˜íˆ¬ì");
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
 list.setListNum(10);
 list.setTable("tcb_member");
 list.setFields("*");
-list.addWhere(" member_type in ('01','03') ");// ¿ø»ç¾÷ÀÚ¸¸
+list.addWhere(" member_type in ('01','03') ");// ì›ì‚¬ì—…ìë§Œ
 if(subdomain.equals("wmp"))
 {
-	list.addWhere(" member_no = '20150901887'");// À§¸ŞÇÁ ÀÔÂû¸¸ Á¶È¸
+	list.addWhere(" member_no = '20150901887'");// ìœ„ë©”í”„ ì…ì°°ë§Œ ì¡°íšŒ
 }
 else
 {
-	list.addWhere(" member_no <> '20150901887'");// À§¸ŞÇÁ Á¶È¸ ¾ÈµÇÁ¶·Ï
+	list.addWhere(" member_no <> '20150901887'");// ìœ„ë©”í”„ ì¡°íšŒ ì•ˆë˜ì¡°ë¡
 	list.addSearch("lower(member_name)", s_member_name, "LIKE");
 }
-list.addWhere(" member_no <> '"+_member_no+"'");// ³ª´Â Á¦¿Ü
-list.addWhere(" member_no not in (select member_no from tcb_client where client_no = '"+_member_no+"')");// ±âÁ¸Ãß°¡µÇ¾î ÀÖ´Â ¾øÃ¼ Á¦¿Ü
+list.addWhere(" member_no <> '"+_member_no+"'");// ë‚˜ëŠ” ì œì™¸
+list.addWhere(" member_no not in (select member_no from tcb_client where client_no = '"+_member_no+"')");// ê¸°ì¡´ì¶”ê°€ë˜ì–´ ìˆëŠ” ì—†ì²´ ì œì™¸
 
 list.addSearch("vendcd", f.get("s_vendcd"));
 list.setOrderBy("member_name asc ");
@@ -32,12 +32,12 @@ list.setOrderBy("member_name asc ");
 DataSet ds = new DataSet();
 DataSet noti  = new DataSet(); 
 if(!u.request("search").equals("")){	
-	//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+	//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 	ds = list.getDataSet();
 	
 	while(ds.next()){
 		ds.put("vendcd",u.getBizNo(ds.getString("vendcd")));
-		if(ds.getString("member_no").equals("20160901598")){//NHÅõÀÚÁõ±ÇÀÎ °æ¿ì
+		if(ds.getString("member_no").equals("20160901598")){//NHíˆ¬ìì¦ê¶Œì¸ ê²½ìš°
 			DataObject notiDao = new DataObject("tcb_recruit_noti");
 			noti  = notiDao.find("member_no = '20160901598' and req_sdate <= '"+u.getTimeString("yyyyMMdd")+"' and req_edate >= '"+u.getTimeString("yyyyMMdd")+"' and status = '10'");
 			if(noti.next()){
@@ -49,7 +49,7 @@ if(!u.request("search").equals("")){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_search_company");
-p.setVar("popup_title","¾÷Ã¼°Ë»ö");
+p.setVar("popup_title","ì—…ì²´ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("noti", noti);
 p.setVar("pagerbar", list.getPaging());

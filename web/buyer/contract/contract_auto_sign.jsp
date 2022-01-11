@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String next_page = u.request("next_page");
 
-u.sp("--ÀÚµ¿¼­¸í È£Ãâ  contract_auto_sign.jsp °è¾à¹øÈ£: "+cont_no);
+u.sp("--ìë™ì„œëª… í˜¸ì¶œ  contract_auto_sign.jsp ê³„ì•½ë²ˆí˜¸: "+cont_no);
 
 String default_url = "contract_recvview.jsp?"+u.getQueryString();
 if(!next_page.equals("")){
@@ -14,8 +14,8 @@ if(!next_page.equals("")){
 }
 
 if(cont_no.equals("")||cont_chasu.equals("")){
-	//u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
@@ -24,14 +24,14 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ");
 if(!cont.next()){
-	//u.jsError("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
 if(!cont.getString("status").equals("30")){
-	//u.jsError("°è¾à¼­ »óÅÂÀÌ»óÀ¸·Î ÀÚµ¿ ¼­¸í ÇÒ ¼ö ¾÷½À´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ê³„ì•½ì„œ ìƒíƒœì´ìƒìœ¼ë¡œ ìë™ ì„œëª… í•  ìˆ˜ ì—…ìŠµë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
@@ -47,8 +47,8 @@ while(cust.next()){
 	if(cust.getString("member_no").equals(cont.getString("member_no"))){
 		gap_pay_yn = cust.getString("pay_yn");
 		if(!cust.getString("sign_date").equals("")){
-			//u.jsError("ÀÌ¹Ì¼­¸íµÈ °è¾à°ÇÀÔ´Ï´Ù.");
-			u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+			//u.jsError("ì´ë¯¸ì„œëª…ëœ ê³„ì•½ê±´ì…ë‹ˆë‹¤.");
+			u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 			return;
 		}
 	}
@@ -57,79 +57,79 @@ while(cust.next()){
 	}
 }
 if(!member_check){
-	//u.jsError("ÇØ´ç°è¾à°Ç¿¡ Á¢±Ù ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", "contract_recvview.jsp?"+u.getQueryString());
+	//u.jsError("í•´ë‹¹ê³„ì•½ê±´ì— ì ‘ê·¼ ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "contract_recvview.jsp?"+u.getQueryString());
 	return;
 }
 
-String gap_sign_date = custDao.getOne("select max(sign_date) from tcb_cust where cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and sign_date is not null") ;//ÀÌÀÇÃ¶ ½ÇÀå´Ô ¿äÃ»À¸·Î ÀÚµ¿¼­¸í½Ã°£Àº °Å·¡Ã³ ÃÖÃÑ¼­¸íÀÏ½Ã+ 30ÃÊ
+String gap_sign_date = custDao.getOne("select max(sign_date) from tcb_cust where cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and sign_date is not null") ;//ì´ì˜ì²  ì‹¤ì¥ë‹˜ ìš”ì²­ìœ¼ë¡œ ìë™ì„œëª…ì‹œê°„ì€ ê±°ë˜ì²˜ ìµœì´ì„œëª…ì¼ì‹œ+ 30ì´ˆ
 gap_sign_date = u.addDate("S", 30, u.strToDate(gap_sign_date), "yyyyMMddHHmmss");
 
 
 String[] agree_template_cds = {
-			 "20130500619|2016107"// À§¸ŞÇÁ ±¤°í°èÁ¦ °è¾à¼­ >°øÀÎÀÎÁõ¼­¸í
-			,"20130500619|2019067"// À§¸ŞÇÁ ±¤°í°èÁ¦ °è¾à¼­(Æ¯°¡±¤°í) > °øÀÎÀÎÁõ¼­¸í 2016107=>2019067 ·Î º¯°æµÊ
-			,"20130500619|2019189"// À§¸ŞÇÁ ±¤°í°èÁ¦ °è¾à¼­(Æ¯°¡±¤°í) > °øÀÎÀÎÁõ¼­¸í 2016107=>2019067=>2019189 ·Î º¯°æµÊ
+			 "20130500619|2016107"// ìœ„ë©”í”„ ê´‘ê³ ê³„ì œ ê³„ì•½ì„œ >ê³µì¸ì¸ì¦ì„œëª…
+			,"20130500619|2019067"// ìœ„ë©”í”„ ê´‘ê³ ê³„ì œ ê³„ì•½ì„œ(íŠ¹ê°€ê´‘ê³ ) > ê³µì¸ì¸ì¦ì„œëª… 2016107=>2019067 ë¡œ ë³€ê²½ë¨
+			,"20130500619|2019189"// ìœ„ë©”í”„ ê´‘ê³ ê³„ì œ ê³„ì•½ì„œ(íŠ¹ê°€ê´‘ê³ ) > ê³µì¸ì¸ì¦ì„œëª… 2016107=>2019067=>2019189 ë¡œ ë³€ê²½ë¨
 			
-			,"20170501348|2018241"// ¾Æ¿öÈ¨ ½ÄÀç °ø±Ş°è¾à¼­ >ÆĞµå¼­¸í
-			,"20170501348|2018242"// ¾Æ¿öÈ¨ ½ÄÀç °ø±Ş°è¾à¼­ >°øÀÎÀÎÁõ¼­¸í
-			,"20170501348|2019047" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­(Á¤»ç¿ø) > ÆĞµå¼­¸í
-			,"20170501348|2019048" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_¿ù±ŞÁ¦ > ÆĞµå¼­¸í
-			,"20170501348|2019049" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_¿¬ºÀÁ¦ > ÆĞµå¼­¸í
-			,"20170501348|2019060" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_¿ù±ŞÁ¦(Á¤³â) > ÆĞµå¼­¸í
-			,"20170501348|2019061" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_¿¬ºÀÁ¦(Á¤³â) > ÆĞµå¼­¸í
-			,"20170501348|2019062" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_ÀÏ±ŞÁ¦(Á¤³â) > ÆĞµå¼­¸í
-			,"20170501348|2019063" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_ÀÏ±ŞÁ¦ > ÆĞµå¼­¸í
-			,"20170501348|2019064" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_ÆÄÆ®(Á¤³â) > ÆĞµå¼­¸í
-			,"20170501348|2019065" // ¾Æ¿öÈ¨ ±Ù·Î°è¾à¼­_ÆÄÆ® > ÆĞµå¼­¸í
+			,"20170501348|2018241"// ì•„ì›Œí™ˆ ì‹ì¬ ê³µê¸‰ê³„ì•½ì„œ >íŒ¨ë“œì„œëª…
+			,"20170501348|2018242"// ì•„ì›Œí™ˆ ì‹ì¬ ê³µê¸‰ê³„ì•½ì„œ >ê³µì¸ì¸ì¦ì„œëª…
+			,"20170501348|2019047" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ(ì •ì‚¬ì›) > íŒ¨ë“œì„œëª…
+			,"20170501348|2019048" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_ì›”ê¸‰ì œ > íŒ¨ë“œì„œëª…
+			,"20170501348|2019049" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_ì—°ë´‰ì œ > íŒ¨ë“œì„œëª…
+			,"20170501348|2019060" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_ì›”ê¸‰ì œ(ì •ë…„) > íŒ¨ë“œì„œëª…
+			,"20170501348|2019061" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_ì—°ë´‰ì œ(ì •ë…„) > íŒ¨ë“œì„œëª…
+			,"20170501348|2019062" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_ì¼ê¸‰ì œ(ì •ë…„) > íŒ¨ë“œì„œëª…
+			,"20170501348|2019063" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_ì¼ê¸‰ì œ > íŒ¨ë“œì„œëª…
+			,"20170501348|2019064" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_íŒŒíŠ¸(ì •ë…„) > íŒ¨ë“œì„œëª…
+			,"20170501348|2019065" // ì•„ì›Œí™ˆ ê·¼ë¡œê³„ì•½ì„œ_íŒŒíŠ¸ > íŒ¨ë“œì„œëª…
 			
-			,"20181002679|2019058"// °æ±âÅ×Å©³ëÆÄÅ©> ±Ù·Î°è¾à¼­(ÀÏ¹İÁ÷) >ÆĞµå¼­¸í
-			,"20181002679|2019059"// °æ±âÅ×Å©³ëÆÄÅ©> ¿¬ºÀ°è¾à¼­ >ÆĞµå¼­¸í
-			,"20181002679|2019074"// °æ±âÅ×Å©³ëÆÄÅ©> ±Ù·Î°è¾à¼­(°è¾àÁ÷) >ÆĞµå¼­¸í
+			,"20181002679|2019058"// ê²½ê¸°í…Œí¬ë…¸íŒŒí¬> ê·¼ë¡œê³„ì•½ì„œ(ì¼ë°˜ì§) >íŒ¨ë“œì„œëª…
+			,"20181002679|2019059"// ê²½ê¸°í…Œí¬ë…¸íŒŒí¬> ì—°ë´‰ê³„ì•½ì„œ >íŒ¨ë“œì„œëª…
+			,"20181002679|2019074"// ê²½ê¸°í…Œí¬ë…¸íŒŒí¬> ê·¼ë¡œê³„ì•½ì„œ(ê³„ì•½ì§) >íŒ¨ë“œì„œëª…
 			
-			,"20150500312|2015037"// (ÁÖ)´õºíÀ¯¼îÇÎ>°³º°°è¾à¼­(¾÷¹« Á¦ÈŞ) > °øÀÎÀÎÁõ¼­¸í
-			,"20150500312|2015038"// (ÁÖ)´õºíÀ¯¼îÇÎ>»óÇ°ÆÇ¸Å(°³º°)°è¾à¼­ - ºñ¿¬µ¿ °è¾à¼­ >°øÀÎÀÎÁõ¼­¸í
-			,"20150500312|2018211"// (ÁÖ)´õºíÀ¯¼îÇÎ>»óÇ°ÆÇ¸Å(°³º°)°è¾à¼­(ÀüÃ¼Æí¼º) >°øÀÎÀÎÁõ¼­¸í
-			,"20150500312|2019209"// (ÁÖ)´õºíÀ¯¼îÇÎ>»óÇ°ÆÇ¸Å(°³º°)°è¾à¼­(´ëÃ¼Æí¼º) >°øÀÎÀÎÁõ¼­¸í
-			,"20150500312|2018211"// (ÁÖ)´õºíÀ¯¼îÇÎ>»óÇ°ÆÇ¸Å(°³º°)°è¾à¼­>°øÀÎÀÎÁõ¼­¸í
-			,"20150500312|2018212"// (ÁÖ)´õºíÀ¯¼îÇÎ>»óÇ°ÆÇ¸Å(È¥ÇÕ)°è¾à¼­>°øÀÎÀÎÁõ¼­¸í
-			,"20150500312|2018213"// (ÁÖ)´õºíÀ¯¼îÇÎ>Á¤¾×(Á¦ÈŞ)°è¾à¼­>°øÀÎÀÎÁõ¼­¸í
+			,"20150500312|2015037"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ê°œë³„ê³„ì•½ì„œ(ì—…ë¬´ ì œíœ´) > ê³µì¸ì¸ì¦ì„œëª…
+			,"20150500312|2015038"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ìƒí’ˆíŒë§¤(ê°œë³„)ê³„ì•½ì„œ - ë¹„ì—°ë™ ê³„ì•½ì„œ >ê³µì¸ì¸ì¦ì„œëª…
+			,"20150500312|2018211"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ìƒí’ˆíŒë§¤(ê°œë³„)ê³„ì•½ì„œ(ì „ì²´í¸ì„±) >ê³µì¸ì¸ì¦ì„œëª…
+			,"20150500312|2019209"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ìƒí’ˆíŒë§¤(ê°œë³„)ê³„ì•½ì„œ(ëŒ€ì²´í¸ì„±) >ê³µì¸ì¸ì¦ì„œëª…
+			,"20150500312|2018211"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ìƒí’ˆíŒë§¤(ê°œë³„)ê³„ì•½ì„œ>ê³µì¸ì¸ì¦ì„œëª…
+			,"20150500312|2018212"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ìƒí’ˆíŒë§¤(í˜¼í•©)ê³„ì•½ì„œ>ê³µì¸ì¸ì¦ì„œëª…
+			,"20150500312|2018213"// (ì£¼)ë”ë¸”ìœ ì‡¼í•‘>ì •ì•¡(ì œíœ´)ê³„ì•½ì„œ>ê³µì¸ì¸ì¦ì„œëª…
 			
-			,"20151100446|2019028"// ³ªÀÌ½ºµğ¾Ø¾Ë> ¾÷¹«µµ±Ş°è¾à¼­ >ÆĞµå¼­¸í
+			,"20151100446|2019028"// ë‚˜ì´ìŠ¤ë””ì•¤ì•Œ> ì—…ë¬´ë„ê¸‰ê³„ì•½ì„œ >íŒ¨ë“œì„œëª…
 			
-			,"20171101813|2019015" //PGM)SK½ºÅä¾Æ ±¤°í¹æ¼Û °è¾à¼­[DB°Çº°]
-			,"20171101813|2019016" //PGM)SK½ºÅä¾Æ ±¤°í¹æ¼Û °è¾à¼­[Á¤¾×¹æ¼Û]
-			,"20171101813|2019017" //PGM)SK½ºÅä¾Æ ÆÇ¸Å°è¾à¼­[È¥ÇÕ¼ö¼ö·á]
-			,"20171101813|2019018" //PGM)SK½ºÅä¾Æ ÆÇ¸Å°è¾à¼­[À§¼öÅ¹¼ö¼ö·á]
-			,"20171101813|2020192" //PGM)SK½ºÅä¾Æ ÆÇ¸Å¹æ¼Û°è¾à¼­[Æ¯¾àÈ¥ÇÕ¸ÅÀÔ]
+			,"20171101813|2019015" //PGM)SKìŠ¤í† ì•„ ê´‘ê³ ë°©ì†¡ ê³„ì•½ì„œ[DBê±´ë³„]
+			,"20171101813|2019016" //PGM)SKìŠ¤í† ì•„ ê´‘ê³ ë°©ì†¡ ê³„ì•½ì„œ[ì •ì•¡ë°©ì†¡]
+			,"20171101813|2019017" //PGM)SKìŠ¤í† ì•„ íŒë§¤ê³„ì•½ì„œ[í˜¼í•©ìˆ˜ìˆ˜ë£Œ]
+			,"20171101813|2019018" //PGM)SKìŠ¤í† ì•„ íŒë§¤ê³„ì•½ì„œ[ìœ„ìˆ˜íƒìˆ˜ìˆ˜ë£Œ]
+			,"20171101813|2020192" //PGM)SKìŠ¤í† ì•„ íŒë§¤ë°©ì†¡ê³„ì•½ì„œ[íŠ¹ì•½í˜¼í•©ë§¤ì…]
 					
-			,"20190101731|2020053" //Æ®¸®³ëµå ÁÖ½ÄÈ¸»ç ±Ù·Î°è¾à¼­_3ÃµÃÊ°ú
-			,"20190101731|2020124" //Æ®¸®³ëµå ÁÖ½ÄÈ¸»ç ±Ù·Î°è¾à¼­_3ÃµÀÌÇÏ
-			,"20190101731|2020054" //Æ®¸®³ëµå ÁÖ½ÄÈ¸»ç ¿¬ºÀ°è¾à¼­
+			,"20190101731|2020053" //íŠ¸ë¦¬ë…¸ë“œ ì£¼ì‹íšŒì‚¬ ê·¼ë¡œê³„ì•½ì„œ_3ì²œì´ˆê³¼
+			,"20190101731|2020124" //íŠ¸ë¦¬ë…¸ë“œ ì£¼ì‹íšŒì‚¬ ê·¼ë¡œê³„ì•½ì„œ_3ì²œì´í•˜
+			,"20190101731|2020054" //íŠ¸ë¦¬ë…¸ë“œ ì£¼ì‹íšŒì‚¬ ì—°ë´‰ê³„ì•½ì„œ
 			
-			,"20180100028|2019112" // PBPÆÄÆ®³ÊÁî ±Ù·Î°è¾à¼­  
-			,"20180100028|2020150" // PBPÆÄÆ®³ÊÁî 2020³â_µµ±Ş°è¾à¼­_½Å±ÔÁ¦»§
-			,"20180100028|2020151" // PBPÆÄÆ®³ÊÁî 2020³â_µµ±Ş°è¾à¼­_±âÁ¸Á¦»§
-			,"20180100028|2020152" // PBPÆÄÆ®³ÊÁî 2020³â_µµ±Ş°è¾à¼­_½Å±ÔÄ«Æä
-			,"20180100028|2020153" // PBPÆÄÆ®³ÊÁî 2020³â_µµ±Ş°è¾à¼­_±âÁ¸Ä«Æä
-			,"20180100028|2020154" // PBPÆÄÆ®³ÊÁî 2020³â_Á¡Æ÷Á¦Á¶Áö¿ø¾àÁ¤¼­
+			,"20180100028|2019112" // PBPíŒŒíŠ¸ë„ˆì¦ˆ ê·¼ë¡œê³„ì•½ì„œ  
+			,"20180100028|2020150" // PBPíŒŒíŠ¸ë„ˆì¦ˆ 2020ë…„_ë„ê¸‰ê³„ì•½ì„œ_ì‹ ê·œì œë¹µ
+			,"20180100028|2020151" // PBPíŒŒíŠ¸ë„ˆì¦ˆ 2020ë…„_ë„ê¸‰ê³„ì•½ì„œ_ê¸°ì¡´ì œë¹µ
+			,"20180100028|2020152" // PBPíŒŒíŠ¸ë„ˆì¦ˆ 2020ë…„_ë„ê¸‰ê³„ì•½ì„œ_ì‹ ê·œì¹´í˜
+			,"20180100028|2020153" // PBPíŒŒíŠ¸ë„ˆì¦ˆ 2020ë…„_ë„ê¸‰ê³„ì•½ì„œ_ê¸°ì¡´ì¹´í˜
+			,"20180100028|2020154" // PBPíŒŒíŠ¸ë„ˆì¦ˆ 2020ë…„_ì í¬ì œì¡°ì§€ì›ì•½ì •ì„œ
 			
 		};
 
 String[] server_cert_passwd = {
-	     "20130500619=>wonder#001"//À§¸ŞÇÁ
-		,"20170501348=>ourhome7&&"//¾Æ¿öÈ¨
-		,"20151100446=>nicednr1!@#"//³ªÀÌ½ºµğ¾Ø¾Ë
-		,"20181002679=>rudrltp_3010"//°æ±âÅ×Å©³ëÆÄÅ©
-		,"20150500312=>bs220505^^"//(ÁÖ)´õºíÀ¯¼îÇÎ
-		,"20171101813=>skstoa2018!"// SK½ºÅä¾Æ
-		,"20190101731=>5dnjf7dlf@" // Æ®¸®³ëµå ÁÖ½ÄÈ¸»ç  
-		,"20180100028=>*adel0618*" //PBPÆÄÆ®³ÊÁî
+	     "20130500619=>wonder#001"//ìœ„ë©”í”„
+		,"20170501348=>ourhome7&&"//ì•„ì›Œí™ˆ
+		,"20151100446=>nicednr1!@#"//ë‚˜ì´ìŠ¤ë””ì•¤ì•Œ
+		,"20181002679=>rudrltp_3010"//ê²½ê¸°í…Œí¬ë…¸íŒŒí¬
+		,"20150500312=>bs220505^^"//(ì£¼)ë”ë¸”ìœ ì‡¼í•‘
+		,"20171101813=>skstoa2018!"// SKìŠ¤í† ì•„
+		,"20190101731=>5dnjf7dlf@" // íŠ¸ë¦¬ë…¸ë“œ ì£¼ì‹íšŒì‚¬  
+		,"20180100028=>*adel0618*" //PBPíŒŒíŠ¸ë„ˆì¦ˆ
 	 };
 
 if(!u.inArray(cont.getString("member_no")+"|"+cont.getString("template_cd"), agree_template_cds)){
-	//u.jsError("ÀÚµ¿¼­¸í °è¾à´ë»ó°ÇÀÌ ¾Æ´Õ´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ìë™ì„œëª… ê³„ì•½ëŒ€ìƒê±´ì´ ì•„ë‹™ë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
@@ -137,29 +137,29 @@ Crosscert crosscert = new Crosscert();
 DataSet signInfo = crosscert.serverSign(cont.getString("member_no"), u.getItem(cont.getString("member_no"), server_cert_passwd), cont.getString("cont_hash"));
 
 if(!signInfo.getString("err").equals("")){
-	//u.jsError("°è¾à¼­ ¼­¸í¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¼¼¿ä.\\n\\n("+signInfo.getString("err")+")");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ê³„ì•½ì„œ ì„œëª…ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì„¸ìš”.\\n\\n("+signInfo.getString("err")+")");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
 String sign_dn = signInfo.getString("signDn");
 String sign_data = signInfo.getString("signData");
 if(sign_dn.equals("")||sign_data.equals("")){
-	//u.jsError("ÀüÀÚ¼­¸í¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇ ¹Ù¶ø´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ì „ìì„œëª…ì— í•„ìš”í•œ ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ ë°”ëë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
 
 if (crosscert.chkSignVerify(sign_data).equals("SIGN_ERROR")){
-	//u.jsError("ÀÚµ¿¼­¸í °ËÁõ¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ìë™ì„œëª… ê²€ì¦ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
 if(!crosscert.getDn().equals(sign_dn)){
-	//u.jsError("ÀÚµ¿¼­¸í°ËÁõÀÇ DN°ªÀÌ ÀÏÁö ÇÏÁö ¾Ê½À´Ï´Ù.");
-	u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+	//u.jsError("ìë™ì„œëª…ê²€ì¦ì˜ DNê°’ì´ ì¼ì§€ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+	u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
 	return;
 }
 
@@ -181,99 +181,38 @@ DataSet contAgree= contAgreeDao .find("cont_no = '"+cont_no+"' and cont_chasu = 
 while(contAgree.next()){
 	agree_seq = contAgree.getString("agree_seq");
 }
-if(!agree_seq.equals("")){ // ³»ºÎ °áÀç ÇÁ·Î¼¼½º°¡ ÀÖ´Â °æ¿ì. ÃÖÁ¾ ¼­¸íµÇ¾ú´õ¶óµµ Ç¥½Ã
+if(!agree_seq.equals("")){ // ë‚´ë¶€ ê²°ì¬ í”„ë¡œì„¸ìŠ¤ê°€ ìˆëŠ” ê²½ìš°. ìµœì¢… ì„œëª…ë˜ì—ˆë”ë¼ë„ í‘œì‹œ
 
     DataObject agreeDao = new DataObject("tcb_cont_agree");
     agreeDao.item("ag_md_date", u.getTimeString());
     agreeDao.item("r_agree_person_id","SYSTEM");
-    agreeDao.item("r_agree_person_name", "½Ã½ºÅÛÀÚµ¿¼­¸í");
+    agreeDao.item("r_agree_person_name", "ì‹œìŠ¤í…œìë™ì„œëª…");
     db.setCommand( agreeDao.getUpdateQuery(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and agree_seq="+agree_seq),agreeDao.record);
 }
 
-
-
-//°áÁ¦ °ËÁõ
-	//¿ä±İ Á¤º¸ Á¶È¸
-DataObject useInfoDao = new DataObject("tcb_useinfo");
-DataSet useInfo = useInfoDao.find("member_no = '"+cont.getString("member_no")+"' and useseq = (select max(useseq) from tcb_useinfo where member_no = '"+cont.getString("member_no")+"' )");
-if(!useInfo.next()){
-    u.jsError("¿ä±İÁ¦ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
-    return;
-}
-
-// ÈÄºÒÀÎ °æ¿ì
-if(useInfo.getString("paytypecd").equals("50")&&gap_pay_yn.equals("")){
-	DataObject payDao = new DataObject("tcb_pay");
-	int iPayAmount = 0;  //°áÁ¦ ±İ¾×
-	int iVatAmount = 0;
-	int iCustNum = 1;
-	String payContName = cont.getString("cont_name");
-	
-	if(useInfo.getString("order_write_type").equals("Y")) { // ¼ö±ŞÀÚ¸¶´Ù °áÁ¦
-		iCustNum = custDao.getOneInt("select count(*) from tcb_cust where cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and sign_seq < 10 and member_no <> '"+cont.getString("member_no")+"'");
-	}
-	
-	DataObject useinfoaddDao = new DataObject("tcb_useinfo_add");
-	DataSet useInfoAdd = useinfoaddDao.find("template_cd='"+cont.getString("template_cd")+"' and member_no='"+cont.getString("member_no")+"'");
-	
-	// ÈÄºÒÀÎµ¥ ¾ç½Äº°·Î ¿ä±İ ºÎ°úÇÒ°Ô ÀÖ´Ù¸é
-	if(useInfoAdd.next()) {
-		iPayAmount = useInfoAdd.getInt("recpmoneyamt") * iCustNum;
-		if(useInfoAdd.getString("insteadyn").equals("Y")){  // ¼ö±Ş¾÷Ã¼²¨ ´ë³³ÀÏ °æ¿ì
-			iPayAmount += useInfoAdd.getInt("suppmoneyamt");
-			payContName += "(´ë³³Æ÷ÇÔ)";
-		}
-	}else{
-		iPayAmount = useInfo.getInt("recpmoneyamt") * iCustNum;
-		if(useInfo.getString("insteadyn").equals("Y")){  // ¼ö±Ş¾÷Ã¼²¨ ´ë³³ÀÏ °æ¿ì
-			iPayAmount += useInfo.getInt("suppmoneyamt");
-			payContName += "(´ë³³Æ÷ÇÔ)";
-		}
-	}
-	
-	iVatAmount = iPayAmount/10;
-	iPayAmount = iPayAmount+iVatAmount;
-	
-	//tcb_pay insert
-	payDao.item("cont_no", cont_no);
-	payDao.item("cont_chasu", cont_chasu);
-	payDao.item("member_no", cont.getString("member_no"));
-	payDao.item("cont_name", payContName);
-	payDao.item("pay_amount", iPayAmount);
-	payDao.item("pay_type", "05");
-	payDao.item("accept_date", u.getTimeString());
-	payDao.item("receit_type","0");
-	db.setCommand(payDao.getInsertQuery(), payDao.record);
-	
-	//tcb_cust update
-	custDao = new DataObject("tcb_cust");
-	custDao.item("pay_yn", "Y");
-	db.setCommand(custDao.getUpdateQuery("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and member_no= '"+cont.getString("member_no")+"' "),custDao.record);
-}
-
-/* °è¾à·Î±× START*/
+/* ê³„ì•½ë¡œê·¸ START*/
 ContBLogDao logDao = new ContBLogDao();
-logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  cont.getString("member_no"), "0", "½Ã½ºÅÛÀÚµ¿¼­¸í", request.getRemoteAddr(), "ÀüÀÚ¼­¸í ¿Ï·á",  "ÀÚµ¿¼­¸í", "50","10");
-/* °è¾à·Î±× END*/
+logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  cont.getString("member_no"), "0", "ì‹œìŠ¤í…œìë™ì„œëª…", request.getRemoteAddr(), "ì „ìì„œëª… ì™„ë£Œ",  "ìë™ì„œëª…", "50","10");
+/* ê³„ì•½ë¡œê·¸ END*/
 
 if(!db.executeArray()){
-    //u.jsError("ÀÚµ¿¼­¸í ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
-    u.jsAlertReplace("°è¾à¼­ ¼­¸íÃ³¸® ÇÏ¿´½À´Ï´Ù.", next_page);
+    //u.jsError("ìë™ì„œëª… ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
+    u.jsAlertReplace("ê³„ì•½ì„œ ì„œëª…ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", next_page);
     return;
 }
 
 if(!u.request("next_page").equals("")){
-	u.jsAlertReplace("°è¾à¿Ï·áÃ³¸® µÇ¾ú½À´Ï´Ù.", next_page);
+	u.jsAlertReplace("ê³„ì•½ì™„ë£Œì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.", next_page);
 }else{
-	u.jsAlertReplace("°è¾à¿Ï·áÃ³¸® µÇ¾ú½À´Ï´Ù.\\n\\n¿Ï·á(¹ŞÀº°è¾à)¸Ş´º·Î ÀÌµ¿ÇÕ´Ï´Ù.", "./contend_recv_list.jsp");
+	u.jsAlertReplace("ê³„ì•½ì™„ë£Œì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nì™„ë£Œ(ë°›ì€ê³„ì•½)ë©”ë‰´ë¡œ ì´ë™í•©ë‹ˆë‹¤.", "./contend_recv_list.jsp");
 }
 
 String[] arr_auto_sign_push = {
-		 "20171101813|2019015" //PGM)SK½ºÅä¾Æ ±¤°í¹æ¼Û °è¾à¼­[DB°Çº°]
-		,"20171101813|2019016" //PGM)SK½ºÅä¾Æ ±¤°í¹æ¼Û °è¾à¼­[Á¤¾×¹æ¼Û]
-		,"20171101813|2019017" //PGM)SK½ºÅä¾Æ ÆÇ¸Å°è¾à¼­[È¥ÇÕ¼ö¼ö·á]
-		,"20171101813|2019018" //PGM)SK½ºÅä¾Æ ÆÇ¸Å°è¾à¼­[À§¼öÅ¹¼ö¼ö·á]
-		,"20171101813|2020192" //PGM)SK½ºÅä¾Æ ÆÇ¸Å¹æ¼Û°è¾à¼­[Æ¯¾àÈ¥ÇÕ¸ÅÀÔ]
+		 "20171101813|2019015" //PGM)SKìŠ¤í† ì•„ ê´‘ê³ ë°©ì†¡ ê³„ì•½ì„œ[DBê±´ë³„]
+		,"20171101813|2019016" //PGM)SKìŠ¤í† ì•„ ê´‘ê³ ë°©ì†¡ ê³„ì•½ì„œ[ì •ì•¡ë°©ì†¡]
+		,"20171101813|2019017" //PGM)SKìŠ¤í† ì•„ íŒë§¤ê³„ì•½ì„œ[í˜¼í•©ìˆ˜ìˆ˜ë£Œ]
+		,"20171101813|2019018" //PGM)SKìŠ¤í† ì•„ íŒë§¤ê³„ì•½ì„œ[ìœ„ìˆ˜íƒìˆ˜ìˆ˜ë£Œ]
+		,"20171101813|2020192" //PGM)SKìŠ¤í† ì•„ íŒë§¤ë°©ì†¡ê³„ì•½ì„œ[íŠ¹ì•½í˜¼í•©ë§¤ì…]
 		};
 if(u.inArray(cont.getString("member_no")+"|"+cont.getString("template_cd"), arr_auto_sign_push) ) {
 	 u.redirect("contract_sendpush.jsp?confirm=AUTO&"+u.getQueryString() );

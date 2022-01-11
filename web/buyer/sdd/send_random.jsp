@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -11,19 +11,19 @@ String where = "cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(where+" and email_random = '"+email_random+"'");
 if(!cust.next()){
-	u.jsAlert("°è¾à°ü°èÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ê´€ê³„ì ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 SmsDao smsDao= new SmsDao();
 RandomString rndStr = new RandomString();
 String sRandomString = rndStr.getString(6, "a1");
-smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), sRandomString+" À» ÀÔ·ÂÇÏ½Ã¸é µË´Ï´Ù.");
-//System.out.println(sRandomString+" À» ÀÔ·ÂÇÏ½Ã¸é µË´Ï´Ù.");
+smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), sRandomString+" ì„ ì…ë ¥í•˜ì‹œë©´ ë©ë‹ˆë‹¤.");
+//System.out.println(sRandomString+" ì„ ì…ë ¥í•˜ì‹œë©´ ë©ë‹ˆë‹¤.");
 
 session.setAttribute("_sRandomString", sRandomString);
 
 out.print("<script>");
-out.print("alert('ÀÎÁõÄÚµå¸¦ Àü¼ÛÇß½À´Ï´Ù.');");
+out.print("alert('ì¸ì¦ì½”ë“œë¥¼ ì „ì†¡í–ˆìŠµë‹ˆë‹¤.');");
 out.print("</script>");
 %>

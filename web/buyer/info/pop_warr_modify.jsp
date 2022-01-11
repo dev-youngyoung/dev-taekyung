@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String warr_seq = u.request("warr_seq");
 System.out.println(u.request("mode"));
 if(member_no.equals("") || warr_seq.equals("")) {
-	u.jsError("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.");
+	u.jsError("ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.");
 	return;
 }
 CodeDao codeDao = new CodeDao("tcb_comcode");
@@ -15,7 +15,7 @@ member_no = u.aseDec(member_no);
 DataObject warrDao = new DataObject("tcb_warr_add");
 DataSet warr = warrDao.find(" member_no = '"+member_no+"' and warr_seq = '"+warr_seq+"' ");
 if(!warr.next()){
-	u.jsError("Àß¸øµÈ Á¤º¸ÀÔ´Ï´Ù.");
+	u.jsError("ì˜ëª»ëœ ì •ë³´ì…ë‹ˆë‹¤.");
 	return;
 }
 
@@ -26,13 +26,13 @@ warr.put("warr_sdate", u.getTimeString("yyyy-MM-dd", warr.getString("warr_sdate"
 warr.put("warr_edate", u.getTimeString("yyyy-MM-dd", warr.getString("warr_edate")));
 warr.put("file_size", u.getFileSize(warr.getLong("file_size")));
 
-f.addElement("warr_type", warr.getString("warr_type"), "hname:'º¸Áõ¼­Á¾·ù', required:'Y'");
-f.addElement("warr_office", warr.getString("warr_office"), "hname:'¹ß±Ş±â°ü', required:'Y'");
-f.addElement("warr_no", warr.getString("warr_no"), "hname:'Áõ±Ç¹øÈ£', required:'Y'");
-f.addElement("warr_sdate", warr.getString("warr_sdate"), "hname:'º¸Áõ±â°£', required:'Y'");
-f.addElement("warr_edate", warr.getString("warr_edate"), "hname:'º¸Áõ±â°£', required:'Y'");
-f.addElement("warr_amt", warr.getString("warr_amt"), "hname:'º¸Áõ±İ¾×', required:'Y', option:'money'");
-f.addElement("warr_date", warr.getString("warr_date"), "hname:'¹ß±ŞÀÏ', required:'Y'");
+f.addElement("warr_type", warr.getString("warr_type"), "hname:'ë³´ì¦ì„œì¢…ë¥˜', required:'Y'");
+f.addElement("warr_office", warr.getString("warr_office"), "hname:'ë°œê¸‰ê¸°ê´€', required:'Y'");
+f.addElement("warr_no", warr.getString("warr_no"), "hname:'ì¦ê¶Œë²ˆí˜¸', required:'Y'");
+f.addElement("warr_sdate", warr.getString("warr_sdate"), "hname:'ë³´ì¦ê¸°ê°„', required:'Y'");
+f.addElement("warr_edate", warr.getString("warr_edate"), "hname:'ë³´ì¦ê¸°ê°„', required:'Y'");
+f.addElement("warr_amt", warr.getString("warr_amt"), "hname:'ë³´ì¦ê¸ˆì•¡', required:'Y', option:'money'");
+f.addElement("warr_date", warr.getString("warr_date"), "hname:'ë°œê¸‰ì¼', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 	f.uploadDir = Startup.conf.getString("file.path.bcompany")+member_no;
@@ -58,12 +58,12 @@ if(u.isPost()&&f.validate()){
 	warrDao.item("reg_id", auth.getString("_USER_ID"));
 
 	if(!warrDao.update(" member_no = '"+member_no+"' and warr_seq = '"+warr_seq+"' ")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	out.print("<script>");
-	out.print("alert(\"Ã³¸® ÇÏ¿´½À´Ï´Ù.\");");
+	out.print("alert(\"ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 	out.print("opener.location.reload();");
 	out.print("self.close();");
 	out.print("</script>");
@@ -77,7 +77,7 @@ if(member_no.equals(_member_no))
 else
 	p.setBody("info.pop_warr_view");
 
-p.setVar("popup_title","º¸Áõ¼­ Á¤º¸");
+p.setVar("popup_title","ë³´ì¦ì„œ ì •ë³´");
 p.setLoop("code_warr", u.arr2loop(code_warr));
 p.setVar("modify", true);
 p.setVar("warr", warr);

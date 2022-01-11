@@ -70,16 +70,16 @@ public class JsoupUtil {
 		Elements elements = _document.getElementsByAttributeValue("name", name);
 		for(int i = 0 ; i < elements.size(); i++){
 			Element element = elements.get(i);
-			if(!element.attr("name").equals(name))continue;//Jsoup ¹ö±×ÀÏ±î? AttributeValue°Ë»ö½Ã ´ë¼Ò¹®ÀÚ ±¸ºĞÀ» ¸øÇÏ°í ÀÖÀ½.
+			if(!element.attr("name").equals(name))continue;//Jsoup ë²„ê·¸ì¼ê¹Œ? AttributeValueê²€ìƒ‰ì‹œ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì„ ëª»í•˜ê³  ìˆìŒ.
 			if(element.tagName().equalsIgnoreCase("input")) {
-				if(element.attr("type").equalsIgnoreCase("radio")) {//¹«Á¶°Ç ÇÏ³ªÀÇ °ª
+				if(element.attr("type").equalsIgnoreCase("radio")) {//ë¬´ì¡°ê±´ í•˜ë‚˜ì˜ ê°’
 					if(element.hasAttr("checked")) {
 						value = element.attr("value");
 					}else {
 						continue;
 					}
 					
-				}else if(element.attr("type").equalsIgnoreCase("checkbox")) {//¿©·¯°Ô ¼±ÅÃ °¡´É
+				}else if(element.attr("type").equalsIgnoreCase("checkbox")) {//ì—¬ëŸ¬ê²Œ ì„ íƒ ê°€ëŠ¥
 					if(element.hasAttr("checked")) {
 						if(value!="") value += _spliter;
 						value += element.attr("value");
@@ -156,7 +156,7 @@ public class JsoupUtil {
 					}else {
 						element.removeAttr("checked");
 					}
-				}else if(type.equals("text")||type.equals("hidden")||type.equals("")){//jsoup ¹öÀü ¹ö±× type="text"°¡ ÀüºÎ »ç¶óÁø´Ù.
+				}else if(type.equals("text")||type.equals("hidden")||type.equals("")){//jsoup ë²„ì „ ë²„ê·¸ type="text"ê°€ ì „ë¶€ ì‚¬ë¼ì§„ë‹¤.
 					if(type.equals("")){
 						element.attr("type","text");
 					}
@@ -182,7 +182,7 @@ public class JsoupUtil {
 
 
 	public String getHtml(){
-		for( Element elem : _document.select("input[type=text]") ){ elem.attr("type","text"); }  // jsoup ¹ö±× Ã³¸®
+		for( Element elem : _document.select("input[type=text]") ){ elem.attr("type","text"); }  // jsoup ë²„ê·¸ ì²˜ë¦¬
 		String __html  = _document.getElementsByTag("body").html().toString();
 		String style = _document.getElementsByTag("style").html();
 		String script = _document.getElementsByTag("script").html();
@@ -193,14 +193,14 @@ public class JsoupUtil {
 
 	public String removeHtml()
 	{
-		// DB¿ë
-		// PDF¿ë
-		for( Element elem : _document.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box °ª ¸ğµÎ Á¦°Å
-		for( Element elem : _document.select("input[type=checkbox]") ){ elem.parent().text(elem.hasAttr("checked")?"¢Ã":"¡à"); }
-		for( Element elem : _document.select("input[type=radio]") ){ elem.parent().text(elem.hasAttr("checked")?"¢Ã":"¡à"); }
+		// DBìš©
+		// PDFìš©
+		for( Element elem : _document.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box ê°’ ëª¨ë‘ ì œê±°
+		for( Element elem : _document.select("input[type=checkbox]") ){ elem.parent().text(elem.hasAttr("checked")?"â–£":"â–¡"); }
+		for( Element elem : _document.select("input[type=radio]") ){ elem.parent().text(elem.hasAttr("checked")?"â–£":"â–¡"); }
 		for( Element elem : _document.select("textarea") ){ elem.parent().html(elem.val().replaceAll("\\r\\n","<br>").replaceAll("\\n","<br>")); }
 		for( Element elem : _document.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
-		_document.select(".no_pdf").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+		_document.select(".no_pdf").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 		
 		String cont_html_rm = _document.getElementsByTag("body").html().toString();
 		String style = _document.getElementsByTag("style").html();

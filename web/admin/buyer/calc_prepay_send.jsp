@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String yyyymm = u.request("yyyymm").replaceAll("-","");
 String member_no = u.request("member_no");
 String calc_person_seq = u.request("calc_person_seq");
 if(yyyymm.equals("")||member_no.equals("")){
-    u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+    u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
     return;
 }
 
@@ -14,14 +14,14 @@ String[] code_pay_type_cd = codeDao.getCodeArray("M006");
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-    u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     return;
 }
 
 DataObject useInfoDao = new DataObject("tcb_useinfo");
 DataSet useInfo = useInfoDao.find(" member_no = '"+member_no+"' ");
 if(!useInfo.next()){
-    u.jsError("µî·ÏµÈ °ú±ÝÀÌ¿ë Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    u.jsError("ë“±ë¡ëœ ê³¼ê¸ˆì´ìš© ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     return;
 }
 
@@ -29,7 +29,7 @@ if(!useInfo.next()){
 DataObject calcPersonDao = new DataObject("tcb_calc_person");
 DataSet calcPerson = calcPersonDao.find("member_no = '"+member_no+"' and seq = '"+calc_person_seq+"' ");
 if(!calcPerson.next()){
-	u.jsError("µî·ÏµÈ °è»ê¼­ ´ã´çÀÚ°¡ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ë“±ë¡ëœ ê³„ì‚°ì„œ ë‹´ë‹¹ìžê°€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -51,18 +51,18 @@ calcMonthDao.item("status", "10");
 DataSet calcMonth = calcMonthDao.find("member_no = '"+member_no+"' and yyyymm = '"+yyyymm+"' and calc_person_seq = '"+calc_person_seq+"' ");
 if(calcMonth.next()) {
     if(!calcMonthDao.update("member_no = '"+member_no+"' and yyyymm = '"+yyyymm+"' ")){
-    	u.jsError("Àç¹ß¼Û Ã³¸®¿¡ ½ÇÆÐ È÷¿³½À´Ï´Ù.");
+    	u.jsError("ìž¬ë°œì†¡ ì²˜ë¦¬ì— ì‹¤íŒ¨ ížˆì—¿ìŠµë‹ˆë‹¤.");
     	return;
     }
 }else{
     if(!calcMonthDao.insert()){
-        u.jsError("¾È³»¹ß¼Û Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿³½À´Ï´Ù.");
+        u.jsError("ì•ˆë‚´ë°œì†¡ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
         return;
     }
 }
 
 String str_yyyymm = u.getTimeString("yyyy-MM",u.strToDate(yyyymm+"01"));
-//¸ÞÀÏ¹ß¼Û
+//ë©”ì¼ë°œì†¡
 DataSet mailInfo = new DataSet();
 mailInfo.addRow();
 mailInfo.put("member_name", member.getString("member_name"));
@@ -80,9 +80,9 @@ String mail_body = p.fetch("../html/mail/buyer_calc_prepay_mail.html");
 String[] arr_mail = calcPerson.getString("email").split(";");
 for(int i = 0 ; i < arr_mail.length;i++) {
     if(!arr_mail[i].equals("")) {
-        u.mail(arr_mail[i], "[³ªÀÌ½º´ÙÅ¥] ½Ã½ºÅÛ ÀÌ¿ë °»½Å°è¾à ¾È³»('" + str_yyyymm + "')", mail_body);
+        u.mail(arr_mail[i], "[ë‚˜ì´ìŠ¤ë‹¤í] ì‹œìŠ¤í…œ ì´ìš© ê°±ì‹ ê³„ì•½ ì•ˆë‚´('" + str_yyyymm + "')", mail_body);
     }
 }
 
-u.jsAlertReplace("¹ß¼Û µÇ¾ú½À´Ï´Ù.","calc_prepay_list.jsp?"+u.getQueryString("yyyymm,member_no,calc_person_seq"));
+u.jsAlertReplace("ë°œì†¡ ë˜ì—ˆìŠµë‹ˆë‹¤.","calc_prepay_list.jsp?"+u.getQueryString("yyyymm,member_no,calc_person_seq"));
 %>

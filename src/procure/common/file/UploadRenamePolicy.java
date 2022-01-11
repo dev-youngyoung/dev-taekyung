@@ -24,7 +24,7 @@ public class UploadRenamePolicy  implements FileRenamePolicy {
                body = name.substring(0, dot);
                ext = name.substring(dot);  // includes "."
                
-               // 2015.01.20 ÇØÅ·¹æÁö shryu
+               // 2015.01.20 í•´í‚¹ë°©ì§€ shryu
                if(ext.equals(".jsp") || ext.equals(".sh") || ext.equals(".csh") || ext.equals(".exe")) ext = ".xxx";
           }
           else {

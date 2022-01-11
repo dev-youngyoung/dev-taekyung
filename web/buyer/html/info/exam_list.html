@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
     <div class="search_div">
         <table class="search_table">
             <colgroup>
@@ -7,10 +7,10 @@
                 <col width="11%">
             </colgroup>
             <tr>
-                <th><p>Æò°¡Áö¸í</p></th>
+                <th><p>í‰ê°€ì§€ëª…</p></th>
                 <td><input type="text" name="s_exam_name"  maxlength="100" style="width:100%"></td>
                 <td align="right">
-                    <button type="submit" class="search_btn">°Ë»ö</button>
+                    <button type="submit" class="search_btn">ê²€ìƒ‰</button>
                 </td>
             </tr>
         </table>
@@ -21,7 +21,7 @@
 
 <div class="util-row">
     <div class="push-right">
-        <button type="button" class="sbtn color ico-write auth_css" onclick="location.href='exam_insert.jsp?{{list_qauery}}'"><span></span>½Å±Ôµî·Ï</button>
+        <button type="button" class="sbtn color ico-write auth_css" onclick="location.href='exam_insert.jsp?{{list_qauery}}'"><span></span>ì‹ ê·œë“±ë¡</button>
     </div>
 </div>
 
@@ -37,13 +37,13 @@
             <col width="15%">
         </colgroup>
         <tr class="ltitle">
-            <th>¼ø¹ø</th>
-            <th>Æò°¡Áö¸í</th>
+            <th>ìˆœë²ˆ</th>
+            <th>í‰ê°€ì§€ëª…</th>
             <!-- IFNOT START 'isCJ' -->
-            <th>Æò°¡À¯Çü</th>
+            <th>í‰ê°€ìœ í˜•</th>
             <!-- IFNOT END 'isCJ' -->
-            <th>Æò°¡Ç×¸ñ¼ö</th>
-            <th>µî·ÏÀÏÀÚ</th>
+            <th>í‰ê°€í•­ëª©ìˆ˜</th>
+            <th>ë“±ë¡ì¼ìž</th>
         </tr>
         <!-- LOOP START 'list' -->
         <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='exam_view.jsp?exam_cd={{list.exam_cd}}&{{list_query}}'">
@@ -58,7 +58,7 @@
         <!-- LOOP END 'list' -->
         <!-- IFNOT START 'list' -->
         <tr>
-            <td colspan="5" align="center">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+            <td colspan="5" align="center">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
         </tr>
         <!-- IFNOT END 'list' -->
     </table>

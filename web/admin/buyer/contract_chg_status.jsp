@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String gubun = u.request("gubun");
 if(cont_no.equals("")||cont_chasu.equals("")||gubun.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,7 +12,7 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'";
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsError("°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -33,10 +33,10 @@ if(gubun.equals("writing")){
 	DataObject contSubDao = new DataObject("tcb_cont_sub");
 	DataSet contSub = contSubDao.find(where,"*", " sub_seq asc");
 	
-	//¾÷Ã¼Á¤º¸
-	DataObject emailDao = new DataObject("tcb_cont_email");		// ÀÌ¸ÞÀÏ
-	DataObject rfileCustDao = new DataObject("tcb_rfile_cust");	// ¾÷Ã¼±¸ºñ¼­·ù
-	DataObject custDao = new DataObject("tcb_cust");			// °è¾à¾÷Ã¼
+	//ì—…ì²´ì •ë³´
+	DataObject emailDao = new DataObject("tcb_cont_email");		// ì´ë©”ì¼
+	DataObject rfileCustDao = new DataObject("tcb_rfile_cust");	// ì—…ì²´êµ¬ë¹„ì„œë¥˜
+	DataObject custDao = new DataObject("tcb_cust");			// ê³„ì•½ì—…ì²´
 
 	contDao.item("status", "10");
 	if(!cont.getString("org_cont_html").equals("")){
@@ -64,9 +64,9 @@ if(gubun.equals("writing")){
 }
 
 if(!db.executeArray()){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("Ã³¸® ÇÏ¿´½À´Ï´Ù.","contract_list.jsp?"+u.getQueryString("cont_no,cont_chasu,gubun"));
+u.jsAlertReplace("ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","contract_list.jsp?"+u.getQueryString("cont_no,cont_chasu,gubun"));
 return;
 %>

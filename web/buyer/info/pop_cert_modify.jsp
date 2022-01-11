@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String cert_seq = u.request("cert_seq");
 System.out.println(u.request("mode"));
 if(member_no.equals("") || cert_seq.equals("")) {
-	u.jsError("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.");
+	u.jsError("ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.");
 	return;
 }
 CodeDao codeDao = new CodeDao("tcb_comcode");
@@ -15,7 +15,7 @@ member_no = u.aseDec(member_no);
 DataObject certDao = new DataObject("tcb_cert_add");
 DataSet cert = certDao.find(" member_no = '"+member_no+"' and cert_seq = '"+cert_seq+"' ");
 if(!cert.next()){
-	u.jsError("Àß¸øµÈ Á¤º¸ÀÔ´Ï´Ù.");
+	u.jsError("ì˜ëª»ëœ ì •ë³´ì…ë‹ˆë‹¤.");
 	return;
 }
 
@@ -23,11 +23,11 @@ cert.put("cert_sdate", u.getTimeString("yyyy-MM-dd", cert.getString("cert_sdate"
 cert.put("cert_edate", u.getTimeString("yyyy-MM-dd", cert.getString("cert_edate")));
 cert.put("file_size", u.getFileSize(cert.getLong("file_size")));
 
-f.addElement("cert_name", cert.getString("cert_name"), "hname:'ÀÎÇã°¡¸í', required:'Y'");
-f.addElement("cert_no", cert.getString("cert_no"), "hname:'µî·Ï/Çã°¡¹øÈ£', required:'Y'");
-f.addElement("cert_org", cert.getString("cert_org"), "hname:'°ü·Ã±â°ü', required:'Y'");
-f.addElement("cert_sdate", cert.getString("cert_sdate"), "hname:'À¯È¿±â°£'");
-f.addElement("cert_edate", cert.getString("cert_edate"), "hname:'À¯È¿±â°£'");
+f.addElement("cert_name", cert.getString("cert_name"), "hname:'ì¸í—ˆê°€ëª…', required:'Y'");
+f.addElement("cert_no", cert.getString("cert_no"), "hname:'ë“±ë¡/í—ˆê°€ë²ˆí˜¸', required:'Y'");
+f.addElement("cert_org", cert.getString("cert_org"), "hname:'ê´€ë ¨ê¸°ê´€', required:'Y'");
+f.addElement("cert_sdate", cert.getString("cert_sdate"), "hname:'ìœ íš¨ê¸°ê°„'");
+f.addElement("cert_edate", cert.getString("cert_edate"), "hname:'ìœ íš¨ê¸°ê°„'");
 
 if(u.isPost()&&f.validate()){
 	f.uploadDir = Startup.conf.getString("file.path.bcompany")+member_no;
@@ -51,12 +51,12 @@ if(u.isPost()&&f.validate()){
 	certDao.item("reg_id", auth.getString("_USER_ID"));
 
 	if(!certDao.update(" member_no = '"+member_no+"' and cert_seq = '"+cert_seq+"' ")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	out.print("<script>");
-	out.print("alert(\"Ã³¸® ÇÏ¿´½À´Ï´Ù.\");");
+	out.print("alert(\"ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 	out.print("opener.location.reload();");
 	out.print("self.close();");
 	out.print("</script>");
@@ -70,7 +70,7 @@ if(member_no.equals(_member_no))
 else
 	p.setBody("info.pop_cert_view");
 
-p.setVar("popup_title","ÀÎÇã°¡ Á¤º¸");
+p.setVar("popup_title","ì¸í—ˆê°€ ì •ë³´");
 p.setLoop("code_cert", u.arr2loop(code_cert));
 p.setVar("modify", true);
 p.setVar("cert", cert);

@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("admin_id", null,"hname:'°ü¸®ÀÚ¾ÆÀÌµð', required:'Y'");
-f.addElement("admin_name", null,"hname:'°ü¸®ÀÚ¸í' , required:'Y'");
-f.addElement("passwd", null,"hname:'ºñ¹Ð¹øÈ£' , required:'Y',option:'userpw', match:'passwd2'");
-f.addElement("admin_ip", null, "hname:'°ü¸®ÀÚIP' ");
-f.addElement("auth_cd", null,"hname:'±ÇÇÑÄÚµå' , required:'Y'");
+f.addElement("admin_id", null,"hname:'ê´€ë¦¬ìžì•„ì´ë””', required:'Y'");
+f.addElement("admin_name", null,"hname:'ê´€ë¦¬ìžëª…' , required:'Y'");
+f.addElement("passwd", null,"hname:'ë¹„ë°€ë²ˆí˜¸' , required:'Y',option:'userpw', match:'passwd2'");
+f.addElement("admin_ip", null, "hname:'ê´€ë¦¬ìžIP' ");
+f.addElement("auth_cd", null,"hname:'ê¶Œí•œì½”ë“œ' , required:'Y'");
 
 DataObject authDao = new DataObject("tcc_auth");
 DataSet authInfo = authDao.find("status = '10' ","*","auth_nm asc");
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 
 	DB db = new DB();
@@ -25,11 +25,11 @@ if(u.isPost() && f.validate()){
 	db.setCommand(mgrUserDao.getInsertQuery(), mgrUserDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.","mgr_user_list.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","mgr_user_list.jsp?"+u.getQueryString());
 	return;
 }
 

@@ -1,28 +1,27 @@
-<?xml version="1.0" encoding="EUC-KR"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<db>
-		<datasource>java:comp/env/cdb</datasource>
+		<datasource>cdb</datasource>
 		<queryformat>true</queryformat>
 	</db>
-
+	
 	<dir>D:/Project/Intellij/nongshim</dir>
 
 	<file>
-		<path>  <!-- ÆÄÀÏ µð·ºÅä¸®-->
+		<path> <!-- íŒŒì¼ ë””ë ‰í† ë¦¬-->
 			${dir}/file
 
-			<file>${file.path}/file/</file>                <!-- Ã·ºÎÆÄÀÏ   µð·ºÅä¸®-->
-			<pds>${file.path}/pds/</pds> 				     <!-- ÀÚ·á½Ç     µð·ºÅä¸®-->
-			<noti>${file.path}/noti/</noti> 				 <!-- °øÁö»çÇ×   µð·ºÅä¸®-->
+			<file>${file.path}/file/</file> <!-- ì²¨ë¶€íŒŒì¼ ë””ë ‰í† ë¦¬-->
+			<pds>${file.path}/pds/</pds> <!-- ìžë£Œì‹¤ ë””ë ‰í† ë¦¬-->
+			<noti>${file.path}/noti/</noti> <!-- ê³µì§€ì‚¬í•­   ë””ë ‰í† ë¦¬-->
 
-			<bcontract>${file.path}/bcontract/</bcontract>    	<!-- ÀüÀÚ°è¾à(ºñ°Ç¼³) µð·ºÅä¸®-->
-			<bcont_template>${file.path}/bcontract/template/</bcont_template>		<!-- ÀüÀÚ°è¾à °è¾à¼­½Ä ±âº»Ã·ºÎ µð·ºÅä¸® -->
-			<bcont_pdf>${file.path}/bcontract/pdf/</bcont_pdf>	<!-- ÀüÀÚ°è¾à(ºñ°Ç¼³) ºñ°Ç¼³ pdf(output) -->
-			<bcont_logo>${file.path}/bcontract/logo/</bcont_logo>	<!-- ÀüÀÚ°è¾à ·Î°í(ºñ°Ç¼³) µð·ºÅä¸® -->
-			<bcont_logo_http>/file/bcontract/logo/</bcont_logo_http>	<!-- ÀüÀÚ°è¾à ·Î°í(ºñ°Ç¼³) http »ó´ë°æ·Î -->
-			<bcont_pds>${file.path}/bcontract/pds/</bcont_pds>	<!-- ÀüÀÚ°è¾à ÀÚ·á¹æ(ºñ°Ç¼³) µð·ºÅä¸® -->
+			<bcontract>${file.path}/bcontract/</bcontract> <!-- ì „ìžê³„ì•½ ë””ë ‰í† ë¦¬-->
+			<bcont_template>${file.path}/bcontract/template/</bcont_template> <!-- ì „ìžê³„ì•½ ê³„ì•½ì„œì‹ ê¸°ë³¸ì²¨ë¶€ ë””ë ‰í† ë¦¬ -->
+			<bcont_pdf>${file.path}/bcontract/pdf/</bcont_pdf> <!-- ì „ìžê³„ì•½ pdf(output) -->
+			<bcont_logo>${file.path}/bcontract/logo/</bcont_logo> <!-- ì „ìžê³„ì•½ ë¡œê³  ë””ë ‰í† ë¦¬ -->
+			<bcont_logo_http>/file/bcontract/logo/</bcont_logo_http> <!-- ì „ìžê³„ì•½ ë¡œê³  http ìƒëŒ€ê²½ë¡œ -->
+			<bcont_pds>${file.path}/bcontract/pds/</bcont_pds> <!-- ì „ìžê³„ì•½ ìžë£Œë°© ë””ë ‰í† ë¦¬ -->
 			<send_log>${file.path}/send_log/</send_log>
-
 		</path>
 	</file>
 
@@ -32,13 +31,31 @@
 		<document_root>${dir}/web/buyer</document_root>
 		<admin_root>${dir}/web/admin</admin_root>
 	</nicelib>
+	
+	<crosscert>
+		<path>
+			<npki>C:\Program Files\NPKI</npki> <!-- NPKI ê²½ë¡œ -->
+		</path>
+		<servercert>
+			<path>${dir}/file/NPKI</path> <!-- ì„œë²„ì¸ì¦ì„œ ê²½ë¡œ -->
+			<password>qwe112233!</password><!-- ì„œë²„ì¸ì¦ì„œ ë¹„ë°€ë²ˆí˜¸ -->
+		</servercert>
+	</crosscert>
 
-	<adminid>systemadmin</adminid> <!-- ¼­¹ö°ü¸®ÀÚ ¾ÆÀÌµð -->
+	<adminid>systemadmin</adminid> <!-- ì„œë²„ê´€ë¦¬ìž ì•„ì´ë”” -->
 
-	<domain>http://www.nicedocu.com</domain> <!-- ·ÎÄÃ µµ¸ÞÀÎ -->
+	<domain>http://172.26.10.191</domain> <!-- ì „ìžê²°ìž¬ ë„ë©”ì¸ -->
 	<email>
-		<mailHost>172.25.220.63</mailHost>
-		<mailFrom>klsong@nicedata.co.kr</mailFrom>
-	</email> <!-- ·ÎÄÃ µµ¸ÞÀÎ -->
-
+		<mailHost>smtp.nsgportal.net</mailHost>
+		<mailFrom>ecs@nongshim.com</mailFrom>
+	</email>
+	
+	<approval>
+		<action>http://dev.nsgportal.net</action> <!-- ì „ìžê²°ìž¬ URL -->
+		<url>http://172.26.10.191</url> <!-- ì „ìžê³„ì•½ URL -->
+		<documentType>ECS12</documentType>
+		<createSystem>NSNECS_DEV1</createSystem>
+		<createServer>172.26.10.191</createServer>
+		<systemCd>APPL200345</systemCd>
+	</approval>
 </configuration>

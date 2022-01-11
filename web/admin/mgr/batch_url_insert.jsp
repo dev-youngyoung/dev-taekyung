@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 if(u.isPost()&&f.validate()){
@@ -15,7 +15,7 @@ if(u.isPost()&&f.validate()){
 	DataObject templateDao = new DataObject("tcb_cont_template");
 	DataSet template = templateDao.find(" template_cd = '"+f.get("template_cd")+"'" );
 	if(!template.next()){
-		u.jsError("ÇØ´çÄÚµåÀÇ ¾ç½ÄÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+		u.jsError("í•´ë‹¹ì½”ë“œì˜ ì–‘ì‹ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
@@ -31,10 +31,10 @@ if(u.isPost()&&f.validate()){
 	
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù.","./batch_url_list.jsp");
+	u.jsAlertReplace("ì •ìƒì ìœ¼ë¡œ ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.","./batch_url_list.jsp");
 	return;
 }
 

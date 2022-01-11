@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String exam_cd = u.request("exam_cd");
 if(exam_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 String where = " member_no = '"+_member_no+"' and exam_cd = '"+exam_cd+"' ";
 
 
-// ÁøÇàÁßÀÎ Æò°¡ °èÈ¹ÀÌ ÀÖ´Ù¸é »èÁ¦ ºÒ°¡
+// ì§„í–‰ì¤‘ì¸ í‰ê°€ ê³„íšì´ ìžˆë‹¤ë©´ ì‚­ì œ ë¶ˆê°€
 
 DB db = new DB();
 //db.setDebug(out);
@@ -17,8 +17,8 @@ db.setCommand("delete from tcb_exam_item where "+where ,null);
 db.setCommand("delete from tcb_exam_question where "+where ,null);
 db.setCommand("delete from tcb_exam where "+ where ,null);
 if(!db.executeArray()){
-	u.jsError("»èÁ¦ Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("»èÁ¦ ÇÏ¿´½À´Ï´Ù.","exam_list.jsp?"+u.getQueryString("exam_cd"));
+u.jsAlertReplace("ì‚­ì œ í•˜ì˜€ìŠµë‹ˆë‹¤.","exam_list.jsp?"+u.getQueryString("exam_cd"));
 %>

@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-f.addElement("hp1", u.request("s_hp1"), "hname:'¹Þ´Â¹øÈ£', required:'Y', fixbyte:'3'");
-f.addElement("hp2", u.request("s_hp2"), "hname:'¹Þ´Â¹øÈ£', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", u.request("s_hp3"), "hname:'¹Þ´Â¹øÈ£', required:'Y', fixbyte:'4'");
-f.addElement("content",null, "hname:'¸Þ¼¼Áö', required:'Y'");
+f.addElement("hp1", u.request("s_hp1"), "hname:'ë°›ëŠ”ë²ˆí˜¸', required:'Y', fixbyte:'3'");
+f.addElement("hp2", u.request("s_hp2"), "hname:'ë°›ëŠ”ë²ˆí˜¸', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", u.request("s_hp3"), "hname:'ë°›ëŠ”ë²ˆí˜¸', required:'Y', fixbyte:'4'");
+f.addElement("content",null, "hname:'ë©”ì„¸ì§€', required:'Y'");
 
 DataSet ds = null;
 
@@ -12,17 +12,17 @@ if(u.isPost()&&f.validate()){
 	
 	SmsDao mm = new SmsDao();
 	if(!mm.sendSMS("fc", f.get("hp1"), f.get("hp2"), f.get("hp3"), f.get("content"))){
-		u.jsError("Àü¼Û¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì „ì†¡ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsErrClose("Àü¼Û¿¡ ¼º°ø ÇÏ¿´½À´Ï´Ù.");
+	u.jsErrClose("ì „ì†¡ì— ì„±ê³µ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("mgr.pop_send_sms");
-p.setVar("popup_title","SMSÀü¼Û");
+p.setVar("popup_title","SMSì „ì†¡");
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());

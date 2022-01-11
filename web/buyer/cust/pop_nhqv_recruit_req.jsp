@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"10=>ÀÓ½ÃÀúÀå","20=>½ÅÃ»Áß","30=>¼öÁ¤¿äÃ»","31=>¼öÁ¤½ÅÃ»","40=>½É»ç¿Ï·á","50=>¿Ï·á"};
+String[] code_status = {"10=>ì„ì‹œì €ì¥","20=>ì‹ ì²­ì¤‘","30=>ìˆ˜ì •ìš”ì²­","31=>ìˆ˜ì •ì‹ ì²­","40=>ì‹¬ì‚¬ì™„ë£Œ","50=>ì™„ë£Œ"};
 
-//NHÅõÀÚ Áõ±Ç Àü¿ë µî·Ï¾÷Ã¼ ½ÅÃ» Àü¿ë ÆäÀÌÁö
+//NHíˆ¬ì ì¦ê¶Œ ì „ìš© ë“±ë¡ì—…ì²´ ì‹ ì²­ ì „ìš© í˜ì´ì§€
 String noti_seq = u.request("noti_seq");
 if(noti_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject notiDao = new DataObject("tcb_recruit_noti");
 DataSet noti = notiDao.find("member_no = '20160901598' and noti_seq = '"+noti_seq+"' ");
 if(!noti.next()){
-	u.jsError("°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 noti.put("req_sdate", u.getTimeString("yyyy-MM-dd", noti.getString("req_sdate")));
@@ -78,7 +78,7 @@ if(u.isPost()&&f.validate()){
 	if(cust_seq.equals("")){
 		cust_seq = custDao.getOne("select nvl(max(cust_seq),0)+1 from tcb_recruit_cust where member_no = '"+noti.getString("member_no")+"' and noti_seq = '"+noti.getString("noti_seq")+"' ");
 		if(cust_seq.equals("")){
-			u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
@@ -90,12 +90,12 @@ if(u.isPost()&&f.validate()){
 	
 	DB db = new DB();
 	
-	// »ó´ë¹æ ¾÷Ã¼¿¡ µî·Ï
+	// ìƒëŒ€ë°© ì—…ì²´ì— ë“±ë¡
 	DataObject clientDao = new DataObject("tcb_client");
 	DataSet client = clientDao.find(" member_no = '"+noti.getString("member_no")+"' and client_no = '"+_member_no+"' ");
 	if(client.next()){
-		clientDao.item("client_type", "1");   // 1:µî·Ï¾÷Ã¼, 2:Çù·Â¾÷Ã¼
-		clientDao.item("client_reg_cd", "0"); // 0:°¡µî·Ï¾÷Ã¼, 1:Á¤½Äµî·Ï¾÷Ã¼
+		clientDao.item("client_type", "1");   // 1:ë“±ë¡ì—…ì²´, 2:í˜‘ë ¥ì—…ì²´
+		clientDao.item("client_reg_cd", "0"); // 0:ê°€ë“±ë¡ì—…ì²´, 1:ì •ì‹ë“±ë¡ì—…ì²´
 		clientDao.item("client_reg_date", u.getTimeString());
 		db.setCommand(clientDao.getUpdateQuery("member_no ='"+noti.getString("member_no")+"' and client_no = '"+_member_no+"' and client_seq = '"+client.getString("client_seq")+"'"), clientDao.record);
 	}else{
@@ -108,8 +108,8 @@ if(u.isPost()&&f.validate()){
 		clientDao.item("member_no", noti.getString("member_no"));
 		clientDao.item("client_seq", client_seq);
 		clientDao.item("client_no", _member_no);
-		clientDao.item("client_type", "1");   // 1:µî·Ï¾÷Ã¼, 2:Çù·Â¾÷Ã¼
-		clientDao.item("client_reg_cd", "0"); // 0:°¡µî·Ï¾÷Ã¼, 1:Á¤½Äµî·Ï¾÷Ã¼
+		clientDao.item("client_type", "1");   // 1:ë“±ë¡ì—…ì²´, 2:í˜‘ë ¥ì—…ì²´
+		clientDao.item("client_reg_cd", "0"); // 0:ê°€ë“±ë¡ì—…ì²´, 1:ì •ì‹ë“±ë¡ì—…ì²´
 		clientDao.item("client_reg_date", u.getTimeString());
 		db.setCommand(clientDao.getInsertQuery(), clientDao.record);
 	}
@@ -142,9 +142,9 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	String status = "10";
-	String msg = "ÀÓ½ÃÀúÀå ÇÏ¿´½À´Ï´Ù.\\n\\n½ÅÃ»¼­Á¦Ãâ ¹öÆ°À» Å¬¸¯ÇÏ¿© ½ÅÃ» ½Ã ÃÖÁ¾ ½ÅÃ» µË´Ï´Ù.";
+	String msg = "ì„ì‹œì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nì‹ ì²­ì„œì œì¶œ ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ ì‹ ì²­ ì‹œ ìµœì¢… ì‹ ì²­ ë©ë‹ˆë‹¤.";
 	if(f.get("status").equals("20")){
-		msg = "½ÅÃ»¼­ Á¦Ãâ Ã³¸® ÇÏ¿´½À´Ï´Ù.";
+		msg = "ì‹ ì²­ì„œ ì œì¶œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 		openerReload = true;
 		if(cust.getString("status").equals("30")){
 			status = "31";
@@ -170,7 +170,7 @@ if(u.isPost()&&f.validate()){
 	
 	
 	if(!db.executeArray()){
-		u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	out.println("<script>");
@@ -187,7 +187,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_nhqv_recruit_req");
-p.setVar("popup_title","NHÅõÀÚÁõ±Ç µî·Ï¾÷Ã¼ ½ÅÃ»");
+p.setVar("popup_title","NHíˆ¬ìì¦ê¶Œ ë“±ë¡ì—…ì²´ ì‹ ì²­");
 p.setVar("modify", !cust.getString("cust_seq").equals(""));
 p.setVar("noti", noti);
 p.setVar("cust", cust);

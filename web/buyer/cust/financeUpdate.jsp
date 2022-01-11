@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-//ÀÔ·Â¼öÁ¤
+//ìž…ë ¥ìˆ˜ì •
 if(u.isPost()){
 	
 	String asse_no = f.get("asse_no");
@@ -11,14 +11,14 @@ if(u.isPost()){
 	String rating = f.get("rating");
 	String doc_html = new String(Base64Coder.decode(f.get("doc_html")),"UTF-8");;
 	if(asse_no.equals("")){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä1.");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”1.");
 		return;
 	}
 	
 	DataObject assessmentDao = new DataObject("tcb_assemaster a  inner join tcb_assedetail b on a.asse_no = b.asse_no and b.div_cd = 'S'");
 	DataSet assessment = assessmentDao.find(" a.asse_no = '"+asse_no+"'", "a.*, b.asse_html, b.asse_subhtml");
 	if(!assessment.next()){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä2.");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”2.");
 		return;
 	}
 	
@@ -34,10 +34,10 @@ if(u.isPost()){
 	db.setCommand(assedetailDao.getUpdateQuery("asse_no= '"+asse_no+"' and div_cd = '"+div_cd+"'"), assedetailDao.record);
 	
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlert("ÀúÀå ÇÏ¿´½À´Ï´Ù.");
+	u.jsAlert("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	
 	out.println("<script language='javascript'>");
 	out.println("opener.financeCallback('"+point+"');");

@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("order_name", null, "hname:'¹ßÁÖÀÚ', required:'Y', maxbyte:'100'");
-f.addElement("field_name", null, "hname:'ÇöÀå¸í', required:'Y', maxbyte:'200'");
-f.addElement("field_loc", null, "hname:'ÇöÀåÀ§Ä¡', required:'Y', maxbyte:'200'");
+f.addElement("order_name", null, "hname:'ë°œì£¼ìž', required:'Y', maxbyte:'100'");
+f.addElement("field_name", null, "hname:'í˜„ìž¥ëª…', required:'Y', maxbyte:'200'");
+f.addElement("field_loc", null, "hname:'í˜„ìž¥ìœ„ì¹˜', required:'Y', maxbyte:'200'");
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DataObject dao = new DataObject("tcb_order_field");
@@ -22,11 +22,11 @@ if(u.isPost() && f.validate())
 	dao.item("del_yn", "Y");
 
 	if(!dao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
-	u.jsAlert("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù. ");
+	u.jsAlert("ì •ìƒì ìœ¼ë¡œ ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤. ");
 	u.jsReplace("construction_site.jsp");
 	return;
 }

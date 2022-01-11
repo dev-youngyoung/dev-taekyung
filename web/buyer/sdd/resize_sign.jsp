@@ -1,5 +1,5 @@
 <%@ page import="java.net.URLDecoder" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
     String sigm_img_data = f.get("sign_img_data");
     String encode_type = sigm_img_data.split(",")[0];

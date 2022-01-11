@@ -1,8 +1,8 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="search" value="1">
 <div class="util-row">
 	<div class="push-right">
-		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´Ý±â</button>
+		<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 	</div>
 </div>
 <div class="search_div">
@@ -15,9 +15,9 @@
 		<col width="10%"/>
 	</colgroup>
 	<tr>
-		<th><p>°ø°í¸í</p></th>
+		<th><p>ê³µê³ ëª…</p></th>
 		<td><input type="text" name="s_bid_name" maxlength="30" style="width:95%"></td>
-		<th><p>°ø°íÀÏÀÚ</p></th>
+		<th><p>ê³µê³ ì¼ìž</p></th>
 		<td>
 			<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -25,7 +25,7 @@
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 		</td>
 		<td align="right">
-			<button type="submit" class="search_btn">°Ë»ö</button>
+			<button type="submit" class="search_btn">ê²€ìƒ‰</button>
 		</td>
 	</tr>
 </table>
@@ -40,7 +40,7 @@ function formSubmit(f){
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<span class="caution-text">¡Ø°è¾à´ë»óÀÌ ¾Æ´Ñ ÀÔÂû°ÇÀº ÀüÀÚÀÔÂû>ÀÔÂû°á°ú ¸Þ´ºÀÇ ÀÔÂû°Ç »ó¼¼ È­¸é¿¡¼­ ÀüÀÚ°è¾à´ë»ó¿©ºÎ¸¦  º¯°æ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.</span>
+			<span class="caution-text">â€»ê³„ì•½ëŒ€ìƒì´ ì•„ë‹Œ ìž…ì°°ê±´ì€ ì „ìžìž…ì°°>ìž…ì°°ê²°ê³¼ ë©”ë‰´ì˜ ìž…ì°°ê±´ ìƒì„¸ í™”ë©´ì—ì„œ ì „ìžê³„ì•½ëŒ€ìƒì—¬ë¶€ë¥¼  ë³€ê²½ í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.</span>
 		</div>
 	</div>
 	<table>
@@ -53,12 +53,12 @@ function formSubmit(f){
 			<col width="10%">
 		</colgroup>
 		<tr>
-			<th>°ø°í¹øÈ£</th>
-			<th>ÀÔÂû°Ç¸í</th>
-			<th>°ø°íÀÏÀÚ</th>
-			<th>³«Âû¾÷Ã¼¸í</th>
-			<th>³«Âû±Ý¾×</th>
-			<th>¼±ÅÃ</th>
+			<th>ê³µê³ ë²ˆí˜¸</th>
+			<th>ìž…ì°°ê±´ëª…</th>
+			<th>ê³µê³ ì¼ìž</th>
+			<th>ë‚™ì°°ì—…ì²´ëª…</th>
+			<th>ë‚™ì°°ê¸ˆì•¡</th>
+			<th>ì„ íƒ</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
@@ -69,7 +69,7 @@ function formSubmit(f){
 			<td align="right">{{list.total_cost}}</td>
 			<td align="center">
 				<!-- IFNOT START 'list.asse_no' -->
-				<button type="button" class="sbtn color ico-add" onclick="selectBid({bid_no:'{{list.bid_no}}',bid_deg:'{{list.bid_deg}}',bid_name:'{{list.bid_name}}',member_no:'{{list.member_no}}',member_name:'{{list.member_name}}',charge_id:'{{list.charge_id}}',charge_name:'{{list.charge_name}}'})"><span></span>¼±ÅÃ</button>
+				<button type="button" class="sbtn color ico-add" onclick="selectBid({bid_no:'{{list.bid_no}}',bid_deg:'{{list.bid_deg}}',bid_name:'{{list.bid_name}}',member_no:'{{list.member_no}}',member_name:'{{list.member_name}}',charge_id:'{{list.charge_id}}',charge_name:'{{list.charge_name}}'})"><span></span>ì„ íƒ</button>
 				<!-- IFNOT END 'list.asse_no' -->
 				<!-- IF START 'list.asse_no' -->
 				{{list.asse_status_nm}}
@@ -81,7 +81,7 @@ function formSubmit(f){
 	<!-- IFNOT START 'list' -->
 	<table>
 		<tr>
-			<td align="center" colspan="5">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="5">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 	</table>
 	<!-- IFNOT END 'list' -->

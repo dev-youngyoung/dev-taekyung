@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
-// http://dev.nicedocu.com/web/buyer/contract/cin.jsp?key=910031eebfa3a97b52c7d44580bf4d66  °³¹ß
-// http://www.nicedocu.com/web/buyer/contract/cin.jsp?key=a69b5e466231b9864c44e2ddb7abcef2  ¸®¾ó
+// http://dev.nicedocu.com/web/buyer/contract/cin.jsp?key=910031eebfa3a97b52c7d44580bf4d66  ê°œë°œ
+// http://www.nicedocu.com/web/buyer/contract/cin.jsp?key=a69b5e466231b9864c44e2ddb7abcef2  ë¦¬ì–¼
 if(!auth.isValid()){
 	u.redirect("cin_login.jsp?"+u.getQueryString());
 }
@@ -10,14 +10,14 @@ if(!auth.isValid()){
 String key = u.request("key");
 if(key.length() == 0)
 {
-	u.p("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.[1]");
+	u.p("ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.[1]");
 	return;
 }
 
-String contstr = u.aseDec(key);  // µğÄÚµù
+String contstr = u.aseDec(key);  // ë””ì½”ë”©
 if(contstr.length() != 12)
 {
-	u.p("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.[2]");
+	u.p("ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.[2]");
 	return;
 }
 String cont_no = contstr.substring(0,11);
@@ -28,51 +28,51 @@ DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu="+cont_chasu
 
 if(!cont.next())
 {
-	u.p("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.[3]");
+	u.p("ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.[3]");
 	return;
 }
 
 if(!cont.getString("member_no").equals(auth.getString("_MEMBER_NO")))
 {
-	u.p("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.[4]");
+	u.p("ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.[4]");
 	return;
 }
 
 if(auth.getString("_MEMBER_NO").equals("20150600110")){
-	//Æ¼¾Ë¿£Àº ÀüÃ¼¸¦ ´Ù Á¶È¸ ÇÔ.
+	//í‹°ì•Œì—”ì€ ì „ì²´ë¥¼ ë‹¤ ì¡°íšŒ í•¨.
 }else if(!cont.getString("status").equals("50")){
 	CodeDao codeDao = new CodeDao("tcb_comcode");
 	String[] code_status = codeDao.getCodeArray("M008");
 	
-	u.p("¿Ï·áµÈ °è¾àÀÌ ¾Æ´Ï¹Ç·Î Á¶È¸ÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.<br><br>ÇöÀç °è¾à »óÅÂ´Â <font color='red'>" + u.getItem(cont.getString("status"),code_status) + "</font>ÀÔ´Ï´Ù.");
+	u.p("ì™„ë£Œëœ ê³„ì•½ì´ ì•„ë‹ˆë¯€ë¡œ ì¡°íšŒí•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.<br><br>í˜„ì¬ ê³„ì•½ ìƒíƒœëŠ” <font color='red'>" + u.getItem(cont.getString("status"),code_status) + "</font>ì…ë‹ˆë‹¤.");
 	return;
 }
 
 if(cont.getString("sign_types").equals("")){
 	if(!cont.getString("template_cd").equals("")) {
-		if(cont.getString("status").equals("10")) {//ÀÛ¼ºÁß
-			u.redirect("contract_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
-		}else if(cont.getString("status").equals("50")){//¿Ï·á
-			u.redirect("contend_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
-		}else{//ÁøÇàÁß
-			u.redirect("contract_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
+		if(cont.getString("status").equals("10")) {//ì‘ì„±ì¤‘
+			u.redirect("contract_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
+		}else if(cont.getString("status").equals("50")){//ì™„ë£Œ
+			u.redirect("contend_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
+		}else{//ì§„í–‰ì¤‘
+			u.redirect("contract_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
 		}
 	}else {
-		if(cont.getString("status").equals("10")) {//ÀÛ¼ºÁß
-			u.redirect("contract_free_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
-		}else if(cont.getString("status").equals("50")){//¿Ï·á
-			u.redirect("contend_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
-		}else{//ÁøÇàÁß
-			u.redirect("contract_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
+		if(cont.getString("status").equals("10")) {//ì‘ì„±ì¤‘
+			u.redirect("contract_free_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
+		}else if(cont.getString("status").equals("50")){//ì™„ë£Œ
+			u.redirect("contend_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
+		}else{//ì§„í–‰ì¤‘
+			u.redirect("contract_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
 		}
 	}
 }else{
-	if(cont.getString("status").equals("10")) {//ÀÛ¼ºÁß
-		u.redirect("contract_msign_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
-	}else if(cont.getString("status").equals("50")){//¿Ï·á
-		u.redirect("contend_msign_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
-	}else{//ÁøÇàÁß
-		u.redirect("contract_msign_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ¼­½Ä°è¾à
+	if(cont.getString("status").equals("10")) {//ì‘ì„±ì¤‘
+		u.redirect("contract_msign_modify.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
+	}else if(cont.getString("status").equals("50")){//ì™„ë£Œ
+		u.redirect("contend_msign_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
+	}else{//ì§„í–‰ì¤‘
+		u.redirect("contract_msign_sendview.jsp?cont_no=" + u.aseEnc(cont_no) + "&cont_chasu=" + cont_chasu);  // ì„œì‹ê³„ì•½
 	}
 }
 %>

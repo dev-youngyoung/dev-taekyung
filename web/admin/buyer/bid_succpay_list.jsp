@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"10=>¹ÌÃ»±¸","20=>Ã»±¸"};
+String[] code_status = {"10=>ë¯¸ì²­êµ¬","20=>ì²­êµ¬"};
 
 String s_sdate = u.request("s_sdate");
 
@@ -10,7 +10,7 @@ f.addElement("s_status", null, null);
 f.addElement("s_main_member_name", null, null);
 f.addElement("s_member_name", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -37,12 +37,12 @@ if(!s_sdate.equals("")){
 if(!f.get("s_edate").equals("")){
 	list.addWhere(" a.bid_date <= '"+f.get("s_edate").replaceAll("-", "")+"'");
 }
-list.addSearch("d.member_name", f.get("s_main_member_name"),"LIKE");//¹ßÁÖ»ç
+list.addSearch("d.member_name", f.get("s_main_member_name"),"LIKE");//ë°œì£¼ì‚¬
 list.addSearch("b.member_name", f.get("s_member_name"),"LIKE");//
 list.addSearch("c.status", f.get("s_status"));//
 list.setOrderBy("a.bid_date desc, a.bid_no desc, a.main_member_no desc, a.bid_deg desc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){

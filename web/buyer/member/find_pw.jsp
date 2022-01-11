@@ -1,52 +1,47 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("vendcd1", null, "hname:'»ç¾÷ÀÚ¹øÈ£', required:'Y', fixbyte:'3'");
-f.addElement("vendcd2", null, "hname:'»ç¾÷ÀÚ¹øÈ£', required:'Y', fixbyte:'2'");
-f.addElement("vendcd3", null, "hname:'»ç¾÷ÀÚ¹øÈ£', required:'Y', fixbyte:'5'");
-f.addElement("user_id", null, "hname:'¾ÆÀÌµð', required:'Y'");
-f.addElement("user_name", null, "hname:'»ç¿ëÀÚ ÀÌ¸§', required:'Y'");
-f.addElement("email", null, "hname:'»ç¿ëÀÚ ÀÌ¸ÞÀÏ', required:'Y'");
+f.addElement("vendcd1", null, "hname:'ì‚¬ì—…ìžë²ˆí˜¸', required:'Y', fixbyte:'3'");
+f.addElement("vendcd2", null, "hname:'ì‚¬ì—…ìžë²ˆí˜¸', required:'Y', fixbyte:'2'");
+f.addElement("vendcd3", null, "hname:'ì‚¬ì—…ìžë²ˆí˜¸', required:'Y', fixbyte:'5'");
+f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y'");
+f.addElement("user_name", null, "hname:'ì‚¬ìš©ìž ì´ë¦„', required:'Y'");
+f.addElement("email", null, "hname:'ì‚¬ìš©ìž ì´ë©”ì¼', required:'Y'");
 
-if(u.isPost() && f.validate())
-{
-    String vendcd = f.get("vendcd1")+f.get("vendcd2")+f.get("vendcd3");
-	DataObject memberDao = new DataObject("tcb_member");
-	DataSet member = memberDao.find(" vendcd = '"+vendcd+"' and status in ('01','03') ");
-	if(!member.next()){
-		u.jsError("ÇØ´ç »ç¾÷ÀÚ µî·Ï ¹øÈ£·Î °Ë»ö µÈ ¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
-		return;
-	}
+if (u.isPost() && f.validate()) {
+    String vendcd = f.get("vendcd1") + f.get("vendcd2") + f.get("vendcd3");
 
 	DataObject personDao = new DataObject("tcb_person");
-	DataSet person = personDao.find(" member_no = '"+member.getString("member_no")+"' and user_id='"+f.get("user_id")+"' and user_name='"+f.get("user_name")+"' and email = '"+f.get("email")+"'");
+	DataSet person = personDao.find(" member_no in (select member_no from tcb_member where vendcd = '"+vendcd+"' and status in ('01','03') and member_type = '02') and user_id='" + f.get("user_id") + "' and user_name='" + f.get("user_name") + "' and email = '" + f.get("email") + "'");
 	if(!person.next()){
-		u.jsError("µî·ÏÇÏ½Å Á¤º¸·Î °Ë»öµÈ ´ã´çÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+		u.jsError("ë“±ë¡í•˜ì‹  ì •ë³´ë¡œ ê²€ìƒ‰ëœ ë‹´ë‹¹ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+		return;
+	}
+	
+	DataObject memberDao = new DataObject("tcb_member");
+	DataSet member = memberDao.find(" member_no = '" + person.getString("member_no") + "' ");
+	if (!member.next()) {
+		u.jsError("í•´ë‹¹ ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸ë¡œ ê²€ìƒ‰ ëœ ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	if(person.getString("member_no").equals("20190300995")){//Áö´Ï¹ÂÁ÷Àº ÀÚµ¿·Î±×ÀÎ¸¸ »ç¿ë
-		u.jsError("Áö´Ï¹ÂÁ÷Àº ÀÚµ¿·Î±×ÀÎ¸¸ »ç¿ë°¡´ÉÇÕ´Ï´Ù.");
-		return;
-	}
-
-	String passwd = "p"+u.strpad(u.getRandInt(0,999999)+"",6,"0")+"!";
+	String passwd = "p" + u.strpad(u.getRandInt(0,999999) + "", 6, "0") + "!";
 
 	person.put("member_name", member.getString("member_name"));
 	person.put("passwd",passwd);
 
-	personDao.item("passwd",u.sha256(passwd));
-	if(!personDao.update(" member_no = '"+person.getString("member_no")+"' and person_seq = '"+person.getString("person_seq")+"' ")){
-		u.jsError("ÀÓ½Ãºñ¹Ð¹øÈ£ ¹ß±ÞÃ³¸®¿¡ ½ÇÆÐ ÇÏ¿³½À´Ï´Ù.");
+	personDao.item("passwd", u.sha256(passwd));
+	if (!personDao.update(" user_id = '" + f.get("user_id") + "' ")) {
+		u.jsError("ìž„ì‹œë¹„ë°€ë²ˆí˜¸ ë°œê¸‰ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	p.setVar("server_name", request.getServerName());
+	p.setVar("server_name", Config.getWebUrl());
 	p.setVar("return_url", "/web/buyer/");
 	p.setVar("person", person);
 	String mail_body = p.fetch("../html/mail/find_pw_mail.html");
-	u.mail(person.getString("email"), "[³ªÀÌ½º´ÙÅ¥] °èÁ¤Á¤º¸ ¾È³»", mail_body );
+	u.mail(person.getString("email"), "[ë†ì‹¬] ê³„ì •ì •ë³´ ì•ˆë‚´", mail_body);
 
-	u.jsAlertReplace("¸ÞÀÏÀÌ ¹ß¼Û µÇ¾ú½À´Ï´Ù.", "/web/buyer/main/index.jsp");
+	u.jsAlertReplace("ë©”ì¼ì´ ë°œì†¡ ë˜ì—ˆìŠµë‹ˆë‹¤.", "/web/buyer/main/index.jsp");
 	return;
 }
 

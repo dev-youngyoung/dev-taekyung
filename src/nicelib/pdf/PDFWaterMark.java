@@ -32,9 +32,9 @@ public class PDFWaterMark {
 	
 	
 	/**
-     * ¹è°æÀÌ¹ÌÁö Ãß°¡ÇÏ±â
-     * @param  sPdfPath ¹è°æ ÀÌ¹ÌÁö Àû¿ëÇÒ PDF ÆÄÀÏ°æ·Î
-     * @param  imgBack    ¹è°æ ÀÌ¹ÌÁö
+     * ë°°ê²½ì´ë¯¸ì§€ ì¶”ê°€í•˜ê¸°
+     * @param  sPdfPath ë°°ê²½ ì´ë¯¸ì§€ ì ìš©í•  PDF íŒŒì¼ê²½ë¡œ
+     * @param  imgBack    ë°°ê²½ ì´ë¯¸ì§€
      * @throws Exception
      */
     public void setImage(String pdf_path, String ci_img_path, String stamp_img_path, String sign_img_path, String footer_img_path, ServletOutputStream ouputStream) throws Exception
@@ -45,7 +45,7 @@ public class PDFWaterMark {
     	System.out.println("stamp_img_path=>"+stamp_img_path);
     	System.out.println("sign_img_path=>"+sign_img_path);
     	System.out.println("footer_img_path=>"+footer_img_path);
-        String sReaderPath = pdf_path;              // ¹è°æ ÀÌ¹ÌÁö Àû¿ëÇÒ PDF ÆÄÀÏ°æ·Î
+        String sReaderPath = pdf_path;              // ë°°ê²½ ì´ë¯¸ì§€ ì ìš©í•  PDF íŒŒì¼ê²½ë¡œ
         
         Image imgCi = null;
         if(!ci_img_path.equals("")){
@@ -89,34 +89,34 @@ public class PDFWaterMark {
         float pageHeight = rectangle.getHeight();
         
         
-        //A4 ¼¼·Î 595.0x842.0
+        //A4 ì„¸ë¡œ 595.0x842.0
         if(imgCi!=null){
-	        float fImgPosX = (pageWidth - imgCi.getWidth()) / 2;    // ¹è°æ ÀÌ¹ÌÁö x ÁÂÇ¥
-	        float fImgPosY = (pageHeight - imgCi.getHeight()) / 2;  // ¹è°æ ÀÌ¹ÌÁö y ÁÂÇ¥
-	        imgCi.setAbsolutePosition(fImgPosX, fImgPosY);  // °¡¿îµ¥¿¡ À§Ä¡
+	        float fImgPosX = (pageWidth - imgCi.getWidth()) / 2;    // ë°°ê²½ ì´ë¯¸ì§€ x ì¢Œí‘œ
+	        float fImgPosY = (pageHeight - imgCi.getHeight()) / 2;  // ë°°ê²½ ì´ë¯¸ì§€ y ì¢Œí‘œ
+	        imgCi.setAbsolutePosition(fImgPosX, fImgPosY);  // ê°€ìš´ë°ì— ìœ„ì¹˜
         }
         
         if(imgStamp!= null){
-	        imgStamp.setAbsolutePosition(pageWidth -70, 10);// ÁËÃøÇÏ´Ü
+	        imgStamp.setAbsolutePosition(pageWidth -80, 15);// ì£„ì¸¡í•˜ë‹¨
         }
         
         if(imgSign!= null){
-        	imgSign.setAbsolutePosition(10 , 800);  // ÁÂÃø»ó´Ü
+        	imgSign.setAbsolutePosition(10 , 800);  // ì¢Œì¸¡ìƒë‹¨
         }
         
         if(footerImg!= null){
         	footerImg.scaleToFit(500, 40);
-        	footerImg.setAbsolutePosition(10, 10);  // ÇÏ´Ü
+        	footerImg.setAbsolutePosition(10, 10);  // í•˜ë‹¨
         }
 
         PdfContentByte under = null;
         PdfContentByte over = null;
         
         int iTotalPage = reader.getNumberOfPages();
-        for (int i = 1; i <= iTotalPage; i++)   // ÀüÃ¼ page
+        for (int i = 1; i <= iTotalPage; i++)   // ì „ì²´ page
         {
-            under = stamper.getUnderContent(i); // i page¿¡
-        	over = stamper.getOverContent(i); // i page¿¡
+            under = stamper.getUnderContent(i); // i pageì—
+        	over = stamper.getOverContent(i); // i pageì—
         	if(imgCi!=null) under.addImage(imgCi);
             if(imgStamp != null)over.addImage(imgStamp);
             if(imgSign!=null)over.addImage(imgSign);
@@ -128,9 +128,9 @@ public class PDFWaterMark {
     }
     
     /**
-     * ¹è°æÀÌ¹ÌÁö Ãß°¡ÇÏ±â
-     * @param  sPdfPath ¹è°æ ÀÌ¹ÌÁö Àû¿ëÇÒ PDF ÆÄÀÏ°æ·Î
-     * @param  imgBack    ¹è°æ ÀÌ¹ÌÁö
+     * ë°°ê²½ì´ë¯¸ì§€ ì¶”ê°€í•˜ê¸°
+     * @param  sPdfPath ë°°ê²½ ì´ë¯¸ì§€ ì ìš©í•  PDF íŒŒì¼ê²½ë¡œ
+     * @param  imgBack    ë°°ê²½ ì´ë¯¸ì§€
      * @throws Exception
      */
     public void setImage(byte[] pdfbyte, String ci_img_path, String stamp_img_path, String sign_img_path, String footer_img_path, ServletOutputStream ouputStream) throws Exception
@@ -180,34 +180,34 @@ public class PDFWaterMark {
         float pageHeight = rectangle.getHeight();
         
         
-        //A4 ¼¼·Î 595.0x842.0
+        //A4 ì„¸ë¡œ 595.0x842.0
         if(imgCi!=null){
-	        float fImgPosX = (pageWidth - imgCi.getWidth()) / 2;    // ¹è°æ ÀÌ¹ÌÁö x ÁÂÇ¥
-	        float fImgPosY = (pageHeight - imgCi.getHeight()) / 2;  // ¹è°æ ÀÌ¹ÌÁö y ÁÂÇ¥
-	        imgCi.setAbsolutePosition(fImgPosX, fImgPosY);  // °¡¿îµ¥¿¡ À§Ä¡
+	        float fImgPosX = (pageWidth - imgCi.getWidth()) / 2;    // ë°°ê²½ ì´ë¯¸ì§€ x ì¢Œí‘œ
+	        float fImgPosY = (pageHeight - imgCi.getHeight()) / 2;  // ë°°ê²½ ì´ë¯¸ì§€ y ì¢Œí‘œ
+	        imgCi.setAbsolutePosition(fImgPosX, fImgPosY);  // ê°€ìš´ë°ì— ìœ„ì¹˜
         }
         
         if(imgStamp!= null){
-	        imgStamp.setAbsolutePosition(pageWidth -70, 10);// ÁËÃøÇÏ´Ü
+	        imgStamp.setAbsolutePosition(pageWidth -70, 10);// ì£„ì¸¡í•˜ë‹¨
         }
         
         if(imgSign!= null){
-        	imgSign.setAbsolutePosition(10 , 800);  // ÁÂÃø»ó´Ü
+        	imgSign.setAbsolutePosition(10 , 800);  // ì¢Œì¸¡ìƒë‹¨
         }
         
         if(footerImg!= null){
         	footerImg.scaleToFit(500, 40);
-        	footerImg.setAbsolutePosition(10, 10);  // ÇÏ´Ü
+        	footerImg.setAbsolutePosition(10, 10);  // í•˜ë‹¨
         }
 
         PdfContentByte under = null;
         PdfContentByte over = null;
         
         int iTotalPage = reader.getNumberOfPages();
-        for (int i = 1; i <= iTotalPage; i++)   // ÀüÃ¼ page
+        for (int i = 1; i <= iTotalPage; i++)   // ì „ì²´ page
         {
-            under = stamper.getUnderContent(i); // i page¿¡
-        	over = stamper.getOverContent(i); // i page¿¡
+            under = stamper.getUnderContent(i); // i pageì—
+        	over = stamper.getOverContent(i); // i pageì—
         	if(imgCi!=null) under.addImage(imgCi);
             if(imgStamp != null)over.addImage(imgStamp);
             if(imgSign!=null)over.addImage(imgSign);
@@ -219,9 +219,9 @@ public class PDFWaterMark {
     }
     
     /**
-     * ¹è°æÀÌ¹ÌÁö Ãß°¡ÇÏ±â
-     * @param  sPdfPath ¹è°æ ÀÌ¹ÌÁö Àû¿ëÇÒ PDF ÆÄÀÏ°æ·Î
-     * @param  imgBack    ¹è°æ ÀÌ¹ÌÁö
+     * ë°°ê²½ì´ë¯¸ì§€ ì¶”ê°€í•˜ê¸°
+     * @param  sPdfPath ë°°ê²½ ì´ë¯¸ì§€ ì ìš©í•  PDF íŒŒì¼ê²½ë¡œ
+     * @param  imgBack    ë°°ê²½ ì´ë¯¸ì§€
      * @throws Exception
      */
     public void setImageNhqv(byte[] pdfbyte, String ci_img_path, String stamp_img_path, ServletOutputStream ouputStream) throws Exception
@@ -255,15 +255,15 @@ public class PDFWaterMark {
         float pageHeight = rectangle.getHeight();
         
         
-        //A4 ¼¼·Î 595.0x842.0
+        //A4 ì„¸ë¡œ 595.0x842.0
         if(imgCi!=null){
-	        float fImgPosX = (pageWidth - imgCi.getWidth()) / 2;    // ¹è°æ ÀÌ¹ÌÁö x ÁÂÇ¥
-	        float fImgPosY = (pageHeight - imgCi.getHeight()) / 2;  // ¹è°æ ÀÌ¹ÌÁö y ÁÂÇ¥
-	        imgCi.setAbsolutePosition(fImgPosX, fImgPosY);  // °¡¿îµ¥¿¡ À§Ä¡
+	        float fImgPosX = (pageWidth - imgCi.getWidth()) / 2;    // ë°°ê²½ ì´ë¯¸ì§€ x ì¢Œí‘œ
+	        float fImgPosY = (pageHeight - imgCi.getHeight()) / 2;  // ë°°ê²½ ì´ë¯¸ì§€ y ì¢Œí‘œ
+	        imgCi.setAbsolutePosition(fImgPosX, fImgPosY);  // ê°€ìš´ë°ì— ìœ„ì¹˜
         }
         
         if(imgStamp!= null){
-	        imgStamp.setAbsolutePosition(pageWidth -90, 50);// ÁËÃøÇÏ´Ü
+	        imgStamp.setAbsolutePosition(pageWidth -90, 50);// ì£„ì¸¡í•˜ë‹¨
         }
        
 
@@ -271,10 +271,10 @@ public class PDFWaterMark {
         PdfContentByte over = null;
         
         int iTotalPage = reader.getNumberOfPages();
-        for (int i = 1; i <= iTotalPage; i++)   // ÀüÃ¼ page
+        for (int i = 1; i <= iTotalPage; i++)   // ì „ì²´ page
         {
-            under = stamper.getUnderContent(i); // i page¿¡
-        	over = stamper.getOverContent(i); // i page¿¡
+            under = stamper.getUnderContent(i); // i pageì—
+        	over = stamper.getOverContent(i); // i pageì—
         	if(imgCi!=null) under.addImage(imgCi);
             if(imgStamp != null)over.addImage(imgStamp);
         }

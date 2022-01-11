@@ -1,21 +1,21 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find("cont_no='"+cont_no+"' and cont_chasu="+cont_chasu, "cont_etc1");
 if(!cont.next()) {
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
-f.addElement("cont_etc1", cont.getString("cont_etc1"), "hname:'ÇÁ·ÎÁ§Æ® ÄÚµå', required:'Y'");
+f.addElement("cont_etc1", cont.getString("cont_etc1"), "hname:'í”„ë¡œì íŠ¸ ì½”ë“œ', required:'Y'");
 
 
 //u.p("cust_detail_code : "+ cust.getString("cust_detail_code"));
@@ -27,10 +27,10 @@ if(u.isPost()&&f.validate()){
 
 	contDao.item("cont_etc1", f.get("cont_etc1"));
 	if(!contDao.update("cont_no='"+cont_no+"' and cont_chasu="+cont_chasu)){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	} else {
-		u.jsAlert("Ã³¸® µÇ¾ú½À´Ï´Ù.");
+		u.jsAlert("ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	}
 
 	out.println("<script language=\"javascript\" >");
@@ -43,7 +43,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_project_cd");
-p.setVar("popup_title","ÄÚµå º¯°æ");
+p.setVar("popup_title","ì½”ë“œ ë³€ê²½");
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());

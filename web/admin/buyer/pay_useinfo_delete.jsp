@@ -1,29 +1,29 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject useInfoDao = new DataObject("tcb_useinfo");
 DataSet useInfo = useInfoDao.find("member_no = '"+member_no+"' ");
 if(!useInfo.next()){
-	u.jsError("ÀÌ¿ëÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì´ìš©ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!useInfoDao.delete(" member_no = '"+member_no+"' ")){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦Ã³¸® ÇÏ¿´½À´Ï´Ù.", "pay_comp_list.jsp?"+u.getQueryString("member_no"));
+u.jsAlertReplace("ì‚­ì œì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "pay_comp_list.jsp?"+u.getQueryString("member_no"));
 %>

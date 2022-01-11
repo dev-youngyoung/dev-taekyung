@@ -1,7 +1,7 @@
-<div>
+ï»¿<div>
 	<div class="cont_tab">
-		<span class="tab_off" onclick="location.href='true_contract.jsp'">ÀüÀÚ°è¾à ÁøÀ§È®ÀÎ</span>
-		<span class="tab_on">½ÇÀûÁõ¸í¼­ ÁøÀ§È®ÀÎ</span>
+		<span class="tab_off" onclick="location.href='true_contract.jsp'">ì „ìžê³„ì•½ ì§„ìœ„í™•ì¸</span>
+		<span class="tab_on">ì‹¤ì ì¦ëª…ì„œ ì§„ìœ„í™•ì¸</span>
 	</div>
 </div>
 
@@ -10,7 +10,7 @@
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<span class="caution-text">(¡Ø ÀüÀÚ¹®¼­ »ó´Ü ¿ìÃøÀÇ ¹®¼­¹øÈ£ ÀÔ·Â)</span>
+				<span class="caution-text">(â€» ì „ìžë¬¸ì„œ ìƒë‹¨ ìš°ì¸¡ì˜ ë¬¸ì„œë²ˆí˜¸ ìž…ë ¥)</span>
 			</div>
 		</div>
 
@@ -20,14 +20,14 @@
 				<col width="85%">
 			</colgroup>
 			<tr>
-				<th>¹ß±Þ¹øÈ£</th>
+				<th>ë°œê¸‰ë²ˆí˜¸</th>
 				<td>
 					<input type="text" name="proof_no1" size="4" maxlength="4" style="ime-mode:disabled;width:50px" onKeyUp="moveNext('proof_no2')">
 					-
 					<input type="text" name="proof_no2" size="8" maxlength="8" style="ime-mode:disabled;width:90px" onKeyUp="moveNext('proof_no3')">
 					-
 					<input type="text" name="proof_no3" size="5" maxlength="5" style="ime-mode:disabled;width:60px">
-					<button type="submit" class="sbtn color ico-check" ><span></span> È®ÀÎ</button>
+					<button type="submit" class="sbtn color ico-check" ><span></span> í™•ì¸</button>
 				</td>
 			</tr>
 		</table>
@@ -40,11 +40,11 @@
 				<col width="85%">
 			</colgroup>
 			<tr>
-				<th>¹®¼­¸í</th>
+				<th>ë¬¸ì„œëª…</th>
 				<td>{{proof.template_name}}</td>
 			</tr>
 			<tr>
-				<th>¿ø»ç¾÷ÀÚ</th>
+				<th>ì›ì‚¬ì—…ìž</th>
 				<td>{{proof.won_member_name}}</td>
 			</tr>
 			<!-- IF START 'msg' -->
@@ -57,7 +57,7 @@
 
 </form>
 <div class="btn-group-wrap">
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>´Ý±â</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>ë‹«ê¸°</button>
 </div>
 
 {{form_script}}

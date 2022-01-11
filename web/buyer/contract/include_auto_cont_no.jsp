@@ -4,31 +4,31 @@ public boolean isAutoMember(String member_no){
 	boolean result = Util.inArray(
 			member_no
 			, new String[]{
-					 "20150400367"	//À¯Áø±â¾÷(ÁÖ)
-					,"20170100166"	//ÁÖ½ÄÈ¸»ç ½Å»ç°í¾ÆÄ«µ¥¹Ì
-					,"20170100165"	//ÁÖ½ÄÈ¸»ç ÁÁÀºÃ¥½Å»ç°í
-					,"20160401012"	//¿¤ÁöÈ÷Å¸Ä¡¿öÅÍ¼Ö·ç¼Ç ÁÖ½ÄÈ¸»ç
-					,"20150900434"	//³ªµğ¾ÆÆÛ½ÃÇÈ ÁÖ½ÄÈ¸»ç
-					,"20150500312"	//(ÁÖ)´õºíÀ¯¼îÇÎ
-					,"20140900004"	//(ÁÖ)ÄÉÀÌÆ¼¿¥¾Ø¿¡½º
-					,"20130400011"	//ÇÑ±¹¾²¸®¿¥º¸°Ç¾ÈÀü À¯ÇÑÈ¸»ç
-					,"20130400010"	//ÇÑ±¹¾²¸®¿¥ Æ®·¹ÀÌµù À¯ÇÑÈ¸»ç
-					,"20130400009"	//ÇÑ±¹¾²¸®¿¥ÇÏÀÌÅ×Å© À¯ÇÑÈ¸»ç
-					,"20130400008"	//ÁÖ½ÄÈ¸»ç ¾²¸®¿¥¿¡ÀÌ¿¡½ºÆ¼
-					,"20121203661"	//ÇÑ±¹¾²¸®¿¥(ÁÖ)
-					,"20180203437"	//ÇÏÀÌ¿£ÅØ
-					,"20121200073"	//·ÎÁö½ºÇ®
-					,"20181201176"	//Ä«Ä«¿À Ä¿¸Ó½º
-					,"20131000506"	//¿¡½ºÄÉÀÌÇÏÀÌ½ºÅØÁÖ½ÄÈ¸»ç
-					,"20190205651"	//³²ºÎ»ê¾÷ ÁÖ½ÄÈ¸»ç
-					,"20190205653"	//ÀÌ¼ø»ê¾÷ ÁÖ½ÄÈ¸»ç
-					,"20190205654"	//(ÁÖ) Áö±¸·¹¹ÌÄÜ
-					,"20190205649"	//´çÁø±â¾÷ (ÁÖ)
-					,"20190205652"	//Çö´ë°³¹ßÁÖ½ÄÈ¸»ç
-					,"20191101572"  //´ë¿ø°­¾÷(ÁÖ)
-					,"20200203416"  //´ë·ûÀÌ¿£¿¡½º
-			    	,"20200203478"  //´ë·û¹ßÀü
-				    ,"20200203481"  //´ë¿ø°­¾÷(ÁÖ)
+					 "20150400367"	//ìœ ì§„ê¸°ì—…(ì£¼)
+					,"20170100166"	//ì£¼ì‹íšŒì‚¬ ì‹ ì‚¬ê³ ì•„ì¹´ë°ë¯¸
+					,"20170100165"	//ì£¼ì‹íšŒì‚¬ ì¢‹ì€ì±…ì‹ ì‚¬ê³ 
+					,"20160401012"	//ì—˜ì§€íˆíƒ€ì¹˜ì›Œí„°ì†”ë£¨ì…˜ ì£¼ì‹íšŒì‚¬
+					,"20150900434"	//ë‚˜ë””ì•„í¼ì‹œí”½ ì£¼ì‹íšŒì‚¬
+					,"20150500312"	//(ì£¼)ë”ë¸”ìœ ì‡¼í•‘
+					,"20140900004"	//(ì£¼)ì¼€ì´í‹°ì— ì•¤ì—ìŠ¤
+					,"20130400011"	//í•œêµ­ì“°ë¦¬ì— ë³´ê±´ì•ˆì „ ìœ í•œíšŒì‚¬
+					,"20130400010"	//í•œêµ­ì“°ë¦¬ì—  íŠ¸ë ˆì´ë”© ìœ í•œíšŒì‚¬
+					,"20130400009"	//í•œêµ­ì“°ë¦¬ì— í•˜ì´í…Œí¬ ìœ í•œíšŒì‚¬
+					,"20130400008"	//ì£¼ì‹íšŒì‚¬ ì“°ë¦¬ì— ì—ì´ì—ìŠ¤í‹°
+					,"20121203661"	//í•œêµ­ì“°ë¦¬ì— (ì£¼)
+					,"20180203437"	//í•˜ì´ì—”í…
+					,"20121200073"	//ë¡œì§€ìŠ¤í’€
+					,"20181201176"	//ì¹´ì¹´ì˜¤ ì»¤ë¨¸ìŠ¤
+					,"20131000506"	//ì—ìŠ¤ì¼€ì´í•˜ì´ìŠ¤í…ì£¼ì‹íšŒì‚¬
+					,"20190205651"	//ë‚¨ë¶€ì‚°ì—… ì£¼ì‹íšŒì‚¬
+					,"20190205653"	//ì´ìˆœì‚°ì—… ì£¼ì‹íšŒì‚¬
+					,"20190205654"	//(ì£¼) ì§€êµ¬ë ˆë¯¸ì½˜
+					,"20190205649"	//ë‹¹ì§„ê¸°ì—… (ì£¼)
+					,"20190205652"	//í˜„ëŒ€ê°œë°œì£¼ì‹íšŒì‚¬
+					,"20191101572"  //ëŒ€ì›ê°•ì—…(ì£¼)
+					,"20200203416"  //ëŒ€ë¥œì´ì—”ì—ìŠ¤
+			    	,"20200203478"  //ëŒ€ë¥œë°œì „
+				    ,"20200203481"  //ëŒ€ì›ê°•ì—…(ì£¼)
 					}
 			);
 	return result;
@@ -37,7 +37,7 @@ public boolean isAutoMember(String member_no){
 public String getAutoContUserNo(String member_no, String template_cd, Auth auth){
 	String cont_userno = "";
 	
-	// ºÎ¼­¸í ±âÁØÀ¸·Î ±ÔÄ¢ »ı¼º
+	// ë¶€ì„œëª… ê¸°ì¤€ìœ¼ë¡œ ê·œì¹™ ìƒì„±
 			if(u.inArray(_member_no, new String[] {"20150400367","20190205651","20190205653","20190205654","20190205649","20190205652"})){
 				
 				String dept_name ="";
@@ -45,7 +45,7 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 					DataObject deptDao = new DataObject("tcb_field");
 					DataSet dept = deptDao.find(" member_no = '"+_member_no+"' and field_seq =  '"+template.getString("field_seq")+"'" , " field_name");
 					if(!dept.next()){
-						u.jsError("ºÎ¼­°¡ ¼³Á¤µÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ¼¼¿ä.");
+						u.jsError("ë¶€ì„œê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì„¸ìš”.");
 						return;
 					}
 					dept_name = dept.getString("field_name");
@@ -56,30 +56,30 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 							 +"    and cont_userno like '"+dept_name+" "+u.getTimeString("yyyyMM")+"-%'                                                            "
 					);
 				}else{
-					u.jsError("ºÎ¼­°¡ ¼³Á¤µÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ¼¼¿ä.");
+					u.jsError("ë¶€ì„œê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì„¸ìš”.");
 					return;
 				}
 				
-			}else if(_member_no.equals("20170100165")){//ÁÁÀºÃ¥ ½Å»ç°í
+			}else if(_member_no.equals("20170100165")){//ì¢‹ì€ì±… ì‹ ì‚¬ê³ 
 				cont_userno = contDao.getOne(
 						 " select  'TB"+u.getTimeString("yyMM")+"'|| lpad(to_number(nvl(max(substr(cont_userno,7)),'000'))+1,3,'0') "
 						+"    from tcb_contmaster                                                                                   "
 						+"  where member_no = '"+_member_no+"'                                                                      "
 						+"     and cont_userno like 'TB"+u.getTimeString("yyMM")+"%'                                                "
 						);
-			}else if(_member_no.equals("20170100166")){//½Å»ç°í ¾ÆÄ«µ¥¹Ì
+			}else if(_member_no.equals("20170100166")){//ì‹ ì‚¬ê³  ì•„ì¹´ë°ë¯¸
 				cont_userno = contDao.getOne(
 						 " select  'AC"+u.getTimeString("yyMM")+"'|| lpad(to_number(nvl(max(substr(cont_userno,7)),'000'))+1,3,'0') "
 						+"    from tcb_contmaster                                                                                   "
 						+"  where member_no = '"+_member_no+"'                                                                      "
 						+"     and cont_userno like 'AC"+u.getTimeString("yyMM")+"%'                                                "
 						);
-			}else if(_member_no.equals("20140900004")) // ÄÉÀÌÆ¼¿¥¾Ø¿¡½º
+			}else if(_member_no.equals("20140900004")) // ì¼€ì´í‹°ì— ì•¤ì—ìŠ¤
 			{
 				DataObject fieldDao = new DataObject();
 				String field_name = fieldDao.getOne("select field_name from tcb_field where member_no='"+_member_no+"' and field_seq="+auth.getString("_FIELD_SEQ"));
 				if(field_name.equals("")){
-					u.jsError("ºÎ¼­°¡ ¼³Á¤µÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.");
+					u.jsError("ë¶€ì„œê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				field_name = field_name + "-" + u.getTimeString("yyyy");
@@ -87,23 +87,23 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 				int substr_pos = field_name.length()+1;
 				String userNoSeq = contDao.getOne("select nvl(max(to_number(substr(cont_userno,"+substr_pos+"))),0)+1 from tcb_contmaster where member_no = '20140900004' and field_seq="+auth.getString("_FIELD_SEQ"));
 				if(userNoSeq.equals("")){
-					u.jsError("°è¾à¹øÈ£ »ı¼º¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				cont_userno = field_name + u.strrpad(userNoSeq, 4, "0");
-			}else if(_member_no.equals("20150500312")){  // ´õºíÀ¯¼îÇÎ °è¾à¹øÈ£ ÀÚµ¿Ã¼¹ø
-				String[] wUserNo = {"2015036=>Ç¥ÁØ","2015037=>¾÷¹«Á¦ÈŞ","2015038=>»óÇ°°³º°","2016108=>ºÎ¼Ó","2017257=>Á÷¸ÅÀÔ","2017259=>Á÷¸ÅÀÔ°³º°"};
+			}else if(_member_no.equals("20150500312")){  // ë”ë¸”ìœ ì‡¼í•‘ ê³„ì•½ë²ˆí˜¸ ìë™ì²´ë²ˆ
+				String[] wUserNo = {"2015036=>í‘œì¤€","2015037=>ì—…ë¬´ì œíœ´","2015038=>ìƒí’ˆê°œë³„","2016108=>ë¶€ì†","2017257=>ì§ë§¤ì…","2017259=>ì§ë§¤ì…ê°œë³„"};
 
-				String sHeader = "W¼îÇÎ_"+ u.getItem(template_cd, wUserNo)+"_"+u.getTimeString("yy")+"_";
+				String sHeader = "Wì‡¼í•‘_"+ u.getItem(template_cd, wUserNo)+"_"+u.getTimeString("yy")+"_";
 				int pos = sHeader.length();
 
 				String userNoSeq = contDao.getOne("select nvl(max(to_number(substr(cont_userno,"+(pos+1)+"))),0)+1 from tcb_contmaster where member_no = '"+_member_no+"' and template_cd = '"+template_cd+"' and substr(cont_userno,0,"+pos+")='"+sHeader+"'");
 				if(userNoSeq.equals("")){
-					u.jsError("°è¾à¹øÈ£ »ı¼º¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				cont_userno =sHeader+u.strrpad(userNoSeq, 8, "0");
-			}else if(_member_no.equals("20150900434")){  // ³ªµğ¾Æ ÆÛ½ÃÇÈ °è¾à¹øÈ£ ÀÚµ¿Ã¼¹ø
+			}else if(_member_no.equals("20150900434")){  // ë‚˜ë””ì•„ í¼ì‹œí”½ ê³„ì•½ë²ˆí˜¸ ìë™ì²´ë²ˆ
 				String[] pacificUserNo = {"2015106=>NPPO"};
 
 				String sHeader = u.getItem(template_cd, pacificUserNo)+u.getTimeString("yyyyMM");
@@ -111,45 +111,45 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 
 				String userNoSeq = contDao.getOne("select nvl(max(to_number(substr(cont_userno,"+(pos+1)+"))),0)+1 from tcb_contmaster where member_no = '"+_member_no+"' and template_cd = '"+template_cd+"' and substr(cont_userno,0,"+pos+")='"+sHeader+"'");
 				if(userNoSeq.equals("")){
-					u.jsError("°è¾à¹øÈ£ »ı¼º¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				cont_userno =sHeader+u.strrpad(userNoSeq, 3, "0");
-			}else if(_member_no.equals("20160401012")){  // ¿¤ÁöÈ÷Å¸Ä¡ °è¾à¹øÈ£ ÀÚµ¿Ã¼¹ø
+			}else if(_member_no.equals("20160401012")){  // ì—˜ì§€íˆíƒ€ì¹˜ ê³„ì•½ë²ˆí˜¸ ìë™ì²´ë²ˆ
 				String[] wUserNo = {"2016141=>GA","2016053=>CU","2016054=>GA","2016055=>PO","2016056=>PU","2018030=>PU","2018149=>CA","2018228=>SU","2018062=>PU","2018160=>PU","2020118=>GA","2020127=>BU"};
 				String temp = u.getItem(template_cd, wUserNo);
 				if(temp.equals("")){
-					u.jsError("°è¾à¹øÈ£ Ã¼¹ø ±ÔÄ¢ÀÌ ¼³Á¤ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ì²´ë²ˆ ê·œì¹™ì´ ì„¤ì • ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 					return;
 				}
-				String sHeader = "TWE-" + u.getTimeString("yyyy")+"-"+u.getTimeString("MM")+ temp; // LHWS »èÁ¦
+				String sHeader = "TWE-" + u.getTimeString("yyyy")+"-"+u.getTimeString("MM")+ temp; // LHWS ì‚­ì œ
 				int pos = sHeader.length();
 
 				String userNoSeq = contDao.getOne("select nvl(max(to_number(substr(cont_userno,"+(pos+1)+"))),99)+1 from tcb_contmaster where member_no = '"+_member_no+"' and template_cd = '"+template_cd+"' and substr(cont_userno,0,"+pos+")='"+sHeader+"'");
 				if(userNoSeq.equals("")){
-					u.jsError("°è¾à¹øÈ£ »ı¼º¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				cont_userno =sHeader+u.strrpad(userNoSeq, 3, "0");
 
-			}else if(_member_no.equals("20180203437")){//ÇÏÀÌ¿£ÅØ 
+			}else if(_member_no.equals("20180203437")){//í•˜ì´ì—”í… 
 				String[] template_gubun1 = {
-						"2018063"//¿ë¿ª°è¾à¼­
-						,"2018064"//ÀÚ¹®°è¾à¼­
-						,"2018065"//Æó±â¹°Ã³¸®À§Å¹°è¾à¼­
-						,"2018066"//Æó±â¹°Ã³¸®À§Å¹°è¾à¼­
-						,"2018072"//¼ÒÇÁÆ®¿ş¾î(½Ã½ºÅÛ) ¶óÀÌ¼¾½º °è¾à
-						,"2020117" //°Ç°­°ËÁø°è¾à¼­ 
-				};// TES-0000(³âµµ)-00(¿ù)-001~100 0 ¹ø´ë ºÎ¼­
+						"2018063"//ìš©ì—­ê³„ì•½ì„œ
+						,"2018064"//ìë¬¸ê³„ì•½ì„œ
+						,"2018065"//íê¸°ë¬¼ì²˜ë¦¬ìœ„íƒê³„ì•½ì„œ
+						,"2018066"//íê¸°ë¬¼ì²˜ë¦¬ìœ„íƒê³„ì•½ì„œ
+						,"2018072"//ì†Œí”„íŠ¸ì›¨ì–´(ì‹œìŠ¤í…œ) ë¼ì´ì„¼ìŠ¤ ê³„ì•½
+						,"2020117" //ê±´ê°•ê²€ì§„ê³„ì•½ì„œ 
+				};// TES-0000(ë…„ë„)-00(ì›”)-001~100 0 ë²ˆëŒ€ ë¶€ì„œ
 				String[] template_gubun2 = {
-						 "2018062"//¹°Ç°°ø±Ş °è¾à¼­
-						,"2018074"//°Ç¼³ÀÚÀç Ç¥ÁØÇÏµµ±Ş°è¾à¼­
-						,"2018075"//±â°è(±âÅ¸±â°èÀåºñ) Ç¥ÁØÇÏµµ±Ş ±âº»°è¾à¼­
-				};//TES-0000(³âµµ)-00(¿ù)-101~200 100¹ø ´ë ºÎÅÍ °í°´»ç¿¡ º¯°æ ±Ç°í ÇßÁö¸¸ ±âÁ¸»ç¿ë Ã¼°Ô·Î ±×³É ¾²°Ú´Ù°í ÇÔ. 18181818
+						 "2018062"//ë¬¼í’ˆê³µê¸‰ ê³„ì•½ì„œ
+						,"2018074"//ê±´ì„¤ìì¬ í‘œì¤€í•˜ë„ê¸‰ê³„ì•½ì„œ
+						,"2018075"//ê¸°ê³„(ê¸°íƒ€ê¸°ê³„ì¥ë¹„) í‘œì¤€í•˜ë„ê¸‰ ê¸°ë³¸ê³„ì•½ì„œ
+				};//TES-0000(ë…„ë„)-00(ì›”)-101~200 100ë²ˆ ëŒ€ ë¶€í„° ê³ ê°ì‚¬ì— ë³€ê²½ ê¶Œê³  í–ˆì§€ë§Œ ê¸°ì¡´ì‚¬ìš© ì²´ê²Œë¡œ ê·¸ëƒ¥ ì“°ê² ë‹¤ê³  í•¨. 18181818
 				String[] template_gubun3 = {
-					 "2018061"//°ø»çÇÏµµ±Ş°è¾à¼­
-					,"2018073"//°Ç¼³¾÷Á¾ Ç¥ÁØÇÏµµ±Ş°è¾à¼­
-				};//TES-0000(³âµµ)-00(¿ù)-201~300 
+					 "2018061"//ê³µì‚¬í•˜ë„ê¸‰ê³„ì•½ì„œ
+					,"2018073"//ê±´ì„¤ì—…ì¢… í‘œì¤€í•˜ë„ê¸‰ê³„ì•½ì„œ
+				};//TES-0000(ë…„ë„)-00(ì›”)-201~300 
 				String query = "";
 				if(u.inArray(template_cd, template_gubun1)){
 					query =  " select 'TES-"+u.getTimeString("yyyy-MM")+"-0'||lpad(nvl(max(to_number(substr(cont_userno,14,2))),0)+1,2,'0')||'-00' cont_userno "
@@ -178,18 +178,18 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 				DataObject fieldDao = new DataObject();
 				String field_name = fieldDao.getOne("select field_name from tcb_field where member_no='"+_member_no+"' and field_seq="+auth.getString("_FIELD_SEQ"));
 				if("".equals(field_name) ){
-					u.jsError("ºÎ¼­°¡ ¼³Á¤µÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.");
+					u.jsError("ë¶€ì„œê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				
-				String[] code_logis_deptnm = {"1=>½Ã¿î","2=>Ã¼ÀÎ","3=>°ø¸¶","4=>³×¿î","5=>¿î¼Û","6=>MHE","7=>¼Ö·ç¼Ç","8=>¾ó¶óÀÌ","9=>°­¿ø","10=>°æºÏ","11=>°æÀÎ",
-						"12=>ºÎ»ê","13=>¼öºÏ","14=>ÃæºÏ","15=>°æ³²","16=>¼ö³²","17=>¼öµ¿","18=>¼ö¼­","19=>Ãæ³²","20=>È£³²","21=>°æ¿µ","22=>ÄÁ¼³ÆÃ","23=>¹ı¹«","24=>¿µ¾÷1"
-						,"25=>¿µ¾÷2","26=>ÀÓ¿ø","27=>ÇÑ±¹·ÎÁö½ºÇ®"};
+				String[] code_logis_deptnm = {"1=>ì‹œìš´","2=>ì²´ì¸","3=>ê³µë§ˆ","4=>ë„¤ìš´","5=>ìš´ì†¡","6=>MHE","7=>ì†”ë£¨ì…˜","8=>ì–¼ë¼ì´","9=>ê°•ì›","10=>ê²½ë¶","11=>ê²½ì¸",
+						"12=>ë¶€ì‚°","13=>ìˆ˜ë¶","14=>ì¶©ë¶","15=>ê²½ë‚¨","16=>ìˆ˜ë‚¨","17=>ìˆ˜ë™","18=>ìˆ˜ì„œ","19=>ì¶©ë‚¨","20=>í˜¸ë‚¨","21=>ê²½ì˜","22=>ì»¨ì„¤íŒ…","23=>ë²•ë¬´","24=>ì˜ì—…1"
+						,"25=>ì˜ì—…2","26=>ì„ì›","27=>í•œêµ­ë¡œì§€ìŠ¤í’€"};
 
 				field_name = u.getItem(auth.getString("_FIELD_SEQ"), code_logis_deptnm);
 				
 				if("".equals(field_name)){
-					u.jsError("ºÎ¼­ ¾à¾î°¡ µî·ÏµÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.\\n°í°´¼¾ÅÍ¸¦ ÅëÇØ ºÎ¼­¾à¾î µî·ÏÀ» ½ÅÃ»ÇØÁÖ¼¼¿ä.");
+					u.jsError("ë¶€ì„œ ì•½ì–´ê°€ ë“±ë¡ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\nê³ ê°ì„¼í„°ë¥¼ í†µí•´ ë¶€ì„œì•½ì–´ ë“±ë¡ì„ ì‹ ì²­í•´ì£¼ì„¸ìš”.");
 					return; 
 				}
 				
@@ -198,20 +198,20 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 				int substr_pos = cont_userno.length()+1;
 				String userNoSeq = contDao.getOne("select nvl(max(to_number(substr(cont_userno,"+substr_pos+"))),0)+1 from tcb_contmaster where member_no = '"+_member_no+"' and cont_userno like '%"+field_name+"%'  " );
 				if("".equals(userNoSeq)){
-					u.jsError("°è¾à¹øÈ£ »ı¼º¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				cont_userno = cont_userno + u.strrpad(userNoSeq, 4, "0");
 			
-			}else if(_member_no.equals("20181201176")){// Ä«Ä«¿À Ä¿¸Ó½º
+			}else if(_member_no.equals("20181201176")){// ì¹´ì¹´ì˜¤ ì»¤ë¨¸ìŠ¤
 				cont_userno = contDao.getOne(
 						  " select  lpad(nvl(max(substr(cont_userno,9,5)),0)+1,5,'0') as cont_userno "
 						 +"   from tcb_contmaster                                                                                                          "
 						 +"  where member_no = '20181201176'                                                                                               "
 							);
-				cont_userno = u.getTimeString("yyMMdd")+cont_userno;//¾÷Ã¼ ¿äÃ»»çÇ×À¸·Î ÀÏ·Ã¹øÈ£ ¿ù´ÜÀ§ ±¸ºĞ ¾ÈÇÔ.
+				cont_userno = u.getTimeString("yyMMdd")+cont_userno;//ì—…ì²´ ìš”ì²­ì‚¬í•­ìœ¼ë¡œ ì¼ë ¨ë²ˆí˜¸ ì›”ë‹¨ìœ„ êµ¬ë¶„ ì•ˆí•¨.
 			
-			}else if(_member_no.equals("20131000506")){//¿¡½ºÄÉÀÌÇÏÀÌ½ºÅØÁÖ½ÄÈ¸»ç
+			}else if(_member_no.equals("20131000506")){//ì—ìŠ¤ì¼€ì´í•˜ì´ìŠ¤í…ì£¼ì‹íšŒì‚¬
 				cont_userno = contDao.getOne(
 						  " select  lpad(nvl(max(substr(cont_userno,9,5)),0)+1,5,'0') as cont_userno "
 						 +"   from tcb_contmaster                                                                                                          "
@@ -221,22 +221,22 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 							);
 				cont_userno = u.getTimeString("yyyy-MM")+"-"+cont_userno;
 				
-			}else if(_member_no.equals("20191101572")){ //´ë¿ø°­¾÷(ÁÖ)
+			}else if(_member_no.equals("20191101572")){ //ëŒ€ì›ê°•ì—…(ì£¼)
 				
 				DataObject fieldDao = new DataObject();
 				String field_name = fieldDao.getOne("select field_name from tcb_field where member_no='"+_member_no+"' and field_seq="+auth.getString("_FIELD_SEQ"));
 				if("".equals(field_name) ){
-					u.jsError("ºÎ¼­°¡ ¼³Á¤µÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.");
+					u.jsError("ë¶€ì„œê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				
-				//  ºÎ¼­¸í ±âÁØ, °ıÈ£ ³» ¾ËÆÄºª : ¿¬±¸¼Ò(R), Ã¢¿ø1°øÀå(C), Ã¢¿ø2°øÀå(J), Ãµ¾È°øÀå(N), ¼ºÈ¯°øÀå(L), ÅëÇÕ±¸¸ÅÆÀ(H) 
+				//  ë¶€ì„œëª… ê¸°ì¤€, ê´„í˜¸ ë‚´ ì•ŒíŒŒë²³ : ì—°êµ¬ì†Œ(R), ì°½ì›1ê³µì¥(C), ì°½ì›2ê³µì¥(J), ì²œì•ˆê³µì¥(N), ì„±í™˜ê³µì¥(L), í†µí•©êµ¬ë§¤íŒ€(H) 
 				String[] code_logis_deptnm = {"1=>H","3=>R","4=>C","5=>J","6=>N","7=>L","8=>H"};
 
 				field_name = u.getItem(auth.getString("_FIELD_SEQ"), code_logis_deptnm);
 				
 				if("".equals(field_name)){
-					u.jsError("ºÎ¼­ ¾à¾î°¡ µî·ÏµÇÁö ¾Ê¾Æ °è¾à¹øÈ£¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.\\n°í°´¼¾ÅÍ¸¦ ÅëÇØ ºÎ¼­¾à¾î µî·ÏÀ» ½ÅÃ»ÇØÁÖ¼¼¿ä.");
+					u.jsError("ë¶€ì„œ ì•½ì–´ê°€ ë“±ë¡ë˜ì§€ ì•Šì•„ ê³„ì•½ë²ˆí˜¸ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\nê³ ê°ì„¼í„°ë¥¼ í†µí•´ ë¶€ì„œì•½ì–´ ë“±ë¡ì„ ì‹ ì²­í•´ì£¼ì„¸ìš”.");
 					return; 
 				} 
 				
@@ -245,26 +245,26 @@ public String getAutoContUserNo(String member_no, String template_cd, Auth auth)
 				int substr_pos = cont_userno.length()+1;
 				String userNoSeq = contDao.getOne("select nvl(max(to_number(substr(cont_userno,"+substr_pos+"))),0)+1 from tcb_contmaster where member_no = '"+_member_no+"' and cont_userno like '%"+field_name+"%'  " );
 				if("".equals(userNoSeq)){
-					u.jsError("°è¾à¹øÈ£ »ı¼º¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+					u.jsError("ê³„ì•½ë²ˆí˜¸ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				cont_userno = cont_userno + u.strrpad(userNoSeq, 4, "0"); 
 				
-			}else if(_member_no.equals("20200203416")){ //´ë·ûÀÌ¿£¿¡½º  DR20200001
+			}else if(_member_no.equals("20200203416")){ //ëŒ€ë¥œì´ì—”ì—ìŠ¤  DR20200001
 				cont_userno = contDao.getOne(
 						 " select  'DR"+u.getTimeString("yyyy")+"'|| lpad(nvl(max(substr(cont_userno,7,4)),0)+1,4,'0') as cont_userno "
 						+"    from tcb_contmaster                                                                                   "
 						+"  where member_no = '"+_member_no+"'                                                                      "
 						+"     and cont_userno like 'DR"+u.getTimeString("yyyy")+"%'                                                "
 						); 
-			}else if(_member_no.equals("20200203478")){ //´ë·û¹ßÀü	 
+			}else if(_member_no.equals("20200203478")){ //ëŒ€ë¥œë°œì „	 
 				cont_userno = contDao.getOne( 
 						 " select  'DP"+u.getTimeString("yyyy")+"'|| lpad(nvl(max(substr(cont_userno,7,4)),0)+1,4,'0') as cont_userno "
 						+"    from tcb_contmaster                                                                                   "
 						+"  where member_no = '"+_member_no+"'                                                                      "
 						+"     and cont_userno like 'DP"+u.getTimeString("yyyy")+"%'                                                "
 						);  
-			}else if(_member_no.equals("20200203481")){ //º°³»¿¡³ÊÁö		
+			}else if(_member_no.equals("20200203481")){ //ë³„ë‚´ì—ë„ˆì§€		
 				cont_userno = contDao.getOne(
 						 " select  'BE"+u.getTimeString("yyyy")+"'|| lpad(nvl(max(substr(cont_userno,7,4)),0)+1,4,'0') as cont_userno "
 						+"    from tcb_contmaster                                                                                   "

@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.request("cont_no");
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_warr = codeDao.getCodeArray("M007");
 String[] code_change_gubun = null;
-String[] code_auto_type = {"=>ÀÚµ¿»ý¼º","1=>ÀÚµ¿Ã·ºÎ","2=>ÇÊ¼öÃ·ºÎ","3=>³»ºÎ¿ë"};
+String[] code_auto_type = {"=>ìžë™ìƒì„±","1=>ìžë™ì²¨ë¶€","2=>í•„ìˆ˜ì²¨ë¶€","3=>ë‚´ë¶€ìš©"};
 
 
 DataObject cfileDao = new DataObject("tcb_cfile");
@@ -22,13 +22,13 @@ while(cfile.next()){
 				cfile.put("auto_type","0");
 			}
 	}else{
-		cfile.put("auto_str", "Á÷Á¢Ã·ºÎ");
+		cfile.put("auto_str", "ì§ì ‘ì²¨ë¶€");
 	}
 	if(cfile.getString("file_ext").toLowerCase().equals("pdf")){
-        cfile.put("btn_name", "Á¶È¸(ÀÎ¼â)");
+        cfile.put("btn_name", "ì¡°íšŒ(ì¸ì‡„)");
         cfile.put("down_script","contPdfViewer('"+u.request("cont_no")+"','"+cont_chasu+"','"+cfile.getString("cfile_seq")+"')");
     }else{
-        cfile.put("btn_name", "´Ù¿î·Îµå");
+        cfile.put("btn_name", "ë‹¤ìš´ë¡œë“œ");
         cfile.put("down_script","filedown('file.path.bcont_pdf','"+cfile.getString("file_path")+cfile.getString("file_name")+"','"+cfile.getString("doc_name")+"."+cfile.getString("file_ext")+"')");
     }
 	cfile.put("file_size_str", u.getFileSize(cfile.getLong("file_size")));
@@ -38,7 +38,7 @@ while(cfile.next()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_contract_view");
-p.setVar("popup_title","°è¾à¼­ Á¶È¸");
+p.setVar("popup_title","ê³„ì•½ì„œ ì¡°íšŒ");
 p.setLoop("list", cfile);
 p.display(out);
 %>

@@ -1,31 +1,31 @@
 <%@page import="gui.ava.html.image.generator.*"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String asse_no = u.request("asse_no");
 String div_cd = u.request("div_cd");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject asseDao = new DataObject("tcb_assemaster");
 DataSet asse = asseDao.find("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"'");
 if(!asse.next()){
-	u.jsError("Æò°¡°èÈ¹ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ê³„íš ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject detailDao = new DataObject("tcb_assedetail");
 DataSet detail = detailDao.find(" asse_no = '"+asse_no+"' and div_cd = '"+div_cd+"'");
 if(!detail.next()){
-	u.jsError("Æò°¡»ó¼¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ìƒì„¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject templateDao = new DataObject("tcb_asse_template");
 String template_name = templateDao.getOne("select template_name from tcb_asse_template where template_cd= '"+detail.getString("template_cd")+"'  ");
 
-//ci_img ¼³Á¤
+//ci_img ì„¤ì •
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find(" member_no = '"+_member_no+"' ");
 if(!member.next()){}
@@ -39,11 +39,11 @@ if(!ci_img.equals("")){
 String stamp_img = u.aseEnc(Startup.conf.getString("dir")+"/web/buyer/html/images/pdf_watermark_doc_print.gif");
 
 
-String footer_html = "<table width='100%' height='35' border='0'><tr><td valign='bottom' style='font-family:³ª´®°íµñ; font-size:11pt'><font color='#5B5B5B'>¡Ø º» ¹®¼­´Â ±¸¸Å¡¤Á¶´Ş ÀåÅÍ ³ªÀÌ½º´ÙÅ¥(www.nicedocu.com, ÀÏ¹İ±â¾÷¿ë) ½Ã½ºÅÛ¿¡¼­ ÀÎÅÍ³İÀ¸·Î Ãâ·ÂµÇ¾ú½À´Ï´Ù.</font></td></tr></table>";
+String footer_html = "<table width='100%' height='35' border='0'><tr><td valign='bottom' style='font-family:ë‚˜ëˆ”ê³ ë”•; font-size:11pt'><font color='#5B5B5B'>â€» ë³¸ ë¬¸ì„œëŠ” êµ¬ë§¤Â·ì¡°ë‹¬ ì¥í„° ë‚˜ì´ìŠ¤ë‹¤í(www.nicedocu.com, ì¼ë°˜ê¸°ì—…ìš©) ì‹œìŠ¤í…œì—ì„œ ì¸í„°ë„·ìœ¼ë¡œ ì¶œë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.</font></td></tr></table>";
 String footer_img = Startup.conf.getString("file.path.lcont_temp") + auth.getString("_USER_ID") + "_" + u.getTimeString() + ".png";
 HtmlImageGenerator imageGenerator = new HtmlImageGenerator();
 imageGenerator.loadHtml(footer_html);
-imageGenerator.saveAsImage(footer_img);  // ¹°·ùÂÊ ÀÓ½Ã Æú´õ¿¡ °°ÀÌ ÀúÀåÇÔ. ¸ÅÀÏ ¹ã ¹èÄ¡ÆÄÀÏÀÌ µ¹¸é¼­ »èÁ¦ÇÑ´Ù.
+imageGenerator.saveAsImage(footer_img);  // ë¬¼ë¥˜ìª½ ì„ì‹œ í´ë”ì— ê°™ì´ ì €ì¥í•¨. ë§¤ì¼ ë°¤ ë°°ì¹˜íŒŒì¼ì´ ëŒë©´ì„œ ì‚­ì œí•œë‹¤.
 footer_img = u.aseEnc(footer_img);
 
 String pdf_url = "/web/buyer/cust/asse_html2pdf.jsp"

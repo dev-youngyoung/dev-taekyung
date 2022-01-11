@@ -4,7 +4,7 @@
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-    	<h3>±âº»Á¤º¸</h3>
+    	<h3>ê¸°ë³¸ì •ë³´</h3>
     </div>
 </div>
 <table>
@@ -13,13 +13,13 @@
 		<col width="85%">
 	</colgroup>
 	<tr>
-		<th class="req-check">±ÇÇÑ¸í </th>
+		<th class="req-check">ê¶Œí•œëª… </th>
 		<td>
 			<input type="text" name="auth_nm" style="width:95%">
 		</td>
 	</tr>
 	<tr>
-		<th>ºñ&nbsp;&nbsp;&nbsp;°í </th>
+		<th>ë¹„&nbsp;&nbsp;&nbsp;ê³  </th>
 		<td>
 			<textarea name="etc" style="width:100%; height:50px;">{{authInfo.etc}}</textarea>
 		</td>
@@ -30,84 +30,19 @@
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-    	<h3>°£Æí±ÇÇÑºÎ¿© <span class="caution-text"> ¡Ø °£Æí ±ÇÇÑ Å¬¸¯ ½Ã ¼±ÅÃ Ç×¸ñ¿¡ µû¶ó »ó¼¼ ±ÇÇÑ Á¤º¸¸¦ ¼Õ½±°Ô ¼³Á¤ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</span></h3>
-    </div>
-</div>
-<table>
-	<colgroup>
-		<col width="15%">
-		<col width="85%">
-	</colgroup>
-	<!-- IF START 'menuCnt.esti_yn' -->
-	<tr>
-		<th>°ßÀû°ü¸®</th>
-		<td> 
-			<select name="auth_esti" onchange="setAuth(this.value)">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="esti_auth_0">±ÇÇÑ¾øÀ½</option>
-				<option value="esti_auth_1">°ßÀûÁøÇà±ÇÇÑ</option>
-				<option value="esti_auth_2">°ßÀû°á°úÁ¶È¸</option>
-			</select>
-		 </td>
-	</tr>
-	<!-- IF END 'menuCnt.esti_yn' -->
-	<!-- IF START 'menuCnt.bid_yn' -->
-	<tr>
-		<th>ÀÔÂû°ü¸®</th>
-		<td> 
-			<select name="auth_esti" onchange="setAuth(this.value)">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="bid_auth_0">±ÇÇÑ¾øÀ½</option>
-				<option value="bid_auth_1">ÀÔÂûÁøÇà/°³Âû±ÇÇÑ</option>
-				<option value="bid_auth_2">°³Âû±ÇÇÑ</option>
-				<option value="bid_auth_3">ÀÔÂû°á°úÁ¶È¸</option>
-			</select>
-		 </td>
-	</tr>
-	<!-- IF END 'menuCnt.bid_yn' -->
-	<!-- IF START 'menuCnt.cont_yn' -->
-	<tr>
-		<th>ÀüÀÚ°è¾à</th>
-		<td>
-			<select name="auth_cont" onchange="setAuth(this.value)">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="cont_auth_0">±ÇÇÑ¾øÀ½</option>
-				<option value="cont_auth_1">°è¾àÁøÇà±ÇÇÑ</option>
-				<option value="cont_auth_2">¿Ï·á°è¾àÁ¶È¸±ÇÇÑ</option>
-			</select>
-		</td>
-	</tr>
-	<!-- IF END 'menuCnt.cont_yn' -->
-	<tr>
-		<th>°Å·¡¾÷Ã¼°ü¸®</th>
-		<td>
-			<select name="auth_cust" onchange="setAuth(this.value)">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="cust_auth_0">±ÇÇÑ¾øÀ½</option>
-				<option value="cust_auth_1">¾÷Ã¼°ü¸®±ÇÇÑ</option>
-				<option value="cust_auth_2">¾÷Ã¼Á¶È¸±ÇÇÑ</option>
-			</select>
-		</td>
-	</tr>
-</table>
-</div>
-
-<div class="div_table">
-<div class="util-row">
-    <div class="push-left">
-    	<h3>»ó¼¼±ÇÇÑÁ¤º¸</h3>
+    	<h3>ìƒì„¸ê¶Œí•œì •ë³´</h3>
     </div>
     <div class="push-right">
     </div>
 </div>
-<table>
+<table>		
 	<tr>
-		<th>¸Ş´º¸í</th>
-		<th>ÁßºĞ·ù</th>
-		<th>¸Ş´º¸í</th>
-		<th>»ç¿ë¿©ºÎ</th>
-		<th>¿­¶÷¹üÀ§</th>
-		<th>¾÷¹«±ÇÇÑ</th>
+		<th>ë©”ë‰´ëª…</th>
+		<th>ì¤‘ë¶„ë¥˜</th>
+		<th>ë©”ë‰´ëª…</th>
+		<th>ì‚¬ìš©ì—¬ë¶€</th>
+		<th>ì—´ëŒë²”ìœ„</th>
+		<th>ì—…ë¬´ê¶Œí•œ</th>
 	</tr>
 	<!-- LOOP START 'treeMenu' -->
 	<tr>
@@ -122,8 +57,8 @@
 		<td align="center"><input type="checkbox" id="menu_cd_{{treeMenu.menu_cd}}" name="menu_cd" value="{{treeMenu.menu_cd}}" onclick="clickMenuChk(this.value,this.checked)"></td>
 		<td align="center">
 			<!-- IF START 'code_select_auth' -->
-			<select name="select_auth_{{treeMenu.menu_cd}}" hname="¿­¶÷¹üÀ§" disabled>
-				<option value="">-¼±ÅÃ-</option>
+			<select name="select_auth_{{treeMenu.menu_cd}}" hname="ì—´ëŒë²”ìœ„" disabled>
+				<option value="">-ì„ íƒ-</option>
 				<!-- LOOP START 'code_select_auth' -->
 				<option value="{{code_select_auth.id}}" >{{code_select_auth.value}}</option>
 				<!-- LOOP END 'code_select_auth' -->
@@ -132,8 +67,8 @@
 		</td>
 		<td align="center">
 			<!-- IF START 'code_btn_auth' -->
-			<select name="btn_auth_{{treeMenu.menu_cd}}" hname="¾÷¹«±ÇÇÑ" disabled>
-				<option value="">-¼±ÅÃ-</option>
+			<select name="btn_auth_{{treeMenu.menu_cd}}" hname="ì—…ë¬´ê¶Œí•œ" disabled>
+				<option value="">-ì„ íƒ-</option>
 				<!-- LOOP START 'code_btn_auth' -->
 				<option value="{{code_btn_auth.id}}">{{code_btn_auth.value}}</option>
 				<!-- LOOP END 'code_btn_auth' -->
@@ -149,10 +84,10 @@
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-    	<h3>Å¸ºÎ¼­ ¸Ş´ºº° Á¢±Ù±ÇÇÑ <span class="caution-text">¡Ø  Å¸ºÎ¼­ÀÇ °ßÀû/ÀÔÂû/°è¾à¸Ş´ºÀÇ  ¾÷¹«±ÇÇÑÀ» ¼³Á¤ ÇÒ ¼ö ÀÖ½À´Ï´Ù.</span></h3>
+    	<h3>íƒ€ë¶€ì„œ ë©”ë‰´ë³„ ì ‘ê·¼ê¶Œí•œ <span class="caution-text">â€»  íƒ€ë¶€ì„œì˜ ê²¬ì /ì…ì°°/ê³„ì•½ë©”ë‰´ì˜  ì—…ë¬´ê¶Œí•œì„ ì„¤ì • í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</span></h3>
     </div>
     <div class="push-right">
-    	<button type="button" class="sbtn color ico-add" onclick="OpenWindows('pop_auth_menu.jsp?callback=addAfieldRow','pop_auth_menu', 500,400)"><span></span>Ãß°¡</button>
+    	<button type="button" class="sbtn color ico-add" onclick="OpenWindows('pop_auth_menu.jsp?callback=addAfieldRow','pop_auth_menu', 500,400)"><span></span>ì¶”ê°€</button>
     </div>
 </div>
 <table id="afiled_grid">
@@ -164,18 +99,18 @@
 	</colgroup>
 	<thead>
 	<tr>
-		<th>Å¸ºÎ¼­</th>
-		<th>Á¢±Ù¸Ş´º</th>
-		<th>¸Ş´º±ÇÇÑ</th>
-		<th>»èÁ¦</th>
+		<th>íƒ€ë¶€ì„œ</th>
+		<th>ì ‘ê·¼ë©”ë‰´</th>
+		<th>ë©”ë‰´ê¶Œí•œ</th>
+		<th>ì‚­ì œ</th>
 	</tr>
 	</thead>
 	<tbody>
 		<!-- LOOP START 'authField' -->
 		<tr>
 			<td align="center">
-				 <select name="afield_field_seq" id="afield_field_seq_{{authField.seq}}" requried="Y" hname='ºÎ¼­'>
-				 	<option value="">-¼±ÅÃ-</option>
+				 <select name="afield_field_seq" id="afield_field_seq_{{authField.seq}}" requried="Y" hname='ë¶€ì„œ'>
+				 	<option value="">-ì„ íƒ-</option>
 				 	<!-- LOOP START 'field' -->
 				 	<option value="{{field.field_seq}}">{{field.field_name}}</option>
 				 	<!-- LOOP END 'field' -->
@@ -187,15 +122,15 @@
 				<input type="hidden" name="afield_menu_cd" value="{{authField.menu_cd}}">
 			</td>
 			<td align="center">
-				<select name="afield_btn_auth" id="afield_btn_auth_{{authField.seq}}" requried="Y" hname='¾÷¹«±ÇÇÑ'>
-				 	<option value="">-¼±ÅÃ-</option>
+				<select name="afield_btn_auth" id="afield_btn_auth_{{authField.seq}}" requried="Y" hname='ì—…ë¬´ê¶Œí•œ'>
+				 	<option value="">-ì„ íƒ-</option>
 				 	<!-- LOOP START 'code_btn_auth' -->
 				 	<option value="{{code_btn_auth.id}}">{{code_btn_auth.value}}</option>
 				 	<!-- LOOP END 'code_btn_auth' -->
 				 </select>
 				 <script>document.getElementById("afield_btn_auth_{{authField.seq}}").value="{{authField.btn_auth}}";</script>
 			</td>
-			<td align="center"><button type='button' class='sbtn color ico-delete' onclick='afiled_grid.del(this)'><span></span>»èÁ¦</button></td>
+			<td align="center"><button type='button' class='sbtn color ico-delete' onclick='afiled_grid.del(this)'><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<!-- LOOP END 'authField' -->
 	</tbody>
@@ -204,11 +139,11 @@
 
 
 <div class="btn-group-wrap">
-	<button type="submit" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
+	<button type="submit" class="btn color ico-save auth_css"><span></span>ì €ì¥</button>
 	<!-- IF START 'modify' -->
-	<button type="button" class="btn color ico-delete auth_css" onclick="authDelete();"><span></span>»èÁ¦</button>
+	<button type="button" class="btn color ico-delete auth_css" onclick="authDelete();"><span></span>ì‚­ì œ</button>
 	<!-- IF END 'modify' -->
-	<button type="button" class="btn color ico-list" onclick="location.href='auth_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='auth_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 </div>		
 
 
@@ -216,7 +151,7 @@
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-    	<h3>»ç¿ëÀÚ ( {{authInfo.user_cnt}} )</h3>
+    	<h3>ì‚¬ìš©ì ( {{authInfo.user_cnt}} )</h3>
     </div>
 </div>
 <table>
@@ -225,8 +160,8 @@
 		<col width="80%">
 	</colgroup>
 	<tr>
-		<th>ºÎ¼­¸í</th>
-		<th>´ã´çÀÚ¸í</th>
+		<th>ë¶€ì„œëª…</th>
+		<th>ë‹´ë‹¹ìëª…</th>
 	</tr>
 	<!-- LOOP START 'person' -->
 	<tr>
@@ -236,7 +171,7 @@
 	<!-- LOOP END 'person' -->
 	<!-- IFNOT START 'person' -->
 	<tr>
-		<td align="center" colspan="2">ÇØ´ç±ÇÇÑÀ» ÀÌ¿ëÁßÀÎ »ç¿ëÀÚ°¡ ¾ø½À´Ï´Ù.</td>
+		<td align="center" colspan="2">í•´ë‹¹ê¶Œí•œì„ ì´ìš©ì¤‘ì¸ ì‚¬ìš©ìê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 	</tr>
 	<!-- IFNOT END 'person' -->
 </table>
@@ -252,7 +187,7 @@ function formSubmit(f){
 	document.getElementById("menu_cd_000118").checked = true;
 	f['arr_menu_cd'].value=GetFormValue("form1","menu_cd");
 	if(validate(f)){
-		if(confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -294,10 +229,10 @@ function clickMenuChk(menu_cd, checked, select_auth_val, btn_auth_val){
 function authDelete(){
 	var user_cnt = Number("{{authInfo.user_cnt}}");
 	if(user_cnt > 0){
-		alert("ÇØ´ç ±ÇÇÑÀ» »ç¿ë ÇÏ´Â »ç¿ëÀÚ°¡ ÀÖ½À´Ï´Ù.\n\n ÇØ´ç ±ÇÇÑÀÇ »ç¿ëÀÚ°¡ ¾ø´Â °æ¿ì¸¸ »èÁ¦ °¡´É ÇÕ´Ï´Ù.");
+		alert("í•´ë‹¹ ê¶Œí•œì„ ì‚¬ìš© í•˜ëŠ” ì‚¬ìš©ìê°€ ìˆìŠµë‹ˆë‹¤.\n\n í•´ë‹¹ ê¶Œí•œì˜ ì‚¬ìš©ìê°€ ì—†ëŠ” ê²½ìš°ë§Œ ì‚­ì œ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 		return;
 	}
-	if(confirm("ÇØ´ç±ÇÇÑÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?")){
+	if(confirm("í•´ë‹¹ê¶Œí•œì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 		location.href='auth_delete.jsp?{{query}}';
 	}
 }
@@ -306,8 +241,8 @@ function authDelete(){
 var afiled_grid = new MGRID("afiled_grid");
 
 function addAfieldRow(data){
-	var field_select = "<select name='afield_field_seq' requried='Y' hname='ºÎ¼­'> "
-	                      +" <option value=''>-¼±ÅÃ-</option> "
+	var field_select = "<select name='afield_field_seq' requried='Y' hname='ë¶€ì„œ'> "
+	                      +" <option value=''>-ì„ íƒ-</option> "
 	                      <!-- LOOP START 'field' -->
 	                      +" <option value='{{field.field_seq}}'>{{field.field_name}}</option> "
 	                      <!-- LOOP END 'field' -->
@@ -317,14 +252,14 @@ function addAfieldRow(data){
 	var btn_auth = document.forms['form1']['btn_auth_'+data['menu_cd']].cloneNode(true);
 	btn_auth['name']= "afield_btn_auth";
 	btn_auth['required']= "Y";
-	btn_auth['hname']= "¾÷¹«±ÇÇÑ";
+	btn_auth['hname']= "ì—…ë¬´ê¶Œí•œ";
 	btn_auth.disabled = false;
 	
 	var cells = [
 		field_select
 		, "<input type='hidden' name='afield_menu_cd' value='"+data['menu_cd']+"'>"+data['full_menu_nm']
 		, btn_auth.outerHTML
-		, "<button type='button' class='sbtn color ico-delete' onclick='afiled_grid.delRow()'><span></span>»èÁ¦</button>"
+		, "<button type='button' class='sbtn color ico-delete' onclick='afiled_grid.delRow()'><span></span>ì‚­ì œ</button>"
 	];
 	afiled_grid.addRow(null, cells);
 }
@@ -363,174 +298,174 @@ function setAuth(auth_data_nm){
 	}
 }
 
-/*°ßÀû */
+/*ê²¬ì  */
 var esti_auth_0 = [
-		{"menu_cd":"000033", "menu_nm":"°ßÀû¿äÃ»ÇöÈ²","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{"menu_cd":"000034", "menu_nm":"°ßÀû°á°ú","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		{"menu_cd":"000033", "menu_nm":"ê²¬ì ìš”ì²­í˜„í™©","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{"menu_cd":"000034", "menu_nm":"ê²¬ì ê²°ê³¼","checked":false, "select_auth_val": "", "btn_auth_val":"" }
 	]; 
 var esti_auth_1 = [
-		 {"menu_cd":"000033", "menu_nm":"°ßÀû¿äÃ»ÇöÈ²","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-		,{"menu_cd":"000034", "menu_nm":"°ßÀû°á°ú","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+		 {"menu_cd":"000033", "menu_nm":"ê²¬ì ìš”ì²­í˜„í™©","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+		,{"menu_cd":"000034", "menu_nm":"ê²¬ì ê²°ê³¼","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
 	]; 
 var esti_auth_2 = [
-		 {"menu_cd":"000033", "menu_nm":"°ßÀû¿äÃ»ÇöÈ²","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{"menu_cd":"000034", "menu_nm":"°ßÀû°á°ú","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+		 {"menu_cd":"000033", "menu_nm":"ê²¬ì ìš”ì²­í˜„í™©","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{"menu_cd":"000034", "menu_nm":"ê²¬ì ê²°ê³¼","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
 	];
 
 var bid_auth_0 =[
-		 { "menu_cd":"000036", "menu_nm":"ÀÔÂû°èÈ¹","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000038", "menu_nm":"Çö¼³(»ç¾ç)°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000039", "menu_nm":"ÀÔÂû°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000040", "menu_nm":"±â¼ú(±Ô°İ)Æò°¡","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000041", "menu_nm":"ÀÔÂû¼­°³Âû","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000042", "menu_nm":"³«Âû¾÷Ã¼¼±Á¤","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000043", "menu_nm":"ÀÔÂû°á°ú","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000044", "menu_nm":"±¸¸Å´ã´çÀÚº¯°æ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000045", "menu_nm":"º¹¼ö¿¹°¡°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000047", "menu_nm":"ÀÔÂûÁøÇàÇöÈ²","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		 { "menu_cd":"000036", "menu_nm":"ì…ì°°ê³„íš","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000038", "menu_nm":"í˜„ì„¤(ì‚¬ì–‘)ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000039", "menu_nm":"ì…ì°°ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000040", "menu_nm":"ê¸°ìˆ (ê·œê²©)í‰ê°€","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000041", "menu_nm":"ì…ì°°ì„œê°œì°°","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000042", "menu_nm":"ë‚™ì°°ì—…ì²´ì„ ì •","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000043", "menu_nm":"ì…ì°°ê²°ê³¼","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000044", "menu_nm":"êµ¬ë§¤ë‹´ë‹¹ìë³€ê²½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000045", "menu_nm":"ë³µìˆ˜ì˜ˆê°€ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000047", "menu_nm":"ì…ì°°ì§„í–‰í˜„í™©","checked":false, "select_auth_val": "", "btn_auth_val":"" }
 	];
 
-/*ÀÔÂû */
-var bid_auth_0 =[//±ÇÇÑ¾øÀ½.
-		 { "menu_cd":"000036", "menu_nm":"ÀÔÂû°èÈ¹","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000038", "menu_nm":"Çö¼³(»ç¾ç)°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000039", "menu_nm":"ÀÔÂû°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000040", "menu_nm":"±â¼ú(±Ô°İ)Æò°¡","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000041", "menu_nm":"ÀÔÂû¼­°³Âû","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000042", "menu_nm":"³«Âû¾÷Ã¼¼±Á¤","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000043", "menu_nm":"ÀÔÂû°á°ú","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000044", "menu_nm":"±¸¸Å´ã´çÀÚº¯°æ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000045", "menu_nm":"º¹¼ö¿¹°¡°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-		,{ "menu_cd":"000047", "menu_nm":"ÀÔÂûÁøÇàÇöÈ²","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+/*ì…ì°° */
+var bid_auth_0 =[//ê¶Œí•œì—†ìŒ.
+		 { "menu_cd":"000036", "menu_nm":"ì…ì°°ê³„íš","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000038", "menu_nm":"í˜„ì„¤(ì‚¬ì–‘)ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000039", "menu_nm":"ì…ì°°ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000040", "menu_nm":"ê¸°ìˆ (ê·œê²©)í‰ê°€","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000041", "menu_nm":"ì…ì°°ì„œê°œì°°","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000042", "menu_nm":"ë‚™ì°°ì—…ì²´ì„ ì •","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000043", "menu_nm":"ì…ì°°ê²°ê³¼","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000044", "menu_nm":"êµ¬ë§¤ë‹´ë‹¹ìë³€ê²½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000045", "menu_nm":"ë³µìˆ˜ì˜ˆê°€ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+		,{ "menu_cd":"000047", "menu_nm":"ì…ì°°ì§„í–‰í˜„í™©","checked":false, "select_auth_val": "", "btn_auth_val":"" }
 	];		
-var bid_auth_1 =[//ÀÔÂû/°³Âû±ÇÇÑ
-	 { "menu_cd":"000036", "menu_nm":"ÀÔÂû°èÈ¹","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000038", "menu_nm":"Çö¼³(»ç¾ç)°ø°í","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000039", "menu_nm":"ÀÔÂû°ø°í","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000040", "menu_nm":"±â¼ú(±Ô°İ)Æò°¡","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000041", "menu_nm":"ÀÔÂû¼­°³Âû","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000042", "menu_nm":"³«Âû¾÷Ã¼¼±Á¤","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000043", "menu_nm":"ÀÔÂû°á°ú","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000044", "menu_nm":"±¸¸Å´ã´çÀÚº¯°æ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000045", "menu_nm":"º¹¼ö¿¹°¡°ü¸®","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
-	,{ "menu_cd":"000047", "menu_nm":"ÀÔÂûÁøÇàÇöÈ²","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+var bid_auth_1 =[//ì…ì°°/ê°œì°°ê¶Œí•œ
+	 { "menu_cd":"000036", "menu_nm":"ì…ì°°ê³„íš","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000038", "menu_nm":"í˜„ì„¤(ì‚¬ì–‘)ê³µê³ ","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000039", "menu_nm":"ì…ì°°ê³µê³ ","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000040", "menu_nm":"ê¸°ìˆ (ê·œê²©)í‰ê°€","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000041", "menu_nm":"ì…ì°°ì„œê°œì°°","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000042", "menu_nm":"ë‚™ì°°ì—…ì²´ì„ ì •","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000043", "menu_nm":"ì…ì°°ê²°ê³¼","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000044", "menu_nm":"êµ¬ë§¤ë‹´ë‹¹ìë³€ê²½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000045", "menu_nm":"ë³µìˆ˜ì˜ˆê°€ê´€ë¦¬","checked":true, "select_auth_val": "10", "btn_auth_val":"20" }
+	,{ "menu_cd":"000047", "menu_nm":"ì…ì°°ì§„í–‰í˜„í™©","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
 ];
-var bid_auth_2 =[//°³Âû±ÇÇÑ
-	 { "menu_cd":"000036", "menu_nm":"ÀÔÂû°èÈ¹","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000038", "menu_nm":"Çö¼³(»ç¾ç)°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000039", "menu_nm":"ÀÔÂû°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000040", "menu_nm":"±â¼ú(±Ô°İ)Æò°¡","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000041", "menu_nm":"ÀÔÂû¼­°³Âû","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000042", "menu_nm":"³«Âû¾÷Ã¼¼±Á¤","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000043", "menu_nm":"ÀÔÂû°á°ú","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
-	,{ "menu_cd":"000044", "menu_nm":"±¸¸Å´ã´çÀÚº¯°æ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000045", "menu_nm":"º¹¼ö¿¹°¡°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000047", "menu_nm":"ÀÔÂûÁøÇàÇöÈ²","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+var bid_auth_2 =[//ê°œì°°ê¶Œí•œ
+	 { "menu_cd":"000036", "menu_nm":"ì…ì°°ê³„íš","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000038", "menu_nm":"í˜„ì„¤(ì‚¬ì–‘)ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000039", "menu_nm":"ì…ì°°ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000040", "menu_nm":"ê¸°ìˆ (ê·œê²©)í‰ê°€","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000041", "menu_nm":"ì…ì°°ì„œê°œì°°","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000042", "menu_nm":"ë‚™ì°°ì—…ì²´ì„ ì •","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000043", "menu_nm":"ì…ì°°ê²°ê³¼","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	,{ "menu_cd":"000044", "menu_nm":"êµ¬ë§¤ë‹´ë‹¹ìë³€ê²½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000045", "menu_nm":"ë³µìˆ˜ì˜ˆê°€ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000047", "menu_nm":"ì…ì°°ì§„í–‰í˜„í™©","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
 ];
-var bid_auth_3 =[//°á°úÁ¶È¸
-	 { "menu_cd":"000036", "menu_nm":"ÀÔÂû°èÈ¹","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000038", "menu_nm":"Çö¼³(»ç¾ç)°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000039", "menu_nm":"ÀÔÂû°ø°í","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000040", "menu_nm":"±â¼ú(±Ô°İ)Æò°¡","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000041", "menu_nm":"ÀÔÂû¼­°³Âû","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000042", "menu_nm":"³«Âû¾÷Ã¼¼±Á¤","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000043", "menu_nm":"ÀÔÂû°á°ú","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
-	,{ "menu_cd":"000044", "menu_nm":"±¸¸Å´ã´çÀÚº¯°æ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000045", "menu_nm":"º¹¼ö¿¹°¡°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000047", "menu_nm":"ÀÔÂûÁøÇàÇöÈ²","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
-];
-
-//°è¾à
-var cont_auth_0 = [//±ÇÇÑ¾øÀ½
-	 { "menu_cd":"000052", "menu_nm":"°è¾à´ë»ó(ÀüÀÚÀÔÂû)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000053", "menu_nm":"½Å±Ô°è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000055", "menu_nm":"ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000056", "menu_nm":"ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000057", "menu_nm":"¼­¸é°è¾àµî·Ï","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000058", "menu_nm":"º¯°æ°è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000059", "menu_nm":"ÀÓ½ÃÀúÀå °è¾à","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000060", "menu_nm":"ÁøÇàÁß(º¸³½°è¾à)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000063", "menu_nm":"¿Ï·á(º¸³½°è¾à)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000066", "menu_nm":"¸¸·á¿¹Á¤ °è¾à¼­","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000067", "menu_nm":"¼­¸é°è¾à","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000068", "menu_nm":"º¸Áõº¸ÇèÁõ±Ç°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000162", "menu_nm":"ÀÎÁö¼¼°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000077", "menu_nm":"°ø¶÷¿Ï·á","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000157", "menu_nm":"¼ö½ÅÇÔ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-];
-var cont_auth_1 = [//°è¾àÁøÇà±ÇÇÑ
-	 { "menu_cd":"000052", "menu_nm":"°è¾à´ë»ó(ÀüÀÚÀÔÂû)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000053", "menu_nm":"½Å±Ô°è¾àÀÛ¼º","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000055", "menu_nm":"ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000056", "menu_nm":"ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000057", "menu_nm":"¼­¸é°è¾àµî·Ï","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000058", "menu_nm":"º¯°æ°è¾àÀÛ¼º","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000059", "menu_nm":"ÀÓ½ÃÀúÀå °è¾à","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000060", "menu_nm":"ÁøÇàÁß(º¸³½°è¾à)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000063", "menu_nm":"¿Ï·á(º¸³½°è¾à)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000066", "menu_nm":"¸¸·á¿¹Á¤ °è¾à¼­","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000067", "menu_nm":"¼­¸é°è¾à","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000068", "menu_nm":"º¸Áõº¸ÇèÁõ±Ç°ü¸®","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000162", "menu_nm":"ÀÎÁö¼¼°ü¸®","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-	,{ "menu_cd":"000077", "menu_nm":"°ø¶÷¿Ï·á","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000157", "menu_nm":"¼ö½ÅÇÔ","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
-];
-var cont_auth_2 = [//¿Ï·á°è¾àÁ¶È¸±ÇÇÑ
-	 { "menu_cd":"000052", "menu_nm":"°è¾à´ë»ó(ÀüÀÚÀÔÂû)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000053", "menu_nm":"½Å±Ô°è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000055", "menu_nm":"ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000056", "menu_nm":"ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000057", "menu_nm":"¼­¸é°è¾àµî·Ï","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000058", "menu_nm":"º¯°æ°è¾àÀÛ¼º","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000059", "menu_nm":"ÀÓ½ÃÀúÀå °è¾à","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000060", "menu_nm":"ÁøÇàÁß(º¸³½°è¾à)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000063", "menu_nm":"¿Ï·á(º¸³½°è¾à)","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
-	,{ "menu_cd":"000066", "menu_nm":"¸¸·á¿¹Á¤ °è¾à¼­","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000067", "menu_nm":"¼­¸é°è¾à","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000068", "menu_nm":"º¸Áõº¸ÇèÁõ±Ç°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000162", "menu_nm":"ÀÎÁö¼¼°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000077", "menu_nm":"°ø¶÷¿Ï·á","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000157", "menu_nm":"¼ö½ÅÇÔ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+var bid_auth_3 =[//ê²°ê³¼ì¡°íšŒ
+	 { "menu_cd":"000036", "menu_nm":"ì…ì°°ê³„íš","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000038", "menu_nm":"í˜„ì„¤(ì‚¬ì–‘)ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000039", "menu_nm":"ì…ì°°ê³µê³ ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000040", "menu_nm":"ê¸°ìˆ (ê·œê²©)í‰ê°€","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000041", "menu_nm":"ì…ì°°ì„œê°œì°°","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000042", "menu_nm":"ë‚™ì°°ì—…ì²´ì„ ì •","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000043", "menu_nm":"ì…ì°°ê²°ê³¼","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	,{ "menu_cd":"000044", "menu_nm":"êµ¬ë§¤ë‹´ë‹¹ìë³€ê²½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000045", "menu_nm":"ë³µìˆ˜ì˜ˆê°€ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000047", "menu_nm":"ì…ì°°ì§„í–‰í˜„í™©","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
 ];
 
-var cust_auth_0 = [//±ÇÇÑ¾øÀ½
-	 { "menu_cd":"000082", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000083", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000085", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000086", "menu_nm":"´ã´çÀÚº° ¾÷Ã¼Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000087", "menu_nm":"°³ÀÎÈ¸¿ø Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000088", "menu_nm":"°¡µî·Ï¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000089", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000090", "menu_nm":"´ë¸®Á¡ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000091", "menu_nm":"µî·Ï¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000092", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":false, "select_auth_val": "", "btn_auth_val":"" }
-	,{ "menu_cd":"000093", "menu_nm":"¾÷Ã¼¼Ò½Ì±×·ì°ü¸®","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+//ê³„ì•½
+var cont_auth_0 = [//ê¶Œí•œì—†ìŒ
+	 { "menu_cd":"000052", "menu_nm":"ê³„ì•½ëŒ€ìƒ(ì „ìì…ì°°)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000053", "menu_nm":"ì‹ ê·œê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000055", "menu_nm":"ììœ ì„œì‹ ê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000056", "menu_nm":"ììœ ì„œì‹ ê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000057", "menu_nm":"ì„œë©´ê³„ì•½ë“±ë¡","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000058", "menu_nm":"ë³€ê²½ê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000059", "menu_nm":"ì„ì‹œì €ì¥ ê³„ì•½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000060", "menu_nm":"ì§„í–‰ì¤‘(ë³´ë‚¸ê³„ì•½)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000063", "menu_nm":"ì™„ë£Œ(ë³´ë‚¸ê³„ì•½)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000066", "menu_nm":"ë§Œë£Œì˜ˆì • ê³„ì•½ì„œ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000067", "menu_nm":"ì„œë©´ê³„ì•½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000068", "menu_nm":"ë³´ì¦ë³´í—˜ì¦ê¶Œê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000162", "menu_nm":"ì¸ì§€ì„¸ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000077", "menu_nm":"ê³µëŒì™„ë£Œ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000157", "menu_nm":"ìˆ˜ì‹ í•¨","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+];
+var cont_auth_1 = [//ê³„ì•½ì§„í–‰ê¶Œí•œ
+	 { "menu_cd":"000052", "menu_nm":"ê³„ì•½ëŒ€ìƒ(ì „ìì…ì°°)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000053", "menu_nm":"ì‹ ê·œê³„ì•½ì‘ì„±","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000055", "menu_nm":"ììœ ì„œì‹ ê³„ì•½ì‘ì„±","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000056", "menu_nm":"ììœ ì„œì‹ ê³„ì•½ì‘ì„±","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000057", "menu_nm":"ì„œë©´ê³„ì•½ë“±ë¡","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000058", "menu_nm":"ë³€ê²½ê³„ì•½ì‘ì„±","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000059", "menu_nm":"ì„ì‹œì €ì¥ ê³„ì•½","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000060", "menu_nm":"ì§„í–‰ì¤‘(ë³´ë‚¸ê³„ì•½)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000063", "menu_nm":"ì™„ë£Œ(ë³´ë‚¸ê³„ì•½)","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000066", "menu_nm":"ë§Œë£Œì˜ˆì • ê³„ì•½ì„œ","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000067", "menu_nm":"ì„œë©´ê³„ì•½","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000068", "menu_nm":"ë³´ì¦ë³´í—˜ì¦ê¶Œê´€ë¦¬","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000162", "menu_nm":"ì¸ì§€ì„¸ê´€ë¦¬","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+	,{ "menu_cd":"000077", "menu_nm":"ê³µëŒì™„ë£Œ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000157", "menu_nm":"ìˆ˜ì‹ í•¨","checked":true, "select_auth_val": "20", "btn_auth_val":"20" }
+];
+var cont_auth_2 = [//ì™„ë£Œê³„ì•½ì¡°íšŒê¶Œí•œ
+	 { "menu_cd":"000052", "menu_nm":"ê³„ì•½ëŒ€ìƒ(ì „ìì…ì°°)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000053", "menu_nm":"ì‹ ê·œê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000055", "menu_nm":"ììœ ì„œì‹ ê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000056", "menu_nm":"ììœ ì„œì‹ ê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000057", "menu_nm":"ì„œë©´ê³„ì•½ë“±ë¡","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000058", "menu_nm":"ë³€ê²½ê³„ì•½ì‘ì„±","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000059", "menu_nm":"ì„ì‹œì €ì¥ ê³„ì•½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000060", "menu_nm":"ì§„í–‰ì¤‘(ë³´ë‚¸ê³„ì•½)","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000063", "menu_nm":"ì™„ë£Œ(ë³´ë‚¸ê³„ì•½)","checked":true, "select_auth_val": "20", "btn_auth_val":"10" }
+	,{ "menu_cd":"000066", "menu_nm":"ë§Œë£Œì˜ˆì • ê³„ì•½ì„œ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000067", "menu_nm":"ì„œë©´ê³„ì•½","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000068", "menu_nm":"ë³´ì¦ë³´í—˜ì¦ê¶Œê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000162", "menu_nm":"ì¸ì§€ì„¸ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000077", "menu_nm":"ê³µëŒì™„ë£Œ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000157", "menu_nm":"ìˆ˜ì‹ í•¨","checked":false, "select_auth_val": "", "btn_auth_val":"" }
 ];
 
-var cust_auth_1 = [//°ü¸®±ÇÇÑ
-	 { "menu_cd":"000082", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000083", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000085", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000086", "menu_nm":"´ã´çÀÚº° ¾÷Ã¼Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000087", "menu_nm":"°³ÀÎÈ¸¿ø Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000088", "menu_nm":"°¡µî·Ï¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000089", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000090", "menu_nm":"´ë¸®Á¡ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000091", "menu_nm":"µî·Ï¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000092", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
-	,{ "menu_cd":"000093", "menu_nm":"¾÷Ã¼¼Ò½Ì±×·ì°ü¸®","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+var cust_auth_0 = [//ê¶Œí•œì—†ìŒ
+	 { "menu_cd":"000082", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000083", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000085", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000086", "menu_nm":"ë‹´ë‹¹ìë³„ ì—…ì²´ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000087", "menu_nm":"ê°œì¸íšŒì› ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000088", "menu_nm":"ê°€ë“±ë¡ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000089", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000090", "menu_nm":"ëŒ€ë¦¬ì  ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000091", "menu_nm":"ë“±ë¡ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000092", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":false, "select_auth_val": "", "btn_auth_val":"" }
+	,{ "menu_cd":"000093", "menu_nm":"ì—…ì²´ì†Œì‹±ê·¸ë£¹ê´€ë¦¬","checked":false, "select_auth_val": "", "btn_auth_val":"" }
 ];
-var cust_auth_2 = [//Á¶È¸±ÇÇÑ
-	 { "menu_cd":"000082", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000083", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000085", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000086", "menu_nm":"´ã´çÀÚº° ¾÷Ã¼Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000087", "menu_nm":"°³ÀÎÈ¸¿ø Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000088", "menu_nm":"°¡µî·Ï¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000089", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000090", "menu_nm":"´ë¸®Á¡ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000091", "menu_nm":"µî·Ï¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000092", "menu_nm":"Çù·Â¾÷Ã¼ Á¶È¸","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
-	,{ "menu_cd":"000093", "menu_nm":"¾÷Ã¼¼Ò½Ì±×·ì°ü¸®","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+
+var cust_auth_1 = [//ê´€ë¦¬ê¶Œí•œ
+	 { "menu_cd":"000082", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000083", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000085", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000086", "menu_nm":"ë‹´ë‹¹ìë³„ ì—…ì²´ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000087", "menu_nm":"ê°œì¸íšŒì› ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000088", "menu_nm":"ê°€ë“±ë¡ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000089", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000090", "menu_nm":"ëŒ€ë¦¬ì  ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000091", "menu_nm":"ë“±ë¡ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000092", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+	,{ "menu_cd":"000093", "menu_nm":"ì—…ì²´ì†Œì‹±ê·¸ë£¹ê´€ë¦¬","checked":true, "select_auth_val": "", "btn_auth_val":"20" }
+];
+var cust_auth_2 = [//ì¡°íšŒê¶Œí•œ
+	 { "menu_cd":"000082", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000083", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000085", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000086", "menu_nm":"ë‹´ë‹¹ìë³„ ì—…ì²´ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000087", "menu_nm":"ê°œì¸íšŒì› ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000088", "menu_nm":"ê°€ë“±ë¡ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000089", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000090", "menu_nm":"ëŒ€ë¦¬ì  ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000091", "menu_nm":"ë“±ë¡ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000092", "menu_nm":"í˜‘ë ¥ì—…ì²´ ì¡°íšŒ","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
+	,{ "menu_cd":"000093", "menu_nm":"ì—…ì²´ì†Œì‹±ê·¸ë£¹ê´€ë¦¬","checked":true, "select_auth_val": "", "btn_auth_val":"10" }
 ];
 </script>

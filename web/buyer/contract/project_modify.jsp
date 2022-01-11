@@ -1,23 +1,23 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String id = u.request("id");
 if(id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 DataObject pDao = new DataObject("tcb_order_field");
 DataSet ds = pDao.find("field_seq=" + id + " and  member_no = '"+_member_no+"'");
 if(!ds.next()){
-	u.jsError("ÇØ´ç ÇÁ·ÎÁ§Æ®°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ í”„ë¡œì íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("order_name", ds.getString("order_name"), "hname:'¹ßÁÖÀÚ', required:'Y', maxbyte:'100'");
-f.addElement("field_name", ds.getString("field_name"), "hname:'ÇÁ·ÎÁ§Æ®¸í', required:'Y', maxbyte:'200'");
-f.addElement("del_yn", ds.getString("del_yn"), "hname:'ÁøÇà»óÅÂ', required:'Y'");
+f.addElement("order_name", ds.getString("order_name"), "hname:'ë°œì£¼ìž', required:'Y', maxbyte:'100'");
+f.addElement("field_name", ds.getString("field_name"), "hname:'í”„ë¡œì íŠ¸ëª…', required:'Y', maxbyte:'200'");
+f.addElement("del_yn", ds.getString("del_yn"), "hname:'ì§„í–‰ìƒíƒœ', required:'Y'");
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DataObject dao = new DataObject("tcb_order_field");
@@ -27,11 +27,11 @@ if(u.isPost() && f.validate())
 	dao.item("field_loc", f.get("field_loc"));
 	dao.item("del_yn", f.get("del_yn"));
 	if(!dao.update("member_no='"+_member_no+"' and field_seq='"+id+"'")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀå µÇ¾ú½À´Ï´Ù.", "./project_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./project_modify.jsp?"+u.getQueryString());
 	return;
 }
 
@@ -39,12 +39,12 @@ if(u.isPost() && f.validate())
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.project_modify");
-p.setVar("popup_title","ÇÁ·ÎÁ§Æ® Á¤º¸");
+p.setVar("popup_title","í”„ë¡œì íŠ¸ ì •ë³´");
 
 p.setVar("modify", true);
 p.setVar("ds", ds);
 p.setVar("list_query", u.getQueryString("id"));
-p.setVar("query",u.getQueryString());			// »èÁ¦
+p.setVar("query",u.getQueryString());			// ì‚­ì œ
 p.setVar("form_script",f.getScript());
 p.display(out);
 %>

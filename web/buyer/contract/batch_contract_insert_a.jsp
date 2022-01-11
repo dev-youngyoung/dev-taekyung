@@ -3,7 +3,7 @@
 				,org.jsoup.nodes.Document
 				,org.jsoup.nodes.Element
 				,org.jsoup.select.Elements"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String grid = u.request("grid");
 if(!grid.equals("")){
@@ -12,28 +12,28 @@ if(!grid.equals("")){
 
 DataSet data = u.grid2dataset(grid);
 
-// °è¾à±âº»Á¤º¸
-String w_member_no = auth.getString("_MEMBER_NO");  // ÀÛ¼ºÀÚ È¸¿ø¹øÈ£
-String w_template_cd = "2015016";  // ¾ç½ÄÄÚµå (Ã»±¸¼­2)
-String w_user_id = auth.getString("_USER_ID"); // ÀÛ¼ºÀÚ¾ÆÀÌµð
+// ê³„ì•½ê¸°ë³¸ì •ë³´
+String w_member_no = auth.getString("_MEMBER_NO");  // ìž‘ì„±ìž íšŒì›ë²ˆí˜¸
+String w_template_cd = "2015016";  // ì–‘ì‹ì½”ë“œ (ì²­êµ¬ì„œ2)
+String w_user_id = auth.getString("_USER_ID"); // ìž‘ì„±ìžì•„ì´ë””
 String w_cust_sign_seq = "1";	// sign_seq
 String w_display_seq = "1";		//
 
-// ÀÛ¼ºÀÚ
-String w_vendcd = "";      // »ç¾÷ÀÚ¹øÈ£
-String w_member_name = ""; // È¸»ç¸í
-String w_boss_name = ""; // ´ëÇ¥ÀÚ¸í
-String w_cust_gubun = ""; // »ç¾÷ÀÚ, °³ÀÎ ±¸ºÐ
-String w_address = ""; // ÁÖ¼Ò
-String w_post_code = "";	 // ¿ìÆí¹øÈ£
+// ìž‘ì„±ìž
+String w_vendcd = "";      // ì‚¬ì—…ìžë²ˆí˜¸
+String w_member_name = ""; // íšŒì‚¬ëª…
+String w_boss_name = ""; // ëŒ€í‘œìžëª…
+String w_cust_gubun = ""; // ì‚¬ì—…ìž, ê°œì¸ êµ¬ë¶„
+String w_address = ""; // ì£¼ì†Œ
+String w_post_code = "";	 // ìš°íŽ¸ë²ˆí˜¸
 
-String w_field_seq = ""; // ´ã´çÀÚ ºÎ¼­ÄÚµå
-String w_user_name = ""; // ´ã´çÀÚ¸í
-String w_tel_num = ""; // ÀüÈ­¹øÈ£
-String w_hp1 = "";	 // ÈÞ´ë¹øÈ£
+String w_field_seq = ""; // ë‹´ë‹¹ìž ë¶€ì„œì½”ë“œ
+String w_user_name = ""; // ë‹´ë‹¹ìžëª…
+String w_tel_num = ""; // ì „í™”ë²ˆí˜¸
+String w_hp1 = "";	 // íœ´ëŒ€ë²ˆí˜¸
 String w_hp2 = "";
 String w_hp3 = "";
-String w_email = "";  // ÀÌ¸ÞÀÏ
+String w_email = "";  // ì´ë©”ì¼
 
 String cont_date = "";
 String cont_year = "";
@@ -41,29 +41,29 @@ String cont_month = "";
 String cont_day = "";
 
 
-// ÀÛ¼º¾÷Ã¼ ¹× ÀÛ¼ºÀÚ Á¤º¸ (ÀÛ¼ºÀÚ 1¸íÀÌ »ý¼ºÇÏ´Â ÀÚµ¿°è¾àÀÌ´Ù.)
+// ìž‘ì„±ì—…ì²´ ë° ìž‘ì„±ìž ì •ë³´ (ìž‘ì„±ìž 1ëª…ì´ ìƒì„±í•˜ëŠ” ìžë™ê³„ì•½ì´ë‹¤.)
 DataObject daoWMember = new DataObject("tcb_member");
 DataObject daoWPerson = new DataObject("tcb_person");
 
-// ÀÛ¼º¾÷Ã¼ Á¤º¸ Á¶È¸
+// ìž‘ì„±ì—…ì²´ ì •ë³´ ì¡°íšŒ
 DataSet dsWMember = daoWMember.find("member_no = '"+w_member_no+"'");
 if(!dsWMember.next())
 {
-	System.out.println("ÀÛ¼º¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù. ÀÛ¼º¾÷Ã¼ È¸¿ø¹øÈ£ : " + w_member_no);
+	System.out.println("ìž‘ì„±ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤. ìž‘ì„±ì—…ì²´ íšŒì›ë²ˆí˜¸ : " + w_member_no);
 	return;
 }
 w_vendcd = dsWMember.getString("vendcd");
 w_member_name = dsWMember.getString("member_name");
 w_boss_name = dsWMember.getString("boss_name");
-w_cust_gubun = dsWMember.getString("member_gubun")=="04" ? "02" : "01";  // 01:»ç¾÷ÀÚ, 02:°³ÀÎ
+w_cust_gubun = dsWMember.getString("member_gubun")=="04" ? "02" : "01";  // 01:ì‚¬ì—…ìž, 02:ê°œì¸
 w_address = dsWMember.getString("address");
 w_post_code = dsWMember.getString("post_code");
 
-// ÀÛ¼ºÀÚ Á¤º¸ Á¶È¸
+// ìž‘ì„±ìž ì •ë³´ ì¡°íšŒ
 DataSet dsWPerson = daoWPerson.find("user_id = '"+w_user_id+"'");
 if(!dsWPerson.next())
 {
-	System.out.println("ÀÛ¼ºÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù. ÀÛ¼ºÀÚ ¾ÆÀÌµð : " + w_user_id);
+	System.out.println("ìž‘ì„±ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤. ìž‘ì„±ìž ì•„ì´ë”” : " + w_user_id);
 	return;
 }
 w_field_seq = dsWPerson.getString("field_seq");
@@ -74,7 +74,7 @@ w_hp2 = dsWPerson.getString("hp2");
 w_hp3 = dsWPerson.getString("hp3");
 w_email = dsWPerson.getString("email");
 
-// °è¾à¼­ Á¤º¸ Á¶È¸
+// ê³„ì•½ì„œ ì •ë³´ ì¡°íšŒ
 String[] cont_html = new String[2];
 String[] cont_sub_name = new String[2];
 String[] cont_sub_style = new String[2];
@@ -82,11 +82,11 @@ String[] gubun = new String[2];
 String[] option_yn = new String[2];
 
 int cont_i = 0;
-// ¼­½ÄÁ¤º¸ Á¶È¸
+// ì„œì‹ì •ë³´ ì¡°íšŒ
 DataObject templateDao = new DataObject("tcb_cont_template");
 DataSet template= templateDao.find("template_cd ='"+w_template_cd+"'");
 if(!template.next()){
-	System.out.println("°è¾à¼­ ¾ç½ÄÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	System.out.println("ê³„ì•½ì„œ ì–‘ì‹ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 } else {
 	cont_html[cont_i] = template.getString("template_html");
@@ -101,37 +101,37 @@ if(!template.next()){
 DataObject signTemplateDao = new DataObject("tcb_cont_sign_template");
 DataSet dsSignTemplate= signTemplateDao.find("template_cd ='"+w_template_cd+"'", "sign_seq, signer_name, signer_max, member_type, cust_type");
 if(!dsSignTemplate.next()){
-	System.out.println("°è¾à¼­ ¼­¸í ¼ø¼­(tcb_cont_sign_template)°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	System.out.println("ê³„ì•½ì„œ ì„œëª… ìˆœì„œ(tcb_cont_sign_template)ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 try{
 
-	// ¿¢¼¿¿¡¼­ ÀÔ·Â¹Þ´Â °ª
-	String r_data = ""; // ¾ç½Äµ¥ÀÌÅÍ
+	// ì—‘ì…€ì—ì„œ ìž…ë ¥ë°›ëŠ” ê°’
+	String r_data = ""; // ì–‘ì‹ë°ì´í„°
 
-	String r_member_no = "";  //  °Å·¡Ã³ È¸¿ø¹øÈ£
-	String r_member_gubun = "";	 // È¸¿ø±¸ºÐ (01 : ¹ýÀÎ(º»»ç), 02 : ¹ýÀÎ(Áö»ç), 03 : °³ÀÎ»ç¾÷ÀÚ)
+	String r_member_no = "";  //  ê±°ëž˜ì²˜ íšŒì›ë²ˆí˜¸
+	String r_member_gubun = "";	 // íšŒì›êµ¬ë¶„ (01 : ë²•ì¸(ë³¸ì‚¬), 02 : ë²•ì¸(ì§€ì‚¬), 03 : ê°œì¸ì‚¬ì—…ìž)
 
-	String r_vendcd = "";      // »ç¾÷ÀÚ¹øÈ£
-	String r_cust_code = "";      // ¾÷Ã¼ÄÚµå
-	String r_member_name = ""; // ¾÷Ã¼¸í
-	String r_boss_name = "";	 // ´ëÇ¥ÀÚ¸í
-	String r_post_code = "";	 // ¿ìÆí¹øÈ£
-	String r_address = "";     // ÁÖ¼Ò
-	String r_cust_gubun = "01";	// »ç¾÷ÀÚ(01), °³ÀÎ(02)
+	String r_vendcd = "";      // ì‚¬ì—…ìžë²ˆí˜¸
+	String r_cust_code = "";      // ì—…ì²´ì½”ë“œ
+	String r_member_name = ""; // ì—…ì²´ëª…
+	String r_boss_name = "";	 // ëŒ€í‘œìžëª…
+	String r_post_code = "";	 // ìš°íŽ¸ë²ˆí˜¸
+	String r_address = "";     // ì£¼ì†Œ
+	String r_cust_gubun = "01";	// ì‚¬ì—…ìž(01), ê°œì¸(02)
 	String r_cust_sign_seq = "2";	// sign_seq
 	String r_display_seq = "2";		//
 
 	String r_person_seq = "";
-	String r_user_name = "";	 //	´ã´çÀÚ¸í
-	String r_tel_num = "";	 //	ÀüÈ­¹øÈ£
-	String r_hp1 = "";	 //	ÈÞ´ë¹øÈ£
+	String r_user_name = "";	 //	ë‹´ë‹¹ìžëª…
+	String r_tel_num = "";	 //	ì „í™”ë²ˆí˜¸
+	String r_hp1 = "";	 //	íœ´ëŒ€ë²ˆí˜¸
 	String r_hp2 = "";	 //
 	String r_hp3 = "";	 //
-	String r_email = "";	 //	ÀÌ¸ÞÀÏ
+	String r_email = "";	 //	ì´ë©”ì¼
 
-	String[] arr = {"81","82","83","84","86","87","88"};  // ¹ýÀÎ»ç¾÷ÀÚ ±¸ºÐ
+	String[] arr = {"81","82","83","84","86","87","88"};  // ë²•ì¸ì‚¬ì—…ìž êµ¬ë¶„
 
 	System.out.println("realGrid.getRowCnt["+data.size()+"]");
 
@@ -139,7 +139,7 @@ try{
 
 		DB db = new DB();
 
-		// ÃÊ±âÈ­
+		// ì´ˆê¸°í™”
 		String r_cont_date = data.getString("r_cont_date");
 		String[] arr_cont_date = r_cont_date.split("-");
 		cont_date = r_cont_date.replaceAll("-","");
@@ -156,25 +156,25 @@ try{
 			cont_day = cont_date.substring(6);
 		}
 
-		r_member_no = "";  //  °Å·¡Ã³ È¸¿ø¹øÈ£
+		r_member_no = "";  //  ê±°ëž˜ì²˜ íšŒì›ë²ˆí˜¸
 		r_member_gubun = "";
 		r_person_seq = "";
 
 		String cont_name = "";//wgs.getString("r_cont_name",i);
 
-		r_user_name = data.getString("r_user_name").trim();	 //	´ã´çÀÚ¸í
-		r_hp1 = data.getString("r_hp1");	 //	ÈÞ´ë¹øÈ£
+		r_user_name = data.getString("r_user_name").trim();	 //	ë‹´ë‹¹ìžëª…
+		r_hp1 = data.getString("r_hp1");	 //	íœ´ëŒ€ë²ˆí˜¸
 		r_hp2 = data.getString("r_hp2");	 //
 		r_hp3 = data.getString("r_hp3");	 //
 		r_tel_num = r_hp1+"-"+r_hp2+"-"+r_hp3;
-		r_email = data.getString("r_email");	 //	ÀÌ¸ÞÀÏ
+		r_email = data.getString("r_email");	 //	ì´ë©”ì¼
 
 
-		// html input °ª ÀÚµ¿ ¼ÂÆÃÀ» À§ÇÑ µ¥ÀÌÅÍ
+		// html input ê°’ ìžë™ ì…‹íŒ…ì„ ìœ„í•œ ë°ì´í„°
 		DataSet dsCustData = new DataSet();
 		dsCustData.addRow();
 
-		dsCustData.put("cont_year", cont_year); // °è¾àÀÏ
+		dsCustData.put("cont_year", cont_year); // ê³„ì•½ì¼
 		dsCustData.put("cont_month", cont_month);
 		dsCustData.put("cont_day", cont_day);
 		dsCustData.put("r_req_month", data.getString("r_req_month"));
@@ -186,10 +186,10 @@ try{
 		dsCustData.put("r_pro", data.getString("r_pro"));
 		dsCustData.put("r_sum", data.getString("r_sum"));
 
-		// 1. È¸¿øÀÎÁö Ã¼Å©
+		// 1. íšŒì›ì¸ì§€ ì²´í¬
 		DataObject daoRMember = new DataObject("tcb_member");
 		DataSet dsRMember = daoRMember.find("vendcd = '"+data.getString("r_vendcd").replaceAll("-","")+"'");
-		if(dsRMember.next()) // È¸¿ø
+		if(dsRMember.next()) // íšŒì›
 		{
 			r_member_no = dsRMember.getString("member_no");
 			r_vendcd = dsRMember.getString("vendcd");
@@ -215,12 +215,12 @@ try{
 				nUserCnt = daoRPerson.findCount("member_no = '"+r_member_no+"' and user_name='"+r_user_name+"'");
 			}
 			
-			if(nUserCnt == 0) // ´ã´çÀÚ°¡ ¾ø´Â °æ¿ì ±âº» ´ã´çÀÚ·Î ¼³Á¤
+			if(nUserCnt == 0) // ë‹´ë‹¹ìžê°€ ì—†ëŠ” ê²½ìš° ê¸°ë³¸ ë‹´ë‹¹ìžë¡œ ì„¤ì •
 			{
 				DataSet dsRperson = daoRPerson.find("member_no = '"+r_member_no+"' and default_yn='Y'");
 				if(!dsRperson.next())
 				{
-					Util.log(r_vendcd + "\t±âº» ´ã´çÀÚ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+					Util.log(r_vendcd + "\tê¸°ë³¸ ë‹´ë‹¹ìžê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 					continue;
 				}
 				else
@@ -239,18 +239,18 @@ try{
 		}
 		else
 		{
-			// ¹Ì°¡ÀÔÈ¸¿ø ·Î±× Ãâ·Â
-			Util.log(data.getString("r_vendcd") + "\tÈ¸»ç Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+			// ë¯¸ê°€ìž…íšŒì› ë¡œê·¸ ì¶œë ¥
+			Util.log(data.getString("r_vendcd") + "\tíšŒì‚¬ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 			continue;
 		}
 
-		// 4¿ù2Â÷ Ã»±¸¼­_¾ÆÀÌÇÃ
-		cont_name = data.getString("r_req_month") + "¿ù" + data.getString("r_req_count")+"Â÷ Ã»±¸¼­_"+ r_member_name;
+		// 4ì›”2ì°¨ ì²­êµ¬ì„œ_ì•„ì´í”Œ
+		cont_name = data.getString("r_req_month") + "ì›”" + data.getString("r_req_count")+"ì°¨ ì²­êµ¬ì„œ_"+ r_member_name;
 
-		//---------------------- °è¾à¼­ »ý¼º ---------------------
+		//---------------------- ê³„ì•½ì„œ ìƒì„± ---------------------
 
 
-		// ¼­½ÄÁ¤º¸ Á¶È¸
+		// ì„œì‹ì •ë³´ ì¡°íšŒ
 		DataSet dsContract = new DataSet();
 		String cont_html_input = "";
 		String cont_html_noinput = "";
@@ -260,8 +260,8 @@ try{
 			if(gubun[j]==null) break;
 
 			dsContract.addRow();
-			cont_html_input = setHtmlValue(cont_html[j], dsCustData);		// ¾ç½Ä¿¡ input, span°ª ¼ÂÆÃ
-			cont_html_noinput = removeHtml(cont_html_input);	// input°ª Á¦°Å
+			cont_html_input = setHtmlValue(cont_html[j], dsCustData);		// ì–‘ì‹ì— input, spanê°’ ì…‹íŒ…
+			cont_html_noinput = removeHtml(cont_html_input);	// inputê°’ ì œê±°
 			
 			System.out.println(cont_html_noinput);
 
@@ -273,7 +273,7 @@ try{
 			dsContract.put("option_yn", option_yn[j]);
 		}
 
-		String cont_html_rm_str = "";  // pdf »ý¼ºÀ» À§ÇØ ÅÂ±×µéÀ» remove ÇÑ °ªµé.
+		String cont_html_rm_str = "";  // pdf ìƒì„±ì„ ìœ„í•´ íƒœê·¸ë“¤ì„ remove í•œ ê°’ë“¤.
 		int z = 0;
 		dsContract.first();
 		while(dsContract.next())
@@ -283,7 +283,7 @@ try{
 			else if(z > 0)
 				cont_html_rm_str += "<pd4ml:page.break>";
 
-			if(dsContract.getString("gubun").equals("10")){  // ¿©·¯°³ ÅÇÀ» 1°³ ÆÄÀÏ·Î ¸¸µå´Â °æ¿ì¿¡¸¸ ½ÇÇà
+			if(dsContract.getString("gubun").equals("10")){  // ì—¬ëŸ¬ê°œ íƒ­ì„ 1ê°œ íŒŒì¼ë¡œ ë§Œë“œëŠ” ê²½ìš°ì—ë§Œ ì‹¤í–‰
 				cont_html_rm_str += dsContract.getString("cont_html_rm");
 			}
 			z++;
@@ -303,7 +303,7 @@ try{
 		String cont_userno = "";
 
 
-		// °è¾à¼­ °©Áö ÆÄÀÏ »ý¼º
+		// ê³„ì•½ì„œ ê°‘ì§€ íŒŒì¼ ìƒì„±
 		DataSet pdfInfo = new DataSet();
 		pdfInfo.addRow();
 		pdfInfo.put("member_no",w_member_no);
@@ -314,11 +314,11 @@ try{
 		pdfInfo.put("file_seq", file_seq++);
 		DataSet pdf = cont.makePdf(pdfInfo);
 		if(pdf==null){
-			System.out.println("°è¾à¼­ ÆÄÀÏ »ý¼º¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			System.out.println("ê³„ì•½ì„œ íŒŒì¼ ìƒì„±ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			break;
 		}
 
-		// °è¾àÁ¤º¸ ÀúÀå
+		// ê³„ì•½ì •ë³´ ì €ìž¥
 		dsContract.first();
 		dsContract.next();
 
@@ -341,13 +341,12 @@ try{
 		cont.item("true_random", random_no);
 		cont.item("reg_id", w_user_id);
 		cont.item("status", "10");
-		cont.item("src_cd", "");
 		String file_hash = pdf.getString("file_hash");
 		cont.item("cont_hash", file_hash);
 
 		db.setCommand(cont.getInsertQuery(), cont.record);
 
-		// ¼­¸í ¼­½Ä ÀúÀå
+		// ì„œëª… ì„œì‹ ì €ìž¥
 		dsSignTemplate.first();
 		while(dsSignTemplate.next())
 		{
@@ -357,18 +356,18 @@ try{
 			cont_sign.item("sign_seq", dsSignTemplate.getString("sign_seq"));
 			cont_sign.item("signer_name", dsSignTemplate.getString("signer_name"));
 			cont_sign.item("signer_max", dsSignTemplate.getString("signer_max"));
-			cont_sign.item("member_type", dsSignTemplate.getString("member_type"));  // 01:³ªÀÌ½º¿Í °è¾àÇÑ ¾÷Ã¼ 02:³ªÀÌ½º ¹Ì°è¾à¾÷Ã¼
-			cont_sign.item("cust_type", dsSignTemplate.getString("cust_type"));      // 01:°© 02:À»
+			cont_sign.item("member_type", dsSignTemplate.getString("member_type"));  // 01:ë‚˜ì´ìŠ¤ì™€ ê³„ì•½í•œ ì—…ì²´ 02:ë‚˜ì´ìŠ¤ ë¯¸ê³„ì•½ì—…ì²´
+			cont_sign.item("cust_type", dsSignTemplate.getString("cust_type"));      // 01:ê°‘ 02:ì„
 			db.setCommand(cont_sign.getInsertQuery(), cont_sign.record);
 		}
 
-		// ÀÛ¼º¾÷Ã¼ ÀúÀå
+		// ìž‘ì„±ì—…ì²´ ì €ìž¥
 		DataObject custDao = new DataObject("tcb_cust");
 		custDao.item("cont_no", cont_no);
 		custDao.item("cont_chasu",cont_chasu);
 		custDao.item("member_no",w_member_no);
 		custDao.item("sign_seq", w_cust_sign_seq);
-		custDao.item("cust_gubun", w_cust_gubun);  //01:»ç¾÷ÀÚ 02:°³ÀÎ
+		custDao.item("cust_gubun", w_cust_gubun);  //01:ì‚¬ì—…ìž 02:ê°œì¸
 		custDao.item("vendcd", w_vendcd);
 		custDao.item("member_name", w_member_name);
 		custDao.item("boss_name", w_boss_name);
@@ -385,13 +384,13 @@ try{
 		db.setCommand(custDao.getInsertQuery(), custDao.record);
 
 
-		// °Å·¡Ã³ ÀúÀå
+		// ê±°ëž˜ì²˜ ì €ìž¥
 		custDao = new DataObject("tcb_cust");
 		custDao.item("cont_no", cont_no);
 		custDao.item("cont_chasu",cont_chasu);
 		custDao.item("member_no",r_member_no);
 		custDao.item("sign_seq", r_cust_sign_seq);
-		custDao.item("cust_gubun", r_cust_gubun);  //01:»ç¾÷ÀÚ 02:°³ÀÎ
+		custDao.item("cust_gubun", r_cust_gubun);  //01:ì‚¬ì—…ìž 02:ê°œì¸
 		custDao.item("vendcd", r_vendcd);
 		custDao.item("member_name", r_member_name);
 		custDao.item("boss_name", r_boss_name);
@@ -415,11 +414,11 @@ try{
 				+"    and cont_chasu = '"+cont_chasu+"' "	 
 						,null);
 		
-		// °è¾à¼­·ù DB ÀúÀå
+		// ê³„ì•½ì„œë¥˜ DB ì €ìž¥
 		int cfile_seq_real = 1;
 
 
-		// °è¾à¼­·ù °©Áö
+		// ê³„ì•½ì„œë¥˜ ê°‘ì§€
 		DataObject cfileDao = new DataObject("tcb_cfile");
 		cfileDao.item("cont_no", cont_no);
 		cfileDao.item("cont_chasu", cont_chasu);
@@ -434,10 +433,10 @@ try{
 		db.setCommand(cfileDao.getInsertQuery(), cfileDao.record);
 		
 		
-		/* °è¾à·Î±× START*/
+		/* ê³„ì•½ë¡œê·¸ START*/
 		ContBLogDao logDao = new ContBLogDao();
-		logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), template.getString("template_name")+"»ý¼º",  "", "10","10");
-		/* °è¾à·Î±× END*/
+		logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), template.getString("template_name")+"ìƒì„±",  "", "10","10");
+		/* ê³„ì•½ë¡œê·¸ END*/
 		
 		
 		db.executeArray();
@@ -451,48 +450,48 @@ try{
 }
 %>
 <%!
-// input box µîÀ» Á¦°Å
+// input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String cont_html_rm = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
 
-	// PDF¿ë
-	for( Element elem : cont_doc.select("input[type=text]") ){ if(elem.val().equals("")) elem.parent().text("\u00a0"); else elem.parent().text(elem.val());}  // input box °ª ¸ðµÎ Á¦°Å
-	//for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à");  }  // Ã¼Å©¹Ú½º
-	//for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à"); }  // ¶óµð¿À
+	// PDFìš©
+	for( Element elem : cont_doc.select("input[type=text]") ){ if(elem.val().equals("")) elem.parent().text("\u00a0"); else elem.parent().text(elem.val());}  // input box ê°’ ëª¨ë‘ ì œê±°
+	//for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡");  }  // ì²´í¬ë°•ìŠ¤
+	//for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡"); }  // ë¼ë””ì˜¤
 	//for( Element elem : cont_doc.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
 
-	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 
 	cont_html_rm = cont_doc.toString();
 
 	return cont_html_rm;
 }
 
-// ¾ç½Ä¿¡ °ª Ã¤¿ö³Ö±â
+// ì–‘ì‹ì— ê°’ ì±„ì›Œë„£ê¸°
 public String setHtmlValue(String html, DataSet dsCustData)
 {
 	String cont_html = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
-	// input box °ª Ã¤¿ì±â
-	cont_doc.select("input[name=cust_code]").attr("value", dsCustData.getString("r_cust_code"));	// ¾÷Ã¼ÄÚµå
-	cont_doc.select("input[name=req_month]").attr("value", dsCustData.getString("r_req_month"));	// Ã»±¸¿ù
-	cont_doc.select("input[name=req_count]").attr("value", dsCustData.getString("r_req_count"));	// Ã»±¸Â÷¼ö
-	cont_doc.select("input[name=cont_total]").attr("value", dsCustData.getString("r_sum"));			// ÇÕ°è±Ý¾×
-	cont_doc.select("input[name=item_1]").attr("value", dsCustData.getString("r_item"));			// ÇÕ°è±Ý¾×
-	cont_doc.select("input[name=sup_1]").attr("value", dsCustData.getString("r_sup"));			// ÇÕ°è±Ý¾×
-	cont_doc.select("input[name=pro_1]").attr("value", dsCustData.getString("r_pro"));			// ÇÕ°è±Ý¾×
-	cont_doc.select("input[name=sum_1]").attr("value", dsCustData.getString("r_sum"));			// ÇÕ°è±Ý¾×
+	// input box ê°’ ì±„ìš°ê¸°
+	cont_doc.select("input[name=cust_code]").attr("value", dsCustData.getString("r_cust_code"));	// ì—…ì²´ì½”ë“œ
+	cont_doc.select("input[name=req_month]").attr("value", dsCustData.getString("r_req_month"));	// ì²­êµ¬ì›”
+	cont_doc.select("input[name=req_count]").attr("value", dsCustData.getString("r_req_count"));	// ì²­êµ¬ì°¨ìˆ˜
+	cont_doc.select("input[name=cont_total]").attr("value", dsCustData.getString("r_sum"));			// í•©ê³„ê¸ˆì•¡
+	cont_doc.select("input[name=item_1]").attr("value", dsCustData.getString("r_item"));			// í•©ê³„ê¸ˆì•¡
+	cont_doc.select("input[name=sup_1]").attr("value", dsCustData.getString("r_sup"));			// í•©ê³„ê¸ˆì•¡
+	cont_doc.select("input[name=pro_1]").attr("value", dsCustData.getString("r_pro"));			// í•©ê³„ê¸ˆì•¡
+	cont_doc.select("input[name=sum_1]").attr("value", dsCustData.getString("r_sum"));			// í•©ê³„ê¸ˆì•¡
 
 
-	// spanÀ¸·Î µÈ ºÎºÐ °ª Ã¤¿ì±â
+	// spanìœ¼ë¡œ ëœ ë¶€ë¶„ ê°’ ì±„ìš°ê¸°
 	for( Element elem : cont_doc.select("span.cust_name_area_2") ){ elem.text(dsCustData.getString("r_member_name")); }
 	for( Element elem : cont_doc.select("span.vendcd1_2") ){ elem.text(dsCustData.getString("r_vendcd1")); }
 	for( Element elem : cont_doc.select("span.vendcd2_2") ){ elem.text(dsCustData.getString("r_vendcd2")); }

@@ -126,15 +126,9 @@
 		<!-- IF END 'view_project' -->
 		<tr>
 			<th class="req-check">계약명</th>
-			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>
+			<td colspan="3">
 				<input type="text" name="cont_name" style="width:95%" onChange="replaceInput(this, this.name, document.all.__html)">
 			</td>
-			<!-- IF START 'member.src_depth' -->
-			<th>소싱그룹</th>
-			<td>
-				{{tempCont.src_nm}}<input type="hidden" name="src_cd"/>
-			</td>
-			<!-- IF END 'member.src_depth' -->
 		</tr>
 		<tr>
 			<th class="req-check">계약일자</th>

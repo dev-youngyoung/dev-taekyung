@@ -1,28 +1,22 @@
 package nicelib.db;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Enumeration;
-import java.util.StringTokenizer;
-
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.DatabaseMetaData;
-import org.apache.commons.dbcp.BasicDataSource;
-import com.ibatis.sqlmap.client.*;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.StringTokenizer;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.sql.DataSource;
 import javax.servlet.jsp.JspWriter;
+import javax.sql.DataSource;
 
-import nicelib.db.DataSet;
-import nicelib.db.RecordSet;
 import nicelib.util.Config;
-import nicelib.util.SimpleParser;
+
+import com.ibatis.sqlmap.client.SqlMapException;
 
 public class DB {
 

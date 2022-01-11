@@ -3,26 +3,19 @@
     <div class="search_div">
         <table class="search_table">
             <colgroup>
-				<col width="13%">
-				<col width="42%">
-				<col width="13%">
-				<col width="22%">
-				<col width="10%">
+			    <col width="13%">
+			    <col width="25%">
+			    <col width="13%">
+			    <col width="25%">
+			    <col width="*">
             </colgroup>
             <tr>
-                <th><p>ÀÌ¸§</p></th>
-                <td><input type="text" name="s_member_name" maxlength="100" style="width:98%"></td>
-                <td><p>È¸¿ø»óÅÂ</p></td>
-                <td>
-                <select name="s_status">
-                <option value="">-ÀüÃ¼-</option>
-                <!-- LOOP START 'code_status' -->
-                <option value="{{code_status.id}}">{{code_status.value}}</option>
-                <!-- LOOP END 'code_status' -->
-                </select>
-                </td>
+				<th><p>íšŒì›ëª…</p></th>
+				<td align="left"><input type="text" name="s_member_name" maxlength="30" style="width:98%;"></td>
+                <th><p>ë¶€ì„œëª…</p></th>
+                <td align="left"><input type="text" name="s_division" maxlength="100" style="width:98%"></td>
                 <td align="right">
-                    <button type="button" class="search_btn" value="°Ë»ö" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>°Ë»ö</button>
+                    <button type="button" class="search_btn" value="ê²€ìƒ‰" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>ê²€ìƒ‰</button>
                 </td>
             </tr>
         </table>
@@ -34,47 +27,44 @@
         <tr>
             <td class="caution-text"></td>
             <td align="right">
-                <!-- <input type="button" class="xls6" value="¿¢¼¿´Ù¿î·Îµå" onclick="excel()"/>  -->
+                <!-- <input type="button" class="xls6" value="ì—‘ì…€ë‹¤ìš´ë¡œë“œ" onclick="excel()"/>  -->
             </td>
         </tr>
     </table>
     <div class="div_table">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <colgroup>
-		    <col width="5%">
 		    <col width="10%">
-		    <col width="14%">
-		    <col width="13%">
-		    <col width="19%">
-		    <col width="29%">
 		    <col width="10%">
+		    <col width="20%">
+		    <col width="10%">
+		    <col width="20%">
+		    <col width="*">
 		    <col>
             </colgroup>
             <tr>
-                <th>¼ø¹ø</th>
-                <th>ÀÌ¸§</th>
-                <th>»ı³â¿ùÀÏ(¼ºº°)</th>
-                <th>ÇÚµåÆù¹øÈ£</th>
-                <th>ÀÌ¸ŞÀÏ</th>
-                <th>ÁÖ¼Ò</th>
-                <th>È¸¿ø»óÅÂ</th>
+                <th>ì‚¬ë²ˆ</th>
+                <th>ì´ë¦„</th>
+                <th>ë¶€ì„œëª…</th>
+                <th>ì§ê¸‰</th>
+                <th>í•¸ë“œí°ë²ˆí˜¸</th>
+                <th>ì´ë©”ì¼</th>
             </tr>
             <!-- IF START 'list' -->
             <!-- LOOP START 'list' -->
-            <tr onclick="location.href='my_cust_person_modify.jsp?{{list_query}}&member_no={{list.member_no}}';" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
-                <td align="center">{{list.__ord}}</td>
-                <td align="center">{{list.member_name}}</td>
-                <td align="center">{{list.birth_date}}{{list.gender}}</td>
+            <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
+                <td align="center">{{list.user_id}}</td>
+                <td align="center">{{list.user_name}}</td>
+                <td align="left">{{list.division}}</td>
+                <td align="center">{{list.position}}</td>
                 <td align="center">{{list.hp_no}}</td>
-                <td align="center">{{list.email}}</td>
-                <td>{{list.address}}</td>
-                <td align="center">{{list.status}}</td>
+                <td align="left">{{list.email}}</td>
             </tr>
             <!-- LOOP END 'list' -->
             <!-- IF END 'list' -->
             <!-- IFNOT START 'list' -->
             <tr>
-                <td colspan="7" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+                <td colspan="7" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
             </tr>
             <!-- IFNOT END 'list' -->
         </table>

@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-if(!u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){//°©»ç°¡ ¾Æ´Ï¸é À»»ç °ü¸® ¸ñ·ÏÀ¸·Î
+if(!u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){//ê°‘ì‚¬ê°€ ì•„ë‹ˆë©´ ì„ì‚¬ ê´€ë¦¬ ëª©ë¡ìœ¼ë¡œ
 	u.redirect("./client_person_list.jsp");
 	return;
 }
@@ -21,7 +21,7 @@ f.addElement("s_auth_cd", null,null);
 f.addElement("s_field_name", null,null);
 f.addElement("s_user_name",null,null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -42,9 +42,9 @@ list.addSearch("a.user_name", f.get("s_user_name"), "LIKE");
 if(!f.get("s_field_name").equals("")){
 	list.addWhere(" a.field_seq in (select field_seq from tcb_field where member_no = '"+_member_no+"' and field_name like '%"+f.get("s_field_name")+"%' )");
 }
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//20:ºÎ¼­Á¶È¸   40:¸ğµçºÎ¼­
+	//20:ë¶€ì„œì¡°íšŒ   40:ëª¨ë“ ë¶€ì„œ
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("20")){
 		list.addWhere(" ( a.field_seq = '"+auth.getString("_FIELD_SEQ")+"' or a.field_seq in (select field_seq from tcb_auth_field where member_no = '"+_member_no+"' and menu_cd = '"+_menu_cd+"'  and auth_cd = '"+auth.getString("_AUTH_CD")+"' ) )");
 	} 
@@ -59,13 +59,13 @@ while(ds.next()){
 	ds.put("reg_date", u.getTimeString("yyyy-MM-dd", ds.getString("reg_date")));
 	ds.put("passdate", u.getTimeString("yyyy-MM-dd", ds.getString("passdate")));
 	ds.put("person_seq", u.aseEnc(ds.getString("person_seq")) ); 
-	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"»ç¿ë":"<font color='red'>»ç¿ëÁßÁö</font>");
+	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"ì‚¬ìš©":"<font color='red'>ì‚¬ìš©ì¤‘ì§€</font>");
 }
 
 
 if(u.request("mode").equals("excel")){
 
-	String fileName = "´ã´çÀÚ ÇöÈ².xls";
+	String fileName = "ë‹´ë‹¹ì í˜„í™©.xls";
 	p.setLoop("list", ds);
 	p.setVar("isCJ", _member_no.equals("20130400333"));
 	response.setContentType("application/vnd.ms-excel");

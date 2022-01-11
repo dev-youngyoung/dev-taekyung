@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String s_sdate = u.request("s_sdate", u.getTimeString("yyyy-MM-dd",u.addDate("Y",-1)));
 String s_edate = u.request("s_edate", u.getTimeString("yyyy-MM-dd"));
@@ -7,7 +7,7 @@ f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 f.addElement("s_bid_name",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -17,10 +17,10 @@ list.setFields("a.bid_no, a.bid_deg, a.bid_name, a.bid_date, b.member_no, b.memb
 list.addWhere(" a.main_member_no = b.main_member_no ");
 list.addWhere(" a.bid_no = b.bid_no ");
 list.addWhere(" a.bid_deg = b.bid_deg ");
-list.addWhere(" a.status = '07' ");//³«ÂûÀÎ°Ç¸¸
-list.addWhere(" b.bid_succ_yn = 'Y'"); //³«ÂûµÈ ¾÷Ã¼¸¸.
-list.addWhere(" a.cont_yn = 'Y'");// °è¾à´ë»óÀÎ °Ç¸¸.
-list.addWhere(" a.cont_no is null ");// °è¾à¾ÈµÈ°Í¸¸.
+list.addWhere(" a.status = '07' ");//ë‚™ì°°ì¸ê±´ë§Œ
+list.addWhere(" b.bid_succ_yn = 'Y'"); //ë‚™ì°°ëœ ì—…ì²´ë§Œ.
+list.addWhere(" a.cont_yn = 'Y'");// ê³„ì•½ëŒ€ìƒì¸ ê±´ë§Œ.
+list.addWhere(" a.cont_no is null ");// ê³„ì•½ì•ˆëœê²ƒë§Œ.
 list.addWhere(" a.main_member_no = '"+_member_no+"' ");
 list.addSearch("a.bid_name", f.get("s_bid_name"), "LIKE");
 if(!s_sdate.equals(""))list.addWhere(" bid_date >= '"+s_sdate.replaceAll("-","")+"'");
@@ -36,7 +36,7 @@ while(ds.next()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.pop_search_bid");
-p.setVar("popup_title","ÀÔÂû°á°ú°Ë»ö");
+p.setVar("popup_title","ìž…ì°°ê²°ê³¼ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

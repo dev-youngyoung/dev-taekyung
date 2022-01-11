@@ -12,21 +12,21 @@ import javax.servlet.jsp.JspWriter;
 public class OpenApi {
 
 	public String[] apiTypes = { 
-		"naverbook=>³×ÀÌ¹öÃ¥",
-		"naverimage=>³×ÀÌ¹öÀÌ¹ÌÁö",
-		"navernews=>³×ÀÌ¹ö´º½º",
-		"naverkin=>³×ÀÌ¹öÁö½Ä",
-		"tomorrow=>³»ÀÏ°Ë»ö",
-		"archive=>±¹°¡±â·Ï¿ø",
+		"naverbook=>ë„¤ì´ë²„ì±…",
+		"naverimage=>ë„¤ì´ë²„ì´ë¯¸ì§€",
+		"navernews=>ë„¤ì´ë²„ë‰´ìŠ¤",
+		"naverkin=>ë„¤ì´ë²„ì§€ì‹",
+		"tomorrow=>ë‚´ì¼ê²€ìƒ‰",
+		"archive=>êµ­ê°€ê¸°ë¡ì›",
 		"youtube=>You Tube" 
 	};
 
 /*
-	//±¹°¡±â·Ï¿ø Àü¿ë
-	//±â·Ï¹° À¯Çü
-	public String[] archivesType1 = { "01=>ÀÏ¹İ±â·Ï¹°", "02=>½ÃÃ»°¢±â·Ï¹°", "03=>´ëÅë·É±â·Ï¹°", "04=>ÃÑµ¶ºÎ±â·Ï¹°", "05=>Á¤ºÎ°£Çà¹°", "06=>ÇØ¿Ü±â·Ï¹°", "07=>¿ª»ç±â·Ï¹°", "08=>ÇàÁ¤¹Ú¹°", "09=>¹Î°£±â·Ï¹°", "10=>¿µÈ­ÇÊ¸§", "11=>¹æ¼ÛÇÁ·Î±×·¥" };
-	//doc_type ¹®ÀÚ ±â·Ï¹° ÇüÅÂ 
-	public String[] archivesTpype2 = { "1=>ÇàÁ¤¹Ú¹°(°üÀÎ·ù)", "2=>ÇàÁ¤¹Ú¹°(»óÂ¡±â³ä¹°)", "3=>ÇàÁ¤¹Ú¹°(»ç¹«Áı±â·ù)", "4=>ÇàÁ¤¹Ú¹°(±âÅ¸)", "A=>ÀÏ¹İ¹®¼­·ù", "B=>µµ¸é·ù", "C=>»çÁø,ÇÊ¸§·ù", "D=>³ìÀ½,µ¿¿µ»ó·ù", "E=>Ä«µå·ù", "F=>´ëÀå·ù"", ""G=>±¹¹«È¸ÀÇ·Ï", "H=>Áöµµ", "I=>´ëÅë·ÉÀüÀÚ¹®¼­", "M=>Á¤ºÎ°£Çà¹°", "O=>ÀÏ¹İµµ¼­", "P=>ÃÑµ¶ºÎ°£Çà¹°" }; 
+	//êµ­ê°€ê¸°ë¡ì› ì „ìš©
+	//ê¸°ë¡ë¬¼ ìœ í˜•
+	public String[] archivesType1 = { "01=>ì¼ë°˜ê¸°ë¡ë¬¼", "02=>ì‹œì²­ê°ê¸°ë¡ë¬¼", "03=>ëŒ€í†µë ¹ê¸°ë¡ë¬¼", "04=>ì´ë…ë¶€ê¸°ë¡ë¬¼", "05=>ì •ë¶€ê°„í–‰ë¬¼", "06=>í•´ì™¸ê¸°ë¡ë¬¼", "07=>ì—­ì‚¬ê¸°ë¡ë¬¼", "08=>í–‰ì •ë°•ë¬¼", "09=>ë¯¼ê°„ê¸°ë¡ë¬¼", "10=>ì˜í™”í•„ë¦„", "11=>ë°©ì†¡í”„ë¡œê·¸ë¨" };
+	//doc_type ë¬¸ì ê¸°ë¡ë¬¼ í˜•íƒœ 
+	public String[] archivesTpype2 = { "1=>í–‰ì •ë°•ë¬¼(ê´€ì¸ë¥˜)", "2=>í–‰ì •ë°•ë¬¼(ìƒì§•ê¸°ë…ë¬¼)", "3=>í–‰ì •ë°•ë¬¼(ì‚¬ë¬´ì§‘ê¸°ë¥˜)", "4=>í–‰ì •ë°•ë¬¼(ê¸°íƒ€)", "A=>ì¼ë°˜ë¬¸ì„œë¥˜", "B=>ë„ë©´ë¥˜", "C=>ì‚¬ì§„,í•„ë¦„ë¥˜", "D=>ë…¹ìŒ,ë™ì˜ìƒë¥˜", "E=>ì¹´ë“œë¥˜", "F=>ëŒ€ì¥ë¥˜"", ""G=>êµ­ë¬´íšŒì˜ë¡", "H=>ì§€ë„", "I=>ëŒ€í†µë ¹ì „ìë¬¸ì„œ", "M=>ì •ë¶€ê°„í–‰ë¬¼", "O=>ì¼ë°˜ë„ì„œ", "P=>ì´ë…ë¶€ê°„í–‰ë¬¼" }; 
 	*/
 
 	URL url = null;
@@ -51,25 +51,25 @@ public class OpenApi {
 
 	Vector errors = new Vector();
 
-	public OpenApi() {} //apiÅ¸ÀÔ¸ñ·Ï »ç¿ë½Ã
+	public OpenApi() {} //apiíƒ€ì…ëª©ë¡ ì‚¬ìš©ì‹œ
 
-	public OpenApi(String apiName, String keyword) throws Exception { //°Ë»ö½Ã
+	public OpenApi(String apiName, String keyword) throws Exception { //ê²€ìƒ‰ì‹œ
 		this.apiName = apiName.toLowerCase();
 		this.keyword = keyword;
 		try {
 			factory = DocumentBuilderFactory.newInstance();
 			builder = factory.newDocumentBuilder();
 		} catch (Exception e) {
-			errors.add("API°Ë»ö ÃÊ±âÈ­ ½ÇÆĞ. error - create builder from factory.");
+			errors.add("APIê²€ìƒ‰ ì´ˆê¸°í™” ì‹¤íŒ¨. error - create builder from factory.");
 		}
 	}
 
-	//ÆÄ¶ó¹ÌÅÍ Ãß°¡/µ¤¾î¾²±â
+	//íŒŒë¼ë¯¸í„° ì¶”ê°€/ë®ì–´ì“°ê¸°
 	public void addParameter(String key, String value) {
 		parameters.put(key, value);
 	}
 
-	//ÆÄ¶ó¹ÌÅÍ GET½ºÆ®¸µ ¾ò±â
+	//íŒŒë¼ë¯¸í„° GETìŠ¤íŠ¸ë§ ì–»ê¸°
 	private String getParameters() {
 		String str = "";
 		Enumeration e = parameters.keys();
@@ -81,7 +81,7 @@ public class OpenApi {
 		return str.length() > 1 ? str.substring(1) : "";
 	}
 
-	//XML ÆÄ½Ì
+	//XML íŒŒì‹±
 	private void parse() throws Exception {
 		url = new URL(apiUrl);
 		is = url.openStream();
@@ -91,12 +91,12 @@ public class OpenApi {
 			root = xmlDocument.getDocumentElement();
 			items = root.getElementsByTagName(dataField);
 		}
-		catch(Exception e) { errors.add("API°Ë»öÀ» ÇÒ¼ö ¾ø½À´Ï´Ù. error - parseData from inputstream."); }
+		catch(Exception e) { errors.add("APIê²€ìƒ‰ì„ í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤. error - parseData from inputstream."); }
 		finally { if(is != null) is.close(); }
 
 	}
 
-	//°á°ú¸¦ µ¥ÀÌÅ¸¼ÂÀ¸·Î ¹İÈ¯
+	//ê²°ê³¼ë¥¼ ë°ì´íƒ€ì…‹ìœ¼ë¡œ ë°˜í™˜
 	public DataSet getDataSet() throws Exception {
 		DataSet result = new DataSet();
 		if(initialize()) {
@@ -129,12 +129,12 @@ public class OpenApi {
 				}
 			}
 		} else {
-			errors.add("ÁöÁ¤µÇÁö ¾ÊÀº API. error - unknown api.");
+			errors.add("ì§€ì •ë˜ì§€ ì•Šì€ API. error - unknown api.");
 		}
 		return result;
 	}
 
-	//µğ¹ö±ë
+	//ë””ë²„ê¹…
 	public void error(JspWriter out) throws Exception {
 		out.print(!errors.isEmpty() ? Util.join("<hr><br>", errors.toArray()) : "");
 		errors.clear();
@@ -143,12 +143,12 @@ public class OpenApi {
 
 
 	/*
-	 * api Á¤º¸ ¼ÂÆÃ(»ç¿ë°¡´ÉÇÑ °Í¸¸)
+	 * api ì •ë³´ ì…‹íŒ…(ì‚¬ìš©ê°€ëŠ¥í•œ ê²ƒë§Œ)
 	 */
 	private boolean initialize() throws Exception {
-		//³×ÀÌ¹ö´º½º
+		//ë„¤ì´ë²„ë‰´ìŠ¤
 		if("navernews".equals(apiName)) {
-			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //¼­¿ïµğÀÚÀÎDB ³×ÀÌ¹ö ÀÎÁõÅ°
+			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //ì„œìš¸ë””ìì¸DB ë„¤ì´ë²„ ì¸ì¦í‚¤
 			parameters.put("query", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("target", "news");
 			parameters.put("start", "1");
@@ -157,16 +157,16 @@ public class OpenApi {
 			errors.add(apiUrl);
 			dataField = "item";
 			dataElements = new String[] { "title", "originallink", "link", "description", "pubDate" };
-			reportElements = new String[] { "rss", "channel", "lastBuildDate", "total", "start", "display" }; //°Ë»ö¸®Æ÷Æ®Á¤º¸ ¹Ì±¸Çö(ÇÊ¿ä¾øÀ½..)
+			reportElements = new String[] { "rss", "channel", "lastBuildDate", "total", "start", "display" }; //ê²€ìƒ‰ë¦¬í¬íŠ¸ì •ë³´ ë¯¸êµ¬í˜„(í•„ìš”ì—†ìŒ..)
 
 			dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z";
 			dateConvFormat = "yyyy.MM.dd HH:mm";
 
 			return true;
 		} 
-		//³×ÀÌ¹öÃ¥
+		//ë„¤ì´ë²„ì±…
 		if("naverbook".equals(apiName)) {
-			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //¼­¿ïµğÀÚÀÎDB ³×ÀÌ¹ö ÀÎÁõÅ°
+			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //ì„œìš¸ë””ìì¸DB ë„¤ì´ë²„ ì¸ì¦í‚¤
 			parameters.put("query", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("target", "book");
 			parameters.put("start", "1");
@@ -182,9 +182,9 @@ public class OpenApi {
 
 			return true;
 		} 
-		//³×ÀÌ¹öÁö½Ä
+		//ë„¤ì´ë²„ì§€ì‹
 		if("naverkin".equals(apiName)) {
-			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //¼­¿ïµğÀÚÀÎDB ³×ÀÌ¹ö ÀÎÁõÅ°
+			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //ì„œìš¸ë””ìì¸DB ë„¤ì´ë²„ ì¸ì¦í‚¤
 			parameters.put("query", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("target", "kin");
 			parameters.put("start", "1");
@@ -197,9 +197,9 @@ public class OpenApi {
 
 			return true;
 		} 
-		//³×ÀÌ¹öÀÌ¹ÌÁö
+		//ë„¤ì´ë²„ì´ë¯¸ì§€
 		if("naverimage".equals(apiName)) {
-			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //¼­¿ïµğÀÚÀÎDB ³×ÀÌ¹ö ÀÎÁõÅ°
+			parameters.put("key", "02f21a3b0cbb431be65ecc1557a059d7"); //ì„œìš¸ë””ìì¸DB ë„¤ì´ë²„ ì¸ì¦í‚¤
 			parameters.put("query", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("target", "image");
 			parameters.put("start", "1");
@@ -212,9 +212,9 @@ public class OpenApi {
 
 			return true;
 		} 
-		//³»ÀÏ°Ë»ö
+		//ë‚´ì¼ê²€ìƒ‰
 		if("tomorrow".equals(apiName)) {
-			parameters.put("apikey", "58A29064D80F4E055D88E39C719AB9445D0F160C"); //¼­¿ïµğÀÚÀÎDB ³»ÀÏ°Ë»ö ÀÎÁõÅ°
+			parameters.put("apikey", "58A29064D80F4E055D88E39C719AB9445D0F160C"); //ì„œìš¸ë””ìì¸DB ë‚´ì¼ê²€ìƒ‰ ì¸ì¦í‚¤
 			parameters.put("q", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("sort", "1");
 			parameters.put("count", "100");
@@ -226,9 +226,9 @@ public class OpenApi {
 			
 			return true;
 		}
-		//±¹°¡±â·Ï¿ø³ª¶ó°Ë»ö
+		//êµ­ê°€ê¸°ë¡ì›ë‚˜ë¼ê²€ìƒ‰
 		if("archive".equals(apiName)) {
-			parameters.put("key", "J0J9H2X6C4U7H2M9H2X1Z3X5W3X0Z5T0"); //¼­¿ïµğÀÚÀÎDB ±¹°¡±â·Ï¿ø ÀÎÁõÅ°
+			parameters.put("key", "J0J9H2X6C4U7H2M9H2X1Z3X5W3X0Z5T0"); //ì„œìš¸ë””ìì¸DB êµ­ê°€ê¸°ë¡ì› ì¸ì¦í‚¤
 			parameters.put("query", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("sort", "1");
 			parameters.put("online_reading", "Y");
@@ -243,7 +243,7 @@ public class OpenApi {
 		}
 		//YOU TUBE
 		if("youtube".equals(apiName)) {
-		//	parameters.put("key", "AI39si5vjDviDPuyyCknkXj7CdmRfWLrMqf-yyN0JsidFzKYlLI3vlTQLP24BFOnpFql91idKc7EKUIVKq0ajA4yRVX_lA3RDg"); //¼­¿ïµğÀÚÀÎDB youtube ÀÎÁõÅ°
+		//	parameters.put("key", "AI39si5vjDviDPuyyCknkXj7CdmRfWLrMqf-yyN0JsidFzKYlLI3vlTQLP24BFOnpFql91idKc7EKUIVKq0ajA4yRVX_lA3RDg"); //ì„œìš¸ë””ìì¸DB youtube ì¸ì¦í‚¤
 			parameters.put("q", URLEncoder.encode(keyword, "utf-8"));
 			apiUrl = "http://gdata.youtube.com/feeds/api/videos?" + getParameters();
 			errors.add(apiUrl);
@@ -254,9 +254,9 @@ public class OpenApi {
 			return true;
 		}
 		/*
-		//³×ÀÌ¹öÁöµµÁÂÇ¥(ÁÂÇ¥¸¸ °¡Á®¿È)
+		//ë„¤ì´ë²„ì§€ë„ì¢Œí‘œ(ì¢Œí‘œë§Œ ê°€ì ¸ì˜´)
 		if("naverkin".equals(apiName)) {
-			parameters.put("key", "9c79f18d0d8c2ce6d35318aa47a8b553"); //¼­¿ïµğÀÚÀÎDB ³×ÀÌ¹ö Áöµµ ÀÎÁõÅ°
+			parameters.put("key", "9c79f18d0d8c2ce6d35318aa47a8b553"); //ì„œìš¸ë””ìì¸DB ë„¤ì´ë²„ ì§€ë„ ì¸ì¦í‚¤
 			parameters.put("query", URLEncoder.encode(keyword, "utf-8"));
 			parameters.put("target", "kin");
 			parameters.put("start", "1");

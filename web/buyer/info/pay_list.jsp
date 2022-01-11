@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-String[] pay_type_code = {"01=>Ä«µå", "02=>°èÁÂ", "03=>ÅëÀå", "04=>Æ÷ÀÎÆ®", "05=>ÈÄºÒ"};
+String[] pay_type_code = {"01=>ì¹´ë“œ", "02=>ê³„ì¢Œ", "03=>í†µìž¥", "04=>í¬ì¸íŠ¸", "05=>í›„ë¶ˆ"};
 
 String s_sdate = u.request("s_sdate", u.getTimeString("yyyy-MM")+"-01");
 String s_edate = u.request("s_edate" , u.getTimeString("yyyy-MM-dd"));
@@ -13,7 +13,7 @@ f.addElement("s_edate", s_edate, null);
 f.addElement("s_pay_type", null, null);
 
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -87,7 +87,7 @@ list.setTable(
 +" )		                                                                                                                              "
 		);
 list.setFields("*");
-list.addWhere("1=1");//ÀÌ°Å Áö¿ì¸é ¾ÈµÊ sumquery ¿¡¼­ ÇÊ¿äÇÔ. ¾øÀ¸¸é ¿¡·¯
+list.addWhere("1=1");//ì´ê±° ì§€ìš°ë©´ ì•ˆë¨ sumquery ì—ì„œ í•„ìš”í•¨. ì—†ìœ¼ë©´ ì—ëŸ¬
 if(!s_sdate.equals("")){
 	list.addWhere(" accept_date >= '"+s_sdate.replaceAll("-", "")+"000000' ");
 }
@@ -97,41 +97,41 @@ if(!s_edate.equals("")){
 list.addSearch("pay_type", f.get("s_pay_type"));
 
 list.setOrderBy("accept_date "+(u.request("mode").equals("excel")?"asc":"desc"));
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 String btnReceitStr = "";
 while(ds.next()){
-	//°áÁ¦¼ö´Ü (01:½Å¿ëÄ«µå, 02:°èÁÂÀÌÃ¼)
+	//ê²°ì œìˆ˜ë‹¨ (01:ì‹ ìš©ì¹´ë“œ, 02:ê³„ì¢Œì´ì²´)
 	if(ds.getString("pay_type").equals("01"))
 	{
-		btnReceitStr = "½Å¿ë";
+		btnReceitStr = "ì‹ ìš©";
 	}
 	else if(ds.getString("pay_type").equals("02"))
 	{
-		//Çö±Ý¿µ¼öÁõÀ¯Çü(0:¹Ì¹ßÇà, 1:¼Òµæ°øÁ¦, 2:ÁöÃâÁõºù)
+		//í˜„ê¸ˆì˜ìˆ˜ì¦ìœ í˜•(0:ë¯¸ë°œí–‰, 1:ì†Œë“ê³µì œ, 2:ì§€ì¶œì¦ë¹™)
 		if( ds.getString("receit_type").equals("0") || ds.getString("receit_type").equals("") )
-			btnReceitStr = "°Å·¡";
+			btnReceitStr = "ê±°ëž˜";
 		else if( ds.getString("receit_type").equals("1") )
-			btnReceitStr = "¼Òµæ";
+			btnReceitStr = "ì†Œë“";
 		else if( ds.getString("receit_type").equals("2") )
-			btnReceitStr = "ÁöÃâ";
+			btnReceitStr = "ì§€ì¶œ";
 	}
 	else if(ds.getString("pay_type").equals("03"))
 	{
-		btnReceitStr = "ÅëÀå";
+		btnReceitStr = "í†µìž¥";
 	}
 	else if(ds.getString("pay_type").equals("04"))
 	{
-		btnReceitStr = "Æ÷ÀÎÆ®";
+		btnReceitStr = "í¬ì¸íŠ¸";
 	}
 	else if(ds.getString("pay_type").equals("05"))
 	{
-		btnReceitStr = "ÈÄºÒ";
+		btnReceitStr = "í›„ë¶ˆ";
 	}
 	
 	if(ds.getInt("cust_cnt") > 1)
-		ds.put("member_name", ds.getString("member_name") + " ¿Ü " + (ds.getInt("cust_cnt"))+"¸í");
+		ds.put("member_name", ds.getString("member_name") + " ì™¸ " + (ds.getInt("cust_cnt"))+"ëª…");
 	
 	ds.put("btnReceitStr", btnReceitStr);
 	ds.put("accept_date", u.getTimeString("yyyy-MM-dd HH:mm:ss",ds.getString("accept_date")));
@@ -146,7 +146,7 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	String title = auth.getString("_MEMBER_NAME") + "_°áÁ¦³»¿ª("+s_sdate+"~"+s_edate+")";
+	String title = auth.getString("_MEMBER_NAME") + "_ê²°ì œë‚´ì—­("+s_sdate+"~"+s_edate+")";
 	p.setVar("title", title);
 	p.setLoop("list", ds);
 

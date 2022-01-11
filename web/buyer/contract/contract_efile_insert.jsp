@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -6,48 +6,47 @@ String file_path = f.get("efile_path");
 
 String member_no = _member_no;
 
-if(cont_no.equals("")||cont_chasu.equals("")||file_path.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇØ ÁÖ¼¼¿ä.");
+if (cont_no.equals("") || cont_chasu.equals("") || file_path.equals("")) {
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 
 ContractDao contDao = new ContractDao();
-DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ");
-if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+DataSet cont = contDao.find("cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "'");
+if (!cont.next()) {
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.uploadDir = Startup.conf.getString("file.path.bcont_pdf")+file_path;
+f.uploadDir = Startup.conf.getString("file.path.bcont_pdf") + file_path;
 
 DataObject efileDao = new DataObject("tcb_efile");
-DataSet efile = efileDao.find("cont_no = '"+cont_no+"' and cont_chasu= '"+cont_chasu+"' ");
-
+DataSet efile = efileDao.find("cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "' ");
 
 DB db = new DB();
 //db.setDebug(out);
 
-// ³»ºÎ°ü¸®¼­·ù
-if(cont.getString("efile_yn").equals("Y")){
-	db.setCommand("delete from tcb_efile where cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ",null);
+// ë‚´ë¶€ê´€ë¦¬ì„œë¥˜
+if (cont.getString("efile_yn").equals("Y")) {
+	db.setCommand("delete from tcb_efile where cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "'", null);
 	String[] efile_seq = f.getArr("efile_seq");
 	String[] efile_reg_type = f.getArr("efile_reg_type");
 	String[] efile_doc_name = f.getArr("efile_doc_name");
 	String[] efile_del_yn = f.getArr("efile_del_yn");
-	int efile_cnt = efile_seq == null? 0: efile_seq.length;
-	for(int i=0 ; i < efile_cnt; i ++){
+	int efile_cnt = efile_seq == null? 0 : efile_seq.length;
+	for (int i=0; i<efile_cnt; i++) {
 		efileDao = new DataObject("tcb_efile");
 		efileDao.item("cont_no", cont_no);
 		efileDao.item("cont_chasu", cont_chasu);
 		efileDao.item("efile_seq", efile_seq[i]);
 		efileDao.item("doc_name", efile_doc_name[i]);
-		File attfile = f.saveFileTime("efile_"+efile_seq[i]);
+		File attfile = f.saveFileTime("efile_" + efile_seq[i]);
 		String efile_name = "";
-		if(attfile == null){
-			if(!efile_del_yn[i].equals("Y")){
+		if (attfile == null) {
+			if (!efile_del_yn[i].equals("Y")) {
 				efile.first();
-				while(efile.next()){
-					if(efile_seq[i].equals(efile.getString("efile_seq"))){
+				while (efile.next()) {
+					if (efile_seq[i].equals(efile.getString("efile_seq"))) {
 						efileDao.item("efile_seq", i);
 						efileDao.item("file_path", file_path);
 						efileDao.item("file_name", efile.getString("file_name"));
@@ -57,7 +56,7 @@ if(cont.getString("efile_yn").equals("Y")){
 						efileDao.item("reg_id", efile.getString("reg_id"));
 					}
 				}	
-			}else{
+			} else {
 				efileDao.item("efile_seq", i);
 				efileDao.item("file_path", "");
 				efileDao.item("file_name", "");
@@ -66,8 +65,7 @@ if(cont.getString("efile_yn").equals("Y")){
 				efileDao.item("reg_date", efile.getString("reg_date"));
 				efileDao.item("reg_id", efile.getString("reg_id"));
 			}
-			
-		}else{
+		} else {
 			efileDao.item("efile_seq", i);
 			efileDao.item("file_path", file_path);
 			efileDao.item("file_name", attfile.getName());
@@ -81,11 +79,11 @@ if(cont.getString("efile_yn").equals("Y")){
 	}
 }
 
-if(!db.executeArray()){
-	u.jsError("ÆÄÀÏÀúÀå¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+if (!db.executeArray()) {
+	u.jsError("íŒŒì¼ì €ìž¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.",f.get("from_page")+"?"+u.getQueryString());
+u.jsAlertReplace("ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.", f.get("from_page") + "?" + u.getQueryString());
 return;
 %>

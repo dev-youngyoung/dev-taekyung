@@ -1,33 +1,33 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String project_seq = u.request("project_seq");
 if(project_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 }
 DataObject projectDao = new DataObject("tcb_project");
 DataSet project = projectDao.find(" member_no = '"+_member_no+"' and project_seq = '"+project_seq+"' ");
 if(!project.next()){
-	u.jsError("ÇÁ·ÎÁ§Æ® Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í”„ë¡œì íŠ¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 project.put("reg_date", u.getTimeString("yyyy-MM-dd", project.getString("reg_date")));
 DataObject peronDao= new DataObject("tcb_person");
 project.put("reg_name", projectDao.getOne("select user_name from tcb_person where member_no = '"+_member_no+"' and user_id = '"+project.getString("reg_id")+"' "));
 
-f.addElement("project_name", project.getString("project_name"), "hname:'ÇÁ·ÎÁ§Æ®¸í', required:'Y'");
-f.addElement("use_yn", project.getString("use_yn"), "hname:'»ç¿ë¿©ºÎ', required:'Y'");
-f.addElement("project_cd", project.getString("project_cd"), "hname:'ÇÁ·ÎÁ§Æ®ÄÚµå'");
-f.addElement("order_comp_nm", project.getString("order_comp_nm"), "hname:'¹ßÁÖÃ³'");
-f.addElement("project_cont_date", u.getTimeString("yyyy-MM-dd",project.getString("project_cont_date")), "hname:'°è¾àÀÏÀÚ'");
-f.addElement("project_loc", project.getString("project_loc"), "hname:'À§Ä¡'");
-f.addElement("etc1", null, "hname:'ºñ°í1'");
-f.addElement("etc2", null, "hname:'ºñ°í2'");
-// ÀÔ·Â¼öÁ¤
+f.addElement("project_name", project.getString("project_name"), "hname:'í”„ë¡œì íŠ¸ëª…', required:'Y'");
+f.addElement("use_yn", project.getString("use_yn"), "hname:'ì‚¬ìš©ì—¬ë¶€', required:'Y'");
+f.addElement("project_cd", project.getString("project_cd"), "hname:'í”„ë¡œì íŠ¸ì½”ë“œ'");
+f.addElement("order_comp_nm", project.getString("order_comp_nm"), "hname:'ë°œì£¼ì²˜'");
+f.addElement("project_cont_date", u.getTimeString("yyyy-MM-dd",project.getString("project_cont_date")), "hname:'ê³„ì•½ì¼ì'");
+f.addElement("project_loc", project.getString("project_loc"), "hname:'ìœ„ì¹˜'");
+f.addElement("etc1", null, "hname:'ë¹„ê³ 1'");
+f.addElement("etc2", null, "hname:'ë¹„ê³ 2'");
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 	projectDao = new DataObject("tcb_project");
 	if(!f.get("project_cd").equals("")){
 		if(projectDao.findCount(" member_no = '"+_member_no+"' and upper(project_cd) = '"+f.get("project_cd").toUpperCase()+"' and project_seq <> '"+project_seq+"' ")> 0 ){
-			u.jsError("ÀÌ¹Ì µî·ÏµÈ ÇÁ·ÎÁ§Æ® ÄÚµå ÀÔ´Ï´Ù.");
+			u.jsError("ì´ë¯¸ ë“±ë¡ëœ í”„ë¡œì íŠ¸ ì½”ë“œ ì…ë‹ˆë‹¤.");
 			return;
 		}
 	}
@@ -45,10 +45,10 @@ if(u.isPost() && f.validate()){
 	projectDao.item("reg_id", auth.getString("_USER_ID"));
 	projectDao.item("status", "10");
 	if(!projectDao.update(" member_no = '"+_member_no+"' and project_seq = '"+project_seq+"' ")){
-		u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀåÃ³¸® ÇÏ¿´½À´Ï´Ù.", "project_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "project_modify.jsp?"+u.getQueryString());
 	return;
 }
 

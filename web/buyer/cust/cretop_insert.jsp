@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 DataObject doTM = new DataObject("tcb_member");
 DataSet dsTM = doTM.find("member_no = '"+_member_no+"'", "member_no");
 if(!dsTM.next()){
-	u.jsError("¿Ã¹Ù¸¥ Á¢±ÙÀÌ ¾Æ´Õ´Ï´Ù.");
+	u.jsError("ì˜¬ë°”ë¥¸ ì ‘ê·¼ì´ ì•„ë‹™ë‹ˆë‹¤.");
 	return;
 }
 

@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
-f.addElement("s_sendEmail", null, "hname:'ÀÌ¸ÞÀÏÁÖ¼Ò', required:'Y'");
+f.addElement("s_sendEmail", null, "hname:'ì´ë©”ì¼ì£¼ì†Œ', required:'Y'");
 
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_sendEmailSet");
 p.setVar("form_script", f.getScript());
-p.setVar("popup_title","°á°úÀü¼Û ÀÌ¸ÞÀÏ ÀÔ·Â");
+p.setVar("popup_title","ê²°ê³¼ì „ì†¡ ì´ë©”ì¼ ìž…ë ¥");
 p.display(out);
 %>

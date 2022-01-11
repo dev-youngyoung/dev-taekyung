@@ -1,13 +1,13 @@
 <%@ page import="java.net.URLDecoder" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String[] agree_ip = {
-		 "112.217.108.98"//³ªÀÌ½ºµ¥ÀÌÅÍLG
-		,"112.217.108.99"//³ªÀÌ½ºµ¥ÀÌÅÍLG
-		,"219.240.87.178"//³ªÀÌ½ºµ¥ÀÌÅÍSK
-		,"219.240.87.179"//³ªÀÌ½ºµ¥ÀÌÅÍSK
-		,"219.240.87.180"//³ªÀÌ½ºµ¥ÀÌÅÍSK
-		,"127.0.0.1"//·ÎÄÃ °³¹ß
+		 "112.217.108.98"//ë‚˜ì´ìŠ¤ë°ì´í„°LG
+		,"112.217.108.99"//ë‚˜ì´ìŠ¤ë°ì´í„°LG
+		,"219.240.87.178"//ë‚˜ì´ìŠ¤ë°ì´í„°SK
+		,"219.240.87.179"//ë‚˜ì´ìŠ¤ë°ì´í„°SK
+		,"219.240.87.180"//ë‚˜ì´ìŠ¤ë°ì´í„°SK
+		,"127.0.0.1"//ë¡œì»¬ ê°œë°œ
 };
 
 String login_ip = request.getRemoteAddr();
@@ -15,7 +15,7 @@ String login_ip = request.getRemoteAddr();
 if(!login_ip.startsWith("192.168.10")){
 	if(!u.inArray(login_ip, agree_ip)){
 		out.println("<script>");
-		out.println("//alert('Çã¿ëµÇÁö ¾Ê´Â IPÀÇ Á¢±ÙÀÔ´Ï´Ù.\\n\\nIP:"+login_ip+"');");
+		out.println("//alert('í—ˆìš©ë˜ì§€ ì•ŠëŠ” IPì˜ ì ‘ê·¼ì…ë‹ˆë‹¤.\\n\\nIP:"+login_ip+"');");
 		out.println("</script>");
 		return;
 	}
@@ -27,15 +27,15 @@ if(auth.getString("_ADMIN_ID")!=null&&!auth.getString("_ADMIN_ID").equals("")){
 }
 
 f.addElement("returl", u.request("returl"), "");
-f.addElement("txtUserID", null, "hname:'¾ÆÀÌµğ', required:'Y', maxbyte:'20'");
-f.addElement("txtPassWD", null, "hname:'ºñ¹Ğ¹øÈ£', required:'Y'");
+f.addElement("txtUserID", null, "hname:'ì•„ì´ë””', required:'Y', maxbyte:'20'");
+f.addElement("txtPassWD", null, "hname:'ë¹„ë°€ë²ˆí˜¸', required:'Y'");
 
 if(u.isPost() && f.validate())
 {
 	DataObject adminDao = new DataObject("tcc_admin");
 	DataSet mgr_user = adminDao.find("admin_id='"+f.get("txtUserID")+"' and passwd='"+u.sha256(f.get("txtPassWD"))+"'");
 	if(!mgr_user.next()){
-		u.jsError("»ç¿ëÀÚ Á¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+		u.jsError("ì‚¬ìš©ì ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}
 	DataObject loginLogDao = new DataObject("tcc_login_log");
@@ -47,11 +47,11 @@ if(u.isPost() && f.validate())
 	loginLogDao.item("log_date", u.getTimeString());
 	db.setCommand(loginLogDao.getInsertQuery(), loginLogDao.record);
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤");
 		return;
 	}
 
-	// ¾îµå¹Î Á¤º¸ ÀúÀå
+	// ì–´ë“œë¯¼ ì •ë³´ ì €ì¥
 	auth.put("_ADMIN_ID", mgr_user.getString("admin_id"));
 	auth.put("_ADMIN_NAME", mgr_user.getString("admin_name"));
 	auth.put("_AUTH_CD", mgr_user.getString("auth_cd"));
@@ -60,7 +60,7 @@ if(u.isPost() && f.validate())
 	}
 	auth.setAuthInfo();
 
-	u.jsReplace(URLDecoder.decode(f.get("returl"), "EUC-KR"));
+	u.jsReplace(URLDecoder.decode(f.get("returl"), "UTF-8"));
 	return;
 }
 

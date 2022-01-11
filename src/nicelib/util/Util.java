@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 
 import javax.mail.*;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
 import javax.mail.internet.*;
 import javax.activation.FileDataSource;
 import javax.activation.DataHandler;
@@ -45,9 +47,10 @@ public class Util {
 	public static String webUrl = null;
 	public static String encoding = "UTF-8";
 
-	// ½Ç¼­¹ö¿ë(µ¥ÀÌÅÍ)
-	public String mailFrom = Config.getMailFrom();
-	public String mailHost = Config.getMailHost(); // "mail6.nicedata.co.kr";
+	// ì‹¤ì„œë²„ìš©(ë°ì´í„°)
+	public String mailFrom = Config.getMailFrom(); // ecs@nongshim.com
+	public String mailHost = Config.getMailHost(); // smtp.nsgportal.net
+	public String mailPassword = "ecsEcs1@";
 
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -391,7 +394,7 @@ public class Util {
     }
 	
 	/**
-     * sha256 ¾ÏÈ£È­
+     * sha256 ì•”í˜¸í™”
      * @param src
      * @return
      */
@@ -545,63 +548,82 @@ public class Util {
 		mail(mailTo, subject, body, null);
 	}
 
-	public void mail(String mailTo, String subject, String body, String filepath) throws Exception {
+	public void mail(String mailTo, String subject, String body, String[] filepath) {
+		System.out.println("[Util][mail] START");
 		
-		String sHostName;
-		sHostName = InetAddress.getLocalHost().getHostName();
-		if(sHostName.equals("docu01") || sHostName.equals("docu02")) { // ½Ç¼­¹ö¸¸ ¸ŞÀÏ¹ß¼Û
-			System.out.println("//-------------------- [MAIL SEND] --------------------//");
-			System.out.println("  - ¹Ş´Â »ç¶÷ : " + mailTo);
-			System.out.println("  - Á¦      ¸ñ : " + subject);
-			System.out.println("//--------------------------------------------------//");
-		}else{
-			System.out.println("//-------------------- [°¡»ó ÀÌ¸ŞÀÏÀü¼Û:°³¹ß¿ë] --------------------//");
-			System.out.println("  - ¹Ş´Â »ç¶÷ : " + mailTo);
-			System.out.println("  - Á¦      ¸ñ : " + subject);
-			System.out.println(body);
-			System.out.println("//--------------------------------------------------//");
-			return;
+		try {
+			String sHostName = InetAddress.getLocalHost().getHostName();
+			System.out.println("[Util][mail] sHostName : " + sHostName);
+			
+			/*if (sHostName.equals("docu01") || sHostName.equals("docu02")) { // ì‹¤ì„œë²„ë§Œ ë©”ì¼ë°œì†¡
+				System.out.println("//-------------------- [MAIL SEND] --------------------//");
+				System.out.println("  - ë°›ëŠ” ì‚¬ëŒ : " + mailTo);
+				System.out.println("  - ì œ      ëª© : " + subject);
+				System.out.println("//--------------------------------------------------//");
+			} else {
+				System.out.println("//-------------------- [ê°€ìƒ ì´ë©”ì¼ì „ì†¡:ê°œë°œìš©] --------------------//");
+				System.out.println("  - ë°›ëŠ” ì‚¬ëŒ : " + mailTo);
+				System.out.println("  - ì œ      ëª© : " + subject);
+				System.out.println(body);
+				System.out.println("//--------------------------------------------------//");
+				return;
+			}*/
+			
+			if (mailHost == null) {
+				String[] arr = mailTo.split("@");
+				mailHost = getMX(replace(arr[1], ">", ""));
+			}
+			System.out.println("[Util][mail] mailHost : " + mailHost);
+
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", mailHost);
+			props.put("mail.smtp.auth", "true");
+
+			System.out.println("[Util][mail] mailFrom : " + mailFrom);
+			Session msgSession = Session.getDefaultInstance(props, new Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(mailFrom, mailPassword);
+				}
+			});
+			
+			System.out.println("[Util][mail] mailTo : " + mailTo);
+			MimeMessage msg = new MimeMessage(msgSession);
+			InternetAddress from = new InternetAddress(mailFrom, "ë†ì‹¬", "UTF-8");
+			InternetAddress to = new InternetAddress(mailTo);
+			
+			System.out.println("[Util][mail] subject : " + subject);
+			msg.setFrom(from);
+			msg.setRecipient(Message.RecipientType.TO, to);
+			msg.setSubject(subject, "UTF-8");
+			msg.setSentDate(new Date());
+			
+			if (filepath == null || filepath.length == 0) {
+				msg.setContent(body, "text/html; charset=" + encoding);
+			} else {
+				MimeBodyPart mbp1 = new MimeBodyPart();
+				mbp1.setContent(body, "text/html; charset=" + encoding);
+				
+				Multipart mp = new MimeMultipart();
+				mp.addBodyPart(mbp1);
+				
+				for (String path : filepath) {
+					System.out.println("[Util][mail] path : " + path);
+					MimeBodyPart mbp2 = new MimeBodyPart();
+					
+					FileDataSource fds = new FileDataSource(path);
+					mbp2.setDataHandler(new DataHandler(fds));
+					//mbp2.setFileName(fds.getName());
+					mbp2.setFileName(new String(fds.getName().getBytes("KSC5601"), "8859_1"));
+					
+					mp.addBodyPart(mbp2);
+				}
+
+				msg.setContent(mp);
+			}
+			Transport.send(msg);
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
-		
-		if(mailHost == null) {
-			String[] arr = mailTo.split("@");
-			mailHost = getMX(replace(arr[1], ">", ""));
-		}
-
-		Properties props = System.getProperties();
-		props.put("mail.smtp.host", mailHost);
-
-		Session msgSession = Session.getDefaultInstance(props, null);
-
-		MimeMessage msg = new MimeMessage(msgSession);
-		InternetAddress from = new InternetAddress(mailFrom, "³ªÀÌ½º´ÙÅ¥", "UTF-8");
-		InternetAddress to = new InternetAddress(mailTo);
-
-		msg.setFrom(from);
-		msg.setRecipient(Message.RecipientType.TO, to);
-		msg.setSubject(subject, "UTF-8");
-		msg.setSentDate(new Date());
-
-		if(filepath == null) {
-			msg.setContent(body, "text/html; charset=" + encoding);
-		} else {
-			MimeBodyPart mbp1 = new MimeBodyPart();
-			mbp1.setContent(body, "text/html; charset=" + encoding);
-			MimeBodyPart mbp2 = new MimeBodyPart();
-
-			FileDataSource fds = new FileDataSource(filepath);
-			mbp2.setDataHandler(new DataHandler(fds));
-			//mbp2.setFileName(fds.getName());
-			mbp2.setFileName(new String(fds.getName().getBytes("KSC5601"), "8859_1"));
-
-			Multipart mp = new MimeMultipart();
-			mp.addBodyPart(mbp1);
-			mp.addBodyPart(mbp2);
-
-			msg.setContent(mp);
-		}
-
-		Transport.send(msg);
 	}
 
 	// Send Mail
@@ -612,10 +634,10 @@ public class Util {
 	public void mail_apt(String mailTo, String subject, String body, String filepath) throws Exception {
 		String sHostName;
 		sHostName = InetAddress.getLocalHost().getHostName();
-		if(!sHostName.equals("docu01") && !sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
+		if(!sHostName.equals("docu01") && !sHostName.equals("docu02")) // ì‹¤ì„œë²„ë§Œ sms ë³´ëƒ„
 		{
-			System.out.println("//-------------------- [°¡»ó ÀÌ¸ŞÀÏÀü¼Û:°³¹ß¿ë] --------------------//");
-			System.out.println("  - ¹Ş´Â »ç¶÷ : " + mailTo);
+			System.out.println("//-------------------- [ê°€ìƒ ì´ë©”ì¼ì „ì†¡:ê°œë°œìš©] --------------------//");
+			System.out.println("  - ë°›ëŠ” ì‚¬ëŒ : " + mailTo);
 			System.out.println("//--------------------------------------------------//");
 			return;
 		}
@@ -631,7 +653,7 @@ public class Util {
 		Session msgSession = Session.getDefaultInstance(props, null);
 		
 		MimeMessage msg = new MimeMessage(msgSession);
-		InternetAddress from = new InternetAddress(mailFrom, "³ªÀÌ½º ¾ÆÆÄÆ®", "UTF-8");
+		InternetAddress from = new InternetAddress(mailFrom, "ë‚˜ì´ìŠ¤ ì•„íŒŒíŠ¸", "UTF-8");
 		InternetAddress to = new InternetAddress(mailTo);
 		
 		msg.setFrom(from);
@@ -1042,7 +1064,7 @@ public class Util {
 	}
 	
 	/***************************
-		ÆÄÀÏÁ¤¸®
+		íŒŒì¼ì •ë¦¬
 	***************************/
 	public static void adjFile(String path, ArrayList al)
 	{		
@@ -1531,11 +1553,11 @@ public class Util {
 			return post_code.substring(0, 3) + "-" + post_code.substring(3) ;	
 	}
 	
-	//public static String aeskey = "nicednb nicedocu ";  // AESÀÇ key´Â 16(128),24(192),32(256)byteÁß ÇÏ³ª·Î ÀÌ·ç¾îÁ®¾ß ÇÑ´Ù.
+	//public static String aeskey = "nicednb nicedocu ";  // AESì˜ keyëŠ” 16(128),24(192),32(256)byteì¤‘ í•˜ë‚˜ë¡œ ì´ë£¨ì–´ì ¸ì•¼ í•œë‹¤.
 	
 	/**
-	 * AES ¾ÏÈ£È­
-	 * @param message	¾ÏÈ£È­ ´ë»ó°ª
+	 * AES ì•”í˜¸í™”
+	 * @param message	ì•”í˜¸í™” ëŒ€ìƒê°’
 	 * @return
 	 */
 	public String aseEnc(String message)
@@ -1550,8 +1572,8 @@ public class Util {
 	}
 	
 	/**
-	 * AES º¹È£È­
-	 * @param encrypted	¾ÏÈ£È­µÈ °ª
+	 * AES ë³µí˜¸í™”
+	 * @param encrypted	ì•”í˜¸í™”ëœ ê°’
 	 * @return
 	 */
 	public String aseDec(String encrypted)
@@ -1566,23 +1588,23 @@ public class Util {
 	}
 	
 	/**
-	 * ÇÑ±Û ±İ¾×À¸·Î º¯È¯
-	 * @param money	±İ¾× °ª
+	 * í•œê¸€ ê¸ˆì•¡ìœ¼ë¡œ ë³€í™˜
+	 * @param money	ê¸ˆì•¡ ê°’
 	 * @return
 	 */
 	public static String getHanMoney(long money){
-		String MONEY_NUM[] = {"","ÀÏ","ÀÌ","»ï","»ç","¿À","À°","Ä¥","ÆÈ", "±¸"};
-		String MONEY_DANWI[] = {"", "¸¸","¾ï","Á¶","°æ"};
-		String MONEY_DETAIL[] = {"","½Ê","¹é","Ãµ"};
+		String MONEY_NUM[] = {"","ì¼","ì´","ì‚¼","ì‚¬","ì˜¤","ìœ¡","ì¹ ","íŒ”", "êµ¬"};
+		String MONEY_DANWI[] = {"", "ë§Œ","ì–µ","ì¡°","ê²½"};
+		String MONEY_DETAIL[] = {"","ì‹­","ë°±","ì²œ"};
 		
-		if(money == 0) return "¿µ";
+		if(money == 0) return "ì˜";
 		char [] source = new Long(money).toString().toCharArray();
 		StringBuffer buf = new StringBuffer();
 		boolean flag = false;
 		for(int i= 0; i < source.length; i++){
 			if(i==0 && source[i]== '-')
 			{
-				buf.append("°¨ ");
+				buf.append("ê° ");
 				continue;
 			}
 			int val = source[i]-48;
@@ -1604,13 +1626,13 @@ public class Util {
 	}
 	
 	/**
-	 * ÇÑ±Û ±İ¾×À¸·Î º¯È¯
-	 * sMoney ±İ¾× °ª
+	 * í•œê¸€ ê¸ˆì•¡ìœ¼ë¡œ ë³€í™˜
+	 * sMoney ê¸ˆì•¡ ê°’
 	 */
 	public static String getHanMoney(String sMoney){
-		String MONEY_NUM[] = {"","ÀÏ","ÀÌ","»ï","»ç","¿À","À°","Ä¥","ÆÈ", "±¸"};
-		String MONEY_DANWI[] = {"", "¸¸","¾ï","Á¶","°æ"};
-		String MONEY_DETAIL[] = {"","½Ê","¹é","Ãµ"};
+		String MONEY_NUM[] = {"","ì¼","ì´","ì‚¼","ì‚¬","ì˜¤","ìœ¡","ì¹ ","íŒ”", "êµ¬"};
+		String MONEY_DANWI[] = {"", "ë§Œ","ì–µ","ì¡°","ê²½"};
+		String MONEY_DETAIL[] = {"","ì‹­","ë°±","ì²œ"};
 		
         long money = 0L;
 
@@ -1619,14 +1641,14 @@ public class Util {
         	money = Long.parseLong(sMoney.replaceAll(",", ""));
         }
 		
-		if(money == 0) return "¿µ";
+		if(money == 0) return "ì˜";
 		char [] source = new Long(money).toString().toCharArray();
 		StringBuffer buf = new StringBuffer();
 		boolean flag = false;
 		for(int i= 0; i < source.length; i++){
 			if(i==0 && source[i]== '-')
 			{
-				buf.append("°¨ ");
+				buf.append("ê° ");
 				continue;
 			}
 			int val = source[i]-48;

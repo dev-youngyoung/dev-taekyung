@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = u.request("main_member_no");
 if(main_member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -40,10 +40,10 @@ while(tech.next()){
 }
 
 if(u.isPost()&&f.validate()){
-	//±Û³»¿ë
+	//ê¸€ë‚´ìš©
 	DB db = new DB();
 	
-	//º¸À¯¸éÇã
+	//ë³´ìœ ë©´í—ˆ
 	techDao = new DataObject("tcb_client_tech");
 	db.setCommand(techDao.getDeleteQuery(where), null);
 	String[] tech_cd = f.getArr("t_tech_cd");
@@ -60,10 +60,10 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»ó Ã³¸®ÇÏ¿´½À´Ï´Ù.","build_license_info.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì •ìƒ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.","build_license_info.jsp?"+u.getQueryString());
 	return;	
 }
 

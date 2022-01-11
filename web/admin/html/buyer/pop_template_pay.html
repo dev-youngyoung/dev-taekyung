@@ -1,8 +1,8 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);" novalidate>
+ï»¿<form name="form1" method="post" onsubmit="return formSubmit(this);" novalidate>
 <div class="div_table">
     <div style="width:100%;text-align:right;margin: 10px 0px">
-        <button type="submit" class= 'sbtn color ico-add'  id="btn_template_pay_add"><span></span>ÀúÀå</button>
-        <button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>´İ±â</button>
+        <button type="submit" class= 'sbtn color ico-add'  id="btn_template_pay_add"><span></span>ì €ì¥</button>
+        <button type="button" class="sbtn color ico-cancel"  onclick="self.close();"><span></span>ë‹«ê¸°</button>
     </div>
 <table>
   <colgroup>
@@ -12,10 +12,10 @@
     <col width="25%">
   </colgroup>
   <tr>
-    <th class="req-check">°è¾à¼­ Á¾·ù</th>
+    <th class="req-check">ê³„ì•½ì„œ ì¢…ë¥˜</th>
     <td colspan="3">
 		<select name="template_cd" style="width:300px">
-			<option value="">------------------ ¼±&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÅÃ ------------------</option>
+			<option value="">------------------ ì„ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;íƒ ------------------</option>
 			<!-- LOOP START 'template' -->
 			<option value="{{template.template_cd}}">{{template.template_name}}</option>
 			<!-- LOOP END 'template' -->
@@ -23,20 +23,20 @@
 	</td>
   </tr>
   <tr>
-    <th class="req-check">¿ø»ç¾÷ÀÚ¿ä±İ</th>
+    <th class="req-check">ì›ì‚¬ì—…ììš”ê¸ˆ</th>
     <td>
 		<input type="text" name="recpmoneyamt" size="9" maxlength="10" class="label" style="text-align:right" onKeyPress="num_only()" onKeyDown="num_only()" onKeyUp="fnMakeComma();">
     </td>
-    <th class="req-check">¼ö±Ş»ç¾÷ÀÚ¿ä±İ</th>
+    <th class="req-check">ìˆ˜ê¸‰ì‚¬ì—…ììš”ê¸ˆ</th>
     <td>
 		<input type="text" name="suppmoneyamt" size="9" maxlength="10" class="label" style="text-align:right" onKeyPress="num_only()" onKeyDown="num_only()" onKeyUp="fnMakeComma();">
 	</td>
   </tr>
   <tr>
-    <th class="req-check">¼ö±Ş»ç¾÷ÀÚ ¿ä±İ Ã³¸®</th>
+    <th class="req-check">ìˆ˜ê¸‰ì‚¬ì—…ì ìš”ê¸ˆ ì²˜ë¦¬</th>
     <td colspan="3">
-		<input type="radio" name="insteadyn" value="Y">¿ø»ç¾÷ÀÚ¿¡°Ô °ú±İ
-		<input type="radio" name="insteadyn" value="N">¼ö±Ş»ç¾÷ÀÚ¿¡°Ô °ú±İ
+		<input type="radio" name="insteadyn" value="Y">ì›ì‚¬ì—…ìì—ê²Œ ê³¼ê¸ˆ
+		<input type="radio" name="insteadyn" value="N">ìˆ˜ê¸‰ì‚¬ì—…ìì—ê²Œ ê³¼ê¸ˆ
 	</td>
   </tr>
 </table>
@@ -48,7 +48,7 @@
 <script language="javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}

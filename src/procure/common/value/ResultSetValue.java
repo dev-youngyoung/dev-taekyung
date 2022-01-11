@@ -14,7 +14,7 @@ import procure.common.utils.StrUtil;
 
 /**
  * 
- * @author ÀÌÁ¾È¯
+ * @author ì´ì¢…í™˜
  *
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
@@ -23,10 +23,10 @@ public class ResultSetValue
 { 
 	ArrayList 	aData	=	null; 
 	HashMap		hData	= 	null;		
-	int			iCur	=	-1;		//ÇöÀçÀÇ ÁÙ¼ö
+	int			iCur	=	-1;		//í˜„ì¬ì˜ ì¤„ìˆ˜
 	
 	/**
-	 * µ¥ÀÌÅ¸ °¡Á®¿À±â
+	 * ë°ì´íƒ€ ê°€ì ¸ì˜¤ê¸°
 	 * @param al
 	 */
 	public void getData(ArrayList al){
@@ -34,7 +34,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * Ã³À½À¸·Î µÇµ¹¸²
+	 * ì²˜ìŒìœ¼ë¡œ ë˜ëŒë¦¼
 	 *
 	 */
 	public void first() 
@@ -47,7 +47,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÀüÃ¼ µ¥ÀÌÅ¸ ÀĞ±â
+	 * ì „ì²´ ë°ì´íƒ€ ì½ê¸°
 	 * @return
 	 */
 	public boolean next(){
@@ -67,7 +67,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÀüÃ¼ ¸ñ·Ï¼ö¸¦ ±¸ÇÔ( ¹İµå½Ã Äõ¸®¿¡ COUNT(*) OVER() CNT ¸í½Ã)
+	 * ì „ì²´ ëª©ë¡ìˆ˜ë¥¼ êµ¬í•¨( ë°˜ë“œì‹œ ì¿¼ë¦¬ì— COUNT(*) OVER() CNT ëª…ì‹œ)
 	 * @return
 	 */
 	public int getDataCount()
@@ -90,7 +90,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * µ¥ÀÌÅ¸ ÁÙ¼ö
+	 * ë°ì´íƒ€ ì¤„ìˆ˜
 	 * @return
 	 */
 	public int size(){
@@ -98,7 +98,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÆäÀÌÁö °ª(HashMap) 
+	 * í˜ì´ì§€ ê°’(HashMap) 
 	 * @return
 	 */
 	public HashMap getHashMap(){ 
@@ -113,20 +113,20 @@ public class ResultSetValue
 	}
 	
 	/**
-	    *±â´É : ÁöÁ¤µÈ row¿¡¼­ ÁÖ¾îÁø Å°°ªÀ» °¡Áø µ¥ÀÌÅÍ¸¦ doubleÇüÀ¸·Î castingÇÏ¿© ¸®ÅÏÇÑ´Ù.
-	    *       (Key°ªÀº ´ë¼Ò¹®ÀÚ¸¦ ±¸ºĞÇÏÁö ¾Ê´Â´Ù.)
-	    *@param   key      key °ª
+	    *ê¸°ëŠ¥ : ì§€ì •ëœ rowì—ì„œ ì£¼ì–´ì§„ í‚¤ê°’ì„ ê°€ì§„ ë°ì´í„°ë¥¼ doubleí˜•ìœ¼ë¡œ castingí•˜ì—¬ ë¦¬í„´í•œë‹¤.
+	    *       (Keyê°’ì€ ëŒ€ì†Œë¬¸ìë¥¼ êµ¬ë¶„í•˜ì§€ ì•ŠëŠ”ë‹¤.)
+	    *@param   key      key ê°’
 	    *@return  String   Value
 	    */
 	    public Object getObject(String key) throws Exception {
 	        try {
-	            //Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+	            //í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
 	            if(key!=null && key.length()!=0) {
 	                key = key.toUpperCase();
 	            }
 
 	            if(iCur == -1){
-	            	throw	new	Exception("[ERROR "+this.getClass()+".getObject()] : Object°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	            	throw	new	Exception("[ERROR "+this.getClass()+".getObject()] : Objectê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	            }
 	            else {
 	                return hData.get(key);
@@ -139,7 +139,7 @@ public class ResultSetValue
 	    }
 	
 	/**
-	 * ÆäÀÌÁö °ª(String) 
+	 * í˜ì´ì§€ ê°’(String) 
 	 * @param sKey
 	 * @return
 	 * @throws Exception 
@@ -160,8 +160,8 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÆÄÀÏ°æ·Î '/'·Î º¯È¯
-	 * @param sFileUrl	ÆÄÀÏ °æ·Î
+	 * íŒŒì¼ê²½ë¡œ '/'ë¡œ ë³€í™˜
+	 * @param sFileUrl	íŒŒì¼ ê²½ë¡œ
 	 * @return
 	 * @throws Exception
 	 */
@@ -181,7 +181,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÆäÀÌÁö °ª(int) 
+	 * í˜ì´ì§€ ê°’(int) 
 	 * @param sKey
 	 * @return
 	 * @throws Exception 
@@ -202,7 +202,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÆäÀÌÁö °ª(long)
+	 * í˜ì´ì§€ ê°’(long)
 	 * @param sKey
 	 * @return
 	 * @throws Exception 
@@ -221,7 +221,7 @@ public class ResultSetValue
 	}
 	
 	/**
-	 * ÆäÀÌÁö °ª(double)
+	 * í˜ì´ì§€ ê°’(double)
 	 * @param sKey
 	 * @return
 	 * @throws Exception

@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000155";
 
-// ·¹Áø¿£ÅÍÅ×ÀÎ¸ÕÆ® °è¾àÇöÈ²°ü¸®
-String[] code_status = new String[] {"10=>¿¬Àç¿¹Á¤","20=>¿¬ÀçÁß","30=>Àå±âÈŞÀçÁß","40=>¿¬Àç¿Ï·á"};
+// ë ˆì§„ì—”í„°í…Œì¸ë¨¼íŠ¸ ê³„ì•½í˜„í™©ê´€ë¦¬
+String[] code_status = new String[] {"10=>ì—°ì¬ì˜ˆì •","20=>ì—°ì¬ì¤‘","30=>ì¥ê¸°íœ´ì¬ì¤‘","40=>ì—°ì¬ì™„ë£Œ"};
 
 String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM-dd",u.addDate("M",-6)));
 String s_edate = u.request("s_edate");
@@ -25,7 +25,7 @@ f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -72,9 +72,9 @@ list.addSearch("d.c_status",  f.get("c_status"));
 list.addSearch("c.add_col1", f.get("s_item_name"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_member_name"), "LIKE");
 list.addSearch("c.add_col4",  f.get("s_write_name"), "LIKE");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -87,7 +87,7 @@ list.setOrderBy("a.cont_no desc, a.cont_chasu asc");
 DataSet ds = list.getDataSet();
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
-    ds.put("cont_chasu_nm", ds.getInt("cont_chasu")==0 ? "ÃÖÃÊ" : ds.getString("cont_chasu")+"Â÷");
+    ds.put("cont_chasu_nm", ds.getInt("cont_chasu")==0 ? "ìµœì´ˆ" : ds.getString("cont_chasu")+"ì°¨");
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
 	ds.put("n_status_nm", u.getItem(ds.getString("n_status"), code_status));
 	ds.put("e_status_nm", u.getItem(ds.getString("e_status"), code_status));
@@ -103,32 +103,32 @@ while(ds.next()){
 	ds.put("c_writer_type",c_writer_type);
 	
 	if(ds.getString("n_status").equals("")) {
-	    ds.put("pop_link_n", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=n&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[µî·Ï]</a>");
+	    ds.put("pop_link_n", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=n&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[ë“±ë¡]</a>");
 	} else {
         ds.put("pop_link_n", "<a href=\"javascript:OpenWindow('resin_series_m.jsp?type=n&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>"+ds.getString("n_status_nm")+"</a>");
 	}
 
 	if(ds.getString("e_status").equals("")) {
-		ds.put("pop_link_e", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=e&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[µî·Ï]</a>");
+		ds.put("pop_link_e", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=e&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[ë“±ë¡]</a>");
 	} else {
 		ds.put("pop_link_e", "<a href=\"javascript:OpenWindow('resin_series_m.jsp?type=e&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>"+ds.getString("e_status_nm")+"</a>");
 	}
 
 	if(ds.getString("j_status").equals("")) {
-		ds.put("pop_link_j", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=j&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[µî·Ï]</a>");
+		ds.put("pop_link_j", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=j&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[ë“±ë¡]</a>");
 	} else {
 		ds.put("pop_link_j", "<a href=\"javascript:OpenWindow('resin_series_m.jsp?type=j&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>"+ds.getString("j_status_nm")+"</a>");
 	}
 
 	if(ds.getString("c_status").equals("")) {
-		ds.put("pop_link_c", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=c&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[µî·Ï]</a>");
+		ds.put("pop_link_c", "<a href=\"javascript:OpenWindow('resin_series_i.jsp?type=c&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>[ë“±ë¡]</a>");
 	} else {
 		ds.put("pop_link_c", "<a href=\"javascript:OpenWindow('resin_series_m.jsp?type=c&cont_no="+ds.getString("cont_no")+"','pop_series', '420','440');\"  style='color:blue'>"+ds.getString("c_status_nm")+"</a>");
 	}
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "°è¾àÇöÈ²");
+	p.setVar("title", "ê³„ì•½í˜„í™©");
 	String xlsFile = "resin_manage_excel.html";
 
 	ds.first();
@@ -148,13 +148,13 @@ if(u.request("mode").equals("excel")){
 		ds.put("c_sday", u.getTimeString("yyyy-MM-dd",ds.getString("c_sday")));
 		ds.put("c_eday", u.getTimeString("yyyy-MM-dd",ds.getString("c_eday")));
 		ds.put("c_fday", u.getTimeString("yyyy-MM-dd",ds.getString("c_fday")));
-		ds.put("tt_etc_yn", ds.getString("tt_etc_yn").equals("Y")?"À¯":"¹«");
+		ds.put("tt_etc_yn", ds.getString("tt_etc_yn").equals("Y")?"ìœ ":"ë¬´");
 	}
 
 
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("·¹Áø¿£ÅÍ °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë ˆì§„ì—”í„° ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/"+xlsFile));
 	return;
 }

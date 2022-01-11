@@ -1,28 +1,28 @@
 <%@page import="java.net.HttpURLConnection"%>
 <%@page import="java.net.URL"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String event_id = u.request("event_id");
 
-f.addElement("companynm", null, "hname:'È¸»ç¸í',required:'Y'");
-f.addElement("personnm", null, "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("hp1", null, "hname:'ÈŞ´ëÆù',required:'Y'");
-f.addElement("hp2", null, "hname:'ÈŞ´ëÆù',required:'Y'");
-f.addElement("hp3", null, "hname:'ÈŞ´ëÆù',required:'Y'");
-f.addElement("contents", null, "hname:'¹®ÀÇ³»¿ë',required:'Y'");
-f.addElement("chk_confirm1", null, "hname:'°³ÀÎÁ¤º¸¼öÁıÀÌ¿ëµ¿ÀÇ', required:'Y'");
+f.addElement("companynm", null, "hname:'íšŒì‚¬ëª…',required:'Y'");
+f.addElement("personnm", null, "hname:'ë‹´ë‹¹ìëª…',required:'Y'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€í°',required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€í°',required:'Y'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€í°',required:'Y'");
+f.addElement("contents", null, "hname:'ë¬¸ì˜ë‚´ìš©',required:'Y'");
+f.addElement("chk_confirm1", null, "hname:'ê°œì¸ì •ë³´ìˆ˜ì§‘ì´ìš©ë™ì˜', required:'Y'");
 
 
 if(u.isPost()&&f.validate()){
 	
 	String recaptcha_response = f.get("g-recaptcha-response");
 	if(!recaptchaVerify(recaptcha_response)){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.1");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.1");
 		return;
 	}
 	
 	if(f.get("hp1").equals("")||f.get("hp2").equals("")||f.get("hp3").equals("")){
-		u.jsError("Á¤»óÀûÀÎ°æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+		u.jsError("ì •ìƒì ì¸ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 		return;
 	}
 	
@@ -57,25 +57,25 @@ if(u.isPost()&&f.validate()){
 	DB db = new DB();
 	db.setCommand(query, qnaDao.record);
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	String sSendPhoneNo = "027889097";	// º¸³»´Â »ç¶÷ ¹øÈ£
-	String sSendName = "³ªÀÌ½º´ÙÅ¥";  // º¸³»´Â »ç¶÷¸í
-	String sRecvVendCd = "";  // ¹ŞÀ» ¾÷Ã¼¸í
-	String sRecvHp1 = "010";  // ¹ŞÀ» ´ã´çÀÚ ÈŞ´ëÆù ¹øÈ£
-	String sRecvHp2 = "3465";//¹ŞÀ» ´ã´çÀÚ ÈŞ´ëÆù ¹øÈ£
-	String sRecvHp3 = "0108";// ¹ŞÀ» ´ã´çÀÚ ÈŞ´ëÆù ¹øÈ£
-	//String sSmsMsg =  f.get("companynm")+ "¿¡¼­ ¹®ÀÇ (ÀÏ¹İ±â¾÷¿ë) "+f.get("personnm")+"("+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+")";
+	String sSendPhoneNo = "027889097";	// ë³´ë‚´ëŠ” ì‚¬ëŒ ë²ˆí˜¸
+	String sSendName = "ë‚˜ì´ìŠ¤ë‹¤í";  // ë³´ë‚´ëŠ” ì‚¬ëŒëª…
+	String sRecvVendCd = "";  // ë°›ì„ ì—…ì²´ëª…
+	String sRecvHp1 = "010";  // ë°›ì„ ë‹´ë‹¹ì íœ´ëŒ€í° ë²ˆí˜¸
+	String sRecvHp2 = "3465";//ë°›ì„ ë‹´ë‹¹ì íœ´ëŒ€í° ë²ˆí˜¸
+	String sRecvHp3 = "0108";// ë°›ì„ ë‹´ë‹¹ì íœ´ëŒ€í° ë²ˆí˜¸
+	//String sSmsMsg =  f.get("companynm")+ "ì—ì„œ ë¬¸ì˜ (ì¼ë°˜ê¸°ì—…ìš©) "+f.get("personnm")+"("+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+")";
 
-	//³ªÀÌ½ºÁö¶ó ·Î ¸ŞÀÏº¸³»±â 
-	String body = "ÀÏ¹İ±â¾÷¿ë  NHÄ«µå ÀÌº¥Æ®½ÅÃ»<br>¹ıÀÎ¸í:"+f.get("companynm")+"<br>"+"½ÅÃ»ÀÚ¸í:"+f.get("personnm")+"<br>"+"¿¬¶ôÃ³:"+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+"<br>±âÅ¸:"+u.nl2br(f.get("contents"));
-	u.mail("nicedocu@nicednr.co.kr", "ÀÏ¹İ±â¾÷¿ë NHÄ«µåÀÌº¥Æ®½ÅÃ»", body);
-	u.mail("nykim@nicednr.co.kr", "ÀÏ¹İ±â¾÷¿ë NHÄ«µåÀÌº¥Æ®½ÅÃ»", body);
+	//ë‚˜ì´ìŠ¤ì§€ë¼ ë¡œ ë©”ì¼ë³´ë‚´ê¸° 
+	String body = "ì¼ë°˜ê¸°ì—…ìš©  NHì¹´ë“œ ì´ë²¤íŠ¸ì‹ ì²­<br>ë²•ì¸ëª…:"+f.get("companynm")+"<br>"+"ì‹ ì²­ìëª…:"+f.get("personnm")+"<br>"+"ì—°ë½ì²˜:"+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+"<br>ê¸°íƒ€:"+u.nl2br(f.get("contents"));
+	u.mail("nicedocu@nicednr.co.kr", "ì¼ë°˜ê¸°ì—…ìš© NHì¹´ë“œì´ë²¤íŠ¸ì‹ ì²­", body);
+	u.mail("nykim@nicednr.co.kr", "ì¼ë°˜ê¸°ì—…ìš© NHì¹´ë“œì´ë²¤íŠ¸ì‹ ì²­", body);
 	
 	
-	u.jsAlertReplace("ÀÀ¸ğ°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.\\n\\n¡Ø ¼øÂ÷ÀûÀ¸·Î ³ªÀÌ½º´ÙÅ¥¿¡¼­ ÀüÈ­µå¸± ¿¹Á¤ ÀÔ´Ï´Ù.","event_req.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì‘ëª¨ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nâ€» ìˆœì°¨ì ìœ¼ë¡œ ë‚˜ì´ìŠ¤ë‹¤íì—ì„œ ì „í™”ë“œë¦´ ì˜ˆì • ì…ë‹ˆë‹¤.","event_req.jsp?"+u.getQueryString());
 	return;
 }
 

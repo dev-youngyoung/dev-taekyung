@@ -1,53 +1,53 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div class="sub-title-block">
 	<div class="center-inner">
 		<h1>
-			³ªÀÌ½º´ÙÅ¥ <br class="mobile">ÇÁ·£Â÷ÀÌÁî±â¾÷¿ë
+			ë‚˜ì´ìŠ¤ë‹¤í <br class="mobile">í”„ëžœì°¨ì´ì¦ˆê¸°ì—…ìš©
 		</h1>
-		<p>¾÷¹« Àü»êÈ­¸¦ ÅëÇØ ÇÕ¸®ÀûÀÌ°í Ã¼°èÀûÀÎ <br class="mobile">°¡¸Í°è¾à °ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.</p>
+		<p>ì—…ë¬´ ì „ì‚°í™”ë¥¼ í†µí•´ í•©ë¦¬ì ì´ê³  ì²´ê³„ì ì¸ <br class="mobile">ê°€ë§¹ê³„ì•½ ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.</p>
 	</div>
 </div>
 <div class="sub-block">
 	<div class="sub__section">
 		<div class="inner-container">
-			<h1 class="sub__tit">ÇÁ·£Â÷ÀÌÁî ÀüÀÚ°è¾à <br class="mobile">¼­ºñ½º ¼Ò°³</h1>
+			<h1 class="sub__tit">í”„ëžœì°¨ì´ì¦ˆ ì „ìžê³„ì•½ <br class="mobile">ì„œë¹„ìŠ¤ ì†Œê°œ</h1>
 			<div class="service-franchise">
 				<div class="franchise-overview">
 					<p>
-						°¡¸Íº»ºÎ¿Í (Èñ¸Á)Á¡ÁÖ°£¿¡ ¹ß»ýÇÏ´Â <strong>°¡¸Í°è¾à(½Å±Ô,Àç°è¾à) ¾÷¹« ÀýÂ÷¿¡ ´ëÇÑ Àü»êÈ­</strong>¿Í <br class="pc">
-						<strong>µ¿ÀÇ¼­, È®¾à¼­ µî °¢Á¾ ¹®¼­¿¡ ´ëÇØ ÀüÀÚ¹®¼­È­</strong>ÇÏ¿© ºÎ´ëºñ¿ë Àý°¨ ¹× ¾÷¹« È¿À²¼º Á¦°í¸¦ <br class="pc">
-						°¡´ÉÄÉ ÇÏ´Â ÇÁ·£Â÷ÀÌÁî Àü¿ë ÀüÀÚ°è¾à ¼­ºñ½ºÀÔ´Ï´Ù.
+						ê°€ë§¹ë³¸ë¶€ì™€ (í¬ë§)ì ì£¼ê°„ì— ë°œìƒí•˜ëŠ” <strong>ê°€ë§¹ê³„ì•½(ì‹ ê·œ,ìž¬ê³„ì•½) ì—…ë¬´ ì ˆì°¨ì— ëŒ€í•œ ì „ì‚°í™”</strong>ì™€ <br class="pc">
+						<strong>ë™ì˜ì„œ, í™•ì•½ì„œ ë“± ê°ì¢… ë¬¸ì„œì— ëŒ€í•´ ì „ìžë¬¸ì„œí™”</strong>í•˜ì—¬ ë¶€ëŒ€ë¹„ìš© ì ˆê° ë° ì—…ë¬´ íš¨ìœ¨ì„± ì œê³ ë¥¼ <br class="pc">
+						ê°€ëŠ¥ì¼€ í•˜ëŠ” í”„ëžœì°¨ì´ì¦ˆ ì „ìš© ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ìž…ë‹ˆë‹¤.
 					</p>
 				</div>
 				<div class="franchise-advantage">
 					<ul>
 						<li>
 							<div class="icon">
-								<img src="/web/hub2/images/sub/s4_advantage_icon1.gif" alt="¾ÆÀÌÄÜ">
+								<img src="/web/hub2/images/sub/s4_advantage_icon1.gif" alt="ì•„ì´ì½˜">
 							</div>
 							<div class="txt-area">
 								<p>
-									<span>°¡¸Í°è¾à °ü¸®<br>(½Å±Ô/Àç°è¾à)</span>
+									<span>ê°€ë§¹ê³„ì•½ ê´€ë¦¬<br>(ì‹ ê·œ/ìž¬ê³„ì•½)</span>
 								</p>
 							</div>
 						</li>
 						<li>
 							<div class="icon">
-								<img src="/web/hub2/images/sub/s4_advantage_icon2.gif" alt="¾ÆÀÌÄÜ">
+								<img src="/web/hub2/images/sub/s4_advantage_icon2.gif" alt="ì•„ì´ì½˜">
 							</div>
 							<div class="txt-area">
 								<p>
-									<span>ÀüÀÚ¹®¼­ °ü¸®<br>(µ¿ÀÇ¼­, È®¾à¼­ µî °¢Á¾¹®¼­)</span>
+									<span>ì „ìžë¬¸ì„œ ê´€ë¦¬<br>(ë™ì˜ì„œ, í™•ì•½ì„œ ë“± ê°ì¢…ë¬¸ì„œ)</span>
 								</p>
 							</div>
 						</li>
 						<li>
 							<div class="icon">
-								<img src="/web/hub2/images/sub/s4_advantage_icon3.gif" alt="¾ÆÀÌÄÜ">
+								<img src="/web/hub2/images/sub/s4_advantage_icon3.gif" alt="ì•„ì´ì½˜">
 							</div>
 							<div class="txt-area">
 								<p>
-									<span>Á¡ÁÖ/Á¡Æ÷ °ü¸®<br>(Á¡Æ÷ÀÌ·Â µî °¢Á¾ ÇöÈ²)</span>
+									<span>ì ì£¼/ì í¬ ê´€ë¦¬<br>(ì í¬ì´ë ¥ ë“± ê°ì¢… í˜„í™©)</span>
 								</p>
 							</div>
 						</li>
@@ -55,10 +55,10 @@
 				</div>
 			</div>
 			<div class="service-franchise">
-				<p class="franchise-tit">¼­ºñ½º Æ¯Â¡</p>
-				<p class="franchise-txt">½Å±Ô ¹× Àç°è¾à µî °¡¸Í°è¾à Ã¼°á ¾÷¹« °úÁ¤¿¡ ´ëÇØ Àü»êÈ­ ¹× °¢Á¾ Á¾ÀÌ¼­·ù¸¦ ÀüÀÚ¹®¼­È­ Áö¿øÇÕ´Ï´Ù.</p>
+				<p class="franchise-tit">ì„œë¹„ìŠ¤ íŠ¹ì§•</p>
+				<p class="franchise-txt">ì‹ ê·œ ë° ìž¬ê³„ì•½ ë“± ê°€ë§¹ê³„ì•½ ì²´ê²° ì—…ë¬´ ê³¼ì •ì— ëŒ€í•´ ì „ì‚°í™” ë° ê°ì¢… ì¢…ì´ì„œë¥˜ë¥¼ ì „ìžë¬¸ì„œí™” ì§€ì›í•©ë‹ˆë‹¤.</p>
 				<div class="franchise-chart">
-					<img src="/web/hub2/images/sub/service3_chart1.png" alt="ÇÁ·»Â÷ÀÌÁî ¼­ºñ½º Æ¯Â¡ ÇÃ·Î¿ì ¸Ê">
+					<img src="/web/hub2/images/sub/service3_chart1.png" alt="í”„ë Œì°¨ì´ì¦ˆ ì„œë¹„ìŠ¤ íŠ¹ì§• í”Œë¡œìš° ë§µ">
 				</div>
 			</div>
 		</div>
@@ -66,14 +66,14 @@
 	<div class="sub__section gray">
 		<div class="inner-container">
 			<div class="service-franchise">
-				<p class="franchise-txt">¡®°¡¸Í»ç¾÷°Å·¡ÀÇ °øÁ¤È­¿¡ °üÇÑ ¹ý·ü¡¯ÀÇ ÀÇ¹«È­¿¡ ´ëÇÑ ¸®½ºÅ©¸¦ ÇØ°áÇØÁÝ´Ï´Ù.</p>
+				<p class="franchise-txt">â€˜ê°€ë§¹ì‚¬ì—…ê±°ëž˜ì˜ ê³µì •í™”ì— ê´€í•œ ë²•ë¥ â€™ì˜ ì˜ë¬´í™”ì— ëŒ€í•œ ë¦¬ìŠ¤í¬ë¥¼ í•´ê²°í•´ì¤ë‹ˆë‹¤.</p>
 				<div class="franchise-chart">
-					<p class="tit">Á¡ÁÖ¿¡°Ô °¢Á¾ °¡¸Í°è¾à¼­·ù Á¦°ø ½Ã <br class="mobile">¡®Á¦°øÈ®ÀÎ¼­¡¯ ÀÚµ¿ »ý¼º</p>
+					<p class="tit">ì ì£¼ì—ê²Œ ê°ì¢… ê°€ë§¹ê³„ì•½ì„œë¥˜ ì œê³µ ì‹œ <br class="mobile">â€˜ì œê³µí™•ì¸ì„œâ€™ ìžë™ ìƒì„±</p>
 					<div class="pc">
-						<img src="/web/hub2/images/sub/service3_chart2.png" alt="Á¦°øÈ®ÀÎ¼­ »ùÇÃ ÀÌ¹ÌÁö">
+						<img src="/web/hub2/images/sub/service3_chart2.png" alt="ì œê³µí™•ì¸ì„œ ìƒ˜í”Œ ì´ë¯¸ì§€">
 					</div>
 					<div class="mobile">
-						<img src="/web/hub2/images/sub/service3_m_chart2.png" alt="Á¦°øÈ®ÀÎ¼­ »ùÇÃ ÀÌ¹ÌÁö">
+						<img src="/web/hub2/images/sub/service3_m_chart2.png" alt="ì œê³µí™•ì¸ì„œ ìƒ˜í”Œ ì´ë¯¸ì§€">
 					</div>
 				</div>
 			</div>
@@ -84,14 +84,14 @@
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s3_01.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s3_01.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">ºê·£µåº° »óÀÌÇÑ °¡¸Í°è¾à ÀýÂ÷ Áö¿ø</p>
+							<p class="tit">ë¸Œëžœë“œë³„ ìƒì´í•œ ê°€ë§¹ê³„ì•½ ì ˆì°¨ ì§€ì›</p>
 							<p class="txt">
-								ºê·£µåº° °¡¸Í°è¾à ÀýÂ÷¸¦ ´Þ¸®ÇÏ¿© Á¡ÁÖ¿Í °¡¸Í°è¾à ¾÷¹«¸¦ ÁøÇà ÇÒ ¼ö ÀÖµµ·Ï Áö¿øÇÕ´Ï´Ù.<br class="pc">
-								Á¤º¸°ø°³¼­ °»½Å½Ã °¡¸Í°è¾à¼­ °»½ÅÀ» Áö¿øÇÕ´Ï´Ù.
+								ë¸Œëžœë“œë³„ ê°€ë§¹ê³„ì•½ ì ˆì°¨ë¥¼ ë‹¬ë¦¬í•˜ì—¬ ì ì£¼ì™€ ê°€ë§¹ê³„ì•½ ì—…ë¬´ë¥¼ ì§„í–‰ í•  ìˆ˜ ìžˆë„ë¡ ì§€ì›í•©ë‹ˆë‹¤.<br class="pc">
+								ì •ë³´ê³µê°œì„œ ê°±ì‹ ì‹œ ê°€ë§¹ê³„ì•½ì„œ ê°±ì‹ ì„ ì§€ì›í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -100,17 +100,17 @@
 			<li>
 				<div class="catalog-area">
 					<div class="icon">
-						<img src="/web/hub2/images/sub/service_icon/icon_s3_02.png" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/sub/service_icon/icon_s3_02.png" alt="ì•„ì´ì½˜">
 					</div>
 					<div class="txt-area">
 						<div class="center-inner">
-							<p class="tit">»ç¿ëÀÚº° ·Î±×ÀÎ ID ºÎ¿©</p>
+							<p class="tit">ì‚¬ìš©ìžë³„ ë¡œê·¸ì¸ ID ë¶€ì—¬</p>
 							<p class="txt">
-								»ç¿ëÅëÁ¦, Á¢¼Ó ÀÌ·Â ¹× ÀÛ¾÷¿¡ ´ëÇÑ ·Î±× °ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.
+								ì‚¬ìš©í†µì œ, ì ‘ì† ì´ë ¥ ë° ìž‘ì—…ì— ëŒ€í•œ ë¡œê·¸ ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 							</p>
-							<p class="tit">IDº°·Î ¼­·Î ´Ù¸¥ ±ÇÇÑÀ» ÁöÁ¤</p>
+							<p class="tit">IDë³„ë¡œ ì„œë¡œ ë‹¤ë¥¸ ê¶Œí•œì„ ì§€ì •</p>
 							<p class="txt">
-								»ç¿ëÀÚ IDº° °è¾à¼­ ¿­¶÷¹üÀ§ ¹× ¾÷¹«±ÇÇÑÀ» ÁöÁ¤ÇÏ¿© ½Ã½ºÅÛÀ» »ç¿ëÇÕ´Ï´Ù.
+								ì‚¬ìš©ìž IDë³„ ê³„ì•½ì„œ ì—´ëžŒë²”ìœ„ ë° ì—…ë¬´ê¶Œí•œì„ ì§€ì •í•˜ì—¬ ì‹œìŠ¤í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 							</p>
 						</div>
 					</div>
@@ -121,27 +121,27 @@
 	<div class="sub__section">
 		<div class="inner-container">
 			<div class="service-franchise">
-				<p class="franchise-tit">³ªÀÌ½º´ÙÅ¥ µµÀÔÀÇ ÇÊ¿ä¼º</p>
+				<p class="franchise-tit">ë‚˜ì´ìŠ¤ë‹¤í ë„ìž…ì˜ í•„ìš”ì„±</p>
 				<div class="franchise-necessity">
 					<dl>
-						<dt>°¡¸Í»ç¾÷¹ý ÀÇ¹«»çÇ×</dt>
+						<dt>ê°€ë§¹ì‚¬ì—…ë²• ì˜ë¬´ì‚¬í•­</dt>
 						<dd>
 							<div class="pc">
-								<img src="/web/hub2/images/sub/service3_chart3.png" alt="ÀÇ¹«»çÇ×">
+								<img src="/web/hub2/images/sub/service3_chart3.png" alt="ì˜ë¬´ì‚¬í•­">
 							</div>
 							<div class="mobile">
-								<img src="/web/hub2/images/sub/service3_m_chart3.png" alt="ÀÇ¹«»çÇ×">
+								<img src="/web/hub2/images/sub/service3_m_chart3.png" alt="ì˜ë¬´ì‚¬í•­">
 							</div>
 						</dd>
 					</dl>
 					<dl>
-						<dt>³ªÀÌ½º´ÙÅ¥ Á¦°ø±â´É</dt>
+						<dt>ë‚˜ì´ìŠ¤ë‹¤í ì œê³µê¸°ëŠ¥</dt>
 						<dd>
 							<div class="pc">
-								<img src="/web/hub2/images/sub/service3_chart4.png" alt="Á¦°ø±â´É">
+								<img src="/web/hub2/images/sub/service3_chart4.png" alt="ì œê³µê¸°ëŠ¥">
 							</div>
 							<div class="mobile">
-								<img src="/web/hub2/images/sub/service3_m_chart4.png" alt="Á¦°ø±â´É">
+								<img src="/web/hub2/images/sub/service3_m_chart4.png" alt="ì œê³µê¸°ëŠ¥">
 							</div>
 						</dd>
 					</dl>

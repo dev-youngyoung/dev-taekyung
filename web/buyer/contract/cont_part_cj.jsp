@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao code = new CodeDao("tcb_comcode");
@@ -16,7 +16,7 @@ f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -63,18 +63,18 @@ DataSet ds = list.getDataSet();
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 
 	ds.put("link", ds.getString("template_cd").equals("") ? ds.getString("status").equals("50") || ds.getString("status").equals("91") ? "contend_free_sendview.jsp?re=cont_part_cj.jsp" : "contract_free_sendview.jsp?re=cont_part_cj.jsp" : ds.getString("status").equals("50") || ds.getString("status").equals("91") ? "contend_sendview.jsp?re=cont_part_cj.jsp" : "contract_sendview.jsp?re=cont_part_cj.jsp");
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
-	if(ds.getString("status").equals("30")){//¼­¸í´ë±â »óÅÂÀÌ¸é »ı»ó Ç¥½Ã
+	if(ds.getString("status").equals("30")){//ì„œëª…ëŒ€ê¸° ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
 		ds.put("status_name", "<span class=\"caution-text\">"+u.getItem(ds.getString("status"), code_status)+"<span>");
-	}else if(ds.getString("status").equals("21")) {  // ½ÂÀÎ´ë±â
+	}else if(ds.getString("status").equals("21")) {  // ìŠ¹ì¸ëŒ€ê¸°
 		ds.put("status_name", "<span class=\"caution-text\">"+u.getItem(ds.getString("status"), code_status)+"<br>("+ds.getString("agree_name")+")</span>");
-	}else if(ds.getString("status").equals("40")){//¼öÁ¤¿äÃ» »óÅÂÀÌ¸é »ı»ó Ç¥½Ã
+	}else if(ds.getString("status").equals("40")){//ìˆ˜ì •ìš”ì²­ ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
 		ds.put("status_name", "<span style='color:blue'>"+u.getItem(ds.getString("status"), code_status)+"<span>");
 	}else{
 		ds.put("status_name", u.getItem(ds.getString("status"), code_status));
@@ -82,11 +82,11 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "ºÎ¼­º° °è¾àÇöÈ²");
+	p.setVar("title", "ë¶€ì„œë³„ ê³„ì•½í˜„í™©");
 	
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ºÎ¼­º° °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë¶€ì„œë³„ ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/cont_part_cj_excel.html"));
 	return;
 } 

@@ -14,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 public class FileSecurity {
-	private static final String aeskey = "nicednb passwd12";  // AESÀÇ key´Â 16(128bit),24(192bit),32(256bit)byteÁß ÇÏ³ª·Î ÀÌ·ç¾îÁ®¾ß ÇÑ´Ù.
+	private static final String aeskey = "nicednb passwd12";  // AESì˜ keyëŠ” 16(128bit),24(192bit),32(256bit)byteì¤‘ í•˜ë‚˜ë¡œ ì´ë£¨ì–´ì ¸ì•¼ í•œë‹¤.
 	private static final String algorithm = "AES";
 	private static final String transformation = algorithm + "/ECB/PKCS5Padding";
 	
@@ -25,10 +25,10 @@ public class FileSecurity {
 	}
 	
 	/**
-	 * <p>¿øº» ÆÄÀÏÀ» ¾ÏÈ£È­ÇØ¼­ ´ë»ó ÆÄÀÏÀ» ¸¸µç´Ù.</p>
+	 * <p>ì›ë³¸ íŒŒì¼ì„ ì•”í˜¸í™”í•´ì„œ ëŒ€ìƒ íŒŒì¼ì„ ë§Œë“ ë‹¤.</p>
 	 * 
-	 * @param source ¿øº» ÆÄÀÏ
-	 * @param dest ´ë»ó ÆÄÀÏ
+	 * @param source ì›ë³¸ íŒŒì¼
+	 * @param dest ëŒ€ìƒ íŒŒì¼
 	 * @throws Exception
 	 */
 	public void encrypt(File source, File dest) throws Exception {
@@ -36,10 +36,10 @@ public class FileSecurity {
 	}
 	
 	/**
-	 * <p>¿øº» ÆÄÀÏÀ» º¹È£È­ÇØ¼­ ´ë»ó ÆÄÀÏÀ» ¸¸µç´Ù.</p>
+	 * <p>ì›ë³¸ íŒŒì¼ì„ ë³µí˜¸í™”í•´ì„œ ëŒ€ìƒ íŒŒì¼ì„ ë§Œë“ ë‹¤.</p>
 	 * 
-	 * @param source ¿øº» ÆÄÀÏ
-	 * @param dest ´ë»ó ÆÄÀÏ
+	 * @param source ì›ë³¸ íŒŒì¼
+	 * @param dest ëŒ€ìƒ íŒŒì¼
 	 * @throws Exception
 	 */
 	public void decrypt(File source, File dest) throws Exception {
@@ -47,11 +47,11 @@ public class FileSecurity {
 	}
 	
 	/**
-	 * <p>¿øº» ÆÄÀÏÀ» ¾Ï/º¹È£È­ÇØ¼­ ´ë»ó ÆÄÀÏÀ» ¸¸µç´Ù.</p>
+	 * <p>ì›ë³¸ íŒŒì¼ì„ ì•”/ë³µí˜¸í™”í•´ì„œ ëŒ€ìƒ íŒŒì¼ì„ ë§Œë“ ë‹¤.</p>
 	 * 
-	 * @param mode ¾Ï/º¹È£È­ ¸ğµå
-	 * @param source ¿øº» ÆÄÀÏ
-	 * @param dest ´ë»ó ÆÄÀÏ
+	 * @param mode ì•”/ë³µí˜¸í™” ëª¨ë“œ
+	 * @param source ì›ë³¸ íŒŒì¼
+	 * @param dest ëŒ€ìƒ íŒŒì¼
 	 * @throws Exception
 	 */
 	private void crypt(int mode, File source, File dest) throws Exception {
@@ -79,7 +79,7 @@ public class FileSecurity {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		// 128ºñÆ®ÀÇ Å°
+		// 128ë¹„íŠ¸ì˜ í‚¤
 		//System.out.println("1:  "+toBytes("696d697373796f7568616e6765656e61", 16));
 		
 		SecretKeySpec key = new SecretKeySpec(aeskey.getBytes(), algorithm);
@@ -90,10 +90,10 @@ public class FileSecurity {
 	}
 	
 	/**
-	 * <p>¹®ÀÚ¿­À» ¹ÙÀÌÆ®¹è¿­·Î ¹Ù²Û´Ù.</p>
+	 * <p>ë¬¸ìì—´ì„ ë°”ì´íŠ¸ë°°ì—´ë¡œ ë°”ê¾¼ë‹¤.</p>
 	 * 
-	 * @param digits ¹®ÀÚ¿­
-	 * @param radix Áø¼ö
+	 * @param digits ë¬¸ìì—´
+	 * @param radix ì§„ìˆ˜
 	 * @return
 	 * @throws IllegalArgumentException
 	 * @throws NumberFormatException

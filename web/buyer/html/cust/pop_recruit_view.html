@@ -1,15 +1,15 @@
-<form name="form1" id="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" id="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="save" value="1">
 <input type="hidden" name="chk_vendcd" value="0">
 
 <div class="div_table">
     <div class="util-row">
         <div class="push-right">
-            <button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>´İ±â</button>
+            <button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>ë‹«ê¸°</button>
         </div>
     </div>
     <div class="push-left">
-        <h3>È¸»çÁ¤º¸</h3>
+        <h3>íšŒì‚¬ì •ë³´</h3>
     </div>
     <table>
     <colgroup>
@@ -19,31 +19,31 @@
         <col width="35%">
     </colgroup>
     <tr>
-        <th>»óÈ£</th>
+        <th>ìƒí˜¸</th>
         <td> {{supp.vendnm}}</td>
-        <th>»ç¾÷ÀÚ¹øÈ£</th>
+        <th>ì‚¬ì—…ìë²ˆí˜¸</th>
         <td>{{supp.vendcd}}</td>
     </tr>
     <tr>
-        <th>´ëÇ¥ÀÚ¸í</th>
+        <th>ëŒ€í‘œìëª…</th>
         <td> {{supp.boss_name}}</td>
-        <th>Á¾¾÷¿ø¼ö</th>
-        <td> {{supp.worker_cnt}} ¸í</td>
+        <th>ì¢…ì—…ì›ìˆ˜</th>
+        <td> {{supp.worker_cnt}} ëª…</td>
     </tr>
     <tr>
-        <th>ÁÖ¼Ò</th>
+        <th>ì£¼ì†Œ</th>
         <td colspan="3">
             ({{supp.post_code1}} - {{supp.post_code2}}) {{supp.address}}
         </td>
     </tr>
     <tr>
-        <th>ÀÚº»±İ</th>
-        <td> {{supp.capital}} ¹é¸¸¿ø</td>
-        <th>³â ¸ÅÃâ¾×</th>
-        <td> {{supp.sales_amt}} ¹é¸¸¿ø(2014³â±âÁØ)</td>
+        <th>ìë³¸ê¸ˆ</th>
+        <td> {{supp.capital}} ë°±ë§Œì›</td>
+        <th>ë…„ ë§¤ì¶œì•¡</th>
+        <td> {{supp.sales_amt}} ë°±ë§Œì›(2014ë…„ê¸°ì¤€)</td>
     </tr>
     <tr>
-        <th>Ãë±Ş ºĞ¾ß</th>
+        <th>ì·¨ê¸‰ ë¶„ì•¼</th>
         <td colspan="3">
             <!-- LOOP START 'category' -->
             <input type="checkbox" name="category_cd" value="{{category.code}}" disabled> {{category.code_name}} &nbsp;&nbsp;
@@ -56,7 +56,7 @@
 
 <div class="div_table">
     <div class="push-left">
-        <h3>ÁÖ¿ä ³³Ç°Ã³</h3>
+        <h3>ì£¼ìš” ë‚©í’ˆì²˜</h3>
     </div>
     <table>
      <colgroup>
@@ -66,15 +66,15 @@
      </colgroup>
      <thead>
      <tr>
-       <th>³³Ç°³âµµ</th>
-       <th>³³Ç°Ã³</th>
-       <th>ºñ°í</th>
+       <th>ë‚©í’ˆë…„ë„</th>
+       <th>ë‚©í’ˆì²˜</th>
+       <th>ë¹„ê³ </th>
       </tr>
       </thead>
       <tbody>
       <!-- LOOP START 'client' -->
         <tr>
-            <td align="center">{{client.delivery_year}} ³â</td>
+            <td align="center">{{client.delivery_year}} ë…„</td>
             <td>{{client.client_name}}</td>
             <td>{{client.client_etc}}</td>
         </tr>
@@ -85,7 +85,7 @@
 
 <div class="div_table">
     <div class="push-left">
-        <h3>´ëÇ¥ Ç°¸ñ</h3>
+        <h3>ëŒ€í‘œ í’ˆëª©</h3>
     </div>
     <table>
      <colgroup>
@@ -94,8 +94,8 @@
      </colgroup>
      <thead>
      <tr>
-       <th>Æû¸ñ¸í</th>
-       <th>ºñ°í</th>
+       <th>í¼ëª©ëª…</th>
+       <th>ë¹„ê³ </th>
      </tr>
      </thead>
      <tbody>
@@ -111,7 +111,7 @@
 
 <div class="div_table">
     <div class="push-left">
-        <h3>´ã´çÀÚÁ¤º¸</h3>
+        <h3>ë‹´ë‹¹ìì •ë³´</h3>
     </div>
      <table>
      <colgroup>
@@ -121,21 +121,21 @@
         <col width="35%">
      </colgroup>
      <tr>
-       <th>ÀÌ¸§</th>
+       <th>ì´ë¦„</th>
        <td>{{supp.user_name}}</td>
-       <th>Á÷Ã¥</th>
+       <th>ì§ì±…</th>
        <td>{{supp.position}}</td>
      </tr>
      <tr>
-       <th>ºÎ¼­</th>
+       <th>ë¶€ì„œ</th>
        <td>{{supp.dept_name}}</td>
-       <th>ÀüÈ­¹øÈ£</th>
+       <th>ì „í™”ë²ˆí˜¸</th>
        <td>{{supp.tel_num}}</td>
      </tr>
      <tr>
-       <th>ÇÚµåÆù¹øÈ£</th>
+       <th>í•¸ë“œí°ë²ˆí˜¸</th>
        <td>{{supp.hp1}} - {{supp.hp2}} - {{supp.hp3}}</td>
-       <th>ÆÑ½º¹øÈ£</th>
+       <th>íŒ©ìŠ¤ë²ˆí˜¸</th>
        <td>{{supp.fax_num}}</td>
      </tr>
     </table>

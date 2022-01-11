@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.Jsoup"%>
 <%@ page import="org.jsoup.nodes.Document"%>
 <%@ page import="org.jsoup.nodes.Element"%>
@@ -6,7 +6,7 @@
 <%
 String asse_no = u.request("asse_no", "");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,14 +14,14 @@ boolean modify = true;
 DataObject assessmentDao = new DataObject("tcb_assemaster a  inner join tcb_assedetail b on a.asse_no = b.asse_no and b.div_cd = 'S'");
 DataSet assessment = assessmentDao.find(" a.asse_no = '"+asse_no+"'", "a.*, b.div_cd, b.asse_html, b.asse_subhtml, b.sub_point, b.status as dstatus");
 if(!assessment.next()){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 if("50".equals(assessment.getString("status"))){
 	modify = false;
 }
 
-//¼ö½ÃÆò°¡ Æì±ÕÁ¡¼ö Á¶È¸
+//ìˆ˜ì‹œí‰ê°€ íŽ´ê· ì ìˆ˜ ì¡°íšŒ
 String ratePoint = "0";
 String member_no = assessment.getString("member_no");
 String asse_year = assessment.getString("asse_year");
@@ -32,7 +32,7 @@ DataSet sometime = sometimeDao.find(" a.asse_no= b.asse_no and a.member_no = '"+
 int cnt = 0;
 double tp_rate = 0;
 if(!sometime.next()){
-	//ÀÛ³âÆò±Õ
+	//ìž‘ë…„í‰ê· 
 	DataObject lastsometimeDao = new DataObject(" tcb_assemaster a, tcb_assedetail b ");
 	DataSet lastsometime = lastsometimeDao.find(" a.asse_no= b.asse_no and a.member_no = '"+member_no+"' and a.asse_year = '"+last_asse_year+"' and a.kind_cd = 'S' and a.status = '50' group by b.asse_no ", " b.asse_no, sum(b.rating_point) as rp, count(*) as cnt, (sum(b.rating_point)/ count(*)) as tp_rate ");
 
@@ -68,10 +68,10 @@ if(u.isPost() && f.validate()){
 
 	String saveDiv = f.get("saveDiv");
 	String status = "20";
-	String message = "ÀÓ½Ã ÀúÀå ÇÏ¿´½À´Ï´Ù.";
+	String message = "ìž„ì‹œ ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 	if("50".equals(saveDiv) || "90".equals(saveDiv)){
 		status = "50";
-		message = "Æò°¡¿Ï·á ÇÏ¿´½À´Ï´Ù.";
+		message = "í‰ê°€ì™„ë£Œ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 	}
 
 	String email = f.get("email");
@@ -100,15 +100,15 @@ if(u.isPost() && f.validate()){
 	db.setCommand(assedetailDao.getUpdateQuery("asse_no= '"+asseNo+"' and div_cd = '"+div_cd+"'"), assedetailDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
 	if("90".equals(saveDiv)){
 
-		//¸ÞÀÏ Àü¼Û
+		//ë©”ì¼ ì „ì†¡
 		p.clear();
-		p.setVar("title", "Á¤±âÆò°¡ °á°ú ");
+		p.setVar("title", "ì •ê¸°í‰ê°€ ê²°ê³¼ ");
 		p.setVar("member_name", assessment.getString("member_name"));
 		p.setVar("project_name", assessment.getString("project_name"));
 		p.setVar("asse_year", assessment.getString("asse_year"));
@@ -119,8 +119,8 @@ if(u.isPost() && f.validate()){
 		//p.setVar("resultParam1", "S");
 		p.setVar("server_name", request.getServerName());
 		p.setVar("return_url", "web/buyer/cust/assessment_result.jsp?param="+u.aseEnc(asseNo)+"&param1=S");
-		u.mail(email, "[Á¤±âÆò°¡ °á°ú] " +  assessment.getString("member_name") + " Æò°¡ °á°úÀÔ´Ï´Ù.", p.fetch("mail/assessment_mail.html"));
-		u.jsAlertReplace("Æò°¡¿Ï·á ÈÄ °á°úÀü¼Û ÇÏ¿´½À´Ï´Ù.","assessment_checking_slist.jsp?"+u.getQueryString());
+		u.mail(email, "[ì •ê¸°í‰ê°€ ê²°ê³¼] " +  assessment.getString("member_name") + " í‰ê°€ ê²°ê³¼ìž…ë‹ˆë‹¤.", p.fetch("mail/assessment_mail.html"));
+		u.jsAlertReplace("í‰ê°€ì™„ë£Œ í›„ ê²°ê³¼ì „ì†¡ í•˜ì˜€ìŠµë‹ˆë‹¤.","assessment_checking_slist.jsp?"+u.getQueryString());
 		return;
 	}
 
@@ -140,39 +140,39 @@ p.display(out);
 %>
 
 <%!
-// input box µîÀ» Á¦°Å
+// input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String cont_html_rm = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
 
-	// PDF¿ë
-	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box °ª ¸ðµÎ Á¦°Å
-	for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à");  }  // Ã¼Å©¹Ú½º
-	for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à"); }  // ¶óµð¿À
+	// PDFìš©
+	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box ê°’ ëª¨ë‘ ì œê±°
+	for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡");  }  // ì²´í¬ë°•ìŠ¤
+	for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡"); }  // ë¼ë””ì˜¤
 	for( Element elem : cont_doc.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
 
-	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 
 	cont_html_rm = cont_doc.toString();
 
 	return cont_html_rm;
 }
 
-// ¾ç½Ä¿¡ °ª Ã¤¿ö³Ö±â
+// ì–‘ì‹ì— ê°’ ì±„ì›Œë„£ê¸°
 public String setHtmlValue(String html, DataSet dsCustData)
 {
 	String asse_html = "";
 
-	// DB¿ë
+	// DBìš©
 	Document asse_doc = Jsoup.parse(html);
 
-	//cont_doc.select("input[name=mns_code]").attr("value", dsCustData.getString("r_mns_code"));	// Á¢Á¡ÄÚµå
+	//cont_doc.select("input[name=mns_code]").attr("value", dsCustData.getString("r_mns_code"));	// ì ‘ì ì½”ë“œ
 
-	// spanÀ¸·Î µÈ ºÎºÐ °ª Ã¤¿ì±â
+	// spanìœ¼ë¡œ ëœ ë¶€ë¶„ ê°’ ì±„ìš°ê¸°
 	for( Element elem : asse_doc.select("span#financeitem1") ){ elem.text(dsCustData.getString("sub_point")); }
 	for( Element elem : asse_doc.select("span#financeitemSumPoint") ){ elem.text(dsCustData.getString("sub_point")); }
 	for( Element elem : asse_doc.select("input#projectItemPoint") ){ elem.val(dsCustData.getString("projectItemPoint")); }

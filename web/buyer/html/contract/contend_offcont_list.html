@@ -12,64 +12,56 @@
 		<col width="10%">
 	</colgroup>
 	
-  	<!-- IF START 'member.src_depth' -->
 	<tr>
-	 	<th><p>¼Ò½Ì±×·ì{{subdomain}}</p></th>
-	 	<td colspan="3">
-	 		<!-- IF START 'src_l' -->
-	 		<span id="l_src_area">
-	 			<select name="l_src_cd" onchange="chgSelectBox('m')">
-	 				<option value="">-ÀüÃ¼-</option>
-	 			</select>
-	 		</span>
-	 		<!-- IF END 'src_l' -->
-	 		<!-- IF START 'src_m' -->
-	 		<span id="m_src_area">
-	 			<select name="m_src_cd" onchange="chgSelectBox('s')">
-	 				<option value="">-ÀüÃ¼-</option>
-	 			</select>
-	 		</span>
-	 		<!-- IF END 'src_m' -->
-	 		<!-- IF START 'src_s' -->
-	 		<span id="s_src_area">
-	 			<select name="s_src_cd">
-	 				<option value="">-ÀüÃ¼-</option>
-	 			</select>
-	 		</span>
-	 		<!-- IF END 'src_s' -->
-	 	</td>
-	 	<td align="right"></td>
-	</tr>
-	<!-- IF END 'member.src_depth' -->
-	
-	
-	
-	<tr>
-	   <th><p>°Å·¡Ã³¸í</p></th>
+	   <th><p>ê±°ë˜ì²˜ëª…</p></th>
 	   <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
-	   <th><p>°è¾à¸í</p></th>
+	   <th><p>ê³„ì•½ëª…</p></th>
 	   <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
 	   <td align="right"></td>
 	</tr>
 	<tr>
-	   <td><p>°è¾àÀÏÀÚ</p></td>
+	   <td><p>ê³„ì•½ì¼ì</p></td>
 	   <td>
 		<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 		<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	   </td>
-	   <th><p>°è¾à¹øÈ£</p></th>
+	   <th><p>ê³„ì•½ë²ˆí˜¸</p></th>
 	   <td><input type="text" name="s_user_no" style="width: 60%;" maxlength="100"></td>
-	   <td align="right" rowspan="7">
-	 		<button type="submit" class="search_btn">°Ë»ö</button>
+	 </tr>
+	 <tr>
+	 	<th><p>ê³„ì•½ìƒíƒœ</p></th>
+	   	<td colspan="1">
+	   		<select name="s_status">
+				<option value="">-ì „ì²´-</option>
+	   			<option value="I">ì§„í–‰ì¤‘</option>
+	   			<option value="C">ì™„ë£Œ</option>
+			</select>
+	  	</td>
+	  	<th><p>ìµœì¢…íŒŒì¼</p></th>
+	   	<td colspan="2">
+	   		<select name="s_fileYn">
+				<option value="">-ì „ì²´-</option>
+	   			<option value="Y">ë“±ë¡</option>
+	   			<option value="N">ë¯¸ë“±ë¡</option>
+			</select>
+	  	</td>
+	 </tr>
+	 <tr>
+	 	<td><p>ë¶€ì„œ</p></td>
+	 	<td><input type="text" name="s_division" style="width: 60%;" maxlength="100"></td>
+	 	<td><p>ë‹´ë‹¹ì</p></td>
+	 	<td><input type="text" name="s_user_name" style="width: 60%;" maxlength="100"></td>
+	 	<td align="right" rowspan="7">
+	 		<button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	 	</td>
 	 </tr>
 </table>
 </div>
 
 <div class="util-row" align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 
 <br/>
@@ -77,53 +69,62 @@
 <div class="div_table">
 	<table>
 		<colgroup>
-				<col width="7%">  
+				<col width="13%">
 				<col>
+				<col width="7%">
+				<col width="13%">
 				<col width="15%">   
 				<col width="10%">
-				<col width="10%">
+				<col width="8%">
+				<col width="8%">
 	 	</colgroup>
 		<tr>
-				<th>¼ø¹ø</th>
-				<th>°è¾à¸í</th>
-				<th>°Å·¡Ã³¸í</th>
-			<th>
-				<a href="javascript:fChangeOrder('a.cont_date', '{{sSortOrder}}')">
-					°è¾àÀÏÀÚ
-					<!-- IFC START 'sSortColumn==a.cont_date' -->
-						{{sSortCustNameIconName}}
-					<!-- IFC END 'sSortColumn==a.cont_date' -->
-					<!-- IFC START 'sSortColumn!=a.cont_date' -->
-						<font style='color:blue;font-weight:bold'>¢Õ</font>
-					<!-- IFC END 'sSortColumn!=a.cont_date' -->
-				</a>
-			</th>
 			<th>
 				<a href="javascript:fChangeOrder('a.cont_userno', '{{sSortOrder}}')">
-					°è¾à¹øÈ£
+					ê³„ì•½ë²ˆí˜¸
 					<!-- IFC START 'sSortColumn==a.cont_userno' -->
 						{{sSortCustNameIconName}}
 					<!-- IFC END 'sSortColumn==a.cont_userno' -->
 					<!-- IFC START 'sSortColumn!=a.cont_userno' -->
-						<font style='color:blue;font-weight:bold'>¢Õ</font>
+						<font style='color:blue;font-weight:bold'>â†•</font>
 					<!-- IFC END 'sSortColumn!=a.cont_userno' -->
 				</a>
 			</th>
+			<th>ê³„ì•½ëª…</th>
+			<th>ë‹´ë‹¹ì</th>
+			<th>ë¶€ì„œ</th>
+			<th>ê±°ë˜ì²˜ëª…</th>
+			<th>
+				<a href="javascript:fChangeOrder('a.cont_date', '{{sSortOrder}}')">
+					ê³„ì•½ì¼ì
+					<!-- IFC START 'sSortColumn==a.cont_date' -->
+						{{sSortCustNameIconName}}
+					<!-- IFC END 'sSortColumn==a.cont_date' -->
+					<!-- IFC START 'sSortColumn!=a.cont_date' -->
+						<font style='color:blue;font-weight:bold'>â†•</font>
+					<!-- IFC END 'sSortColumn!=a.cont_date' -->
+				</a>
+			</th>
+			<th>ìµœì¢…íŒŒì¼</th>
+			<th>ìƒíƒœ</th>
 	 	</tr>
 	 	<!-- IF START 'list' -->
 			<!-- LOOP START 'list' -->
 				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='contend_offcont_sendview.jsp?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
-					<td align="center">{{list.__ord}}</td>
-					<td>{{list.cont_name}}</td>
-					<td>{{list.cust_name}}</td>
-					<td align="center">{{list.cont_date}}</td>
 					<td align="center">{{list.cont_userno}}</td>
+					<td>{{list.cont_name}}</td>
+					<td align="center">{{list.user_name}}</td>
+					<td align="center">{{list.division}}</td>
+					<td align="center">{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.last_file_yn}}</td>
+					<td align="center">{{list.status_name}}</td>
 				</tr>
 			<!-- LOOP END 'list' -->
 		<!-- IF END 'list' -->
 		<!-- IFNOT START 'list' -->
 	 		<tr>
-				<td colspan="5" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+				<td colspan="5" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 			 </tr>
 	 	<!-- IFNOT END 'list' -->
 	</table>
@@ -145,19 +146,19 @@ function formSubmit(f){
 }
 
 
-// Á¤·Ä¹æ½Ä º¯°æ
+// ì •ë ¬ë°©ì‹ ë³€ê²½
 function fChangeOrder(sortColumn, sortOrder)
 {
 	var form = document.form1;
 
 	form.hdn_sort_column.value = sortColumn;
-    if (sortOrder == "asc") // ¿À¸§Â÷¼ø Á¤·Ä ÀÏ¶§
+    if (sortOrder == "asc") // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ ì¼ë•Œ
     {
-        form.hdn_sort_order.value = "desc"; // ³»¸²Â÷¼ø Á¤·Ä·Î ¼³Á¤
+        form.hdn_sort_order.value = "desc"; // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ë¡œ ì„¤ì •
     }
-    else                        // ³ª¸ÓÁö (³»¸²Â÷¼ø Á¤·Ä ¶Ç´Â ÃÖÃÊ Å¬¸¯½Ã)
+    else                        // ë‚˜ë¨¸ì§€ (ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ ë˜ëŠ” ìµœì´ˆ í´ë¦­ì‹œ)
     {
-        form.hdn_sort_order.value =  "asc";  // ¿À¸§Â÷¼ø Á¤·Ä·Î ¼³Á¤
+        form.hdn_sort_order.value =  "asc";  // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ë¡œ ì„¤ì •
     }
 
     form.submit();
@@ -165,52 +166,4 @@ function fChangeOrder(sortColumn, sortOrder)
     return;
 }
 
-function chgSelectBox(gubun){
-	var f = document.forms('form1');
-	var l_src_cd = f['l_src_cd'].value;
-	var m_src_cd = f['m_src_cd'].value;
-	switch(gubun){
-		case 'l':
-			call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area");
-		case 'm':
-			call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
-		case 's':
-			call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
-			break;
-	}
-}
-
-
 </script>
-
-
-<!-- IF START 'member.src_depth' -->
-<script language="javascript">
-
-var l_src_cd = "{{l_src_cd}}";
-var m_src_cd = "{{m_src_cd}}";
-var s_src_cd = "{{s_src_cd}}";
-
-<!-- IF START 'src_l' -->
-call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
-function defaultValue_l(){
-	SetFormValue("form1","l_src_cd", l_src_cd);
-}
-<!-- IF END 'src_l' -->
-
-<!-- IF START 'src_m' -->
-call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
-function defaultValue_m(){
-	SetFormValue("form1","m_src_cd", m_src_cd);
-}
-<!-- IF END 'src_m' -->
-
-<!-- IF START 'src_s' -->
-function defaultValue_s(){
-	SetFormValue("form1","s_src_cd", s_src_cd);
-}
-call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
-
-<!-- IF END 'src_s' -->
-</script>
-<!-- IF END 'member.src_depth' -->

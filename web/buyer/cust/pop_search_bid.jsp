@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
-String[] code_asse_status = {"10=>Æò°¡´ë»ó","20=>Æò°¡Áß","50=>Æò°¡¿Ï·á"};
+String[] code_asse_status = {"10=>í‰ê°€ëŒ€ìƒ","20=>í‰ê°€ì¤‘","50=>í‰ê°€ì™„ë£Œ"};
 
 String s_sdate = u.request("s_sdate", u.getTimeString("yyyy-MM-dd",u.addDate("Y",-1)));
 String s_edate = u.request("s_edate", u.getTimeString("yyyy-MM-dd"));
@@ -9,7 +9,7 @@ f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 f.addElement("s_bid_name",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -50,7 +50,7 @@ while(ds.next()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_search_bid");
-p.setVar("popup_title","ÀÔÂû°á°ú°Ë»ö");
+p.setVar("popup_title","ì…ì°°ê²°ê³¼ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

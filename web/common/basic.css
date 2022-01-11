@@ -1,10 +1,10 @@
-/* 
-¸¸µçÀÌ : Àü³­¿µ
-ÃÖÁ¾¼öÁ¤³¯Â¥ :  2008-07-15
+ï»¿/* 
+ë§Œë“ ì´ : ì „ë‚œì˜
+ìµœì¢…ìˆ˜ì •ë‚ ì§œ :  2008-07-15
 
 
 ---------------------------------------
-* Ãß°¡»çÇ×ÀÌ ÇÊ¿äÇÒ½Ã ´ã´çÀÚ¿¡°Ô ¹®ÀÇ *
+* ì¶”ê°€ì‚¬í•­ì´ í•„ìš”í• ì‹œ ë‹´ë‹¹ìì—ê²Œ ë¬¸ì˜ *
 ---------------------------------------
 
 */
@@ -23,7 +23,7 @@ margin: 0px;}
 
 
 table, tr, td, div, form, INPUT, SELECT, TEXTAREA {
-	font-family:"µ¸¿òÃ¼";
+	font-family:"ë‹ì›€ì²´";
 	font-size:9pt;
 	line-height: 120%;
 }
@@ -71,7 +71,7 @@ INPUT.label3 {
 INPUT.in_readonly
 { 
 	border: 1px solid #CCCCCC;
-	font-family:"µ¸¿ò,verdana,arial";
+	font-family:"ë‹ì›€,verdana,arial";
 	font-size:9pt;
 	color:#000000;
 	background-color:#F9FAFC;
@@ -94,7 +94,7 @@ a:visited {color: #333333;text-decoration: none;}
 
 .text1 {
 	color:#FFFFFF;
-	font-family: "±¼¸²Ã¼", "µ¸¿òÃ¼", Seoul;
+	font-family: "êµ´ë¦¼ì²´", "ë‹ì›€ì²´", Seoul;
 	font-size: 12px;
 }
 a.text1:link {color: #003366;text-decoration: none;}
@@ -127,10 +127,10 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-image: url(img/head_bg.gif);
 }
 
-/* ===================title°ü·Ã===================== */
+/* ===================titleê´€ë ¨===================== */
 
 .title {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼", Verdana;
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´", Verdana;
 	font-size: 12px;
 	font-weight: bold;
 	color: #003366;
@@ -138,7 +138,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 }
 
 .stitle {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼", Verdana;
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´", Verdana;
 	font-size: 14px;
 	font-weight: bold;
 	color: #003366;
@@ -146,17 +146,17 @@ a.text1:visited {color: #333333;text-decoration: none;}
 }
 
 .cust_title {
-	font-family: "µ¸¿ò", Arial;
+	font-family: "ë‹ì›€", Arial;
 	font-size: 18px;
 	font-weight: bold;
 	color: #3a5e9a;
 }
 
 
-/* =================¿ŞÂÊ¸Ş´º==================== */
+/* =================ì™¼ìª½ë©”ë‰´==================== */
 
 .lmbar01 {
-	font-family: "±¼¸²Ã¼", "µ¸¿òÃ¼", Seoul;
+	font-family: "êµ´ë¦¼ì²´", "ë‹ì›€ì²´", Seoul;
 	font-size: 12px;
 	font-weight: bold;
 	background-image: url(../images/location.gif);
@@ -169,7 +169,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	color: #FFFFFF;
 }
 .lmbar02 {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´";
 	font-size: 12px;
 	color: #000033;
 	background-image: url(../images/iconbar.gif);
@@ -180,7 +180,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 20px;
 	letter-spacing:-0.1em;
 }
-/* =================table ¹è°æ==================== */
+/* =================table ë°°ê²½==================== */
 
 .lblue {
 	background-color: #e4f6fa;
@@ -195,21 +195,21 @@ a.text1:visited {color: #333333;text-decoration: none;}
 }
 
 .small_01 {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´";
 	font-size: 12px;
 	color: #393B3A;
 	letter-spacing:-0.1em;
 }
 
 .small_02 {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´";
 	font-size: 11px;
 	color: #FFFFFF;
 	letter-spacing:-0.1em;
 }
 
 .small_03 {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´";
 	font-size: 11px;
 	color: #0099CC;
 	letter-spacing:-0.1em;
@@ -255,14 +255,14 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-image: url(img/titlebg02_down.gif);
 }
 
-/* ===================¹öÆ°°ü·Ã==================== */
+/* ===================ë²„íŠ¼ê´€ë ¨==================== */
 .btnw2 {
 	background: url(img/btn_write2.gif);
 	background-repeat: no-repeat;
 	height: 21px;
 	width: 39px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -280,7 +280,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 50px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -298,7 +298,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 61px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -316,7 +316,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 72px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -334,7 +334,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 83px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -352,7 +352,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 94px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -370,7 +370,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 105px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -388,7 +388,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 116px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -406,7 +406,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 127px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -424,7 +424,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 138px;
 	color: #3482B7; 
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -443,7 +443,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 56px;
 	color: #FFFFFF;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -460,7 +460,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 60px;
 	color: #FFFFFF;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -476,7 +476,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 73px;
 	color: #FFFFFF;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -492,7 +492,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	width: 85px;
 	color: #FFFFFF;
 	letter-spacing:-0.1em;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -508,7 +508,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	width: 95px;
 	color: #FFFFFF;
 	letter-spacing:-0.1em;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -524,7 +524,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	width: 107px;
 	color: #FFFFFF;
 	letter-spacing:-0.1em;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -540,7 +540,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	width: 125px;
 	color: #FFFFFF;
 	letter-spacing:-0.1em;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -555,7 +555,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 130px;
 	color: #FFFFFF;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -570,7 +570,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 150px;
 	color: #FFFFFF;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -585,7 +585,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	height: 21px;
 	width: 160px;
 	color: #FFFFFF;
-	font-family: "±¼¸²", "µ¸¿ò", Seoul, "ÇÑ°­Ã¼";
+	font-family: "êµ´ë¦¼", "ë‹ì›€", Seoul, "í•œê°•ì²´";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -595,14 +595,14 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	cursor:hand;
 }
 
-/* ===================Å×ÀÌºí¾È ÀÛÀº ¹öÆ°°ü·Ã==================== */
+/* ===================í…Œì´ë¸”ì•ˆ ì‘ì€ ë²„íŠ¼ê´€ë ¨==================== */
 
 .sbtn1 {
 	background: url(img/sbtn1.gif);
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 20px;
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -618,7 +618,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 37px;
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -634,7 +634,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 45px;
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -650,7 +650,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 55px;
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -666,7 +666,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 65px;
-	font-family:"µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family:"ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -682,7 +682,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 80px;
-	font-family:"µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family:"ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -698,7 +698,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 90px;
-	font-family:"µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family:"ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -714,7 +714,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 98px;
-	font-family:"µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family:"ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -730,7 +730,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 106px;
-	font-family:"µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family:"ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -747,7 +747,7 @@ a.text1:visited {color: #333333;text-decoration: none;}
 	background-repeat: no-repeat;
 	height: 18px;
 	width: 112px;
-	font-family:"µ¸¿ò", "µ¸¿òÃ¼", "Verdana";
+	font-family:"ë‹ì›€", "ë‹ì›€ì²´", "Verdana";
 	border-top-style: none;
 	border-right-style: none;
 	border-bottom-style: none;
@@ -829,7 +829,7 @@ object.input_box
 .textarea01
 {
 	border:solid 1 #CCCCCC;
-	font-family:"µ¸¿ò,verdana,arial";
+	font-family:"ë‹ì›€,verdana,arial";
 	font-size:9pt;
 	color:#000000;
 	background-color:#ffffff;
@@ -841,7 +841,7 @@ object.input_box
 .textarea01_readonly 
 {
 	border:solid 1 #CCCCCC;
-	font-family:"µ¸¿ò,verdana,arial";
+	font-family:"ë‹ì›€,verdana,arial";
 	font-size:9pt;
 	color:#555555;
 	background-color:#F9FAFC;
@@ -975,13 +975,13 @@ td.stc
 	height: 25px;
 }
 
-a.lmenu:link { FONT-SIZE: 9pt; COLOR: #337398; FONT-FAMILY: µ¸¿ò,verdana; TEXT-DECORATION: none}
+a.lmenu:link { FONT-SIZE: 9pt; COLOR: #337398; FONT-FAMILY: ë‹ì›€,verdana; TEXT-DECORATION: none}
 a.lmenu:visited { FONT-SIZE: 9pt; COLOR: #337398; TEXT-DECORATION: none}
 a.lmenu:active { FONT-SIZE: 9pt; COLOR: #337398; TEXT-DECORATION: none}
 a.lmenu:hover { FONT-SIZE: 9pt; COLOR: #337398; TEXT-DECORATION: underline}
 
 .lmenu_main {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´";
 	font-size:9pt;
 	font-weight: bold;
 	color: #337398;
@@ -994,7 +994,7 @@ a.lmenu:hover { FONT-SIZE: 9pt; COLOR: #337398; TEXT-DECORATION: underline}
 }
 
 .lmenu_sub {
-	font-family: "µ¸¿ò", "µ¸¿òÃ¼";
+	font-family: "ë‹ì›€", "ë‹ì›€ì²´";
 	font-size:9pt;
 	font-weight: none;
 	color: #337398;
@@ -1008,11 +1008,11 @@ a.lmenu:hover { FONT-SIZE: 9pt; COLOR: #337398; TEXT-DECORATION: underline}
 
 
 
-/* Layer Modal ¿ë CSS */
-#simplemodal-overlay {background-color:#FFFFFF;}	/* Midal µŞ¹è°æ */
+/* Layer Modal ìš© CSS */
+#simplemodal-overlay {background-color:#FFFFFF;}	/* Midal ë’·ë°°ê²½ */
 #simplemodal-container {background-color:#FFFFFF; border:2px solid #1291BB; padding:20px;}
 
-/* input text À§¿¡ ³ª¿À´Â ¾È³»¹®±¸ class */
+/* input text ìœ„ì— ë‚˜ì˜¤ëŠ” ì•ˆë‚´ë¬¸êµ¬ class */
 
 .input_over1_blur  { 
 	background: transparent url(img/input_over1.gif) no-repeat; 

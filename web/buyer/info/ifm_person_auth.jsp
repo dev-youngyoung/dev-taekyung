@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String person_seq = u.request("person_seq");
 String l_div_cd = u.request("l_div_cd");
 if(person_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -86,16 +86,16 @@ while(mauth.next()){
 	mauth.put("print_check", mauth.getString("print_yn").equals("Y")?"checked":"");
 	mauth.put("all_read_check", mauth.getString("all_read_yn").equals("Y")?"checked":"");
 	
-	if(			mauth.getString("adm_cd").equals("020201")	//	ÀüÀÚ°è¾à/°è¾àÁøÇà/ÁøÇàÁßÀÎ°è¾à
-				||	mauth.getString("adm_cd").equals("020301")	//	ÀüÀÚ°è¾à/°è¾à¿Ï·á/¿Ï·áµÈ°è¾à
-				||	mauth.getString("adm_cd").equals("020303")	//	ÀüÀÚ°è¾à/°è¾à¿Ï·á/¸¸·á¿¹Á¤ °è¾à¼­
-				||	mauth.getString("adm_cd").equals("020304")	//	ÀüÀÚ°è¾à/°è¾à¿Ï·á/º¸Áõº¸ÇèÁõ±Ç°ü¸®
-				||	mauth.getString("adm_cd").equals("020402")	//	ÀüÀÚ°è¾à/°è¾àÇöÈ²/°è¾àÁøÇàÇöÈ²
-				||	mauth.getString("adm_cd").equals("010105")	//	ÀüÀÚÀÔÂû/±¸¸Å°ü¸®/³«Âû¾÷Ã¼¼±Á¤
-				||	mauth.getString("adm_cd").equals("010106")	//	ÀüÀÚÀÔÂû/±¸¸Å°ü¸®/ÀÔÂû°á°ú
-				||	mauth.getString("adm_cd").equals("010301")	//	ÀüÀÚÀÔÂû/ÀÔÂûÇöÈ²/ÀÔÂûÁøÇàÇöÈ²
-				||	mauth.getString("adm_cd").equals("010501")	//	ÀüÀÚÀÔÂû/°ßÀû°ü¸®/°ßÀû¿äÃ»ÇöÈ²
-				||	mauth.getString("adm_cd").equals("010502")	//	ÀüÀÚÀÔÂû/°ßÀû°ü¸®/°ßÀû°á°ú
+	if(			mauth.getString("adm_cd").equals("020201")	//	ì „ìžê³„ì•½/ê³„ì•½ì§„í–‰/ì§„í–‰ì¤‘ì¸ê³„ì•½
+				||	mauth.getString("adm_cd").equals("020301")	//	ì „ìžê³„ì•½/ê³„ì•½ì™„ë£Œ/ì™„ë£Œëœê³„ì•½
+				||	mauth.getString("adm_cd").equals("020303")	//	ì „ìžê³„ì•½/ê³„ì•½ì™„ë£Œ/ë§Œë£Œì˜ˆì • ê³„ì•½ì„œ
+				||	mauth.getString("adm_cd").equals("020304")	//	ì „ìžê³„ì•½/ê³„ì•½ì™„ë£Œ/ë³´ì¦ë³´í—˜ì¦ê¶Œê´€ë¦¬
+				||	mauth.getString("adm_cd").equals("020402")	//	ì „ìžê³„ì•½/ê³„ì•½í˜„í™©/ê³„ì•½ì§„í–‰í˜„í™©
+				||	mauth.getString("adm_cd").equals("010105")	//	ì „ìžìž…ì°°/êµ¬ë§¤ê´€ë¦¬/ë‚™ì°°ì—…ì²´ì„ ì •
+				||	mauth.getString("adm_cd").equals("010106")	//	ì „ìžìž…ì°°/êµ¬ë§¤ê´€ë¦¬/ìž…ì°°ê²°ê³¼
+				||	mauth.getString("adm_cd").equals("010301")	//	ì „ìžìž…ì°°/ìž…ì°°í˜„í™©/ìž…ì°°ì§„í–‰í˜„í™©
+				||	mauth.getString("adm_cd").equals("010501")	//	ì „ìžìž…ì°°/ê²¬ì ê´€ë¦¬/ê²¬ì ìš”ì²­í˜„í™©
+				||	mauth.getString("adm_cd").equals("010502")	//	ì „ìžìž…ì°°/ê²¬ì ê´€ë¦¬/ê²¬ì ê²°ê³¼
 		)
 	{
 		mauth.put("all_read_disabled", "");
@@ -135,7 +135,7 @@ if(u.isPost()&&f.validate()){
 	int all_read_seq 	= 0 ;
 	
 	if(adm_cd == null){
-		u.jsError("ÀúÀåÇÒ ¸Þ´º°¡ ¾ø½À´Ï´Ù.");
+		u.jsError("ì €ìž¥í•  ë©”ë‰´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
@@ -193,7 +193,7 @@ if(u.isPost()&&f.validate()){
 		db.setCommand(authDao.getInsertQuery(),authDao.record);
 	}
 	
-	// ÇöÀç ¼±ÅÃµÈ »ç¿ëÀÚ¸¦ ±âÁØÀ¸·Î ³ª¸ÓÁö ±ÇÇÑ º¹»ç
+	// í˜„ìž¬ ì„ íƒëœ ì‚¬ìš©ìžë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë‚˜ë¨¸ì§€ ê¶Œí•œ ë³µì‚¬
 	if(!u.request("multi_person_seq").equals(""))
 	{
 		String insQuery="";
@@ -214,10 +214,10 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.","ifm_person_auth.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.","ifm_person_auth.jsp?"+u.getQueryString());
 	return;
 }
 

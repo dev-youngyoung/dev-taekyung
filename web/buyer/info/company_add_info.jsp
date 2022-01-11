@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao code = new CodeDao("tcb_comcode");
@@ -14,7 +14,7 @@ DataObject mdao = new DataObject("tcb_member");
 //mdao.setDebug(out);
 DataSet member = mdao.find(where, "member_name, boss_name");
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -49,9 +49,9 @@ while(material.next())
 }
 f.addElement("meterial_cd", strMaterial, "");
 
-// º¸À¯Â÷·®Á¶È¸
+// ë³´ìœ ì°¨ëŸ‰ì¡°íšŒ
 DataObject car_dao = new DataObject("tcb_car");
-DataSet car1 = car_dao.find(where + " and car_gubun='1'"); // º¸À¯Â÷¶û
+DataSet car1 = car_dao.find(where + " and car_gubun='1'"); // ë³´ìœ ì°¨ëž‘
 while(car1.next())
 {
 	car1.put("car_num1", u.numberFormat(car1.getInt("car_num")));
@@ -59,8 +59,8 @@ while(car1.next())
 	car1.put("weight_cd1", car1.getString("weight_cd"));
 }
 
-//¿î¿µ°¡´ÉÂ÷·®Á¶È¸
-DataSet car2 = car_dao.find(where + " and car_gubun='2'"); // º¸À¯Â÷¶û
+//ìš´ì˜ê°€ëŠ¥ì°¨ëŸ‰ì¡°íšŒ
+DataSet car2 = car_dao.find(where + " and car_gubun='2'"); // ë³´ìœ ì°¨ëž‘
 while(car2.next())
 {
 	car2.put("car_num2", u.numberFormat(car2.getInt("car_num")));
@@ -68,7 +68,7 @@ while(car2.next())
 	car2.put("weight_cd2", car2.getString("weight_cd"));
 }
 
-//º¸ÁõÁ¤º¸Á¶È¸
+//ë³´ì¦ì •ë³´ì¡°íšŒ
 DataObject warrDao = new DataObject("tcb_warr_add");
 DataSet warr = warrDao.find(where);
 while(warr.next()){
@@ -80,7 +80,7 @@ while(warr.next()){
 	warr.put("member_no", u.aseEnc(warr.getString("member_no")));
 }
 
-//ÀÎÇã°¡Á¤º¸
+//ì¸í—ˆê°€ì •ë³´
 DataObject certDao = new DataObject("tcb_cert_add");
 DataSet cert = certDao.find(where);
 while(cert.next()){
@@ -144,7 +144,7 @@ if(u.isPost()&& f.validate()){
 		car_dao.item("car_cd", car_cd1[i]);
 		car_dao.item("weight_cd", weight_cd1[i]);
 		car_dao.item("car_num", car_num1[i]);
-		car_dao.item("car_gubun", "1");  // Â÷Á¾(1:º¸À¯Â÷·®, 2:ÃÖ´ë ¿î¿µ°¡´É Â÷·®)
+		car_dao.item("car_gubun", "1");  // ì°¨ì¢…(1:ë³´ìœ ì°¨ëŸ‰, 2:ìµœëŒ€ ìš´ì˜ê°€ëŠ¥ ì°¨ëŸ‰)
 		db.setCommand(car_dao.getInsertQuery(), car_dao.record);
 	}	
 	
@@ -160,16 +160,16 @@ if(u.isPost()&& f.validate()){
 		car_dao.item("car_cd", car_cd2[i]);
 		car_dao.item("weight_cd", weight_cd2[i]);
 		car_dao.item("car_num", car_num2[i]);
-		car_dao.item("car_gubun", "2");  // Â÷Á¾(1:º¸À¯Â÷·®, 2:ÃÖ´ë ¿î¿µ°¡´É Â÷·®)
+		car_dao.item("car_gubun", "2");  // ì°¨ì¢…(1:ë³´ìœ ì°¨ëŸ‰, 2:ìµœëŒ€ ìš´ì˜ê°€ëŠ¥ ì°¨ëŸ‰)
 		db.setCommand(car_dao.getInsertQuery(), car_dao.record);
 	}		
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	//u.redirect("./company_modify.jsp");
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "company_add_info.jsp");
+	u.jsAlertReplace("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "company_add_info.jsp");
 	return;
 }
 

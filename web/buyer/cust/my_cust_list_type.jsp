@@ -1,38 +1,38 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String[] code_client_type = null;
-String[] code_cmp_typ = {"7=>ÈŞ¾÷","8=>Æó¾÷"};
-String client_type = u.request("s_client_type", "");  // °Å·¡Ã³ Å¸ÀÔ.
+String[] code_cmp_typ = {"7=>íœ´ì—…","8=>íì—…"};
+String client_type = u.request("s_client_type", "");  // ê±°ë˜ì²˜ íƒ€ì….
 String sClientWhere = "";
-if(_member_no.equals("20130400091")) // ´ëº¸Á¤º¸Åë½Å
+if(_member_no.equals("20130400091")) // ëŒ€ë³´ì •ë³´í†µì‹ 
 {
-	code_client_type = new String[]{"0=>¹°Ç°","1=>¿ë¿ª"};
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ìš©ì—­"};
 	p.setVar("menu_cd","000082");
-	p.setVar("view_cust_type", true);  // ¾÷Ã¼À¯Çü °Ë»ö Á¶°Ç º¸±â
+	p.setVar("view_cust_type", true);  // ì—…ì²´ìœ í˜• ê²€ìƒ‰ ì¡°ê±´ ë³´ê¸°
 }
-else if(_member_no.equals("20150200088"))  // ÄÚ½º¸ğÄÚ½º
+else if(_member_no.equals("20150200088"))  // ì½”ìŠ¤ëª¨ì½”ìŠ¤
 {
-	code_client_type = new String[]{"0=>¿øÀÚÀç","1=>¿ÜÁÖ","2=>ºÎÀÚÀç"};
+	code_client_type = new String[]{"0=>ì›ìì¬","1=>ì™¸ì£¼","2=>ë¶€ìì¬"};
 	p.setVar("menu_cd","000082");
-	p.setVar("view_cust_type", true);  // ¾÷Ã¼À¯Çü °Ë»ö Á¶°Ç º¸±â
+	p.setVar("view_cust_type", true);  // ì—…ì²´ìœ í˜• ê²€ìƒ‰ ì¡°ê±´ ë³´ê¸°
 }
-else if(u.inArray(_member_no, new String[]{"20121200116", "20140101025", "20120200001","20170101031","20121204063","20170602171"}))  // ÇÑ±¹Á¦Áö, ½Å¼¼°è, Å×½ºÆ®, È¨ÇÃ·¯½º//´ë¸²¾¾¿£¿¡½º
+else if(u.inArray(_member_no, new String[]{"20121200116", "20140101025", "20120200001","20170101031","20121204063","20170602171"}))  // í•œêµ­ì œì§€, ì‹ ì„¸ê³„, í…ŒìŠ¤íŠ¸, í™ˆí”ŒëŸ¬ìŠ¤//ëŒ€ë¦¼ì”¨ì—”ì—ìŠ¤
 {
-	code_client_type = new String[]{"0=>¹°Ç°","1=>°ø»ç","2=>¿ë¿ª"};
+	code_client_type = new String[]{"0=>ë¬¼í’ˆ","1=>ê³µì‚¬","2=>ìš©ì—­"};
 	p.setVar("menu_cd","000082");
-	p.setVar("view_cust_type", true);  // ¾÷Ã¼À¯Çü °Ë»ö Á¶°Ç º¸±â
+	p.setVar("view_cust_type", true);  // ì—…ì²´ìœ í˜• ê²€ìƒ‰ ì¡°ê±´ ë³´ê¸°
 }
-else if(_member_no.equals("20130400333"))  // CJ´ëÇÑÅë¿î
+else if(_member_no.equals("20130400333"))  // CJëŒ€í•œí†µìš´
 {
-	code_client_type = new String[]{"0=>¼ö¼Û","1=>±¸¸Å","2=>°ø»ç"};
+	code_client_type = new String[]{"0=>ìˆ˜ì†¡","1=>êµ¬ë§¤","2=>ê³µì‚¬"};
 	p.setVar("menu_cd","000082");
-	p.setVar("view_cust_type", true);  // ¾÷Ã¼À¯Çü °Ë»ö Á¶°Ç º¸±â
+	p.setVar("view_cust_type", true);  // ì—…ì²´ìœ í˜• ê²€ìƒ‰ ì¡°ê±´ ë³´ê¸°
 }
-else // 3M, ÇÑ±¹À¯¸®°ø¾÷
+else // 3M, í•œêµ­ìœ ë¦¬ê³µì—…
 {
-	if(client_type.equals("")) client_type = "0"; // ±âº»°ªÀÌ ¾øÀ¸¸é Çù·Â¾÷Ã¼
+	if(client_type.equals("")) client_type = "0"; // ê¸°ë³¸ê°’ì´ ì—†ìœ¼ë©´ í˜‘ë ¥ì—…ì²´
 	p.setVar("view_cust_type", false);
-	code_client_type = new String[]{"0=>°ø±Ş»ç","1=>ÆÇ¸Å(´ë¸®)Á¡"};
+	code_client_type = new String[]{"0=>ê³µê¸‰ì‚¬","1=>íŒë§¤(ëŒ€ë¦¬)ì "};
 	if(client_type.equals("1"))
 	{
 		p.setVar("menu_cd","000090");
@@ -44,14 +44,14 @@ if(!client_type.equals("")){
 	sClientWhere = " a.client_type like '%"+client_type+"%'";
 }
 
-//½Å¿ëÆò°¡¿¬°è
-boolean isCredit = u.inArray(_member_no, new String[]{"20121204063"}); // È¨ÇÃ·¯½º
+//ì‹ ìš©í‰ê°€ì—°ê³„
+boolean isCredit = u.inArray(_member_no, new String[]{"20121204063"}); // í™ˆí”ŒëŸ¬ìŠ¤
 String auth_key = "";
 String auth_cd = "";
 if(isCredit) {
-	if(_member_no.equals("20121204063")) { // È¨ÇÃ·¯½º
+	if(_member_no.equals("20121204063")) { // í™ˆí”ŒëŸ¬ìŠ¤
 		auth_cd = "778"; // clp_cd
-		auth_key = "4d456c68555468654b56387a6148466d646d396f55673d3d";//  ¾ÏÈ£È­Å°
+		auth_key = "4d456c68555468654b56387a6148466d646d396f55673d3d";//  ì•”í˜¸í™”í‚¤
 	}
 }
 
@@ -68,7 +68,7 @@ String column = "a.* "
 		+	",b.member_gubun"
 		+	",c.email"
 		+	",c.user_name"				
-		+	",decode(b.status,'01','Á¤È¸¿ø','02','ºñÈ¸¿ø','00','Å»Åğ') status_nm"
+		+	",decode(b.status,'01','ì •íšŒì›','02','ë¹„íšŒì›','00','íƒˆí‡´') status_nm"
 		+	",c.tel_num"
 		+	",c.hp1, c.hp2, c.hp3"
 		+	",c.fax_num"; 
@@ -96,7 +96,7 @@ if(isCredit) {
 
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -109,7 +109,7 @@ list.addWhere("	(a.client_reg_cd = '1' or a.client_reg_cd is null) ");
 list.addWhere("	c.default_yn = 'Y' ");
 
 if(!sClientWhere.equals(""))
-	list.addWhere(sClientWhere);  // °Å·¡Ã³ Å¸ÀÔ
+	list.addWhere(sClientWhere);  // ê±°ë˜ì²˜ íƒ€ì…
 
 list.addWhere("	b.member_gubun != '04' ");
 if(!f.get("s_member_name").equals("")){
@@ -128,12 +128,12 @@ if(u.request("mode").equals("excel")){
 		
 		ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
 		ds.put("client_type", u.getItems(ds.getString("client_type"), code_client_type));
-		ds.put("client_status", ds.getString("status").equals("90")?"°Å·¡Á¤Áö":"-");
-		ds.put("temp_yn", ds.getString("temp_yn").equals("Y")?"ÀÏÈ¸¼º¾÷Ã¼":"-");
+		ds.put("client_status", ds.getString("status").equals("90")?"ê±°ë˜ì •ì§€":"-");
+		ds.put("temp_yn", ds.getString("temp_yn").equals("Y")?"ì¼íšŒì„±ì—…ì²´":"-");
 	}
 
 	String fileName = "";
-	fileName = "°Å·¡Ã³.xls";
+	fileName = "ê±°ë˜ì²˜.xls";
 	p.setLoop("list", ds);
 	p.setVar("view_clienttype", true);
 	response.setContentType("application/vnd.ms-excel");
@@ -149,7 +149,7 @@ while(ds.next()){
 	ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
 	ds.put("check_status", ds.getString("status").equals("90")?"checked":"");
 	ds.put("temp_checked", ds.getString("temp_yn").equals("Y")?"checked":"");
-	ds.put("cust_detail_code", ds.getString("cust_detail_code").equals("")?"<span style=\"color:red\">¹Ìµî·Ï</span>":ds.getString("cust_detail_code"));
+	ds.put("cust_detail_code", ds.getString("cust_detail_code").equals("")?"<span style=\"color:red\">ë¯¸ë“±ë¡</span>":ds.getString("cust_detail_code"));
 	ds.put("client_type", u.getItems(ds.getString("client_type"), code_client_type));
 }
 
@@ -158,11 +158,11 @@ p.setLayout("default");
 p.setDebug(out);
 p.setBody("cust.my_cust_list_type");
 if(client_type.equals("1")){
-	//´ë¸®Á¡ Á¶È¸
+	//ëŒ€ë¦¬ì  ì¡°íšŒ
 	p.setVar("menu_cd","000090");
 	p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000090", "btn_auth").equals("10"));	
 }else{
-	//Çù·Â¾÷Ã¼ Á¶È¸
+	//í˜‘ë ¥ì—…ì²´ ì¡°íšŒ
 	p.setVar("menu_cd","000089");
 	p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), "000089", "btn_auth").equals("10"));
 }
@@ -170,7 +170,7 @@ p.setVar("auth_form", false);
 p.setLoop("code_client_type", u.arr2loop(code_client_type));
 p.setVar("isCredit", isCredit);
 p.setLoop("list", ds);
-p.setVar("isExcel", true);  // ÀÏ¹İ»ç¿ëÀÚ´Â ¿¢¼¿´Ù¿î ¸øÇÔ
+p.setVar("isExcel", true);  // ì¼ë°˜ì‚¬ìš©ìëŠ” ì—‘ì…€ë‹¤ìš´ ëª»í•¨
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));

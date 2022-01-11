@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String member_no = u.request("member_no");
 String client_type = u.request("client_type");
 String member_slno1 = u.request("member_slno1");
 String member_slno2 = u.request("member_slno2");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 if(u.isPost()){
 	DB db = new DB();
 
-	// »ó´ë¹æ ¾÷Ã¼¿¡ µî·Ï
+	// ìƒëŒ€ë°© ì—…ì²´ì— ë“±ë¡
 	DataObject dao = new DataObject("tcb_client");
 	//dao.setDebug(out);
 	int client_seq = dao.getOneInt(
@@ -26,9 +26,9 @@ if(u.isPost()){
 	if(!client_type.equals("")){
 		dao.item("client_type", client_type);
 	}
-	// °¡µî·ÏÀÌ ÇÊ¿äÇÑ ¾÷Ã¼ÀÇ °Å·¡Ã³ÀÎ °æ¿ì (´ëº¸Á¤º¸Åë½Å, ÇÑ±¹Á¦Áö, ½Å¼¼°è, Å×½ºÆ®, NHÅõÀÚÁõ±Ç,´ë¸²C&S, ÇÏÀÌ¿£ÅØ , °æ±âÅ×Å©³ëÆÄÅ©, ³óÇù³×Æ®¿÷½º,¸ÞÆ®·Î9È£¼±)
+	// ê°€ë“±ë¡ì´ í•„ìš”í•œ ì—…ì²´ì˜ ê±°ëž˜ì²˜ì¸ ê²½ìš° (ëŒ€ë³´ì •ë³´í†µì‹ , í•œêµ­ì œì§€, ì‹ ì„¸ê³„, í…ŒìŠ¤íŠ¸, NHíˆ¬ìžì¦ê¶Œ,ëŒ€ë¦¼C&S, í•˜ì´ì—”í… , ê²½ê¸°í…Œí¬ë…¸íŒŒí¬, ë†í˜‘ë„¤íŠ¸ì›ìŠ¤,ë©”íŠ¸ë¡œ9í˜¸ì„ )
 	if( u.inArray(member_no, new String[]{"20130400091", "20121200116", "20140101025", "20120200001","20160901598","20170101031","20121204063","20170602171","20180203437","20181002679","20151101243","20191200612"}) ) {
-		dao.item("client_reg_cd", "0");   // 0:°¡µî·Ï¾÷Ã¼, 1:Á¤½Äµî·Ï¾÷Ã¼
+		dao.item("client_reg_cd", "0");   // 0:ê°€ë“±ë¡ì—…ì²´, 1:ì •ì‹ë“±ë¡ì—…ì²´
 	} else {
 		dao.item("client_reg_cd", "1");
 	}
@@ -36,7 +36,7 @@ if(u.isPost()){
 	db.setCommand(dao.getInsertQuery(), dao.record);
 	
 
-	if( !member_slno1.equals("") && !member_slno2.equals("") && auth.getString("_MEMBER_GUBUN").equals("03") ){//CJ´ëÇÑÅë¿î °³ÀÎ »ç¾÷ÀÚ »ý³â¿ùÀÏÁ¤º¸¸¦ ¹ýÀÎµî·Ï¹øÈ£¿¡ ÀúÀåÇØµÒ
+	if( !member_slno1.equals("") && !member_slno2.equals("") && auth.getString("_MEMBER_GUBUN").equals("03") ){//CJëŒ€í•œí†µìš´ ê°œì¸ ì‚¬ì—…ìž ìƒë…„ì›”ì¼ì •ë³´ë¥¼ ë²•ì¸ë“±ë¡ë²ˆí˜¸ì— ì €ìž¥í•´ë‘ 
 		DataObject member = new DataObject("tcb_member");
 		
 		if( Integer.parseInt(member_slno1.substring(0,2)) < 20 ){
@@ -48,29 +48,29 @@ if(u.isPost()){
 			member_slno2 = member_slno2.equals("1") ? "3" : "4";
 		}
 		member.item("member_slno", member_slno1+member_slno2);
-		db.setCommand(member.getUpdateQuery("member_no= '"+_member_no+"'"), member.record); // ÁÖ¹Î¹øÈ£
+		db.setCommand(member.getUpdateQuery("member_no= '"+_member_no+"'"), member.record); // ì£¼ë¯¼ë²ˆí˜¸
 		
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´ ¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê° ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.");
 		return;
 	}
 }
 
-// ¾÷Ã¼°¡ Ãß°¡·Î Ã·ºÎÇØ¾ßÇÒ ÆÄÀÏÀÌ ÀÖ´Â °æ¿ì ¹Ù·Î ÀÌµ¿
+// ì—…ì²´ê°€ ì¶”ê°€ë¡œ ì²¨ë¶€í•´ì•¼í•  íŒŒì¼ì´ ìžˆëŠ” ê²½ìš° ë°”ë¡œ ì´ë™
 DataObject rfileDao = new DataObject("tcb_client_rfile_template");
 DataSet rf = rfileDao.find("member_no='"+member_no+"'");
 if(rf.next()) {
-	u.jsAlertReplace("±âº» Á¤º¸µî·Ï ¿Ï·áµÇ¾ú½À´Ï´Ù.\\n\\nÃß°¡ ±¸ºñ¼­·ù ÆÄÀÏÀ» Ã·ºÎÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.", "company_view.jsp?member_no="+member_no);
+	u.jsAlertReplace("ê¸°ë³¸ ì •ë³´ë“±ë¡ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nì¶”ê°€ êµ¬ë¹„ì„œë¥˜ íŒŒì¼ì„ ì²¨ë¶€í•´ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.", "company_view.jsp?member_no="+member_no);
 }
 
-if(member_no.equals("20130400333")&&client_type.indexOf("0")>-1){ // CJ´ëÇÑÅë¿îÀº ±â¾÷ÇöÈ²À» Ãß°¡·Î ÀÔ·ÂÇÏµµ·Ï ÇÑ´Ù.
-	u.jsAlertReplace("°Å·¡Ã³·Î µî·Ï µÇ¾ú½À´Ï´Ù. \\n\\nÀÔÂû¿¡ Âü¿©ÇÏ½Ã´Â ¾÷Ã¼´Â Ãß°¡ Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.", "../info/company_add_info.jsp");
-}else if(u.inArray(member_no, new String[]{"20130400091", "20121200116", "20140101025", "20120200001","20160901598"}) ){//°¡µî·Ï ¸Þ¼¼Áö º¯°æ
-	u.jsAlertReplace("°¡µî·Ï °Å·¡Ã³·Î µî·Ï µÇ¾ú½À´Ï´Ù.","cust_list.jsp?"+u.getQueryString("member_no"));
+if(member_no.equals("20130400333")&&client_type.indexOf("0")>-1){ // CJëŒ€í•œí†µìš´ì€ ê¸°ì—…í˜„í™©ì„ ì¶”ê°€ë¡œ ìž…ë ¥í•˜ë„ë¡ í•œë‹¤.
+	u.jsAlertReplace("ê±°ëž˜ì²˜ë¡œ ë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤. \\n\\nìž…ì°°ì— ì°¸ì—¬í•˜ì‹œëŠ” ì—…ì²´ëŠ” ì¶”ê°€ ì •ë³´ë¥¼ ìž…ë ¥í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.", "../info/company_add_info.jsp");
+}else if(u.inArray(member_no, new String[]{"20130400091", "20121200116", "20140101025", "20120200001","20160901598"}) ){//ê°€ë“±ë¡ ë©”ì„¸ì§€ ë³€ê²½
+	u.jsAlertReplace("ê°€ë“±ë¡ ê±°ëž˜ì²˜ë¡œ ë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤.","cust_list.jsp?"+u.getQueryString("member_no"));
 }else{
-	u.jsAlertReplace("°Å·¡Ã³·Î µî·Ï µÇ¾ú½À´Ï´Ù.","cust_list.jsp?"+u.getQueryString("member_no"));
+	u.jsAlertReplace("ê±°ëž˜ì²˜ë¡œ ë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤.","cust_list.jsp?"+u.getQueryString("member_no"));
 }
 return;
 %>

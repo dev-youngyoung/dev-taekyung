@@ -51,7 +51,7 @@ public class FileDownLoad extends HttpServlet {
 			String sFilePath	= Startup.conf.getString(sFilePathKey);
 			String sEncYn = StrUtil.chkNull(request.getParameter("ENC_YN"));
 			
-			// Mobile project¸¦ À§ÇÑ Ãß°¡
+			// Mobile projectë¥¼ ìœ„í•œ ì¶”ê°€
 			String sMobileYN = StrUtil.chkNull(request.getParameter("_mobile_"));
 			//System.out.println("sEncYn : " + sEncYn);
 			if(sEncYn.equals("Y")){
@@ -63,13 +63,13 @@ public class FileDownLoad extends HttpServlet {
 			sFile	=	StrUtil.replace(sFilePath + sFileSubPath + sFileName, "\\", File.separator);
 			sFile	=	StrUtil.replace(sFilePath + sFileSubPath + sFileName, "/", File.separator);
 
-			// 2011.06.21 add by shryu  º¸¾È Ãë¾àÁ¡ º¸¿Ï CRLF injection/HTTP response splitting
+			// 2011.06.21 add by shryu  ë³´ì•ˆ ì·¨ì•½ì  ë³´ì™„ CRLF injection/HTTP response splitting
 	        sFile = StrUtil.replace(sFile, "\r", "");
 	        sFile = StrUtil.replace(sFile, "\n", "");
 	        sFileTarFile = StrUtil.replace(sFileTarFile, "\r", "");
 	        sFileTarFile = StrUtil.replace(sFileTarFile, "\n", "");
 
-			// 2011.06.21 add by shryu  º¸¾È Ãë¾àÁ¡ º¸¿Ï Directory Traversal
+			// 2011.06.21 add by shryu  ë³´ì•ˆ ì·¨ì•½ì  ë³´ì™„ Directory Traversal
 	        sFile = StrUtil.replace(sFile, "../", "");
 	        sFile = StrUtil.replace(sFile, "./", "");
 	        sFile = StrUtil.replace(sFile, "..\\", "");
@@ -84,7 +84,7 @@ public class FileDownLoad extends HttpServlet {
 	        if(sFileTarFile.length() <= 0) sFileTarFile = sFile.substring(sFile.lastIndexOf(File.separator)+1);
 	        System.out.println("sFile["+sFile+"]");
 	        
-	        response.setContentType("text/html;charset=euc-kr");
+	        response.setContentType("text/html;charset=UTF-8");
 	        //response.setCharacterEncoding("euc-kr");
 			ServletOutputStream out = response.getOutputStream();
 			
@@ -100,7 +100,7 @@ public class FileDownLoad extends HttpServlet {
                 response.setHeader("Access-Control-Allow-Origin", "http://m.nicedocu.com"); 
                 response.setHeader("Access-Control-Allow-Credentials", "true");
                 //response.setHeader("Content-Disposition", "attachment;filename="+StrUtil.ConfCharset(sFileTarFile)+"\"");
-                response.setHeader("Content-Disposition", "attachment;filename=\""+new String(sFileTarFile.getBytes("EUC-KR"), "ISO-8859-1")+"\";");
+                response.setHeader("Content-Disposition", "attachment;filename=\""+new String(sFileTarFile.getBytes("UTF-8"), "ISO-8859-1")+"\";");
                 response.setContentLength(fileSize);
 
                 byte[] buffer = new byte[4096];              
@@ -117,10 +117,10 @@ public class FileDownLoad extends HttpServlet {
                     bos.flush();
                 }catch (Exception e) { 
                 	if(sMobileYN.equals("Y")){
-                		out.print("{\"success\": \"false\",\"msg\": \"ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.<br>°ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä.\",\"status\": 500}");
+                		out.print("{\"success\": \"false\",\"msg\": \"íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.<br>ê´€ë¦¬ìì—ê²Œ ë¬¸ì˜í•˜ì„¸ìš”.\",\"status\": 500}");
                 	}else{
 	                    out.println("<SCRIPT>");
-	                    out.println("alert('ÆÄÀÏÀÌ ´Ù¿î·Îµå Áß ¿¡·¯°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.\n\n°ü¸®ÀÚ¿¡°Ô ¹®ÀÇ ÇÏ½Ê½Ã¿À.');");
+	                    out.println("alert('íŒŒì¼ì´ ë‹¤ìš´ë¡œë“œ ì¤‘ ì—ëŸ¬ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.\n\nê´€ë¦¬ìì—ê²Œ ë¬¸ì˜ í•˜ì‹­ì‹œì˜¤.');");
 	                    out.println("</SCRIPT>");
                 	}
                 }finally {
@@ -130,10 +130,10 @@ public class FileDownLoad extends HttpServlet {
             }else {
 				//pw.println(sb.toString());
             	if(sMobileYN.equals("Y")){
-            		out.print("{\"success\": \"false\",\"msg\": \"ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.<br>°ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä.\",\"status\": 404}");
+            		out.print("{\"success\": \"false\",\"msg\": \"íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.<br>ê´€ë¦¬ìì—ê²Œ ë¬¸ì˜í•˜ì„¸ìš”.\",\"status\": 404}");
             	}else{
                 	out.println("<script language=\"javascript\">\n");
-                	out.println("	alert(\"ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n°ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä\");\n");
+                	out.println("	alert(\"íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\nê´€ë¦¬ìì—ê²Œ ë¬¸ì˜í•˜ì„¸ìš”\");\n");
                 	out.println("</script>");
             	}
 				

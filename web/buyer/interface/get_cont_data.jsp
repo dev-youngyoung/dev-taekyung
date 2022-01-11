@@ -1,14 +1,14 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="gui.ava.html.image.generator.HtmlImageGenerator"%>
 <%@page import="nicednb.Client"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 /**
-¿ÜºÎ¾÷Ã¼ µ¥ÀÌÅÍ ¿¬µ¿¿ë
+ì™¸ë¶€ì—…ì²´ ë°ì´í„° ì—°ë™ìš©
 
-vcd : »ç¾÷ÀÚ¹øÈ£
-key : Å°°ª ()
-dat : ±âÁØ³¯Â¥(YYYYMMDD) (¿¹:¼öÁ¤³¯Â¥)
+vcd : ì‚¬ì—…ìë²ˆí˜¸
+key : í‚¤ê°’ ()
+dat : ê¸°ì¤€ë‚ ì§œ(YYYYMMDD) (ì˜ˆ:ìˆ˜ì •ë‚ ì§œ)
 
 */
 System.out.println(request.getRequestURL()+"?"+request.getQueryString());
@@ -56,7 +56,7 @@ String client_key = "";
 String _member_no = "";
 
 Client cs = new Client();
-if(i_vendcd.equals("1208765763")){  //// ¿ì¾ÆÇÑÇüÁ¦µé
+if(i_vendcd.equals("1208765763")){  //// ìš°ì•„í•œí˜•ì œë“¤
 	
 	client_key = cs.getClientKey("www.woowahan.com");
 	_member_no = "20190300598";
@@ -214,14 +214,14 @@ while(cont.next()){
 		
 		String down_url = "";
 		if(cfile.getString("file_ext").toLowerCase().equals("pdf")&&!cont.getString("paper_yn").equals("Y")){
-			String footer_img = "";//´çÀÏ ³¯ °è¾à¼­¸¦ °¡Á® °¡Áö ¾ÊÀ¸¸é ¸ø °¡Á®°¨
+			String footer_img = "";//ë‹¹ì¼ ë‚  ê³„ì•½ì„œë¥¼ ê°€ì ¸ ê°€ì§€ ì•Šìœ¼ë©´ ëª» ê°€ì ¸ê°
 			if(!cfile.getString("auto_yn").equals("Y")){
 				String mng_no = cont.getString("cont_no")+"-"+cont.getString("cont_chasu")+"-"+cont.getString("true_random");
-				String signStr = "<table width='740px' height='40px' border='0'><tr><td valign='bottom' style='font-family:³ª´®°íµñ; font-size:10px'><font color='#5B5B5B'>*º» °è¾à¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı  µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© ÀüÀÚ¼­¸íÀ¸·Î Ã¼°áÇÑ ÀüÀÚ°è¾à¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ°è¾à ÁøÀ§¿©ºÎ´Â ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com,ÀÏ¹İ±â¾÷¿ë)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù. (°ü¸®¹øÈ£:"+mng_no+")</font></td></tr></table>";
+				String signStr = "<table width='740px' height='40px' border='0'><tr><td valign='bottom' style='font-family:ë‚˜ëˆ”ê³ ë”•; font-size:10px'><font color='#5B5B5B'>*ë³¸ ê³„ì•½ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì²´ê²°í•œ ì „ìê³„ì•½ì„œì…ë‹ˆë‹¤.<br>&nbsp;&nbsp;ì „ìê³„ì•½ ì§„ìœ„ì—¬ë¶€ëŠ” ë‚˜ì´ìŠ¤ë‹¤í(http://www.nicedocu.com,ì¼ë°˜ê¸°ì—…ìš©)ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤. (ê´€ë¦¬ë²ˆí˜¸:"+mng_no+")</font></td></tr></table>";
 				footer_img = procure.common.conf.Startup.conf.getString("file.path.lcont_temp") + mng_no+"_"+ "_" + u.getTimeString() + ".png";
 				HtmlImageGenerator imageGenerator = new HtmlImageGenerator();
 				imageGenerator.loadHtml(signStr);
-				imageGenerator.saveAsImage(footer_img);  // ¹°·ùÂÊ ÀÓ½Ã Æú´õ¿¡ °°ÀÌ ÀúÀåÇÔ. ¸ÅÀÏ ¹ã ¹èÄ¡ÆÄÀÏÀÌ µ¹¸é¼­ »èÁ¦ÇÑ´Ù.
+				imageGenerator.saveAsImage(footer_img);  // ë¬¼ë¥˜ìª½ ì„ì‹œ í´ë”ì— ê°™ì´ ì €ì¥í•¨. ë§¤ì¼ ë°¤ ë°°ì¹˜íŒŒì¼ì´ ëŒë©´ì„œ ì‚­ì œí•œë‹¤.
 				footer_img = u.aseEnc(footer_img);	
 			}
 			down_url ="http://www.nicedocu.com/servlets/nicelib.pdf.PDFDown"

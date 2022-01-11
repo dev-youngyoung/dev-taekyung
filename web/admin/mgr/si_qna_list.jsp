@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] gubun = {"01=>±¸Ãà¹®ÀÇ","02=>±³À°½ÅÃ»"};
+String[] gubun = {"01=>êµ¬ì¶•ë¬¸ì˜","02=>êµìœ¡ì‹ ì²­"};
 
 f.addElement("s_companynm",null, null);
 
@@ -13,7 +13,7 @@ list.setFields("qnaseq, gubun, companynm, personnm, mobile, to_char(insertdate, 
 list.setOrderBy("insertdate desc");
 
 list.addSearch("companynm", f.get("s_companynm"), "LIKE");
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){

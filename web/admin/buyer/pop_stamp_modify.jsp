@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsErrClose("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
-member.put("member_name", member.getString("member_name").replaceAll("\\(ÁÖ\\)", "¢ß").replaceAll("ÁÖ½ÄÈ¸»ç","¢ß"));
+member.put("member_name", member.getString("member_name").replaceAll("\\(ì£¼\\)", "ãˆœ").replaceAll("ì£¼ì‹íšŒì‚¬","ãˆœ"));
 
 f.addElement("s_member_name", member.getString("member_name"), null);
 
@@ -24,7 +24,7 @@ if (u.isPost()) {
 	String binary_data = f.get("stamp_files");
 	String[] binary_data_array = binary_data.split("data:image/png;base64,");
 	String[] file_names = {"", "pdf_stamp_writing", "pdf_stamp_returned", "pdf_stamp_pending2", "pdf_stamp_pending", "pdf_stamp_issued", "pdf_stamp_completed"};
-	//µð·ºÅä¸®°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é »ý¼º
+	//ë””ë ‰í† ë¦¬ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ìƒì„±
 	File destdir = new File(Startup.conf.getString("file.path.bcont_proof_stamp") + member_no);
 	if (!destdir.exists()) {
 		destdir.mkdirs();
@@ -37,14 +37,14 @@ if (u.isPost()) {
 		stream.close();
 	}
 
-       u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.", "pop_stamp_modify.jsp?"+u.getQueryString());
+       u.jsAlertReplace("ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "pop_stamp_modify.jsp?"+u.getQueryString());
        return;
 }
 
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_stamp_modify");
-p.setVar("popup_title", "µµÀåÀÌ¹ÌÁö ÀúÀå/¼öÁ¤");
+p.setVar("popup_title", "ë„ìž¥ì´ë¯¸ì§€ ì €ìž¥/ìˆ˜ì •");
 p.setVar("stamp_file_yn", stamp_file_yn);
 p.setVar("member", member);
 p.setVar("form_script", f.getScript());

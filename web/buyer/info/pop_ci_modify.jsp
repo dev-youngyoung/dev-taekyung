@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 
@@ -8,17 +8,17 @@ if(member_no.equals(""))
 f.maxPostSize = 1;
 f.uploadDir = Startup.conf.getString("file.path.bcont_logo")+member_no;
 
-f.addElement("ci_file", null, "hname:'CIÀÌ¹ÌÁöÆÄÀÏ', required:'Y',allow:'jpg|gif|png'");
+f.addElement("ci_file", null, "hname:'CIì´ë¯¸ì§€íŒŒì¼', required:'Y',allow:'jpg|gif|png'");
 
 
 DataObject dao = new DataObject("tcb_member");
 DataSet member = dao.find("member_no = '"+member_no+"'");
 if(!member.next()){
-	u.jsErrClose("È¸¿øÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsErrClose("íšŒì›ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
-// ÀúÀå
+// ì €ì¥
 if(u.isPost()&&f.validate()){
 
 String path = Startup.conf.getString("file.path.bcont_logo")+member_no;
@@ -30,7 +30,7 @@ String file_name = iu.resizeToFile(file.getAbsolutePath(), 240, 20);
 DataObject memberDao = new DataObject("tcb_member");
 memberDao.item("ci_img_path", member_no+"/"+file_name);
 if(!memberDao.update("member_no = '"+member_no+"'")){
-	u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -39,7 +39,7 @@ if(!member.getString("ci_img_path").equals("")){
 }
 
 out.print("<script typt='text/javascript'>");
-out.print(" alert('Á¤»óÀûÀ¸·Î Ã³¸®µÇ¾ú½À´Ï´Ù.');");
+out.print(" alert('ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 out.print(" opener.location.reload(); ");
 out.print(" self.close(); ");
 out.print("</script>");
@@ -50,7 +50,7 @@ return;
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("info.pop_ci_modify");
-p.setVar("popup_title","È¸»ç CI°ü¸®");
+p.setVar("popup_title","íšŒì‚¬ CIê´€ë¦¬");
 p.setVar("member", member);
 p.setVar("form_script", f.getScript());
 p.display(out);

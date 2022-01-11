@@ -8,31 +8,31 @@
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.InputStreamReader" %>
 <%@ page import="nicelib.db.DataSet" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%
 
 Util u = new Util(request, response, out);
 Form f = new Form("form1");
 f.setRequest(request);
 
-f.addElement("companynm", null, "hname:'È¸»ç¸í',required:'Y'");
-f.addElement("personnm", null, "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("hp1", null, "hname:'ÈŞ´ëÆù',required:'Y'");
-f.addElement("hp2", null, "hname:'ÈŞ´ëÆù',required:'Y'");
-f.addElement("hp3", null, "hname:'ÈŞ´ëÆù',required:'Y'");
-f.addElement("contents", null, "hname:'¹®ÀÇ³»¿ë',required:'Y'");
-f.addElement("chk_confirm1", null, "hname:'°³ÀÎÁ¤º¸¼öÁıÀÌ¿ëµ¿ÀÇ', required:'Y'");
+f.addElement("companynm", null, "hname:'íšŒì‚¬ëª…',required:'Y'");
+f.addElement("personnm", null, "hname:'ë‹´ë‹¹ìëª…',required:'Y'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€í°',required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€í°',required:'Y'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€í°',required:'Y'");
+f.addElement("contents", null, "hname:'ë¬¸ì˜ë‚´ìš©',required:'Y'");
+f.addElement("chk_confirm1", null, "hname:'ê°œì¸ì •ë³´ìˆ˜ì§‘ì´ìš©ë™ì˜', required:'Y'");
 
 
 if(u.isPost()&&f.validate()){
 
 	String recaptcha_response = f.get("g-recaptcha-response");
 	if(!recaptchaVerify(recaptcha_response)){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.1");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.1");
 		return;
 	}
 
 	if(f.get("hp1").equals("")||f.get("hp2").equals("")||f.get("hp3").equals("")){
-		u.jsError("Á¤»óÀûÀÎ°æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+		u.jsError("ì •ìƒì ì¸ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 		return;
 	}
 
@@ -67,24 +67,24 @@ if(u.isPost()&&f.validate()){
 	DB db = new DB();
 	db.setCommand(query, qnaDao.record);
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	String sSendPhoneNo = "027889097";	// º¸³»´Â »ç¶÷ ¹øÈ£
-	String sSendName = "³ªÀÌ½º´ÙÅ¥";  // º¸³»´Â »ç¶÷¸í
-	String sRecvVendCd = "";  // ¹ŞÀ» ¾÷Ã¼¸í
-	String sRecvHp1 = "010";  // ¹ŞÀ» ´ã´çÀÚ ÈŞ´ëÆù ¹øÈ£
-	String sRecvHp2 = "7583";//"7583";  // ¹ŞÀ» ´ã´çÀÚ ÈŞ´ëÆù ¹øÈ£
-	String sRecvHp3 = "0902";//"0902";  // ¹ŞÀ» ´ã´çÀÚ ÈŞ´ëÆù ¹øÈ£
-	//String sSmsMsg =  f.get("companynm")+ "¿¡¼­ ¹®ÀÇ (ÀÏ¹İ±â¾÷¿ë) "+f.get("personnm")+"("+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+")";
+	String sSendPhoneNo = "027889097";	// ë³´ë‚´ëŠ” ì‚¬ëŒ ë²ˆí˜¸
+	String sSendName = "ë‚˜ì´ìŠ¤ë‹¤í";  // ë³´ë‚´ëŠ” ì‚¬ëŒëª…
+	String sRecvVendCd = "";  // ë°›ì„ ì—…ì²´ëª…
+	String sRecvHp1 = "010";  // ë°›ì„ ë‹´ë‹¹ì íœ´ëŒ€í° ë²ˆí˜¸
+	String sRecvHp2 = "7583";//"7583";  // ë°›ì„ ë‹´ë‹¹ì íœ´ëŒ€í° ë²ˆí˜¸
+	String sRecvHp3 = "0902";//"0902";  // ë°›ì„ ë‹´ë‹¹ì íœ´ëŒ€í° ë²ˆí˜¸
+	//String sSmsMsg =  f.get("companynm")+ "ì—ì„œ ë¬¸ì˜ (ì¼ë°˜ê¸°ì—…ìš©) "+f.get("personnm")+"("+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+")";
 
-	//³ªÀÌ½ºÁö¶ó ·Î ¸ŞÀÏº¸³»±â
-	String body = "¸ŞÀÎÈ­¸é ½Ã½ºÅÛÀÌ¿ë¹®ÀÇ<br>È¸»ç¸í:"+f.get("companynm")+"<br>"+"¹®ÀÇÀÚ¸í:"+f.get("personnm")+"<br>"+"ÀüÈ­¹øÈ£:"+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+"<br>¹®ÀÇ³»¿ë:"+u.nl2br(f.get("contents"));
-	u.mail("nicedocu@nicednr.co.kr", "µµÀÔ¹®ÀÇ", body);
+	//ë‚˜ì´ìŠ¤ì§€ë¼ ë¡œ ë©”ì¼ë³´ë‚´ê¸°
+	String body = "ë©”ì¸í™”ë©´ ì‹œìŠ¤í…œì´ìš©ë¬¸ì˜<br>íšŒì‚¬ëª…:"+f.get("companynm")+"<br>"+"ë¬¸ì˜ìëª…:"+f.get("personnm")+"<br>"+"ì „í™”ë²ˆí˜¸:"+f.get("hp1")+"-"+f.get("hp2")+"-"+f.get("hp3")+"<br>ë¬¸ì˜ë‚´ìš©:"+u.nl2br(f.get("contents"));
+	u.mail("nicedocu@nicednr.co.kr", "ë„ì…ë¬¸ì˜", body);
 
 	out.println("<script>");
-	out.println("alert('¹®ÀÇ°¡ Á¢¼ö µÇ¾ú½À´Ï´Ù.\\n\\n³»¿ëÈ®ÀÎ ÈÄ ´ã´çÀÚ ¿¬¶ôÃ³·Î ¹®ÀÇ³»¿ë »ó´ãÀÌ ÁøÇàµË´Ï´Ù.');");
+	out.println("alert('ë¬¸ì˜ê°€ ì ‘ìˆ˜ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\në‚´ìš©í™•ì¸ í›„ ë‹´ë‹¹ì ì—°ë½ì²˜ë¡œ ë¬¸ì˜ë‚´ìš© ìƒë‹´ì´ ì§„í–‰ë©ë‹ˆë‹¤.');");
 	out.println("parent.ajaxClose('.layerpop');");
 	out.println("</script>");
 	return;

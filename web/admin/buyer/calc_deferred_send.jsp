@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String yyyymm = u.request("yyyymm").replaceAll("-","");
 String member_no = u.request("member_no");
@@ -8,21 +8,21 @@ String pay_amount = u.request("pay_amount").replaceAll(",","");
 String calc_person_seq = u.request("calc_person_seq").replaceAll(",","");
 
 if(yyyymm.equals("")||member_no.equals("")||pay_sdate.equals("")||pay_edate.equals("")||calc_person_seq.equals("")){
-    u.jsAlert("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+    u.jsAlert("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
     return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-    u.jsAlert("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    u.jsAlert("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     return;
 }
 
 DataObject calcPersonDao = new DataObject("tcb_calc_person");
 DataSet calcPerson = calcPersonDao.find("member_no = '"+member_no+"' and seq = '"+calc_person_seq+"'");
 if(!calcPerson.next()){
-    u.jsAlert("µî·ÏµÈ °è¾à¼­ ´ã´çÀÚ°¡ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    u.jsAlert("ë“±ë¡ëœ ê³„ì•½ì„œ ë‹´ë‹¹ìê°€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 String calc_key = "{member_no:'"+member_no+"',pay_sdate:'"+pay_sdate+"', pay_edate:'"+pay_edate+"', field_seq:'"+calcPerson.getString("field_seq")+"'}";
@@ -32,7 +32,7 @@ DataObject calcMonthDao = new DataObject("tcb_calc_month");
 calcMonthDao.item("member_no", member_no);
 calcMonthDao.item("yyyymm", yyyymm);
 calcMonthDao.item("calc_person_seq", calc_person_seq);
-calcMonthDao.item("pay_type_cd","50");//ÈÄºÒ
+calcMonthDao.item("pay_type_cd","50");//í›„ë¶ˆ
 calcMonthDao.item("user_name", calcPerson.getString("user_name"));
 calcMonthDao.item("field_seq", calcPerson.getString("field_seq"));
 calcMonthDao.item("tel_num", calcPerson.getString("user_name"));
@@ -47,18 +47,18 @@ calcMonthDao.item("status", "10");
 DataSet calcMonth = calcMonthDao.find("member_no = '"+member_no+"' and yyyymm = '"+yyyymm+"' and calc_person_seq = '"+calc_person_seq+"' ");
 if(calcMonth.next()) {
     if(!calcMonthDao.update("member_no = '"+member_no+"' and yyyymm = '"+yyyymm+"' and calc_person_seq = '"+calc_person_seq+"'  ")){
-        u.jsAlert("Àç¹ß¼Û Ã³¸®¿¡ ½ÇÆĞ È÷¿³½À´Ï´Ù.");
+        u.jsAlert("ì¬ë°œì†¡ ì²˜ë¦¬ì— ì‹¤íŒ¨ íˆì—¿ìŠµë‹ˆë‹¤.");
     	return;
     }
 }else{
     if(!calcMonthDao.insert()){
-        u.jsAlert("Á¤»ê¹ß¼Û Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿³½À´Ï´Ù.");
+        u.jsAlert("ì •ì‚°ë°œì†¡ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
         return;
     }
 }
 
 String str_yyyymm = u.getTimeString("yyyy-MM",u.strToDate(yyyymm+"01"));
-//¸ŞÀÏ¹ß¼Û
+//ë©”ì¼ë°œì†¡
 DataSet mailInfo = new DataSet();
 mailInfo.addRow();
 mailInfo.put("member_name", member.getString("member_name"));
@@ -74,7 +74,7 @@ String mail_body = p.fetch("../html/mail/buyer_calc_deferred_mail.html");
 String[] arr_mail = calcPerson.getString("email").split(";");
 for(int i = 0 ; i < arr_mail.length;i++) {
 	if(!arr_mail[i].equals("")) {
-        u.mail(arr_mail[i], "[³ªÀÌ½º´ÙÅ¥] ÈÄºÒÁ¤»ê ³»¿ª ¾È³»('" + str_yyyymm + "')", mail_body);
+        u.mail(arr_mail[i], "[ë‚˜ì´ìŠ¤ë‹¤í] í›„ë¶ˆì •ì‚° ë‚´ì—­ ì•ˆë‚´('" + str_yyyymm + "')", mail_body);
     }
 }
 
@@ -82,12 +82,12 @@ String str_calc_person =
         calcPerson.getString("user_name")+"<br>"
         +calcPerson.getString("hp1")+"-"+calcPerson.getString("hp2")+"-"+calcPerson.getString("hp3")+"<br>"
         +calcPerson.getString("email")+"<br>"
-        +(calcPerson.getString("field_seq").equals("")?"(ÀüÃ¼)":"(ºÎ¼­ÁöÁ¤)");
+        +(calcPerson.getString("field_seq").equals("")?"(ì „ì²´)":"(ë¶€ì„œì§€ì •)");
 
 out.println("<script>");
-out.println("alert('¹ß¼Û µÇ¾ú½À´Ï´Ù.');");
+out.println("alert('ë°œì†¡ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 out.println("document.getElementById('calc_date_"+member_no+"_"+calc_person_seq+"').innerHTML='"+u.getTimeString("yyyy-MM-dd")+"'");
 out.println("document.getElementById('calc_person_"+member_no+"_"+calc_person_seq+"').innerHTML='"+str_calc_person+"'");
 out.println("</script>");
-//u.jsAlertReplace("¹ß¼Û µÇ¾ú½À´Ï´Ù.","calc_deferred_list.jsp?"+u.getQueryString("yyyymm,member_no,pay_sdate,pay_edate,pay_amount,calc_person_seq"));
+//u.jsAlertReplace("ë°œì†¡ ë˜ì—ˆìŠµë‹ˆë‹¤.","calc_deferred_list.jsp?"+u.getQueryString("yyyymm,member_no,pay_sdate,pay_edate,pay_amount,calc_person_seq"));
 %>

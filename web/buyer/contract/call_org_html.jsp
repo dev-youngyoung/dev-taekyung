@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.*" %>
 <%@ page import="org.jsoup.nodes.*" %>
 <%@ page import="org.jsoup.select.*" %>
@@ -13,7 +13,7 @@ if(cont_no.equals("")||cont_chasu.equals("")||div.equals("")){
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find("member_no = '"+_member_no+"' and cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ");
 if(!cont.next()){
-	u.jsAlert("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 Document doc = Jsoup.parse(cont.getString("cont_html"));

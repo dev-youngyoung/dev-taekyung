@@ -1,7 +1,7 @@
-<style>
+ï»¿<style>
 .chk2
 {
-	font-family: "µ¸À½", "Arial";
+	font-family: "ë‹ìŒ", "Arial";
 	PADDING-TOP: 3px;
 	PADDING-LEFT: 12px;
 	BORDER-TOP: medium none;
@@ -31,7 +31,7 @@
 	<style type="text/css" id="__html_style">
 		.glabel {
 			color: #707070;
-			FONT-FAMILY: "µ¸¿ò", "Arial";
+			FONT-FAMILY: "ë‹ì›€", "Arial";
 			FONT-SIZE: 9pt;
 			/*LINE-HEIGHT: 13pt;*/
 			border: 1px solid;
@@ -55,20 +55,20 @@
 </form>
 <div class="btn-group-wrap">
 	<!-- IF START 'del' -->
-	<button type="button" value="ÀÌÀü´Ü°è·Î" class="btn color ico-prev" onclick="del()" ><span></span>ÀÌÀü´Ü°è·Î</button>
+	<button type="button" value="ì´ì „ë‹¨ê³„ë¡œ" class="btn color ico-prev" onclick="del()" ><span></span>ì´ì „ë‹¨ê³„ë¡œ</button>
 	<!-- IF END 'del' -->
 
 	<!-- IF START 'modify' -->
-	<button type="button" value="ÀÓ½ÃÀúÀå" class="btn color ico-save" onclick="save('20')" ><span></span>ÀÓ½ÃÀúÀå</button>
-	<button type="button" value="Æò°¡¿Ï·á" class="btn color ico-confirm" onclick="save('50')" ><span></span>Æò°¡¿Ï·á</button>
-	<button type="button" value="°á°úÀü¼Û" class="btn color ico-request" onclick="save('90')" ><span></span>°á°úÀü¼Û</button>
-	<button type="button" value="ÀÎ¼â" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" value="¸ñ·ÏÀ¸·Î" class="btn color ico-list" onclick="javascript:history.back()"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" value="ì„ì‹œì €ì¥" class="btn color ico-save" onclick="save('20')" ><span></span>ì„ì‹œì €ì¥</button>
+	<button type="button" value="í‰ê°€ì™„ë£Œ" class="btn color ico-confirm" onclick="save('50')" ><span></span>í‰ê°€ì™„ë£Œ</button>
+	<button type="button" value="ê²°ê³¼ì „ì†¡" class="btn color ico-request" onclick="save('90')" ><span></span>ê²°ê³¼ì „ì†¡</button>
+	<button type="button" value="ì¸ì‡„" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" value="ëª©ë¡ìœ¼ë¡œ" class="btn color ico-list" onclick="javascript:history.back()"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IF END 'modify' -->
 	<!-- IFNOT START 'modify' -->
-	<button type="button" value="°á°úÀü¼Û" class="btn color ico-request" onclick="save1('90')" ><span></span>°á°úÀü¼Û</button>
-	<button type="button" value="ÀÎ¼â" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" value="¸ñ·ÏÀ¸·Î" class="btn color ico-list" onclick="javascript:history.back()"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" value="ê²°ê³¼ì „ì†¡" class="btn color ico-request" onclick="save1('90')" ><span></span>ê²°ê³¼ì „ì†¡</button>
+	<button type="button" value="ì¸ì‡„" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" value="ëª©ë¡ìœ¼ë¡œ" class="btn color ico-list" onclick="javascript:history.back()"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IFNOT END 'modify' -->
 </div>
 
@@ -90,7 +90,7 @@
 
     function selectCheck(div){
 
-        if(div=="20") return true; // ÀÓ½ÃÀúÀåÀº ¼±ÅÃ°ª ´Ù ÀÔ·Â¾ÈÇØµµ ÀúÀå °¡´ÉÇÏµµ·Ï
+        if(div=="20") return true; // ì„ì‹œì €ì¥ì€ ì„ íƒê°’ ë‹¤ ì…ë ¥ì•ˆí•´ë„ ì €ì¥ ê°€ëŠ¥í•˜ë„ë¡
 
         for(var i=1; i<16; i++){
             var checkYn = "n";
@@ -103,7 +103,7 @@
                 }
             }
             if(checkYn == "n"){
-                alert("ÀÏ¹İ Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+                alert("ì¼ë°˜ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
                 return;
             }
         }
@@ -140,10 +140,10 @@
             }
         }
 
-        $("#"+itemId).html(itemPoint);	//ÆòÁ¡
+        $("#"+itemId).html(itemPoint);	//í‰ì 
         var sheetNm = "";
         var rowCnt = 0;
-        if(sheetId == "1"){	//ÀÏ¹İ»çÇ×
+        if(sheetId == "1"){	//ì¼ë°˜ì‚¬í•­
             sheetNm = "operationitem";
             rowCnt = 16;
         }
@@ -163,7 +163,7 @@
 
         var sumPoint = 0;
         for(var i=1; i<rowCnt; i++){
-            sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//Ç×¸ñÆò°¡ Á¡¼ö
+            sumPoint = sumPoint + parseFloat($("#"+sheetNm+i).html());	//í•­ëª©í‰ê°€ ì ìˆ˜
         }
         $("#"+sheetNm+"SumPoint").html(sumPoint.toFixed(1));
 
@@ -191,7 +191,7 @@
         }
     }
 
-    //ÇöÀå¼±ÅÃ
+    //í˜„ì¥ì„ íƒ
     function fSelProject(result)
     {
         var form = document.form1;
@@ -203,11 +203,11 @@
 
     function culRatingPoint(){
 
-        var totalPoint = 0;	//ÃÖÁ¾Á¡¼ö
+        var totalPoint = 0;	//ìµœì¢…ì ìˆ˜
         var totalRating = 0;
-        var operationSumPoint = parseFloat($("#operationitemSumPoint").html());	//ÀÏ¹İ»çÇ× Áß°£ÇÕ°è
-        var projectItemPoint = parseFloat($("#inspectionitem1").html()==""?"0":$("#inspectionitem1").html());		//Á¦Ç°Æò±ÕÁ¡¼ö
-        totalPoint = operationSumPoint + projectItemPoint;		//ÇÕ»ê(ÃÖÁ¾Á¡¼ö)
+        var operationSumPoint = parseFloat($("#operationitemSumPoint").html());	//ì¼ë°˜ì‚¬í•­ ì¤‘ê°„í•©ê³„
+        var projectItemPoint = parseFloat($("#inspectionitem1").html()==""?"0":$("#inspectionitem1").html());		//ì œí’ˆí‰ê· ì ìˆ˜
+        totalPoint = operationSumPoint + projectItemPoint;		//í•©ì‚°(ìµœì¢…ì ìˆ˜)
         totalRating = Number(operationSumPoint / 5) + projectItemPoint;
 
         $("#rating").val(totalRating);
@@ -219,7 +219,7 @@
 
         var f = document.forms['form1'];
         f.action = 'assessment_result_sendmail_qc.jsp?asse_no={{assessment.asse_no}}';
-        var message = "°á°ú Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?";
+        var message = "ê²°ê³¼ ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
         if(confirm(message)){
             //fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 700);
             OpenWindow("pop_sendEmailSet.jsp", "sendEmailSet", 450, 250);
@@ -234,31 +234,31 @@
             if(validate(f)){
                 var d = f['date'].value;
                 if(!isDateFormat(d)) {
-                    alert("YYYY-MM-DD Æò°¡ÀÏ¸¦ È®ÀÎÇØÁÖ¼¼¿ä.");
+                    alert("YYYY-MM-DD í‰ê°€ì¼ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”.");
                     f['date'].focus();
                     return false;
                 }
                 if(div == "50"){
                     if(document.getElementById("inspectionitem1")){
                         if(document.getElementById("inspectionitem1").innerHTML == ""){
-                            alert("DataBaseÆò°¡Á¡¼ö¸¦ ÀÔ·Â ÇÏ¼¼¿ä.");
+                            alert("DataBaseí‰ê°€ì ìˆ˜ë¥¼ ì…ë ¥ í•˜ì„¸ìš”.");
                             return;
                         }
                     }
                 }
                 var message = "";
-                if(div == "20"){	//ÀÓ½ÃÀúÀå
-                    message = "ÀÓ½Ã ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?";
+                if(div == "20"){	//ì„ì‹œì €ì¥
+                    message = "ì„ì‹œ ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
                 }else if(div == "50"){
-                    message = "Æò°¡ ¿Ï·á ÇÏ½Ã°Ú½À´Ï±î?";
+                    message = "í‰ê°€ ì™„ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
                 }else if(div == "90"){
-                    message = "Æò°¡ ¿Ï·á ÈÄ °á°ú Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?";
+                    message = "í‰ê°€ ì™„ë£Œ í›„ ê²°ê³¼ ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
                 }
                 if(confirm(message)){
                     setDivInputValue("__html");
                     splitHtml(f, 'doc_html', false);
-                    //alert(f['sector'].value);		//¼Ò¼Ó
-                    //alert(f['assessor'].value);	//Æò°¡¿ø
+                    //alert(f['sector'].value);		//ì†Œì†
+                    //alert(f['assessor'].value);	//í‰ê°€ì›
                     if(div == "90"){
                         //fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 680);
                         OpenWindow("pop_sendEmailSet.jsp", "sendEmailSet", 450, 250);
@@ -273,13 +273,13 @@
     function del(){
         var f = document.forms['form2'];
         var message = "";
-        if(f['mstatus'].value == "20")  // Æò°¡Áß -> Æò°¡´ë»ó
+        if(f['mstatus'].value == "20")  // í‰ê°€ì¤‘ -> í‰ê°€ëŒ€ìƒ
         {
-            message = "´Ù½Ã Æò°¡´ë»ó µî·ÏÀ» ÇÏ½Ã°Ú½À´Ï±î?\nÆò°¡ ÁøÇàÁßÀÎ ¸ğµç ±â·ÏÀÌ »èÁ¦µË´Ï´Ù.";
+            message = "ë‹¤ì‹œ í‰ê°€ëŒ€ìƒ ë“±ë¡ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\ní‰ê°€ ì§„í–‰ì¤‘ì¸ ëª¨ë“  ê¸°ë¡ì´ ì‚­ì œë©ë‹ˆë‹¤.";
         }
-        else if(f['mstatus'].value == "50")  // Æò°¡¿Ï·á -> Æò°¡Áß
+        else if(f['mstatus'].value == "50")  // í‰ê°€ì™„ë£Œ -> í‰ê°€ì¤‘
         {
-            message = "´Ù½Ã Æò°¡ÇÒ ¼ö ÀÖµµ·Ï [Æò°¡Áß] »óÅÂ·Î µ¹¸®½Ã°Ú½À´Ï±î?";
+            message = "ë‹¤ì‹œ í‰ê°€í•  ìˆ˜ ìˆë„ë¡ [í‰ê°€ì¤‘] ìƒíƒœë¡œ ëŒë¦¬ì‹œê² ìŠµë‹ˆê¹Œ?";
         }
 
         if(confirm(message)){
@@ -293,7 +293,7 @@
         return d.match(df);
     }
 
-    function popuphelp(){	//µµ¿ò¸» ÆË¾÷
+    function popuphelp(){	//ë„ì›€ë§ íŒì—…
         OpenWindows('pop_qc_helt.jsp','qc_helt', '1000','700');
     }
 
@@ -310,10 +310,10 @@
 </script>
 
 <script language="javascript">
-    // ÃÊ±â°ª
+    // ì´ˆê¸°ê°’
     <!-- IFC START 'assessment.dstatus==20' -->
     SetFormValue("form1","date","{{cur_date}}");
-    //replaceInput("{{cur_date}}", "write_date", document.all.__html);  // ÀÛ¼ºÀÏ
+    //replaceInput("{{cur_date}}", "write_date", document.all.__html);  // ì‘ì„±ì¼
     //SetFormValue("form1","maker","{{assessment.member_name}}");
     <!-- IFC END 'assessment.dstatus==20' -->
 </script>

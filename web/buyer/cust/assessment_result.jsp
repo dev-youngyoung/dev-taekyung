@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.Jsoup"%>
 <%@ page import="org.jsoup.nodes.Document"%>
 <%@ page import="org.jsoup.nodes.Element"%>
@@ -8,14 +8,14 @@
 String asse_no = u.aseDec(u.request("param"));
 String div_cd = u.request("param1");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject assessmentDao = new DataObject("tcb_assemaster a  inner join tcb_assedetail b on a.asse_no = b.asse_no and b.div_cd = '"+div_cd+"'");
 DataSet assessment = assessmentDao.find(" a.asse_no = '"+asse_no+"'", "a.*, b.asse_html, b.asse_subhtml, b.sub_point");
 if(!assessment.next()){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 DataSet dsHtmlData = new DataSet();
@@ -30,7 +30,7 @@ if(u.isPost() && f.validate()){
 p.setLayout("default");
 //p.setDebug(out);
 p.setBody("cust.assessment_result");
-p.setVar("nevi","È¨ &gt; °Å·¡¾÷Ã¼°ü¸® &gt; ¾÷Ã¼ Æò°¡°ü¸® &gt; Çù·Â¾÷Ã¼ Æò°¡ÇöÈ²");
+p.setVar("nevi","í™ˆ &gt; ê±°ëž˜ì—…ì²´ê´€ë¦¬ &gt; ì—…ì²´ í‰ê°€ê´€ë¦¬ &gt; í˜‘ë ¥ì—…ì²´ í‰ê°€í˜„í™©");
 p.setVar("title_img","asse_purchase_list");
 p.setVar("assessment", assessment);
 p.setVar("form_script", f.getScript());
@@ -38,39 +38,39 @@ p.display(out);
 %>
 
 <%!
-// input box µîÀ» Á¦°Å
+// input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String cont_html_rm = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
 
-	// PDF¿ë
-	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box °ª ¸ðµÎ Á¦°Å
-	for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à");  }  // Ã¼Å©¹Ú½º
-	for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à"); }  // ¶óµð¿À
+	// PDFìš©
+	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box ê°’ ëª¨ë‘ ì œê±°
+	for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡");  }  // ì²´í¬ë°•ìŠ¤
+	for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡"); }  // ë¼ë””ì˜¤
 	for( Element elem : cont_doc.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
 
-	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 
 	cont_html_rm = cont_doc.toString();
 
 	return cont_html_rm;
 }
 
-// ¾ç½Ä¿¡ °ª Ã¤¿ö³Ö±â
+// ì–‘ì‹ì— ê°’ ì±„ì›Œë„£ê¸°
 public String setHtmlValue(String html, DataSet dsCustData)
 {
 	String asse_html = "";
 
-	// DB¿ë
+	// DBìš©
 	Document asse_doc = Jsoup.parse(html);
 
-	//cont_doc.select("input[name=mns_code]").attr("value", dsCustData.getString("r_mns_code"));	// Á¢Á¡ÄÚµå
+	//cont_doc.select("input[name=mns_code]").attr("value", dsCustData.getString("r_mns_code"));	// ì ‘ì ì½”ë“œ
 
-	// spanÀ¸·Î µÈ ºÎºÐ °ª Ã¤¿ì±â
+	// spanìœ¼ë¡œ ëœ ë¶€ë¶„ ê°’ ì±„ìš°ê¸°
 	for( Element elem : asse_doc.select("span#financeitem1") ){ elem.text(dsCustData.getString("sub_point")); }
 	for( Element elem : asse_doc.select("span#financeitemSumPoint") ){ elem.text(dsCustData.getString("sub_point")); }
 	

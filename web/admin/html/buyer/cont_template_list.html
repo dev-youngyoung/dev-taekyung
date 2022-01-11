@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get">
+ï»¿<form novalidate name="form1" method="get">
 <div class="search_div">
 <table class="search_table">
  <colgroup>
@@ -9,11 +9,11 @@
     <col width="10%">
   </colgroup>
 <tr>
-	<th><p>¼­½Ä¸í</p></th>
+	<th><p>ì„œì‹ëª…</p></th>
 	<td><input name="s_template_name" type="text" style="width:98%" maxlength="10"></td>
-	<th><p>ÀÌ¿ë¾÷Ã¼¸í</p></th>
+	<th><p>ì´ìš©ì—…ì²´ëª…</p></th>
 	<td>
-		<!-- <input name="s_member_name" type="text" style="width:98%" maxlength="50" readonly onClick="alert('¼º´É ¹®Á¦·Î ÀÏ½ÃÀûÀ¸·Î Á¦ÇÑ Áß');"> -->
+		<!-- <input name="s_member_name" type="text" style="width:98%" maxlength="50" readonly onClick="alert('ì„±ëŠ¥ ë¬¸ì œë¡œ ì¼ì‹œì ìœ¼ë¡œ ì œí•œ ì¤‘');"> -->
 		<table style="width:100%;">
 			<tr>
 				<td rowspan="2">
@@ -21,16 +21,16 @@
 					<input type="text" name="s_member_name" class="in_readonly"  style="width:190px" readonly>
 				</td>
 				<td>
-					<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_pay_company.jsp?callback=setMember','pop_search_company', '800','600','yes');"><span></span>¾÷Ã¼°Ë»ö</button>
+					<button type="button" class="sbtn color ico-search" onclick="OpenWindows('pop_search_pay_company.jsp?callback=setMember','pop_search_company', '800','600','yes');"><span></span>ì—…ì²´ê²€ìƒ‰</button>
 				</td>
 			</tr>
 				<td>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.forms['form1']['s_member_no'].value='';document.forms['form1']['s_member_name'].value='';"><span></span>Áö¿ò</button>	
+					<button type="button" class="sbtn color ico-cancel" onclick="document.forms['form1']['s_member_no'].value='';document.forms['form1']['s_member_name'].value='';"><span></span>ì§€ì›€</button>	
 				</td>
 		</table> 
 	</td>
 	<td>
-		<button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+		<button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
 	</td>
 </tr>
 </table>
@@ -49,10 +49,10 @@
 	</colgroup>
 		<tr>
 			<th>No.</th>
-			<th>¼­½Ä¸í</th>
-			<th>ÀÌ¿ë¾÷Ã¼¸í</th>
-			<th>»ç¿ë¿©ºÎ</th>
-			<th>ÀÌ¿ë°Ç¼ö</th>
+			<th>ì„œì‹ëª…</th>
+			<th>ì´ìš©ì—…ì²´ëª…</th>
+			<th>ì‚¬ìš©ì—¬ë¶€</th>
+			<th>ì´ìš©ê±´ìˆ˜</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='cont_template_modify.jsp?template_cd={{list.template_cd}}&{{list_query}}'">
@@ -65,7 +65,7 @@
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td colspan="9" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td colspan="9" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>

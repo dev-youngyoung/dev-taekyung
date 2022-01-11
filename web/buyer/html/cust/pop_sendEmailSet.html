@@ -1,14 +1,14 @@
-<form novalidate name="form1" method="get">
+ï»¿<form novalidate name="form1" method="get">
 <div class="div_table">
 	<table>
   		<tr>
-    		<th>Àü¼ÛÇÒ ÀÌ¸ŞÀÏ</th>
+    		<th>ì „ì†¡í•  ì´ë©”ì¼</th>
     		<td><input type="text" name="s_sendEmail" maxlength="30" size="20"></td>
   		</tr>
 	</table>
 	<div class="btn-group-wrap">
-		<button type="button" class="btn color ico-save" onclick="vali();"><span></span>È®ÀÎ</button>
-		<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+		<button type="button" class="btn color ico-save" onclick="vali();"><span></span>í™•ì¸</button>
+		<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 	</div>
 </div>
 </form>
@@ -22,7 +22,7 @@ function vali(){
 		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
 		
 		if(regex.test(inputEmail) === false) {  
-			alert("Àß¸øµÈ ÀÌ¸ŞÀÏ Çü½ÄÀÔ´Ï´Ù.");  
+			alert("ì˜ëª»ëœ ì´ë©”ì¼ í˜•ì‹ì…ë‹ˆë‹¤.");  
 			return false;  
 		}else{
 		    self.close();

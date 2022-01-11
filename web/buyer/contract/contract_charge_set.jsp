@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 
@@ -10,16 +10,16 @@ if(u.isPost()&&f.validate()){
 	String person_id = f.get("person_id");
 	String person_name = f.get("person_name");
 	if(cont_no.equals("")||cont_chasu.equals("")||agree_seq.equals("")||person_id.equals("")||person_name.equals("")){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 		return;
 	}
 	cont_no = u.aseDec(cont_no);
 	
-	// ºÎ¼­ ÄÚµå °Ë»ö
+	// ë¶€ì„œ ì½”ë“œ ê²€ìƒ‰
 	DataObject fieldDao = new DataObject();
 	String sFieldSeq = fieldDao.getOne("select field_seq from tcb_person where user_id='"+person_id+"'");
 	
-	// °è¾à °áÀç¼± ºÎ¼­Á¤º¸ º¯°æ
+	// ê³„ì•½ ê²°ìž¬ì„  ë¶€ì„œì •ë³´ ë³€ê²½
 	DB db = new DB();
 	DataObject contractDao = new DataObject("tcb_contmaster");
 	String sContFieldSeqs = contractDao.getOne("select agree_field_seqs from tcb_contmaster where cont_no='"+cont_no+"' and cont_chasu="+cont_chasu);
@@ -36,7 +36,7 @@ if(u.isPost()&&f.validate()){
 	contractDao.item("agree_field_seqs", sChangeFieldSeqs);
 	db.setCommand(contractDao.getUpdateQuery("cont_no='"+cont_no+"' and cont_chasu="+cont_chasu), contractDao.record);
 	
-	// °áÀç¼± Á¤º¸ º¯°æ 
+	// ê²°ìž¬ì„  ì •ë³´ ë³€ê²½ 
 	DataObject agreeDao = new DataObject("tcb_cont_agree");
 	agreeDao.item("agree_person_name", person_name);
 	agreeDao.item("agree_person_id", person_id);
@@ -47,10 +47,10 @@ if(u.isPost()&&f.validate()){
 	System.out.println("aft agree_field_seqs : " + sChangeFieldSeqs);
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	u.jsAlertReplace("º¯°æ ÇÏ¿´½À´Ï´Ù.", "contract_charge_list.jsp?"+u.getQueryString());	
+	u.jsAlertReplace("ë³€ê²½ í•˜ì˜€ìŠµë‹ˆë‹¤.", "contract_charge_list.jsp?"+u.getQueryString());	
 }
 %>

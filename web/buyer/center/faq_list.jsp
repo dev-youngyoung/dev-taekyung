@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 f.addElement("s_title",u.request("s_title"), null);
 
-//格废 积己
+//氇╇ 靸濎劚
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -12,7 +12,7 @@ list.addWhere(" category = 'faq' and open_yn= 'Y'");
 list.addSearch("title", f.get("s_title"), "LIKE");
 list.setOrderBy("board_id desc ");
 
-//格废 单捞鸥 荐沥
+//氇╇ 雿办澊韮� 靾橃爼
 DataSet rs = list.getDataSet();
 
 while(rs.next()){

@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_exam_status = {"00=>Æò°¡´ë»ó","10=>Æò°¡Áß","20=>Æò°¡¿Ï·á"};
+String[] code_exam_status = {"00=>í‰ê°€ëŒ€ìƒ","10=>í‰ê°€ì¤‘","20=>í‰ê°€ì™„ë£Œ"};
 
 String s_sdate = u.request("s_sdate",u.getTimeString("yyyy-MM-dd",u.addDate("M",-3)));
 String s_edate = u.request("s_edate",u.getTimeString("yyyy-MM-dd"));
@@ -11,7 +11,7 @@ f.addElement("s_status",null, null);
 f.addElement("s_cont_name",null, null);
 f.addElement("s_cust_name",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);

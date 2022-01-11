@@ -3,14 +3,14 @@ package	procure.common.utils;
 import java.util.StringTokenizer;
 
 /**
- * ±İ¾× ´ÜÀ§ °ü·Ã class
- * @author ¿øµÎ¿µ
+ * ê¸ˆì•¡ ë‹¨ìœ„ ê´€ë ¨ class
+ * @author ì›ë‘ì˜
  *
  */
 public class MoneyUtil {
-	public final static String MONEY_NUM[] = {"","ÀÏ","ÀÌ","»ï","»ç","¿À","À°","Ä¥","ÆÈ", "±¸"};
-	public final static String MONEY_DANWI[] = {"", "¸¸","¾ï","Á¶","°æ"};
-	public final static String MONEY_DETAIL[] = {"","½Ê","¹é","Ãµ"};
+	public final static String MONEY_NUM[] = {"","ì¼","ì´","ì‚¼","ì‚¬","ì˜¤","ìœ¡","ì¹ ","íŒ”", "êµ¬"};
+	public final static String MONEY_DANWI[] = {"", "ë§Œ","ì–µ","ì¡°","ê²½"};
+	public final static String MONEY_DETAIL[] = {"","ì‹­","ë°±","ì²œ"};
 	
 	public static String getCommaMoney(long money){
 		String sSign = "";
@@ -37,7 +37,7 @@ public class MoneyUtil {
 	}
 	
 	/**
-	 * @author ¹ÚÀÌ¼ö
+	 * @author ë°•ì´ìˆ˜
 	 * @param money
 	 * @return
 	 */
@@ -69,14 +69,14 @@ public class MoneyUtil {
 	}
 	
 	public static String getHanMoney(long money){
-		if(money == 0) return "¿µ";
+		if(money == 0) return "ì˜";
 		char [] source = new Long(money).toString().toCharArray();
 		StringBuffer buf = new StringBuffer();
 		boolean flag = false;
 		for(int i= 0; i < source.length; i++){
 			if(i==0 && source[i]== '-')
 			{
-				buf.append("°¨ ");
+				buf.append("ê° ");
 				continue;
 			}
 			int val = source[i]-48;

@@ -1,12 +1,12 @@
-<form name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data">
 
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-right">
 			<!-- IF START 'btn' -->
-				<button type="submit" class="sbtn color ico-save"><span></span>ÀúÀå</button>
+				<button type="submit" class="sbtn color ico-save"><span></span>ì €ìž¥</button>
 			<!-- IF END 'btn' -->
-			<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´Ý±â</button>
+			<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 		</div>
 	</div>
 	<table>
@@ -15,16 +15,16 @@
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<th>º¸Áõ¼­Á¾·ù</th>
+			<th>ë³´ì¦ì„œì¢…ë¥˜</th>
 			<td>
 				{{warr.warr_type_name}}
 			</td>
 		</tr>
 		<tr>
-			<th>¹ß±Þ±â°ü</th>
+			<th>ë°œê¸‰ê¸°ê´€</th>
 			<td>
 				<select name="warr_office">
-					<option value="">-¼±ÅÃ-</option>
+					<option value="">-ì„ íƒ-</option>
 					<!-- LOOP START 'code_office' -->
 					<option value="{{code_office.value}}">{{code_office.value}}</option>
 					<!-- LOOP END 'code_office' -->
@@ -32,13 +32,13 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Áõ±Ç¹øÈ£</th>
+			<th>ì¦ê¶Œë²ˆí˜¸</th>
 			<td>
 				<input type="text" name="warr_no" style="width: 50%;" >
 			</td>
 		</tr>
 		<tr>
-			<th>º¸Áõ±â°£</th>
+			<th>ë³´ì¦ê¸°ê°„</th>
 			<td>
 	    		<input type="text" name="warr_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['warr_sdate'])"> ~
@@ -47,41 +47,41 @@
 			</td>
 		</tr>
 		<tr>
-			<th>º¸Áõ±Ý¾×</th>
+			<th>ë³´ì¦ê¸ˆì•¡</th>
 			<td>
-				£Ü <input type="text" name="warr_amt" size="12" maxlength="20" onkeydown="num_only()" onkeyup="fnMakeComma()" onkeypress="num_only()" style="text-align: right;">
+				ï¿¦ <input type="text" name="warr_amt" size="12" maxlength="20" onkeydown="num_only()" onkeyup="fnMakeComma()" onkeypress="num_only()" style="text-align: right;">
 			</td>
 		</tr>
 		<tr>
-			<th>¹ß±ÞÀÏ</th>
+			<th>ë°œê¸‰ì¼</th>
 			<td>
 				<input type="text" name="warr_date" class="in_readonly"  style="width:100px" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['warr_date'])">
 			</td>
 		</tr>
 		<tr>
-			<th>Ã·ºÎÆÄÀÏ</th>
+			<th>ì²¨ë¶€íŒŒì¼</th>
 			<td>
 				<!-- IFNOT START 'warr.warr_no' -->
 					<span class="caution-text">
-						¡Ø º¸Áõ¼­¸¦ ½ºÄµÇÏ¿© Ã·ºÎÇÏ¼¼¿ä.<br>&nbsp;&nbsp;&nbsp;&nbsp;
-						(jpg,gif,png,pdf,zip ÆÄÀÏ¸¸ Ã·ºÎ °¡´ÉÇÕ´Ï´Ù.)
+						â€» ë³´ì¦ì„œë¥¼ ìŠ¤ìº”í•˜ì—¬ ì²¨ë¶€í•˜ì„¸ìš”.<br>&nbsp;&nbsp;&nbsp;&nbsp;
+						(jpg,gif,png,pdf,zip íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥í•©ë‹ˆë‹¤.)
 					</span><br>
 					<input type="file" name="warr_file" style="width:95%">
 				<!-- IFNOT END 'warr.warr_no' -->
 				<!-- IF START 'warr.warr_no' -->
 					<!-- IFNOT START 'warr.file_name' -->
-					¹ÌÃ·ºÎ 
+					ë¯¸ì²¨ë¶€ 
 					<!-- IFNOT END 'warr.file_name' -->
 					<!-- -IF START 'warr.file_name' -->
 						{{warr.doc_name}}&nbsp;&nbsp;({{warr.file_size}})&nbsp;
-						<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')"><span></span>´Ù¿î·Îµå</button>
+						<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 					<!-- IF END 'warr.file_name' -->
 				<!-- IF END 'warr.warr_no' -->
 			</td>
 		</tr>
 		<tr>
-			<th>ºñ°í</th>
+			<th>ë¹„ê³ </th>
 			<td>
 				{{warr.etc}}
 			</td>
@@ -92,16 +92,16 @@
 {{form_script}}
 
 <script language="javascript">
-// ¼­¿ïº¸Áõº¸ÇèÀÌ¸é ÇÊ¼ö Ã¼Å© ¾ÈÇÔ.(µ¿Èñ¿ÀÅä)
+// ì„œìš¸ë³´ì¦ë³´í—˜ì´ë©´ í•„ìˆ˜ ì²´í¬ ì•ˆí•¨.(ë™í¬ì˜¤í† )
 function warrCheck()
 {
 	var warr_office = document.form1.warr_office.value;
-	if(warr_office != "¼­¿ïº¸Áõº¸Çè")
+	if(warr_office != "ì„œìš¸ë³´ì¦ë³´í—˜")
 	{
 		var el = document.form1.warr_file;
 		if (el.value == null || el.value == "")
 		{
-			alert("º¸Áõ¼­ ÆÄÀÏÀ» Ã·ºÎÇØÁÖ¼¼¿ä.");
+			alert("ë³´ì¦ì„œ íŒŒì¼ì„ ì²¨ë¶€í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 	}

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -8,7 +8,7 @@ String cust_name = u.request("cust_name");
 String cust_email = u.request("cust_email");
 
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -21,7 +21,7 @@ while(list.next()){
 	list.put("send_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", list.getString("send_date")));
 
 	if(list.getString("recv_dete").equals(""))
-		list.put("recv_dete", "ÀĞÁö ¾ÊÀ½");
+		list.put("recv_dete", "ì½ì§€ ì•ŠìŒ");
 	else
 		list.put("recv_dete", u.getTimeString("yyyy-MM-dd HH:mm:ss", list.getString("recv_dete")));
 
@@ -33,7 +33,7 @@ if(u.isPost()&&f.validate()){
 	DataObject contDao = new DataObject("tcb_contmaster");
 	DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu= '"+cont_chasu+"'");
 	if(!cont.next()){
-		u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+		u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 		return;
 	}
 
@@ -49,7 +49,7 @@ if(u.isPost()&&f.validate()){
 		mailInfo.put("template_name", cont.getString("cont_name"));
 		p.setVar("server_name", request.getServerName());
 
-		if(cont.getString("status").equals("41")) // ¹İ·ÁÀÏ °æ¿ì
+		if(cont.getString("status").equals("41")) // ë°˜ë ¤ì¼ ê²½ìš°
 		{
 			//p.setVar("return_url", "/web/buyer/contract/subscription_v.jsp?c="+u.aseEnc(cont_no));
 			p.setVar("return_url", "/web/buyer/contract/subscription_m.jsp?c=" + u.aseEnc(cont_no) + "&s=" + cont_chasu + "&tcode=" + u.aseEnc(_member_no + "|" + cont.getString("template_cd")));
@@ -59,20 +59,20 @@ if(u.isPost()&&f.validate()){
 				p.setVar("emailChk", "/web/buyer/contract/emailReadCheck.jsp?cont_no=" + cont_no + "&cont_chasu=" + cont_chasu + "&member_no=" + cust.getString("member_no") + "&num=" + email_seq);
 				String mail_body = p.fetch("../html/mail/subscription_ret.html");
 				System.out.println(mail_body);
-				u.mail(cust_email, "[¾Ë¸²] " + cust_name + " ¹®¼­°¡ ¹İ·ÁµÇ¾ú½À´Ï´Ù.", mail_body);
+				u.mail(cust_email, "[ì•Œë¦¼] " + cust_name + " ë¬¸ì„œê°€ ë°˜ë ¤ë˜ì—ˆìŠµë‹ˆë‹¤.", mail_body);
 
 				emailDao.item("cont_no", cont_no);
 				emailDao.item("cont_chasu", cont_chasu);
 				emailDao.item("member_no", cust.getString("member_no"));
 				emailDao.item("email_seq", email_seq);
 				emailDao.item("send_date", u.getTimeString());
-				emailDao.item("member_name", "¹İ·Á");
+				emailDao.item("member_name", "ë°˜ë ¤");
 				emailDao.item("user_name", cust_name);
 				emailDao.item("email", cust_email);
 				emailDao.item("status", "01");
 				emailDao.insert();
 			}
-		} else if(cont.getString("status").equals("50")) // ¿Ï·áÀÏ °æ¿ì
+		} else if(cont.getString("status").equals("50")) // ì™„ë£Œì¼ ê²½ìš°
 		{
 			p.setVar("return_url", "/web/buyer/contract/subscription_v.jsp?c="+u.aseEnc(cont_no));
 			p.setVar("info", mailInfo);
@@ -81,14 +81,14 @@ if(u.isPost()&&f.validate()){
                 p.setVar("emailChk", "/web/buyer/contract/emailReadCheck.jsp?cont_no=" + cont_no + "&cont_chasu=" + cont_chasu + "&member_no=" + cust.getString("member_no") + "&num=" + email_seq);
 				String mail_body = p.fetch("../html/mail/subscription_finish.html");
 				System.out.println(mail_body);
-				u.mail(cust_email, "[¾Ë¸²] "+cust_name+" °è¾àÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.", mail_body );
+				u.mail(cust_email, "[ì•Œë¦¼] "+cust_name+" ê³„ì•½ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.", mail_body );
 
                 emailDao.item("cont_no", cont_no);
                 emailDao.item("cont_chasu", cont_chasu);
                 emailDao.item("member_no", cust.getString("member_no"));
                 emailDao.item("email_seq", email_seq);
                 emailDao.item("send_date", u.getTimeString());
-                emailDao.item("member_name", "¿Ï·á");
+                emailDao.item("member_name", "ì™„ë£Œ");
                 emailDao.item("user_name", cust_name);
                 emailDao.item("email", cust_email);
                 emailDao.item("status", "01");
@@ -97,7 +97,7 @@ if(u.isPost()&&f.validate()){
 		}
 
 		out.println("<script language=\"javascript\" >");
-		out.print("alert(\"ÀçÀü¼Û ÇÏ¿´½À´Ï´Ù.\");");
+		out.print("alert(\"ì¬ì „ì†¡ í•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 		out.println("window.close();");
 		out.println("</script>");
 	}
@@ -108,7 +108,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("contract.subscription_re_email");
-p.setVar("popup_title","ÀÌ¸ŞÀÏ ÀçÀü¼Û");
+p.setVar("popup_title","ì´ë©”ì¼ ì¬ì „ì†¡");
 p.setLoop("list", list);
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));

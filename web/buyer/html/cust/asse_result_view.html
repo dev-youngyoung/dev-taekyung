@@ -1,11 +1,11 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" onsubmit="return formSubmit(this);">
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>Æò°¡Á¤º¸</h3>
+			<h3>í‰ê°€ì •ë³´</h3>
 		</div>
 		<div class="push-right">
-			Æò°¡»óÅÂ: <span class="caution-text"><b>Æò°¡¿Ï·á</b></span>
+			í‰ê°€ìƒíƒœ: <span class="caution-text"><b>í‰ê°€ì™„ë£Œ</b></span>
 		</div>
 	</div>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -14,25 +14,25 @@
 			<col width="85%">
 		</colgroup>
 		<tr>
-			<th>Æò°¡¸í</th>
+			<th>í‰ê°€ëª…</th>
 			<td>
 				{{asse.project_name}}
 			</td>
 		</tr>
 		<tr>
-			<th>Æò°¡¾÷Ã¼</th>
+			<th>í‰ê°€ì—…ì²´</th>
 			<td>
 				{{asse.member_name}}
 			</td>
 		</tr>
 		<tr>
-			<th>Æò°¡´ã´çÀÚ</th>
+			<th>í‰ê°€ë‹´ë‹¹ì</th>
 			<td>
 				{{detail.reg_name}}
 			</td>
 		</tr>
 		<tr>
-			<th>Æò°¡¿Ï·áÀÏ</th>
+			<th>í‰ê°€ì™„ë£Œì¼</th>
 			<td>
 				{{detail.reg_date}}
 			</td>
@@ -42,10 +42,10 @@
 <div class="div_table" style="margin-bottom: 0px">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>Æò°¡³»¿ë</h3>
+			<h3>í‰ê°€ë‚´ìš©</h3>
 		</div>
 		<div class="push-right">
-			<button type="button" value="ÀÎ¼â" class="sbtn color ico-print" onclick="assePdfViewer()"><span></span>ÀÎ¼â</button>
+			<button type="button" value="ì¸ì‡„" class="sbtn color ico-print" onclick="assePdfViewer()"><span></span>ì¸ì‡„</button>
 		</div>
 	</div>
 </div>
@@ -57,14 +57,14 @@
 		</div>
 </div>
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-list" onclick="location.href='asse_result_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='asse_result_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 </div>
 </form>
 {{form_script}}
 <script language="javascript">
-if( window.attachEvent )  // IEÀÇ °æ¿ì
+if( window.attachEvent )  // IEì˜ ê²½ìš°
 	window.attachEvent( "onload", convertHtml );
-else  // IE°¡ ¾Æ´Ñ °æ¿ì.
+else  // IEê°€ ì•„ë‹Œ ê²½ìš°.
 	window.addEventListener( "load", convertHtml , false );
 
 function convertHtml(){

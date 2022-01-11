@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 f.addElement("s_field_name",u.request("s_field_name"), null);
 
-//格废 积己
+//氇╇ 靸濎劚
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -13,7 +13,7 @@ list.addWhere("member_no='"+_member_no+"'");
 list.addSearch("field_name", f.get("s_field_name"), "LIKE");
 list.setOrderBy("field_seq desc ");
 
-//格废 单捞鸥 荐沥
+//氇╇ 雿办澊韮� 靾橃爼
 DataSet rs = list.getDataSet();
 
 p.setLayout("default");

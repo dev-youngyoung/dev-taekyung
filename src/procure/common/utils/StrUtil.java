@@ -12,15 +12,15 @@ import java.util.regex.Pattern;
 /**
  *<pre>
  *
- * ÆÄÀÏ¸í : StrUtil
- * ±â   ´É : ¹®ÀÚ¿­ °ü·Ã Ã³¸® À¯Æ¿
+ * íŒŒì¼ëª… : StrUtil
+ * ê¸°   ëŠ¥ : ë¬¸ìì—´ ê´€ë ¨ ì²˜ë¦¬ ìœ í‹¸
  *</pre>
  */
 
 public class StrUtil
 {
 
-    /** nullÀ» Ã¼Å©ÇÏ¿© ºó¹®ÀÚ¿­ÀÌ³ª &nbsp;·Î º¯È¯ */
+    /** nullì„ ì²´í¬í•˜ì—¬ ë¹ˆë¬¸ìì—´ì´ë‚˜ &nbsp;ë¡œ ë³€í™˜ */
     public static String chkNull(String str, boolean bEdit)
     {
         if (str == null)
@@ -31,7 +31,7 @@ public class StrUtil
         else return str;
     }
 
-    /** nullÀÌ¸é ÁÖ¾îÁø res ÃÊ±â°ªÀ¸·Î º¯°æ */
+    /** nullì´ë©´ ì£¼ì–´ì§„ res ì´ˆê¸°ê°’ìœ¼ë¡œ ë³€ê²½ */
     public static String chkNull(String str, String res)
     {
     	if (str == null)
@@ -43,7 +43,7 @@ public class StrUtil
     }
     
     /**
-     * nullÀÌ¸é ""À¸·Î ¹İÈ¯
+     * nullì´ë©´ ""ìœ¼ë¡œ ë°˜í™˜
      * @param str
      * @return
      */
@@ -53,7 +53,7 @@ public class StrUtil
     }
     
     
-    /**¼¼¼Ç °¡Áö°í ¿À´Â°ÍÀÇ ³Î°ª Ã³¸®**/
+    /**ì„¸ì…˜ ê°€ì§€ê³  ì˜¤ëŠ”ê²ƒì˜ ë„ê°’ ì²˜ë¦¬**/
     public static String getSession(HttpSession session,String sessionID){
         String getSession = "";
         if(session.getAttribute(sessionID) != null){
@@ -61,13 +61,13 @@ public class StrUtil
         }
         return getSession;
     }
-    /**¼¼¼Ç°ª ³Ö±â**/
+    /**ì„¸ì…˜ê°’ ë„£ê¸°**/
     public static void setSession(HttpSession session , String sessionID , String sessionValue ){
         session.setAttribute(sessionID,sessionValue);
     }
 
 
-    /** 8859_1¸¦ KSC5601·Î ÀÎÄÚµù 
+    /** 8859_1ë¥¼ KSC5601ë¡œ ì¸ì½”ë”© 
      * @throws UnsupportedEncodingException */
     public static String a2k(String sStr) throws UnsupportedEncodingException
     {
@@ -85,7 +85,7 @@ public class StrUtil
         return sResult; 
     }
 
-    /** KSC5601¸¦ 8859_1·Î ÀÎÄÚµù 
+    /** KSC5601ë¥¼ 8859_1ë¡œ ì¸ì½”ë”© 
      * @throws UnsupportedEncodingException */
     public static String k2a(String sStr) throws UnsupportedEncodingException
     {
@@ -104,8 +104,8 @@ public class StrUtil
     }
     
     /**
-     * ¼³Á¤ÆÄÀÏ(conf.xml)¿¡ Á¤ÀÇµÈ charset
-     * @param sStr	°ª
+     * ì„¤ì •íŒŒì¼(conf.xml)ì— ì •ì˜ëœ charset
+     * @param sStr	ê°’
      * @return
      * @throws Exception
      */
@@ -132,8 +132,8 @@ public class StrUtil
     }
 
     /**
-     * ¼³Á¤ÆÄÀÏ(conf.xml)¿¡ Á¤ÀÇµÈ charset ¹İ´ë Àû¿ë
-     * @param sStr	°ª
+     * ì„¤ì •íŒŒì¼(conf.xml)ì— ì •ì˜ëœ charset ë°˜ëŒ€ ì ìš©
+     * @param sStr	ê°’
      * @return
      * @throws Exception
      */
@@ -159,7 +159,7 @@ public class StrUtil
     	return sResult;
     }
     
-    /** ¹®ÀÚ¿­¿¡¼­ Æ¯Á¤ ¹®ÀÚ¿­ Ä¡È¯ */
+    /** ë¬¸ìì—´ì—ì„œ íŠ¹ì • ë¬¸ìì—´ ì¹˜í™˜ */
     public static String replace(String sSource, String sOld, String sNew)
     {
         if(sSource==null) return "";
@@ -181,7 +181,7 @@ public class StrUtil
         return sTarget;
     }
 
-    /** ¹®ÀÚ¿­¿¡¼­ Æ¯Á¤ ¹®ÀÚÁ¦°Å */
+    /** ë¬¸ìì—´ì—ì„œ íŠ¹ì • ë¬¸ìì œê±° */
     public static String remove(String str, char tok)
     {
         String sResult="";
@@ -195,7 +195,7 @@ public class StrUtil
     }
 
 
-    /** Æ¯Á¤¹®ÀÚ¿­ ±æÀÌ ¸ÂÃß±â */
+    /** íŠ¹ì •ë¬¸ìì—´ ê¸¸ì´ ë§ì¶”ê¸° */
     public static String formatLen(String str, int nLen)
     {
         String sResult =  str;
@@ -209,7 +209,7 @@ public class StrUtil
     }
 
 
-    /** È¬,½Öµû¿ÈÇ¥ --> Æ¯¼ö¹®ÀÚ·Î º¯È¯ */
+    /** í™‘,ìŒë”°ì˜´í‘œ --> íŠ¹ìˆ˜ë¬¸ìë¡œ ë³€í™˜ */
     public static String cvtQuot(String str)
     {
         String sResult="";
@@ -225,7 +225,7 @@ public class StrUtil
     }
 
 
-    /** ¿ìÆí¹øÈ£¿¡ XXX-XXX·Î µ¹·ÁÁØ´Ù. */
+    /** ìš°í¸ë²ˆí˜¸ì— XXX-XXXë¡œ ëŒë ¤ì¤€ë‹¤. */
     public static String formatPost(String post)
     {
         if (post == null)
@@ -237,26 +237,26 @@ public class StrUtil
     }
 
     public double decimal_ctl(double value, int place, int type) {
-        //place °ªÀÌ º¯°æÇÒ °ªÀÇ ÀÚ¸®¼ö¸¦ ¹ş¾î³¯¶§ Ã³¸® Ãß°¡ÇØ¾ßÇÔ
+        //place ê°’ì´ ë³€ê²½í•  ê°’ì˜ ìë¦¬ìˆ˜ë¥¼ ë²—ì–´ë‚ ë•Œ ì²˜ë¦¬ ì¶”ê°€í•´ì•¼í•¨
         if(value == 0)
             return 0 ;
         double multi = 1 ;
-        if(place < 0 ) {        //¼Ò¼öÁ¡ ÀÌÇÏ
+        if(place < 0 ) {        //ì†Œìˆ˜ì  ì´í•˜
             place = place+1 ;
             while (place++ < 0)
                 multi *= 10.0;
-        }else{                  //¼Ò¼öÁ¡ ÀÌ»ó
+        }else{                  //ì†Œìˆ˜ì  ì´ìƒ
             while (place-- > 0)
                 multi /= 10.0;
         }
         switch(type) {
-            case 1 :            //¹İ¿Ã¸²
-                return Math.round(value * multi)/ multi;    //¸®ÅÏ¹Ş´Â ÂÊ¿¡¼­ intÇüÀ¸·Î Çüº¯È¯ ÇÊ¿ä
-            case 2 :                    //¿Ã¸²
+            case 1 :            //ë°˜ì˜¬ë¦¼
+                return Math.round(value * multi)/ multi;    //ë¦¬í„´ë°›ëŠ” ìª½ì—ì„œ intí˜•ìœ¼ë¡œ í˜•ë³€í™˜ í•„ìš”
+            case 2 :                    //ì˜¬ë¦¼
                 return Math.ceil(value * multi)/ multi;
-            case 3 :                    //¹ö¸²
+            case 3 :                    //ë²„ë¦¼
                 return Math.floor(value * multi)/ multi;
-            default :                   //¾Æ¹«°Íµµ ¾Æ´Ò¶§
+            default :                   //ì•„ë¬´ê²ƒë„ ì•„ë‹ë•Œ
                 return value ;
         }
     }
@@ -285,7 +285,7 @@ public class StrUtil
         return strTemp.toString();
     }
     
-    //ÄŞ¸¶ ³Ö¾îÁÖ±â
+    //ì½¤ë§ˆ ë„£ì–´ì£¼ê¸°
 	public static String sAddComma(String sData, boolean bEdit) 
 	{		
 		if (sData==null) 
@@ -315,7 +315,7 @@ public class StrUtil
 		else { return sData ; }
 	}
     
-	/** »ç¾÷ÀÚ¹øÈ£¹øÈ£¿¡ XXX-XX-XXXXX·Î µ¹·ÁÁØ´Ù. */
+	/** ì‚¬ì—…ìë²ˆí˜¸ë²ˆí˜¸ì— XXX-XX-XXXXXë¡œ ëŒë ¤ì¤€ë‹¤. */
 	public static String formatBsno(String str, boolean bEdit) 
 	{    	
 		if (str == null) 
@@ -328,7 +328,7 @@ public class StrUtil
 	}   
 	
 	/**
-	 * ¿À´Ã ³¯Â¥ ±¸ÇÏ±â
+	 * ì˜¤ëŠ˜ ë‚ ì§œ êµ¬í•˜ê¸°
 	 * @return
 	 */
 	public static String getToday()
@@ -339,7 +339,7 @@ public class StrUtil
 	
 	
 	/**
-	 * ¿À´Ã ³¯Â¥ ±¸ÇÏ±â
+	 * ì˜¤ëŠ˜ ë‚ ì§œ êµ¬í•˜ê¸°
 	 * @return
 	 */
 	public static String GetStringToAsciiString(String str)
@@ -355,7 +355,7 @@ public class StrUtil
 		return sRet;
 	}	
 	
-	// ÇÚµåÆù - ºÙÀÌ±â
+	// í•¸ë“œí° - ë¶™ì´ê¸°
 	public static String GetFormPhone(String src, String format){
 		if(src==null ) return "";
 		if(src!=null && src.length() != 10) return src;
@@ -386,7 +386,7 @@ public class StrUtil
 		return "";
 	}	
 
-	// ÀüÈ­¹øÈ£(ÈŞ´ëÆù¹øÈ£Æ÷ÇÔ) ºĞ¸®
+	// ì „í™”ë²ˆí˜¸(íœ´ëŒ€í°ë²ˆí˜¸í¬í•¨) ë¶„ë¦¬
     public static String[] getSplitTellNo(String noStr) {
         Pattern tellPattern = Pattern.compile( "^(01\\d{1}|02|0505|0502|0506|0\\d{1,2})-?(\\d{3,4})-?(\\d{4})");
         if(noStr == null) return new String[]{ "", "", ""};
@@ -403,7 +403,7 @@ public class StrUtil
 		return GetFormPhone(src, "-");
 	}
 	
-	// »ç¾÷ÀÚ ¹øÈ£ ¹İÈ¯0:¿ø·¡¹øÈ£,1:Ã¹Â°, 2:µÑÂ°, 3:¼ÂÂ°
+	// ì‚¬ì—…ì ë²ˆí˜¸ ë°˜í™˜0:ì›ë˜ë²ˆí˜¸,1:ì²«ì§¸, 2:ë‘˜ì§¸, 3:ì…‹ì§¸
 	public static String [] getBizNum4Arr(String sBizNum){
 		String [] returnVal = new String[4];
 		if(sBizNum == null || sBizNum.length() != 10){
@@ -437,7 +437,7 @@ public class StrUtil
 	}
 	
 	
-	// ¿À¶óÅ¬ decode¶û ºñ½ÁÇÑ ÇÔ¼ö
+	// ì˜¤ë¼í´ decodeë‘ ë¹„ìŠ·í•œ í•¨ìˆ˜
 	// 
 	public static String decode(String... sDecStrs)
 	{
@@ -445,7 +445,7 @@ public class StrUtil
 		String sBaseVal = "";
 		
 		int nLen = sDecStrs.length;
-		if(nLen%2 == 0) return retStr;  // Â¦¼ö¸é ¿À·ù¹Ç·Î ±×³É °ø¹é ¸®ÅÏ 
+		if(nLen%2 == 0) return retStr;  // ì§ìˆ˜ë©´ ì˜¤ë¥˜ë¯€ë¡œ ê·¸ëƒ¥ ê³µë°± ë¦¬í„´ 
 		
 		sBaseVal = sDecStrs[0];
 		for(int i=1; i<nLen; i=i+2 )
@@ -461,11 +461,11 @@ public class StrUtil
 	}
 
 	/**
-	 * ÇÑ±Û ¿øÇÏ´Â byte¼ö·Î ÀÚ¸£±â
-	 * @param inputStr ÇÑ±ÛÀ» Æ÷ÇÔÇÏ´Â ¹®ÀÚ¿­
-	 * @param limit ÀÚ¸£±â ¿øÇÏ´Â bytes¼ö
-	 * @param fixStr ÃÊ°úµÉ°æ¿ì ºÙÀÌ´Â ¹®ÀÚ¿­ ex)...
-	 * @return Àß·ÁÁø ¹®ÀÚ¿­
+	 * í•œê¸€ ì›í•˜ëŠ” byteìˆ˜ë¡œ ìë¥´ê¸°
+	 * @param inputStr í•œê¸€ì„ í¬í•¨í•˜ëŠ” ë¬¸ìì—´
+	 * @param limit ìë¥´ê¸° ì›í•˜ëŠ” bytesìˆ˜
+	 * @param fixStr ì´ˆê³¼ë ê²½ìš° ë¶™ì´ëŠ” ë¬¸ìì—´ ex)...
+	 * @return ì˜ë ¤ì§„ ë¬¸ìì—´
 	 */
 	public static String lengthLimit(String inputStr, int limit, String fixStr) {
 		if (inputStr == null)
@@ -490,7 +490,7 @@ public class StrUtil
 				break;
 			}
 		}
-		// ´ë»ó ¹®ÀÚ¿­ ¸¶Áö¸· ÀÚ¸®°¡ 2¹ÙÀÌÆ®ÀÇ Áß°£ÀÏ °æ¿ì Á¦°ÅÇÔ
+		// ëŒ€ìƒ ë¬¸ìì—´ ë§ˆì§€ë§‰ ìë¦¬ê°€ 2ë°”ì´íŠ¸ì˜ ì¤‘ê°„ì¼ ê²½ìš° ì œê±°í•¨
 		byte[] newByte = new byte[limit + checkLimit];
 		for (int i = 0; i < newByte.length; i++) {
 			newByte[i] = strbyte[i];
@@ -505,16 +505,16 @@ public class StrUtil
 	
 	public static void main(String[] args){
 		// System.out.println(decode("02",
-		// "99","ÀÏ¹İ","01","¼öÁ¤","02","¼öÁ¤","03","¼öÁ¤","04","¼öÁ¤","05","¼öÁ¤"));
+		// "99","ì¼ë°˜","01","ìˆ˜ì •","02","ìˆ˜ì •","03","ìˆ˜ì •","04","ìˆ˜ì •","05","ìˆ˜ì •"));
 		// System.out.println(decode("50"
-		// ,"10","ÀÛ¼ºÁß","20","È®ÀÎ¿äÃ»","30","È®ÀÎ¿Ï·á","40","¹İ·Á","50","Ãë¼Ò","60","Àü¼Û¼º°ø","61","Àü¼Û½ÇÆĞ","70","¼ö½Å¼º°ø","71","¼ö½Å½ÇÆĞ"));
+		// ,"10","ì‘ì„±ì¤‘","20","í™•ì¸ìš”ì²­","30","í™•ì¸ì™„ë£Œ","40","ë°˜ë ¤","50","ì·¨ì†Œ","60","ì „ì†¡ì„±ê³µ","61","ì „ì†¡ì‹¤íŒ¨","70","ìˆ˜ì‹ ì„±ê³µ","71","ìˆ˜ì‹ ì‹¤íŒ¨"));
 
 		//String sTel = "023844535";
 		//String[] tel = getSplitTellNo(sTel);
 		
 		//System.out.println(sTel + " == "+ tel[0] + "-" +tel[1]+ "-" +tel[2]);
-		String sBidNm = "[0620] ¿ÜÁÖ ¸ŞÀÏ testfsdafsdfadfdfafasdfasfr32542323 fdsfasfasd f34r3 fsdf asdf sd fds ";
-		sBidNm = lengthLimit(sBidNm, 55, "...") + "\n-³ªÀÌ½º´ÙÅ¥¿¡¼­ È®ÀÎ";
+		String sBidNm = "[0620] ì™¸ì£¼ ë©”ì¼ testfsdafsdfadfdfafasdfasfr32542323 fdsfasfasd f34r3 fsdf asdf sd fds ";
+		sBidNm = lengthLimit(sBidNm, 55, "...") + "\n-ë‚˜ì´ìŠ¤ë‹¤íì—ì„œ í™•ì¸";
 		System.out.println("bytes : " + sBidNm);
 	}
 

@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_status = codeDao.getCodeArray("M022");
-String[] code_bid_kind_cd = {"10=>ÀüÀÚÀÔÂû","20=>ÀüÀÚÀÔÂû","30=>ÀüÀÚÀÔÂû","90=>°ßÀû¿äÃ»"};
+String[] code_bid_kind_cd = {"10=>ì „ìì…ì°°","20=>ì „ìì…ì°°","30=>ì „ìì…ì°°","90=>ê²¬ì ìš”ì²­"};
 
 String s_bid_sdate = u.request("s_bid_sdate", u.getTimeString("yyyy-MM-dd", u.addDate("M", -1)));
 
@@ -15,7 +15,7 @@ f.addElement("s_member_name", null, null);
 f.addElement("s_bid_name", null, null);
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -36,7 +36,7 @@ list.addSearch("c.member_name", f.get("s_member_name"), "LIKE");
 list.addSearch("a.bid_name", f.get("s_bid_name"), "LIKE");
 list.setOrderBy("a.bid_no desc, a.bid_deg desc");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){
@@ -45,8 +45,8 @@ while(ds.next()){
 	ds.put("submit_edate", u.getTimeString("yyyy-MM-dd HH:mm", ds.getString("submit_edate")));
 	ds.put("status_name", u.getItem(ds.getString("status"), code_status ));
 	if(ds.getString("status").equals("05"))ds.put("status_name","<span style='color:red'>"+ds.getString("status_name")+"</span>");
-	if(ds.getInt("bid_deg")>1)ds.put("bid_name", "<font style='color:#FF0000;'>[ÀçÀÔÂû]</font>"+ds.getString("bid_name"));
-	ds.put("delay_able", ds.getString("status").equals("05"));//°ø°íÁßÀÎ °æ¿ì¸¸ ¿¬±â °¡´É
+	if(ds.getInt("bid_deg")>1)ds.put("bid_name", "<font style='color:#FF0000;'>[ì¬ì…ì°°]</font>"+ds.getString("bid_name"));
+	ds.put("delay_able", ds.getString("status").equals("05"));//ê³µê³ ì¤‘ì¸ ê²½ìš°ë§Œ ì—°ê¸° ê°€ëŠ¥
 }
 
 DataObject bidDao = new DataObject(list.table);

@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String request_parameter = u.getQueryString();
 String next_url = u.request("next_url");
 
-f.addElement("user_id", null, "hname:'¾ÆÀÌµğ', required:'Y'");
-f.addElement("passwd", null, "hname:'ºñ¹Ğ¹øÈ£', required:'Y'");
+f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸', required:'Y'");
 
 if (u.isPost()&&f.validate()) {
 	String user_id = u.request("user_id").trim();
 	String passwd = u.request("passwd").trim();
 	String re = u.request("re");
-	int nTryCnt = u.parseInt(u.getCookie("try"));  // ·Î±×ÀÎ½Ãµµ È½¼ö
+	int nTryCnt = u.parseInt(u.getCookie("try"));  // ë¡œê·¸ì¸ì‹œë„ íšŸìˆ˜
 	if (nTryCnt >= 5) {
-		u.jsAlertReplace("·Î±×ÀÎ 5È¸ ½ÇÆĞ·Î 5ºĞµ¿¾È ·Î±×ÀÎÇÒ ¼ö ¾ø½À´Ï´Ù.\\n\\n5ºĞ ÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.", "index.jsp?" + request_parameter);
+		u.jsAlertReplace("ë¡œê·¸ì¸ 5íšŒ ì‹¤íŒ¨ë¡œ 5ë¶„ë™ì•ˆ ë¡œê·¸ì¸í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\n\\n5ë¶„ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.", "index.jsp?" + request_parameter);
 		return;
 	}
 
@@ -26,15 +26,15 @@ if (u.isPost()&&f.validate()) {
 			DataObject mdao = new DataObject("tcb_member");
 			DataSet member = mdao.find("member_no = '" + person.getString("member_no") + "' ");
 			if (!member.next()) {
-				u.jsAlertReplace("È¸»çÁ¤º¸°¡ ¾ø½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.", "index.jsp?" + request_parameter);
+				u.jsAlertReplace("íšŒì‚¬ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.", "index.jsp?" + request_parameter);
 				return;
 			}
 			if (member.getString("status").equals("00")) {
-				u.jsAlertReplace("Å»ÅğµÈ È¸¿øÀÔ´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.", "index.jsp?" + request_parameter);
+				u.jsAlertReplace("íƒˆí‡´ëœ íšŒì›ì…ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.", "index.jsp?" + request_parameter);
 				return;
 			}
 			if (!member.getString("status").equals("01")) {
-				u.jsAlertReplace("Á¤È¸¿øÀ¸·Î µî·ÏµÈ »ç¿ëÀÚ°¡ ¾Æ´Õ´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.", "index.jsp?" + request_parameter);
+				u.jsAlertReplace("ì •íšŒì›ìœ¼ë¡œ ë“±ë¡ëœ ì‚¬ìš©ìê°€ ì•„ë‹™ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.", "index.jsp?" + request_parameter);
 				return;
 			}
 
@@ -58,13 +58,7 @@ if (u.isPost()&&f.validate()) {
 			auth.put("_DIVISION", person.getString("division"));
 			auth.put("_AUTH_CD", person.getString("auth_cd"));
 
-			// ÀüÀÚ°è¾à °ø¶÷±â´É »ç¿ë¿©ºÎ
-			DataObject menuDao = new DataObject("tcb_menu_member");
-			if (menuDao.findCount("menu_cd = '000077' and member_no='" + member.getString("member_no") + "'") > 0) {
-				auth.put("_CONT_SHARE_ABLE", "Y");
-			}
-			
-			//·Î±×ÀÎ ·Î±× 
+			//ë¡œê·¸ì¸ ë¡œê·¸ 
 			DataObject loginLogDao = new DataObject("tcb_login_log");
 			loginLogDao.item("member_no", member.getString("member_no"));
 			loginLogDao.item("person_seq", person.getString("person_seq"));
@@ -75,22 +69,22 @@ if (u.isPost()&&f.validate()) {
 			loginLogDao.insert();
 			auth.setAuthInfo();
 
-			u.delCookie("try"); // ·Î±×ÀÎ½Ãµµ È½¼ö
-			u.setCookie("pin", Security.AESencrypt(user_id), 60 * 60 * 24 * 30); // ¾ÆÀÌµğ ´ÙÀ½ Á¢¼Ó½Ã ÀÚµ¿ Ç¥½ÃµÇµµ·Ï ÄíÅ°¿¡ÀúÀå(30ÀÏ°£)
+			u.delCookie("try"); // ë¡œê·¸ì¸ì‹œë„ íšŸìˆ˜
+			u.setCookie("pin", Security.AESencrypt(user_id), 60 * 60 * 24 * 30); // ì•„ì´ë”” ë‹¤ìŒ ì ‘ì†ì‹œ ìë™ í‘œì‹œë˜ë„ë¡ ì¿ í‚¤ì—ì €ì¥(30ì¼ê°„)
 
 			u.jsReplace(next_url + "?" + request_parameter);
 
-		} else { // ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡
+		} else { // ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜
 			nTryCnt++;
-			u.setCookie("try", Integer.toString(nTryCnt), 5 * 60);  // 5ºĞ
-			//u.jsAlert("¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n[·Î±×ÀÎ ½ÇÆĞ:" + nTryCnt + "È¸, ³²Àº È½¼ö:" + (5 - nTryCnt) + "È¸]");
-			u.jsAlertReplace("¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n[·Î±×ÀÎ ½ÇÆĞ:" + nTryCnt + "È¸, ³²Àº È½¼ö:" + (5 - nTryCnt) + "È¸]", "index.jsp?" + request_parameter);
+			u.setCookie("try", Integer.toString(nTryCnt), 5 * 60);  // 5ë¶„
+			//u.jsAlert("ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\n[ë¡œê·¸ì¸ ì‹¤íŒ¨:" + nTryCnt + "íšŒ, ë‚¨ì€ íšŸìˆ˜:" + (5 - nTryCnt) + "íšŒ]");
+			u.jsAlertReplace("ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\n[ë¡œê·¸ì¸ ì‹¤íŒ¨:" + nTryCnt + "íšŒ, ë‚¨ì€ íšŸìˆ˜:" + (5 - nTryCnt) + "íšŒ]", "index.jsp?" + request_parameter);
 			return;
 		}
-	} else {// ¾ÆÀÌµğ ¾øÀ½
+	} else {// ì•„ì´ë”” ì—†ìŒ
 		nTryCnt++;
-		u.setCookie("try", Integer.toString(nTryCnt), 5 * 60);  // 5ºĞ
-		u.jsAlertReplace("¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n[·Î±×ÀÎ ½ÇÆĞ:" + nTryCnt + "È¸, ³²Àº È½¼ö:" + (5 - nTryCnt) + "È¸]", "index.jsp?" + request_parameter);
+		u.setCookie("try", Integer.toString(nTryCnt), 5 * 60);  // 5ë¶„
+		u.jsAlertReplace("ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\n[ë¡œê·¸ì¸ ì‹¤íŒ¨:" + nTryCnt + "íšŒ, ë‚¨ì€ íšŸìˆ˜:" + (5 - nTryCnt) + "íšŒ]", "index.jsp?" + request_parameter);
 		return;
 	}
 }

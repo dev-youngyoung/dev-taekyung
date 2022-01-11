@@ -11,11 +11,11 @@
 			<col width="10%">
 		</colgroup>
 		<tr>
-			<th><p>°è¾à¸í</p></th>
+			<th><p>ê³„ì•½ëª…</p></th>
 			<td>
 				<input type="text" name="s_cont_name"  style="width: 95%;" />
 			</td>
-			<th><p>ÀÛ¼º(°è¾à)ÀÏÀÚ</p></th>
+			<th><p>ìž‘ì„±(ê³„ì•½)ì¼ìž</p></th>
 			<td>
 				<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -25,28 +25,28 @@
 			<td></td>
 		</tr>
 		<tr>
-			<th><p>¾÷Ã¼¸í</p></th>
+			<th><p>ì—…ì²´ëª…</p></th>
 			<td>
 				<input type="text" name="s_member_name"  style="width: 95%;"/>
 			</td>
-			<th><p>°è¾à±¸ºÐ</p></th>
+			<th><p>ê³„ì•½êµ¬ë¶„</p></th>
 			<td>
 				<select name="s_template_cd">
-					<option value="">-------¼±ÅÃ-------</option>
+					<option value="">-------ì„ íƒ-------</option>
 					<!-- LOOP START 'template' -->
 						<option value="{{template.template_cd}}">{{template.template_name}}</option>
 					<!-- LOOP END 'template' -->
 				</select>
 			</td>
 			<td align="right">
-				<button type="submit" class="search_btn">°Ë»ö</button>
+				<button type="submit" class="search_btn">ê²€ìƒ‰</button>
 			</td>
 		</tr>
 	</table>
 </div>
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 
 <br/>
@@ -64,14 +64,14 @@
 			<col width="9%" />
 		</colgroup>
 		<tr>
-			<th rowspan="2">¼ø¹ø</th>
-			<th rowspan="2">°è¾à±¸ºÐ</th>
-			<th rowspan="2">°è¾à¸í</th>
-			<th rowspan="2">»ç¾÷ÀÚ ¹øÈ£</th>
-			<th rowspan="2">¾÷Ã¼¸í</th>
-			<th rowspan="2">´ëÇ¥ÀÚ¸í</th>
-			<th rowspan="2">ÀÛ¼º(°è¾à)<br/>ÀÏÀÚ</th>
-			<th rowspan="2">ÀÛ¼ºÀÚ<br/>(¹ÙÀÌ¾î¸í)</th>
+			<th rowspan="2">ìˆœë²ˆ</th>
+			<th rowspan="2">ê³„ì•½êµ¬ë¶„</th>
+			<th rowspan="2">ê³„ì•½ëª…</th>
+			<th rowspan="2">ì‚¬ì—…ìž ë²ˆí˜¸</th>
+			<th rowspan="2">ì—…ì²´ëª…</th>
+			<th rowspan="2">ëŒ€í‘œìžëª…</th>
+			<th rowspan="2">ìž‘ì„±(ê³„ì•½)<br/>ì¼ìž</th>
+			<th rowspan="2">ìž‘ì„±ìž<br/>(ë°”ì´ì–´ëª…)</th>
 		</tr>
 		<tbody>
 			<!-- LOOP START 'list' -->
@@ -89,7 +89,7 @@
 			
 			<!-- IFNOT START 'list' -->
 			<tr>
-				<td colspan="8" align="center">Á¶È¸°á°ú°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.</td>
+				<td colspan="8" align="center">ì¡°íšŒê²°ê³¼ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</td>
 			</tr>
 			<!-- IFNOT END 'list' -->
 		</tbody>

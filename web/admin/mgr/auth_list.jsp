@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 f.addElement("s_auth_name",u.request("s_auth_name"), null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -18,11 +18,11 @@ list.addWhere(" status = '10'");
 list.addSearch("auth_nm", f.get("s_auth_name"), "LIKE");
 list.setOrderBy(" auth_cd desc ");  
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet ds = list.getDataSet();
 
 while(ds.next()){
-	ds.put("mod_date",u.getTimeString("yyyy-MM-dd",ds.getString("mod_date")));  //¼öÁ¤ÀÏÀÚ
+	ds.put("mod_date",u.getTimeString("yyyy-MM-dd",ds.getString("mod_date")));  //ìˆ˜ì •ì¼ìž
 }
 
 p.setLayout("default");

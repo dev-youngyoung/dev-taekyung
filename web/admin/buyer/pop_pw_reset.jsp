@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String person_seq = u.request("person_seq");
 
 if(member_no.equals("")||person_seq.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -12,13 +12,13 @@ DataObject personDao = new DataObject("tcb_person");
 
 DataSet person = personDao.find(" member_no = '" + member_no + "' and person_seq = '" + person_seq + "' ");
 if(!person.next()){
-	u.jsError("´ã´çÀÚ Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+	u.jsError("ë‹´ë‹¹ì ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("hp1", person.getString("hp1"), "hname:'ÇÚµåÆù¹øÈ£(¾Õ)', required:'Y'");
-f.addElement("hp2", person.getString("hp2"), "hname:'ÇÚµåÆù¹øÈ£(Áß°£)', required:'Y'");
-f.addElement("hp3", person.getString("hp3"), "hname:'ÇÚµåÆù¹øÈ£(¸¶Áö¸·)', required:'Y'");
+f.addElement("hp1", person.getString("hp1"), "hname:'í•¸ë“œí°ë²ˆí˜¸(ì•)', required:'Y'");
+f.addElement("hp2", person.getString("hp2"), "hname:'í•¸ë“œí°ë²ˆí˜¸(ì¤‘ê°„)', required:'Y'");
+f.addElement("hp3", person.getString("hp3"), "hname:'í•¸ë“œí°ë²ˆí˜¸(ë§ˆì§€ë§‰)', required:'Y'");
 
 p.setVar("pw", "p"+u.strpad(u.getRandInt(0,999999)+"",6,"0")+"!");
 
@@ -32,19 +32,19 @@ if(u.isPost()&&f.validate()){
 	personDao.item("passwd", u.sha256(pw));
 	
 	if(!personDao.update("member_no = '"+member_no+"' and person_seq = '"+person_seq+"'")){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	
 	if(!"".equals(hp1) && !"".equals(hp2) && !"".equals(hp3)){
 		SmsDao smsDao = new SmsDao();
-		String sSmsMsg = "[³ªÀÌ½º´ÙÅ¥(ÀÏ¹İ ±â¾÷¿ë) ÀÓ½Ã ºñ¹Ğ¹øÈ£ ¾È³»]\n" + pw;
+		String sSmsMsg = "[ë‚˜ì´ìŠ¤ë‹¤í(ì¼ë°˜ ê¸°ì—…ìš©) ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ì•ˆë‚´]\n" + pw;
 		smsDao.sendSMS("buyer", hp1, hp2, hp3, sSmsMsg);
 	}
 
 	out.println("<script>");
-	out.println("alert('ºñ¹Ğ¹øÈ£ ÃÊ±âÈ­ Ã³¸® µÇ¾ú½À´Ï´Ù.');");
+	out.println("alert('ë¹„ë°€ë²ˆí˜¸ ì´ˆê¸°í™” ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 	out.println("opener.location.reload();");
 	out.println("self.close();");
 	out.println("</script>");
@@ -54,7 +54,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_pw_reset");
-p.setVar("popup_title","ºñ¹Ğ¹øÈ£ ÃÊ±âÈ­");
+p.setVar("popup_title","ë¹„ë°€ë²ˆí˜¸ ì´ˆê¸°í™”");
 p.setVar("query", u.getQueryString());
 p.setVar("form_script",f.getScript());
 p.display(out);

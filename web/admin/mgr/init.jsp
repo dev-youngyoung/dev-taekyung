@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../init.jsp" %>
 <%
-// °ü¸®ÀÚ È¸¿ø¹øÈ£ÀÎÁö Ã¼Å©
+// ê´€ë¦¬ì íšŒì›ë²ˆí˜¸ì¸ì§€ ì²´í¬
 if (!auth.isValid() || auth.getString("_ADMIN_ID").equals("")) {
 	out.println("<script type=\"text/javascript\">");
-	out.println("  alert('Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.\\n');");
+	out.println("  alert('ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.\\n');");
 	out.println("if(opener!=null){");
 	out.println("  opener.location.href='/web/admin/index.jsp';");
 	out.println("  self.close();");

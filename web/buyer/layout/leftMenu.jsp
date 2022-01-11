@@ -1,8 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String menu_cd = u.request("menu_cd");
 if(menu_cd.equals("")){
-	return;
+	menu_cd = "000002";
+	//return;
 }
 
 DataObject menuDao = new DataObject("tcb_menu");
@@ -23,9 +24,9 @@ while(title.next()){
 }
 
 DataSet menu = new DataSet();
-if(auth.isValid()){ // ∑Œ±◊¿Œ «—∞ÊøÏ
+if(auth.isValid()){ // Î°úÍ∑∏Ïù∏ ÌïúÍ≤ΩÏö∞
 		
-	if(u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){// ∞Ëæ‡¿€º∫ æ˜√º
+	if(u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){// Í≥ÑÏïΩÏûëÏÑ± ÏóÖÏ≤¥
 		if("Y".equals(auth.getString("_DEFAULT_YN"))){
 	 		menu = menuDao.query(
 			 " select *                                                                                                                      "
@@ -78,7 +79,7 @@ if(auth.isValid()){ // ∑Œ±◊¿Œ «—∞ÊøÏ
 			);
 		}
 	}else{
-		if(!auth.getString("_MEMBER_GUBUN").equals("04")){//¿ª ªÁæ˜¿⁄
+		if(!auth.getString("_MEMBER_GUBUN").equals("04")){//ÏùÑ ÏÇ¨ÏóÖÏûê
 			String not_in_menu = "'000119'";
 			if(!auth.getString("_DEFAULT_YN").equals("Y")){
 				not_in_menu = "'000119','000108','000120','000109'";
@@ -103,7 +104,7 @@ if(auth.isValid()){ // ∑Œ±◊¿Œ «—∞ÊøÏ
 					+"  where cnt > 0 and depth in(2,3)                                                                                              "
 					);
 			
-		}else{// ¿ª ∞≥¿Œ
+		}else{// ÏùÑ Í∞úÏù∏
 			menu = menuDao.query(
 					 " select *                                                                                                                      "
 					+"   from (                                                                                                                      "
@@ -126,7 +127,7 @@ if(auth.isValid()){ // ∑Œ±◊¿Œ «—∞ÊøÏ
 		}
 	}
 
-}else{//∑Œ±◊¿Œ æ»«—∞ÊøÏ
+}else{//Î°úÍ∑∏Ïù∏ ÏïàÌïúÍ≤ΩÏö∞
 	menu = menuDao.query(
 			 " select *                                                                                                                      "
 			+"   from (                                                                                                                      "

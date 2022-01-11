@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String client_no= u.request("client_no");
 if(client_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
-String[] code_status = {"00=>Å»Åğ", "01=>Á¤È¸¿ø", "02=>ºñÈ¸¿ø", "03=>Àç°¡ÀÔ"};  // È¸¿ø»óÅÂ
+String[] code_status = {"00=>íƒˆí‡´", "01=>ì •íšŒì›", "02=>ë¹„íšŒì›", "03=>ì¬ê°€ì…"};  // íšŒì›ìƒíƒœ
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_member_type = codeDao.getCodeArray("M002");
 
@@ -15,14 +15,14 @@ f.addElement("s_vendcd",null, null);
 f.addElement("s_member_type",null, null);
 f.addElement("s_status",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
 list.setListNum(10);
 list.setTable("tcb_member");
 list.setFields("*");
-list.addWhere(" member_no <> '"+client_no+"'");// ³ª´Â Á¦¿Ü
+list.addWhere(" member_no <> '"+client_no+"'");// ë‚˜ëŠ” ì œì™¸
 list.addSearch("status", f.get("s_status"));
 list.addSearch("member_type", f.get("s_member_type"));
 list.addSearch("member_name", f.get("s_member_name"), "LIKE");
@@ -31,7 +31,7 @@ list.setOrderBy("member_name asc ");
 
 DataSet ds = new DataSet();
 if(!u.request("search").equals("")){
-	//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+	//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 	ds = list.getDataSet();
 	while(ds.next()){
 		ds.put("vendcd",u.getBizNo(ds.getString("vendcd")));
@@ -43,7 +43,7 @@ if(!u.request("search").equals("")){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("buyer.pop_search_company");
-p.setVar("popup_title","¾÷Ã¼°Ë»ö");
+p.setVar("popup_title","ì—…ì²´ê²€ìƒ‰");
 p.setLoop("code_status", u.arr2loop(code_status));
 p.setLoop("code_member_type", u.arr2loop(code_member_type));
 p.setLoop("list", ds);

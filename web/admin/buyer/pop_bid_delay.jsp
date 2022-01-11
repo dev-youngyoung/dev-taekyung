@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String main_member_no = u.request("main_member_no");
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
 if(main_member_no.equals("")||bid_no.equals("")||bid_deg.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,14 +14,14 @@ DataObject bidDao = new DataObject("tcb_bid_master");
 //bidDao.setDebug(out);
 DataSet bid = bidDao.find(where);
 if(!bid.next()){
-	u.jsError("ÀÔÂûÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì…ì°°ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 bid.put("str_submit_edate",u.getTimeString("yyyy-MM-dd HH:mm", bid.getString("submit_edate")));
-f.addElement("submit_edate", u.getTimeString("yyyy-MM-dd", bid.getString("submit_edate")), "hname:'º¯°æÈÄ ÀÔÂû¼­¸¶°¨ÀÏ', required:'Y'");
-f.addElement("submit_ehh", u.getTimeString("HH", bid.getString("submit_edate")), "hname:'º¯°æÈÄ ÀÔÂû¼­¸¶°¨½Ã°£', required:'Y'");
-f.addElement("submit_emm", u.getTimeString("mm", bid.getString("submit_edate")), "hname:'º¯°æÈÄ ÀÔÂû¼­¸¶°¨ºĞ', required:'Y'");
+f.addElement("submit_edate", u.getTimeString("yyyy-MM-dd", bid.getString("submit_edate")), "hname:'ë³€ê²½í›„ ì…ì°°ì„œë§ˆê°ì¼', required:'Y'");
+f.addElement("submit_ehh", u.getTimeString("HH", bid.getString("submit_edate")), "hname:'ë³€ê²½í›„ ì…ì°°ì„œë§ˆê°ì‹œê°„', required:'Y'");
+f.addElement("submit_emm", u.getTimeString("mm", bid.getString("submit_edate")), "hname:'ë³€ê²½í›„ ì…ì°°ì„œë§ˆê°ë¶„', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 	DB db = new DB();
@@ -36,12 +36,12 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(bidDao.getUpdateQuery(where), bidDao.record);
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	out.println("<script>");
-	out.println("alert('¸¶°¨½Ã°£ º¯°æ Ã³¸® ÇÏ¿´½À´Ï´Ù.');");
+	out.println("alert('ë§ˆê°ì‹œê°„ ë³€ê²½ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.');");
 	out.println("opener.location.reload();");
 	out.println("self.close();");
 	out.println("</script>");
@@ -51,7 +51,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_bid_delay");
-p.setVar("popup_title","¸¶°¨½Ã°£ º¯°æ");
+p.setVar("popup_title","ë§ˆê°ì‹œê°„ ë³€ê²½");
 p.setVar("bid",bid);
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));

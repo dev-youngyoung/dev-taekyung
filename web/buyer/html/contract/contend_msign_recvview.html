@@ -1,4 +1,4 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="cont_html"/>
 <input type="hidden" name="cont_hash" value="{{cont.cont_hash}}"/>
 <input type="hidden" name="sign_data"/>
@@ -7,10 +7,10 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à±âº»Á¤º¸</h3>
+	        <h3>ê³„ì•½ê¸°ë³¸ì •ë³´</h3>
 	    </div>
 	    <div class="push-right">
-	    	°è¾à»óÅÂ: <span class="caution-text"><b>{{cont.status_name}}</b></span>
+	    	ê³„ì•½ìƒíƒœ: <span class="caution-text"><b>{{cont.status_name}}</b></span>
 	    </div>
 	</div>
 	<table>
@@ -21,18 +21,18 @@
 			<col width="24%">
 		</colgroup>
 		<tr>
-			<th>°è¾à¸í</th>
+			<th>ê³„ì•½ëª…</th>
 			<td colspan="3">{{cont.cont_name}}</td>
 		</tr>
 		<tr>
-			<th>°è¾àÀÏÀÚ</th>
+			<th>ê³„ì•½ì¼ì</th>
 			<td>{{cont.cont_date}}</td>
-			<th>°è¾à¹øÈ£</th>
+			<th>ê³„ì•½ë²ˆí˜¸</th>
 			<td>{{cont.cont_userno}}</td>
 		</tr>
 		<!-- IF START 'change_cont' -->
 		<tr>
-			<th>°è¾à±¸ºĞ</th>
+			<th>ê³„ì•½êµ¬ë¶„</th>
 			<td colspan="3">
 				<font color="red"><b>{{cont.change_gubun_str}}</b></font>
 			</td>
@@ -100,7 +100,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>¿¬´ëº¸Áõ</h3>
+	        <h3>ì—°ëŒ€ë³´ì¦</h3>
 	    </div>	    
 	</div>
 	<table>
@@ -123,10 +123,10 @@
 				<!-- IF END 'cust_chain.hp1' -->
 				/ {{cust_chain.email}} </td>
 			<!-- IF START 'cust_chain.sign_dn' -->
-				<td align="right">¼­¸íÀÏ½Ã: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
+				<td align="right" style="font-size: 16px;">ì„œëª…ì¼ì‹œ: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
 			<!-- IF END 'cust_chain.sign_dn' -->
 			<!-- IFNOT START 'cust_chain.sign_dn' -->
-				<td align="right">¼­¸íÀÏ½Ã: <b style="color:red">¹Ì¼­¸í</b></td>
+				<td align="right" style="font-size: 16px;">ì„œëª…ì¼ì‹œ: <b style="color:red">ë¯¸ì„œëª…</b></td>
 			<!-- IFNOT END 'cust_chain.sign_dn' -->
 			</tr>
 		<!-- LOOP END 'cust_chain' -->
@@ -137,7 +137,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à¼­·ù </h3>
+	        <h3>ê³„ì•½ì„œë¥˜ </h3>
 	    </div>	    
 	</div>
 	<table id="cfile_grid" style="table-layout: fixed;">
@@ -148,9 +148,9 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ÆÄÀÏ±¸ºĞ</th>
-			<th>°è¾à¼­·ù¸í</th>
-			<th>Ã·ºÎ</th>
+			<th>íŒŒì¼êµ¬ë¶„</th>
+			<th>ê³„ì•½ì„œë¥˜ëª…</th>
+			<th>ì²¨ë¶€</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -176,7 +176,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>ÀÎÁö¼¼</h3>
+	    	<h3>ì¸ì§€ì„¸</h3>
 	    </div>
 	</div>
 	<table id="warr_grid">
@@ -191,13 +191,13 @@
 		</colgroup>
 		<thead>
 			<tr>
-			  	<th>³³ºÎ¾÷Ã¼</th>
-			    <th>»ç¾÷ÀÚ¹øÈ£</th>
-			    <th>ÀÎÁö¼¼ °íÀ¯¹øÈ£</th>
-			    <th>ÀÎÁö¼¼¾×</th>
-			    <th>¹ß±ŞÀÏÀÚ</th>
-			    <th>¹ß±ŞÃ³</th>
-			    <th>µî·Ï/Á¶È¸</th>
+			  	<th>ë‚©ë¶€ì—…ì²´</th>
+			    <th>ì‚¬ì—…ìë²ˆí˜¸</th>
+			    <th>ì¸ì§€ì„¸ ê³ ìœ ë²ˆí˜¸</th>
+			    <th>ì¸ì§€ì„¸ì•¡</th>
+			    <th>ë°œê¸‰ì¼ì</th>
+			    <th>ë°œê¸‰ì²˜</th>
+			    <th>ë“±ë¡/ì¡°íšŒ</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -207,7 +207,7 @@
 					<td align="center">{{stamp.member_name}}</td>
 					<td align="center">{{stamp.vendcd}}</td>
 					<td colspan="4"></td>
-					<td align="center"><button type="button" class="sbtn ico-save" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>µî·Ï</button>
+					<td align="center"><button type="button" class="sbtn ico-save" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>ë“±ë¡</button>
 					</td>
 				</tr>
 			<!-- IFNOT END 'stamp.cert_no' -->
@@ -216,10 +216,10 @@
 					<td align="center">{{stamp.member_name}}</td>
 					<td align="center">{{stamp.vendcd}}</td>
 					<td align="center">{{stamp.cert_no}}</td>
-					<td align="center">£Ü{{stamp.stamp_money}}</td>
+					<td align="center">ï¿¦{{stamp.stamp_money}}</td>
 					<td align="center">{{stamp.issue_date}}</td>
 					<td align="center">{{stamp.channel}}</td>
-					<td align="center"><button type="button" class="sbtn ico-search" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>Á¶È¸</button></td>
+					<td align="center"><button type="button" class="sbtn ico-search" onclick="fPopupStampInfo('{{stamp.cont_no}}','{{stamp.cont_chasu}}','{{stamp.member_no}}');"><span></span>ì¡°íšŒ</button></td>
 				</tr>
 			<!-- IF END 'stamp.cert_no' -->
 		<!-- LOOP END 'stamp' -->
@@ -232,7 +232,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>º¸Áõ¼­·ù</h3>
+	    	<h3>ë³´ì¦ì„œë¥˜</h3>
 	    </div>
 	</div>
 	<table id="warr_grid">
@@ -247,13 +247,13 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>º¸Áõ¼­Á¾·ù</th>
-			<th>¹ß±Ş±â°ü</th>
-			<th>Áõ±Ç¹øÈ£</th>
-			<th>¹ß±ŞÀÏÀÚ</th>
-			<th>º¸Áõ±â°£</th>
-			<th>º¸Áõ±İ¾×</th>
-			<th>µî·Ï/Á¶È¸</th>
+			<th>ë³´ì¦ì„œì¢…ë¥˜</th>
+			<th>ë°œê¸‰ê¸°ê´€</th>
+			<th>ì¦ê¶Œë²ˆí˜¸</th>
+			<th>ë°œê¸‰ì¼ì</th>
+			<th>ë³´ì¦ê¸°ê°„</th>
+			<th>ë³´ì¦ê¸ˆì•¡</th>
+			<th>ë“±ë¡/ì¡°íšŒ</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -261,17 +261,17 @@
 			<!-- IFNOT START 'warr.warr_no' -->
 				<tr>
 					<td align="center">{{warr.warr_type}}</td>
-					<td colspan="5"><b>ºñ°í:</b> {{warr.etc}}</td>
+					<td colspan="5"><b>ë¹„ê³ :</b> {{warr.etc}}</td>
 					<td align="center">
 			
 					<!-- IFNOT START 'warr.status' -->
 			
 					<!-- IF START 'warr.haja' -->
-					<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>µî·Ï</button>
+					<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>ë“±ë¡</button>
 					<!-- IF END 'warr.haja' -->
 			
 					<!-- IFNOT START 'warr.haja' -->
-					<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>µî·Ï</button>
+					<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>ë“±ë¡</button>
 					<!-- IFNOT END 'warr.haja' -->
 					<!-- IFNOT END 'warr.status' -->
 			
@@ -289,9 +289,9 @@
 					<td align="center">{{warr.warr_no}}</td>
 					<td align="center">{{warr.warr_date}}</td>
 					<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
-					<td align="right">£Ü{{warr.warr_amt}}</td>
+					<td align="right">ï¿¦{{warr.warr_amt}}</td>
 					<!-- IF START 'warr.end' -->
-					<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>Á¶È¸</button></td>
+					<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>ì¡°íšŒ</button></td>
 					<!-- IF END 'warr.end' -->
 					<!-- IFNOT START 'warr.end' -->
 					<td align="center"><a href="javascript:contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}')"><u style="color:red">{{warr.warr_status}}</u></a></td>
@@ -315,7 +315,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	    	<h3>±¸ºñ¼­·ù({{rfile_cust.member_name}})</h3>
+	    	<h3>êµ¬ë¹„ì„œë¥˜({{rfile_cust.member_name}})</h3>
 	    </div>
 	</div>
 	<table id="rfile_grid">
@@ -326,9 +326,9 @@
 		</colgroup>
 		<thead>
 		<tr>
-			<th>ÇÊ¼ö¿©ºÎ</th>
-			<th>¹®¼­¸í</th>
-			<th>Ã·ºÎÆÄÀÏ</th>
+			<th>í•„ìˆ˜ì—¬ë¶€</th>
+			<th>ë¬¸ì„œëª…</th>
+			<th>ì²¨ë¶€íŒŒì¼</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -341,12 +341,12 @@
 				<td>{{rfile.doc_name}}</td>
 				<!-- IF START 'rfile.file_name' -->
 				<td align="right">
-					{{rfile.file_size}}	&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
+					{{rfile.file_size}}	&nbsp;<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
 				</td>
 				<!-- IF END 'rfile.file_name' -->
 				<!-- IFNOT START 'rfile.file_name' -->
 				<td align="center">
-					¹ÌÃ·ºÎ
+					ë¯¸ì²¨ë¶€
 				</td>
 				<!-- IFNOT END 'rfile.file_name' -->
 			</tr>
@@ -359,7 +359,7 @@
 </form>
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-list" onclick="location.href='contend_recv_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='contend_recv_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 </div>	
 
 <form name="comp_form" method="post">
@@ -390,26 +390,26 @@
 					<col width="24%"/>
 				</colgroup>
 				<tr>
-					<th>ÁÖ¼Ò</th>
+					<th>ì£¼ì†Œ</th>
 					<td colspan="3"><input type="text" name="address" class="in_readonly" style="width:98%" readonly/></td>
-					<th>´ã´çÀÚ</th>
+					<th>ë‹´ë‹¹ì</th>
 					<td><input type="text" name="user_name" class="in_readonly" style="width:98%" readonly/></td>
 				</tr>
 				<tr>
-					<th>»óÈ£</th>
+					<th>ìƒí˜¸</th>
 					<td colspan="3"><input type="text" name="member_name" style="width:98%" class="in_readonly" readonly/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
+					<th>ì´ë©”ì¼</th>
 					<td><input type="text" name="email" class="in_readonly" style="width:98%" readonly/></td>
 				</tr>
 				<tr>
-					<th>´ëÇ¥ÀÚ</th>
+					<th>ëŒ€í‘œì</th>
 					<td><input type="text" name="boss_name" class="in_readonly" style="width:98%" readonly/></td>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" class="in_readonly" style="width:98%" readonly/></td>
-					<th>ÈŞ´ëÆù</th>
-					<td>
-						<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width:28%" readonly/>-
-						<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width:30%" readonly/>-
+					<th name="hp_th">íœ´ëŒ€í°</th>
+					<td name="hp_td">
+						<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width:28%" readonly/><span name="hp_bar1">-</span>
+						<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width:30%" readonly/><span name="hp_bar2">-</span>
 						<input type="text" name="hp3" class="in_readonly" maxlength="4" style="width:30%" readonly/>
 					</td>
 				</tr>
@@ -447,23 +447,23 @@
 					<col width="23%"/>
 				</colgroup>
 				<tr>
-					<th>ÀÌ¸§</th>
-					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="»óÈ£" required="Y" onblur="setCustArea()"/></td>
+					<th>ì´ë¦„</th>
+					<td colspan="3"><input type="text" name="member_name" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ìƒí˜¸" required="Y" onblur="setCustArea()"/></td>
 				</tr>
 				<tr>
-					<th>ÁÖ¼Ò</th>
-					<td><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ÁÖ¼Ò" required="Y" onblur="setCustArea()"/></td>
-					<th>ÀÌ¸ŞÀÏ</th>
-					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ÀÌ¸ŞÀÏ" option="email" required="Y"/></td>
+					<th>ì£¼ì†Œ</th>
+					<td><input type="text" name="address" class="in_readonly" readonly style="width:98%" maxlength="100" hname="ì£¼ì†Œ" required="Y" onblur="setCustArea()"/></td>
+					<th>ì´ë©”ì¼</th>
+					<td><input type="text" name="email" class="in_readonly" readonly style="width:98%" maxlength="150" hname="ì´ë©”ì¼" option="email" required="Y"/></td>
 				</tr>
 				<tr>
-					<th>ÀÏ¹İÀüÈ­</th>
+					<th>ì¼ë°˜ì „í™”</th>
 					<td><input type="text" name="tel_num" class="in_readonly" readonly style="width:98%" maxlength="20"/></td>
-					<th>ÈŞ´ëÆù</th>
+					<th>íœ´ëŒ€í°</th>
 					<td>
-						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>-
-						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="ÈŞ´ëÆù" required="Y"/>
+						<input type="text" name="hp1" class="in_readonly" readonly maxlength="3" style="width:28%" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp2" class="in_readonly" readonly maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>-
+						<input type="text" name="hp3" class="in_readonly" readonly maxlength="4" style="width:30%" hname="íœ´ëŒ€í°" required="Y"/>
 					</td>
 				</tr>
 			</table>
@@ -475,9 +475,9 @@
 
 <script language="javascript">
 
-if( window.attachEvent )  // IEÀÇ °æ¿ì
+if( window.attachEvent )  // IEì˜ ê²½ìš°
 	window.attachEvent( "onload", convertHtml );
-else  // IE°¡ ¾Æ´Ñ °æ¿ì.
+else  // IEê°€ ì•„ë‹Œ ê²½ìš°.
 	window.addEventListener( "load", convertHtml , false );
 	
 function convertHtml(){
@@ -539,8 +539,23 @@ SetFormValue(form_name,"hp3","{{cust.hp3}}");
 comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=>"));
 <!-- IFNOT END 'cust.sign_dn' -->
 <!-- IF START 'cust.sign_dn' -->
-comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=>¼­¸íÀÏ½Ã: <b style=\"color:blue\">{{cust.sign_date}}</b>"));
+comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}","sign_date=>ì„œëª…ì¼ì‹œ: <b style=\"color:blue\">{{cust.sign_date}}</b>"));
 <!-- IF END 'cust.sign_dn' -->
 comp_grid_{{cust.sign_seq}}.addRow();
 </script>
 <!-- LOOP END 'cust' -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	// ë†ì‹¬ íœ´ëŒ€í° hidden
+	document.getElementsByName('hp_th')[0].style.background = "white";
+	document.getElementsByName('hp_th')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_td')[0].style.borderLeft = "none";
+	document.getElementsByName('hp_th')[0].innerHTML = "";
+	document.getElementsByName('hp_bar1')[0].innerHTML = "";
+	document.getElementsByName('hp_bar2')[0].innerHTML = "";
+	document.getElementsByName('hp1')[0].type= "hidden";
+	document.getElementsByName('hp2')[0].type= "hidden";
+	document.getElementsByName('hp3')[0].type= "hidden";
+});
+</script>

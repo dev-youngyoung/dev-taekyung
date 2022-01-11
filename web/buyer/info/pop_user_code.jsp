@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] title = {"A=>Ãë±ŞÇ°¸ñ¼±ÅÃ","B=>±â¼úºĞ¾ß¼±ÅÃ"};
+String[] title = {"A=>ì·¨ê¸‰í’ˆëª©ì„ íƒ","B=>ê¸°ìˆ ë¶„ì•¼ì„ íƒ"};
 
 String main_member_no= u.request("main_member_no");
 String code_gubun = u.request("code_gubun");
 String codeObj = u.request("codeObj");
 String nameObj = u.request("nameObj");
 if(main_member_no.equals("")|| code_gubun.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -15,12 +15,12 @@ f.addElement("m_cd", null, null);
 f.addElement("s_cd", null, null);
 f.addElement("code_nm", null, null);
 
-//´ëºĞ·ù ÄÚµå
+//ëŒ€ë¶„ë¥˜ ì½”ë“œ
 DataObject userCodeDao =new DataObject("tcb_user_code");
 DataSet code_m = userCodeDao.find("l_cd = '"+code_gubun+"' and depth=2 ");
 
 
-//ÄÚµå ¸ñ·Ï
+//ì½”ë“œ ëª©ë¡
 StringBuffer sb = new StringBuffer();
 sb.append("select a.code                                       		   ");
 sb.append("     ,(select code_nm                                       ");
@@ -34,7 +34,7 @@ sb.append("        where member_no = a.member_no                       ");
 sb.append("          and depth = '4'                                   ");
 sb.append("          and use_yn = 'Y'                                  ");
 sb.append("          and code like  a.l_cd || a.m_cd || '%'            ");
-if(!f.get("code_nm").equals(""))//ÄÚµå¸í
+if(!f.get("code_nm").equals(""))//ì½”ë“œëª…
 	sb.append("  and code_nm like '%"+f.get("code_nm")+"%'");
 sb.append("      ) m_rowspan                                           ");
 sb.append("     ,(select code_nm                                       ");
@@ -48,7 +48,7 @@ sb.append("        where member_no = a.member_no                       ");
 sb.append("          and depth = '4'                                   ");
 sb.append("          and use_yn = 'Y'                                  ");
 sb.append("          and  code like  a.l_cd || a.m_cd || a.s_cd || '%' ");
-if(!f.get("code_nm").equals(""))//ÄÚµå¸í
+if(!f.get("code_nm").equals(""))//ì½”ë“œëª…
 	sb.append("  and code_nm like '%"+f.get("code_nm")+"%'");
 sb.append("       ) s_rowspan                                          ");
 sb.append("     , a.code_nm                                            ");
@@ -57,11 +57,11 @@ sb.append(" where depth = '4'                                          ");
 sb.append("   and use_yn = 'Y'										   ");
 sb.append("   and l_cd = '"+code_gubun+"'                              ");
 sb.append("   and member_no = '"+main_member_no+"'                     ");
-if(!f.get("m_cd").equals(""))//´ëºĞ·ù
+if(!f.get("m_cd").equals(""))//ëŒ€ë¶„ë¥˜
 	sb.append("  and m_cd = '"+f.get("m_cd")+"' ");
-if(!f.get("s_cd").equals(""))//ÁßºĞ·ù
+if(!f.get("s_cd").equals(""))//ì¤‘ë¶„ë¥˜
 	sb.append("  and s_cd = '"+f.get("s_cd")+"'");
-if(!f.get("code_nm").equals(""))//ÄÚµå¸í
+if(!f.get("code_nm").equals(""))//ì½”ë“œëª…
 	sb.append("  and code_nm like '%"+f.get("code_nm")+"%'");
 sb.append("order by code asc		                                   ");
 

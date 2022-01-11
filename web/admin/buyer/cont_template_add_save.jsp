@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String template_cd = u.request("template_cd");
 if(template_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -10,7 +10,7 @@ DataObject templateDao = new DataObject("tcb_cont_template");
 //templateDao.setDebug(out);
 DataSet template = templateDao.find("template_cd = '"+template_cd+"'  " );
 if(!template.next()){
-	u.jsError("°è¾à¼­½Ä Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì„œì‹ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -40,14 +40,14 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("Ã³¸® ¿Ï·á ÇÏ¿´½À´Ï´Ù.", "cont_template_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì²˜ë¦¬ ì™„ë£Œ í•˜ì˜€ìŠµë‹ˆë‹¤.", "cont_template_modify.jsp?"+u.getQueryString());
 	return;
 }
 
-u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 return;
 %>

@@ -10,16 +10,16 @@ import java.text.*;
 import java.util.*;
 
 /***************************************
- * °Å·¡³»¿ªµî·Ï
- * ÀÛ¼ºÀÚ: Vincent.
- * ÀÛ¼ºÀÏ: 2004/09/21
+ * ê±°ë˜ë‚´ì—­ë“±ë¡
+ * ì‘ì„±ì: Vincent.
+ * ì‘ì„±ì¼: 2004/09/21
  ***************************************/
 
 public class sendSMS {
  
 
 	/******
-	 * String À» byte[]·Î º¯È¯ÇÑ´ÙÀ½ ÀÏÁ¤ Position ÀÌÇÏ·Î Àß¶ó³»¼­ ¿Ïº®ÇÑ ÇÑ±ÛString¸®ÅÏ
+	 * String ì„ byte[]ë¡œ ë³€í™˜í•œë‹¤ìŒ ì¼ì • Position ì´í•˜ë¡œ ì˜ë¼ë‚´ì„œ ì™„ë²½í•œ í•œê¸€Stringë¦¬í„´
 	 ********/
 	public String snapStrB(String strSrc,int sp_idx){
 		String retStr="";
@@ -32,16 +32,16 @@ public class sendSMS {
 		return retStr;
 	}
 
-	//private int timeout = 300000; // 5ºĞ
-	private int timeout = 20000; // 20ÃÊ
+	//private int timeout = 300000; // 5ë¶„
+	private int timeout = 20000; // 20ì´ˆ
 	private String addr = "10.95.50.53";  // 172.29.220.230
 
 	private int port =0;
 	/***Construnctor***/
 	public sendSMS(){
 		try{
-            //Å×½ºÆ®Æ÷Æ®´Â 29301ÀÎ°Í °°À¸³ª ¿¡·¯³ª¼­ ¸øÇØº½ by bluet 20070928
-            //Å×½ºÆ®¿¡¼­ ÀÛ¾÷ÇÏ·Á¸é ³ªÀÌ½º¿¡ ¿¬¶ôÇØ acl_id¸¦ µî·ÏÇØ¾ß ÇÔ by bluet 20071009
+            //í…ŒìŠ¤íŠ¸í¬íŠ¸ëŠ” 29301ì¸ê²ƒ ê°™ìœ¼ë‚˜ ì—ëŸ¬ë‚˜ì„œ ëª»í•´ë´„ by bluet 20070928
+            //í…ŒìŠ¤íŠ¸ì—ì„œ ì‘ì—…í•˜ë ¤ë©´ ë‚˜ì´ìŠ¤ì— ì—°ë½í•´ acl_idë¥¼ ë“±ë¡í•´ì•¼ í•¨ by bluet 20071009
 			//this.port = ((String)java.net.InetAddress.getLocalHost().getHostAddress()).equals("172.28.5.56")?29302:29302;
 			this.port = 21046;
 		}catch(Exception e){}
@@ -57,32 +57,32 @@ public class sendSMS {
 		catch (Exception e) {log = System.out; }
 	}
 
-	//CBÀü¹®(µî·Ï) Header (Primary Bitmap ¾øÀ½)
+	//CBì „ë¬¸(ë“±ë¡) Header (Primary Bitmap ì—†ìŒ)
 	private TreeMap getCommCB_header(String ACLID){
 		/******************************
-		 * °øÅëºÎ (°øÅëºÎ³ª °³º°¿äÃ»ºÎ³ª key idx´Â Àü¹® Document»óÀÇ idx¸¦ ±×´ë·Î µû¸¥´Ù).
+		 * ê³µí†µë¶€ (ê³µí†µë¶€ë‚˜ ê°œë³„ìš”ì²­ë¶€ë‚˜ key idxëŠ” ì „ë¬¸ Documentìƒì˜ idxë¥¼ ê·¸ëŒ€ë¡œ ë”°ë¥¸ë‹¤).
 		 ******************************/
 		TreeMap HeaderMap = new TreeMap();
-		HeaderMap.put(new Integer(2),"NICEIF   ");							        //Àü¹®±×·ìÄÚµå
-		HeaderMap.put(new Integer(3),"0200");														//°Å·¡Á¾º°ÄÚµå
-		HeaderMap.put(new Integer(4),"7301M");													//°Å·¡±¸ºĞÄÚµå
-		HeaderMap.put(new Integer(5),"B");															//¼Û¼ö½ÅFlag
-		HeaderMap.put(new Integer(6),"503");														//´Ü¸»±â±¸ºĞ
-		HeaderMap.put(new Integer(7),Utils.paddR("",4));								//ÀÀ´äÄÚµå
-		HeaderMap.put(new Integer(8),Utils.paddR(ACLID,9));							//Âü°¡±â°üID
-		HeaderMap.put(new Integer(9),Utils.paddR("",10));							//±â°üÀü¹® °ü¸®¹øÈ£
-		HeaderMap.put(new Integer(10),dt.format(new java.util.Date()));	//±â°üÀü¹® Àü¼Û½Ã°£
-		HeaderMap.put(new Integer(11),Utils.paddR("",10));							//NICE Àü¹® °ü¸®¹øÈ£
-		HeaderMap.put(new Integer(12),Utils.paddR("",14));							//NICE Àü¹® Àü¼Û½Ã°£
+		HeaderMap.put(new Integer(2),"NICEIF   ");							        //ì „ë¬¸ê·¸ë£¹ì½”ë“œ
+		HeaderMap.put(new Integer(3),"0200");														//ê±°ë˜ì¢…ë³„ì½”ë“œ
+		HeaderMap.put(new Integer(4),"7301M");													//ê±°ë˜êµ¬ë¶„ì½”ë“œ
+		HeaderMap.put(new Integer(5),"B");															//ì†¡ìˆ˜ì‹ Flag
+		HeaderMap.put(new Integer(6),"503");														//ë‹¨ë§ê¸°êµ¬ë¶„
+		HeaderMap.put(new Integer(7),Utils.paddR("",4));								//ì‘ë‹µì½”ë“œ
+		HeaderMap.put(new Integer(8),Utils.paddR(ACLID,9));							//ì°¸ê°€ê¸°ê´€ID
+		HeaderMap.put(new Integer(9),Utils.paddR("",10));							//ê¸°ê´€ì „ë¬¸ ê´€ë¦¬ë²ˆí˜¸
+		HeaderMap.put(new Integer(10),dt.format(new java.util.Date()));	//ê¸°ê´€ì „ë¬¸ ì „ì†¡ì‹œê°„
+		HeaderMap.put(new Integer(11),Utils.paddR("",10));							//NICE ì „ë¬¸ ê´€ë¦¬ë²ˆí˜¸
+		HeaderMap.put(new Integer(12),Utils.paddR("",14));							//NICE ì „ë¬¸ ì „ì†¡ì‹œê°„
     HeaderMap.put(new Integer(13),Utils.paddR("",16));              //Primary Bitmap
-    HeaderMap.put(new Integer(14),Utils.paddR("",1));	              //°ø¶õ(Extend Bitmap Code)
+    HeaderMap.put(new Integer(14),Utils.paddR("",1));	              //ê³µë€(Extend Bitmap Code)
 		return HeaderMap;
 	}
 
-	//SMS ¹ß¼Û¿äÃ»
+	//SMS ë°œì†¡ìš”ì²­
 	public TreeMap makeMsg_SMSReg(String ACLID,HashMap pMap){
 /*----------------------------------------------
-   ±¸ºĞÀÚ Ãß°¡ ¹× ¼öÁ¤
+   êµ¬ë¶„ì ì¶”ê°€ ë° ìˆ˜ì •
    by bluet 20080627
 ----------------------------------------------*/
         String send_type    = (String)pMap.get("send_type");
@@ -98,64 +98,64 @@ public class sendSMS {
             resv_time   = "";
         }
 
-		//°øÅëºÎ GET.
+		//ê³µí†µë¶€ GET.
 		TreeMap HeaderMap = getCommCB_header(ACLID); //ACLID
 
 		TreeMap bodyMap = new TreeMap();
 		/******************************
-		 * ¿äÃ»ºÎ Making
+		 * ìš”ì²­ë¶€ Making
 		 ******************************/
-		bodyMap.put(new Integer(15),send_type);												 									//¹ß¼Û±¸ºĞ: 1=Áï½Ã, 2=¿¹¾à
-		bodyMap.put(new Integer(16),dt2.format(new java.util.Date()));				//¹ß¼ÛÀÏÀÚ
-		bodyMap.put(new Integer(17),"1  ");											//SMS ¿äÃ»³»¿ª °Ç¼ö: ÃÖ´ë 100
-		bodyMap.put(new Integer(18),Utils.paddR("",18));		 					//°ø¶õ
+		bodyMap.put(new Integer(15),send_type);												 									//ë°œì†¡êµ¬ë¶„: 1=ì¦‰ì‹œ, 2=ì˜ˆì•½
+		bodyMap.put(new Integer(16),dt2.format(new java.util.Date()));				//ë°œì†¡ì¼ì
+		bodyMap.put(new Integer(17),"1  ");											//SMS ìš”ì²­ë‚´ì—­ ê±´ìˆ˜: ìµœëŒ€ 100
+		bodyMap.put(new Integer(18),Utils.paddR("",18));		 					//ê³µë€
 
 		/******************************
-		 * µî·ÏÀü¹®ºÎ Making
+		 * ë“±ë¡ì „ë¬¸ë¶€ Making
 		 ******************************/
-		bodyMap.put(new Integer(19),"S");											//³»¿ª±¸ºĞ
-		bodyMap.put(new Integer(20),Utils.paddR("",13));							//ÁÖ¹Î¹øÈ£/»ç¾÷ÀÚ¹øÈ£/¹ıÀÎ¹øÈ£
-		bodyMap.put(new Integer(21),pMap.get("tg"));								//Åë½Å»ç ±¸ºĞ: 1=SKT, 2=KTF, 3=LGT
-		bodyMap.put(new Integer(22),pMap.get("hp1"));								//ÇÚµåÆù ±¸ºĞ¹øÈ£
-		bodyMap.put(new Integer(23),pMap.get("hp2"));								//ÇÚµåÆù ÁÖ¹øÈ£
-		bodyMap.put(new Integer(24),pMap.get("hp3"));								//ÇÚµåÆù ºÎ¹øÈ£
-		bodyMap.put(new Integer(25),Utils.paddR((String)pMap.get("msg"),80));		//SMS¹ß¼Û¸Ş½ÃÁö
-		bodyMap.put(new Integer(26),Utils.paddR(callback_no,10));					//Äİ¹éÀüÈ­¹øÈ£ 
-		bodyMap.put(new Integer(27),Utils.paddR(resv_time,14));						//¿¹¾à¹ß¼ÛÀÏ½Ã
-		bodyMap.put(new Integer(28),Utils.paddR("",17));							//°ø¶õ
+		bodyMap.put(new Integer(19),"S");											//ë‚´ì—­êµ¬ë¶„
+		bodyMap.put(new Integer(20),Utils.paddR("",13));							//ì£¼ë¯¼ë²ˆí˜¸/ì‚¬ì—…ìë²ˆí˜¸/ë²•ì¸ë²ˆí˜¸
+		bodyMap.put(new Integer(21),pMap.get("tg"));								//í†µì‹ ì‚¬ êµ¬ë¶„: 1=SKT, 2=KTF, 3=LGT
+		bodyMap.put(new Integer(22),pMap.get("hp1"));								//í•¸ë“œí° êµ¬ë¶„ë²ˆí˜¸
+		bodyMap.put(new Integer(23),pMap.get("hp2"));								//í•¸ë“œí° ì£¼ë²ˆí˜¸
+		bodyMap.put(new Integer(24),pMap.get("hp3"));								//í•¸ë“œí° ë¶€ë²ˆí˜¸
+		bodyMap.put(new Integer(25),Utils.paddR((String)pMap.get("msg"),80));		//SMSë°œì†¡ë©”ì‹œì§€
+		bodyMap.put(new Integer(26),Utils.paddR(callback_no,10));					//ì½œë°±ì „í™”ë²ˆí˜¸ 
+		bodyMap.put(new Integer(27),Utils.paddR(resv_time,14));						//ì˜ˆì•½ë°œì†¡ì¼ì‹œ
+		bodyMap.put(new Integer(28),Utils.paddR("",17));							//ê³µë€
 
 		HeaderMap.putAll(bodyMap);
 		return HeaderMap;
 	}
 
 
-	//SMS ¹ß¼Û¼­ºñ½º È®ÀÎ¿äÃ»
+	//SMS ë°œì†¡ì„œë¹„ìŠ¤ í™•ì¸ìš”ì²­
 	public TreeMap makeMsg_SMSConfimReg(String ACLID,HashMap pMap){
 		/******************************
-		 * °øÅëºÎ GET.
+		 * ê³µí†µë¶€ GET.
 		 ******************************/
 		TreeMap HeaderMap = getCommCB_header(ACLID); //ACLID
 
 
 		TreeMap bodyMap = new TreeMap();
 		/******************************
-		 * ¿äÃ»ºÎ Making
+		 * ìš”ì²­ë¶€ Making
 		 ******************************/
-		bodyMap.put(new Integer(15),"1");												 									//°Ë»ö±¸ºĞ: 1=°Ë»ö
-		bodyMap.put(new Integer(16),dt2.format(new java.util.Date()));						//¹ß¼ÛÀÏÀÚ
-		bodyMap.put(new Integer(17),"1  ");											 									//ÈŞ´ëÆù ¿äÃ»³»¿ª °Ç¼ö: ÃÖ´ë 100
-		bodyMap.put(new Integer(18),Utils.paddR("",18));		 											//°ø¶õ
+		bodyMap.put(new Integer(15),"1");												 									//ê²€ìƒ‰êµ¬ë¶„: 1=ê²€ìƒ‰
+		bodyMap.put(new Integer(16),dt2.format(new java.util.Date()));						//ë°œì†¡ì¼ì
+		bodyMap.put(new Integer(17),"1  ");											 									//íœ´ëŒ€í° ìš”ì²­ë‚´ì—­ ê±´ìˆ˜: ìµœëŒ€ 100
+		bodyMap.put(new Integer(18),Utils.paddR("",18));		 											//ê³µë€
 		/******************************
-		 * µî·ÏÀü¹®ºÎ Making
+		 * ë“±ë¡ì „ë¬¸ë¶€ Making
 		 ******************************/
-		bodyMap.put(new Integer(19),"S");																					//³»¿ª±¸ºĞ
-		bodyMap.put(new Integer(20),Utils.paddR("",13));													//ÁÖ¹Î¹øÈ£/»ç¾÷ÀÚ¹øÈ£/¹ıÀÎ¹øÈ£
-		bodyMap.put(new Integer(21),"1");																					//Åë½Å»ç ±¸ºĞ: 1=SKT, 2=KTF, 3=LGT
-		bodyMap.put(new Integer(22),"011 ");																			//ÇÚµåÆù ±¸ºĞ¹øÈ£
-		bodyMap.put(new Integer(23),"9532");																			//ÇÚµåÆù ÁÖ¹øÈ£
-		bodyMap.put(new Integer(24),"6031");																			//ÇÚµåÆù ºÎ¹øÈ£
-		bodyMap.put(new Integer(25),dt.format(new java.util.Date()));							//SMS¿äÃ»½Ã°£
-		bodyMap.put(new Integer(26),Utils.paddR("",9));														//°ø¶õ
+		bodyMap.put(new Integer(19),"S");																					//ë‚´ì—­êµ¬ë¶„
+		bodyMap.put(new Integer(20),Utils.paddR("",13));													//ì£¼ë¯¼ë²ˆí˜¸/ì‚¬ì—…ìë²ˆí˜¸/ë²•ì¸ë²ˆí˜¸
+		bodyMap.put(new Integer(21),"1");																					//í†µì‹ ì‚¬ êµ¬ë¶„: 1=SKT, 2=KTF, 3=LGT
+		bodyMap.put(new Integer(22),"011 ");																			//í•¸ë“œí° êµ¬ë¶„ë²ˆí˜¸
+		bodyMap.put(new Integer(23),"9532");																			//í•¸ë“œí° ì£¼ë²ˆí˜¸
+		bodyMap.put(new Integer(24),"6031");																			//í•¸ë“œí° ë¶€ë²ˆí˜¸
+		bodyMap.put(new Integer(25),dt.format(new java.util.Date()));							//SMSìš”ì²­ì‹œê°„
+		bodyMap.put(new Integer(26),Utils.paddR("",9));														//ê³µë€
 
 		HeaderMap.putAll(bodyMap);
 		return HeaderMap;
@@ -197,9 +197,9 @@ public class sendSMS {
 			} catch (EOFException ignored) {}
 			rsvMsg = new String(rsvBytes, 0, count+1);
 
-			//uFunc.logm("err2", "º¸³½°Í\n"+sendMsg+"\n");
-			//uFunc.logm("err2", "¹ŞÀº°Í\n"+rsvMsg+"\n");
-			//uFunc.logm("err2", "¹ŞÀº°Í±æÀÌ\n"+Maxlen+"\n");
+			//uFunc.logm("err2", "ë³´ë‚¸ê²ƒ\n"+sendMsg+"\n");
+			//uFunc.logm("err2", "ë°›ì€ê²ƒ\n"+rsvMsg+"\n");
+			//uFunc.logm("err2", "ë°›ì€ê²ƒê¸¸ì´\n"+Maxlen+"\n");
 
 			out.close();
 			in.close();
@@ -231,17 +231,17 @@ public class sendSMS {
 	}
 
 
-	//SMS¿äÃ»¿¡ ´ëÇÑ ÀÀ´ä
+	//SMSìš”ì²­ì— ëŒ€í•œ ì‘ë‹µ
 	public TreeMap pars_SMSReg(String rsvMsg){
-		//°Å·¡Á¤º¸ µî·Ï¿¡ ´ëÇÑÀÀ´ä(idx´Â Àü¹® Document»óÀÇ ÀÎµ¦½º¸¦ ±×´ë·Î µû¸§ )
-		int[] rsvSplit = new int[]{9,9,4,5,1,3,4,9,10,14,10,14,16,1,1,8,3,18,1,13,1,4,4,4,14,4,5}; //[°øÅë+µî·ÏÀü¹®ºÎ] Length.
-		//À§ idxÁ¤º¸¿¡µû¶ó map[°øÅëºÎ+°³º°ºÎ] »ı¼º. key´Â À§ÀÇ ¼ø¼­
+		//ê±°ë˜ì •ë³´ ë“±ë¡ì— ëŒ€í•œì‘ë‹µ(idxëŠ” ì „ë¬¸ Documentìƒì˜ ì¸ë±ìŠ¤ë¥¼ ê·¸ëŒ€ë¡œ ë”°ë¦„ )
+		int[] rsvSplit = new int[]{9,9,4,5,1,3,4,9,10,14,10,14,16,1,1,8,3,18,1,13,1,4,4,4,14,4,5}; //[ê³µí†µ+ë“±ë¡ì „ë¬¸ë¶€] Length.
+		//ìœ„ idxì •ë³´ì—ë”°ë¼ map[ê³µí†µë¶€+ê°œë³„ë¶€] ìƒì„±. keyëŠ” ìœ„ì˜ ìˆœì„œ
 		TreeMap rsvTMap = parseWorkCB(rsvMsg,rsvSplit);
 		return rsvTMap;
 	}
 
 
-	//[¡ÚLoopºÎ°¡ ¾ø´Â µî·ÏÇü]ÇöÀç ¼ö½Å¹ŞÀº StringÀ» TreeMap ÇüÅÂ·Î ¹è¿­
+	//[â˜…Loopë¶€ê°€ ì—†ëŠ” ë“±ë¡í˜•]í˜„ì¬ ìˆ˜ì‹ ë°›ì€ Stringì„ TreeMap í˜•íƒœë¡œ ë°°ì—´
 	public TreeMap parseWorkCB(String rsvMsg,int[] rsvSplit){
 		TreeMap rsvTMap = new TreeMap();
 		byte[] rsvMsgBytes = rsvMsg.getBytes();
@@ -254,7 +254,7 @@ public class sendSMS {
 	}
 
 
-	//[¡ÚLoopºÎ°¡ ÀÖ´Â ÀÀ´äÇü]ÇöÀç ¼ö½Å¹ŞÀº StringÀ» TreeMap ÇüÅÂ·Î ¹è¿­
+	//[â˜…Loopë¶€ê°€ ìˆëŠ” ì‘ë‹µí˜•]í˜„ì¬ ìˆ˜ì‹ ë°›ì€ Stringì„ TreeMap í˜•íƒœë¡œ ë°°ì—´
 	public TreeMap parseWorkCB(String rsvMsg,int[] rsvSplit,int[] rsvLoopIdx,int[][] matchLoopIdx){
 		TreeMap rsvTMap = new TreeMap();
 		byte[] rsvMsgBytes = rsvMsg.getBytes();
@@ -266,11 +266,11 @@ public class sendSMS {
 			//uFunc.logm("err2", iPosition+"["+i+"]");
 		}
 		for(int i=0 ; i<rsvLoopIdx.length ; i++){
-			//°³º°ÀÀ´äºÎ ºÎºĞÀÇ ÃÑ°Ç¼ö°¡ µé¾î°¡ ÀÖ´Ù.
-			int iCnt = Integer.parseInt(rsvTMap.get(new Integer(rsvLoopIdx[i])).toString()); //LoopÇ×¸ñi¹øÂ°ÀÇ ¼ö½Å°Ç¼ö
-			int iPot[] = matchLoopIdx[i]; //ÇöÀçLoop DATAÀÇ °¢Ç×¸ñ´ç lengthÁ¤º¸¸¦ °¡Á®¿Â´Ù.
+			//ê°œë³„ì‘ë‹µë¶€ ë¶€ë¶„ì˜ ì´ê±´ìˆ˜ê°€ ë“¤ì–´ê°€ ìˆë‹¤.
+			int iCnt = Integer.parseInt(rsvTMap.get(new Integer(rsvLoopIdx[i])).toString()); //Loopí•­ëª©ië²ˆì§¸ì˜ ìˆ˜ì‹ ê±´ìˆ˜
+			int iPot[] = matchLoopIdx[i]; //í˜„ì¬Loop DATAì˜ ê°í•­ëª©ë‹¹ lengthì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 			Vector rowVct = new Vector();
-			for(int j=0; j<iCnt; j++){ // ¼ö½Å°Ç¼ö´ë·Î Loop.
+			for(int j=0; j<iCnt; j++){ // ìˆ˜ì‹ ê±´ìˆ˜ëŒ€ë¡œ Loop.
 				TreeMap  innerLoopMap = new TreeMap();
 				for(int q=0 ; q<iPot.length ; q++){
 					innerLoopMap.put(new Integer(q+1),new String(rsvMsgBytes,iPosition,iPot[q]).trim());
@@ -279,23 +279,23 @@ public class sendSMS {
 				rowVct.addElement(innerLoopMap);
 			}
 
-			//¼ö½Å°Ç¼öÇ×¸ñ¹øÈ£*10À» key·Î ÁöÁ¤ÇÏ¿© °á°úTreeMap¿¡ Put.
+			//ìˆ˜ì‹ ê±´ìˆ˜í•­ëª©ë²ˆí˜¸*10ì„ keyë¡œ ì§€ì •í•˜ì—¬ ê²°ê³¼TreeMapì— Put.
 			rsvTMap.put(new Integer(rsvLoopIdx[i]*10),rowVct);
 		}
 		return rsvTMap;
 	}
 
-	//Àç¿äÃ»¿¡ ÇÊ¿äÇÑ ÀÀ´äÀÏÀÚ ÀÀ´ä½Ã°£À» ¼ÂÆÃÇÑ´Ù.
+	//ì¬ìš”ì²­ì— í•„ìš”í•œ ì‘ë‹µì¼ì ì‘ë‹µì‹œê°„ì„ ì…‹íŒ…í•œë‹¤.
 	public void set_reconMap(TreeMap rsvTMap,TreeMap rsvTMap_old){
 		HashMap reConMap = new HashMap();
-		//´Ù½Ã¿äÃ»ÇÏ±â À§ÇÏ ´ÙÀ½ Row ÀÀ´äÀÏÀÚ, ¸¶Áö¸·ÀÀ´ä½Ã°£ SET.
-		reConMap.put("re_date",rsvTMap.get(new Integer(15))); //ÀÀ´äÀÏÀÚ
-		reConMap.put("re_time",rsvTMap.get(new Integer(16))); //ÀÀ´ä½Ã°£
-		rsvTMap.put(new Integer(9999),reConMap); //Àç¿äÃ» °ü·Ã Á¤º¸ Put
+		//ë‹¤ì‹œìš”ì²­í•˜ê¸° ìœ„í•˜ ë‹¤ìŒ Row ì‘ë‹µì¼ì, ë§ˆì§€ë§‰ì‘ë‹µì‹œê°„ SET.
+		reConMap.put("re_date",rsvTMap.get(new Integer(15))); //ì‘ë‹µì¼ì
+		reConMap.put("re_time",rsvTMap.get(new Integer(16))); //ì‘ë‹µì‹œê°„
+		rsvTMap.put(new Integer(9999),reConMap); //ì¬ìš”ì²­ ê´€ë ¨ ì •ë³´ Put
 	}
 
 
-	//±âÁ¸ vector¿¡ ÇöÀç ÀÀ´ä¹ŞÀº vectorµ¥ÀÌÅÍ¸¦ Ãß°¡ÇÏ¿© ´Ù½Ã put.
+	//ê¸°ì¡´ vectorì— í˜„ì¬ ì‘ë‹µë°›ì€ vectorë°ì´í„°ë¥¼ ì¶”ê°€í•˜ì—¬ ë‹¤ì‹œ put.
 	public void addloopVct(TreeMap rsvTMap_old, TreeMap rsvTMap,int[] rsvLoopIdx){
 		for(int i =0 ;i<rsvLoopIdx.length ; i++){
 			Vector v = (Vector)rsvTMap_old.get(new Integer(rsvLoopIdx[i]*10));
@@ -306,8 +306,8 @@ public class sendSMS {
 		return;
 	}
 
-	//°Å·¡Á¤º¸µî·Ï
-	//°Å·¡Á¤º¸ ¿Â¶óÀÎ µî·Ï -> Âü°¡±â°ü,°Å·¡±¸ºĞÄÚµå,¾÷¹«±¸ºĞ(32:°³ÀÎ°Å·¡Á¤º¸,35:¹ıÀÎ°Å·¡Á¤º¸),µî·Ï±¸ºĞ(21:°Å·¡Á¤º¸µî·Ï,22:°Å·¡Á¤º¸ÇØÁ¦),Ãß°¡Á¤º¸Map
+	//ê±°ë˜ì •ë³´ë“±ë¡
+	//ê±°ë˜ì •ë³´ ì˜¨ë¼ì¸ ë“±ë¡ -> ì°¸ê°€ê¸°ê´€,ê±°ë˜êµ¬ë¶„ì½”ë“œ,ì—…ë¬´êµ¬ë¶„(32:ê°œì¸ê±°ë˜ì •ë³´,35:ë²•ì¸ê±°ë˜ì •ë³´),ë“±ë¡êµ¬ë¶„(21:ê±°ë˜ì •ë³´ë“±ë¡,22:ê±°ë˜ì •ë³´í•´ì œ),ì¶”ê°€ì •ë³´Map
 	public TreeMap send_SMSReg(String ACLID,HashMap pMap){
 		TreeMap sendMap = new TreeMap();
 		TreeMap rsvTMap = new TreeMap();

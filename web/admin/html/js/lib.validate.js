@@ -1,15 +1,15 @@
 /**
-* ÆÄÀÏ¸í: lib.validate.js
-* ¼³  ¸í: Æû Ã¼Å©, °ª Ç¥ÁØÈ­
-* ÀÛ¼ºÀÚ: jstoy project
-* ³¯  Â¥: 2003-10-28
-*   lainTT (2003-11-20) : FormChecker ClassÀÇ ÇÔ¼ö prototypeÈ­ & Àü¿ªº¯¼ö¸¦ Å¬·¡½º ¾ÈÀ¸·Î...-_-;
+* íŒŒì¼ëª…: lib.validate.js
+* ì„¤  ëª…: í¼ ì²´í¬, ê°’ í‘œì¤€í™”
+* ì‘ì„±ì: jstoy project
+* ë‚   ì§œ: 2003-10-28
+*   lainTT (2003-11-20) : FormChecker Classì˜ í•¨ìˆ˜ prototypeí™” & ì „ì—­ë³€ìˆ˜ë¥¼ í´ë˜ìŠ¤ ì•ˆìœ¼ë¡œ...-_-;
 ***********************************************
 */
 
 /**
 * <pre>
-* Æû Ã¼Å© trigger ÇÔ¼ö
+* í¼ ì²´í¬ trigger í•¨ìˆ˜
 * </pre>
 *
 * @param Form Object
@@ -28,7 +28,7 @@ function validate_init() {
     for (var i=0; i<document.forms.length; i++) {
         var formObj = document.forms[i];
         if (document.forms[i].getAttribute('VALIDATE') != null) {
-            // pre_validate¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù¸é ÀÌ ¾Æ·§ÁÙÀ» ÁÖ¼®Ã³¸®ÇÕ´Ï´Ù.
+            // pre_validateë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ì´ ì•„ë«ì¤„ì„ ì£¼ì„ì²˜ë¦¬í•©ë‹ˆë‹¤.
             new FormLoader(formObj);
             formObj.submitAction = formObj.onsubmit;
             formObj.onsubmit = function() {
@@ -42,47 +42,47 @@ function validate_init() {
 FormChecker = function(form, bCheckRecvWrite) {
     /**
     * <pre>
-    * ¹Ì¸® Á¤ÀÇµÈ ¿¡·¯ ¸Ş½ÃÁöµé
+    * ë¯¸ë¦¬ ì •ì˜ëœ ì—ëŸ¬ ë©”ì‹œì§€ë“¤
     * </pre>
     */
     /*
     this.FORM_ERROR_MSG = {
-       //common   : "ÀÔ·ÂÇÏ½Å ³»¿ëÀÌ ±ÔÄ¢¿¡ ¾î±ß³³´Ï´Ù.\n±ÔÄ¢¿¡ ¾î±ß³ª´Â ³»¿ëÀ» ¹Ù·ÎÀâ¾ÆÁÖ¼¼¿ä.",
+       //common   : "ì…ë ¥í•˜ì‹  ë‚´ìš©ì´ ê·œì¹™ì— ì–´ê¸‹ë‚©ë‹ˆë‹¤.\nê·œì¹™ì— ì–´ê¸‹ë‚˜ëŠ” ë‚´ìš©ì„ ë°”ë¡œì¡ì•„ì£¼ì„¸ìš”.",
 	   common	: "",
-       required : "¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.",
-       notequal : "¼­·Î ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.",
-       invalid  : "ÀÔ·Â Çü½Ä¿¡ ¾î±ß³³´Ï´Ù.",
-	   denied   : "¾÷·Îµå°¡ Á¦ÇÑµÈ ÆÄÀÏÀÔ´Ï´Ù.",
-       minbyte  : "±æÀÌ°¡ {minbyte}Byte ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù.",
-       maxbyte  : "±æÀÌ°¡ {maxbyte}Byte¸¦ ÃÊ°úÇÒ ¼ö ¾ø½À´Ï´Ù."
+       required : "ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.",
+       notequal : "ì„œë¡œ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.",
+       invalid  : "ì…ë ¥ í˜•ì‹ì— ì–´ê¸‹ë‚©ë‹ˆë‹¤.",
+	   denied   : "ì—…ë¡œë“œê°€ ì œí•œëœ íŒŒì¼ì…ë‹ˆë‹¤.",
+       minbyte  : "ê¸¸ì´ê°€ {minbyte}Byte ì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤.",
+       maxbyte  : "ê¸¸ì´ê°€ {maxbyte}Byteë¥¼ ì´ˆê³¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
     }
     */
     this.FORM_ERROR_MSG = {
-       //common   : "ÀÔ·ÂÇÏ½Å ³»¿ëÀÌ ±ÔÄ¢¿¡ ¾î±ß³³´Ï´Ù.\n±ÔÄ¢¿¡ ¾î±ß³ª´Â ³»¿ëÀ» ¹Ù·ÎÀâ¾ÆÁÖ¼¼¿ä.",
+       //common   : "ì…ë ¥í•˜ì‹  ë‚´ìš©ì´ ê·œì¹™ì— ì–´ê¸‹ë‚©ë‹ˆë‹¤.\nê·œì¹™ì— ì–´ê¸‹ë‚˜ëŠ” ë‚´ìš©ì„ ë°”ë¡œì¡ì•„ì£¼ì„¸ìš”.",
 	   common	: "",
-       required : "ÀÔ·ÂÇÏ¼¼¿ä.",
-       notequal : "¼­·Î ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.",
-       invalid  : "Àß¸ø ÀÔ·ÂÇÏ¿´½À´Ï´Ù.",
-	   denied   : "¾÷·Îµå°¡ Á¦ÇÑµÈ ÆÄÀÏÀÔ´Ï´Ù.",
-       minbyte  : "{minbyte}ÀÚ ÀÌ»ó ÀÔ·ÂÇÏ¼¼¿ä.",
-       maxbyte  : "{maxbyte}ÀÚ ÀÌ³»·Î ÀÔ·ÂÇÏ¼¼¿ä.",
-       fixbyte  : "{fixbyte}ÀÚ ·Î ÀÔ·ÂÇÏ¼¼¿ä."
+       required : "ì…ë ¥í•˜ì„¸ìš”.",
+       notequal : "ì„œë¡œ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.",
+       invalid  : "ì˜ëª» ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.",
+	   denied   : "ì—…ë¡œë“œê°€ ì œí•œëœ íŒŒì¼ì…ë‹ˆë‹¤.",
+       minbyte  : "{minbyte}ì ì´ìƒ ì…ë ¥í•˜ì„¸ìš”.",
+       maxbyte  : "{maxbyte}ì ì´ë‚´ë¡œ ì…ë ¥í•˜ì„¸ìš”.",
+       fixbyte  : "{fixbyte}ì ë¡œ ì…ë ¥í•˜ì„¸ìš”."
     }
     this.FORM_ERROR_MSG_POSTPOSITION = {
-       //common   : "ÀÔ·ÂÇÏ½Å ³»¿ëÀÌ ±ÔÄ¢¿¡ ¾î±ß³³´Ï´Ù.\n±ÔÄ¢¿¡ ¾î±ß³ª´Â ³»¿ëÀ» ¹Ù·ÎÀâ¾ÆÁÖ¼¼¿ä.",
+       //common   : "ì…ë ¥í•˜ì‹  ë‚´ìš©ì´ ê·œì¹™ì— ì–´ê¸‹ë‚©ë‹ˆë‹¤.\nê·œì¹™ì— ì–´ê¸‹ë‚˜ëŠ” ë‚´ìš©ì„ ë°”ë¡œì¡ì•„ì£¼ì„¸ìš”.",
 	   common	: "",
-       required : "À»",
-       notequal : "ÀÌ",
-       invalid  : "À»",
-	   denied   : "Àº",
-       minbyte  : "Àº",
-       maxbyte  : "Àº",
-       fixbyte  : "Àº"
+       required : "ì„",
+       notequal : "ì´",
+       invalid  : "ì„",
+	   denied   : "ì€",
+       minbyte  : "ì€",
+       maxbyte  : "ì€",
+       fixbyte  : "ì€"
     }
 
     /**
     * <pre>
-    * Æû Ã¼Å© ÇÔ¼ö ¸ÅÇÎ
+    * í¼ ì²´í¬ í•¨ìˆ˜ ë§¤í•‘
     * </pre>
     */
     this.VALIDATE_FUNCTION = {
@@ -101,13 +101,13 @@ FormChecker = function(form, bCheckRecvWrite) {
 
     /**
     * <pre>
-    * ¿¡·¯ Ãâ·Â ÇÃ·¡±×
+    * ì—ëŸ¬ ì¶œë ¥ í”Œë˜ê·¸
     * </pre>
     */
     this.ERROR_MODE_FLAG = {
-       all         : 1,         // ÀüÃ¼ ¿¡·¯¸¦ Ç¥½Ã
-       one         : 2,         // Ã³À½¿¡ °É¸° ¿¡·¯ ÇÏ³ª¸¸ Ç¥½Ã
-       one_per_obj : 3          // ÇÑ object´ç Ã³À½ÀÇ ¿¡·¯ Ç¥½Ã
+       all         : 1,         // ì „ì²´ ì—ëŸ¬ë¥¼ í‘œì‹œ
+       one         : 2,         // ì²˜ìŒì— ê±¸ë¦° ì—ëŸ¬ í•˜ë‚˜ë§Œ í‘œì‹œ
+       one_per_obj : 3          // í•œ objectë‹¹ ì²˜ìŒì˜ ì—ëŸ¬ í‘œì‹œ
     }
 
     this.form      = form;
@@ -115,7 +115,7 @@ FormChecker = function(form, bCheckRecvWrite) {
     this.errMsg    = (this.FORM_ERROR_MSG["common"] != "") ? this.FORM_ERROR_MSG["common"] + "\n\n" : "";
     this.errObj    = "";
     this.curObj    = "";
-    this.errMode   = this.ERROR_MODE_FLAG["one"];  // ¿¡·¯¸Ş½ÃÁö Ãâ·Â¸ğµå
+    this.errMode   = this.ERROR_MODE_FLAG["one"];  // ì—ëŸ¬ë©”ì‹œì§€ ì¶œë ¥ëª¨ë“œ
 	this.recvCheck = (bCheckRecvWrite == true) ? true : false;
 }
 
@@ -125,7 +125,7 @@ FormChecker.prototype.go = function() {
         if (el.tagName.toLowerCase() == "fieldset" || el.tagName.toLowerCase() == "object")
             continue;
         
-        /*IE 10 ´ëÀÀ domhtml »ó¿¡ requiredÀÇ ¹®ÀÚ ÀÖÀ¸¸é Y·Î setÇØÁØ´Ù.*/
+        /*IE 10 ëŒ€ì‘ domhtml ìƒì— requiredì˜ ë¬¸ì ìˆìœ¼ë©´ Yë¡œ setí•´ì¤€ë‹¤.*/
 		var sTestHtml = el.outerHTML.toUpperCase();
 		var nPos = sTestHtml.indexOf("REQUIRED");
 		var nChar = sTestHtml.charAt(nPos-1);
@@ -157,12 +157,12 @@ FormChecker.prototype.go = function() {
             }
         }
 
-		if( (el.getAttribute("WRITABLE") != null && this.recvCheck == true) // ¼ö±Ş»ç¾÷ÀÚ ÀÛ¼º ÇÊµåÀÌ°í ¼ö±Ş»ç¾÷ÀÚ°¡ Ã¼Å©ÇÏ´Â °æ¿ì
-			 || (el.getAttribute("WRITABLE") == null && this.recvCheck == false) )	// ¿ø»ç¾÷ÀÚ°¡ Ã¼Å©
+		if( (el.getAttribute("WRITABLE") != null && this.recvCheck == true) // ìˆ˜ê¸‰ì‚¬ì—…ì ì‘ì„± í•„ë“œì´ê³  ìˆ˜ê¸‰ì‚¬ì—…ìê°€ ì²´í¬í•˜ëŠ” ê²½ìš°
+			 || (el.getAttribute("WRITABLE") == null && this.recvCheck == false) )	// ì›ì‚¬ì—…ìê°€ ì²´í¬
 		{
 			if (el.getAttribute("REQUIRED") != null || el.getAttribute("CHK_REQUIRED") != null) {
 				var bChkRequired = true;
-				if(el.getAttribute("CHK_REQUIRED") != null) // Ã¼Å©¹Ú½º ¼±ÅÃ¿¡ µû¶ó ÇÊ¼ö Ã¼Å©ÇÏ´Â °æ¿ì. ¸¸¾à Ã¼Å© ¾ÈµÇ¾î ÀÖÀ¸¸é Ã¼Å©ÇÏÁö ¾Ê´Â´Ù.
+				if(el.getAttribute("CHK_REQUIRED") != null) // ì²´í¬ë°•ìŠ¤ ì„ íƒì— ë”°ë¼ í•„ìˆ˜ ì²´í¬í•˜ëŠ” ê²½ìš°. ë§Œì•½ ì²´í¬ ì•ˆë˜ì–´ ìˆìœ¼ë©´ ì²´í¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 				{
 					if(this.form.elements[el.getAttribute("CHK_REQUIRED")] != null)
 						bChkRequired = this.form.elements[el.getAttribute("CHK_REQUIRED")].checked;
@@ -246,7 +246,7 @@ FormChecker.prototype.go = function() {
 				else
 					result = eval(func + "()");
 				if(result + "" == "undefined") {
-					this.addError(el, "°³¹ß:[FUNC]¼Ó¼º »ç¿ë½Ã ¹İµå½Ã °á°ú°ª(true/false)À» ¸®ÅÏÇØ¾ß ÇÕ´Ï´Ù.");
+					this.addError(el, "ê°œë°œ:[FUNC]ì†ì„± ì‚¬ìš©ì‹œ ë°˜ë“œì‹œ ê²°ê³¼ê°’(true/false)ì„ ë¦¬í„´í•´ì•¼ í•©ë‹ˆë‹¤.");
 				}
 				if(result === false) {
 					return false;
@@ -269,7 +269,7 @@ FormChecker.prototype.destroy = function() {
             this.errObj.value = "";
         if (this.errObj.getAttribute("select") != null)
             this.errObj.select();
-        if (this.errObj.getAttribute("errfunc") != null)	// ¹°·ù Çö´ëÅÃ¹è¿¡¼­ »ç¿ë. ÇÊ¼öÀÔ·Â »çÇ× ¾ø´Â °æ¿ì ÅÇÀÌµ¿ÇÏ´Â ÇÔ¼ö È£Ãâ.
+        if (this.errObj.getAttribute("errfunc") != null)	// ë¬¼ë¥˜ í˜„ëŒ€íƒë°°ì—ì„œ ì‚¬ìš©. í•„ìˆ˜ì…ë ¥ ì‚¬í•­ ì—†ëŠ” ê²½ìš° íƒ­ì´ë™í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ.
             eval(this.errObj.getAttribute("errfunc"));
         if (this.errObj.getAttribute("nofocus") == null && this.errObj.type != "hidden")
             this.errObj.focus();
@@ -281,11 +281,11 @@ FormChecker.prototype.destroy = function() {
 FormChecker.prototype.addError = function(el, type) {
     var pattern = /\{([a-zA-Z0-9_]+)\}/i;
     var msg = (this.FORM_ERROR_MSG[type]) ? this.FORM_ERROR_MSG[type] : type;
-    var pp = this.FORM_ERROR_MSG_POSTPOSITION[type] ? this.FORM_ERROR_MSG_POSTPOSITION[type] : "Àº";
+    var pp = this.FORM_ERROR_MSG_POSTPOSITION[type] ? this.FORM_ERROR_MSG_POSTPOSITION[type] : "ì€";
 
 	if(type == "required") {
 		if(el.type == "checkbox" || el.type == "radio" || el.type == "file" || el.type == "select-one") {
-			msg = "¼±ÅÃÇØ ÁÖ¼¼¿ä.";
+			msg = "ì„ íƒí•´ ì£¼ì„¸ìš”.";
 		}
 	}
 
@@ -311,7 +311,7 @@ FormChecker.prototype.addError = function(el, type) {
 				if (el.getAttribute("errmsg") != null) {
 					this.errMsg += el.getAttribute("errmsg");
 				} else {
-				//	this.errMsg += "["+ el.getAttribute("hname") +"] Ç×¸ñÀº "+ msg +"\n";
+				//	this.errMsg += "["+ el.getAttribute("hname") +"] í•­ëª©ì€ "+ msg +"\n";
 					this.errMsg += postposition(el.getAttribute("hname"), pp) + " " + msg +"\n";
 				}
 			}
@@ -325,7 +325,7 @@ FormChecker.prototype.addError = function(el, type) {
     return;
 }
 
-/// ÆĞÅÏ °Ë»ç ÇÔ¼öµé ///
+/// íŒ¨í„´ ê²€ì‚¬ í•¨ìˆ˜ë“¤ ///
 FormChecker.prototype.func_isValidEmail = function(el,value) {
    var value = value ? value : el.value;
    var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
@@ -334,7 +334,7 @@ FormChecker.prototype.func_isValidEmail = function(el,value) {
 
 FormChecker.prototype.func_isValidUserid = function(el) {
    var pattern = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$/;
-   return (pattern.test(el.value)) ? true : "6ÀÚÀÌ»ó 20ÀÚ ÀÌÇÏ,\n¿µ¹®, ¼ıÀÚ ¹®ÀÚ Á¶ÇÕ¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.(Ã¹±ÛÀÚ ¿µ¹®)";
+   return (pattern.test(el.value)) ? true : "6ìì´ìƒ 20ì ì´í•˜,\nì˜ë¬¸, ìˆ«ì ë¬¸ì ì¡°í•©ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.(ì²«ê¸€ì ì˜ë¬¸)";
 }
 
 FormChecker.prototype.func_isValidPasswd = function(el) {
@@ -350,10 +350,10 @@ FormChecker.prototype.func_isValidPasswd = function(el) {
 	if(8 <= pw.length && pw.length <= 20){
 		for(var i=0; i<pw.length; i++){
 			if(pw.charAt(i)=='$')
-				return "$¹®ÀÚ´Â »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.";
+				return "$ë¬¸ìëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.";
 			
 			if(pw.charAt(i)=='\\')
-				return "\\¹®ÀÚ´Â »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.";
+				return "\\ë¬¸ìëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.";
 
 			if(sChar.indexOf(pw.charAt(i)) != -1){
 				sChar_Count++;
@@ -367,20 +367,20 @@ FormChecker.prototype.func_isValidPasswd = function(el) {
 		}
 
 		if(sChar_Count < 1 || alphaCheck != true || numberCheck != true){
-			return "¿µ¹® 1ÀÚ, ¼ıÀÚ 1ÀÚ, Æ¯¼ö¹®ÀÚ 1ÀÚ ÀÌ»óÀ¸·Î Á¶ÇÕ ÇØÁÖ¼¼¿ä";
+			return "ì˜ë¬¸ 1ì, ìˆ«ì 1ì, íŠ¹ìˆ˜ë¬¸ì 1ì ì´ìƒìœ¼ë¡œ ì¡°í•© í•´ì£¼ì„¸ìš”";
 		}
 
 	}else{
-		return "8ÀÚ ÀÌ»ó 20ÀÚ ¹Ì¸¸À¸·Î Á¶ÇÕ ÇØÁÖ¼¼¿ä";
+		return "8ì ì´ìƒ 20ì ë¯¸ë§Œìœ¼ë¡œ ì¡°í•© í•´ì£¼ì„¸ìš”";
 	}
 	return true;
 }
 
 
 FormChecker.prototype.func_hasHangul = function(el) {
-   var pattern = /[°¡-Èş]/;
-  // return (pattern.test(el.value)) ? true : "¹İµå½Ã ÇÑ±ÛÀ» Æ÷ÇÔÇØ¾ß ÇÕ´Ï´Ù";
-   return (pattern.test(el.value)) ? true : "ÇÑ±ÛÀ» Æ÷ÇÔÇØ¾ß ÇÕ´Ï´Ù";
+   var pattern = /[ê°€-í]/;
+  // return (pattern.test(el.value)) ? true : "ë°˜ë“œì‹œ í•œê¸€ì„ í¬í•¨í•´ì•¼ í•©ë‹ˆë‹¤";
+   return (pattern.test(el.value)) ? true : "í•œê¸€ì„ í¬í•¨í•´ì•¼ í•©ë‹ˆë‹¤";
 }
 
 FormChecker.prototype.func_alphaOnly = function(el) {
@@ -390,14 +390,14 @@ FormChecker.prototype.func_alphaOnly = function(el) {
 
 FormChecker.prototype.func_isNumeric = function(el) {
    var pattern = /^[0-9]+$/;
-  // return (pattern.test(el.value)) ? true : "¹İµå½Ã ¼ıÀÚ·Î¸¸ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù";
-   return (pattern.test(el.value)) ? true : "¼ıÀÚ·Î¸¸ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù";
+  // return (pattern.test(el.value)) ? true : "ë°˜ë“œì‹œ ìˆ«ìë¡œë§Œ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤";
+   return (pattern.test(el.value)) ? true : "ìˆ«ìë¡œë§Œ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤";
 }
 
 FormChecker.prototype.func_isMoney = function(el) {
    var pattern = /^[0-9\,]+$/;
-  // return (pattern.test(el.value)) ? true : "¹İµå½Ã ¼ıÀÚ·Î¸¸ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù";
-   return (pattern.test(el.value)) ? true : "¼ıÀÚ·Î¸¸ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù";
+  // return (pattern.test(el.value)) ? true : "ë°˜ë“œì‹œ ìˆ«ìë¡œë§Œ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤";
+   return (pattern.test(el.value)) ? true : "ìˆ«ìë¡œë§Œ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤";
 }
 
 FormChecker.prototype.func_isValidJumin = function(el,value) {
@@ -421,7 +421,7 @@ FormChecker.prototype.func_isValidDate = function(el,value) {
     var pattern =  /^(19|20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])$/;
     var num = value ? value : el.value;
     num = num.replaceAll("-","");
-    return (pattern.test(num))? true:"³¯Â¥Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.";
+    return (pattern.test(num))? true:"ë‚ ì§œí˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.";
 }
 
 
@@ -501,7 +501,7 @@ function autoNext(el, limit, next_el) {
 	if(el.value.bytes() == 6) next_el.focus();
 }
 
-//ÃâÃ³:¾î¶²³ğÀÇ ºí·Î±×
+//ì¶œì²˜:ì–´ë–¤ë†ˆì˜ ë¸”ë¡œê·¸
 function postposition(txt, josa)
 {
 	if(!txt) return "";
@@ -512,13 +512,13 @@ function postposition(txt, josa)
     else return txt + postposition.get(josa, true);
 }
 postposition.get = function (josa, jong) {
-    // jong : true¸é ¹ŞÄ§ÀÖÀ½, false¸é ¹ŞÄ§¾øÀ½
+    // jong : trueë©´ ë°›ì¹¨ìˆìŒ, falseë©´ ë°›ì¹¨ì—†ìŒ
 
-    if (josa == 'À»' || josa == '¸¦') return (jong?'À»':'¸¦');
-    if (josa == 'ÀÌ' || josa == '°¡') return (jong?'ÀÌ':'°¡');
-    if (josa == 'Àº' || josa == '´Â') return (jong?'Àº':'´Â');
-    if (josa == '¿Í' || josa == '°ú') return (jong?'¿Í':'°ú');
-    // ¾Ë ¼ö ¾ø´Â Á¶»ç
+    if (josa == 'ì„' || josa == 'ë¥¼') return (jong?'ì„':'ë¥¼');
+    if (josa == 'ì´' || josa == 'ê°€') return (jong?'ì´':'ê°€');
+    if (josa == 'ì€' || josa == 'ëŠ”') return (jong?'ì€':'ëŠ”');
+    if (josa == 'ì™€' || josa == 'ê³¼') return (jong?'ì™€':'ê³¼');
+    // ì•Œ ìˆ˜ ì—†ëŠ” ì¡°ì‚¬
     return '**';
 }
 

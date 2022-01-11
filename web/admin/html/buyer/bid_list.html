@@ -1,4 +1,4 @@
-
+ï»¿
 <form novalidate name="form1" method="get" >
 <div class="search_div">
 <table class="search_table">
@@ -10,26 +10,26 @@
 	<col width="10%">
   </colgroup>
   <tr>
-  	<th><p>°ø°í±¸ºĞ</p></th>
+  	<th><p>ê³µê³ êµ¬ë¶„</p></th>
     <td colspan="3">
     	<select name="s_bid_kind">
-    		<option value="">-ÀüÃ¼-</option>
-    		<option value="10">ÀüÀÚÀÔÂû</option>
-    		<option value="90">°ßÀû¿äÃ»</option>
+    		<option value="">-ì „ì²´-</option>
+    		<option value="10">ì „ìì…ì°°</option>
+    		<option value="90">ê²¬ì ìš”ì²­</option>
     	</select>
     </td>
     <td></td>
   </tr>
   <tr>	
-	<th><p>°ø°íÀÏÀÚ</p></th>
+	<th><p>ê³µê³ ì¼ì</p></th>
 	 <td>
     	<input type="text" name="s_bid_sdate" class="in_readonly" style="width:100px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_bid_sdate'])"> ~
     	<input type="text" name="s_bid_edate" class="in_readonly" style="width:100px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_bid_edate'])">
     </td>
-    <th><p>»óÅÂ</p></td>
+    <th><p>ìƒíƒœ</p></td>
     <td>
 		<select name="s_status">
-			<option value="">-ÀüÃ¼-</option>
+			<option value="">-ì „ì²´-</option>
 			<!-- LOOP START 'code_status' -->
 			<option value="{{code_status.id}}">{{code_status.value}}</option>
 			<!-- LOOP END 'code_status' -->
@@ -37,12 +37,12 @@
 	</td>
   </tr>
   <tr>
-  	<th><p>¹ßÁÖ»ç</p></th>
+  	<th><p>ë°œì£¼ì‚¬</p></th>
 	<td><input type="text" name="s_member_name" value="" maxlength="100" style="width:95%"></td>
-    <th><p>°ø°í¸í</p></th>
+    <th><p>ê³µê³ ëª…</p></th>
     <td ><input type="text" name="s_bid_name" value="" maxlength="100" style="width:98%"></td>
     <td align="right">
-      <button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+      <button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
     </td>
   </tr>
 </table>
@@ -54,7 +54,7 @@
 <div class="div_table">
  <div class="util-row">
     <div class="push-right">
-    	ÀÔÂû°Ç¼ö :{{tot_cnt}}°Ç
+    	ì…ì°°ê±´ìˆ˜ :{{tot_cnt}}ê±´
     </div>
  </div>
  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="table-layout: fixed;">
@@ -69,14 +69,14 @@
   	<col width="8%">
   </colgroup>
   <tr>
-  	<th>±¸ºĞ</th>
-    <th>¹ßÁÖ»ç<br>(ÀÛ¼ºÀÚ)</th>
-    <th>°ø°í¸í</th>
-    <th>°ø°íÀÏÀÚ</th>
-    <th>¸¶°¨ÀÏ½Ã</th>
-	<th>»óÅÂ</th>
-	<th>Âü¿©¾÷Ã¼</th>
-	<th>±â´É</th>
+  	<th>êµ¬ë¶„</th>
+    <th>ë°œì£¼ì‚¬<br>(ì‘ì„±ì)</th>
+    <th>ê³µê³ ëª…</th>
+    <th>ê³µê³ ì¼ì</th>
+    <th>ë§ˆê°ì¼ì‹œ</th>
+	<th>ìƒíƒœ</th>
+	<th>ì°¸ì—¬ì—…ì²´</th>
+	<th>ê¸°ëŠ¥</th>
   </tr>
   <!-- IF START 'list' -->
   <!-- LOOP START 'list' -->
@@ -87,11 +87,11 @@
 		{{list.bid_no}}-{{list.bid_deg}}
 		<button type="button" class="sbtn color" onclick="toclip('info_{{list.bid_no}}-{{list.bid_deg}}-{{list.main_member_no}}')">JIRA</button>
 		<div id="info_{{list.bid_no}}-{{list.bid_deg}}-{{list.main_member_no}}"  style="display: none"> 
-¿ø»ç¾÷ÀÚÈ¸¿ø¹øÈ£: {{list.main_member_no}}
-°ø°í¹øÈ£ : {{list.bid_no}}-{{list.bid_deg}}
-¿ø»ç¾÷ÀÚ: {{list.member_name}}
-ÀÔÂû´ã´çÀÚ : {{list.reg_id}}
-°ø°í¸í : {{list.bid_name}}
+ì›ì‚¬ì—…ìíšŒì›ë²ˆí˜¸: {{list.main_member_no}}
+ê³µê³ ë²ˆí˜¸ : {{list.bid_no}}-{{list.bid_deg}}
+ì›ì‚¬ì—…ì: {{list.member_name}}
+ì…ì°°ë‹´ë‹¹ì : {{list.reg_id}}
+ê³µê³ ëª… : {{list.bid_name}}
 		</div><br>
 		{{list.bid_name}}
 	</td>
@@ -108,17 +108,17 @@
 	</td>
 	<td align="center">{{list.status_name}}</td>
 	<td align="center">
-		<button type="button" class="sbtn color" onclick="popSupp('{{list.main_member_no}}','{{list.bid_no}}','{{list.bid_deg}}')">Á¶È¸</button>
+		<button type="button" class="sbtn color" onclick="popSupp('{{list.main_member_no}}','{{list.bid_no}}','{{list.bid_deg}}')">ì¡°íšŒ</button>
 	</td>
 	<td align="center">
-		<button type="button" class="sbtn color" onclick="bidDelete('{{list.main_member_no}}','{{list.bid_no}}','{{list.bid_deg}}')">»èÁ¦</button>
+		<button type="button" class="sbtn color" onclick="bidDelete('{{list.main_member_no}}','{{list.bid_no}}','{{list.bid_deg}}')">ì‚­ì œ</button>
 	</td>
   </tr>
   <!-- LOOP END 'list' -->
   <!-- IF END 'list' -->
   <!-- IFNOT START 'list' -->
   <tr>
-	<td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+	<td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
   </tr>
   <!-- IFNOT END 'list' -->
  </table>
@@ -127,7 +127,7 @@
  <div class="common-paging">{{pagerbar}}</div>
 <script language="javascript">
 function bidDelete(main_member_no, bid_no, bid_deg){
-	if(confirm("ÇØ´ç ÀÔÂû°ÇÀ» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?\n\n»èÁ¦½Ã º¹±¸°¡ µÇÁö ¾Ê½À´Ï´Ù.")){
+	if(confirm("í•´ë‹¹ ì…ì°°ê±´ì„ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\nì‚­ì œì‹œ ë³µêµ¬ê°€ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.")){
 		var url = "bid_delete.jsp"
 				+"?{{list_query}}"
 				+"&main_member_no="+main_member_no

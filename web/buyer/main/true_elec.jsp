@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
-String[] elc_status = {"10=>ÀÛ¼ºÁß","20=>Àü¼ÛÁß","30=>¼ö½ÅÈ®ÀÎ¿Ï·á","40=>¼öÁ¤¿äÃ»","50=>¿Ï·á"};
+String[] elc_status = {"10=>ì‘ì„±ì¤‘","20=>ì „ì†¡ì¤‘","30=>ìˆ˜ì‹ í™•ì¸ì™„ë£Œ","40=>ìˆ˜ì •ìš”ì²­","50=>ì™„ë£Œ"};
 
-f.addElement("doc_no1", null, "hname:'¹®¼­¹øÈ£', required:'Y', minbyte:'12'" );
-f.addElement("doc_no2", null, "hname:'¹®¼­¹øÈ£', required:'Y', minbyte:'3'" );
-f.addElement("true_random", null, "hname:'¹®¼­¹øÈ£', required:'Y', minbyte:'5'" );
+f.addElement("doc_no1", null, "hname:'ë¬¸ì„œë²ˆí˜¸', required:'Y', minbyte:'12'" );
+f.addElement("doc_no2", null, "hname:'ë¬¸ì„œë²ˆí˜¸', required:'Y', minbyte:'3'" );
+f.addElement("true_random", null, "hname:'ë¬¸ì„œë²ˆí˜¸', required:'Y', minbyte:'5'" );
 
 
 DataSet ds = new DataSet();
@@ -12,13 +12,13 @@ if(u.isPost()&&f.validate()){
 	String doc_no = f.get("doc_no1")+"-"+f.get("doc_no2");
 	DataObject dao = new DataObject("tcb_elcmaster a");
 	ds = dao.find(
-	" doc_no = '"+doc_no+"' and true_random = '"+f.get("true_random")+"' "// where Àı
+	" doc_no = '"+doc_no+"' and true_random = '"+f.get("true_random")+"' "// where ì ˆ
 	,  "a.*, (select member_name from tcb_elc_supp where doc_no = a.doc_no and supp_type='10' ) send_member_name"
 	  +", (select member_name from tcb_elc_supp where doc_no = a.doc_no and supp_type='20' ) recv_member_name"
 	); 
 	
 	if(!ds.next()){
-		u.jsError("ÀÔ·ÂÇÏ½Å ¹øÈ£ÀÇ ÀüÀÚ ¹®¼­´Â Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+		u.jsError("ì…ë ¥í•˜ì‹  ë²ˆí˜¸ì˜ ì „ì ë¬¸ì„œëŠ” ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}
 	ds.put("status", u.getItem(ds.getString("status"), elc_status));
@@ -28,7 +28,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("main.true_elec");
-p.setVar("popup_title","ÀüÀÚ¹®¼­ ÁøÀ§È®ÀÎ");
+p.setVar("popup_title","ì „ìë¬¸ì„œ ì§„ìœ„í™•ì¸");
 p.setVar("ds",ds);
 p.setVar("form_script",f.getScript());
 p.display(out);

@@ -1,14 +1,22 @@
+﻿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
 
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>��ü����</h3>
+	        <h3>업체정보</h3>
 	    </div>
 	</div>
 	<table>
@@ -22,11 +30,11 @@
 			<col>
 		</colgroup>
 		<tr>
-			<th>��ü��</th>
+			<th>업체명</th>
 			<td>{{member_name}}</td>
-			<th>����ڹ�ȣ</th>
+			<th>사업자번호</th>
 			<td>{{vendcd2}}</td>
-			<th>��ǥ�ڸ�</th>
+			<th>대표자명</th>
 			<td>{{boss_name}}</td>
 		</tr>
 	</table>
@@ -34,12 +42,12 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>�ҽ�ī�װ���</h3>
+			<h3>소싱카테고리</h3>
 		</div>
 		<div class="push-right">
 			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
-			<button type="button" class="sbtn color ico-excel"><span></span>�������ε�</button>
-			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>�����ٿ�ε�</button>		
+			<button type="button" class="sbtn color ico-excel"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>엑셀다운로드</button>		
 		</div>
 	</div>
 	<table>
@@ -52,8 +60,8 @@
 </div>
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-save" value="����" onClick="javascript:submitItem()"><span></span>����</button>
-	<button type="button" class="btn color ico-cancel" value="�ݱ�" onClick="javascript:window.close()"><span></span>�ݱ�</button>
+	<button type="button" class="btn color ico-save" value="저장" onClick="javascript:submitItem()"><span></span>저장</button>
+	<button type="button" class="btn color ico-cancel" value="닫기" onClick="javascript:window.close()"><span></span>닫기</button>
 </div>
 
 <script language="javascript">
@@ -88,7 +96,7 @@ function setOptions() {
             updatable: true,
             deletable: true,
             deleteRowsConfirm: false,
-            deleteRowsMessage: "�����Ͻðڽ��ϱ� ?"
+            deleteRowsMessage: "삭제하시겠습니까 ?"
         }
         ,displayOptions:{
             //columnWidth : 200
@@ -117,9 +125,9 @@ function setStyle(){
 function setColumns() {
     var columns = [];
     
-    columns.push({name:"l_src_nm" ,fieldName:"l_src_nm" ,header:"��з�" ,width:140 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"�ߺз�" ,width:140 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"s_src_nm" ,fieldName:"s_src_nm" ,header:"�Һз�" ,width:140 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"l_src_nm" ,fieldName:"l_src_nm" ,header:"대분류" ,width:140 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"m_src_nm" ,fieldName:"m_src_nm" ,header:"중분류" ,width:140 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"s_src_nm" ,fieldName:"s_src_nm" ,header:"소분류" ,width:140 ,readOnly:false , movable:false ,sortable:false});
 
     dataProvider.setFields(columns);
     gridView.setColumns(columns);
@@ -135,7 +143,7 @@ function excelRead(){
         files = window.event.srcElement.files;
 
     if(!files) {
-        alert("�������ε� ����� Internet Explorer 10 �̻� �Ǵ� ũ��(chrome)������ �̿��Ͻ� �� �ֽ��ϴ�.");
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
         return true;
     }
     
@@ -164,7 +172,7 @@ function process_wb(wb) {
         try{
             output[sheetNames][0];
         }catch(e){
-            alert("���Ŀ� ���� �ʴ� �����Դϴ�.\n\n���ε� ������ Ȯ�� �ϼ���.");
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
             return;
         }
 
@@ -173,7 +181,7 @@ function process_wb(wb) {
         var data = [];
         
         if(rows.length > 1){
-    		if(!confirm("������ľ��ε带 �ϸ� ��������Ÿ�� �ʱ�ȭ�˴ϴ�.\n\n������ľ��ε带 �Ͻðڽ��ϱ�?")){
+    		if(!confirm("내역양식업로드를 하면 기존데이타가 초기화됩니다.\n\n내역양식업로드를 하시겠습니까?")){
     			return;
     		}
         }
@@ -181,13 +189,13 @@ function process_wb(wb) {
         for(var i = 1 ; i < rows.length ; i++){
             var row = rows[i];
             var cols = [];
-            //�Է°� validation
+            //입력값 validation
 
 			cols = ["A","B","C"];
 			fields = ["l_src_nm","m_src_nm","s_src_nm"];
-			if(row["A"] == null || row["A"].toString().trim() == ""){alert("��з����� ���� �� �ֽ��ϴ�.(A��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
-			if(row["B"] == null || row["B"].toString().trim() == ""){alert("�ߺз����� ���� �� �ֽ��ϴ�.(B��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
-			if(row["C"] == null || row["C"].toString().trim() == ""){alert("�Һз����� ���� �� �ֽ��ϴ�.(C��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
+			if(row["A"] == null || row["A"].toString().trim() == ""){alert("대분류명에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+			if(row["B"] == null || row["B"].toString().trim() == ""){alert("중분류명에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+			if(row["C"] == null || row["C"].toString().trim() == ""){alert("소분류명에 빈값이 들어가 있습니다.(C열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
 
             var rowdata={};
             for(var j = 0 ; j < cols.length; j++){
@@ -202,7 +210,7 @@ function process_wb(wb) {
         }
         dataProvider.setRows(data);
         gridView.closeProgress();
-        alert("���ε� ó�� �Ǿ����ϴ�.");
+        alert("업로드 처리 되었습니다.");
     }
 }
 
@@ -231,15 +239,15 @@ function excelDown(){
     gridView.exportGrid({
         type: "excel",
         target: "local",
-        fileName: "�ҽ�ī�װ���.xlsx",
+        fileName: "소싱카테고리.xlsx",
         showProgress: false,
         applyDynamicStyles: false,
-        progressMessage: "�ٿ�ε� ���� ���Դϴ�.",
+        progressMessage: "다운로드 진행 중입니다.",
         indicator: "hidden",
         header: "visible",
         footer: "hidden",
         compatibility: "2007",
-        done: function () {  //�������� �Ϸ� �� ����Ǵ� �Լ�
+        done: function () {  //내보내기 완료 후 실행되는 함수
         }
     });
 }
@@ -247,11 +255,11 @@ function excelDown(){
 function submitItem(){
 	
 	 if(dataProvider.getRowCount() == 0){
-		alert("���������� �������� �ʾ� ���������� �Ͻ� �� �����ϴ�.");
+		alert("내역정보가 존재하지 않아 내역저장을 하실 수 없습니다.");
 		return;
 	}
 
-	if(!confirm("���ε��� ������ �����Ͻðڽ��ϱ�?")){
+	if(!confirm("업로드한 내역을 저장하시겠습니까?")){
 		return;
 	}
 	
@@ -275,10 +283,10 @@ function submitItem(){
         data : data,
         success : function(data) {
             if (data > 0) {
-                alert("�ŷ�ó ������ ����Ͽ����ϴ�.");
+                alert("거래처 정보를 등록하였습니다.");
                 dataProvider.clearRowStates(true);
             } else {
-                alert("ó���� �����Ͽ����ϴ�.");
+                alert("처리에 실패하였습니다.");
             }
         },
         error : function(request, status, error) {

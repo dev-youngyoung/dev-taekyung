@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String view_gubun = u.request("view_gubun");
 String callback = u.request("callback");
@@ -8,7 +8,7 @@ f.addElement("s_project_cd", null, null);
 f.addElement("s_project_name", null, null);
 f.addElement("s_use_yn", null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager(jndi);
 list.setRequest(request);
 //list.setDebug(out);
@@ -21,12 +21,12 @@ list.addSearch("project_cd", f.get("s_project_cd"), "LIKE");
 list.addSearch("use_yn", f.get("s_use_yn"));
 list.setOrderBy("project_seq desc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet rs = list.getDataSet();
 
 p.setLayout(view_gubun.equals("popup")?"popup":"default");
 //p.setDebug(out);
-p.setVar("popup_title","ÇÁ·ÎÁ§Æ®°ü¸®");
+p.setVar("popup_title","í”„ë¡œì íŠ¸ê´€ë¦¬");
 p.setVar("menu_cd","000117");
 p.setBody("info.project_list");
 p.setLoop("list", rs);

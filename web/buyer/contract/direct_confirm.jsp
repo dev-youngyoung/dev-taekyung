@@ -1,75 +1,46 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String cont_no = u.aseDec(u.request("cont_no"));
-String cont_chasu = u.request("cont_chasu","0");
+String cont_chasu = u.request("cont_chasu", "0");
 String agree_seq = u.request("agree_seq");
-if(cont_no.equals("")||cont_chasu.equals("")||agree_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+if (cont_no.equals("") || cont_chasu.equals("") || agree_seq.equals("")) {
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
-String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'";
+String where = " cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "'";
 ContractDao contDao = new ContractDao();
-DataSet cont = contDao.find(where+" and member_no = "+_member_no+" ");
-if(!cont.next()){
-	u.jsError("°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+DataSet cont = contDao.find(where + " and member_no = " + _member_no);
+if (!cont.next()) {
+	u.jsError("ê³„ì•½ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
-
 
 DB db = new DB();
 
 contDao = new ContractDao();
 contDao.item("status", "50");
-db.setCommand(contDao.getUpdateQuery(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'"), contDao.record);
+db.setCommand(contDao.getUpdateQuery("cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "'"), contDao.record);
 
-if(!agree_seq.equals("")) // ³»ºÎ °áÀç ÇÁ·Î¼¼½º°¡ ÀÖ´Â °æ¿ì. ÃÖÁ¾ ¼­¸íµÇ¾ú´õ¶óµµ Ç¥½Ã
-{
+if (!agree_seq.equals("")) { // ë‚´ë¶€ ê²°ìž¬ í”„ë¡œì„¸ìŠ¤ê°€ ìžˆëŠ” ê²½ìš°. ìµœì¢… ì„œëª…ë˜ì—ˆë”ë¼ë„ í‘œì‹œ
 	DataObject agreeDao = new DataObject("tcb_cont_agree");
 	agreeDao.item("ag_md_date", u.getTimeString());
 	agreeDao.item("r_agree_person_id",auth.getString("_USER_ID"));
 	agreeDao.item("r_agree_person_name", auth.getString("_USER_NAME"));
-	db.setCommand( agreeDao.getUpdateQuery(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and agree_seq="+agree_seq),agreeDao.record);
+	db.setCommand( agreeDao.getUpdateQuery("cont_no = '" + cont_no + "' and cont_chasu = '" + cont_chasu + "' and agree_seq = " + agree_seq), agreeDao.record);
 }
 
-if(u.inArray(cont.getString("template_cd"), new String[]{"2015109"}))  // ¿ø·áÈ®¾à¼­, ¿Ã¸®ºê³×Æ®¿÷½º Çà»çÂü¿©¿äÃ»¼­(2016.4¿ùºÎÅÍ È®ÀÎ¾ÈÇÏ°í ¹Ù·Î ¾÷Ã¼ ¼­¸íÇÏ¸é °áÁ¦)
-{
-//	status = "50";  // ¼­¸í¿Ï·á
-	int iPayAmount = 2000;
-	int iVatAmount = iPayAmount/10;
-	iPayAmount = iPayAmount+iVatAmount;
-
-	db.setCommand("delete from tcb_pay where cont_no = '"+cont_no+"' and cont_chasu="+cont_chasu, null);
-
-	//tcb_pay insert
-	DataObject payDao = new DataObject("tcb_pay");
-	payDao.item("cont_no", cont_no);
-	payDao.item("cont_chasu", cont_chasu);
-	payDao.item("member_no", _member_no);
-	payDao.item("cont_name", cont.getString("cont_name")+"(´ë³³)");
-	payDao.item("pay_amount", iPayAmount);
-	payDao.item("pay_type", "05");
-	payDao.item("accept_date", u.getTimeString());
-	payDao.item("receit_type","0");
-	db.setCommand(payDao.getInsertQuery(), payDao.record);
-
-	//tcb_cust update
-	DataObject custPayDao = new DataObject("tcb_cust");
-	custPayDao.item("pay_yn", "Y");
-	db.setCommand(custPayDao.getUpdateQuery("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and member_no= '"+_member_no+"' "),custPayDao.record);
-}
-
-/* °è¾à·Î±× START*/
+/* ê³„ì•½ë¡œê·¸ START*/
 ContBLogDao logDao = new ContBLogDao();
-logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ÀüÀÚ¹®¼­ ¿Ï·á",  "", "50", "10");
-/* °è¾à·Î±× END*/
+logDao.setInsert(db, cont_no, String.valueOf(cont_chasu), auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ì „ìžë¬¸ì„œ ì™„ë£Œ", "", "50", "10");
+/* ê³„ì•½ë¡œê·¸ END*/
 
-if(!db.executeArray()){
-	u.jsError("¿Ï·á Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+if (!db.executeArray()) {
+	u.jsError("ì™„ë£Œ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("°è¾àÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.\\n\\n¿Ï·áµÈ °è¾à°ÇÀº °è¾à¿Ï·á>¿Ï·áµÈ°è¾à¿¡¼­ È®ÀÎ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.","contract_send_list.jsp?"+u.getQueryString());
+u.jsAlertReplace("ê³„ì•½ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nì™„ë£Œëœ ê³„ì•½ê±´ì€ ê³„ì•½ì™„ë£Œ>ì™„ë£Œëœê³„ì•½ì—ì„œ í™•ì¸ í•˜ì‹¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.", "contract_send_list.jsp?" + u.getQueryString());
 return;
 %>

@@ -18,6 +18,7 @@ public class DataObject {
 	public String dbType = "oracle";
 	public String fields = "*";
 	public String table = "";
+	public String using_table  = "";
 	public String join = "";
 	public String jndi = Config.getJndi();
 	private String delimiter = Config.getQueryDelimiter();
@@ -34,6 +35,11 @@ public class DataObject {
 
 	public DataObject(String table) {
 		this.table = table;
+	}
+	
+	public DataObject(String table, String using_table) {
+		this.table = table;
+		this.using_table = using_table;
 	}
 
 	public void setDebug(JspWriter out) {
@@ -288,6 +294,13 @@ public class DataObject {
 		int ret = execute(sql);
 		return ret > -1 ? true : false;
 	}
+	
+	public boolean deleteAll() {
+		String sql = "DELETE FROM " + this.table;
+
+		int ret = execute(sql);
+		return ret > -1 ? true : false;
+	}
 
 	public int getInsertId() {
 		RecordSet rs = query("SELECT MAX("+ this.PK +") AS id FROM "+ table);
@@ -476,6 +489,69 @@ public class DataObject {
 	
 	public String getDeleteQuery(String where){
 		String sql = "DELETE FROM " + this.table + " WHERE " + where;
+		return sql;
+	}
+	
+	public boolean merge(String matchQ, String notMatchQ, String onStr){
+		boolean result = false;
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("MERGE INTO " + this.table );
+		sb.append(" USING " + this.using_table);
+		sb.append(" ON ( ");
+		sb.append(onStr);
+		sb.append(" )");
+		sb.append(" WHEN MATCHED THEN ");
+		// MATCHED Query
+		sb.append(matchQ);
+		sb.append(" WHEN NOT MATCHED THEN ");
+		// NOT MATCHED Query
+		sb.append(notMatchQ);
+		
+		int ret = execute(sb.toString());
+		if(ret>0){
+			result = true;
+		}
+		
+		System.out.println("##########"+ret);
+		return result;
+	}
+	
+	public String getMergeUpdateQuery(){
+		int max = record.size();
+		Enumeration keys = record.keys();
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("UPDATE SET ");
+		for(int k=0; keys.hasMoreElements(); k++) {
+			String key = (String)keys.nextElement();
+			sb.append(key + " = " + record.get(key) );
+			if(k < (max - 1)) sb.append(",");
+		}
+		String sql = sb.toString();
+		return sql;
+	}
+	
+	public String getMergeInsertQuery(){
+		int max = record.size();
+		Enumeration keys = record.keys();
+		StringBuffer sb = new StringBuffer();
+		StringBuffer values = new StringBuffer();
+	
+		sb.append("INSERT (");
+		for(int k=0; keys.hasMoreElements(); k++) {
+			String key = (String)keys.nextElement();
+			sb.append(key);
+			values.append(record.get(key));
+			if(k < (max - 1)) {
+				sb.append(",");
+				values.append(",");
+			}
+		}
+		sb.append(") VALUES (");
+		sb.append(values);
+		sb.append(")");
+		String sql = sb.toString();
 		return sql;
 	}
 }

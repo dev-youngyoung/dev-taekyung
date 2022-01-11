@@ -1,7 +1,7 @@
-<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+ï»¿<form novalidate name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
 <input type="hidden" name="contents" />
   <div class="push-left">
-    <h3><span class="caution-text">* Ç¥½Ã´Â ÇÊ¼ö ÀÔ·ÂÇ×¸ñ ÀÔ´Ï´Ù</span></h3>
+    <h3><span class="caution-text">* í‘œì‹œëŠ” í•„ìˆ˜ ì…ë ¥í•­ëª© ì…ë‹ˆë‹¤</span></h3>
   </div>
   <div class="push-right">
     <p></p>
@@ -18,30 +18,30 @@
       </colgroup>
       <!-- IFNOT START 'modify' -->
       <tr>
-        <th>µî·ÏÀÚ</th>
+        <th>ë“±ë¡ì</th>
         <td class="dcel">{{_auth._USER_NAME}}</td>
-        <th>µî·ÏÀÏÀÚ</th>
+        <th>ë“±ë¡ì¼ì</th>
         <td class="dcel"></td>
       </tr>
       <!-- IFNOT END 'modify' -->
       <!-- IF START 'modify' -->
       <tr>
-        <th>µî·ÏÀÚ</th>
+        <th>ë“±ë¡ì</th>
         <td class="dcel">{{pds.reg_name}}</td>
-        <th>µî·ÏÀÏÀÚ</th>
+        <th>ë“±ë¡ì¼ì</th>
         <td class="dcel">{{pds.reg_date}}</td>
       </tr>
       <!-- IF END 'modify' -->
       <tr>
-        <th class="req-check">Á¦¸ñ</th>
+        <th class="req-check">ì œëª©</th>
         <td class="dcel" colspan="3"><input type="text" name="title" value="" maxlength="100" class="label" style="width:100%"></td>
       </tr>
       <tr>
-        <th class="req-check">³»¿ë </th>  
+        <th class="req-check">ë‚´ìš© </th>  
         <td class="dcel" colspan="3" ><textarea  name ="_contents" id = "_contents" class="textarea01" style="width:100%; height:300px; overflow-x:hidden; overflow-y:auto">{{pds.contents}}</textarea></td>
       </tr>
       <tr>
-        <th>Ã·ºÎÆÄÀÏ</th>
+        <th>ì²¨ë¶€íŒŒì¼</th>
         <td class="dcel" colspan="3">
           <table width="100%" border="0" cellpadding="0" cellspacing="0" >
             <colgroup>
@@ -49,8 +49,8 @@
               <col width="70%"> 
             </colgroup>
             <tr class="ltitle">
-              <th>¹®¼­¸í</th>
-              <th>Ã·ºÎ</th>
+              <th>ë¬¸ì„œëª…</th>
+              <th>ì²¨ë¶€</th>
             </tr>
             <!-- LOOP START 'fds' -->
             <!-- IF START 'fds.doc_name' -->
@@ -64,8 +64,8 @@
                   <input type="hidden" name="file_ext_{{fds.seq}}" value="{{fds.file_ext}}"/>
                   <input type="hidden" name="file_size_{{fds.seq}}" value="{{fds.file_size}}"/>
                   {{fds.file_size_str}}
-                  <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pds','{{fds.file_path}}{{fds.file_name}}','{{fds.doc_name}}.{{fds.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-                  <button type="button" class="sbtn ico-delete" onclick="file_delete('{{fds.seq}}')"><span></span>»èÁ¦</button>
+                  <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pds','{{fds.file_path}}{{fds.file_name}}','{{fds.doc_name}}.{{fds.file_ext}}')"><span></span>ë‹¤ìš´ë¡œë“œ</button>
+                  <button type="button" class="sbtn ico-delete" onclick="file_delete('{{fds.seq}}')"><span></span>ì‚­ì œ</button>
                 </div>
               </td>
             </tr>
@@ -87,11 +87,11 @@
   </div>
 
   <div class="btn-group-wrap">
-    <button type="submit" class="btn color ico-save auth_css" value=""><span></span>ÀúÀå</button>
+    <button type="submit" class="btn color ico-save auth_css" value=""><span></span>ì €ì¥</button>
     <!-- IF START 'modify' -->
-    <button type="button" class="btn color ico-delete auth_css" value="" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='my_pds_delete.jsp?{{query}}'}" ><span></span>»èÁ¦</button>
+    <button type="button" class="btn color ico-delete auth_css" value="" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='my_pds_delete.jsp?{{query}}'}" ><span></span>ì‚­ì œ</button>
     <!-- IF END 'modify' -->
-    <button type="button" class="btn color ico-list" value="" onClick="location.href='my_pds_list.jsp?{{list_query}}';"><span></span>¸ñ·Ïº¸±â</button>
+    <button type="button" class="btn color ico-list" value="" onClick="location.href='my_pds_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ë³´ê¸°</button>
   </div>
 </form>
 {{form_script}}
@@ -104,13 +104,13 @@
                 if(file_gubun == ""){
                     var file_pds = f['file_pds_'+i].value;
                     if( (doc_name=="" && file_pds!="")|| (doc_name!="" && file_pds=="")){
-                        alert("¹®¼­¸í°ú ÆÄÀÏÁ¤º¸¸¦ Á¤È®È÷ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
+                        alert("ë¬¸ì„œëª…ê³¼ íŒŒì¼ì •ë³´ë¥¼ ì •í™•íˆ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
                         return false;
                     }
                 }
                 if(file_gubun != ""){
                     if(doc_name==""){
-                        alert("¹®¼­¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+                        alert("ë¬¸ì„œëª…ì„ ì…ë ¥í•˜ì„¸ìš”.");
                         return false;
                     }
                 } 
@@ -119,7 +119,7 @@
               
             f['contents'].value=Base64.encode(f['_contents'].value);
             
-            if(!confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){ 
+            if(!confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){ 
                 return false;
             }
             return true;

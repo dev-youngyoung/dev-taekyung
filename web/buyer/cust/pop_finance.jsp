@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String asse_no = u.request("asse_no", "");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject assessmentDao = new DataObject("tcb_assemaster a  inner join tcb_assedetail b on a.asse_no = b.asse_no and b.div_cd = 'S'");
 DataSet assessment = assessmentDao.find(" a.asse_no = '"+asse_no+"'", "a.*, b.asse_html, b.asse_subhtml, b.div_cd");
 if(!assessment.next()){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 boolean modify = true;
@@ -24,7 +24,7 @@ if("50".equals(assessment.getString("status"))){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_finance");
-p.setVar("popup_title","Àç¹«Æò°¡");
+p.setVar("popup_title","ìž¬ë¬´í‰ê°€");
 p.setVar("rtype",rtype);
 p.setVar("cur_date", u.getTimeString("yyyy-MM-dd"));
 p.setVar("modify", modify);

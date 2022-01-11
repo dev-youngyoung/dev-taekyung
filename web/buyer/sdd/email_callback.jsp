@@ -1,5 +1,5 @@
 <%@ page import="java.net.URLEncoder" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -14,7 +14,7 @@ DataSet cont = contDao.query("select a.cont_no from tcb_contmaster a, tcb_cont_t
 			+ "and b.send_type='10' "
 			+ "and a.cont_no='"+cont_no+"' and cont_chasu='"+cont_chasu+"' ");
 if(!cont.next()){
-	u.jsAlert("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -22,7 +22,7 @@ String where = "cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(where+" and email_random = '"+email_random+"'");
 if(!cust.next()){
-	u.jsAlert("°è¾à°ü°èÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê³„ì•½ê´€ê³„ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -49,15 +49,15 @@ if(u.isPost()&&f.validate()){
 
 	Crosscert cert = new Crosscert();
 	if (cert.chkSignVerify(sign_data).equals("SIGN_ERROR")){
-		u.jsError("¼­¸í°ËÁõ¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì„œëª…ê²€ì¦ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	if(!cert.getDn().equals(sign_dn)){
-		u.jsError("¼­¸í°ËÁõ DN°ªÀÌ ÀÏÁö ÇÏÁö ¾Ê½À´Ï´Ù.");
+		u.jsError("ì„œëª…ê²€ì¦ DNê°’ì´ ì¼ì§€ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	u.setCookie("email_contract_recvview", u.aseEnc(cont_no)+"-"+cont_chasu+"-"+email_random, 60*60*24*1);//1ÀÏ°£ ÄíÅ°¿¡ ÀÎÁõ ÇßÀ½À» ÀúÀå
+	u.setCookie("email_contract_recvview", u.aseEnc(cont_no)+"-"+cont_chasu+"-"+email_random, 60*60*24*1);//1ì¼ê°„ ì¿ í‚¤ì— ì¸ì¦ í–ˆìŒì„ ì €ìž¥
 	
 	u.redirect("email_contract_recvview.jsp?"+u.getQueryString());
 	return;
@@ -66,14 +66,14 @@ if(u.isPost()&&f.validate()){
 p.setLayout("email_contract");
 p.setDebug(out);
 p.setBody("sdd.email_callback");
-p.setVar("popup_title","ºñÈ¸¿ø °øµ¿µµ±Þ»ç °è¾à");
+p.setVar("popup_title","ë¹„íšŒì› ê³µë™ë„ê¸‰ì‚¬ ê³„ì•½");
 p.setVar("modify", true);
 p.setVar("cust",cust);
 p.setVar("person_yn", person_yn);
 p.setVar("jumin_no", jumin_no);
 p.setVar("sign_able", sign_able);
 p.setVar("query", u.getQueryString());
-p.setVar("query_encode", URLEncoder.encode(u.getQueryString(), "euc-kr"));
+p.setVar("query_encode", URLEncoder.encode(u.getQueryString(), "UTF-8"));
 p.setVar("list_query", u.getQueryString(""));
 p.setVar("form_script",f.getScript());
 p.display(out);

@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì„¸ìš”.");
 	return;
 }
 
 DataObject clientDao = new DataObject("tcb_client");
 
 if(!clientDao.delete(" member_no = '"+_member_no+"' and client_no = '"+member_no+"' ")){
-	u.jsError("°¡µî·Ï¾÷Ã¼ »èÁ¦¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ê°€ë“±ë¡ì—…ì²´ ì‚­ì œì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("°¡µî·Ï ¾÷Ã¼¸¦ »èÁ¦ ÇÏ¿´½À´Ï´Ù.", "./tmp_cust_list_type.jsp");
+u.jsAlertReplace("ê°€ë“±ë¡ ì—…ì²´ë¥¼ ì‚­ì œ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./tmp_cust_list_type.jsp");
 return;
 %>

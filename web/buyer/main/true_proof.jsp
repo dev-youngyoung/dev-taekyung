@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
-f.addElement("proof_no1", null, "hname:'¹ß±Ş¹øÈ£', required:'Y', fixbyte:'4'");
-f.addElement("proof_no2", null, "hname:'¹ß±Ş¹øÈ£', required:'Y', fixbyte:'8'");
-f.addElement("proof_no3", null, "hname:'¹ß±Ş¹øÈ£', required:'Y', maxbyte:'5'");
+f.addElement("proof_no1", null, "hname:'ë°œê¸‰ë²ˆí˜¸', required:'Y', fixbyte:'4'");
+f.addElement("proof_no2", null, "hname:'ë°œê¸‰ë²ˆí˜¸', required:'Y', fixbyte:'8'");
+f.addElement("proof_no3", null, "hname:'ë°œê¸‰ë²ˆí˜¸', required:'Y', maxbyte:'5'");
 
 if(u.isPost() && f.validate()){
 	String proof_no = f.get("proof_no1")+"-"+f.get("proof_no2")+"-"+f.get("proof_no3");
@@ -19,15 +19,15 @@ if(u.isPost() && f.validate()){
 		);
 	
 	if(!proof.next()){
-		u.jsError("ÇØ´ç ¹®¼­°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+		u.jsError("í•´ë‹¹ ë¬¸ì„œê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}
 
 	CodeDao codeDao = new CodeDao("tcb_comcode");
-	String[] status_code = codeDao.getCodeArray("P001");	// ½ÇÀûÁõ¸í»óÅÂ
+	String[] status_code = codeDao.getCodeArray("P001");	// ì‹¤ì ì¦ëª…ìƒíƒœ
 	String status_name = u.getItem(proof.getString("status"), status_code);
 	
-	String msg = "<b><font color=\"blue\">["+status_name +"]</font></b>ÀÎ ÀüÀÚ¹®¼­ ÀÔ´Ï´Ù.";
+	String msg = "<b><font color=\"blue\">["+status_name +"]</font></b>ì¸ ì „ìë¬¸ì„œ ì…ë‹ˆë‹¤.";
 	p.setVar("proof", proof);
 	p.setVar("msg", msg);
 }
@@ -35,7 +35,7 @@ if(u.isPost() && f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("main.true_proof");
-p.setVar("popup_title","½ÇÀûÁõ¸í¼­ ÁøÀ§È®ÀÎ");
+p.setVar("popup_title","ì‹¤ì ì¦ëª…ì„œ ì§„ìœ„í™•ì¸");
 p.setVar("form_script",f.getScript());
 p.display(out);
 %>

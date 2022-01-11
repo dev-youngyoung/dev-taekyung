@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(!auth.getString("_MEMBER_GUBUN").equals("04")){
 	u.redirect("my_info_modify_comp.jsp");
@@ -11,7 +11,7 @@ CodeDao codeDao = new CodeDao("tcb_comcode");
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find(" member_no = '"+_member_no+"' ");
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 member.put("cert_end_date", u.getTimeString("yyyy-MM-dd", member.getString("cert_end_date")));
@@ -19,7 +19,7 @@ member.put("cert_end_date", u.getTimeString("yyyy-MM-dd", member.getString("cert
 DataObject personDao = new DataObject("tcb_person");
 DataSet person = personDao.find(" member_no = '"+_member_no+"' and person_seq = '"+auth.getString("_PERSON_SEQ")+"' " );
 if(!person.next()){
-	u.jsError("°³ÀÎ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê°œì¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 Security security = new Security();
@@ -40,18 +40,18 @@ if(!jumin_no.equals("")){
 
 
 
-f.addElement("passwd", null, "hname:'ºñ¹Ð¹øÈ£', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
-f.addElement("member_name", member.getString("member_name"), "hname:'ÀÌ¸§',required:'Y'");
-f.addElement("birth_date", u.getTimeString("yyyy-MM-dd", person.getString("birth_date")), "hname:'»ý³â¿ùÀÏ', required:'Y', minbyte:'10', mixbyte:'10'");
-f.addElement("gender", person.getString("gender"), "hname:'¼ºº°', required:'Y'");
-f.addElement("hp1", person.getString("hp1"), "hname:'ÈÞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", person.getString("hp2"), "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", person.getString("hp3"), "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("email", person.getString("email"), "hname:'ÀÌ¸ÞÀÏ', required:'Y',option:'email'");
-f.addElement("post_code", member.getString("post_code"), "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", member.getString("address"), "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("tel_num", person.getString("tel_num"), "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("fax_num", person.getString("fax_num"), "hname:'ÆÑ½º'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
+f.addElement("member_name", member.getString("member_name"), "hname:'ì´ë¦„',required:'Y'");
+f.addElement("birth_date", u.getTimeString("yyyy-MM-dd", person.getString("birth_date")), "hname:'ìƒë…„ì›”ì¼', required:'Y', minbyte:'10', mixbyte:'10'");
+f.addElement("gender", person.getString("gender"), "hname:'ì„±ë³„', required:'Y'");
+f.addElement("hp1", person.getString("hp1"), "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", person.getString("hp2"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", person.getString("hp3"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("email", person.getString("email"), "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
+f.addElement("post_code", member.getString("post_code"), "hname:'ìš°íŽ¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", member.getString("address"), "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("tel_num", person.getString("tel_num"), "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("fax_num", person.getString("fax_num"), "hname:'íŒ©ìŠ¤'");
 if(u.isPost()&&f.validate()){
 	
 	String birth_date = f.get("birth_date").replaceAll("-", "");
@@ -77,7 +77,7 @@ if(u.isPost()&&f.validate()){
 	personDao = new DataObject("tcb_person");
 	if(!f.get("passwd").equals("")){
 		personDao.item("passwd", u.sha256(f.get("passwd")));
-		personDao.item("passdate", u.getTimeString());  // ºñ¹Ð¹øÈ£ º¯°æ½Ã°£ ±â·Ï
+		personDao.item("passdate", u.getTimeString());  // ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì‹œê°„ ê¸°ë¡
 	}
 	personDao.item("user_name",f.get("member_name"));
 	personDao.item("tel_num",f.get("tel_num"));
@@ -91,11 +91,11 @@ if(u.isPost()&&f.validate()){
 	personDao.item("jumin_no",	security.AESencrypt(jumin_no));
 	db.setCommand(personDao.getUpdateQuery("member_no = '"+_member_no+"' and person_seq = '"+person.getString("person_seq")+"'"), personDao.record);
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "my_info_modify_person.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "my_info_modify_person.jsp?"+u.getQueryString());
 	return;
 }
 p.setLayout("default");

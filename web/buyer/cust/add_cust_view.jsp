@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_material = code.getCodeArray("M300");
@@ -12,7 +12,7 @@ DataObject mdao = new DataObject("tcb_member");
 //mdao.setDebug(out);
 DataSet member = mdao.find(where, "member_name, boss_name");
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -61,9 +61,9 @@ while(material.next())
 }
 f.addElement("meterial_cd", strMaterial, "");
 
-// º¸À¯Â÷·®Á¶È¸
+// ë³´ìœ ì°¨ëŸ‰ì¡°íšŒ
 DataObject car_dao = new DataObject("tcb_car");
-DataSet car1 = car_dao.find(where + " and car_gubun='1'"); // º¸À¯Â÷¶û
+DataSet car1 = car_dao.find(where + " and car_gubun='1'"); // ë³´ìœ ì°¨ëž‘
 while(car1.next())
 {
 	car1.put("car_num1", u.numberFormat(car1.getInt("car_num")));
@@ -71,8 +71,8 @@ while(car1.next())
 	car1.put("weight_nm1", u.getItem(car1.getString("weight_cd"), code_wegiht));
 }
 
-//¿î¿µ°¡´ÉÂ÷·®Á¶È¸
-DataSet car2 = car_dao.find(where + " and car_gubun='2'"); // º¸À¯Â÷¶û
+//ìš´ì˜ê°€ëŠ¥ì°¨ëŸ‰ì¡°íšŒ
+DataSet car2 = car_dao.find(where + " and car_gubun='2'"); // ë³´ìœ ì°¨ëž‘
 while(car2.next())
 {
 	car2.put("car_num2", u.numberFormat(car2.getInt("car_num")));
@@ -80,7 +80,7 @@ while(car2.next())
 	car2.put("weight_nm2", u.getItem(car2.getString("weight_cd"), code_wegiht));
 }
 
-//º¸ÁõÁ¤º¸Á¶È¸
+//ë³´ì¦ì •ë³´ì¡°íšŒ
 DataObject warrDao = new DataObject("tcb_warr_add");
 DataSet warr = warrDao.find(where);
 while(warr.next()){
@@ -92,7 +92,7 @@ while(warr.next()){
 	warr.put("member_no", u.aseEnc(warr.getString("member_no")));
 }
 
-//ÀÎÇã°¡Á¤º¸
+//ì¸í—ˆê°€ì •ë³´
 DataObject certDao = new DataObject("tcb_cert_add");
 DataSet cert = certDao.find(where);
 while(cert.next()){

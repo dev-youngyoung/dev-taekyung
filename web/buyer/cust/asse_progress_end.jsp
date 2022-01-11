@@ -1,32 +1,32 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String asse_no = u.request("asse_no");
 String div_cd = u.request("div_cd");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject asseDao = new DataObject("tcb_assemaster");
 DataSet asse = asseDao.find("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"' and status = '20'");
 if(!asse.next()){
-	u.jsError("Æò°¡°èÈ¹ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ê³„íš ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject detailDao = new DataObject("tcb_assedetail");
 DataSet detail = detailDao.find(" asse_no = '"+asse_no+"' and div_cd = '"+div_cd+"'");
 if(!detail.next()){
-	u.jsError("Æò°¡»ó¼¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ìƒì„¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!detail.getString("status").equals("10")){
-	u.jsError("ÀÛ¼ºÁß »óÅÂ¿¡¼­¸¸ Æò°¡ ¿Ï·á Ã³¸® °¡´É ÇÕ´Ï´Ù.");
+	u.jsError("ìž‘ì„±ì¤‘ ìƒíƒœì—ì„œë§Œ í‰ê°€ ì™„ë£Œ ì²˜ë¦¬ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 	return;
 }
 
-String msg = "Ã³¸® ¿Ï·áÇÏ¿´½À´Ï´Ù.";
+String msg = "ì²˜ë¦¬ ì™„ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤.";
 
 DB db = new DB();
 
@@ -38,11 +38,11 @@ db.setCommand(detailDao.getUpdateQuery("asse_no = '"+asse_no+"' and div_cd = '"+
 if(detailDao.findCount("asse_no = '"+asse_no+"' and status = '10'  and div_cd <> '"+div_cd+"' ")<1){
 	asseDao.item("status","30");
 	db.setCommand(asseDao.getUpdateQuery("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"'"), asseDao.record);
-	msg += "\\n\\nÆò°¡¿Ï·á ¸Þ´º¿¡¼­ Á¶È¸ °¡´ÉÇÕ´Ï´Ù.";
+	msg += "\\n\\ní‰ê°€ì™„ë£Œ ë©”ë‰´ì—ì„œ ì¡°íšŒ ê°€ëŠ¥í•©ë‹ˆë‹¤.";
 }
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 

@@ -1,12 +1,12 @@
 <%@page import="java.net.HttpURLConnection"%>
 <%@page import="java.net.URL"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-//ÄÉÀÌ¼Ö·ç¼Ç °¡»ó°èÁÂ ¹øÈ£ ¿¬µ¿ 
+//ì¼€ì´ì†”ë£¨ì…˜ ê°€ìƒê³„ì¢Œ ë²ˆí˜¸ ì—°ë™ 
 String vendcd = u.request("vendcd");
 if(vendcd.equals("")){
 	out.println("<script>");
-	out.println("alert('¿¬µ¿´ë»ó »ç¾÷ÀÚ µî·Ï¹øÈ£°¡ ¾ø½À´Ï´Ù.\\n\\n°¡»ó°èÁÂ¹øÈ£°¡ ÀÚµ¿ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
+	out.println("alert('ì—°ë™ëŒ€ìƒ ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤.\\n\\nê°€ìƒê³„ì¢Œë²ˆí˜¸ê°€ ìë™ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.');");
 	out.println("</script>");
 	return;
 }
@@ -14,19 +14,19 @@ if(vendcd.equals("")){
 DataSet data = getData(vendcd);
 if(data.getString("result").equals("false")){
 	out.println("<script>");
-	out.println("alert('½Ã½ºÅÛ ¿¬µ¿¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ»ç±â ¹Ù¶ø´Ï´Ù.');");
+	out.println("alert('ì‹œìŠ¤í…œ ì—°ë™ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì‚¬ê¸° ë°”ëë‹ˆë‹¤.');");
 	out.println("</script>");
 	return;
 }
 if(!data.getString("resultCode").equals("01")){
 	out.println("<script>");
-	out.println("alert('°¡»ó°èÁÂ ¿¬µ¿¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.\\n\\n»ç¾÷ÀÚµî·Ï¹øÈ£:"+u.getBizNo(vendcd)+"\\n\\n(RESULTCODE:"+data.getString("resultCode")+",MSG:"+data.getString("message")+")');");
+	out.println("alert('ê°€ìƒê³„ì¢Œ ì—°ë™ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nì‚¬ì—…ìë“±ë¡ë²ˆí˜¸:"+u.getBizNo(vendcd)+"\\n\\n(RESULTCODE:"+data.getString("resultCode")+",MSG:"+data.getString("message")+")');");
 	out.println("</script>");	
 	return;
 }
 
 out.println("<script>");
-out.println("alert('ÇØ´ç»ç¾÷ÀÚÀÇ °¡»ó°èÁÂ¹øÈ£°¡ ÀÚµ¿ ÀÔ·Â µË´Ï´Ù.\\n(»ç¾÷ÀÚµî·Ï¹øÈ£:"+u.getBizNo(vendcd)+"\\n°¡»ó°èÁÂ:"+data.getString("accno")+")');");
+out.println("alert('í•´ë‹¹ì‚¬ì—…ìì˜ ê°€ìƒê³„ì¢Œë²ˆí˜¸ê°€ ìë™ ì…ë ¥ ë©ë‹ˆë‹¤.\\n(ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸:"+u.getBizNo(vendcd)+"\\nê°€ìƒê³„ì¢Œ:"+data.getString("accno")+")');");
 out.println("document.forms['form1']['v_account'].value='"+data.getString("accno")+"';");
 out.println("replaceInput(document.forms['form1']['v_account'], document.forms['form1']['v_account'].name, document.all.__html)");
 out.println("</script>");
@@ -37,7 +37,7 @@ public DataSet getData(String vendcd){
 	DataSet data = null;
 	String url = "http://everydaypay.co.kr/Nice/getAccno";
 	try{
-		System.out.println("¿¬µ¿ URL=>"+url+"?vendcd="+vendcd);
+		System.out.println("ì—°ë™ URL=>"+url+"?vendcd="+vendcd);
 		Http hp = new Http();
 		hp.setUrl(url);
 		hp.setEncoding("UTF-8");

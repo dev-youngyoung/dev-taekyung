@@ -1,23 +1,17 @@
 package dao;
 
-import crosscert.Hash;
-import nicelib.db.DataObject;
-import nicelib.db.DataSet;
-import nicelib.pdf.PDFMaker;
-import nicelib.util.Util;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import procure.common.conf.Startup;
-import procure.common.utils.StrUtil;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+
+import nicelib.db.DataObject;
+import nicelib.db.DataSet;
+import nicelib.pdf.PDFMaker;
+import nicelib.util.Util;
+import procure.common.conf.Startup;
+import procure.common.utils.StrUtil;
+import crosscert.Hash;
 
 public class ContractDao extends DataObject {
 
@@ -28,37 +22,23 @@ public class ContractDao extends DataObject {
 
 	public ContractDao(String sTable) {
 		this.table = sTable;
-	}	
+	}
 	
-	public String makeContNo (){
-		String query = "";
-		/* 20180320 ¿ù 9999°Ç ³Ñ¾úÀ½.
-		query += "SELECT 'N'|| (TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMM')) + 233300) || LPAD( (NVL(MAX(SUBSTR(cont_no, 8)), 0) + 1), 4, '0' ) cont_no ";
-		query += "  FROM tcb_contmaster ";
-		query += " WHERE SUBSTR(cont_no, 2, 6) = (TO_CHAR(SYSDATE, 'YYYYMM') + 233300) ";
-		*/
-
-		/* »ç¿ë·® Áõ°¡·Î Áßº¹¶§¹®¿¡ seq·Î º¯°æ
-		query += "SELECT 'N'|| (TO_NUMBER(TO_CHAR(SYSDATE, 'YYMM')) + 3300) || LPAD( (NVL(MAX(TO_NUMBER(SUBSTR(cont_no, 6))), 0) + 1), 6, '0' ) cont_no";
-		query += "  FROM tcb_contmaster ";
-		query += " WHERE SUBSTR(cont_no, 2, 4) = (TO_CHAR(SYSDATE, 'YYMM') + 3300) ";
-
-		String cont_no = this.getOne(query);
-		*/
-		query += "SELECT 'N'|| (TO_NUMBER(TO_CHAR(SYSDATE, 'YYMM')) + 3300) || LPAD( TCB_CONT_NO_SEQ.nextval, 6, '0' ) cont_no";
-		query += "  FROM dual ";
-
-		DataSet ds = this.query(query);
-
+	public String makeContNo(String type) {
+		DataSet ds = this.query("select f_tec_maxcontnumb('"+ type +"') cont_no from dual");
 		String cont_no = "";
-		if(ds.next()) {
-			cont_no = ds.getString("cont_no");
-		}
-
+		if (ds.next()) cont_no = ds.getString("cont_no");
 		return cont_no;
 	}
 	
-	public String makeContNoK (){
+	public String makeContNo() {
+		DataSet ds = this.query("select f_tec_maxcontnumb('P') cont_no from dual");
+		String cont_no = "";
+		if (ds.next()) cont_no = ds.getString("cont_no");
+		return cont_no;
+	}
+	
+	public String makeContNoK() {
 		String query = "";
 		query +="SELECT ( to_number(TO_CHAR(SYSDATE, 'YYYY')) + 2333) || LPAD( (to_number(NVL(MAX(SUBSTR(cont_no, 5)), 0)) + 1), 8, '0' ) cont_no"; 
         query +="  FROM tck_contmaster                                                                                                           ";
@@ -107,11 +87,11 @@ public class ContractDao extends DataObject {
 		documentContentsBefore.append("<!DOCTYPE html>");
 		documentContentsBefore.append("<html lang=\"ko\">");
 		documentContentsBefore.append("<head>");
-		documentContentsBefore.append("<meta charset=\"EUC-KR\">");
-		documentContentsBefore.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=EUC-KR\">");
+		documentContentsBefore.append("<meta charset=\"UTF-8\">");
+		documentContentsBefore.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 		documentContentsBefore.append("<style type=\"text/css\">");
 		documentContentsBefore.append("<!--");
-		documentContentsBefore.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
+		documentContentsBefore.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
 		documentContentsBefore.append("		.lineTable { border-collapse:collapse; border:1 solid black }");
 		documentContentsBefore.append("		.lineTable td { border:1px solid black }");
 		documentContentsBefore.append("		.lineTable .noborder { border:0px }");	
@@ -122,8 +102,9 @@ public class ContractDao extends DataObject {
 		pdfMaker.setContNo(info.getString("cont_no"), info.getString("cont_chasu"), info.getString("random_no"));
 		pdfMaker.setUserNo(info.getString("cont_userno"));
 		pdfMaker.setHtmlWidth(750);
-		if(info.getString("doc_type").equals("2"))  // 1 or null:ÀüÀÚ°è¾à,  2: ÀüÀÚ¹®¼­  
-			pdfMaker.setFooter("*º» ¹®¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© °øÀÎÀÎÁõ¼­·Î ÀüÀÚ¼­¸íÇÑ ÀüÀÚ¹®¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ¹®¼­ ÁøÀ§¿©ºÎ´Â ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com,ÀÏ¹İ±â¾÷¿ë)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+		if(info.getString("doc_type").equals("2"))  // 1 or null:ì „ìê³„ì•½,  2: ì „ìë¬¸ì„œ
+//			pdfMaker.setFooter("*ë³¸ ë¬¸ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²• ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ê³µì¸ì¸ì¦ì„œë¡œ ì „ìì„œëª…í•œ ì „ìë¬¸ì„œì…ë‹ˆë‹¤.<br>&nbsp;&nbsp;ì „ìë¬¸ì„œ ì§„ìœ„ì—¬ë¶€ëŠ” ë‚˜ì´ìŠ¤ë‹¤í(http://www.nicedocu.com,ì¼ë°˜ê¸°ì—…ìš©)ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+			pdfMaker.setFooter("*ë³¸ ë¬¸ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²• ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ê³µì¸ì¸ì¦ì„œë¡œ ì „ìì„œëª…í•œ ì „ìë¬¸ì„œì…ë‹ˆë‹¤.");
 		boolean result = pdfMaker.generatePDF(documentContentsBefore.toString()+info.getString("html")+"</body></html>", pdfDir+fileDir, fileName);
 		if(!result){
 			return null;
@@ -172,7 +153,7 @@ public class ContractDao extends DataObject {
 		documentContentsBefore.append("<head>");
 		documentContentsBefore.append("<style>");
 		documentContentsBefore.append("<!--");
-		documentContentsBefore.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0px; color: black;line-height:150%}");
+		documentContentsBefore.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: "+fontSize+"; font-style: normal; letter-spacing:0px; color: black;line-height:150%}");
 		documentContentsBefore.append("		.lineTable { border-collapse:collapse; border:1px solid black }");
 		documentContentsBefore.append("		.lineTable td { border:1px solid black }");
 		documentContentsBefore.append("		.lineTable .noborder { border:0px }");	
@@ -185,7 +166,8 @@ public class ContractDao extends DataObject {
 		pdfMaker.setHtmlWidth(750);
 		
 		  
-		pdfMaker.setFooter("*º» °è¾à¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı  µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© ÀüÀÚ¼­¸íÀ¸·Î Ã¼°áÇÑ ÀüÀÚ°è¾à¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ°è¾à ÁøÀ§¿©ºÎ´Â °Ç¼³ ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù. (°ü¸®¹øÈ£:"+pdfMaker.getContNo()+")");
+//		pdfMaker.setFooter("*ë³¸ ê³„ì•½ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì²´ê²°í•œ ì „ìê³„ì•½ì„œì…ë‹ˆë‹¤.<br>&nbsp;&nbsp;ì „ìê³„ì•½ ì§„ìœ„ì—¬ë¶€ëŠ” ê±´ì„¤ ë‚˜ì´ìŠ¤ë‹¤í(http://www.nicedocu.com)ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤. (ê´€ë¦¬ë²ˆí˜¸:"+pdfMaker.getContNo()+")");
+		pdfMaker.setFooter("*ë³¸ ê³„ì•½ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì²´ê²°í•œ ì „ìê³„ì•½ì„œì…ë‹ˆë‹¤. (ê´€ë¦¬ë²ˆí˜¸:"+pdfMaker.getContNo()+")");
 		
 		String html = documentContentsBefore.toString()+info.getString("html")+"</body></html>";
 		boolean result = pdfMaker.generatePDF(html, pdfDir+fileDir, fileName);
@@ -209,8 +191,8 @@ public class ContractDao extends DataObject {
 
 	
 	/**
-	 * Hash Á¤º¸ °¡Á®¿À±â
-	 * @param sXpath		°æ·Î
+	 * Hash ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	 * @param sXpath ê²½ë¡œ
 	 * @param sOtherFullDir
 	 * @return
 	 * @throws IOException

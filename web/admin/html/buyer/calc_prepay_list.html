@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
 <input type="hidden" name="mode" />
 <div class="search_div">
 <table class="search_table">
@@ -20,18 +20,18 @@
 				<col width="14%">
 				<col width="34%">
 			</colgroup>
-		<th><p>Á¤»ê±âÁØ³â¿ù</p></th>
+		<th><p>ì •ì‚°ê¸°ì¤€ë…„ì›”</p></th>
 		<td><input type="text" name="s_yyyymm" size="8" maxlength="7" onkeyup="dateFormat(this)" ></td>
-		<th><p>¿ä±İÁ¦</p></th>
+		<th><p>ìš”ê¸ˆì œ</p></th>
 		<td>
 			<select name="s_pay_type_cd">
-				<option value="">-ÀüÃ¼-</option>
+				<option value="">-ì „ì²´-</option>
 				<!-- LOOP START 'code_pay_type_cd' -->
 				<option value="{{code_pay_type_cd.id}}">{{code_pay_type_cd.value}}</option>
 				<!-- LOOP END 'code_pay_type_cd' -->
 			</select>
 		</td>
-		<th><p>ÀÌ¿ëÁ¾·áÀÏ</p></th>
+		<th><p>ì´ìš©ì¢…ë£Œì¼</p></th>
 		<td>
 			<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 			<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
@@ -41,12 +41,12 @@
 		<td></td>
   </tr>
   <tr>
-	<th><p>¾÷Ã¼¸í</p></th>
+	<th><p>ì—…ì²´ëª…</p></th>
 	<td colspan="3">
 		<input type="text" name="s_member_name" style="width:98%">
 	</td>
     <td align="right">
-       <button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+       <button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
     </td>    
   </tr>
 </table>
@@ -58,10 +58,10 @@
  <div class="div_table">
  <div class="util-row">
 	 <div class="push-left">
-		 ÀÔÂû:[ °ø±Ş°¡:{{sumInfo.str_bid_supp}} / ºÎ°¡¼¼:{{sumInfo.str_bid_tax}} / ÇÕ°è:{{sumInfo.str_bid_amount}}] <br>°è¾à:[ °ø±Ş°¡:{{sumInfo.str_pay_supp}} / ºÎ°¡¼¼:{{sumInfo.str_pay_tax}} / ÇÕ°è:{{sumInfo.str_pay_amount}}]
+		 ì…ì°°:[ ê³µê¸‰ê°€:{{sumInfo.str_bid_supp}} / ë¶€ê°€ì„¸:{{sumInfo.str_bid_tax}} / í•©ê³„:{{sumInfo.str_bid_amount}}] <br>ê³„ì•½:[ ê³µê¸‰ê°€:{{sumInfo.str_pay_supp}} / ë¶€ê°€ì„¸:{{sumInfo.str_pay_tax}} / í•©ê³„:{{sumInfo.str_pay_amount}}]
 	 </div>
 	 <div class="push-right">
-		 <button class="sbtn color ico-excel" onclick="excelDown()"><span></span>¿¢¼¿´Ù¿î</button>
+		 <button class="sbtn color ico-excel" onclick="excelDown()"><span></span>ì—‘ì…€ë‹¤ìš´</button>
 	 </div>
  </div>
  <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -78,14 +78,14 @@
   </colgroup>
   <tr>
 	<th>No</th>
-    <th>¾÷Ã¼¸í</th>
-    <th>»ç¾÷ÀÚµî·Ï¹øÈ£</th>
-    <th>ÀÌ¿ë±â°£</th>
-	<th>¿ä±İÁ¦</th>
-	<th>ÀÔÂû<br>°ø±Ş°¡<br>ºÎ°¡¼¼<br>ÇÕ°è</th>
-	<th>°è¾à<br>°ø±Ş°¡<br>ºÎ°¡¼¼<br>ÇÕ°è</th>
-    <th>°è»ê¼­´ã´ç</th>
-    <th>¾È³»ÀÏÀÚ</th>
+    <th>ì—…ì²´ëª…</th>
+    <th>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</th>
+    <th>ì´ìš©ê¸°ê°„</th>
+	<th>ìš”ê¸ˆì œ</th>
+	<th>ì…ì°°<br>ê³µê¸‰ê°€<br>ë¶€ê°€ì„¸<br>í•©ê³„</th>
+	<th>ê³„ì•½<br>ê³µê¸‰ê°€<br>ë¶€ê°€ì„¸<br>í•©ê³„</th>
+    <th>ê³„ì‚°ì„œë‹´ë‹¹</th>
+    <th>ì•ˆë‚´ì¼ì</th>
   </tr>
   <!-- IF START 'list' -->
   <!-- LOOP START 'list' -->
@@ -107,7 +107,7 @@
 	</td>
 	<td align="center">
 		<!-- IFNOT START 'list.user_name' -->
-		<span style="color:red">¹Ìµî·Ï</span>
+		<span style="color:red">ë¯¸ë“±ë¡</span>
 		<!-- IFNOT END 'list.user_name' -->
 		<!-- IF START 'list.user_name' -->
 		{{list.user_name}}<br>
@@ -121,7 +121,7 @@
   <!-- IF END 'list' -->
   <!-- IFNOT START 'list' -->
   <tr>
-	<td colspan="7" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+	<td colspan="7" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
   </tr>
   <!-- IFNOT END 'list' -->
  </table>
@@ -142,7 +142,7 @@
     }
 
 	function sendReq(yyyymm, member_no, seq){
-	    if(confirm('Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?')){
+	    if(confirm('ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
             var url = 'calc_prepay_send.jsp'
                 + '?{{queryString}}'
                 +'yyyymm='+ yyyymm

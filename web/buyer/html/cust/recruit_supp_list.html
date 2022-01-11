@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
 <input type="hidden" name="mode"/>
 <input type="hidden" name="seq" value="{{seq}}">
 <div class="search_div">
@@ -11,21 +11,21 @@
         <col width="10%">
     </colgroup>
     <tr>
-        <th><p>»ç¾÷ÀÚ¹øÈ£</p></th>
+        <th><p>ì‚¬ì—…ìžë²ˆí˜¸</p></th>
         <td><input type="text" name="s_vendcd" maxlength="100" style="width:80%"></td>
-        <th><p>¾÷Ã¼¸í</p></th>
+        <th><p>ì—…ì²´ëª…</p></th>
         <td><input type="text" name="s_vendnm" maxlength="100" style="width:90%"></td>
         <td></td>
     </tr>
     <tr>
-        <th><p>¸ðÁýºÐ¾ß</p></th>
+        <th><p>ëª¨ì§‘ë¶„ì•¼</p></th>
         <td colspan="3">
             <!-- LOOP START 'category' -->
             <nobr><input type="checkbox" name="s_category" value="{{category.code}}"> {{category.code_name}}&nbsp;&nbsp;</nobr>
             <!-- LOOP END 'category' -->
         </td>
         <td align="right">
-            <button type="submit" class="search_btn" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>°Ë»ö</button>
+            <button type="submit" class="search_btn" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>ê²€ìƒ‰</button>
         </td>
     </tr>
     </table>
@@ -35,8 +35,8 @@
 
 <div class="util-row">
     <div class="push-right">
-        <button type="button" class="sbtn color ico-list" onclick="location.href='recruit_list.jsp';"><span></span>°ø°í¸ñ·Ï</button>
-        <button type="button" class="sbtn color ico-excel" onclick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+        <button type="button" class="sbtn color ico-list" onclick="location.href='recruit_list.jsp';"><span></span>ê³µê³ ëª©ë¡</button>
+        <button type="button" class="sbtn color ico-excel" onclick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
     </div>
 </div>
 
@@ -53,14 +53,14 @@
         <col width="10%">
     </colgroup>
     <tr>
-        <th>¼ø¹ø</th>
-        <th>»ç¾÷ÀÚµî·Ï¹øÈ£</th>
-        <th>¾÷Ã¼¸í</th>
-        <th>´ëÇ¥ÀÚ</th>
-        <th>ÀÚº»±Ý<br>(´ÜÀ§:¹é¸¸¿ø)</th>
-        <th>¸ÅÃâ¾×<br>(´ÜÀ§:¹é¸¸¿ø)</th>
-        <th>¸ðÁýºÐ¾ß</th>
-        <th>½ÅÃ»ÀÏ</th>
+        <th>ìˆœë²ˆ</th>
+        <th>ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸</th>
+        <th>ì—…ì²´ëª…</th>
+        <th>ëŒ€í‘œìž</th>
+        <th>ìžë³¸ê¸ˆ<br>(ë‹¨ìœ„:ë°±ë§Œì›)</th>
+        <th>ë§¤ì¶œì•¡<br>(ë‹¨ìœ„:ë°±ë§Œì›)</th>
+        <th>ëª¨ì§‘ë¶„ì•¼</th>
+        <th>ì‹ ì²­ì¼</th>
     </tr>
     <!-- IF START 'list' -->
     <!-- LOOP START 'list' -->
@@ -78,7 +78,7 @@
     <!-- IF END 'list' -->
     <!-- IFNOT START 'list' -->
     <tr>
-        <td colspan="8" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</font></td>
+        <td colspan="8" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</font></td>
     </tr>
     <!-- IFNOT END 'list' -->
     </table>

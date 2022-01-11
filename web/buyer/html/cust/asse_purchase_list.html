@@ -11,27 +11,6 @@
 				<col width="*"/>
 			</colgroup>
 			<tr>
-				<th><p>소싱그룹{{subdomain}}</p></th>
-				<td colspan="5">
-					<span id="l_src_area">
-						<select name="l_src_cd" onchange="chgSelectBox('m')">
-							<option value="">-전체-</option>
-						</select>
-					</span>
-					<span id="m_src_area">
-						<select name="m_src_cd" onchange="chgSelectBox('s')">
-							<option value="">-전체-</option>
-						</select>
-					</span>
-					<span id="s_src_area">
-						<select name="s_src_cd">
-							<option value="">-전체-</option>
-						</select>
-  					</span>
-				</td>
-				<td align="right"></td>
-			</tr>
-			<tr>
 				<th><p> 평가년도</p></th>
 				<td><input type="text" name="s_asse_year" maxlength="4" style="width:55%"></td>
 				<th><p> 업체명</p></th>
@@ -97,42 +76,4 @@
         location.href = url;
 
     }
-
-    function chgSelectBox(gubun){
-        var f = document.forms['form1'];
-        var l_src_cd = f['l_src_cd'].value;
-        var m_src_cd = f['m_src_cd'].value;
-        switch(gubun){
-            case 'l':
-                call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area");
-            case 'm':
-                call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
-            case 's':
-                call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
-                break;
-        }
-    }
-</script>
-
-<script language="javascript">
-
-    var l_src_cd = "{{l_src_cd}}";
-    var m_src_cd = "{{m_src_cd}}";
-    var s_src_cd = "{{s_src_cd}}";
-
-    call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
-    function defaultValue_l(){
-        SetFormValue("form1","l_src_cd", l_src_cd);
-    }
-
-    call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
-    function defaultValue_m(){
-        SetFormValue("form1","m_src_cd", m_src_cd);
-    }
-
-    function defaultValue_s(){
-        SetFormValue("form1","s_src_cd", s_src_cd);
-    }
-    call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
-
 </script>

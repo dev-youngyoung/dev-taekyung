@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String person_seq = u.request("person_seq");
 if(member_no.equals("")||person_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -11,9 +11,9 @@ DataObject dao = new DataObject("tcb_person");
 
 dao.item("passwd", u.sha256("a"+u.getTimeString("yyyyMMdd")+"?"));
 if(!dao.update("member_no = '"+member_no+"' and person_seq = '"+person_seq+"'")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("ºñ¹Ð¹øÈ£°¡ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.", "./person_view.jsp?"+u.getQueryString("person_seq"));
+u.jsAlertReplace("ë¹„ë°€ë²ˆí˜¸ê°€ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.", "./person_view.jsp?"+u.getQueryString("person_seq"));
 %>

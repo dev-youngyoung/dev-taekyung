@@ -1,8 +1,8 @@
-<style>
+ï»¿<style>
 body { background-color: "#F0F0F0" }
 .btn {
 	color: #000000;
-	FONT-FAMILY: "µ¸¿ò", "Arial";
+	FONT-FAMILY: "ë‹ì›€", "Arial";
 	FONT-SIZE: 10pt;
 	text-decoration: none;
 	width: 85px;
@@ -14,7 +14,7 @@ body { background-color: "#F0F0F0" }
 }
 input {
 	color: #000000;
-	FONT-FAMILY: "µ¸¿ò", "Arial";
+	FONT-FAMILY: "ë‹ì›€", "Arial";
 	FONT-SIZE: 10pt;
 	text-decoration: none;
 	width: 85px;
@@ -28,8 +28,8 @@ input {
 <form name="form1" method="post" onSubmit="return inputok()">
 <table width="96%" border="0" cellpadding="5" cellspacing="0" style="margin:10">
   <tr>
-    <td style="color:black">ÁÖ¹Îµî·Ï¹øÈ£ µŞÀÚ¸® 7ÀÚ¸®¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.</td>
-	<td align="right"><input type="button" value="È®ÀÎ" class="btn" onclick="inputok()"><br><input type="button" value="Ãë¼Ò" class="btn" onclick="self.close();"></td>
+    <td style="color:black">ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ ë’·ìë¦¬ 7ìë¦¬ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.</td>
+	<td align="right"><input type="button" value="í™•ì¸" class="btn" onclick="inputok()"><br><input type="button" value="ì·¨ì†Œ" class="btn" onclick="self.close();"></td>
   </tr>
   <tr>
     <td colspan="2"><input type="password" name="s_input" style="width:100%;ime-mode:disabled" maxlength="7" onkeydown="num_only()" onkeypress="num_only()"></td>
@@ -44,7 +44,7 @@ attachOnload(function() {
 function inputok(){
 	var val = GetFormValue("form1","s_input");
 	if(val.length != 7){
-		alert("¼ıÀÚ 7ÀÚ¸®·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		alert("ìˆ«ì 7ìë¦¬ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		form1.s_input.focus();
 		return false;
 	}

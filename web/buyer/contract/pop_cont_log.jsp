@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")&&cont_chasu.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -22,7 +22,7 @@ DataSet contLog = contLogDao.query(
 		);
 while(contLog.next()){
 	contLog.put("log_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", contLog.getString("log_date")));
-	contLog.put("member_gubun", contLog.getString("member_no").equals(_member_no)?"°¡¸Íº»ºÎ":"Á¡ÁÖ");
+	contLog.put("member_gubun", contLog.getString("member_no").equals(_member_no)?"ê°€ë§¹ë³¸ë¶€":"ì ì£¼");
 }
 
 if(u.isPost()&&f.validate()){
@@ -33,7 +33,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.pop_cont_log");
-p.setVar("popup_title","ÁøÇàÀÌ·ÂÁ¶È¸");
+p.setVar("popup_title","ì§„í–‰ì´ë ¥ì¡°íšŒ");
 p.setLoop("contLog", contLog);
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString());

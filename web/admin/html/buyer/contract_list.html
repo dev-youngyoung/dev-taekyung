@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="get" onsubmit="return formSubmit(this)">
 <input type="hidden" name="mode">
 <div class="search_div">
 <table class="search_table">
@@ -10,34 +10,34 @@
     <col width="10%"/>
   </colgroup>
   <tr>
-	<th><p>°è¾àÀÏÀÚ</p></th>
+	<th><p>ê³„ì•½ì¼ì</p></th>
 	<td>
 		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	</td>
-	<th><p>°è¾à»óÅÂ</p></th>
+	<th><p>ê³„ì•½ìƒíƒœ</p></th>
 	  <td>
 		  <select name="s_status">
-			  <option value="">ÀüÃ¼</option>
+			  <option value="">ì „ì²´</option>
 			  <!-- LOOP START 'code_status' -->
 			  <option value="{{code_status.id}}">{{code_status.value}}</option>
 			  <!-- LOOP END 'code_status' -->
-			  <option value="00">¼û±è</option>
+			  <option value="00">ìˆ¨ê¹€</option>
 		  </select>
 	  </td>
   </tr>
   <tr>
-  	<th><p>°ú±İ¾÷Ã¼</p></th>
+  	<th><p>ê³¼ê¸ˆì—…ì²´</p></th>
     <td><input type="text" name="s_member_name" value="" maxlength="100"  style="width:98%"></td>
-    <th><p>°Å·¡Ã³</p></th>
+    <th><p>ê±°ë˜ì²˜</p></th>
     <td><input type="text" name="s_client_name" value="" maxlength="100"  style="width:98%"></td>
     <td></td>    
   </tr>
   <tr>
-    <th><p>°è¾à¸í</p></th>
+    <th><p>ê³„ì•½ëª…</p></th>
     <td colspan="3"><input type="text" name="s_cont_name" value="" maxlength="100" style="width:99%"></td>
     <td align="right" valign="bottom">
-		<button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+		<button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
     </td>
   </tr>
 </table>
@@ -48,7 +48,7 @@
  <div class="div_table">
  <div class="util-row">
     <div class="push-right">
-    	°è¾à°Ç¼ö :{{tot_cnt}}°Ç
+    	ê³„ì•½ê±´ìˆ˜ :{{tot_cnt}}ê±´
     </div>
  </div>
  <table>
@@ -62,13 +62,13 @@
   	<col width="7%">
   </colgroup>
   <tr>
-    <th>°è¾à¹øÈ£°è¾à¸í</th>
-    <th>°ú±İ¾÷Ã¼</th>
-    <th>°Å·¡Ã³</th>
-    <th>°è¾àÀÏÀÚ</th>
-    <th>»óÅÂ</th>
-    <th>»óÅÂº¯°æ</th>
-    <th>°áÁ¦</th>
+    <th>ê³„ì•½ë²ˆí˜¸ê³„ì•½ëª…</th>
+    <th>ê³¼ê¸ˆì—…ì²´</th>
+    <th>ê±°ë˜ì²˜</th>
+    <th>ê³„ì•½ì¼ì</th>
+    <th>ìƒíƒœ</th>
+    <th>ìƒíƒœë³€ê²½</th>
+    <th>ê²°ì œ</th>
   </tr>
   <!-- IF START 'list' -->
   <!-- LOOP START 'list' -->
@@ -77,11 +77,11 @@
 		{{list.str_cont_no}}-{{list.cont_chasu}}
 		<button type="button" class="sbtn color" onclick="toclip('info_{{list.str_cont_no}}_{{list.cont_chasu}}')">JIRA</button>
 		<div id="info_{{list.str_cont_no}}_{{list.cont_chasu}}" style="display: none">
-		°è¾à¹øÈ£:{{list.str_cont_no}}-{{list.cont_chasu}}
-		°è¾à¸í : {{list.cont_name}}
-		°ú±İ¾÷Ã¼:{{list.member_name}}
-		ÀÛ¼ºÀÚ:{{list.reg_id}}
-		°Å·¡Ã³:{{list.client_name}}
+		ê³„ì•½ë²ˆí˜¸:{{list.str_cont_no}}-{{list.cont_chasu}}
+		ê³„ì•½ëª… : {{list.cont_name}}
+		ê³¼ê¸ˆì—…ì²´:{{list.member_name}}
+		ì‘ì„±ì:{{list.reg_id}}
+		ê±°ë˜ì²˜:{{list.client_name}}
 		</div> 
 		<br><a onclick="OpenWindow('pop_contract_view.jsp?cont_no={{list.str_cont_no}}&cont_chasu={{list.cont_chasu}}', 'pop_contract_view', 800, 500, 0, 0);"  >{{list.cont_name}}</a>
 	</td>
@@ -100,23 +100,23 @@
 			<tr>
 				<td style="padding:1px;border:0px" align="center">
 				<!-- IF START 'list.btn_writing' -->
-				 <button type="button" class="sbtn color" onclick="chgStatus('writing','{{list.cont_no}}','{{list.cont_chasu}}')">ÀÛ¼º</button>
+				 <button type="button" class="sbtn color" onclick="chgStatus('writing','{{list.cont_no}}','{{list.cont_chasu}}')">ì‘ì„±</button>
 				<!-- IF END 'list.btn_writing' --> 
 				</td>
 				<td style="padding:1px;border:0px" align="center">
 				<!-- IF START 'list.btn_finish' -->
-				 <button type="button" class="sbtn color" onclick="chgStatus('finish','{{list.cont_no}}','{{list.cont_chasu}}')">¿Ï·á</button>
+				 <button type="button" class="sbtn color" onclick="chgStatus('finish','{{list.cont_no}}','{{list.cont_chasu}}')">ì™„ë£Œ</button>
 				<!-- IF END 'list.btn_finish' -->  
 				</td>
 			</tr>
 			<tr>
 				<td style="padding:1px;border:0px" align="center">
 				<!-- IF START 'list.btn_hide' -->
-				 <button type="button" class="sbtn color" onclick="chgStatus('hide','{{list.cont_no}}','{{list.cont_chasu}}')">¼û±è</button>
+				 <button type="button" class="sbtn color" onclick="chgStatus('hide','{{list.cont_no}}','{{list.cont_chasu}}')">ìˆ¨ê¹€</button>
 				<!-- IF END 'list.btn_hide' --> 
 				</td>
 				<td style="padding:1px;border:0px" align="center">
-				 <button type="button" class="sbtn color" onclick="contDelete('{{list.cont_no}}','{{list.cont_chasu}}')">»èÁ¦</button> 
+				 <button type="button" class="sbtn color" onclick="contDelete('{{list.cont_no}}','{{list.cont_chasu}}')">ì‚­ì œ</button> 
 				</td>
 			</tr>
 		</table>
@@ -126,14 +126,14 @@
 		<tr>
 			<td style="padding:1px;border:0px" align="center">
 				<!-- IF START 'list.btn_won_pay' -->
-				<button type="button" class="sbtn color" onclick="chgPay('won','{{list.cont_no}}','{{list.cont_chasu}}','{{list.member_no}}')">¿ø</button>
+				<button type="button" class="sbtn color" onclick="chgPay('won','{{list.cont_no}}','{{list.cont_chasu}}','{{list.member_no}}')">ì›</button>
 				<!-- IF END 'list.btn_won_pay' -->
 			</td>
 		</tr>
 		<tr>
 			<td style="padding:1px;border:0px" align="center">
 				<!-- IF START 'list.btn_su_pay' -->
-				<button type="button" class="sbtn color" onclick="chgPay('su','{{list.cont_no}}','{{list.cont_chasu}}','{{list.client_no}}')">¼ö</button>
+				<button type="button" class="sbtn color" onclick="chgPay('su','{{list.cont_no}}','{{list.cont_chasu}}','{{list.client_no}}')">ìˆ˜</button>
 				<!-- IF END 'list.btn_su_pay' -->
 			</td>
 		</tr>
@@ -144,7 +144,7 @@
   <!-- IF END 'list' -->
   <!-- IFNOT START 'list' -->
   <tr>
-	<td colspan="7" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+	<td colspan="7" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
   </tr>
   <!-- IFNOT END 'list' -->
  </table>
@@ -155,9 +155,9 @@
 <script>
 function chgStatus(gubun,cont_no,cont_chasu){
 	var msg = "";
-	if(gubun == "writing")msg = "ÀÛ¼ºÁß»óÅÂ·Î º¯°æ Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?";
-	if(gubun == "finish")msg = "¿Ï·á»óÅÂ·Î º¯°æ Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?";
-	if(gubun == "hide")msg = "°è¾à¼­ ¼û±è»óÅÂ·Î º¯°æ Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?";
+	if(gubun == "writing")msg = "ì‘ì„±ì¤‘ìƒíƒœë¡œ ë³€ê²½ ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+	if(gubun == "finish")msg = "ì™„ë£Œìƒíƒœë¡œ ë³€ê²½ ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+	if(gubun == "hide")msg = "ê³„ì•½ì„œ ìˆ¨ê¹€ìƒíƒœë¡œ ë³€ê²½ ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 	var url = "contract_chg_status.jsp?{{list_query}}&cont_no="+cont_no+"&cont_chasu="+cont_chasu;
 	if(confirm(msg)){
 		url += "&gubun="+gubun;
@@ -166,15 +166,15 @@ function chgStatus(gubun,cont_no,cont_chasu){
 }
 
 function contDelete(cont_no, cont_chasu){
-	if(confirm('»èÁ¦½Ã º¹±¸ ÇÒ ¼ö ¾ø½À´Ï´Ù.\n\n»èÁ¦Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?')){
+	if(confirm('ì‚­ì œì‹œ ë³µêµ¬ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n\nì‚­ì œì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
 		location.href="contract_delete.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&{{list_query}}";
 	}
 }
 
 function chgPay(gubun, cont_no, cont_chasu, member_no){
-	if(gubun == "won") msg = "¿ø»ç¾÷ÀÚ";
-	if(gubun == "su") msg = "¼ö±Ş»ç¾÷ÀÚ"
-	if(confirm(msg + ' °è¾à¼ö¼ö·á ¹«·áÃ³¸® ÇÏ½Ã°Ú½À´Ï±î?')){
+	if(gubun == "won") msg = "ì›ì‚¬ì—…ì";
+	if(gubun == "su") msg = "ìˆ˜ê¸‰ì‚¬ì—…ì"
+	if(confirm(msg + ' ê³„ì•½ìˆ˜ìˆ˜ë£Œ ë¬´ë£Œì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){
 		location.href="contract_chg_pay.jsp?cont_no="+cont_no+"&cont_chasu="+cont_chasu+"&member_no="+member_no+"&{{list_query}}";
 	}
 }

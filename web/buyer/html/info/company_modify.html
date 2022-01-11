@@ -1,11 +1,11 @@
-<!-- ÀüÀÚÀÎÁõ ¸ðµâ ¼³Á¤ //-->
+<!-- ì „ìžì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
 <!-- INCLUDE FILE 'layout/crosscert_include.html' -->
-<!-- ÀüÀÚÀÎÁõ ¸ðµâ ¼³Á¤ //-->
+<!-- ì „ìžì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
 <form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
   <div class="div_table">
     <div class="util-row">
       <div class="push-left">
-        <h3>È¸»ç±âº»Á¤º¸</h3>
+        <h3>íšŒì‚¬ê¸°ë³¸ì •ë³´</h3>
       </div>
     </div>
     <table>
@@ -16,91 +16,69 @@
         <col width="33%">
       </colgroup>
       <tr>
-        <th>»ç¾÷ÀÚ±¸ºÐ</th>
+        <th>ì‚¬ì—…ìžêµ¬ë¶„</th>
         <td colspan="3">{{member.member_gubun_name}}
         </td>
       </tr>
       <tr>
-        <th>»ç¾÷ÀÚ¹øÈ£</th>
+        <th>ì‚¬ì—…ìžë²ˆí˜¸</th>
         <td>
           <input type="text" name="vendcd1" size="3" maxlength="3" class="in_readonly" readOnly> -
           <input type="text" name="vendcd2" size="2" maxlength="2" class="in_readonly" readOnly> -
           <input type="text" name="vendcd3" size="5" maxlength="5" class="in_readonly" readOnly>
         </td>
-        <th>¹ýÀÎ¹øÈ£ </th>
+        <th>ë²•ì¸ë²ˆí˜¸ </th>
         <td>
           <input type="text" name="member_slno1" size="6" maxlength="6" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('member_slno2')"> -
           <input type="text" name="member_slno2" size="7" maxlength="7" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('member_slno1')">
         </td>
       </tr>
       <tr>
-        <th class="req-check">¾÷Ã¼¸í</th>
+        <th class="req-check">ì—…ì²´ëª…</th>
         <td><input type="text" name="member_name" maxlength="50" style="width:100%"></td>
-        <th class="req-check">´ëÇ¥ÀÚ¸í </th>
+        <th class="req-check">ëŒ€í‘œìžëª… </th>
         <td><input type="text" name="boss_name" style="width:100%" maxlength="30"></td>
       </tr>
       <tr>
-        <th class="req-check">¾÷ÅÂ</th>
+        <th class="req-check">ì—…íƒœ</th>
         <td><input type="text" name="condition" maxlength="100" style="width:100%"></td>
-        <th class="req-check">Á¾¸ñ </th>
+        <th class="req-check">ì¢…ëª© </th>
         <td><input type="text" name="category" maxlength="100" style="width:100%"></td>
       </tr>
       <tr>
-        <th class="req-check">ÁÖ¼Ò</th>
+        <th class="req-check">ì£¼ì†Œ</th>
         <td colspan="3">
           <input type="text" name="post_code" class="in_readonly" size="6" readonly>
-          <button type="button" class="sbtn ico-search auth_css" onclick="jusoPopup()"><span></span>¿ìÆí¹øÈ£Ã£±â</button>
+          <button type="button" class="sbtn ico-search auth_css" onclick="jusoPopup()"><span></span>ìš°íŽ¸ë²ˆí˜¸ì°¾ê¸°</button>
           <input type="text" name="address" style="width:98%; margin-top: 3px" maxlength="150">
-        </td>
-      </tr>
-      <tr>
-        <th>°øÀÎÀÎÁõ¼­</th>
-        <td colspan="3">
-          <table style="border:0px">
-            <tr>
-              <td  height="27px" style="border:0px">- ÀÎÁõ¼­ ¸¸·áÀÏ :
-                <!-- IF START '_auth._CERT_END_DATE' -->
-                <span style="color:blue">{{member.cert_end_date}}</span>
-                <!-- IF END '_auth._CERT_END_DATE' -->
-                <!-- IFNOT START '_auth._CERT_END_DATE' -->
-                <span style="color:red">[¹Ìµî·Ï]</span>
-                <!-- IFNOT END '_auth._CERT_END_DATE' -->
-              </td>
-              <td align="right" style="border:0px" valign="bottom"><button type="button" name="btn_update_cert" class="sbtn ico-caution auth_css" onclick="location.href='./cert_info.jsp'"><span></span>ÀÎÁõ¼­ µî·Ï/°»½Å</button></td>
-            </tr>
-            <tr>
-              <td height="27px" style="border:0px"><font class="caution-text">- »ç¾÷ÀÚ¿ë ¹ü¿ëÀÎÁõ¼­ ¶Ç´Â ³ªÀÌ½º´ÙÅ¥ Àü¿ëÀÎÁõ¼­¸¦ µî·ÏÇØ¾ß¸¸<br>&nbsp;&nbsp;ÀüÀÚÀÔÂû°ú ÀüÀÚ°è¾à¾÷¹«¸¦ ÁøÇàÇÒ ¼ö ÀÖ½À´Ï´Ù.</font></td>
-              <td align="right" style="border:0px"><button type="button" class="sbtn ico-caution" onclick="window.open('https://raadmin.crosscert.com/customer/dnbkorea/index.html','_blank' )"><span></span>ÀÎÁõ¼­ ½ÅÃ»(ÇÑ±¹ÀüÀÚÀÎÁõ)</button></td>
-            </tr>
-          </table>
         </td>
       </tr>
       <!-- IF START 'gap_block' -->
       <tr>
-        <th height="60">È¸»ç CI</th>
+        <th height="60">íšŒì‚¬ CI</th>
         <td colspan="3">
           <table style="border:0px">
             <tr>
-              <td style="border:0px">- CI ÀÌ¹ÌÁö´Â ¼±ÅÃ»çÇ× ÀÔ´Ï´Ù. µî·Ï ¾ÈÇÏ¼Åµµ °ü°è ¾ø½À´Ï´Ù.</td>
+              <td style="border:0px">- CI ì´ë¯¸ì§€ëŠ” ì„ íƒì‚¬í•­ ìž…ë‹ˆë‹¤. ë“±ë¡ ì•ˆí•˜ì…”ë„ ê´€ê³„ ì—†ìŠµë‹ˆë‹¤.</td>
               <td rowspan="3" align="right" style="border:0px">
                 <!-- IF START 'member.ci_img_path' -->
                 <span id="spn_logo_register">
-          		[µî·Ï]
+          		[ë“±ë¡]
           		</span>
                 <!-- IF END 'member.ci_img_path' -->
                 <!-- IFNOT START 'member.ci_img_path' -->
                 <span id="spn_logo_register" class="caution-text">
-          		[¹Ìµî·Ï]
+          		[ë¯¸ë“±ë¡]
           		</span>
                 <!-- IFNOT END 'member.ci_img_path' -->
-                <button type="button" class="sbtn ico-copy auth_css" onClick="popLogo()"><span></span>CI °ü¸®</button>
+                <button type="button" class="sbtn ico-copy auth_css" onClick="popLogo()"><span></span>CI ê´€ë¦¬</button>
               </td>
             </tr>
             <tr>
-              <td style="border:0px">- µî·ÏµÈ CI ÀÌ¹ÌÁö´Â ÀüÀÚ°è¾à¿¡¼­ ÀÚµ¿À¸·Î »ý¼ºµÇ´Â °è¾à¼­¿¡¼­ »ç¿ëµË´Ï´Ù.</td>
+              <td style="border:0px">- ë“±ë¡ëœ CI ì´ë¯¸ì§€ëŠ” ì „ìžê³„ì•½ì—ì„œ ìžë™ìœ¼ë¡œ ìƒì„±ë˜ëŠ” ê³„ì•½ì„œì—ì„œ ì‚¬ìš©ë©ë‹ˆë‹¤.</td>
             </tr>
             <tr>
-              <td style="border:0px">- gif, png, jpg Çü½ÄÀÇ ÆÄÀÏ¸¸ °¡´ÉÇÕ´Ï´Ù.</td>
+              <td style="border:0px">- gif, png, jpg í˜•ì‹ì˜ íŒŒì¼ë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤.</td>
             </tr>
           </table>
         </td>
@@ -109,7 +87,7 @@
     </table>
   </div>
   <div class="btn-group-wrap">
-    <button type="submit" name="btn_save" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
+    <button type="submit" name="btn_save" class="btn color ico-save auth_css"><span></span>ì €ìž¥</button>
   </div>
 </form>
 {{form_script}}
@@ -118,7 +96,7 @@
 
     function formSubmit(f){
         if(validate(f)){
-            if(!confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+            if(!confirm("ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 return false;
             }
             return true;

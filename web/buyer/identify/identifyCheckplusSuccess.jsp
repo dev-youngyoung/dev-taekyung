@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../init.jsp" %>
-<%	//ÀÎÁõ ÈÄ °á°ú°ªÀÌ null·Î ³ª¿À´Â ºÎºĞÀº °ü¸®´ã´çÀÚ¿¡°Ô ¹®ÀÇ ¹Ù¶ø´Ï´Ù.
+<%	//ì¸ì¦ í›„ ê²°ê³¼ê°’ì´ nullë¡œ ë‚˜ì˜¤ëŠ” ë¶€ë¶„ì€ ê´€ë¦¬ë‹´ë‹¹ìì—ê²Œ ë¬¸ì˜ ë°”ëë‹ˆë‹¤.
 
 /*
-°ü¸®ÆÀ 
-ÀÌÀºÁÖ ´ë¸®´Ô
+ê´€ë¦¬íŒ€ 
+ì´ì€ì£¼ ëŒ€ë¦¬ë‹˜
 2122-4527
 benecia17@nice.co.kr
 
-Àü»êÆÀ
-ÀÌÁøÂù
+ì „ì‚°íŒ€
+ì´ì§„ì°¬
 (02) 2122-4873
 leejc12@nice.co.kr
 
@@ -18,21 +18,21 @@ leejc12@nice.co.kr
 
     String sEncodeData = requestReplace(request.getParameter("EncodeData"), "encodeData");
 
-    String sSiteCode = "BE065";				// NICE·ÎºÎÅÍ ºÎ¿©¹ŞÀº »çÀÌÆ® ÄÚµå
-    String sSitePassword = "CSgXDvODNC9D";			// NICE·ÎºÎÅÍ ºÎ¿©¹ŞÀº »çÀÌÆ® ÆĞ½º¿öµå
+    String sSiteCode = "BE065";				// NICEë¡œë¶€í„° ë¶€ì—¬ë°›ì€ ì‚¬ì´íŠ¸ ì½”ë“œ
+    String sSitePassword = "CSgXDvODNC9D";			// NICEë¡œë¶€í„° ë¶€ì—¬ë°›ì€ ì‚¬ì´íŠ¸ íŒ¨ìŠ¤ì›Œë“œ
 
-    String sCipherTime = "";			// º¹È£È­ÇÑ ½Ã°£
-    String sRequestNumber = "";			// ¿äÃ» ¹øÈ£
-    String sResponseNumber = "";		// ÀÎÁõ °íÀ¯¹øÈ£
-    String sAuthType = "";				// ÀÎÁõ ¼ö´Ü
-    String sName = "";					// ¼º¸í
-    String sDupInfo = "";				// Áßº¹°¡ÀÔ È®ÀÎ°ª (DI_64 byte)
-    String sConnInfo = "";				// ¿¬°èÁ¤º¸ È®ÀÎ°ª (CI_88 byte)
-    String sBirthDate = "";				// »ı³â¿ùÀÏ(YYYYMMDD)
-    String sGender = "";				// ¼ºº°
-    String sNationalInfo = "";			// ³»/¿Ü±¹ÀÎÁ¤º¸ (°³¹ß°¡ÀÌµå ÂüÁ¶)
-	String sMobileNo = "";				// ÈŞ´ëÆù¹øÈ£
-	String sMobileCo = "";				// Åë½Å»ç
+    String sCipherTime = "";			// ë³µí˜¸í™”í•œ ì‹œê°„
+    String sRequestNumber = "";			// ìš”ì²­ ë²ˆí˜¸
+    String sResponseNumber = "";		// ì¸ì¦ ê³ ìœ ë²ˆí˜¸
+    String sAuthType = "";				// ì¸ì¦ ìˆ˜ë‹¨
+    String sName = "";					// ì„±ëª…
+    String sDupInfo = "";				// ì¤‘ë³µê°€ì… í™•ì¸ê°’ (DI_64 byte)
+    String sConnInfo = "";				// ì—°ê³„ì •ë³´ í™•ì¸ê°’ (CI_88 byte)
+    String sBirthDate = "";				// ìƒë…„ì›”ì¼(YYYYMMDD)
+    String sGender = "";				// ì„±ë³„
+    String sNationalInfo = "";			// ë‚´/ì™¸êµ­ì¸ì •ë³´ (ê°œë°œê°€ì´ë“œ ì°¸ì¡°)
+	String sMobileNo = "";				// íœ´ëŒ€í°ë²ˆí˜¸
+	String sMobileCo = "";				// í†µì‹ ì‚¬
     String sMessage = "";
     String sPlainData = "";
     
@@ -43,14 +43,14 @@ leejc12@nice.co.kr
         sPlainData = niceCheck.getPlainData();
         sCipherTime = niceCheck.getCipherDateTime();
         
-        // µ¥ÀÌÅ¸¸¦ ÃßÃâÇÕ´Ï´Ù.
+        // ë°ì´íƒ€ë¥¼ ì¶”ì¶œí•©ë‹ˆë‹¤.
         java.util.HashMap mapresult = niceCheck.fnParse(sPlainData);
         
         sRequestNumber  = (String)mapresult.get("REQ_SEQ");
         sResponseNumber = (String)mapresult.get("RES_SEQ");
         sAuthType		= (String)mapresult.get("AUTH_TYPE");
         sName			= (String)mapresult.get("NAME");
-		//sName			= (String)mapresult.get("UTF8_NAME"); //charset utf8 »ç¿ë½Ã ÁÖ¼® ÇØÁ¦ ÈÄ »ç¿ë
+		//sName			= (String)mapresult.get("UTF8_NAME"); //charset utf8 ì‚¬ìš©ì‹œ ì£¼ì„ í•´ì œ í›„ ì‚¬ìš©
         sBirthDate		= (String)mapresult.get("BIRTHDATE");
         sGender			= (String)mapresult.get("GENDER");
         sNationalInfo  	= (String)mapresult.get("NATIONALINFO");
@@ -62,38 +62,38 @@ leejc12@nice.co.kr
         String session_sRequestNumber = (String)session.getAttribute("REQ_SEQ");
         if(!sRequestNumber.equals(session_sRequestNumber))
         {
-            sMessage = "¼¼¼Ç°ªÀÌ ´Ù¸¨´Ï´Ù. ¿Ã¹Ù¸¥ °æ·Î·Î Á¢±ÙÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
+            sMessage = "ì„¸ì…˜ê°’ì´ ë‹¤ë¦…ë‹ˆë‹¤. ì˜¬ë°”ë¥¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
             sResponseNumber = "";
             sAuthType = "";
         }
     }
     else if( iReturn == -1)
     {
-        sMessage = "º¹È£È­ ½Ã½ºÅÛ ¿¡·¯ÀÔ´Ï´Ù.";
+        sMessage = "ë³µí˜¸í™” ì‹œìŠ¤í…œ ì—ëŸ¬ì…ë‹ˆë‹¤.";
     }    
     else if( iReturn == -4)
     {
-        sMessage = "º¹È£È­ Ã³¸®¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ë³µí˜¸í™” ì²˜ë¦¬ì˜¤ë¥˜ì…ë‹ˆë‹¤.";
     }    
     else if( iReturn == -5)
     {
-        sMessage = "º¹È£È­ ÇØ½¬ ¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ë³µí˜¸í™” í•´ì‰¬ ì˜¤ë¥˜ì…ë‹ˆë‹¤.";
     }    
     else if( iReturn == -6)
     {
-        sMessage = "º¹È£È­ µ¥ÀÌÅÍ ¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ë³µí˜¸í™” ë°ì´í„° ì˜¤ë¥˜ì…ë‹ˆë‹¤.";
     }    
     else if( iReturn == -9)
     {
-        sMessage = "ÀÔ·Â µ¥ÀÌÅÍ ¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ì…ë ¥ ë°ì´í„° ì˜¤ë¥˜ì…ë‹ˆë‹¤.";
     }    
     else if( iReturn == -12)
     {
-        sMessage = "»çÀÌÆ® ÆĞ½º¿öµå ¿À·ùÀÔ´Ï´Ù.";
+        sMessage = "ì‚¬ì´íŠ¸ íŒ¨ìŠ¤ì›Œë“œ ì˜¤ë¥˜ì…ë‹ˆë‹¤.";
     }    
     else
     {
-        sMessage = "¾Ë¼ö ¾ø´Â ¿¡·¯ ÀÔ´Ï´Ù. iReturn : " + iReturn;
+        sMessage = "ì•Œìˆ˜ ì—†ëŠ” ì—ëŸ¬ ì…ë‹ˆë‹¤. iReturn : " + iReturn;
     }
 
     //String[] arrRequestNumber = sRequestNumber.split("\\-");
@@ -126,7 +126,7 @@ leejc12@nice.co.kr
 
     IdentifyDao identifyDao = new IdentifyDao();
     String text = Util.loop2json(content);
-    identifyDao.setInsert("checkplus", cont_no, cont_chasu, member_no, text, "checkplus º»ÀÎÀÎÁõ");
+    identifyDao.setInsert("checkplus", cont_no, cont_chasu, member_no, text, "checkplus ë³¸ì¸ì¸ì¦");
 %>
 <%!
 
@@ -170,7 +170,7 @@ leejc12@nice.co.kr
   }
 %>
 <script>
-    if(typeof opener.identifyDocCallback == 'function' || typeof opener.identifyDocCallback == 'object') { // °øÀÎÀÎÁõÀ» ÇÏ±â Àü °è¾à¼­ ³»¿ë¿¡ º»ÀÎÀÎÁõ ÇÏ´Â ºÎºĞÀÌ µé¾î°¡ ÀÖ´Â °æ¿ì( ¿¹:¿Â¸®¿ø )
+    if(typeof opener.identifyDocCallback == 'function' || typeof opener.identifyDocCallback == 'object') { // ê³µì¸ì¸ì¦ì„ í•˜ê¸° ì „ ê³„ì•½ì„œ ë‚´ìš©ì— ë³¸ì¸ì¸ì¦ í•˜ëŠ” ë¶€ë¶„ì´ ë“¤ì–´ê°€ ìˆëŠ” ê²½ìš°( ì˜ˆ:ì˜¨ë¦¬ì› )
         opener.identifyDocCallback("<%=sConnInfo%>", "<%=sName%>", "<%=sBirthDate%>", "<%=sMobileNo%>", "<%=text.replace("\n", "").replace("\"", "\\\"")%>");
         window.close();
     } else if(typeof opener.identifyCallback == 'function' || typeof opener.identifyCallback == 'object') {

@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -11,7 +11,7 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'";
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsError("°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -19,18 +19,18 @@ DataObject shareDao = new DataObject("tcb_share");
 DataObject custSignImgDao = new DataObject("tcb_cust_sign_img");
 DataObject contSubDao = new DataObject("tcb_cont_sub");
 DataObject efileDao = new DataObject("tcb_efile");
-DataObject rfileCustDao = new DataObject("tcb_rfile_cust");	// ¾÷Ã¼±¸ºñ¼­·ù
-DataObject rfileDao = new DataObject("tcb_rfile");			// ±¸ºñ¼­·ù
-DataObject cfileDao = new DataObject("tcb_cfile");			// °è¾à¼­·ù
-DataObject emailDao = new DataObject("tcb_cont_email");		// ÀÌ¸ÞÀÏ
-DataObject stampDao = new DataObject("tcb_stamp");			// ÀÎÁö¼¼
-DataObject warrDao = new DataObject("tcb_warr");			// º¸Áõ¼­Á¤º¸
-DataObject custDao = new DataObject("tcb_cust");			// °è¾à¾÷Ã¼
-DataObject contSignDao = new DataObject("tcb_cont_sign");	// ¼­¸í¾ç½Ä
-DataObject payDao = new DataObject("tcb_pay");				// °áÁ¦Á¤º¸
-DataObject agreeDao = new DataObject("tcb_cont_agree");		// ³»ºÎ°áÁ¦
-DataObject contAddDao = new DataObject("tcb_cont_add");		// Ãß°¡Á¤º¸
-DataObject contLogDao = new DataObject("tcb_cont_log");		// ·Î±×
+DataObject rfileCustDao = new DataObject("tcb_rfile_cust");	// ì—…ì²´êµ¬ë¹„ì„œë¥˜
+DataObject rfileDao = new DataObject("tcb_rfile");			// êµ¬ë¹„ì„œë¥˜
+DataObject cfileDao = new DataObject("tcb_cfile");			// ê³„ì•½ì„œë¥˜
+DataObject emailDao = new DataObject("tcb_cont_email");		// ì´ë©”ì¼
+DataObject stampDao = new DataObject("tcb_stamp");			// ì¸ì§€ì„¸
+DataObject warrDao = new DataObject("tcb_warr");			// ë³´ì¦ì„œì •ë³´
+DataObject custDao = new DataObject("tcb_cust");			// ê³„ì•½ì—…ì²´
+DataObject contSignDao = new DataObject("tcb_cont_sign");	// ì„œëª…ì–‘ì‹
+DataObject payDao = new DataObject("tcb_pay");				// ê²°ì œì •ë³´
+DataObject agreeDao = new DataObject("tcb_cont_agree");		// ë‚´ë¶€ê²°ì œ
+DataObject contAddDao = new DataObject("tcb_cont_add");		// ì¶”ê°€ì •ë³´
+DataObject contLogDao = new DataObject("tcb_cont_log");		// ë¡œê·¸
 
 DataSet cfile = cfileDao.find(where);
 while(cfile.next()){
@@ -45,7 +45,7 @@ while(cfile.next()){
 DB db = new DB();
 //db.setDebug(out);
 
-// PBÀÔ»çÁö¿ø °è¾à¼­ 
+// PBìž…ì‚¬ì§€ì› ê³„ì•½ì„œ 
 if("2019112".equals(cont.getString("template_cd"))){
 	DataObject applyPersonDao = new DataObject("tcb_apply_person");
 	applyPersonDao.item(" status ", "40");
@@ -71,14 +71,14 @@ db.setCommand(contAddDao.getDeleteQuery(where),null);
 db.setCommand(contLogDao.getDeleteQuery(where),null);
 db.setCommand(contDao.getDeleteQuery(where),null);
 if(!db.executeArray()){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!db.executeArray()){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("»èÁ¦ Ã³¸® ÇÏ¿´½À´Ï´Ù.","contract_list.jsp?"+u.getQueryString("cont_no,cont_chasu"));
+u.jsAlertReplace("ì‚­ì œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","contract_list.jsp?"+u.getQueryString("cont_no,cont_chasu"));
 return;
 %>

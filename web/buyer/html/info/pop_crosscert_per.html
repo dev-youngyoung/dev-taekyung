@@ -1,6 +1,6 @@
-<!-- ÀüÀÚÀÎÁõ ¸ğµâ ¼³Á¤ //-->
+ï»¿<!-- ì „ìì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
 <!-- INCLUDE FILE 'layout/crosscert_include.html' -->
-<!-- ÀüÀÚÀÎÁõ ¸ğµâ ¼³Á¤ //-->
+<!-- ì „ìì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
 <script language="javascript" type="text/javascript" src="../html/js/sign_init.js"></script>
 <div class="div_table">
 	<table>
@@ -15,18 +15,18 @@
 	<area shape="rect" coords="388,238,533,269" href="javascript:fCheckCert();"/>
 </map>
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-cancel" onClick="self.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-cancel" onClick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 
 <script language="javascript">
 function fCheckCert(){
 	setUniSign("person");
-	var	sSignDn = "";		//	¼­¸í DN°ª
-	var	sVendcd = "{{_auth._VENDCD}}";		//	¼ö±Ş»ç¾÷ÀÚ¹øÈ£
-	var	sOrgnData = "123456";	//	¼­¸í´ë»ó ¿øº»µ¥ÀÌÅ¸
+	var	sSignDn = "";		//	ì„œëª… DNê°’
+	var	sVendcd = "{{_auth._VENDCD}}";		//	ìˆ˜ê¸‰ì‚¬ì—…ìë²ˆí˜¸
+	var	sOrgnData = "123456";	//	ì„œëª…ëŒ€ìƒ ì›ë³¸ë°ì´íƒ€
 	var	sSignData = "";
 
-	var ssn = sVendcd;// »ç¾÷ÀÚµî·Ï¹øÈ£/ÁÖ¹Îµî·Ï¹øÈ£
+	var ssn = sVendcd;// ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸/ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
 
 	unisign.SignDataNVerifyVID( sOrgnData, null, ssn,
 		function(rv, signedText, certAttrs)
@@ -39,9 +39,9 @@ function fCheckCert(){
 					function(errCode, errMsg)
 					{
 						if(errCode == "999"){
-							//»ç¿ëÀÚ Ãë¼Ò
+							//ì‚¬ìš©ì ì·¨ì†Œ
 						}else if(errCode == "14208"){
-							alert("¼±ÅÃÇÑ ÀÎÁõ¼­´Â ±Í»çÀÇ ÀÎÁõ¼­°¡ ¾Æ´Õ´Ï´Ù.");
+							alert("ì„ íƒí•œ ì¸ì¦ì„œëŠ” ê·€ì‚¬ì˜ ì¸ì¦ì„œê°€ ì•„ë‹™ë‹ˆë‹¤.");
 						}else{
 							alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
 						}
@@ -49,20 +49,20 @@ function fCheckCert(){
 				);
 			} else {
 				//console.log(JSON.stringify(certAttrs,null,2));
-				//ÀÎÁõ¼­ È®ÀÎ ´Ü°è
+				//ì¸ì¦ì„œ í™•ì¸ ë‹¨ê³„
 				var signEnddt = getFormatDate(certAttrs.validateTo);
 				if (signEnddt.length < 8){
-					alert("À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ¼­ÀÔ´Ï´Ù.(À¯È¿ÀÏÀÚ ¹ÌÈ®ÀÎ)\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+					alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
 					return;
 				}
 				if (!isValidDate(signEnddt))
 				{
-					alert("À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ¼­ÀÔ´Ï´Ù.(À¯È¿ÀÏÀÚ ¹ÌÈ®ÀÎ)\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+					alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
 					return;
 				}
 				if (js_isDateCmp(signEnddt, sCurrYmd))
 				{
-					alert("À¯È¿±â°£ÀÌ Áö³­ ÀÎÁõ¼­ ÀÔ´Ï´Ù.\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+					alert("ìœ íš¨ê¸°ê°„ì´ ì§€ë‚œ ì¸ì¦ì„œ ì…ë‹ˆë‹¤.\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
 					return;
 				}
 				return;

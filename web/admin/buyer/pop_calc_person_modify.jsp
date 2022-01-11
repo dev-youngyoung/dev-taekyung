@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String seq = u.request("seq");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -22,16 +22,16 @@ while(field.next()){
 DataObject calcPersonDao = new DataObject("tcb_calc_person");
 DataSet calcPerson = calcPersonDao.find(" member_no = '"+member_no+"' and seq = '"+seq+"' ");
 if(!calcPerson.next()){
-	u.jsErrClose("Á¤»ê´ã´çÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ì •ì‚°ë‹´ë‹¹ì ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("user_name", calcPerson.getString("user_name"), "hname:'´ã´çÀÚ¸í', required:'Y'");
-f.addElement("tel_num", calcPerson.getString("tel_num"), "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("hp1", calcPerson.getString("hp1"), "hname:'ÈŞ´ëÆù', required:'Y'");
-f.addElement("hp2", calcPerson.getString("hp2"), "hname:'ÈŞ´ëÆù', required:'Y'");
-f.addElement("hp3", calcPerson.getString("hp3"), "hname:'ÈŞ´ëÆù', required:'Y'");
-f.addElement("email", calcPerson.getString("email"), "hname:'ÈŞ´ëÆù', required:'Y'");
+f.addElement("user_name", calcPerson.getString("user_name"), "hname:'ë‹´ë‹¹ìëª…', required:'Y'");
+f.addElement("tel_num", calcPerson.getString("tel_num"), "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("hp1", calcPerson.getString("hp1"), "hname:'íœ´ëŒ€í°', required:'Y'");
+f.addElement("hp2", calcPerson.getString("hp2"), "hname:'íœ´ëŒ€í°', required:'Y'");
+f.addElement("hp3", calcPerson.getString("hp3"), "hname:'íœ´ëŒ€í°', required:'Y'");
+f.addElement("email", calcPerson.getString("email"), "hname:'íœ´ëŒ€í°', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 	calcPersonDao = new DataObject("tcb_calc_person");
@@ -43,12 +43,12 @@ if(u.isPost()&&f.validate()){
 	calcPersonDao.item("email", f.get("email"));
 	calcPersonDao.item("field_seq", f.get("field_seqs"));
 	if(!calcPersonDao.update(" member_no = '"+member_no+"' and seq = '"+seq+"' ")) {
-		u.jsError("ÀúÀå Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿³½À´Ï´Ù.");
+		u.jsError("ì €ì¥ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	out.println("<script>");
 	out.println("opener.location.reload();");
-	out.println("alert('ÀúÀå Ã³¸® µÇ¾ú½À´Ï´Ù.');");
+	out.println("alert('ì €ì¥ ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 	out.println("location.href='pop_calc_person_modify.jsp?"+u.getQueryString()+"';");
 	out.println("</script>");
 	return;
@@ -58,7 +58,7 @@ p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_calc_person_modify");
 p.setVar("modify", true);
-p.setVar("popup_title","Á¤»ê´ã´çÀÚ ¼öÁ¤");
+p.setVar("popup_title","ì •ì‚°ë‹´ë‹¹ì ìˆ˜ì •");
 p.setVar("member", member);
 p.setVar("calcPerson", calcPerson);
 p.setLoop("field", field);

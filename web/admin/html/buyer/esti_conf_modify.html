@@ -1,9 +1,9 @@
-<form novalidate name="form1" method="post" onSubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="post" onSubmit="return formSubmit(this)">
 <input type="hidden" name="conf_text">
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>¾÷Ã¼Á¤º¸</h3>
+			<h3>ì—…ì²´ì •ë³´</h3>
 		</div>
 	</div>
 	<table>
@@ -14,11 +14,11 @@
 		<col width="35%">
 	</colgroup>
 	<tr>
-		<th>¾÷Ã¼¸í</th>
+		<th>ì—…ì²´ëª…</th>
 		<td>
 			{{member.member_name}}
 		</td>
-		<th>È¸¿ø¹øÈ£</th>
+		<th>íšŒì›ë²ˆí˜¸</th>
 		<td>
 			{{member.member_no}}
 		</td>
@@ -27,7 +27,7 @@
 
 	<div class="util-row">
 		<div class="push-left">
-			<h3>°ßÀû¼³Á¤</h3>
+			<h3>ê²¬ì ì„¤ì •</h3>
 		</div>
 	</div>
 	<table>
@@ -36,28 +36,28 @@
 		<col>
 	</colgroup>
 	<tr>
-		<th class="req-check">VATÆ÷ÇÔ¿©ºÎ</th>
+		<th class="req-check">VATí¬í•¨ì—¬ë¶€</th>
 		<td>
-			<input type="radio" name="vat_yn" value="Y">VATÆ÷ÇÔ &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="vat_yn" value="N">VATº°µµ
+			<input type="radio" name="vat_yn" value="Y">VATí¬í•¨ &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="vat_yn" value="N">VATë³„ë„
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">°ßÀû¼­¼öÁ¤ »ç¿ë¿©ºÎ</th>
+		<th class="req-check">ê²¬ì ì„œìˆ˜ì • ì‚¬ìš©ì—¬ë¶€</th>
 		<td>
-			<input type="radio" name="nego_yn" value="Y">»ç¿ë &nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="nego_yn" value="N">¹Ì»ç¿ë
+			<input type="radio" name="nego_yn" value="Y">ì‚¬ìš© &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="nego_yn" value="N">ë¯¸ì‚¬ìš©
 		</td>
 	</tr>
 	<tr>
-		<th>³«Âû¼ö¼ö·á°ú±İ¿©ºÎ</th>
-		<td><label><input type="checkbox" class="input_n" name="succ_pay_yn" value="Y">°ú±İ½Ã Ã¼Å©</label> </td>
+		<th>ë‚™ì°°ìˆ˜ìˆ˜ë£Œê³¼ê¸ˆì—¬ë¶€</th>
+		<td><label><input type="checkbox" class="input_n" name="succ_pay_yn" value="Y">ê³¼ê¸ˆì‹œ ì²´í¬</label> </td>
 	</tr>
 	</table>
 
 	<div class="btn-group-wrap">
-		<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-		<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="submit" class="btn color ico-save"><span></span>ì €ì¥</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 </div>
 </form>
@@ -68,7 +68,7 @@ function formSubmit(f){
 		var vat_yn = GetFormValue("form1","vat_yn");
 		var nego_yn = GetFormValue("form1","nego_yn");
 		var succ_pay_yn = GetFormValue("form1","succ_pay_yn");
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			var conf_text = "";
 			conf_text+= "vat_yn=>"+vat_yn+"|";
 			conf_text+= "nego_yn=>"+nego_yn+"|";
@@ -84,7 +84,7 @@ function formSubmit(f){
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>ÀÔÂûÁ¶°Ç({{template.bid_kind_cd_nm}})</h3>
+			<h3>ì…ì°°ì¡°ê±´({{template.bid_kind_cd_nm}})</h3>
 		</div>
 	</div>
 	{{template.template_html}}

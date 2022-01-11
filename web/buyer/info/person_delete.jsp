@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String person_seq = u.request("person_seq");
+String person_seq = u.aseDec(u.request("person_seq"));
 String callback= u.request("callback");
 if(person_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¿© ÁÖ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì—¬ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -12,9 +12,9 @@ dao.item("reg_date", u.getTimeString());
 dao.item("reg_id", auth.getString("_USER_ID"));
 dao.item("status","-1");
 if(!dao.update(" member_no = '"+_member_no+"' and person_seq = '"+person_seq+"' ")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("»èÁ¦Ã³¸® ÇÏ¿´½À´Ï´Ù.",callback+"?"+u.getQueryString("person_seq"));
+u.jsAlertReplace("ì‚­ì œì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.",callback+"?"+u.getQueryString("person_seq"));
 return;
 %>

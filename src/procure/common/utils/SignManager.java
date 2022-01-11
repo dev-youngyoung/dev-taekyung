@@ -7,14 +7,14 @@ import crosscert.Certificate;
 import crosscert.Verifier;
 
 public class SignManager {
-	private	String		sSignData 		=	"";		//	¼­¸íµ¥ÀÌÅ¸
-	private	Base64		CBase64			=	null;	//	base 64 ÀÎÄÚµù
-	private	Verifier	CVerifier		=	null;	//	°ËÁõÅ×ÀÌÅ¸ °´Ã¼
-	private	Certificate CCertificate	=	null;	//	ÀÎÁõ¼­Á¤º¸ ÃßÃâ°á°ú
+	private	String		sSignData 		=	"";		//	ì„œëª…ë°ì´íƒ€
+	private	Base64		CBase64			=	null;	//	base 64 ì¸ì½”ë”©
+	private	Verifier	CVerifier		=	null;	//	ê²€ì¦í…Œì´íƒ€ ê°ì²´
+	private	Certificate CCertificate	=	null;	//	ì¸ì¦ì„œì •ë³´ ì¶”ì¶œê²°ê³¼
 	
 	/**
-	 * »ı¼ºÀÚ
-	 * @param sSignData	¼­¸íµ¥ÀÌÅ¸
+	 * ìƒì„±ì
+	 * @param sSignData	ì„œëª…ë°ì´íƒ€
 	 */
 	public SignManager(String sSignData)
 	{
@@ -25,7 +25,7 @@ public class SignManager {
 	}
 	
 	/**
-	 * base64 ÀÎÄÚµù
+	 * base64 ì¸ì½”ë”©
 	 */
 	public void	setBase64()
 	{
@@ -35,9 +35,9 @@ public class SignManager {
 			iRet = CBase64.Decode(this.sSignData.getBytes("KSC5601"), this.sSignData.getBytes("KSC5601").length);
 			if(iRet != 0)
 			{
-				System.out.println("¼­¸í°ª Base64 Decode °á°ú : ½ÇÆĞ<br>") ;
-			    System.out.println("¿¡·¯³»¿ë : " + CBase64.errmessage + "<br>");
-			    System.out.println("¿¡·¯ÄÚµå : " + CBase64.errcode + "<br>");
+				System.out.println("ì„œëª…ê°’ Base64 Decode ê²°ê³¼ : ì‹¤íŒ¨<br>") ;
+			    System.out.println("ì—ëŸ¬ë‚´ìš© : " + CBase64.errmessage + "<br>");
+			    System.out.println("ì—ëŸ¬ì½”ë“œ : " + CBase64.errcode + "<br>");
 			}
 		} catch (UnsupportedEncodingException e) {
 			System.out.println("[ERROR "+this.getClass()+".setBase64()] :" + e.toString());
@@ -45,8 +45,8 @@ public class SignManager {
 	}
 	
 	/**
-	 * ÀüÀÚ¼­¸í °ËÁõ°´Ã¼ ¹İÈ­
-	 * @param CBase64	ÀÎÄÚµù
+	 * ì „ìì„œëª… ê²€ì¦ê°ì²´ ë°˜í™”
+	 * @param CBase64	ì¸ì½”ë”©
 	 * @return
 	 */
 	public void setVerifier()
@@ -57,33 +57,33 @@ public class SignManager {
 		iRet=CVerifier.VerSignedData(CBase64.contentbuf, CBase64.contentlen);
 		if(iRet!=0) 
 		{
-			System.out.println("ÀüÀÚ¼­¸í °ËÁõ °á°ú : ½ÇÆĞ<br>") ;
-			System.out.println("¿¡·¯³»¿ë : " + CVerifier.errmessage + "<br>");
-			System.out.println("¿¡·¯ÄÚµå : " + CVerifier.errcode + "<br>");
+			System.out.println("ì „ìì„œëª… ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨<br>") ;
+			System.out.println("ì—ëŸ¬ë‚´ìš© : " + CVerifier.errmessage + "<br>");
+			System.out.println("ì—ëŸ¬ì½”ë“œ : " + CVerifier.errcode + "<br>");
 		}
 	}
 	
 	/**
-	 * ÀÎÁõ¼­ Á¤º¸ ÃßÃâ
+	 * ì¸ì¦ì„œ ì •ë³´ ì¶”ì¶œ
 	 */
 	public void setCertificate()
 	{
-		//ÀÎÁõ¼­ Á¤º¸ ÃßÃâ °á°ú	
+		//ì¸ì¦ì„œ ì •ë³´ ì¶”ì¶œ ê²°ê³¼	
 		this.CCertificate = new Certificate();
 		
 		int	iRet	=	0;
 		iRet	=	this.CCertificate.ExtractCertInfo(this.CVerifier.certbuf, CVerifier.certlen);
 		if(iRet != 0)
 		{
-			System.out.println("ÀÎÁõ¼­ °ËÁõ °á°ú : ½ÇÆĞ<br>") ;
-			System.out.println("¿¡·¯³»¿ë : " + CCertificate.errmessage + "<br>");
-			System.out.println("¿¡·¯ÄÚµå : " + CCertificate.errcode + "<br>");
+			System.out.println("ì¸ì¦ì„œ ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨<br>") ;
+			System.out.println("ì—ëŸ¬ë‚´ìš© : " + CCertificate.errmessage + "<br>");
+			System.out.println("ì—ëŸ¬ì½”ë“œ : " + CCertificate.errcode + "<br>");
 		}
 	}
 	
 	/**
-	 * ¿ø¹®µ¥ÀÌÅ¸ ¾ò±â
-	 * @param CBase64	ÀÎÄÚµù
+	 * ì›ë¬¸ë°ì´íƒ€ ì–»ê¸°
+	 * @param CBase64	ì¸ì½”ë”©
 	 * @return
 	 * @throws UnsupportedEncodingException 
 	 */
@@ -102,9 +102,9 @@ public class SignManager {
 	}
 	
 	/**
-	 * µ¥ÀÌÅ¸ °ËÁõ
-	 * @param sSignData	¼­¸í µ¥ÀÌÅ¸
-	 * @param sOrgnData	¿ø¹® µ¥ÀÌÅ¸
+	 * ë°ì´íƒ€ ê²€ì¦
+	 * @param sSignData	ì„œëª… ë°ì´íƒ€
+	 * @param sOrgnData	ì›ë¬¸ ë°ì´íƒ€
 	 * @return
 	 */
 	public boolean	verifyData(String sOrgnData)
@@ -116,13 +116,13 @@ public class SignManager {
 			bCheck	=	true;
 		}else
 		{
-			System.out.println("¿ø¹® ºÒÀÏÄ¡ °ËÁõ°ª["+_sOrgnData+"] ¿ø¹®["+sOrgnData+"]");
+			System.out.println("ì›ë¬¸ ë¶ˆì¼ì¹˜ ê²€ì¦ê°’["+_sOrgnData+"] ì›ë¬¸["+sOrgnData+"]");
 		}
 		return bCheck;
 	}
 	
 	/**
-	 * ÀÎÁõ¼­ DN°ª ÃßÃâ
+	 * ì¸ì¦ì„œ DNê°’ ì¶”ì¶œ
 	 * @return
 	 */
 	public String	getDn()

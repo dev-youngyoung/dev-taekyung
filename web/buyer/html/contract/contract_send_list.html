@@ -11,225 +11,99 @@
 			<col width="10%">
 		</colgroup>
 		<tr>
-		  	<th><p>°è¾à¼­Á¾·ù</p></th>
+		  	<th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 		    <td colspan="3">
 		    	<select name="s_template_cd">
-		    		<option value="">-------¼±ÅÃ-------</option>
+		    		<option value="">-------ì„ íƒ-------</option>
 					<!-- LOOP START 'template' -->
 					<option value="{{template.template_cd}}">{{template.template_name}}</option>
 					<!-- LOOP END 'template' -->
 				</select>
-				<!-- IFC START '_auth._MEMBER_NO==20130600116' -->
-				<input type="checkbox" name="s_chkKth" value="Y">°³ÀÎÁ¤º¸Ã³¸® À§Å¹°è¾à¼­ Æ÷ÇÔ
-				<!-- IFC END '_auth._MEMBER_NO==20130600116' -->
 			</td>
 			<td align="right"></td>
 		 </tr>
-		 
-		 <!-- IF START 'isCJT' -->
 		 <tr>
-		 	
-		 	<!-- IF START 'isDefaultYn' -->
-		 	<th><p>ºÎ¹®/ºÎ¼­</p></th>
-		 	<td>
-				<select name="s_division">
-					<option value="">-ºÎ¹® ¼±ÅÃ-</option>
-					<!-- LOOP START 'code_cj_division' -->
-					<option value="{{code_cj_division.id}}">{{code_cj_division.name}}</option>
-					<!-- LOOP END 'code_cj_division' -->
-				</select> 
-				/ 
-				<select name="s_field_seq">
-					<option value="">-ºÎ¼­ ¼±ÅÃ-</option>
-					<!-- LOOP START 'code_field' -->
-					<option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
-					<!-- LOOP END 'code_field' -->
-				</select>
-			</td>
-			<!-- IF END 'isDefaultYn' -->
-			
-			<th>
-				<p>
-				<select name="cj_searh_col">
-					<option value="boss_name">´ëÇ¥ÀÚ</option>
-					<option value="vendcd">»ç¾÷ÀÚ¹øÈ£</option>
-				</select>
-				</p> 
-			</th>
-			<td><input type="text" name="cj_search_keyword" maxlength="100" style="width: 90%"></td>
-		 
-		 </tr>
-		 <!-- IF END 'isCJT' -->
-		 
-		
-		<!-- IF START 'detail_cd' -->
-			<tr>
-				<th><p>°è¾àÃ³ÄÚµå</p></th>
-		   		<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
-				<th><p>KPP´ã´çÀÚ¸í</p></th>
-		   		<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
-		   		<td></td>
-			</tr>
-		<!-- IF END 'detail_cd' -->
-		
-		<!-- IFNOT START 'detail_cd' -->
-			
-			<!-- IF START 'isKTH' -->
-			<tr>
-				<th><p>°Å·¡Ã³ÄÚµå</p></th>
-		   		<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
-		   		<th><p>´ã´çÀÚ¸í</p></th>
-		   		<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
-		   		<td></td>
-			</tr>
-			<!-- IF END 'isKTH' -->
-			
-		<!-- IFNOT END 'detail_cd' -->
-		<!-- IF START 'isPersonView' -->
-			<tr>
-				<th><p>´ã´çÀÚ¸í</p></th>
-				<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
-				<td></td>
-			</tr>
-		<!-- IF END 'isPersonView' -->
-		 <tr>
-			<th><p>°Å·¡Ã³¸í</p></th>
+			<th><p>ê±°ë˜ì²˜ëª…</p></th>
 		    <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
-			<th><p>»ç¾÷ÀÚµî·Ï¹øÈ£</p></th>
+			<th><p>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</p></th>
 		    <td><input type="text" name="s_vendcd" maxlength="12" style="width: 90%;ime-mode:disabled" onkeydown="num_minus_only()" onkeyupress="num_minus_only()"></td>
 		  	<td></td>
 		</tr>
 		<tr>
-			<th><p>°è¾à¸í</p></th>
+			<th><p>ê³„ì•½ëª…</p></th>
 			<td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
-			<th><p>°è¾à»óÅÂ</p></th>
+			<th><p>ê³„ì•½ìƒíƒœ</p></th>
 		   	<td>
 		   		<select name="s_status">
-		   			<option value="">-¼±ÅÃ-</option>
+		   			<option value="">-ì„ íƒ-</option>
 					<!-- LOOP START 'code_status' -->
 					<option value="{{code_status.id}}">{{code_status.value}}</option>
 					<!-- LOOP END 'code_status' -->
 				</select>
 		  	</td>
+		</tr>
+		<tr>
+			<th><p>ê³„ì•½êµ¬ë¶„</p></th>
+		   	<td colspan="3">
+		   		<select name="s_cont_gubun">
+		   			<option value="">-ì „ì²´-</option>
+		   			<option value="P">í‘œì¤€</option>
+		   			<option value="B">ë¹„í‘œì¤€</option>
+		   			<option value="A">ìë™ì—°ì¥</option>
+				</select>
+		  	</td>
 			<td align="right">
-				<button type="submit" class="search_btn">°Ë»ö</button>
+				<button type="submit" class="search_btn">ê²€ìƒ‰</button>
 			</td>
 		</tr>
 		
 	</table>
 </div>
 
-<div class="util-row" align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
-	<!-- IF START 'btn_pop_msign_resend' -->
-		<button type="button" class="sbtn color ico-monitor" onclick="OpenWindows('pop_msign_resend.jsp','pop_msign_resend','1000','700')"><span></span>ÀÏ°ıÀçÀü¼Û</button>
-	<!-- IF END 'btn_pop_msign_resend' -->
-	<!-- IF START 'isSKB' -->
-		<button type="button" class="sbtn color ico-download" onClick="fSave();"><span></span>´Ù¿î·Îµå</button>
-	<!-- IF END 'isSKB' -->
-</div>
+<!-- <div class="util-row" align="right">
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
+</div> -->
 
 <br>
 
 <div class="div_table">
 	<table>
   		<colgroup>
-		<!-- IF START 'isSKB' -->  
-			<col width="7%">
-		<!-- IF END 'isSKB' -->   
-		<!-- IFNOT START 'isSKB' -->
-			<col width="7%">  
-		<!-- IFNOT END 'isSKB' -->
+			<col width="10%"> 
 			<col width="*">
 			<col width="20%">   
-		<!-- IF START 'detail_cd' -->
-			<col width="8%">
-			<col width="7%">
-		<!-- IF END 'detail_cd' -->
-		<!-- IF START 'isKTH' -->
-			<col width="8%">
-			<col width="7%">
-		<!-- IF END 'isKTH' -->
-		<!-- IF START 'isCJT' -->
-			<col width="8%">
-		<!-- IF END 'isCJT' -->
 			<col width="10%">
-		<!-- IF START 'isPersonView' -->
-			<col width="8%">
-		<!-- IF END 'isPersonView' -->
 			<col width="10%">
-		<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->
-			<col width="10%">    
-		<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->      
   		</colgroup>
 		<tr>
-			<!-- IF START 'isSKB' -->
-				<th width="7%"><input type="checkbox" name="all" onClick="fAllCheck()"/></th>
-			<!-- IF END 'isSKB' -->   
-			<!-- IFNOT START 'isSKB' -->  
-				<th width="7%">¼ø¹ø</th>
-			<!-- IFNOT END 'isSKB' -->   
-			    <th width="%">°è¾à¸í</th>
-			    <th width="20%">°Å·¡Ã³¸í</th>
-			<!-- IF START 'detail_cd' -->
-				<th width="8%">°è¾àÃ³<br>ÄÚµå</th>
-				<th width="7%">KPP´ã´ç</th>
-			<!-- IF END 'detail_cd' -->
-			<!-- IF START 'isKTH' -->
-				<th width="8%">°Å·¡Ã³<br>ÄÚµå</th>
-				<th width="7%">´ã´çÀÚ</th>
-			<!-- IF END 'isKTH' -->
-			<!-- IF START 'isCJT' -->
-				<th width="8%">´ëÇ¥ÀÚ</th>
-			<!-- IF END 'isCJT' -->
-			    <th width="10%">°è¾àÀÏÀÚ</th>
-			<!-- IF START 'isPersonView' -->
-				<th width="8%">´ã´çÀÚ</th>
-			<!-- IF END 'isPersonView' -->
-			    <th width="10%">»óÅÂ</th>
-			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->    
-			    <th width="10%">°è¾à¹øÈ£</th>
-			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->      
+				<th width="13%">ê³„ì•½ë²ˆí˜¸</th>
+			    <th width="%">ê³„ì•½ëª…</th>
+			    <th width="20%">ê±°ë˜ì²˜ëª…</th>
+			    <th width="10%">ê³„ì•½ì¼ì</th>
+			    <th width="10%">ìƒíƒœ</th>
 		</tr>
 		
 		<!-- IF START 'list' -->
   			<!-- LOOP START 'list' -->
   				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
   					onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
-				<!-- IF START 'isSKB' -->  
-					<td align="center" onclick="event.cancelBubble=true;"><input type="checkbox" name="save" value="{{list.cont_no}}_{{list.cont_chasu}}"/></td>
-				<!-- IF END 'isSKB' -->   
-				<!-- IFNOT START 'isSKB' -->  
-					<td align="center">{{list.__ord}}</td>
-				<!-- IFNOT END 'isSKB' -->     
-					<td>{{list.cont_name}}</td>
-					<td>{{list.cust_name}}</td>
-				<!-- IF START 'detail_cd' -->
-					<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCD('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
-					<td align="center">{{list.reg_name}}</td>
-				<!-- IF END 'detail_cd' -->
-				<!-- IF START 'isKTH' -->
-					<td align="center">{{list.cust_detail_code}}</td>
-					<td align="center">{{list.reg_name}}</td>
-				<!-- IF END 'isKTH' -->
-				<!-- IF START 'isCJT' -->
-					<td align="center">{{list.boss_name}}</td>
-				<!-- IF END 'isCJT' -->
-					<td align="center">{{list.cont_date}}</td>
-				<!-- IF START 'isPersonView' -->
-					<td align="center">{{list.reg_name}}</td>
-				<!-- IF END 'isPersonView' -->	
-					<td align="center">{{list.status_name}}</td>
-				<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
 					<td align="center">{{list.cont_userno}}</td>
-				<!-- IFC END '_auth._MEMBER_NO!=20130500619' --> 
+					<td>
+					<!-- IFC START 'list.auto_yn==Y' -->
+					<img src="/web/buyer/html/images/common/i_contexp.gif" style="width:17px; height:17px; vertical-align: middle;"/> 
+					<!-- IFC END 'list.auto_yn==Y' -->
+					&nbsp;{{list.cont_name}}
+					</td>
+					<td>{{list.cust_name}}</td>
+					<td align="center">{{list.cont_date}}</td>
+					<td align="center">{{list.status_name}}</td>
 			</tr>
   		<!-- LOOP END 'list' -->
 	<!-- IF END 'list' -->
 	
 	<!-- IFNOT START 'list' -->
   		<tr>
-			<td colspan="10" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td colspan="10" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
   		</tr>
   	<!-- IFNOT END 'list' -->
 </table>
@@ -273,7 +147,7 @@ function fSave(){
 	}
 	
 	if(chk==0){
-		alert("´Ù¿î·ÎµåÇÒ °è¾àÀ» ¸ÕÀú ¼±ÅÃÇØÁÖ¼¼¿ä.");
+		alert("ë‹¤ìš´ë¡œë“œí•  ê³„ì•½ì„ ë¨¼ì € ì„ íƒí•´ì£¼ì„¸ìš”.");
 		return;
 	}
 	

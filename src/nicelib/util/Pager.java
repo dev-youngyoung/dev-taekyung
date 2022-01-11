@@ -89,7 +89,7 @@ public class Pager {
 		
 		sb.append("<div class=\"common-paging\"><ul>");
 
-		//Ã¹ ÆäÀÌÁö
+		//ì²« í˜ì´ì§€
 		/*
 		sb.append("<li>");
 		if(pageNum > 1) {
@@ -100,9 +100,9 @@ public class Pager {
 		sb.append("</li>");
 		 */
 		
-		//ÀÌÀü ºí·° ÆäÀÌÁö
+		//ì´ì „ ë¸”ëŸ­ í˜ì´ì§€
 		if(pageNum <= 1) {
-			sb.append("<li class=\"paging-prev\"><a href=\"javascript:alert('Ã¹ÆäÀÌÁö ÀÔ´Ï´Ù.');\"></a></li>");
+			sb.append("<li class=\"paging-prev\"><a href=\"javascript:alert('ì²«í˜ì´ì§€ ì…ë‹ˆë‹¤.');\"></a></li>");
 		} else {
 			sb.append("<li class=\"paging-prev\"><a href='"+getPageLink(pageNum-1)+"'></a></li>");
 		}
@@ -116,16 +116,16 @@ public class Pager {
 			//if(i < lastPage) sb.append("<li>" + separator + "</li>");
 		}
 
-		//´ÙÀ½ ºí·° ÆäÀÌÁö
+		//ë‹¤ìŒ ë¸”ëŸ­ í˜ì´ì§€
 		sb.append("");
 		if(pageNum < totalPage) {
 			sb.append("<li class=\"paging-next\"><a href='"+getPageLink(pageNum+1)+"'>&nbsp;</a></li>");
 		} else {
-			sb.append("<li class=\"paging-next\"><a href=\"javascript:alert('¸¶Áö¸·ÆäÀÌÁö ÀÔ´Ï´Ù.');\">&nbsp;</a></li>");
+			sb.append("<li class=\"paging-next\"><a href=\"javascript:alert('ë§ˆì§€ë§‰í˜ì´ì§€ ì…ë‹ˆë‹¤.');\">&nbsp;</a></li>");
 		}
 
 /*		
-		//¸¶Áö¸· ÆäÀÌÁö
+		//ë§ˆì§€ë§‰ í˜ì´ì§€
 		sb.append("<li>");
 		if(pageNum < totalPage) {
 			sb.append("<a href='"+getPageLink(totalPage)+"' class='on'>" + lastImg + "</a>");
@@ -163,7 +163,7 @@ public class Pager {
 		
 		sb.append("<table align='center' border='0' cellspacing='0' cellpadding='0' class='page_box' style='border-collapse:collapse;'><tr>");
 
-		//Ã¹ ÆäÀÌÁö
+		//ì²« í˜ì´ì§€
 		sb.append("<td>");
 		if(pageNum > 1) {
 			sb.append("<a href='"+getPageLink(1)+"' class='on'>" + firstImg + "</a>");
@@ -173,7 +173,7 @@ public class Pager {
 		}
 		sb.append("</td>");
 
-		//ÀÌÀü ºí·° ÆäÀÌÁö
+		//ì´ì „ ë¸”ëŸ­ í˜ì´ì§€
 		sb.append("<td>");
 		if(firstPage > 1) {
 			sb.append("<a href='"+getPageLink(firstPage-1)+"' class='on'>" + prevImg + "</a>");
@@ -194,7 +194,7 @@ public class Pager {
 			if(i < lastPage) sb.append("<td>" + separator + "</td>");
 		}
 
-		//´ÙÀ½ ºí·° ÆäÀÌÁö
+		//ë‹¤ìŒ ë¸”ëŸ­ í˜ì´ì§€
 		sb.append("<td>");
 		if(lastPage < totalPage) {
 			sb.append("<a href='"+getPageLink(lastPage+1)+"' class='on'>" + nextImg + "</a>");
@@ -204,7 +204,7 @@ public class Pager {
 		}
 		sb.append("</td>");
 
-		//¸¶Áö¸· ÆäÀÌÁö
+		//ë§ˆì§€ë§‰ í˜ì´ì§€
 		sb.append("<td>");
 		if(pageNum < totalPage) {
 			sb.append("<a href='"+getPageLink(totalPage)+"' class='on'>" + lastImg + "</a>");

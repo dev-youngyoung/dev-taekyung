@@ -100,40 +100,12 @@
 		</colgroup>
 		<tr>
 			<th class="req-check">계약명</th>
-			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>
+			<td colspan="3">
 				<input type="text" name="cont_name" style="width:95%" onChange="replaceInput(this, this.name, document.all.__html)" onblur="replaceInput(this, this.name, document.all.__html)">
 				<!-- IF START 'ktmns_etc' -->
 				<br><span class="caution-text">{{ktmns_etc}}</span>
 				<!-- IF END 'ktmns_etc' -->
 			</td>
-			<!-- IF START 'member.src_depth' -->
-			<th>소싱그룹</th>
-			<td>
-				<!-- IFNOT START 'bid.bid_no' -->
-					<!-- IF START 'change_cont' -->
-						{{cont.src_nm}}<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
-					<!-- IF END 'change_cont' -->
-					<!-- IFNOT START 'change_cont' -->
-						<!-- IFNOT START 'modify' -->
-				<input type="hidden" name="src_cd" value="{{bid.src_cd}}"/>
-				<span id="src_nm">{{bid.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>선택</button>
-						<!-- IFNOT END 'modify' -->
-						<!-- IF START 'modify' -->
-				<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
-				<span id="src_nm">{{cont.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>선택</button>
-						<!-- IF END 'modify' -->
-					<!-- IFNOT END 'change_cont' -->
-				<!-- IFNOT END 'bid.bid_no' -->
-				<!-- IF START 'bid.bid_no' -->
-					<!-- IFNOT START 'modify' -->
-						{{bid.src_nm}}<input type="hidden" name="src_cd" value="{{bid.src_cd}}"/>
-					<!-- IFNOT END 'modify' -->
-					<!-- IF START 'modify' -->
-						{{cont.src_nm}}<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
-					<!-- IF END 'modify' -->
-				<!-- IF END 'bid.bid_no' -->
-			</td>
-			<!-- IF END 'member.src_depth' -->
 		</tr>
 		<tr>
 			<th class="req-check">계약일자</th>
@@ -1142,34 +1114,34 @@ function sampleDown(template_cd, template_name){
 	filedown("file.path.bcontract",sample_path,template_name+".pdf");
 }
 
-function addClientPersonBlank(sign_seq) {//비회원 개인
+function addClientPersonBlank(sign_seq) { // 비회원 개인
     form_name = "person_form";
     template_name = "person_template";
 
-    var grid =eval("comp_grid_"+sign_seq);
+    var grid = eval("comp_grid_" + sign_seq);
  
-    SetFormValue(form_name,"member_no","");
-    SetFormValue(form_name,"vendcd","");
-    SetFormValue(form_name,"post_code","");
-    SetFormValue(form_name,"member_slno","");
-    SetFormValue(form_name,"address","");
-    SetFormValue(form_name,"user_name","");
-    SetFormValue(form_name,"member_name","");
-    SetFormValue(form_name,"email","");
-    SetFormValue(form_name,"boss_name","");
-    SetFormValue(form_name,"tel_num","");
-    SetFormValue(form_name,"hp1","");
-    SetFormValue(form_name,"hp2","");
-    SetFormValue(form_name,"hp3","");
-    SetFormValue(form_name,"jumin_no","");
-    SetFormValue(form_name,"cust_detail_code","");
-    SetFormValue(form_name,"member_gubun","");
-    SetFormValue(form_name,"boss_birth_date","");
-    SetFormValue(form_name,"boss_gender","");
+    SetFormValue(form_name, "member_no", "");
+    SetFormValue(form_name, "vendcd", "");
+    SetFormValue(form_name, "post_code", "");
+    SetFormValue(form_name, "member_slno", "");
+    SetFormValue(form_name, "address", "");
+    SetFormValue(form_name, "user_name", "");
+    SetFormValue(form_name, "member_name", "");
+    SetFormValue(form_name, "email", "");
+    SetFormValue(form_name, "boss_name", "");
+    SetFormValue(form_name, "tel_num", "");
+    SetFormValue(form_name, "hp1", "");
+    SetFormValue(form_name, "hp2", "");
+    SetFormValue(form_name, "hp3", "");
+    SetFormValue(form_name, "jumin_no", "");
+    SetFormValue(form_name, "cust_detail_code", "");
+    SetFormValue(form_name, "member_gubun", "");
+    SetFormValue(form_name, "boss_birth_date", "");
+    SetFormValue(form_name, "boss_gender", "");
 	
     SetFormValue(form_name, "cust_sign_seq", sign_seq);
     SetFormValue(form_name, "member_gubun", '04');
-    grid.cells = table2array(template_name, new Array("seq=>"+sign_seq));
+    grid.cells = table2array(template_name, new Array("seq=>" + sign_seq));
     grid.addRow();
 }
 

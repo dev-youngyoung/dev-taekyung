@@ -9,7 +9,7 @@ import procure.common.conf.Config;
 import procure.common.utils.StrUtil;
 
 /**
- * query Ã³¸® 
+ * query ì²˜ë¦¬ 
  * @author lee jong whan
  *
  */
@@ -19,8 +19,8 @@ public class QueryManager {
 	private	String 					sXMLFileName	=	"";		
 	
 	/**
-	 * QueryManager	»ı¼ºÀÚ
-	 * @param sXMLFileName	ÆÄÀÏ°æ·Î
+	 * QueryManager	ìƒì„±ì
+	 * @param sXMLFileName	íŒŒì¼ê²½ë¡œ
 	 * @throws ConfigurationException 
 	 */
 	public QueryManager(String sXMLFileName) throws ConfigurationException{
@@ -34,7 +34,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * query ÆÄÀÏ Á¤º¸ °¡Á®¿À±â
+	 * query íŒŒì¼ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	 * @return
 	 */
 	public String getXMLFileName() {
@@ -42,7 +42,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * query ÆÄÀÏ Á¤º¸ ´ã±â
+	 * query íŒŒì¼ ì •ë³´ ë‹´ê¸°
 	 * @param fileName
 	 */
 	public void setXMLFileName(String sXMLFileName) {
@@ -50,8 +50,8 @@ public class QueryManager {
 	}
 
 	/**
-	 * Äõ¸®¹® CompositeConfiguration ¹®¿¡ ¸Â°Ô ¹Ù²Ù±â
-	 * @param sXQuery	Äõ¸®
+	 * ì¿¼ë¦¬ë¬¸ CompositeConfiguration ë¬¸ì— ë§ê²Œ ë°”ê¾¸ê¸°
+	 * @param sXQuery	ì¿¼ë¦¬
 	 * @return
 	 */
 	public String getReplaceXQuery(String sXQuery)
@@ -94,8 +94,8 @@ public class QueryManager {
 	}
 	
 	/**
-	 * XML¿¡¼­ Äõ¸®¿¡¼­ °¡Á®¿À±â
-	 * @param sXQuery	Äõ¸®¹®
+	 * XMLì—ì„œ ì¿¼ë¦¬ì—ì„œ ê°€ì ¸ì˜¤ê¸°
+	 * @param sXQuery	ì¿¼ë¦¬ë¬¸
 	 * @return
 	 * @throws Exception 
 	 */
@@ -138,10 +138,10 @@ public class QueryManager {
 	}
 	
 	/**
-	 * XML¿¡¼­ Äõ¸® °¡Á®¿À±â #º¯¼ö¸í# -> '°ª'À¸·Î ´ëÃ³
-	 * @param sXQuery	xml ÆÄÀÏ °æ·Î
-	 * @param sKey		º¯¼ö¸í
-	 * @param sVal		º¯¼ö°ª
+	 * XMLì—ì„œ ì¿¼ë¦¬ ê°€ì ¸ì˜¤ê¸° #ë³€ìˆ˜ëª…# -> 'ê°’'ìœ¼ë¡œ ëŒ€ì²˜
+	 * @param sXQuery	xml íŒŒì¼ ê²½ë¡œ
+	 * @param sKey		ë³€ìˆ˜ëª…
+	 * @param sVal		ë³€ìˆ˜ê°’
 	 * @return
 	 * @throws Exception 
 	 */
@@ -212,9 +212,9 @@ public class QueryManager {
 	}
 	
 	/**
-	 * XML¿¡¼­ Äõ¸® °¡Á®¿À±â #º¯¼ö¸í# -> '°ª'À¸·Î ´ëÃ³
-	 * @param sXQuery	xml ÆÄÀÏ °æ·Î
-	 * @param map		[º¯¼ö¸í,º¯¼ö°ª] Map ±¸Á¶
+	 * XMLì—ì„œ ì¿¼ë¦¬ ê°€ì ¸ì˜¤ê¸° #ë³€ìˆ˜ëª…# -> 'ê°’'ìœ¼ë¡œ ëŒ€ì²˜
+	 * @param sXQuery	xml íŒŒì¼ ê²½ë¡œ
+	 * @param map		[ë³€ìˆ˜ëª…,ë³€ìˆ˜ê°’] Map êµ¬ì¡°
 	 * @return
 	 * @throws Exception 
 	 */
@@ -301,7 +301,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * insert Äõ¸®
+	 * insert ì¿¼ë¦¬
 	 * @param sId
 	 * @return
 	 */
@@ -311,7 +311,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * insert Äõ¸®
+	 * insert ì¿¼ë¦¬
 	 * @param sId
 	 * @param sKey	
 	 * @param sVal
@@ -324,7 +324,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * insert Äõ¸®
+	 * insert ì¿¼ë¦¬
 	 * @param sId
 	 * @param map
 	 * @return
@@ -341,7 +341,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * update Äõ¸®
+	 * update ì¿¼ë¦¬
 	 * @param sId
 	 * @return
 	 */
@@ -351,7 +351,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * update Äõ¸®
+	 * update ì¿¼ë¦¬
 	 * @param sId
 	 * @param sKey	
 	 * @param sVal
@@ -364,7 +364,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * update Äõ¸®
+	 * update ì¿¼ë¦¬
 	 * @param sId
 	 * @param map
 	 * @return
@@ -381,7 +381,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * delete Äõ¸®
+	 * delete ì¿¼ë¦¬
 	 * @param sId
 	 * @return
 	 */
@@ -391,7 +391,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * delete Äõ¸®
+	 * delete ì¿¼ë¦¬
 	 * @param sId
 	 * @param sKey	
 	 * @param sVal
@@ -404,7 +404,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * update Äõ¸®
+	 * update ì¿¼ë¦¬
 	 * @param sId
 	 * @param map
 	 * @return
@@ -421,7 +421,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * select Äõ¸®
+	 * select ì¿¼ë¦¬
 	 * @param sId
 	 * @return
 	 */
@@ -431,7 +431,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * select Äõ¸®
+	 * select ì¿¼ë¦¬
 	 * @param sId
 	 * @param sKey	
 	 * @param sVal
@@ -444,7 +444,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * select Äõ¸®
+	 * select ì¿¼ë¦¬
 	 * @param sId
 	 * @param map
 	 * @return
@@ -463,8 +463,8 @@ public class QueryManager {
 	
 	
 	/**
-	 * node¸í °¡Á®¿À±â
-	 * @param sFullNodeName	"/"·Î Äõ¸®¹® ºĞ¸®
+	 * nodeëª… ê°€ì ¸ì˜¤ê¸°
+	 * @param sFullNodeName	"/"ë¡œ ì¿¼ë¦¬ë¬¸ ë¶„ë¦¬
 	 * @return
 	 */
 	public String getNodeName(String sFullNodeName)
@@ -481,8 +481,8 @@ public class QueryManager {
 	}
 	
 	/**
-	 * Attribute MAP¿¡ ´ã±â
-	 * @param sFullNodeName	³ëµå¸í
+	 * Attribute MAPì— ë‹´ê¸°
+	 * @param sFullNodeName	ë…¸ë“œëª…
 	 * @return
 	 */
 	public Map getAtrriMap(String sFullNodeName)
@@ -509,7 +509,7 @@ public class QueryManager {
 	}
 	
 	/**
-	 * ³ëµå¿¡ ÇØ´çÇÏ´Â index°ª °¡Á®¿À±â
+	 * ë…¸ë“œì— í•´ë‹¹í•˜ëŠ” indexê°’ ê°€ì ¸ì˜¤ê¸°
 	 * @param sSubXQuery
 	 * @param sAttriVal
 	 * @return

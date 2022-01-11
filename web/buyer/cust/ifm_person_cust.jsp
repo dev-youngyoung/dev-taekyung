@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String person_seq = u.request("person_seq");
 
@@ -6,7 +6,7 @@ f.addElement("s_member_name",null, null);
 f.addElement("s_cust_code",null, null);
 
 if(person_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -30,7 +30,7 @@ DataSet list = custDao.query(sQuery);
 while(list.next()){
 	list.put("vendcd", u.getBizNo(list.getString("vendcd")));
 	if(list.getString("cust_detail_code").equals(""))
-		list.put("cust_detail_code", "<font color=red>[¹Ìµî·Ï]</font>");
+		list.put("cust_detail_code", "<font color=red>[ë¯¸ë“±ë¡]</font>");
 }
 
 p.setLayout("black");

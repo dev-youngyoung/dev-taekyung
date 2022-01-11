@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 f.addElement("s_title", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -13,11 +13,11 @@ list.addWhere(" member_no = '" + _member_no + "' and status > 0 ");
 list.addSearch("field_name", f.get("s_title"), "LIKE");
 list.setOrderBy("field_seq desc ");
 
-//¸ñ·Ï µ¥ÀÌÅ¸ ¼öÁ¤
+//ëª©ë¡ ë°ì´íƒ€ ìˆ˜ì •
 DataSet rs = list.getDataSet();
 while(rs.next()){
-	rs.put("field_gubun", rs.getString("field_gubun").equals("01")?"ºÎ¼­":"ÁöÁ¡");
-	rs.put("use_yn", rs.getString("use_yn").equals("Y")?"»ç¿ëÁß":"»ç¿ëÁßÁö");
+	rs.put("field_gubun", rs.getString("field_gubun").equals("01")?"ë¶€ì„œ":"ì§€ì ");
+	rs.put("use_yn", rs.getString("use_yn").equals("Y")?"ì‚¬ìš©ì¤‘":"ì‚¬ìš©ì¤‘ì§€");
 }
 
 p.setLayout("default");

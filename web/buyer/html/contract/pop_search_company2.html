@@ -1,10 +1,10 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
 <input type="hidden" name="search" value="1">
 <input type="hidden" name="sign_seq" value="{{sign_seq}}">
 
 <div style="width:100%;padding:5px;text-align:right">
-	<button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert2.jsp?{{query}}';"><span></span>½Å±Ô°è¾àÃ³ µî·Ï</button>
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´İ±â</button>
+	<button type="button" class="sbtn color ico-add" onclick="location.href='pop_member_insert2.jsp?{{query}}';"><span></span>ì‹ ê·œê³„ì•½ì²˜ ë“±ë¡</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 
 <div class="search_div">
@@ -17,12 +17,12 @@
 		    <col width="*">
 		</colgroup>
 		<tr>
-		    <th><p>°è¾àÃ³¸í</p></th>
+		    <th><p>ê³„ì•½ì²˜ëª…</p></th>
 		    <td><input type="text" name="s_member_name" maxlength="30" style="width: 210px;"></td>
-		    <th><p>°è¾àÃ³ÄÚµå</p></th>
+		    <th><p>ê³„ì•½ì²˜ì½”ë“œ</p></th>
 		    <td><input type="text" name="s_cust_code" maxlength="6" style="width: 210px;"></td>
 			<td align="right">
-		      <button type="submit" class="btn color ico-search" value="°Ë»ö"><span></span>°Ë»ö</button>
+		      <button type="submit" class="btn color ico-search" value="ê²€ìƒ‰"><span></span>ê²€ìƒ‰</button>
 		    </td>
 		</tr>
 	</table>
@@ -33,7 +33,7 @@
 <script language="javascript">
 function formSubmit(f){
 	if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-		alert("¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·Â ÈÄ °Ë»ö ÇÏ¼¼¿ä.");
+		alert("ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥ í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.");
 		return false;
 	}
 	return true;
@@ -42,7 +42,7 @@ function formSubmit(f){
 
 <div class="util-row">
     <div class="push-left">
-       <h3><span class="caution-text">¡Ø¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·ÂÈÄ °Ë»ö ÇÏ¼¼¿ä.</span></h3>
+       <h3><span class="caution-text">â€»ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ì ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.</span></h3>
     </div>
 </div>
 
@@ -66,18 +66,18 @@ function formSubmit(f){
 				<col width="*">
 			</colgroup>
 			<tr>
-				<th>¼ø¹ø</th>
-				<th>°è¾àÃ³¸í</th>
-				<th>»ç¾÷ÀÚ¹øÈ£</th>
-				<th>´ëÇ¥ÀÚ</th>
-				<th>Ãß°¡</th>
+				<th>ìˆœë²ˆ</th>
+				<th>ê³„ì•½ì²˜ëª…</th>
+				<th>ì‚¬ì—…ìë²ˆí˜¸</th>
+				<th>ëŒ€í‘œì</th>
+				<th>ì¶”ê°€</th>
 			</tr>
 			<tr>
 				<td align="center">{{list.__ord}}</td>
 				<td>{{list.cust_detail_name}}</td>
 				<td align="center">{{list.vendcd}}</td>
 				<td align="center">{{list.boss_name}}</td>
-				<td align="center"><button type="button" class="sbtn ico-add" onclick="addCompany('{{list.__ord}}');"><span></span>Ãß°¡</button></td>
+				<td align="center"><button type="button" class="sbtn ico-add" onclick="addCompany('{{list.__ord}}');"><span></span>ì¶”ê°€</button></td>
 			</tr>
 			<tr>
 				<td colspan="5" align="center" style="padding-top: 3px;">
@@ -91,12 +91,12 @@ function formSubmit(f){
 							<col width="*">
 						</colgroup>
 						<tr>
-			  				<th>´ã´çÀÚ¸í</th>
-			  				<th>ÀüÈ­¹øÈ£</th>
-			  				<th>ÈŞ´ëÆù¹øÈ£</th>
+			  				<th>ë‹´ë‹¹ìëª…</th>
+			  				<th>ì „í™”ë²ˆí˜¸</th>
+			  				<th>íœ´ëŒ€í°ë²ˆí˜¸</th>
 			  				<th>E-mail</th>
-							<th width="15%">°è¾àÃ³ÄÚµå</th>
-			  				<th>¼±ÅÃ <input type="radio" name="person_seq" style="display: none"/></th>
+							<th width="15%">ê³„ì•½ì²˜ì½”ë“œ</th>
+			  				<th>ì„ íƒ <input type="radio" name="person_seq" style="display: none"/></th>
 		  				</tr>
 		  				<tr>
 		  					<td align="center">{{list.user_name}}
@@ -128,7 +128,7 @@ function formSubmit(f){
 <div class="div_table">
 	<table>
 		<tr>
-			<td align="center" colspan="5">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="5">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 	</table>
 </div>
@@ -159,12 +159,12 @@ function addCompany(member_no){
 		   ,"hp3":f['hp3_'+seq].value
 		   ,"email":f['email_'+seq].value
 		   ,"sign_seq":"{{sign_seq}}"
-		   ,"jumin_no":"" //ÁÖ¹Îµî·Ï¹øÈ£
-		   ,"cust_detail_code":f['cust_detail_code_'+seq].value	// °Å·¡Ã³ÄÚµå
+		   ,"jumin_no":"" //ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸
+		   ,"cust_detail_code":f['cust_detail_code_'+seq].value	// ê±°ë˜ì²˜ì½”ë“œ
 		};
 
 	}else{
-		alert("´ã´çÀÚ ¼±ÅÃ ÈÄ ¾÷Ã¼ Ãß°¡ÇÏ¿© ÁÖ¼¼¿ä.");
+		alert("ë‹´ë‹¹ì ì„ íƒ í›„ ì—…ì²´ ì¶”ê°€í•˜ì—¬ ì£¼ì„¸ìš”.");
 		return;
 	}
 	opener.addClientInfo(data);

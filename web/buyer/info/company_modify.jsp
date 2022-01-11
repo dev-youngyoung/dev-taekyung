@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao code = new CodeDao("tcb_comcode");
@@ -13,7 +13,7 @@ DataObject mdao = new DataObject("tcb_member");
 //mdao.setDebug(out);
 DataSet member = mdao.find(" member_no = '"+_member_no+"' ");
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }else{
 	member.put("member_gubun_name", u.getItem(member.getString("member_gubun"),code_member_gubun));
@@ -26,22 +26,22 @@ if(member.getString("member_slno").length()==13){
 	member_slno2= member.getString("member_slno").substring(6);
 }
 
-f.addElement("vendcd1", vendcd1, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£'");
-f.addElement("vendcd2", vendcd2, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£'");
-f.addElement("vendcd3", vendcd3, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£'");
+f.addElement("vendcd1", vendcd1, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸'");
+f.addElement("vendcd2", vendcd2, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸'");
+f.addElement("vendcd3", vendcd3, "hname:'ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸'");
 if(member.getString("memger_gubun").equals("01")){
-	f.addElement("member_slno1", member_slno1, "hname:'¹ýÀÎ¹øÈ£', required:'Y', maxbyte:'6'");
-	f.addElement("member_slno2", member_slno2, "hname:'¹ýÀÎ¹øÈ£', required:'Y', maxbyte:'7'");
+	f.addElement("member_slno1", member_slno1, "hname:'ë²•ì¸ë²ˆí˜¸', required:'Y', maxbyte:'6'");
+	f.addElement("member_slno2", member_slno2, "hname:'ë²•ì¸ë²ˆí˜¸', required:'Y', maxbyte:'7'");
 }else{
-	f.addElement("member_slno1", member_slno1, "hname:'¹ýÀÎ¹øÈ£', maxbyte:'6'");
-	f.addElement("member_slno2", member_slno2, "hname:'¹ýÀÎ¹øÈ£', maxbyte:'7'");
+	f.addElement("member_slno1", member_slno1, "hname:'ë²•ì¸ë²ˆí˜¸', maxbyte:'6'");
+	f.addElement("member_slno2", member_slno2, "hname:'ë²•ì¸ë²ˆí˜¸', maxbyte:'7'");
 }
-f.addElement("member_name", member.getString("member_name"), "hnae:'¾÷Ã¼¸í', required:'Y'");
-f.addElement("boss_name", member.getString("boss_name"), "hname:'´ëÇ¥ÀÚ¸í', required:'Y'");
-f.addElement("condition", member.getString("condition"), "hname:'¾÷ÅÂ', required:'Y'");
-f.addElement("category", member.getString("category"), "hname:'Á¾¸ñ', required:'Y'");
-f.addElement("post_code", member.getString("post_code") , "hname:'¿ìÆí¹øÈ£', required:'Y'");
-f.addElement("address", member.getString("address"), "hname:'ÁÖ¼Ò', required:'Y'");
+f.addElement("member_name", member.getString("member_name"), "hnae:'ì—…ì²´ëª…', required:'Y'");
+f.addElement("boss_name", member.getString("boss_name"), "hname:'ëŒ€í‘œìžëª…', required:'Y'");
+f.addElement("condition", member.getString("condition"), "hname:'ì—…íƒœ', required:'Y'");
+f.addElement("category", member.getString("category"), "hname:'ì¢…ëª©', required:'Y'");
+f.addElement("post_code", member.getString("post_code") , "hname:'ìš°íŽ¸ë²ˆí˜¸', required:'Y'");
+f.addElement("address", member.getString("address"), "hname:'ì£¼ì†Œ', required:'Y'");
 
 if(u.isPost()&& f.validate()){
 	DataObject memberDao = new DataObject("tcb_member");
@@ -53,13 +53,13 @@ if(u.isPost()&& f.validate()){
 	memberDao.item("member_slno", f.get("member_slno1")+f.get("member_slno2"));
 	memberDao.item("condition", f.get("condition"));
 	memberDao.item("category", f.get("category"));
-	memberDao.item("reg_date", u.getTimeString());  // È¸¿ø°¡ÀÔÀº join_date, ÀÔ·Â/º¯°æÀº reg_date
+	memberDao.item("reg_date", u.getTimeString());  // íšŒì›ê°€ìž…ì€ join_date, ìž…ë ¥/ë³€ê²½ì€ reg_date
 	memberDao.item("reg_id", f.get("user_id"));
 	if(!memberDao.update("member_no = '"+_member_no+"' ")){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "company_modify.jsp");
+	u.jsAlertReplace("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "company_modify.jsp");
 	return;
 }
 

@@ -59,16 +59,16 @@ public class MakeZip {
 	}
 	
 	/**
-	 * ¾ĞÃàÆÄÀÏ ¸¸µé±â
-	 * @param sProKey	ÇÁ·ÎÆÛÆ¼ °æ·Î¸í
-	 * @param sSubInUrl	ÀüÃ¼ °æ·Î¸í(ÇÁ·ÎÆÛÆ¼ °æ·Î¸íÀ» Æ÷ÇÔÇÏÁö ¾ÊÀº ÆÄÀÏ Æ÷ÇÔ ÀüÃ¼ °æ·Î)
-	 * @param subOutDir	¾ĞÃàÇÒ ÆÄÀÏ ´ë»ó µğ·ºÅä¸®¸í
+	 * ì••ì¶•íŒŒì¼ ë§Œë“¤ê¸°
+	 * @param sProKey	í”„ë¡œí¼í‹° ê²½ë¡œëª…
+	 * @param sSubInUrl	ì „ì²´ ê²½ë¡œëª…(í”„ë¡œí¼í‹° ê²½ë¡œëª…ì„ í¬í•¨í•˜ì§€ ì•Šì€ íŒŒì¼ í¬í•¨ ì „ì²´ ê²½ë¡œ)
+	 * @param subOutDir	ì••ì¶•í•  íŒŒì¼ ëŒ€ìƒ ë””ë ‰í† ë¦¬ëª…
 	 * @return
 	 */
 	public boolean make(String sProKey, String sSubInUrl, String subOutDir)
 	{
-		String	sInFile		= 	"";	//	¾ĞÃàÇÒ ÆÄÀÏ¸í
-		String	sSubInDir	=	"";	//	¾ĞÃàÇÒ ÆÄÀÏ µğ·ºÅä¸®(ÆÄÀÏ ºñÆ÷ÇÔ)
+		String	sInFile		= 	"";	//	ì••ì¶•í•  íŒŒì¼ëª…
+		String	sSubInDir	=	"";	//	ì••ì¶•í•  íŒŒì¼ ë””ë ‰í† ë¦¬(íŒŒì¼ ë¹„í¬í•¨)
 		sSubInUrl	=	StrUtil.replace(sSubInUrl,"\\",File.separator);
 		sSubInUrl	=	StrUtil.replace(sSubInUrl,"/",File.separator);	
 		
@@ -84,10 +84,10 @@ public class MakeZip {
 	}
 	
 	/**
-	 * ¾ĞÃàÆÄÀÏ ¸¸µé±â
-	 * @param sProKey	ÇÁ·ÎÆÛÆ¼¿¡ Á¤ÀÇµÈ ÆÄÀÏ °æ·Î
-	 * @param subInDir	°¡Á®¿Ã °æ·Î
-	 * @param subOutDir	ÀúÀåÇÒ  °æ·Î
+	 * ì••ì¶•íŒŒì¼ ë§Œë“¤ê¸°
+	 * @param sProKey	í”„ë¡œí¼í‹°ì— ì •ì˜ëœ íŒŒì¼ ê²½ë¡œ
+	 * @param subInDir	ê°€ì ¸ì˜¬ ê²½ë¡œ
+	 * @param subOutDir	ì €ì¥í•   ê²½ë¡œ
 	 * @param isAll
 	 * @return
 	 */
@@ -97,9 +97,9 @@ public class MakeZip {
 		
 		try {
 			CompositeConfiguration conf = Config.getInstance();
-			String	sProURL			=	conf.getString(sProKey);	//	ÇÁ·ÎÆÛÆ¼¿¡ Á¤ÀÇµÈ ÆÄÀÏ °æ·Î	
-			String	sInFullURL		=	sProURL	+	subInDir;	//	°¡Á®¿Ã °æ·Î(ÆÄÀÏ Æ÷ÇÔ ÀüÃ¼)
-			String	sMakeFullURL	=	sProURL	+	subOutDir;	//	ÀúÀåÇÒ  °æ·Î(ÆÄÀÏ Æ÷ÇÔ ÀüÃ¼)
+			String	sProURL			=	conf.getString(sProKey);	//	í”„ë¡œí¼í‹°ì— ì •ì˜ëœ íŒŒì¼ ê²½ë¡œ	
+			String	sInFullURL		=	sProURL	+	subInDir;	//	ê°€ì ¸ì˜¬ ê²½ë¡œ(íŒŒì¼ í¬í•¨ ì „ì²´)
+			String	sMakeFullURL	=	sProURL	+	subOutDir;	//	ì €ì¥í•   ê²½ë¡œ(íŒŒì¼ í¬í•¨ ì „ì²´)
 				
 			bMake =	this.make(sInFullURL, sMakeFullURL, isAll);
 		} catch (ConfigurationException e) {
@@ -109,10 +109,10 @@ public class MakeZip {
 	}
 	
 	/**
-	 * ¾ĞÃàÆÄÀÏ ¸¸µé±â
-	 * @param dir				¾ĞÃà´ë»ó µğ·ºÅä¸®
-	 * @param targetFullPath	¾ĞÃàÆÄÀÏ ÀúÀå µğ·ºÅä¸®(¾ĞÃàÆÄÀÏ¸í Æ÷ÇÔ)
-	 * @param isAll				ÀüÃ¼¸¦ ¾ĞÃàÇÒ °ÍÀÎÁö ¿©ºÎ
+	 * ì••ì¶•íŒŒì¼ ë§Œë“¤ê¸°
+	 * @param dir				ì••ì¶•ëŒ€ìƒ ë””ë ‰í† ë¦¬
+	 * @param targetFullPath	ì••ì¶•íŒŒì¼ ì €ì¥ ë””ë ‰í† ë¦¬(ì••ì¶•íŒŒì¼ëª… í¬í•¨)
+	 * @param isAll				ì „ì²´ë¥¼ ì••ì¶•í•  ê²ƒì¸ì§€ ì—¬ë¶€
 	 * @return
 	 */
 	public boolean make(String dir, String targetFullPath, boolean isAll)
@@ -125,12 +125,12 @@ public class MakeZip {
 		
 	   File d = new File(dir);
 	   if (!d.isDirectory()){
-		   System.out.println("µğ·ºÅä¸®°¡ ¾Æ´Õ´Ï´Ù");
+		   System.out.println("ë””ë ‰í† ë¦¬ê°€ ì•„ë‹™ë‹ˆë‹¤");
 		   return false;
 	   }
 	   
 	   if(targetFullPath==null || targetFullPath.equals("")){
-		   System.out.println("»ı¼º ÆÄÀÏ ÀÌ¸§ÀÌ Àß ¸ø µÇ¾ú½À´Ï´Ù");
+		   System.out.println("ìƒì„± íŒŒì¼ ì´ë¦„ì´ ì˜ ëª» ë˜ì—ˆìŠµë‹ˆë‹¤");
 		   return false;		   
 	   }
 	   
@@ -165,7 +165,7 @@ public class MakeZip {
 
 		   for (int i = 0; i < entries.length; i++) {
 			   File f = new File(d, entries[i]);
-			   if (f.isDirectory())	   continue;//µğ·ºÅä¸® ¹«½Ã
+			   if (f.isDirectory())	   continue;//ë””ë ‰í† ë¦¬ ë¬´ì‹œ
 			   
 			   FileInputStream in = new FileInputStream(f); // Stream to read file
 			   ZipEntry entry = new ZipEntry(f.getName()); // Make a ZipEntry
@@ -186,9 +186,9 @@ public class MakeZip {
 	}
 	
 	/**
-	 * ÆÄÀÏ¾ĞÃàÇÏ±â
-	 * @param dir	´ë»óµğ·ºÅä¸®
-	 * @param targetFullPath	¾ĞÃàÇÒ ÆÄÀÏ °æ·Î(¾ĞÃàÆÄÀÏ¸í Æ÷ÇÔ)
+	 * íŒŒì¼ì••ì¶•í•˜ê¸°
+	 * @param dir	ëŒ€ìƒë””ë ‰í† ë¦¬
+	 * @param targetFullPath	ì••ì¶•í•  íŒŒì¼ ê²½ë¡œ(ì••ì¶•íŒŒì¼ëª… í¬í•¨)
 	 * @return
 	 */
 	public boolean make(String dir, String targetFullPath)
@@ -197,8 +197,8 @@ public class MakeZip {
 	}
 	
 	/**
-	 * µğ·ºÅä¸® Ã¼Å©¸¦ ÇÏ°í ¾øÀ¸¸é »ı¼ºÇÑ´Ù.
-	 * @param dir Ã¼Å©ÇÒ µğ·ºÅä¸®
+	 * ë””ë ‰í† ë¦¬ ì²´í¬ë¥¼ í•˜ê³  ì—†ìœ¼ë©´ ìƒì„±í•œë‹¤.
+	 * @param dir ì²´í¬í•  ë””ë ‰í† ë¦¬
 	 * @throws IOException
 	 */
 	public void checkDirectory( String dir ) throws IOException
@@ -223,9 +223,9 @@ public class MakeZip {
 	
 	
 	/**
-	 * ¾ĞÃàÆÄÀÏ ¸¸µé±â
-	 * @param dir				¾ĞÃà´ë»ó µğ·ºÅä¸®
-	 * @param targetFullPath	¾ĞÃàÆÄÀÏ ÀúÀå µğ·ºÅä¸®(¾ĞÃàÆÄÀÏ¸í Æ÷ÇÔ)
+	 * ì••ì¶•íŒŒì¼ ë§Œë“¤ê¸°
+	 * @param dir				ì••ì¶•ëŒ€ìƒ ë””ë ‰í† ë¦¬
+	 * @param targetFullPath	ì••ì¶•íŒŒì¼ ì €ì¥ ë””ë ‰í† ë¦¬(ì••ì¶•íŒŒì¼ëª… í¬í•¨)
 	 * @return
 	 */
 	public boolean make(DataSet files, String targetFullPath)
@@ -234,7 +234,7 @@ public class MakeZip {
 		targetFullPath	=	StrUtil.replace(targetFullPath,"/",File.separator);
 		
 	   if(targetFullPath==null || targetFullPath.equals("")){
-		   System.out.println("»ı¼º ÆÄÀÏ ÀÌ¸§ÀÌ Àß ¸ø µÇ¾ú½À´Ï´Ù");
+		   System.out.println("ìƒì„± íŒŒì¼ ì´ë¦„ì´ ì˜ ëª» ë˜ì—ˆìŠµë‹ˆë‹¤");
 		   return false;		   
 	   }
 	   
@@ -259,7 +259,7 @@ public class MakeZip {
 		   while(files.next()) {
 			   System.out.println(files.getString("file_path"));
 			   File f = new File(files.getString("file_path"));
-			   if (f.isDirectory())	   continue;//µğ·ºÅä¸® ¹«½Ã
+			   if (f.isDirectory())	   continue;//ë””ë ‰í† ë¦¬ ë¬´ì‹œ
 			   
 			   FileInputStream in = new FileInputStream(f); // Stream to read file
 			   ZipEntry entry = new ZipEntry(f.getName()); // Make a ZipEntry
@@ -279,7 +279,7 @@ public class MakeZip {
 	}	
 
 	/**
-	 * @param files ´Ù¿î ¹ŞÀ» ÆÄÀÏµé Á¤º¸
+	 * @param files ë‹¤ìš´ ë°›ì„ íŒŒì¼ë“¤ ì •ë³´
 	 * @param response
 	 * @return
 	 * @throws IOException 
@@ -290,7 +290,7 @@ public class MakeZip {
 	   int bytesRead;	   
 	   
 	   try{
-		   // ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö ¸ÕÀú Ã¼Å©
+		   // íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ë¨¼ì € ì²´í¬
 		   files.first();
 		   while(files.next()) {
 			   File f = new File(files.getString("file_path"));
@@ -300,13 +300,13 @@ public class MakeZip {
 			   }
 		   }
 
-		   // ÆÄÀÏ ´Ù¿î·Îµå ½ÃÀÛ
+		   // íŒŒì¼ ë‹¤ìš´ë¡œë“œ ì‹œì‘
 		   SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		   String zipfileName = sdf.format((new GregorianCalendar()).getTime()) + ".zip";
 		   
 		   response.reset();
 		   response.setContentType("application/zip");
-		   response.setHeader("Content-Disposition", "attachment;filename=\""+new String(zipfileName.getBytes("EUC-KR"), "ISO-8859-1")+";\"");
+		   response.setHeader("Content-Disposition", "attachment;filename=\""+new String(zipfileName.getBytes("UTF-8"), "ISO-8859-1")+";\"");
 
 		   ZipOutputStream zout = new ZipOutputStream(response.getOutputStream());
 		   zout.setLevel(Deflater.DEFAULT_COMPRESSION);
@@ -314,7 +314,7 @@ public class MakeZip {
 		   files.first();
 		   while(files.next()) {
 			   File f = new File(files.getString("file_path"));
-			   if (f.isDirectory())	   continue;//µğ·ºÅä¸® ¹«½Ã
+			   if (f.isDirectory())	   continue;//ë””ë ‰í† ë¦¬ ë¬´ì‹œ
 			   
 			   FileInputStream in = new FileInputStream(f); // Stream to read file
 			   ZipEntry entry = new ZipEntry(files.getString("doc_name")); // Make a ZipEntry
@@ -330,14 +330,14 @@ public class MakeZip {
 	   catch(IOException e)
 	   {
 			response.reset();
-			response.setContentType("text/html;charset=euc-kr");
+			response.setContentType("text/html;charset=UTF-8");
 			ServletOutputStream out;
 			try {
 				out = response.getOutputStream();
 				out.println("<SCRIPT>");
-				out.println("alert('°è¾à¼­ ÆÄÀÏ ´Ù¿î·Îµå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù. \\n°í°´Áö¿ø¼¾ÅÍ¿¡ ¹®ÀÇÇÏ¼¼¿ä.');");
+				out.println("alert('ê³„ì•½ì„œ íŒŒì¼ ë‹¤ìš´ë¡œë“œì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤. \\nê³ ê°ì§€ì›ì„¼í„°ì— ë¬¸ì˜í•˜ì„¸ìš”.');");
 				out.println("</SCRIPT>");
-				System.out.println("°è¾à¼­ ÆÄÀÏ ´Ù¿î ½ÇÆĞ : " + files.getString("file_path"));
+				System.out.println("ê³„ì•½ì„œ íŒŒì¼ ë‹¤ìš´ ì‹¤íŒ¨ : " + files.getString("file_path"));
 			} catch (IOException e1) {
 				System.out.println(e1.getMessage());
 			}

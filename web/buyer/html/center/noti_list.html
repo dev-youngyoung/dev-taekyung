@@ -1,48 +1,93 @@
-
 <form name="form1" method="get" >
-    <div class="search_div">
-        <table class="search_table">
-            <colgroup>
-                <col width="13%">
-                <col width="77%">
-                <col width="10%">
-            </colgroup>
-            <tr>
-                <th><p>Á¦¸ñ</p></th>
-                <td><input type="text" name="s_title" style="width:100%" ></td>
-                <td align="center"><button type="submit" class="search_btn">°Ë»ö</button></td>
-            </tr>
-        </table>
-    </div>
-</form>
-{{form_script}}
-
-<div class="div_table">
-    <table>
+<div class="search_div">
+    <table class="search_table">
         <colgroup>
-            <col width="10%">
+            <col width="15%">
+            <col width="65%">
             <col width="20%">
-            <col width="70%">
         </colgroup>
         <tr>
-            <th>¼ø¹ø</th>
-            <th>°øÁöÀÏÀÚ</th>
-            <th>Á¦¸ñ</th>
+            <th><p>ì œëª©</p></th>
+            <td><input type="text" name="s_title" value="" maxlength="100" class="label" style="width:98%"></td>
+            <td align="right">
+                <button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
+            </td>
         </tr>
-        <!-- IF START 'list' -->
-        <!-- LOOP START 'list' -->
-        <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="location.href='noti_view.jsp?id={{list.board_id}}'" style="cursor:pointer">
-            <td align="center">{{list.__ord}}</td>
-            <td align="center">{{list.open_date}}</td>
-            <td>{{list.title}}</a></td>
-        </tr>
-        <!-- LOOP END 'list' -->
-        <!-- IF END 'list' -->
-        <!-- IFNOT START 'list' -->
-        <tr>
-            <td colspan="3" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
-        </tr>
-        <!-- IFNOT END 'list' -->
     </table>
 </div>
-<div class="common-paging">{{pagerbar}}</div>
+</form>
+{{form_script}}
+<input type="hidden" id="auth_select" value="{{auth_select}}" />
+<input type="hidden" id="member_type" value="{{member_type}}" />
+<div class="div_table">
+
+<!-- IF START 'noti_insert' -->
+<!-- IFNOT START 'auth_select' -->
+    <div class="util-row">
+        <div class="push-right">
+            <button type="button" class="sbtn color ico-add" onclick="Go('noti_insert.jsp')"><span></span>ì‹ ê·œë“±ë¡</button>
+        </div>
+    </div>
+<!-- IFNOT END 'auth_select' -->    
+<!-- IF END 'noti_insert' -->
+
+    <table>
+    <colgroup>
+        <col width="10%">
+        <col width="15%">
+        <col width="40%">
+        <col width="15%">
+        <col width="20%">
+    </colgroup>
+    <tr>
+        <th>ë²ˆí˜¸</th>
+        <th>ê³µê°œì¼ì</th>
+        <th>ì œëª©</th>
+        <th>ë“±ë¡ì</th>
+        <th>ë“±ë¡ì¼ì‹œ</th>
+    </tr>
+    <!-- IF START 'list' -->
+    <!-- LOOP START 'list' -->
+    <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="notiDetail({{list.board_id}},'{{list.open_detail}}')">
+    <!-- <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer" onClick="location.href='noti_modify.jsp?id={{list.board_id}}&{{list_query}}'"> -->
+        <td align="center">{{list.__ord}}</td>
+        <td align="center">{{list.open_date}}</td>
+        <td>{{list.title}}</td>
+        <td align="center">{{list.user_name}}</td>
+        <td align="center">{{list.reg_date}}</td>
+    </tr>
+    <!-- LOOP END 'list' -->
+    <!-- IF END 'list' -->
+    <!-- IFNOT START 'list' -->
+    <tr>
+        <td colspan="5" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
+    </tr>
+    <!-- IFNOT END 'list' -->
+    </table>
+    <div class="common-paging">{{pagerbar}}</div>
+</div>
+
+<script>
+function notiDetail(board_id, open_detail) {
+	var auth_select = $('#auth_select').val();
+	var member_type = $('#member_type').val();
+	
+	if(auth_select == 'false'){
+		if(open_detail == 'V'){
+			location.href = "noti_view.jsp?id=" + board_id;
+		}else if(open_detail == 'M'){
+			location.href = "noti_modify.jsp?id=" + board_id + "&{{list_query}}";
+		}
+		/* if(auth_select == 'true'){
+			location.href = "noti_view.jsp?id=" + board_id;
+		}else {
+			location.href = "noti_modify.jsp?id=" + board_id + "&" + list_query;
+		} */
+	}else{
+		location.href = "noti_view.jsp?id=" + board_id;
+	}
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>

@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 DataObject dao = new DataObject("tcb_board");
 
 String id = u.request("id");
 if(id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
 DataSet ds = dao.find(" category='faq' and board_id="+id);
 if(!ds.next()){
-	u.jsError("ÇØ´ç °³½Ã¹°ÀÌ ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ ê°œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 

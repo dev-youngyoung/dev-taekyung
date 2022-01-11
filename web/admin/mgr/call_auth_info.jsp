@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String auth_cd = u.request("auth_cd");
 String default_yn= u.request("default_yn");
@@ -7,7 +7,7 @@ if(auth_cd.equals("")&&!default_yn.equals("Y")){
 	return;
 }
 
-String[] code_btn_auth = {"10=>´Ü¼øÁ¶È¸", "20=>±â´É»ç¿ë"};
+String[] code_btn_auth = {"10=>ë‹¨ìˆœì¡°íšŒ", "20=>ê¸°ëŠ¥ì‚¬ìš©"};
 
 DataObject menuDao = new DataObject("tcc_menu");
 DataSet menu = null;
@@ -16,7 +16,7 @@ DataSet treeMenu = new DataSet();
 DataObject authDao = new DataObject("tcc_auth");
 DataSet authInfo = authDao.find(" auth_cd = '"+auth_cd+"' ");
 if(!authInfo.next()){
-	u.jsAlert("±ÇÇÑÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsAlert("ê¶Œí•œì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 String auth_nm = authInfo.getString("auth_nm");
@@ -90,7 +90,7 @@ while(menu.next()){
 			depth = menu.getString("depth");
 			treeMenu.put("s_menu_nm", menu.getString("menu_nm"));
 			treeMenu.put("menu_cd", menu.getString("menu_cd"));
-			treeMenu.put("btn_auth",default_yn.equals("Y")?"±â´É»ç¿ë":u.getItem(menu.getString("btn_auth"), code_btn_auth));
+			treeMenu.put("btn_auth",default_yn.equals("Y")?"ê¸°ëŠ¥ì‚¬ìš©":u.getItem(menu.getString("btn_auth"), code_btn_auth));
 		}
 	}else{
 		if(menu.getString("depth").equals("3")){
@@ -101,7 +101,7 @@ while(menu.next()){
 			treeMenu.put("m_row_span", "");
 			treeMenu.put("s_menu_nm", menu.getString("menu_nm"));
 			treeMenu.put("menu_cd", menu.getString("menu_cd"));
-			treeMenu.put("btn_auth",default_yn.equals("Y")?"±â´É»ç¿ë":u.getItem(menu.getString("btn_auth"), code_btn_auth));
+			treeMenu.put("btn_auth",default_yn.equals("Y")?"ê¸°ëŠ¥ì‚¬ìš©":u.getItem(menu.getString("btn_auth"), code_btn_auth));
 			
 		}
 	}

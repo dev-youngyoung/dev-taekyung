@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -42,11 +42,11 @@ db.setCommand(clientDao.getDeleteQuery(" client_no = '"+member_no+"'"),null);
 db.setCommand(memberDao.getDeleteQuery(where),null);
 
 if(!db.executeArray()){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦ Ã³¸® ÇÏ¿´½À´Ï´Ù.","member_list.jsp?"+u.getQueryString("member_no"));
+u.jsAlertReplace("ì‚­ì œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","member_list.jsp?"+u.getQueryString("member_no"));
 
 return;
 

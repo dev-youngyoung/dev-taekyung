@@ -1,26 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.Jsoup"%>
 <%@ page import="org.jsoup.nodes.Document"%>
 <%@ page import="org.jsoup.nodes.Element"%>
 <%@ page import="org.jsoup.select.Elements"%>
 <%
 
-//¼­ºñ½º ÀÌ¿ë ±â°£ Ã¼Å©
-/* DataObject useinfoDao = new DataObject("tcb_useinfo");
-DataSet useinfo = useinfoDao.find("member_no='"+_member_no+"' and usestartday <='"+u.getTimeString("yyyyMMdd")+"' and useendday>='"+u.getTimeString("yyyyMMdd")+"' ");
-if( !useinfo.next() ){
-	u.jsError("¼­ºñ½º ÀÌ¿ë±â°£ÀÌ Á¾·á µÇ¾ú½À´Ï´Ù.\\n\\n³ªÀÌ½º´ÙÅ¥ °í°´¼¾ÅÍ[02-788-9097]¿¡ ¹®ÀÇÇÏ¼¼¿ä.");
-	return;
-} */
-
 String asse_no = u.request("asse_no", "");
 
-String[] kind_cd = {"N=>½Å±ÔÆò°¡", "S=>¼ö½ÃÆò°¡", "R=>Á¤±âÆò°¡"};
-String[] div_cd = {"Q=>Q.CÆÀ", "E=>ENCº»ºÎ", "S=>±¸¸ÅÆÀ", "F=>¾ÈÀü"};
+String[] kind_cd = {"N=>ì‹ ê·œí‰ê°€", "S=>ìˆ˜ì‹œí‰ê°€", "R=>ì •ê¸°í‰ê°€"};
+String[] div_cd = {"Q=>Q.CíŒ€", "E=>ENCë³¸ë¶€", "S=>êµ¬ë§¤íŒ€", "F=>ì•ˆì „"};
 
 DataSet asse_year = new DataSet();
 asse_year.addRow();
-asse_year.put("", "----¼±ÅÃ----");
+asse_year.put("", "----ì„ íƒ----");
 String lastYear = u.getTimeString("yyyy",u.addDate("Y",-1));
 String thisYear = u.getTimeString("yyyy");
 String nextYear = u.getTimeString("yyyy",u.addDate("Y",+1));
@@ -40,7 +32,7 @@ if(!"".equals(asse_no)){
 	assessment = assessmentDao.find("asse_no = '"+asse_no+"'");
 
 	if(!assessment.next()){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 		return;
 	}else{
 		assessment.put("s_yn_check", "Y".equals(assessment.getString("s_yn"))?"checked":"");
@@ -49,13 +41,13 @@ if(!"".equals(asse_no)){
 		assessment.put("f_yn_check", "Y".equals(assessment.getString("f_yn"))?"checked":"");
 		modify = true;
 
-		f.addElement("asse_year", assessment.getString("asse_year"), "hname:'Æò°¡³âµµ', required:'Y'");
-		f.addElement("kind_cd", assessment.getString("kind_cd"), "hname:'Æò°¡Á¾·ù', required:'Y'");
+		f.addElement("asse_year", assessment.getString("asse_year"), "hname:'í‰ê°€ë…„ë„', required:'Y'");
+		f.addElement("kind_cd", assessment.getString("kind_cd"), "hname:'í‰ê°€ì¢…ë¥˜', required:'Y'");
 	}
 
 	String goUrl = "";
 	if("1".equals(auth.getString("_FIELD_SEQ"))){
-		System.out.println("±¸¸ÅÆÀ");
+		System.out.println("êµ¬ë§¤íŒ€");
 		System.out.println(auth.getString("_FIELD_SEQ"));
 		goUrl = "assessment_checking_slist.jsp";
 
@@ -69,7 +61,7 @@ if(!"".equals(asse_no)){
 		System.out.println(auth.getString("_FIELD_SEQ"));
 		goUrl = "assessment_checking_elist.jsp";
 	}else{
-		System.out.println("¾ÈÀü");
+		System.out.println("ì•ˆì „");
 		System.out.println(auth.getString("_FIELD_SEQ"));
 		goUrl = "assessment_checking_flist.jsp";
 	}
@@ -79,9 +71,9 @@ if(!"".equals(asse_no)){
 
 if(u.isPost()&& f.validate()){
 
-	String status = "10";  // ÀÛ¼ºÁß
+	String status = "10";  // ìž‘ì„±ì¤‘
 	if("1".equals(f.get("save_div"))){
-		status = "20";  // Æò°¡Áß
+		status = "20";  // í‰ê°€ì¤‘
 	}
 
 	DataSet year = new DataSet();
@@ -92,7 +84,7 @@ if(u.isPost()&& f.validate()){
 
 	DB db = new DB();
 
-	//Æò°¡´ë»ó Å×ÀÌºí Å° »ý¼º
+	//í‰ê°€ëŒ€ìƒ í…Œì´ë¸” í‚¤ ìƒì„±
 	DataObject asseDao = new DataObject("tcb_assemaster");
 	String new_asse_no = asseDao.getOne(
 			" SELECT 'N'|| (TO_NUMBER(TO_CHAR(SYSDATE, 'yyyymm')) + 233300) || LPAD( (NVL(MAX(TO_NUMBER(SUBSTR(asse_no, 8))), 0) + 1), 4, '0' ) asse_no "
@@ -155,7 +147,7 @@ if(u.isPost()&& f.validate()){
 			template_subhtml[1] = "";
 		}
 
-		// ¾ÈÀü
+		// ì•ˆì „
 		DataSet template2 = templateDao.find(" template_cd = '5'");
 		if(template2.next()){
 			template_html[2] = setHtmlValue(template2.getString("template_html"), dsHtmlData);
@@ -197,10 +189,10 @@ if(u.isPost()&& f.validate()){
 
 	}
 
-	if("Y".equals(f.get("s_yn"))){	//±¸¸ÅÆÀ
+	if("Y".equals(f.get("s_yn"))){	//êµ¬ë§¤íŒ€
 		divCnt = 1;
-		if("N".equals(f.get("kind_cd"))){	//Æò°¡¼­Á¾·ù N:½Å±Ô, R:Á¤±â
-			divCd = new String[]{"S"};	//±¸¸Å
+		if("N".equals(f.get("kind_cd"))){	//í‰ê°€ì„œì¢…ë¥˜ N:ì‹ ê·œ, R:ì •ê¸°
+			divCd = new String[]{"S"};	//êµ¬ë§¤
 			DataSet template= templateDao.find(" template_cd = '1'");
 			if(template.next()){
 				template_html = new String[]{setHtmlValue(template.getString("template_html"), dsHtmlData)};
@@ -208,7 +200,7 @@ if(u.isPost()&& f.validate()){
 
 			}
 		}else{
-			divCd = new String[]{"S"};	//±¸¸Å
+			divCd = new String[]{"S"};	//êµ¬ë§¤
 			DataSet template= templateDao.find(" template_cd = '2'");
 			if(template.next()){
 
@@ -234,11 +226,11 @@ if(u.isPost()&& f.validate()){
 
 
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.","assessment_list.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.","assessment_list.jsp?"+u.getQueryString());
 	return;
 
 }
@@ -255,48 +247,48 @@ p.display(out);
 %>
 
 <%!
-// input box µîÀ» Á¦°Å
+// input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String cont_html_rm = "";
 
-	// DB¿ë
+	// DBìš©
 	Document cont_doc = Jsoup.parse(html);
 
 
-	// PDF¿ë
-	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box °ª ¸ðµÎ Á¦°Å
-	for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à");  }  // Ã¼Å©¹Ú½º
-	for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("¢Ã"); else elem.parent().text("¡à"); }  // ¶óµð¿À
+	// PDFìš©
+	for( Element elem : cont_doc.select("input[type=text]") ){ elem.parent().text(elem.val()); }  // input box ê°’ ëª¨ë‘ ì œê±°
+	for( Element elem : cont_doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡");  }  // ì²´í¬ë°•ìŠ¤
+	for( Element elem : cont_doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().text("â–£"); else elem.parent().text("â–¡"); }  // ë¼ë””ì˜¤
 	for( Element elem : cont_doc.select("select") ){ elem.parent().text(elem.select("option[selected]").val()); }
 
-	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ¹öÀü¿¡ º¸¿©¾ß ¾ÈµÇ´Â°Í
+	//cont_doc.select("#pdf_comment").attr("style", "display:none"); // pdf ë²„ì „ì— ë³´ì—¬ì•¼ ì•ˆë˜ëŠ”ê²ƒ
 
 	cont_html_rm = cont_doc.toString();
 
 	return cont_html_rm;
 }
 
-// ¾ç½Ä¿¡ °ª Ã¤¿ö³Ö±â
+// ì–‘ì‹ì— ê°’ ì±„ì›Œë„£ê¸°
 public String setHtmlValue(String html, DataSet dsCustData)
 {
 	String asse_html = "";
 
-	// DB¿ë
+	// DBìš©
 	Document asse_doc = Jsoup.parse(html);
 
-	//cont_doc.select("input[name=mns_code]").attr("value", dsCustData.getString("r_mns_code"));	// Á¢Á¡ÄÚµå
+	//cont_doc.select("input[name=mns_code]").attr("value", dsCustData.getString("r_mns_code"));	// ì ‘ì ì½”ë“œ
 
-	// spanÀ¸·Î µÈ ºÎºÐ °ª Ã¤¿ì±â
+	// spanìœ¼ë¡œ ëœ ë¶€ë¶„ ê°’ ì±„ìš°ê¸°
 	for( Element elem : asse_doc.select("span#year0") ){ elem.text(dsCustData.getString("year0")); }
 	for( Element elem : asse_doc.select("span#year1") ){ elem.text(dsCustData.getString("year1")); }
 	for( Element elem : asse_doc.select("span#year2") ){ elem.text(dsCustData.getString("year2")); }
 	for( Element elem : asse_doc.select("span#year00") ){ elem.text(dsCustData.getString("year0")); }
 	for( Element elem : asse_doc.select("span#year11") ){ elem.text(dsCustData.getString("year1")); }
 	for( Element elem : asse_doc.select("span#year22") ){ elem.text(dsCustData.getString("year2")); }
-	for( Element elem : asse_doc.select("span.cust_name_area_2") ){ elem.text(dsCustData.getString("member_name")); }	//¾÷Ã¼¸í
-	for( Element elem : asse_doc.select("span.project_name") ){ elem.text(dsCustData.getString("project_name")); }	//ÇÁ·ÎÁ§Æ®¸í
-	asse_doc.select("input[name=project_name]").attr("value", dsCustData.getString("project_name"));	// ÇÁ·ÎÁ§Æ®¸í
+	for( Element elem : asse_doc.select("span.cust_name_area_2") ){ elem.text(dsCustData.getString("member_name")); }	//ì—…ì²´ëª…
+	for( Element elem : asse_doc.select("span.project_name") ){ elem.text(dsCustData.getString("project_name")); }	//í”„ë¡œì íŠ¸ëª…
+	asse_doc.select("input[name=project_name]").attr("value", dsCustData.getString("project_name"));	// í”„ë¡œì íŠ¸ëª…
 
 	System.out.println("------project_name----" + dsCustData.getString("project_name"));
 	//System.out.println("------asse_html----" + asse_doc.toString());

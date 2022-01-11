@@ -1,31 +1,25 @@
 <div class="page-header">
-
-    <!-- IF START 'login_block' -->
     <div class="page-header-top">
         <div class="page-header-top-inner">
-            <!-- IF START 'person_block' -->
-            <p><span>{{_auth._USER_NAME}}</span>¥‘ ≤≤º≠ ∑Œ±◊¿Œ «œºÀΩ¿¥œ¥Ÿ.</p>
-            <!-- IF END 'person_block' -->
-            <!-- IFNOT START 'person_block' -->
-            <p><span>{{_auth._MEMBER_NAME}}</span>/<span>{{_auth._USER_NAME}}</span>¥‘≤≤º≠ ∑Œ±◊¿Œ «œºÃΩ¿¥œ¥Ÿ.</p>
-            <!-- IFNOT END 'person_block' -->
+            <!-- IF START 'login_block' -->
             <ul>
-                <li><a href="/web/buyer/">HOME</a></li>
+            	<li><p><span>{{_auth._MEMBER_NAME}}</span>/<span>{{_auth._USER_NAME}}</span>ÎãòÍªòÏÑú Î°úÍ∑∏Ïù∏ ÌïòÏÖ®ÏäµÎãàÎã§.</p></li>
+                <!-- <li><a href="/web/buyer/">HOME</a></li> -->
                 <li><a href="../main/logout.jsp">LOGOUT</a></li>
-                <li><a href="javascript:bookMark();">¡Ò∞‹√£±‚µÓ∑œ</a></li>
+                <!-- <li><a href="javascript:bookMark();">Ï¶êÍ≤®Ï∞æÍ∏∞Îì±Î°ù</a></li> -->
             </ul>
+            <!-- IF END 'login_block' -->
+            <!-- IFNOT START 'login_block' -->
+            <ul>
+            	<li><a href="/web/buyer/main/index.jsp">LOGIN</a></li>
+                <!-- <li><a href="/web/buyer/">HOME</a></li> -->
+            </ul>
+            <!-- IFNOT END 'login_block' -->
         </div>
     </div>
     <div class="page-header-bottom">
         <div class="page-header-bottom-inner">
-            <h1><a href="/web/buyer/">
-                <!-- IFNOT START '_LOGO' -->
-                <img src="/web/buyer/html/images/common/page_header_logo.png">
-                <!-- IFNOT END '_LOGO' -->
-                <!-- IF START '_LOGO' -->
-                <img src="/web/buyer/html/images/logo/{{_LOGO}}" onload="if(this.width>170){this.style.marginTop='9px';}">
-                <!-- IF END '_LOGO' -->
-            </h1>
+            <a href="/web/buyer/"><h1>Ï†ÑÏûêÍ≥ÑÏïΩÏãúÏä§ÌÖú</h1></a>
             <ul class="page-gnb">
             	<!-- LOOP START 'menu' -->
                 <li>
@@ -51,111 +45,6 @@
             </ul>
         </div>
     </div>
-    <!-- IF END 'login_block' -->
-    
-    <!-- IFNOT START 'login_block' -->
-    <div class="page-header-bottom2">
-       <div class="page-header-bottom-inner">
-            <div class="inner-top">
-                <div class="inner-left">
-                    <h1><a href="/web/buyer/"><img src="/web/buyer/html/images/common/page_header_logo2.png"></a></h1>
-                </div>
-                <div class="inner-right">
-                    <ul class="page-quick-menu">
-                        <li>
-                            <a href="/web/buyer/">HOME</a>
-                        </li>
-                        <li>
-                            <a href="javascript:bookMark();">¡Ò∞‹√£±‚µÓ∑œ</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <ul class="page-gnb2">
-                <li>
-                    <a>∞ﬂ¿˚∞¸∏Æ</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                            </div>
-                        </div>
-                     </div>
-                </li>
-                <li>
-                    <a>¿‘¬˚∞¸∏Æ</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                            </div>
-                        </div>
-                     </div>
-                </li>
-                <li>
-                    <a>∞Ëæ‡∞¸∏Æ</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                            </div>
-                        </div>
-                     </div>
-                </li>
-                <li>
-                    <a>≈Î∞Ë∞¸∏Æ</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                            </div>
-                        </div>
-                     </div>
-                <li>
-                    <a>«˘∑¬ªÁ∞¸∏Æ</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                            </div>
-                        </div>
-                     </div>
-                </li>
-                <li>
-                    <a>∞Ì∞¥ºæ≈Õ</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                                <div class="page-gnb-depth2-row">
-                                    <h2>∞Ì∞¥ºæ≈Õ</h2>
-                                    <ul>
-                                        <li><a href="../center/noti_list.jsp">∞¯¡ˆªÁ«◊</a></li>
-                                        <li><a href="../center/faq_list.jsp">FAQ</a></li>
-                                        <li><a href="../center/si_qna.jsp?gubun=01">πÆ¿« π◊ ªÛ¥„</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <!--
-                <li>
-                    <a style="color:#ff6c00">º≠∫ÒΩ∫º“∞≥</a>
-                    <div class="page-gnb-depth2">
-                        <div class="page-gnb-depth2-inner">
-                            <div class="page-gnb-depth2-container">
-                                <div class="page-gnb-depth2-row">
-                                    <h2>º≠∫ÒΩ∫º“∞≥</h2>
-                                    <ul>
-                                        <li><a href="../guide/service_intro.jsp">º≠∫ÒΩ∫æ»≥ª</a></li>
-                                         <li><a href="../center/faq_list.jsp">∞Ì∞¥ªÁ</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                -->
-            </ul>
-       </div>
-    </div>
-    <!-- IFNOT END 'login_block' -->
-
 </div>
 
 

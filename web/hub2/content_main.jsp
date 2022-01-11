@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <div class="main-title-block">
 	<div class="center-inner">
 		<h1>
-			<span>±â¾÷ÀÇ ´Ù¾çÇÑ ¾÷¹«¸¦ Áö¿øÇÏ´Â </span>
-			ÀüÀÚÀÔÂû ÀüÀÚ°è¾à  <br class="mobile">ÀüÀÚ±Ù·Î°è¾à ¼­ºñ½º
+			<span>ê¸°ì—…ì˜ ë‹¤ì–‘í•œ ì—…ë¬´ë¥¼ ì§€ì›í•˜ëŠ” </span>
+			ì „ìžìž…ì°° ì „ìžê³„ì•½  <br class="mobile">ì „ìžê·¼ë¡œê³„ì•½ ì„œë¹„ìŠ¤
 		</h1>
-		<p>À¥/¸ð¹ÙÀÏ·Î ¾ðÁ¦ ¾îµð¼­³ª <br class="mobile">¼Õ½±°í Æí¸®ÇÑ ¾÷¹«¸¦ °æÇèÇÏ¼¼¿ä</p>
+		<p>ì›¹/ëª¨ë°”ì¼ë¡œ ì–¸ì œ ì–´ë””ì„œë‚˜ <br class="mobile">ì†ì‰½ê³  íŽ¸ë¦¬í•œ ì—…ë¬´ë¥¼ ê²½í—˜í•˜ì„¸ìš”</p>
 		<div class="main-btn-wrap">
-			<a href="/web/hub2/qna.html" class="main-btn pc" onclick="ajaxLink(this.href,'GET','');return false;"><i class="fas fa-edit"></i> µµÀÔ ¹®ÀÇÇÏ±â</a>
-			<a href="/web/hub2/qna.html" class="main-btn mobile" onclick="ajaxLink(this.href,'GET','');return false;"><i class="fas fa-edit"></i> µµÀÔ ¹®ÀÇÇÏ±â<br>02-788-9097</a>
+			<a href="/web/hub2/qna.html" class="main-btn pc" onclick="ajaxLink(this.href,'GET','');return false;"><i class="fas fa-edit"></i> ë„ìž… ë¬¸ì˜í•˜ê¸°</a>
+			<a href="/web/hub2/qna.html" class="main-btn mobile" onclick="ajaxLink(this.href,'GET','');return false;"><i class="fas fa-edit"></i> ë„ìž… ë¬¸ì˜í•˜ê¸°<br>02-788-9097</a>
 		</div>
 	</div>
 </div>
@@ -19,15 +19,15 @@
 			<li>
 				<div class="link-inner">
 					<div class="icon">
-						<img src="/web/hub2/images/main/main_link_img1.gif" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/main/main_link_img1.gif" alt="ì•„ì´ì½˜">
 					</div>
-					<p class="tit">ÀÏ¹Ý ±â¾÷¿ë</p>
+					<p class="tit">ì¼ë°˜ ê¸°ì—…ìš©</p>
 					<div class="link">
 						<a href="javascript:mobileChkGo('/web/buyer/');">
-							<span>»çÀÌÆ® ÀÌµ¿ <i class="fas fa-angle-right"></i></span>
+							<span>ì‚¬ì´íŠ¸ ì´ë™ <i class="fas fa-angle-right"></i></span>
 						</a>
 						<a href="./index.jsp?gubun=buyer">
-							<span>¼­ºñ½º ¼Ò°³ <i class="fas fa-angle-right"></i></span>
+							<span>ì„œë¹„ìŠ¤ ì†Œê°œ <i class="fas fa-angle-right"></i></span>
 						</a>
 					</div>
 				</div>
@@ -35,15 +35,15 @@
 			<li>
 				<div class="link-inner">
 					<div class="icon">
-						<img src="/web/hub2/images/main/main_link_img2.gif" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/main/main_link_img2.gif" alt="ì•„ì´ì½˜">
 					</div>
-					<p class="tit">°Ç¼³ ±â¾÷¿ë</p>
+					<p class="tit">ê±´ì„¤ ê¸°ì—…ìš©</p>
 					<div class="link">
 						<a href="javascript:mobileChkGo('/web/supplier/');">
-							<span>»çÀÌÆ® ÀÌµ¿ <i class="fas fa-angle-right"></i></span>
+							<span>ì‚¬ì´íŠ¸ ì´ë™ <i class="fas fa-angle-right"></i></span>
 						</a>
 						<a href="./index.jsp?gubun=supplier">
-							<span>¼­ºñ½º ¼Ò°³ <i class="fas fa-angle-right"></i></span>
+							<span>ì„œë¹„ìŠ¤ ì†Œê°œ <i class="fas fa-angle-right"></i></span>
 						</a>
 					</div>
 				</div>
@@ -51,15 +51,15 @@
 			<li>
 				<div class="link-inner">
 					<div class="icon">
-						<img src="/web/hub2/images/main/main_link_img3.gif" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/main/main_link_img3.gif" alt="ì•„ì´ì½˜">
 					</div>
-					<p class="tit double">ÇÁ·£Â÷ÀÌÁî <br class="mobile">±â¾÷¿ë</p>
+					<p class="tit double">í”„ëžœì°¨ì´ì¦ˆ <br class="mobile">ê¸°ì—…ìš©</p>
 					<div class="link">
 						<a href="javascript:mobileChkGo('/web/fc/');">
-							<span>»çÀÌÆ® ÀÌµ¿ <i class="fas fa-angle-right"></i></span>
+							<span>ì‚¬ì´íŠ¸ ì´ë™ <i class="fas fa-angle-right"></i></span>
 						</a>
 						<a href="./index.jsp?gubun=fc">
-							<span>¼­ºñ½º ¼Ò°³ <i class="fas fa-angle-right"></i></span>
+							<span>ì„œë¹„ìŠ¤ ì†Œê°œ <i class="fas fa-angle-right"></i></span>
 						</a>
 					</div>
 				</div>
@@ -67,15 +67,15 @@
 			<li>
 				<div class="link-inner">
 					<div class="icon">
-						<img src="/web/hub2/images/main/main_link_img4.gif" alt="¾ÆÀÌÄÜ">
+						<img src="/web/hub2/images/main/main_link_img4.gif" alt="ì•„ì´ì½˜">
 					</div>
-					<p class="tit">¹°·ù ±â¾÷¿ë</p>
+					<p class="tit">ë¬¼ë¥˜ ê¸°ì—…ìš©</p>
 					<div class="link">
 						<a href="javascript:mobileChkGo('/web/logis/');">
-							<span>»çÀÌÆ® ÀÌµ¿ <i class="fas fa-angle-right"></i></span>
+							<span>ì‚¬ì´íŠ¸ ì´ë™ <i class="fas fa-angle-right"></i></span>
 						</a>
 						<a href="./index.jsp?gubun=logis">
-							<span>¼­ºñ½º ¼Ò°³ <i class="fas fa-angle-right"></i></span>
+							<span>ì„œë¹„ìŠ¤ ì†Œê°œ <i class="fas fa-angle-right"></i></span>
 						</a>
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 <div class="main-service-block">
 	<div class="service-tit">
 		<div class="center-inner">
-			<p>³ªÀÌ½º´ÙÅ¥¸¦ ¼±ÅÃÇØ¾ß ÇÏ´Â ÀÌÀ¯</p>
+			<p>ë‚˜ì´ìŠ¤ë‹¤íë¥¼ ì„ íƒí•´ì•¼ í•˜ëŠ” ì´ìœ </p>
 		</div>
 	</div>
 	<div class="service-section bg1"
@@ -99,9 +99,9 @@
 				<div class="txt-area">
 					<p class="tit">
 						<span>01</span>
-						10³â ÀÌ»óÀÇ ¼­ºñ½º ¾÷·ÂÀ» <br class="mobile">¹ÙÅÁÀ¸·Î ÇÑ <br class="pc">ÃÖ´ëÀÇ ·¹ÆÛ·±½º È®º¸
+						10ë…„ ì´ìƒì˜ ì„œë¹„ìŠ¤ ì—…ë ¥ì„ <br class="mobile">ë°”íƒ•ìœ¼ë¡œ í•œ <br class="pc">ìµœëŒ€ì˜ ë ˆí¼ëŸ°ìŠ¤ í™•ë³´
 					</p>
-					<p class="txt">2010³âºÎÅÍ ¼­ºñ½º¸¦ Á¦°ø, 20¸¸ ÀÌ»óÀÇ <br class="mobile">±¸¸Å/°ø±Þ»ç¸¦ <br class="pc">È®º¸ÇÏ°í ÀÖ½À´Ï´Ù.</p>
+					<p class="txt">2010ë…„ë¶€í„° ì„œë¹„ìŠ¤ë¥¼ ì œê³µ, 20ë§Œ ì´ìƒì˜ <br class="mobile">êµ¬ë§¤/ê³µê¸‰ì‚¬ë¥¼ <br class="pc">í™•ë³´í•˜ê³  ìžˆìŠµë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -116,9 +116,9 @@
 				<div class="txt-area">
 					<p class="tit" style="word-break: keep-all">
 						<span>02</span>
-						ÀÔÂûºÎÅÍ °è¾à, Çù·Â»ç°ü¸®±îÁö <br class="pc mobile">±¸¸Å¾÷¹« Àü¹Ý¿¡ °ÉÄ£ ¿ø½ºÅ¾ ¼­ºñ½º Á¦°ø
+						ìž…ì°°ë¶€í„° ê³„ì•½, í˜‘ë ¥ì‚¬ê´€ë¦¬ê¹Œì§€ <br class="pc mobile">êµ¬ë§¤ì—…ë¬´ ì „ë°˜ì— ê±¸ì¹œ ì›ìŠ¤íƒ‘ ì„œë¹„ìŠ¤ ì œê³µ
 					</p>
-					<p class="txt">¼º»çµÈ °Å·¡¿¡ ´ëÇÑ ´Ü¼øÇÑ ÀüÀÚ°è¾à Ã¼°á»Ó¸¸ ¾Æ´Ï¶ó °ßÀû/ÀÔÂû, <br class="pc">Çù·Â»çÆò°¡, »çÈÄ°ü¸®(ºÎÁ¤´çÁ¦Àç, ½Å¿ëºÒ·®µîÀç, ÈÞÆó¾÷ µî)µî <br class="pc">±¸¸Å¾÷¹« Àü¹Ý¿¡ °üÇÑ ¼­ºñ½º¸¦ Á¦°øÇÕ´Ï´Ù.</p>
+					<p class="txt">ì„±ì‚¬ëœ ê±°ëž˜ì— ëŒ€í•œ ë‹¨ìˆœí•œ ì „ìžê³„ì•½ ì²´ê²°ë¿ë§Œ ì•„ë‹ˆë¼ ê²¬ì /ìž…ì°°, <br class="pc">í˜‘ë ¥ì‚¬í‰ê°€, ì‚¬í›„ê´€ë¦¬(ë¶€ì •ë‹¹ì œìž¬, ì‹ ìš©ë¶ˆëŸ‰ë“±ìž¬, íœ´íì—… ë“±)ë“± <br class="pc">êµ¬ë§¤ì—…ë¬´ ì „ë°˜ì— ê´€í•œ ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•©ë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -133,9 +133,9 @@
 				<div class="txt-area">
 					<p class="tit">
 						<span>03</span>
-						½Å±Ô ¿ì¼ö °ø±Þ¾÷Ã¼ ¹ß±¼ Áö¿ø
+						ì‹ ê·œ ìš°ìˆ˜ ê³µê¸‰ì—…ì²´ ë°œêµ´ ì§€ì›
 					</p>
-					<p class="txt">³ªÀÌ½º´ÙÅ¥ È¸¿ø»çÀÎ 20¸¸ ÀÌ»óÀÇ °ø±Þ»çµéÀ» ÀáÀç°ø±Þ»ç·Î <br class="pc">È°¿ëÇÏ¿© È¿À²ÀûÀÎ ¿ø°¡Àý°¨À» ±â´ëÇÒ ¼ö ÀÖ½À´Ï´Ù.</p>
+					<p class="txt">ë‚˜ì´ìŠ¤ë‹¤í íšŒì›ì‚¬ì¸ 20ë§Œ ì´ìƒì˜ ê³µê¸‰ì‚¬ë“¤ì„ ìž ìž¬ê³µê¸‰ì‚¬ë¡œ <br class="pc">í™œìš©í•˜ì—¬ íš¨ìœ¨ì ì¸ ì›ê°€ì ˆê°ì„ ê¸°ëŒ€í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -148,9 +148,9 @@
 				<div class="txt-area">
 					<p class="tit">
 						<span>04</span>
-						±â¾÷ ³»ºÎÀÇ ¸ðµç Á¾ÀÌ¼­·ù¸¦ <br class="mobile">ÀüÀÚ¹®¼­È­ Áö¿ø
+						ê¸°ì—… ë‚´ë¶€ì˜ ëª¨ë“  ì¢…ì´ì„œë¥˜ë¥¼ <br class="mobile">ì „ìžë¬¸ì„œí™” ì§€ì›
 					</p>
-					<p class="txt">Ç¥ÁØ, ºñÇ¥ÁØÈ­µÈ ¾ç¹æÇâ, ´Ü¹æÇâÀÇ ¸ðµç Á¾ÀÌ¼­·ù(°è¾à¼­,¾àÁ¤¼­,Çù¾à¼­,µ¿ÀÇ¼­, <br class="pc">½ÅÃ»¼­,°¢¼­)ÀÇ ÀüÀÚ¹®¼­È­°¡ °¡´ÉÇÕ´Ï´Ù. PC¿Í ÈÞ´ëÆù»ó¿¡¼­ ´Ù¾çÇÑ ÀÎÁõ¼ö´ÜÀ» <br class="pc">ÀÌ¿ëÇÏ¿© ¼Õ½±°í °£ÆíÇÏ°Ô °è¾àÀ» Ã¼°áÇÒ ¼ö ÀÖ½À´Ï´Ù. </p>
+					<p class="txt">í‘œì¤€, ë¹„í‘œì¤€í™”ëœ ì–‘ë°©í–¥, ë‹¨ë°©í–¥ì˜ ëª¨ë“  ì¢…ì´ì„œë¥˜(ê³„ì•½ì„œ,ì•½ì •ì„œ,í˜‘ì•½ì„œ,ë™ì˜ì„œ, <br class="pc">ì‹ ì²­ì„œ,ê°ì„œ)ì˜ ì „ìžë¬¸ì„œí™”ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤. PCì™€ íœ´ëŒ€í°ìƒì—ì„œ ë‹¤ì–‘í•œ ì¸ì¦ìˆ˜ë‹¨ì„ <br class="pc">ì´ìš©í•˜ì—¬ ì†ì‰½ê³  ê°„íŽ¸í•˜ê²Œ ê³„ì•½ì„ ì²´ê²°í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. </p>
 				</div>
 			</div>
 		</div>
@@ -165,9 +165,9 @@
 				<div class="txt-area">
 					<p class="tit">
 						<span>05</span>
-						°í°´»çº° ¸ÂÃã½Ä °³¹ß ¹× ³»ºÎ Àü»ê½Ã½ºÅÛ°ú <br class="pc">¿¬°è °¡´ÉÇÑ °í°´ Ä£È­Çü ¼­ºñ½º
+						ê³ ê°ì‚¬ë³„ ë§žì¶¤ì‹ ê°œë°œ ë° ë‚´ë¶€ ì „ì‚°ì‹œìŠ¤í…œê³¼ <br class="pc">ì—°ê³„ ê°€ëŠ¥í•œ ê³ ê° ì¹œí™”í˜• ì„œë¹„ìŠ¤
 					</p>
-					<p class="txt">°í°´»çº° ´Ù¾çÇÑ ¿ä±¸»çÇ×À» ¸ÂÃãÇü °³¹ß·Î ´Ù¾çÇÏ°í Æí¸®ÇÑ <br class="pc">Ãß°¡ ±â´É »ç¿ëÀÌ °¡´ÉÇÕ´Ï´Ù.´Ù¾çÇÑ ³»ºÎ ¾÷¹«½Ã½ºÅÛ°ú ¿¬°è¸¦ ÅëÇØ <br class="pc">¾÷¹« Ã³¸®ÀÇ ½Å¼Ó¼º°ú È¿À²¼º Áõ´ë¸¦ Áö¿øÇÕ´Ï´Ù.</p>
+					<p class="txt">ê³ ê°ì‚¬ë³„ ë‹¤ì–‘í•œ ìš”êµ¬ì‚¬í•­ì„ ë§žì¶¤í˜• ê°œë°œë¡œ ë‹¤ì–‘í•˜ê³  íŽ¸ë¦¬í•œ <br class="pc">ì¶”ê°€ ê¸°ëŠ¥ ì‚¬ìš©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.ë‹¤ì–‘í•œ ë‚´ë¶€ ì—…ë¬´ì‹œìŠ¤í…œê³¼ ì—°ê³„ë¥¼ í†µí•´ <br class="pc">ì—…ë¬´ ì²˜ë¦¬ì˜ ì‹ ì†ì„±ê³¼ íš¨ìœ¨ì„± ì¦ëŒ€ë¥¼ ì§€ì›í•©ë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -182,9 +182,9 @@
 				<div class="txt-area">
 					<p class="tit">
 						<span>06</span>
-						°ø±Þ¼±¿¡ ´ëÇÑ ¸®½ºÅ© »çÀü ¿¹Ãø Áö¿ø
+						ê³µê¸‰ì„ ì— ëŒ€í•œ ë¦¬ìŠ¤í¬ ì‚¬ì „ ì˜ˆì¸¡ ì§€ì›
 					</p>
-					<p class="txt">°ø±Þ¼±¿¡ ´ëÇÑ ºÎ½ÇÀ§ÇèÀ» »çÀü¿¡ ¿¹ÃøÇÏ¿© <br class="pc">¼±Á¦ÀûÀ¸·Î ´ëÀÀ ¹× °ü¸®°¡ °¡´ÉÇÕ´Ï´Ù.</p>
+					<p class="txt">ê³µê¸‰ì„ ì— ëŒ€í•œ ë¶€ì‹¤ìœ„í—˜ì„ ì‚¬ì „ì— ì˜ˆì¸¡í•˜ì—¬ <br class="pc">ì„ ì œì ìœ¼ë¡œ ëŒ€ì‘ ë° ê´€ë¦¬ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -199,9 +199,9 @@
 				<div class="txt-area">
 					<p class="tit">
 						<span>07</span>
-						°­·ÂÇÑ º¸¾È, ±× ÀÌ»óÀÇ ¹ÏÀ½
+						ê°•ë ¥í•œ ë³´ì•ˆ, ê·¸ ì´ìƒì˜ ë¯¿ìŒ
 					</p>
-					<p class="txt">±¹³» ÃÖ´ë ½Å¿ëÁ¤º¸ ±ÝÀ¶ÀÎÇÁ¶ó ±×·ì NICEÀÇ ÀÚÃ¼ IDC¼¾ÅÍ ÀÎÇÁ¶ó¸¦ È°¿ëÇÏ¿© <br class="pc">¼­ºñ½º¸¦ ¿î¿ë ¹× °ü¸®¸¦ ÇÏ°í ÀÖ½À´Ï´Ù.</p>
+					<p class="txt">êµ­ë‚´ ìµœëŒ€ ì‹ ìš©ì •ë³´ ê¸ˆìœµì¸í”„ë¼ ê·¸ë£¹ NICEì˜ ìžì²´ IDCì„¼í„° ì¸í”„ë¼ë¥¼ í™œìš©í•˜ì—¬ <br class="pc">ì„œë¹„ìŠ¤ë¥¼ ìš´ìš© ë° ê´€ë¦¬ë¥¼ í•˜ê³  ìžˆìŠµë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -210,28 +210,28 @@
 <div class="main-customer-block">
 	<div class="inner-container">
 		<p class="customer-tit">
-			³ªÀÌ½º´ÙÅ¥ÀÇ 10³â ³ëÇÏ¿ì<br>
-			<span>ÀÌ¹Ì 30,000¿© °³ ÀÌ»óÀÇ ±â¾÷ÀÌ <br class="mobile">°æÇèÇÏ°í ÀÖ½À´Ï´Ù.</span>
+			ë‚˜ì´ìŠ¤ë‹¤íì˜ 10ë…„ ë…¸í•˜ìš°<br>
+			<span>ì´ë¯¸ 30,000ì—¬ ê°œ ì´ìƒì˜ ê¸°ì—…ì´ <br class="mobile">ê²½í—˜í•˜ê³  ìžˆìŠµë‹ˆë‹¤.</span>
 		</p>
 		<ul class="customer-list">
 			<li><img src="/web/hub2/images/main/customer/customer_01.gif" alt="Hanwah"></li>
 			<li><img src="/web/hub2/images/main/customer/customer_02.gif" alt="DOOSAN"></li>
 			<li><img src="/web/hub2/images/main/customer/customer_03.gif" alt="kakao"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_04.gif" alt="cj´ëÇÑÅë¿î"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_04.gif" alt="cjëŒ€í•œí†µìš´"></li>
 			<li><img src="/web/hub2/images/main/customer/customer_05.gif" alt="home plus"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_06.gif" alt="¼öÇùÀºÇà"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_07.gif" alt="NHÅõÀÚÁõ±Ç"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_08.gif" alt="³óÇùÀ¯Åë"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_09.gif" alt="¾Æ¿öÈ¨"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_10.gif" alt="ÇÑ±¹Á¦Áö"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_06.gif" alt="ìˆ˜í˜‘ì€í–‰"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_07.gif" alt="NHíˆ¬ìžì¦ê¶Œ"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_08.gif" alt="ë†í˜‘ìœ í†µ"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_09.gif" alt="ì•„ì›Œí™ˆ"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_10.gif" alt="í•œêµ­ì œì§€"></li>
 			<li><img src="/web/hub2/images/main/customer/customer_11.gif" alt="HANJIN"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_12.gif" alt="¾Ö°æ"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_13.gif" alt="°æ±âÅ×Å©³ëÆÄÅ©"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_14.gif" alt="ÇÑÈ­ÄÉ¹ÌÄ®"></li>
-			<li><img src="/web/hub2/images/main/customer/customer_15.gif" alt="¼­¿ï¿ìÀ¯Çùµ¿Á¶ÇÕ"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_12.gif" alt="ì• ê²½"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_13.gif" alt="ê²½ê¸°í…Œí¬ë…¸íŒŒí¬"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_14.gif" alt="í•œí™”ì¼€ë¯¸ì¹¼"></li>
+			<li><img src="/web/hub2/images/main/customer/customer_15.gif" alt="ì„œìš¸ìš°ìœ í˜‘ë™ì¡°í•©"></li>
 		</ul>
 		<div class="customer-btn">
-			<a href="/web/hub2/customer_list.html" onclick="ajaxLink(this.href,'GET','');return false;"><i class="fas fa-plus"></i>´õ º¸±â</a>
+			<a href="/web/hub2/customer_list.html" onclick="ajaxLink(this.href,'GET','');return false;"><i class="fas fa-plus"></i>ë” ë³´ê¸°</a>
 		</div>
 	</div>
 </div>

@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String asse_no = u.request("asse_no");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject asseDao = new DataObject("tcb_assemaster");
 DataSet asse = asseDao.find("main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"' and status = '10'");
 if(!asse.next()){
-	u.jsError("Æò°¡°èÈ¹ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ê³„íš ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 	
@@ -19,10 +19,10 @@ db.setCommand("delete from tcb_assedetail where asse_no = '"+asse_no+"'", null);
 db.setCommand("delete from tcb_assemaster where main_member_no = '"+_member_no+"' and asse_no = '"+asse_no+"'", null);
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦ ÇÏ¿´½À´Ï´Ù.","asse_plan_list.jsp?"+u.getQueryString("asse_no"));
+u.jsAlertReplace("ì‚­ì œ í•˜ì˜€ìŠµë‹ˆë‹¤.","asse_plan_list.jsp?"+u.getQueryString("asse_no"));
 
 %>

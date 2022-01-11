@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 String warr_seq = u.request("warr_seq");
 if(cont_no.equals("")||cont_chasu.equals("")||warr_seq.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇØ ÁÖ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 DataObject warrDao = new DataObject("tcb_warr");
@@ -24,11 +24,11 @@ warrDao.item("reg_date", u.getTimeString());
 warrDao.item("reg_id", "");
 	
 if(!warrDao.update(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and warr_seq = '"+warr_seq+"' ")){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 out.print("<script>");
-out.print("alert(\"»èÁ¦ÇÏ¿´½À´Ï´Ù.\");");
+out.print("alert(\"ì‚­ì œí•˜ì˜€ìŠµë‹ˆë‹¤.\");");
 out.print("opener.location.reload();");
 out.print("self.close();");
 out.print("</script>");

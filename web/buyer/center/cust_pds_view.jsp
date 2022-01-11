@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
 <%
 	f.uploadDir=Startup.conf.getString("file.path.bcont_pds")+_member_no;
 	f.maxPostSize= 10*1024;
@@ -6,7 +6,7 @@
 	String seq = u.request("seq");
 	String member_no = u.request("member_no");
 	if(seq.equals("")|| member_no.equals("")){
-		u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
@@ -19,7 +19,7 @@
 			""
 	);
 	if(!pds.next()){
-		//u.jsError("Á¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+		//u.jsError("ì •ë³´ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return;
 	}else{
 		pds.put("reg_date", u.getTimeString("yyyy-MM-dd", pds.getString("reg_date")));

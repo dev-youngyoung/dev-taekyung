@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String noti_seq = u.request("noti_seq");
 String client_no = u.request("client_no");
 if(noti_seq.equals("")||client_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject notiDao = new DataObject("tcb_recruit_noti");
 DataSet noti = notiDao.find("member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"' ");
 if(!noti.next()){
-	u.jsError("°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -18,11 +18,11 @@ if(!noti.next()){
 DataObject custDao = new DataObject("tcb_recruit_cust");
 DataSet cust = custDao.find(" member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"'  and client_no = '"+client_no+"' ");
 if(!cust.next()){
-	u.jsError("½ÅÃ»Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì‹ ì²­ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-f.addElement("mod_req_reason", null, "hname:'»çÀ¯', required:'Y'");
+f.addElement("mod_req_reason", null, "hname:'ì‚¬ìœ ', required:'Y'");
 
 if(u.isPost()&&f.validate()){
 	custDao = new DataObject("tcb_recruit_cust");
@@ -31,15 +31,15 @@ if(u.isPost()&&f.validate()){
 	custDao.item("mod_req_reason", f.get("mod_req_reason"));
 	custDao.item("status", "30");
 	if(!custDao.update(" member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"'  and client_no = '"+client_no+"' ")){
-		u.jsError("¼öÁ¤¿äÃ» Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ìˆ˜ì •ìš”ì²­ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	SmsDao smsDao= new SmsDao();
-	smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), "NHÅõÀÚÁõ±Ç¿¡¼­ µî·Ï¾÷Ã¼½ÅÃ»¼­ Á¤º¸¸¦ ¼öÁ¤ ¿äÃ» ÇÏ¿´½À´Ï´Ù.-³ªÀÌ½º´ÙÅ¥");
+	smsDao.sendSMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), "NHíˆ¬ìžì¦ê¶Œì—ì„œ ë“±ë¡ì—…ì²´ì‹ ì²­ì„œ ì •ë³´ë¥¼ ìˆ˜ì • ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.-ë‚˜ì´ìŠ¤ë‹¤í");
 	
 	out.println("<script>");
-	out.println("alert('¼öÁ¤¿äÃ» Ã³¸® ÇÏ¿´½À´Ï´Ù.');");
+	out.println("alert('ìˆ˜ì •ìš”ì²­ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.');");
 	out.println("opener.opener.location.reload();");
 	out.println("opener.location.reload();");
 	out.println("self.close();");
@@ -51,7 +51,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("cust.pop_nhqv_mod_req");
-p.setVar("popup_title", "¼öÁ¤¿äÃ»");
+p.setVar("popup_title", "ìˆ˜ì •ìš”ì²­");
 p.setVar("noti", noti);
 p.setVar("cust", cust);
 p.setVar("query", u.getQueryString());

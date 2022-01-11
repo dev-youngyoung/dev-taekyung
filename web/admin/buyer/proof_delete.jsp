@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String proof_no = u.aseDec(u.request("proof_no"));
 if(proof_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -10,7 +10,7 @@ String where = " proof_no = '"+proof_no+"' ";
 ProofDao proofDao = new ProofDao("tcb_proof");
 DataSet proof = proofDao.find(where);
 if(!proof.next()){
-	u.jsError("½ÇÀûÁõ¸í°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì‹¤ì ì¦ëª…ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -21,11 +21,11 @@ db.setCommand(new DataObject("tcb_proof_cust").getDeleteQuery(where), null);
 db.setCommand(new DataObject("tcb_proof").getDeleteQuery(where), null);
 
 if(!db.executeArray()){
-	u.jsError("»èÁ¦ Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 
-u.jsAlertReplace("»èÁ¦ Ã³¸® ÇÏ¿´½À´Ï´Ù.","proof_list.jsp?"+u.getQueryString("proof_no"));
+u.jsAlertReplace("ì‚­ì œ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","proof_list.jsp?"+u.getQueryString("proof_no"));
 return;
 %>

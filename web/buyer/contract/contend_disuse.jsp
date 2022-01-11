@@ -1,10 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -14,12 +13,12 @@ DataObject contDao = new DataObject("tcb_contmaster");
 contDao.setDebug(out);
 DataSet cont  = contDao.find(where+" and member_no= '"+_member_no+"' ");
 if(!cont.next()){
-	//u.jsError(" °è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	//u.jsError(" ê³„ì•½ì •ë³´ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!cont.getString("status").equals("50")){
-	u.jsError("°è¾à¿Ï·á »óÅÂ¿¡¼­¸¸ Æó±â Ã³¸® °¡´É ÇÕ´Ï´Ù.");
+	u.jsError("ê³„ì•½ì™„ë£Œ ìƒíƒœì—ì„œë§Œ íê¸° ì²˜ë¦¬ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 	return;
 }
 
@@ -29,13 +28,13 @@ contDao.item("status","99");
 contDao.item("mod_req_date",u.getTimeString());
 db.setCommand(contDao.getUpdateQuery(where), contDao.record);
 
-/* °è¾à·Î±× START*/
+/* ê³„ì•½ë¡œê·¸ START*/
 ContBLogDao logDao = new ContBLogDao();
-logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ÀüÀÚ¹®¼­ Æó±â",  "", "92","10");
-/* °è¾à·Î±× END*/
+logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ì „ìžë¬¸ì„œ íê¸°",  "", "92","10");
+/* ê³„ì•½ë¡œê·¸ END*/
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 String callback = "contend_sendview.jsp";
@@ -43,6 +42,10 @@ if(!cont.getString("sign_types").equals("")){
 	callback = "contend_msign_sendview.jsp";
 }
 
-u.jsAlertReplace("°è¾à¼­ Æó±âÃ³¸® ÇÏ¿´½À´Ï´Ù.", "./"+callback+"?"+u.getQueryString());
+if(cont_no.indexOf("P")>-1){
+	callback = "contend_offcont_sendview.jsp";
+}
+
+u.jsAlertReplace("ê³„ì•½ì„œ íê¸°ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./"+callback+"?"+u.getQueryString());
 
 %>

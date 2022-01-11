@@ -11,10 +11,10 @@
 			<col width="10%">
 		</colgroup>
 	    <tr>
-	        <th><p>╟Х╬Ю╪╜а╬╥Ы</p></th>
+	        <th><p>ЙЁ└Л∙╫Л└°Л╒┘К╔≤</p></th>
 	        <td colspan="4">
 	            <select name="s_template_cd">
-	                <option value="">-------╪╠ец-------</option>
+	                <option value="">-------Л└═М┐²-------</option>
 	                <!-- LOOP START 'template' -->
 	                <option value="{{template.template_cd}}">{{template.template_name}}</option>
 	                <!-- LOOP END 'template' -->
@@ -22,12 +22,12 @@
 	        </td>
 	    </tr>
 	  <tr>
-	    <th><p>╟е╥║цЁ╦М</p></th>
+	    <th><p>Й╠╟К·≤Л╡≤К╙┘</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100"></td>
-		<th><p>╩Себ</p></th>
+		<th><p>Л┐│М┐°</p></th>
 	    <td>
 	    	<select name="s_status">
-	    		<option value="">-╪╠ец-</option>
+	    		<option value="">-Л└═М┐²-</option>
 	    		<!-- LOOP START 'code_status' -->
 	    		<option value="{{code_status.id}}">{{code_status.value}}</option>
 	    		<!-- LOOP END 'code_status' -->
@@ -36,9 +36,9 @@
 	    <td align="right"></td>
 	  </tr>
 	  <tr>
-	    <th><p>╧╝╪╜╦М</p></th>
+	    <th><p>К╛╦Л└°К╙┘</p></th>
 	    <td><input type="text" name="s_cont_name" maxlength="100"></td>
-	    <th><p>╫ец╩юоюз</p></th>
+	    <th><p>Л▀═Л╡╜Л²╪Л·░</p></th>
 	    <td>
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -46,16 +46,16 @@
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
 	    <td align="right">
-	      <button type="submit" class="search_btn">╟к╩Ж</button>
+	      <button type="submit" class="search_btn">Й╡─Л┐┴</button>
 	    </td>
 	  </tr>
 	</table>
 </div>
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>©╒╪©</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>Л≈▒Л┘─</button>
     <!-- IF START 'isSKB' -->
-    <button type="button" class="sbtn color ico-download" onClick="fSave();"><span></span>╢ы©Н╥н╣Е</button>
+    <button type="button" class="sbtn color ico-download" onClick="fSave();"><span></span>К▀╓Л ╢К║°К⌠°</button>
     <!-- IF END 'isSKB' -->
 </div>
 
@@ -72,12 +72,12 @@
 			<col width="12%"/>
 		</colgroup>
 		<tr>
-			<th>╪Ь╧Ь</th>
-		    <th>╧╝╪╜╦М</th>
-		    <th>╫ец╩юз</th>
-		    <th>╫ец╩юоюз</th>
-		    <th>╩Себ</th>
-		    <th>╧╝╪╜╧Ьхё</th>
+			<th>Л┬°К╡┬</th>
+		    <th>К╛╦Л└°К╙┘</th>
+		    <th>Л▀═Л╡╜Л·░</th>
+		    <th>Л▀═Л╡╜Л²╪Л·░</th>
+		    <th>Л┐│М┐°</th>
+		    <th>К╛╦Л└°К╡┬М≤╦</th>
 		</tr>
 	 	<!-- IF START 'list' -->
 	 		<!-- LOOP START 'list' -->
@@ -94,7 +94,7 @@
 	 	<!-- IF END 'list' -->
 	 	<!-- IFNOT START 'list' -->
 	 	<tr>
-			<td colspan="6" align="center">╫ец╩╪╜╟║ ╬Ь╫ю╢о╢ы.</td>
+			<td colspan="6" align="center">Л▀═Л╡╜Л└°Й╟─ Л≈├Л┼╣К▀┬К▀╓.</td>
 	 	</tr>
 	 	<!-- IFNOT END 'list' -->
 	</table>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import  = " net.sf.json.JSONObject"%>
 <%
 //String connect_module = "D:\\nicedata\\https_client\\earlypay.bat";
@@ -14,18 +14,18 @@ if(vendcd.equals("")) {
 /*
 	{
 		"loan_id": "403",                       # Loan ID
-		"business_number": "3716012095",        # »ç¾÷ÀÚ ¹øÈ£
-		"company_name": "À¯ÇÑÈ¸»ç ´ë°Ç±Õ",      # È¸»ç¸í
-		"representative_name": "¸ÁÀı¼Ö¶÷",      # ´ëÇ¥ÀÚ ÀÌ¸§
-		"representative_phone": "0439526988",   # ´ëÇ¥ÀÚ ÈŞ´ëÀüÈ­
-		"manager": "¼±¿ì¸í",                    # ´ã´çÀÚ ÀÌ¸§
-		"manager_phone": "0527368311",          # ´ã´çÀÚ ÈŞ´ëÀüÈ­
-		"email": "saseon@hanmail.net",          # ÀÌ¸ŞÀÏ ÁÖ¼Ò
-		"wmp_id": "heo55",                      # À§¸ŞÇÁ ¾ÆÀÌµğ
-		"max_amount": "34210000",               # ¼±Á¤»ê ÇÑµµ
-		"service_fee": "0.00048",               # ¼­ºñ½º ÀÌ¿ë·á
-		"bank_name": "±â¾÷",                    # Á¤»ê °èÁÂ ÀºÇà¸í
-		"bank_account": "01928374650192",       # Á¤»ê °èÁÂ ¹øÈ£
+		"business_number": "3716012095",        # ì‚¬ì—…ì ë²ˆí˜¸
+		"company_name": "ìœ í•œíšŒì‚¬ ëŒ€ê±´ê· ",      # íšŒì‚¬ëª…
+		"representative_name": "ë§ì ˆì†”ëŒ",      # ëŒ€í‘œì ì´ë¦„
+		"representative_phone": "0439526988",   # ëŒ€í‘œì íœ´ëŒ€ì „í™”
+		"manager": "ì„ ìš°ëª…",                    # ë‹´ë‹¹ì ì´ë¦„
+		"manager_phone": "0527368311",          # ë‹´ë‹¹ì íœ´ëŒ€ì „í™”
+		"email": "saseon@hanmail.net",          # ì´ë©”ì¼ ì£¼ì†Œ
+		"wmp_id": "heo55",                      # ìœ„ë©”í”„ ì•„ì´ë””
+		"max_amount": "34210000",               # ì„ ì •ì‚° í•œë„
+		"service_fee": "0.00048",               # ì„œë¹„ìŠ¤ ì´ìš©ë£Œ
+		"bank_name": "ê¸°ì—…",                    # ì •ì‚° ê³„ì¢Œ ì€í–‰ëª…
+		"bank_account": "01928374650192",       # ì •ì‚° ê³„ì¢Œ ë²ˆí˜¸
 	}
 */
 
@@ -40,10 +40,10 @@ try {
 
 	String[] cmd =  null;
 
-	if(_member_no.equals("20180101074")) {// À¯ÇÑÈ¸»ç ÇÇ¾ÆÀÌ¼Ö·ç¼ÇÁî
+	if(_member_no.equals("20180101074")) {// ìœ í•œíšŒì‚¬ í”¼ì•„ì´ì†”ë£¨ì…˜ì¦ˆ
 		connServer = "https://earlypay-admin.peoplefund.co.kr";
 		cmd = new String[] {connect_module,"G", connServer, vendcd};
-	} else if(u.inArray(_member_no, new String[]{"20180101078", "20181200231","20181201402","20191002081"})) {  // Æİ´Ù (20180101078), 20181200231(¾ó¸®ÆäÀÌ), 20181201402(À¯ÇÑÈ¸»ç À§Ä¿¸Ó½º),20191002081(ÀÌ¼¼Æ² À¯ÇÑÈ¸»ç)
+	} else if(u.inArray(_member_no, new String[]{"20180101078", "20181200231","20181201402","20191002081"})) {  // í€ë‹¤ (20180101078), 20181200231(ì–¼ë¦¬í˜ì´), 20181201402(ìœ í•œíšŒì‚¬ ìœ„ì»¤ë¨¸ìŠ¤),20191002081(ì´ì„¸í‹€ ìœ í•œíšŒì‚¬)
 		if (template_cd.equals("2019294")) {
 			connServer = "https://wecommerce.co.kr/Nice/getAccno";
 			//cmd = new String[]{connect_module, "G2", connServer, vendcd};
@@ -58,7 +58,7 @@ try {
 			cmd = new String[] {connect_module,"G", connServer, vendcd};
 		}
 
-	}  else if(_member_no.equals("20180200294")) {  // ÁÖ½ÄÈ¸»ç ÇÇÇÃÆİµå´ëºÎ
+	}  else if(_member_no.equals("20180200294")) {  // ì£¼ì‹íšŒì‚¬ í”¼í”Œí€ë“œëŒ€ë¶€
 		connServer = "https://www.peoplefund.co.kr";
 		//connServer = "https://doutside.peoplefund.co.kr/";
 		if(template_cd.equals("2019057")){
@@ -70,11 +70,11 @@ try {
 		}
 	}
 
-	//  °³¹ß½Ã ¸·À½
+	//  ê°œë°œì‹œ ë§‰ìŒ
 	Process process = new ProcessBuilder(cmd).start();
 	BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
 
-	// Ç¥ÁØÃâ·Â »óÅÂ¸¦ Ãâ·Â
+	// í‘œì¤€ì¶œë ¥ ìƒíƒœë¥¼ ì¶œë ¥
 	while( (buffer = stdOut.readLine()) != null ) {
 		ret += buffer;
 	}
@@ -82,7 +82,7 @@ try {
 	/*
 	ret = "{\n" +
 			"   \"tranche_id\": \"23\",\n" +
-			"   \"creditor_corporate_number\": \"2018-±İ°¨¿ø-1359(P2P¿¬°è´ëºÎ¾÷)\",\n" +
+			"   \"creditor_corporate_number\": \"2018-ê¸ˆê°ì›-1359(P2Pì—°ê³„ëŒ€ë¶€ì—…)\",\n" +
 			"   \"debtor_business_number\": \"28586-00982\",\n" +
 			"   \"total_loan_amount\": 1000000000,\n" +
 			"   \"a_loan_amount\": 900000000,\n" +
@@ -124,26 +124,26 @@ try {
 			"   \"total_underlying_loan_pledge_amount\": 1200000000\n" +
 			"}";
 */
-	retJSON = JSONObject.fromObject(ret.substring(ret.indexOf("{")));  // json °ª¸¸ °¡Á®¿À±â
+	retJSON = JSONObject.fromObject(ret.substring(ret.indexOf("{")));  // json ê°’ë§Œ ê°€ì ¸ì˜¤ê¸°
 
 	System.out.println("retJSON - "+retJSON);
 
 	if(!u.inArray(template_cd, new String[]{"2019294","2019319"})) {
-		if (ret.indexOf("message") > 0) {// ¿¡·¯ ¸Ş½ÃÁö
+		if (ret.indexOf("message") > 0) {// ì—ëŸ¬ ë©”ì‹œì§€
 			String message = retJSON.getString("message");
-			System.out.println("Åë½Å ¿¡·¯ :" + message);
-			u.jsAlert("¿¬µ¿½Ã Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø¾î ±âº»Á¤º¸¸¸ ¼³Á¤ÇÕ´Ï´Ù.\\n\\n[Error message] " + message);
+			System.out.println("í†µì‹  ì—ëŸ¬ :" + message);
+			u.jsAlert("ì—°ë™ì‹œ ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ì–´ ê¸°ë³¸ì •ë³´ë§Œ ì„¤ì •í•©ë‹ˆë‹¤.\\n\\n[Error message] " + message);
 			return;
 		}
 	}
 
 } catch(Exception ex) {
-	System.out.println("Åë½Å ¿¡·¯ :" + ex.getMessage());
-	u.jsAlert("¿¬µ¿½Ã Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø¾î ±âº»Á¤º¸¸¸ ¼³Á¤ÇÕ´Ï´Ù.\\n\\n[Error message] " + ex.getMessage().replaceAll("'","").replaceAll("\"",""));
+	System.out.println("í†µì‹  ì—ëŸ¬ :" + ex.getMessage());
+	u.jsAlert("ì—°ë™ì‹œ ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ì–´ ê¸°ë³¸ì •ë³´ë§Œ ì„¤ì •í•©ë‹ˆë‹¤.\\n\\n[Error message] " + ex.getMessage().replaceAll("'","").replaceAll("\"",""));
 	return;
 }
 
-System.out.println("json ÆÄ½Ì ½ÃÀÛ");
+System.out.println("json íŒŒì‹± ì‹œì‘");
 
 if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","20181200231","20181201402","20191002081"}) ) {
 	if(u.inArray(template_cd, new String[]{"2019294","2019319"})){
@@ -157,7 +157,7 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 			out.println("</script>");
 		}else{
 			out.println("<script>");
-			out.println("alert('¿¬µ¿½ÇÆĞ ¸Ş¼¼Áö : "+message+"');");
+			out.println("alert('ì—°ë™ì‹¤íŒ¨ ë©”ì„¸ì§€ : "+message+"');");
 			out.println("</script>");
 		}
 	}else {
@@ -195,7 +195,7 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 	//out.println("setInfo('1');");
 	out.println("document.forms['form1']['creditor_corporate_number'].value='"+retJSON.getString("creditor_corporate_number")+"';");
 	
-	//´ëºÎ°è¾à¼­ÀÎ °æ¿ì Æ®·»Ä¡ ´ëÃâ
+	//ëŒ€ë¶€ê³„ì•½ì„œì¸ ê²½ìš° íŠ¸ë Œì¹˜ ëŒ€ì¶œ
 	if(retJSON.containsKey("a_loan_amount")){
 		if(!retJSON.getString("a_loan_amount").equals("") && !retJSON.getString("a_loan_amount").equals("null")) {
 			out.println("document.forms['form1']['a_loan_amount'].value='" + Util.numberFormat(retJSON.getString("a_loan_amount")) + "';");
@@ -225,7 +225,7 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 	out.println("if(typeof setLoanAmt === 'function'){ setLoanAmt();}");
 	
 	
-	//µğµõµ¹ÀÎ °æ¿ì
+	//ë””ë”¤ëŒì¸ ê²½ìš°
 	if(retJSON.containsKey("loan_amount")){
 		if(!retJSON.getString("loan_amount").equals("") && !retJSON.getString("loan_amount").equals("null")) {
 			out.println("document.forms['form1']['loan_amount'].value='" + Util.numberFormat(retJSON.getString("loan_amount")) + "';");
@@ -261,24 +261,24 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 		//System.out.println(subJson);
 		//out.println("alert('"+subJson+"');");
 		out.println("document.getElementsByName('s1_seq')[r_index].value='"+subJson.getString("seq")+"';");
-		out.println("document.getElementsByName('s1_code')[r_index].value='"+subJson.getString("code")+"';");  //Ã¤±Ç¹øÈ£
+		out.println("document.getElementsByName('s1_code')[r_index].value='"+subJson.getString("code")+"';");  //ì±„ê¶Œë²ˆí˜¸
 		
 		if(subJson.containsKey("investment_amount")){
-			out.println("document.getElementsByName('s1_investment_amount')[r_index].value='"+Util.numberFormat(subJson.getString("investment_amount"))+"';");  //ÅõÀÚ¿ø±İ
+			out.println("document.getElementsByName('s1_investment_amount')[r_index].value='"+Util.numberFormat(subJson.getString("investment_amount"))+"';");  //íˆ¬ìì›ê¸ˆ
 		}
 		
 		if(subJson.containsKey("pledge_amount")){
 			out.println("if(document.getElementsByName('s1_pledge_amount')[r_index]){ ");
-			out.println("document.getElementsByName('s1_pledge_amount')[r_index].value='"+Util.numberFormat(subJson.getString("pledge_amount"))+"';"); //Áú±Ç¼³Á¤¾×
+			out.println("document.getElementsByName('s1_pledge_amount')[r_index].value='"+Util.numberFormat(subJson.getString("pledge_amount"))+"';"); //ì§ˆê¶Œì„¤ì •ì•¡
 			out.println("}");
 		}
 		
 		if(subJson.containsKey("bank_loan_account")){
-			out.println("document.getElementsByName('s1_bank_loan_account')[r_index].value='"+subJson.getString("bank_loan_account")+"';"); // ÀºÇàÄÚµå
+			out.println("document.getElementsByName('s1_bank_loan_account')[r_index].value='"+subJson.getString("bank_loan_account")+"';"); // ì€í–‰ì½”ë“œ
 		}
 		if(subJson.containsKey("bank_tmid")){
 	        out.println("if(document.getElementsByName('s1_bank_tmid')[r_index] != null) {");
-			out.println("document.getElementsByName('s1_bank_tmid')[r_index].value='"+subJson.getString("bank_tmid")+"';"); // ÀºÇà½Äº°ÄÚµå -2018.12.06 Ãß°¡
+			out.println("document.getElementsByName('s1_bank_tmid')[r_index].value='"+subJson.getString("bank_tmid")+"';"); // ì€í–‰ì‹ë³„ì½”ë“œ -2018.12.06 ì¶”ê°€
 	        out.println("}");
 		}
 
@@ -296,12 +296,12 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 		}
 		
 		if(subJson.containsKey("bank_loan_account")){
-			out.println("document.getElementsByName('s2_bank_loan_account')[r_index].value='"+subJson.getString("bank_loan_account")+"';"); // ÀºÇàÄÚµå -2018.12.06 Ãß°¡
+			out.println("document.getElementsByName('s2_bank_loan_account')[r_index].value='"+subJson.getString("bank_loan_account")+"';"); // ì€í–‰ì½”ë“œ -2018.12.06 ì¶”ê°€
 		}
         
-		if(subJson.containsKey("bank_tmid")){//µğµõµ¹Àº ¾øÀ½.
+		if(subJson.containsKey("bank_tmid")){//ë””ë”¤ëŒì€ ì—†ìŒ.
 			out.println("if(document.getElementsByName('s2_bank_tmid')[r_index] != null) {");
-			out.println("document.getElementsByName('s2_bank_tmid')[r_index].value='"+subJson.getString("bank_tmid")+"';"); // ÀºÇà½Äº°ÄÚµå -2018.12.06 Ãß°¡
+			out.println("document.getElementsByName('s2_bank_tmid')[r_index].value='"+subJson.getString("bank_tmid")+"';"); // ì€í–‰ì‹ë³„ì½”ë“œ -2018.12.06 ì¶”ê°€
 	        out.println("}");
         }
 	}
@@ -323,12 +323,12 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 		//System.out.println(subJson2);
 		out.println("if(document.getElementById('table_template_3')){");
 		out.println("var r2_index = button_addRow('table_template_3',0, document.form1.total_loan_amount.value)-1;");
-		out.println("document.getElementsByName('total_loan_amount')[r2_index].value='"+Util.numberFormat(subJson2.getString("specific_loan_amount"))+"';"); // Æ¯Á¤±Ù ´ãº¸
+		out.println("document.getElementsByName('total_loan_amount')[r2_index].value='"+Util.numberFormat(subJson2.getString("specific_loan_amount"))+"';"); // íŠ¹ì •ê·¼ ë‹´ë³´
 		out.println("}");
 		
 		out.println("if(document.getElementById('table_template_4')){");
 		out.println("var r3_index = button_addRow('table_template_4',0, document.form1.total_loan_amount2.value)-1;");
-		out.println("document.getElementsByName('total_loan_amount2')[r3_index].value='"+Util.numberFormat(subJson2.getString("specific_loan_amount"))+"';"); // Æ¯Á¤±Ù ´ãº¸
+		out.println("document.getElementsByName('total_loan_amount2')[r3_index].value='"+Util.numberFormat(subJson2.getString("specific_loan_amount"))+"';"); // íŠ¹ì •ê·¼ ë‹´ë³´
 		out.println("}");
 	}
 
@@ -340,16 +340,16 @@ if( u.inArray(_member_no, new String[] {"20180101074", "20180101078","2018120023
 	out.println("if(document.getElementById('spn_s2_pledge_amount')){ sumTotal('s2_pledge_amount'); }");
 
 	out.println("if(document.forms['form1']['collateral_amount']){ ");
-	out.println("document.forms['form1']['collateral_amount'].value='"+Util.numberFormat(retJSON.getString("collateral_amount"))+"';"); // ´ãº¸ÇÑµµ¾×
+	out.println("document.forms['form1']['collateral_amount'].value='"+Util.numberFormat(retJSON.getString("collateral_amount"))+"';"); // ë‹´ë³´í•œë„ì•¡
 	out.println("fSetKoreanMoney('"+retJSON.getString("collateral_amount")+"', 'spn_collateral_amount');");
 	out.println(" } ");
 
 	out.println("if(document.forms['form1']['collateral_amount2']){ ");
-	out.println("document.forms['form1']['collateral_amount2'].value='"+Util.numberFormat(retJSON.getString("collateral_amount"))+"';"); // ´ãº¸ÇÑµµ¾×
+	out.println("document.forms['form1']['collateral_amount2'].value='"+Util.numberFormat(retJSON.getString("collateral_amount"))+"';"); // ë‹´ë³´í•œë„ì•¡
 	out.println("fSetKoreanMoney('"+retJSON.getString("collateral_amount")+"', 'spn_collateral_amount2');");
 	out.println(" } ");
 	
-	out.println("alert('Á¶È¸¸¦ ¿Ï·áÇÏ¿´½À´Ï´Ù');");
+	out.println("alert('ì¡°íšŒë¥¼ ì™„ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤');");
 	out.println("</script>");
 }
 %>

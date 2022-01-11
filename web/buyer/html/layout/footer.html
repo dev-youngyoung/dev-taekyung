@@ -1,69 +1,56 @@
 <!-- footer start -->
 <div class="page-footer">
     <div class="page-footer-link">
+<!--     
         <div class="page-footer-link-inner">
             <ul class="page-footer-link-inner-list">
-                <li><a href="javascript:fPopupPrivacy();">°³ÀÎÁ¤º¸Ã³¸®¹æÄ§</a></li>
+                <li><a href="javascript:fPopupPrivacy();">ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨</a></li>
             </ul>
             <div class="page-footer-family">
                 <div class="page-footer-family-btn">
-                    <span>³ªÀÌ½º´ÙÅ¥ ´Ù¸¥ ¼­ºñ½º</span>
+                    <span>ë‚˜ì´ìŠ¤ë‹¤í ë‹¤ë¥¸ ì„œë¹„ìŠ¤</span>
                 </div>
                 <ul class="page-footer-family-list">
                     <li>
-                        <a href="http://www.nicedocu.com/web/supplier/" target="_black">³ªÀÌ½º´ÙÅ¥-°Ç¼³ ±â¾÷¿ë</a>
+                        <a href="http://www.nicedocu.com/web/supplier/" target="_black">ë‚˜ì´ìŠ¤ë‹¤í-ê±´ì„¤ ê¸°ì—…ìš©</a>
                     </li>
                     <li>
-                        <a href="https://nfc.nicedocu.com" target="_black">³ªÀÌ½º´ÙÅ¥-ÇÁ·£Â÷ÀÌÁî ±â¾÷¿ë</a>
+                        <a href="https://nfc.nicedocu.com" target="_black">ë‚˜ì´ìŠ¤ë‹¤í-í”„ëœì°¨ì´ì¦ˆ ê¸°ì—…ìš©</a>
                     </li>
                     <li>
-                        <a href="http://logis.nicedocu.com" target="_black">³ªÀÌ½º´ÙÅ¥-¹°·ù ±â¾÷¿ë</a>
+                        <a href="http://logis.nicedocu.com" target="_black">ë‚˜ì´ìŠ¤ë‹¤í-ë¬¼ë¥˜ ê¸°ì—…ìš©</a>
                     </li>
                 </ul>
             </div>
             <button class="page-top-btn" onclick="location.href='#top';">TOP</button>
         </div>
-    </div>
+ -->
+    </div>	
     <div class="page-footer-info">
         <div class="page-footer-info-inner">
-            <p class="footer-logo"><img src="../html/images/common/footer_logo.png"></p>
+        	<button class="page-top-btn" onclick="location.href='#top';">TOP</button>
+        	<ul style="margin-bottom:10px;">
+        		<li><a href="javascript:OpenWindow('/web/buyer/html/layout/policy.html', 'policy', 1200, 800);">ì´ìš©ì•½ê´€</a></li>
+        		<li><a href="javascript:OpenWindow('/web/buyer/html/layout/privacy.html', 'policy', 1200, 800);">ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨</a></li>
+        	</ul>
             <ul>
-                <li>NICE µğ¾Ø¾Ë(ÁÖ)</li>
-                <li>´ëÇ¥ÀÚ : °­¿ë±¸</li>
-                <li>Åë½ÅÆÇ¸Å¾÷ ½Å°í¹øÈ£ : Á¦2012-¼­¿ï±¸·Î-1033È£</li>
-                <li>»ç¾÷ÀÚµî·Ï¹øÈ£ : 107-87-08207</li>
-                <li>¼­¿ï½Ã ¼­´ë¹®±¸ ÃæÁ¤·Î 36(ÃæÁ¤·Î3°¡)</li>
-                <li>TEL : 02-788-9097</li>
-                <li>FAX : 02-6442-2383</li>
+                <li><b>(ì£¼)ë†ì‹¬</b></li>
+                <li>ì£¼ì†Œ : ì„œìš¸íŠ¹ë³„ì‹œ ë™ì‘êµ¬ ì—¬ì˜ëŒ€ë°©ë¡œ 112(ì‹ ëŒ€ë°©ë™)</li>
+                <li>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ : 118-81-03914</li>
+			</ul>
+            <ul>
+                <li>ëŒ€í‘œì´ì‚¬ : ë°• ì¤€</li>
+                <li>ëŒ€í‘œì „í™” : 02.820.7114</li>
+                <li>ê³ ê°ì„¼í„° : 080.023.5181</li>
+			</ul>
+            <ul>
+                <li>Â©  NONGSHIM CO.,LTD. ALL RIGHTS RESERVED.</li>
             </ul>
-
         </div>
     </div>
 </div>
 <!-- footer end -->
 
-<script>
-    //°³ÀÎÁ¤º¸ º¸È£Á¤Ã¥
-    function fPopupPrivacy(){
-        window.open("/web/buyer/html/main/privacy_pop.html", "privacy", "left=0,top=0,width=680,height=700,scrollbars=yes");
-        return;
-    }
+<div id="loading"><img id="loading-image" src="../html/images/common/loading.gif" alt="Loading..."></div>
 
-    function family_btn(){
-        $( ".page-footer-family-btn" ).click(function() {
-            if ($('.page-footer-family-btn').hasClass('active')){
-                $('.page-footer-family-btn').removeClass('active');
-                $(".page-footer-family-list").slideToggle();
-            }
-            else {
-                $('.page-footer-family-btn').addClass('active');
-                $(".page-footer-family-list").slideToggle();
-            }
-        });
-    }
-    $(document).ready(function(){
-            family_btn();
-        }
-    );
-</script>
 <script language="javascript" type="text/javascript" src="../html/js/jquery/ui.js"></script>

@@ -1,12 +1,12 @@
 <%@page import="oracle.jdbc.internal.ClientDataSupport"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
-String[] code_status = {"01=>Á¤È¸¿ø", "02=>ºñÈ¸¿ø"};  // È¸¿ø»óÅÂ
+String[] code_status = {"01=>ì •íšŒì›", "02=>ë¹„íšŒì›"};  // íšŒì›ìƒíƒœ
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find(
@@ -15,7 +15,7 @@ DataSet member = memberDao.find(
 		+"and member_no in (select client_no from tcb_client where member_no = '"+_member_no+"' )"
 		);
 if(!member.next()){
-	u.jsError("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 member.put("status_nm", u.getItem(member.getString("status"), code_status));
@@ -23,21 +23,21 @@ member.put("status_nm", u.getItem(member.getString("status"), code_status));
 DataObject personDao = new DataObject("tcb_person");
 DataSet person = personDao.find(" member_no = '"+member_no+"' and default_yn = 'Y'");
 if(!person.next()){
-	u.jsError("È¸¿ø°³ÀÎÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("íšŒì›ê°œì¸ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 if(!person.getString("jumin_no").equals("")){
 }
 
 Security security =	new	Security();
-String jumin_no = u.aseDec(person.getString("jumin_no"));//»ı³â¿ùÀÏ
-String gender =""; //¼ºº°
-if(jumin_no.length() == 8){//19120601 1912³â 06¿ù 01ÀÏ
+String jumin_no = u.aseDec(person.getString("jumin_no"));//ìƒë…„ì›”ì¼
+String gender =""; //ì„±ë³„
+if(jumin_no.length() == 8){//19120601 1912ë…„ 06ì›” 01ì¼
 	jumin_no = u.getTimeString("yyyy-MM-dd",jumin_no);
 	gender = "";
 }else
-if(jumin_no.length() == 7){//1101011 11³â01¿ù01ÀÏ 1(³²)
-	gender = u.inArray(jumin_no.substring(6,7), new String[]{"1","3"})?"(³²)":"(¿©)";
+if(jumin_no.length() == 7){//1101011 11ë…„01ì›”01ì¼ 1(ë‚¨)
+	gender = u.inArray(jumin_no.substring(6,7), new String[]{"1","3"})?"(ë‚¨)":"(ì—¬)";
 	jumin_no = jumin_no.substring(0,6);
 	if(Integer.parseInt(jumin_no.substring(0,2)) > 25){
 		jumin_no = u.getTimeString("yyyy-MM-dd","19"+jumin_no);
@@ -74,12 +74,12 @@ if(!client.next()){
 }
 
 
-f.addElement("post_code", member.getString("post_code"), "hname:'¿ìÆí¹øÈ£', option:'number'");
-f.addElement("address", member.getString("address"), "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("hp1", person.getString("hp1"), "hname:'ÈŞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", person.getString("hp2"), "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", person.getString("hp3"), "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("email", person.getString("email"), "hname:'ÀÌ¸ŞÀÏ', required:'Y',option:'email'");
+f.addElement("post_code", member.getString("post_code"), "hname:'ìš°í¸ë²ˆí˜¸', option:'number'");
+f.addElement("address", member.getString("address"), "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("hp1", person.getString("hp1"), "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", person.getString("hp2"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", person.getString("hp3"), "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("email", person.getString("email"), "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
 
 if(u.isPost()&&f.validate()){
 	DB db = new DB();
@@ -110,11 +110,11 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("Ã³¸® ÇÏ¿´½À´Ï´Ù.", "my_cust_person_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "my_cust_person_modify.jsp?"+u.getQueryString());
 	return;
 }
 

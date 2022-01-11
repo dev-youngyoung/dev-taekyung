@@ -1,14 +1,24 @@
+<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+ -->
+ 
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs.1.1.34.min.js"></script> <!-- ìš´ì˜ -->
+<!-- <script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script> --> <!-- ê°œë°œ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
 
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>°è¾à¼­ ÀÛ¼º ¾÷Ã¼Á¤º¸</h3>
+	        <h3>ê³„ì•½ì„œ ì‘ì„± ì—…ì²´ì •ë³´</h3>
 	    </div>
 	</div>
 	<table>
@@ -19,21 +29,21 @@
 			<col width="35%">
 		</colgroup>
 		<tr>
-			<th>¾÷Ã¼¸í</th>
+			<th>ì—…ì²´ëª…</th>
 			<td>{{member_name}}</td>
-			<th>»ç¾÷ÀÚ¹øÈ£</th>
+			<th>ì‚¬ì—…ìë²ˆí˜¸</th>
 			<td>{{vendcd2}}</td>
 		</tr>
 		<tr>
-			<th>´ëÇ¥ÀÚ¸í</th>
+			<th>ëŒ€í‘œìëª…</th>
 			<td>{{boss_name}}</td>
-			<th>°è¾à¼­Á¾·ù</th>
+			<th>ê³„ì•½ì„œì¢…ë¥˜</th>
 			<td>
-				<select id="template_cd" onchange="setColumns(this.value);" style="width:220px;">
-					<option value="2020020">±Ù·Î°è¾à¼­_Á¤±ÔÁ÷(¿î¿µÁ÷)</option> 
-					<option value="2020021">±Ù·Î°è¾à¼­_Á¤±ÔÁ÷(ÀÏ¹İÁ÷)</option> 
-					<option value="2020022">±Ù·Î°è¾à¼­_°è¾àÁ÷(ÀÏ¹İ°è¾àÁ÷)</option> 
-					<option value="2020159">ºñ¹ĞÀ¯Áö¼­¾à¼­(ÀçÁ÷ÀÚ)</option> 
+				<select name="template_cd" onchange="setColumns(this.value);" style="width:300">
+					<option value="">-------------------------------- ì„ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;íƒ --------------------------------</option>
+					<!-- LOOP START 'template' -->
+					<option value="{{template.template_cd}}">{{template.template_name}}</option>
+					<!-- LOOP END 'template' -->
 				</select>
 			</td>
 		</tr>
@@ -44,8 +54,8 @@
 	<div class="util-row">
 	    <div class="push-right" style="z-index:1">
 			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;" class=" auth_css"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
-			<button type="button" class="sbtn color ico-excel auth_css"><span></span>¿¢¼¿¾÷·Îµå</button>
-			<button type="button" class="sbtn color ico-download"  onClick="excelDown()"><span></span>¿¢¼¿´Ù¿î·Îµå</button>
+			<button type="button" class="sbtn color2 ico-excel auth_css"><span></span>ì—‘ì…€ì—…ë¡œë“œ</button>
+			<button type="button" class="sbtn color2 ico-download"  onClick="excelDown()"><span></span>ì—‘ì…€ë‹¤ìš´ë¡œë“œ</button>
 		</div>
 	</div>
 	<table>
@@ -56,7 +66,7 @@
 		</tr>
 	</table>
 </div>
-
+<!-- 
 <div class="div_table lineTable">
 	<table>
 		<colgroup>
@@ -65,29 +75,36 @@
 		</colgroup>
 		<tr> 
 			<th ></th>
-			<th>ÀÔ·Â ±¸ºĞ</th>   
+			<th>ì…ë ¥ êµ¬ë¶„</th>   
 		</tr>
 		<tr>
-			<th>±¸ºĞ</th> 
-			<td align="left" style="line-height:28px; padding-left: 15px;" valign="top"> - <span style="color: red">¾÷Àû±Ş¿©</span> Ç×¸ñ ÀÔ·Â¹æ½Ä<br />&nbsp;&nbsp;&nbsp;(¿¹½Ã) 2,000,000 ¶Ç´Â 2000000
-			<br /> - <span style="color: red">³¯Â¥ (»ı³â¿ùÀÏ, °è¾à±â°£ µî)</span> Ç×¸ñ ÀÔ·Â¹æ½Ä<br />&nbsp;&nbsp;&nbsp;(¿¹½Ã) 2020-01-01
-			<br /> - <span style="color: red">¿ù ±Ş¿©</span>´Â ÀÚµ¿°è»êÀ¸·Î ÀÔ·ÂµÊ
+			<th>êµ¬ë¶„</th> 
+			<td align="left" style="line-height:28px; padding-left: 15px;" valign="top"> - <span style="color: red">ì—…ì ê¸‰ì—¬</span> í•­ëª© ì…ë ¥ë°©ì‹<br />&nbsp;&nbsp;&nbsp;(ì˜ˆì‹œ) 2,000,000 ë˜ëŠ” 2000000
+			<br /> - <span style="color: red">ë‚ ì§œ (ìƒë…„ì›”ì¼, ê³„ì•½ê¸°ê°„ ë“±)</span> í•­ëª© ì…ë ¥ë°©ì‹<br />&nbsp;&nbsp;&nbsp;(ì˜ˆì‹œ) 2020-01-01
+			<br /> - <span style="color: red">ì›” ê¸‰ì—¬</span>ëŠ” ìë™ê³„ì‚°ìœ¼ë¡œ ì…ë ¥ë¨
 			
 			</td>  
 		 </tr>  
 	</table>
 </div>
-
+ -->
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>ÀÏ°ıÀü¼Û</button>
+	<button type="button" class="btn color ico-request auth_css" onClick="javascript:submitItem()"><span></span>ì„ì‹œì €ì¥</button>
 </div>
 
 <script language="javascript">
 
 var dataProvider = null;
 var gridView = null;
+var gTemplateCd = null;
+
 $(document).ready( function(){
+
+	//ë¬¸ì„œë°˜ì¶œ ì˜ˆì™¸í˜ì´ì§€
+	document.title = "ë†ì‹¬ ì „ìê³„ì•½ì‹œìŠ¤í…œ*";
+	
+	//alert("{{realgrid_path}}");
     RealGridJS.setRootContext("{{realgrid_path}}");
     //RealGridJS.setTrace(true);
 
@@ -96,7 +113,7 @@ $(document).ready( function(){
     gridView.setDataSource(dataProvider);
     setOptions();
     setStyle();
-    setColumns(document.getElementById("template_cd").value);
+    setColumns("");
 });
 
 function setOptions() {
@@ -114,7 +131,7 @@ function setOptions() {
             updatable: true,
             deletable: true,
             deleteRowsConfirm: false,
-            deleteRowsMessage: "»èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?"
+            deleteRowsMessage: "ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?"
         }
         ,displayOptions:{
             //columnWidth : 200
@@ -139,57 +156,145 @@ function setStyle(){
         });
 }
 
-function setColumns(template_cd) {
+function setColumns(arg) {
+
+	gTemplateCd = arg;
     var columns = [];
 
-    columns.push({name:"birth_date" ,fieldName:"birth_date",dataType:"text" ,header:"»ı³â¿ùÀÏ" ,width:90 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"member_name" ,fieldName:"member_name",dataType:"text" ,header:"ÀÌ¸§" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"address" ,fieldName:"address",dataType:"text" ,header:"ÁÖ¼Ò" ,width:300 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"tel_num" ,fieldName:"tel_num",dataType:"text" ,header:"ÀüÈ­¹øÈ£" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"hp1" ,fieldName:"hp1",dataType:"text" ,header:"ÈŞ´ëÆù(¾Õ)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"hp2" ,fieldName:"hp2",dataType:"text" ,header:"ÈŞ´ëÆù(Áß°£)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"hp3" ,fieldName:"hp3",dataType:"text" ,header:"ÈŞ´ëÆù(¸¶Áö¸·)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"email" ,fieldName:"email",dataType:"text" ,header:"ÀÌ¸ŞÀÏ" ,width:200 ,readOnly:false , movable:false ,sortable:false}); 
-    columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"°è¾àÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
-   
- 
-   if (template_cd == '2020020') { // ±Ù·Î°è¾à¼­_Á¤±ÔÁ÷(¿î¿µÁ÷)
-	    columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"°è¾à±â°£ ½ÃÀÛÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
-	    columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"°è¾à±â°£ Á¾·áÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
-	  	columns.push({name:"cont_total",fieldName:"cont_total",header:"¿¬ºÀ",width:120,readOnly:false , movable:false ,sortable:false});
-	   	columns.push({name:"a_pay_1",fieldName:"a_pay_1",header:"±âº»±Ş",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_2",fieldName:"a_pay_2",header:"Á÷¹«¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_3",fieldName:"a_pay_3",header:"ÈÄ»ı¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_4",fieldName:"a_pay_4",header:"°íÁ¤¿¬Àå¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"½Ã°£¿Ü±Ù·Î(½Ã°£)",width:120,readOnly:false , movable:false ,sortable:false});
-    }else if(template_cd == '2020021' ){
-    	 columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"°è¾à±â°£ ½ÃÀÛÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
- 	    columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"°è¾à±â°£ Á¾·áÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
-    	columns.push({name:"cont_total",fieldName:"cont_total",header:"¿¬ºÀ",width:120,readOnly:false , movable:false ,sortable:false});
-	   	columns.push({name:"a_pay_1",fieldName:"a_pay_1",header:"±âº»±Ş",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_2",fieldName:"a_pay_2",header:"Á÷¹«¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_3",fieldName:"a_pay_3",header:"Á¶Á¤¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_4",fieldName:"a_pay_4",header:"ÈÄ»ı¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"a_pay_5",fieldName:"a_pay_5",header:"°íÁ¤ ¿¬Àå¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"a_pay_6",fieldName:"a_pay_6",header:"»ı»ê Àå·Á¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"a_pay_7",fieldName:"a_pay_7",header:"¾÷¹«¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"a_pay_8",fieldName:"a_pay_8",header:"ÀÚ°İÁõ¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"°íÁ¤¿¬Àå¼ö´ç(½Ã°£)",width:120,readOnly:false , movable:false ,sortable:false});
-    }else if(template_cd == '2020022' ){ 
-    	columns.push({name:"cont_sdate" ,fieldName:"cont_sdate",dataType:"text" ,header:"°è¾à±â°£ ½ÃÀÛÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
- 	    columns.push({name:"cont_edate" ,fieldName:"cont_edate",dataType:"text" ,header:"°è¾à±â°£ Á¾·áÀÏÀÚ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
-	   	columns.push({name:"a_pay_1",fieldName:"a_pay_1",header:"±âº»±Ş",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_2",fieldName:"a_pay_2",header:"Á÷¹«¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_3",fieldName:"a_pay_3",header:"Á¶Á¤¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});
-		columns.push({name:"a_pay_4",fieldName:"a_pay_4",header:"ÈÄ»ı¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"a_pay_5",fieldName:"a_pay_5",header:"°íÁ¤ ¿¬Àå¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});  
-		columns.push({name:"a_pay_6",fieldName:"a_pay_6",header:"»ı»ê Àå·Á¼ö´ç",width:120,readOnly:false , movable:false ,sortable:false});   
-		columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"°íÁ¤¿¬Àå¼ö´ç(½Ã°£)",width:120,readOnly:false , movable:false ,sortable:false});
-    }else if(template_cd = '2020159'){
-    	columns.push({name:"input_cont_text01",fieldName:"input_cont_text01",header:"¼Ò¼Ó",width:120,readOnly:false , movable:false ,sortable:false});
-    	columns.push({name:"input_cont_text02",fieldName:"input_cont_text02",header:"»ç¹ø",width:120,readOnly:false , movable:false ,sortable:false});
-    }
-
+	/**
+	 * B2C ì–‘ì‹1(ì‚¬ë²ˆ, ì„±ëª…, ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸, ì£¼ì†Œ, ìƒë…„ì›”ì¼, í•¸ë“œí°ë²ˆí˜¸, ì‚¬ì›êµ¬ë¶„ ......)
+	 * 2020801 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì¢…í•©ì§/ì¼ë°˜ì§ A)
+	 * 2020802 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì¢…í•©ì§/ì¼ë°˜ì§ B)
+	 * 2020803 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_SSP/SPì§ A)
+	 * 2020804 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_ë†í˜‘SPì§ B)
+	 * 2020805 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_TSì§ A)
+	 * 2020807 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_TSì§ B)
+	 * 2020809 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì„œë¹„ìŠ¤_ì¹´ë ˆ A)
+	 * 2020808 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì„œë¹„ìŠ¤_Nì¹´í˜ B)
+	 * 2020810 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ê³„ì•½ì§ A)
+	 * 2020818 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ê³„ì•½ì§ B)
+	 * 2020816 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì‹œê¸‰ A)ì›”60ì‹œê°„ ë¯¸ë§Œ
+	 * 2020811 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì‹œê¸‰ B)ì›”60ì‹œê°„ ì´ìƒ
+	 * 2020819 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ë‹¨ì‹œê°„/ì‹œê¸‰)
+	 * 2020820 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ë‹¨ì‹œê°„/ì¼ê¸‰)
+	 * 2020821 : [ì˜ì—…ê¸°íš] ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_SPì§ A)
+	 */
+	 gridView.setDisplayOptions({
+		    showEmptyMessage: true,
+		    emptyMessage: "ì—‘ì…€ì—…ë¡œë“œë¥¼ ì§„í–‰í•´ì£¼ì„¸ìš”."
+	 });
+	 gridView.setIndicator({
+		   visible: true  
+	 });
+	 gridView.setHeader({
+		 	height : 28
+	 	});
+    if (gTemplateCd == '2020801' || gTemplateCd == '2020802' || gTemplateCd == '2020803' || gTemplateCd == '2020804' || gTemplateCd == '2020805' ||
+    	gTemplateCd == '2020807' || gTemplateCd == '2020808' || gTemplateCd == '2020809' || gTemplateCd == '2020810' || gTemplateCd == '2020818' ||
+    	gTemplateCd == '2020816' || gTemplateCd == '2020811' || gTemplateCd == '2020819' || gTemplateCd == '2020820' || gTemplateCd == '2020821'
+    	) {
+    	
+    	columns.push({name:"emp_no" ,fieldName:"emp_no",dataType:"text" ,header:"ì‚¬ë²ˆ" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"han_name" ,fieldName:"han_name",dataType:"text" ,header:"ì„±ëª…" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"pers_no" ,fieldName:"pers_no",dataType:"text" ,header:"ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸" ,width:90 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"addr" ,fieldName:"addr",dataType:"text" ,header:"ì£¼ì†Œ" ,width:300 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"birth_date" ,fieldName:"birth_date",dataType:"text" ,header:{text:"ìƒë…„ì›”ì¼", subText:"(YYYYMMDD)"} ,width:90 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cela_tel" ,fieldName:"cela_tel",dataType:"text" ,header:"í•¸ë“œí°ë²ˆí˜¸" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"emp_gubn" ,fieldName:"emp_gubn",dataType:"text" ,header:"ì‚¬ì›êµ¬ë¶„" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"dept_code" ,fieldName:"dept_code",dataType:"text" ,header:"ë¶€ì„œì½”ë“œ" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"dept_name" ,fieldName:"dept_name",dataType:"text" ,header:"ë¶€ì„œëª…" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"autt_code" ,fieldName:"autt_code",dataType:"text" ,header:"ì§ê¸‰ì½”ë“œ" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"autt_name" ,fieldName:"autt_name",dataType:"text" ,header:"ì§ê¸‰ëª…" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"loca_name" ,fieldName:"loca_name",dataType:"text" ,header:"ê·¼ë¬´ì¥ì†Œ" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"jwrk_name" ,fieldName:"jwrk_name",dataType:"text" ,header:"ë‹´ë‹¹ì§ë¬´" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"job_name" ,fieldName:"job_name",dataType:"text" ,header:"ì¢…ì‚¬ì—…ë¬´" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"entr_com_date" ,fieldName:"entr_com_date",dataType:"text" ,header:"ì…ì‚¬ì¼ì" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_sta_date" ,fieldName:"cont_sta_date",dataType:"text" ,header:"ê³„ì•½ì‹œì‘ì¼ì" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_end_date" ,fieldName:"cont_end_date",dataType:"text" ,header:"ê³„ì•½ì¢…ë£Œì¼ì" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"jeva_amt" ,fieldName:"jeva_amt",dataType:"text" ,header:"ê¸°ë³¸ê¸‰" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"work_month_time" ,fieldName:"work_month_time",dataType:"text" ,header:"ì›”ê·¼ë¬´ì‹œê°„" ,width:70 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"work_month_amt" ,fieldName:"work_month_amt",dataType:"text" ,header:"ì›”ê¸‰ì—¬" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"over_time" ,fieldName:"over_time",dataType:"text" ,header:"ì—°ì¥ì‹œê°„" ,width:70 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"over_labo_alow" ,fieldName:"over_labo_alow",dataType:"text" ,header:"ì—°ì¥ìˆ˜ë‹¹" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"work_day_time" ,fieldName:"work_day_time",dataType:"text" ,header:"1ì¼ê·¼ë¬´ì‹œê°„" ,width:70 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"work_week_time" ,fieldName:"work_week_time",dataType:"text" ,header:"1ì£¼ê·¼ë¬´ì‹œê°„" ,width:70 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"pay_amt" ,fieldName:"pay_amt",dataType:"text" ,header:"ì‹œê¸‰" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"day_pay" ,fieldName:"day_pay",dataType:"text" ,header:"í¬ê´„ì‹œê¸‰(ê¸°ë³¸ê¸‰)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"wday_amt" ,fieldName:"wday_amt",dataType:"text" ,header:"ì£¼íœ´ìˆ˜ë‹¹" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"etc_amt_yn" ,fieldName:"etc_amt_yn",dataType:"text" ,header:"ì œìˆ˜ë‹¹ìœ ë¬´" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"etc_amt" ,fieldName:"etc_amt",dataType:"text" ,header:"ì œìˆ˜ë‹¹ê¸ˆì•¡" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"etc_cont" ,fieldName:"etc_cont",dataType:"text" ,header:"ì œìˆ˜ë‹¹ë‚´ìš©" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+	    
+	/**
+	 * B2B ì–‘ì‹1(ê±°ë˜ì²˜ì½”ë“œ, ê³„ì•½ì¼ì)
+	 * 2020904 : [ì˜ì—…] ìê¸ˆì´ì²´ ì•½ì •ì„œ
+	 * 2020905 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_ìƒí’ˆ
+	 * 2020906 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_ì œí’ˆì¢…í•©
+	 * 2020907 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_ì§ê±°ë˜ì 
+	 * 2020908 : [ì˜ì—…] íŒë§¤ì¥ë ¤ê¸ˆ ì•½ì •ì„œ_íŒë§¤
+	 * 2020917 : [êµ¬ë§¤] 2020ë…„ë„ (í•˜ë„ê¸‰)ê³µì •ê±°ë˜ í˜‘ì•½ì„œ
+	 * 2020928 : [ì˜ì—…] ê³µì •ê±°ë˜ë°ìƒìƒí˜‘ë ¥ í˜‘ì•½ì„œ(ëŒ€ë¦¬ì ë¶„ì•¼)
+	 */
+	}else if(gTemplateCd == '2020904' || gTemplateCd == '2020905' || gTemplateCd == '2020906' ||
+			 gTemplateCd == '2020907' || gTemplateCd == '2020908' || gTemplateCd == '2020917' || gTemplateCd == '2020928'
+	){
+		gridView.setHeader({
+   		 	height : 23
+   	 	});
+    	columns.push({name:"cust_code" ,fieldName:"cust_code",dataType:"text" ,header:"ê±°ë˜ì²˜ì½”ë“œ" ,width:150 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"ê³„ì•½ì¼ì" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	
+    /* B2B ì–‘ì‹2(ê±°ë˜ì²˜ì½”ë“œ, ê³„ì•½ì¼ì, ëŒ€ê¸ˆê²°ì œì¼, ì•½ì •ê¸°ê°„)
+     * 2020902 : [ì˜ì—…] ê±°ë˜ì•½ì •ì„œ_ì§ê±°ë˜ì 
+     * 2020903 : [ì˜ì—…] ê±°ë˜ì•½ì •ì„œ_íŠ¹ì•½ì 
+    */
+	}else if(gTemplateCd == '2020902' || gTemplateCd == '2020903'){
+		gridView.setHeader({
+   		 	height : 23
+   	 	});
+    	columns.push({name:"cust_code" ,fieldName:"cust_code",dataType:"text" ,header:"ê±°ë˜ì²˜ì½”ë“œ" ,width:150 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"ê³„ì•½ì¼ì" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	if(gTemplateCd == '2020902'){
+    		columns.push({name:"payment_day" ,fieldName:"payment_day",dataType:"text" ,header:"ëŒ€ê¸ˆê²°ì œì¼" ,width:70 ,readOnly:false , movable:false ,sortable:false});
+    	}
+    	columns.push({name:"cont_date_from" ,fieldName:"cont_date_from",dataType:"text" ,header:"ì•½ì •ê¸°ê°„" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	
+	/* B2B ì–‘ì‹3(ê±°ë˜ì²˜ì½”ë“œ, ê³„ì•½ì¼ì, ê¸°ìˆ ìë£Œ ë‚´ì—­, ìš”êµ¬ ëª©ì , ë¹„ë°€ìœ ì§€ì— ê´€í•œ ì‚¬í•­, ê¶Œë¦¬ ê·€ì† ê´€ê³„, ëŒ€ê°€, ì¸ë„ì¼ ë° ì¸ë„ë°©ë²•, ì‚¬ìš©ê¸°ê°„, ë°˜í™˜ ë˜ëŠ” íê¸°ë°©ë²• ë° ë°˜í™˜ì¼ ë˜ëŠ” íê¸°ì¼, ê·¸ ë°–ì˜ ì‚¬í•­)
+     * 2020909 : [êµ¬ë§¤] ê¸°ìˆ ìë£Œ ìš”êµ¬ì„œ
+    */	
+	}else if(gTemplateCd == '2020909'){
+		columns.push({name:"cust_code" ,fieldName:"cust_code",dataType:"text" ,header:"ê±°ë˜ì²˜ì½”ë“œ" ,width:150 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cont_date" ,fieldName:"cont_date",dataType:"text" ,header:"ê³„ì•½ì¼ì" ,width:120 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"tech_comment" ,fieldName:"tech_comment",dataType:"text" ,header:"ê¸°ìˆ ìë£Œ ë‚´ì—­" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"req_purpose" ,fieldName:"req_purpose",dataType:"text" ,header:"ìš”êµ¬ ëª©ì " ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"keep_secret" ,fieldName:"keep_secret",dataType:"text" ,header:"ë¹„ë°€ìœ ì§€ì— ê´€í•œ ì‚¬í•­" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"attr_of_rights" ,fieldName:"attr_of_rights",dataType:"text" ,header:"ê¶Œë¦¬ ê·€ì† ê´€ê³„" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"cost" ,fieldName:"cost",dataType:"text" ,header:"ëŒ€ê°€" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"del_method" ,fieldName:"del_method",dataType:"text" ,header:"ì¸ë„ì¼ ë° ì¸ë„ë°©ë²•" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"per_or_use" ,fieldName:"per_or_use",dataType:"text" ,header:"ì‚¬ìš©ê¸°ê°„" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"discard_method" ,fieldName:"discard_method",dataType:"text" ,header:"ë°˜í™˜ ë˜ëŠ” íê¸°ë°©ë²• ë° ë°˜í™˜ì¼ ë˜ëŠ” íê¸°ì¼" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    	columns.push({name:"etc_matters" ,fieldName:"etc_matters",dataType:"text" ,header:"ê·¸ ë°–ì˜ ì‚¬í•­" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+	}else{
+		columns.push({name:"cont_select" ,fieldName:"cont_select",header:"ê³„ì•½ì„œì¢…ë¥˜ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”." ,width:0 ,readOnly:false , movable:false ,sortable:false});
+		gridView.setDisplayOptions({
+		    showEmptyMessage: true,
+		    emptyMessage: "ê³„ì•½ì„œì¢…ë¥˜ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”."
+		});
+		gridView.setIndicator({
+			   visible: false  
+		 });
+	}
+ 	gridView.setStyles({ 
+    	body: { 
+    		empty: {
+    			foreground: "#8C8C8C", 
+    			textAlignment: "center", 
+    			lineAlignment: "center", 
+    			fontSize: 25, 
+    			fontBold: true 
+    		} 
+    	} 
+	});
     dataProvider.setFields(columns);
     gridView.setColumns(columns);
 }
@@ -204,7 +309,7 @@ function excelRead(){
         files = window.event.srcElement.files;
 
     if(!files) {
-        alert("³»¿ª¾÷·Îµå ±â´ÉÀº Internet Explorer 10 ÀÌ»ó ¶Ç´Â Å©·Ò(chrome)¿¡¼­¸¸ ÀÌ¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+        alert("ë‚´ì—­ì—…ë¡œë“œ ê¸°ëŠ¥ì€ Internet Explorer 10 ì´ìƒ ë˜ëŠ” í¬ë¡¬(chrome)ì—ì„œë§Œ ì´ìš©í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
         return true;
     }
     var i, f;
@@ -232,7 +337,7 @@ function process_wb(wb) {
         try{
             output[sheetNames][0];
         }catch(e){
-            alert("Çü½Ä¿¡ ¸ÂÁö ¾Ê´Â ÆÄÀÏÀÔ´Ï´Ù.\n\n¾÷·Îµå ÆÄÀÏÀ» È®ÀÎ ÇÏ¼¼¿ä.");
+            alert("í˜•ì‹ì— ë§ì§€ ì•ŠëŠ” íŒŒì¼ì…ë‹ˆë‹¤.\n\nì—…ë¡œë“œ íŒŒì¼ì„ í™•ì¸ í•˜ì„¸ìš”.");
             return;
         }
 
@@ -240,116 +345,137 @@ function process_wb(wb) {
         var rows = output[sheetNames];
         var data = [];
         var pattern = /^[_a-zA-Z0-9-\.]+@[\.a-zA-Z0-9-]+\.[a-zA-Z]+$/;
-        var regExp = /^[0-9]+$/; 
-
+        var regExp = /^[0-9]+$/;
+        var cols = [];
+		//var template_cd = document.getElementById("template_cd").value;
+		
+		//ì—‘ì…€ ì—´ ì„¤ì •
+		cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD"];
+		
         for(var i = 1 ; i < rows.length ; i++){
             var row = rows[i];
-            var cols = [];
-            //ÀÔ·Â°ª validation
-			cols = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC"]; 
-			fields = ["birth_date","member_name","address","tel_num","hp1","hp2","hp3","email","cont_date" ];
-			if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("»ı³â¿ùÀÏ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(A¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[0]].length != 10){alert("»ı³â¿ùÀÏ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (A¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[1]] == null || row[cols[1]].toString().trim() == ""){alert("ÀÌ¸§¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(B¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[2]] == null || row[cols[2]].toString().trim() == ""){alert("ÁÖ¼Ò¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(C¿­,"+(i+1)+"Çà)");return;}
-			//if(row["D"] == null || row["D"].toString().trim() == ""){alert("´ã´çÀÚ¸í¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(D¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("ÈŞ´ëÆù(¾Õ)¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(E¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[5]] == null || row[cols[5]].toString().trim() == ""){alert("ÈŞ´ëÆù(Áß°£)¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(F¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[6]] == null || row[cols[6]].toString().trim() == ""){alert("ÈŞ´ëÆù(¸¶Áö¸·)¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(G¿­,"+(i+1)+"Çà)");return;}
-			if(row[cols[7]] == null || row[cols[7]].toString().trim() == ""){alert("ÀÌ¸ŞÀÏ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(H¿­,"+(i+1)+"Çà)");return;}
-            if(!pattern.test(row[cols[7]].toString().trim())){alert("ÀÌ¸ŞÀÏÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.(H¿­,"+(i+1)+"Çà)");return;}
-         
-            if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("°è¾àÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(I¿­,"+(i+1)+"Çà)");return;}
-            if(row[cols[8]].length != 10){alert("°è¾àÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (I¿­,"+(i+1)+"Çà)");return;}
-            
+
+			/**
+			 * ì¸ì‚¬ê³„ì•½ì„œ type1
+			 * 2020801 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì¢…í•©ì§/ì¼ë°˜ì§ A)
+			 * 2020802 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì¢…í•©ì§/ì¼ë°˜ì§ B)
+			 * 2020803 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_SSP/SPì§ A)
+			 * 2020804 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_ë†í˜‘SPì§ B)
+			 * 2020805 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_TSì§ A)
+			 * 2020807 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_TSì§ B)
+			 * 2020809 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì„œë¹„ìŠ¤_ì¹´ë ˆ A)
+			 * 2020808 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì„œë¹„ìŠ¤_Nì¹´í˜ B)
+			 * 2020810 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ê³„ì•½ì§ A)
+			 * 2020818 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ê³„ì•½ì§ B)
+			 * 2020816 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì‹œê¸‰ A)ì›”60ì‹œê°„ ë¯¸ë§Œ
+			 * 2020811 : [ì¹´ë ˆë ˆìŠ¤í† ë‘íŒ€]ê·¼ë¡œê³„ì•½ì„œ(ì™¸ì‹ì‹œê¸‰ B)ì›”60ì‹œê°„ ì´ìƒ
+			 * 2020819 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ë‹¨ì‹œê°„/ì‹œê¸‰)
+			 * 2020820 : [ì¸ì‚¬]ê·¼ë¡œê³„ì•½ì„œ(ë‹¨ì‹œê°„/ì¼ê¸‰)
+			 * 2020821 : [ì˜ì—…ê¸°íš] ê·¼ë¡œê³„ì•½ì„œ(ì„œë¹„ìŠ¤_SPì§ A)
+			 */
+    		if (gTemplateCd == '2020801' || gTemplateCd == '2020802' || gTemplateCd == '2020803' || gTemplateCd == '2020804' || gTemplateCd == '2020805' ||
+   		    	gTemplateCd == '2020807' || gTemplateCd == '2020808' || gTemplateCd == '2020809' || gTemplateCd == '2020810' || gTemplateCd == '2020818' ||
+   		    	gTemplateCd == '2020816' || gTemplateCd == '2020811' || gTemplateCd == '2020819' || gTemplateCd == '2020820' || gTemplateCd == '2020821'
+   		    	) {
+            	
+            	//ì…ë ¥ê°’ validation
+				fields = ["emp_no","han_name","pers_no","addr","birth_date","cela_tel","emp_gubn","dept_code","dept_name","autt_code","autt_name","loca_name","jwrk_name","job_name","entr_com_date","cont_sta_date","cont_end_date","jeva_amt","work_month_time","work_month_amt","over_time","over_labo_alow","work_day_time","work_week_time","pay_amt","day_pay","wday_amt","etc_amt_yn","etc_amt","etc_cont"];
+            	
+            	// ê³µí†µ
+				if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("ì‚¬ë²ˆì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Aì—´,"+(i+1)+"í–‰)");return;}
+				if(row[cols[4]] == null || row[cols[4]].toString().trim() == ""){alert("ìƒë…„ì›”ì¼ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Eì—´,"+(i+1)+"í–‰)");return;}
+				if(row[cols[4]].length != 8){alert("ìƒë…„ì›”ì¼ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Eì—´,"+(i+1)+"í–‰)");return;}
+				if(row[cols[5]] == null || row[cols[5]].toString().trim() == ""){alert("í•¸ë“œí°ë²ˆí˜¸ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Fì—´,"+(i+1)+"í–‰)");return;}
+				
+				// ì…ì‚¬ì¼ì, ê³„ì•½ì‹œì‘ì¢…ë£Œì¼ì êµ¬ë¶„
+            	if(gTemplateCd == '2020801' || gTemplateCd == '2020802' || gTemplateCd == '2020803' || gTemplateCd == '2020804' || gTemplateCd == '2020805' ||
+            	   gTemplateCd == '2020807' || gTemplateCd == '2020809' || gTemplateCd == '2020808' || gTemplateCd == '2020821'
+            	){
+            		if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("ì…ì‚¬ì¼ìì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Oì—´,"+(i+1)+"í–‰)");return;}
+            		if(row[cols[14]].length != 8){alert("ì…ì‚¬ì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Oì—´,"+(i+1)+"í–‰)");return;}
+            	}else{
+            		if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("ê³„ì•½ì‹œì‘ì¼ìì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Pì—´,"+(i+1)+"í–‰)");return;}
+            		if(row[cols[15]].length != 8){alert("ê³„ì•½ì‹œì‘ì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Pì—´,"+(i+1)+"í–‰)");return;}
+            		if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("ê³„ì•½ì¢…ë£Œì¼ìì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Qì—´,"+(i+1)+"í–‰)");return;}
+            		if(row[cols[16]].length != 8){alert("ê³„ì•½ì¢…ë£Œì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Qì—´,"+(i+1)+"í–‰)");return;}
+            	}
+				
+				// ê·¼ë¬´ì¥ì†Œ
+            	if(gTemplateCd != '2020819' && gTemplateCd != '2020820'){
+            		if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("ê·¼ë¬´ì¥ì†Œì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Lì—´,"+(i+1)+"í–‰)");return;}
+            	}
+				
+				// ê·¼ë¬´ë¶€ì„œ
+				if(gTemplateCd != '2020816' && gTemplateCd != '2020811'){
+					if(row[cols[8]] == null || row[cols[8]].toString().trim() == ""){alert("ë¶€ì„œëª…ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Iì—´,"+(i+1)+"í–‰)");return;}
+				}
+				
+				// ë‹´ë‹¹ì§ë¬´, ì¢…ì‚¬ì—…ë¬´
+				if(gTemplateCd != '2020801' && gTemplateCd != '2020802' && gTemplateCd != '2020810' && gTemplateCd != '2020818'){
+					if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("ì¢…ì‚¬ì—…ë¬´ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Nì—´,"+(i+1)+"í–‰)");return;}
+				}else{
+					if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("ë‹´ë‹¹ì§ë¬´ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Mì—´,"+(i+1)+"í–‰)");return;}
+				}
+				
+				// ì§ê¸‰, ì›”ê¸‰ì—¬, ê¸°ë³¸ê¸‰
+				if(gTemplateCd != '2020816' && gTemplateCd != '2020811' && gTemplateCd != '2020819' && gTemplateCd != '2020820' ){
+					if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("ì§ê¸‰ëª…ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Kì—´,"+(i+1)+"í–‰)");return;}
+					if(row[cols[19]] == null || row[cols[19]].toString().trim() == ""){alert("ì›”ê¸‰ì—¬ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Tì—´,"+(i+1)+"í–‰)");return;}
+					if(row[cols[17]] == null || row[cols[17]].toString().trim() == ""){alert("ê¸°ë³¸ê¸‰ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Rì—´,"+(i+1)+"í–‰)");return;}
+					// ì—°ì¥ìˆ˜ë‹¹   
+					if(gTemplateCd == '2020801' || gTemplateCd == '2020803' || gTemplateCd == '2020805' || gTemplateCd == '2020809' || gTemplateCd == '2020810' || gTemplateCd == '2020821'){
+						if(row[cols[20]] == null || row[cols[20]].toString().trim() == ""){alert("ì—°ì¥ì‹œê°„ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Uì—´,"+(i+1)+"í–‰)");return;}
+						if(row[cols[21]] == null || row[cols[21]].toString().trim() == ""){alert("ì—°ì¥ìˆ˜ë‹¹ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Vì—´,"+(i+1)+"í–‰)");return;}
+						if(row[cols[18]] == null || row[cols[18]].toString().trim() == ""){alert("ì›”ê·¼ë¬´ì‹œê°„ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Sì—´,"+(i+1)+"í–‰)");return;}
+					}
+				}else{
+					if(row[cols[22]] == null || row[cols[22]].toString().trim() == ""){alert("1ì¼ ê·¼ë¬´ì‹œê°„ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Wì—´,"+(i+1)+"í–‰)");return;}
+					if(gTemplateCd == '2020816' || gTemplateCd == '2020811'){
+						if(row[cols[23]] == null || row[cols[23]].toString().trim() == ""){alert("1ì£¼ ê·¼ë¬´ì‹œê°„ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Xì—´,"+(i+1)+"í–‰)");return;}
+						if(row[cols[24]] == null || row[cols[24]].toString().trim() == ""){alert("ì‹œê¸‰ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Yì—´,"+(i+1)+"í–‰)");return;}
+						if(row[cols[25]] == null || row[cols[25]].toString().trim() == ""){alert("í¬ê´„ì‹œê¸‰ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Zì—´,"+(i+1)+"í–‰)");return;}
+						if(row[cols[26]] == null || row[cols[26]].toString().trim() == ""){alert("ì£¼íœ´ìˆ˜ë‹¹ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(AAì—´,"+(i+1)+"í–‰)");return;}
+						if(row[cols[27]] == null || row[cols[27]].toString().trim() == ""){alert("ì œìˆ˜ë‹¹ìœ ë¬´ ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(ABì—´,"+(i+1)+"í–‰)");return;}
+						//if(row[cols[29]] == null || row[cols[29]].toString().trim() == ""){alert("ì œìˆ˜ë‹¹ë‚´ìš© ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(ADì—´,"+(i+1)+"í–‰)");return;}
+					}else if(gTemplateCd == '2020819'){
+						if(row[cols[24]] == null || row[cols[24]].toString().trim() == ""){alert("ì‹œê¸‰ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Yì—´,"+(i+1)+"í–‰)");return;}
+					}else if(gTemplateCd == '2020820'){
+						if(row[cols[25]] == null || row[cols[25]].toString().trim() == ""){alert("í¬ê´„ì‹œê¸‰ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Zì—´,"+(i+1)+"í–‰)");return;}
+					}
+				}
+                
+            }else if(gTemplateCd == '2020904' || gTemplateCd == '2020905' || gTemplateCd == '2020906' ||
+       			 gTemplateCd == '2020907' || gTemplateCd == '2020908' || gTemplateCd == '2020917' || gTemplateCd == '2020928' || gTemplateCd == '2020909'){
+            	
+            	if(gTemplateCd == '2020909'){
+            		fields = ["cust_code","cont_date","tech_comment","req_purpose","keep_secret","attr_of_rights","cost","del_method","per_or_use","discard_method","etc_matters"];
+            	}else{
+            		fields = ["cust_code","cont_date"];
+            	}
+            	
+				if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("ê±°ë˜ì²˜ ì½”ë“œì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Aì—´,"+(i+1)+"í–‰)");return;}
+				if(row[cols[1]] != null && row[cols[1]].toString().trim() != ""){
+					if(row[cols[1]].length != 8 ){alert("ê³„ì•½ì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Bì—´,"+(i+1)+"í–‰)");return;}
+				}
+           	}else if(gTemplateCd == '2020902' || gTemplateCd == '2020903'){
+				if(gTemplateCd == '2020902'){
+					fields = ["cust_code","cont_date","payment_day","cont_date_from"];
+					if(row[cols[2]] == null || row[cols[2]].toString().trim() == ""){alert("ëŒ€ê¸ˆ ê²°ì œì¼ì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Cì—´,"+(i+1)+"í–‰)");return;}
+					if(row[cols[3]] != null && row[cols[2]].toString().trim() != ""){
+						if(row[cols[3]].length != 8 ){alert("ì•½ì •ì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Dì—´,"+(i+1)+"í–‰)");return;}
+					}
+				}else{
+					fields = ["cust_code","cont_date","cont_date_from"];
+					if(row[cols[2]] != null && row[cols[2]].toString().trim() != ""){
+						if(row[cols[2]].length != 8 ){alert("ì•½ì •ì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Cì—´,"+(i+1)+"í–‰)");return;}
+					}
+				}
+				if(row[cols[0]] == null || row[cols[0]].toString().trim() == ""){alert("ê±°ë˜ì²˜ ì½”ë“œì— ë¹ˆê°’ì´ ë“¤ì–´ê°€ ìˆìŠµë‹ˆë‹¤.(Aì—´,"+(i+1)+"í–‰)");return;}
+				if(row[cols[1]] != null && row[cols[1]].toString().trim() != ""){
+					if(row[cols[1]].length != 8 ){alert("ê³„ì•½ì¼ì í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤. ì…ë ¥í˜•ì‹:19990102 (Bì—´,"+(i+1)+"í–‰)");return;}
+				}
+           	}
            
-            var template_cd = document.getElementById("template_cd").value;
-            if (template_cd == '2020020') {  
-            	 fields.push("cont_sdate"); 
-            	 fields.push("cont_edate"); 
-            	 
-            	 fields.push("cont_total"); 
-            	 fields.push("a_pay_1"); 
-                 fields.push("a_pay_2");
-                 fields.push("a_pay_3");
-                 fields.push("a_pay_4");
-                 fields.push("input_cont_text01");
-                 if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("°è¾à±â°£ ½ÃÀÛÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(J¿­,"+(i+1)+"Çà)");return;}
-                 if(row[cols[9]].length != 10){alert("°è¾à±â°£ ½ÃÀÛÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (J¿­,"+(i+1)+"Çà)");return;}
-                 
-                 if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("°è¾à±â°£ Á¾·áÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(K¿­,"+(i+1)+"Çà)");return;}
-                 if(row[cols[10]].length != 10){alert("°è¾à±â°£ Á¾·áÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (K¿­,"+(i+1)+"Çà)");return;}
-
-                if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("¿¬ºÀ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[11] + "¿­,"+(i+1)+"Çà)");return;} 
-                if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("±âº»±Ş¿©¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[12] + "¿­,"+(i+1)+"Çà)");return;} 
-                if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("Á÷¹«¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[13] + "¿­,"+(i+1)+"Çà)");return;} 
-                if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("ÈÄ»ı¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[14] + "¿­,"+(i+1)+"Çà)");return;} 
-                if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("°íÁ¤¿¬Àå¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[15] + "¿­,"+(i+1)+"Çà)");return;} 
-                if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("½Ã°£¿Ü±Ù·Î¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[16] + "¿­,"+(i+1)+"Çà)");return;}  
-           }else if (template_cd == '2020021') { 
-        	 fields.push("cont_sdate"); 
-          	 fields.push("cont_edate"); 
-          	 
-          	 fields.push("cont_total"); 
-        	 fields.push("a_pay_1"); 
-             fields.push("a_pay_2");
-             fields.push("a_pay_3");
-             fields.push("a_pay_4");
-             fields.push("a_pay_5");
-             fields.push("a_pay_6");
-             fields.push("a_pay_7");
-             fields.push("a_pay_8");
-             fields.push("input_cont_text01");
-             if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("°è¾à±â°£ ½ÃÀÛÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(J¿­,"+(i+1)+"Çà)");return;}
-             if(row[cols[9]].length != 10){alert("°è¾à±â°£ ½ÃÀÛÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (J¿­,"+(i+1)+"Çà)");return;}
-             
-             if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("°è¾à±â°£ Á¾·áÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(K¿­,"+(i+1)+"Çà)");return;}
-             if(row[cols[10]].length != 10){alert("°è¾à±â°£ Á¾·áÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (K¿­,"+(i+1)+"Çà)");return;}
-
-            if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("¿¬ºÀ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[11] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("±âº»±Ş¿©¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[12] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("Á÷¹«¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[13] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("Á¶Á¤¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[14] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("ÈÄ»ı¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[15] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("°íÁ¤¿¬Àå¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[16] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[17]] == null || row[cols[17]].toString().trim() == ""){alert("»ı»êÀå·Á¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[17] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[18]] == null || row[cols[18]].toString().trim() == ""){alert("¾÷¹«¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[18] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[19]] == null || row[cols[19]].toString().trim() == ""){alert("ÀÚ°İÁõ¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[19] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[20]] == null || row[cols[20]].toString().trim() == ""){alert("°íÁ¤¿¬Àå¼ö´ç(½Ã°£)¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[20] + "¿­,"+(i+1)+"Çà)");return;}  
-       }else if (template_cd == '2020022') {  
-    	     fields.push("cont_sdate"); 
-      		 fields.push("cont_edate"); 
-      	 
-        	 fields.push("a_pay_1"); 
-             fields.push("a_pay_2");
-             fields.push("a_pay_3");
-             fields.push("a_pay_4");
-             fields.push("a_pay_5");
-             fields.push("a_pay_6"); 
-             fields.push("input_cont_text01"); 
-             
-             if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("°è¾à±â°£ ½ÃÀÛÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(J¿­,"+(i+1)+"Çà)");return;}
-             if(row[cols[9]].length != 10){alert("°è¾à±â°£ ½ÃÀÛÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (J¿­,"+(i+1)+"Çà)");return;}
-             
-             if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("°è¾à±â°£ Á¾·áÀÏÀÚ¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(K¿­,"+(i+1)+"Çà)");return;}
-             if(row[cols[10]].length != 10){alert("°è¾à±â°£ Á¾·áÀÏÀÚ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù. ÀÔ·ÂÇü½Ä:1999-01-02 (K¿­,"+(i+1)+"Çà)");return;}
-
-            if(row[cols[11]] == null || row[cols[11]].toString().trim() == ""){alert("±âº»±Ş¿©¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[11] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[12]] == null || row[cols[12]].toString().trim() == ""){alert("Á÷¹«¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[12] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[13]] == null || row[cols[13]].toString().trim() == ""){alert("Á¶Á¤¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[13] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[14]] == null || row[cols[14]].toString().trim() == ""){alert("ÈÄ»ı¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[14] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[15]] == null || row[cols[15]].toString().trim() == ""){alert("°íÁ¤¿¬Àå¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[15] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[16]] == null || row[cols[16]].toString().trim() == ""){alert("»ı»êÀå·Á¼ö´ç¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[16] + "¿­,"+(i+1)+"Çà)");return;} 
-            if(row[cols[17]] == null || row[cols[17]].toString().trim() == ""){alert("°íÁ¤¿¬Àå¼ö´ç(½Ã°£)¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[17] + "¿­,"+(i+1)+"Çà)");return;}  
-       }else if  (template_cd == '2020159') {  
-    	   fields.push("input_cont_text01"); 
-    	   fields.push("input_cont_text02"); 
-    	   
-    	   if(row[cols[9]] == null || row[cols[9]].toString().trim() == ""){alert("¼Ò¼Ó¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[9] + "¿­,"+(i+1)+"Çà)");return;} 
-           if(row[cols[10]] == null || row[cols[10]].toString().trim() == ""){alert("»ç¹ø¿¡ ºó°ªÀÌ µé¾î°¡ ÀÖ½À´Ï´Ù.(" + cols[10] + "¿­,"+(i+1)+"Çà)");return;} 
-       }
-            
- 
             var rowdata={};
             for(var j = 0 ; j < cols.length; j++){
                 if(row[cols[j]]){
@@ -359,11 +485,10 @@ function process_wb(wb) {
                 }
             }
             data.push(rowdata);
-            //gridView.setProgress(0,cols.length,i,"loading...");
         }
         dataProvider.setRows(data);
         gridView.closeProgress();
-       // alert("Á¤ µÇ¾ú½À´Ï´Ù.");
+        alert("ì´ " + dataProvider.getRowCount() + "ê±´ì´ ì—…ë¡œë“œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
     }
 }
 
@@ -388,37 +513,41 @@ function fixdata(data) {
 }
 
 function excelDown(){
-
-	var fileNmae = "°è¾à¼­ÀÏ°ı»ı¼º";
-	
-    gridView.exportGrid({
-        type: "excel",
-        target: "local",
-        fileName: fileNmae+".xlsx",
-        showProgress: false,
-        applyDynamicStyles: false,
-        progressMessage: "´Ù¿î·Îµå ÁøÇà ÁßÀÔ´Ï´Ù.",
-        indicator: "hidden",
-        header: "visible",
-        footer: "hidden",
-        compatibility: "2007",
-        done: function () {  //³»º¸³»±â ¿Ï·á ÈÄ ½ÇÇàµÇ´Â ÇÔ¼ö
-        }
-    });
+	if(gTemplateCd != ""){
+		var fileNmae = "ê³„ì•½ì„œì¼ê´„ìƒì„±";
+		
+	    gridView.exportGrid({
+	        type: "excel",
+	        target: "local",
+	        fileName: fileNmae+".xlsx",
+	        showProgress: false,
+	        applyDynamicStyles: false,
+	        progressMessage: "ë‹¤ìš´ë¡œë“œ ì§„í–‰ ì¤‘ì…ë‹ˆë‹¤.",
+	        indicator: "hidden",
+	        header: "visible",
+	        footer: "hidden",
+	        compatibility: "2007",
+	        done: function () {  //ë‚´ë³´ë‚´ê¸° ì™„ë£Œ í›„ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
+	        }
+	    });
+	}else{
+		alert("ê³„ì•½ì„œì¢…ë¥˜ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.");
+		return;
+	}
 }
 
 var submit_chk = false;
 function submitItem(){
 	if(submit_chk){
-		alert("Ã³¸® ÁßÀÔ´Ï´Ù.");
+		alert("ì²˜ë¦¬ ì¤‘ì…ë‹ˆë‹¤.");
 		return;
 	}
 	if(dataProvider.getRowCount() == 0){
-		alert("°è¾à¼­ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ ÀúÀåÀ» ÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.");
+		alert("ê³„ì•½ì„œ ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ ì €ì¥ì„ í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	if(!confirm("°è¾à¼­¸¦ ÀÏ°ı Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?")){
+	if(!confirm("ê³„ì•½ì„œë¥¼ ì¼ê´„ ì‘ì„± í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 		return;
 	}
 	
@@ -434,12 +563,15 @@ function submitItem(){
 
     var data = {
          grid:grid_string
-		,template_cd:document.getElementById("template_cd").value
+		,template_cd:gTemplateCd
         ,member_no:"{{member_no}}"
     };
 
     console.log(data);
     submit_chk = true;
+    
+    document.getElementById("loading").style.display = 'block';
+    
     $.ajax({
         url : url,
         type : "post",
@@ -447,12 +579,14 @@ function submitItem(){
         success : function(data) {
             data = data.trim();
             alert(data);
-            dataProvider.clearRowStates(true);
             submit_chk = false;
+            document.getElementById("loading").style.display = 'none';
+			location.href="/web/buyer/contract/batch_contract_writing_list.jsp";
         },
         error : function(request, status, error) {
             alert("code:" + request.status + "\\n" + "error:" + error);
             submit_chk = false;
+            document.getElementById("loading").style.display = 'none';
         }
     });
 }

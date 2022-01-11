@@ -1,12 +1,12 @@
-<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>Æò°¡´ë»ó¾÷Ã¼ µî·Ï<span class="caution-text"></span></h3>
+			<h3>í‰ê°€ëŒ€ìƒì—…ì²´ ë“±ë¡<span class="caution-text"></span></h3>
 		</div>
 		<!-- IF START 'modify' -->
 		<div class="push-right">
-			Æò°¡»óÅÂ: <span class="caution-text"><b>ÀÛ¼ºÁß</b></span>
+			í‰ê°€ìƒíƒœ: <span class="caution-text"><b>ìž‘ì„±ì¤‘</b></span>
 		</div>
 		<!-- IF END 'modify' -->
 	</div>
@@ -18,10 +18,10 @@
 			<col width="30%">
 		</colgroup>
 		<tr>
-			<th class="req-check">Æò°¡Á¾·ù</th>
+			<th class="req-check">í‰ê°€ì¢…ë¥˜</th>
 			<td colspan="3">
 				<select name="kind_cd" style="width:90px" onchange="chgKindCd()">
-					<option value="">---¼±ÅÃ---</option>
+					<option value="">---ì„ íƒ---</option>
 					<!-- LOOP START 'code_kind_cd' -->
 					<option value="{{code_kind_cd.id}}">{{code_kind_cd.name}}</option>
 	  				<!-- LOOP END 'code_kind_cd' -->
@@ -29,37 +29,37 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">Æò°¡¸í</th>
+			<th class="req-check">í‰ê°€ëª…</th>
 			<td colspan="3">
 				<input type="hidden" name="bid_no" value="{{asse.bid_no}}">
 				<input type="hidden" name="bid_deg" value="{{asse.bid_deg}}">
-				<input type="text" name="project_name" class="in_readonly" style="width:500px"  value="{{assessment.project_name}}" required="Y" hname="Æò°¡¸í" >
-				<button type="button" name="btn_select_bid" class="sbtn ico-search auth_css" onclick="OpenWindows('./pop_search_bid.jsp', 'pop_search_bid', '980', '750');"><span></span>¼±ÅÃ</button>
+				<input type="text" name="project_name" class="in_readonly" style="width:500px"  value="{{assessment.project_name}}" required="Y" hname="í‰ê°€ëª…" >
+				<button type="button" name="btn_select_bid" class="sbtn ico-search auth_css" onclick="OpenWindows('./pop_search_bid.jsp', 'pop_search_bid', '980', '750');"><span></span>ì„ íƒ</button>
 			</td>
 		</tr>
 		<tr id="tr_supp_member">
-			<th class="req-check">Æò°¡¾÷Ã¼ </th>
+			<th class="req-check">í‰ê°€ì—…ì²´ </th>
 			<td colspan="3">
 				<input type="hidden" name="member_no" value="{{asse.member_no}}">
 				<input type="text" name="member_name" class="in_readonly" size="30" readonly>
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">Æò°¡ºÎ¼­</th>
+			<th class="req-check">í‰ê°€ë¶€ì„œ</th>
 			<td colspan="3">
-				<input type="checkbox" name="s_yn" value="Y" onclick="clickDept('s')"/> º»»çÆò°¡&nbsp;&nbsp;
+				<input type="checkbox" name="s_yn" value="Y" onclick="clickDept('s')"/> ë³¸ì‚¬í‰ê°€&nbsp;&nbsp;
 				( 
-				´ã´çÀÚ : <input type="text" name="s_user_name" class="in_readonly" hname="º»»çÆò°¡ ´ã´çÀÚ" readonly style="width:100px" value="{{asse.s_user_name}}"> 
+				ë‹´ë‹¹ìž : <input type="text" name="s_user_name" class="in_readonly" hname="ë³¸ì‚¬í‰ê°€ ë‹´ë‹¹ìž" readonly style="width:100px" value="{{asse.s_user_name}}"> 
 				<input type="hidden" name="s_user_id" value="{{asse.s_user_id}}">
-				<button type="button" style="display:none" name="btn_s_user" class="sbtn ico-search auth_css" onclick="OpenWindows('./pop_asse_charge.jsp?callback=setSUser', 'pop_search_charge', '900', '750');"><span></span>¼±ÅÃ</button>
+				<button type="button" style="display:none" name="btn_s_user" class="sbtn ico-search auth_css" onclick="OpenWindows('./pop_asse_charge.jsp?callback=setSUser', 'pop_search_charge', '900', '750');"><span></span>ì„ íƒ</button>
 				)
 				<br>
 				<div id="qc_area">
-				<input type="checkbox" name="qc_yn" value="Y" onclick="clickDept('qc')"/> ÇöÀåÆò°¡&nbsp;&nbsp;
+				<input type="checkbox" name="qc_yn" value="Y" onclick="clickDept('qc')"/> í˜„ìž¥í‰ê°€&nbsp;&nbsp;
 				( 
-				´ã´çÀÚ : <input type="text" name="qc_user_name" class="in_readonly" hname="ÇöÀåÆò°¡ ´ã´çÀÚ" readonly style="width:100px" value="{{asse.qc_user_name}}"> 
+				ë‹´ë‹¹ìž : <input type="text" name="qc_user_name" class="in_readonly" hname="í˜„ìž¥í‰ê°€ ë‹´ë‹¹ìž" readonly style="width:100px" value="{{asse.qc_user_name}}"> 
 				<input type="hidden" name="qc_user_id" value="{{asse.qc_user_id}}">
-				<button type="button" style="display:none" name="btn_qc_user" class="sbtn ico-search auth_css" onclick="OpenWindows('./pop_asse_charge.jsp?callback=setQCUser', 'pop_search_charge', '900', '750');"><span></span>¼±ÅÃ</button>
+				<button type="button" style="display:none" name="btn_qc_user" class="sbtn ico-search auth_css" onclick="OpenWindows('./pop_asse_charge.jsp?callback=setQCUser', 'pop_search_charge', '900', '750');"><span></span>ì„ íƒ</button>
 				<select name="qc_temlate_cd">
 				<!-- LOOP START 'templateQ' -->
 				<option value="{{templateQ.template_cd}}">{{templateQ.template_name}}</option>
@@ -73,14 +73,14 @@
 </div>
 <div class="btn-group-wrap">
 	<!-- IFNOT START 'modify' -->
-	<button type="submit" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-list" onclick="location.href='asse_plan_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="submit" class="btn color ico-save auth_css"><span></span>ì €ìž¥</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='asse_plan_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IFNOT END 'modify' -->
 	<!-- IF START 'modify' -->
-	<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?')){location.href='asse_plan_delete.jsp?{{query}}'}"><span></span>»èÁ¦</button>
-	<button type="submit" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-check auth_css" onclick="if(confirm('Æò°¡¸¦ ½ÃÀÛ ÇÏ½Ã°Ú½À´Ï±î?')){location.href='asse_start.jsp?{{query}}'}"><span></span>Æò°¡½ÃÀÛ</button>
-	<button type="button" class="btn color ico-list" onclick="location.href='asse_plan_list.jsp?{{list_query}}'"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='asse_plan_delete.jsp?{{query}}'}"><span></span>ì‚­ì œ</button>
+	<button type="submit" class="btn color ico-save auth_css"><span></span>ì €ìž¥</button>
+	<button type="button" class="btn color ico-check auth_css" onclick="if(confirm('í‰ê°€ë¥¼ ì‹œìž‘ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='asse_start.jsp?{{query}}'}"><span></span>í‰ê°€ì‹œìž‘</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='asse_plan_list.jsp?{{list_query}}'"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	<!-- IF END 'modify' -->
 </div>
 </form>
@@ -89,10 +89,10 @@
 function formSubmit(f){
 	if(validate(f)){
 		if( !(f['s_yn'].checked||f['qc_yn'].checked)){
-			alert("Æò°¡ºÎ¼­¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.");
+			alert("í‰ê°€ë¶€ì„œë¥¼ ì„ íƒ í•˜ì„¸ìš”.");
 			return false;
 		}
-		var msg = "ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?";
+		var msg = "ì €ìž¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 		if(confirm(msg)){
 			return true;
 		}

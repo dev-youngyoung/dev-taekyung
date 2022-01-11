@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String auth_cd = u.request("auth_cd");
 if(auth_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -11,11 +11,11 @@ CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_select_auth = codeDao.getCodeArray("M045");
 String[] code_btn_auth = codeDao.getCodeArray("M046");
 
-//±ÇÇÑÁ¶È¸
+//ê¶Œí•œì¡°íšŒ
 DataObject authDao = new DataObject("tcb_auth");
 DataSet authInfo = authDao.find("member_no = '"+_member_no+"' and auth_cd=" + auth_cd);
 if(!authInfo.next()){
-	u.jsError("¼±ÅÃÇÏ½Å ±ÇÇÑÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì„ íƒí•˜ì‹  ê¶Œí•œì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -37,11 +37,11 @@ DataSet person = personDao.query(
 		+"  order by a.field_seq asc "
 		);
 
-//¸Ş´º±ÇÇÑÁ¶È¸
+//ë©”ë‰´ê¶Œí•œì¡°íšŒ
 DataObject authMenuDao = new DataObject("tcb_auth_menu");
 DataSet authMenu = authMenuDao.find("member_no = '"+_member_no+"' and auth_cd='" + auth_cd+"'");
 
-//¸Ş´ºÁ¤º¸ Á¶È¸
+//ë©”ë‰´ì •ë³´ ì¡°íšŒ
 DataObject menuDao = new DataObject("tcb_menu");
 //menuDao.setDebug(out);
 DataSet menu = menuDao.query(
@@ -150,8 +150,13 @@ menuCnt.put("esti_yn", menuCnt.getInt("esti_cnt")>0);
 menuCnt.put("bid_yn", menuCnt.getInt("bid_cnt")>0);
 menuCnt.put("cont_yn", menuCnt.getInt("cont_cnt")>0);
 
+// íƒ€ë¶€ì„œ ê¶Œí•œë¶€ì—¬ ì‹œ ë¶€ì„œëª…ìœ¼ë¡œ ì •ë ¬(2021.02.02 ì´ìŠ¹ì§„K)
 DataObject fieldDao = new DataObject("tcb_field");
-DataSet field = fieldDao.find(" member_no = '"+_member_no+"' and use_yn = 'Y'  and status > '0' ");
+DataSet field = fieldDao.find(
+		" member_no = '"+_member_no+"' and use_yn = 'Y'  and status > '0' "
+		, "*"
+		, "field_name asc"
+		);
 
 
 DataObject authFieldDao = new DataObject("tcb_auth_field");
@@ -171,11 +176,11 @@ while(authField.next()){
 	authField.put(".code_btn_auth", u.arr2loop(authField.getString("btn_auth_cds").split(",")));
 }
 
-f.addElement("auth_nm", authInfo.getString("auth_nm") , "hname:'±ÇÇÑ¸í', required:'Y'");
-f.addElement("etc", null, "hname:'ºñ°í'");
+f.addElement("auth_nm", authInfo.getString("auth_nm") , "hname:'ê¶Œí•œëª…', required:'Y'");
+f.addElement("etc", null, "hname:'ë¹„ê³ '");
 
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DB db = new DB();
@@ -220,10 +225,10 @@ if(u.isPost() && f.validate())
 		db.setCommand(authFieldDao.getInsertQuery()	, authFieldDao.record);
 	}
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀå µÇ¾ú½À´Ï´Ù.", "./auth_modify.jsp?"+u.getQueryString());	
+	u.jsAlertReplace("ì €ì¥ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./auth_modify.jsp?"+u.getQueryString());	
 	return;
 }
 

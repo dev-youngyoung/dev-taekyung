@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String gubun = u.request("gubun");
 String l_src_cd = u.request("l_src_cd");
 String m_src_cd = u.request("m_src_cd");
@@ -15,7 +15,7 @@ String s_gubun = "";
 if(gubun.equals("l")){
 	
 	name = "l_src_cd";
-	hname = "��з�";
+	hname = "대분류";
 	colunm_name = "l_src_cd";
 	s_gubun = "m";
 	src = srcDao.find(" member_no = '"+_member_no+"' and l_src_cd <> '000' and m_src_cd = '000' and s_src_cd = '000' ");
@@ -24,7 +24,7 @@ if(gubun.equals("l")){
 if(gubun.equals("m")){
 	
 	name = "m_src_cd";
-	hname = "�ߺз�";
+	hname = "중분류";
 	colunm_name = "m_src_cd";
 	s_gubun = "s";
 	if(!l_src_cd.equals(""))
@@ -35,7 +35,7 @@ if(gubun.equals("m")){
 
 if(gubun.equals("s")){
 	name = "s_src_cd";
-	hname = "�Һз�";
+	hname = "소분류";
 	colunm_name = "s_src_cd";
 	s_gubun = "";
 	if(! m_src_cd.equals(""))

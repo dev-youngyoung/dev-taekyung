@@ -1,12 +1,12 @@
-<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="menu_cds" >
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-      <h3>{{member.member_name}} ¸Þ´º±ÇÇÑ</h3>
+      <h3>{{member.member_name}} ë©”ë‰´ê¶Œí•œ</h3>
     </div>
     <div class="push-right">
-    	<button type="submit" class="sbtn color ico-save"><span></span>ÀúÀå</button>
+    	<button type="submit" class="sbtn color ico-save"><span></span>ì €ìž¥</button>
     </div>
 </div>
 <!-- 
@@ -17,19 +17,19 @@
 <col>
 </colgroup>
 <tr>
-	<th>¿ø»ç¾÷ÀÚ</th>
+	<th>ì›ì‚¬ì—…ìž</th>
 	<td>
-		<input type="checkbox" name="won_bid" onclick="clickChk('won_bid')"> ÀüÀÚÀÔÂû  &nbsp; &nbsp; &nbsp; &nbsp;
-		<input type="checkbox" name="won_cont" onclick="clickChk('won_cont')"> ÀüÀÚ°è¾à &nbsp; &nbsp; &nbsp; &nbsp;
-		<input type="checkbox" name="won_basic" onclick="clickChk('won_basic')"> ±âº»Á¤º¸/ÀüÀÚ¹®¼­/½ÇÀûÁõ¸í/Åë°èÇöÈ²
+		<input type="checkbox" name="won_bid" onclick="clickChk('won_bid')"> ì „ìžìž…ì°°  &nbsp; &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" name="won_cont" onclick="clickChk('won_cont')"> ì „ìžê³„ì•½ &nbsp; &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" name="won_basic" onclick="clickChk('won_basic')"> ê¸°ë³¸ì •ë³´/ì „ìžë¬¸ì„œ/ì‹¤ì ì¦ëª…/í†µê³„í˜„í™©
 	</td>
 </tr>
 <tr>
-	<th>¼ö±Þ»ç¾÷ÀÚ</th>
+	<th>ìˆ˜ê¸‰ì‚¬ì—…ìž</th>
 	<td>
-		<input type="checkbox" name="su_bid" onclick="clickChk('su_bid')"> ÀüÀÚÀÔÂû  &nbsp; &nbsp; &nbsp; &nbsp;
-		<input type="checkbox" name="su_cont" onclick="clickChk('su_cont')"> ÀüÀÚ°è¾à &nbsp; &nbsp; &nbsp; &nbsp;
-		<input type="checkbox" name="su_basic" onclick="clickChk('su_basic')"> ½ÇÀûÁõ¸í/ÀüÀÚ¹®¼­
+		<input type="checkbox" name="su_bid" onclick="clickChk('su_bid')"> ì „ìžìž…ì°°  &nbsp; &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" name="su_cont" onclick="clickChk('su_cont')"> ì „ìžê³„ì•½ &nbsp; &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" name="su_basic" onclick="clickChk('su_basic')"> ì‹¤ì ì¦ëª…/ì „ìžë¬¸ì„œ
 	</td>
 </tr>
 </table>
@@ -45,11 +45,11 @@
 <col width="35%">
 </colgroup>
 <tr>
-	<th>¸Þ´º¸í</th>
-	<th>ÁßºÐ·ù</th>
-	<th>¸Þ´º¸í</th>
-	<th>Á¶È¸</th>
-	<th>±âÅ¸</th>
+	<th>ë©”ë‰´ëª…</th>
+	<th>ì¤‘ë¶„ë¥˜</th>
+	<th>ë©”ë‰´ëª…</th>
+	<th>ì¡°íšŒ</th>
+	<th>ê¸°íƒ€</th>
 </tr>
 <!-- LOOP START 'treeMenu' -->
 <tr>
@@ -72,7 +72,7 @@
 <script>
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			f['menu_cds'].value = GetFormValue("form1","menu_cd");
 			return true;
 		}
@@ -84,77 +84,77 @@ function formSubmit(f){
 function clickChk(gubun){
 	var f = document.forms['form1'];
 	var won_bid_menus =[
-		 "000015" //ÀÔÂû°èÈ¹
-		,"000016" //Çö¼³°ø°í
-		,"000017" //ÀÔÂû°ø°í
-		,"000018" //ÀÔÂû¼­°³Âû
-		,"000019" //³«Âû¾÷Ã¼¼±Á¤
-		,"000020" //ÀÔÂû°á°ú
-		,"000131" //ÀÔÂû´ã´çÀÚº¯°æ
-		,"000022" //ÀÔÂûÁøÇàÇöÈ²
+		 "000015" //ìž…ì°°ê³„íš
+		,"000016" //í˜„ì„¤ê³µê³ 
+		,"000017" //ìž…ì°°ê³µê³ 
+		,"000018" //ìž…ì°°ì„œê°œì°°
+		,"000019" //ë‚™ì°°ì—…ì²´ì„ ì •
+		,"000020" //ìž…ì°°ê²°ê³¼
+		,"000131" //ìž…ì°°ë‹´ë‹¹ìžë³€ê²½
+		,"000022" //ìž…ì°°ì§„í–‰í˜„í™©
 	];
 	
 	var won_cont_menus =[
-		 "000036" //°è¾à´ë»ó(ÀüÀÚÀÔÂû)
-		,"000037" //ÃÖÃÊ°è¾àÀÛ¼º
-		,"000038" //º¯°æ°è¾àÀÛ¼º
-		,"000039" //ÀÚÀ¯¼­½Ä °è¾àÀÛ¼º
-		,"000040" //ÀÓ½ÃÀúÀå°è¾à
-		,"000041" //ÁøÇàÁßÀÎ º¸³½°è¾à
-		,"000043" //¿Ï·áµÈ º¸³½°è¾à
-		,"000046" //ÀÎÁö¼¼°ü¸®
-		,"000047" //¼±±Þ±Ý°ü¸®
-		,"000048" //ÇÏµµ±Þ´ë±ÝÁö±Þº¸Áõ¼­
-		,"000049" //ÇÏµµ±Þ´ë±ÝÁö±Þ°ü¸®
-		,"000050" //º¸Áõº¸ÇèÁõ±Ç°ü¸®
-		,"000045" //°è¾à°ü¸®
-		,"000052" //°áÁ¦³»¿ª
+		 "000036" //ê³„ì•½ëŒ€ìƒ(ì „ìžìž…ì°°)
+		,"000037" //ìµœì´ˆê³„ì•½ìž‘ì„±
+		,"000038" //ë³€ê²½ê³„ì•½ìž‘ì„±
+		,"000039" //ìžìœ ì„œì‹ ê³„ì•½ìž‘ì„±
+		,"000040" //ìž„ì‹œì €ìž¥ê³„ì•½
+		,"000041" //ì§„í–‰ì¤‘ì¸ ë³´ë‚¸ê³„ì•½
+		,"000043" //ì™„ë£Œëœ ë³´ë‚¸ê³„ì•½
+		,"000046" //ì¸ì§€ì„¸ê´€ë¦¬
+		,"000047" //ì„ ê¸‰ê¸ˆê´€ë¦¬
+		,"000048" //í•˜ë„ê¸‰ëŒ€ê¸ˆì§€ê¸‰ë³´ì¦ì„œ
+		,"000049" //í•˜ë„ê¸‰ëŒ€ê¸ˆì§€ê¸‰ê´€ë¦¬
+		,"000050" //ë³´ì¦ë³´í—˜ì¦ê¶Œê´€ë¦¬
+		,"000045" //ê³„ì•½ê´€ë¦¬
+		,"000052" //ê²°ì œë‚´ì—­
 	];
 	var won_basic_menus = [
-		 "000060"// ¹®¼­ÀÛ¼º
-		,"000130"// ÀÓ½ÃÀúÀå
-		,"000061"// ÁøÇà¹®¼­-¹ß½Å
-		,"000062"// ÁøÇà¹®¼­-¼ö½Å
-		,"000063"// ¿Ï·á¹®¼­-¹ß½Å
-		,"000064"// ¿Ï·á¹®¼­-¼ö½Å
+		 "000060"// ë¬¸ì„œìž‘ì„±
+		,"000130"// ìž„ì‹œì €ìž¥
+		,"000061"// ì§„í–‰ë¬¸ì„œ-ë°œì‹ 
+		,"000062"// ì§„í–‰ë¬¸ì„œ-ìˆ˜ì‹ 
+		,"000063"// ì™„ë£Œë¬¸ì„œ-ë°œì‹ 
+		,"000064"// ì™„ë£Œë¬¸ì„œ-ìˆ˜ì‹ 
 		
-		,"000070"// ¹ß±Þ¿äÃ»(¼ö½Å)
-		,"000142"// ¹ß±Þ¿Ï·á(¼ö½Å)
+		,"000070"// ë°œê¸‰ìš”ì²­(ìˆ˜ì‹ )
+		,"000142"// ë°œê¸‰ì™„ë£Œ(ìˆ˜ì‹ )
 		
-		,"000098"// È¸»çÁ¤º¸
-		,"000099"// ºÎ¼­°ü¸®
-		,"000100"// ÇöÀå°ü¸®
-		,"000108"// ³»Á¤º¸º¯°æ
-		,"000106"// ´ã´çÀÚ°ü¸®
-		,"000107"// ´ã´çÀÚº° ÇöÀå°ü¸®
-		,"000109"// ´ã´çÇöÀåÁ¶È¸
-		,"000134"// ±ÇÇÑ¼³Á¤°ü¸®
+		,"000098"// íšŒì‚¬ì •ë³´
+		,"000099"// ë¶€ì„œê´€ë¦¬
+		,"000100"// í˜„ìž¥ê´€ë¦¬
+		,"000108"// ë‚´ì •ë³´ë³€ê²½
+		,"000106"// ë‹´ë‹¹ìžê´€ë¦¬
+		,"000107"// ë‹´ë‹¹ìžë³„ í˜„ìž¥ê´€ë¦¬
+		,"000109"// ë‹´ë‹¹í˜„ìž¥ì¡°íšŒ
+		,"000134"// ê¶Œí•œì„¤ì •ê´€ë¦¬
 	];
 	
 	var su_bid_menus = [
-		 "000025"//Çö¼³°ø°í
-		,"000026"//ÀÔÂû°ø°í
-		,"000027"//ÀÔÂû°á°ú
+		 "000025"//í˜„ì„¤ê³µê³ 
+		,"000026"//ìž…ì°°ê³µê³ 
+		,"000027"//ìž…ì°°ê²°ê³¼
 	];
 	var su_cont_menus =[
-		 "000042"//ÁøÇàÁßÀÎ ¹ÞÀº°è¾à
-		,"000044"//¿Ï·áµÈ ¹ÞÀº°è¾à
-		,"000127"//ÀÎÁö¼¼°ü¸®
-		,"000128"//¼±±Þ±Ý°ü¸®
-		,"000052"//°áÁ¦³»¿ª	
+		 "000042"//ì§„í–‰ì¤‘ì¸ ë°›ì€ê³„ì•½
+		,"000044"//ì™„ë£Œëœ ë°›ì€ê³„ì•½
+		,"000127"//ì¸ì§€ì„¸ê´€ë¦¬
+		,"000128"//ì„ ê¸‰ê¸ˆê´€ë¦¬
+		,"000052"//ê²°ì œë‚´ì—­	
 	];
 	var su_basic_menus = [
-		 "000060"// ¹®¼­ÀÛ¼º
-		,"000130"// ÀÓ½ÃÀúÀå
-		,"000061"// ÁøÇà¹®¼­-¹ß½Å
-		,"000062"// ÁøÇà¹®¼­-¼ö½Å
-		,"000063"// ¿Ï·á¹®¼­-¹ß½Å
-		,"000064"// ¿Ï·á¹®¼­-¼ö½Å
+		 "000060"// ë¬¸ì„œìž‘ì„±
+		,"000130"// ìž„ì‹œì €ìž¥
+		,"000061"// ì§„í–‰ë¬¸ì„œ-ë°œì‹ 
+		,"000062"// ì§„í–‰ë¬¸ì„œ-ìˆ˜ì‹ 
+		,"000063"// ì™„ë£Œë¬¸ì„œ-ë°œì‹ 
+		,"000064"// ì™„ë£Œë¬¸ì„œ-ìˆ˜ì‹ 
 		
-		,"000067"// ½ÇÀûÁõ¸í¼­ÀÛ¼º
-		,"000068"// ÀÓ½ÃÀúÀå
-		,"000069"// ¹ß±Þ¿äÃ»(¹ß½Å)
-		,"000141"// ¹ß±Þ¿Ï·á(¹ß½Å)
+		,"000067"// ì‹¤ì ì¦ëª…ì„œìž‘ì„±
+		,"000068"// ìž„ì‹œì €ìž¥
+		,"000069"// ë°œê¸‰ìš”ì²­(ë°œì‹ )
+		,"000141"// ë°œê¸‰ì™„ë£Œ(ë°œì‹ )
 	];
 	
 	var menus = null;

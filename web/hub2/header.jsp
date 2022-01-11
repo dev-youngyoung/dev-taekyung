@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1.0,width=device-width,height=device-height" />
-	<title>Ё╙юл╫╨╢ые╔</title>
+	<title>К┌≤Л²╢Л┼╓К▀╓М│░</title>
 	<link rel="stylesheet" type="text/css" href="/web/hub2/css/default.css??v=20191112">
 	<link rel="stylesheet" type="text/css" href="/web/hub2/css/libs/jquery-ui.css">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

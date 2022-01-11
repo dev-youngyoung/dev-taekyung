@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000075";
 
@@ -23,7 +23,7 @@ String s_edate = u.request("s_edate",u.getTimeString("yyyy-MM-dd"));
 f.addElement("s_sdate", s_sdate, null);
 f.addElement("s_edate", s_edate, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -46,9 +46,9 @@ list.addSearch("a.cont_userno",  f.get("s_user_no"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_cust_name"), "LIKE");
 list.addSearch("a.status",  f.get("s_status"));
 list.addSearch("a.template_cd",  f.get("s_template_cd"));
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -63,17 +63,17 @@ DataObject contStepDao = new DataObject("tcb_cont_agree");
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
-	if(ds.getString("status").equals("30")){//¼­¸í´ë±â »óÅÂÀÌ¸é »ı»ó Ç¥½Ã
+	if(ds.getString("status").equals("30")){//ì„œëª…ëŒ€ê¸° ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
 		ds.put("status_name", "<span class=\"caution-text\">"+u.getItem(ds.getString("status"), code_status)+"<span>");
-	}else if(ds.getString("status").equals("21")) {  // ½ÂÀÎ´ë±â
+	}else if(ds.getString("status").equals("21")) {  // ìŠ¹ì¸ëŒ€ê¸°
 		ds.put("status_name", "<span class=\"caution-text\">"+u.getItem(ds.getString("status"), code_status)+"<br>("+ds.getString("agree_name")+")</span>");
-	}else if(ds.getString("status").equals("40")){//¼öÁ¤¿äÃ» »óÅÂÀÌ¸é »ı»ó Ç¥½Ã
+	}else if(ds.getString("status").equals("40")){//ìˆ˜ì •ìš”ì²­ ìƒíƒœì´ë©´ ìƒìƒ í‘œì‹œ
 		ds.put("status_name", "<span style='color:blue'>"+u.getItem(ds.getString("status"), code_status)+"<span>");
 	}else{
 		ds.put("status_name", u.getItem(ds.getString("status"), code_status));

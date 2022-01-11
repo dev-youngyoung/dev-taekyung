@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
 <div class="search_div">
 <table class="search_table">
   <colgroup>
@@ -9,12 +9,12 @@
 	  <col width="%"/>
   </colgroup>
   <tr>
-	<th><p>����ڹ�ȣ</p></th>
+	<th><p>사업자번호</p></th>
 	<td><input type="text" name="sIdno" maxlength="30" style="width:95%"></td>
-    <th><p>��ǰ�ڵ�</p></th>
+    <th><p>상품코드</p></th>
     <td><input type="text" name="s_code" maxlength="30" style="width:95%"></td>
     <td align="right">
-      <button type="submit" class="btn color ico-search"><span></span>�˻�</button>
+      <button type="submit" class="btn color ico-search"><span></span>검색</button>
     </td>
   </tr>
 </table>
@@ -27,7 +27,7 @@
 <div class="div_table">
 <div class="util-row">
 	<div class="push-left">
-		<span class="caution-text">�ػ�ǰ�ڵ带 �Է��� �˻� �ϼ���.</span>
+		<span class="caution-text">※상품코드를 입력후 검색 하세요.</span>
 	</div>
 </div>
 <table>
@@ -42,14 +42,14 @@
 		<col width="10%">
 	</colgroup>
 	<tr>
-		<th>��ǰ��</th>
-		<th>�ǸŰ�</th>
-		<th>������������</th>
-		<th>������(%)</th>
-		<th>���Թ��</th>
-		<th>��۱���</th>
-		<th>��ü</th>
-		<th>����</th>
+		<th>상품명</th>
+		<th>판매가</th>
+		<th>가격적용일자</th>
+		<th>마진율(%)</th>
+		<th>매입방법</th>
+		<th>배송구분</th>
+		<th>업체</th>
+		<th>선택</th>
 	</tr>
 	<!-- LOOP START 'list' -->
 	<tr>
@@ -82,13 +82,13 @@
 			<input type="hidden" name="saleStartDate" value="{{list.saleStartDate}}"/>
 			<input type="hidden" name="contExpectedSellingQty" value="{{list.contExpectedSellingQty}}"/>
 			<input type="hidden" name="contGoodsStandard" value="{{list.contGoodsStandard}}"/>
-			<button type="button" class="sbtn color add" onclick="addCompany('{{list.goodsCode}}');"><span></span>����</button>
+			<button type="button" class="sbtn color add" onclick="addCompany('{{list.goodsCode}}');"><span></span>선택</button>
 		</td>
 	</tr>
 	<!-- LOOP END 'list' -->
 	<!-- IFNOT START 'list' -->
 	<tr class="cel">
-		<td align="center" colspan="8">��ȸ ����� �����ϴ�.</td>
+		<td align="center" colspan="8">조회 결과가 없습니다.</td>
 	</tr>
 <!-- IFNOT END 'list' -->
 </table>

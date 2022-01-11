@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 f.addElement("s_member_name",null, null);
 f.addElement("s_vendcd",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -36,7 +36,7 @@ while(ds.next()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_nomap_src");
-p.setVar("popup_title","¼Ò½Ì ¹Ì¼³Á¤ ¾÷Ã¼¸ñ·Ï");
+p.setVar("popup_title","ì†Œì‹± ë¯¸ì„¤ì • ì—…ì²´ëª©ë¡");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

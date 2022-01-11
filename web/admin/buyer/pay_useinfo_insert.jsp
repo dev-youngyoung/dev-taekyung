@@ -1,38 +1,38 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao codeDao = new CodeDao("tcm_comcode");
 String[] code_pay_type = codeDao.getCodeArray("M006");
 String[] code_calc_day = codeDao.getCodeArray("M048");
-String[] code_allow_ext = {"pdf=>PDF","jpg,jpeg,pdf,png,gif=>ÀÌ¹ÌÁöÆÄÀÏ","xls,xlsx=>¿¢¼¿","doc,docx=>¿öµå","hwp=>ÇÑ±Û"};
+String[] code_allow_ext = {"pdf=>PDF","jpg,jpeg,pdf,png,gif=>ì´ë¯¸ì§€íŒŒì¼","xls,xlsx=>ì—‘ì…€","doc,docx=>ì›Œë“œ","hwp=>í•œê¸€"};
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject menuMemberDao = new DataObject("tcb_member_menu");
 int bid_cnt = menuMemberDao.findCount(" member_no = '"+member_no+"' and adm_cd = '000015'");
 
-f.addElement("paytypecd", null, "hname:'ÀÌ¿ë¿ä±İÁ¦', required:'Y'");
-f.addElement("calc_day", null, "hname:'°è»ê¼­¹ßÇàÀÏ'");
-f.addElement("usestartday", null, "hname:'ÀÌ¿ë±â°£', required:'Y'");
-f.addElement("useendday", null, "hname:'ÀÌ¿ë±â°£', required:'Y'");
-f.addElement("recpmoneyamt", null, "hname:'¿ø»ç¾÷ÀÚ¿ä±İ', required:'Y'");
-f.addElement("suppmoneyamt", null, "hname:'¼ö±Ş»ç¾÷ÀÚ¿ä±İ', required:'Y'");
-f.addElement("insteadyn", null, "hname:'¼ö±Ş»ç¾÷ÀÚ ¿ä±İ Ã³¸®', required:'Y'");
-f.addElement("paper_amt", null, "hname:'¼­¸é°è¾à¿ä±İ'");
-f.addElement("stampyn", null, "hname:'ÀÚÀ¯¼­½ÄÀÎÁö¼¼ »ç¿ëÀ¯¹«'");
-f.addElement("bid_amt",null, "hname:'ÀÔÂû¿ä±İ', requred:'Y'");
-f.addElement("etc", null, "hname:'ºñ°í'");
-f.addElement("proof_yn", null, "hname:'½ÇÀûÁõ¸í»ç¿ë¿©ºÎ'");
+f.addElement("paytypecd", null, "hname:'ì´ìš©ìš”ê¸ˆì œ', required:'Y'");
+f.addElement("calc_day", null, "hname:'ê³„ì‚°ì„œë°œí–‰ì¼'");
+f.addElement("usestartday", null, "hname:'ì´ìš©ê¸°ê°„', required:'Y'");
+f.addElement("useendday", null, "hname:'ì´ìš©ê¸°ê°„', required:'Y'");
+f.addElement("recpmoneyamt", null, "hname:'ì›ì‚¬ì—…ììš”ê¸ˆ', required:'Y'");
+f.addElement("suppmoneyamt", null, "hname:'ìˆ˜ê¸‰ì‚¬ì—…ììš”ê¸ˆ', required:'Y'");
+f.addElement("insteadyn", null, "hname:'ìˆ˜ê¸‰ì‚¬ì—…ì ìš”ê¸ˆ ì²˜ë¦¬', required:'Y'");
+f.addElement("paper_amt", null, "hname:'ì„œë©´ê³„ì•½ìš”ê¸ˆ'");
+f.addElement("stampyn", null, "hname:'ììœ ì„œì‹ì¸ì§€ì„¸ ì‚¬ìš©ìœ ë¬´'");
+f.addElement("bid_amt",null, "hname:'ì…ì°°ìš”ê¸ˆ', requred:'Y'");
+f.addElement("etc", null, "hname:'ë¹„ê³ '");
+f.addElement("proof_yn", null, "hname:'ì‹¤ì ì¦ëª…ì‚¬ìš©ì—¬ë¶€'");
 
 if(u.isPost()&&f.validate()){
 	DB db = new DB();
@@ -71,11 +71,11 @@ if(u.isPost()&&f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.", "pay_useinfo_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "pay_useinfo_modify.jsp?"+u.getQueryString());
 	return;
 }
 

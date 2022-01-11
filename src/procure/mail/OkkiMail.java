@@ -1,10 +1,10 @@
 package procure.mail;
 /*******************************************************************
- *ÀÛ¼ºÀÚ   :   ±â¾÷Á¤º¸½Ç.E-bizÆÀ.ÀÓÁØ¿ì
- *ÀÛ¼º¸ñÀû :  °Á ½É½ÉÇØ¼­¸®..
- *ÀÛ¼ºÀÏÀÚ :  2003.03
- *Parameter: ¾Æ·¡ main() ÂüÁ¶.
- *ÁÖÀÇÇÒÁ¡:  ¹ŞÀ»»ç¶÷, ÂüÁ¶ÀÚ º¸³»´Â »ç¶÷ÀÇ °ªÀº ¹İµå½Ã ÀÌ¸ŞÀÏÁÖ¼Ò ½ºÆå¿¡ ¸Â¾Æ ÇÑ´Ù.
+ *ì‘ì„±ì   :   ê¸°ì—…ì •ë³´ì‹¤.E-bizíŒ€.ì„ì¤€ìš°
+ *ì‘ì„±ëª©ì  :  ê± ì‹¬ì‹¬í•´ì„œë¦¬..
+ *ì‘ì„±ì¼ì :  2003.03
+ *Parameter: ì•„ë˜ main() ì°¸ì¡°.
+ *ì£¼ì˜í• ì :  ë°›ì„ì‚¬ëŒ, ì°¸ì¡°ì ë³´ë‚´ëŠ” ì‚¬ëŒì˜ ê°’ì€ ë°˜ë“œì‹œ ì´ë©”ì¼ì£¼ì†Œ ìŠ¤í™ì— ë§ì•„ í•œë‹¤.
  *******************************************************************/
 
 import javax.mail.*;
@@ -29,44 +29,44 @@ public class OkkiMail {
 		// if(!IP.equals("172.28.5.56")){host="www.dnbkorea.com";}
 
 		/***********************************************************************
-		 * Á¦¸ñÀ¸·Î¸¸ Ç¥½ÃÇØµµ ¹«¹æÇÑ °£´Ü ¾Ë¸²¸ŞÀÏ º¸³¾¶§ ****** //¸Ş¼Òµå.1 OkkiMail.sendJavaMail(
-		 * "okki@dnbkorea.com", //¹Ş´Â»ç¶÷ ¸ŞÀÏÁÖ¼Ò. "129¸ŞÀÏ ¹ß¼Û" //¸ŞÀÏÁ¦¸ñ. );
+		 * ì œëª©ìœ¼ë¡œë§Œ í‘œì‹œí•´ë„ ë¬´ë°©í•œ ê°„ë‹¨ ì•Œë¦¼ë©”ì¼ ë³´ë‚¼ë•Œ ****** //ë©”ì†Œë“œ.1 OkkiMail.sendJavaMail(
+		 * "okki@dnbkorea.com", //ë°›ëŠ”ì‚¬ëŒ ë©”ì¼ì£¼ì†Œ. "129ë©”ì¼ ë°œì†¡" //ë©”ì¼ì œëª©. );
 		 * 
 		 * 
-		 * //¸Ş¼Òµå.2 OkkiMail.sendJavaMail( "okki@dnbkorea.com", //¹Ş´Â»ç¶÷ ¸ŞÀÏÁÖ¼Ò new
-		 * String[]{""}, //ÂüÁ¶ÀÚ ¹è¿­ "okki@nice.co.kr", //º¸³»´Â »ç¶÷ ÁÖ¼Ò "¿©±â´Â ÁÖ¼Ò¶õÀÔ´Ï´Ù.",
-		 * //¸ŞÀÏÁ¦¸ñ "¿©±â´Â º»¹®ÀÔ´Ï´Ù." //¸ŞÀÏº»¹® );
+		 * //ë©”ì†Œë“œ.2 OkkiMail.sendJavaMail( "okki@dnbkorea.com", //ë°›ëŠ”ì‚¬ëŒ ë©”ì¼ì£¼ì†Œ new
+		 * String[]{""}, //ì°¸ì¡°ì ë°°ì—´ "okki@nice.co.kr", //ë³´ë‚´ëŠ” ì‚¬ëŒ ì£¼ì†Œ "ì—¬ê¸°ëŠ” ì£¼ì†Œë€ì…ë‹ˆë‹¤.",
+		 * //ë©”ì¼ì œëª© "ì—¬ê¸°ëŠ” ë³¸ë¬¸ì…ë‹ˆë‹¤." //ë©”ì¼ë³¸ë¬¸ );
 		 * 
-		 * //¸Ş¼Òµå 3 ..Ã·ºÎÆÄÀÏ ÀÖÀ»¶§ OkkiMail.sendJavaMail( new String[]{"\"µğ¾ØºñÀÓÁØ¿ì\"
-		 * <okki@dnbkorea.com>"}, //¼ö½ÅÀÚ ÀÌ¸§ ÁÖ¼Ò ¹è¿­ new String[]{""}, //ÂüÁ¶ÀÚ ÀÌ¸§ ÁÖ¼Ò
-		 * ¹è¿­ "\"ÀÓÁØ¿ì\" <okki@nice.co.kr>", //Çü½Ä: "ÀÓÁØ¿ì" <okki@nice.co.kr> :º¸³»´Â »ç¶÷
-		 * ÀÌ¸§,ÁÖ¼Ò "Å×½ºÆ®ÀÔ´Ï´Ù ±ÍÂúÀ¸½Ã´õ¶óµµ Áö¿ö ÁÖ¼¼¿ä.", //¸ŞÀÏÁ¦¸ñ "¿©±â´Â º»¹®ÀÔ´Ï´Ù. ", //¸ŞÀÏº»¹®
-		 * "/user2/dnbkorea/bbs/file/¿ùµåÄÅ´Ù½Ãº¸±â032.jpg" //Ã·ºÎÆÄÀÏ(ÀÏ´Ü ÇÏ³ª·ÎÁ¦ÇÑ) );
+		 * //ë©”ì†Œë“œ 3 ..ì²¨ë¶€íŒŒì¼ ìˆì„ë•Œ OkkiMail.sendJavaMail( new String[]{"\"ë””ì•¤ë¹„ì„ì¤€ìš°\"
+		 * <okki@dnbkorea.com>"}, //ìˆ˜ì‹ ì ì´ë¦„ ì£¼ì†Œ ë°°ì—´ new String[]{""}, //ì°¸ì¡°ì ì´ë¦„ ì£¼ì†Œ
+		 * ë°°ì—´ "\"ì„ì¤€ìš°\" <okki@nice.co.kr>", //í˜•ì‹: "ì„ì¤€ìš°" <okki@nice.co.kr> :ë³´ë‚´ëŠ” ì‚¬ëŒ
+		 * ì´ë¦„,ì£¼ì†Œ "í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤ ê·€ì°®ìœ¼ì‹œë”ë¼ë„ ì§€ì›Œ ì£¼ì„¸ìš”.", //ë©”ì¼ì œëª© "ì—¬ê¸°ëŠ” ë³¸ë¬¸ì…ë‹ˆë‹¤. ", //ë©”ì¼ë³¸ë¬¸
+		 * "/user2/dnbkorea/bbs/file/ì›”ë“œì»µë‹¤ì‹œë³´ê¸°032.jpg" //ì²¨ë¶€íŒŒì¼(ì¼ë‹¨ í•˜ë‚˜ë¡œì œí•œ) );
 		 * 
 		 * 
 		 **********************************************************************/
 
 		/*
 		 * if(args.length ==0){ OkkiMail.sendJavaMail( "okki@dnbkorea.com",
-		 * //¹Ş´Â»ç¶÷ ¸ŞÀÏÁÖ¼Ò. "¸ŞÀÏ ¹ß¼ÛÅ×½ºÆ®" //¸ŞÀÏÁ¦¸ñ. ); System.out.println("¹ß¼ÛÅ×½ºÆ®");
-		 * }else{ OkkiMail.sendJavaMail( args[0], //¹Ş´Â»ç¶÷ ¸ŞÀÏÁÖ¼Ò. "¸ŞÀÏ ¹ß¼ÛÅ×½ºÆ®"
-		 * //¸ŞÀÏÁ¦¸ñ. ); }
+		 * //ë°›ëŠ”ì‚¬ëŒ ë©”ì¼ì£¼ì†Œ. "ë©”ì¼ ë°œì†¡í…ŒìŠ¤íŠ¸" //ë©”ì¼ì œëª©. ); System.out.println("ë°œì†¡í…ŒìŠ¤íŠ¸");
+		 * }else{ OkkiMail.sendJavaMail( args[0], //ë°›ëŠ”ì‚¬ëŒ ë©”ì¼ì£¼ì†Œ. "ë©”ì¼ ë°œì†¡í…ŒìŠ¤íŠ¸"
+		 * //ë©”ì¼ì œëª©. ); }
 		 */
 
-		String[] strTo = { "\"À¯¼ºÈÆ\" <sunghoonryu@gmail.com>" };
+		String[] strTo = { "\"ìœ ì„±í›ˆ\" <sunghoonryu@gmail.com>" };
 		String[] strCc = null;// {"drought@dreamwiz.com"};
 		String[] strBcc = null;// {"drought@dreamwiz.com"};
 		String strFrom = Startup.conf.getString("email.mailFrom");
-		String strFromName = "³ªÀÌ½ºµğ¾Øºñ";
-		String strSubject = "¸ŞÀÏ Test¸¦ À§ÇÑ °Í ÀÔ´Ï´Ù.";
-		String strContents = "ÀÌ ¸ŞÀÏÀº D&B Korea BBS ¸ŞÀÏ Test¸¦ À§ÇÑ °Í ÀÔ´Ï´Ù.";
+		String strFromName = "ë‚˜ì´ìŠ¤ë””ì•¤ë¹„";
+		String strSubject = "ë©”ì¼ Testë¥¼ ìœ„í•œ ê²ƒ ì…ë‹ˆë‹¤.";
+		String strContents = "ì´ ë©”ì¼ì€ D&B Korea BBS ë©”ì¼ Testë¥¼ ìœ„í•œ ê²ƒ ì…ë‹ˆë‹¤.";
 		String attchFile = "";
 		//sendJavaMail(strTo, strCc, strBcc, strFrom, strFromName, strSubject, strContents, attchFile);
 		try {
-			boolean bSuccess = mail("sunghoonryu@gmail.com", "À¯¼ºÈÆ", "³ªÀÌ½º´ÙÅ¥ ¸ŞÀÏÅ×½ºÆ®ÀÔ´Ï´Ù.", "¸ğµÎ Çàº¹ÇÏ¼¼¿ä.");
-			System.out.println("Å×½ºÆ®¸ŞÀÏ Àü¼Û ¿©ºÎ : " + bSuccess);
+			boolean bSuccess = mail("sunghoonryu@gmail.com", "ìœ ì„±í›ˆ", "ë‚˜ì´ìŠ¤ë‹¤í ë©”ì¼í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤.", "ëª¨ë‘ í–‰ë³µí•˜ì„¸ìš”.");
+			System.out.println("í…ŒìŠ¤íŠ¸ë©”ì¼ ì „ì†¡ ì—¬ë¶€ : " + bSuccess);
 		} catch (Exception e) {
-			System.out.println("Å×½ºÆ®¸ŞÀÏ Àü¼Û ½ÇÆĞ");
+			System.out.println("í…ŒìŠ¤íŠ¸ë©”ì¼ ì „ì†¡ ì‹¤íŒ¨");
 		}		
 
     }
@@ -78,13 +78,13 @@ public class OkkiMail {
 	}
 
 	public static boolean mail(String mailTo, String mailToName, String subject, String body, String filepath) throws Exception {
-		String encoding = "EUC-KR";
+		String encoding = "UTF-8";
 
-		// ½Ç¼­¹ö¿ë
+		// ì‹¤ì„œë²„ìš©
 		String mailHost = host;
 		String mailFrom = Startup.conf.getString("email.mailFrom"); //"nicedocu@info.nicednb.com";
 
-		// °³¹ß Å×½ºÆ®¿ë
+		// ê°œë°œ í…ŒìŠ¤íŠ¸ìš©
 		//String mailHost = "sendmail.nice.co.kr";		
 		//String mailFrom = "shryu@nicednb.com";  
 		
@@ -95,7 +95,7 @@ public class OkkiMail {
 
 		try {
 			MimeMessage msg = new MimeMessage(msgSession);
-			InternetAddress from = new InternetAddress(mailFrom, "³ªÀÌ½º´ÙÅ¥", "UTF-8");
+			InternetAddress from = new InternetAddress(mailFrom, "ë‚˜ì´ìŠ¤ë‹¤í", "UTF-8");
 			InternetAddress to = new InternetAddress(mailTo, mailToName, "UTF-8");
 			//InternetAddress to = new InternetAddress(mailTo);
 	
@@ -124,30 +124,30 @@ public class OkkiMail {
 	
 			Transport.send(msg);
 		} catch (Exception e) {
-			System.out.println("[¸ŞÀÏ Àü¼Û ¿À·ù]"+mailTo+" Àü¼ÛÇÏÁö ¸øÇß½À´Ï´Ù.");
+			System.out.println("[ë©”ì¼ ì „ì†¡ ì˜¤ë¥˜]"+mailTo+" ì „ì†¡í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 			return false;
 		}
 		return true;
 	}    
  
 	public static boolean mail_apt(String mailTo, String mailToName, String subject, String body, String filepath) throws Exception {
-		String encoding = "EUC-KR";
+		String encoding = "UTF-8";
 		
 		String sHostName;
 		sHostName = java.net.InetAddress.getLocalHost().getHostName();
-		if(!sHostName.equals("docu01") && !sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
+		if(!sHostName.equals("docu01") && !sHostName.equals("docu02")) // ì‹¤ì„œë²„ë§Œ sms ë³´ëƒ„
 		{
-			System.out.println("//-------------------- [°¡»ó ÀÌ¸ŞÀÏÀü¼Û:°³¹ß¿ë] --------------------//");
-			System.out.println("  - ¹Ş´Â »ç¶÷ : " + mailTo);
+			System.out.println("//-------------------- [ê°€ìƒ ì´ë©”ì¼ì „ì†¡:ê°œë°œìš©] --------------------//");
+			System.out.println("  - ë°›ëŠ” ì‚¬ëŒ : " + mailTo);
 			System.out.println("//--------------------------------------------------//");
 			return true;
 		}		
 		
-		// ½Ç¼­¹ö¿ë
+		// ì‹¤ì„œë²„ìš©
 		String mailHost = host;
 		String mailFrom = Startup.conf.getString("email.mailFrom");
 		
-		// °³¹ß Å×½ºÆ®¿ë
+		// ê°œë°œ í…ŒìŠ¤íŠ¸ìš©
 		//String mailHost = "sendmail.nice.co.kr";		
 		//String mailFrom = "shryu@nicednb.com";  
 		
@@ -158,7 +158,7 @@ public class OkkiMail {
 		
 		try {
 			MimeMessage msg = new MimeMessage(msgSession);
-			InternetAddress from = new InternetAddress(mailFrom, "¾ÆÆÄÆ®ÀüÀÚÀÔÂû", "UTF-8");
+			InternetAddress from = new InternetAddress(mailFrom, "ì•„íŒŒíŠ¸ì „ìì…ì°°", "UTF-8");
 			InternetAddress to = new InternetAddress(mailTo, mailToName, "UTF-8");
 			
 			msg.setFrom(from);
@@ -186,27 +186,27 @@ public class OkkiMail {
 			
 			Transport.send(msg);
 		} catch (Exception e) {
-			System.out.println("[¸ŞÀÏ Àü¼Û ¿À·ù]"+mailTo+" Àü¼ÛÇÏÁö ¸øÇß½À´Ï´Ù.");
+			System.out.println("[ë©”ì¼ ì „ì†¡ ì˜¤ë¥˜]"+mailTo+" ì „ì†¡í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 			return false;
 		}
 		return true;
 	}        
     
     public static String[] sendJavaMail(String strTo,String strSubject){
-        return sendJavaMail(new String[]{strTo},null,null,"\"¼­¹ö¸ŞÀÏ¸µ\" <admin@okkimail.okki>",strSubject,"Á¦¸ñÀ» ÂüÁ¶ÇÏ¼¼¿ä","");
+        return sendJavaMail(new String[]{strTo},null,null,"\"ì„œë²„ë©”ì¼ë§\" <admin@okkimail.okki>",strSubject,"ì œëª©ì„ ì°¸ì¡°í•˜ì„¸ìš”","");
     }
     public static String[] sendJavaMail(
         String strTo, String[] strCc,String strFrom, String strFromName,
         String strSubject,String strContents                ){
 
 /*-----------------------------------------------------------------------------*/
-/*  mailing service½Ã ³ªÀÌ½º°èÁ¤À¸·Î ³ª°¡±æ ¿øÇÕ´Ï´Ù.
-    ÀÌ·±°æ¿ì ¹Ş´Â¸ŞÀÏ¿¡ ³ªÀÌ½º°èÁ¤ÀÌ ÀÖ´Ù¸é,
-    authentication error(530)°¡ ¹ß»ıÇÏ¹Ç·Î,
-    ¾Æ·¡¿Í °°ÀÌ host¸¦ ´ëÃ¼ÇØÁİ´Ï´Ù.
+/*  mailing serviceì‹œ ë‚˜ì´ìŠ¤ê³„ì •ìœ¼ë¡œ ë‚˜ê°€ê¸¸ ì›í•©ë‹ˆë‹¤.
+    ì´ëŸ°ê²½ìš° ë°›ëŠ”ë©”ì¼ì— ë‚˜ì´ìŠ¤ê³„ì •ì´ ìˆë‹¤ë©´,
+    authentication error(530)ê°€ ë°œìƒí•˜ë¯€ë¡œ,
+    ì•„ë˜ì™€ ê°™ì´ hostë¥¼ ëŒ€ì²´í•´ì¤ë‹ˆë‹¤.
     by bluet 20050412
 /*-----------------------------------------------------------------------------*/
-	//CodeÀÇ Áßº¹À» ¹æÁö ÇÏ±â À§ÇØ¼­ ¼öÁ¤ 
+	//Codeì˜ ì¤‘ë³µì„ ë°©ì§€ í•˜ê¸° ìœ„í•´ì„œ ìˆ˜ì • 
 	return sendJavaMail(new String[] {strTo} , strCc,null, strFrom, strFromName, strSubject, strContents, "");
     }
     public static String[] sendJavaMail(
@@ -221,21 +221,21 @@ public class OkkiMail {
             String strSubject,String strContents,String attchFile ){
     	return sendJavaMail(strTo,strCc,null,strFrom,strSubject,strContents,attchFile);
     }
-    /*******************±â´É Çâ»ó¹öÀü¾÷ ¸Ş¼Òµå 2003-04-18************************
-     * "new String[]{""}",    //¹Ş´Â»ç¶÷ ¸ŞÀÏÁÖ¼Ò
-     * new String[]{""},        //ÂüÁ¶ÀÚ ¹è¿­
-     * "okki@nice.co.kr","¿Á±â³²Æí", //º¸³»´Â »ç¶÷ ÁÖ¼Ò,º¸³»´Â»ç¶÷ ÀÌ¸§
-     * "¿©±â´Â ÁÖ¼Ò¶õÀÔ´Ï´Ù.",        //¸ŞÀÏÁ¦¸ñ
-     * "¿©±â´Â º»¹®ÀÔ´Ï´Ù.",        //¸ŞÀÏº»¹®
-     * "/user2/dnbkora/bbs/file/utf.jpg" //Ã·ºÎÆÄÀÏÇÏ³ª
+    /*******************ê¸°ëŠ¥ í–¥ìƒë²„ì „ì—… ë©”ì†Œë“œ 2003-04-18************************
+     * "new String[]{""}",    //ë°›ëŠ”ì‚¬ëŒ ë©”ì¼ì£¼ì†Œ
+     * new String[]{""},        //ì°¸ì¡°ì ë°°ì—´
+     * "okki@nice.co.kr","ì˜¥ê¸°ë‚¨í¸", //ë³´ë‚´ëŠ” ì‚¬ëŒ ì£¼ì†Œ,ë³´ë‚´ëŠ”ì‚¬ëŒ ì´ë¦„
+     * "ì—¬ê¸°ëŠ” ì£¼ì†Œë€ì…ë‹ˆë‹¤.",        //ë©”ì¼ì œëª©
+     * "ì—¬ê¸°ëŠ” ë³¸ë¬¸ì…ë‹ˆë‹¤.",        //ë©”ì¼ë³¸ë¬¸
+     * "/user2/dnbkora/bbs/file/utf.jpg" //ì²¨ë¶€íŒŒì¼í•˜ë‚˜
      *****************************************************************************/
     public static String[] sendJavaMail( String[] strTo, String[] strCc,String[] strBcc,String strFrom, String strFromName, 
         String strSubject,String strContents,String attchFile ){
     	/*-----------------------------------------------------------------------------*/
-/*  mailing service½Ã ³ªÀÌ½º°èÁ¤À¸·Î ³ª°¡±æ ¿øÇÕ´Ï´Ù.
-    ÀÌ·±°æ¿ì ¹Ş´Â¸ŞÀÏ¿¡ ³ªÀÌ½º°èÁ¤ÀÌ ÀÖ´Ù¸é,
-    authentication error(530)°¡ ¹ß»ıÇÏ¹Ç·Î,
-    ¾Æ·¡¿Í °°ÀÌ host¸¦ ´ëÃ¼ÇØÁİ´Ï´Ù.
+/*  mailing serviceì‹œ ë‚˜ì´ìŠ¤ê³„ì •ìœ¼ë¡œ ë‚˜ê°€ê¸¸ ì›í•©ë‹ˆë‹¤.
+    ì´ëŸ°ê²½ìš° ë°›ëŠ”ë©”ì¼ì— ë‚˜ì´ìŠ¤ê³„ì •ì´ ìˆë‹¤ë©´,
+    authentication error(530)ê°€ ë°œìƒí•˜ë¯€ë¡œ,
+    ì•„ë˜ì™€ ê°™ì´ hostë¥¼ ëŒ€ì²´í•´ì¤ë‹ˆë‹¤.
     by bluet 20050412
 /*-----------------------------------------------------------------------------*/
         if (strFrom.indexOf("nice.co.kr") != -1) {
@@ -244,7 +244,7 @@ public class OkkiMail {
 
 		System.out.println("mail host : " + host);
 		
-		// °á°ú ´ãÀ» ¸Ş¼Òµå [0] = ¹ß¼Û ¼º°ø ½ÇÆĞ À¯¹« [1]¹ß¼Û¼º°øµÈTOÁÖ¼Ò [2]¹ß¼Û¼º°øµÈCCÁÖ¼Ò
+		// ê²°ê³¼ ë‹´ì„ ë©”ì†Œë“œ [0] = ë°œì†¡ ì„±ê³µ ì‹¤íŒ¨ ìœ ë¬´ [1]ë°œì†¡ì„±ê³µëœTOì£¼ì†Œ [2]ë°œì†¡ì„±ê³µëœCCì£¼ì†Œ
 		String strRtn[] = { "", "", "" };
 		
 		Properties props = System.getProperties();
@@ -253,10 +253,10 @@ public class OkkiMail {
 		try {
 			String sHostName;
 			sHostName = java.net.InetAddress.getLocalHost().getHostName();
-			if(!sHostName.equals("docu01") && !sHostName.equals("docu02")) // ½Ç¼­¹ö¸¸ sms º¸³¿
+			if(!sHostName.equals("docu01") && !sHostName.equals("docu02")) // ì‹¤ì„œë²„ë§Œ sms ë³´ëƒ„
 			{
-				System.out.println("//-------------------- [°¡»ó ÀÌ¸ŞÀÏÀü¼Û:°³¹ß¿ë] --------------------//");
-				System.out.println("  - ¹Ş´Â »ç¶÷ : " + strTo);
+				System.out.println("//-------------------- [ê°€ìƒ ì´ë©”ì¼ì „ì†¡:ê°œë°œìš©] --------------------//");
+				System.out.println("  - ë°›ëŠ” ì‚¬ëŒ : " + strTo);
 				System.out.println("//--------------------------------------------------//");
 				strRtn[0] = "ok";
 				return strRtn;
@@ -265,17 +265,17 @@ public class OkkiMail {
 			session2.setDebug(false);
 			MimeMessage msg = new MimeMessage(session2);
 
-			// if (!checkMailStr(strTo)){strRtn[0]="¹Ş´Â»ç¶÷ÀÇ ÀÌ¸ŞÀÏÀÌ ¹®¹ıÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.";
+			// if (!checkMailStr(strTo)){strRtn[0]="ë°›ëŠ”ì‚¬ëŒì˜ ì´ë©”ì¼ì´ ë¬¸ë²•ì´ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.";
 			// return strRtn;}
-			// if (!checkMailStr(strFrom)){strRtn[0]="º¸³½»ç¶÷ÀÇ ÀÌ¸ŞÀÏÀÌ ¹®¹ıÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.";
+			// if (!checkMailStr(strFrom)){strRtn[0]="ë³´ë‚¸ì‚¬ëŒì˜ ì´ë©”ì¼ì´ ë¬¸ë²•ì´ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.";
 			// return strRtn;}
 
 			//msg.setFrom(new InternetAddress(new String((strFrom).getBytes("KSC5601"), "8859_1")));
-			//msg.setFrom(new InternetAddress(strFrom, "³ªÀÌ½º´ÙÅ¥", "KSC5601"));  // ¼º°ø
-			msg.setFrom(new InternetAddress(strFrom, strFromName, "UTF-8"));  // ¼º°ø
+			//msg.setFrom(new InternetAddress(strFrom, "ë‚˜ì´ìŠ¤ë‹¤í", "KSC5601"));  // ì„±ê³µ
+			msg.setFrom(new InternetAddress(strFrom, strFromName, "UTF-8"));  // ì„±ê³µ
 			
 
-			// ¼ö½ÅÀÚ¸¦ ¹è¿­·Î Áı¾î ³Ö´Â´Ù.
+			// ìˆ˜ì‹ ìë¥¼ ë°°ì—´ë¡œ ì§‘ì–´ ë„£ëŠ”ë‹¤.
 			for (int i = 0; i < strTo.length && strTo[i] != null
 					&& !strTo[i].trim().equals(""); i++) {
 				strTo[i] = new String((strTo[i]).getBytes("KSC5601"), "UTF-8");
@@ -285,9 +285,9 @@ public class OkkiMail {
 				} else {
 					msg.addRecipients(Message.RecipientType.TO, address);
 				}
-				strRtn[1] += "¡á" + strTo[i]; // ¸®ÅÏµÇ´Â °ÍÀ» º¸±â À§ÇÑ°Í.
+				strRtn[1] += "â– " + strTo[i]; // ë¦¬í„´ë˜ëŠ” ê²ƒì„ ë³´ê¸° ìœ„í•œê²ƒ.
 			}
-			// ÂüÁ¶ÀÚ¸¦ ³Ö´Â´Ù.
+			// ì°¸ì¡°ìë¥¼ ë„£ëŠ”ë‹¤.
 			if (strCc != null) {
 				for (int i = 0; i < strCc.length && strCc[i] != null
 						&& !strCc[i].trim().equals(""); i++) {
@@ -301,7 +301,7 @@ public class OkkiMail {
 					}
 				}
 			}
-			// È÷µçÂüÁ¶ÀÚ¸¦ ³Ö´Â´Ù.
+			// íˆë“ ì°¸ì¡°ìë¥¼ ë„£ëŠ”ë‹¤.
 			if (strBcc != null) {
 				for (int i = 0; i < strBcc.length && strBcc[i] != null
 						&& !strBcc[i].trim().equals(""); i++) {
@@ -316,19 +316,19 @@ public class OkkiMail {
 				}
 			}
 
-			// msg¿¡ Á¦¸ñ µî·ÏÇÑ´Ù.
+			// msgì— ì œëª© ë“±ë¡í•œë‹¤.
 			msg.setSubject(strSubject, "UTF-8");
 
-			// ³»¿ëÀ» HTML Å¸ÀÔÀ¸·Î µî·ÏÇÑ´Ù. ÆÄÀÏ Ã·ºÎ´Â ´Ù¸¥ ÀÚ·á¸¦ Âü°í ÇÒ°Í.
+			// ë‚´ìš©ì„ HTML íƒ€ì…ìœ¼ë¡œ ë“±ë¡í•œë‹¤. íŒŒì¼ ì²¨ë¶€ëŠ” ë‹¤ë¥¸ ìë£Œë¥¼ ì°¸ê³  í• ê²ƒ.
 			MimeBodyPart mbdpt = new MimeBodyPart();
-			mbdpt.setContent(strContents, "text/html; charset=EUC-KR");
+			mbdpt.setContent(strContents, "text/html; charset=UTF-8");
 
 			// msg.setContent(strContents, "text/html; charset=EUC-KR");
 
 			Multipart mltpt = new MimeMultipart();
 			mltpt.addBodyPart(mbdpt);
 
-			/** **Ã·ºÎÆÄÀÏ±â´É Ãß°¡ 2003-04-28*** */
+			/** **ì²¨ë¶€íŒŒì¼ê¸°ëŠ¥ ì¶”ê°€ 2003-04-28*** */
 			if (attchFile != null && !attchFile.equals("")) {
 				MimeBodyPart mbdptFile = new MimeBodyPart();
 				FileDataSource fds = new FileDataSource(attchFile);
@@ -342,17 +342,17 @@ public class OkkiMail {
 
 			strRtn[0] = "ok";
 
-			// ÃÖÁ¾ ³×Æ®¿÷¿¡ ¸ŞÀÏÀ» ³¯·Á º¸³½´Ù..
+			// ìµœì¢… ë„¤íŠ¸ì›ì— ë©”ì¼ì„ ë‚ ë ¤ ë³´ë‚¸ë‹¤..
 			Transport.send(msg);
 
 			/*
-			 * 2006-07-18 IT ¹ÚÈ£»ï ¼öÁ¤ ¸ŞÀÏ ÁÖ¼Ò Áß¿¡ Àß¸øµÈ °ÍÀÌ ÇÏ³ª¶óµµ ÀÖÀ» °æ¿ì ¸ŞÀÏÀ» º¸³»Áö ¾Ê´ø °Í¿¡¼­
+			 * 2006-07-18 IT ë°•í˜¸ì‚¼ ìˆ˜ì • ë©”ì¼ ì£¼ì†Œ ì¤‘ì— ì˜ëª»ëœ ê²ƒì´ í•˜ë‚˜ë¼ë„ ìˆì„ ê²½ìš° ë©”ì¼ì„ ë³´ë‚´ì§€ ì•Šë˜ ê²ƒì—ì„œ
 			 */
 		} catch (javax.mail.SendFailedException sfe) {
 			Address addr[] = sfe.getInvalidAddresses();
 			System.out.print("Wrong mail Addr");
 			for (int i = 0; i < addr.length; i++) {
-				// ¸ŞÀÏ ÁÖ¼Ò°¡ Á¤È®ÇÏÁö ¾ÊÀº °ÍÀº ½Ã½ºÅÛ¿¡ »Ñ·Á ÁØ´Ù.
+				// ë©”ì¼ ì£¼ì†Œê°€ ì •í™•í•˜ì§€ ì•Šì€ ê²ƒì€ ì‹œìŠ¤í…œì— ë¿Œë ¤ ì¤€ë‹¤.
 				System.out.println(ko(addr[i].toString()));
 			}
 			addr = sfe.getValidUnsentAddresses();
@@ -363,7 +363,7 @@ public class OkkiMail {
 			}
 
 			addr = sfe.getValidSentAddresses();
-			// ¸ŞÀÏ ÁÖ¼Ò´Â Á¤È®ÇÑµ¥ º¸³»Áö ¸øÇÑ°ÍÀº ´Ù½Ã º¸³½´Ù.
+			// ë©”ì¼ ì£¼ì†ŒëŠ” ì •í™•í•œë° ë³´ë‚´ì§€ ëª»í•œê²ƒì€ ë‹¤ì‹œ ë³´ë‚¸ë‹¤.
 			strRtn = sendJavaMail(strAddr, strCc, strFrom, strFromName, strSubject,
 					strContents, attchFile);
 		} catch (Exception e) {
@@ -382,13 +382,13 @@ public class OkkiMail {
 
 /*-----------------------------------------------------------------------------*/
 /*
- * ¾Æ·¡ÇÔ¼ö·Î ÀÎÇØ "."ÀÌ ÀÖ´Â mail id´Â ¹ß¼ÛµÇÁö ¾Ê¾Ò½À´Ï´Ù. ±×·¡¼­ isValidEmail ÇÔ¼ö¸¦ ÀÌ¿ëÇÏ°Ô Çß½À´Ï´Ù.
+ * ì•„ë˜í•¨ìˆ˜ë¡œ ì¸í•´ "."ì´ ìˆëŠ” mail idëŠ” ë°œì†¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ê·¸ë˜ì„œ isValidEmail í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ê²Œ í–ˆìŠµë‹ˆë‹¤.
  * 
  * [log file] /user5/dnbLog/duns_mailling.log /user5/clipLog/clip_mailing.log
  * /user5/log/cnote_mailing.log
  * 
- * ³²µéÀº ¾î¶»°Ô Çß³ª ÀÌ°ÍÀú°Í Ã£¾Æº¸¾Ò´Âµ¥ jdk 1.4¿¡ Ãß°¡µÈ java.util.regex ÆÑÅ°Áö¿¡ ´ëÇÑ ÃßÃµÀÌ ¸¹±º¿ä. ±×Áß ¼Ò°³µÈ
- * sampleÀ» ±×´ë·Î µµ¿ëÇß´Âµ¥, Æ¯¼ö¹®ÀÚ¿¡´ëÇÑ º¸¿ÏÀÌ Á¶±İ ´õ ÇÊ¿äÇÒ°Í °°½À´Ï´Ù. by bluet 20050407
+ * ë‚¨ë“¤ì€ ì–´ë–»ê²Œ í–ˆë‚˜ ì´ê²ƒì €ê²ƒ ì°¾ì•„ë³´ì•˜ëŠ”ë° jdk 1.4ì— ì¶”ê°€ëœ java.util.regex íŒ©í‚¤ì§€ì— ëŒ€í•œ ì¶”ì²œì´ ë§êµ°ìš”. ê·¸ì¤‘ ì†Œê°œëœ
+ * sampleì„ ê·¸ëŒ€ë¡œ ë„ìš©í–ˆëŠ”ë°, íŠ¹ìˆ˜ë¬¸ìì—ëŒ€í•œ ë³´ì™„ì´ ì¡°ê¸ˆ ë” í•„ìš”í• ê²ƒ ê°™ìŠµë‹ˆë‹¤. by bluet 20050407
  * /*-----------------------------------------------------------------------------
  */
     public static boolean checkMailStr(String strMail) {

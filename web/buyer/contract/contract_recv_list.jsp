@@ -1,14 +1,14 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 CodeDao code = new CodeDao("tcb_comcode");
-String[] code_status = {"20=>¼­¸í¿äÃ»","21=>¼­¸íÁøÇàÁß","30=>¼­¸íÁøÇàÁß","40=>¼öÁ¤¿äÃ»","41=>¹İ·Á"};//»óÅÂÄÚµå¿Í ´Ù¸¥°Ô ¼­¸í ¿©ºÎ·Î »óÅÂ¸íº¯°æ
+String[] code_status = {"20=>ì„œëª…ìš”ì²­","21=>ì„œëª…ì§„í–‰ì¤‘","30=>ì„œëª…ì§„í–‰ì¤‘","40=>ìˆ˜ì •ìš”ì²­","41=>ë°˜ë ¤"};//ìƒíƒœì½”ë“œì™€ ë‹¤ë¥¸ê²Œ ì„œëª… ì—¬ë¶€ë¡œ ìƒíƒœëª…ë³€ê²½
 
 f.addElement("s_cont_name",null, null);
 f.addElement("s_cust_name", null, null);
 f.addElement("s_status", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -19,7 +19,27 @@ list.addWhere(" a.cont_no = b.cont_no  and a.cont_chasu = b.cont_chasu ");
 list.addWhere(" a.member_no <> b.member_no ");
 list.addWhere(" a.member_no = c.member_no ");
 list.addWhere(" b.member_no = '"+_member_no+"'");
-list.addWhere("	a.status in ('20','21','30','40','41') ");// 20:¼­¸í¿äÃ», 21:À»»ç¼­¸í ÈÄ °©°ËÅä´ë»ó, 30:À»»ç ¼­¸í ¿Ï·á ÈÄ °©¼­¸í´ë»ó, 40:¹İ·Á
+list.addWhere("	a.status in ('20','21','30','40','41') ");// 20:ì„œëª…ìš”ì²­, 21:ì„ì‚¬ì„œëª… í›„ ê°‘ê²€í† ëŒ€ìƒ, 30:ì„ì‚¬ ì„œëª… ì™„ë£Œ í›„ ê°‘ì„œëª…ëŒ€ìƒ, 40:ë°˜ë ¤
+
+if(_member_no.equals("20201000002")){
+	DataObject ssoUserDao = new DataObject("sso_user_info");
+	DataSet ssoUser = ssoUserDao.find("user_id = '" + auth.getString("_USER_ID") + "' ");
+	if (!ssoUser.next()) {
+		u.jsError("ì‚¬ìš©ì ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		return;
+	}
+	String userName = ssoUser.getString("user_name");
+	String celNo = ssoUser.getString("cel_no");
+	String celNo1 = celNo.replaceAll("-", "").substring(0, 3);
+	String celNo2 = celNo.replaceAll("-", "").substring(3, 7);
+	String celNo3 = celNo.replaceAll("-", "").substring(7);
+	
+	list.addWhere(" b.user_name = '" + userName + "'");
+	list.addWhere(" b.hp1 = '" + celNo1 + "'");
+	list.addWhere(" b.hp2 = '" + celNo2 + "'");
+	list.addWhere(" b.hp3 = '" + celNo3 + "'");
+}
+
 list.addSearch(" c.member_name" ,f.get("s_cust_name"),"LIKE");
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 if(u.inArray(f.get("s_status"), new String[]{"20","21","30"})){
@@ -29,19 +49,19 @@ if(u.inArray(f.get("s_status"), new String[]{"20","21","30"})){
 }else{
 	list.addSearch("a.status",f.get("s_status"));
 }
-list.setOrderBy("cont_no desc");
+list.setOrderBy("a.reg_date desc");
 
 DataSet ds = list.getDataSet();
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cont_chasu")>0)
-		ds.put("cont_name", ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+		ds.put("cont_name", ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 
 	if(u.inArray(ds.getString("status"), new String[]{"20","21","30"})){
 		if(ds.getString("sign_dn").equals("")){
-			ds.put("status_name", "<span class='caution-text'>¼­¸í¿äÃ»</span>");
+			ds.put("status_name", "<span class='caution-text'>ì„œëª…ìš”ì²­</span>");
 		}else{
-			ds.put("status_name", "¼­¸íÁøÇàÁß");
+			ds.put("status_name", "ì„œëª…ì§„í–‰ì¤‘");
 		}
 	}else{
 		ds.put("status_name", u.getItem(ds.getString("status"), code_status));

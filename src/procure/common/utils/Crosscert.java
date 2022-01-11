@@ -18,17 +18,21 @@ import nicelib.db.DataSet;
 import nicelib.util.Util;
 
 public class Crosscert {
-	private	String sOrgData = "";	//	µ¥ÀÌÅ¸ ¿ø¹®
-	private	String sDn = "";	//	ÀÎÁõ¼­DN°ª
-	private String encoding = "KSC5601";// ¿ø¹® encoding ½Ã½ºÅÛ ÀüÃ¼ ¸®´º¾ó ¿Ï·áÈÄ UTF-8·Î º¯°æ ¿¹Á¤
+	private	String sOrgData = "";	//	ë°ì´íƒ€ ì›ë¬¸
+	private	String sDn = "";	//	ì¸ì¦ì„œDNê°’
+	private String encoding = "KSC5601";// ì›ë¬¸ encoding ì‹œìŠ¤í…œ ì „ì²´ ë¦¬ë‰´ì–¼ ì™„ë£Œí›„ UTF-8ë¡œ ë³€ê²½ ì˜ˆì •
+	
+	private String npkiPath = Startup.conf.getString("crosscert.path.npki");
+	private String serverCertPath = Startup.conf.getString("crosscert.servercert.path");
+	private String serverCertPassword = Startup.conf.getString("crosscert.servercert.password");
 	
 	public void setEncoding(String webEncoding){
 		this.encoding = webEncoding;
 	}
 	
 	/**
-	 * ¾ÏÈ£È­ ÇÏ±â À§ÇÑ ÀÎÁõÅ°°ª ¸®ÅÏ
-	 * @param sDerFileNm	Å°°ª
+	 * ì•”í˜¸í™” í•˜ê¸° ìœ„í•œ ì¸ì¦í‚¤ê°’ ë¦¬í„´
+	 * @param sDerFileNm	í‚¤ê°’
 	 * @return
 	 * @throws Exception
 	 */
@@ -37,14 +41,13 @@ public class Crosscert {
 		String 					sBase64EncodeCert	=	"";
 		FileInputStream inCert 						= null;
 		try {
-			//¼­¹öÀÎÁõ¼­¸¦ ÀĞ´Â´Ù.  : ¿ø¹®À» ¾ÏÈ£È­ ÇÏ±â À§ÇÔ
+			//ì„œë²„ì¸ì¦ì„œë¥¼ ì½ëŠ”ë‹¤.  : ì›ë¬¸ì„ ì•”í˜¸í™” í•˜ê¸° ìœ„í•¨
 			int 						nCertlen		=	0;
 			int							nRet				=	0;
 			byte[] 					Certfilebuf = null;
 			
 			String	sDerFullPath	=	"";	
-			sDerFullPath	=	Startup.conf.getString("servercert.crosscert");
-			sDerFullPath	=	sDerFullPath	+	sDerFileNm;
+			sDerFullPath	=	serverCertPath + File.separator + sDerFileNm;
 			sDerFullPath	=	StrUtil.replace(sDerFullPath,"\\",File.separator);
 			sDerFullPath	=	StrUtil.replace(sDerFullPath,"/",File.separator);
 			
@@ -58,8 +61,8 @@ public class Crosscert {
 			nRet = base64.Encode(Certfilebuf, nCertlen);
 			if (nRet != 0)
 			{
-				System.out.println("baseÀÎÄÚµå ¿¡·¯³»¿ë 	: " + base64.errmessage);
-				System.out.println("baseÀÎÄÚµå¿¡·¯ÄÚµå 		: " + base64.errcode); 
+				System.out.println("baseì¸ì½”ë“œ ì—ëŸ¬ë‚´ìš© 	: " + base64.errmessage);
+				System.out.println("baseì¸ì½”ë“œì—ëŸ¬ì½”ë“œ 		: " + base64.errcode); 
 			}
 			sBase64EncodeCert =  new String(base64.contentbuf);
 		} catch (FileNotFoundException e) {
@@ -80,8 +83,8 @@ public class Crosscert {
 
 	
 	/**
-	 * ÀüÀÚ¼­¸í¸¸ °ËÁõ, ÀÎÁõ¼­ °ËÁõÀº ÇÏÁö ¾ÊÀ½.
-	 * @param sSignData	¼­¸íµ¥ÀÌÅ¸
+	 * ì „ìì„œëª…ë§Œ ê²€ì¦, ì¸ì¦ì„œ ê²€ì¦ì€ í•˜ì§€ ì•ŠìŒ.
+	 * @param sSignData	ì„œëª…ë°ì´íƒ€
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
@@ -97,13 +100,13 @@ public class Crosscert {
 			
 			if(nRet==0) 
 			{
-				System.out.println("¼­¸í°ª Base64 Decode °á°ú : ¼º°ø") ;
+				System.out.println("ì„œëª…ê°’ Base64 Decode ê²°ê³¼ : ì„±ê³µ") ;
 			}
 			else
 			{
-				System.out.println("¼­¸í°ª Base64 Decode °á°ú : ½ÇÆĞ") ;
-				System.out.println("¿¡·¯³»¿ë : " + CBase64.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CBase64.errcode);
+				System.out.println("ì„œëª…ê°’ Base64 Decode ê²°ê³¼ : ì‹¤íŒ¨") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CBase64.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CBase64.errcode);
 				sMsg = "SIGN_ERROR";
 			}
 				
@@ -116,14 +119,14 @@ public class Crosscert {
 			{
 				this.setOrgData(CVerifier);
 				
-				System.out.println("ÀüÀÚ¼­¸í °ËÁõ °á°ú : ¼º°ø") ;
-				System.out.println("¿ø¹® : " + this.getOrgData());
+				System.out.println("ì „ìì„œëª… ê²€ì¦ ê²°ê³¼ : ì„±ê³µ") ;
+				System.out.println("ì›ë¬¸ : " + this.getOrgData());
 			}
 			else
 			{
-				System.out.println("ÀüÀÚ¼­¸í °ËÁõ °á°ú : ½ÇÆĞ") ;
-				System.out.println("¿¡·¯³»¿ë : " + CVerifier.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CVerifier.errcode);
+				System.out.println("ì „ìì„œëª… ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CVerifier.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CVerifier.errcode);
 				sMsg = "SIGN_ERROR";
 			}
 		} catch (UnsupportedEncodingException e) {
@@ -136,8 +139,8 @@ public class Crosscert {
 	}
 	
 	/**
-	 * ÀüÀÚ¼­¸í °ËÁõ
-	 * @param sSignData	¼­¸íµ¥ÀÌÅ¸
+	 * ì „ìì„œëª… ê²€ì¦
+	 * @param sSignData	ì„œëª…ë°ì´íƒ€
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
@@ -153,13 +156,13 @@ public class Crosscert {
 			
 			if(nRet==0) 
 			{
-				System.out.println("¼­¸í°ª Base64 Decode °á°ú : ¼º°ø") ;
+				System.out.println("ì„œëª…ê°’ Base64 Decode ê²°ê³¼ : ì„±ê³µ") ;
 			}
 			else
 			{
-				System.out.println("¼­¸í°ª Base64 Decode °á°ú : ½ÇÆĞ") ;
-				System.out.println("¿¡·¯³»¿ë : " + CBase64.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CBase64.errcode);
+				System.out.println("ì„œëª…ê°’ Base64 Decode ê²°ê³¼ : ì‹¤íŒ¨") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CBase64.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CBase64.errcode);
 				System.out.println("signdata : " + sSignData);
 				sMsg = "SIGN_ERROR";
 			}
@@ -173,20 +176,21 @@ public class Crosscert {
 			{
 				this.setOrgData(CVerifier);
 				
-				System.out.println("ÀüÀÚ¼­¸í °ËÁõ °á°ú : ¼º°ø") ;
-				System.out.println("¿ø¹® : " + this.getOrgData());
+				System.out.println("ì „ìì„œëª… ê²€ì¦ ê²°ê³¼ : ì„±ê³µ") ;
+				System.out.println("ì›ë¬¸ : " + this.getOrgData());
 			}
 			else
 			{
-				System.out.println("ÀüÀÚ¼­¸í °ËÁõ °á°ú : ½ÇÆĞ") ;
-				System.out.println("¿¡·¯³»¿ë : " + CVerifier.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CVerifier.errcode);
+				System.out.println("ì „ìì„œëª… ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CVerifier.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CVerifier.errcode);
 				System.out.println("signdata : " + sSignData);
 				sMsg = "SIGN_ERROR";
 			}
 
-			//ÀÎÁõ¼­ Á¤º¸ ÃßÃâ °á°ú	
+			//ì¸ì¦ì„œ ì •ë³´ ì¶”ì¶œ ê²°ê³¼	
 			Certificate CCertificate = new Certificate();
+			CCertificate.SetConfPath(npkiPath);
 			nRet=CCertificate.ExtractCertInfo(CVerifier.certbuf, CVerifier.certlen);
 			if (nRet ==0)
 			{
@@ -224,48 +228,53 @@ public class Crosscert {
 
 			}else
 			{
-				System.out.println("ÀÎÁõ¼­ °ËÁõ °á°ú : ½ÇÆĞ") ;
-				System.out.println("¿¡·¯³»¿ë : " + CCertificate.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CCertificate.errcode);
+				System.out.println("ì¸ì¦ì„œ ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CCertificate.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CCertificate.errcode);
 				System.out.println("signdata : " + sSignData);
 				sMsg = "SIGN_ERROR";
 			}
 
-			// ÀÎÁõ¼­ °ËÁõ 
-			String Policies = "1.2.410.200004.5.2.1.1|"	     +          // ÇÑ±¹Á¤º¸ÀÎÁõ              ¹ıÀÎ
-								"1.2.410.200004.5.1.1.7|"    +          // ÇÑ±¹Áõ±ÇÀü»ê              ¹ıÀÎ, ´ÜÃ¼, °³ÀÎ»ç¾÷ÀÚ
-								"1.2.410.200005.1.1.5|"      +          // ±İÀ¶°áÁ¦¿ø                ¹ıÀÎ, ÀÓÀÇ´ÜÃ¼, °³ÀÎ»ç¾÷ÀÚ
-								"1.2.410.200004.5.3.1.1|"    +          // ÇÑ±¹Àü»ê¿ø                ±â°ü(±¹°¡±â°ü ¹× ºñ¿µ¸®±â°ü)
-								"1.2.410.200004.5.3.1.2|"    +          // ÇÑ±¹Àü»ê¿ø                ¹ıÀÎ(±¹°¡±â°ü ¹× ºñ¿µ¸®±â°üÀ»  Á¦¿ÜÇÑ °ø°ø±â°ü, ¹ıÀÎ)
-								"1.2.410.200004.5.4.1.2|"    +          // ÇÑ±¹ÀüÀÚÀÎÁõ              ¹ıÀÎ, ´ÜÃ¼, °³ÀÎ»ç¾÷ÀÚ
-								"1.2.410.200012.1.1.3|"      +          // ÇÑ±¹¹«¿ªÁ¤º¸Åë½Å           ¹ıÀÎ
-								"1.2.410.200004.5.5.1.2|"    +          // ÀÌ´ÏÅØ                    ¹ıÀÎ
-								"1.2.410.200004.5.4.2.369|"  +          // ³ªÀÌ½ºµğ¾ØºñÀü¿ë           ¹ıÀÎ(³ªÀÌ½º´ÙÅ¥)
-								"1.2.410.200004.5.4.2.427|"  +          // ³ªÀÌ½ºµğ¾ØºñÀü¿ë           ¹ıÀÎ(¾ÆÆÄÆ® ÀüÀÚÀÔÂû)
+			// ì¸ì¦ì„œ ê²€ì¦ 
+			String Policies = "1.2.410.200004.5.2.1.1|"	     +          // í•œêµ­ì •ë³´ì¸ì¦              ë²•ì¸
+								"1.2.410.200004.5.1.1.7|"    +          // í•œêµ­ì¦ê¶Œì „ì‚°              ë²•ì¸, ë‹¨ì²´, ê°œì¸ì‚¬ì—…ì
+								"1.2.410.200005.1.1.5|"      +          // ê¸ˆìœµê²°ì œì›                ë²•ì¸, ì„ì˜ë‹¨ì²´, ê°œì¸ì‚¬ì—…ì
+								"1.2.410.200004.5.3.1.1|"    +          // í•œêµ­ì „ì‚°ì›                ê¸°ê´€(êµ­ê°€ê¸°ê´€ ë° ë¹„ì˜ë¦¬ê¸°ê´€)
+								"1.2.410.200004.5.3.1.2|"    +          // í•œêµ­ì „ì‚°ì›                ë²•ì¸(êµ­ê°€ê¸°ê´€ ë° ë¹„ì˜ë¦¬ê¸°ê´€ì„  ì œì™¸í•œ ê³µê³µê¸°ê´€, ë²•ì¸)
+								"1.2.410.200004.5.4.1.2|"    +          // í•œêµ­ì „ìì¸ì¦              ë²•ì¸, ë‹¨ì²´, ê°œì¸ì‚¬ì—…ì
+								"1.2.410.200012.1.1.3|"      +          // í•œêµ­ë¬´ì—­ì •ë³´í†µì‹            ë²•ì¸
+								"1.2.410.200004.5.5.1.2|"    +          // ì´ë‹ˆí…                    ë²•ì¸
+								"1.2.410.200004.5.4.2.369|"  +          // ë‚˜ì´ìŠ¤ë””ì•¤ë¹„ì „ìš©           ë²•ì¸(ë‚˜ì´ìŠ¤ë‹¤í)
+								"1.2.410.200004.5.4.2.427|"  +          // ë‚˜ì´ìŠ¤ë””ì•¤ë¹„ì „ìš©           ë²•ì¸(ì•„íŒŒíŠ¸ ì „ìì…ì°°)
 
-								"1.2.410.200004.5.2.1.2|"    +          // ÇÑ±¹Á¤º¸ÀÎÁõ               °³ÀÎ
-								"1.2.410.200004.5.1.1.5|"    +          // ÇÑ±¹Áõ±ÇÀü»ê               °³ÀÎ
-								"1.2.410.200005.1.1.1|"      +          // ±İÀ¶°áÁ¦¿ø                 °³ÀÎ
-								"1.2.410.200004.5.3.1.9|"    +          // ÇÑ±¹Àü»ê¿ø                 °³ÀÎ
-								"1.2.410.200004.5.4.1.1|"    +          // ÇÑ±¹ÀüÀÚÀÎÁõ               °³ÀÎ
-								"1.2.410.200012.1.1.1|"      +          // ÇÑ±¹¹«¿ªÁ¤º¸Åë½Å            °³ÀÎ
-								"1.2.410.200004.5.5.1.1|"    +        // ÀÌ´ÏÅØ                     °³ÀÎ
-								"1.2.410.200005.1.1.4|"      +          // ÀºÇà¿ë ½Ç¼­¹ö¿¡½º´Â Á¦°ÅÇÊ           °³ÀÎ
+								"1.2.410.200004.5.2.1.2|"    +          // í•œêµ­ì •ë³´ì¸ì¦               ê°œì¸
+								"1.2.410.200004.5.1.1.5|"    +          // í•œêµ­ì¦ê¶Œì „ì‚°               ê°œì¸
+								"1.2.410.200005.1.1.1|"      +          // ê¸ˆìœµê²°ì œì›                 ê°œì¸
+								"1.2.410.200004.5.3.1.9|"    +          // í•œêµ­ì „ì‚°ì›                 ê°œì¸
+								"1.2.410.200004.5.4.1.1|"    +          // í•œêµ­ì „ìì¸ì¦               ê°œì¸
+								"1.2.410.200012.1.1.1|"      +          // í•œêµ­ë¬´ì—­ì •ë³´í†µì‹             ê°œì¸
+								"1.2.410.200004.5.5.1.1|"    +          // ì´ë‹ˆí…                     ê°œì¸
+								"1.2.410.200005.1.1.4|"      +          // ì€í–‰ìš© ì‹¤ì„œë²„ì—ìŠ¤ëŠ” ì œê±°í•„           ê°œì¸
+								
+								"1.2.410.200012.5.6.1.81|"   +          // í•œêµ­ë¬´ì—­ì „ìì¸ì¦1
+								"1.2.410.200012.5.6.1.82|"   +          // í•œêµ­ë¬´ì—­ì „ìì¸ì¦2
+								"1.2.410.200004.5.4.2.503|"  +          // ë†ì‹¬ ì „ìš©ì¸ì¦ì„œ
 								"";
+
 			CCertificate.errmessage = "";
 
 			nRet=CCertificate.ValidateCert(CVerifier.certbuf, CVerifier.certlen, Policies, 1);
 			if(nRet==0) 
 			{
-				System.out.println("ÀÎÁõ¼­ °ËÁõ °á°ú : ¼º°ø") ;
+				System.out.println("ì¸ì¦ì„œ ê²€ì¦ ê²°ê³¼ : ì„±ê³µ") ;
 			}
 			else
 			{
-				System.out.println("ÀÎÁõ¼­ °ËÁõ °á°ú : ½ÇÆĞ ¤Ì¤Ì") ;
-				System.out.println("¿¡·¯³»¿ë : " + CCertificate.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CCertificate.errcode);
-				System.out.println("¿¡·¯ÄÚµå : " + Integer.toHexString(CCertificate.errcode));
-				System.out.println("¿¡·¯³»¿ë : " + CCertificate.errdetailmessage);
+				System.out.println("ì¸ì¦ì„œ ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨ ã…œã…œ") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CCertificate.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CCertificate.errcode);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + Integer.toHexString(CCertificate.errcode));
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CCertificate.errdetailmessage);
 				System.out.println("signdata : " + sSignData);
 				sMsg = "SIGN_ERROR";
 			}
@@ -279,8 +288,8 @@ public class Crosscert {
 	}
 	
 	/**
-	 * µ¥ÀÌÅ¸ º¹È£È­
-	 * @param sSignData	¾ÏÈ£È­µ¥ÀÌÅ¸
+	 * ë°ì´íƒ€ ë³µí˜¸í™”
+	 * @param sSignData	ì•”í˜¸í™”ë°ì´íƒ€
 	 * @return
 	 * @throws IOException 
 	 */
@@ -294,16 +303,16 @@ public class Crosscert {
 			byte[] 			Prifilebuf;
 			byte[]			Certfilebuf;
 
-			//º¹È£È­¿ë °³ÀÎÅ° ÀĞ±â start
+			//ë³µí˜¸í™”ìš© ê°œì¸í‚¤ ì½ê¸° start
 			int nPrilen; 
 			int	nCertlen;
 			
 			String	sDerFullPath	=	"";
 			String	sKeyFullPath	=	"";
-			String	sCertDir			=	Startup.conf.getString("servercert.crosscert");
+			String	sCertDir		=	serverCertPath;
 			
-			sDerFullPath	=	sCertDir	+	"signCert.der";
-			sKeyFullPath	=	sCertDir	+	"signPri.key";
+			sDerFullPath	=	sCertDir + File.separator + "signCert.der";
+			sKeyFullPath	=	sCertDir + File.separator + "/signPri.key";
 			
 			sDerFullPath	=	StrUtil.replace(sDerFullPath,"\\",File.separator);
 			sDerFullPath	=	StrUtil.replace(sDerFullPath,"/",File.separator);
@@ -320,75 +329,78 @@ public class Crosscert {
 			nCertlen 		= inCert.available();
 			Certfilebuf = new byte[nCertlen];
 			nRet 				= inCert.read(Certfilebuf);
-			//º¹È£È­¿ë °³ÀÎÅ° ÀĞ±â end
+			//ë³µí˜¸í™”ìš© ê°œì¸í‚¤ ì½ê¸° end
 
 
-			//ÀÎÁõ¼­ Á¤Ã¥
+			//ì¸ì¦ì„œ ì •ì±…
 			String policies = "";
-			// ¹ıÀÎ»óÈ£¿¬µ¿¿ë(¹ü¿ë)
-			policies +="1.2.410.200004.5.2.1.1"    + "|";          // ÇÑ±¹Á¤º¸ÀÎÁõ               ¹ıÀÎ
-			policies +="1.2.410.200004.5.1.1.7"    + "|";          // ÇÑ±¹Áõ±ÇÀü»ê               ¹ıÀÎ, ´ÜÃ¼, °³ÀÎ»ç¾÷ÀÚ
-			policies +="1.2.410.200005.1.1.5"      + "|";          // ±İÀ¶°áÁ¦¿ø                 ¹ıÀÎ, ÀÓÀÇ´ÜÃ¼, °³ÀÎ»ç¾÷ÀÚ
-			policies +="1.2.410.200004.5.3.1.1"    + "|";          // ÇÑ±¹Àü»ê¿ø                 ±â°ü(±¹°¡±â°ü ¹× ºñ¿µ¸®±â°ü)
-			policies +="1.2.410.200004.5.3.1.2"    + "|";          // ÇÑ±¹Àü»ê¿ø                 ¹ıÀÎ(±¹°¡±â°ü ¹× ºñ¿µ¸®±â°üÀ»  Á¦¿ÜÇÑ °ø°ø±â°ü, ¹ıÀÎ)
-			policies +="1.2.410.200004.5.4.1.2"    + "|";          // ÇÑ±¹ÀüÀÚÀÎÁõ               ¹ıÀÎ, ´ÜÃ¼, °³ÀÎ»ç¾÷ÀÚ
-			policies +="1.2.410.200012.1.1.3"      + "|";          // ÇÑ±¹¹«¿ªÁ¤º¸Åë½Å           ¹ıÀÎ
-			policies +="1.2.410.200004.5.4.2.369"  + "|";          // ³ªÀÌ½ºµğ¾Øºñ		         ¹ıÀÎ
-
-			//¼­¹ö¿¡¼­ °³ÀÎÅ° ÀĞ¾î¿À±â
-			PrivateKey 	CPrivateKey = new PrivateKey(); //°³ÀÎÅ° ÃßÃâ Å¬·¡½º
-			Base64 			CBase64 		= new Base64();			//base64 ÀÎÄÚµù µğÄÚµù
-			Decrypt 		decrypt 		= new Decrypt();		//º¹È£È­ Å¬·¡½º
-			//Certificate CCertificate = new Certificate();	//ÀÎÁõ¼­ ÃßÃâ ¹× °ËÁõ
-			Verifier CVerifier = new Verifier();			// ¼­¸í°ËÁõÀ» À§ÇÑ Å¬·¡½º
+			// ë²•ì¸ìƒí˜¸ì—°ë™ìš©(ë²”ìš©)
+			policies +="1.2.410.200004.5.2.1.1"    + "|";          // í•œêµ­ì •ë³´ì¸ì¦               ë²•ì¸
+			policies +="1.2.410.200004.5.1.1.7"    + "|";          // í•œêµ­ì¦ê¶Œì „ì‚°               ë²•ì¸, ë‹¨ì²´, ê°œì¸ì‚¬ì—…ì
+			policies +="1.2.410.200005.1.1.5"      + "|";          // ê¸ˆìœµê²°ì œì›                 ë²•ì¸, ì„ì˜ë‹¨ì²´, ê°œì¸ì‚¬ì—…ì
+			policies +="1.2.410.200004.5.3.1.1"    + "|";          // í•œêµ­ì „ì‚°ì›                 ê¸°ê´€(êµ­ê°€ê¸°ê´€ ë° ë¹„ì˜ë¦¬ê¸°ê´€)
+			policies +="1.2.410.200004.5.3.1.2"    + "|";          // í•œêµ­ì „ì‚°ì›                 ë²•ì¸(êµ­ê°€ê¸°ê´€ ë° ë¹„ì˜ë¦¬ê¸°ê´€ì„  ì œì™¸í•œ ê³µê³µê¸°ê´€, ë²•ì¸)
+			policies +="1.2.410.200004.5.4.1.2"    + "|";          // í•œêµ­ì „ìì¸ì¦               ë²•ì¸, ë‹¨ì²´, ê°œì¸ì‚¬ì—…ì
+			policies +="1.2.410.200012.1.1.3"      + "|";          // í•œêµ­ë¬´ì—­ì •ë³´í†µì‹            ë²•ì¸
+			policies +="1.2.410.200004.5.4.2.369"  + "|";          // ë‚˜ì´ìŠ¤ë””ì•¤ë¹„		         ë²•ì¸
+			policies +="1.2.410.200012.5.6.1.81"   + "|";          // í•œêµ­ë¬´ì—­ì „ìì¸ì¦1
+			policies +="1.2.410.200012.5.6.1.82"   + "|";          // í•œêµ­ë¬´ì—­ì „ìì¸ì¦2
+			policies +="1.2.410.200004.5.4.2.503"  + "|";          // ë†ì‹¬ ì „ìš©ì¸ì¦ì„œ
+			
+			//ì„œë²„ì—ì„œ ê°œì¸í‚¤ ì½ì–´ì˜¤ê¸°
+			PrivateKey 	CPrivateKey = new PrivateKey(); //ê°œì¸í‚¤ ì¶”ì¶œ í´ë˜ìŠ¤
+			Base64 			CBase64 		= new Base64();			//base64 ì¸ì½”ë”© ë””ì½”ë”©
+			Decrypt 		decrypt 		= new Decrypt();		//ë³µí˜¸í™” í´ë˜ìŠ¤
+			//Certificate CCertificate = new Certificate();	//ì¸ì¦ì„œ ì¶”ì¶œ ë° ê²€ì¦
+			Verifier CVerifier = new Verifier();			// ì„œëª…ê²€ì¦ì„ ìœ„í•œ í´ë˜ìŠ¤
 	    
-	    String sSignPwd = Startup.conf.getString("servercert.pwd");
+	    String sSignPwd = serverCertPassword;
 
-	    // °³ÀÎÅ° ÃßÃâ
+	    // ê°œì¸í‚¤ ì¶”ì¶œ
 	    nRet = CPrivateKey.DecryptPriKey(sSignPwd, Prifilebuf, nPrilen);
 
 			if (nRet != 0)
 			{
-				System.out.println("¿¡·¯³»¿ë : " + CPrivateKey.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CPrivateKey.errcode);
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CPrivateKey.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CPrivateKey.errcode);
 				sOrgData =	"";
 			}
 
-			// ¼­¸í°ª base64 µğÄÚµù
+			// ì„œëª…ê°’ base64 ë””ì½”ë”©
 			nRet = CBase64.Decode(sSignData.getBytes(), sSignData.getBytes().length);
 			if (nRet != 0)
 			{
-				System.out.println("base64µğÄÚµå ¿¡·¯³»¿ë(¼­¸í°ª) : " + CBase64.errmessage);
-				System.out.println("base64µğÄÚµå ¿¡·¯ÄÚµå : " + CBase64.errcode);
+				System.out.println("base64ë””ì½”ë“œ ì—ëŸ¬ë‚´ìš©(ì„œëª…ê°’) : " + CBase64.errmessage);
+				System.out.println("base64ë””ì½”ë“œ ì—ëŸ¬ì½”ë“œ : " + CBase64.errcode);
 				sOrgData =	"";
 			}
 
-			// ÀüÀÚ¼­¸í °ËÁõ
+			// ì „ìì„œëª… ê²€ì¦
 			nRet=CVerifier.VerSignedData(CBase64.contentbuf, CBase64.contentlen);
 			if(nRet != 0)
 			{
-				System.out.println("ÀüÀÚ¼­¸í °ËÁõ °á°ú : ½ÇÆĞ") ;
-				System.out.println("¿¡·¯³»¿ë : " + CVerifier.errmessage);
-				System.out.println("¿¡·¯ÄÚµå : " + CVerifier.errcode);
+				System.out.println("ì „ìì„œëª… ê²€ì¦ ê²°ê³¼ : ì‹¤íŒ¨") ;
+				System.out.println("ì—ëŸ¬ë‚´ìš© : " + CVerifier.errmessage);
+				System.out.println("ì—ëŸ¬ì½”ë“œ : " + CVerifier.errcode);
 				sOrgData =	"";
 			}
 
-			// ¿ø¹® ¾ÏÈ£È­°ª base64 µğÄÚµù
+			// ì›ë¬¸ ì•”í˜¸í™”ê°’ base64 ë””ì½”ë”©
 			nRet = CBase64.Decode(CVerifier.contentbuf, CVerifier.contentlen);
 			if (nRet != 0)
 			{
-				System.out.println("base64µğÄÚµå ¿¡·¯³»¿ë(¿ø¹® ¾ÏÈ£È­°ª) : " + CBase64.errmessage);
-				System.out.println("base64µğÄÚµå ¿¡·¯ÄÚµå : " + CBase64.errcode);
+				System.out.println("base64ë””ì½”ë“œ ì—ëŸ¬ë‚´ìš©(ì›ë¬¸ ì•”í˜¸í™”ê°’) : " + CBase64.errmessage);
+				System.out.println("base64ë””ì½”ë“œ ì—ëŸ¬ì½”ë“œ : " + CBase64.errcode);
 				sOrgData =	"";
 			}
 
-			//ÀÎÁõ¼­ º¹È£È­
+			//ì¸ì¦ì„œ ë³µí˜¸í™”
 			nRet = decrypt.DecEnvelopedData(CPrivateKey.prikeybuf, CPrivateKey.prikeylen, Certfilebuf, nCertlen, CBase64.contentbuf, 
 																			CBase64.contentlen);
 			if (nRet != 0)
 			{
-				System.out.println("º¹È£È­ ¿¡·¯³»¿ë : " + decrypt.errmessage);
-				System.out.println("º¹È£È­ ¿¡·¯ÄÚµå : " + decrypt.errcode);
+				System.out.println("ë³µí˜¸í™” ì—ëŸ¬ë‚´ìš© : " + decrypt.errmessage);
+				System.out.println("ë³µí˜¸í™” ì—ëŸ¬ì½”ë“œ : " + decrypt.errcode);
 				sOrgData =	"";
 			}
 
@@ -404,7 +416,7 @@ public class Crosscert {
 	}
 	
 	/**
-	 * ¿ø¹®µ¥ÀÌÅ¸ ³Ö±â
+	 * ì›ë¬¸ë°ì´íƒ€ ë„£ê¸°
 	 * @param verifier
 	 */
 	public	void setOrgData(Verifier verifier)
@@ -418,7 +430,7 @@ public class Crosscert {
 	}
 	
 	/**
-	 * ¿ø¹®µ¥ÀÌÅ¸ °¡Á®¿À±â
+	 * ì›ë¬¸ë°ì´íƒ€ ê°€ì ¸ì˜¤ê¸°
 	 * @return
 	 */
 	public String getOrgData()
@@ -427,7 +439,7 @@ public class Crosscert {
 	}
 	
 	/**
-	 * DN°ª °¡Á®¿À±â
+	 * DNê°’ ê°€ì ¸ì˜¤ê¸°
 	 * @param //verifier
 	 */
 	public	void setDn(Certificate certificate)
@@ -436,7 +448,7 @@ public class Crosscert {
 	}
 	
 	/**
-	 * DN°ª °¡Á®¿À±â
+	 * DNê°’ ê°€ì ¸ì˜¤ê¸°
 	 * @return
 	 */
 	public String getDn()
@@ -445,67 +457,66 @@ public class Crosscert {
 	}
 	
 	/**
-	 * ¼­¹ö ¼­¸í
+	 * ì„œë²„ ì„œëª…
 	 * @return
 	 */
-	public DataSet serverSign(String memberNo, String passWd, String org_data) {
+	public DataSet serverSign(String org_data) {
 		
 		DataSet signDs = new DataSet();
-		String CertPath = Startup.conf.getString("file.path")+"/NPKI/"+memberNo+"/";
 		
-		int nPrilen=0, nCertlen=0, nRet;
-		InputStream inPri=null;
-		InputStream inCert=null;
+		int nPrilen = 0;
+		int nCertlen = 0;
+		int nRet;
+		InputStream inPri = null;
+		InputStream inCert = null;
 		
 		byte[] Prifilebuf;
 		byte[] Certfilebuf;
 		
 		signDs.addRow();
 
-		try{
-			inPri =  new FileInputStream(new File(CertPath + "signPri.key"));
-			inCert = new FileInputStream(new File(CertPath + "signCert.der"));
-		}catch (FileNotFoundException e){
-			signDs.put("err", "¼­¹ö ÀÎÁõ¼­¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+		try {
+			inPri = new FileInputStream(new File(serverCertPath + File.separator + "signPri.key"));
+			inCert = new FileInputStream(new File(serverCertPath + File.separator + "signCert.der"));
+		} catch (FileNotFoundException e) {
+			signDs.put("err", "ì„œë²„ ì¸ì¦ì„œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			return signDs;
-		}catch (Exception e){
-			signDs.put("err", "¾Ë ¼ö ¾ø´Â ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+		} catch (Exception e) {
+			signDs.put("err", "ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
 			return signDs;
 		}
 
-		try{
-			nPrilen=inPri.available();
-			Prifilebuf=new byte[nPrilen];
+		try {
+			nPrilen = inPri.available();
+			Prifilebuf = new byte[nPrilen];
 			
-			nRet=inPri.read(Prifilebuf);
+			nRet = inPri.read(Prifilebuf);
 
-			// °³ÀÎÅ° ÃßÃâ
+			// ê°œì¸í‚¤ ì¶”ì¶œ
 			PrivateKey privateKey = new PrivateKey();
 			
-			nRet=privateKey.DecryptPriKey(passWd, Prifilebuf, nPrilen);
+			nRet = privateKey.DecryptPriKey(serverCertPassword, Prifilebuf, nPrilen);
 
-			if (nRet != 0){
-				
-				signDs.put("err", "°³ÀÎÅ° ÃßÃâ¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			if (nRet != 0) {
+				signDs.put("err", "ê°œì¸í‚¤ ì¶”ì¶œì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 				return signDs;
-			
-			}else{
-					
+			} else {
 				Certificate CCertificate = new Certificate();
+				CCertificate.SetConfPath(npkiPath);
 				long from = 0;
 				long to = 0;
 				long now = Long.parseLong(Util.getTimeString());
 				
-				nCertlen=inCert.available();
+				nCertlen = inCert.available();
 				Certfilebuf = new byte[nCertlen];
 			
 				nRet=inCert.read(Certfilebuf);
 
 				CCertificate.ExtractCertInfo(Certfilebuf, nCertlen);
 				
-				if(CCertificate.subject == null || "".equals(CCertificate.subject)){
-					signDs.put("err", "ÀÎÁõ¼­ DN À» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+				if (CCertificate.subject == null || "".equals(CCertificate.subject)) {
+					signDs.put("err", "ì¸ì¦ì„œ DN ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 					return signDs;
 				}
 				
@@ -514,41 +525,37 @@ public class Crosscert {
 				from = Long.parseLong(CCertificate.from.replaceAll("[^0-9]", ""));
 				to = Long.parseLong(CCertificate.to.replaceAll("[^0-9]", ""));
 				
-				if(!(from < now && now <= to)) { 
-					signDs.put("err", "ÀÎÁõ¼­°¡ ¸¸·áµÇ¾ú½À´Ï´Ù.");
+				if (!(from < now && now <= to)) { 
+					signDs.put("err", "ì¸ì¦ì„œê°€ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 					return signDs;
 				}
 				
-				// ÀüÀÚ¼­¸í
+				// ì „ìì„œëª…
 				Signer signer = new Signer();
-				nRet=signer.GetSignedData(privateKey.prikeybuf, privateKey.prikeylen, Certfilebuf, nCertlen, org_data.getBytes("KSC5601"), org_data.getBytes("KSC5601").length);
+				nRet = signer.GetSignedData(privateKey.prikeybuf, privateKey.prikeylen, Certfilebuf, nCertlen, org_data.getBytes("KSC5601"), org_data.getBytes("KSC5601").length);
 				
-				if (nRet != 0){					
-					signDs.put("err", "ÀüÀÚ¼­¸í¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+				if (nRet != 0) {					
+					signDs.put("err", "ì „ìì„œëª…ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					return signDs;					
 				}
 
-				// ¹ÙÀÌ³Ê¸® Å×ÀÌÅ¸ base64ÀÎÄÚµù
+				// ë°”ì´ë„ˆë¦¬ í…Œì´íƒ€ base64ì¸ì½”ë”©
 				Base64 CBase64 = new Base64();
 				nRet = CBase64.Encode(signer.signedbuf, signer.signedlen);
 
-				if(nRet==0){
+				if (nRet==0) {
 					signDs.put("signData", new String(CBase64.contentbuf)); //signData
-				}else{					
-					signDs.put("err", "¼­¸í°ªÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+				} else {
+					signDs.put("err", "ì„œëª…ê°’ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 					return signDs;					
 				}
-
 			}
-
-		}catch(Exception e1){
+		} catch(Exception e1) {
 			e1.printStackTrace();
-		}finally {
-			if(inCert != null) try{ inCert.close();} catch (Exception e) {}
-			if(inPri != null) try{ inPri.close();} catch (Exception e) {}
+		} finally {
+			if (inCert != null) try {inCert.close();} catch (Exception e) {}
+			if (inPri != null) try {inPri.close();} catch (Exception e) {}
 		}
-		
 		return signDs;
 	}
-	
 }

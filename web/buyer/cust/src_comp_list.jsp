@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataSet ds = new DataSet();
 ds.addRow();
@@ -11,7 +11,7 @@ int iClientCnt	=	doTSM.getOneInt("select count(*) icnt \n"+
 		"						from tcb_client \n"+
 		" 				 where member_no = '"+_member_no+"' and (client_reg_cd = '1' or client_reg_cd is null)) b \n"+
 		" where a.member_no = b.client_no \n"+
-		"   and a.member_type in ('02','03')");	//	Çù·Â¾÷Ã¼¼ö
+		"   and a.member_type in ('02','03')");	//	í˜‘ë ¥ì—…ì²´ìˆ˜
 
 p.setLayout("default");
 //p.setDebug(out);

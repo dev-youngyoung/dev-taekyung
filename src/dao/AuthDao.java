@@ -31,7 +31,7 @@ public class AuthDao extends DataObject {
 		return info;
 	}
 
-	// 2019.06.26 dskim ±Ù·Î°è¾à¿ë Ãß°¡
+	// 2019.06.26 dskim ê·¼ë¡œê³„ì•½ìš© ì¶”ê°€
 	public String getAuthMenuInfoW(String member_no, String auth_cd , String menu_cd,String column) {
 		DataObject authMenuDao = new DataObject("tcw_auth_menu");
 		String info = authMenuDao.getOne("select "+column+" from tcw_auth_menu where member_no = '"+member_no+"' and auth_cd = '"+auth_cd+"' and menu_cd = '"+menu_cd+"' ");

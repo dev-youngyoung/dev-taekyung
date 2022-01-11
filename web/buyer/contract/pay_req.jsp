@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="
                  java.util.Date,
                  java.sql.Timestamp,
@@ -14,11 +14,11 @@ String s_pay_money =  u.aseDec(u.request("pay_money"));
 String insteadyn = u.request("insteadyn");
 String member_no = u.request("member_no");
 if(cont_no.equals("")||cont_chasu.equals("")||s_pay_money.equals("")||insteadyn.equals("")||member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 if(!_member_no.equals(member_no)){
-	u.jsErrClose("·Î±×ÀÎ»ç¿ëÀÚ°¡ º¯°æ µÇ¾ú½À´Ï´Ù.\\n\\n°áÁ¦¸¦ ´Ù½Ã ÁøÇà ÇÏ¼¼¿ä.");
+	u.jsErrClose("ë¡œê·¸ì¸ì‚¬ìš©ìê°€ ë³€ê²½ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nê²°ì œë¥¼ ë‹¤ì‹œ ì§„í–‰ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -26,87 +26,87 @@ int pay_money = Integer.parseInt(s_pay_money);
 int pay_vat = pay_money/10;
 String where = " cont_no = '"+cont_no+"' and cont_chasu= '"+cont_chasu+"' ";
 
-//°è¾àÁ¤º¸ È®ÀÎ 
+//ê³„ì•½ì •ë³´ í™•ì¸ 
 ContractDao contDao = new ContractDao("tcb_contmaster");
 DataSet cont = contDao.find(where);
 if(!cont.next()){
-	u.jsAlert("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù");
+	u.jsAlert("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤");
 	return;
 }
 
-//»ç¿ëÀÚ Ãß°¡ Á¤º¸
+//ì‚¬ìš©ì ì¶”ê°€ ì •ë³´
 DataObject personDao = new DataObject("tcb_person");
 DataSet person = personDao.find("member_no='"+_member_no+"' and user_id='"+auth.getString("_USER_ID")+"' ");
 if(!person.next()){
- u.jsError("»ç¿ëÀÚÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+ u.jsError("ì‚¬ìš©ìì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
  return;
 }
 
-//¸ğµç °áÁ¦¿¡ °øÅëÀûÀ¸·Î ÇÊ¿äÇÑ µ¥ÀÌÅÍ
-String nice_ordervendcd  = auth.getString("_VENDCD");// ÁÖ¹®ÀÚ »ç¾÷ÀÚ¹øÈ£
-String nice_ordername    = getLimitString(auth.getString("_MEMBER_NAME"), 20);// ÁÖ¹®ÀÚ ¼º¸í (20ÀÚ¸®)
-String nice_orderphone   = person.getString("hp1")+person.getString("hp2")+person.getString("hp3");// ÁÖ¹®ÀÚ ÀüÈ­¹øÈ£ (20ÀÚ¸®)
-String nice_orderemail   = person.getString("email");// ÁÖ¹®ÀÚ ÀÌ¸ŞÀÏ
-String nice_orderno      = cont_no + cont_chasu;// ÁÖ¹®¹øÈ£ 20ÀÚ¸® ¸Å °Å·¡½Ã¸¶´Ù À¯ÀÏÇØ¾ßÇÔ (20ÀÚ¸® °íÁ¤)
-String nice_good_name    = "³ªÀÌ½º´ÙÅ¥ ÀÓ´ë ÀÌ¿ë ¼ö¼ö·á";// »óÇ°¸í (40ÀÚ¸®)
-String nice_amount		= (pay_money+pay_vat)+"";// ±¸¸Å°¡°İ
+//ëª¨ë“  ê²°ì œì— ê³µí†µì ìœ¼ë¡œ í•„ìš”í•œ ë°ì´í„°
+String nice_ordervendcd  = auth.getString("_VENDCD");// ì£¼ë¬¸ì ì‚¬ì—…ìë²ˆí˜¸
+String nice_ordername    = getLimitString(auth.getString("_MEMBER_NAME"), 20);// ì£¼ë¬¸ì ì„±ëª… (20ìë¦¬)
+String nice_orderphone   = person.getString("hp1")+person.getString("hp2")+person.getString("hp3");// ì£¼ë¬¸ì ì „í™”ë²ˆí˜¸ (20ìë¦¬)
+String nice_orderemail   = person.getString("email");// ì£¼ë¬¸ì ì´ë©”ì¼
+String nice_orderno      = cont_no + cont_chasu;// ì£¼ë¬¸ë²ˆí˜¸ 20ìë¦¬ ë§¤ ê±°ë˜ì‹œë§ˆë‹¤ ìœ ì¼í•´ì•¼í•¨ (20ìë¦¬ ê³ ì •)
+String nice_good_name    = "ë‚˜ì´ìŠ¤ë‹¤í ì„ëŒ€ ì´ìš© ìˆ˜ìˆ˜ë£Œ";// ìƒí’ˆëª… (40ìë¦¬)
+String nice_amount		= (pay_money+pay_vat)+"";// êµ¬ë§¤ê°€ê²©
 
-//ÁÖ¹®¹øÈ£ 20ÀÚ¸® °íÁ¤
+//ì£¼ë¬¸ë²ˆí˜¸ 20ìë¦¬ ê³ ì •
 int iOrdernoLen = nice_orderno.length();
 RandomString rndStr = new RandomString();
-nice_orderno += rndStr.getString(20-iOrdernoLen, "a");// ¿µ¹®¼Ò¹®ÀÚ·Î »ı¼ºµÈ ÀÓÀÇ¹®ÀÚ¿­À» ºÙÀÓ
+nice_orderno += rndStr.getString(20-iOrdernoLen, "a");// ì˜ë¬¸ì†Œë¬¸ìë¡œ ìƒì„±ëœ ì„ì˜ë¬¸ìì—´ì„ ë¶™ì„
 
 NicePayParamSetter paramSetter = new NicePayParamSetter();
 
-//¼­¹ö IP °¡Á®¿À±â
+//ì„œë²„ IP ê°€ì ¸ì˜¤ê¸°
 InetAddress inet = InetAddress.getLocalHost();
 
-//°¡»ó°èÁÂ ÀÔ±İ¸¸·áÀÏ
+//ê°€ìƒê³„ì¢Œ ì…ê¸ˆë§Œë£Œì¼
 Timestamp toDay = new Timestamp((new Date()).getTime());
 Timestamp nxDay = paramSetter.getTimestampWithSpan(toDay, 1);
 String VbankExpDate = nxDay.toString();
 VbankExpDate = VbankExpDate.substring(0, 10);
 VbankExpDate = VbankExpDate.replaceAll("-", "");
 
-String ediDate = paramSetter.getyyyyMMddHHmmss(); // Àü¹®»ı¼ºÀÏ½Ã
+String ediDate = paramSetter.getyyyyMMddHHmmss(); // ì „ë¬¸ìƒì„±ì¼ì‹œ
 
-//»óÁ¡¼­¸íÅ° (²À ÇØ´ç »óÁ¡Å°·Î ¹Ù²ãÁÖ¼¼¿ä)
+//ìƒì ì„œëª…í‚¤ (ê¼­ í•´ë‹¹ ìƒì í‚¤ë¡œ ë°”ê¿”ì£¼ì„¸ìš”)
 //String merchantKey = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
-//String merchantKey		= "q7LNeQuqUrQxRiKfG1tZ4nMFSytahkVr6rAnRh5DpmFsOZ3EbFNiBtrdCxQRkxRx6FR4RjOAC58bGZzW5GPE+w==";		// »óÁ¡¼­¸íÅ° (½ÇÁ¦-³ªÀÌ½ºµğ¾Øºñ)
-String merchantKey		= "lxHiWRNaNLAShqnlgw0ZXIdvTKVE+qty/ZNoEk73JEGukRR7OacU5aB6+gWFI/mhxJ2LWBKLXkrAXbIztLyUNA==";		// »óÁ¡¼­¸íÅ° (½ÇÁ¦-³ªÀÌ½ºµ¥ÀÌÅÍ)
-// »óÁ¡ MID
+//String merchantKey		= "q7LNeQuqUrQxRiKfG1tZ4nMFSytahkVr6rAnRh5DpmFsOZ3EbFNiBtrdCxQRkxRx6FR4RjOAC58bGZzW5GPE+w==";		// ìƒì ì„œëª…í‚¤ (ì‹¤ì œ-ë‚˜ì´ìŠ¤ë””ì•¤ë¹„)
+String merchantKey		= "lxHiWRNaNLAShqnlgw0ZXIdvTKVE+qty/ZNoEk73JEGukRR7OacU5aB6+gWFI/mhxJ2LWBKLXkrAXbIztLyUNA==";		// ìƒì ì„œëª…í‚¤ (ì‹¤ì œ-ë‚˜ì´ìŠ¤ë°ì´í„°)
+// ìƒì  MID
 //String merchantID = "nictest00m";
-//String merchantID = "2543mmmmmm";						// ½ÇÁ¦ »óÁ¡ ¾ÆÀÌµğ(³ªÀÌ½ºµğ¾Øºñ)
-String merchantID = "docu00002m";						// ½ÇÁ¦ »óÁ¡ ¾ÆÀÌµğ(³ªÀÌ½ºµ¥ÀÌÅÍ)
-//hash Ã³¸®
+//String merchantID = "2543mmmmmm";						// ì‹¤ì œ ìƒì  ì•„ì´ë””(ë‚˜ì´ìŠ¤ë””ì•¤ë¹„)
+String merchantID = "docu00002m";						// ì‹¤ì œ ìƒì  ì•„ì´ë””(ë‚˜ì´ìŠ¤ë°ì´í„°)
+//hash ì²˜ë¦¬
 String md_src = ediDate + merchantID + nice_amount + merchantKey;
 String hash_String  = paramSetter.encrypt(md_src);
 
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
-<title>NICEPAY :: °áÁ¦ ¿äÃ»</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>NICEPAY :: ê²°ì œ ìš”ì²­</title>
 <link rel="stylesheet" href="/pay/css/basic.css" type="text/css" />
 <link rel="stylesheet" href="/pay/css/style.css" type="text/css" />
 <script src="https://web.nicepay.co.kr/flex/js/nicepay_tr.js" language="javascript"></script>
 <script language="javascript">
-NicePayUpdate();	//Active-x Control ÃÊ±âÈ­
+NicePayUpdate();	//Active-x Control ì´ˆê¸°í™”
 
 /**
-nicepay	¸¦ ÅëÇØ °áÁ¦¸¦ ½ÃÀÛÇÕ´Ï´Ù.
-@param	form :	°áÁ¦ Form
+nicepay	ë¥¼ í†µí•´ ê²°ì œë¥¼ ì‹œì‘í•©ë‹ˆë‹¤.
+@param	form :	ê²°ì œ Form
 */
 function nicepay() {
  if(checkedButtonValue('selectType')==null || checkedButtonValue('selectType')=='') {
-     alert('°áÁ¦¼ö´ÜÀ» ¼±ÅÃÇØ ÁÖ¼¼¿ä.');
+     alert('ê²°ì œìˆ˜ë‹¨ì„ ì„ íƒí•´ ì£¼ì„¸ìš”.');
      return;
  }
 
 	var payForm		= document.payForm;
 
 
-	// ÇÊ¼ö »çÇ×µéÀ» Ã¼Å©ÇÏ´Â ·ÎÁ÷À» »ğÀÔÇØÁÖ¼¼¿ä.
+	// í•„ìˆ˜ ì‚¬í•­ë“¤ì„ ì²´í¬í•˜ëŠ” ë¡œì§ì„ ì‚½ì…í•´ì£¼ì„¸ìš”.
 	//alert(payForm.BuyerAuthNum.value);
 
 	goPay(payForm);
@@ -118,7 +118,7 @@ function nicepaySubmit(){
 
 
 /**
-°áÁ¦¸¦ Ãë¼Ò ÇÒ¶§ È£ÃâµË´Ï´Ù.
+ê²°ì œë¥¼ ì·¨ì†Œ í• ë•Œ í˜¸ì¶œë©ë‹ˆë‹¤.
 */
 function nicepayClose()
 {
@@ -141,7 +141,7 @@ function chkPayType(obj)
 	  <table width="632" border="0" cellspacing="0" cellpadding="0" class="title">
      <tr>
        <td width="35">&nbsp;</td>
-       <td>³ªÀÌ½º´ÙÅ¥ ÀÌ¿ë ¼ö¼ö·á °áÁ¦</td>
+       <td>ë‚˜ì´ìŠ¤ë‹¤í ì´ìš© ìˆ˜ìˆ˜ë£Œ ê²°ì œ</td>
        <td>&nbsp;</td>
      </tr>
    </table>
@@ -151,23 +151,23 @@ function chkPayType(obj)
  <td align="left" valign="top" background="/pay/images/bodyMiddle.gif">
  <table width="632" border="0" cellspacing="0" cellpadding="0">
    <tr>
-     <td width="35" height="10">&nbsp;</td> <!--»ó´Ü¿©¹é ³ôÀÌ 10px -->
+     <td width="35" height="10">&nbsp;</td> <!--ìƒë‹¨ì—¬ë°± ë†’ì´ 10px -->
      <td width="562">&nbsp;</td>
      <td width="35">&nbsp;</td>
    </tr>
    <tr>
      <td height="30">&nbsp;</td>
-     <td>°è¾à¼­¿¡ ¼­¸íÇÏ±â À§ÇØ¼­´Â ¼­ºñ½º ÀÌ¿ë¼ö¼ö·á¸¦ °áÁ¦ÇÏ¼Å¾ß ÇÕ´Ï´Ù.</td>
+     <td>ê³„ì•½ì„œì— ì„œëª…í•˜ê¸° ìœ„í•´ì„œëŠ” ì„œë¹„ìŠ¤ ì´ìš©ìˆ˜ìˆ˜ë£Œë¥¼ ê²°ì œí•˜ì…”ì•¼ í•©ë‹ˆë‹¤.</td>
      <td>&nbsp;</td>
    </tr>
    <tr>
-     <td height="15">&nbsp;</td> <!--ÄÁÅÙÃ÷¿Í ÄÁÅÙÃ÷ »çÀÌ °£°İ 15px-->
+     <td height="15">&nbsp;</td> <!--ì»¨í…ì¸ ì™€ ì»¨í…ì¸  ì‚¬ì´ ê°„ê²© 15px-->
      <td>&nbsp;</td>
      <td>&nbsp;</td>
    </tr>
    <tr>
      <td height="30">&nbsp;</td>
-     <td class="bold"><img src="/pay/images/bullet.gif" /> Á¤º¸¸¦ È®ÀÎ ÇÏ½Å ÈÄ °áÁ¦ÇÏ±â ¹öÆ°À» ´­·¯ÁÖ½Ê½Ã¿À.
+     <td class="bold"><img src="/pay/images/bullet.gif" /> ì •ë³´ë¥¼ í™•ì¸ í•˜ì‹  í›„ ê²°ì œí•˜ê¸° ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì‹­ì‹œì˜¤.
      <td>&nbsp;</td>
    </tr>
    <tr>
@@ -175,30 +175,30 @@ function chkPayType(obj)
      <td>
 		  <table width="562" border="0" cellspacing="0" cellpadding="0" class="talbeBorder" >
        <tr>
-         <td width="100" height="30" id="borderBottom" class="thead01">°áÁ¦ ¼ö´Ü</td>
+         <td width="100" height="30" id="borderBottom" class="thead01">ê²°ì œ ìˆ˜ë‹¨</td>
          <td id="borderBottom">
-           <input type="radio" name="selectType" value="CARD" style="border:0" onClick="chkPayType(this)">[½Å¿ëÄ«µå]
-			  <input type="radio" name="selectType" value="BANK" style="border:0" onClick="chkPayType(this)">[°èÁÂÀÌÃ¼]
+           <input type="radio" name="selectType" value="CARD" style="border:0" onClick="chkPayType(this)">[ì‹ ìš©ì¹´ë“œ]
+			  <input type="radio" name="selectType" value="BANK" style="border:0" onClick="chkPayType(this)">[ê³„ì¢Œì´ì²´]
 			</td>
        </tr>
 		  <tr>
-         <td width="100" height="30" id="borderBottom" class="thead01">* »óÇ°¸í</td>
+         <td width="100" height="30" id="borderBottom" class="thead01">* ìƒí’ˆëª…</td>
          <td id="borderBottom">&nbsp;<%=nice_good_name%></td>
        </tr>
        <tr>
-         <td width="100" height="30" id="borderBottom" class="thead02">* »óÇ°°¡°İ</td>
-         <td id="borderBottom">&nbsp;<%=nice_amount%> ¿ø</td>
+         <td width="100" height="30" id="borderBottom" class="thead02">* ìƒí’ˆê°€ê²©</td>
+         <td id="borderBottom">&nbsp;<%=nice_amount%> ì›</td>
        </tr>
        <tr>
-         <td width="100" height="30" id="borderBottom" class="thead02">* ±¸¸ÅÀÚ¸í</td>
+         <td width="100" height="30" id="borderBottom" class="thead02">* êµ¬ë§¤ìëª…</td>
          <td id="borderBottom">&nbsp;<%=nice_ordername%></td>
        </tr>
        <tr>
-         <td width="100" height="30" id="borderBottom" class="thead01">* ÀÌ¸ŞÀÏ</td>
+         <td width="100" height="30" id="borderBottom" class="thead01">* ì´ë©”ì¼</td>
          <td id="borderBottom">&nbsp;<%=nice_orderemail%></td>
        </tr>
        <tr>
-         <td width="100" height="30" id="borderBottom" class="thead02">* ÀüÈ­¹øÈ£</td>
+         <td width="100" height="30" id="borderBottom" class="thead02">* ì „í™”ë²ˆí˜¸</td>
          <td id="borderBottom">&nbsp;<%=nice_orderphone%></td>
        </tr>
      </table></td>
@@ -206,11 +206,11 @@ function chkPayType(obj)
    </tr>
    <tr>
    	<td height="60"></td>
-     <td class="btnCenter"><input type="button" value="°áÁ¦ÇÏ±â" onClick="nicepay();"></td> <!-- ÇÏ´Ü¿¡ ¹öÆ°ÀÌ ÀÖ´Â°æ¿ì ¹öÆ°Æ÷ÇÔ ¿©¹é ³ôÀÌ 30px -->
+     <td class="btnCenter"><input type="button" value="ê²°ì œí•˜ê¸°" onClick="nicepay();"></td> <!-- í•˜ë‹¨ì— ë²„íŠ¼ì´ ìˆëŠ”ê²½ìš° ë²„íŠ¼í¬í•¨ ì—¬ë°± ë†’ì´ 30px -->
      <td>&nbsp;</td>
    </tr>
    <tr>
-     <td height="10"></td>  <!--ÇÏ´Ü¿©¹é ³ôÀÌ 10px -->
+     <td height="10"></td>  <!--í•˜ë‹¨ì—¬ë°± ë†’ì´ 10px -->
      <td >&nbsp;</td>
      <td>&nbsp;</td>
    </tr>
@@ -220,13 +220,13 @@ function chkPayType(obj)
  <td><img src="/pay/images/bodyBottom.gif" /></td>
 </tr>
 </table>
-<!-- ÀÔÂû Á¤º¸ -->
+<!-- ì…ì°° ì •ë³´ -->
 <input type="hidden" name="cont_no" value="<%= u.aseEnc(cont_no) %>">
 <input type="hidden" name="cont_chasu" value="<%= cont_chasu %>">
 <input type="hidden" name="insteadyn" value="<%= insteadyn %>">
 <input type="hidden" name="member_no" value="<%= _member_no %>">
 
-<!-- ±âº» Á¤º¸ -->
+<!-- ê¸°ë³¸ ì •ë³´ -->
 <input type="hidden" name="GoodsName" value="<%=nice_good_name%>"/>
 <input type="hidden" name="Amt" value="<%=nice_amount%>"/>
 <input type="hidden" name="BuyerName" value="<%=nice_ordername%>"/>
@@ -234,56 +234,56 @@ function chkPayType(obj)
 <input type="hidden" name="BuyerTel" value="<%=nice_orderphone%>"/>
 
 
-<!-- »óÁ¡¾ÆÀÌµğ -->
+<!-- ìƒì ì•„ì´ë”” -->
 <input type="hidden" name="MID" value="<%=merchantID%>"/>
-<!-- ½ºÅ² Å¸ÀÔ -->
+<!-- ìŠ¤í‚¨ íƒ€ì… -->
 <input type="hidden" name="SkinType" value="blue"/>
-<!-- »óÇ°ÁÖ¹®¹øÈ£ -->
+<!-- ìƒí’ˆì£¼ë¬¸ë²ˆí˜¸ -->
 <input type="hidden" name="Moid" value="<%=nice_orderno%>"/>
 
 
-<!-- ÈŞ´ëÆù°áÁ¦ »óÇ°±¸ºĞ 1:½Ç¹°, 0:ÄÁÅÙÃ÷-->
+<!-- íœ´ëŒ€í°ê²°ì œ ìƒí’ˆêµ¬ë¶„ 1:ì‹¤ë¬¼, 0:ì»¨í…ì¸ -->
 <input type="hidden" name="GoodsCl" value="1"/>
 
 
 <!-- Mall Parameters -->
 <input type="hidden" name="PayMethod" value="BANK">
-<!-- »óÇ° °¹¼ö -->
+<!-- ìƒí’ˆ ê°¯ìˆ˜ -->
 <input type="hidden" name="GoodsCnt" value="1">
 <input type="hidden" name="ParentEmail" value="">
-<!-- ÁÖ¼Ò -->
+<!-- ì£¼ì†Œ -->
 <input type="hidden" name="BuyerAddr" value="">
-<!-- ¿ìÆí ¹øÈ£ -->
+<!-- ìš°í¸ ë²ˆí˜¸ -->
 <input type="hidden" name="BuyerPostNo" value="">
 <input type="hidden" name="UserIP" value="<%=request.getRemoteAddr()%>">
 <input type="hidden" name="MallIP" value="<%=inet.getHostAddress()%>">
 
-<!-- Àı´ë °æ·Î ÁÖ¼ÒÀÇ proxyFrame.jsp ¸¦ ¼³Á¤ÇÏ½Ê½Ã¿ä  -->
+<!-- ì ˆëŒ€ ê²½ë¡œ ì£¼ì†Œì˜ proxyFrame.jsp ë¥¼ ì„¤ì •í•˜ì‹­ì‹œìš”  -->
 <input type="hidden" name="ProxyFrameURL" value="">
 
-<!-- °áÁ¦ Å¸ÀÔ 0:ÀÏ¹İ, 1:¿¡½ºÅ©·Î -->
+<!-- ê²°ì œ íƒ€ì… 0:ì¼ë°˜, 1:ì—ìŠ¤í¬ë¡œ -->
 <input type="hidden" name="TransType" value="0">
 
-<!-- °áÁ¦ ¿É¼Ç  -->
+<!-- ê²°ì œ ì˜µì…˜  -->
 <input type="hidden" name="OptionList" value="">
 
-<!-- °¡»ó°èÁÂ ÀÔ±İ¿¹Á¤ ¸¸·áÀÏ  -->
+<!-- ê°€ìƒê³„ì¢Œ ì…ê¸ˆì˜ˆì • ë§Œë£Œì¼  -->
 <input type="hidden" name="VbankExpDate" value="<%=VbankExpDate%>">
 
-<!-- ±¸¸ÅÀÚ °í°´ ID -->
+<!-- êµ¬ë§¤ì ê³ ê° ID -->
 <input type="hidden" name="MallUserID" value="">
 
-<!-- ¼­ºê¸ô ¾ÆÀÌµğ -->
+<!-- ì„œë¸Œëª° ì•„ì´ë”” -->
 <input type="hidden" name="SUB_ID" value="">
 
-<!-- ±¸¸ÅÀÚ ÀÎÁõ ¹øÈ£(ÁÖ¹Î¹øÈ£/»ç¾÷ÀÚ¹øÈ£)  -->
+<!-- êµ¬ë§¤ì ì¸ì¦ ë²ˆí˜¸(ì£¼ë¯¼ë²ˆí˜¸/ì‚¬ì—…ìë²ˆí˜¸)  -->
 <input type="hidden" name="BuyerAuthNum" value="<%=_member_no%>">
-<!-- »óÁ¡ °í°´¾ÆÀÌµğ -->
+<!-- ìƒì  ê³ ê°ì•„ì´ë”” -->
 <input type="hidden" name="MallUserID" value="">
-<!-- ¾ÏÈ£È­ Ç×¸ñ -->
+<!-- ì•”í˜¸í™” í•­ëª© -->
 <input type="hidden" name="EncodeParameters" value="CardNo,CardExpire,CardPwd"/>
 
-<!-- º¯°æ ºÒ°¡ -->
+<!-- ë³€ê²½ ë¶ˆê°€ -->
 <input type="hidden" name="EdiDate" value="<%=ediDate%>">
 <input type="hidden" name="EncryptData" value="<%=hash_String%>" >
 <input type="hidden" name="SocketYN" value="Y">
@@ -296,26 +296,26 @@ function chkPayType(obj)
 
 <%!
 /**
-* ±â´É : Á¦ÇÑ Å©±â¸¦ ÃÊ°úÇÏ¸é Á¦ÇÑ Å©±â±îÁö¸¸ StringÀ» ÀÚ¸¥´Ù
-* @param  sOrgString ´ë»ó String
-* @param  iMaxLength Á¦ÇÑ(ÃÖ´ë)Å©±â
-* @return String     ÁöÁ¤µÈ Å©±â¸¸Å­ Á¦ÇÑµÈ String
+* ê¸°ëŠ¥ : ì œí•œ í¬ê¸°ë¥¼ ì´ˆê³¼í•˜ë©´ ì œí•œ í¬ê¸°ê¹Œì§€ë§Œ Stringì„ ìë¥¸ë‹¤
+* @param  sOrgString ëŒ€ìƒ String
+* @param  iMaxLength ì œí•œ(ìµœëŒ€)í¬ê¸°
+* @return String     ì§€ì •ëœ í¬ê¸°ë§Œí¼ ì œí•œëœ String
 */
 String getLimitString(String sOrgString, int iMaxLength)
 {
  String sLimitString = "";
  byte[] bString = null;
  int iLimitLength = 0;
- int iMinusCount = 0;    // byte[] °ªÀÌ À½¼öÀÎ °¹¼ö <- 2byte ¹®ÀÚÀÏ °æ¿ì À½¼ö°ªÀ» °®´Â´Ù
+ int iMinusCount = 0;    // byte[] ê°’ì´ ìŒìˆ˜ì¸ ê°¯ìˆ˜ <- 2byte ë¬¸ìì¼ ê²½ìš° ìŒìˆ˜ê°’ì„ ê°–ëŠ”ë‹¤
 
  if ( (sOrgString != null) && !sOrgString.equals("") && (iMaxLength > 0) )
  {
-     bString = sOrgString.getBytes();                            // ÇÑ±ÛÀÌ Æ÷ÇÔµÈ StringÀÇ Å©±â¸¦ Á¦´ë·Î °è»êÇÏ±â À§ÇØ¼­ byte[]·Î º¯È¯
+     bString = sOrgString.getBytes();                            // í•œê¸€ì´ í¬í•¨ëœ Stringì˜ í¬ê¸°ë¥¼ ì œëŒ€ë¡œ ê³„ì‚°í•˜ê¸° ìœ„í•´ì„œ byte[]ë¡œ ë³€í™˜
      iLimitLength = iMaxLength;
 
-     if (bString.length > iLimitLength)                          // ÁöÁ¤µÈ Å©±â¸¦ ÃÊ°úÇÏ¸é
+     if (bString.length > iLimitLength)                          // ì§€ì •ëœ í¬ê¸°ë¥¼ ì´ˆê³¼í•˜ë©´
      {
-         for (int i = 0; i < iLimitLength; i++)                  // ÁöÁ¤µÈ Å©±â³»¿¡¼­ byte[] °ªÀÌ À½¼öÀÎ °¹¼ö¸¦ °è»ê
+         for (int i = 0; i < iLimitLength; i++)                  // ì§€ì •ëœ í¬ê¸°ë‚´ì—ì„œ byte[] ê°’ì´ ìŒìˆ˜ì¸ ê°¯ìˆ˜ë¥¼ ê³„ì‚°
          {
              if (bString[i] < 0)
              {
@@ -323,17 +323,17 @@ String getLimitString(String sOrgString, int iMaxLength)
              }
          }
 
-         // ÁöÁ¤µÈ Å©±â³»¿¡¼­ À½¼ö °ªÀÌ È¦¼ö°³ ÀÌ¸é 2byte ¹®ÀÚ°¡ Â©·È´Ù´Â ÀÇ¹ÌÀÌ¹Ç·Î, ÁöÁ¤µÈ Å©±â¸¦ 1°¨¼Ò ½ÃÅ²´Ù
+         // ì§€ì •ëœ í¬ê¸°ë‚´ì—ì„œ ìŒìˆ˜ ê°’ì´ í™€ìˆ˜ê°œ ì´ë©´ 2byte ë¬¸ìê°€ ì§¤ë ¸ë‹¤ëŠ” ì˜ë¯¸ì´ë¯€ë¡œ, ì§€ì •ëœ í¬ê¸°ë¥¼ 1ê°ì†Œ ì‹œí‚¨ë‹¤
          if ( (iMinusCount%2) == 1 )
          {
              iLimitLength--;
          }
 
-         sLimitString = new String(bString, 0, iLimitLength);    // ÁöÁ¤µÈ Å©±â±îÁö¸¸ ÀÚ¸¥´Ù
+         sLimitString = new String(bString, 0, iLimitLength);    // ì§€ì •ëœ í¬ê¸°ê¹Œì§€ë§Œ ìë¥¸ë‹¤
      }
-     else                                                        // ÁöÁ¤µÈ Å©±â¸¦ ÃÊ°úÇÏÁö ¾ÊÀ¸¸é
+     else                                                        // ì§€ì •ëœ í¬ê¸°ë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šìœ¼ë©´
      {
-         sLimitString = sOrgString;                              // ¿ø·¡ String
+         sLimitString = sOrgString;                              // ì›ë˜ String
      }
  }
 

@@ -1,25 +1,23 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_field_gubun = {"01=>ºÎ¼­","02=>ÁöÁ¡"};
+String[] code_field_gubun = {"01=>ë¶€ì„œ","02=>ì§€ì "};
 
-f.addElement("field_gubun", null, "hname:'±¸ºĞ', required:'Y'");
-f.addElement("field_name", null, "hname:'ºÎ¼­/ÁöÁ¡¸í', required:'Y'");
-f.addElement("boss_name", null, "hname:'´ëÇ¥ÀÚ¸í'");
-f.addElement("telnum", null, "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("post_code1", null, "hname:'¿ìÆí¹øÈ£', option:'number'");
-f.addElement("post_code2", null, "hname:'¿ìÆí¹øÈ£', option:'number'");
-f.addElement("address", null, "hname:'ÁÖ¼Ò'");
-f.addElement("use_yn", null, "hname:'»ç¿ë¿©ºÎ', required:'Y'");
+f.addElement("field_gubun", null, "hname:'êµ¬ë¶„', required:'Y'");
+f.addElement("field_name", null, "hname:'ë¶€ì„œ/ì§€ì ëª…', required:'Y'");
+f.addElement("boss_name", null, "hname:'ëŒ€í‘œìëª…'");
+f.addElement("telnum", null, "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("post_code1", null, "hname:'ìš°í¸ë²ˆí˜¸', option:'number'");
+f.addElement("post_code2", null, "hname:'ìš°í¸ë²ˆí˜¸', option:'number'");
+f.addElement("address", null, "hname:'ì£¼ì†Œ'");
+f.addElement("use_yn", null, "hname:'ì‚¬ìš©ì—¬ë¶€', required:'Y'");
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	DataObject fieldDao = new DataObject("tcb_field");
 
-	String field_seq = fieldDao.getOne(
-			"select nvl(max(field_seq),0)+1 field_seq "+
-					"  from tcb_field where member_no = '"+_member_no+"'"
-	);
+	//String field_seq = fieldDao.getOne("select nvl(max(field_seq),0)+1 field_seq from tcb_field where member_no = '"+_member_no+"'");
+	String field_seq = fieldDao.getOne("select LPAD((NVL(MAX(field_seq), 0) + 1),4,'0') field_seq from tcb_field where member_no = '"+_member_no+"'");
 
 	fieldDao.item("member_no", _member_no);
 	fieldDao.item("field_seq", field_seq);
@@ -34,11 +32,11 @@ if(u.isPost() && f.validate())
 	fieldDao.item("status","1");
 	fieldDao.item("field_gubun", f.get("field_gubun"));
 	if(!fieldDao.insert()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
-	u.jsAlert("Á¤»óÀûÀ¸·Î ÀúÀå µÇ¾ú½À´Ï´Ù. ");
+	u.jsAlert("ì •ìƒì ìœ¼ë¡œ ì €ì¥ ë˜ì—ˆìŠµë‹ˆë‹¤. ");
 	u.jsReplace("place_list.jsp");
 	return;
 }

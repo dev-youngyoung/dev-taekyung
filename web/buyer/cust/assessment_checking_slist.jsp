@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-String[] kind_cd = {"N=>½Å±Ô","S=>¼ö½Ã","R=>Á¤±â"};
-String[] status_cd = {"10=>Æò°¡´ë»ó","20=>Æò°¡Áß","50=>Æò°¡¿Ï·á"};
+String[] kind_cd = {"N=>ì‹ ê·œ","S=>ìˆ˜ì‹œ","R=>ì •ê¸°"};
+String[] status_cd = {"10=>í‰ê°€ëŒ€ìƒ","20=>í‰ê°€ì¤‘","50=>í‰ê°€ì™„ë£Œ"};
 
 f.addElement("s_member_name",null, null);
 f.addElement("s_asse_year",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -31,14 +31,14 @@ while(ds.next()){
 	}else{
 		ds.put("total_point", "("+ds.getString("total_point")+")");
 	}
-	ds.put("status_nm", u.getItem(ds.getString("status"), status_cd));	//»óÅÂ
+	ds.put("status_nm", u.getItem(ds.getString("status"), status_cd));	//ìƒíƒœ
 	if("".equals(ds.getString("user_nm"))){
-		ds.put("user_nm", "-");		//Æò°¡ÀÚ
+		ds.put("user_nm", "-");		//í‰ê°€ì
 	}
 	if("".equals(ds.getString("reg_date"))){
-		ds.put("reg_date", "-");	//Æò°¡ÀÏ
+		ds.put("reg_date", "-");	//í‰ê°€ì¼
 	}else{
-		ds.put("reg_date", u.getTimeString("yyyy-MM-dd",ds.getString("reg_date")));	//Æò°¡ÀÏ
+		ds.put("reg_date", u.getTimeString("yyyy-MM-dd",ds.getString("reg_date")));	//í‰ê°€ì¼
 	}
 }
 

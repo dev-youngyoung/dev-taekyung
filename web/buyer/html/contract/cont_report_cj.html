@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
 
 <div class="search_div">
 	<table class="search_table">
@@ -10,8 +10,8 @@
 		<tr>
 		    <td> 
 				<select name="s_date_type" style="width: 90%;">
-					<option value="1">°è¾àÀÏÀÚ</option>
-					<option value="2">µî·ÏÀÏÀÚ</option>
+					<option value="1">ê³„ì•½ì¼ì</option>
+					<option value="2">ë“±ë¡ì¼ì</option>
 				</select>    
 		    </td>
 		    <td>
@@ -21,8 +21,8 @@
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 		    </td>
 		    <td align="center">
-				<button type="submit" class="search_btn">°Ë»ö</button>
-				<!-- input type="button" class="xls2_01" value="¿¢¼¿" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();" -->
+				<button type="submit" class="search_btn">ê²€ìƒ‰</button>
+				<!-- input type="button" class="xls2_01" value="ì—‘ì…€" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();" -->
 		    </td>
 	  	</tr>
 	</table>
@@ -32,7 +32,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>ºÎ¹®º° Áı°èÇ¥</h3>
+	        <h3>ë¶€ë¬¸ë³„ ì§‘ê³„í‘œ</h3>
 	    </div>
 	</div>
 	<table>
@@ -47,39 +47,39 @@
 			<col width="12%">
 		</colgroup>
 		<tr>
-			<th>ºÎ¹®¸í</th>
-			<th>ÀÛ¼ºÁß</th>
-			<th>¼­¸í¿äÃ»</th>
-			<th>¼­¸í´ë±â</th>
-			<th>¼öÁ¤¿äÃ»</th>
-			<th>¹İ·Á</th>
-			<th>¿Ï·á</th>
-			<th>ÇÕ°è</th>
+			<th>ë¶€ë¬¸ëª…</th>
+			<th>ì‘ì„±ì¤‘</th>
+			<th>ì„œëª…ìš”ì²­</th>
+			<th>ì„œëª…ëŒ€ê¸°</th>
+			<th>ìˆ˜ì •ìš”ì²­</th>
+			<th>ë°˜ë ¤</th>
+			<th>ì™„ë£Œ</th>
+			<th>í•©ê³„</th>
 		</tr>
 		<!-- IF START 'list' -->
 			
 			<!-- LOOP START 'list' -->
 				<tr align="center">
 					<td><b>{{list.cont_etc1}}</b></td>
-					<td>{{list.writing_cnt}} °Ç</td>
-					<td>{{list.req_cnt}} °Ç</td>
-					<td>{{list.stendby_cnt}} °Ç</td>
-					<td>{{list.mod_req_cnt}} °Ç</td>
-					<td>{{list.return_cnt}} °Ç</td>
-					<td>{{list.complete_cnt}} °Ç</td>
-					<td bgcolor="#edefed">{{list.sum}} °Ç</td>
+					<td>{{list.writing_cnt}} ê±´</td>
+					<td>{{list.req_cnt}} ê±´</td>
+					<td>{{list.stendby_cnt}} ê±´</td>
+					<td>{{list.mod_req_cnt}} ê±´</td>
+					<td>{{list.return_cnt}} ê±´</td>
+					<td>{{list.complete_cnt}} ê±´</td>
+					<td bgcolor="#edefed">{{list.sum}} ê±´</td>
 				</tr>
 			<!-- LOOP END 'list' -->
 			
 			<tr bgcolor="#fcfecd">
-				<td>°è</td>
-				<td align="right">{{tot.writing_cnt}} °Ç</td>
-				<td align="right">{{tot.req_cnt}} °Ç</td>
-				<td align="right">{{tot.stendby_cnt}} °Ç</td>
-				<td align="right">{{tot.mod_req_cnt}} °Ç</td>
-				<td align="right">{{tot.return_cnt}} °Ç</td>
-				<td align="right">{{tot.complete_cnt}} °Ç</td>
-				<td align="right">{{tot.sum}} °Ç</td>		
+				<td>ê³„</td>
+				<td align="right">{{tot.writing_cnt}} ê±´</td>
+				<td align="right">{{tot.req_cnt}} ê±´</td>
+				<td align="right">{{tot.stendby_cnt}} ê±´</td>
+				<td align="right">{{tot.mod_req_cnt}} ê±´</td>
+				<td align="right">{{tot.return_cnt}} ê±´</td>
+				<td align="right">{{tot.complete_cnt}} ê±´</td>
+				<td align="right">{{tot.sum}} ê±´</td>		
 			</tr>
 			
 		<!-- IF END 'list' -->

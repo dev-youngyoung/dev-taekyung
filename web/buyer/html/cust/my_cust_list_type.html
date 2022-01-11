@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+﻿<form name="form1" method="get">
 <input type="hidden" name="mode"/>
 <input type="hidden" name="custtype" value="{{custtype}}"/>
 <div class="search_div">
@@ -14,10 +14,10 @@
   	</colgroup>
   	<tr>
 		<!-- IF START 'view_cust_type' -->
-		<th><p>��ü����</p></th>
+		<th><p>占쏙옙체占쏙옙占쏙옙</p></th>
 		<td>
 			<select name="s_client_type">
-			<option value="">��ü</option>
+			<option value="">占쏙옙체</option>
 			<!-- LOOP START 'code_client_type' -->
 			<option value="{{code_client_type.id}}">{{code_client_type.value}}</option>
 			<!-- LOOP END 'code_client_type' -->
@@ -27,10 +27,10 @@
 		<!-- IFNOT START 'view_cust_type' -->
 			<input type="hidden" name="s_client_type">
 		<!-- IFNOT END 'view_cust_type' -->
-		<th><p>��ü��</p></th>
+		<th><p>占쏙옙체占쏙옙</p></th>
 		<td><input type="text" name="s_member_name" maxlength="100" style="width:80%"></td>
 		<td align="right">
-			<button type="button" class="search_btn" value="�˻�" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>�˻�</button>
+			<button type="button" class="search_btn" value="占싯삼옙" onclick="document.forms['form1']['mode'].value='';document.forms['form1'].submit();"><span></span>占싯삼옙</button>
 		</td>
   	</tr>
 </table>
@@ -42,12 +42,12 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<span class="caution-text">�� ��ü ������ ��ȸ �� �ŷ����� ������ �Է� �Ͻ÷��� ��ü���� Ŭ�� �ϼ���.</span>
+			<span class="caution-text">占쏙옙 占쏙옙체 占쏙옙占쏙옙占쏙옙 占쏙옙회 占쏙옙 占신뤄옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌉뤄옙 占싹시뤄옙占쏙옙 占쏙옙체占쏙옙占쏙옙 클占쏙옙 占싹쇽옙占쏙옙.</span>
 		</div>
 		<div class="push-right">
-			<button type="button" class="sbtn color ico-save auth_css" value="����" onclick="form2Save()"><span></span>����</button>
+			<button type="button" class="sbtn color ico-save auth_css" value="占쏙옙占쏙옙" onclick="form2Save()"><span></span>占쏙옙占쏙옙</button>
 			<!-- IF START 'isExcel' -->
-			<button type="button" class="sbtn color ico-download" value="�����ٿ�ε�" onclick="excel()"><span></span>�����ٿ�ε�</button>
+			<button type="button" class="sbtn color ico-download" value="占쏙옙占쏙옙占쌕울옙琯占? onclick="excel()"><span></span>占쏙옙占쏙옙占쌕울옙琯占?/button>
 			<!-- IF END 'isExcel' -->
 		</div>
 	</div>
@@ -66,17 +66,17 @@
 		<col width="8%">
 	</colgroup>
 	<tr>
-		<th>����</th>
-		<th>��ü��</th>
-		<th>����ڹ�ȣ</th>
-		<th>��ǥ��</th>
+		<th>占쏙옙占쏙옙</th>
+		<th>占쏙옙체占쏙옙</th>
+		<th>占쏙옙占쏙옙薇占싫?/th>
+		<th>占쏙옙표占쏙옙</th>
 		<!-- IF START 'isCredit' -->
-		<th>�ſ���<br>�����帧</th>
+		<th>占신울옙占쏙옙<br>占쏙옙占쏙옙占썲름</th>
 		<!-- IF END 'isCredit' -->
-		<th>��ü����</th>
-		<th>ȸ������</th>
-		<th>�ŷ�����</th>
-		<th>��ȸ��</th>
+		<th>占쏙옙체占쏙옙占쏙옙</th>
+		<th>회占쏙옙占쏙옙占쏙옙</th>
+		<th>占신뤄옙占쏙옙占쏙옙</th>
+		<th>占쏙옙회占쏙옙</th>
 	</tr>
 	<!-- IF START 'list' -->
 	<!-- LOOP START 'list' -->
@@ -111,7 +111,7 @@
 	<!-- IF END 'list' -->
 	<!-- IFNOT START 'list' -->
 	<tr>
-		<td colspan="8" align="center">�˻������ �����ϴ�.</td>
+		<td colspan="8" align="center">占싯삼옙占쏙옙占쏙옙占?占쏙옙占쏙옙占싹댐옙.</td>
 	</tr>
 	<!-- IFNOT END 'list' -->
 	</table>
@@ -120,7 +120,7 @@
 </form>
 <script language="javascript">
 function form2Save(){
-	if(!confirm('�����Ͻðڽ��ϱ�?'))return;
+	if(!confirm('占쏙옙占쏙옙占싹시겠쏙옙占싹깍옙?'))return;
 	var f = document.forms['form2'];
 	f['returnUrl'].value = "my_cust_list_type.jsp";
 	f.action = "cust_list_save.jsp?{{list_query}}";

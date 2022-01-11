@@ -4,7 +4,7 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>±âº» Á¤º¸</h3>
+            <h3>ê¸°ë³¸ ì •ë³´</h3>
         </div>
     </div>
 
@@ -16,47 +16,53 @@
             <col width="31%">
         </colgroup>
         <tr>
-            <th>¾ÆÀÌµğ</th>
+            <th>ì•„ì´ë””</th>
             <td colspan="3">
                 {{person.user_id}}
             </td>
         </tr>
+        <!-- IFNOT START 'isNongshim' -->
         <tr>
-            <th>ºñ¹Ğ¹øÈ£ </th>
-            <td colspan="3"><input type="password" name="passwd" style="170px" maxlength="20"> (ºñ¹Ğ¹øÈ£ º¯°æ½Ã ÀÔ·Â)<br>
-                <font color="gray">¡Ø ¿µ¹®, ¼ıÀÚ 1ÀÚ ÀÌ»ó, Æ¯¼ö¹®ÀÚ 1ÀÚ ÀÌ»ó Æ÷ÇÔÇÑ 8 ~ 20ÀÚ¸®·Î ÀÔ·ÂÇÏ¼¼¿ä.</font></td>
+            <th>ë¹„ë°€ë²ˆí˜¸ </th>
+            <td colspan="3"><input type="password" name="passwd" style="170px" maxlength="20"> (ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì‹œ ì…ë ¥)<br>
+                <font color="gray">â€» ì˜ë¬¸, ìˆ«ì 1ì ì´ìƒ, íŠ¹ìˆ˜ë¬¸ì 1ì ì´ìƒ í¬í•¨í•œ 8 ~ 20ìë¦¬ë¡œ ì…ë ¥í•˜ì„¸ìš”.</font></td>
         </tr>
         <tr>
-            <th>ºñ¹Ğ¹øÈ£ È®ÀÎ</th>
+            <th>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</th>
             <td colspan="3"><input type="password" name="passwd2" style="170px" maxlength="20"></td>
         </tr>
+        <!-- IFNOT END 'isNongshim' -->
         <tr>
-            <th class="req-check">´ã´çÀÚ¸í </th>
-            <td><input type="text" name="user_name"  size="10" maxlength="30" style="width:98%"></td>
-            <th class="req-check">Á÷À§</th>
-            <td><input type="text" name="position"  maxlength="20" style="width:98%"></td>
+            <th class="req-check">ë‹´ë‹¹ìëª… </th>
+            <td><input type="text" name="user_name" size="10" maxlength="30" style="width:98%" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->></td>
+            <th class="req-check">ì§ìœ„</th>
+            <td><input type="text" name="position"  maxlength="20" style="width:98%" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->></td>
         </tr>
         <tr>
-            <th class="req-check">ÀÌ¸ŞÀÏ </th>
-            <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:98%" ></td>
-            <th class="req-check">ÀüÈ­¹øÈ£ </th>
+            <th class="req-check">ì´ë©”ì¼ </th>
+            <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:98%" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->></td>
+            <th class="req-check">ì „í™”ë²ˆí˜¸ </th>
             <td>
-                <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="¿¹) 02-788-9097">
+                <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="ì˜ˆ) 02-788-9097" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->>
             </td>
         </tr>
         <tr>
-            <th>ºÎ¼­¸í </th>
+            <th>ë¶€ì„œëª… </th>
             <td>{{person.dept_name}}</td>
-            <th>ÆÑ½º¹øÈ£</th>
+            <th>íŒ©ìŠ¤ë²ˆí˜¸</th>
             <td>
-                <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="¿¹) 02-788-9097">
+                <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="ì˜ˆ) 02-788-9097" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->>
             </td>
         </tr>
         <tr>
-            <th class="req-check">ÈŞ´ëÀüÈ­ </th>
+            <th class="req-check">íœ´ëŒ€ì „í™” </th>
             <td colspan="3">
-                <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
-                    <option value="">¼±ÅÃ</option>
+            	<!-- IF START 'isNongshim' -->
+            	<input type="text" name="hp1" size="3" maxlength="3" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp2');" readOnly> -
+            	<!-- IF END 'isNongshim' -->
+            	<!-- IFNOT START 'isNongshim' -->
+                <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}" >
+                    <option value="">ì„ íƒ</option>
                     <option value="010">010</option>
                     <option value="011">011</option>
                     <option value="016">016</option>
@@ -64,21 +70,22 @@
                     <option value="018">018</option>
                     <option value="019">019</option>
                 </select> -
-                <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
-                <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
+                <!-- IFNOT END 'isNongshim' -->
+                <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->> -
+                <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')" <!-- IF START 'isNongshim' -->readOnly<!-- IF END 'isNongshim' -->>
             </td>
         </tr>
         <!-- IF START 'gap_block' -->
         <tr>
-            <th> »ç¿ëÀÚ À¯Çü</th>
+            <th> ì‚¬ìš©ì ìœ í˜•</th>
             <td>{{person.user_level_nm}}</td>
-            <th> »ç¿ëÀÚ±¸ºĞ</th>
+            <th> ì‚¬ìš©ìêµ¬ë¶„</th>
             <td>{{person.user_gubun_nm}}</td>
         </tr>
         <!-- IF END 'gap_block' -->
         <!-- IF START 'eul_block' -->
         <tr>
-            <th> »ç¿ëÀÚ À¯Çü</th>
+            <th> ì‚¬ìš©ì ìœ í˜•</th>
             <td colspan="3">{{person.user_level_nm}}</td>
         </tr>
         <!-- IF END 'eul_block' -->
@@ -88,7 +95,9 @@
 
 
 <div class="btn-group-wrap">
-    <button type="submit" class="btn color ico-save" ><span></span>ÀúÀå</button>
+	<!-- IFNOT START 'isNongshim' -->
+    <button type="submit" class="btn color ico-save" ><span></span>ì €ì¥</button>
+    <!-- IFNOT END 'isNongshim' -->
 </div>
 
 </form>
@@ -98,7 +107,7 @@
 <script type="text/javascript">
 function formSubmit(f){
     if(validate(f)){
-        if(!confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+        if(!confirm("ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
             return false;
         }
         return true;

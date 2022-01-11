@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 //list.setDebug(out);
 list.setListNum(-1);
@@ -14,7 +14,7 @@ list.addSearch("user_name", u.request("s_user_name"), "LIKE");
 DataSet rs = list.getDataSet();
 %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../html/css/style.css" rel="stylesheet" type="text/css">
 <script language="javascript" type="text/javascript" src="../html/js/common.js"></script>
 <script language="javascript" type="text/javascript" src="../html/js/lib.validate.js"></script>
@@ -22,7 +22,7 @@ DataSet rs = list.getDataSet();
 <script language="javascript" type="text/javascript" src="../html/js/nvscroll.js"></script>
 <script language="javascript">
 	/*****************************
-		±ÇÇÑ ÆäÀÌÁö ÀÌµ¿
+		ê¶Œí•œ í˜ì´ì§€ ì´ë™
 	*****************************/
 	function goMemMenu(sMemberNo, sMemberName, sPersonSeq, sDivision, excel)
 	{
@@ -79,9 +79,9 @@ DataSet rs = list.getDataSet();
 			<col align="center">
 		</colgroup>
 		<tr>
-		  <th>¼Ò¼ÓºÎ¼­</th>
-		  <th>ÀÌ¸§</th>
-		  <th>Á÷±Ş</th>
+		  <th>ì†Œì†ë¶€ì„œ</th>
+		  <th>ì´ë¦„</th>
+		  <th>ì§ê¸‰</th>
 		</tr>
 		<%
 			rs.first();

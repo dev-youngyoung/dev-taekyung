@@ -1,7 +1,7 @@
-<form name="form1" method="post"  onsubmit="return true;"  >
+ï»¿<form name="form1" method="post"  onsubmit="return true;"  >
 <input type="hidden" name="member_no" />
 <div style="width:100%;padding:5px;text-align:right">
-	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>´Ý±â</button>
+	<button type="button" class="sbtn color ico-cancel" onclick="self.close();"><span></span>ë‹«ê¸°</button>
 </div>
 
 </form>
@@ -10,7 +10,7 @@
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr>
-	<td class="caution-text">¡Ø³ªÀÌ½º´ÙÅ¥¿¡ µî·ÏµÈ È¸¿ø¸¸ Á¶È¸µË´Ï´Ù.</td>
+	<td class="caution-text">â€»ë‚˜ì´ìŠ¤ë‹¤íì— ë“±ë¡ëœ íšŒì›ë§Œ ì¡°íšŒë©ë‹ˆë‹¤.</td>
 </tr>
 </table>
 <br/>
@@ -23,10 +23,10 @@
 			<col width="20%">
 		</colgroup>
 		<tr>
-			<th>È¸¿ø¸í</th>
-			<th>»ý³â¿ùÀÏ</th>
-			<th>ÈÞ´ëÆù¹øÈ£</th>
-			<th>¼±ÅÃ</th>
+			<th>íšŒì›ëª…</th>
+			<th>ìƒë…„ì›”ì¼</th>
+			<th>íœ´ëŒ€í°ë²ˆí˜¸</th>
+			<th>ì„ íƒ</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr>
@@ -34,13 +34,13 @@
 			<td align="center">{{list.birth_date}}</td>
 			<td align="center">{{list.hp1}}-{{list.hp2}}-{{list.hp3}}</td>
 			<td align="center">
-				<button type="button" class="sbtn ico-add" onclick="chgContSign('{{list.member_no}}');"><span></span>¼±ÅÃ</button>
+				<button type="button" class="sbtn ico-add" onclick="chgContSign('{{list.member_no}}');"><span></span>ì„ íƒ</button>
 			</td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td align="center" colspan="4">Á¶È¸ °á°ú°¡ ¾ø½À´Ï´Ù.<br/> È¸¿øµî·ÏÀÌ ¸ÕÀú ÁøÇàµÇ¾î¾ß °øÀÎÀÎÁõ¼­·Î ¼­¸íÀÌ °¡´ÉÇÕ´Ï´Ù.</td>
+			<td align="center" colspan="4">ì¡°íšŒ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.<br/> íšŒì›ë“±ë¡ì´ ë¨¼ì € ì§„í–‰ë˜ì–´ì•¼ ê³µì¸ì¸ì¦ì„œë¡œ ì„œëª…ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>
@@ -57,7 +57,7 @@
 
 function chgContSign(member_no){
 	
-	if(!confirm("¼±ÅÃÇÑ È¸¿øÀ» ÇØ´ç °è¾à¼­¸¦ °øÀÎÀÎÁõ¼­ ¼­¸íÀ¸·Î º¯°æÇÏ½Ã°Ú½À´Ï±î?\nÈÞ´ëÆù ¼­¸íÀ¸·Î µÇµ¹¸® ¼ö ¾øÀ¸¸ç, ÀÌ¸ÞÀÏ°ú SMS°¡ ÀçÀü¼Û µË´Ï´Ù.")){
+	if(!confirm("ì„ íƒí•œ íšŒì›ì„ í•´ë‹¹ ê³„ì•½ì„œë¥¼ ê³µì¸ì¸ì¦ì„œ ì„œëª…ìœ¼ë¡œ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\níœ´ëŒ€í° ì„œëª…ìœ¼ë¡œ ë˜ëŒë¦¬ ìˆ˜ ì—†ìœ¼ë©°, ì´ë©”ì¼ê³¼ SMSê°€ ìž¬ì „ì†¡ ë©ë‹ˆë‹¤.")){
 		return false;
 	}
 	

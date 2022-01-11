@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(!u.isPost()) return;
 	
@@ -16,14 +16,14 @@ String cont_html_rm = new String(Base64Coder.decode(f.get("cont_html_rm")),"UTF-
 String cont_html = new String(Base64Coder.decode(f.get("cont_html")),"UTF-8");
 
 if(cont_no.equals("")||cont_chasu.equals("")||seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+_member_no+"' ");
 if(!member.next()){
-	u.jsError("»ç¿ëÀÚ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì‚¬ìš©ìž ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -35,22 +35,22 @@ ContractDao contDao = new ContractDao();
 //contDao.setDebug(out);
 DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'", "*");
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 random_no = cont.getString("true_random");
 cont_userno = cont.getString("cont_userno");
 
 if(u.isPost()){
-	//°è¾à¼­ ÀúÀå
+	//ê³„ì•½ì„œ ì €ìž¥
 	DataObject cont_sub = new DataObject("tcb_cont_sub");
 	cont_sub.item("cont_sub_html",cont_html);
 	if(!cont_sub.update("cont_no='"+cont_no+"' and cont_chasu='"+cont_chasu+"' and sub_seq="+seq)){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. ");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 		return;
 	}
 
-	// °è¾à¼­ÆÄÀÏ ±³Ã¼ »ý¼º
+	// ê³„ì•½ì„œíŒŒì¼ êµì²´ ìƒì„±
 	DataSet pdfInfo = new DataSet();
 	pdfInfo.addRow();
 	pdfInfo.put("member_no",_member_no);
@@ -62,11 +62,11 @@ if(u.isPost()){
 	pdfInfo.put("file_seq", Integer.parseInt(seq)+1);
 	DataSet pdf = contDao.makePdf(pdfInfo);
 	if(pdf==null){
-		u.jsError("°è¾à¼­ ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ê³„ì•½ì„œ ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 
-	u.jsAlert("ÀúÀå ÇÏ¿´½À´Ï´Ù.");
+	u.jsAlert("ì €ìž¥ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 

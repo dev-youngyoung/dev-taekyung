@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@page import="procure.common.file.MakeZip"%>
 <%@ page import="org.jsoup.*" %>
 <%@ page import="org.jsoup.nodes.*" %>
@@ -10,10 +10,10 @@ CodeDao code = new CodeDao("tcb_comcode");
 String[] code_status = code.getCodeArray("M008", " and code in ('11','20','21','30','40','41')");
 
 boolean is3M= u.inArray(_member_no, new String[]{"20121203661","20130400010","20130400009","20130400011","20130400008"});
-boolean isKTH = u.inArray(_member_no, new String[]{"20150500312"}); // w¼îÇÎ
-boolean isSKB = _member_no.equals("20171101813"); // skºê·Îµå¹êµå   20120100001
-boolean isCJT = u.inArray(_member_no, new String[]{"20130400333"}); // CJ´ëÇÑÅë¿î
-boolean isOlive = u.inArray(_member_no, new String[]{"20150500217"}); // CJ¿Ã¸®ºê³×Æ®¿÷½º
+boolean isKTH = u.inArray(_member_no, new String[]{"20150500312"}); // wì‡¼í•‘
+boolean isSKB = _member_no.equals("20171101813"); // skë¸Œë¡œë“œë°´ë“œ   20120100001
+boolean isCJT = u.inArray(_member_no, new String[]{"20130400333"}); // CJëŒ€í•œí†µìš´
+boolean isOlive = u.inArray(_member_no, new String[]{"20150500217"}); // CJì˜¬ë¦¬ë¸Œë„¤íŠ¸ì›ìŠ¤
 
 boolean bDetailCode = false;
 String sTable = "tcb_contmaster a inner join tcb_cust b on a.cont_no = b.cont_no and a.cont_chasu = b.cont_chasu inner join tcb_cont_add c on a.cont_no = c.cont_no and a.cont_chasu = c.cont_chasu"
@@ -27,7 +27,7 @@ String s_sdate = u.request("s_sdate",is3M && auth.getString("_FIELD_SEQ").equals
 String s_edate = u.request("s_edate",u.getTimeString("yyyy-MM-dd"));
 
 if(	_member_no.equals("20121000046") )
-	bDetailCode = true;  // °Å·¡Ã³ ÄÚµå Ç¥½Ã (¿¹: ÆÄ·¿Æ®Ç®)
+	bDetailCode = true;  // ê±°ë˜ì²˜ ì½”ë“œ í‘œì‹œ (ì˜ˆ: íŒŒë ›íŠ¸í’€)
 
 f.addElement("s_field_name",null, null);
 f.addElement("s_member_name",null, null);
@@ -52,7 +52,7 @@ if(bDetailCode||isKTH||isOlive)
 }
 
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -76,9 +76,9 @@ if(!s_edate.equals("")) {
 list.addSearch("b.member_name",  f.get("s_member_name"), "LIKE");
 list.addSearch("d.field_name",  f.get("s_field_name"), "LIKE");
 list.addSearch("e.user_name",  f.get("s_user_name"), "LIKE");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -97,7 +97,7 @@ String cont_chasu = "";
 while(ds.next()){
     ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
@@ -118,14 +118,14 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "¹ßÁÖ¼­ ÇöÈ²");
+	p.setVar("title", "ë°œì£¼ì„œ í˜„í™©");
 	p.setVar("date", s_sdate + " ~ " + s_edate);
 
 	ds.first();
 	
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("¹ßÁÖ¼­ ÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë°œì£¼ì„œ í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/cont_po_list_excel.html"));
 	return;
 } 
@@ -146,8 +146,8 @@ p.setVar("isSKB", isSKB);
 p.setVar("isCJT", isCJT);
 p.setVar("isOlive", isOlive);
 p.setVar("isDefaultYn", auth.getString("_DEFAULT_YN").equals("Y"));
-p.setVar("detail_cd", bDetailCode );   // ÆÄ·¿Æ®ÆúÀº ´ã´çÀÚ ¼¼ºÎÁ¤º¸ Ç¥½Ã
-p.setVar("isKTH",isKTH);  //KTH °Å·¡Ã³ ÄÚµå Ç¥½Ã
+p.setVar("detail_cd", bDetailCode );   // íŒŒë ›íŠ¸í´ì€ ë‹´ë‹¹ì ì„¸ë¶€ì •ë³´ í‘œì‹œ
+p.setVar("isKTH",isKTH);  //KTH ê±°ë˜ì²˜ ì½”ë“œ í‘œì‹œ
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("cont_no,cont_chasu"));

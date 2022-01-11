@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 	String cert_dn 				= u.request("cert_dn");
 	String cert_end_date 	= u.request("cert_end_date");
@@ -9,7 +9,7 @@
 		member.item("cert_dn",cert_dn);
 		member.item("cert_end_date", cert_end_date);
 		if(!member.update("member_no = '"+_member_no+"' ")){
-			u.jsError("ÀúÀå¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì €ìž¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 
@@ -17,6 +17,6 @@
 		auth.put("_CERT_END_DATE", u.getTimeString("yyyyMMdd",cert_end_date));
 		auth.setAuthInfo();
 		//u.redirect("indiv_modify.jsp");
-		u.jsAlertReplace("ÀÎÁõ¼­°¡ µî·ÏµÇ¾ú½À´Ï´Ù.", "./indiv_modify.jsp");
+		u.jsAlertReplace("ì¸ì¦ì„œê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.", "./indiv_modify.jsp");
 	}
 %>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
 String gubun = request.getParameter("gubun")==null ? "":request.getParameter("gubun");
 String bg_gubun = "main";
@@ -20,59 +20,59 @@ if(gubun.equals("buyer")){
 			<div class="inner-container">
 				<h1>
 					<a href="/web/hub2/">
-						<img src="/web/hub2/images/common/common_logo.png" alt="³ªÀÌ½º´ÙÅ¥" class="white-logo">
-						<img src="/web/hub2/images/common/common_logo_color.png" alt="³ªÀÌ½º´ÙÅ¥" class="color-logo">
+						<img src="/web/hub2/images/common/common_logo.png" alt="ë‚˜ì´ìŠ¤ë‹¤í" class="white-logo">
+						<img src="/web/hub2/images/common/common_logo_color.png" alt="ë‚˜ì´ìŠ¤ë‹¤í" class="color-logo">
 					</a>
 				</h1>
 				<nav class="gnb">
 					<ul class="depth1">
 						<li>
-							<a href="./index.jsp?gubun=buyer">ÀÏ¹Ý ±â¾÷¿ë</a>
+							<a href="./index.jsp?gubun=buyer">ì¼ë°˜ ê¸°ì—…ìš©</a>
 							<ul class="depth2">
 								<li>
-									<a href="/web/buyer/">»çÀÌÆ® ÀÌµ¿</a>
+									<a href="/web/buyer/">ì‚¬ì´íŠ¸ ì´ë™</a>
 								</li>
 								<li>
-									<a href="./index.jsp?gubun=buyer">¼­ºñ½º ¼Ò°³</a>
+									<a href="./index.jsp?gubun=buyer">ì„œë¹„ìŠ¤ ì†Œê°œ</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="./index.jsp?gubun=supplier">°Ç¼³ ±â¾÷¿ë</a>
+							<a href="./index.jsp?gubun=supplier">ê±´ì„¤ ê¸°ì—…ìš©</a>
 							<ul class="depth2">
 								<li>
-									<a href="/web/supplier/">»çÀÌÆ® ÀÌµ¿</a>
+									<a href="/web/supplier/">ì‚¬ì´íŠ¸ ì´ë™</a>
 								</li>
 								<li>
-									<a href="./index.jsp?gubun=supplier">¼­ºñ½º ¼Ò°³</a>
+									<a href="./index.jsp?gubun=supplier">ì„œë¹„ìŠ¤ ì†Œê°œ</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="./index.jsp?gubun=fc">ÇÁ·£Â÷ÀÌÁî ±â¾÷¿ë</a>
+							<a href="./index.jsp?gubun=fc">í”„ëžœì°¨ì´ì¦ˆ ê¸°ì—…ìš©</a>
 							<ul class="depth2">
 								<li>
-									<a href="/web/fc/">»çÀÌÆ® ÀÌµ¿</a>
+									<a href="/web/fc/">ì‚¬ì´íŠ¸ ì´ë™</a>
 								</li>
 								<li>
-									<a href="./index.jsp?gubun=fc">¼­ºñ½º ¼Ò°³</a>
+									<a href="./index.jsp?gubun=fc">ì„œë¹„ìŠ¤ ì†Œê°œ</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="./index.jsp?gubun=logis">¹°·ù ±â¾÷¿ë</a>
+							<a href="./index.jsp?gubun=logis">ë¬¼ë¥˜ ê¸°ì—…ìš©</a>
 							<ul class="depth2">
 								<li>
-									<a href="/web/logis">»çÀÌÆ® ÀÌµ¿</a>
+									<a href="/web/logis">ì‚¬ì´íŠ¸ ì´ë™</a>
 								</li>
 								<li>
-									<a href="./index.jsp?gubun=logis">¼­ºñ½º ¼Ò°³</a>
+									<a href="./index.jsp?gubun=logis">ì„œë¹„ìŠ¤ ì†Œê°œ</a>
 								</li>
 							</ul>
 						</li>
 					</ul>
 				</nav>
-				<a href="./mobile_gnb.html" class="gnb-mobile"  onclick="ajaxLink(this.href,'GET','');return false;">¸Þ´º¿­±â</a>
+				<a href="./mobile_gnb.html" class="gnb-mobile"  onclick="ajaxLink(this.href,'GET','');return false;">ë©”ë‰´ì—´ê¸°</a>
 			</div>
 		</header>
 
@@ -106,12 +106,12 @@ if(gubun.equals("buyer")){
 
 			<div class="contact-block">
 				<div class="inner-container">
-					<p class="tit">µµÀÔ¹®ÀÇ</p>
+					<p class="tit">ë„ìž…ë¬¸ì˜</p>
 					<ul class="contact-list">
 						<li>
 							<a href="tel:02-788-9097" style="color: inherit">
 							<div class="icon">
-								<img src="/web/hub2/images/main/contact_icon1.png" alt="¾ÆÀÌÄÜ1">
+								<img src="/web/hub2/images/main/contact_icon1.png" alt="ì•„ì´ì½˜1">
 							</div>
 							<p>02-788-9097</p>
 							</a>
@@ -119,17 +119,17 @@ if(gubun.equals("buyer")){
 						<li>
 							<a href="mailto:nicedocu@nicednr.co.kr" style="color: inherit">
 							<div class="icon">
-								<img src="/web/hub2/images/main/contact_icon2.png" alt="¾ÆÀÌÄÜ2">
+								<img src="/web/hub2/images/main/contact_icon2.png" alt="ì•„ì´ì½˜2">
 							</div>
 							<p>nicedocu@nicednr.co.kr</p>
 							</a>
 						</li>
 						<li>
 							<div class="icon">
-								<img src="/web/hub2/images/main/contact_icon3.png" alt="¾ÆÀÌÄÜ3">
+								<img src="/web/hub2/images/main/contact_icon3.png" alt="ì•„ì´ì½˜3">
 							</div>
 							<p>
-								<a href="./qna.html" onclick="ajaxLink(this.href,'GET','');return false;">¹®ÀÇ±Û ³²±â±â</a>
+								<a href="./qna.html" onclick="ajaxLink(this.href,'GET','');return false;">ë¬¸ì˜ê¸€ ë‚¨ê¸°ê¸°</a>
 							</p>
 						</li>
 					</ul>
@@ -142,30 +142,30 @@ if(gubun.equals("buyer")){
 					<div class="footer__link">
 						<ul>
 							<li>
-								<a href="javascript:fPopupPrivacy();" style="color:#ff6c00">°³ÀÎÁ¤º¸Ãë±Þ¹æÄ§</a>
+								<a href="javascript:fPopupPrivacy();" style="color:#ff6c00">ê°œì¸ì •ë³´ì·¨ê¸‰ë°©ì¹¨</a>
 							</li>
 						</ul>
 					</div>
 					<!--
 					<div class="footer__pc">
-						<a href="">PC¹öÀü</a>
+						<a href="">PCë²„ì „</a>
 					</div>
 					-->
 				</div>
 				<div class="footer__bottom">
 					<div class="footer__logo">
-						<img src="/web/hub2/images/common/footer_logo.jpg" alt="³ªÀÌ½ºµð¾Ø¾Ë">
+						<img src="/web/hub2/images/common/footer_logo.jpg" alt="ë‚˜ì´ìŠ¤ë””ì•¤ì•Œ">
 					</div>
 					<div class="footer__address">
 						<ul>
 							<li>NICE D&R(NICE Data & Research)</li>
-							<li>´ëÇ¥ÀÚ : °­¿ë±¸</li>
-							<li>»ç¾÷ÀÚµî·Ï¹øÈ£ : 107-87-08207</li>
-							<li>Åë½ÅÆÇ¸Å¾÷ ½Å°í¹øÈ£ : Á¦2012-¼­¿ï±¸·Î-1033È£</li>
-							<li>¼­¿ï ¼­´ë¹®±¸ ÃæÁ¤·Î 36(ÃæÁ¤·Î3°¡)</li>
-							<li>´ëÇ¥¹øÈ£ : 02-788-9097</li>
+							<li>ëŒ€í‘œìž : ê°•ìš©êµ¬</li>
+							<li>ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ : 107-87-08207</li>
+							<li>í†µì‹ íŒë§¤ì—… ì‹ ê³ ë²ˆí˜¸ : ì œ2012-ì„œìš¸êµ¬ë¡œ-1033í˜¸</li>
+							<li>ì„œìš¸ ì„œëŒ€ë¬¸êµ¬ ì¶©ì •ë¡œ 36(ì¶©ì •ë¡œ3ê°€)</li>
+							<li>ëŒ€í‘œë²ˆí˜¸ : 02-788-9097</li>
 						</ul>
-						<p class="footer__copyright">Copyright¨Ï 2019 NICE D&R Inc, All Rights Reserved.</p>
+						<p class="footer__copyright">Copyrightâ“’ 2019 NICE D&R Inc, All Rights Reserved.</p>
 					</div>
 				</div>
 			</div>

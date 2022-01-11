@@ -1,14 +1,22 @@
+﻿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/shim.js"></script>
 <script type="text/javascript" src="/cab/realgrid/import/xlsx.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
 
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>��ü����</h3>
+	        <h3>업체정보</h3>
 	    </div>
 	</div>
 	<table>
@@ -20,29 +28,29 @@
 			<col>
 		</colgroup>
 		<tr>
-			<th>��ü��</th>
+			<th>업체명</th>
 			<td>{{member_name}}</td>
-			<th>��ǥ�ڸ�</th>
+			<th>대표자명</th>
 			<td>{{boss_name}}</td>
 			
 			
 		</tr>
 		<tr>
-			<th>ȸ����ȣ</th>
+			<th>회원번호</th>
 			<td>{{w_member_no}}</td>
-			<th>����ڹ�ȣ</th>
+			<th>사업자번호</th>
 			<td>{{vendcd2}}</td>
 		</tr>
 		<tr>
-			<th>��༭</th>
+			<th>계약서</th>
 			<td>{{template_name}}</td>			
-			<th>����ڸ�</th>
+			<th>담당자명</th>
 			<td>{{user_name}}({{w_userid}})</td>
 		</tr>
 		<tr>
-			<th>�μ���</th>
+			<th>부서명</th>
 			<td>{{division}}</td>			
-			<th>��ȭ��ȣ</th>
+			<th>전화번호</th>
 			<td>{{tel_num}} / {{hp1}}-{{hp2}}-{{hp3}}</td>			
 		</tr>
 	</table>
@@ -53,7 +61,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>�߰��Է�</h3>
+	        <h3>추가입력</h3>
 	    </div>
 	</div>
 	<table>
@@ -65,20 +73,20 @@
 			<col>
 		</colgroup>
 		<tr>
-			<th class="req-check">����</th>
-			<td><input type="text" name="cont_name" style="width:98%" hname="����" required="Y"></td>
-			<th class="req-check">�����</th>
+			<th class="req-check">계약명</th>
+			<td><input type="text" name="cont_name" style="width:98%" hname="계약명" required="Y"></td>
+			<th class="req-check">계약일</th>
 			<td>
-				<input type="text" name="cont_date" class="in_readonly" style="width: 27%;" maxlength="10" onkeyup="dateFormat(this)" readonly required="Y" hname="�����"/>
+				<input type="text" name="cont_date" class="in_readonly" style="width: 27%;" maxlength="10" onkeyup="dateFormat(this)" readonly required="Y" hname="계약일"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_date'])">
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">���Ⱓ</th>
+			<th class="req-check">계약기간</th>
 			<td colspan="3">
-				<input type="text" name="cont_sdate" class="in_readonly" style="width: 12%;" maxlength="10" onkeyup="dateFormat(this)" readonly required="Y" hname="����������"/>
+				<input type="text" name="cont_sdate" class="in_readonly" style="width: 12%;" maxlength="10" onkeyup="dateFormat(this)" readonly required="Y" hname="계약시작일자"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_sdate'])"> ~
-				<input type="text" name="cont_edate" class="in_readonly" style="width: 12%;" maxlength="10" onkeyup="dateFormat(this)" readonly required="Y" hname="�����������"/>
+				<input type="text" name="cont_edate" class="in_readonly" style="width: 12%;" maxlength="10" onkeyup="dateFormat(this)" readonly required="Y" hname="계약종료일자"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_edate'])">
 			</td>
 		</tr>
@@ -90,12 +98,12 @@
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-left">
-			<h3>�ŷ�ó</h3>
+			<h3>거래처</h3>
 		</div>
 		<div class="push-right">
 			<div style="z-index:10;position: relative; float: left; top:3px;left:100px;opacity:0;"><input type="file" name="upload_xls" style="width:100px; cursor:pointer;" onchange="excelRead();this.value=''"></div>
-			<button type="button" class="sbtn color ico-excel"><span></span>�������ε�</button>
-			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>�����ٿ�ε�</button>		
+			<button type="button" class="sbtn color ico-excel"><span></span>엑셀업로드</button>
+			<button type="button" class="sbtn color ico-download" onClick="javascript:excelDown()"><span></span>엑셀다운로드</button>		
 		</div>
 	</div>
 	<table>
@@ -108,7 +116,7 @@
 </div>
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-save" value="����" onClick="javascript:submitItem()"><span></span>����</button>
+	<button type="button" class="btn color ico-save" value="저장" onClick="javascript:submitItem()"><span></span>저장</button>
 </div>
 
 <script language="javascript">
@@ -144,7 +152,7 @@ function setOptions() {
             updatable: true,
             deletable: true,
             deleteRowsConfirm: false,
-            deleteRowsMessage: "�����Ͻðڽ��ϱ� ?"
+            deleteRowsMessage: "삭제하시겠습니까 ?"
         }
         ,displayOptions:{
             //columnWidth : 200
@@ -173,17 +181,17 @@ function setStyle(){
 function setColumns() {
     var columns = [];
     
-    columns.push({name:"r_vendcd" ,fieldName:"r_vendcd" ,header:"����ڹ�ȣ" ,width:90 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_member_name" ,fieldName:"r_member_name" ,header:"��ü��" ,width:200 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_boss_name" ,fieldName:"r_boss_name" ,header:"��ǥ�ڸ�" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_post_code" ,fieldName:"r_post_code" ,header:"������ȣ" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_address" ,fieldName:"r_address" ,header:"�ּ�" ,width:300 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_user_name" ,fieldName:"r_user_name" ,header:"����ڸ�" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_tel_num" ,fieldName:"r_tel_num" ,header:"��ȭ��ȣ" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_hp1" ,fieldName:"r_hp1" ,header:"�޴���(��)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_hp2" ,fieldName:"r_hp2" ,header:"�޴���(�߰�)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_hp3" ,fieldName:"r_hp3" ,header:"�޴���(������)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
-    columns.push({name:"r_email" ,fieldName:"r_email" ,header:"�̸���" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_vendcd" ,fieldName:"r_vendcd" ,header:"사업자번호" ,width:90 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_member_name" ,fieldName:"r_member_name" ,header:"업체명" ,width:200 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_boss_name" ,fieldName:"r_boss_name" ,header:"대표자명" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_post_code" ,fieldName:"r_post_code" ,header:"우편번호" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_address" ,fieldName:"r_address" ,header:"주소" ,width:300 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_user_name" ,fieldName:"r_user_name" ,header:"담당자명" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_tel_num" ,fieldName:"r_tel_num" ,header:"전화번호" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_hp1" ,fieldName:"r_hp1" ,header:"휴대폰(앞)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_hp2" ,fieldName:"r_hp2" ,header:"휴대폰(중간)" ,width:80 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_hp3" ,fieldName:"r_hp3" ,header:"휴대폰(마지막)" ,width:100 ,readOnly:false , movable:false ,sortable:false});
+    columns.push({name:"r_email" ,fieldName:"r_email" ,header:"이메일" ,width:200 ,readOnly:false , movable:false ,sortable:false});
 	
     fields = ["r_vendcd","r_member_name","r_boss_name","r_post_code","r_address","r_user_name","r_tel_num","r_hp1","r_hp2","r_hp3","r_email"];
     
@@ -207,7 +215,7 @@ function excelRead(){
         files = window.event.srcElement.files;
 
     if(!files) {
-        alert("�������ε� ����� Internet Explorer 10 �̻� �Ǵ� ũ��(chrome)������ �̿��Ͻ� �� �ֽ��ϴ�.");
+        alert("내역업로드 기능은 Internet Explorer 10 이상 또는 크롬(chrome)에서만 이용하실 수 있습니다.");
         return true;
     }
     
@@ -236,7 +244,7 @@ function process_wb(wb) {
         try{
             output[sheetNames][0];
         }catch(e){
-            alert("���Ŀ� ���� �ʴ� �����Դϴ�.\n\n���ε� ������ Ȯ�� �ϼ���.");
+            alert("형식에 맞지 않는 파일입니다.\n\n업로드 파일을 확인 하세요.");
             return;
         }
 
@@ -245,7 +253,7 @@ function process_wb(wb) {
         var data = [];
         
         if(rows.length > 1){
-    		if(!confirm("���� �ŷ�ó�� ���ε��ϴ��� ���� ��ϵ��� �ʽ��ϴ�.\n\n�ŷ�ó�� ���ε� �Ͻðڽ��ϱ�?")){
+    		if(!confirm("기존 거래처는 업로드하더라도 새로 등록되지 않습니다.\n\n거래처를 업로드 하시겠습니까?")){
     			return;
     		}
         }
@@ -269,13 +277,13 @@ function process_wb(wb) {
 			
 		}
 		
-		//�Է°� validation
+		//입력값 validation
 		for(var i = 1 ; i < rows.length ; i++){
 
 			var row = rows[i];
 			
-			if(row["A"] == null || row["A"].toString().trim() == ""){alert("����ڹ�ȣ�� ���� �� �ֽ��ϴ�.(A��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
-			if(row["B"] == null || row["B"].toString().trim() == ""){alert("��ü���� ���� �� �ֽ��ϴ�.(B��,"+(i+1)+"��)\n\n�ٽ� Ȯ���Ͻð� ���ε����ֽñ�ٶ��ϴ�."); dataProvider.clearRows(); return;}
+			if(row["A"] == null || row["A"].toString().trim() == ""){alert("사업자번호에 빈값이 들어가 있습니다.(A열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
+			if(row["B"] == null || row["B"].toString().trim() == ""){alert("업체명에 빈값이 들어가 있습니다.(B열,"+(i+1)+"행)\n\n다시 확인하시고 업로드해주시기바랍니다."); dataProvider.clearRows(); return;}
 
             var rowdata={};
             for(var j = 0 ; j < cols.length; j++){
@@ -290,7 +298,7 @@ function process_wb(wb) {
         }
         dataProvider.setRows(data);
         gridView.closeProgress();
-        alert("���ε� ó�� �Ǿ����ϴ�.");
+        alert("업로드 처리 되었습니다.");
     }
 }
 
@@ -319,15 +327,15 @@ function excelDown(){
     gridView.exportGrid({
         type: "excel",
         target: "local",
-        fileName: "�ŷ�ó����.xlsx",
+        fileName: "거래처정보.xlsx",
         showProgress: false,
         applyDynamicStyles: false,
-        progressMessage: "�ٿ�ε� ���� ���Դϴ�.",
+        progressMessage: "다운로드 진행 중입니다.",
         indicator: "hidden",
         header: "visible",
         footer: "hidden",
         compatibility: "2007",
-        done: function () {  //�������� �Ϸ� �� ����Ǵ� �Լ�
+        done: function () {  //내보내기 완료 후 실행되는 함수
         }
     });
 }
@@ -339,11 +347,11 @@ function submitItem(){
     if(validate(f1)){
     
 		if(dataProvider.getRowCount() == 0){
-			alert("��� ������ �������� �ʾ� ������ �Ͻ� �� �����ϴ�.");
+			alert("계약 정보가 존재하지 않아 저장을 하실 수 없습니다.");
 			return;
 		}
 	
-		if(!confirm("���ε��� ��� ������ ��� �Ͻðڽ��ϱ�?")){
+		if(!confirm("업로드한 계약 정보를 등록 하시겠습니까?")){
 			return;
 		}
 		
@@ -374,10 +382,10 @@ function submitItem(){
 	        data : data,
 	        success : function(data) {
 	            if (data > 0) {
-	                alert("��༭ ������ ����Ͽ����ϴ�.");
+	                alert("계약서 정보를 등록하였습니다.");
 	                dataProvider.clearRowStates(true);
 	            } else {
-	                alert("ó���� �����Ͽ����ϴ�.");
+	                alert("처리에 실패하였습니다.");
 	            }
 	        },
 	        error : function(request, status, error) {

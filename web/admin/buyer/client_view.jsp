@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 String list_url = u.request("list_url", "member_list");
@@ -10,14 +10,14 @@ String list_url = u.request("list_url", "member_list");
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 DataObject clientDao = new DataObject("tcb_client");
 
 boolean cust_view = false;
 DataSet cust = new DataSet();
-if(u.inArray(member.getString("member_type"), new String[]{"02","03"}) ){//¿ø»ç¾÷ÀÚ °ü¸®
+if(u.inArray(member.getString("member_type"), new String[]{"02","03"}) ){//ì›ì‚¬ì—…ì ê´€ë¦¬
 	cust_view = true;
 	cust = clientDao.query(
 			 "select a.member_no, a.member_name, a.vendcd, a.boss_name, b.client_reg_date, b.client_seq"
@@ -34,7 +34,7 @@ if(u.inArray(member.getString("member_type"), new String[]{"02","03"}) ){//¿ø»ç¾
 
 boolean client_view = false;
 DataSet client = new DataSet();
-if(u.inArray(member.getString("member_type"), new String[]{"01","03"}) ){//¼ö±Ş»ç¾÷ÀÚ °ü¸®
+if(u.inArray(member.getString("member_type"), new String[]{"01","03"}) ){//ìˆ˜ê¸‰ì‚¬ì—…ì ê´€ë¦¬
 	client_view = true;
 	client = clientDao.query(
 		 "select a.member_no, a.member_name, a.vendcd, a.boss_name, b.client_reg_date, b.client_seq"
@@ -49,19 +49,19 @@ if(u.inArray(member.getString("member_type"), new String[]{"01","03"}) ){//¼ö±Ş»
 	}
 }
 	
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
-	if(f.get("gubun").equals("cust")){//¿ø»ç¾÷ÀÚÃß°¡
+	if(f.get("gubun").equals("cust")){//ì›ì‚¬ì—…ìì¶”ê°€
 		
 		String cust_member_no = f.get("cust_member_no"); 
 		if(cust_member_no.equals("")){
-			u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+			u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 			return;
 		}
 		
 		clientDao = new DataObject("tcb_client");
 		if(clientDao.findCount(" member_no = '"+cust_member_no+"' and client_no = '"+member_no+"' ")> 0 ){
-			u.jsError("ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ´Â °Å·¡Ã³ ÀÔ´Ï´Ù.");
+			u.jsError("ì´ë¯¸ ë“±ë¡ë˜ì–´ ìˆëŠ” ê±°ë˜ì²˜ ì…ë‹ˆë‹¤.");
 			return;
 		}
 		
@@ -76,20 +76,20 @@ if(u.isPost() && f.validate()){
 		clientDao.item("client_reg_cd","1");
 		clientDao.item("client_reg_date", u.getTimeString());
 		if(!clientDao.insert()){
-			u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
-	if(f.get("gubun").equals("client")){//¼ö±Ş»ç¾÷ÀÚÃß°¡
+	if(f.get("gubun").equals("client")){//ìˆ˜ê¸‰ì‚¬ì—…ìì¶”ê°€
 		String client_member_no = f.get("client_member_no"); 
 		if(client_member_no.equals("")){
-			u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+			u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 			return;
 		}
 		clientDao = new DataObject("tcb_client");
 		
 		if(clientDao.findCount(" member_no = '"+member_no+"' and client_no = '"+client_member_no+"' ")> 0 ){
-			u.jsError("ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ´Â °Å·¡Ã³ ÀÔ´Ï´Ù.");
+			u.jsError("ì´ë¯¸ ë“±ë¡ë˜ì–´ ìˆëŠ” ê±°ë˜ì²˜ ì…ë‹ˆë‹¤.");
 			return;
 		}
 		
@@ -104,11 +104,11 @@ if(u.isPost() && f.validate()){
 		clientDao.item("client_reg_cd","1");
 		clientDao.item("client_reg_date", u.getTimeString());
 		if(!clientDao.insert()){
-			u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
-	u.jsAlertReplace("Ã³¸®ÇÏ¿´½À´Ï´Ù.", "client_view.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.", "client_view.jsp?"+u.getQueryString());
 	return;
 }
 

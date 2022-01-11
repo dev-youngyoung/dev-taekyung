@@ -1,4 +1,4 @@
-<script language="javascript" type="text/javascript" src="../html/js/jquery-1.7.2.min.js"></script>
+ï»¿<script language="javascript" type="text/javascript" src="../html/js/jquery-1.7.2.min.js"></script>
 <form name="form1" method="post" enctype="multipart/form-data">
 <input type="hidden" name="print_content">
 <input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
@@ -8,7 +8,7 @@
 	<style type="text/css">
 	.glabel {
 		color: #707070;
-		FONT-FAMILY: "µ¸¿ò", "Arial";
+		FONT-FAMILY: "ë‹ì›€", "Arial";
 		FONT-SIZE: 9pt;
 		/*LINE-HEIGHT: 13pt;*/
 		border: 1px solid;
@@ -16,7 +16,7 @@
 		text-align: left;
 		background-color: #ffff00
 	}
-	td {  font-family: "³ª´®°íµñ, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
+	td {  font-family: "ë‚˜ëˆ”ê³ ë”•, Arial"; font-size:12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}
 	.lineTable { border-collapse:collapse; border:1px solid black }
 	.lineTable td { border:1px solid black }
 	.lineTable .noborder { border:0 }
@@ -33,13 +33,13 @@
 
 <div class="btn-group-wrap">
 	<!-- IF START 'modify' -->
-	<button type="button" class="btn color ico-save" onclick="save();"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-print" onclick="print();"><span></span>ÀÎ¼â</button>
-	<button type="button" class="btn color ico-cancel" onclick="window.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-save" onclick="save();"><span></span>ì €ì¥</button>
+	<button type="button" class="btn color ico-print" onclick="print();"><span></span>ì¸ì‡„</button>
+	<button type="button" class="btn color ico-cancel" onclick="window.close();"><span></span>ë‹«ê¸°</button>
 	<!-- IF END 'modify' -->
 	<!-- IFNOT START 'modify' -->
-	<button type="button" class="btn color ico-print" onclick="print();"><span></span>ÀÎ¼â</button>
-	<button type="button" class="btn color ico-cancel" onclick="window.close();"><span></span>´İ±â</button>
+	<button type="button" class="btn color ico-print" onclick="print();"><span></span>ì¸ì‡„</button>
+	<button type="button" class="btn color ico-cancel" onclick="window.close();"><span></span>ë‹«ê¸°</button>
 	<!-- IFNOT END 'modify' -->
 </div>
 
@@ -49,10 +49,10 @@ function save(){
 	if(validate(f)){
 		var tPoint = document.getElementById("t_point").innerHTML;
 		if(tPoint == ""){
-			alert("Æò°¡Á¡¼ö°¡ ¾ø½À´Ï´Ù.");
+			alert("í‰ê°€ì ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
-		if(confirm("ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			var resultPoint = 0 ; 
 			if(Number(tPoint)>=95) resultPoint = 35;
 			else if (Number(tPoint)>=90) resultPoint = 30;

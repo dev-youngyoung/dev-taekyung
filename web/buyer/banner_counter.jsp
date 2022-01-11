@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] site_names = {"1=>³ªÀÌ½º´ÙÅ¥(ÀÏ¹Ý±â¾÷¿ë)","2=>³ªÀÌ½º´ÙÅ¥(°Ç¼³)","3=>³ªÀÌ½º´ÙÅ¥(¹°·ù)","4=>³ªÀÌ½º´ÙÅ¥(ÇÁ·»Â÷ÀÌÁî)"};
-String[] banner_names = {"1=>³ªÀÌ½º½Å¿ëÆò°¡"};
+String[] site_names = {"1=>ë‚˜ì´ìŠ¤ë‹¤í(ì¼ë°˜ê¸°ì—…ìš©)","2=>ë‚˜ì´ìŠ¤ë‹¤í(ê±´ì„¤)","3=>ë‚˜ì´ìŠ¤ë‹¤í(ë¬¼ë¥˜)","4=>ë‚˜ì´ìŠ¤ë‹¤í(í”„ë Œì°¨ì´ì¦ˆ)"};
+String[] banner_names = {"1=>ë‚˜ì´ìŠ¤ì‹ ìš©í‰ê°€"};
 String[] banner_links = {"1=>http://www.nicerating.com/main.do"};
 
 String banner_seq = u.request("banner_seq");

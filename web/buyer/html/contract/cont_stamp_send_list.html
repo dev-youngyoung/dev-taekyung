@@ -11,19 +11,19 @@
 		<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th><p>°è¾à¼­Á¾·ù</p></th>
+	    <th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 	    <td>
 	    	<select name="s_template_cd" style="width:95%">
-	    		<option value="">-------¼±ÅÃ-------</option>
+	    		<option value="">-------ì„ íƒ-------</option>
 	    		<!-- LOOP START 'template' -->
 	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 	    		<!-- LOOP END 'template' -->
 	    	</select>
 		</td>
-	    <th><p>»óÅÂ</p></th>
+	    <th><p>ìƒíƒœ</p></th>
 	    <td>
 	    	<select name="s_status">
-	    		<option value="">-¼±ÅÃ-</option>
+	    		<option value="">-ì„ íƒ-</option>
 	    		<!-- LOOP START 'code_status' -->
 	    		<option value="{{code_status.id}}">{{code_status.value}}</option>
 	    		<!-- LOOP END 'code_status' -->
@@ -32,24 +32,24 @@
 		<td></td>
 	  </tr>
 	  <tr>
-	  	<th><p>°è¾àÀÏÀÚ</p></th>
+	  	<th><p>ê³„ì•½ì¼ì</p></th>
 	    <td>
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 			<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
-	    <th><p>°è¾à¹øÈ£</p></th>
+	    <th><p>ê³„ì•½ë²ˆí˜¸</p></th>
 	    <td><input type="text" name="s_user_no" maxlength="100" style="width:95%"></td>
 	    <td></td>
 	  </tr>
 	  <tr>
-	    <th><p>°Å·¡Ã³¸í</p></th>
+	    <th><p>ê±°ë˜ì²˜ëª…</p></th>
 	    <td><input type="text" name="s_cust_name" maxlength="100" style="width:95%"></td>
-	    <th><p>°è¾à¸í</p></th>
+	    <th><p>ê³„ì•½ëª…</p></th>
 	    <td><input type="text" name="s_cont_name" maxlength="100" style="width:95%"></td>
 	    <td align="right">
-	      <button type="submit" class="search_btn">°Ë»ö</button>
+	      <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	    </td>
 	  </tr>
 	</table>
@@ -58,66 +58,43 @@
 {{form_script}}
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 <br/>
 
 <div class="div_table">
 	<table>
 	  <colgroup>
-	  	<col width="7%">
 	  	<col width="*">
-	  	<col width="15%">
+	  	<col width="20%">
 	  	<col width="12%">
 	  	<col width="12%">
-	  	<col width="12%">
-	  	<col width="12%">
+	  	<col width="10%">
+	  	<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th>¼ø¹ø</th>
-	    <th>°è¾à¸í</th>
-	    <th>°è¾à¼ö½Å¾÷Ã¼</th>
-	    <th>°è¾àÀÏ</th>
-	    <th>°è¾à±İ¾×</th>
-	    <th>ÀÎÁö¼¼<br/>°è¾àÀÛ¼º¾÷Ã¼</th>
-	    <th>ÀÎÁö¼¼<br/>°è¾à¼ö½Å¾÷Ã¼</th>
+	    <th>ê³„ì•½ëª…</th>
+	    <th>ê±°ë˜ì²˜</th>
+	    <th>ê³„ì•½ì¼</th>
+	    <th>ê³„ì•½ê¸ˆì•¡</th>
+	    <th>ì§„í–‰ìƒíƒœ</th>
+	    <th>ë‚©ë¶€ì—¬ë¶€</th>
 	  </tr>
 	  <!-- IF START 'list' -->
 		  <!-- LOOP START 'list' -->
 		  <tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true">
-			<td align="center">{{list.__ord}}</td>
 			<td align="left">{{list.cont_name}}</td>
 			<td align="left">{{list.member_name}}</td>
 			<td align="center">{{list.cont_date}}</td>
 			<td align="right">{{list.cont_total}}</td>
-			<td align="center">
-				<!-- IF START 'list.send_reg' -->
-					<!-- IF START 'list.send_reg_yn' -->
-						<button type="button" class="sbtn ico-search" onclick="fPopupStampInfo('{{list.cont_no}}','{{list.cont_chasu}}','{{list.member_no}}');"><span></span>Á¶È¸</button>
-					<!-- IF END 'list.send_reg_yn' -->
-					<!-- IFNOT START 'list.send_reg_yn' -->
-						<button type="button" class="sbtn ico-save" onclick="fPopupStampInfo('{{list.cont_no}}','{{list.cont_chasu}}','{{list.member_no}}');"><span></span>µî·Ï</button>
-					<!-- IFNOT END 'list.send_reg_yn' -->
-				<!-- IF END 'list.send_reg' -->
-				<!-- IFNOT START 'list.send_reg' -->ÇØ´ç¾øÀ½<!-- IFNOT END 'list.send_reg' -->
-			</td>
-			<td align="center">
-				<!-- IF START 'list.recv_reg' -->
-					<!-- IF START 'list.recv_reg_yn' -->
-						<button type="button" class="sbtn ico-search" onclick="fPopupStampInfo('{{list.cont_no}}','{{list.cont_chasu}}','{{list.cust_member_no}}');"><span></span>Á¶È¸</button>
-					<!-- IF END 'list.recv_reg_yn' -->
-					<!-- IFNOT START 'list.recv_reg_yn' -->
-						<button type="button" class="sbtn ico-save" onclick="fPopupStampInfo('{{list.cont_no}}','{{list.cont_chasu}}','{{list.cust_member_no}}');"><span></span>µî·Ï</button>
-					<!-- IFNOT END 'list.recv_reg_yn' -->
-				<!-- IF END 'list.recv_reg' -->
-				<!-- IFNOT START 'list.recv_reg' -->ÇØ´ç¾øÀ½<!-- IFNOT END 'list.recv_reg' -->
-			</td>
+			<td align="center">{{list.status_nm}}</td>
+			<td align="center">{{list.stamp_yn}}</td>
 		  </tr>
 		  <!-- LOOP END 'list' -->
 	  <!-- IF END 'list' -->
 	  <!-- IFNOT START 'list' -->
 	  <tr>
-		<td colspan="7" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+		<td colspan="7" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 	  </tr>
 	  <!-- IFNOT END 'list' -->
 	 </table>

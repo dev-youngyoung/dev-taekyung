@@ -1,7 +1,7 @@
 <%@ page import="java.util.*,java.io.*,nicelib.db.*,nicelib.util.*,dao.*" %>
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
-//·Î±×¾Æ¿ô ÈÄ µÚ·Î°¡±â Ä³½Ã ¹æÁö 2012.11.1 add by À¯¼ºÈÆ
+//ë¡œê·¸ì•„ì›ƒ í›„ ë’¤ë¡œê°€ê¸° ìºì‹œ ë°©ì§€ 2012.11.1 add by ìœ ì„±í›ˆ
 response.setHeader("Pragma", "No-cache");
 response.setDateHeader("Expires", 0);
 response.setHeader("Cache-Control", "no-Cache");
@@ -36,19 +36,19 @@ if(comp_cnt <1){
 %>
 		<div class="lp-container">
 			<div class="lp-contents">
-				<p class="title">°Å·¡Ã³ È®ÀÎ</p>
+				<p class="title">ê±°ëž˜ì²˜ í™•ì¸</p>
 				<div class="con1">
 					<div class="notice">
-						<p>ÀÔ·ÂÇÑ »ç¾÷ÀÚ¹øÈ£·Î °Å·¡Ã³°¡ È®ÀÎµÇÁö ¾Ê½À´Ï´Ù.</p>
+						<p>ìž…ë ¥í•œ ì‚¬ì—…ìžë²ˆí˜¸ë¡œ ê±°ëž˜ì²˜ê°€ í™•ì¸ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</p>
 					</div>
 					<div class="notice-text">
-						È¸¿ø°¡ÀÔÀ» ¿äÃ»ÇÑ °Å·¡Ã³ÀÇ »ç¾÷ÀÚ¹øÈ£¸¦<br> È®ÀÎ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
+						íšŒì›ê°€ìž…ì„ ìš”ì²­í•œ ê±°ëž˜ì²˜ì˜ ì‚¬ì—…ìžë²ˆí˜¸ë¥¼<br> í™•ì¸ í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.
 					</div>
 					<div class="lp-btn">
-						<input type="button" value="´Ý±â" onclick="$('#comp_info').html('');$('#comp_info').removeClass('active')">
+						<input type="button" value="ë‹«ê¸°" onclick="$('#comp_info').html('');$('#comp_info').removeClass('active')">
 					</div>
 					<div class="number">
-						¡Ø ³ªÀÌ½º´ÙÅ¥ °í°´¼¾ÅÍ : 02-788-9097~8
+						â€» ë‚˜ì´ìŠ¤ë‹¤í ê³ ê°ì„¼í„° : 02-788-9097~8
 					</div>
 				</div>
 			</div>
@@ -58,58 +58,58 @@ if(comp_cnt <1){
 
 	<div class="lp-container">
 		<div class="lp-contents">
-			<p class="title">°Å·¡Ã³ È®ÀÎ</p>
+			<p class="title">ê±°ëž˜ì²˜ í™•ì¸</p>
 			<div class="con2">
 				<table class="lp-table">
 					<thead>
 						<tr>
-							<th scope="col">¾÷Ã¼¸í</th>
-							<th scope="col">»ç¾÷ÀÚ¹øÈ£</th>
-							<th scope="col">¼­ºñ½ºÁ¾·ù</th>
+							<th scope="col">ì—…ì²´ëª…</th>
+							<th scope="col">ì‚¬ì—…ìžë²ˆí˜¸</th>
+							<th scope="col">ì„œë¹„ìŠ¤ì¢…ë¥˜</th>
 						</tr>
 					</thead>
 					<tbody>
 						<% 
 							if(b_member.next()){
-								cate_names+="<strong>¡®ÀÏ¹Ý ±â¾÷¿ë¡¯</strong>";
+								cate_names+="<strong>â€˜ì¼ë°˜ ê¸°ì—…ìš©â€™</strong>";
 						%>
 						<tr>
 							<td><%=b_member.getString("member_name") %></td>
 							<td><%=u.getBizNo(b_member.getString("vendcd")) %></td>
-							<td>ÀÏ¹Ý ±â¾÷¿ë</td>
+							<td>ì¼ë°˜ ê¸°ì—…ìš©</td>
 						</tr>
 						<%} %>
 						<% 
 							if(k_member.next()){
 								if(!cate_names.equals(""))cate_names+=", ";
-								cate_names+="<strong>¡®°Ç¼³ ±â¾÷¿ë¡¯</strong>";
+								cate_names+="<strong>â€˜ê±´ì„¤ ê¸°ì—…ìš©â€™</strong>";
 						%>
 						<tr>
 							<td><%=k_member.getString("member_name") %></td>
 							<td><%=u.getBizNo(k_member.getString("vendcd")) %></td>
-							<td>°Ç¼³ ±â¾÷¿ë</td>
+							<td>ê±´ì„¤ ê¸°ì—…ìš©</td>
 						</tr>
 						<%} %>
 						<% 
 							if(f_member.next()){
 								if(!cate_names.equals(""))cate_names+=", ";
-								cate_names+="<strong>¡®ÇÁ·£Â÷ÀÌÁî ±â¾÷¿ë¡¯</strong>";
+								cate_names+="<strong>â€˜í”„ëžœì°¨ì´ì¦ˆ ê¸°ì—…ìš©â€™</strong>";
 						%>
 						<tr>
 							<td><%=f_member.getString("member_name") %></td>
 							<td><%=u.getBizNo(f_member.getString("vendcd")) %></td>
-							<td>ÇÁ·£Â÷ÀÌÁî ±â¾÷¿ë</td>
+							<td>í”„ëžœì°¨ì´ì¦ˆ ê¸°ì—…ìš©</td>
 						</tr>
 						<%} %>
 						<% 
 							if(l_member.next()){
 								if(!cate_names.equals(""))cate_names+=", ";
-								cate_names+="<strong>¡®¹°·ù ±â¾÷¿ë¡¯</strong>";
+								cate_names+="<strong>â€˜ë¬¼ë¥˜ ê¸°ì—…ìš©â€™</strong>";
 						%>
 						<tr>
 							<td><%=l_member.getString("member_name") %></td>
 							<td><%=u.getBizNo(l_member.getString("vendcd")) %></td>
-							<td>¹°·ù ±â¾÷¿ë</td>
+							<td>ë¬¼ë¥˜ ê¸°ì—…ìš©</td>
 						</tr>
 						<%} %>
 					</tbody>
@@ -117,18 +117,18 @@ if(comp_cnt <1){
 				<div class="notice">
 					<p>
 					<%if(comp_cnt>1) {
-						out.print("°Å·¡Ã³ ¶Ç´Â °í°´¼¾ÅÍ·Î ¾÷¹«ÁøÇà ¼­ºñ½º Á¾·ù¸¦ È®ÀÎ ÈÄ È¸¿ø°¡ÀÔ ÇÏ½Ã±â ¹Ù¸³´Ï´Ù.");
+						out.print("ê±°ëž˜ì²˜ ë˜ëŠ” ê³ ê°ì„¼í„°ë¡œ ì—…ë¬´ì§„í–‰ ì„œë¹„ìŠ¤ ì¢…ë¥˜ë¥¼ í™•ì¸ í›„ íšŒì›ê°€ìž… í•˜ì‹œê¸° ë°”ë¦½ë‹ˆë‹¤.");
 					}else{
-						out.print(cate_names +"À¸·Î È¸¿ø °¡ÀÔ ÇÏ¼¼¿ä.");
+						out.print(cate_names +"ìœ¼ë¡œ íšŒì› ê°€ìž… í•˜ì„¸ìš”.");
 					}
 					%>
 					</p>
 				</div>
 				<div class="lp-btn">
-					<input type="button" value="´Ý±â" onclick="$('#comp_info').html('');$('#comp_info').removeClass('active')">
+					<input type="button" value="ë‹«ê¸°" onclick="$('#comp_info').html('');$('#comp_info').removeClass('active')">
 				</div>
 				<div class="number">
-						¡Ø ³ªÀÌ½º´ÙÅ¥ °í°´¼¾ÅÍ : 02-788-9097~8
+						â€» ë‚˜ì´ìŠ¤ë‹¤í ê³ ê°ì„¼í„° : 02-788-9097~8
 				</div>
 			</div>
 		</div>

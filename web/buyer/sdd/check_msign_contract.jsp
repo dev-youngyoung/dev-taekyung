@@ -1,9 +1,9 @@
 <%@ page import="java.net.URLDecoder" %>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
-String member_name = URLDecoder.decode(u.request("member_name"), "utf-8");
+String member_name = URLDecoder.decode(u.request("member_name"), "UTF-8");
 String birth_date = u.request("birth_date");
 String hp = u.request("hp");
 String email_random = u.request("email_random");
@@ -17,7 +17,9 @@ DataSet cust = custDao.query(
         + "where a.cont_no=b.cont_no "
         + "  and a.cont_chasu=b.cont_chasu "
         + "  and b.email_random='"+email_random+"' "
-        + "  and b.boss_name='"+member_name+"' "
+        // 20200928 : B2C계약의 경우 계약당사자의 이름으로 비교하도록 수정
+        // + "  and b.boss_name='"+member_name+"' "
+        + "  and b.member_name='"+member_name+"' "
         + "  and b.hp1||b.hp2||b.hp3='"+hp+"' "
         + "  and a.cont_no='"+cont_no+"' and a.cont_chasu='"+cont_chasu+"' ");
 if(!cust.next()){

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="java.net.URLDecoder" %>
 <%
 String yyyymm = u.request("yyyymm");
@@ -6,12 +6,12 @@ String yyyymm = u.request("yyyymm");
 DataObject evaluateDao = new DataObject("tcb_samsong_evaluate");
 DataSet evaluate = evaluateDao.find("yyyymm = '"+yyyymm+"' ");
 if(!evaluate.next()){
-	u.jsError("»èÁ¦ ´ë»ó °ÇÀÌ ¾ø½À´Ï´Ù.");
+	u.jsError("ì‚­ì œ ëŒ€ìƒ ê±´ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(evaluate.getString("status").equals("status")){
-	u.jsError("ÀÛ¼ºÁß »óÅÂ¿¡¼­¸¸ È®Á¤ °¡´É ÇÕ´Ï´Ù.");
+	u.jsError("ìž‘ì„±ì¤‘ ìƒíƒœì—ì„œë§Œ í™•ì • ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 	return;
 }
 
@@ -25,11 +25,11 @@ evaluateDao.item("status", "20");
 
 
 if(!evaluateDao.update("yyyymm='"+yyyymm+"'")){
-	u.jsError("È®Á¤ Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("í™•ì • ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("È®Á¤Ã³¸® ÇÏ¿´½À´Ï´Ù.", "./samsong_evaluate_view.jsp?"+u.getQueryString());
+u.jsAlertReplace("í™•ì •ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./samsong_evaluate_view.jsp?"+u.getQueryString());
 
 
 

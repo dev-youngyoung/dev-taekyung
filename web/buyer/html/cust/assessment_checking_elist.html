@@ -1,4 +1,4 @@
-<form name="form1" method="get">
+ï»¿<form name="form1" method="get">
 	<div class="search_div">
 		<table class="search_table">
 			<colgroup>
@@ -9,11 +9,11 @@
 				<col width="10%"/>
 			</colgroup>
 			<tr>
-				<th><p>¾÷Ã¼¸í</p></th>
+				<th><p>ì—…ì²´ëª…</p></th>
 				<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
-				<th><p>ÇÁ·ÎÁ§Æ®¸í</p></th>
+				<th><p>í”„ë¡œì íŠ¸ëª…</p></th>
 				<td><input type="text" name="s_project_name" maxlength="30" style="width:95%"></td>
-				<td align="right"><button type="submit" class="search_btn" value="°Ë»ö"><span></span>°Ë»ö</button></td>
+				<td align="right"><button type="submit" class="search_btn" value="ê²€ìƒ‰"><span></span>ê²€ìƒ‰</button></td>
 			</tr>
 		</table>
 	</div>
@@ -32,13 +32,13 @@
 			<col width="10%">
 		</colgroup>
 		<tr>
-			<th>Æò°¡³âµµ</th>
-			<th>¾÷Ã¼¸í</th>
-			<th>ÇÁ·ÎÁ§Æ®¸í</th>
-			<th>ÃÑÁ¡</th>
-			<th>»óÅÂ</th>
-			<th>Æò°¡ÀÚ</th>
-			<th>Æò°¡ÀÏ</th>
+			<th>í‰ê°€ë…„ë„</th>
+			<th>ì—…ì²´ëª…</th>
+			<th>í”„ë¡œì íŠ¸ëª…</th>
+			<th>ì´ì </th>
+			<th>ìƒíƒœ</th>
+			<th>í‰ê°€ì</th>
+			<th>í‰ê°€ì¼</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr style="cursor:pointer" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="goCheckSheet('{{list.kind_cd}}', '{{list.asse_no}}', '{{list.div_cd}}');">
@@ -53,7 +53,7 @@
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td align="center" colspan="7">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="7">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>
@@ -67,11 +67,11 @@
         //alert(asse_no);
         //alert(div_cd);
         var url = "";
-        if(kind_cd == "N"){	//±¸¸Å_½Å±ÔÆò°¡
+        if(kind_cd == "N"){	//êµ¬ë§¤_ì‹ ê·œí‰ê°€
             url = "assessment_s_checkSheet_new.jsp?asse_no="+asse_no;
-        }else if(kind_cd == "R"){	//±¸¸Å_Á¤±âÆò°¡
+        }else if(kind_cd == "R"){	//êµ¬ë§¤_ì •ê¸°í‰ê°€
             url = "assessment_s_checkSheet_regular.jsp?asse_no="+asse_no;
-        }else if(kind_cd == "S"){	//¼ö½ÃÆò°¡
+        }else if(kind_cd == "S"){	//ìˆ˜ì‹œí‰ê°€
             if(div_cd == "Q"){	//QC
                 url = "assessment_q_checkSheet_sumetime.jsp?asse_no="+asse_no;
             }else{	//ENC

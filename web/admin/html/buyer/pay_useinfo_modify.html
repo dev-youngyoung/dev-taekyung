@@ -1,9 +1,9 @@
-<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
+ï»¿<form novalidate name="form1" method="post" onsubmit="return formSubmit(this)">
 
 <div class="div_table">
 <div class="util-row">	
 	<div class="push-left">	
-	  <h3>{{member.member_name}} ÀÇ  ¿ä±ÝÁ¦Á¤º¸</h3>
+	  <h3>{{member.member_name}} ì˜  ìš”ê¸ˆì œì •ë³´</h3>
 	</div>
 </div>
 
@@ -15,17 +15,17 @@
 		<col width="35%">
 	</colgroup>
 	<tr>
-		<th class="req-check">ÀÌ¿ë±â°£</th>
+		<th class="req-check">ì´ìš©ê¸°ê°„</th>
 		<td colspan="3">
 			<input type="text" name="usestartday" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['usestartday'])"> ~
 			<input type="text" name="useendday" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['useendday'])">
 		</td>
 	</tr>
 	<tr>
-		<th>°è»ê¼­¹ßÇàÀÏ<br>(Á¤»êÁÖ±â)</th>
+		<th>ê³„ì‚°ì„œë°œí–‰ì¼<br>(ì •ì‚°ì£¼ê¸°)</th>
 		<td colspan="3">
 			<select name="calc_day">
-				<option value="">-¼±ÅÃ-</option>
+				<option value="">-ì„ íƒ-</option>
 				<!-- LOOP START 'code_calc_day' -->
 				<option value="{{code_calc_day.id}}">{{code_calc_day.value}}</option>
 				<!-- LOOP END 'code_calc_day' -->
@@ -33,66 +33,66 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="req-check">°è¾à¿ä±Ý</th>
+		<th class="req-check">ê³„ì•½ìš”ê¸ˆ</th>
 		<td colspan="3">
 
-			ÀÌ¿ë¿ä±ÝÁ¦<span style="color:white">¤·¤·</span> :
+			ì´ìš©ìš”ê¸ˆì œ<span style="color:white">ã…‡ã…‡</span> :
 			<select name="paytypecd">
-				<option value="">-¼±ÅÃ-</option>
+				<option value="">-ì„ íƒ-</option>
 				<!-- LOOP START 'code_pay_type' -->
 				<option value="{{code_pay_type.id}}">{{code_pay_type.value}}</option>
 				<!-- LOOP END 'code_pay_type' -->
 			</select>
 			<br>
-			¿ø»ç¾÷ÀÚ¿ä±Ý<span style="color:white">¤·</span> : £Ü<input type="text" name="recpmoneyamt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATº°µµ) <br>
-			¼ö±Þ»ç¾÷ÀÚ¿ä±Ý : £Ü<input type="text" name="suppmoneyamt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATº°µµ) <br>
-			(¼ö±Þ»ç¾÷ÀÚ¿ä±ÝÀ»
+			ì›ì‚¬ì—…ìžìš”ê¸ˆ<span style="color:white">ã…‡</span> : ï¿¦<input type="text" name="recpmoneyamt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATë³„ë„) <br>
+			ìˆ˜ê¸‰ì‚¬ì—…ìžìš”ê¸ˆ : ï¿¦<input type="text" name="suppmoneyamt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATë³„ë„) <br>
+			(ìˆ˜ê¸‰ì‚¬ì—…ìžìš”ê¸ˆì„
 				<select name="insteadyn">
-					<option value="">-¼±ÅÃ-</option>
-					<option value="Y">¿ø»ç¾÷ÀÚ¿¡°Ô °ú±Ý</option>
-					<option value="N">¼ö±Þ»ç¾÷ÀÚ¿¡°Ô °ú±Ý</option>
+					<option value="">-ì„ íƒ-</option>
+					<option value="Y">ì›ì‚¬ì—…ìžì—ê²Œ ê³¼ê¸ˆ</option>
+					<option value="N">ìˆ˜ê¸‰ì‚¬ì—…ìžì—ê²Œ ê³¼ê¸ˆ</option>
 				</select>
 			)<br>
-			¼­¸é°è¾à¿ä±Ý<span style="color:white">¤·</span> : £Ü<input type="text" name="paper_amt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATº°µµ)
+			ì„œë©´ê³„ì•½ìš”ê¸ˆ<span style="color:white">ã…‡</span> : ï¿¦<input type="text" name="paper_amt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATë³„ë„)
 		</td>
 	</tr>
 	<tr>
-		<th>ÀÚÀ¯¼­½ÄÀÎÁö¼¼<br>»ç¿ëÀ¯¹«</th>
+		<th>ìžìœ ì„œì‹ì¸ì§€ì„¸<br>ì‚¬ìš©ìœ ë¬´</th>
 		<td colspan="3">
 			<input type="checkbox" name="stampyn" value="Y"/>
 		</td>
 	</tr>
 	<tr>
-		<th>ÀÔÂû¿ä±Ý</th>
+		<th>ìž…ì°°ìš”ê¸ˆ</th>
 		<td>
-			£Ü<input type="text" name="bid_amt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATº°µµ)
+			ï¿¦<input type="text" name="bid_amt" style="width:100px;text-align:right;ime-mode:disabled" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma();">(VATë³„ë„)
 		</td>
-		<th>ÀÔÂûÀÌ¿ë¿©ºÎ</th>
+		<th>ìž…ì°°ì´ìš©ì—¬ë¶€</th>
 		<td>
-			{{bid_use}} (¡Ø ¸Þ´º±ÇÇÑºÎ¿© ±âÁØ)
+			{{bid_use}} (â€» ë©”ë‰´ê¶Œí•œë¶€ì—¬ ê¸°ì¤€)
 		</td>
 	</tr>
 
 	<tr>
-		<th class="req-check">½ÇÀûÁõ¸í¹ß±Þ</th>
+		<th class="req-check">ì‹¤ì ì¦ëª…ë°œê¸‰</th>
 		<td>
 			<input type="checkbox" name="proof_yn" value="Y">
 			<!-- IF START 'useInfo.stamp_file_yn' -->
-			<button type="button" class="sbtn color ico-save" onclick="OpenWindows('./pop_stamp_modify.jsp?member_no={{member_no}}&member_name={{member.member_name}}','pop_stamp_modify',1000,730)"><span></span>µµÀåÀÌ¹ÌÁö Á¶È¸</button>
+			<button type="button" class="sbtn color ico-save" onclick="OpenWindows('./pop_stamp_modify.jsp?member_no={{member_no}}&member_name={{member.member_name}}','pop_stamp_modify',1000,730)"><span></span>ë„ìž¥ì´ë¯¸ì§€ ì¡°íšŒ</button>
 			<!-- IF END 'useInfo.stamp_file_yn' -->
 			<!-- IFNOT START 'useInfo.stamp_file_yn' -->
-			<button type="button" class="sbtn color ico-save" onclick="OpenWindows('./pop_stamp_modify.jsp?member_no={{member_no}}&member_name={{member.member_name}}','pop_stamp_modify',1000,730)"><span></span>µµÀåÀÌ¹ÌÁö »ý¼º</button>
+			<button type="button" class="sbtn color ico-save" onclick="OpenWindows('./pop_stamp_modify.jsp?member_no={{member_no}}&member_name={{member.member_name}}','pop_stamp_modify',1000,730)"><span></span>ë„ìž¥ì´ë¯¸ì§€ ìƒì„±</button>
 			<!-- IFNOT END 'useInfo.stamp_file_yn' -->
 		</td>
 	</tr>
 	<tr>
-		<th>°Å·¡Ã³ µî·Ï ±¸ºñ¼­·ù</th>
+		<th>ê±°ëž˜ì²˜ ë“±ë¡ êµ¬ë¹„ì„œë¥˜</th>
 		<td colspan="3">
 			<div class="div_table">
 				<div class="util-row">
-					<div class="push-left">¡Ø °Å·¡Ã³ µî·Ï½Ã ¹Þ¾Æ¾ß ÇÒ ±¸ºñ¼­·ù¸¦ µî·ÏÇÏ¼¼¿ä.</div>
+					<div class="push-left">â€» ê±°ëž˜ì²˜ ë“±ë¡ì‹œ ë°›ì•„ì•¼ í•  êµ¬ë¹„ì„œë¥˜ë¥¼ ë“±ë¡í•˜ì„¸ìš”.</div>
 					<div class="push-right">
-						<button type="button" id="btn_chain" class="sbtn color ico-add" onclick="addRFileRow();"><span></span>Ãß°¡</button>
+						<button type="button" id="btn_chain" class="sbtn color ico-add" onclick="addRFileRow();"><span></span>ì¶”ê°€</button>
 					</div>
 				</div>
 				<table id="rfile_grid">
@@ -104,25 +104,25 @@
 					</colgroup>
 					<thead>
 					<tr>
-						<th>ÇÊ¼ö¿©ºÎ</th>
-						<th>±¸ºñ¼­·ù¸í</th>
-						<th>Ã·ºÎ°¡´ÉÆÄÀÏ</th>
-						<th>»èÁ¦</th>
+						<th>í•„ìˆ˜ì—¬ë¶€</th>
+						<th>êµ¬ë¹„ì„œë¥˜ëª…</th>
+						<th>ì²¨ë¶€ê°€ëŠ¥íŒŒì¼</th>
+						<th>ì‚­ì œ</th>
 					</tr>
 					</thead>
 					<!-- LOOP START 'rfile' -->
 					<tr>
 						<td align="center" ><input type="checkbox" name="attch" {{rfile.checked}} onclick="chkClick(this,'form1','attch_yn','Y')"><input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}"></td>
-						<td align="center" ><input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="label" style="width:98%" required="Y" hname="±¸ºñ¼­·ù¸í"></td>
+						<td align="center" ><input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" class="label" style="width:98%" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…"></td>
 						<td align="center" >
 							<select name="allow_ext">
-								<option value="">-ÀüÃ¼-</option>
+								<option value="">-ì „ì²´-</option>
 								<!-- LOOP START 'code_allow' -->
 								<option value="{{code_allow.id}}" {{code_allow.selected}}>{{code_allow.value}}</option>
 								<!-- LOOP END 'code_allow' -->
 							</select>
 						</td>
-						<td align="center" ><input type="button" class="del2" value="»èÁ¦" onclick="rfile_grid.del(this);"></td>
+						<td align="center" ><input type="button" class="del2" value="ì‚­ì œ" onclick="rfile_grid.del(this);"></td>
 					</tr>
 					<!-- LOOP END 'rfile' -->
 					<tbody>
@@ -132,7 +132,7 @@
 		</td>
 	</tr>
 	<tr>
-  	<th>ºñ°í</th>
+  	<th>ë¹„ê³ </th>
   	<td colspan="3">
   		<textarea rows="3" width="100%" name="etc">{{useInfo.etc}}</textarea>
   	</td>
@@ -141,20 +141,20 @@
 </div>
 
 <div class="btn-group-wrap">
-	<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
+	<button type="submit" class="btn color ico-save"><span></span>ì €ìž¥</button>
 	<!-- IF START 'modify' -->
-	<button type="button" class="btn color ico-delete" onclick="if(confirm('»èÁ¦ Ã³¸® ÇÏ½Ã°Ú½À´Ï±î?')){location.href='pay_useinfo_delete.jsp?{{query}}';}"><span></span>»èÁ¦</button>
+	<button type="button" class="btn color ico-delete" onclick="if(confirm('ì‚­ì œ ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='pay_useinfo_delete.jsp?{{query}}';}"><span></span>ì‚­ì œ</button>
 	<!-- IF END 'modify' -->
-	<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}'" ><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" class="btn color ico-list" onclick="location.href='pay_comp_list.jsp?{{list_query}}'" ><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 </div>
 </form>
 {{form_script}}
 
 <div class="div_table">
 	<div class="util-row">
-		<div class="push-left"><h3>¼­½Äº° ¿ä±ÝÁ¤º¸ <span class="caution-text">¡Ø Æ¯Á¤¾ç½ÄÀÇ ¿ä±ÝÀ» º¯°æÇÏ·Á¸é [Ãß°¡]¹öÆ°À» ´©¸£¼¼¿ä.</span></h3></div>
+		<div class="push-left"><h3>ì„œì‹ë³„ ìš”ê¸ˆì •ë³´ <span class="caution-text">â€» íŠ¹ì •ì–‘ì‹ì˜ ìš”ê¸ˆì„ ë³€ê²½í•˜ë ¤ë©´ [ì¶”ê°€]ë²„íŠ¼ì„ ëˆ„ë¥´ì„¸ìš”.</span></h3></div>
 		<div class="push-right">
-			<button type="button" id="btn_template" class="sbtn color ico-add" onclick="addTemplatePay();"><span></span>Ãß°¡</button>
+			<button type="button" id="btn_template" class="sbtn color ico-add" onclick="addTemplatePay();"><span></span>ì¶”ê°€</button>
 		</div>
 	</div>
 	<table>
@@ -167,12 +167,12 @@
 			<col wdith="10%">
 		</colgroup>
 		<tr>
-			<th>¼ø¹ø</th>
-			<th>¾ç½Ä¸í</th>
-			<th>¿ø»ç¾÷ÀÚ ¿ä±Ý</th>
-			<th>¼ö±Þ»ç¾÷ÀÚ ¿ä±Ý</th>
-			<th>¼ö±Þ»ç¾÷ÀÚ ¿ä±Ý Ã³¸®</th>
-			<th>»èÁ¦</th>
+			<th>ìˆœë²ˆ</th>
+			<th>ì–‘ì‹ëª…</th>
+			<th>ì›ì‚¬ì—…ìž ìš”ê¸ˆ</th>
+			<th>ìˆ˜ê¸‰ì‚¬ì—…ìž ìš”ê¸ˆ</th>
+			<th>ìˆ˜ê¸‰ì‚¬ì—…ìž ìš”ê¸ˆ ì²˜ë¦¬</th>
+			<th>ì‚­ì œ</th>
 		</tr>
 		<!-- IF START 'lds' -->
 		<!-- LOOP START 'lds' -->
@@ -182,13 +182,13 @@
 			<td align="center">{{lds.recpmoneyamt}}</td>
 			<td align="center">{{lds.suppmoneyamt}}</td>
 			<td align="center">{{lds.insteadyn}}</td>
-			<td align="center"><button type="button" id="btn_del_template" class="sbtn color ico-delete" onClick="delTemplatePay('{{lds.template_cd}}')"><span></span>»èÁ¦</button></td>
+			<td align="center"><button type="button" id="btn_del_template" class="sbtn color ico-delete" onClick="delTemplatePay('{{lds.template_cd}}')"><span></span>ì‚­ì œ</button></td>
 		</tr>
 		<!-- LOOP END 'lds' -->
 		<!-- IF END 'lds' -->
 
 		<!-- IFNOT START 'lds' -->
-		<tr class="cel"><td colspan="6" align="center">¸ðµç ¾ç½ÄÀÇ ¿ä±ÝÀÌ µ¿ÀÏÇÕ´Ï´Ù.</td></tr>
+		<tr class="cel"><td colspan="6" align="center">ëª¨ë“  ì–‘ì‹ì˜ ìš”ê¸ˆì´ ë™ì¼í•©ë‹ˆë‹¤.</td></tr>
 		<!-- IFNOT END 'lds' -->
 	</table>
 </div>
@@ -201,9 +201,9 @@
 <!-- IF START 'modify' -->
 <div class="div_table">
 	<div class="util-row">
-		<div class="push-left"><h3>°è»ê¼­´ã´çÀÚ Á¤º¸</h3></div>
+		<div class="push-left"><h3>ê³„ì‚°ì„œë‹´ë‹¹ìž ì •ë³´</h3></div>
 		<div class="push-right">
-			<button type="button" id="btn_calc_person" class="sbtn color ico-add" onclick="OpenWindow('pop_calc_person_insert.jsp?member_no={{member_no}}','pop_calc_person','600','700');"><span></span>Ãß°¡</button>
+			<button type="button" id="btn_calc_person" class="sbtn color ico-add" onclick="OpenWindow('pop_calc_person_insert.jsp?member_no={{member_no}}','pop_calc_person','600','700');"><span></span>ì¶”ê°€</button>
 		</div>
 	</div>
 	<table>
@@ -215,11 +215,11 @@
 			<col width="20%"/>
 		</colgroup>
 		<tr>
-			<th>´ã´çÀÚ¸í</th>
-			<th>Á¤»êºÎ¼­</th>
-			<th>ÀüÈ­¹øÈ£</th>
-			<th>ÈÞ´ëÆù</th>
-			<th>ÀÌ¸ÞÀÏ</th>
+			<th>ë‹´ë‹¹ìžëª…</th>
+			<th>ì •ì‚°ë¶€ì„œ</th>
+			<th>ì „í™”ë²ˆí˜¸</th>
+			<th>íœ´ëŒ€í°</th>
+			<th>ì´ë©”ì¼</th>
 		</tr>
 		<!-- LOOP START 'calcPerson' -->
 		<tr class="cel" onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" onclick="OpenWindow('pop_calc_person_modify.jsp?member_no={{member_no}}&seq={{calcPerson.seq}}','pop_calc_person','600','700');" style="cursor:pointer">
@@ -231,7 +231,7 @@
 		</tr>
 		<!-- LOOP END 'calcPerson' -->
 		<!-- IFNOT START 'calcPerson' -->
-		<tr class="cel"><td colspan="6" align="center">Á¤»ê´ã´çÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.</td></tr>
+		<tr class="cel"><td colspan="6" align="center">ì •ì‚°ë‹´ë‹¹ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.</td></tr>
 		<!-- IFNOT END 'calcPerson' -->
 	</table>
 </div>
@@ -241,7 +241,7 @@
 <script type="text/javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì €ìž¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -251,14 +251,14 @@ function formSubmit(f){
 var rfile_grid = new MGRID("rfile_grid");
 rfile_grid.cells = new Array(
     '<input type="checkbox" name="attch" onclick="chkClick(this,\'form1\',\'attch_yn\',\'Y\')"><input type="hidden" name="attch_yn">'
-    ,'<input type="text" name="rfile_doc_name" class="label" style="width:98%" required="Y" hname="±¸ºñ¼­·ù¸í">'
-    ,'<select name="allow_ext"><option value="">-ÀüÃ¼-</option><!-- LOOP START 'code_allow_ext' --><option value="{{code_allow_ext.id}}" >{{code_allow_ext.value}}</option><!-- LOOP END 'code_allow_ext' --></select>'
-    ,'<button type="button" class="sbtn color ico-delete" onclick="rfile_grid.del(this);"><span></span>»èÁ¦</button>'
+    ,'<input type="text" name="rfile_doc_name" class="label" style="width:98%" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…">'
+    ,'<select name="allow_ext"><option value="">-ì „ì²´-</option><!-- LOOP START 'code_allow_ext' --><option value="{{code_allow_ext.id}}" >{{code_allow_ext.value}}</option><!-- LOOP END 'code_allow_ext' --></select>'
+    ,'<button type="button" class="sbtn color ico-delete" onclick="rfile_grid.del(this);"><span></span>ì‚­ì œ</button>'
 );
 
 function addRFileRow(){
     if(document.getElementById('rfile_grid').rows.length >15){
-        alert("´õÀÌ»ó Ãß°¡ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+        alert("ë”ì´ìƒ ì¶”ê°€ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
         return;
     }
     rfile_grid.addRow();
@@ -277,7 +277,7 @@ function addTemplatePay(){
 function delTemplatePay(template_cd){
     var f = document.forms['form2'];
     if(template_cd!=null){
-        if(confirm("»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?")){
+        if(confirm("ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
             location.href = "template_pay_delete.jsp?useseq={{useInfo.useseq}}&template_cd="+template_cd+"&{{query}}";
         }
     }

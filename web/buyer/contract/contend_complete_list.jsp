@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000154";
 
@@ -28,7 +28,7 @@ if(u.request("mode").equals("excel")){
 			+" within group (order by cont_no ) from tcb_warr w where cont_no = a.cont_no and cont_chasu = a.cont_chasu ) as warr_date ";
 }
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -55,9 +55,9 @@ if(!s_edate.equals("")) {
 }
 list.addSearch(" member_name ", f.get("s_member_name"), "like");
 list.addSearch(" cont_name ", f.get("s_cont_name"), "like");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -81,12 +81,12 @@ while(ds.next()){
 
 if(u.request("mode").equals("excel")){
 	
-	p.setVar("title", "¿Ï·áµÈ °è¾àÇöÈ²(¾ç½Ä³»¿ª)");
+	p.setVar("title", "ì™„ë£Œëœ ê³„ì•½í˜„í™©(ì–‘ì‹ë‚´ì—­)");
 	String xlsFile = "contend_complete_list_excel.html";
 
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("¿Ï·áµÈ °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ì™„ë£Œëœ ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/"+xlsFile));
 	return;
 	

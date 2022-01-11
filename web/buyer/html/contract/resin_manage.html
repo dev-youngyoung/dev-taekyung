@@ -11,27 +11,27 @@
 		<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th><p>ÀÛÇ°¸í</p></th>
+	    <th><p>ìž‘í’ˆëª…</p></th>
 	    <td colspan="3">
 	    	<input type="text" name="s_item_name" maxlength="100" style="width:40%">
 	    </td>
 		<td></td>
 	  </tr>
 	  <tr>
-	  	<th><p>ÀÛ°¡¸í</p></th>
+	  	<th><p>ìž‘ê°€ëª…</p></th>
 	    <td><input type="text" name="s_member_name" maxlength="100" style="width:95%"></td>
-	    <th><p>ÇÊ¸í</p></th>
+	    <th><p>í•„ëª…</p></th>
 	    <td><input type="text" name="s_write_name" maxlength="100" style="width:95%"></td>
 	    <td></td>
 	  </tr>
 	  <tr>
-	    <th><p>±â°£°Ë»ö</p></th>
+	    <th><p>ê¸°ê°„ê²€ìƒ‰</p></th>
 	    <td colspan="3">
 	    	<select name="s_date_gubun">
-		      	<option value="cont_date">°è¾àÀÏÀÚ</option>
-		      	<option value="n_fday">¿¬Àç¸¸·áÀÏ</option>
-		      	<option value="e_fday">¿µ¾î¼­ºñ½º¸¸·áÀÏ</option>
-		      	<option value="j_fday">ÀÏ¾î¼­ºñ½º¸¸·áÀÏ</option>
+		      	<option value="cont_date">ê³„ì•½ì¼ìž</option>
+		      	<option value="n_fday">ì—°ìž¬ë§Œë£Œì¼</option>
+		      	<option value="e_fday">ì˜ì–´ì„œë¹„ìŠ¤ë§Œë£Œì¼</option>
+		      	<option value="j_fday">ì¼ì–´ì„œë¹„ìŠ¤ë§Œë£Œì¼</option>
 		    </select>&nbsp;&nbsp;&nbsp;&nbsp;
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
@@ -41,46 +41,46 @@
 	    <td></td>
 	  </tr>
 	  <tr>
-	      <th><p>¿¬Àç»óÅÂ</p></th>
+	      <th><p>ì—°ìž¬ìƒíƒœ</p></th>
 	      <td colspan="3"> 
-		  	¿¬ÀçÁ¤º¸: 
+		  	ì—°ìž¬ì •ë³´: 
 		  	<select name="n_status" style="vertical-align: middle;">
-				<option value="">-ÀüÃ¼-</option>
+				<option value="">-ì „ì²´-</option>
 				<!-- LOOP START 'code_status' -->
 				<option value="{{code_status.id}}">{{code_status.value}}</option>
 				<!-- LOOP END 'code_status' -->
 			</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	        ¿µ¾î:
+	        ì˜ì–´:
 	        <select name="e_status" style="vertical-align: middle;">
-	        	<option value="">-ÀüÃ¼-</option>
+	        	<option value="">-ì „ì²´-</option>
 	            <!-- LOOP START 'code_status' -->
 	            <option value="{{code_status.id}}">{{code_status.value}}</option>
 	            <!-- LOOP END 'code_status' -->
 	        </select>&nbsp;&nbsp;&nbsp;&nbsp;
-	        ÀÏº»¾î:
+	        ì¼ë³¸ì–´:
 	        <select name="j_status" style="vertical-align: middle;">
-				<option value="">-ÀüÃ¼-</option>
+				<option value="">-ì „ì²´-</option>
 	            <!-- LOOP START 'code_status' -->
 	            <option value="{{code_status.id}}">{{code_status.value}}</option>
 	            <!-- LOOP END 'code_status' -->
 			</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	        Áß±¹¾î:
+	        ì¤‘êµ­ì–´:
 	        <select name="c_status" style="vertical-align: middle;">
-				<option value="">-ÀüÃ¼-</option>
+				<option value="">-ì „ì²´-</option>
 	            <!-- LOOP START 'code_status' -->
 	            <option value="{{code_status.id}}">{{code_status.value}}</option>
 	            <!-- LOOP END 'code_status' -->
 			</select>
 	      </td>
 	      <td align="right">
-	          <button type="submit" class="search_btn">°Ë»ö</button>
+	          <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	      </td>
 	  </tr>
 	</table>
 </div>
 
 <div align="right">
-	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button>
+	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button>
 </div>
 <br/>
 
@@ -98,18 +98,18 @@
 			<col width="9%"/>
 		</colgroup>
 		<tr>
-			<th rowspan="2">°è¾à<br>Â÷¼ö</th>
-		    <th rowspan="2">ÀÛÇ°¸í<br>(°è¾à¸í)</th>
-		    <th rowspan="2">ÀÛ°¡¸í<br>(ÇÊ¸í)</th>
-		    <th rowspan="2">°è¾àÀÏÀÚ</th>
-		    <th rowspan="2">°è¾à´ã´ç</th>
-		    <th rowspan="2">¿¬ÀçÁ¤º¸</th>
-		    <th colspan="3">¹ø¿ª¿¬ÀçÁ¤º¸</th>
+			<th rowspan="2">ê³„ì•½<br>ì°¨ìˆ˜</th>
+		    <th rowspan="2">ìž‘í’ˆëª…<br>(ê³„ì•½ëª…)</th>
+		    <th rowspan="2">ìž‘ê°€ëª…<br>(í•„ëª…)</th>
+		    <th rowspan="2">ê³„ì•½ì¼ìž</th>
+		    <th rowspan="2">ê³„ì•½ë‹´ë‹¹</th>
+		    <th rowspan="2">ì—°ìž¬ì •ë³´</th>
+		    <th colspan="3">ë²ˆì—­ì—°ìž¬ì •ë³´</th>
 	  	</tr>
 	  	<tr>
-	      <th>¿µ¾î</th>
-	      <th>ÀÏº»¾î</th>
-	      <th>Áß±¹¾î</th>
+	      <th>ì˜ì–´</th>
+	      <th>ì¼ë³¸ì–´</th>
+	      <th>ì¤‘êµ­ì–´</th>
 	  	</tr>
 	  	<!-- IF START 'list' -->
 	  		<!-- LOOP START 'list' -->
@@ -135,7 +135,7 @@
 		<!-- IF END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td colspan="9" align="center">Ã¼°áµÈ °è¾àÀÌ ¾ø½À´Ï´Ù.</td>
+			<td colspan="9" align="center">ì²´ê²°ëœ ê³„ì•½ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 	  	</tr>
 	  	<!-- IFNOT END 'list' -->
 	</table>

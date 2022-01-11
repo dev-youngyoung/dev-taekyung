@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 	DataSet rs 					= null;
-	String	sMemberNo		=	_member_no;		//	È¸¿ø¹øÈ£
+	String	sMemberNo		=	_member_no;		//	íšŒì›ë²ˆí˜¸
 	String  sPersonSeq		=	u.request("person_seq");
 
 	if(	u.isPost())
 	{
-		String[]	saAdmCd	=	u.reqArr("chk_field_seq");	//	ºÎ¼­ÄÚµå
+		String[]	saAdmCd	=	u.reqArr("chk_field_seq");	//	ë¶€ì„œì½”ë“œ
 
 		DataObject doTMI = new DataObject("tcb_fieldperson");
 		int iDelCnt	=	doTMI.getOneInt("SELECT COUNT(*) \n"+
@@ -26,22 +26,22 @@
 			for(int i=0; i < saAdmCd.length; i++)
 			{
 				doTMI = new DataObject("tcb_fieldperson");
-				doTMI.item("member_no"	,sMemberNo);	//	È¸¿ø¹øÈ£
-				doTMI.item("person_seq", sPersonSeq);   //  »ç¿ëÀÚ
-				doTMI.item("field_seq"	,saAdmCd[i]);	//	°ü¸®¹øÈ£
+				doTMI.item("member_no"	,sMemberNo);	//	íšŒì›ë²ˆí˜¸
+				doTMI.item("person_seq", sPersonSeq);   //  ì‚¬ìš©ì
+				doTMI.item("field_seq"	,saAdmCd[i]);	//	ê´€ë¦¬ë²ˆí˜¸
 				db.setCommand(doTMI.getInsertQuery(), doTMI.record);
 			}
 		}
 
 		if(!db.executeArray()){
-			u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
-		u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.","person_part_info.jsp?member_no="+sMemberNo+"&person_seq="+sPersonSeq);
+		u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.","person_part_info.jsp?member_no="+sMemberNo+"&person_seq="+sPersonSeq);
 		return;
 	}else
 	{
-		//¸ñ·Ï »ı¼º
+		//ëª©ë¡ ìƒì„±
 		ListManager list = new ListManager();
 		//list.setDebug(out);
 		list.setListQuery("select a1.*, nvl2(b1.member_no,'Y','') adm_yn \n"
@@ -62,14 +62,14 @@
 			p.setLoop("list", rs);
 			
 			response.setContentType("application/vnd.ms-excel");
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("´ã´çÀÚº° Á¶È¸ºÎ¼­ °ü¸®.xls".getBytes("KSC5601"),"8859_1") + "\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë‹´ë‹¹ìë³„ ì¡°íšŒë¶€ì„œ ê´€ë¦¬.xls".getBytes("KSC5601"),"8859_1") + "\"");
 			out.println(p.fetch("../html/info/person_part_info_excel.html"));
 			return;			
 		}
 	}
 %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../html/css/style.css" rel="stylesheet" type="text/css">
 <script language="javascript" type="text/javascript" src="../html/js/common.js"></script>
 <script language="javascript" type="text/javascript" src="../html/js/lib.validate.js"></script>
@@ -77,7 +77,7 @@
 <script language="javascript" type="text/javascript" src="../html/js/nvscroll.js"></script>
 <script language="javascript">
 	/***************************
-		±ÇÇÑ check
+		ê¶Œí•œ check
 	***************************/
 	function fChkNenu()
 	{
@@ -96,11 +96,11 @@
 	}
 
 	/***************************
-		¸Ş´º±ÇÇÑ ÀúÀå
+		ë©”ë‰´ê¶Œí•œ ì €ì¥
 	***************************/
 	function fSumbit()
 	{
-		if(!confirm("±ÇÇÑÁ¤º¸¸¦ ÀúÀåÇÏ½Ã°Ú½À´Ï±î?"))	return;
+		if(!confirm("ê¶Œí•œì •ë³´ë¥¼ ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))	return;
 
 		var	form	=	document.form1;
 		form.method	=	"POST";
@@ -120,8 +120,8 @@
 		  <col>
 		</colgroup>
 		<tr>
-		  <th>¼±ÅÃ</th>
-		  <th>ºÎ¼­¸í</th>
+		  <th>ì„ íƒ</th>
+		  <th>ë¶€ì„œëª…</th>
 		</tr>
 		<%
 			String	_sChecked					=	"";

@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
-String sMemberNo = u.request("member_no");	//	È¸¿ø¹øÈ£
+String sMemberNo = u.request("member_no");	//	íšŒì›ë²ˆí˜¸
 if(sMemberNo.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;	
 }
 
 DataObject doTM = new DataObject("tcb_member");
 DataSet dsTM = doTM.find("	member_no = '"+sMemberNo+"'");
 if(!dsTM.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }else
 {
@@ -21,7 +21,7 @@ p.setLayout("popup");
 p.setVar(dsTM);
 //p.setDebug(out);
 p.setBody("buyer.pop_member_insert");
-p.setVar("popup_title","°Å·¡Ã³ ÀÏ°ýµî·Ï");
+p.setVar("popup_title","ê±°ëž˜ì²˜ ì¼ê´„ë“±ë¡");
 p.setVar("form_script", f.getScript());
 p.display(out);
 

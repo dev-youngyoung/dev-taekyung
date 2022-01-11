@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String seq = u.request("seq");
 if(seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -10,7 +10,7 @@ if(seq.equals("")){
 DataObject recruitDao = new DataObject("tcb_recruit");
 DataSet recruit = recruitDao.find("member_no = '"+_member_no+"' and seq = '"+seq+"' ");
 if(!recruit.next()){
-	u.jsError("°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -21,7 +21,7 @@ f.addElement("s_vendnm",null, null);
 f.addElement("s_vendcd",null, null);
 f.addElement("s_category",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -69,7 +69,7 @@ while(ds.next()){
 if(u.request("mode").equals("excel")){
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("Çù·Â¾÷Ã¼¸ðÁýÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("í˜‘ë ¥ì—…ì²´ëª¨ì§‘í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/cust/recruit_supp_list_excel.html"));
 	return;
 }

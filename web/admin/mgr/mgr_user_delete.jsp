@@ -1,22 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String admin_id = u.request("admin_id");
 if(admin_id.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject mgrUserDao = new DataObject("tcc_admin");
 DataSet mgr_user = mgrUserDao.find("admin_id = '"+admin_id+"' ");
 if(!mgr_user.next()){
-	u.jsError("°ü¸®ÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê´€ë¦¬ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!mgrUserDao.delete(" admin_id = '"+admin_id+"' ")){
-	u.jsError("»èÁ¦Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì‚­ì œì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦Ã³¸® ÇÏ¿´½À´Ï´Ù.", "mgr_user_list.jsp?"+u.getQueryString("admin_id"));
+u.jsAlertReplace("ì‚­ì œì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "mgr_user_list.jsp?"+u.getQueryString("admin_id"));
 %>

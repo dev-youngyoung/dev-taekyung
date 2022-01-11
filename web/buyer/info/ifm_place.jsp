@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String person_seq = u.request("person_seq");
 if(person_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -11,7 +11,7 @@ f.addElement("idx",null, null);
 if(u.isPost()&&!f.get("fields").equals("")){
 	String fields = f.get("fields");
 	if(fields.equals("")){
-		u.jsError("ÀúÀåÇÒ ³»¿ëÀÌ ¾ø½À´Ï´Ù.");
+		u.jsError("ì €ìž¥í•  ë‚´ìš©ì´ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	DB db = new DB();
@@ -25,7 +25,7 @@ if(u.isPost()&&!f.get("fields").equals("")){
 		db.setCommand(personFieldDao.getInsertQuery(), personFieldDao.record);
 	}
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	u.redirect("ifm_place.jsp?"+u.getQueryString());
@@ -48,7 +48,7 @@ DataSet ds = dao.query(
 );
 
 while(ds.next()){
-	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"»ç¿ëÁß":"¹Ì»ç¿ë");
+	ds.put("use_yn", ds.getString("use_yn").equals("Y")?"ì‚¬ìš©ì¤‘":"ë¯¸ì‚¬ìš©");
 }
 
 p.setLayout("blank");

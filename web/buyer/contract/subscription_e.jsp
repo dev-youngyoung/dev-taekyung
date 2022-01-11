@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 
 String template = "";  
-template = u.aseDec(u.request("c")); // ³ªÀÌ½ºÆäÀÌ¸ÕÃ÷, ³ªÀÌ½ºÁ¤º¸Åë½Å ºÐ¸®¸¦ À§ÇØ¼­ template_cd¸¦ ¹Þ¾Æ¼­ ºÐ¸® (html´Ü¿¡¼­ ¹®±¸°¡ ¼­·Î ´Ù¸§)
+template = u.aseDec(u.request("c")); // ë‚˜ì´ìŠ¤íŽ˜ì´ë¨¼ì¸ , ë‚˜ì´ìŠ¤ì •ë³´í†µì‹  ë¶„ë¦¬ë¥¼ ìœ„í•´ì„œ template_cdë¥¼ ë°›ì•„ì„œ ë¶„ë¦¬ (htmlë‹¨ì—ì„œ ë¬¸êµ¬ê°€ ì„œë¡œ ë‹¤ë¦„)
 	  
 p.setLayout("subscription");
 //p.setDebug(out);

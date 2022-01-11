@@ -1,11 +1,11 @@
-<form novalidate name="form1" id="form1" method="post" onsubmit="return formSubmit(this);">
+﻿<form novalidate name="form1" id="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="save" value="1">
 <input type="hidden" name="chk_vendcd" value="0">
 
 <div class="div_table" id="aaa">
     <div class="util-row">
         <div class="push-left">
-            <h3>ȸ������</h3>
+            <h3>회사정보</h3>
         </div>
     </div>
     <table>
@@ -16,15 +16,15 @@
         <col width="35%">
     </colgroup>
     <tr>
-        <th class="req-check">��ȣ</th>
+        <th class="req-check">상호</th>
         <td><input type="text" name="vendnm" style="width:95%" /></td>
-        <th <!-- IFNOT START 'modify' -->class="req-check"<!-- IFNOT END 'modify' -->>����ڹ�ȣ</th>
+        <th <!-- IFNOT START 'modify' -->class="req-check"<!-- IFNOT END 'modify' -->>사업자번호</th>
         <td>
             <!-- IFNOT START 'modify' -->
             <input type="text" name="vendcd1" size="3" maxlength="3" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd2')"> -
             <input type="text" name="vendcd2" size="2" maxlength="2" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd3');movePrv('vendcd1')"> -
             <input type="text" name="vendcd3" size="5" maxlength="5" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('vendcd2')">
-            <button type="button"  class="sbtn color ico-search" onclick="chkVendcd()"><span></span>�ߺ�Ȯ��</button>
+            <button type="button"  class="sbtn color ico-search" onclick="chkVendcd()"><span></span>중복확인</button>
             <!-- IFNOT END 'modify' -->
             <!-- IF START 'modify' -->
             {{supp.vendcd}}
@@ -33,27 +33,27 @@
         </td>
     </tr>
     <tr>
-        <th class="req-check">��ǥ�ڸ�</th>
+        <th class="req-check">대표자명</th>
         <td><input type="text" name="boss_name" style="width:95%" maxlength="30" ></td>
-        <th class="req-check">��������</th>
-        <td><input type="text" name="worker_cnt" maxlength="4" size="4" style="ime-mode:disabled;text-align:right" onkeydown="num_only()" onkeypress="num_only()" onKeyUp="fnMakeComma()"/> ��</td>
+        <th class="req-check">종업원수</th>
+        <td><input type="text" name="worker_cnt" maxlength="4" size="4" style="ime-mode:disabled;text-align:right" onkeydown="num_only()" onkeypress="num_only()" onKeyUp="fnMakeComma()"/> 명</td>
     </tr>
     <tr>
-        <th class="req-check">�ּ�</th>
+        <th class="req-check">주소</th>
         <td colspan="3">
             <input type="text" name="post_code" class="in_readonly" readonly size="6">
-            <button type="button"  class="sbtn color ico-search" onclick="jusoPopup()"><span></span>������ȣã��</button>
+            <button type="button"  class="sbtn color ico-search" onclick="jusoPopup()"><span></span>우편번호찾기</button>
             <input type="text" name="address" style="width:95%" maxlength="150">
         </td>
     </tr>
     <tr>
-        <th class="req-check">�ں���</th>
-        <td><input type="text" name="capital" size="10" maxlength="10" style="ime-mode:disabled;text-align:right" onKeyDown="num_only()" onkeypress="num_only()" onKeyUp="fnMakeComma()"> �鸸��</td>
-        <th class="req-check">�� �����</th>
-        <td><input type="text" name="sales_amt" size="10" maxlength="10" style="ime-mode:disabled;text-align:right" onKeyDown="num_only()" onkeypress="num_only()" onKeyUp="fnMakeComma()"> �鸸��(2014�����)</td>
+        <th class="req-check">자본금</th>
+        <td><input type="text" name="capital" size="10" maxlength="10" style="ime-mode:disabled;text-align:right" onKeyDown="num_only()" onkeypress="num_only()" onKeyUp="fnMakeComma()"> 백만원</td>
+        <th class="req-check">년 매출액</th>
+        <td><input type="text" name="sales_amt" size="10" maxlength="10" style="ime-mode:disabled;text-align:right" onKeyDown="num_only()" onkeypress="num_only()" onKeyUp="fnMakeComma()"> 백만원(2014년기준)</td>
     </tr>
     <tr>
-        <th class="req-check">��� �о�</th>
+        <th class="req-check">취급 분야</th>
         <td colspan="3">
             <input type="hidden" name="category_cds">
             <!-- LOOP START 'category' -->
@@ -68,10 +68,10 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>�ֿ� ��ǰó<span> �� �ּ� 2���̻��� ��ǰó�� �Է��ϼ���.</span></h3>
+            <h3>주요 납품처<span> ※ 최소 2개이상의 납품처를 입력하세요.</span></h3>
         </div>
         <div class="push-right">
-            <button type="button" class="sbtn color ico-add" onclick="client_grid.addRow();"><span></span>�߰�</button>
+            <button type="button" class="sbtn color ico-add" onclick="client_grid.addRow();"><span></span>추가</button>
         </div>
     </div>
     <table id="client_grid">
@@ -83,20 +83,20 @@
      </colgroup>
      <thead>
      <tr>
-       <th>��ǰ�⵵</th>
-       <th>��ǰó</th>
-       <th>���</th>
-       <th>���</th>
+       <th>납품년도</th>
+       <th>납품처</th>
+       <th>비고</th>
+       <th>기능</th>
       </tr>
       </thead>
       <tbody>
       <!-- LOOP START 'client' -->
         <tr>
-            <td align="center"><input type="text" name="delivery_year" style="ime-mode:disabled" size="4" required="Y" hname="��ǰ�⵵" onkeydown="num_only()" onkeypress="num_only()" value="{{client.delivery_year}}" /> ��</td>
-            <td><input type="text" name="client_name" style="width:95%" required="Y" hname="��ǰó" value="{{client.client_name}}" /></td>
+            <td align="center"><input type="text" name="delivery_year" style="ime-mode:disabled" size="4" required="Y" hname="납품년도" onkeydown="num_only()" onkeypress="num_only()" value="{{client.delivery_year}}" /> 년</td>
+            <td><input type="text" name="client_name" style="width:95%" required="Y" hname="납품처" value="{{client.client_name}}" /></td>
             <td><input type="text" name="client_etc" style="width:95%" value="{{client.etc}}"/></td>
             <td align="center">
-                <button type="button" class="sbtn color" onclick="client_grid.del(this)">����</button>
+                <button type="button" class="sbtn color" onclick="client_grid.del(this)">삭제</button>
             </td>
         </tr>
       <!-- LOOP END 'client' -->
@@ -107,10 +107,10 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>��ǥ ǰ��<span> �� �ּ� 1���̻��� ��ǥǰ���� �Է��ϼ���.</span></h3>
+            <h3>대표 품목<span> ※ 최소 1개이상의 대표품목을 입력하세요.</span></h3>
         </div>
         <div class="push-right">
-            <button type="button" class="sbtn color ico-add" onclick="item_grid.addRow();"><span></span>�߰�</button>
+            <button type="button" class="sbtn color ico-add" onclick="item_grid.addRow();"><span></span>추가</button>
         </div>
     </div>
     <table id="item_grid">
@@ -121,18 +121,18 @@
     </colgroup>
     <thead>
     <tr>
-        <th>�����</th>
-        <th>���</th>
-        <th>���</th>
+        <th>폼목명</th>
+        <th>비고</th>
+        <th>기능</th>
     </tr>
     </thead>
     <tbody>
     <!-- LOOP START 'item' -->
     <tr>
-        <td class="hcel_l"><input type="text" name="item_name" style="width:95%" required="Y" hname="ǰ���" value="{{item.item_name}}"/></td>
+        <td class="hcel_l"><input type="text" name="item_name" style="width:95%" required="Y" hname="품목명" value="{{item.item_name}}"/></td>
         <td class="hcel_l"><input type="text" name="item_etc" style="width:95%" value="{{item.etc}}"/></td>
         <td class="hcel_r" align="center">
-            <button type="button" class="sbtn color" onclick="item_grid.del(this)">����</button>
+            <button type="button" class="sbtn color" onclick="item_grid.del(this)">삭제</button>
         </td>
     </tr>
     <!-- LOOP END 'item' -->
@@ -143,7 +143,7 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>���������</h3>
+            <h3>담당자정보</h3>
         </div>
     </div>
     <table>
@@ -154,22 +154,22 @@
         <col width="35%">
     </colgroup>
     <tr>
-        <th class="req-check">�̸�</th>
+        <th class="req-check">이름</th>
         <td><input type="text" name="user_name" style="width:95%" /></td>
-        <th class="req-check">��å</th>
+        <th class="req-check">직책</th>
         <td><input type="text" name="position" style="width:95%" /></td>
     </tr>
     <tr>
-        <th class="req-check">�μ�</th>
+        <th class="req-check">부서</th>
         <td><input type="text" name="dept_name" style="width:95%" /></td>
-        <th class="req-check">��ȭ��ȣ</th>
-        <td><input type="text" name="tel_num" style="width:100px" /> <font color="gray">��) 02-788-9097</font></td>
+        <th class="req-check">전화번호</th>
+        <td><input type="text" name="tel_num" style="width:100px" /> <font color="gray">예) 02-788-9097</font></td>
     </tr>
     <tr>
-        <th class="req-check">�ڵ�����ȣ</th>
+        <th class="req-check">핸드폰번호</th>
         <td>
             <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
-                <option value="">����</option>
+                <option value="">선택</option>
                 <option value="010">010</option>
                 <option value="011">011</option>
                 <option value="016">016</option>
@@ -180,18 +180,18 @@
             <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
             <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
         </td>
-        <th>�ѽ���ȣ</th>
-        <td><input type="text" name="fax_num" style="width:100px" /> <font color="gray">��) 02-788-9097</font></td>
+        <th>팩스번호</th>
+        <td><input type="text" name="fax_num" style="width:100px" /> <font color="gray">예) 02-788-9097</font></td>
     </tr>
     <tr>
-        <th class="req-check">��й�ȣ</th>
+        <th class="req-check">비밀번호</th>
         <td colspan="3">
             <input type="password" name="passwd" maxlength="20" size="20" />
-            <span class="caution-text">�� ��û���� ��ȸ �� ������ Ȯ�� �� ��й�ȣ�� �Է� �ϼ���.</span>
+            <span class="caution-text">※ 신청정보 조회 및 수정시 확인 할 비밀번호를 입력 하세요.</span>
         </td>
     </tr>
     <tr>
-    <th class="req-check">��й�ȣ Ȯ��</th>
+    <th class="req-check">비밀번호 확인</th>
     <td colspan="3">
         <input type="password" name="passwd2" maxlength="20" size="20" />
     </td>
@@ -201,12 +201,12 @@
 
 <div class="btn-group-wrap">
     <!-- IFNOT START 'modify' -->
-    <button type="submit" class="sbtn color ico-save"><span></span>��û�ϱ�</button>
+    <button type="submit" class="sbtn color ico-save"><span></span>신청하기</button>
     <!-- IFNOT END 'modify' -->
     <!-- IF START 'modify' -->
-    <button type="submit" class="sbtn color ico-change"><span></span>�����ϱ�</button>
+    <button type="submit" class="sbtn color ico-change"><span></span>수정하기</button>
     <!-- IF END 'modify' -->
-    <button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>�ݱ�</button>
+    <button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>닫기</button>
 </div>
 </form>
 {{form_script}}
@@ -220,10 +220,10 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>����Ȯ��</h3>
+            <h3>본인확인</h3>
         </div>
         <div class="push-right">
-            <span style="font-size:11px;color: #e08036;">�� ��û�� �Է��� ��й�ȣ�� �Է� �ϼ���.</span>
+            <span style="font-size:11px;color: #e08036;">※ 신청시 입력한 비밀번호를 입력 하세요.</span>
         </div>
     </div>
     <table>
@@ -232,13 +232,13 @@
         <col width="60%">
     </colgroup>
     <tr>
-        <th>��й�ȣ</th>
+        <th>비밀번호</th>
         <td><input type="password" name="passwd3" style="width:95%" /></td>
     </tr>
     </table>
     <div class="btn-group-wrap">
-        <button type="button" class="sbtn color" onclick="formSubmit2();"><span></span>Ȯ��</button>
-        <button type="button" class="sbtn color" onclick="hidePasswd();"><span></span>���</button>
+        <button type="button" class="sbtn color" onclick="formSubmit2();"><span></span>확인</button>
+        <button type="button" class="sbtn color" onclick="hidePasswd();"><span></span>취소</button>
     </div>
 </div>
 </form> 
@@ -247,20 +247,20 @@
 <div style="display:none">
 <table id="client_template">
 	<tr>
-		<td><input type="text" name="delivery_year" style="ime-mode:disabled" size="4" required="Y" hname="��ǰ�⵵" onkeydown="num_only()" onkeypress="num_only()" /> ��</td>
-		<td><input type="text" name="client_name" style="width:95%" required="Y" hname="��ǰó" /></td>
+		<td><input type="text" name="delivery_year" style="ime-mode:disabled" size="4" required="Y" hname="납품년도" onkeydown="num_only()" onkeypress="num_only()" /> 년</td>
+		<td><input type="text" name="client_name" style="width:95%" required="Y" hname="납품처" /></td>
 		<td><input type="text" name="client_etc" style="width:95%" /></td>
 		<td align="center">
-            <button type="button" class="sbtn color" onclick="client_grid.del(this)">����</button>
+            <button type="button" class="sbtn color" onclick="client_grid.del(this)">삭제</button>
         </td>
 	</tr>
 </table>
 <table id="item_template">
 	<tr>
-	   <td class="hcel_l"><input type="text" name="item_name" style="width:95%" required="Y" hname="ǰ���" /></td>
+	   <td class="hcel_l"><input type="text" name="item_name" style="width:95%" required="Y" hname="품목명" /></td>
 	   <td class="hcel_l"><input type="text" name="item_etc" style="width:95%" /></td>
 	   <td class="hcel_r" align="center">
-           <button type="button" class="sbtn color" onclick="item_grid.del(this)">����</button>
+           <button type="button" class="sbtn color" onclick="item_grid.del(this)">삭제</button>
        </td>
 	 </tr>
 </table>
@@ -273,25 +273,25 @@ function formSubmit(f){
 	if(validate(f)){
 		<!-- IFNOT START 'modify' -->
 		if(f['chk_vendcd'].value!="1"){
-			alert("����ڵ�Ϲ�ȣ �ߺ� Ȯ���� �� �ּ���.");
+			alert("사업자등록번호 중복 확인을 해 주세요.");
 			return false;
 		}
 		<!-- IFNOT END 'modify' -->
 		if(document.getElementById("client_grid").rows.length<3){
-			alert("�ֿ䳳ǰó�� 2�� �̻� ����ϼ���.");
+			alert("주요납품처를 2개 이상 등록하세요.");
 			return false;
 		}
 		if(document.getElementById("item_grid").rows.length<2){
-			alert("��ǥǰ���� 1�� �̻� ����ϼ���.");
+			alert("대표품목을 1개 이상 등록하세요.");
 			return false;
 		}
 		<!-- IFNOT START 'modify' -->
-		if(confirm("��û�Ͻðڽ��ϱ�?")){
+		if(confirm("신청하시겠습니까?")){
 			return true; 
 		}
 		<!-- IFNOT END 'modify' -->
 		<!-- IF START 'modify' -->
-		if(confirm("�����Ͻðڽ��ϱ�?")){
+		if(confirm("수정하시겠습니까?")){
 			return true; 
 		}
 		<!-- IF END 'modify' -->
@@ -304,7 +304,7 @@ function formSubmit2(){
 	var vendcd = document.forms["form1"]['vendcd'].value;
 	f['vendcd'].value=vendcd;
 	if(f['passwd3'].value==""){
-		alert("��й�ȣ�� �Է��ϼ���.");
+		alert("비밀번호를 입력하세요.");
 		f['passwd'].focus();
 		return;
 	}
@@ -329,7 +329,7 @@ function chkVendcd (){
 	var f = document.forms['form1'];
 	var vendcd = f['vendcd1'].value + f['vendcd2'].value + f['vendcd3'].value;
 	if(vendcd.length!=10){
-		alert("����ڵ�Ϲ�ȣ�� ��Ȯ�� �Է��ϼ���.");
+		alert("사업자등록번호를 정확히 입력하세요.");
 		return;
 	}
 	call("./chk_recruit_vendcd.jsp?{{query}}&vendcd="+vendcd);
@@ -383,7 +383,7 @@ client_grid.addRow();
 client_grid.addRow();
 item_grid.addRow();
 setDisableWrite();
-alert("����ڵ�Ϲ�ȣ �ߺ� Ȯ�� �� ��û/�ۼ� �����մϴ�.");
+alert("사업자등록번호 중복 확인 후 신청/작성 가능합니다.");
 document.forms['form1']['vendcd1'].focus();
 <!-- IFNOT END 'modify' -->
 

@@ -85,7 +85,7 @@ public class Generator {
 			while(columns.next()) {
 				columns.put("column_length", columns.getInt("numeric_precision") > 0 ? columns.getInt("numeric_precision") : columns.getInt("character_maximum_length"));
 			}
-			this.priName = "id"; //mysql 烙矫
+			this.priName = "id"; //mysql 鞛勳嫓
 		} else if("oracle".equals(dbType)) {
 			//table info
 			tableInfo = conn.query("SELECT a.*, b.comments table_comment FROM USER_TABLES a LEFT JOIN USER_TAB_COMMENTS b ON a.table_name=b.table_name WHERE a.table_name='" + table + "'");
@@ -186,7 +186,7 @@ public class Generator {
 		//write file
 		String path = daoDir + "/" + daoName + ".java";
 		if(isFile) writeFile(result, path);
-		else setMessage(path, " 家胶积己");
+		else setMessage(path, " 靻岇姢靸濎劚");
 		//display
 		display(out, result);
 	}
@@ -197,7 +197,7 @@ public class Generator {
 		//write file
 		String path = outDir + "/" + dirName + "/" + type + ".jsp";
 		if(isFile) writeFile(result, path);
-		else setMessage(path, " 家胶积己");
+		else setMessage(path, " 靻岇姢靸濎劚");
 		//display
 		display(out, result);
 	}
@@ -227,7 +227,7 @@ public class Generator {
 		p.setVar("obj", objName);
 		p.setVar("dao", daoName);
 		p.setVar("table_comment", tableComment);
-		p.setVar("table_comment_conv", tableComment.replaceAll("沥焊", ""));
+		p.setVar("table_comment_conv", tableComment.replaceAll("鞝曤炒", ""));
 		p.setVar("dir", dirName);
 		p.setVar("table", table);
 		p.setVar("prefix", prefixName);
@@ -239,7 +239,7 @@ public class Generator {
 		//write file
 		String path = outDir + "/" + dirName + "/" + prefixName + "_" + type + ".jsp";
 		if(isFile) writeFile(result, path);
-		else setMessage(path, " 家胶积己");
+		else setMessage(path, " 靻岇姢靸濎劚");
 		//display
 		display(out, result);
 	}
@@ -248,7 +248,7 @@ public class Generator {
 		p.setRoot(srcDir + "/html");
 		p.setLoop("elements", elements);
 		p.setVar("table_comment", tableComment);
-		p.setVar("table_comment_conv", tableComment.replaceAll("沥焊", ""));
+		p.setVar("table_comment_conv", tableComment.replaceAll("鞝曤炒", ""));
 		p.setVar("obj", objName);
 		p.setVar("dir", dirName);
 		p.setVar("if_start_id", "<!-- IF START 'id' -->");
@@ -283,7 +283,7 @@ public class Generator {
 		//write file
 		String path = outDir + "/html/" + dirName + "/" + prefixName + "_" + type + ".html";
 		if(isFile) writeFile(result, path);
-		else setMessage(path, " 家胶积己");
+		else setMessage(path, " 靻岇姢靸濎劚");
 		//display
 		display(out, result);
 	}
@@ -297,7 +297,7 @@ public class Generator {
 		if("over".equals(writeType)) {
 			if(f.exists()) {
 				Util.copyFile(path, path + ".bak");
-				setMessage(path + ".bak", " 积己");
+				setMessage(path + ".bak", " 靸濎劚");
 			}
 		} else if("new".equals(writeType)) {
 			path = getNewFilePath(path);
@@ -319,7 +319,7 @@ public class Generator {
 	//	String user = jndi.substring(jndi.indexOf("/") + 1);
 		if(!isWindows) Runtime.getRuntime().exec("chown -R " + user + ":" + user + " " + ("dao".equals(this.type) ? daoDir : outDir));
 
-		setMessage(path, " 积己");
+		setMessage(path, " 靸濎劚");
 	}
 
 	private String getNewFilePath(String path) {
@@ -411,7 +411,7 @@ public class Generator {
 		try {
 			String srcDir = root + "/generator/result_src";
 			Util.copyFile(srcDir, outDir);
-			setMessage("[ 扁夯券版汗备肯丰 ]" + "<br>");
+			setMessage("[ 旮半掣頇橁步氤店惮鞕勲 ]" + "<br>");
 		} catch(Exception e) {
 			out.print(e);
 		}

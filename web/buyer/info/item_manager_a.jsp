@@ -1,5 +1,5 @@
 <%@page import="java.net.URLDecoder"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String l_cd = u.request("l_cd");
 String mode = u.request("mode");

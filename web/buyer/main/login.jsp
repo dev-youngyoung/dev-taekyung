@@ -1,114 +1,90 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
+String sign_data = u.request("sign_data");
+String vend_cd = u.request("vend_cd");
 String user_id = u.request("user_id").trim();
 String passwd = u.request("passwd").trim();
-String re = u.request("re");
-int nTryCnt = u.parseInt(u.getCookie("try"));  // ·Î±×ÀÎ½Ãµµ È½¼ö
-if(nTryCnt >= 5)
-{
+
+//ë¡œê·¸ì¸ì‹œë„ íšŸìˆ˜
+int nTryCnt = u.parseInt(u.getCookie("try"));
+if (nTryCnt >= 5) {
 	out.print("<script>");
-	out.print("alert('·Î±×ÀÎ 5È¸ ½ÇÆĞ·Î 5ºĞµ¿¾È ·Î±×ÀÎÇÒ ¼ö ¾ø½À´Ï´Ù.\\n\\n5ºĞ ÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.');");
+	out.print("alert('ë¡œê·¸ì¸ 5íšŒ ì‹¤íŒ¨ë¡œ 5ë¶„ë™ì•ˆ ë¡œê·¸ì¸í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\n\\n5ë¶„ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.');");
+	out.print("parent.closeLoading();");
 	out.print("history.back();");
 	out.print("</script>");
 	out.close();
 	return;
 }
 
-
-DataObject pdao = new DataObject("tcb_person");
-DataSet person = pdao.find("lower(user_id) = lower('"+user_id+"') and status > '0'  and use_yn = 'Y' ");
-if(person.next()){//
-	if(	person.getString("passwd").equals(u.md5(passwd))	||
-			passwd.equals("docu@9095!")	||
-			person.getString("passwd").equals(u.sha256(passwd))
-		)
-	{
-		DataObject mdao = new DataObject("tcb_member");
-		DataSet member = mdao.find("member_no = '"+person.getString("member_no")+"' ");
-		if(!member.next()){
+DataSet person = new DataSet();
+if (sign_data != null && !sign_data.isEmpty()) {
+	// ì¸ì¦ì„œë°ì´í„°ê°€ ë„˜ì–´ì˜¤ë©´ ì¸ì¦ì„œì •ë³´ë¡œ tcb_memberë¥¼ ì°¾ì•„ í•´ë‹¹í•˜ëŠ” tcb_personì˜ seq=1ì¸ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜´
+	Crosscert crosscert = new Crosscert();
+	crosscert.setEncoding("UTF-8");
+	if (crosscert.chkSignVerify(sign_data).equals("SIGN_ERROR")){
+		out.print("<script>");
+		out.print("alert('ì„œëª…ê²€ì¦ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.');");
+		out.print("parent.closeLoading();");
+		out.print("</script>");
+		out.close();
+		return;
+	}
+	String cert_dn = crosscert.getDn();
+	
+	DataObject mDao = new DataObject("tcb_member");
+	DataSet member = mDao.find("cert_dn = '" + cert_dn + "' and vendcd = '" + vend_cd + "'");
+	if (member.next()) {
+		if (member.getString("status").equals("00")) {
 			out.print("<script>");
-			out.print("alert('È¸»çÁ¤º¸°¡ ¾ø½À´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.');");
-			if(!re.equals(""))
-				out.print("history.back();");
+			out.print("alert('íƒˆí‡´ëœ íšŒì›ì…ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+			out.print("parent.closeLoading();");
 			out.print("</script>");
 			out.close();
 			return;
 		}
-		if(member.getString("status").equals("00")){
+		if (!member.getString("status").equals("01")) {
 			out.print("<script>");
-			out.print("alert('Å»ÅğµÈ È¸¿øÀÔ´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.');");
-			out.print("</script>");
-			out.close();
-			return;
-		}
-		if(!member.getString("status").equals("01")){
-			out.print("<script>");
-			out.print("alert('Á¤È¸¿øÀ¸·Î µî·ÏµÈ »ç¿ëÀÚ°¡ ¾Æ´Õ´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.');");
+			out.print("alert('ì •íšŒì›ìœ¼ë¡œ ë“±ë¡ëœ ì‚¬ìš©ìê°€ ì•„ë‹™ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+			out.print("parent.closeLoading();");
 			out.print("</script>");
 			out.close();
 			return;
 		}
 		
+		DataObject pdao = new DataObject("tcb_person");
+		person = pdao.find("member_no = '" + member.getString("member_no") + "' and person_seq = '1' and status > '0' and use_yn = 'Y' ");
 		
-		if(person.getString("member_no").equals("20150500269") && !passwd.equals("docu@9095!"))
-		{
-			boolean passLogin = false;
-			String sRemoteAddr = request.getRemoteAddr();
-			System.out.println("´ë´öÀüÀÚ login : " + user_id + "/" + sRemoteAddr);
-			
-			if(!sRemoteAddr.equals(""))
-			{
-				String[] arrAddr = sRemoteAddr.split("\\.");
-				if(arrAddr.length==4)
-				{
-					//System.out.println(arrAddr[0] + "/" + arrAddr[1]+ "/" + arrAddr[2]+ "/" + arrAddr[3]);
-					
-					if(arrAddr[0].equals("61") && arrAddr[1].equals("83")&& arrAddr[2].equals("212") )
-						passLogin = true;
-				}
-			}
-			
-			if(!passLogin){
-				out.print("<script>");
-				out.print("alert('´ë´öÀüÀÚ È¸»ç³»ºÎ ÄÄÇ»ÅÍ¿¡¼­¸¸ ·Î±×ÀÎ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.\\n\\nÀÚ¼¼ÇÑ »çÇ×Àº °í°´¼¾ÅÍ(02-788-9097)·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.');");
-				out.print("</script>");
-				out.close();
-				return;
-			}
-		}		
-		
-		auth.put("_MEMBER_NO", member.getString("member_no"));
-		auth.put("_MEMBER_TYPE", member.getString("member_type"));
-		auth.put("_MEMBER_GUBUN", member.getString("member_gubun"));
-		auth.put("_VENDCD", member.getString("vendcd"));
-		auth.put("_MEMBER_NAME", member.getString("member_name"));
-		auth.put("_CERT_DN", member.getString("cert_dn"));
-		auth.put("_CERT_END_DATE", u.getTimeString("yyyyMMdd",member.getString("cert_end_date")));
-		if(!member.getString("logo_img_path").equals(""))
-			auth.put("_LOGO_IMG_PATH", member.getString("logo_img_path"));
-		
-		auth.put("_PERSON_SEQ", person.getString("person_seq"));
-		auth.put("_USER_ID", person.getString("user_id"));
-		auth.put("_USER_NAME", person.getString("user_name"));
-		auth.put("_DEFAULT_YN", person.getString("default_yn").equals("Y")?"Y":"N");
-		auth.put("_USER_LEVEL", person.getString("user_level"));
-		auth.put("_USER_GUBUN", person.getString("user_gubun"));
-		auth.put("_FIELD_SEQ", person.getString("field_seq"));
-		auth.put("_DIVISION", person.getString("division"));
-		auth.put("_AUTH_CD", person.getString("auth_cd"));
-		
-
-		DataObject menuDao = new DataObject("tcb_menu_member");
-		// ÀüÀÚ°è¾à °ø¶÷±â´É »ç¿ë¿©ºÎ
-		if( menuDao.findCount("menu_cd = '000077' and member_no='"+member.getString("member_no")+"'")>0){
-			auth.put("_CONT_SHARE_ABLE", "Y");
-		}
-		// ÀüÀÚÀÔÂû °ø¶÷±â´É »ç¿ë¿©ºÎ
-		if( menuDao.findCount("menu_cd = '000204' and member_no='"+member.getString("member_no")+"'")>0){
-			auth.put("_BID_SHARE_ABLE", "Y");
+		if (!person.next()) {
+			out.print("<script>");
+			out.print("alert('ì‚¬ìš©ìì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+			out.print("parent.closeLoading();");
+			out.print("</script>");
+			out.close();
+			return;
 		}
 		
-		//·Î±×ÀÎ ·Î±× 
+		auth.put("_MEMBER_NO", member.getString("member_no")); // íšŒì›ë²ˆí˜¸(ë†ì‹¬ìœ¼ë¡œ ê³ ì •)
+		auth.put("_MEMBER_TYPE", member.getString("member_type")); // ê³¼ì—…ì—…ì²´ êµ¬ë¶„(ê°‘:01/ì„:02/ê°‘ì„:03)
+		auth.put("_MEMBER_GUBUN", member.getString("member_gubun")); // íšŒì›êµ¬ë¶„(ë²•ì¸ ë³¸ì‚¬:01/ë²•ì¸ ì§€ì‚¬:02/ê°œì¸ì‚¬ì—…ì:03/ê°œì¸:04)
+		auth.put("_VENDCD", member.getString("vendcd")); // ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸
+		auth.put("_MEMBER_NAME", member.getString("member_name")); // ì—…ì²´ëª…
+		auth.put("_CERT_DN", member.getString("cert_dn")); // ì¸ì¦ì„œDN
+		auth.put("_CERT_END_DATE", u.getTimeString("yyyyMMdd",member.getString("cert_end_date"))); // ì¸ì¦ì„œë§Œë£Œì¼
+		if (!member.getString("logo_img_path").equals("")) {
+			auth.put("_LOGO_IMG_PATH", member.getString("logo_img_path")); // ë¡œê³ ì´ë¯¸ì§€ ê²½ë¡œ
+		}
+		auth.put("_PERSON_SEQ", person.getString("person_seq")); // ì¼ë ¨ë²ˆí˜¸
+		auth.put("_USER_ID", person.getString("user_id")); // ì•„ì´ë””
+		auth.put("_USER_NAME", person.getString("user_name")); // ì‚¬ìš©ìëª…
+		auth.put("_DEFAULT_YN", person.getString("default_yn").equals("Y") ? "Y" : "N"); // ì „ì²´ê´€ë¦¬ì ì—¬ë¶€
+		auth.put("_USER_LEVEL", person.getString("user_level")); // ì „ì²´/ë¶€ì„œ/ì¼ë°˜ êµ¬ë¶„
+		auth.put("_USER_GUBUN", person.getString("user_gubun")); // ë³¸ì‚¬/ì§€ì‚¬ ì—¬ë¶€
+		auth.put("_FIELD_SEQ", person.getString("field_seq")); // ë¶€ì„œë²ˆí˜¸
+		auth.put("_DIVISION", person.getString("division")); // ë¶€ì„œëª…
+		auth.put("_AUTH_CD", person.getString("auth_cd")); // ê¶Œí•œì½”ë“œ
+		
+		// ë¡œê·¸ì¸ ë¡œê·¸ ì €ì¥
 		DataObject loginLogDao = new DataObject("tcb_login_log");
 		loginLogDao.item("member_no", member.getString("member_no"));
 		loginLogDao.item("person_seq", person.getString("person_seq"));
@@ -120,107 +96,133 @@ if(person.next()){//
 		
 		auth.setAuthInfo();
 		out.print("<script>");
-		if(!re.equals("")){
-			
-			if(re.indexOf("eul_bid_view.jsp") > 0) // ÀÔÂû ÀÌ¸ŞÀÏ·Î Âü¿©
-			{
-				String[] arg = u.getQueryString("re").split("\\&");
-				String main_member_no = "";
-				String bid_no = "";
-				String bid_deg = "";
-				
-				System.out.println("re : " + re);
-				System.out.println("arg.length : " + arg.length);
-				
-				DataSet bid_info = new DataSet();
-				bid_info.addRow();
-				for(int z=0; z<arg.length; z++)
-				{
-					System.out.println("arg["+z+"] : " + arg[z]);
-					String[] sArg = arg[z].split("=");
-					if(sArg.length == 2)
-					{
-						bid_info.put(sArg[0], sArg[1]);
-					}
-				}
-				
-				// °ø°í¿¡ Âü¿© ¿©ºÎ È®ÀÎ ÈÄ µî·Ï
-				DataObject suppDao = new DataObject("tcb_bid_supp");
-				DataSet supp = suppDao.find("main_member_no = '"+bid_info.getString("main_member_no")+"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"' and member_no = '"+member.getString("member_no")+"'");
-				if(!supp.next())
-				{
-					suppDao.item("main_member_no", bid_info.getString("main_member_no"));
-					suppDao.item("bid_no", bid_info.getString("bid_no"));
-					suppDao.item("bid_deg", bid_info.getString("bid_deg"));
-					suppDao.item("member_no", member.getString("member_no"));
-					suppDao.item("vendcd", member.getString("vendcd"));
-					suppDao.item("member_name", member.getString("member_name"));
-					suppDao.item("boss_name", member.getString("boss_name"));
-					suppDao.item("user_name", person.getString("user_name"));
-					suppDao.item("hp1", person.getString("hp1"));
-					suppDao.item("hp2", person.getString("hp2"));
-					suppDao.item("hp3", person.getString("hp3"));
-					suppDao.item("email", person.getString("email"));
-					suppDao.item("status", 10);
-					//suppDao.item("display_seq", supp.size());
-					//if(bid.getString("field_yn").equals("Y")){
-					//	suppDao.item("field_conf_yn", "Y");
-					//}
-					if(!suppDao.insert()){
-						out.print("<script>");
-						out.print("alert('ÀÔÂû Á¤º¸ Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.');");
-						out.print("</script>");						
-					}
-				}				
-			}			
-			
-			out.print("parent.location.replace('"+re+"?"+u.getQueryString("re")+"');");
-		}else{
-			String passdate_done = u.getCookie("passdate_done");
+		String passdate_done = u.getCookie("passdate_done");
 
-			//ºñ¹Ğ¹øÈ£ º¯°æÀÏ +3°³¿ù < ÇöÀçÀÏÀÚ
-			if(person.getString("passdate").equals(""))person.put("passdate",person.getString("reg_date"));
-			if(
-					Integer.parseInt(u.addDate("M", 3, u.strToDate("yyyyMMddHHmmss", person.getString("passdate")),"yyyyMMdd"))
-				  < Integer.parseInt(u.getTimeString("yyyyMMdd"))
-				  && passdate_done.equals("")
-			  ){
-				out.print("parent.location.replace('changepass.jsp');");
-			}
-			else
-			{
-				out.print("parent.location.replace('index2.jsp');");
-			}
+		//ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì¼ +3ê°œì›” < í˜„ì¬ì¼ì
+		if (person.getString("passdate").equals("")) person.put("passdate",person.getString("reg_date"));
+		if (Integer.parseInt(u.addDate("M", 3, u.strToDate("yyyyMMddHHmmss", person.getString("passdate")),"yyyyMMdd"))
+			< Integer.parseInt(u.getTimeString("yyyyMMdd"))
+			&& passdate_done.equals("")) {
+			out.print("parent.location.replace('changepass.jsp');");
+		} else {
+			out.print("parent.location.replace('index2.jsp');");
 		}
 		out.print("</script>");
-
-		u.delCookie("try"); // ·Î±×ÀÎ½Ãµµ È½¼ö
-		u.setCookie("pin", Security.AESencrypt(user_id), 60*60*24*30); // ¾ÆÀÌµğ ´ÙÀ½ Á¢¼Ó½Ã ÀÚµ¿ Ç¥½ÃµÇµµ·Ï ÄíÅ°¿¡ÀúÀå(30ÀÏ°£)
-
-		//request.getSession().invalidate();
-		//request.getSession(true);
-
-	}else{ // ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡
+		
+		u.delCookie("try"); // ë¡œê·¸ì¸ì‹œë„ íšŸìˆ˜ ì œê±°
+	} else {
+		// ì¸ì¦ì„œì— ë§ëŠ” member ì—†ìŒ
 		nTryCnt++;
-		u.setCookie("try", Integer.toString(nTryCnt), 5*60);  // 5ºĞ
+		u.setCookie("try", Integer.toString(nTryCnt), 5*60);  // 5ë¶„
 		out.print("<script>");
-		out.print("alert('¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n[·Î±×ÀÎ ½ÇÆĞ:"+nTryCnt+"È¸, ³²Àº È½¼ö:"+(5-nTryCnt)+"È¸]');");
-		if(!re.equals(""))
-			out.print("history.back();");
+		out.print("alert('íšŒì‚¬ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+		out.print("parent.closeLoading();");
 		out.print("</script>");
 		out.close();
 		return;
 	}
-}else{// ¾ÆÀÌµğ ¾øÀ½
-	nTryCnt++;
-	u.setCookie("try", Integer.toString(nTryCnt), 5*60);  // 5ºĞ
-	out.print("<script>");
-	out.print("alert('¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n[·Î±×ÀÎ ½ÇÆĞ:"+nTryCnt+"È¸, ³²Àº È½¼ö:"+(5-nTryCnt)+"È¸]');");
-	if(!re.equals(""))
-		out.print("history.back();");
-	out.print("</script>");
-	out.close();
-	return;
-}
+} else {
+	// ì¸ì¦ì„œë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš° ê¸°ì¡´ì˜ ID/PWë¡œ tcb_personì˜ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜´
+	DataObject pdao = new DataObject("tcb_person");
+	person = pdao.find("lower(user_id) = lower('"+user_id+"') and status > '0' and use_yn = 'Y' and member_no != '20201000001'");
 
+	if (person.next()) {
+		if (person.getString("passwd").equals(u.md5(passwd)) || person.getString("passwd").equals(u.sha256(passwd))) {
+			DataObject mdao = new DataObject("tcb_member");
+			DataSet member = mdao.find("member_no = '"+person.getString("member_no")+"' ");
+			if (!member.next()) {
+				out.print("<script>");
+				out.print("alert('íšŒì‚¬ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+				out.print("parent.closeLoading();");
+				out.print("</script>");
+				out.close();
+				return;
+			}
+			if (member.getString("status").equals("00")) {
+				out.print("<script>");
+				out.print("alert('íƒˆí‡´ëœ íšŒì›ì…ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+				out.print("parent.closeLoading();");
+				out.print("</script>");
+				out.close();
+				return;
+			}
+			if (!member.getString("status").equals("01")) {
+				out.print("<script>");
+				out.print("alert('ì •íšŒì›ìœ¼ë¡œ ë“±ë¡ëœ ì‚¬ìš©ìê°€ ì•„ë‹™ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.');");
+				out.print("parent.closeLoading();");
+				out.print("</script>");
+				out.close();
+				return;
+			}
+			
+			auth.put("_MEMBER_NO", member.getString("member_no")); // íšŒì›ë²ˆí˜¸(ë†ì‹¬ìœ¼ë¡œ ê³ ì •)
+			auth.put("_MEMBER_TYPE", member.getString("member_type")); // ê³¼ì—…ì—…ì²´ êµ¬ë¶„(ê°‘:01/ì„:02/ê°‘ì„:03)
+			auth.put("_MEMBER_GUBUN", member.getString("member_gubun")); // íšŒì›êµ¬ë¶„(ë²•ì¸ ë³¸ì‚¬:01/ë²•ì¸ ì§€ì‚¬:02/ê°œì¸ì‚¬ì—…ì:03/ê°œì¸:04)
+			auth.put("_VENDCD", member.getString("vendcd")); // ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸
+			auth.put("_MEMBER_NAME", member.getString("member_name")); // ì—…ì²´ëª…
+			auth.put("_CERT_DN", member.getString("cert_dn")); // ì¸ì¦ì„œDN
+			auth.put("_CERT_END_DATE", u.getTimeString("yyyyMMdd",member.getString("cert_end_date"))); // ì¸ì¦ì„œë§Œë£Œì¼
+			if (!member.getString("logo_img_path").equals("")) {
+				auth.put("_LOGO_IMG_PATH", member.getString("logo_img_path")); // ë¡œê³ ì´ë¯¸ì§€ ê²½ë¡œ
+			}
+			auth.put("_PERSON_SEQ", person.getString("person_seq")); // ì¼ë ¨ë²ˆí˜¸
+			auth.put("_USER_ID", person.getString("user_id")); // ì•„ì´ë””
+			auth.put("_USER_NAME", person.getString("user_name")); // ì‚¬ìš©ìëª…
+			auth.put("_DEFAULT_YN", person.getString("default_yn").equals("Y") ? "Y" : "N"); // ì „ì²´ê´€ë¦¬ì ì—¬ë¶€
+			auth.put("_USER_LEVEL", person.getString("user_level")); // ì „ì²´/ë¶€ì„œ/ì¼ë°˜ êµ¬ë¶„
+			auth.put("_USER_GUBUN", person.getString("user_gubun")); // ë³¸ì‚¬/ì§€ì‚¬ ì—¬ë¶€
+			auth.put("_FIELD_SEQ", person.getString("field_seq")); // ë¶€ì„œë²ˆí˜¸
+			auth.put("_DIVISION", person.getString("division")); // ë¶€ì„œëª…
+			auth.put("_AUTH_CD", person.getString("auth_cd")); // ê¶Œí•œì½”ë“œ
+
+			// ë¡œê·¸ì¸ ë¡œê·¸ ì €ì¥
+			DataObject loginLogDao = new DataObject("tcb_login_log");
+			loginLogDao.item("member_no", member.getString("member_no"));
+			loginLogDao.item("person_seq", person.getString("person_seq"));
+			loginLogDao.item("user_id", person.getString("user_id"));
+			loginLogDao.item("login_ip", request.getRemoteAddr());
+			loginLogDao.item("login_date", u.getTimeString());
+			loginLogDao.item("login_url", request.getRequestURI());
+			loginLogDao.insert();
+			
+			auth.setAuthInfo();
+			out.print("<script>");
+			String passdate_done = u.getCookie("passdate_done");
+
+			//ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì¼ +3ê°œì›” < í˜„ì¬ì¼ì
+			if (person.getString("passdate").equals("")) person.put("passdate",person.getString("reg_date"));
+			if (Integer.parseInt(u.addDate("M", 3, u.strToDate("yyyyMMddHHmmss", person.getString("passdate")),"yyyyMMdd"))
+				< Integer.parseInt(u.getTimeString("yyyyMMdd"))
+				&& passdate_done.equals("")) {
+				out.print("parent.location.replace('changepass.jsp');");
+			} else {
+				out.print("parent.location.replace('index2.jsp');");
+			}
+			out.print("</script>");
+
+			u.delCookie("try"); // ë¡œê·¸ì¸ì‹œë„ íšŸìˆ˜ ì œê±°
+			u.setCookie("pin", Security.AESencrypt(user_id), 60*60*24*30); // ì•„ì´ë”” ë‹¤ìŒ ì ‘ì†ì‹œ ìë™ í‘œì‹œë˜ë„ë¡ ì¿ í‚¤ì—ì €ì¥(30ì¼ê°„)
+		} else {
+			// ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜
+			nTryCnt++;
+			u.setCookie("try", Integer.toString(nTryCnt), 5*60);  // 5ë¶„
+			out.print("<script>");
+			out.print("alert('ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\n[ë¡œê·¸ì¸ ì‹¤íŒ¨:"+nTryCnt+"íšŒ, ë‚¨ì€ íšŸìˆ˜:"+(5-nTryCnt)+"íšŒ]');");
+			out.print("parent.closeLoading();");
+			out.print("</script>");
+			out.close();
+			return;
+		}
+	} else {
+		// ì•„ì´ë”” ì—†ìŒ
+		nTryCnt++;
+		u.setCookie("try", Integer.toString(nTryCnt), 5*60);  // 5ë¶„
+		out.print("<script>");
+		out.print("alert('ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\n[ë¡œê·¸ì¸ ì‹¤íŒ¨:"+nTryCnt+"íšŒ, ë‚¨ì€ íšŸìˆ˜:"+(5-nTryCnt)+"íšŒ]');");
+		out.print("parent.closeLoading();");
+		out.print("</script>");
+		out.close();
+		return;
+	}
+}
 %>

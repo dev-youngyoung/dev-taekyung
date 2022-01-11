@@ -1,13 +1,13 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] kind_cd = {"N=>½Å±Ô","S=>¼ö½Ã","R=>Á¤±â"};
-String[] status_cd = {"10=>Æò°¡´ë»ó","20=>Æò°¡Áß","50=>Æò°¡¿Ï·á"};
+String[] kind_cd = {"N=>ì‹ ê·œ","S=>ìˆ˜ì‹œ","R=>ì •ê¸°"};
+String[] status_cd = {"10=>í‰ê°€ëŒ€ìƒ","20=>í‰ê°€ì¤‘","50=>í‰ê°€ì™„ë£Œ"};
 
 f.addElement("s_member_name", null, null);
 f.addElement("s_asse_year", null, null);
 f.addElement("s_project_name", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -34,19 +34,6 @@ list.setFields(
 				+" , a.member_no , a.asse_no"
 );
 list.addWhere("a.asse_no = tt.asse_no");
-
-// ¼Ò½Ì±×·ì °Ë»ö
-if((!f.get("l_src_cd").equals(""))||(!f.get("m_src_cd").equals(""))||(!f.get("s_src_cd").equals(""))){
-	String src_cd_member = "select b.member_no"
-			+" from tcb_src_member a inner join tcb_member b on a.src_member_no = b.member_no"
-			+" inner join tcb_src_adm c on a.member_no = c.member_no and substr(a.src_cd,0,3)||'000000' = c.src_cd"
-			+" inner join tcb_src_adm d on a.member_no = d.member_no and substr(a.src_cd,0,6)||'000' = d.src_cd"
-			+" inner join tcb_src_adm e on a.member_no = e.member_no and a.src_cd = e.src_cd"
-			+" where a.member_no = '20130300071' "
-			+"   and e.src_cd = '"+f.get("l_src_cd")+f.get("m_src_cd")+f.get("s_src_cd")+"'";
-	list.addWhere("a.member_no in ("+src_cd_member+")");
-}
-
 list.addWhere("a.main_member_no = '"+_member_no+"' ");
 list.addSearch("a.member_name", f.get("s_member_name"), "LIKE");
 list.addSearch("a.asse_year", f.get("s_asse_year"));
@@ -56,7 +43,7 @@ list.setOrderBy("a.asse_year desc, a.member_no desc ");
 DataSet	ds = list.getDataSet();
 while(ds.next()){
 
-	ds.put("asse_kind_cd", u.getItem(ds.getString("kind_cd"), kind_cd));	//Æò°¡Á¾·ù
+	ds.put("asse_kind_cd", u.getItem(ds.getString("kind_cd"), kind_cd));	//í‰ê°€ì¢…ë¥˜
 	if("".equals(ds.getString("qc_tpoint"))){	//QC
 		ds.put("qc_point", "-");
 	}else{
@@ -67,18 +54,18 @@ while(ds.next()){
 	}else{
 		ds.put("enc_point", "<a href=javascript:goCheckSheet('assessment_e_checkSheet_sumetime.jsp','"+ds.getString("asse_no")+"')>"+ds.getString("enc_rpoint")+"</a>");
 	}
-	if("".equals(ds.getString("f_tpoint"))){	//¾ÈÀü
+	if("".equals(ds.getString("f_tpoint"))){	//ì•ˆì „
 		ds.put("f_point", "-");
 	}else{
 		ds.put("f_point", "<a href=javascript:goCheckSheet('assessment_f_checkSheet_sumetime.jsp','"+ds.getString("asse_no")+"')>"+ds.getString("f_rpoint")+"</a>");
 	}
 
-	if("".equals(ds.getString("s_tpoint"))){		//±¸¸Å
+	if("".equals(ds.getString("s_tpoint"))){		//êµ¬ë§¤
 		ds.put("s_point", "-");
 	}else{
-		if("N".equals(ds.getString("kind_cd"))){	//½Å±Ô
+		if("N".equals(ds.getString("kind_cd"))){	//ì‹ ê·œ
 			ds.put("s_point", "<a href=javascript:goCheckSheet('assessment_s_checkSheet_new.jsp','"+ds.getString("asse_no")+"')>"+ds.getString("s_rpoint")+"</a>");
-		}else{	//Á¤±â
+		}else{	//ì •ê¸°
 			ds.put("s_point", "<a href=javascript:goCheckSheet('assessment_s_checkSheet_regular.jsp','"+ds.getString("asse_no")+"')>"+ds.getString("s_rpoint")+"</a>");
 		}
 	}
@@ -93,9 +80,6 @@ p.setLayout("default");
 p.setBody("cust.asse_purchase_list");
 p.setVar("menu_cd","000106");
 p.setLoop("list", ds);
-p.setVar("l_src_cd", f.get("l_src_cd"));
-p.setVar("m_src_cd", f.get("m_src_cd"));
-p.setVar("s_src_cd", f.get("s_src_cd"));
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString(""));

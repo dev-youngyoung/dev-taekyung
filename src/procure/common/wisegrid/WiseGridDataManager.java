@@ -140,12 +140,12 @@ public class WiseGridDataManager {
 						}
 					}
 					
-					if(gdRes.getHeader(sKey).getDataType().equals("I"))	// data type t_imagetext ÀÎ °æ¿ì
+					if(gdRes.getHeader(sKey).getDataType().equals("I"))	// data type t_imagetext ì¸ ê²½ìš°
 					{						
 						gdRes.getHeader(sKey).addValue(sVal, sHdnVal,"");
 					}else 
-					if(gdRes.getHeader(sKey).getDataType().equals("L")){ // data type t_combo ÀÎ °æ¿ì
-						// ÄŞº¸ »ç¿ë ºÒ°¡. ¤Ñ¤Ñ;;;
+					if(gdRes.getHeader(sKey).getDataType().equals("L")){ // data type t_combo ì¸ ê²½ìš°
+						// ì½¤ë³´ ì‚¬ìš© ë¶ˆê°€. ã…¡ã…¡;;;
 					}else
 					{
 						gdRes.getHeader(sKey).addValue(sVal, sHdnVal);
@@ -160,7 +160,7 @@ public class WiseGridDataManager {
 	}
 	
 	/**
-	 * °ßÀû¼­ÀÛ¼ºµ¥ÀÌÅ¸ °¡Á®¿À±â
+	 * ê²¬ì ì„œì‘ì„±ë°ì´íƒ€ ê°€ì ¸ì˜¤ê¸°
 	 * @param gdReq
 	 * @param sQuery
 	 * @param sServiceDiv
@@ -206,74 +206,74 @@ public class WiseGridDataManager {
 						sVal	=	rs.getString(sKey)==null?"":rs.getString(sKey);
 					}
 					
-					if(sKey.toUpperCase().equals("STUFF_SUM"))	//	ÄÃ·³¸í[Àç·áºñ ±İ¾×]
+					if(sKey.toUpperCase().equals("STUFF_SUM"))	//	ì»¬ëŸ¼ëª…[ì¬ë£Œë¹„ ê¸ˆì•¡]
 					{
-						if(sServiceDiv.equals("O"))	//	¾÷¹«±¸ºĞ[¿ÜÁÖ]ÀÏ °æ¿ì
+						if(sServiceDiv.equals("O"))	//	ì—…ë¬´êµ¬ë¶„[ì™¸ì£¼]ì¼ ê²½ìš°
 						{
-							if(sDepth.equals("01"))	//	DEPTH[2]ÀÏ °æ¿ì
+							if(sDepth.equals("01"))	//	DEPTH[2]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((E"+j+" * F"+j+");0)";
-							}else if(sDepth.equals("02"))	//	DEPTH[3]ÀÏ °æ¿ì
+							}else if(sDepth.equals("02"))	//	DEPTH[3]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((F"+j+" * G"+j+");0)";
-							}else		//	DEPTH[3]ÀÏ °æ¿ì
+							}else		//	DEPTH[3]ì¼ ê²½ìš°
 							{	
 								sHdnVal	=	"=ROUNDDOWN((G"+j+" * H"+j+");0)";
 							}
 						}
-					}else if(sKey.toUpperCase().equals("LABOR_SUM"))	//	ÄÃ·³¸í[³ë¹«ºñ ±İ¾×]
+					}else if(sKey.toUpperCase().equals("LABOR_SUM"))	//	ì»¬ëŸ¼ëª…[ë…¸ë¬´ë¹„ ê¸ˆì•¡]
 					{
-						if(sServiceDiv.equals("O"))	//	¾÷¹«±¸ºĞ[¿ÜÁÖ]ÀÏ °æ¿ì
+						if(sServiceDiv.equals("O"))	//	ì—…ë¬´êµ¬ë¶„[ì™¸ì£¼]ì¼ ê²½ìš°
 						{
-							if(sDepth.equals("01"))	//	DEPTH[2]ÀÏ °æ¿ì
+							if(sDepth.equals("01"))	//	DEPTH[2]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((E"+j+" * H"+j+");0)";
-							}else if(sDepth.equals("02"))	//	DEPTH[3]ÀÏ °æ¿ì
+							}else if(sDepth.equals("02"))	//	DEPTH[3]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((F"+j+" * I"+j+");0)";
-							}else		//	DEPTH[3]ÀÏ °æ¿ì
+							}else		//	DEPTH[3]ì¼ ê²½ìš°
 							{	
 								sHdnVal	=	"=ROUNDDOWN((G"+j+" * J"+j+");0)";
 							}
 						}
-					}else if(sKey.toUpperCase().equals("UPKEEP_SUM"))	//	ÄÃ·³¸í[°æºñ ±İ¾×]
+					}else if(sKey.toUpperCase().equals("UPKEEP_SUM"))	//	ì»¬ëŸ¼ëª…[ê²½ë¹„ ê¸ˆì•¡]
 					{
-						if(sServiceDiv.equals("O"))	//	¾÷¹«±¸ºĞ[¿ÜÁÖ]ÀÏ °æ¿ì
+						if(sServiceDiv.equals("O"))	//	ì—…ë¬´êµ¬ë¶„[ì™¸ì£¼]ì¼ ê²½ìš°
 						{
-							if(sDepth.equals("01"))	//	DEPTH[2]ÀÏ °æ¿ì
+							if(sDepth.equals("01"))	//	DEPTH[2]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((E"+j+" * J"+j+");0)";
-							}else if(sDepth.equals("02"))	//	DEPTH[3]ÀÏ °æ¿ì
+							}else if(sDepth.equals("02"))	//	DEPTH[3]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((F"+j+" * K"+j+");0)";
-							}else		//	DEPTH[3]ÀÏ °æ¿ì
+							}else		//	DEPTH[3]ì¼ ê²½ìš°
 							{	
 								sHdnVal	=	"=ROUNDDOWN((G"+j+" * L"+j+");0)";
 							}
 						}
-					}else if(sKey.toUpperCase().equals("COST_SUM"))	//	ÄÃ·³¸í[ÇÕ°è]
+					}else if(sKey.toUpperCase().equals("COST_SUM"))	//	ì»¬ëŸ¼ëª…[í•©ê³„]
 					{
-						if(sServiceDiv.equals("O"))	//	¾÷¹«±¸ºĞ[¿ÜÁÖ]ÀÏ °æ¿ì
+						if(sServiceDiv.equals("O"))	//	ì—…ë¬´êµ¬ë¶„[ì™¸ì£¼]ì¼ ê²½ìš°
 						{
-							if(sDepth.equals("01"))	//	DEPTH[2]ÀÏ °æ¿ì
+							if(sDepth.equals("01"))	//	DEPTH[2]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=(G"+j+" + I"+j+" + K"+j+")";
-							}else if(sDepth.equals("02"))	//	DEPTH[3]ÀÏ °æ¿ì
+							}else if(sDepth.equals("02"))	//	DEPTH[3]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=(H"+j+" + J"+j+" + L"+j+")";
-							}else		//	DEPTH[3]ÀÏ °æ¿ì
+							}else		//	DEPTH[3]ì¼ ê²½ìš°
 							{	
 								sHdnVal	=	"=(I"+j+" + K"+j+" + M"+j+")";
 							}
 						}else
 						{
-							if(sDepth.equals("01"))	//	DEPTH[2]ÀÏ °æ¿ì
+							if(sDepth.equals("01"))	//	DEPTH[2]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((E"+j+" * F"+j+");0)";
-							}else if(sDepth.equals("02"))	//	DEPTH[3]ÀÏ °æ¿ì
+							}else if(sDepth.equals("02"))	//	DEPTH[3]ì¼ ê²½ìš°
 							{
 								sHdnVal	=	"=ROUNDDOWN((F"+j+" * G"+j+");0)";
-							}else		//	DEPTH[3]ÀÏ °æ¿ì
+							}else		//	DEPTH[3]ì¼ ê²½ìš°
 							{	
 								sHdnVal	=	"=ROUNDDOWN((G"+j+" * H"+j+");0)";
 							}

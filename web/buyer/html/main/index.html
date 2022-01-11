@@ -1,308 +1,236 @@
-<link rel="stylesheet" type="text/css" href="/web/buyer/html/js/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="/web/buyer/html/js/slick/slick-theme.css">
-<script language="javascript" type="text/javascript" src="/web/buyer/html/js/slick/slick.js"></script>
+ï»¿<link rel="stylesheet" type="text/css" href="../html/css/layout.css?sysdate={{_sysdate}}">
 
-<div class="main-container">
-    <div class="main-visual">
-        <div class="main-visual-inner">
-            <div class="login-wrap">
-                <h3><em>³ªÀÌ½º´ÙÅ¥</em>¿¡ ¿À½Å °É È¯¿µÇÕ´Ï´Ù.</h3>
-                <div class="login-input-wrap">
-                    <form name="form1" action="{{loginurl}}" method="post" onSubmit="return false">
-                    <div class="login-input-form">
-                        <input type="text" name="user_id" value="{{user_id}}" maxlength="20" placeholder="¾ÆÀÌµğ" style="ime-mode:disabled">
-                        <input type="password" name="passwd" maxlength="20" placeholder="ºñ¹Ğ¹øÈ£" onkeyup="if(event.keyCode=='13'){fLogin();}" >
-                    </div>
-                    <button type="button" class="login-input-btn" onclick="fLogin()">·Î±×ÀÎ</button>
-                    </form>
-                    <iframe name="login_ifrm" src="about:blank" width="0" height="0" frameborder="0" style="display: none"></iframe>
-                    <div id="loading" style="position:absolute;left:100px;top:70px;display:none"><img src="../html/images/common/loading.gif"></div>
+<!-- ì „ìì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
+<!-- INCLUDE FILE 'layout/crosscert_include.html' -->
+<!-- ì „ìì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
+
+<div class="login_wrap">
+    <div class="login_inner">
+        <h1>ë†ì‹¬</h1>
+        <form name="form1" action="{{loginurl}}" method="post" onSubmit="return false">
+        <div class="login_box">        
+            <div class="login_left">
+                <h2>ì „ìê³„ì•½ì‹œìŠ¤í…œ</h2>
+                <span>Electronic Contract System</span>
+                <div class="CS_guide">
+                    <p>ê³µì¸ì¸ì¦ì„œ ë°œê¸‰ë¬¸ì˜</p>
+                    <p>í•œêµ­ë¬´ì—­ì •ë³´ 1566-5950(ì˜ì—…ë¶€ë¬¸)<br> 
+                                                    í•œêµ­ì „ìì¸ì¦ 1566-0566(ì˜ì—…ë¶€ë¬¸ ì™¸)</p>
+                    <p></p>
+                    <p>í‰ì¼ : ì˜¤ì „ 9ì‹œ ~ ì˜¤í›„ 6ì‹œ<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( * ì ì‹¬ì‹œê°„ : 12ì‹œ ~ 13ì‹œ )</p>
                 </div>
-                <div class="login-info">
-                    <div class="reg-btn">
-                        <input type="button" value="È¸¿ø°¡ÀÔ" onclick="location.href='../member/join_agree.jsp';">
-                    </div>
-                    <ul>
-                        <li>
-                            <input type="button" value="¾ÆÀÌµğ Ã£±â" onclick="location.href='../member/find_id.jsp';">
-                        </li>
-                        <li>
-                            <input type="button" value="ºñ¹Ğ¹øÈ£ Ã£±â" onclick="location.href='../member/find_pw.jsp';">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="main-visual-slider">
-            <div class="slider-item item01">
-                <div class="inner">
-                    <div class="txt-area">
-                        <p class="tit">°ßÀû, ÀÔÂû ¾÷¹«¸¦ °³¼±ÇÏ¼¼¿ä</p>
-                        <p class="txt">±¸¸Å ¾÷¹«ÀÇ Åõ¸í¼º È®º¸, ¾÷¹« È¿À²È­ ¹× »ı»ê¼º Çâ»ó</p>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-item item02">
-                <div class="inner">
-                    <div class="txt-area">
-                        <p class="tit">±Ù·Î°è¾àµµ ÀüÀÚ°è¾àÀ¸·Î ÁøÇàÇÏ¼¼¿ä</p>
-                        <p class="txt">¸ğ¹ÙÀÏ ±â¹İ, ´ë·® ¹ß¼Û Áö¿ø, Áõ¸í¼­¹ß±Ş, ÀÎ»ç½Ã½ºÅÛ°ú ¿¬µ¿À» ÅëÇÑ ¾÷¹« Ã³¸®</p>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-item item03">
-                <div class="inner">
-                    <div class="txt-area">
-                        <p class="tit">°£ÆíÇÏ°í ¼Õ½±°Ô °è¾à¼­¸¦ °ü¸®ÇÏ¼¼¿ä</p>
-                        <p class="txt">º¸ÁõÁõ±Ç ¹× °¢Á¾ ±¸ºñ¼­·ù °ü¸®, °è¾à¸¸·á¿¹Á¤ ¾Ë¸² µî °è¾àÃ¼°á¿¡¼­ °ü¸®±îÁö Áö¿ø</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="main-content">
-        <div class="main-content-top">
-            <div class="main-notice">
-                 <!-- IF START 'bid' -->
-                <div class="notice-section">
-                    <div class="notice-title">
-                        <p>°ßÀû/ÀÔÂû°ø°í(ÀÏ¹İ°æÀï)</p>
-                    </div>
-                    <div class="notice-contents">
-                        <ul>
-                            <!-- LOOP START 'bid' -->
-                            <li>
-                                <a href="javascript:OpenWindows('{{bid.link}}?main_member_no={{bid.main_member_no}}&bid_no={{bid.bid_no}}&bid_deg={{bid.bid_deg}}', 'bid', 1000, 800);">
-                                    <p class="text text-cut" style="max-width:370px"><span style="color:blue">[{{bid.member_name}}]</span> {{bid.bid_name}}</p>
-                                    <p class="date">{{bid.bid_date}}</p>
-                                </a>
-                            </li>
-                            <!-- LOOP END 'bid' -->
-                        </ul>
-                    </div>
-                </div>
-                <!-- IF END 'bid' -->
-                <!-- IF START 'noti' -->
-                <div class="notice-section">
-                    <div class="notice-title">
-                        <p>°øÁö»çÇ×</p>
-                        <span class="more" onclick="location.href='../center/noti_list.jsp';">´õº¸±â</span>
-                    </div>
-                    <div class="notice-contents">
-                        <ul>
-                            <!-- LOOP START 'noti' -->
-                            <li>
-                                <a href="../center/noti_view.jsp?id={{noti.board_id}}">
-                                    <p class="text text-cut" style="max-width:370px">{{noti.title}}</p>
-                                    <p class="date">{{noti.open_date}}</p>
-                                </a>
-                            </li>
-                            <!-- LOOP END 'noti' -->
-                            <!-- IFNOT START 'noti' -->
-                            <li>
-                                <a>
-                                    <p class="text">°øÁö»çÇ× Á¤º¸°¡ ¾ø½À´Ï´Ù.</p>
-                                </a>
-                            </li>
-                            <!-- IFNOT END 'noti' -->
-                        </ul>
-                    </div>
-                </div>
-                <!-- IF END 'noti' -->
-            </div>
-            <div class="main-favorite">
-                <ul>
-                    <li>
-                        <a  href="javascript:OpenWindow('/web/buyer/main/true_contract.jsp','','650','500');">¹®¼­ ÁøÀ§¿©ºÎ È®ÀÎ</a>
-                    </li>
-                    <li>
-                        <a href="../center/si_qna.jsp">¹®ÀÇ ¹× »ó´ã</a>
-                    </li>
+                <ul class="go_link2">
+                    <li><a href="javascript:fTradesignUrl()">ê³µì¸ì¸ì¦ì„œ ì•ˆë‚´(í•œêµ­ë¬´ì—­ì •ë³´)</a></li>
+                    <li><a href="javascript:fCrosscerUrl()">ê³µì¸ì¸ì¦ì„œ ì•ˆë‚´(í•œêµ­ì „ìì¸ì¦)</a></li>
                 </ul>
-            </div>
-            <div class="main-customer">
-                <div class="customer-title">
-                    <p>°í°´¼¾ÅÍ</p>
-                </div>
-                <div class="customer-phone">
-                    <ul>
-                        <li>³ªÀÌ½º´ÙÅ¥ ÀÌ¿ë¹®ÀÇ<span>02-788-9097</span></li>
-                        <li>°øÀÎÀÎÁõ¼­ ¹ß±Ş¹®ÀÇ<span>1566-0566</span></li>
-                    </ul>
-                </div>
-                <div class="customer-time">
-                    <ul>
-                        <li><strong>nicedocu@nicednr.co.kr</strong></li>
-                        <li>Á¡½É½Ã°£ : 12:00 ~ 13:00</li>
-                        <li>ÆòÀÏ : 09:00 ~ 18:00 <span>Åä,ÀÏ,°øÈŞÀÏ ÈŞ¹«</span></li>
-                    </ul>
-                </div>
-                <div class="customer-btn">
-                    <ul>
-                        <li>
-                            <a href="http://www.0302.co.kr/ndocu" target="_blank">¿ø°İÁö¿ø¿äÃ»</a>
-                        </li>
-                        <li>
-                            <a href="https://raadmin.crosscert.com/customer/dnbkorea/index.html" target="_blank">°øÀÎÀÎÁõ¼­ ¹ß±Ş½ÅÃ»</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="main-content-bottom" style="display:">
-        
-            <ul class="banner-logo">
-                <!-- <li>
-                    <a href="https://aff.g2brating.co.kr/#MENUCM0300?param=NICEDOCU" target="_blank">
-                            <img src="../html/images/main/banner/banner_nicednb_01_1.jpg">
-                    </a>
-                </li> -->
-                <li>
-                    <a href="https://finset.io/loan/compareGoods" target="_blank">
-                            <img src="../html/images/main/banner/banner_finset1.jpg">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.nicers.co.kr" target="_blank">
-                            <img src="../html/images/main/banner/banner_nicednb_01_2.jpg"> 
-                    </a>
-                </li> 
-                <!-- <li style="padding-left:10px" >
-                    <a href="javascript:OpenWindows('/web/buyer/html/main/pop_campus.html','campus' ,1020,780,300,80);" target="_self">
-                            <img src="../html/images/main/banner/docu_main_global.jpg">
-                    </a>
-                </li> -->
-		<!--  	<li>
-                    <a href="https://www.nicers.co.kr" target="_blank">
-                            <img src="../html/images/main/banner/banner_nicednb_01_2.jpg">
-                    </a>
-                </li> 
-                <li style="padding-left:10px">
-                    <a href="http://campus.nicedocu.com/educ/edupurch.jsp?cpsmtno=3" target="_blank">
-                            <img src="../html/images/main/banner/banner_ism04.jpg">
-                    </a>
-                    
-                </li> --> 
-             <!--    <li style="padding-left:10px">
-                    <a href="http://campus.nicedocu.com/educ/edupurch.jsp?cpsmtno=3" target="_blank">
-                            <img src="../html/images/main/banner/banner_ism04.jpg">
-                    </a>
-                </li>  --> 
-               <!--  <li style="padding-left:10px">
-                	<a href="javascript:OpenWindow('http://www.nicedocu.com/web/buyer/layout/vauchar.jsp?member_no={{_auth._MEMBER_NO}}&user_id={{_auth._USER_ID}}','vouchar','1200','750')"  style=" overflow: hidden;">   
-                            <img src="../html/images/main/banner/banner_voucher.jpg">
-                    </a>
-                </li>  -->
-                <!-- <li style="padding-left:10px">
-                    <a href="https://nicewel.co.kr/?act=user.user_join_info&r=nomubi" target="_blank">
-                            <img src="../html/images/main/banner/banner_nicewel01.jpg">
-                    </a>
-                </li> --> 
-                 <li style="padding-left:10px">
-                    <a href="http://campus.nicedocu.com/educ/edupurch.jsp?cpsmtno=3" target="_blank">
-                            <img src="../html/images/main/banner/banner_ism03.jpg">
-                    </a>
-                </li> 
-                	
+                <ul class="go_link">
+                    <li><a href="/FileDownLoad?FILE_KEY=file.path.pds&FILE_NAME=manual.ppt" download="ì‚¬ìš©ìë§¤ë‰´ì–¼.pptx">ì‚¬ìš©ì ë§¤ë‰´ì–¼</a></li>
+                    <li><a href="javascript:OpenWindow('/web/buyer/html/layout/policy.html', 'policy', 1200, 800);">ì´ìš©ì•½ê´€</a></li>
+                    <li><a href="javascript:OpenWindow('/web/buyer/html/layout/privacy.html', 'policy', 1200, 800);">ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨</a></li>
+                </ul>
+				<!-- ì„ì‹œ SSO ë¡œê·¸ì¸ ì ìš© start -->
+				<!-- 
+				<ul>
+                    <li><a href="#">ì„ì‹œ SSOë¡œê·¸ì¸ &nbsp;&nbsp;â˜&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="sso_id" name="sso_id" class="id" style="width:130px;" maxlength="10" placeholder="ì‚¬ë²ˆì…ë ¥" onkeydown="if(event.keyCode==13){event.preventDefault();ssoSign();}">&nbsp;&nbsp;<button type="button" onclick="ssoSign()">í´ë¦­</button></a></li>
+                </ul>
+                 -->
+                <!-- ì„ì‹œ SSO ë¡œê·¸ì¸ ì ìš© end -->
                 
-            </ul>
+            </div>
+
+            <div class="login_right">
+                <h2>Member Login</h2>
+                <div class="tab">
+                    <button class="tablinks" onclick="openLogin(event, 'typeA')">ì¸ì¦ì„œë¡œê·¸ì¸</button>
+                    <button class="tablinks" onclick="openLogin(event, 'typeB')" id="defaultOpen">ë¹„ë°€ë²ˆí˜¸ ë¡œê·¸ì¸</button>
+                </div>
+                <!--ì¸ì¦ì„œ ë¡œê·¸ì¸-->
+                <div id="typeA" class="tabcontent">
+                  <ul>
+                      <li><input type="text" id="vendCd" name="vendCd" class="id" maxlength="10" placeholder="ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”"></li>
+                      <li><a href="javascript:fSign();" class="btn_login">ë¡œê·¸ì¸</a></li>
+                      <li><a href="../member/join_agree.jsp" class="btn_join">íšŒì›ê°€ì…</a></li>
+                  </ul>
+                  <p class="find_link" style="margin-top: 70px;">
+                      <a href="../member/find_id.jsp">ì•„ì´ë”” ì°¾ê¸°</a>
+                      <a href="../member/find_pw.jsp">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a>
+                  </p>
+                </div>
+                <!--ë¹„ë°€ë²ˆí˜¸ ë¡œê·¸ì¸-->
+                <div id="typeB" class="tabcontent" style="display:none">
+                  <ul>
+                      <li><input type="text" name="user_id" value="{{user_id}}" maxlength="20" class="id" placeholder="ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”" style="ime-mode:disabled"></li>
+                      <li><input type="password" name="passwd" maxlength="20" class="pw" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”" onkeydown="if(event.keyCode==13){event.preventDefault();fLogin();}" ></li>
+                      <li><a href="javascript:fLogin();" class="btn_login">ë¡œê·¸ì¸</a></li>
+                      <!-- <li><button type="button" class="login-input-btn" onclick="fLogin()">ë¡œê·¸ì¸</button></li> -->
+                      <li><a href="../member/join_agree.jsp" class="btn_join">íšŒì›ê°€ì…</a></li>
+                      <iframe name="login_ifrm" src="about:blank" width="0" height="0" frameborder="0" style="display: none"></iframe>
+                      <!-- <div id="loading" style="position:absolute;left:100px;top:70px;display:none"><img src="../html/images/common/loading.gif"></div> -->
+                  </ul>
+                  <p class="find_link">
+                      <a href="../member/find_id.jsp">ì•„ì´ë”” ì°¾ê¸°</a>
+                      <a href="../member/find_pw.jsp">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a>
+                  </p>
+                  <!-- ë©”ì¸í˜ì´ì§€ : ìµœì´ˆ1íšŒ ~ ë¶€ë¶„ ë“±ë¡ì— ë”°ë¥¸ ì¶”ê°€ -->
+                  <p class="certify"><b><font color="blue"> * ìµœì´ˆ 1íšŒ íšŒì›ê°€ì…ìœ¼ë¡œ ID/PWDë¥¼ ë°œê¸‰í•˜ì—¬ IDë¡œ ë¡œê·¸ì¸ ë° <br>&nbsp;&nbsp;&nbsp;ì¸ì¦ì„œë“±ë¡ í›„ ì‚¬ìš©í•´ì•¼ í•©ë‹ˆë‹¤.</font> </b></p>
+                </div>
+            </div>
         </div>
+        </form>
+    </div>
+    <div class="footer-cont">
+        <p>
+            <span class="name">(ì£¼)ë†ì‹¬</span>
+            <span>ì„œìš¸íŠ¹ë³„ì‹œ ë™ì‘êµ¬ ì—¬ì˜ëŒ€ë°©ë¡œ 112(ì‹ ëŒ€ë°©ë™)</span>
+            <span>ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ 118-81-03914</span>
+            <span>ëŒ€í‘œì´ì‚¬ ë°•ì¤€</span>
+            <span>ëŒ€í‘œì „í™” 02.820.7114</span>
+		<!-- <span>ê³ ê°ì„¼í„° 080.023.5181</span> -->
+        </p>
+        <p>Â©  NONGSHIM CO.,LTD. ALL RIGHTS RESERVED.</p>
     </div>
 </div>
+<script>
+function openLogin(evt, loginType) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(loginType).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 
-<!-- main content end -->
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 
 <script>
+function ssoSign(){
+	var f = document.forms['form1'];
+	var ssoId = null;
+	var url = null;
+	
+	ssoId = f['sso_id'].value;
+	if (ssoId == null || ssoId.length == 0) {
+		alert("ì‚¬ë²ˆì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		return;
+	}	
+	url = "/web/buyer/main/loginSSO.jsp?user_id=" + ssoId;
+	location.href=url;
+}
 function fLogin(){
 	var f = document.forms['form1'];
-	if(f['user_id'].value==""){
+	if (f['user_id'].value=="") {
 		f['user_id'].focus();
-		alert("¾ÆÀÌµğ¸¦ ÀÔ·Â ÇÏ¼¼¿ä.");
+		alert("ì•„ì´ë””ë¥¼ ì…ë ¥ í•˜ì„¸ìš”.");
 		return;
 	}
-	if(f['passwd'].value==""){
+	if (f['passwd'].value=="") {
 		f['passwd'].focus();
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·Â ÇÏ¼¼¿ä.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥ í•˜ì„¸ìš”.");
 		return;
 	}
-	document.getElementById("loading").style.display = '';
-	setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 3000);
+	// document.getElementById("loading").style.display = '';
+	// setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 3000);
+	document.getElementById("loading").style.display = 'block';
 
 	f.target = "login_ifrm";
 	f.submit();
 }
-
-function fMailto(){
-	var body = "¾÷Ã¼¸í:\n\n´ã´çÀÚ:\n\n¿¬¶ôÃ³\n\n\¹®ÀÇ³»¿ë:\n\n";
-	location.href='mailto:nicedocu@nicednr.co.kr?body='+encodeURI(body);
-}
-
-/*
-if(GetCookie("recruit")!="done"){
-	fLayerPop('recruit',"/web/com/main/pop_recruit.html" ,385,410,670,130);
-	//OpenWindows("/web/com/main/pop_recruit.html",'recruit' ,722,579,300,150);
-}
- */
- 
- /*
-if("{{_sysdate}}" <= 20190728130000 ){
-	if(GetCookie("net")!="done"){ 
-			fLayerPop('net',"/web/com/main/pop_net_noti.html" ,603,510,400,130);
-	} 
-}
-*/
-
-/*
-if(GetCookie("merger")!="done"){ 
-	fLayerPop('merger',"/web/com/main/merger_docu.html" ,500,800,400,130);
-}
-
-if(GetCookie("new_docu")!="done"){ 
-	fLayerPop('new_docu',"/web/buyer/html/main/pop_new_docu.html" ,430,516,920,130);
-}
-*/
-/*
-if(GetCookie("campus_pop")!="done"){ 
-	fLayerPop('campus_pop',"/web/buyer/html/main/campus_pop.html" ,503,370,250,130);
-}
- */
-/*
-//°øÁö
-if(GetCookie("noti2")!="done"){
-	fLayerPop('noti1',"/web/buyer/html/main/pop_noti.html" ,608,430,500,150);
-	//fLayerPop('noti1',"/web/com/main/pop_notice.html" ,400,300,400,150);
-}
-*/
-/* 
-//°øÁö
-if(GetCookie("noti_docu")!="done"){
-	fLayerPop('noti_docu',"/web/buyer/html/main/pop_noti.html" ,602,520,500,150);
-	//fLayerPop('noti1',"/web/com/main/pop_notice.html" ,400,300,400,150);
-}
- */
- 
-//¼­¹ö °øÁö 
-/* if(GetCookie("new_docu")!="done"){ 
-	fLayerPop('new_docu',"/web/buyer/html/main/pop_new_docu.html" ,602,520,500,150);
-}   */
- 
-function campus_pop(){
-	fLayerPop('campus','/web/buyer/html/main/pop_campus.html' ,1020,780,300,80);
-}
-
 </script>
-
 
 <script>
-    $(document).ready(function(){
-        $('.main-visual-slider').slick({
-            dots: true,
-            infinite: true,
-            speed: 1000,
-            fade: true,
-            cssEase: 'linear',
-            autoplay: true,
-            autoplaySpeed: 5000,
-        });
-    });
+function fSign(sinput){
+	setUniSign("comp");
+	var ssn = document.getElementById("vendCd").value;
+	if (ssn == null || ssn.length == 0) {
+		alert("ì‚¬ì—…ìë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		return;
+	}
+	if (ssn.length != 10) {
+		alert("ì‚¬ì—…ìë²ˆí˜¸ëŠ” 10ìë¦¬ë¡œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+		return;
+	}
+
+    /* ì„œëª…ë°ì´íƒ€ ë§Œë“¤ê¸° */
+    var f = document.forms['signFrm'];
+    var	org_data = "nocedocu";	//	ì„œëª…ëŒ€ìƒ ì›ë³¸ë°ì´íƒ€
+    var	sign_data = "";
+    
+    unisign.SignDataNVerifyVID( org_data, null, ssn,
+        function(rv, signedText, certAttrs)
+        {
+            sign_data = signedText;
+
+            if ( null === sign_data || '' === sign_data || false === rv )
+            {
+                unisign.GetLastError(
+                    function(errCode, errMsg)
+                    {
+                        if(errCode == "999"){
+                            //ì‚¬ìš©ì ì·¨ì†Œ
+                        }else if(errCode == "14208"){
+                            alert("ì„ íƒí•œ ì¸ì¦ì„œëŠ” ê·€ì‚¬ì˜ ì¸ì¦ì„œê°€ ì•„ë‹™ë‹ˆë‹¤.");
+                        }else{
+                            alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
+                        }
+                    }
+                );
+            } else {
+                //console.log(JSON.stringify(certAttrs,null,2));
+                //ì¸ì¦ì„œ í™•ì¸ ë‹¨ê³„
+                var cert_end_date = getFormatDate(certAttrs.validateTo);
+                if (cert_end_date.length < 8){
+                    alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
+                    return;
+                }
+                if (!isValidDate(cert_end_date))
+                {
+                    alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
+                    return;
+                }
+                if (js_isDateCmp(cert_end_date, "{{_sysdate}}"))
+                {
+                    alert("ìœ íš¨ê¸°ê°„ì´ ì§€ë‚œ ì¸ì¦ì„œ ì…ë‹ˆë‹¤.\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
+                    return;
+                }
+
+                f['vend_cd'].value = ssn;
+                f['sign_data'].value = sign_data;
+                f['cert_dn'].value=certAttrs.subjectName;
+                f['cert_end_date'].value=cert_end_date;
+                
+                f.target = "login_ifrm";
+                f.submit();
+            }
+        }
+    );
+}
+
+function fCrosscerUrl()
+{
+    window.open('https://raadmin.crosscert.com/customer/nongshim/index.html','_blank');
+}
+
+function fTradesignUrl()
+{
+    window.open('http://www.tradesign.net/ra/nongshimsc','_blank');
+}
+
+function closeLoading() {
+	document.getElementById("loading").style.display = 'none';
+}
 </script>
+<form name="signFrm" method="post" action="{{loginurl}}">
+	<input type="hidden" name="sign_data" />
+	<input type="hidden" name="vend_cd" />
+	<input type="hidden" name="cert_dn" value="{{_auth._CERT_DN}}" />
+	<input type="hidden" name="cert_end_date" value="{{_auth._CERT_END_DATE}}" />
+</form>
+
+<div id="loading"><img id="loading-image" src="../html/images/common/loading.gif" alt="Loading..."></div>

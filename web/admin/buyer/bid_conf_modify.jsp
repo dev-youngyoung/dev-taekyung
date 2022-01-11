@@ -1,23 +1,23 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
-String[] code_bid_kind_cd =  codeDao.getCodeArray("M021");//ÀÔÂûÀ¯Çü
-String[] code_bid_method =  codeDao.getCodeArray("M023");//°æÀï¹æ¹ý
-String[] code_succ_method =  codeDao.getCodeArray("M024");//³«ÂûÀÚ¼±Á¤¹æ¹ý
-String[] code_item_form_cd =  codeDao.getCodeArray("M026");//³»¿ª¾ç½Ä
+String[] code_bid_kind_cd =  codeDao.getCodeArray("M021");//ìž…ì°°ìœ í˜•
+String[] code_bid_method =  codeDao.getCodeArray("M023");//ê²½ìŸë°©ë²•
+String[] code_succ_method =  codeDao.getCodeArray("M024");//ë‚™ì°°ìžì„ ì •ë°©ë²•
+String[] code_item_form_cd =  codeDao.getCodeArray("M026");//ë‚´ì—­ì–‘ì‹
 
 boolean isUpdate = false;
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' and member_type in ('01','03')");
 if(!member.next()){
-	u.jsError("¾÷Ã¼ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -78,31 +78,31 @@ if(info.next()){
 }
 
 
-f.addElement("bid_kind_cd", bid_kind_cd, "hname:'ÀÔÂûÀ¯Çü', required:'Y'");
-f.addElement("bid_method", bid_method, "hname:'ÀÔÂû¹æ¹ý', required:'Y'");
-f.addElement("public_bid_yn", public_bid_yn, "hname:'ÀüÃ¼°ø°³¿©ºÎ'");
-f.addElement("default_bid_method", default_bid_method, "hname:'ÀÔÂû¹æ¹ý ±âº»°ª'");
-f.addElement("succ_method", succ_method, "hname:'³«Âû¹æ¹ý', required:'Y'");
-f.addElement("default_succ_method", default_succ_method, "hname:'³«Âû¹æ¹ý ±âº»°ª'");
-f.addElement("item_form_cd", item_form_cd, "hname:'°ßÀû³»¿ªdepth', required:'Y'");
-f.addElement("vat_yn", vat_yn, "hname:'VATÆ÷ÇÔ¿©ºÎ', required:'Y'");
-f.addElement("nego_yn", nego_yn, "hname:'°ßÀû¼öÁ¤»ç¿ë¿©ºÎ', required:'Y'");
-f.addElement("project_yn", project_yn, "hname:'ÇÁ·ÎÁ§Æ®°ü¸®»ç¿ë¿©ºÎ', required:'Y'");
-f.addElement("multi_amt_open_yn", multi_amt_open_yn, "hname:'ÃßÃ·¹øÈ£ °ø°³¿©ºÎ'");
-f.addElement("multi_select_cnt", multi_select_cnt, "hname:'ÃßÃ·¹øÈ£°¹¼ö'");
-f.addElement("multi_amt_srate", multi_amt_srate, "hname:'¿¹ºñ°¡°Ý±¸°£'");
-f.addElement("multi_amt_scnt", multi_amt_scnt, "hname:'¿¹ºñ°¡°Ý±¸°£°¹¼ö'");
-f.addElement("multi_amt_erate", multi_amt_erate, "hname:'¿¹ºñ°¡°Ý±¸°£'");
-f.addElement("multi_amt_ecnt", multi_amt_ecnt, "hname:'¿¹ºñ°¡°Ý±¸°£°¹¼ö'");
-f.addElement("ext_limit", ext_limit, "hname:'¿ª°æ¸Å ¿¬ÀåÈ½¼ö'");
-f.addElement("succ_pay_yn", succ_pay_yn, "hname:'³«Âû¼ö¼ö·á °ú±Ý¿©ºÎ'");
-f.addElement("exp_url", null, "hname:'¿¹¿ÜÃ³¸®url'");
+f.addElement("bid_kind_cd", bid_kind_cd, "hname:'ìž…ì°°ìœ í˜•', required:'Y'");
+f.addElement("bid_method", bid_method, "hname:'ìž…ì°°ë°©ë²•', required:'Y'");
+f.addElement("public_bid_yn", public_bid_yn, "hname:'ì „ì²´ê³µê°œì—¬ë¶€'");
+f.addElement("default_bid_method", default_bid_method, "hname:'ìž…ì°°ë°©ë²• ê¸°ë³¸ê°’'");
+f.addElement("succ_method", succ_method, "hname:'ë‚™ì°°ë°©ë²•', required:'Y'");
+f.addElement("default_succ_method", default_succ_method, "hname:'ë‚™ì°°ë°©ë²• ê¸°ë³¸ê°’'");
+f.addElement("item_form_cd", item_form_cd, "hname:'ê²¬ì ë‚´ì—­depth', required:'Y'");
+f.addElement("vat_yn", vat_yn, "hname:'VATí¬í•¨ì—¬ë¶€', required:'Y'");
+f.addElement("nego_yn", nego_yn, "hname:'ê²¬ì ìˆ˜ì •ì‚¬ìš©ì—¬ë¶€', required:'Y'");
+f.addElement("project_yn", project_yn, "hname:'í”„ë¡œì íŠ¸ê´€ë¦¬ì‚¬ìš©ì—¬ë¶€', required:'Y'");
+f.addElement("multi_amt_open_yn", multi_amt_open_yn, "hname:'ì¶”ì²¨ë²ˆí˜¸ ê³µê°œì—¬ë¶€'");
+f.addElement("multi_select_cnt", multi_select_cnt, "hname:'ì¶”ì²¨ë²ˆí˜¸ê°¯ìˆ˜'");
+f.addElement("multi_amt_srate", multi_amt_srate, "hname:'ì˜ˆë¹„ê°€ê²©êµ¬ê°„'");
+f.addElement("multi_amt_scnt", multi_amt_scnt, "hname:'ì˜ˆë¹„ê°€ê²©êµ¬ê°„ê°¯ìˆ˜'");
+f.addElement("multi_amt_erate", multi_amt_erate, "hname:'ì˜ˆë¹„ê°€ê²©êµ¬ê°„'");
+f.addElement("multi_amt_ecnt", multi_amt_ecnt, "hname:'ì˜ˆë¹„ê°€ê²©êµ¬ê°„ê°¯ìˆ˜'");
+f.addElement("ext_limit", ext_limit, "hname:'ì—­ê²½ë§¤ ì—°ìž¥íšŸìˆ˜'");
+f.addElement("succ_pay_yn", succ_pay_yn, "hname:'ë‚™ì°°ìˆ˜ìˆ˜ë£Œ ê³¼ê¸ˆì—¬ë¶€'");
+f.addElement("exp_url", null, "hname:'ì˜ˆì™¸ì²˜ë¦¬url'");
 
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 	if(f.get("conf_text").equals("")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
@@ -113,7 +113,7 @@ if(u.isPost() && f.validate()){
 	if(isUpdate){
 		bidConfDao.item("conf_text", conf_text);
 		if(!bidConfDao.update(" member_no = '"+member_no+"' and conf_gubun = 'bid' ")){
-			u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}else{
@@ -122,12 +122,12 @@ if(u.isPost() && f.validate()){
 		bidConfDao.item("conf_text", conf_text);
 		bidConfDao.item("status", "1");
 		if(!bidConfDao.insert()){
-			u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		
 	}
-	u.jsAlertReplace("ÀúÀå Ã³¸® ÇÏ¿´½À´Ï´Ù.", "bid_conf_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "bid_conf_modify.jsp?"+u.getQueryString());
 	return;
 }
 

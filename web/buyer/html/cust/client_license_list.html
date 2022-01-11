@@ -1,7 +1,16 @@
+ï»¿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
+
 <script type="text/javascript">
     var treeDataProvider = null;
     var dataProvider = null;
@@ -11,9 +20,9 @@
         RealGridJS.setRootContext("{{realgrid_path}}");   //  cab/realgrid
         //RealGridJS.setTrace(true);
 
-        // filed´Â µ¥ÀÌÅ¸ ¿µ¿ª, ÄÃ·³Àº view¿µ¿ª
+        // filedëŠ” ë°ì´íƒ€ ì˜ì—­, ì»¬ëŸ¼ì€ viewì˜ì—­
 
-        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source °´Ã¼
+        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source ê°ì²´
         treeView			= new RealGridJS.TreeView("realgrid");
         treeView.setDataSource(treeDataProvider);
 
@@ -58,12 +67,12 @@
             });
 
         var columns = [];
-        columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"´ëºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"s_nm" ,fieldName:"s_nm" ,header:"ÁßºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"¼ÒºĞ·ù" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"member_name" ,fieldName:"member_name",header:"¾÷Ã¼¸í" ,width: 200 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"»ç¾÷ÀÚ¹øÈ£" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"tech_expl" ,fieldName:"tech_expl" ,header:"ºñ°í" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"ëŒ€ë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"s_nm" ,fieldName:"s_nm" ,header:"ì¤‘ë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"ì†Œë¶„ë¥˜" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_name" ,fieldName:"member_name",header:"ì—…ì²´ëª…" ,width: 200 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"vendcd" ,fieldName:"vendcd" ,header:"ì‚¬ì—…ìë²ˆí˜¸" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"tech_expl" ,fieldName:"tech_expl" ,header:"ë¹„ê³ " ,width: 100 ,editable:false,movable:false ,sortable:false});
 
         dataProvider.setFields(columns);
         gridView.setColumns(columns);
@@ -84,7 +93,7 @@
                 updatable: true,
                 deletable: true,
                 deleteRowsConfirm: true,
-                deleteRowsMessage: "»èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?"
+                deleteRowsMessage: "ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?"
             }
             ,displayOptions:{
                 //columnWidth : 200
@@ -92,11 +101,11 @@
         };
         treeView.setOptions(options);
 
-        //Æú´õ ÀÌ¹ÌÁö µî·Ï
+        //í´ë” ì´ë¯¸ì§€ ë“±ë¡
         var imgFiles = ["folder_close.gif","folder_open.gif","unknown.gif"];
         var imageList = new RealGridJS.ImageList("images", "/cab/realgrid/resource/");
         imageList.addUrls(imgFiles);
-        // Æ®¸®ºä¿¡ ÀÌ¹ÌÁö ¸®½ºÆ® µî·ÏÇÏ±â
+        // íŠ¸ë¦¬ë·°ì— ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ë“±ë¡í•˜ê¸°
         treeView.registerImageList(imageList);
         treeView.setTreeOptions({
             iconImages: imageList.getName(),
@@ -124,20 +133,20 @@
     function setColumns() {
         var columns = [];
         columns.push({name:"icon" ,fieldName:"icon" ,header:"icon" ,width:120 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"code_nm" ,fieldName:"code_nm" ,header:"Ä«Å×°í¸®" ,width: 180 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"code_cnt" ,fieldName:"code_cnt" ,header: "¾÷Ã¼¼ö" ,width:50 ,editable:false,movable:false ,sortable:false, visible:true});
-        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"¾÷Ã¼ÄÚµå" ,width:80 ,editable:false ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"l_cd" ,fieldName:"l_cd" ,header:"ÄÚµå1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"m_cd" ,fieldName:"m_cd" ,header:"ÄÚµå2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"s_cd" ,fieldName:"s_cd" ,header:"ÄÚµå3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"d_cd" ,fieldName:"d_cd" ,header:"ÄÚµå4" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"p_code" ,fieldName:"p_code" ,header:"ºÎ¸ğÄÚµå" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"code" ,fieldName:"code" ,header:"¼Ò½ÌÄÚµå" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"code_nm" ,fieldName:"code_nm" ,header:"ì¹´í…Œê³ ë¦¬" ,width: 180 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"code_cnt" ,fieldName:"code_cnt" ,header: "ì—…ì²´ìˆ˜" ,width:50 ,editable:false,movable:false ,sortable:false, visible:true});
+        columns.push({name:"member_no" ,fieldName:"member_no" ,header:"ì—…ì²´ì½”ë“œ" ,width:80 ,editable:false ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"l_cd" ,fieldName:"l_cd" ,header:"ì½”ë“œ1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"m_cd" ,fieldName:"m_cd" ,header:"ì½”ë“œ2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"s_cd" ,fieldName:"s_cd" ,header:"ì½”ë“œ3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"d_cd" ,fieldName:"d_cd" ,header:"ì½”ë“œ4" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"p_code" ,fieldName:"p_code" ,header:"ë¶€ëª¨ì½”ë“œ" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"code" ,fieldName:"code" ,header:"ì†Œì‹±ì½”ë“œ" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
         columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,width:50 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "¸¶Áö¸· ³ëµå¿©ºÎ" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "ë§ˆì§€ë§‰ ë…¸ë“œì—¬ë¶€" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
 
         treeDataProvider.setFields(columns);
-        treeView.setColumns(columns);	// ÄÃ·³À» TreeView¿¡ ÀÔ·Â
+        treeView.setColumns(columns);	// ì»¬ëŸ¼ì„ TreeViewì— ì…ë ¥
         treeView.addCellRenderers(
             [{
                 "id": "chk_use_yn",
@@ -207,26 +216,26 @@
         var depth = treeDataProvider.getJsonRow(treeView.getCurrent().itemIndex+1).depth;
         var columns = [];
         if(depth == '1') {
-            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"´ëºĞ·ù" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
-            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ÁßºĞ·ù" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
-            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"¼ÒºĞ·ù" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"ëŒ€ë¶„ë¥˜" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ì¤‘ë¶„ë¥˜" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"ì†Œë¶„ë¥˜" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
         } else if(depth == '2') {
-            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"´ëºĞ·ù" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
-            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ÁßºĞ·ù" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
-            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"¼ÒºĞ·ù" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"ëŒ€ë¶„ë¥˜" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ì¤‘ë¶„ë¥˜" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"ì†Œë¶„ë¥˜" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
         } else if(depth == '3') {
-            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"´ëºĞ·ù" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
-            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ÁßºĞ·ù" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
-            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"¼ÒºĞ·ù" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"ëŒ€ë¶„ë¥˜" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ì¤‘ë¶„ë¥˜" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
+            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"ì†Œë¶„ë¥˜" ,mergeRule:{criteria: "value"},width: 100 ,editable:false,movable:false ,sortable:false});
         } else if(depth == '4') {
-            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"´ëºĞ·ù" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
-            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ÁßºĞ·ù" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
-            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"¼ÒºĞ·ù" ,mergeRule:{criteria: "value"},visible:false,width: 100 ,editable:false,movable:false ,sortable:false});
+            columns.push({name:"m_nm" ,fieldName:"m_nm" ,header:"ëŒ€ë¶„ë¥˜" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
+            columns.push({name:"l_nm" ,fieldName:"s_nm" ,header:"ì¤‘ë¶„ë¥˜" ,mergeRule:{criteria: "value"},visible:false,editable:false,movable:false ,sortable:false});
+            columns.push({name:"d_nm" ,fieldName:"d_nm" ,header:"ì†Œë¶„ë¥˜" ,mergeRule:{criteria: "value"},visible:false,width: 100 ,editable:false,movable:false ,sortable:false});
         }
         
-        columns.push({name:"member_name" ,fieldName:"member_name",header:"¾÷Ã¼¸í" ,width: 200 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"vendcd" ,fieldName:"vendcd",header:"»ç¾÷ÀÚ¹øÈ£" ,width: 100 ,editable:false,movable:false ,sortable:false});
-        columns.push({name:"tech_expl" ,fieldName:"tech_expl" ,header:"ºñ°í" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"member_name" ,fieldName:"member_name",header:"ì—…ì²´ëª…" ,width: 200 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"vendcd" ,fieldName:"vendcd",header:"ì‚¬ì—…ìë²ˆí˜¸" ,width: 100 ,editable:false,movable:false ,sortable:false});
+        columns.push({name:"tech_expl" ,fieldName:"tech_expl" ,header:"ë¹„ê³ " ,width: 100 ,editable:false,movable:false ,sortable:false});
 
         dataProvider.setFields(columns);
         gridView.setColumns(columns);
@@ -284,7 +293,7 @@
 		<td valign="top">
 			<div class="div_table">
 				<div class="push-left">
-					<h3>º¸À¯¸éÇã</h3>
+					<h3>ë³´ìœ ë©´í—ˆ</h3>
 				</div>
 			</div>
 			<div id="realgrid" style="width: 100%; height: 500px;"></div>
@@ -293,10 +302,10 @@
 		<td valign="top">
 			<div class="div_table">
 				<div class="push-left">
-					<h3>º¸À¯¸éÇãº° ¾÷Ã¼<span id="span_depth_nm"></span></h3>
+					<h3>ë³´ìœ ë©´í—ˆë³„ ì—…ì²´<span id="span_depth_nm"></span></h3>
 				</div>
 				<div class="push-right">
-					<button type="button" id="btnAdd" class="sbtn color ico-excel" onClick="fDownXLS();"><span></span>º¸À¯¸éÇãÇöÈ²</button>
+					<button type="button" id="btnAdd" class="sbtn color ico-excel" onClick="fDownXLS();"><span></span>ë³´ìœ ë©´í—ˆí˜„í™©</button>
 				</div>
 			</div>
 			<div id="realgrid_list" style="width: 100%; height: 500px;"></div>

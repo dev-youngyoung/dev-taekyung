@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String result_seq = u.request("result_seq");
 if(result_seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -10,12 +10,12 @@ String where = " member_no = '"+_member_no+"' and result_seq = '"+result_seq+"' 
 DataObject resultDao = new DataObject("tcb_exam_result");
 DataSet result = resultDao.find(where);
 if(!result.next()){
-	u.jsError("Æò°¡ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("í‰ê°€ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(!result.getString("status").equals("10")){
-	u.jsError("Æò°¡Áß »óÅÂ¿¡¼­¸¸ Æò°¡Ãë¼Ò ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+	u.jsError("í‰ê°€ì¤‘ ìƒíƒœì—ì„œë§Œ í‰ê°€ì·¨ì†Œ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -26,8 +26,8 @@ db.setCommand(" delete from tcb_exam_result_item where "+where,null);
 db.setCommand(" delete from tcb_exam_result_question where "+where,null);
 db.setCommand(" delete from tcb_exam_result where "+where,null);
 if(!db.executeArray()){
-	u.jsError("Æò°¡Ãë¼Ò¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("í‰ê°€ì·¨ì†Œì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
-u.jsAlertReplace("Æò°¡ Ãë¼Ò ÇÏ¿´½À´Ï´Ù.","cont_exam_list.jsp?"+u.getQueryString("cont_no, cont_chasu, result_seq"));
+u.jsAlertReplace("í‰ê°€ ì·¨ì†Œ í•˜ì˜€ìŠµë‹ˆë‹¤.","cont_exam_list.jsp?"+u.getQueryString("cont_no, cont_chasu, result_seq"));
 %>

@@ -1,9 +1,9 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="search" value="1">
 
 <div class="util-row">
 	<div class="push-right">
-	<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"> <span></span>´Ý±â</button>
+	<button type="button" class="sbtn color ico-cancel"  onclick="self.close();"> <span></span>ë‹«ê¸°</button>
 	</div>
 </div>
 <div class="search_div">
@@ -16,12 +16,12 @@
 			<col width="10%"/>
 		</colgroup>
 		<tr>
-			<th><p>¾÷Ã¼¸í</p></th>
+			<th><p>ì—…ì²´ëª…</p></th>
 			<td><input type="text" name="s_member_name" maxlength="30" style="width:95%"></td>
-			<th><p>»ç¾÷ÀÚ¹øÈ£</p></th>
+			<th><p>ì‚¬ì—…ìžë²ˆí˜¸</p></th>
 			<td><input type="text" name="s_vendcd" maxlength="30" style="width:95%"></td>
 			<td align="right">
-				<button type="submit" class="search_btn">°Ë»ö</button>
+				<button type="submit" class="search_btn">ê²€ìƒ‰</button>
 			</td>
 		</tr>
 	</table>
@@ -31,7 +31,7 @@
 <script language="javascript">
 attachOnload( function(){
         <!-- IF START 'bWemakeCust' -->
-        document.form1['s_member_name'].value = "À§¸ÞÇÁ";
+        document.form1['s_member_name'].value = "ìœ„ë©”í”„";
         document.form1['s_vendcd'].value = "1208755227";
         <!-- IF END 'bWemakeCust' -->
         document.form1['s_member_name'].focus();
@@ -39,7 +39,7 @@ attachOnload( function(){
     
     function formSubmit(f){
         if(f['s_vendcd'].value == "" && f['s_member_name'].value == ""){
-            alert("»ó´ë¹æ ¾÷Ã¼¸í ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·Â ÈÄ °Ë»ö ÇÏ¼¼¿ä.");
+            alert("ìƒëŒ€ë°© ì—…ì²´ëª… ë˜ëŠ” ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸ë¥¼ ìž…ë ¥ í›„ ê²€ìƒ‰ í•˜ì„¸ìš”.");
             return false;
         }
         return true;
@@ -51,10 +51,10 @@ attachOnload( function(){
 <div class="push-left">
     <span class="caution-text">
     <!-- IF START 'bWemakeCust' -->
-	À§¸ÞÇÁ °Å·¡Ã³ÀÎ °æ¿ì ÀÚ»ç Á¤º¸°¡ ¾Æ´Ñ <font color="blue"><b>"À§¸ÞÇÁ"¸¦ °Ë»öÇÏ½Å ÈÄ Ãß°¡</b></font>ÇØÁÖ¼¼¿ä.
+	ìœ„ë©”í”„ ê±°ëž˜ì²˜ì¸ ê²½ìš° ìžì‚¬ ì •ë³´ê°€ ì•„ë‹Œ <font color="blue"><b>"ìœ„ë©”í”„"ë¥¼ ê²€ìƒ‰í•˜ì‹  í›„ ì¶”ê°€</b></font>í•´ì£¼ì„¸ìš”.
 		<!-- IF END 'bWemakeCust' -->
 		<!-- IFNOT START 'bWemakeCust' -->
-	¡Ø <font color="blue"><b>»ó´ë¹æ ¾÷Ã¼¸í</b></font> ¶Ç´Â »ç¾÷ÀÚ µî·Ï¹øÈ£¸¦ ÀÔ·ÂÈÄ °Ë»ö ÇÏ¼¼¿ä. <font color="gray">¿¹) ÇÑ±¹¾²¸®¿¥, ÄÉÀÌÆ¼ÇÏÀÌÅÚ</font>
+	â€» <font color="blue"><b>ìƒëŒ€ë°© ì—…ì²´ëª…</b></font> ë˜ëŠ” ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸ë¥¼ ìž…ë ¥í›„ ê²€ìƒ‰ í•˜ì„¸ìš”. <font color="gray">ì˜ˆ) í•œêµ­ì“°ë¦¬ì— , ì¼€ì´í‹°í•˜ì´í…”</font>
 		<!-- IFNOT END 'bWemakeCust' -->
     </span>
 </div>
@@ -70,11 +70,11 @@ attachOnload( function(){
 			<col width="15%">
 		</colgroup>
 		<tr class="ltitle">
-			<th>¼ø¹ø</th>
-			<th>¾÷Ã¼¸í</th>
-			<th>»ç¾÷ÀÚ¹øÈ£</th>
-			<th>´ëÇ¥ÀÚ</th>
-			<th>Ãß°¡</th>
+			<th>ìˆœë²ˆ</th>
+			<th>ì—…ì²´ëª…</th>
+			<th>ì‚¬ì—…ìžë²ˆí˜¸</th>
+			<th>ëŒ€í‘œìž</th>
+			<th>ì¶”ê°€</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr>
@@ -83,13 +83,13 @@ attachOnload( function(){
 			<td align="center">{{list.vendcd}}</td>
 			<td align="center">{{list.boss_name}}</td>
 			<td align="center">
-				<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>Ãß°¡</button>
+				<button type="button" class="sbtn color ico-add" onclick="addCompany('{{list.member_no}}');"><span></span>ì¶”ê°€</button>
 			</td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td align="center" colspan="5">°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td align="center" colspan="5">ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>
@@ -115,25 +115,25 @@ attachOnload( function(){
 			<table>
 				<tr>
 					<td align="center">
-						°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+						ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="checkbox" name="client_type" value="0"> °ø±Þ»ç
-						<input type="checkbox" name="client_type" value="1"> ÆÇ¸Å(´ë¸®)Á¡
+						<input type="checkbox" name="client_type" value="0"> ê³µê¸‰ì‚¬
+						<input type="checkbox" name="client_type" value="1"> íŒë§¤(ëŒ€ë¦¬)ì 
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121203661')"><span></span>¾÷Ã¼µî·Ï</button>
-						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121203661').style.display='none';"><span></span>Ãë¼Ò</button>
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121203661')"><span></span>ì—…ì²´ë“±ë¡</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121203661').style.display='none';"><span></span>ì·¨ì†Œ</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						- °ø±Þ»ç : 3M¿¡°Ô ¹°Ç°, ¿ë¿ªÀ» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-						- ÆÇ¸Å(´ë¸®)Á¡ : 3MÀÇ À§Å¹À» ¹Þ¾Æ ¸Å¸Å¸¦ ÇÏ´Â ¾÷Ã¼
+						- ê³µê¸‰ì‚¬ : 3Mì—ê²Œ ë¬¼í’ˆ, ìš©ì—­ì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+						- íŒë§¤(ëŒ€ë¦¬)ì  : 3Mì˜ ìœ„íƒì„ ë°›ì•„ ë§¤ë§¤ë¥¼ í•˜ëŠ” ì—…ì²´
 					</td>
 				</tr>
 			</table>
@@ -144,25 +144,25 @@ attachOnload( function(){
 			<table>
 				<tr>
 					<td align="center">
-						°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+						ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="checkbox" name="client_type" value="0"> °ø±Þ»ç
-						<input type="checkbox" name="client_type" value="1"> ÆÇ¸Å(´ë¸®)Á¡
+						<input type="checkbox" name="client_type" value="0"> ê³µê¸‰ì‚¬
+						<input type="checkbox" name="client_type" value="1"> íŒë§¤(ëŒ€ë¦¬)ì 
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20140300055')"><span></span>¾÷Ã¼µî·Ï</button>
-						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20140300055').style.display='none';"><span></span>Ãë¼Ò</button>
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20140300055')"><span></span>ì—…ì²´ë“±ë¡</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20140300055').style.display='none';"><span></span>ì·¨ì†Œ</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						- °ø±Þ»ç : ÇÑ±¹À¯¸®°ø¾÷(ÁÖ)¿¡°Ô ¹°Ç°, ¿ë¿ªÀ» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-						- ´ë¸®Á¡ : ÇÑ±¹À¯¸®°ø¾÷(ÁÖ)ÀÇ À§Å¹À» ¹Þ¾Æ ¸Å¸Å¸¦ ÇÏ´Â ¾÷Ã¼
+						- ê³µê¸‰ì‚¬ : í•œêµ­ìœ ë¦¬ê³µì—…(ì£¼)ì—ê²Œ ë¬¼í’ˆ, ìš©ì—­ì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+						- ëŒ€ë¦¬ì  : í•œêµ­ìœ ë¦¬ê³µì—…(ì£¼)ì˜ ìœ„íƒì„ ë°›ì•„ ë§¤ë§¤ë¥¼ í•˜ëŠ” ì—…ì²´
 					</td>
 				</tr>
 			</table>
@@ -173,25 +173,25 @@ attachOnload( function(){
 			<table>
 				<tr>
 					<td align="center">
-						°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+						ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-						<input type="checkbox" name="client_type" value="1"> ¿ë¿ª
+						<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+						<input type="checkbox" name="client_type" value="1"> ìš©ì—­
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20130400091')"><span></span>¾÷Ã¼µî·Ï</button>
-						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400091').style.display='none';"><span></span>Ãë¼Ò</button>
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20130400091')"><span></span>ì—…ì²´ë“±ë¡</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400091').style.display='none';"><span></span>ì·¨ì†Œ</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						- ¹°Ç° : ´ëº¸Á¤º¸Åë½Å¿¡°Ô ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-						- ¿ë¿ª : ´ëº¸Á¤º¸Åë½Å¿¡°Ô ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+						- ë¬¼í’ˆ : ëŒ€ë³´ì •ë³´í†µì‹ ì—ê²Œ ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+						- ìš©ì—­ : ëŒ€ë³´ì •ë³´í†µì‹ ì—ê²Œ ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 					</td>
 				</tr>
 			</table>
@@ -202,27 +202,27 @@ attachOnload( function(){
 			<table>
 				<tr>
 					<td align="center">
-						°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+						ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-						<input type="checkbox" name="client_type" value="1"> °ø»ç
-						<input type="checkbox" name="client_type" value="2"> ¿ë¿ª
+						<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+						<input type="checkbox" name="client_type" value="1"> ê³µì‚¬
+						<input type="checkbox" name="client_type" value="2"> ìš©ì—­
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121200116')"><span></span>¾÷Ã¼µî·Ï</button>
-						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121200116').style.display='none';"><span></span>Ãë¼Ò</button>
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121200116')"><span></span>ì—…ì²´ë“±ë¡</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121200116').style.display='none';"><span></span>ì·¨ì†Œ</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						- ¹°Ç° : ÇÑ±¹Á¦Áö¿¡°Ô ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-						- °ø»ç : ÇÑ±¹Á¦Áö ÇÏµµ±Þ ¾÷Ã¼<br>
-						- ¿ë¿ª : ÇÑ±¹Á¦Áö¿¡°Ô ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+						- ë¬¼í’ˆ : í•œêµ­ì œì§€ì—ê²Œ ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+						- ê³µì‚¬ : í•œêµ­ì œì§€ í•˜ë„ê¸‰ ì—…ì²´<br>
+						- ìš©ì—­ : í•œêµ­ì œì§€ì—ê²Œ ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 					</td>
 				</tr>
 			</table>
@@ -233,27 +233,27 @@ attachOnload( function(){
 			<table>
 				<tr>
 					<td align="center">
-						°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+						ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-						<input type="checkbox" name="client_type" value="1"> °ø»ç
-						<input type="checkbox" name="client_type" value="2"> ¿ë¿ª
+						<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+						<input type="checkbox" name="client_type" value="1"> ê³µì‚¬
+						<input type="checkbox" name="client_type" value="2"> ìš©ì—­
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20140101025')"><span></span>¾÷Ã¼µî·Ï</button>
-						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20140101025').style.display='none';"><span></span>Ãë¼Ò</button>
+						<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20140101025')"><span></span>ì—…ì²´ë“±ë¡</button>
+						<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20140101025').style.display='none';"><span></span>ì·¨ì†Œ</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">
-						- ¹°Ç° : ½Å¼¼°è¹éÈ­Á¡¿¡ ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-						- °ø»ç : ½Å¼¼°è¹éÈ­Á¡ ÇÏµµ±Þ ¾÷Ã¼<br>
-						- ¿ë¿ª : ½Å¼¼°è¹éÈ­Á¡¿¡ ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+						- ë¬¼í’ˆ : ì‹ ì„¸ê³„ë°±í™”ì ì— ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+						- ê³µì‚¬ : ì‹ ì„¸ê³„ë°±í™”ì  í•˜ë„ê¸‰ ì—…ì²´<br>
+						- ìš©ì—­ : ì‹ ì„¸ê³„ë°±í™”ì ì— ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 					</td>
 				</tr>
 			</table>
@@ -264,27 +264,27 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<td align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-					<input type="checkbox" name="client_type" value="1"> °ø»ç
-					<input type="checkbox" name="client_type" value="2"> ¿ë¿ª
+					<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+					<input type="checkbox" name="client_type" value="1"> ê³µì‚¬
+					<input type="checkbox" name="client_type" value="2"> ìš©ì—­
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20170101031')">¾÷Ã¼µî·Ï</button>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20170101031').style.display='none';">Ãë¼Ò</button>
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20170101031')">ì—…ì²´ë“±ë¡</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20170101031').style.display='none';">ì·¨ì†Œ</button>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¹°Ç° : ¼öÇùÀºÇà¿¡ ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-					- °ø»ç : ¼öÇùÀºÇà ÇÏµµ±Þ ¾÷Ã¼<br>
-					- ¿ë¿ª : ¼öÇùÀºÇà¿¡ ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+					- ë¬¼í’ˆ : ìˆ˜í˜‘ì€í–‰ì— ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+					- ê³µì‚¬ : ìˆ˜í˜‘ì€í–‰ í•˜ë„ê¸‰ ì—…ì²´<br>
+					- ìš©ì—­ : ìˆ˜í˜‘ì€í–‰ì— ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 				</td>
 			</tr>
 		</table>
@@ -295,27 +295,27 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<td align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¿øÀÚÀç
-					<input type="checkbox" name="client_type" value="1"> ¿ÜÁÖ
-					<input type="checkbox" name="client_type" value="2"> ºÎÀÚÀç
+					<input type="checkbox" name="client_type" value="0"> ì›ìžìž¬
+					<input type="checkbox" name="client_type" value="1"> ì™¸ì£¼
+					<input type="checkbox" name="client_type" value="2"> ë¶€ìžìž¬
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20170101031')">¾÷Ã¼µî·Ï</button>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20170101031').style.display='none';">Ãë¼Ò</button>
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20170101031')">ì—…ì²´ë“±ë¡</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20170101031').style.display='none';">ì·¨ì†Œ</button>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¿øÀÚÀç : ÄÚ½º¸ðÄÚ½º¿¡ ¿øÀÚÀç¸¦ Á¦°ø(³³Ç°)ÇÏ´Â ¾÷Ã¼<br>
-					- ¿ÜÁÖ : ÄÚ½º¸ðÄÚ½ºÀÇ ÇÏµµ±Þ ¾÷Ã¼<br>
-					- ºÎÀÚÀç : ÄÚ½º¸ðÄÚ½º¿¡ ºÎÀÚÀç¸¦ Á¦°ø(³³Ç°)ÇÏ´Â ¾÷Ã¼
+					- ì›ìžìž¬ : ì½”ìŠ¤ëª¨ì½”ìŠ¤ì— ì›ìžìž¬ë¥¼ ì œê³µ(ë‚©í’ˆ)í•˜ëŠ” ì—…ì²´<br>
+					- ì™¸ì£¼ : ì½”ìŠ¤ëª¨ì½”ìŠ¤ì˜ í•˜ë„ê¸‰ ì—…ì²´<br>
+					- ë¶€ìžìž¬ : ì½”ìŠ¤ëª¨ì½”ìŠ¤ì— ë¶€ìžìž¬ë¥¼ ì œê³µ(ë‚©í’ˆ)í•˜ëŠ” ì—…ì²´
 				</td>
 			</tr>
 		</table>
@@ -326,27 +326,27 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<td align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-					<input type="checkbox" name="client_type" value="1"> °ø»ç
-					<input type="checkbox" name="client_type" value="2"> ¿ë¿ª
+					<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+					<input type="checkbox" name="client_type" value="1"> ê³µì‚¬
+					<input type="checkbox" name="client_type" value="2"> ìš©ì—­
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121204063')">¾÷Ã¼µî·Ï</button>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121204063').style.display='none';">Ãë¼Ò</button>
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20121204063')">ì—…ì²´ë“±ë¡</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20121204063').style.display='none';">ì·¨ì†Œ</button>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¹°Ç° : È¨ÇÃ·¯½º¿¡ ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-					- °ø»ç : È¨ÇÃ·¯½º ÇÏµµ±Þ ¾÷Ã¼<br>
-					- ¿ë¿ª : È¨ÇÃ·¯½º¿¡ ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+					- ë¬¼í’ˆ : í™ˆí”ŒëŸ¬ìŠ¤ì— ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+					- ê³µì‚¬ : í™ˆí”ŒëŸ¬ìŠ¤ í•˜ë„ê¸‰ ì—…ì²´<br>
+					- ìš©ì—­ : í™ˆí”ŒëŸ¬ìŠ¤ì— ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 				</td>
 			</tr>
 		</table>
@@ -357,21 +357,21 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<td align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-					<input type="checkbox" name="client_type" value="1"> °ø»ç
-					<input type="checkbox" name="client_type" value="2"> ¿ë¿ª
+					<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+					<input type="checkbox" name="client_type" value="1"> ê³µì‚¬
+					<input type="checkbox" name="client_type" value="2"> ìš©ì—­
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¹°Ç° : ´ë¸²¾¾¿£¿¡½º¿¡ ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-					- °ø»ç : ´ë¸²¾¾¿£¿¡½º ÇÏµµ±Þ ¾÷Ã¼<br>
-					- ¿ë¿ª : ´ë¸²¾¾¿£¿¡½º¿¡ ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+					- ë¬¼í’ˆ : ëŒ€ë¦¼ì”¨ì—”ì—ìŠ¤ì— ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+					- ê³µì‚¬ : ëŒ€ë¦¼ì”¨ì—”ì—ìŠ¤ í•˜ë„ê¸‰ ì—…ì²´<br>
+					- ìš©ì—­ : ëŒ€ë¦¼ì”¨ì—”ì—ìŠ¤ì— ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 				</td>
 			</tr>
 		</table>
@@ -382,27 +382,27 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<td align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¹°Ç°
-					<input type="checkbox" name="client_type" value="1"> °ø»ç
-					<input type="checkbox" name="client_type" value="2"> ¿ë¿ª
+					<input type="checkbox" name="client_type" value="0"> ë¬¼í’ˆ
+					<input type="checkbox" name="client_type" value="1"> ê³µì‚¬
+					<input type="checkbox" name="client_type" value="2"> ìš©ì—­
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20120200001')">¾÷Ã¼µî·Ï</button>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20120200001').style.display='none';">Ãë¼Ò</button>
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20120200001')">ì—…ì²´ë“±ë¡</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20120200001').style.display='none';">ì·¨ì†Œ</button>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¹°Ç° : Å×½ºÆ®02¿¡°Ô ¹°Ç°À» Á¦°ø(³³Ç°)À» ÇÏ´Â ¾÷Ã¼<br>
-					- °ø»ç : Å×½ºÆ®02 ÇÏµµ±Þ ¾÷Ã¼<br>
-					- ¿ë¿ª : Å×½ºÆ®02¿¡°Ô ¿ë¿ªÀ» Á¦°ø ÇÏ´Â ¾÷Ã¼
+					- ë¬¼í’ˆ : í…ŒìŠ¤íŠ¸02ì—ê²Œ ë¬¼í’ˆì„ ì œê³µ(ë‚©í’ˆ)ì„ í•˜ëŠ” ì—…ì²´<br>
+					- ê³µì‚¬ : í…ŒìŠ¤íŠ¸02 í•˜ë„ê¸‰ ì—…ì²´<br>
+					- ìš©ì—­ : í…ŒìŠ¤íŠ¸02ì—ê²Œ ìš©ì—­ì„ ì œê³µ í•˜ëŠ” ì—…ì²´
 				</td>
 			</tr>
 		</table>
@@ -413,19 +413,19 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<th align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</th>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¼ö¼Û
-					<input type="checkbox" name="client_type" value="1"> ±¸¸Å
-					<input type="checkbox" name="client_type" value="2"> °ø»ç
+					<input type="checkbox" name="client_type" value="0"> ìˆ˜ì†¡
+					<input type="checkbox" name="client_type" value="1"> êµ¬ë§¤
+					<input type="checkbox" name="client_type" value="2"> ê³µì‚¬
 				</td>
 			</tr>
 			<tr>
 				<th align="center">
-					´ëÇ¥ÀÚ »ý³â¿ùÀÏ ¹× ¼ºº°À» ÀÔ·Â ÇÏ¼¼¿ä.
+					ëŒ€í‘œìž ìƒë…„ì›”ì¼ ë° ì„±ë³„ì„ ìž…ë ¥ í•˜ì„¸ìš”.
 				</th>
 			</tr>
 			<tr>
@@ -433,21 +433,21 @@ attachOnload( function(){
 					<input type="text" name="member_slno1" class="input_n" size="10" maxlength="10">&nbsp;
 					<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form2']['member_slno1'])">
 					/
-					<input type="radio" name="member_slno2" value="1">³²ÀÚ
-					<input type="radio" name="member_slno2" value="2">¿©ÀÚ
+					<input type="radio" name="member_slno2" value="1">ë‚¨ìž
+					<input type="radio" name="member_slno2" value="2">ì—¬ìž
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany2('20130400333')">¾÷Ã¼µî·Ï</button>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400333').style.display='none';">Ãë¼Ò</button>
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany2('20130400333')">ì—…ì²´ë“±ë¡</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400333').style.display='none';">ì·¨ì†Œ</button>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¼ö¼Û : ¼ö¼ÛºÎÀÇ °Å·¡Ã³<br>
-					- ±¸¸Å : ±¸¸ÅÆÀ °Å·¡Ã³<br>
-					- °ø»ç : ÀÎÇÁ¶óÆÀ °Å·¡Ã³
+					- ìˆ˜ì†¡ : ìˆ˜ì†¡ë¶€ì˜ ê±°ëž˜ì²˜<br>
+					- êµ¬ë§¤ : êµ¬ë§¤íŒ€ ê±°ëž˜ì²˜<br>
+					- ê³µì‚¬ : ì¸í”„ë¼íŒ€ ê±°ëž˜ì²˜
 				</td>
 			</tr>
 		</table>
@@ -458,27 +458,27 @@ attachOnload( function(){
 		<table>
 			<tr>
 				<td align="center">
-					°Å·¡Ã³ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.
+					ê±°ëž˜ì²˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<input type="checkbox" name="client_type" value="0"> ¼ö¼Û
-					<input type="checkbox" name="client_type" value="1"> ±¸¸Å
-					<input type="checkbox" name="client_type" value="2"> °ø»ç
+					<input type="checkbox" name="client_type" value="0"> ìˆ˜ì†¡
+					<input type="checkbox" name="client_type" value="1"> êµ¬ë§¤
+					<input type="checkbox" name="client_type" value="2"> ê³µì‚¬
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20130400333')">¾÷Ã¼µî·Ï</button>
-					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400333').style.display='none';">Ãë¼Ò</button>
+					<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddCompany('20130400333')">ì—…ì²´ë“±ë¡</button>
+					<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20130400333').style.display='none';">ì·¨ì†Œ</button>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					- ¼ö¼Û : ¼ö¼ÛºÎÀÇ °Å·¡Ã³<br>
-					- ±¸¸Å : ±¸¸ÅÆÀ °Å·¡Ã³<br>
-					- °ø»ç : ÀÎÇÁ¶óÆÀ °Å·¡Ã³
+					- ìˆ˜ì†¡ : ìˆ˜ì†¡ë¶€ì˜ ê±°ëž˜ì²˜<br>
+					- êµ¬ë§¤ : êµ¬ë§¤íŒ€ ê±°ëž˜ì²˜<br>
+					- ê³µì‚¬ : ì¸í”„ë¼íŒ€ ê±°ëž˜ì²˜
 				</td>
 			</tr>
 		</table>
@@ -489,35 +489,35 @@ attachOnload( function(){
 	<div class="div_table" style="padding-top: 5px;">
 	<table>
 		<tr>
-			<th>°Å·¡Ã³ À¯Çü ¼±ÅÃ</th>
+			<th>ê±°ëž˜ì²˜ ìœ í˜• ì„ íƒ</th>
 		</tr>
 		<!-- IF START 'noti.noti_seq' -->
 		<tr>
 			<td align="center">
-				<input type="radio" name="client_type" value="1"> µî·Ï¾÷Ã¼
-				<input type="radio" name="client_type" value="2"> Çù·Â¾÷Ã¼
+				<input type="radio" name="client_type" value="1"> ë“±ë¡ì—…ì²´
+				<input type="radio" name="client_type" value="2"> í˜‘ë ¥ì—…ì²´
 			</td>
 		</tr>
 		<!-- IF END 'noti.noti_seq' -->
 		<!-- IFNOT START 'noti.noti_seq' -->
 		<tr>
 			<td align="center">
-				<input type="radio" name="client_type" value="1" disabled> µî·Ï¾÷Ã¼(½ÅÃ»±â°£¾Æ´Ô)
-				<input type="radio" name="client_type" value="2"> Çù·Â¾÷Ã¼
+				<input type="radio" name="client_type" value="1" disabled> ë“±ë¡ì—…ì²´(ì‹ ì²­ê¸°ê°„ì•„ë‹˜)
+				<input type="radio" name="client_type" value="2"> í˜‘ë ¥ì—…ì²´
 			</td>
 		</tr>
 		<!-- IFNOT END 'noti.noti_seq' -->
 		<tr>
 			<td align="center">
-				<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddNhqv('20160901598')"><span></span>°Å·¡½ÅÃ»</button>
-				<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20160901598').style.display='none';"><span></span>Ãë¼Ò</button>
+				<button type="button" class="sbtn color ico-confirm" onclick="isDetailAddNhqv('20160901598')"><span></span>ê±°ëž˜ì‹ ì²­</button>
+				<button type="button" class="sbtn color ico-cancel" onclick="document.getElementById('20160901598').style.display='none';"><span></span>ì·¨ì†Œ</button>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				- µî·Ï¾÷Ã¼ : µî·Ï¾÷Ã¼ ¸ðÁý°ø°í ±â°£Áß¸¸ ¼±ÅÃ °¡´É<br>
-				<font style="color:#ffffff">..</font>  (µî·Ï¾÷Ã¼°øÁ¾ : ÀÎÅ×¸®¾î,Àü±â,Åë½Å,°£ÆÇ,Á¦ÀÛ°¡±¸,»ç¹«¿ë°¡±¸,³Ã³­¹æ)<br>
-				- Çù·Â¾÷Ã¼ : µî·Ï¾÷Ã¼ °øÁ¾ ÀÌ¿ÜÀÇ ¾÷Ã¼
+				- ë“±ë¡ì—…ì²´ : ë“±ë¡ì—…ì²´ ëª¨ì§‘ê³µê³  ê¸°ê°„ì¤‘ë§Œ ì„ íƒ ê°€ëŠ¥<br>
+				<font style="color:#ffffff">..</font>  (ë“±ë¡ì—…ì²´ê³µì¢… : ì¸í…Œë¦¬ì–´,ì „ê¸°,í†µì‹ ,ê°„íŒ,ì œìž‘ê°€êµ¬,ì‚¬ë¬´ìš©ê°€êµ¬,ëƒ‰ë‚œë°©)<br>
+				- í˜‘ë ¥ì—…ì²´ : ë“±ë¡ì—…ì²´ ê³µì¢… ì´ì™¸ì˜ ì—…ì²´
 			</td>
 		</tr>
 	</table>
@@ -535,17 +535,17 @@ attachOnload( function(){
             sSelectMemberNo = member_no;
             return;
         }
-        else if(jQuery.inArray(member_no, ["20140300055","20130400091","20121200116","20140101025","20120200001"])>=0){  // ÇÑ±¹À¯¸®°ø¾÷, ´ëº¸Á¤º¸Åë½Å, ÇÑ±¹Á¦Áö, ½Å¼¼°è, Å×½ºÆ®02
+        else if(jQuery.inArray(member_no, ["20140300055","20130400091","20121200116","20140101025","20120200001"])>=0){  // í•œêµ­ìœ ë¦¬ê³µì—…, ëŒ€ë³´ì •ë³´í†µì‹ , í•œêµ­ì œì§€, ì‹ ì„¸ê³„, í…ŒìŠ¤íŠ¸02
             document.getElementById(member_no).style.display="";
             sSelectMemberNo = member_no;
             return;
         }
-        else if(jQuery.inArray(member_no, ["20160901598"])>=0){  // NHÅõÀÚÁõ±Ç
+        else if(jQuery.inArray(member_no, ["20160901598"])>=0){  // NHíˆ¬ìžì¦ê¶Œ
             document.getElementById(member_no).style.display="";
             sSelectMemberNo = member_no;
             return;
         }
-        else if(jQuery.inArray(member_no, ["20130400333"])>=0) { // ¾¾Á¦ÀÌ´ëÇÑÅë¿î
+        else if(jQuery.inArray(member_no, ["20130400333"])>=0) { // ì”¨ì œì´ëŒ€í•œí†µìš´
         	if("{{_auth._MEMBER_GUBUN}}" == "03"){
 				document.getElementById(member_no+"_03").style.display="";
 				sSelectMemberNo = member_no;
@@ -564,7 +564,7 @@ attachOnload( function(){
     function isDetailAddCompany(member_no){
         var client_type = GetFormValue("form2","client_type");
         if(client_type==""){
-            alert("°Å·¡Ã³¿ÍÀÇ °ü°è¸¦ ¼±ÅÃ ÇÏ¼¼¿ä.");
+            alert("ê±°ëž˜ì²˜ì™€ì˜ ê´€ê³„ë¥¼ ì„ íƒ í•˜ì„¸ìš”.");
             return;
         }
         var retVal = new Array(sSelectMemberNo,client_type);
@@ -576,11 +576,11 @@ attachOnload( function(){
         var member_slno1 = GetFormValue("form2","member_slno1");
         var member_slno2 = GetFormValue("form2","member_slno2");
         if(member_slno1.length != 10){
-            alert("´ëÇ¥ÀÚ »ý³â¿ùÀÏÀ» ÀÔ·Â ÇÏ¼¼¿ä.");
+            alert("ëŒ€í‘œìž ìƒë…„ì›”ì¼ì„ ìž…ë ¥ í•˜ì„¸ìš”.");
             return;
         }
         if(member_slno2.length != 1){
-            alert("¼ºº°À» ¼±ÅÃ ÇÏ¼¼¿ä.");
+            alert("ì„±ë³„ì„ ì„ íƒ í•˜ì„¸ìš”.");
             return;
         }
         var retVal = new Array(sSelectMemberNo,client_type,member_slno1,member_slno2);
@@ -591,7 +591,7 @@ attachOnload( function(){
     function isDetailAddNhqv(member_no){
         var client_type = GetFormValue("form2","client_type");
         if(client_type==""){
-            alert("°Å·¡Ã³ À¯ÇüÀ» ¼±ÅÃ ÇÏ¼¼¿ä.");
+            alert("ê±°ëž˜ì²˜ ìœ í˜•ì„ ì„ íƒ í•˜ì„¸ìš”.");
             return;
         }
         var retVal = new Array(sSelectMemberNo,client_type);

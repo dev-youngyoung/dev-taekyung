@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=EUC-KR"%><%@ include file="init.jsp"%>
+<%@ page contentType="text/html; charset=UTF-8"%><%@ include file="init.jsp"%>
 <%
 String main_member_no = u.request("main_member_no");
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
 String callback = u.request("callback");
 if(main_member_no.equals("")||bid_no.equals("")||bid_deg.equals("")||callback.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 f.addElement("s_member_name", null, null);
 f.addElement("s_vendcd", null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -40,7 +40,7 @@ if (!u.request("search").equals("")) {
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("buyer.pop_search_supp");
-p.setVar("popup_title", "¾÷Ã¼°Ë»ö");
+p.setVar("popup_title", "ì—…ì²´ê²€ìƒ‰");
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());
 p.setVar("query", u.getQueryString());

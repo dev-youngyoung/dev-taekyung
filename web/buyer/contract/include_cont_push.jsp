@@ -37,7 +37,7 @@ private ArrayList getList_skstoa(String member_no, String contno, String cont_st
 		while(ds.next()){
 			Map map = new HashMap();
 			
-			// °øÅë»çÇ×
+			// ê³µí†µì‚¬í•­
 			map.put("contName",ds.getString("cont_name"));   
 			map.put("contDay",ds.getString("cont_date"));
 			map.put("contNo",ds.getString("cont_no"));
@@ -74,7 +74,7 @@ private ArrayList getList_skstoa(String member_no, String contno, String cont_st
 			String approve = "";
 			
 			while(ds_person.next()){	
-				approve = "ÀÛ¼ºÀÚ|" + ds_person.getString("user_name") + "|" + ds.getString("reg_id") + "|1|" + ds.getString("reg_date") + "^";
+				approve = "ì‘ì„±ì|" + ds_person.getString("user_name") + "|" + ds.getString("reg_id") + "|1|" + ds.getString("reg_date") + "^";
 			}
 			
 			while(ds2.next()){							
@@ -88,19 +88,19 @@ private ArrayList getList_skstoa(String member_no, String contno, String cont_st
 			if(ds.getString("template_cd").equals("2015001"))
 			{
 				map.put("entpCode", jsoupUtil.getValue("cust_code","^"));
-			} else if(ds.getString("template_cd").equals("2015016"))  { // Ã»±¸¼­
+			} else if(ds.getString("template_cd").equals("2015016"))  { // ì²­êµ¬ì„œ
 				map.put("entpCode",jsoupUtil.getValue("cust_code","^"));
 				map.put("req_month",jsoupUtil.getValue("req_month","^"));
 				map.put("req_count",jsoupUtil.getValue("req_count","^"));
-			}else if(Util.inArray(ds.getString("template_cd"), new String[]{"2019017", "2019018","2020192"})) { // PGM)SK½ºÅä¾Æ ÆÇ¸Å°è¾à¼­[È¥ÇÕ¼ö¼ö·á], À§¼öÅ¹¼ö¼ö·á
+			}else if(Util.inArray(ds.getString("template_cd"), new String[]{"2019017", "2019018","2020192"})) { // PGM)SKìŠ¤í† ì•„ íŒë§¤ê³„ì•½ì„œ[í˜¼í•©ìˆ˜ìˆ˜ë£Œ], ìœ„ìˆ˜íƒìˆ˜ìˆ˜ë£Œ
 				map.put("entpCode",jsoupUtil.getValue("b_t1","^"));
 			}else{
 				map.put("entpCode",jsoupUtil.getValue("t1","^"));	
 			}
 			map.put("goodsCode",jsoupUtil.getValue("t2","^"));
 
-			map.put("seqFrameNo",jsoupUtil.getValue("seqFrameNo","^")); // Æí¼ºÄÚµå
-			map.put("bDate",jsoupUtil.getValue("b_date","^")); // ¹æ¼ÛÀÏ½Ã
+			map.put("seqFrameNo",jsoupUtil.getValue("seqFrameNo","^")); // í¸ì„±ì½”ë“œ
+			map.put("bDate",jsoupUtil.getValue("b_date","^")); // ë°©ì†¡ì¼ì‹œ
 
 
 			list.add(map);
@@ -129,7 +129,7 @@ public DataSet contPush_skstoa(String cont_no , String cont_chasu, String cont_s
 	DataSet cont = contDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'");
 	if(!cont.next()){
 		result.put("succ_yn","N");
-		result.put("err_msg", "°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+		result.put("err_msg", "ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return result;
 	}
 
@@ -155,16 +155,16 @@ public DataSet contPush_skstoa(String cont_no , String cont_chasu, String cont_s
 	hp.setContentType("application/json");
 	try {
 		String ret = hp.sendSkbroadband(cont.getString("template_cd"),json,cont.getString("template_cd").equals("2015016")?true:false);
-		System.out.println("¸®ÅÏ[" + ret + "]");
+		System.out.println("ë¦¬í„´[" + ret + "]");
 		String code = ret.replace("%22", "\"");				
 
 		if(!code.equals("")){
 			JSONObject retJSON2 = JSONObject.fromObject(code);
 			
 			if(retJSON2.getString("retCode").equals("1")) {
-				System.out.println("Àü¼Û ¼º°ø");
+				System.out.println("ì „ì†¡ ì„±ê³µ");
 			} else {			
-				System.out.println("Àü¼Û ½ÇÆĞ");
+				System.out.println("ì „ì†¡ ì‹¤íŒ¨");
 				result.put("succ_yn","N");
 				result.put("err_msg", "skstora error : "+retJSON2.getString("retMsg"));
 				return result;
@@ -173,9 +173,9 @@ public DataSet contPush_skstoa(String cont_no , String cont_chasu, String cont_s
 		result.put("succ_yn","Y");
 		result.put("err_msg", "");
 	} catch(Exception ex) {
-		System.out.println("¿¡·¯:" + ex.getMessage());        
+		System.out.println("ì—ëŸ¬:" + ex.getMessage());        
 		result.put("succ_yn","N");
-		result.put("err_msg", "°è¾à¼­ »óÅÂ°ª Àü¼Û Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+		result.put("err_msg", "ê³„ì•½ì„œ ìƒíƒœê°’ ì „ì†¡ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return result;
 	}
 	System.out.println("contPush_skstoa END cont_no:"+cont_no+"-"+cont_chasu+", cont_status:"+cont_status);
@@ -199,7 +199,7 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 		DataSet cont = contDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'", "cont_html, status, member_no");
 		if(!cont.next()){
 			result.put("succ_yn","N");
-			result.put("err_msg", "°è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+			result.put("err_msg", "ê³„ì•½ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			return result;
 		}
 		
@@ -207,9 +207,9 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 	    String request_amount = "";
         String connServer = "";
 
-        if(cont.getString("member_no").equals("20180101074")) {// ÇÇÇÃÆİµå
+        if(cont.getString("member_no").equals("20180101074")) {// í”¼í”Œí€ë“œ
             connServer = "https://earlypay-admin.peoplefund.co.kr";
-        } else {  // Æİ´Ù (20180101078), ¾ó¸®ÆäÀÌ(20181200231) À¯ÇÑÈ¸»ç À§Ä¿¸Ó½º(20181201402)
+        } else {  // í€ë‹¤ (20180101078), ì–¼ë¦¬í˜ì´(20181200231) ìœ í•œíšŒì‚¬ ìœ„ì»¤ë¨¸ìŠ¤(20181201402)
             connServer = "https://earlypay.funda.kr";
         }
 
@@ -226,7 +226,7 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 			}
 		} else {
 			result.put("succ_yn","Y");
-			result.put("err_msg", "¿¬µ¿ Àü ÀÛ¼º °è¾à¼­¶ó PUSH ÇÏÁö ¾ÊÀ½.");
+			result.put("err_msg", "ì—°ë™ ì „ ì‘ì„± ê³„ì•½ì„œë¼ PUSH í•˜ì§€ ì•ŠìŒ.");
 			return result;
 		}
 	
@@ -234,7 +234,7 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 		Process process = new ProcessBuilder(cmd).start();
 		BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
 	
-		// Ç¥ÁØÃâ·Â »óÅÂ¸¦ Ãâ·Â
+		// í‘œì¤€ì¶œë ¥ ìƒíƒœë¥¼ ì¶œë ¥
 		while( (buffer = stdOut.readLine()) != null ) {
 			ret += buffer;
 		}
@@ -242,20 +242,20 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 	
 		if(ret.indexOf("{") < -1) {
 			result.put("succ_yn","Y");
-			result.put("err_msg", "Earlypay¿Í Åë½ÅÁß ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù..\\n\\n[Error message] invalid value");
+			result.put("err_msg", "Earlypayì™€ í†µì‹ ì¤‘ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤..\\n\\n[Error message] invalid value");
 			return result;
 		}
-		retJSON = JSONObject.fromObject(ret.substring(ret.indexOf("{")));  // json °ª¸¸ °¡Á®¿À±â
+		retJSON = JSONObject.fromObject(ret.substring(ret.indexOf("{")));  // json ê°’ë§Œ ê°€ì ¸ì˜¤ê¸°
 		System.out.println("retJSON - "+retJSON);
 	
-		if(ret.indexOf("message") > 0) {// ¿¡·¯ ¸Ş½ÃÁö
+		if(ret.indexOf("message") > 0) {// ì—ëŸ¬ ë©”ì‹œì§€
 			String message = retJSON.getString("message");
-			System.out.println("earypay ¿¡·¯ :" + message);
+			System.out.println("earypay ì—ëŸ¬ :" + message);
 		}
 	
 	} catch(Exception ex) {
 		result.put("succ_yn","N");
-		result.put("err_msg", "Earlypay¿Í Åë½ÅÁß ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù.\\n\\n[Error message] " + ex.getMessage());
+		result.put("err_msg", "Earlypayì™€ í†µì‹ ì¤‘ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.\\n\\n[Error message] " + ex.getMessage());
 		return result;
 	}
 
@@ -280,7 +280,7 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 			DataSet cont = contDao.query(
 				  " select "
 				+ "       a.cont_no||a.cont_chasu NO_CONT "
-				+ "     , decode(a.template_cd, '2018230','10','2018231','20','2018229','30') CD_CONT_TYPE"  //10: ¹°Ç°/20: °ø»ç/30: ¿ë¿ª
+				+ "     , decode(a.template_cd, '2018230','10','2018231','20','2018229','30') CD_CONT_TYPE"  //10: ë¬¼í’ˆ/20: ê³µì‚¬/30: ìš©ì—­
 				+ "     , a.cont_name  NM_CONT "
 				+ "     , a.cont_date DT_CONT "
 				+ "     , a.cont_sdate DT_SUPPLY_FR "
@@ -307,7 +307,7 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 			);
 			if(!cont.next()) {
 				result.put("succ_yn", "N");
-				result.put("err_msg", "°è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+				result.put("err_msg", "ê³„ì•½ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				return result;
 			}
 
@@ -338,13 +338,13 @@ public DataSet contPush_earlypay(String cont_no , String cont_chasu){
 			System.out.println("rtn = > ["+rtn+"]");
 			if(!rtn.trim().equals("success")){
 				result.put("succ_yn","N");
-				result.put("err_msg", "°æ±âÅ×Å©³ëÆÄÅ©¿Í ¿¬µ¿¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.\\n\\n[Error message] " + rtn);
+				result.put("err_msg", "ê²½ê¸°í…Œí¬ë…¸íŒŒí¬ì™€ ì—°ë™ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\n[Error message] " + rtn);
 				return result;
 			}
 
 		}catch(Exception e){
 			result.put("succ_yn","N");
-			result.put("err_msg", "°æ±âÅ×Å©³ëÆÄÅ©¿Í Åë½ÅÁß ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù.\\n\\n[Error message] " + e.getMessage());
+			result.put("err_msg", "ê²½ê¸°í…Œí¬ë…¸íŒŒí¬ì™€ í†µì‹ ì¤‘ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.\\n\\n[Error message] " + e.getMessage());
 			return result;
 		}
 

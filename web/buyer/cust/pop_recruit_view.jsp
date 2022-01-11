@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String seq = u.request("seq");
@@ -10,7 +10,7 @@ if(member_no.equals("")||seq.equals("")||vendcd.equals("")){
 DataObject recruitDao = new DataObject("tcb_recruit");
 DataSet recruit = recruitDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' ");
 if(!recruit.next()){
-	u.jsErrClose("¸ðÁý°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ëª¨ì§‘ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -20,7 +20,7 @@ DataSet category = categoryDao.find("member_no = '"+member_no+"' and seq = '"+se
 DataObject suppDao = new DataObject("tcb_recruit_supp");
 DataSet supp = suppDao.find("member_no = '"+member_no+"' and seq = '"+seq+"' and vendcd = '"+vendcd+"' ");
 if(!supp.next()){
-	u.jsErrClose("½ÅÃ»Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ì‹ ì²­ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -50,7 +50,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_recruit_view");
-p.setVar("popup_title","Çù·Â¾÷Ã¼ ¸ðÁý°ø°í");
+p.setVar("popup_title","í˜‘ë ¥ì—…ì²´ ëª¨ì§‘ê³µê³ ");
 p.setVar("recruit", recruit);
 p.setVar("supp", supp);
 p.setLoop("category", category);

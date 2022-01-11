@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 
 
 
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("main.moral");
-p.setVar("popup_title","(ÁÖ)³ªÀÌ½ºµð¾Øºñ À±¸®°­·É");
+p.setVar("popup_title","(ì£¼)ë‚˜ì´ìŠ¤ë””ì•¤ë¹„ ìœ¤ë¦¬ê°•ë ¹");
 p.setVar("form_script",f.getScript());
 p.display(out);
 %>

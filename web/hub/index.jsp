@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
 
 if(request.getServerName().equals("www.nicedocu.com")&&!request.isSecure()){
@@ -7,7 +7,7 @@ if(request.getServerName().equals("www.nicedocu.com")&&!request.isSecure()){
 	return;
 }
 
-// ¹°·ù ³ªÀÌ½º´ÙÅ¥·Î Á¢±ÙÇÒ °æ¿ì
+// ë¬¼ë¥˜ ë‚˜ì´ìŠ¤ë‹¤íë¡œ ì ‘ê·¼í•  ê²½ìš°
 if(request.getServerName().equals("logis.nicedocu.com"))
 	response.sendRedirect("/web/logis/index.jsp");
 else if(request.getServerName().equals("wemakeprice.nicedocu.com"))
@@ -32,7 +32,7 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 
-	<title>³ªÀÌ½º´ÙÅ¥</title>
+	<title>ë‚˜ì´ìŠ¤ë‹¤í</title>
 	<link rel="stylesheet" type="text/css" href="/web/hub/css/default.css">
 	<link rel="stylesheet" type="text/css" href="/web/hub/css/libs/jquery.bxslider.css">
 
@@ -65,7 +65,7 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 			client.onreadystatechange = function() {
 				if(client.readyState == 4) {
 
-					//Ãâ·Â·¹ÀÌ¾î°¡ ¾øÀ» °æ¿ì »ý¼º
+					//ì¶œë ¥ë ˆì´ì–´ê°€ ì—†ì„ ê²½ìš° ìƒì„±
 					var el = document.getElementById(id);
 					if(!el) {
 						el = document.createElement("div");
@@ -73,7 +73,7 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 						document.body.appendChild(el);
 					}
 
-					//IEÀÇ °æ¿ì ¹ö±×°¡ Á¸ÀçÇÔ. ±×·¡¼­ &nbsp¸¦ Ãß°¡
+					//IEì˜ ê²½ìš° ë²„ê·¸ê°€ ì¡´ìž¬í•¨. ê·¸ëž˜ì„œ &nbspë¥¼ ì¶”ê°€
 					/*
 					if(isIE && client.responseText.indexOf("<script") > 0 ) {
 						el.innerHTML = "<span style='display:none;'>&nbsp;</span>" + client.responseText;
@@ -86,10 +86,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 					if(callback) {
 						try {
 							eval(callback + "(client.responseText)");
-						} catch(e) { alert(callback + " ÇÔ¼ö°¡ ¾ø½À´Ï´Ù."); }
+						} catch(e) { alert(callback + " í•¨ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤."); }
 					}
 
-					//ÀÚ¹Ù½ºÅ©¸³Æ® ½ÇÇà (defer´Â IE ¿¡¼­ ½ÇÇàµÇ¾î ¾È¾¸)
+					//ìžë°”ìŠ¤í¬ë¦½íŠ¸ ì‹¤í–‰ (deferëŠ” IE ì—ì„œ ì‹¤í–‰ë˜ì–´ ì•ˆì”€)
 					var scripts = el.getElementsByTagName("script");
 					for(var i=0; i<scripts.length; i++) {
 						eval(scripts[i].innerHTML.replace("<!--", "").replace("-->", ""));
@@ -109,7 +109,7 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 				if(!f.action) f.action = location.href;
 				client.open('POST', f.action, true);
 				client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				//client.setRequestHeader("Content-Length", parameters.length); Å©·Ò º¸¾È¿¡ À§¹Ý
+				//client.setRequestHeader("Content-Length", parameters.length); í¬ë¡¬ ë³´ì•ˆì— ìœ„ë°˜
 				//client.setRequestHeader("Connection", "close");
 				client.send(parameters);
 			} else {
@@ -123,12 +123,12 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 		var f = document.forms['form1'];
 		var vendcd = f['vendcd'].value.replace("-","");
 		if(vendcd.length !=10 ){
-			alert("»ç¾÷ÀÚµî·Ï¹øÈ£¸¦ Á¤È®È÷ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ë¥¼ ì •í™•ížˆ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			f['vendcd'].focus();
 			return false;
 		}
 		if(isNaN(vendcd)){
-			alert("»ç¾÷ÀÚµî·Ï¹øÈ£¸¦ Á¤È®È÷ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ë¥¼ ì •í™•ížˆ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			f['vendcd'].focus();
 			return false;
 		}
@@ -144,17 +144,17 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 		<div class="header">
 			<div class="inner-contents">
 				<div class="logo">
-					<img src="/web/hub/images/hub_logo.png" alt="±¸¸Å Á¶´Þ ÀåÅÍ ³ªÀÌ½º´ÙÅ¥ ÀüÀÚÀÔÂû ÀüÀÚ°è¾à Å¬¶ó¿ìµå ¼­ºñ½º">
+					<img src="/web/hub/images/hub_logo.png" alt="êµ¬ë§¤ ì¡°ë‹¬ ìž¥í„° ë‚˜ì´ìŠ¤ë‹¤í ì „ìžìž…ì°° ì „ìžê³„ì•½ í´ë¼ìš°ë“œ ì„œë¹„ìŠ¤">
 				</div>
 				<div class="main-title">
 					<img src="/web/hub/images/hub_title.png" alt="Industry 4.0 Sloud Service Leader">
 				</div>
 				<div class="search">
-					<p>È¸¿ø°¡ÀÔÀ» ¿äÃ»ÇÑ »ó´ë¾÷Ã¼ È®ÀÎÇÏ±â</p>
+					<p>íšŒì›ê°€ìž…ì„ ìš”ì²­í•œ ìƒëŒ€ì—…ì²´ í™•ì¸í•˜ê¸°</p>
 					<div class="input-wrap">
 						<form novalidate name="form1" method="post" action="chk_client.jsp" onsubmit="return false">
-						<input type="text" name="vendcd" maxlength="10" placeholder="»ç¾÷ÀÚ¹øÈ£(¼ýÀÚ¸¸ÀÔ·Â)" onkeyup="if(event.keyCode=='13'){chkclient();}" >
-						<input type="button" value="°Ë»ö" onclick="chkclient()">
+						<input type="text" name="vendcd" maxlength="10" placeholder="ì‚¬ì—…ìžë²ˆí˜¸(ìˆ«ìžë§Œìž…ë ¥)" onkeyup="if(event.keyCode=='13'){chkclient();}" >
+						<input type="button" value="ê²€ìƒ‰" onclick="chkclient()">
 						</form>
 					</div>
 				</div>
@@ -170,10 +170,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 								<div class="img">
 									<img src="/web/hub/images/gnb_img1.jpg" alt="">
 								</div>
-								<p class="title">ÀÏ¹Ý ±â¾÷¿ë</p>
-								<p class="text">ÀüÀÚ±¸¸Å½Ã½ºÅÛ</p>
+								<p class="title">ì¼ë°˜ ê¸°ì—…ìš©</p>
+								<p class="text">ì „ìžêµ¬ë§¤ì‹œìŠ¤í…œ</p>
 								<div class="btn">
-									<a href="/web/buyer/main/index.jsp">¹Ù·Î°¡±â</a>
+									<a href="/web/buyer/main/index.jsp">ë°”ë¡œê°€ê¸°</a>
 								</div>
 							</div>
 						</li>
@@ -183,10 +183,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 								<div class="img">
 									<img src="/web/hub/images/gnb_img2.jpg" alt="">
 								</div>
-								<p class="title">°Ç¼³ ±â¾÷¿ë</p>
-								<p class="text">ÀüÀÚÁ¶´Þ½Ã½ºÅÛ</p>
+								<p class="title">ê±´ì„¤ ê¸°ì—…ìš©</p>
+								<p class="text">ì „ìžì¡°ë‹¬ì‹œìŠ¤í…œ</p>
 								<div class="btn">
-									<a href="/web/supplier/main/index.jsp">¹Ù·Î°¡±â</a>
+									<a href="/web/supplier/main/index.jsp">ë°”ë¡œê°€ê¸°</a>
 								</div>
 							</div>
 						</li>
@@ -196,10 +196,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 								<div class="img">
 									<img src="/web/hub/images/gnb_img3.jpg" alt="">
 								</div>
-								<p class="title">ÇÁ·£Â÷ÀÌÁî ±â¾÷¿ë</p>
-								<p class="text">°¡¸Í°è¾à°ü¸®½Ã½ºÅÛ</p>
+								<p class="title">í”„ëžœì°¨ì´ì¦ˆ ê¸°ì—…ìš©</p>
+								<p class="text">ê°€ë§¹ê³„ì•½ê´€ë¦¬ì‹œìŠ¤í…œ</p>
 								<div class="btn">
-									<a href="http://nfc.nicedocu.com">¹Ù·Î°¡±â</a>
+									<a href="http://nfc.nicedocu.com">ë°”ë¡œê°€ê¸°</a>
 								</div>
 							</div>
 						</li>
@@ -209,10 +209,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 								<div class="img">
 									<img src="/web/hub/images/gnb_img4.jpg" alt="">
 								</div>
-								<p class="title">¹°·ù ±â¾÷¿ë</p>
-								<p class="text">ÀüÀÚ°è¾à½Ã½ºÅÛ</p>
+								<p class="title">ë¬¼ë¥˜ ê¸°ì—…ìš©</p>
+								<p class="text">ì „ìžê³„ì•½ì‹œìŠ¤í…œ</p>
 								<div class="btn">
-									<a href="http://logis.nicedocu.com">¹Ù·Î°¡±â</a>
+									<a href="http://logis.nicedocu.com">ë°”ë¡œê°€ê¸°</a>
 								</div>
 							</div>
 						</li>
@@ -223,10 +223,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 						<li class="base active">
 							<div class="gb-wrap">
 								<div class="left-con">
-									<p class="title">ÀÌ¿ë¾È³»</p>
+									<p class="title">ì´ìš©ì•ˆë‚´</p>
 									<ul class="gb-con-list">
-										<li>È¸¿ø°¡ÀÔÀ» ¿äÃ» ¹Þ¾Æ °¡ÀÔÇÏ°íÀÚ ÇÏ´Â ¼­ºñ½º¸¦ ¼±ÅÃÇÏ¼¼¿ä. </li>
-										<li><u>¡®ºñ°Ç¼³¡¯</u> ³ªÀÌ½º´ÙÅ¥°¡ <u>¡®ÀÏ¹Ý±â¾÷¿ë¡¯</u> ³ªÀÌ½º´ÙÅ¥·Î ¼­ºñ½º ¸íÄªÀÌ º¯°æµÇ¾ú½À´Ï´Ù. </li>
+										<li>íšŒì›ê°€ìž…ì„ ìš”ì²­ ë°›ì•„ ê°€ìž…í•˜ê³ ìž í•˜ëŠ” ì„œë¹„ìŠ¤ë¥¼ ì„ íƒí•˜ì„¸ìš”. </li>
+										<li><u>â€˜ë¹„ê±´ì„¤â€™</u> ë‚˜ì´ìŠ¤ë‹¤íê°€ <u>â€˜ì¼ë°˜ê¸°ì—…ìš©â€™</u> ë‚˜ì´ìŠ¤ë‹¤íë¡œ ì„œë¹„ìŠ¤ ëª…ì¹­ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤. </li>
 									</ul>
 								</div>
 							</div>
@@ -234,12 +234,12 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 						<li class="item01">
 							<div class="gb-wrap">
 								<div class="left-con">
-									<p class="title">ÀÏ¹Ý±â¾÷ ÀÌ¿ë¾È³»(ºñ°Ç¼³)</p>
+									<p class="title">ì¼ë°˜ê¸°ì—… ì´ìš©ì•ˆë‚´(ë¹„ê±´ì„¤)</p>
 									<ul class="gb-con-list">
-										<li>¼­ºñ½º ³»¿ë : ÀüÀÚ°ßÀû, ÀüÀÚÀÔÂû, ÀüÀÚ°è¾à, Åë°è°ü¸®, Çù·Â»ç°ü¸®</li>
-										<li>ÀüÀÚÀÔÂû : ´Ù¾çÇÑ ÀÔÂû¹æ¹ý ¹× ³«ÂûÀÚ¼±Á¤¹æ¹ý Áö¿ø, ±¹°¡(Áö¹æ)°è¾à¹ý Áö¿ø</li>
-										<li>ÀüÀÚ°è¾à : ´Ù¾çÇÑ ÀÎÁõ¼ö´ÜÀ» ÀÌ¿ëÇÏ¿© ¼Õ½±°í °£ÆíÇÏ°Ô °è¾à Ã¼°áÀÌ °¡´ÉÇÕ´Ï´Ù.</li>
-										<li>½ÅÃ»¼­ µî ´Ü¹æÇâ ¼­½Ä¿¡ ´ëÇØ¼­µµ ÀüÀÚ¹®¼­È­¸¦ Áö¿øÇÕ´Ï´Ù.</li>
+										<li>ì„œë¹„ìŠ¤ ë‚´ìš© : ì „ìžê²¬ì , ì „ìžìž…ì°°, ì „ìžê³„ì•½, í†µê³„ê´€ë¦¬, í˜‘ë ¥ì‚¬ê´€ë¦¬</li>
+										<li>ì „ìžìž…ì°° : ë‹¤ì–‘í•œ ìž…ì°°ë°©ë²• ë° ë‚™ì°°ìžì„ ì •ë°©ë²• ì§€ì›, êµ­ê°€(ì§€ë°©)ê³„ì•½ë²• ì§€ì›</li>
+										<li>ì „ìžê³„ì•½ : ë‹¤ì–‘í•œ ì¸ì¦ìˆ˜ë‹¨ì„ ì´ìš©í•˜ì—¬ ì†ì‰½ê³  ê°„íŽ¸í•˜ê²Œ ê³„ì•½ ì²´ê²°ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.</li>
+										<li>ì‹ ì²­ì„œ ë“± ë‹¨ë°©í–¥ ì„œì‹ì— ëŒ€í•´ì„œë„ ì „ìžë¬¸ì„œí™”ë¥¼ ì§€ì›í•©ë‹ˆë‹¤.</li>
 									</ul>
 								</div>
 							</div>
@@ -247,10 +247,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 						<li class="item02 ">
 							<div class="gb-wrap">
 								<div class="left-con">
-									<p class="title">°Ç¼³±â¾÷ ÀÌ¿ë¾È³»</p>
+									<p class="title">ê±´ì„¤ê¸°ì—… ì´ìš©ì•ˆë‚´</p>
 									<ul class="gb-con-list">
-										<li>°Ç¼³ ±â¾÷éÄ ³ªÀÌ½º´ÙÅ¥ °Ç¼³ ¾÷Á¾¿¡ ÃÖÀûÈ­µÈ ÀüÀÚÁ¶´Þ½Ã½ºÅÛÀ» Á¦°øÇÕ´Ï´Ù.</li>
-										<li>¼­ºñ½º ³»¿ë : ÀüÀÚÀÔÂû, ÀüÀÚ°è¾à, ÀüÀÚ¹®¼­, ÀüÀÚ½ÇÀûÁõ¸í¹ß±Þ, Åë°è°ü¸®, Çù·Â»ç°ü¸®, »óÈ£Çù·ÂÆò°¡°ü¸®</li>
+										<li>ê±´ì„¤ ê¸°ì—…ç”¨ ë‚˜ì´ìŠ¤ë‹¤í ê±´ì„¤ ì—…ì¢…ì— ìµœì í™”ëœ ì „ìžì¡°ë‹¬ì‹œìŠ¤í…œì„ ì œê³µí•©ë‹ˆë‹¤.</li>
+										<li>ì„œë¹„ìŠ¤ ë‚´ìš© : ì „ìžìž…ì°°, ì „ìžê³„ì•½, ì „ìžë¬¸ì„œ, ì „ìžì‹¤ì ì¦ëª…ë°œê¸‰, í†µê³„ê´€ë¦¬, í˜‘ë ¥ì‚¬ê´€ë¦¬, ìƒí˜¸í˜‘ë ¥í‰ê°€ê´€ë¦¬</li>
 									</ul>
 								</div>
 							</div>
@@ -258,10 +258,10 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 						<li class="item03 ">
 							<div class="gb-wrap">
 								<div class="left-con">
-									<p class="title">ÇÁ·£Â÷ÀÌÁî ±â¾÷ ÀÌ¿ë¾È³»</p>
+									<p class="title">í”„ëžœì°¨ì´ì¦ˆ ê¸°ì—… ì´ìš©ì•ˆë‚´</p>
 									<ul class="gb-con-list">
-										<li>ÇÁ·£Â÷ÀÌÁî ±â¾÷éÄ ³ªÀÌ½º´ÙÅ¥´Â ÇÁ·£Â÷ÀÌÁî ¾÷Á¾¿¡ ÃÖÀûÈ­µÈ ÀüÀÚ°è¾à ¼­ºñ½º¸¦ Á¦°øÇÕ´Ï´Ù.</li>
-										<li>°¡¸Íº»ºÎ¿Í (Èñ¸Á)Á¡ÁÖ°£¿¡ °¡¸Í°è¾à °¢Á¾ °ü·Ã¼­·ù¸¦ ÀüÀÚ¹®¼­È­°¡ °¡´É ÇÕ´Ï´Ù.</li>
+										<li>í”„ëžœì°¨ì´ì¦ˆ ê¸°ì—…ç”¨ ë‚˜ì´ìŠ¤ë‹¤íëŠ” í”„ëžœì°¨ì´ì¦ˆ ì—…ì¢…ì— ìµœì í™”ëœ ì „ìžê³„ì•½ ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•©ë‹ˆë‹¤.</li>
+										<li>ê°€ë§¹ë³¸ë¶€ì™€ (í¬ë§)ì ì£¼ê°„ì— ê°€ë§¹ê³„ì•½ ê°ì¢… ê´€ë ¨ì„œë¥˜ë¥¼ ì „ìžë¬¸ì„œí™”ê°€ ê°€ëŠ¥ í•©ë‹ˆë‹¤.</li>
 									</ul>
 								</div>
 							</div>
@@ -269,11 +269,11 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 						<li class="item04 ">
 							<div class="gb-wrap">
 								<div class="left-con">
-									<p class="title">¹°·ù ±â¾÷ ÀÌ¿ë¾È³»</p>
+									<p class="title">ë¬¼ë¥˜ ê¸°ì—… ì´ìš©ì•ˆë‚´</p>
 									<ul class="gb-con-list">
-										<li>¹°·ù ±â¾÷éÄ ³ªÀÌ½º´ÙÅ¥´Â ÀüÀÚ°è¾à ¾÷¹«¸¦ Áö¿øÇÏ¸ç, CJ´ëÇÑÅë¿î, ÇÑÁø, ·Ôµ¥±Û·Î¹ú·ÎÁö½º°¡ È¸¿ø»çÀÔ´Ï´Ù.</li>
-										<li>Áý¹èÁ¡, ÅÃ¹è¿î¼Û, ÅÃ¹èÇ¥ÁØ °è¾à µî ¹°·ù(ÅÃ¹è) °è¾àÀ» Ã¼°áÇÏ°íÀÚ ÇÏ´Â °æ¿ì´Â ¡°¹°·ù ±â¾÷éÄ¡±À¸·Î È¸¿ø°¡ÀÔÀ» ÇÏ¼¼¿ä.</li>
-										<li>CJ´ëÇÑÅë¿î°ú À§¼öÅ¹, ÀÓ´ëÂ÷, Àåºñ°ø±Þ µî °è¾à Ã¼°á ½Ã¿¡´Â  ¡°ÀÏ¹Ý±â¾÷éÄ¡±À¸·Î È¸¿ø°¡ÀÔÀ» ÇÏ¼¼¿ä.</li>
+										<li>ë¬¼ë¥˜ ê¸°ì—…ç”¨ ë‚˜ì´ìŠ¤ë‹¤íëŠ” ì „ìžê³„ì•½ ì—…ë¬´ë¥¼ ì§€ì›í•˜ë©°, CJëŒ€í•œí†µìš´, í•œì§„, ë¡¯ë°ê¸€ë¡œë²Œë¡œì§€ìŠ¤ê°€ íšŒì›ì‚¬ìž…ë‹ˆë‹¤.</li>
+										<li>ì§‘ë°°ì , íƒë°°ìš´ì†¡, íƒë°°í‘œì¤€ ê³„ì•½ ë“± ë¬¼ë¥˜(íƒë°°) ê³„ì•½ì„ ì²´ê²°í•˜ê³ ìž í•˜ëŠ” ê²½ìš°ëŠ” â€œë¬¼ë¥˜ ê¸°ì—…ç”¨â€ìœ¼ë¡œ íšŒì›ê°€ìž…ì„ í•˜ì„¸ìš”.</li>
+										<li>CJëŒ€í•œí†µìš´ê³¼ ìœ„ìˆ˜íƒ, ìž„ëŒ€ì°¨, ìž¥ë¹„ê³µê¸‰ ë“± ê³„ì•½ ì²´ê²° ì‹œì—ëŠ”  â€œì¼ë°˜ê¸°ì—…ç”¨â€ìœ¼ë¡œ íšŒì›ê°€ìž…ì„ í•˜ì„¸ìš”.</li>
 									</ul>
 								</div>
 							</div>
@@ -288,23 +288,23 @@ else if(request.getServerName().equals("nfc.nicedocu.com"))
 					<img src="/web/hub/images/footer_nice.png" alt="nice">
 				</div>
 				<div class="text">
-					NICE µð¾Ø¾Ë(ÁÖ)  ´ëÇ¥ÀÚ : °­¿ë±¸¦¢Åë½ÅÆÇ¸Å¾÷ ½Å°í¹øÈ£ : Á¦2012-¼­¿ï±¸·Î-1033È£<br>
-					¼­¿ï½Ã ¼­´ë¹®±¸ ÃæÁ¤·Î 36(ÃæÁ¤·Î3°¡) ¦¢TEL : 02-788-9097  FAX : 02-6442-2383¦¢»ç¾÷ÀÚµî·Ï¹øÈ£ : 107-87-08207<br>
-					Copyright¨Ï ³ªÀÌ½ºµð¾Ø¾ËÁÖ½ÄÈ¸»ç All Rights Reserved.
+					NICE ë””ì•¤ì•Œ(ì£¼)  ëŒ€í‘œìž : ê°•ìš©êµ¬â”‚í†µì‹ íŒë§¤ì—… ì‹ ê³ ë²ˆí˜¸ : ì œ2012-ì„œìš¸êµ¬ë¡œ-1033í˜¸<br>
+					ì„œìš¸ì‹œ ì„œëŒ€ë¬¸êµ¬ ì¶©ì •ë¡œ 36(ì¶©ì •ë¡œ3ê°€) â”‚TEL : 02-788-9097  FAX : 02-6442-2383â”‚ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ : 107-87-08207<br>
+					Copyrightâ“’ ë‚˜ì´ìŠ¤ë””ì•¤ì•Œì£¼ì‹íšŒì‚¬ All Rights Reserved.
 				</div>
 				<div class="service">
-					<img src="/web/hub/images/service_number.png" alt="ÀÓ´ë¼­ºñ½º ¹× ½Ã½ºÅÛ ±¸Ãà ¹®ÀÇ °í°´¼¾ÅÍ 02-788-9097">
+					<img src="/web/hub/images/service_number.png" alt="ìž„ëŒ€ì„œë¹„ìŠ¤ ë° ì‹œìŠ¤í…œ êµ¬ì¶• ë¬¸ì˜ ê³ ê°ì„¼í„° 02-788-9097">
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- ·¹ÀÌ¾îÆË¾÷ -->
+	<!-- ë ˆì´ì–´íŒì—… -->
 	<!--
-		[D] active Å¬·¡½º·Î º¸¿©ÁÖ°í °¨ÃçÁÖ±â
+		[D] active í´ëž˜ìŠ¤ë¡œ ë³´ì—¬ì£¼ê³  ê°ì¶°ì£¼ê¸°
 	-->
 	<div class="lp-wrap HeightAuto" id="comp_info">
 	</div>
-	<!-- ·¹ÀÌ¾îÆË¾÷ -->
+	<!-- ë ˆì´ì–´íŒì—… -->
 </body>
 </html>

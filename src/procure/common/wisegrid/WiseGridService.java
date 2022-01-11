@@ -33,7 +33,7 @@ public class WiseGridService {
 	private	PrintWriter 		out			=	null;
 	private	Connection			conn		=	null;
 	private	WiseGridManager		wgm			=	null;
-	private	String				sMode		=	"";		//	Á¶È¸ : Q, Ã³¸® : A	
+	private	String				sMode		=	"";		//	ì¡°íšŒ : Q, ì²˜ë¦¬ : A	
 	private	WiseGridDataManager	wgdm		=	null;
 	private	boolean				bCommit		=	true;
 	private	SQLManager			sqlm		=	null;
@@ -288,11 +288,11 @@ public class WiseGridService {
 					this.sqlm.close();
 				}
 				
-				if(this.sMode.equals("Q"))	//	Á¶È¸ÀÇ °æ¿ì
+				if(this.sMode.equals("Q"))	//	ì¡°íšŒì˜ ê²½ìš°
 				{
 					System.out.println("this.sMode["+this.sMode+"]");
 					OperateGridData.write(this.gdRes, this.sos);
-				}else	//	Ã³¸®ÀÇ °æ¿ì A
+				}else	//	ì²˜ë¦¬ì˜ ê²½ìš° A
 				{
 					System.out.println("this.sMode["+this.sMode+"]");
 					OperateGridData.write(this.gdRes, this.out);

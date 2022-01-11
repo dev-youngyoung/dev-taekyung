@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_pay_type_cd = codeDao.getCodeArray("M006");
 
 String s_yyyymm = u.request("s_yyyymm", u.getTimeString("yyyy-MM"));
 
-f.addElement("s_yyyymm", s_yyyymm, "rquired:'Y', hname:'Á¤»ê±âÁØ³â¿ù', fixbyte:'7'");
+f.addElement("s_yyyymm", s_yyyymm, "rquired:'Y', hname:'ì •ì‚°ê¸°ì¤€ë…„ì›”', fixbyte:'7'");
 f.addElement("s_sdate", null, null);
 f.addElement("s_edate", null, null);
 f.addElement("s_pay_type_cd", null, null);
@@ -79,9 +79,9 @@ while(list.next()){
     list.put("str_bid_amt", bid_sum);
 
     if(!list.getString("user_name").equals("")){
-    	String btn_name = "¾È³»¹ß¼Û";
+    	String btn_name = "ì•ˆë‚´ë°œì†¡";
     	if(!list.getString("calc_date").equals("")){
-    		btn_name = "Àç¹ß¼Û";
+    		btn_name = "ìž¬ë°œì†¡";
         }
     	String btn_send =
                 "<button type=\"button\" onclick=\"sendReq('"+s_yyyymm+"','"+list.getString("member_no")+"','"+list.getString("calc_person_seq")+"')\" class=\"sbtn\">"
@@ -104,11 +104,11 @@ sumInfo.put("str_bid_supp", u.numberFormat(sum_bid_amt/11*10));
 sumInfo.put("str_bid_tax", u.numberFormat(sum_bid_amt/11));
 
 if(u.request("mode").equals("excel")){
-    p.setVar("title", s_yyyymm+"Á¤¾×Á¦ Á¤»ê³»¿ª");
+    p.setVar("title", s_yyyymm+"ì •ì•¡ì œ ì •ì‚°ë‚´ì—­");
     p.setVar("sumInfo", sumInfo);
     p.setLoop("list", list);
     response.setContentType("application/vnd.ms-excel");
-    response.setHeader("Content-Disposition", "attachment; filename=\"" + new String((s_yyyymm+"Á¤¾×Á¦ Á¤»ê³»¿ª.xls").getBytes("KSC5601"),"8859_1") + "\"");
+    response.setHeader("Content-Disposition", "attachment; filename=\"" + new String((s_yyyymm+"ì •ì•¡ì œ ì •ì‚°ë‚´ì—­.xls").getBytes("KSC5601"),"8859_1") + "\"");
     out.println(p.fetch("../html/buyer/calc_prepay_list_excel.html"));
     return;
 }

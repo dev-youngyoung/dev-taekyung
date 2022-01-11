@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
  String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu");
@@ -13,11 +13,11 @@ if(!rfile_member_no.equals("")){
 }
 
 if(cont_no.equals("")||cont_chasu.equals("")||file_path.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇØ ÁÖ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•´ ì£¼ì„¸ìš”.");
 	return;
 }
 
-//ÀÎÁõ È®ÀÎ Ã³¸®
+//ì¸ì¦ í™•ì¸ ì²˜ë¦¬
 String c_cookei_info = u.getCookie("email_contract_recvview");
 u.sp(c_cookei_info);
 if(c_cookei_info.split("-").length != 3){
@@ -35,7 +35,7 @@ if((!cont_no.equals(c_cont_no))||!cont_chasu.equals(c_cont_chasu)||!email_random
 ContractDao contDao = new ContractDao();
 DataSet cont = contDao.find("cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ");
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -92,14 +92,14 @@ for(int i = 0 ; i < rfile_cnt ; i++ ){
 }
 if(rfile_cnt> 0 ){
 	if(!db.executeArray()){
-		u.jsError("ÆÄÀÏÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+		u.jsError("íŒŒì¼ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}else{
-		u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.",f.get("from_page")+"?"+u.getQueryString());
+		u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.",f.get("from_page")+"?"+u.getQueryString());
 		return;
 	}
 }else{
-	u.jsError("ÀúÀåÇÒ ³»¿ëÀÌ ¾ø½À´Ï´Ù.");
+	u.jsError("ì €ì¥í•  ë‚´ìš©ì´ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 

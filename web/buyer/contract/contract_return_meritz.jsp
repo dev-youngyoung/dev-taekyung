@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-//¸Þ¸®Ã÷ ÀÚµ¿Â÷ Á¦ÈÞ µô·¯°è¾à ¹Ý·Á Ã³¸® ¾Ë¸² ¹ß¼ÛÈÄ °è¾à¼­ »èÁ¦ µô·¯ È¸¿ø Á¤º¸ »èÁ¦ Ã³¸®
+//ë©”ë¦¬ì¸  ìžë™ì°¨ ì œíœ´ ë”œëŸ¬ê³„ì•½ ë°˜ë ¤ ì²˜ë¦¬ ì•Œë¦¼ ë°œì†¡í›„ ê³„ì•½ì„œ ì‚­ì œ ë”œëŸ¬ íšŒì› ì •ë³´ ì‚­ì œ ì²˜ë¦¬
 String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu","0");
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -12,34 +12,34 @@ String where = " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' ";
 DataObject contDao = new DataObject("tcb_contmaster");
 DataSet cont = contDao.find(where+" and member_no = "+_member_no+" and template_cd= '2019269' and status = '30'");
 if(!cont.next()){
-	u.jsError("°è¾à°ÇÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ê±´ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject payDao = new DataObject("tcb_pay");
 DataSet pay = payDao.find(where);
 if(pay.next()){
-	u.jsError("ÇØ´ç °è¾à°ÇÀ¸·Î ÁøÇàµÈ °áÀç³»¿ªÀÌ ÀÖ½À´Ï´Ù.\\n\\n°è¾à°ÇÀ» »èÁ¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	u.jsError("í•´ë‹¹ ê³„ì•½ê±´ìœ¼ë¡œ ì§„í–‰ëœ ê²°ìž¬ë‚´ì—­ì´ ìžˆìŠµë‹ˆë‹¤.\\n\\nê³„ì•½ê±´ì„ ì‚­ì œ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 DataObject custDao = new DataObject("tcb_cust");
 DataSet cust = custDao.find(where+" and sign_seq = '2' ");
 if(!cust.next()){
-	u.jsError("°Å·¡Ã³ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê±°ëž˜ì²˜ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-String subject = "[³ªÀÌ½º´ÙÅ¥]"+auth.getString("_MEMBER_NAME")+" ¾È³»";
-String longMessage = "¸Þ¸®Ã÷Ä³ÇÇÅ» µô·¯(ÆÇ¸Å»ç¿ø) ¾÷¹«Çù¾àÀÌ ºÒ°¡ÇÔÀ» ¾Ë·Áµå¸³´Ï´Ù.\n¼¼ºÎ»çÇ×Àº °üÇÒ ÁöÁ¡(´ã´çÀÚ)¿¡ ¹®ÀÇ ºÎÅ¹µå¸³´Ï´Ù.\n°¨»çÇÕ´Ï´Ù.\n-³ªÀÌ½º´ÙÅ¥";
+String subject = "[ë‚˜ì´ìŠ¤ë‹¤í]"+auth.getString("_MEMBER_NAME")+" ì•ˆë‚´";
+String longMessage = "ë©”ë¦¬ì¸ ìºí”¼íƒˆ ë”œëŸ¬(íŒë§¤ì‚¬ì›) ì—…ë¬´í˜‘ì•½ì´ ë¶ˆê°€í•¨ì„ ì•Œë ¤ë“œë¦½ë‹ˆë‹¤.\nì„¸ë¶€ì‚¬í•­ì€ ê´€í•  ì§€ì (ë‹´ë‹¹ìž)ì— ë¬¸ì˜ ë¶€íƒë“œë¦½ë‹ˆë‹¤.\nê°ì‚¬í•©ë‹ˆë‹¤.\n-ë‚˜ì´ìŠ¤ë‹¤í";
 SmsDao smsDao = new SmsDao();
 smsDao.sendLMS("buyer", cust.getString("hp1"), cust.getString("hp2"), cust.getString("hp3"), subject, longMessage);
 
-//°³ÀÎÁ¤º¸ »èÁ¦ Ã³¸®
+//ê°œì¸ì •ë³´ ì‚­ì œ ì²˜ë¦¬
 int chk_cnt = custDao.findCount("member_no = '"+cust.getString("member_no")+"' and cont_no <> '"+cont.getString("cont_no")+"'  ");
 
 
-//°è¾à»èÁ¦ Ã³¸® ÁøÇà
+//ê³„ì•½ì‚­ì œ ì²˜ë¦¬ ì§„í–‰
 DataObject cfileDao = new DataObject("tcb_cfile");
 DataSet cfile = cfileDao.find(where+" and cfile_seq=1");
 if(cfile.next()){
@@ -70,19 +70,19 @@ contDao = new DataObject("tcb_contmaster");
 DB db = new DB(); 
 contDao.item("status", "00");
 contDao.item("reg_date",   u.getTimeString()); 
-db.setCommand(contDao.getUpdateQuery(" cont_no = '"+cont_no+"'"), contDao.record); // APP ¿¬µ¿À¸·Î ÀÎÇØ APPÂÊ¿¡¼­ »óÅÂÄÚµå°¡ ÇÊ¿äÇÏ¿© »èÁ¦-> »óÅÂ°ª º¯°æÀ¸·Î º¯°æ
+db.setCommand(contDao.getUpdateQuery(" cont_no = '"+cont_no+"'"), contDao.record); // APP ì—°ë™ìœ¼ë¡œ ì¸í•´ APPìª½ì—ì„œ ìƒíƒœì½”ë“œê°€ í•„ìš”í•˜ì—¬ ì‚­ì œ-> ìƒíƒœê°’ ë³€ê²½ìœ¼ë¡œ ë³€ê²½
 
-/* °è¾à·Î±× START*/
+/* ê³„ì•½ë¡œê·¸ START*/
 ContBLogDao logDao = new ContBLogDao();
-logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ÀüÀÚ¹®¼­ »èÁ¦",  "", "00", "20");
-/* °è¾à·Î±× END*/
+logDao.setInsert(db, cont_no,  String.valueOf(cont_chasu),  auth.getString("_MEMBER_NO"), auth.getString("_PERSON_SEQ"), auth.getString("_USER_NAME"), request.getRemoteAddr(), "ì „ìžë¬¸ì„œ ì‚­ì œ",  "", "00", "20");
+/* ê³„ì•½ë¡œê·¸ END*/
  
 //db.setDebug(out); 
 if(!db.executeArray()){
-	u.jsError("Á¦ÈÞ°ÅÀý Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù. ");
+	u.jsError("ì œíœ´ê±°ì ˆ ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤. ");
 	return;
 }  
 
-u.jsAlertReplace("Á¤»ó Ã³¸® ÇÏ¿´½À´Ï´Ù.","contract_send_list.jsp?"+u.getQueryString("cont_no,cont_chasu,template_cd"));
+u.jsAlertReplace("ì •ìƒ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.","contract_send_list.jsp?"+u.getQueryString("cont_no,cont_chasu,template_cd"));
 
 %>

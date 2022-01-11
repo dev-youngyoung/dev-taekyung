@@ -1,243 +1,78 @@
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/shim.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/import/xlsx.js"></script>
+
 <form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
 
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>°è¾à¼­½Ä</h3>
+				<h3>ê³„ì•½ì„œì‹</h3>
 			</div>
 		</div>
 		<table>
 			<colgroup>
 				<col width="13%">
-				<col width="50%">
+				<col width="*">
 				<col width="13%">
-				<col width="24%">
+				<col width="20%">
+				<col width="13%">
+				<col width="20%">				
 			</colgroup>
 			<tr>
-				<th>¼­½Ä¸í</th>
-				<td>{{template.template_name}}</td>
-				<th>»ç¿ë¿©ºÎ</th>
+				<th>ì„œì‹ëª…</th>
+				<td colspan="3"><input type="text" name="template_name" value="{{template.template_name}}"/></td>
+				<th>ì‚¬ìš©ì—¬ë¶€</th>
 				<td>
-					<input type="radio" name="use_yn" value="Y">&nbsp;»ç¿ë&nbsp;&nbsp;
-					<input type="radio" name="use_yn" value="N">&nbsp;¹Ì»ç¿ë
+					<input type="radio" name="use_yn" value="Y">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+					<input type="radio" name="use_yn" value="N">&nbsp;ë¯¸ì‚¬ìš©
 				</td>
 			</tr>
 			<tr>
-				<th>°è¾à¼­·ù</th>
-				<td colspan="3">
-					<div class="util-row">
-						<div class="push-left">
-							<span class="caution-text">¡Ø °è¾à Ã¼°á½Ã ÇÊ¼ö·Î Ã·ºÎµÇ¾î¾ß ÇÒ ¼­·ù¸í ¶Ç´Â ÆÄÀÏÀ» µî·ÏÇÏ¼¼¿ä.</span>
-						</div>
-						<div class="push-right">
-							<button type="button" class="sbtn ico-add auth_css" onclick="addFileRow();"><span></span>Ãß°¡</button>
-						</div>
-					</div>
-
-					<div class="div_table">
-						<table id="file_grid">
-							<colgroup>
-								<col width="45%">
-								<col width="44%">
-								<col width="11%">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>¹®¼­¸í</th>
-								<th>Ã·ºÎ</th>
-								<th>»èÁ¦</th>
-							</tr>
-							</thead>
-							<!-- LOOP START 'cfile' -->
-							<tr>
-								<td><input type="text" name="doc_name" value="{{cfile.doc_name}}" style="width:98%" hname="¹®¼­¸í" required="Y" /></td>
-								<td align="right">
-									<!-- IFNOT START 'cfile.file_name' -->
-									<input type="file" name="file_{{cfile.file_seq}}" style="width:98%"/>
-									<!-- IFNOT END 'cfile.file_name' -->
-									<!-- IF START 'cfile.file_name' -->
-									{{cfile.str_file_size}}&nbsp;&nbsp;
-									<button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_template','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>´Ù¿î·Îµå</button>
-									<!-- IF END 'cfile.file_name' -->
-									<input type="hidden" name="file_seq" value="{{cfile.file_seq}}"/>
-									<input type="hidden" name="att_type" value="mod"/>
-								</td>
-								<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="file_grid.del(this);"><span></span>»èÁ¦</button></td>
-							</tr>
-							<!-- LOOP END 'cfile' -->
-							<tbody>
-							</tbody>
-						</table>
-					</div>
+				<th>ì „ìê²°ì¬</th>
+				<td>
+					<input type="radio" name="appr_yn" value="Y">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+					<input type="radio" name="appr_yn" value="N" selected>&nbsp;ë¯¸ì‚¬ìš©<br>
+				</td>
+				<th>ì¸ì§€ì„¸</th>
+				<td>
+					<input type="radio" name="stamp_yn" value="Y">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+					<input type="radio" name="stamp_yn" value="N" selected>&nbsp;ë¯¸ì‚¬ìš©<br>
+				</td>
+				<th>ìë™ì—°ì¥</th>
+				<td>
+					<input type="radio" name="auto_yn" value="Y">&nbsp;ì‚¬ìš©&nbsp;&nbsp;
+					<input type="radio" name="auto_yn" value="N" selected>&nbsp;ë¯¸ì‚¬ìš©<br>
 				</td>
 			</tr>
 			<tr>
-				<th>±¸ºñ¼­·ù</th>
-				<td colspan="3">
-					<div class="util-row">
-						<div class="push-left">
-							<span class="caution-text"> ¡Ø °è¾à»ó´ë¹æ¿¡°Ô ÇÊ¼ö·Î ¹Ş¾Æ¾ß ÇÒ ±¸ºñ¼­·ù¸¦ µî·ÏÇÏ¼¼¿ä.</span>
-						</div>
-						<div class="push-right">
-							<button type="button" class="sbtn ico-add auth_css" onclick="addRFileRow();"><span></span>Ãß°¡</button>
-						</div>
+				<th>ì‚¬ìš©ë¶€ì„œ</th>
+				<td colspan="5">
+					<div align="right" style="margin-top:4px; margin-right:35px;">
+						<button type="button" class="sbtn ico-add auth_css" onclick="javascript:openDeptPop()"><span></span>ì¶”ê°€</button>
+						<button type="button" class="sbtn ico-delete auth_css" onclick="javascript:deleteRow()"><span></span>ì‚­ì œ</button>
 					</div>
-					<div class="div_table">
-						<table id="rfile_grid">
-							<colgroup>
-								<col width="15%"/>
-								<col width="55%"/>
-								<col width="15%"/>
-								<col width="15%"/>
-							</colgroup>
-							<thead>
-							<tr>
-								<th>ÇÊ¼ö¿©ºÎ</th>
-								<th>±¸ºñ¼­·ù¸í</th>
-								<th>Ã·ºÎ°¡´ÉÆÄÀÏ</th>
-								<th>»èÁ¦</th>
-							</tr>
-							</thead>
-							<!-- LOOP START 'rfile' -->
-							<tr>
-								<td align="center" ><input type="checkbox" name="attch" {{rfile.checked}} onclick="chkClick(this,'form1','attch_yn','Y')"><input type="hidden" name="attch_yn" value="{{rfile.attch_yn}}">
-								<input type="hidden" name="rfile_seq" value="{{rfile.rfile_seq}}"/>
-									<input type="hidden" name="add_type" value="mod"/>
-									<input type="hidden" name="sample_file_name" value="{{rfile.sample_file_name}}"/>
-								</td>
-								<td align="center" ><input type="text" name="rfile_doc_name" value="{{rfile.doc_name}}" style="width:98%" required="Y" hname="±¸ºñ¼­·ù¸í"></td>
-								<td align="center" >
-									<select name="allow_ext">
-										<option value="">-ÀüÃ¼-</option>
-										<!-- LOOP START 'code_allow' -->
-										<option value="{{code_allow.id}}" {{code_allow.selected}}>{{code_allow.value}}</option>
-										<!-- LOOP END 'code_allow' -->
-									</select>
-								</td>
-								<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>»èÁ¦</button></td>
-							</tr>
-							<!-- LOOP END 'rfile' -->
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>³»ºÎ°ü¸®¼­·ù</th>
-				<td colspan="3">
-					<input type="radio" name="efile_yn" value="Y" onclick="chgEfileYn()">&nbsp;»ç¿ë&nbsp;&nbsp;
-					<input type="radio" name="efile_yn" value="N" onclick="chgEfileYn()">&nbsp;¹Ì»ç¿ë<br>
-					<div id="div_efile">
-						<div class="util-row">
-							<div class="push-left">
-								<span class="caution-text"> ¡Ø °è¾à Ã¼°á½Ã ³»ºÎ¿¡¼­ °ü¸®ÇØ¾ß ÇÒ   ¼­·ù¸í ¶Ç´Â ÆÄÀÏÀ» µî·ÏÇÏ¼¼¿ä.</span>
-							</div>
-							<div class="push-right">
-								<button type="button" class="sbtn ico-add auth_css" onclick="addEFileRow();"><span></span>Ãß°¡</button>
-							</div>
-						</div>
-
-
-						<div class="div_table">
-							<table id="efile_grid">
-								<colgroup>
-									<col width="15%">
-									<col width="74%">
-									<col width="11%">
-								</colgroup>
-								<thead>
-								<tr>
-									<th>ÇÊ¼ö¿©ºÎ</th>
-									<th>¹®¼­¸í</th>
-									<th>»èÁ¦</th>
-								</tr>
-								</thead>
-								<!-- LOOP START 'efile' -->
-								<tr>
-									<td align="center" ><input type="checkbox" name="efile_attach" {{efile.checked}} onclick="chkClick(this,'form1','efile_attach_yn','Y')"><input type="hidden" name="efile_attach_yn" value="{{efile.attach_yn}}"></td>
-									<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" style="width:98%" hname="¹®¼­¸í" required="Y" /></td>
-									<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>»èÁ¦</button></td>
-								</tr>
-								<!-- LOOP END 'efile' -->
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>ÀÎÁö¼¼ °ü¸®</th>
-				<td colspan="3">
-					ÀÎÁö¼¼ Ã·ºÎ±â´É
-					<input type="radio" name="stamp_yn" value="Y">&nbsp;»ç¿ë&nbsp;&nbsp;
-					<input type="radio" name="stamp_yn" value="N" selected>&nbsp;¹Ì»ç¿ë<br>
-				</td>
-			</tr>
-
-			<tr>
-				<th>Ãß°¡ÀúÀå<br>Ç×¸ñ°ü¸®</th>
-				<td colspan="3">
-					<div id="div_tfile">
-						<div class="util-row">
-							<div class="push-left">
-								<span class="caution-text"> ¡Ø Ãß°¡ÀûÀÎ Ç×¸ñÀÌ ÇÊ¿äÇÒ ¶§ »õ·Î¿î Ç×¸ñÀ» µî·ÏÇÏ¼¼¿ä.</span>
-							</div>
-							<div class="push-right">
-								<button type="button" class="sbtn ico-add auth_css" onclick="addTFileRow();"><span></span>Ãß°¡</button>
-							</div>
-						</div>
-						<div class="div_table">
-							<table id="tfile_grid">
-								<colgroup>
-									<col width="30%">
-									<col width="30%">
-									<col width="10%">
-									<col width="19%">
-									<col width="11%">
-								</colgroup>
-								<thead>
-								<tr>
-									<th>Ç×¸ñ¸í(¿µ¹®)</th>
-									<th>Ç×¸ñ¸í(ÇÑ±Û)</th>
-									<th>º¹¼ö¿©ºÎ</th>
-									<th>ÄÃ·³¸í</th>
-									<th>»èÁ¦</th>
-								</tr>
-								</thead>
-								<!-- LOOP START 'tfile' -->
-								<tr>
-									<td><input type="text" name="tfile_name_en" value="{{tfile.template_name_en}}" style="width:98%" hname="Ç×¸ñ¸í(¿µ¹®)" required="Y" /></td>
-									<td><input type="text" name="tfile_name_ko" value="{{tfile.template_name_ko}}" style="width:98%" hname="Ç×¸ñ¸í(ÇÑ±Û)" required="Y" /></td>
-									<td><input type="text" name="mul_yn" value="{{tfile.mul_yn}}" style="width:98%" hname="º¹¼ö¿©ºÎ(Y/N)" required="Y" /></td>
-									<td><input type="text" name="col_name" value="{{tfile.col_name}}" style="width:98%" hname="ÄÃ·³¸í" required="Y" /></td>
-									<td align="center"><button type="button" class="sbtn ico-delete auth_css" onclick="tfile_grid.del(this);"><span></span>»èÁ¦</button></td>
-								</tr>
-								<!-- LOOP END 'tfile' -->
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-					</div>
+					<div id="realgrid" style="width: 94%; height: 200px; margin-top:6px; margin-left:15px;"></div>
 				</td>
 			</tr>
 		</table>
 	</div>
 
-
 	<div class="btn-group-wrap">
-		<button type="submit" class="btn color ico-save auth_css"><span></span>ÀúÀå</button>
-		<button type="button" class="btn color ico-list" onclick="location.href='cont_template_list.jsp?{{list_query}}';"><span></span>¸ñ·ÏÀ¸·Î</button>
+		<button type="submit" class="btn color ico-save auth_css"><span></span>ì €ì¥</button>
+		<button type="button" class="btn color ico-list" onclick="location.href='cont_template_list.jsp?{{list_query}}';"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 	</div>
 
 </form>
 <br/>
 <div style="text-align:right;margin: 5px 0px 10px" >
-	¡Ø<span style="background-color:yellow;text-align:center">³ë¶û»ö</span>Àº ÇÊ¼öÀÔ·Â»çÇ×, <span style="background-color:#CCFF99;text-align:center">¿¬µÎ»ö</span>Àº °è¾à¼­¿¡ ÀÎ¼âµÇÁö ¾Ê´Â Ç×¸ñÀÔ´Ï´Ù.
+	â€»<span style="background-color:yellow;text-align:center">ë…¸ë‘ìƒ‰</span>ì€ í•„ìˆ˜ì…ë ¥ì‚¬í•­, <span style="background-color:#CCFF99;text-align:center">ì—°ë‘ìƒ‰</span>ì€ ê³„ì•½ì„œì— ì¸ì‡„ë˜ì§€ ì•ŠëŠ” í•­ëª©ì…ë‹ˆë‹¤.
 	<!-- IF START 'template.version_seq' -->
 		<div style="text-align:right;margin: 5px 0px">
-		°è¾à¼­ ¹öÀü : <select name="version_seq" onchange="changeTemplate(this.value)">
+		ê³„ì•½ì„œ ë²„ì „ : <select name="version_seq" onchange="changeTemplate(this.value)">
 		<!-- LOOP START 'templateHist' -->
 		<option value="{{templateHist.version_seq}}">{{templateHist.version_name}}</option>
 		<!-- LOOP END 'templateHist' -->
@@ -274,104 +109,221 @@
 	</div>		
 </div>
 
-
-
-<table id="file_template" style="display:none">
-	<tr>
-		<td><input type="text" name="doc_name" style="width:98%" hname="¹®¼­¸í" required="Y" /></td>
-		<td>
-			<input type="file" name="file_[[seq]]" style="width:98%"/>
-			<input type="hidden" name="file_seq" value="[[seq]]"/>
-			<input type="hidden" name="att_type" value="new"/>
-		</td>
-		<td><button type="button" class="sbtn ico-delete auth_css" onclick="file_grid.del(this);"><span></span>»èÁ¦</button></td>
-	</tr>
-</table>
-
-
 {{form_script}}
+
 <script type="text/javascript">
+var dataProvider = null;
+var gridView = null;
+var openPop;
+$(document).ready( function(){
+    RealGridJS.setRootContext("{{realgrid_path}}");
 
-    function formSubmit(f){
-        if(validate(f)){
-            if(confirm("ÀúÀåÇÏ½Ã°Ú½À´Ï±î?")){
-                return true;
-            }
+    dataProvider = new RealGridJS.LocalDataProvider();
+    gridView = new RealGridJS.GridView("realgrid");
+    gridView.setDataSource(dataProvider);
+    setOptions();
+    setStyle();
+    setColumns();
+    searchTemplateField();
+});
+
+function setOptions() {
+    var options =  {
+        hideDeletedRows : true,
+        indicator:{visible: false }
+        ,panel: {visible: false}
+        ,footer: {visible: false}
+        ,checkBar: {visible: true, width:25}
+        ,statusBar: {visible: true}
+        ,edit: {
+            enterToTab: false,
+            insertable: true,
+            appendable: true,
+            updatable: true,
+            deletable: true,
+            deleteRowsConfirm: false,
+            deleteRowsMessage: "ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?"
         }
-        return false;
-    }
+        ,displayOptions:{
+            //columnWidth : 200
+        }
+    };
+    gridView.setOptions(options);
+
+};
+function setStyle(){
+    $.getJSON("/cab/realgrid/resource/buyer_style.json", function (data, textStatus, jqXHR) {
+        gridView.setStyles(data);
+    })
+        .done(function (data, textStatus, jqXHR) {
+            gridView.setFocus();
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            var msg = "gridView failStyleSet: " + err;
+            console && console.log(msg);
+            alert(msg); 
+        });
+}
+function setColumns() {
+    var columns = [];
+
+    columns.push({name:"field_seq" ,fieldName:"field_seq",dataType:"text" ,header:"ë¶€ì„œì½”ë“œ" ,width:147 ,readOnly:true , movable:false ,sortable:false, styles:{textAlignment:"middle"}});
+    columns.push({name:"field_name" ,fieldName:"field_name",dataType:"text" ,header:"ë¶€ì„œëª…" ,width:550 ,readOnly:true , movable:false ,sortable:false});
+
+    dataProvider.setFields(columns);
+    gridView.setColumns(columns);
+    
+    gridView.setDisplayOptions({
+	    showEmptyMessage: true,
+	    emptyMessage: "ì¡°íšŒëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤."
+	});
+    gridView.setStyles({ 
+    	body: { 
+    		empty: {
+    			foreground: "#8C8C8C", 
+    			textAlignment: "center", 
+    			lineAlignment: "center", 
+    			fontSize: 25, 
+    			fontBold: true 
+    		} 
+    	} 
+	});
+    gridView.setIndicator({
+		   visible: true  
+	 });
+}
+
+function searchTemplateField(){
+	var template_cd = {{template.template_cd}};
+	var url = "template_field_setRows.jsp";
+	var data = {"template_cd" : template_cd};
+	$.ajax({
+		url : url,
+        type : "post",
+        data : data,
+        success : function(data) {
+        	dataProvider.fillJsonData(data, {fillMode: "set"});
+        },
+        error : function(request, status, error) {
+        	alert("ì‚¬ìš©ë¶€ì„œ ëª©ë¡ì´ ì •ìƒì ìœ¼ë¡œ ì¡°íšŒë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+        }
+	});
+}
+
+function addFieldRow(field_seq, field_name){
+	var values = {
+    		field_seq : field_seq, field_name : field_name
+    	}
+	var addRow = true;
+	for(var i=0; i<dataProvider.getRowCount(); i ++){
+		if(field_seq == gridView.getValue(i, "field_seq")){
+			addRow = false;
+		}
+	}
+	openPop.close();
+	if(addRow){
+		dataProvider.addRow(values);
+	}else{
+		if(openPop.closed == true){
+			alert("ì´ë¯¸ ë“±ë¡ëœ ì‚¬ìš©ë¶€ì„œì…ë‹ˆë‹¤. ");
+		}
+	}
+}
+
+function openDeptPop(){
+	var nLink = '/web/buyer/contract/pop_search_field.jsp';
+	var nWidth = '700';
+	var nHeight = '650';
+	var nTarget = 'pop_search_field';
 	
-    function changeTemplate(seq) {
-        location.href = "cont_template_modify.jsp?template_cd={{template.template_cd}}&version_seq="+seq;
-    }
+	if(typeof nLink == "object") url = nLink.href;
+	else url = nLink;
 
+	adjX = window.screen.width/2 - nWidth/2;
+	adjY = window.screen.height/2 - nHeight/2 - 50;
+	openPop = window.open( url, nTarget, "width="+nWidth+", height="+nHeight+",left="+adjX+",top="+adjY+",toolbar=no,status=yes,scrollbars=1,resizable=no");
+}
 
-    var file_grid = new MGRID("file_grid");
+function deleteRow(){
+	var chkRows = gridView.getCheckedRows(true);
+	if(chkRows.length>0){
+		for(var i=0; i<chkRows.length; i++) {
+			gridView.checkItem(chkRows[i], false, false);
+			dataProvider.setRowState(chkRows[i],"deleted");
+		}
+	}
+}
 
-    function addFileRow(){
-        if(document.getElementById('file_grid').rows.length >10){
-            alert("´õÀÌ»ó Ãß°¡ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
-            return;
+function formSubmit(f){
+    if(validate(f)){
+        if(confirm("ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+        	if(dataProvider.getRowStateCount('all') > 0){
+        		var fieldInfoArr = new Array();
+        		
+        		for(var i=0; i<dataProvider.getRowCount(); i ++){
+            		if(dataProvider.getRowState(i) != 'none'){
+            			var dataObj = new Object();
+            			dataObj = {
+            					"field_seq" : gridView.getValue(i, "field_seq"),
+            					"field_name" : gridView.getValue(i, "field_name"),
+            					"status" : dataProvider.getRowState(i)
+            			}
+            			fieldInfoArr.push(dataObj);
+            		}
+            	}
+        		var url = "template_field_update.jsp";
+        		var gridData = JSON.stringify(fieldInfoArr);
+        		var data = {
+        				"gridData" : gridData,
+        				"template_cd" : {{template.template_cd}}
+        		}
+        		
+        		$.ajax({
+        			url : url,
+        			type : "post",
+        			data : data,
+        			success : function(data) {
+        				var data = JSON.parse(data);
+        				if(data["result"] == "OK"){
+        					f.submit();
+        				}else{
+        					alert("í•´ë‹¹ ê³„ì•½ì„œì˜ ì‚¬ìš©ë¶€ì„œê°€ ì •ìƒì ìœ¼ë¡œ ë³€ê²½ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+        					location.reload(true);
+        					return false;
+        				}
+        			},
+        			error : function(request, status, error) {
+        				alert("í•´ë‹¹ ê³„ì•½ì„œì˜ ì‚¬ìš©ë¶€ì„œê°€ ì •ìƒì ìœ¼ë¡œ ë³€ê²½ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+        				location.reload(true);
+        				return false;
+        			}
+        		});
+        	}else{
+        		return true;
+        	}
         }
-        var data = table2array("file_template", new Array("seq=>"+(document.getElementById('file_grid').rows.length-1)));
-        file_grid.addRow(null, data);
     }
+    return false;
+}
 
-
+function changeTemplate(seq) {
+    location.href = "cont_template_modify.jsp?template_cd={{template.template_cd}}&version_seq="+seq;
+}
+/*
     var rfile_grid = new MGRID("rfile_grid");
     rfile_grid.cells = new Array(
         '<input type="checkbox" name="attch" onclick="chkClick(this,\'form1\',\'attch_yn\',\'Y\')"><input type="hidden" name="attch_yn"><input type="hidden" name="rfile_seq" /><input type="hidden" name="add_type" value="new"/>'
-        ,'<input type="text" name="rfile_doc_name" style="width:98%" required="Y" hname="±¸ºñ¼­·ù¸í">'
-        ,'<select name="allow_ext"><option value="">-ÀüÃ¼-</option><!-- LOOP START 'code_allow_ext' --><option value="{{code_allow_ext.id}}" >{{code_allow_ext.value}}</option><!-- LOOP END 'code_allow_ext' --></select>'
-        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>»èÁ¦</button>'
+        ,'<input type="text" name="rfile_doc_name" style="width:98%" required="Y" hname="êµ¬ë¹„ì„œë¥˜ëª…">'
+        ,'<select name="allow_ext"><option value="">-ì „ì²´-</option><!-- LOOP START 'code_allow_ext' --><option value="{{code_allow_ext.id}}" >{{code_allow_ext.value}}</option><!-- LOOP END 'code_allow_ext' --></select>'
+        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="rfile_grid.del(this);"><span></span>ì‚­ì œ</button>'
     );
     function addRFileRow(){
         if(document.getElementById('rfile_grid').rows.length >26 ){
-            alert("´õÀÌ»ó Ãß°¡ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            alert("ë”ì´ìƒ ì¶”ê°€ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
         rfile_grid.addRow();
     }
-    
-
-
-    var efile_grid = new MGRID("efile_grid");
-    efile_grid.cells = new Array(
-        '<input type="checkbox" name="efile_attach" onclick="chkClick(this,\'form1\',\'efile_attach_yn\',\'Y\')"><input type="hidden" name="efile_attach_yn" >'
-        ,'<input type="text" name="efile_doc_name"  style="width:98%" hname="¹®¼­¸í" required="Y" />'
-        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>»èÁ¦</button>'
-    );
-
-    function addEFileRow(){
-        if(document.getElementById('efile_grid').rows.length >5){
-            alert("´õÀÌ»ó Ãß°¡ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
-            return;
-        }
-        efile_grid.addRow();
-    }
-
-    var tfile_grid = new MGRID("tfile_grid");
-    tfile_grid.cells = new Array(
-        '<input type="text" name="tfile_name_en" style="width:98%" hname="Ç×¸ñ¸í(¿µ¹®)" required="Y" />'
-        ,'<input type="text" name="tfile_name_ko" style="width:98%" hname="Ç×¸ñ¸í(ÇÑ±Û)" required="Y" />'
-        ,'<input type="text" name="mul_yn" style="width:98%" hname="º¹¼ö¿©ºÎ(Y/N)" required="Y" />'
-        ,'<input type="text" name="col_name" style="width:98%" hname="ÄÃ·³¸í" required="Y" />'
-        ,'<button type="button" class="sbtn ico-delete auth_css" onclick="tfile_grid.del(this);"><span></span>»èÁ¦</button>'
-    );
-
-    function addTFileRow(){
-        tfile_grid.addRow();
-    }
-
-    function chgEfileYn(){
-        var f = document.forms['form1'];
-        var efile_yn = GetFormValue("form1","efile_yn");
-        if(efile_yn=="Y"){
-            document.getElementById("div_efile").style.display="";
-        }else{
-            document.getElementById("div_efile").style.display="none";
-        }
-    }
-    chgEfileYn();
-
+*/    
 </script>

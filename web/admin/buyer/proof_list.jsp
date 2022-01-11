@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000070";
 
@@ -16,7 +16,7 @@ f.addElement("s_cont_name",null, null);
 f.addElement("s_member_name",null, null);
 f.addElement("s_won_member_name",null, null);
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -55,7 +55,7 @@ while(ds.next()){
 	ds.put("status_nm" , u.getItem(ds.getString("status"), code_status));
 	ds.put("sccode_nm" , u.getItems(ds.getString("sccode"), sccode_type));
 
-	//¹öÆ°¼³Á¤
+	//ë²„íŠ¼ì„¤ì •
 	ds.put("btn_writing", !ds.getString("status").equals("10"));
 	ds.put("btn_finish", !u.inArray( ds.getString("status"), new String[]{"50"}));
 	ds.put("btn_hide", !ds.getString("status").equals("00"));

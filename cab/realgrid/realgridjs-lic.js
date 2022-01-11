@@ -1,1 +1,6 @@
-var realGridJsLic = 'upVcPE+wPOksRHztag2HLtau1G7NGLZh+p2VI6Q9GDNbWygkkoxq1cEmFCzHZ8w964tETNbh9opGW7J9e+bhOH/8tcVXTxluzMgCrAAjxc3OrPgTdGpE0BkV19INutQJ1QclEYWurOaX9oDxL7qW2rfPOENDRWHAcgntUOER0TK8koCEMb5cRpf2gPEvupba0OJNP8kDtQRyCe1Q4RHRMru/47+Uq5LOnYTTQYw+qMlarWjtcjInv8xs/2E0XRAfPsxFN/OJ4wte7L7C4dZzvBj2W4sGysGDezV2/g1WvQ/QX/333q4sjQ==';
+// 각각 localhost, 172.25.1.191 도메인으로 된 라이센스이며 기한은 2021-12-31일까지 입니다.(2021.05.13, swplus)
+//localhost
+var realGridJsLic = 'upVcPE+wPOksRHztag2HLt+UVTCvO3is+83EYTz6U/sTXJR8Yw8Y0adoq8hudFeXNTakk0yR9UeBDVUKkcDK4FauUGhjeun/0F/9996uLI0=';
+
+//172.25.1.191 : 
+//var realGridJsLic = 'upVcPE+wPOksRHztag2HLt+UVTCvO3is+83EYTz6U/une2+r2SqD45Y45sXNebIMau7UaP71oHGk2Nf4Sa4L4qy98bE0bgIZ+6ZGVxDxR7Q=';

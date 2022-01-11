@@ -7,7 +7,7 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 
 
 /**
- * xml ¼³Á¤ÆÄÀÏ ÀĞ±â
+ * xml ì„¤ì •íŒŒì¼ ì½ê¸°
  * @author lee jong whan
  *
  */
@@ -17,8 +17,8 @@ public class Config {
 	private 		CompositeConfiguration 	ccf 		= 	null;
 	
 	/**
-	 * ÀÎ½ºÅÏ½º »ı¼º
-	 * @param sFileName	¼³Á¤ÆÄÀÏ¸í
+	 * ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+	 * @param sFileName	ì„¤ì •íŒŒì¼ëª…
 	 * @return
 	 * @throws ConfigurationException 
 	 */
@@ -38,7 +38,7 @@ public class Config {
 	}
 	
 	/**
-	 * ÀÎ½ºÅÏ½º »ı¼º
+	 * ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
 	 * @return
 	 * @throws ConfigurationException 
 	 */
@@ -58,7 +58,7 @@ public class Config {
 	}
 	
 	/**
-	 * ¼³Á¤ÆÄÀÏ ·Îµù
+	 * ì„¤ì •íŒŒì¼ ë¡œë”©
 	 * @throws ConfigurationException 
 	 */
 	private void setConfig() throws ConfigurationException {
@@ -77,7 +77,7 @@ public class Config {
     }
 	
 	/**
-	 * CompositeConfiguration °´Ã¼ °¡Á®¿À±â
+	 * CompositeConfiguration ê°ì²´ ê°€ì ¸ì˜¤ê¸°
 	 * @return
 	 */
 	public CompositeConfiguration	getConf()

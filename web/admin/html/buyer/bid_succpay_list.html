@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get">
+ï»¿<form novalidate name="form1" method="get">
 <input type="hidden" name="mode" />
 <div class="search_div">
 <table class="search_table">
@@ -10,12 +10,12 @@
     <col width="15%">
   </colgroup>
   <tr>
-    <th><p>°ø°íÀÏÀÚ</p></th>
+    <th><p>ê³µê³ ì¼ì</p></th>
     <td>
 		<input type="text" name="s_sdate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 		<input type="text" name="s_edate" class="in_readonly" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
     </td>
-    <th><p>Ã»±¸»óÅÂ</p></th>
+    <th><p>ì²­êµ¬ìƒíƒœ</p></th>
     <td>
 		<select name="s_status">
 			<!-- LOOP START 'code_status' -->
@@ -25,12 +25,12 @@
     </td>
   </tr>
   <tr>
-	<th><p>¹ßÁÖ»ç</p></th>
+	<th><p>ë°œì£¼ì‚¬</p></th>
     <td><input type="text" name="s_main_member_name"  style="width:95%"></td>
-	<th><p>³«Âû¾÷Ã¼</p></th>
+	<th><p>ë‚™ì°°ì—…ì²´</p></th>
     <td><input type="text" name="s_member_name"  style="width:95%"></td>
     <td align="right">
-       <button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+       <button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
     </td>    
   </tr>
 </table>
@@ -50,11 +50,11 @@
     <col width="10%">
   </colgroup>
   <tr>
-    <th>°ø°íÁ¤º¸</th>
-    <th>³«Âû¾÷Ã¼</th>
-    <th>³«Âû±İ¾×</th>
-    <th>¼ö¼ö·á</th>
-    <th>Ã»±¸»óÅÂ</th>
+    <th>ê³µê³ ì •ë³´</th>
+    <th>ë‚™ì°°ì—…ì²´</th>
+    <th>ë‚™ì°°ê¸ˆì•¡</th>
+    <th>ìˆ˜ìˆ˜ë£Œ</th>
+    <th>ì²­êµ¬ìƒíƒœ</th>
   </tr>
   <!-- IF START 'list' -->
   <!-- LOOP START 'list' -->
@@ -62,8 +62,8 @@
 	<td>
 	{{list.main_member_name}}<br>
 	{{list.bid_name}}<br>
-	(°ø°íÀÏÀÚ : {{list.bid_date}})<br>
-	(ÀÔÂûÁ¾·áÀÏ : {{list.bid_end_date}})
+	(ê³µê³ ì¼ì : {{list.bid_date}})<br>
+	(ì…ì°°ì¢…ë£Œì¼ : {{list.bid_end_date}})
 	<td>
 		{{list.member_name}}<br>
 		{{list.user_name}}<br>
@@ -79,7 +79,7 @@
   <!-- IF END 'list' -->
   <!-- IFNOT START 'list' -->
   <tr>
-	<td colspan="7" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+	<td colspan="7" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
   </tr>
   <!-- IFNOT END 'list' -->
  </table>
@@ -107,7 +107,7 @@
  function fDownExcelCust(){
      var f = document.forms['form1'];
      if(f['s_member_name'].value=='') {
-         alert('¾÷Ã¼¸íÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä');
+         alert('ì—…ì²´ëª…ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”');
          return;
      }
      f.action = "./pay_info_list_excel.jsp";

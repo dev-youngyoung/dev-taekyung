@@ -1,4 +1,4 @@
-<form novalidate name="form1" method="get">
+ï»¿<form novalidate name="form1" method="get">
 <div class="search_div">
 <table class="search_table">
  <colgroup>
@@ -11,7 +11,7 @@
     <col width="10%">
   </colgroup>
 <tr>
-	<th><p>µî·ÏÀÏÀÚ</p></th>
+	<th><p>ë“±ë¡ì¼ìž</p></th>
 	<td>		
 		<input type="text" name="s_sdate"  style="width:100px" maxlength="10" onkeyup="dateFormat(this)">
 		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])">
@@ -19,10 +19,10 @@
 		<input type="text" name="s_edate" style="width:100px" maxlength="10" onkeyup="dateFormat(this)">
 		<img src="../html/images/common/datepicker_icon.png" align="absmiddle" class="hand" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">							
 	</td>
-	<th><p>¾÷Ã¼»óÅÂ</p></th>
+	<th><p>ì—…ì²´ìƒíƒœ</p></th>
 	<td>
 		<select name="s_status">
-			<option value="">ÀüÃ¼</option>
+			<option value="">ì „ì²´</option>
 			<!-- LOOP START 'code_status' -->
 			<option value="{{code_status.id}}">{{code_status.value}}</option>
 			<!-- LOOP END 'code_status' -->
@@ -31,19 +31,19 @@
 	<td></td>
 </tr>
 <tr>
-	<th><p>È¸¿øÀ¯Çü</p></th>
+	<th><p>íšŒì›ìœ í˜•</p></th>
 	<td>
 		<select name="s_member_type">
-			<option value="">ÀüÃ¼</option>
+			<option value="">ì „ì²´</option>
 			<!-- LOOP START 'code_member_type' -->
 			<option value="{{code_member_type.id}}">{{code_member_type.value}}</option>
 			<!-- LOOP END 'code_member_type' -->
 		</select>
 	</td>
-	<th><p>¾÷Ã¼À¯Çü</p></th>
+	<th><p>ì—…ì²´ìœ í˜•</p></th>
 	<td>
 		<select name="s_member_gubun">
-			<option value="">ÀüÃ¼</option>
+			<option value="">ì „ì²´</option>
 			<!-- LOOP START 'code_member_gubun' -->
 			<option value="{{code_member_gubun.id}}">{{code_member_gubun.value}}</option>
 			<!-- LOOP END 'code_member_gubun' -->
@@ -51,12 +51,12 @@
 	</td>
 </tr>
 <tr>
-	<th><p>¾÷Ã¼¸í</p></th>
+	<th><p>ì—…ì²´ëª…</p></th>
 	<td><input name="s_member_name" type="text" style="width:98%" maxlength="50"></td>
-	<th><p> »ç¾÷ÀÚ¹øÈ£</p></th>
+	<th><p> ì‚¬ì—…ìžë²ˆí˜¸</p></th>
 	<td colspan="3"><input name="s_vendcd" type="text" style="width:98%" maxlength="10"></td>
 	<td >
-		<button type="submit" class="btn color ico-search"><span></span>°Ë»ö</button>
+		<button type="submit" class="btn color ico-search"><span></span>ê²€ìƒ‰</button>
 	</td>
 </tr>
 </table>
@@ -76,15 +76,15 @@
 		<col>
 	</colgroup>
 		<tr>
-			<th>¾÷Ã¼¸í</th>
-			<th>´ëÇ¥ÀÚ</th>
-			<th>È¸¿øÀ¯Çü</th>
-			<th>¾÷Ã¼À¯Çü</th>
-			<th>È¸¿ø»óÅÂ</th>
-			<th>°ü¸®ÀÚÀÌÀÌµð</th>
-			<th>°¡ÀÔÀÏÀÚ</th>
-			<th>´ã´çÀÚÁ¤º¸</th>
-			<th>°Å·¡Ã³Á¤º¸</th>
+			<th>ì—…ì²´ëª…</th>
+			<th>ëŒ€í‘œìž</th>
+			<th>íšŒì›ìœ í˜•</th>
+			<th>ì—…ì²´ìœ í˜•</th>
+			<th>íšŒì›ìƒíƒœ</th>
+			<th>ê´€ë¦¬ìžì´ì´ë””</th>
+			<th>ê°€ìž…ì¼ìž</th>
+			<th>ë‹´ë‹¹ìžì •ë³´</th>
+			<th>ê±°ëž˜ì²˜ì •ë³´</th>
 		</tr>
 		<!-- LOOP START 'list' -->
 		<tr>
@@ -95,13 +95,13 @@
 			<td align="center">{{list.status}}</td>
 			<td align="center">{{list.user_id}}</td>
 			<td align="center">{{list.join_date}}</td>
-			<td align="center"><button type="button" class="sbtn color ico-search" onClick="location.href='person_view.jsp?member_no={{list.member_no}}&{{list_query}}';"><span></span>Á¶È¸</button></td>
-			<td align="center"><button type="button" class="sbtn color ico-search" onClick="location.href='client_view.jsp?member_no={{list.member_no}}&{{list_query}}'"><span></span>Á¶È¸</button></td>
+			<td align="center"><button type="button" class="sbtn color ico-search" onClick="location.href='person_view.jsp?member_no={{list.member_no}}&{{list_query}}';"><span></span>ì¡°íšŒ</button></td>
+			<td align="center"><button type="button" class="sbtn color ico-search" onClick="location.href='client_view.jsp?member_no={{list.member_no}}&{{list_query}}'"><span></span>ì¡°íšŒ</button></td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td colspan="9" align="center">°Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.</td>
+			<td colspan="9" align="center">ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 	</table>

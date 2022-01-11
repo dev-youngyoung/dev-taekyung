@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.*" %>
 <%@ page import="org.jsoup.nodes.*" %>
 <%@ page import="org.jsoup.select.*" %>
@@ -9,7 +9,7 @@ CodeDao code = new CodeDao("tcb_comcode");
 
 boolean bDetailCode = false;
 if(	_member_no.equals("20121000046")	)
-	bDetailCode = true;  // °Å·¡Ã³ ÄÚµå Ç¥½Ã (¿¹: ÆÄ·¿Æ®Ç®)
+	bDetailCode = true;  // ê±°ë˜ì²˜ ì½”ë“œ í‘œì‹œ (ì˜ˆ: íŒŒë ›íŠ¸í’€)
 
 boolean is3M= u.inArray(_member_no, new String[]{"20121203661","20130400010","20130400009","20130400011","20130400008"});
 
@@ -32,14 +32,11 @@ if(u.request("mode").equals("excel"))
 	if(is3M)
 	{
 		sTable += " left join tcb_cont_sub d on a.cont_no = d.cont_no and a.cont_chasu = d.cont_chasu and d.sub_seq=1";
-		sColumn += ",(select src_nm from tcb_src_adm where member_no = a.member_no and substr(src_cd,0,3) = substr(a.src_cd,0,3) and depth='1') l_src_nm,"
-				+"(select src_nm from tcb_src_adm where member_no = a.member_no and substr(src_cd,0,6) = substr(a.src_cd,0,6) and depth='2') m_src_nm,"
-				+"(select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = a.src_cd and depth='3') s_src_nm,"
-				+"d.cont_sub_html sub_html, a.cont_html";
+		sColumn += ",d.cont_sub_html sub_html, a.cont_html";
 	}
 }
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -55,8 +52,8 @@ if(_member_no.equals("20120200004")){
 }
 
 list.addWhere(" a.status in ('50')");
-list.addWhere(" a.cont_edate is not null  ");// ¸¸·á ÀÏÀÚ°¡ ÀÖ´Â °Í¸¸
-list.addWhere(" a.subscription_yn is null");//½ÅÃ»¼­ Á¦¿Ü
+list.addWhere(" a.cont_edate is not null  ");// ë§Œë£Œ ì¼ìê°€ ìˆëŠ” ê²ƒë§Œ
+list.addWhere(" a.subscription_yn is null");//ì‹ ì²­ì„œ ì œì™¸
 if(!s_sdate.equals(""))list.addWhere(" a.cont_edate >= '"+s_sdate.replaceAll("-","")+"' ");
 if(!s_edate.equals(""))list.addWhere(" a.cont_edate <= '"+s_edate.replaceAll("-","")+"' ");
 
@@ -64,9 +61,9 @@ if(bDetailCode)
 	list.addSearch("b.cust_detail_code", f.get("s_cust_detail_code"), "LIKE");
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 list.addSearch("b.member_name",  f.get("s_cust_name"), "LIKE");
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -81,16 +78,16 @@ DataSet ds = list.getDataSet();
 while(ds.next()){
 	ds.put("cont_no", u.aseEnc(ds.getString("cont_no")));
 	if(ds.getInt("cont_chasu")>0)
-		ds.put("cont_name", ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"Â÷)");
+		ds.put("cont_name", ds.getString("cont_name") + " ("+ds.getString("cont_chasu")+"ì°¨)");
 
 	if(ds.getInt("cust_cnt")-2>0){
-		ds.put("cust_name", ds.getString("member_name")+ "¿Ü"+(ds.getInt("cust_cnt")-2)+"°³»ç");
+		ds.put("cust_name", ds.getString("member_name")+ "ì™¸"+(ds.getInt("cust_cnt")-2)+"ê°œì‚¬");
 	}else{
 		ds.put("cust_name", ds.getString("member_name"));
 	}
 
 	if(bDetailCode && ds.getString("cust_detail_code").equals(""))
-		ds.put("cust_detail_code", "<font color='red'>[¹Ìµî·Ï]</font>");
+		ds.put("cust_detail_code", "<font color='red'>[ë¯¸ë“±ë¡]</font>");
 
 	ds.put("link", ds.getString("template_cd").equals("")?"contend_free_sendview.jsp":"contend_sendview.jsp");
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
@@ -98,38 +95,35 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("is3M",is3M);//3m °è¾à½ÃÀÛÀÏ, °è¾à±İ¾× ¹ÌÇ¥½Ã
+	p.setVar("is3M",is3M);//3m ê³„ì•½ì‹œì‘ì¼, ê³„ì•½ê¸ˆì•¡ ë¯¸í‘œì‹œ
 	if(is3M)
 	{
 		ds.first();
 		while(ds.next()){
-			if(ds.getString("template_cd").equals("2013040"))  // ÆÇ¸Å´ë¸®Á¡ °è¾à¼­
+			if(ds.getString("template_cd").equals("2013040"))  // íŒë§¤ëŒ€ë¦¬ì  ê³„ì•½ì„œ
 			{
 				Document document = Jsoup.parse(ds.getString("sub_html"));
-				String Division = getJsoupValue(document,"t12");  // 3M »ç¾÷ºÎ¼­ (Division)
+				String Division = getJsoupValue(document,"t12");  // 3M ì‚¬ì—…ë¶€ì„œ (Division)
 
 				ds.put("division", Division);
 			}
-			else if(ds.getString("template_cd").equals("2013042"))  // ÆÇ¸ÅÁ¡ °è¾à¼­
+			else if(ds.getString("template_cd").equals("2013042"))  // íŒë§¤ì  ê³„ì•½ì„œ
 			{
 				Document document = Jsoup.parse(ds.getString("cont_html"));
-				String Division = getJsoupValue(document,"t1");  // 3M »ç¾÷ºÎ¼­ (Division)
+				String Division = getJsoupValue(document,"t1");  // 3M ì‚¬ì—…ë¶€ì„œ (Division)
 
 				ds.put("division", Division);
 			}
 			else
 			{
-				ds.put("sourcing", ds.getString("l_src_nm"));
-				ds.put("group", ds.getString("m_src_nm"));
-				ds.put("division", ds.getString("s_src_nm"));
 			}
 		}
 	}	
 	
-	p.setVar("title", "¸¸·á¿¹Á¤ °è¾à");
+	p.setVar("title", "ë§Œë£Œì˜ˆì • ê³„ì•½");
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("¸¸·á¿¹Á¤ °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë§Œë£Œì˜ˆì • ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/contend_expire_list_excel.html"));
 	return;
 }
@@ -142,7 +136,7 @@ p.setVar("menu_cd", _menu_cd);
 p.setVar("auth_select",_authDao.getAuthMenuInfoB( _member_no, auth.getString("_AUTH_CD"), _menu_cd, "btn_auth").equals("10"));
 p.setVar("auth_form", false);
 p.setLoop("list", ds);
-p.setVar("detail_cd", bDetailCode );   // ÆÄ·¿Æ®ÆúÀº ´ã´çÀÚ ¼¼ºÎÁ¤º¸ Ç¥½Ã
+p.setVar("detail_cd", bDetailCode );   // íŒŒë ›íŠ¸í´ì€ ë‹´ë‹¹ì ì„¸ë¶€ì •ë³´ í‘œì‹œ
 p.setVar("form_script", f.getScript());
 p.setVar("pagerbar", list.getPaging());
 p.display(out);

@@ -1,198 +1,125 @@
-	
-<!-- IF START 'view_gap_pds' -->
-<div class="div_table">
-	<div class="util-row">
-		<div class="push-left">
-			<h3>¹ß½Å ¾Ë¸²¹æ<span class="caution-text">(¡Ø µî·ÏµÈ ÀÚ·á´Â ±Í»ç¿Í °Å·¡ÇÏ´Â Çù·Â¾÷Ã¼¸¸ Á¶È¸µË´Ï´Ù.)</span></h3>
+<link rel="stylesheet" type="text/css" href="../html/css/layout.css?sysdate={{_sysdate}}">
+	<div class="content">
+		<div class="main_cont01">
+			<!-- IF START 'tLink' -->
+			<div onclick="location.href='{{tLink}}'" style="cursor:pointer;">
+			<!-- IF END 'tLink' -->
+			<!-- IFNOT START 'tLink' -->
+			<div>
+			<!-- IFNOT END 'tLink' -->
+				<p>STEP 1</p>
+				<h3>ê³„ì•½<span>ì‘ì„±ì¤‘</span></a></h3>
+				<p><input type="text" value="{{step1}}" class="readonly" readonly=""><span>ê±´</span></p>
+			</div>
+			<!-- IF START 'sLink' -->
+			<div onclick="location.href='{{sLink}}'" style="cursor:pointer;">
+			<!-- IF END 'sLink' -->
+			<!-- IFNOT START 'sLink' -->
+			<div>
+			<!-- IFNOT END 'sLink' -->
+				<p>STEP 2</p>
+				<h3>ì„œëª…<span>ìš”ì²­</span></h3>
+				<p><input type="text" value="{{step2}}" class="readonly" readonly=""><span>ê±´</span></p>
+			</div>
+			<!-- IF START 'sLink' -->
+			<div onclick="location.href='{{sLink}}'" style="cursor:pointer;">
+			<!-- IF END 'sLink' -->
+			<!-- IFNOT START 'sLink' -->
+			<div>
+			<!-- IFNOT END 'sLink' -->
+				<p>STEP 3</p>
+				<h3>ì„œëª…<span>ëŒ€ê¸°</span></h3>
+				<p><input type="text" value="{{step3}}" class="readonly" readonly=""><span>ê±´</span></p>
+			</div>
+			<!-- IF START 'eLink' -->
+			<div onclick="location.href='{{eLink}}'" style="cursor:pointer;">
+			<!-- IF END 'eLink' -->
+			<!-- IFNOT START 'eLink' -->
+			<div>
+			<!-- IFNOT END 'eLink' -->
+				<p>STEP 4</p>
+				<h3>ê³„ì•½<span>ì™„ë£Œ</span></h3>
+				<p><input type="text" value="{{step4}}" class="readonly" readonly=""><span>ê±´</span></p>
+			</div>
+			<!-- IF START 'eLink' -->
+			<div onclick="location.href='{{eLink}}'" style="cursor:pointer;">
+			<!-- IF END 'eLink' -->
+			<!-- IFNOT START 'eLink' -->
+			<div>
+			<!-- IFNOT END 'eLink' -->
+				<p>STEP 5</p>
+				<h3><span>ì—°ì¥</span>ê³„ì•½</h3>
+				<p><input type="text" value="{{step5}}" class="readonly" readonly=""><span>ê±´</span></p>
+			</div>
+		</div>
+		<div class="main_cont02">
+			<div>
+				<h3><p>ê³„ì•½ ì§„í–‰ ì´ë ¥</p></h3>
+				<a href="{{sLink}}" class="btn_more">ì „ì²´ë³´ê¸°</a>
+				<!-- IF START 'sList' -->
+				<ul>
+					<!-- LOOP START 'sList' -->
+					<!-- IF START 'sList.cont_name' -->
+					<li>
+						<span class="main_list" 
+							<!-- IFC START 'sList.tooltip_yn==Y' -->
+							data-tooltip-text="{{sList.cont_name}}"
+							<!-- IFC END 'sList.tooltip_yn==Y' -->
+							>
+							<span>{{sList.status_name}}</span><a href="{{sLink}}?s_cont_name={{sList.cont_name}}">{{sList.cont_name_short}}</a>
+						</span>
+						<span class="date">{{sList.cont_date}}</span>
+					</li>
+					<!-- IF END 'sList.cont_name' -->
+					<!-- IFNOT START 'sList.cont_name' -->
+					<li></li>
+					<!-- IFNOT END 'sList.cont_name' -->
+					<!-- LOOP END 'sList' -->
+				</ul>
+				<!-- IF END 'sList' -->
+			</div>
+			<div>
+				<h3><p>ê³µì§€ì‚¬í•­</p></h3>
+				<a href="{{nLink}}" class="btn_more">ì „ì²´ë³´ê¸°</a>
+				<!-- IF START 'nList' -->
+				<ul>
+					<!-- LOOP START 'nList' -->
+					<li>
+						<span class="main_list"
+							<!-- IFC START 'nList.tooltip_yn==Y' -->
+							data-tooltip-text="{{nList.title}}"
+							<!-- IFC END 'nList.tooltip_yn==Y' -->
+						><a href="{{nLink}}?s_title={{nList.title}}">{{nList.title_short}}</a>
+						</span>
+						<span class="date">{{nList.reg_date}}
+						</span>
+					</li>
+					<!-- LOOP END 'nList' -->
+				</ul>
+				<!-- IF END 'nList' -->
+			</div>
+		</div>
+		<div class="main_cont03">
+			<div class="guide_link">
+				<a href="/FileDownLoad?FILE_KEY=file.path.pds&FILE_NAME=manual.ppt" download="ì‚¬ìš©ìë§¤ë‰´ì–¼.pptx">ì‚¬ìš©ì ë§¤ë‰´ì–¼</a>
+				<a href="https://get2.adobe.com/kr/reader/" target="_blank" >ë·°ì–´ ë‹¤ìš´ë¡œë“œ</a>
+				<a href="../info/cert_info.jsp">ì¸ì¦ì„œ ë“±ë¡/ê°±ì‹ </a>
+			</div>
+<!-- 
+			<div class="CS_info">
+				<span>1566-0566</span>
+				<span>í‰ì¼ : ì˜¤ì „9ì‹œ ~ ì˜¤í›„ 6ì‹œ<br>ì ì‹¬ì‹œê°„ : 12ì‹œ ~ 1ì‹œ</span>
+			</div>
+ -->			
 		</div>
 	</div>
-	<table>
-		<colgroup>
-			<col width="10%">
-			<col width="60%">
-			<col width="15%">
-			<col width="15%">
-		</colgroup>
-		<tr>
-			<th>NO</th>
-			<th>Á¦¸ñ</th>
-			<th>µî·ÏÀÚ</th>
-			<th>µî·ÏÀÏÀÚ</th>
-		</tr>
-		<!-- LOOP START 'gap_pds' -->
-		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;"
-		 onclick="location.href='../center/my_pds_modify.jsp?seq={{gap_pds.seq}}'">
-			<td align="center">{{gap_pds.__ord}}</td>
-			<td align="left">{{gap_pds.title}}</td>
-			<td align="center">{{gap_pds.user_name}}</td>
-			<td align="center">{{gap_pds.reg_date}}</td>
-		</tr>
-		<!-- LOOP END 'gap_pds' -->
-		<!-- IF START 'gap_pds' -->
-		 <tr><td colspan="4" align="center"><a href="../center/my_pds_list.jsp">¾Ë¸²¹æ ³»¿ë ´õº¸±â...</a></td></tr>
-		<!-- IF END 'gap_pds' -->
-		<!-- IFNOT START 'gap_pds' -->
-		 <tr><td colspan="4" align="center">µî·ÏµÈ ÀÚ·á°¡ ¾ø½À´Ï´Ù.</td></tr>
-		<!-- IFNOT END 'gap_pds' -->
-	</table>
 </div>
-<!-- IF END 'view_gap_pds' -->
-<!-- IF START 'view_eul_pds' -->
-<div class="div_table">
-	<div class="util-row">
-		<div class="push-left">
-			<h3>¼ö½Å ¾Ë¸²¹æ<span class="caution-text">(¡Ø ±Í»ç¿Í °Å·¡ ÇÏ´Â ¾÷Ã¼¿¡¼­ °øÁöÇÑ ³»¿ë ÀÔ´Ï´Ù.)</span></h3>
-		</div>
-	</div>
-	<table>
-		<colgroup>
-			<col width="10%">
-			<col width="20%">
-			<col width="50%">
-			<col width="20%">
-		</colgroup>
-		<tr>
-			<th>NO</th>
-			<th>°Å·¡Ã³</th>
-			<th>Á¦¸ñ</th>
-			<th>µî·ÏÀÏÀÚ</th>
-		</tr>
-		<!-- LOOP START 'eul_pds' -->
-		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;"
-		 onclick="location.href='../center/cust_pds_view.jsp?member_no={{eul_pds.member_no}}&seq={{eul_pds.seq}}'">
-			<td align="center">{{eul_pds.__ord}}</td>
-			<td align="left">{{eul_pds.member_name}}</td>
-			<td align="left">{{eul_pds.title}}</td>
-			<td align="center">{{eul_pds.reg_date}}</td>
-		</tr>
-		<!-- LOOP END 'eul_pds' -->
-		<!-- IF START 'eul_pds' -->
-		 <tr><td colspan="4" align="center"><a href="../center/cust_pds_list.jsp">¾Ë¸²¹æ ³»¿ë ´õº¸±â ...</a></td></tr>
-		<!-- IF END 'eul_pds' -->
-		<!-- IFNOT START 'eul_pds' -->
-		 <tr><td colspan="4" align="center">µî·ÏµÈ ÀÚ·á°¡ ¾ø½À´Ï´Ù.</td></tr>
-		<!-- IFNOT END 'eul_pds' -->
-	</table>
-</div>
-<!-- IF END 'view_eul_pds' -->
-<!-- IF START 'view_slist' -->
-<div class="div_table">
-	<div class="util-row">
-		<div class="push-left">
-			<h3>¹ß½Å To-Do List</h3>
-		</div>
-	</div>
-	<table>
-		<colgroup>
-			<col width="15%">
-			<col width="65%">
-			<col width="20%">
-		</colgroup>
-		<tr>
-			<th>¾÷¹«±¸ºĞ</th>
-			<th>¾÷¹«¸í</th>
-			<th>»óÅÂ</th>
-		</tr>
-		<!-- LOOP START 'slist' -->
-		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;" onclick="location.href='{{slist.link}}'">
-			<td align="center">{{slist.gubun}}</td>
-			<td align="left">{{slist.name}}</td>
-			<td align="center">{{slist.status_nm}}</td>
-		</tr>
-		<!-- LOOP END 'slist' -->
-		<!-- IFNOT START 'slist' -->
-		<tr>
-			<td align="center" colspan="3">ÁøÇàÁßÀÎ ¾÷¹«°¡ ¾ø½À´Ï´Ù.</td>
-		</tr>
-		<!-- IFNOT END 'slist' -->
-	</table>
-</div>
-<!-- IF END 'view_slist' -->
-
-<!-- IF START 'view_rlist' -->
-<div class="div_table">
-	<div class="util-row">
-		<div class="push-left">
-			<h3>¼ö½Å To-Do List</h3>
-		</div>
-	</div>
-	<table>
-		<colgroup>
-			<col width="15%">
-			<col width="20%">
-			<col width="45%">
-			<col width="20%">
-		</colgroup>
-		<tr>
-			<th>¾÷¹«±¸ºĞ</th>
-			<th>°Å·¡Ã³</th>
-			<th>¾÷¹«¸í</th>
-			<th>»óÅÂ</th>
-		</tr>
-		<!-- LOOP START 'rlist' -->
-		<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true" style="cursor:pointer;" onclick="location.href='{{rlist.link}}'">
-			<td align="center">{{rlist.gubun}}</td>
-			<td align="left">{{rlist.client_name}}</td>
-			<td align="left">{{rlist.name}}</td>
-			<td align="center">{{rlist.status_nm}}</td>
-		</tr>
-		<!-- LOOP END 'rlist' -->
-		<!-- IFNOT START 'rlist' -->
-		<tr>
-			<td align="center" colspan="4">ÁøÇàÁßÀÎ ¾÷¹«°¡ ¾ø½À´Ï´Ù.</td>
-		</tr>
-	<!-- IFNOT END 'rlist' -->
-	</table>
-</div>
-<!-- IF END 'view_rlist' -->
-
-<!-- IF START 'eul_block' -->
-
-<div class="help-content">
-    <h3>NOTICE<span>À¯¿ëÇÑ Á¤º¸! »ç¿ëÀü¿¡ ¾Ë¾ÆµÎ¼¼¿ä~ </span></h3>
-    <div class="help-content-body">
-    	<ul>
-			<li>
-				 °ßÀû, ÀÔÂû, °è¾à, Ã¤±Ç ¾÷¹« ÁøÇàÀ» À§ÇÑ °Å·¡ »ó´ë¹æ Ãß°¡ <br/>
-				»ó´Ü '°Å·¡¾÷Ã¼°ü¸®' ¸Ş´º Å¬¸¯ ¡æ ÁÂÃø '°Å·¡Ã³µî·Ï°ü¸®' ¸Ş´º¿¡¼­ °Å·¡ »ó´ë¹æÀ» Ãß°¡ ÇÏ¼¼¿ä.
-				<button type="button" name="btn_field" style="float: right;" class="sbtn color ico-search" onclick="location.href='/web/buyer/cust/cust_list.jsp';"><span></span> ¹Ù·Î°¡±â</button>
-				<br/>
-				<br/>
-			</li>
-		</ul>
-		<ul>	
-			<li>
-				ÀüÀÚ¼­¸íÀ» À§ÇÑ °øÀÎÀÎÁõ¼­ µî·Ï <br/>
-				ÀÔÂû¼­ Á¦Ãâ ¹× °è¾à¼­, Ã¤±ÇÀÜ¾×È®ÀÎ¼­¿¡ ÀüÀÚ¼­¸íÀ» ÇÏ·Á¸é °øÀÎÀÎÁõ¼­¸¦ µî·Ï ÇØ¾ß¸¸ ÇÕ´Ï´Ù.<br/>
-				»ó´Ü 'È¸»çÁ¤º¸¼öÁ¤' ¸Ş´º Å¬¸¯ ¡æ ÁÂÃø 'È¸»çÁ¤º¸º¯°æ' ¸Ş´º¸¦ Å¬¸¯ÇÏ¿© ÀÎÁõ¼­¸¦ µî·ÏÇÏ¼¼¿ä.<br/>
-				<button type="button" name="btn_field" style="float: right;" class="sbtn color ico-search" onclick="location.href='/web/buyer/info/company_modify.jsp';"><span></span> ¹Ù·Î°¡±â</button><br/>
-				°øÀÎÀÎÁõ¼­°¡ ¾ø´Â °æ¿ì ·Î±×ÀÎ Àü ³ªÀÌ½º´ÙÅ¥ ¸ŞÀÎ È­¸éÀÇ ¿ìÃø ÇÏ´Ü '°øÀÎÀÎÁõ¼­ ½Å±Ô/°»½Å ¹ß±Ş' ¹è³Ê¸¦ Å¬¸¯ÇÏ¿© ¹ß±Ş<br>
-				<font color="blue"> °³ÀÎ»ç¾÷ÀÚÀÎ °æ¿ì °è¾à¼­ Á¾·ù¿¡ µû¶ó »ç¾÷ÀÚ¿ë °øÀÎÀÎÁõ¼­°¡ ¾Æ´Ñ °³ÀÎ ¹ü¿ë °øÀÎÀÎÁõ¼­¸¦ »ç¿ëÇÏ´Â °æ¿ì°¡ ÀÖ½À´Ï´Ù.<br>
-				<u>°³ÀÎ ¹ü¿ë °øÀÎÀÎÁõ¼­ »ç¿ë À¯¹«´Â °è¾à »ó´ë¹æ ¾÷Ã¼¿¡ ¹®ÀÇ¸¦ ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</u></font>
-			</li>
-		</ul>	
-    </div>
-</div>
-<!-- IF END 'eul_block' -->
 		
-<script language="javascript">
- 
-// if ( GetCookie("chk_vouchar_b")!="done") { 
-	//OpenWindows('http://www.nicedocu.com/web/buyer/layout/vauchar.jsp?member_no={{_auth._MEMBER_NO}}&user_id={{_auth._USER_ID}}','vouchar',1200,750);
-//}  
-
-<!-- IF START 'cert_msg' -->
-//alert("{{cert_msg}}");
-<!-- IF END 'cert_msg' -->
-
-
-<!-- IFNOT START 'gap_block' -->
-//Çù·Â¾÷Ã¼ ¸ğÁı°ø°í ÆË¾÷
-//if(GetCookie("recruit1")!="done"){
-//	fLayerPop('recruit1',"/web/buyer/html/cust/pop_recruit_noti.html" ,552,652,450,1);
-//}
-<!-- IFNOT END 'gap_block' -->
-
-</script>
 </body>
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById("loading").style.display = 'none';
+});
+</script>

@@ -1,33 +1,33 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String asse_no = u.request("asse_no", "");
-String div_cd = u.request("div_cd");  // Æò°¡ºÎ¼­ ÄÚµå : S ±¸¸ÅÆÀ, Q:QCÆÀ, E: ENC
-String mode = u.request("mode", "00"); // 00 : ¿ÏÀü»èÁ¦, 10 : »óÅÂ º¯°æ
+String div_cd = u.request("div_cd");  // í‰ê°€ë¶€ì„œ ì½”ë“œ : S êµ¬ë§¤íŒ€, Q:QCíŒ€, E: ENC
+String mode = u.request("mode", "00"); // 00 : ì™„ì „ì‚­ì œ, 10 : ìƒíƒœ ë³€ê²½
 String mstatus = u.request("mstatus");
 String ret = u.request("ret");
 
 
 if(asse_no.equals("") || mode.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 	
 DB db = new DB();
 
-if(mode.equals("00"))  // ¿ÏÀü»èÁ¦
+if(mode.equals("00"))  // ì™„ì „ì‚­ì œ
 {
 	db.setCommand("delete from tcb_assedetail where asse_no = '"+asse_no+"'", null);
 	db.setCommand("delete from tcb_assemaster where asse_no = '"+asse_no+"'", null);
 }
 else if(mode.equals("10"))  
 {
-	if(mstatus.equals("20")) // Æò°¡Áß -> Æò°¡ ´ë»ó µî·Ï : ÇØ´ç ±â·Ï ¸ðµÎ »èÁ¦ 
+	if(mstatus.equals("20")) // í‰ê°€ì¤‘ -> í‰ê°€ ëŒ€ìƒ ë“±ë¡ : í•´ë‹¹ ê¸°ë¡ ëª¨ë‘ ì‚­ì œ 
 	{
 		db.setCommand("delete from tcb_assedetail where asse_no = '"+asse_no+"'", null);
 		db.setCommand("update tcb_assemaster set status='10' where asse_no = '"+asse_no+"'", null);
 	}
-	else if(mstatus.equals("50")) // Æò°¡¿Ï·á -> Æò°¡Áß
+	else if(mstatus.equals("50")) // í‰ê°€ì™„ë£Œ -> í‰ê°€ì¤‘
 	{
 		db.setCommand("update tcb_assedetail set status='20' where asse_no = '"+asse_no+"' and div_cd='"+div_cd+"'", null);
 		db.setCommand("update tcb_assemaster set status='20' where asse_no = '"+asse_no+"'", null);
@@ -35,13 +35,13 @@ else if(mode.equals("10"))
 }
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-if(mode.equals("00"))  // ¿ÏÀü»èÁ¦
-	u.jsAlertReplace("»èÁ¦ ÇÏ¿´½À´Ï´Ù.","assessment_list.jsp?"+u.getQueryString());
-else if(mode.equals("10"))  // »óÅÂº¯°æ
-	u.jsAlertReplace("ÀÌÀü »óÅÂ·Î º¯°æ ÇÏ¿´½À´Ï´Ù.", ret + "?"+u.getQueryString());
+if(mode.equals("00"))  // ì™„ì „ì‚­ì œ
+	u.jsAlertReplace("ì‚­ì œ í•˜ì˜€ìŠµë‹ˆë‹¤.","assessment_list.jsp?"+u.getQueryString());
+else if(mode.equals("10"))  // ìƒíƒœë³€ê²½
+	u.jsAlertReplace("ì´ì „ ìƒíƒœë¡œ ë³€ê²½ í•˜ì˜€ìŠµë‹ˆë‹¤.", ret + "?"+u.getQueryString());
 
 %>

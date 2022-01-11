@@ -5,25 +5,25 @@ import java.util.Iterator;
 import java.util.Vector; 
 
 /**
- * HashMap ±â´ÉÀ» ÇÏ´Â Class·Î ±â´ÉÀº HashMap°ú µ¿ÀÏÇÏ³ª 
- * get() Method ÀÌ¿Ü¿¡ getString(), getInt() µîÀÇ Method¸¦ Ãß°¡ÇÏ¿© ÆíÀÇ¼ºÀ» ³ô¿´´Ù.
+ * HashMap ê¸°ëŠ¥ì„ í•˜ëŠ” Classë¡œ ê¸°ëŠ¥ì€ HashMapê³¼ ë™ì¼í•˜ë‚˜ 
+ * get() Method ì´ì™¸ì— getString(), getInt() ë“±ì˜ Methodë¥¼ ì¶”ê°€í•˜ì—¬ í¸ì˜ì„±ì„ ë†’ì˜€ë‹¤.
  *
- * @author	¹Ì»ó
- * @version	1.0  3Â÷ ¼Ò½º
+ * @author	ë¯¸ìƒ
+ * @version	1.0  3ì°¨ ì†ŒìŠ¤
  */
 public class  DataSetValue {
 
     private HashMap hashMap = new HashMap();
 
     /**
-    *±â´É : Default »ı¼ºÀÚ
+    *ê¸°ëŠ¥ : Default ìƒì„±ì
     */
     public DataSetValue() {}
 
     /**
-    *±â´É : ÇØ½¬¸Ê¿¡ ls_key °ªÀ¸·Î StringÇü value¸¦ ³Ö´Â´Ù.
-    *@param  ls_key    key°ª
-    *@param  ls_value  StringÇüÀÇ value
+    *ê¸°ëŠ¥ : í•´ì‰¬ë§µì— ls_key ê°’ìœ¼ë¡œ Stringí˜• valueë¥¼ ë„£ëŠ”ë‹¤.
+    *@param  ls_key    keyê°’
+    *@param  ls_value  Stringí˜•ì˜ value
     */
     public void put(Object ls_key, Object ls_value) {
         this.hashMap.put(ls_key, ls_value);
@@ -45,13 +45,13 @@ public class  DataSetValue {
     }
 
     /**
-    *±â´É : ÇØ½¬¸Ê¿¡ ls_key °ªÀ¸·Î StringÇü value¸¦ ³Ö´Â´Ù.
-    *@param  ls_key    key°ª
-    *@param  ls_value  StringÇüÀÇ value
+    *ê¸°ëŠ¥ : í•´ì‰¬ë§µì— ls_key ê°’ìœ¼ë¡œ Stringí˜• valueë¥¼ ë„£ëŠ”ë‹¤.
+    *@param  ls_key    keyê°’
+    *@param  ls_value  Stringí˜•ì˜ value
      * @throws UnsupportedEncodingException 
     */
     public void put(String ls_key, String ls_value) {
-  		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+  		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
     	
     		if ( ls_key!=null && ls_key.length()!=0 )
   			{
@@ -69,7 +69,7 @@ public class  DataSetValue {
 
     public void put(String ls_key, String ls_value, boolean is_single_q) 
     {
-  		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+  		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
   		if ( ls_key!=null && ls_key.length()!=0 )
   		{
   			ls_key = ls_key.toUpperCase();
@@ -81,16 +81,16 @@ public class  DataSetValue {
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀ» °¡Áø ObjectÇü Value¸¦ ¸®ÅÏÇÑ´Ù.
-    *@param   ls_key  key °ª
-    *@return  int     ObjectÇü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì„ ê°€ì§„ Objectí˜• Valueë¥¼ ë¦¬í„´í•œë‹¤.
+    *@param   ls_key  key ê°’
+    *@return  int     Objectí˜• Value
     */
     public Object get(Object ls_key) {
         return this.hashMap.get(ls_key);
     }
     
     public Object get (String ls_key) {
-		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
 		if (ls_key!=null && ls_key.length()!=0) {
 			ls_key = ls_key.toUpperCase();
 		}
@@ -99,12 +99,12 @@ public class  DataSetValue {
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀ» °¡Áø StringÇü Value¸¦ ¸®ÅÏÇÑ´Ù.
-    *@param   ls_key  key °ª
-    *@return  int     String Çü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì„ ê°€ì§„ Stringí˜• Valueë¥¼ ë¦¬í„´í•œë‹¤.
+    *@param   ls_key  key ê°’
+    *@return  int     String í˜• Value
     */
     public String getString(String ls_key) {
-  		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+  		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
     	String	sRtnVal	=	"";
 		
     	
@@ -124,27 +124,27 @@ public class  DataSetValue {
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀ» °¡Áø String[]Çü Value¸¦ ¸®ÅÏÇÑ´Ù.
-    *@param   ls_key  key °ª
-    *@return  int     String[] Çü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì„ ê°€ì§„ String[]í˜• Valueë¥¼ ë¦¬í„´í•œë‹¤.
+    *@param   ls_key  key ê°’
+    *@return  int     String[] í˜• Value
     */
     public String[] getStringList(Object ls_key) {
         return (String[])this.hashMap.get(ls_key);
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀ» °¡Áø VectorÇü Value¸¦ ¸®ÅÏÇÑ´Ù.
-    *@param   ls_key  key °ª
-    *@return  int     Vector Çü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì„ ê°€ì§„ Vectorí˜• Valueë¥¼ ë¦¬í„´í•œë‹¤.
+    *@param   ls_key  key ê°’
+    *@return  int     Vector í˜• Value
     */
     public Vector getVector(Object ls_key) {
         return (Vector)this.hashMap.get(ls_key);
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀ» °¡Áø µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÑ´Ù.
-    *@param   ls_key  key °ª
-    *@return  int     Vector Çü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì„ ê°€ì§„ ë°ì´í„°ë¥¼ ì‚­ì œí•œë‹¤.
+    *@param   ls_key  key ê°’
+    *@return  int     Vector í˜• Value
     */
     public void remove(String ls_key) {
 		if (ls_key!=null && ls_key.length()!=0) {
@@ -154,18 +154,18 @@ public class  DataSetValue {
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀÌ ÀÖ´ÂÁö Á¶»ç
-    *@param   ls_key  key °ª
-    *@return  int     String Çü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì´ ìˆëŠ”ì§€ ì¡°ì‚¬
+    *@param   ls_key  key ê°’
+    *@return  int     String í˜• Value
     */
     public boolean containsKey(Object ls_key) {
         return this.hashMap.containsKey(ls_key);
     }
 
     /**
-    *±â´É : ls_keyÀÇ Å°°ªÀÌ ÀÖ´ÂÁö Á¶»ç
-    *@param   ls_key  key °ª
-    *@return  int     String Çü Value
+    *ê¸°ëŠ¥ : ls_keyì˜ í‚¤ê°’ì´ ìˆëŠ”ì§€ ì¡°ì‚¬
+    *@param   ls_key  key ê°’
+    *@return  int     String í˜• Value
     */
     public boolean containsValue(Object ls_value) {
         return this.hashMap.containsValue(ls_value);
@@ -176,21 +176,21 @@ public class  DataSetValue {
     }
 
     /**
-    *±â´É : ¸â¹öº¯¼öÀÇ »çÀÌÁî¸¦ °è»êÇØ¿Â´Ù.
-    *@return  int  ¸â¹öº¯¼öÀÇ »çÀÌÁî
+    *ê¸°ëŠ¥ : ë©¤ë²„ë³€ìˆ˜ì˜ ì‚¬ì´ì¦ˆë¥¼ ê³„ì‚°í•´ì˜¨ë‹¤.
+    *@return  int  ë©¤ë²„ë³€ìˆ˜ì˜ ì‚¬ì´ì¦ˆ
     */
     public int size() {
         return this.hashMap.size();
     }
     
-//----------------------------------- Ãß°¡ kkm  -------------------------------------//
+//----------------------------------- ì¶”ê°€ kkm  -------------------------------------//
 	/**
-	 *±â´É : ÇØ½¬¸Ê¿¡ ls_key °ªÀ¸·Î StringÇü value¸¦ ³Ö´Â´Ù.
-	 *@param  ls_key    key°ª
-	 *@param  ls_value  StringÇüÀÇ value
+	 *ê¸°ëŠ¥ : í•´ì‰¬ë§µì— ls_key ê°’ìœ¼ë¡œ Stringí˜• valueë¥¼ ë„£ëŠ”ë‹¤.
+	 *@param  ls_key    keyê°’
+	 *@param  ls_value  Stringí˜•ì˜ value
 	 */
 	 public void put(String ls_key, int ls_value) {
-		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
    		
 		if ( ls_key!=null && ls_key.length()!=0 )
 		{
@@ -200,12 +200,12 @@ public class  DataSetValue {
     
 
 	 /**
-	  *±â´É : ÇØ½¬¸Ê¿¡ ls_key °ªÀ¸·Î StringÇü value¸¦ ³Ö´Â´Ù.
-	  *@param  ls_key    key°ª
-	  *@param  ls_value  StringÇüÀÇ value
+	  *ê¸°ëŠ¥ : í•´ì‰¬ë§µì— ls_key ê°’ìœ¼ë¡œ Stringí˜• valueë¥¼ ë„£ëŠ”ë‹¤.
+	  *@param  ls_key    keyê°’
+	  *@param  ls_value  Stringí˜•ì˜ value
 	  */
 	  public void put(String ls_key, double ls_value) {
-			//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+			//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
     		
 			if ( ls_key!=null && ls_key.length()!=0 )
 			{
@@ -214,7 +214,7 @@ public class  DataSetValue {
 	  } 
 
 	public String getSInt(String ls_key) {
-		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
 		if (ls_key!=null && ls_key.length()!=0) {
 			ls_key = ls_key.toUpperCase();
 		}
@@ -232,7 +232,7 @@ public class  DataSetValue {
 	public int getInt(String ls_key){		
 		String strRtn = "";
     	
-		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
 		if(ls_key!=null && ls_key.length()!=0) {
 			ls_key = ls_key.toUpperCase();
 		}else
@@ -259,7 +259,7 @@ public class  DataSetValue {
 	public double getDouble(String ls_key) throws Exception {
 		String strRtn = "";
     	
-		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
 		if(ls_key!=null && ls_key.length()!=0) {
 			ls_key = ls_key.toUpperCase();
 		}
@@ -271,15 +271,15 @@ public class  DataSetValue {
 	}
 	
 	/**
-	 * long typeÀ¸·Î °ª ¹İÈ¯
-	 * @param ls_key		Å°°ª
+	 * long typeìœ¼ë¡œ ê°’ ë°˜í™˜
+	 * @param ls_key		í‚¤ê°’
 	 * @return
 	 * @throws Exception
 	 */
 	public long getLong(String ls_key){
 		String strRtn = "";
     	
-		//Å°°ªÀ» ¸ğµÎ ´ë¹®ÀÚ·Î Ä¡È¯ÇÏ¿© »ç¿ëÀÚ·Î ÇÏ¿©±İ ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀÌ °¡Á®¿Àµµ·Ï ÇÑ´Ù.
+		//í‚¤ê°’ì„ ëª¨ë‘ ëŒ€ë¬¸ìë¡œ ì¹˜í™˜í•˜ì—¬ ì‚¬ìš©ìë¡œ í•˜ì—¬ê¸ˆ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ì´ ê°€ì ¸ì˜¤ë„ë¡ í•œë‹¤.
 		if(ls_key!=null && ls_key.length()!=0) {
 			ls_key = ls_key.toUpperCase();
 		}

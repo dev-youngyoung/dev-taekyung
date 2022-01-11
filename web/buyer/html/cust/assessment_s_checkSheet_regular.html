@@ -1,4 +1,4 @@
-<form name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="print_content">
 	<input type="hidden" name="asse_no" value="{{assessment.asse_no}}" >
 	<input type="hidden" name="div_cd" value="{{assessment.div_cd}}" >
@@ -9,7 +9,7 @@
 		<style type="text/css" id="__html_style">
 			.glabel {
 				color: #707070;
-				FONT-FAMILY: "µ¸¿ò", "Arial";
+				FONT-FAMILY: "ë‹ì›€", "Arial";
 				FONT-SIZE: 9pt;
 				/*LINE-HEIGHT: 13pt;*/
 				border: 1px solid;
@@ -36,22 +36,22 @@
 
 <div class="btn-group-wrap">
 	<!-- IF START 'del' -->
-	<button type="button" value="ÀÌÀü´Ü°è·Î" class="btn color ico-prev" onclick="del()" ><span></span>ÀÌÀü´Ü°è·Î</button> &nbsp;&nbsp;
+	<button type="button" value="ì´ì „ë‹¨ê³„ë¡œ" class="btn color ico-prev" onclick="del()" ><span></span>ì´ì „ë‹¨ê³„ë¡œ</button> &nbsp;&nbsp;
 	<!-- IF END 'del' -->
 
 	<!-- IF START 'modify' -->
-	<button type="button" value="ÀÓ½ÃÀúÀå" class="btn color ico-save" onclick="save('20')" ><span></span>ÀÓ½ÃÀúÀå</button>
-	<button type="button" value="Æò°¡¿Ï·á" class="btn color ico-confirm" onclick="save('50')" ><span></span>Æò°¡¿Ï·á</button>
-	<button type="button" value="°á°úÀü¼Û" class="btn color ico-request" onclick="save('90')" ><span></span>°á°úÀü¼Û</button>
-	<button type="button" value="ÀÎ¼â" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" value="¸ñ·ÏÀ¸·Î" class="btn color ico-list" onclick="javascript:history.back()"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" value="ì„ì‹œì €ì¥" class="btn color ico-save" onclick="save('20')" ><span></span>ì„ì‹œì €ì¥</button>
+	<button type="button" value="í‰ê°€ì™„ë£Œ" class="btn color ico-confirm" onclick="save('50')" ><span></span>í‰ê°€ì™„ë£Œ</button>
+	<button type="button" value="ê²°ê³¼ì „ì†¡" class="btn color ico-request" onclick="save('90')" ><span></span>ê²°ê³¼ì „ì†¡</button>
+	<button type="button" value="ì¸ì‡„" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" value="ëª©ë¡ìœ¼ë¡œ" class="btn color ico-list" onclick="javascript:history.back()"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 
 
 	<!-- IF END 'modify' -->
 	<!-- IFNOT START 'modify' -->
-	<button type="button" value="°á°úÀü¼Û" class="btn color ico-request" onclick="save1('90')" ><span></span>°á°úÀü¼Û</button>
-	<button type="button" value="ÀÎ¼â" class="btn color ico-print" onclick="print()"><span></span>ÀÎ¼â</button>
-	<button type="button" value="¸ñ·ÏÀ¸·Î" class="btn color ico-list" onclick="javascript:history.back()"><span></span>¸ñ·ÏÀ¸·Î</button>
+	<button type="button" value="ê²°ê³¼ì „ì†¡" class="btn color ico-request" onclick="save1('90')" ><span></span>ê²°ê³¼ì „ì†¡</button>
+	<button type="button" value="ì¸ì‡„" class="btn color ico-print" onclick="print()"><span></span>ì¸ì‡„</button>
+	<button type="button" value="ëª©ë¡ìœ¼ë¡œ" class="btn color ico-list" onclick="javascript:history.back()"><span></span>ëª©ë¡ìœ¼ë¡œ</button>
 
 	<!-- IFNOT END 'modify' -->
 </div>
@@ -75,7 +75,7 @@
 
     function selectCheck(div){
 
-        if(div=="20") return true; // ÀÓ½ÃÀúÀåÀº ¼±ÅÃ°ª ´Ù ÀÔ·Â¾ÈÇØµµ ÀúÀå °¡´ÉÇÏµµ·Ï
+        if(div=="20") return true; // ì„ì‹œì €ì¥ì€ ì„ íƒê°’ ë‹¤ ì…ë ¥ì•ˆí•´ë„ ì €ì¥ ê°€ëŠ¥í•˜ë„ë¡
 
         for(var i=1; i<4; i++){
             var checkYn = "n";
@@ -87,14 +87,14 @@
                 }
             }
             if(checkYn == "n"){
-                alert("°æ¿µ ÀÏ¹İ Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+                alert("ê²½ì˜ ì¼ë°˜ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
                 return;
             }
         }
 
         var checkItem = $("#financeitem1").html();
         if(checkItem == "0"){
-            alert("Àç¹« °ü¸® Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+            alert("ì¬ë¬´ ê´€ë¦¬ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
             return;
         }
 
@@ -108,7 +108,7 @@
                 }
             }
             if(checkYn == "n"){
-                alert("³»ºÎ ÇÁ·Î¼¼½º Æò°¡Ç×¸ñÀ» ¸ğµÎ ¼±ÅÃÇØÁÖ¼¼¿ä");
+                alert("ë‚´ë¶€ í”„ë¡œì„¸ìŠ¤ í‰ê°€í•­ëª©ì„ ëª¨ë‘ ì„ íƒí•´ì£¼ì„¸ìš”");
                 return;
             }
         }
@@ -211,7 +211,7 @@ culRatingPoint();
 
         var f = document.forms['form1'];
         f.action = 'assessment_result_sendmail_regular.jsp?asse_no={{assessment.asse_no}}';
-        var message = "°á°ú Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?";
+        var message = "ê²°ê³¼ ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
         if(confirm(message)){
             fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 700);
         }
@@ -226,23 +226,23 @@ culRatingPoint();
             if(validate(f)){
                 var d = f['ratingDate'].value;
                 if(!isDateFormat(d)) {
-                    alert("YYYY-MM-DD Æò°¡ÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä.");
+                    alert("YYYY-MM-DD í‰ê°€ì¼ì„ í™•ì¸í•´ì£¼ì„¸ìš”.");
                     f['ratingDate'].focus();
                     return false;
                 }
                 var message = "";
-                if(div == "20"){	//ÀÓ½ÃÀúÀå
-                    message = "ÀÓ½Ã ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?";
+                if(div == "20"){	//ì„ì‹œì €ì¥
+                    message = "ì„ì‹œ ì €ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
                 }else if(div == "50"){
-                    message = "Æò°¡ ¿Ï·á ÇÏ½Ã°Ú½À´Ï±î?";
+                    message = "í‰ê°€ ì™„ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
                 }else if(div == "90"){
-                    message = "Æò°¡ ¿Ï·á ÈÄ °á°ú Àü¼Û ÇÏ½Ã°Ú½À´Ï±î?";
+                    message = "í‰ê°€ ì™„ë£Œ í›„ ê²°ê³¼ ì „ì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
                 }
                 if(confirm(message)){
                     setDivInputValue("__html");
                     splitHtml(f, 'doc_html', false);
-                    //alert(f['sector'].value);		//¼Ò¼Ó
-                    //alert(f['assessor'].value);	//Æò°¡¿ø
+                    //alert(f['sector'].value);		//ì†Œì†
+                    //alert(f['assessor'].value);	//í‰ê°€ì›
                     if(div == "90"){
                         fLayerPop("sendEmailSet", "pop_sendEmailSet.jsp" , 320, 200, 470, 490);
                     }else{
@@ -256,13 +256,13 @@ culRatingPoint();
     function del(){
         var f = document.forms['form2'];
         var message = "";
-        if(f['mstatus'].value == "20")  // Æò°¡Áß -> Æò°¡´ë»ó
+        if(f['mstatus'].value == "20")  // í‰ê°€ì¤‘ -> í‰ê°€ëŒ€ìƒ
         {
-            message = "´Ù½Ã Æò°¡´ë»ó µî·ÏÀ» ÇÏ½Ã°Ú½À´Ï±î?\nÆò°¡ ÁøÇàÁßÀÎ ¸ğµç ±â·ÏÀÌ »èÁ¦µË´Ï´Ù.";
+            message = "ë‹¤ì‹œ í‰ê°€ëŒ€ìƒ ë“±ë¡ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\ní‰ê°€ ì§„í–‰ì¤‘ì¸ ëª¨ë“  ê¸°ë¡ì´ ì‚­ì œë©ë‹ˆë‹¤.";
         }
-        else if(f['mstatus'].value == "50")  // Æò°¡¿Ï·á -> Æò°¡Áß
+        else if(f['mstatus'].value == "50")  // í‰ê°€ì™„ë£Œ -> í‰ê°€ì¤‘
         {
-            message = "´Ù½Ã Æò°¡ÇÒ ¼ö ÀÖµµ·Ï [Æò°¡Áß] »óÅÂ·Î µ¹¸®½Ã°Ú½À´Ï±î?";
+            message = "ë‹¤ì‹œ í‰ê°€í•  ìˆ˜ ìˆë„ë¡ [í‰ê°€ì¤‘] ìƒíƒœë¡œ ëŒë¦¬ì‹œê² ìŠµë‹ˆê¹Œ?";
         }
 
         if(confirm(message)){
@@ -287,7 +287,7 @@ culRatingPoint();
     }
 
     function print(){
-        alert('¹è°æ»öÀ» ÀÎ¼âÇÏ·Á¸é ºê¶ó¿ìÀúÀÇ [ÆÄÀÏ] -> [ÆäÀÌÁö ¼³Á¤] ¸Ş´º¿¡¼­ "¹è°æ»ö ¹× ÀÌ¹ÌÁö ÀÎ¼â"¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä."');
+        alert('ë°°ê²½ìƒ‰ì„ ì¸ì‡„í•˜ë ¤ë©´ ë¸Œë¼ìš°ì €ì˜ [íŒŒì¼] -> [í˜ì´ì§€ ì„¤ì •] ë©”ë‰´ì—ì„œ "ë°°ê²½ìƒ‰ ë° ì´ë¯¸ì§€ ì¸ì‡„"ë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”."');
         var f = document.forms['form1'];
         removeInput(document.getElementById("__html_0"), f['print_content']);
         var printPop = window.open("","_blank","width=748, height=700");

@@ -1,4 +1,5 @@
-@charset "EUC-KR";
+Ôªø@charset "UTF-8";
+html, body {padding: 0; margin: 0; height: 100%;}
 /**********************@include start***********************/
 .width-5 {
   width: 5px !important; }
@@ -271,7 +272,7 @@
   text-align: right; }
 
 .number-color {
-  color: #0676bd !important; }
+  color: #965f4f !important; }
 
 .text-cut {
   display: inline-block;
@@ -306,7 +307,7 @@
     width: 26px;
     height: 2px;
     margin-top: 25px;
-    background: #0676bd; }
+    background: #965f4f; }
   .sub-title h2, .sub-title p {
     display: inline-block;
     line-height: 26px; }
@@ -314,7 +315,7 @@
     font-size: 15px;
     margin-left: 8px; }
     .sub-title p span {
-      color: #0676bd; }
+      color: #965f4f; }
 
 .caution-text {
   color: #ff6c00; }
@@ -453,7 +454,7 @@ button {
 
 /*
 * Noto Sans KR (korean) http://www.google.com/fonts/earlyaccess
-	∏¡∫–∏Æ¿« ∞ÊøÏ ∞Ì∞¥ªÁ ≥◊∆Æø˜ø°º≠ google¬ ¿ª ∏∑æ∆ ≥ı¿∫ ∞ÊøÏ ¿÷¿Ω.
+	ÔßçÏï∏ÌÖáÁî±—äÏìΩ ÂØÉÏéåÏä¶ ÊÄ®Ï¢âÏªº???„ÖΩÎìÉ?ÎùøÎøâ??googleÔßüÏéåÏì£ ÔßçÎê±Î∏ò ?Î≥¶? ÂØÉÏéåÏä¶ ?ÎçâÏì¨.
 	url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/eot/NotoSansKR-Regular-Hestia.eot),
     url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/eot/NotoSansKR-Regular-Hestia.eot?#iefix) format('embedded-opentype'),
     url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/fonts/woff/NotoSansKR-Regular-Hestia.woff) format('woff'),
@@ -582,7 +583,7 @@ button {
   float: left;
   font-size: 12px; }
 .page-header-top-inner span {
-  color: #0676bd; }
+  color: #965f4f; }
 .page-header-top-inner ul {
   float: right; }
 .page-header-top-inner li {
@@ -602,7 +603,7 @@ button {
   padding-top: 10px;
   position: relative;
   padding-bottom: 6px;
-  background: url(/web/buyer/html/images/common/header_bottom_line.gif) center bottom no-repeat; }
+  background: url(/web/buyer/html/images/common/header_bottom_line.png) center bottom no-repeat; }
 
 .page-header-bottom2 {
   position: relative;
@@ -641,7 +642,15 @@ button {
           font-size: 12px;
           color: #666; }
 .page-header-bottom-inner h1 {
-  float: left; }
+	float: left;
+  	position: absolute;
+  	top:22px;
+  	background: url(/web/buyer/html/images/logo.png) no-repeat;
+  	height: 32px;
+  	padding-left: 95px;
+  	font-size: 20px;
+  	font-weight: 700;
+  	line-height:32px;}
 
 .page-gnb2::after {
   content: '';
@@ -653,14 +662,14 @@ button {
   .page-gnb2 > li:last-child {
     width: 14.32%; }
   .page-gnb2 > li.is-active > a {
-    color: #0676bd; }
+    color: #965f4f; }
   .page-gnb2 > li > a {
     line-height: 50px;
     text-align: center;
     display: block;
     font-size: 17px; }
     .page-gnb2 > li > a:hover {
-      color: #0676bd; }
+      color: #965f4f; }
 .page-gnb2 .page-gnb-depth2 {
   z-index: 10;
   position: absolute;
@@ -669,7 +678,7 @@ button {
   left: 0;
   width: 100%;
   z-index: 11;
-  background: #06589b; }
+  background: #b49b94; }
 
 .page-gnb {
   float: right;
@@ -686,12 +695,12 @@ button {
     .page-gnb > li:first-child {
       margin-left: 0; }
     .page-gnb > li.is-active > a {
-      color: #0676bd; }
+      color: #965f4f; }
     .page-gnb > li > a {
       display: block;
       font-size: 17px; }
       .page-gnb > li > a:hover {
-        color: #0676bd; }
+        color: #965f4f; }
   .page-gnb .page-gnb-depth2 {
     z-index: 10;
     position: absolute;
@@ -700,7 +709,7 @@ button {
     left: 0;
     width: 100%;
     z-index: 11;
-    background: #06589b; }
+    background: #b49b94; }
 
 .page-gnb-depth2-inner {
   background: url(/web/buyer/html/images/common/depth2_bg.png) 0 center no-repeat;
@@ -738,7 +747,7 @@ button {
     margin-top: 10px;
     margin-bottom: 6px; }
     .page-gnb-depth2-row li a {
-      color: #c6c6c6; }
+      color: #7f5841; }
       .page-gnb-depth2-row li a:hover {
         color: #fff; }
 
@@ -757,14 +766,14 @@ button {
         -webkit-border-radius: 5px 5px 0 0;
         -moz-border-radius: 5px 5px 0 0;
         border-radius: 5px 5px 0 0;
-        background: #0676bd;
+        background: #965f4f;
         color: #fff;
         text-align: center;
         line-height: 50px;
         font-size: 20px; }
       .side-menu .side-menu-inner .side-menu-nav1 > li p {
         margin: 0px;
-        background: #06589b;
+        background: #b49b94;
         color: #fff;
         padding: 0 20px;
         line-height: 32px;
@@ -775,10 +784,10 @@ button {
         -moz-border-radius: 0 0 5px 5px;
         border-radius: 0 0 5px 5px; }
       .side-menu .side-menu-inner .side-menu-nav2 > li {
-        background: #f9fbfb;
+        background: #fff;
         padding: 0 20px; }
         .side-menu .side-menu-inner .side-menu-nav2 > li:hover {
-          background: #dbe0e4; }
+          background: #f6edea; }
         .side-menu .side-menu-inner .side-menu-nav2 > li a {
           color: #000;
           display: block;
@@ -802,7 +811,7 @@ button {
     font-weight: bold;
     line-height: 24px;
     padding: 0 0 0 25px;
-    background: url(/web/buyer/html/images/common/sub_title_icon.png) left center no-repeat; }
+    background: url(/web/buyer/html/images/sub_title_icon.png) left center no-repeat; }
   .con-title-block .con-breadcrumb {
     display: inline-block;
     float: right; }
@@ -875,7 +884,7 @@ button {
       width: 245px;
       display: none; }
       .page-footer-link-inner .page-footer-family .page-footer-family-list li:hover {
-        background: #0676bd; }
+        background: #965f4f; }
         .page-footer-link-inner .page-footer-family .page-footer-family-list li:hover a {
           color: #fff; }
       .page-footer-link-inner .page-footer-family .page-footer-family-list li a {
@@ -891,7 +900,7 @@ button {
     width: 48px;
     height: 48px;
     font-size: 12px;
-    background: #0676bd url(/web/buyer/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
+    background: #965f4f url(/web/buyer/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
     padding-top: 12px; }
 
 .page-footer-info {
@@ -926,7 +935,16 @@ button {
     .page-footer-info-inner li:nth-child(3):after, .page-footer-info-inner li:nth-child(5):after, .page-footer-info-inner li:last-child:after {
       content: '';
       padding-left: 0; }
-
+  .page-footer-info-inner .page-top-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    font-size: 12px;
+    background: #965f4f url(/web/buyer/html/images/common/page_top_btn_icon.png) center 12px no-repeat;
+    padding-top: 12px; }
 .footer-logo {
   display: block;
   float: left;
@@ -940,8 +958,28 @@ button {
   top: 25px;
   right: 0; }
 
+#loading {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	display: none;
+	opacity: 0.7;
+	background-color: #fff;
+	z-index: 99;
+	text-align: center;
+}
+
+#loading-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+}
+
 /**********************layout  end***********************/
-/**********************∞Ëæ‡¡¯«‡¡§∫∏  start***********************/
+/**********************ÊÄ®Íæ©ÎπüÔßûÍæ™Îªæ?Î∫£ÎÇ´  start***********************/
 .contract-info {
   border-top: 2px solid #dbdbdb;
   background: #f6f6f6;
@@ -1017,7 +1055,7 @@ button {
       width: 130px;
       padding-left: 0; }
     .contract-info li.is-active em {
-      background: #0676bd; }
+      background: #965f4f; }
     .contract-info li.is-active .contract-body {
       padding: 13px 5px;
       background: #fff;
@@ -1025,7 +1063,7 @@ button {
     .contract-info li.is-active span {
       margin-top: 5px; }
 
-/**********************∞Ëæ‡¡¯«‡¡§∫∏  end***********************/
+/**********************ÊÄ®Íæ©ÎπüÔßûÍæ™Îªæ?Î∫£ÎÇ´  end***********************/
 /**********************quick menu start***********************/
 .quick-menu {
   position: absolute;
@@ -1038,9 +1076,9 @@ button {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: solid 2px #0676bd; }
+    border: solid 2px #965f4f; }
     .quick-menu-inner .quick-menu-nav h2 {
-      background: #0676bd;
+      background: #965f4f;
       text-align: center;
       padding: 8px 0 11px;
       color: #fff; }
@@ -1064,9 +1102,9 @@ button {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: solid 2px #0676bd; }
+    border: solid 2px #965f4f; }
     .quick-menu-inner .customer-menu h2 {
-      background: #0676bd;
+      background: #965f4f;
       text-align: center;
       padding: 8px 0 11px;
       color: #fff; }
@@ -1078,7 +1116,7 @@ button {
       text-align: center; }
       .quick-menu-inner .customer-menu .customer-body h3 {
         font-size: 17px;
-        color: #0676bd;
+        color: #965f4f;
         margin-bottom: 8px; }
     .quick-menu-inner .customer-menu .customer-day {
       font-size: 12px;
@@ -1107,14 +1145,14 @@ button {
       width: 14px;
       height: 14px;
       display: inline-block;
-      background: url(/web/buyer/html/images/common/title_bul.png) 0 0 no-repeat;
+      background: url(/web/buyer/html/images/title_bul.png) 0 0 no-repeat;
       margin-right: 5px;
       vertical-align: -1px; }
     .div_table h3 span {
       margin-left: 10px;
       font-size: 13px; }
   .div_table table {
-    border-top: 2px solid #333;
+  border-top: 2px solid #333;
     font-size: 15px;
     width: 100%;
     border-collapse: collapse;
@@ -1228,7 +1266,7 @@ button {
   position: relative;
   padding: 40px 46px; }
   .help-content h3 {
-    color: #0676bd;
+    color: #965f4f;
     font-size: 25px;
     margin-bottom: 19px;
     padding-bottom: 13px;
@@ -1286,7 +1324,7 @@ button {
     color: #999;
     border: 1px solid #cbcbcb; }
   .file-upload-wrapper:before {
-    content: '√£æ∆∫∏±‚';
+    content: 'Ôß°Ïñ†Î∏òËπÇÎãøÎ¶∞';
     position: absolute;
     top: 0;
     right: 0;
@@ -1299,7 +1337,7 @@ button {
     pointer-events: none;
     background: #828282; }
   .file-upload-wrapper:hover:before {
-    background: #0676bd; }
+    background: #965f4f; }
   .file-upload-wrapper input {
     opacity: 0;
     position: absolute;
@@ -1374,7 +1412,7 @@ button {
   margin-bottom: -2px; }
   .common-tab-nav ul {
     width: 100%;
-    border-bottom: 2px solid #0676bd; }
+    border-bottom: 2px solid #965f4f; }
     .common-tab-nav ul::after {
       content: '';
       display: table;
@@ -1391,7 +1429,7 @@ button {
       color: #222;
       font-weight: 500; }
     .common-tab-nav li.is-active {
-      background: #0676bd; }
+      background: #965f4f; }
       .common-tab-nav li.is-active a {
         color: #fff; }
     .common-tab-nav li:first-child {
@@ -1427,7 +1465,7 @@ button {
       .common-paging li.paging-next:hover a {
         background: url(/web/buyer/html/images/common/paging_next.png) center center no-repeat; }
     .common-paging li.is-active a {
-      background: #0676bd;
+      background: #965f4f;
       color: #fff; }
     .common-paging li a {
       width: 34px;
@@ -1438,7 +1476,7 @@ button {
       display: block;
       font-size: 14px; }
       .common-paging li a:hover {
-        background: #0676bd;
+        background: #965f4f;
         color: #fff; }
 
 .popup-layer-header {
@@ -1473,7 +1511,7 @@ button {
 
 .search_btn {
   display: block;
-  background: url(/web/buyer/html/images/common/common_search_btn.gif) 0 0 no-repeat;
+  background: url(/web/buyer/html/images/common/common_search_btn.png) 0 0 no-repeat;
   width: 81px;
   height: 35px;
   text-indent: -9999em; }
@@ -1489,14 +1527,16 @@ button {
   display: inline-block;
   margin-right: 5px; }
   .btn:hover, .sbtn:hover {
-    background: #04578c !important; }
+    background: #623d33 !important; }
   .btn span, .sbtn span {
     position: relative;
     top: 1px;
     display: inline-block;
     margin-right: 5px; }
   .btn.color, .color.sbtn {
-    background: #0676bd; }
+    background: #965f4f; }
+  .btn.color2, .color2.sbtn {
+    background: #217346; !important;}
   .btn.icon, .icon.sbtn {
     padding: 0 20px 2px 29px;
     background: #8d8d8d url(/web/buyer/html/images/common/common_btn_icon.png) 19px center no-repeat; }
@@ -1950,7 +1990,7 @@ button {
       .main-visual-inner .login-wrap h3 em {
         font-size: 16px;
         display: inline-block;
-        color: #0676bd; }
+        color: #965f4f; }
 
 .main-visual-slider {
   width: 100%;
@@ -2019,7 +2059,7 @@ button {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  background: #0676bd;
+  background: #965f4f;
   width: 64px;
   height: 70px;
   color: #fff; }
@@ -2263,7 +2303,7 @@ button {
 
 /**********************main start***********************/
 /**********************main end***********************/
-/**********************¿Œ¡ıº≠ µÓ∑œ∞ªΩ≈ start***********************/
+/**********************?Î™ÑÏ¨Ü???ÍπÖÏ§âÂ™õÍπÜÎñä start***********************/
 .common-cert h3 {
   font-size: 18px;
   margin-bottom: 10px; }
@@ -2272,7 +2312,7 @@ button {
     width: 14px;
     height: 14px;
     display: inline-block;
-    background: url(/web/buyer/html/images/common/title_bul.png) 0 0 no-repeat;
+    background: url(/web/buyer/html/images/title_bul.png) 0 0 no-repeat;
     margin-right: 5px;
     vertical-align: -1px; }
 
@@ -2292,7 +2332,7 @@ button {
         margin-left: 0; }
       .common-cert-box .cert-list li em {
         display: block;
-        color: #0676bd; }
+        color: #965f4f; }
       .common-cert-box .cert-list li .cert-in-btn {
         margin: 0 10px;
         display: inline-block; }
@@ -2318,7 +2358,7 @@ button {
     color: #fff;
     width: 215px;
     border-radius: 10px;
-    background: #0676bd;
+    background: #965f4f;
     padding: 12px 0;
     margin: 0 auto;
     position: relative;
@@ -2334,7 +2374,7 @@ button {
     color: #df5212; }
   .common-cert-info-box.box-type1 h4 {
     background: #fff;
-    color: #0676bd;
+    color: #965f4f;
     border: 1px solid #d9d9d9;
     padding: 9px 0;
     top: -23px; }
@@ -2361,7 +2401,7 @@ button {
     .common-cert-info-box.box-type1 .button-add li a {
       vertical-align: middle;
       display: table-cell;
-      background: #0676bd;
+      background: #965f4f;
       display: inline-block;
       padding: 23px 0;
       width: 67px;
@@ -2380,7 +2420,7 @@ button {
   .common-cert-info-inner:first-child {
     margin-top: -15px; }
   .common-cert-info-inner h5 {
-    color: #0676bd;
+    color: #965f4f;
     padding: 0 15px;
     position: relative;
     background: #fff;
@@ -2406,7 +2446,7 @@ button {
         display: block;
         margin-top: 5px; }
 
-/**********************¿Œ¡ıº≠ µÓ∑œ∞ªΩ≈ end***********************/
+/**********************?Î™ÑÏ¨Ü???ÍπÖÏ§âÂ™õÍπÜÎñä end***********************/
 /**********************html template start***********************/
 .cont_tab::after {
   content: '';
@@ -2415,7 +2455,7 @@ button {
 .cont_tab .tab_on {
   font-size: 15px;
   color: #ffffff;
-  background-color: #0676bd;
+  background-color: #965f4f;
   text-align: center;
   padding: 10px 10px 5px 10px;
   margin: 1px 2px 2px 0px;
@@ -2449,9 +2489,9 @@ button {
   border: 1px solid black;
   width: 845px;
   font-family: NanumGothic, Arial;
-  /* ∞Ëæ‡ « ºˆ ¿‘∑¬ ªÁ«◊ */
-  /* ∞Ëæ‡ º±≈√ ¿‘∑¬ ªÁ«◊ */
-  /* ∞Ëæ‡ º±≈√ ¿‘∑¬ ªÁ«◊ */ }
+  /* ÊÄ®Íæ©Îπü ?Íæ©Îãî ?ÎÇÖÏ†∞ ?—ãÎπÜ */
+  /* ÊÄ®Íæ©Îπü ?Ï¢èÍπÆ ?ÎÇÖÏ†∞ ?—ãÎπÜ */
+  /* ÊÄ®Íæ©Îπü ?Ï¢èÍπÆ ?ÎÇÖÏ†∞ ?—ãÎπÜ */ }
   #__html div {
     font-family: NanumGothic, Arial;
     font-size: 12px;
@@ -2466,20 +2506,20 @@ button {
     line-height: 150%; }
   #__html input {
     color: #000000;
-    FONT-FAMILY: "µ∏øÚ","Dotum", "Arial";
+    FONT-FAMILY: "?Îó≠?","Dotum", "Arial";
     FONT-SIZE: 12px;
     text-decoration: none;
     border: 0px; }
   #__html textarea {
     color: #707070;
-    FONT-FAMILY: "µ∏øÚ","Dotum", "Arial";
+    FONT-FAMILY: "?Îó≠?","Dotum", "Arial";
     FONT-SIZE: 12px;
     line-height: 150%;
     border: 1px solid;
     border-color: #d7d5ca; }
   #__html .glabel {
     color: #707070;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     line-height: 150%;
     border: 1px solid;
@@ -2488,7 +2528,7 @@ button {
   #__html .label {
     line-height: 150%;
     color: #707070;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2499,7 +2539,7 @@ button {
   #__html .label_none {
     line-height: 150%;
     color: #707070;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     border: 0px solid;
     border-color: #d7d5ca;
@@ -2510,14 +2550,14 @@ button {
   #__html .label_n {
     line-height: 150%;
     color: #707070;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca; }
   #__html .input_r {
     line-height: 150%;
     color: #000000;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2530,7 +2570,7 @@ button {
   #__html .input_n {
     line-height: 150%;
     color: #000000;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2543,7 +2583,7 @@ button {
   #__html .in_readonly {
     line-height: 150%;
     color: #000000;
-    FONT-FAMILY: µ∏øÚ, Arial;
+    FONT-FAMILY: ?Îó≠?, Arial;
     FONT-SIZE: 12px;
     border: 1px solid;
     border-color: #d7d5ca;
@@ -2573,7 +2613,7 @@ button {
 
 /**********************html template end***********************/
 .help-popup-header {
-  background: #0676bd;
+  background: #965f4f;
   position: relative;
   padding: 15px 30px; }
   .help-popup-header h1 {
@@ -2648,5 +2688,6 @@ button {
 
 .dc-step-wrap li .text_wrap .text.active {
   color: #fff; }
-
+  
 /*# sourceMappingURL=style.css.map */
+.excel {background: #217346 !important;}

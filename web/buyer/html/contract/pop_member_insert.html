@@ -3,7 +3,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>±âº»Á¤º¸</h3>
+	        <h3>ê¸°ë³¸ì •ë³´</h3>
 	    </div>
 	</div>
 	<table>
@@ -14,50 +14,50 @@
 			<col width="33%">
 		</colgroup>
 		<tr>
-			<th class="req-check">»ç¾÷ÀÚµî·Ï¹øÈ£</th>
+			<th class="req-check">ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸</th>
 			<td colspan="3">
 				<input type="text" name="vendcd1" size="3" maxlength="3" style="ime-mode:disabled" onKeyDown="num_only();document.forms['form1']['chk_vendcd'].value='';" onKeyUp="moveNext('vendcd2')"> -
 			    <input type="text" name="vendcd2" size="2" maxlength="2" style="ime-mode:disabled" onKeyDown="num_only();document.forms['form1']['chk_vendcd'].value='';" onKeyUp="moveNext('vendcd3'); movePrv('vendcd1')"> -
 			    <input type="text" name="vendcd3" size="5" maxlength="5" style="ime-mode:disabled" onKeyDown="num_only();document.forms['form1']['chk_vendcd'].value='';" onKeyUp="movePrv('vendcd2')">
 			    <input type="hidden" name="chk_vendcd"/>
 			    <input type="hidden" name="chk_member_no"/>
-			    <button type="button" name="btn_chk" class="sbtn ico-caution" onclick="chkVendcd()"><span></span>Áßº¹È®ÀÎ</button>
+			    <button type="button" name="btn_chk" class="sbtn ico-caution" onclick="chkVendcd()"><span></span>ì¤‘ë³µí™•ì¸</button>
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">¾÷Ã¼¸í</th>
+			<th class="req-check">ì—…ì²´ëª…</th>
 			<td>
 				<input type="text" name="member_name" style="width:80%" maxlength="30" >
 			</td>
-			<th class="req-check">´ëÇ¥ÀÚ¸í</th>
+			<th class="req-check">ëŒ€í‘œìëª…</th>
 			<td>
 				<input type="text" name="boss_name" style="width:50%" maxlength="30" >
 			</td>
 		</tr>
 	  	<tr>
-		    <th class="req-check">ÁÖ¼Ò</th>
+		    <th class="req-check">ì£¼ì†Œ</th>
 		    <td colspan="3">
 		        <input type="text" name="post_code" class="in_readonly" size="6" readonly>
-				<button type="button" class="sbtn ico-search" onclick="jusoPopup();"><span></span>¿ìÆí¹øÈ£Ã£±â</button>
+				<button type="button" class="sbtn ico-search" onclick="jusoPopup();"><span></span>ìš°í¸ë²ˆí˜¸ì°¾ê¸°</button>
 				<input type="text" name="address" style="width:95%" maxlength="150">
 		    </td>
 	  	</tr>
 		<tr>
-			<th class="req-check">´ã´çÀÚ¸í</th>
+			<th class="req-check">ë‹´ë‹¹ìëª…</th>
 			<td colspan="3">
 				<input type="text" name="user_name" style="width:100px;" maxlength="30" >
 			</td>
 		</tr>
 		<tr>
-			<th class="req-check">ÀüÈ­¹øÈ£</th>
+			<th class="req-check">ì „í™”ë²ˆí˜¸</th>
 			<td>
 				<input type="text" name="tel_num" style="width:120px;" maxlength="15">
-	      		<font color="gray">¿¹) 02-788-9097</font>
+	      		<font color="gray">ì˜ˆ) 02-788-9097</font>
 			</td>
-			<th class="req-check">ÈŞ´ëÀüÈ­</th>
+			<th class="req-check">íœ´ëŒ€ì „í™”</th>
 		    <td>
 		      <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}" style="width: 60px;">
-		        <option value="">¼±ÅÃ</option>
+		        <option value="">ì„ íƒ</option>
 		        <option value="010">010</option>
 		        <option value="011">011</option>
 		        <option value="016">016</option>
@@ -70,33 +70,32 @@
 		    </td>
 		</tr>
 		<tr>
-			<th class="req-check">ÀÌ¸ŞÀÏ</th>
+			<th class="req-check">ì´ë©”ì¼</th>
 	    	<td colspan="3"><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:189pt"></td>
 		</tr>
 	</table>
 </div>
 
 <div class="btn-group-wrap">
-	<button type="submit" class="btn color ico-save"><span></span>ÀúÀå</button>
-	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>Ãë¼Ò</button>
+	<button type="submit" class="btn color ico-save"><span></span>ì €ì¥</button>
+	<button type="button" class="btn color ico-cancel" onclick="self.close();"><span></span>ì·¨ì†Œ</button>
 </div>
 
 </form>
 {{form_script}}
 <script>
 
-attachOnload(function(){
+attachOnload(function() {
 	window.resizeTo(840,570);
 });
 
-function formSubmit(f){
-	if(validate(f)){
-		if( f['chk_vendcd'].value=="" ){
-			alert("»ç¾÷ÀÚµî·Ï¹øÈ£ [Áßº¹È®ÀÎ] ¹öÆ°À» ´­·¯ ÁÖ¼¼¿ä.");
+function formSubmit(f) {
+	if (validate(f))  {
+		if (f['chk_vendcd'].value == "") {
+			alert("ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ [ì¤‘ë³µí™•ì¸] ë²„íŠ¼ì„ ëˆŒëŸ¬ ì£¼ì„¸ìš”.");
 			return false;
 		}
-		if(confirm("°Å·¡Ã³·Î µî·Ï ÇÏ½Ã°Ú½À´Ï±î?"))
-			return true;
+		if (confirm("ê±°ë˜ì²˜ë¡œ ë“±ë¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) return true;
 	}
 	return false;
 }
@@ -108,16 +107,16 @@ function resizeWindow(){
 }
 */
 
-function chkVendcd(){
+function chkVendcd() {
 	var f = document.forms['form1'];
-	var vendcd = f['vendcd1'].value+f['vendcd2'].value+f['vendcd3'].value;
-	if(vendcd.length!=10){
-		alert("»ç¾÷ÀÚµî·Ï¹øÈ£¸¦ Á¤È®È÷ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
+	var vendcd = f['vendcd1'].value + f['vendcd2'].value + f['vendcd3'].value;
+	if (vendcd.length != 10) {
+		alert("ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ë¥¼ ì •í™•íˆ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
 		f["vendcd1"].focus();
 		return;
 	}
 
-	call("call_vendcd_chk.jsp?vendcd="+vendcd+"&sign_seq={{sign_seq}}");
+	call("call_vendcd_chk.jsp?vendcd=" + vendcd + "&sign_seq={{sign_seq}}");
 }
 
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){

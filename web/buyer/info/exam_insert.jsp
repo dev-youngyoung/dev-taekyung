@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_exam_type = {"10=>Á¤±âÆò°¡","20=>¼ö½ÃÆò°¡"};
-boolean isCJ = _member_no.equals("20130400333");  // ¾¾Á¦ÀÌ´ëÇÑÅë¿î
+String[] code_exam_type = {"10=>ì •ê¸°í‰ê°€","20=>ìˆ˜ì‹œí‰ê°€"};
+boolean isCJ = _member_no.equals("20130400333");  // ì”¨ì œì´ëŒ€í•œí†µìš´
 
 
-f.addElement("exam_name", null, "hname:'Æò°¡Áö¸í', required:'Y'");
-f.addElement("question_depth", "3", "hname:'¹®Ç×depth', required:'Y'");
-f.addElement("exam_type", null, "hname:'Æò°¡À¯Çü'");
+f.addElement("exam_name", null, "hname:'í‰ê°€ì§€ëª…', required:'Y'");
+f.addElement("question_depth", "3", "hname:'ë¬¸í•­depth', required:'Y'");
+f.addElement("exam_type", null, "hname:'í‰ê°€ìœ í˜•'");
 
 if(u.isPost()&&f.validate()){
 	
@@ -33,8 +33,8 @@ if(u.isPost()&&f.validate()){
 	String[] arr_m_div = f.getArr("m_div_nm");
 	String[] arr_s_div = f.getArr("s_div_nm");
 	String[] arr_point = f.getArr("point");
-	String[] arr_rate = f.getArr("rate"); // °¡ÁßÄ¡
-	String[] arr_rate_point = f.getArr("rate_point");  //È¯»êÁ¡¼ö
+	String[] arr_rate = f.getArr("rate"); // ê°€ì¤‘ì¹˜
+	String[] arr_rate_point = f.getArr("rate_point");  //í™˜ì‚°ì ìˆ˜
 	String[] arr_etc = f.getArr("etc");
 	
 	String l_div_nm = "";
@@ -45,9 +45,9 @@ if(u.isPost()&&f.validate()){
 	String _m_div_nm = "";
 	String _s_div_nm = "";
 	
-	int	l_div_cd = 0;	//	´ëºĞ·ùÄÚµå
-	int	m_div_cd = 0;	//	ÁßºĞ·ùÄÚµå
-	int	s_div_cd = 0;	//	¼ÒºĞ·ùÄÚµå
+	int	l_div_cd = 0;	//	ëŒ€ë¶„ë¥˜ì½”ë“œ
+	int	m_div_cd = 0;	//	ì¤‘ë¶„ë¥˜ì½”ë“œ
+	int	s_div_cd = 0;	//	ì†Œë¶„ë¥˜ì½”ë“œ
 	int	depth =	0;	//	DEPTH 
 	
 	
@@ -170,12 +170,12 @@ if(u.isPost()&&f.validate()){
 				{"0"}
 			};
 		String[][] ar_item_text = new String[][] {
-				{"10% ÀÌ»ó","8% ÀÌ»ó","6% ÀÌ»ó","4% ÀÌ»ó","2% ÀÌ»ó","0% ÀÌ»ó"},
-				{"200% ¹Ì¸¸","200%~250% ¹Ì¸¸","250%~300% ¹Ì¸¸","300%~350% ¹Ì¸¸","350%~400% ¹Ì¸¸","400% ÀÌ»ó"},
-				{"200% ÀÌ»ó","150%~200% ¹Ì¸¸","100%~150% ¹Ì¸¸","50%~100% ¹Ì¸¸","0% ÃÊ°ú~50% ¹Ì¸¸","0% ÀÌÇÏ"},
-				{"Aµî±Ş","Bµî±Ş","Cµî±Ş ÀÌÇÏ ¹× ½Å¿ëµî±Ş Ùí"},
-				{"Ã¼³³»ç½Ç Ùí","Ã¼³³»ç½Ç êó"},
-				{"ÀÚµ¿°è»ê"}
+				{"10% ì´ìƒ","8% ì´ìƒ","6% ì´ìƒ","4% ì´ìƒ","2% ì´ìƒ","0% ì´ìƒ"},
+				{"200% ë¯¸ë§Œ","200%~250% ë¯¸ë§Œ","250%~300% ë¯¸ë§Œ","300%~350% ë¯¸ë§Œ","350%~400% ë¯¸ë§Œ","400% ì´ìƒ"},
+				{"200% ì´ìƒ","150%~200% ë¯¸ë§Œ","100%~150% ë¯¸ë§Œ","50%~100% ë¯¸ë§Œ","0% ì´ˆê³¼~50% ë¯¸ë§Œ","0% ì´í•˜"},
+				{"Aë“±ê¸‰","Bë“±ê¸‰","Cë“±ê¸‰ ì´í•˜ ë° ì‹ ìš©ë“±ê¸‰ ç„¡"},
+				{"ì²´ë‚©ì‚¬ì‹¤ ç„¡","ì²´ë‚©ì‚¬ì‹¤ æœ‰"},
+				{"ìë™ê³„ì‚°"}
 			};			
 		
 		
@@ -196,11 +196,11 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if(!db.executeArray()){
-		u.jsError("ÀúÀå¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.", "exam_view.jsp?exam_cd="+exam_cd);
+	u.jsAlertReplace("ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "exam_view.jsp?exam_cd="+exam_cd);
 	return;	
 }
 

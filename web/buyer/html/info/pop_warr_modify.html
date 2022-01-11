@@ -1,10 +1,10 @@
-<form novalidate name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form novalidate name="form1" method="post" enctype="multipart/form-data">
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-right">
-				<button type="submit" class="sbtn color ico-save"><span></span>ÀúÀå</button>
-				<button type="button" class="sbtn color ico-delete" onclick="if(confirm('»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?')){location.href='warr_delete.jsp?{{query}}'}"><span></span>»èÁ¦</button>
-				<button type="button" class="sbtn color" onclick="self.close();">´Ý±â</button>
+				<button type="submit" class="sbtn color ico-save"><span></span>ì €ìž¥</button>
+				<button type="button" class="sbtn color ico-delete" onclick="if(confirm('ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='warr_delete.jsp?{{query}}'}"><span></span>ì‚­ì œ</button>
+				<button type="button" class="sbtn color" onclick="self.close();">ë‹«ê¸°</button>
 			</div>
 		</div>
 		<table>
@@ -13,10 +13,10 @@
 				<col width="75%"/>
 			</colgroup>
 			<tr>
-				<th>º¸Áõ¼­Á¾·ù</th>
+				<th>ë³´ì¦ì„œì¢…ë¥˜</th>
 				<td>
-					<select name="warr_type" hname="º¸Áõ¼­Á¾·ù" required="Y">
-						<option value="">-¼±ÅÃ-</option>
+					<select name="warr_type" hname="ë³´ì¦ì„œì¢…ë¥˜" required="Y">
+						<option value="">-ì„ íƒ-</option>
 						<!-- LOOP START 'code_warr' -->
 						<option value="{{code_warr.id}}">{{code_warr.value}}</option>
 						<!-- LOOP END 'code_warr' -->
@@ -24,56 +24,56 @@
 				</td>
 			</tr>
 			<tr>
-				<th>¹ß±Þ±â°ü</th>
+				<th>ë°œê¸‰ê¸°ê´€</th>
 				<td>
 					<input type="text" name="warr_office" size="30" >
 				</td>
 			</tr>
 			<tr>
-				<th>Áõ±Ç¹øÈ£</th>
+				<th>ì¦ê¶Œë²ˆí˜¸</th>
 				<td>
 					<input type="text" name="warr_no" size="30" >
 				</td>
 			</tr>
 			<tr>
-				<th>º¸Áõ±â°£</th>
+				<th>ë³´ì¦ê¸°ê°„</th>
 				<td>
 					<input type="text" name="warr_sdate" class="in_readonly" style="width:120px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['warr_sdate'])"> ~
 					<input type="text" name="warr_edate" class="in_readonly" style="width:120px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['warr_edate'])">
 				</td>
 			</tr>
 			<tr>
-				<th>º¸Áõ±Ý¾×</th>
+				<th>ë³´ì¦ê¸ˆì•¡</th>
 				<td>
-					£Ü <input type="text" name="warr_amt" size="12" maxlength="20" onkeydown="num_only()" onkeyup="fnMakeComma()" onkeypress="num_only()" style="text-align: right;">
+					ï¿¦ <input type="text" name="warr_amt" size="12" maxlength="20" onkeydown="num_only()" onkeyup="fnMakeComma()" onkeypress="num_only()" style="text-align: right;">
 				</td>
 			</tr>
 			<tr>
-				<th>¹ß±ÞÀÏ</th>
+				<th>ë°œê¸‰ì¼</th>
 				<td>
 					<input type="text" name="warr_date" class="in_readonly" style="width:120px" maxlength="10" >&nbsp;<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['warr_date'])">
 				</td>
 			</tr>
 			<tr>
-				<th>ºñ°í</th>
+				<th>ë¹„ê³ </th>
 				<td>
 					<input type="text" name="etc" size="30" >
 				</td>
 			</tr>
 			<tr>
-				<th>Ã·ºÎÆÄÀÏ</th>
+				<th>ì²¨ë¶€íŒŒì¼</th>
 				<td>
 					<!-- IFNOT START 'modify' -->
-					¡Ø º¸Áõ¼­¸¦ ½ºÄµÇÏ¿© Ã·ºÎÇÏ¼¼¿ä.(jpg,gif,png,pdf ÆÄÀÏ¸¸ Ã·ºÎ °¡´ÉÇÕ´Ï´Ù.)<br>
+					â€» ë³´ì¦ì„œë¥¼ ìŠ¤ìº”í•˜ì—¬ ì²¨ë¶€í•˜ì„¸ìš”.(jpg,gif,png,pdf íŒŒì¼ë§Œ ì²¨ë¶€ ê°€ëŠ¥í•©ë‹ˆë‹¤.)<br>
 					<input type="file" name="warr_file" style="width:95%">
 					<!-- IFNOT END 'modify' -->
 					<!-- IF START 'modify' -->
 						<!-- IFNOT START 'warr.file_name' -->
-						¹ÌÃ·ºÎ
+						ë¯¸ì²¨ë¶€
 						<!-- IFNOT END 'warr.file_name' -->
 						<!-- IF START 'warr.file_name' -->
 					{{warr.doc_name}}&nbsp;&nbsp;({{warr.file_size}})&nbsp;
-					<input type="button" class="down4" value="´Ù¿î·Îµå" onclick="filedown('file.path.bcompany','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')""/>
+					<input type="button" class="down4" value="ë‹¤ìš´ë¡œë“œ" onclick="filedown('file.path.bcompany','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}')""/>
 						<!-- IF END 'warr.file_name' -->
 					<!-- IF END 'modify' -->
 

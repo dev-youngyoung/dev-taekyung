@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 String s_sdate = u.request("s_sdate", u.getTimeString("yyyy-MM-dd",u.addDate("Y",-1)));
@@ -231,10 +231,10 @@ while(list.next()){
 }
 
 if(f.get("mode").equals("excel")){
-	p.setVar("title", "¼ö½ÃÆò°¡ ±âÃÊÀÚ·á");
+	p.setVar("title", "ìˆ˜ì‹œí‰ê°€ ê¸°ì´ˆìžë£Œ");
 	p.setLoop("list", list);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("¼ö½ÃÆò°¡±âÃÊÀÚ·á.xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ìˆ˜ì‹œí‰ê°€ê¸°ì´ˆìžë£Œ.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/cust/nhqv_asse_list_excel.html"));
 	return;
 }

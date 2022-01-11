@@ -1,12 +1,12 @@
-<form name="form1" method="post">
+ï»¿<form name="form1" method="post">
 <input type="hidden" name="fields">
 	<div class="div_table">
 		<div class="util-row">
 			<div class="push-left">
-				<h3>{{user_name}}´ÔÀÇ ´ã´çÁöÁ¡</h3>
+				<h3>{{user_name}}ë‹˜ì˜ ë‹´ë‹¹ì§€ì </h3>
 			</div>
 			<div class="push-right">
-				<button type="button" class="sbtn color ico-add" onclick="popField();"><span></span>ÇöÀåÃß°¡</button>
+				<button type="button" class="sbtn color ico-add" onclick="popField();"><span></span>í˜„ì¥ì¶”ê°€</button>
 			</div>
 		</div>
 		<table>
@@ -16,16 +16,16 @@
 				<col width="20%">
 			</colgroup>
 			<tr>
-				<th>ÁöÁ¡¸í</th>
-				<th>»ç¿ë¿©ºÎ</th>
-				<th>»èÁ¦</th>
+				<th>ì§€ì ëª…</th>
+				<th>ì‚¬ìš©ì—¬ë¶€</th>
+				<th>ì‚­ì œ</th>
 			</tr>
 			<!-- LOOP START 'list' -->
 			<tr>
 				<td>{{list.field_name}}</td>
 				<td align="center">{{list.use_yn}}</td>
 				<td align="center">
-					<button type="button" class="sbtn color" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='ifm_place_delete.jsp?field_seq={{list.field_seq}}&{{query}}';}">»èÁ¦</button>
+					<button type="button" class="sbtn color" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='ifm_place_delete.jsp?field_seq={{list.field_seq}}&{{query}}';}">ì‚­ì œ</button>
 				</td>
 			</tr>
 			<!-- LOOP END 'list' -->

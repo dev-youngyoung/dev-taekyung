@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_template_type = {"00=>´ÜÀÏ¼­½Ä","10=>ÃÖÃÊ°è¾à¼­½Ä","20=>º¯°æ°è¾à¼­½Ä"};
-String[] code_doc_type = {"1=>¾çÀÚ¼­¸í","2=>ÀüÀÚ¹®¼­","3=>½ÅÃ»¼­"};
+String[] code_template_type = {"00=>ë‹¨ì¼ì„œì‹","10=>ìµœì´ˆê³„ì•½ì„œì‹","20=>ë³€ê²½ê³„ì•½ì„œì‹"};
+String[] code_doc_type = {"1=>ì–‘ìì„œëª…","2=>ì „ìë¬¸ì„œ","3=>ì‹ ì²­ì„œ"};
 String template_cd = u.request("template_cd");
 if(template_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -12,12 +12,12 @@ DataObject templateDao = new DataObject("tcb_cont_template");
 //templateDao.setDebug(out);
 DataSet template = templateDao.find("template_cd = '"+template_cd+"'  " );
 if(!template.next()){
-	u.jsError("°è¾à¼­½Ä Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì„œì‹ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 template.put("template_type_nm", u.getItem(template.getString("template_type"), code_template_type));
-template.put("doc_type_nm", template.getString("doc_type").equals("")?"ÀüÀÚ°è¾à":u.getItem(template.getString("doc_type"),code_doc_type));
-template.put("writer_type_nm", template.getString("writer_type").equals("Y")?"¼ö½Å¾÷Á¦ÀÛ¼ºÇ×¸ñÀÖÀ½":"¼ö½Å¾÷Á¦ÀÛ¼ºÇ×¸ñ¾øÀ½");
+template.put("doc_type_nm", template.getString("doc_type").equals("")?"ì „ìê³„ì•½":u.getItem(template.getString("doc_type"),code_doc_type));
+template.put("writer_type_nm", template.getString("writer_type").equals("Y")?"ìˆ˜ì‹ ì—…ì œì‘ì„±í•­ëª©ìˆìŒ":"ìˆ˜ì‹ ì—…ì œì‘ì„±í•­ëª©ì—†ìŒ");
 String first_member_no = "";
 
 DataSet member = new DataSet();
@@ -53,7 +53,7 @@ DataSet templateSub = templateSubDao.find(" template_cd = '"+template_cd+"' ");
 DataObject agreeTemplateDao = new DataObject("tcb_agree_template");
 DataSet agreeTemplate= agreeTemplateDao.find("template_cd ='"+template_cd+"'", "*", "agree_seq");
 
-//Ãß°¡ ¿¬°è °ü¸® Ç×¸ñ
+//ì¶”ê°€ ì—°ê³„ ê´€ë¦¬ í•­ëª©
 DataObject tfileDao = new DataObject("tcb_cont_template_add");
 DataSet tfile = tfileDao.find("template_cd = '"+template_cd+"'");
 while(tfile.next()){
@@ -65,13 +65,13 @@ while(tfile.next()){
 
 
 
-f.addElement("template_name", template.getString("template_name"), "hname:'¼­½Ä¸í',required:'Y'");
-f.addElement("display_name", template.getString("display_name"), "hname:'Ç¥½Ã¸í'");
-f.addElement("use_yn", template.getString("use_yn"), "hname:'»ç¿ë¿©ºÎ',required:'Y'");
-f.addElement("stamp_yn", template.getString("stamp_yn").equals("")?"N":template.getString("stamp_yn"), "hname:'ÀÎÁö¼¼»ç¿ë¿©ºÎ'");
-f.addElement("warr_yn", template.getString("warr_yn"), "hname:'ÀÎÁö¼¼»ç¿ë¿©ºÎ'");
-f.addElement("need_attach_yn", template.getString("need_attach_yn"), "hname:'±¸ºñ¼­·ùÇÊ¼ö¿©ºÎ'");
-f.addElement("efile_yn",  "".equals(template.getString("efile_yn"))?"N":template.getString("efile_yn"), "hname:'±âÅ¸Ã·ºÎ»ç¿ë¿©ºÎ'");
+f.addElement("template_name", template.getString("template_name"), "hname:'ì„œì‹ëª…',required:'Y'");
+f.addElement("display_name", template.getString("display_name"), "hname:'í‘œì‹œëª…'");
+f.addElement("use_yn", template.getString("use_yn"), "hname:'ì‚¬ìš©ì—¬ë¶€',required:'Y'");
+f.addElement("stamp_yn", template.getString("stamp_yn").equals("")?"N":template.getString("stamp_yn"), "hname:'ì¸ì§€ì„¸ì‚¬ìš©ì—¬ë¶€'");
+f.addElement("warr_yn", template.getString("warr_yn"), "hname:'ì¸ì§€ì„¸ì‚¬ìš©ì—¬ë¶€'");
+f.addElement("need_attach_yn", template.getString("need_attach_yn"), "hname:'êµ¬ë¹„ì„œë¥˜í•„ìˆ˜ì—¬ë¶€'");
+f.addElement("efile_yn",  "".equals(template.getString("efile_yn"))?"N":template.getString("efile_yn"), "hname:'ê¸°íƒ€ì²¨ë¶€ì‚¬ìš©ì—¬ë¶€'");
 if(u.isPost()&&f.validate()){
 	templateDao = new DataObject("tcb_cont_template");
 	templateDao.item("template_name", f.get("template_name"));
@@ -82,10 +82,10 @@ if(u.isPost()&&f.validate()){
 	templateDao.item("need_attach_yn", f.get("need_attach_yn"));
 	templateDao.item("efile_yn", f.get("efile_yn"));
 	if(!templateDao.update("template_cd = '"+template_cd+"' ")){
-		u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ì¥ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ÀúÀå Ã³¸® ÇÏ¿´½À´Ï´Ù.", "cont_template_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ì¥ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.", "cont_template_modify.jsp?"+u.getQueryString());
 	return;
 }
 

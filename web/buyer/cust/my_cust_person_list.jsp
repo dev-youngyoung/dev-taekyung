@@ -1,42 +1,56 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"01=>Á¤È¸¿ø", "02=>ºñÈ¸¿ø"};  // È¸¿ø»óÅÂ
+String[] code_status = {"01=>ì •íšŒì›", "02=>ë¹„íšŒì›"};  // íšŒì›ìƒíƒœ
 
-
+f.addElement("s_division",null, null);
 f.addElement("s_member_name",null, null);
-f.addElement("s_status", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
 list.setListNum(u.request("mode").equals("excel")?-1:15);
-list.setTable("tcb_client a, tcb_member b , tcb_person c, tcb_member_boss d");
-list.setFields("b.member_no, b.member_name, b.status, c.jumin_no, tel_num, c.hp1,c.hp2,c.hp3,c.hp1||'-'||c.hp2||'-'||c.hp3 hp_no, c.email, b.address , d.boss_birth_date, d.boss_gender");
+//list.setTable("tcb_client a, tcb_member b , tcb_person c, tcb_member_boss d");
+list.setTable("tcb_person");
+//list.setFields("b.member_no, c.position, c.user_id, c.user_name, b.status, c.division, tel_num, c.hp1,c.hp2,c.hp3,c.hp1||'-'||c.hp2||'-'||c.hp3 hp_no, c.email, b.address , d.boss_birth_date, d.boss_gender");
+list.setFields("MEMBER_NO, POSITION, USER_ID, USER_NAME, STATUS, DIVISION, TEL_NUM, HP1, HP2, HP3, HP1||'-'||HP2||'-'||HP3 HP_NO, EMAIL");
+list.addWhere("STATUS = '1'");
+list.addWhere("PASSWD IS NOT NULL");
+// TODO :: ë†ì‹¬ ê°’ member_no í•˜ë“œì½”ë”©
+list.addWhere("MEMBER_NO != '20201000001'");
+list.addSearch("USER_NAME", f.get("s_member_name"), "LIKE");
+list.addSearch("DIVISION", f.get("s_division"), "LIKE");
+list.setOrderBy("DIVISION, USER_NAME ASC");
+
+/*
+list.addWhere("a.member_no != '"+_member_no+"'  ");
 list.addWhere("a.client_no = b.member_no");
 list.addWhere("b.member_no = c.member_no");
+list.addWhere("c.passwd is not null"); // íšŒì›ê°€ì…ì„ í•˜ì—¬ ë¹„ë°€ë²ˆí˜¸ê°€ ì…ë ¥ë˜ì–´ ìˆëŠ” ê²½ìš°
 list.addWhere("b.member_no = d.member_no(+)");
-list.addWhere("c.default_yn = 'Y'");
+//list.addWhere("c.default_yn = 'Y'");
 list.addWhere("b.status <> '00' ");
 list.addWhere("b.member_gubun = '04'  ");
 list.addWhere("a.member_no = '"+_member_no+"'  ");
-list.addSearch("b.member_name", f.get("s_member_name"), "LIKE");
+list.addSearch("c.user_name", f.get("s_member_name"), "LIKE");
+list.addSearch("c.division", f.get("s_division"), "LIKE");
 list.addSearch("b.status", f.get("s_status"));
-list.setOrderBy("member_name asc");
+list.setOrderBy("c.division, c.user_name asc");
+*/
 
 DataSet ds = list.getDataSet();
 Security security =	new	Security();
 
 while(ds.next()){
 	if(!ds.getString("jumin_no").equals("")){
-		String jumin_no = u.aseDec(ds.getString("jumin_no"));//»ı³â¿ùÀÏ
-		String gender =""; //¼ºº°
-		if(jumin_no.length() == 8){//19120601 1912³â 06¿ù 01ÀÏ
+		String jumin_no = u.aseDec(ds.getString("jumin_no"));//ìƒë…„ì›”ì¼
+		String gender =""; //ì„±ë³„
+		if(jumin_no.length() == 8){//19120601 1912ë…„ 06ì›” 01ì¼
 			jumin_no = u.getTimeString("yyyy-MM-dd",jumin_no);
 			gender = "";
 	    }else
-	    if(jumin_no.length() == 7){//1101011 11³â01¿ù01ÀÏ 1(³²)
-	    	gender = u.inArray(jumin_no.substring(6,7), new String[]{"1","3"})?"(³²)":"(¿©)";
+	    if(jumin_no.length() == 7){//1101011 11ë…„01ì›”01ì¼ 1(ë‚¨)
+	    	gender = u.inArray(jumin_no.substring(6,7), new String[]{"1","3"})?"(ë‚¨)":"(ì—¬)";
 	    	jumin_no = jumin_no.substring(0,6);
 	    	if(Integer.parseInt(jumin_no.substring(0,2)) > 25){
 	    		jumin_no = u.getTimeString("yyyy-MM-dd","19"+jumin_no);
@@ -67,7 +81,7 @@ while(ds.next()){
 if(u.request("mode").equals("excel")){
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("°³ÀÎÈ¸¿ø.xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ê°œì¸íšŒì›.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/cust/my_cust_person_excel.html"));
 	return;
 }

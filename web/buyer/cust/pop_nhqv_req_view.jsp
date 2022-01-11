@@ -1,20 +1,20 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_status = {"10=>ÀÓ½ÃÀúÀå","20=>½ÅÃ»Áß","30=>¼öÁ¤¿äÃ»","31=>¼öÁ¤½ÅÃ»","40=>½É»ç¿Ï·á","50=>¿Ï·á"};
+String[] code_status = {"10=>ì„ì‹œì €ì¥","20=>ì‹ ì²­ì¤‘","30=>ìˆ˜ì •ìš”ì²­","31=>ìˆ˜ì •ì‹ ì²­","40=>ì‹¬ì‚¬ì™„ë£Œ","50=>ì™„ë£Œ"};
 
-//NHÅõÀÚ Áõ±Ç Àü¿ë µî·Ï¾÷Ã¼ ½ÅÃ» Àü¿ë ÆäÀÌÁö
+//NHíˆ¬ì ì¦ê¶Œ ì „ìš© ë“±ë¡ì—…ì²´ ì‹ ì²­ ì „ìš© í˜ì´ì§€
 String noti_seq = u.request("noti_seq");
 String client_no = u.request("client_no");
 String gubun = u.request("gubun");
 if(noti_seq.equals("")||client_no.equals("")|| gubun.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject notiDao = new DataObject("tcb_recruit_noti");
 DataSet noti = notiDao.find("member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"' ");
 if(!noti.next()){
-	u.jsError("°ø°í Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ê³µê³  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -22,7 +22,7 @@ if(!noti.next()){
 DataObject custDao = new DataObject("tcb_recruit_cust");
 DataSet cust = custDao.find(" member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"'  and client_no = '"+client_no+"' ");
 if(!cust.next()){
-	u.jsError("½ÅÁ¤Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì‹ ì •ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -48,7 +48,7 @@ if(u.inArray(cust.getString("status"), new String[]{"40","50"}) ){
 if(u.isPost()&&f.validate()){
 	
 	if(!cust.getString("status").equals("20")){
-		u.jsError("½ÅÃ»Áß »óÅÂ¿¡¼­¸¸ ½É»ç ¿Ï·á Ã³¸® °¡´É ÇÕ´Ï´Ù.");
+		u.jsError("ì‹ ì²­ì¤‘ ìƒíƒœì—ì„œë§Œ ì‹¬ì‚¬ ì™„ë£Œ ì²˜ë¦¬ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 		return;
 	}
 	custDao = new DataObject("tcb_recruit_cust");
@@ -60,12 +60,12 @@ if(u.isPost()&&f.validate()){
 		custDao.item("status","40");
 	}
 	if(!custDao.update(" member_no = '"+_member_no+"' and noti_seq = '"+noti_seq+"'  and client_no = '"+client_no+"' ")){
-		u.jsError("Ã³¸®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	
 	out.println("<script>");
-	out.println("alert('Ã³¸®ÇÏ¿´½À´Ï´Ù.');");
+	out.println("alert('ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.');");
 	out.println("opener.location.reload();");
 	out.println("location.href='pop_nhqv_req_view.jsp?"+u.getQueryString()+"';");
 	out.println("</script>");
@@ -75,7 +75,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("cust.pop_nhqv_req_view");
-p.setVar("popup_title", gubun.equals("req")?"µî·Ï¾÷Ã¼½ÅÃ»¼­":"µî·Ï¾÷Ã¼ ½É»ç Æò°¡Ç¥");
+p.setVar("popup_title", gubun.equals("req")?"ë“±ë¡ì—…ì²´ì‹ ì²­ì„œ":"ë“±ë¡ì—…ì²´ ì‹¬ì‚¬ í‰ê°€í‘œ");
 p.setVar("noti", noti);
 p.setVar("cust", cust);
 p.setVar("print_url","pop_nhqv_pdf_viewer.jsp?gubun="+u.aseEnc(gubun)+"&noti_seq="+u.aseEnc(noti_seq)+"&member_no="+u.aseEnc(client_no));

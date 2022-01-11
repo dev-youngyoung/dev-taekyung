@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="net.sf.json.JSONArray" %>
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="org.jsoup.Jsoup" %>
@@ -72,7 +72,7 @@ private ArrayList getList(String member_no, String contno)
 		while(ds.next()){
 			Map map = new HashMap();
 			
-			// °øÅë»çÇ×
+			// ê³µí†µì‚¬í•­
 			map.put("contName",ds.getString("cont_name"));   
 			map.put("contDay",ds.getString("cont_date"));
 			map.put("contNo",ds.getString("cont_no"));
@@ -104,7 +104,7 @@ private ArrayList getList(String member_no, String contno)
 			String approve = "";
 			
 			while(ds_person.next()){	
-				approve = "ÀÛ¼ºÀÚ|" + ds_person.getString("user_name") + "|" + ds.getString("reg_id") + "|1|" + ds.getString("reg_date") + "^";
+				approve = "ì‘ì„±ì|" + ds_person.getString("user_name") + "|" + ds.getString("reg_id") + "|1|" + ds.getString("reg_date") + "^";
 			}
 			
 			while(ds2.next()){							
@@ -118,19 +118,19 @@ private ArrayList getList(String member_no, String contno)
 			if(ds.getString("template_cd").equals("2015001"))
 			{
 				map.put("entpCode",getJsoupValueSkbroadband(document,"cust_code"));
-			} else if(ds.getString("template_cd").equals("2015016"))  { // Ã»±¸¼­
+			} else if(ds.getString("template_cd").equals("2015016"))  { // ì²­êµ¬ì„œ
 				map.put("entpCode",getJsoupValueSkbroadband(document,"cust_code"));
 				map.put("req_month",getJsoupValueSkbroadband(document,"req_month"));
 				map.put("req_count",getJsoupValueSkbroadband(document,"req_count"));
-			}else if(Util.inArray(ds.getString("template_cd"), new String[]{"2019017", "2019018", "2020192"})) { // PGM)SK½ºÅä¾Æ ÆÇ¸Å°è¾à¼­[È¥ÇÕ¼ö¼ö·á], À§¼öÅ¹¼ö¼ö·á 
+			}else if(Util.inArray(ds.getString("template_cd"), new String[]{"2019017", "2019018", "2020192"})) { // PGM)SKìŠ¤í† ì•„ íŒë§¤ê³„ì•½ì„œ[í˜¼í•©ìˆ˜ìˆ˜ë£Œ], ìœ„ìˆ˜íƒìˆ˜ìˆ˜ë£Œ 
 				map.put("entpCode",getJsoupValueSkbroadband(document,"b_t1"));
 			}else{
 				map.put("entpCode",getJsoupValueSkbroadband(document,"t1"));	
 			}
 			map.put("goodsCode",getJsoupValueSkbroadband(document,"t2"));
 
-			map.put("seqFrameNo",getJsoupValueSkbroadband(document,"seqFrameNo")); // Æí¼ºÄÚµå
-			map.put("bDate",getJsoupValueSkbroadband(document,"b_date")); // ¹æ¼ÛÀÏ½Ã
+			map.put("seqFrameNo",getJsoupValueSkbroadband(document,"seqFrameNo")); // í¸ì„±ì½”ë“œ
+			map.put("bDate",getJsoupValueSkbroadband(document,"b_date")); // ë°©ì†¡ì¼ì‹œ
 
 
 			list.add(map);
@@ -150,7 +150,7 @@ String cont_chasu = u.request("cont_chasu","0");
 String confirm = u.request("confirm");
 
 if(cont_no.equals("")||cont_chasu.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -158,7 +158,7 @@ ContractDao contDao = new ContractDao();
 //contDao.setDebug(out);
 DataSet cont = contDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'");
 if(!cont.next()){
-	u.jsError("°è¾àÁ¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ê³„ì•½ì •ë³´ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -184,7 +184,7 @@ hp.setEncoding("UTF-8");
 hp.setContentType("application/json");
 try {
 	String ret = hp.sendSkbroadband(cont.getString("template_cd"),json,cont.getString("template_cd").equals("2015016")?true:false);
-	System.out.println("¸®ÅÏ[" + ret + "]");
+	System.out.println("ë¦¬í„´[" + ret + "]");
 	String code = ret.replace("%22", "\"");				
 
 	if(!code.equals(""))
@@ -193,41 +193,41 @@ try {
 		
 		if(retJSON2.getString("retCode").equals("1")) {
 			//u.jsAlert(retJSON2.getString("retMsg"));					
-			System.out.println("Àü¼Û ¼º°ø");  				
+			System.out.println("ì „ì†¡ ì„±ê³µ");  				
 		} else {			
 			//u.jsAlert(retJSON2.getString("retMsg"));
-			System.out.println("Àü¼Û ½ÇÆĞ");				
+			System.out.println("ì „ì†¡ ì‹¤íŒ¨");				
 		}
 	}
 } catch(Exception ex) {
-	System.out.println("¿¡·¯:" + ex.getMessage());        
-	u.jsAlert("°è¾à¼­ »óÅÂ°ª Àü¼Û Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+	System.out.println("ì—ëŸ¬:" + ex.getMessage());        
+	u.jsAlert("ê³„ì•½ì„œ ìƒíƒœê°’ ì „ì†¡ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
 if(confirm.equals("Y"))
 {
-	u.jsAlertReplace("°è¾à¼­¸¦ ½ÂÀÎ ÇÏ¿´½À´Ï´Ù.\\n\\nÁøÇàÁßÀÎ°è¾à ¸ñ·Ï¿¡¼­ ½ÂÀÎÇÑ °è¾à°ÇÀ» È®ÀÎ ÇÒ ¼ö ÀÖ½À´Ï´Ù.","contract_send_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu, agree_seq"));
+	u.jsAlertReplace("ê³„ì•½ì„œë¥¼ ìŠ¹ì¸ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nì§„í–‰ì¤‘ì¸ê³„ì•½ ëª©ë¡ì—ì„œ ìŠ¹ì¸í•œ ê³„ì•½ê±´ì„ í™•ì¸ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.","contract_send_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu, agree_seq"));
 }
 else if(confirm.equals("C"))
 {
-	u.jsAlertReplace("½ÂÀÎ Ãë¼Ò ÇÏ¿´½À´Ï´Ù.\\n\\nÁøÇàÁßÀÎ°è¾à ¸ñ·Ï¿¡¼­ °è¾à°ÇÀ» È®ÀÎ ÇÒ ¼ö ÀÖ½À´Ï´Ù.","contract_send_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu, agree_seq"));
+	u.jsAlertReplace("ìŠ¹ì¸ ì·¨ì†Œ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nì§„í–‰ì¤‘ì¸ê³„ì•½ ëª©ë¡ì—ì„œ ê³„ì•½ê±´ì„ í™•ì¸ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.","contract_send_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu, agree_seq"));
 }
 else if(confirm.equals("S"))
 {
-	u.jsAlertReplace("¼­¸í ÀúÀå ÇÏ¿´½À´Ï´Ù.\\n\\n°è¾àÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.\\n\\n¿Ï·áµÈ °è¾à°ÇÀº °è¾à¿Ï·á>¿Ï·áµÈ°è¾à¿¡¼­ È®ÀÎ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.","contract_send_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu, agree_seq"));
+	u.jsAlertReplace("ì„œëª… ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nê³„ì•½ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nì™„ë£Œëœ ê³„ì•½ê±´ì€ ê³„ì•½ì™„ë£Œ>ì™„ë£Œëœê³„ì•½ì—ì„œ í™•ì¸ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.","contract_send_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu, agree_seq"));
 }
 else if(confirm.equals("CC"))
 {
-	u.jsAlertReplace("°è¾à¼­¸¦ ÀÛ¼ºÁß »óÅÂ·Î º¯°æ Ã³¸® ÇÏ¿´½À´Ï´Ù.\\n\\nÀÓ½ÃÀúÀå °è¾à ¸Ş´º·Î ÀÌµ¿ ÇÕ´Ï´Ù.","contract_writing_list.jsp");
+	u.jsAlertReplace("ê³„ì•½ì„œë¥¼ ì‘ì„±ì¤‘ ìƒíƒœë¡œ ë³€ê²½ ì²˜ë¦¬ í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nì„ì‹œì €ì¥ ê³„ì•½ ë©”ë‰´ë¡œ ì´ë™ í•©ë‹ˆë‹¤.","contract_writing_list.jsp");
 }
 else if(confirm.equals("SD"))
 {
-	u.jsAlertReplace("°è¾à¼­¸¦ Àü¼ÛÇÏ¿´½À´Ï´Ù.\\n\\nÁøÇàÁß(º¸³½°è¾à) ¸ñ·Ï¿¡¼­ Àü¼ÛÇÑ °è¾à°ÇÀ» È®ÀÎ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù." ,"contract_writing_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu"));
+	u.jsAlertReplace("ê³„ì•½ì„œë¥¼ ì „ì†¡í•˜ì˜€ìŠµë‹ˆë‹¤.\\n\\nì§„í–‰ì¤‘(ë³´ë‚¸ê³„ì•½) ëª©ë¡ì—ì„œ ì „ì†¡í•œ ê³„ì•½ê±´ì„ í™•ì¸ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤." ,"contract_writing_list.jsp?"+u.getQueryString("confirm, cont_no, cont_chasu"));
 }
 else if(confirm.equals("AUTO"))
 {
-	u.jsAlertReplace("°è¾à¿Ï·áÃ³¸® µÇ¾ú½À´Ï´Ù.\\n\\n¿Ï·á(¹ŞÀº°è¾à)¸Ş´º·Î ÀÌµ¿ÇÕ´Ï´Ù.", "./contend_recv_list.jsp");
+	u.jsAlertReplace("ê³„ì•½ì™„ë£Œì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nì™„ë£Œ(ë°›ì€ê³„ì•½)ë©”ë‰´ë¡œ ì´ë™í•©ë‹ˆë‹¤.", "./contend_recv_list.jsp");
 }
 else if(confirm.equals("R"))
 {

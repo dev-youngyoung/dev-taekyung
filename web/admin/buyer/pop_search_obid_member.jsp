@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
 String callback = u.request("callback");
 if(callback.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -18,7 +18,7 @@ f.addElement("s_member_name",null, null);
 f.addElement("s_client_name",null, null);
 
 
-//¸ñ·Ï »ý¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -52,13 +52,13 @@ while(ds.next()){
 		ds.put("cont_name", ds.getString("cont_name"));
 	}
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd",ds.getString("cont_date")));
-	ds.put("status_name", ds.getString("status").equals("00")?"¼û±è":u.getItem(ds.getString("status"), code_bid_status));
+	ds.put("status_name", ds.getString("status").equals("00")?"ìˆ¨ê¹€":u.getItem(ds.getString("status"), code_bid_status));
 	
-	//¹öÆ°¼³Á¤
+	//ë²„íŠ¼ì„¤ì •
 	ds.put("btn_writing", !ds.getString("status").equals("10"));
 	ds.put("btn_finish", !u.inArray( ds.getString("status"), new String[]{"50","60","70"}));
 	ds.put("btn_hide", !ds.getString("status").equals("00"));
-	ds.put("btn_won_pay", ds.getString("won_pay").equals("")&&ds.getString("paytypecd").equals("10"));//Á¾·®Á¦ÀÎ °æ¿ì¸¸.
+	ds.put("btn_won_pay", ds.getString("won_pay").equals("")&&ds.getString("paytypecd").equals("10"));//ì¢…ëŸ‰ì œì¸ ê²½ìš°ë§Œ.
 	ds.put("btn_su_pay", ds.getString("su_pay").equals(""));
 }
 
@@ -66,7 +66,7 @@ while(ds.next()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("buyer.pop_search_obid_member");
-p.setVar("popup_title","°ø°í(°ø°³)Âü¿©¾÷Ã¼ °Ë»ö");
+p.setVar("popup_title","ê³µê³ (ê³µê°œ)ì°¸ì—¬ì—…ì²´ ê²€ìƒ‰");
 p.setLoop("code_status", u.arr2loop(code_bid_status));
 p.setLoop("list", ds);
 p.setVar("pagerbar", list.getPaging());

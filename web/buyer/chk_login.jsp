@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
 	String _member_no = "";
 	if(!auth.isValid()){
 		out.println("<script type=\"text/javascript\">");
-		out.println("  alert('¿À·§µ¿¾È ÀÌ¿ëÇÏÁö ¾Ê¾Æ ÀÚµ¿ ·Î±×¾Æ¿ôÀÌ µÇ¾ú½À´Ï´Ù.');");
+		out.println("  alert('ì˜¤ë«ë™ì•ˆ ì´ìš©í•˜ì§€ ì•Šì•„ ìë™ ë¡œê·¸ì•„ì›ƒì´ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 		out.println("if(opener!=null){");
 		out.println("  opener.location.href='/web/buyer/index.jsp';");
 		out.println("  self.close();");

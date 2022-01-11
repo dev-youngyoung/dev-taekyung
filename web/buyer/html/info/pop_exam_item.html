@@ -1,14 +1,14 @@
-<form name="form1" method="post" onsubmit="return formSubmit(this);">
+Ôªø<form name="form1" method="post" onsubmit="return formSubmit(this);">
 <input type="hidden" name="search" value="1">
 <div class="div_table">
     <div class="util-row">
         <div class="push-right">
-            <button type="submit"  class="sbtn color ico-save" value="¿˙¿Â"><span></span>¿˙¿Â</button>
-            <button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>¥›±‚</button>
+            <button type="submit"  class="sbtn color ico-save" value="Ï†ÄÏû•"><span></span>Ï†ÄÏû•</button>
+            <button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>Îã´Í∏∞</button>
         </div>
     </div>
     <div class="push-left">
-        <h3>∆Ú∞°«◊∏Ò¡§∫∏</h3>
+        <h3>ÌèâÍ∞ÄÌï≠Î™©Ï†ïÎ≥¥</h3>
     </div>
     <table>
       <colgroup>
@@ -17,34 +17,34 @@
       </colgroup>
       <!-- IF START '2depth' -->
        <tr>
-        <th>∫–∑˘</th>
+        <th>Î∂ÑÎ•ò</th>
         <td>{{question.l_div_nm}}</td>
       </tr>
       <tr>
-        <th>ºº∫Œ«◊∏Ò</th>
+        <th>ÏÑ∏Î∂ÄÌï≠Î™©</th>
         <td>{{question.m_div_nm}}</td>
       </tr>
       <!-- IF END '2depth' -->
       <!-- IF START '3depth' -->
       <tr>
-        <th>¥Î∫–∑˘</th>
+        <th>ÎåÄÎ∂ÑÎ•ò</th>
         <td>{{question.l_div_nm}}</td>
       </tr>
       <tr>
-        <th>¡ﬂ∫–∑˘</th>
+        <th>Ï§ëÎ∂ÑÎ•ò</th>
         <td>{{question.m_div_nm}}</td>
       </tr>
       <tr>
-        <th>ºº∫Œ«◊∏Ò</th>
+        <th>ÏÑ∏Î∂ÄÌï≠Î™©</th>
         <td>{{question.question}}</td>
       </tr>
       <!-- IF END '3depth' -->
       <tr>
-        <th>√—¡°</th>
-        <td>{{question.point}} ¡°</td>
+        <th>Ï¥ùÏ†ê</th>
+        <td>{{question.point}} Ï†ê</td>
       </tr>
       <tr>
-        <th>∫Ò∞Ì</th>
+        <th>ÎπÑÍ≥†</th>
         <td>{{question.etc}}</td>
       </tr>
      </table>
@@ -53,10 +53,10 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>∆Ú∞°πË¡°</h3>
+            <h3>ÌèâÍ∞ÄÎ∞∞Ï†ê</h3>
         </div>
         <div class="push-right">
-            <button type="button" class="sbtn ico-add" onclick="item_grid.addRow()"><span></span>√ﬂ∞°</button>
+            <button type="button" class="sbtn ico-add" onclick="item_grid.addRow()"><span></span>Ï∂îÍ∞Ä</button>
         </div>
     </div>
     <table id="item_grid">
@@ -67,17 +67,17 @@
         </colgroup>
         <thead>
         <tr>
-            <th>πË¡°∏Ì</th>
-            <th>¡°ºˆ</th>
-            <th>ªË¡¶</th>
+            <th>Î∞∞Ï†êÎ™Ö</th>
+            <th>Ï†êÏàò</th>
+            <th>ÏÇ≠Ï†ú</th>
         </tr>
         </thead>
         <tbody>
         <!-- LOOP START 'item' -->
         <tr>
-            <td align="center"><input type="text" name="item_text" style="width:98%" maxlength="10" value="{{item.item_text}}" requred="Y" hname="πË¡°∏Ì"/></td>
-            <td align="center"><input type="text" name="point" size="5" maxlength="6" value="{{item.point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_point_only()" onkeypress="num_point_only()" hname="¡°ºˆ" /></td>
-            <td align="center"><button class="sbtn ico-delete" onclick="item_grid.del(this)"><span></span>ªË¡¶</button></td>
+            <td align="center"><input type="text" name="item_text" style="width:98%" maxlength="10" value="{{item.item_text}}" requred="Y" hname="Î∞∞Ï†êÎ™Ö"/></td>
+            <td align="center"><input type="text" name="point" size="5" maxlength="6" value="{{item.point}}" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_point_only()" onkeypress="num_point_only()" hname="Ï†êÏàò" /></td>
+            <td align="center"><button class="sbtn ico-delete" onclick="item_grid.del(this)"><span></span>ÏÇ≠Ï†ú</button></td>
         </tr>
         <!-- LOOP END 'item' -->
         </tbody>
@@ -88,28 +88,28 @@
 <script language="javascript">
 
 var item_grid =  new MGRID("item_grid");
-	item_grid.cells = new Array('<input type="text" name="item_text" style="width:98%" maxlength="10" requred="Y" hname="πË¡°∏Ì"/>'
-	                            ,'<input type="text" name="point" size="4" maxlength="5" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_point_only()" onkeypress="num_point_only()" hname="¡°ºˆ" />'
-	                            ,'<button class="sbtn ico-delete" onclick="item_grid.del(this)"><span></span>ªË¡¶</button>');
+	item_grid.cells = new Array('<input type="text" name="item_text" style="width:98%" maxlength="10" requred="Y" hname="Î∞∞Ï†êÎ™Ö"/>'
+	                            ,'<input type="text" name="point" size="4" maxlength="5" style="ime-mode:disabled;text-align:right" required="Y" onkeydown="num_point_only()" onkeypress="num_point_only()" hname="Ï†êÏàò" />'
+	                            ,'<button class="sbtn ico-delete" onclick="item_grid.del(this)"><span></span>ÏÇ≠Ï†ú</button>');
 
 function formSubmit(f){
 	
 	if(validate(f)){
 		var cnt = document.getElementById("item_grid").rows.length;
 		if(cnt<2){
-			alert("πË¡°«◊∏Ò¿ª 2∞≥ ¿ÃªÛ ¿‘∑¬ «œººø‰.");
+			alert("Î∞∞Ï†êÌï≠Î™©ÏùÑ 2Í∞ú Ïù¥ÏÉÅ ÏûÖÎ†• ÌïòÏÑ∏Ïöî.");
 			return false;
 		}
 		var max_point = parseInt("{{question.point}}",10);
 		for(var i = 0; i< f['point'].length; i ++){
 			var point = parseInt(f['point'][i].value, 10);
 			if(max_point<point){
-				alert("πË¡°¿ª √—¡° ¿ÃªÛ¿∏∑Œ ¿‘∑¬ «“ ºˆ æ¯Ω¿¥œ¥Ÿ.");
+				alert("Î∞∞Ï†êÏùÑ Ï¥ùÏ†ê Ïù¥ÏÉÅÏúºÎ°ú ÏûÖÎ†• Ìï† Ïàò ÏóÜÏäµÎãàÎã§.");
 				f['point'][i].focus();
 				return false;
 			}
 		} 
-		if(confirm('¿˙¿Â«œΩ√∞⁄Ω¿¥œ±Ó?')) return true;
+		if(confirm('Ï†ÄÏû•ÌïòÏãúÍ≤†ÏäµÎãàÍπå?')) return true;
 	}
 	return false;
 }

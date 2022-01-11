@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
 <%
 f.uploadDir=Startup.conf.getString("file.path.bcont_pds")+_member_no;
 f.maxPostSize= 10*1024;
 
 String seq = u.request("seq");
 if(seq.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -18,7 +18,7 @@ DataSet pds = pdsDao.find(" member_no = '"+_member_no+"' and seq = '"+seq+"' "
 				+"    where member_no = a.member_no "
 				+"      and user_id = a.reg_id) reg_name");
 if(!pds.next()){
-	u.jsError("Á¤º¸°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
+	u.jsError("ì •ë³´ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	return;
 }
 pds.put("reg_date", u.getTimeString("yyyy-MM-dd", pds.getString("reg_date")));
@@ -46,11 +46,11 @@ for(int i = 1 ; i <= 3 ; i++){
 }
 
 
-f.addElement("title", pds.getString("title") , "hname:'Á¦¸ñ', required:'Y', maxbyte:'100'");
-f.addElement("_contents", null, "hname:'³»¿ë', required:'Y'"); 
+f.addElement("title", pds.getString("title") , "hname:'ì œëª©', required:'Y', maxbyte:'100'");
+f.addElement("_contents", null, "hname:'ë‚´ìš©', required:'Y'"); 
 
 if(u.isPost()&&f.validate()){
-	//±Û³»¿ë
+	//ê¸€ë‚´ìš©
 	DB db = new DB();
 
 	DataObject dao = new DataObject("tcb_member_pds");
@@ -61,9 +61,9 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(dao.getUpdateQuery(" member_no = '"+_member_no+"' and seq = '"+seq+"'"), dao.record);
 
 	db.setCommand("delete from tcb_member_pds_file where member_no = '"+_member_no+"' and seq='"+seq+"' ", null);
-	//ÆÄÀÏ
+	//íŒŒì¼
 	for(int i = 1 ; i <= 3; i ++){
-		//ÀúÀåÆÄÀÏ
+		//ì €ìž¥íŒŒì¼
 		File file = f.saveFileTime("file_pds_"+i);
 		if(file != null){
 			String file_name = file.getName();
@@ -78,7 +78,7 @@ if(u.isPost()&&f.validate()){
 			fdao.item("file_size", file.length());
 			db.setCommand(fdao.getInsertQuery(),fdao.record);
 		}
-		//±âÁ¸ÆÄÀÏ
+		//ê¸°ì¡´íŒŒì¼
 		if(!f.get("file_name_"+i).equals("")){
 			DataObject fdao = new DataObject("tcb_member_pds_file");
 			fdao.item("member_no", _member_no);
@@ -94,10 +94,10 @@ if(u.isPost()&&f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("Á¤»ó Ã³¸®ÇÏ¿´½À´Ï´Ù.","my_pds_list.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì •ìƒ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.","my_pds_list.jsp?"+u.getQueryString());
 	return;
 }
 

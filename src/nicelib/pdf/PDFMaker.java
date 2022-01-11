@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,19 +20,19 @@ public class PDFMaker {
 	private int htmlWidth = 750;
 	private String header = null;
 	private String footer = null;
-	private String footerDefault = "*º» °è¾à¼­´Â »ó±â¾÷Ã¼ °£¿¡ ÀüÀÚ¼­¸í¹ı  µî °ü·Ã¹ı·É¿¡ ±Ù°ÅÇÏ¿© ÀüÀÚ¼­¸íÀ¸·Î Ã¼°áÇÑ ÀüÀÚ°è¾à¼­ÀÔ´Ï´Ù.<br>&nbsp;&nbsp;ÀüÀÚ°è¾à ÁøÀ§¿©ºÎ´Â ³ªÀÌ½º´ÙÅ¥(http://www.nicedocu.com,ÀÏ¹İ±â¾÷¿ë)¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.";
+	private String footerDefault = "*ë³¸ ê³„ì•½ì„œëŠ” ìƒê¸°ì—…ì²´ ê°„ì— ì „ìì„œëª…ë²•  ë“± ê´€ë ¨ë²•ë ¹ì— ê·¼ê±°í•˜ì—¬ ì „ìì„œëª…ìœ¼ë¡œ ì²´ê²°í•œ ì „ìê³„ì•½ì„œì…ë‹ˆë‹¤.";
 	private String cont_no = "";
 	private String cont_chasu = "";
 	private String random_no = "";
-	private String cont_userno = ""; // »ç¿ëÀÚ °è¾à¹øÈ£
+	private String cont_userno = ""; // ì‚¬ìš©ì ê³„ì•½ë²ˆí˜¸
 
 
 	public static void main(String[] args) throws InvalidParameterException, MalformedURLException, IOException{
 		PDFMaker ed = new PDFMaker();
-		//ed.generatePDF("file:///d:/CJ-GLS ÅÃ¹è´ë¸®Á¡ °è¾à¼­.html", new File("d:/CJ-GLS ÅÃ¹è´ë¸®Á¡ °è¾à¼­.pdf"), PD4Constants.A4);
+		//ed.generatePDF("file:///d:/CJ-GLS íƒë°°ëŒ€ë¦¬ì  ê³„ì•½ì„œ.html", new File("d:/CJ-GLS íƒë°°ëŒ€ë¦¬ì  ê³„ì•½ì„œ.pdf"), PD4Constants.A4);
 		
 		try {
-			File f = new File("W:/°³¹ß¹®¼­/¹°·ùÀüÀÚ°è¾à/CJ GLS/°è¾à¼­¾ç½Ä_2012.06.13/b. ³ªÀÌ½º´ÙÅ¥ Àû¿ë/a. ´ë¸®Á¡/d. µ¿ÀÇ¼­/", "±ÙÀú´ç±Ç; ÀÓ´ëÂ÷ ÇöÈ²¼­.html");
+			File f = new File("W:/ê°œë°œë¬¸ì„œ/ë¬¼ë¥˜ì „ìê³„ì•½/CJ GLS/ê³„ì•½ì„œì–‘ì‹_2012.06.13/b. ë‚˜ì´ìŠ¤ë‹¤í ì ìš©/a. ëŒ€ë¦¬ì /d. ë™ì˜ì„œ/", "ê·¼ì €ë‹¹ê¶Œ; ì„ëŒ€ì°¨ í˜„í™©ì„œ.html");
 			FileReader reader = new FileReader(f);
 			BufferedReader buffer = new BufferedReader(reader);
 			
@@ -46,7 +45,7 @@ public class PDFMaker {
 			}
 			buffer.close();
 
-			ed.generatePDF(html, "W:/°³¹ß¹®¼­/¹°·ùÀüÀÚ°è¾à/CJ GLS/°è¾à¼­¾ç½Ä_2012.06.13/b. ³ªÀÌ½º´ÙÅ¥ Àû¿ë/a. ´ë¸®Á¡/d. µ¿ÀÇ¼­/", "±ÙÀú´ç±Ç; ÀÓ´ëÂ÷ ÇöÈ²¼­.pdf"); 
+			ed.generatePDF(html, "W:/ê°œë°œë¬¸ì„œ/ë¬¼ë¥˜ì „ìê³„ì•½/CJ GLS/ê³„ì•½ì„œì–‘ì‹_2012.06.13/b. ë‚˜ì´ìŠ¤ë‹¤í ì ìš©/a. ëŒ€ë¦¬ì /d. ë™ì˜ì„œ/", "ê·¼ì €ë‹¹ê¶Œ; ì„ëŒ€ì°¨ í˜„í™©ì„œ.pdf"); 
 		}
 		catch(IOException e) {
 			e.printStackTrace();			
@@ -95,7 +94,7 @@ public class PDFMaker {
 	}
 	
 	/**
-	 * PDF ¹®¼­ »ı¼º
+	 * PDF ë¬¸ì„œ ìƒì„±
 	 * @param url
 	 * @param outputPDFFile
 	 * @param format
@@ -110,12 +109,12 @@ public class PDFMaker {
 			PD4ML pd4ml = new PD4ML();
 			
 			PD4PageMark headerMark = new PD4PageMark();
-			headerMark.setAreaHeight( 30 );				//header ¿µ¿ª ¼³Á¤
+			headerMark.setAreaHeight( 30 );				//header ì˜ì—­ ì„¤ì •
 			
-			//header µ¥ÀÌÅÍ ¼ÂÆÃ
+			//header ë°ì´í„° ì…‹íŒ…
 			if(header == null){
 				if(!this.getUserContNo().equals(""))
-					headerMark.setHtmlTemplate("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* °è¾à¹øÈ£: "+this.getUserContNo()+"</font></td></tr></table>");
+					headerMark.setHtmlTemplate("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* ê³„ì•½ë²ˆí˜¸: "+this.getUserContNo()+"</font></td></tr></table>");
 				else
 					headerMark.setHtmlTemplate("");
 			}else{
@@ -123,25 +122,25 @@ public class PDFMaker {
 			}
 			pd4ml.setPageHeader(headerMark);
 			
-			//footer ¿µ¿ª¼³Á¤
+			//footer ì˜ì—­ì„¤ì •
 			PD4PageMark footerMark = new PD4PageMark();
 			footerMark.setAreaHeight( 40 );
 			
-			//footer µ¥ÀÌÅÍ ¼ÂÆÃ
+			//footer ë°ì´í„° ì…‹íŒ…
 			if(footer == null){
-				footerMark.setHtmlTemplate("<table width='100%' height='35' border='0'><tr><td valign='bottom'><font size=1 color=\"#5B5B5B\">"+footerDefault+ " (°ü¸®¹øÈ£:"+this.getContNo()+")</font></td></tr></table>");
+				footerMark.setHtmlTemplate("<table width='100%' height='35' border='0'><tr><td valign='bottom'><font size=1 color=\"#5B5B5B\">"+footerDefault+ " (ê´€ë¦¬ë²ˆí˜¸:"+this.getContNo()+")</font></td></tr></table>");
 			}else{
 				footerMark.setHtmlTemplate("<span><font size=1 color=\"#5B5B5B\">"+ getFooter() +"</font></span>");
 			}
 			pd4ml.setPageFooter(footerMark);
 			
-			pd4ml.setPageInsets(new Insets(10,20,5,20));						//¿©¹é¼³Á¤
-			pd4ml.setHtmlWidth(getHtmlWidth());									//º¯È¯ÇÒ htmlÀÇ width Á¤º¸
-			pd4ml.setPageSize(PD4Constants.A4);									//¿ëÁö¸ğ¾ç A4¼³Á¤
-			//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//°¡·Î·Î ¼³Á¤
-			pd4ml.useTTF("java:fonts", true);									//ÁöÁ¤ÇÑ ÆùÆ® »ç¿ë
-			//pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
-			pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
+			pd4ml.setPageInsets(new Insets(10,20,5,20));						//ì—¬ë°±ì„¤ì •
+			pd4ml.setHtmlWidth(getHtmlWidth());									//ë³€í™˜í•  htmlì˜ width ì •ë³´
+			pd4ml.setPageSize(PD4Constants.A4);									//ìš©ì§€ëª¨ì–‘ A4ì„¤ì •
+			//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//ê°€ë¡œë¡œ ì„¤ì •
+			pd4ml.useTTF("java:", true);									//ì§€ì •í•œ í°íŠ¸ ì‚¬ìš©
+			//pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
+			pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
 			pd4ml.enableDebugInfo();
 			pd4ml.render(new java.net.URL(url), fos);
 			return true;
@@ -161,7 +160,7 @@ public class PDFMaker {
 	
 	
 	/**
-	 * PDF ¹®¼­ »ı¼º
+	 * PDF ë¬¸ì„œ ìƒì„±
 	 * @param html
 	 * @param outputDir
 	 * @param outputFileName
@@ -180,12 +179,12 @@ public class PDFMaker {
 
 			
 			PD4PageMark headerMark = new PD4PageMark();
-			headerMark.setAreaHeight( 30 );				//header ¿µ¿ª ¼³Á¤
+			headerMark.setAreaHeight( 30 );				//header ì˜ì—­ ì„¤ì •
 			
-			//header µ¥ÀÌÅÍ ¼ÂÆÃ
+			//header ë°ì´í„° ì…‹íŒ…
 			if(header == null){
 				if(!this.getUserContNo().equals(""))
-					headerMark.setHtmlTemplate("<table border=0 width=100%><tr><td align=\"right\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* °è¾à¹øÈ£: "+this.getUserContNo()+"</font></td></tr></table>");
+					headerMark.setHtmlTemplate("<table border=0 width=100%><tr><td align=\"left\" valign=\"top\" ><font size=1 color=\"#5B5B5B\">* ê³„ì•½ë²ˆí˜¸: "+this.getUserContNo()+"</font></td></tr></table>");
 				else
 					headerMark.setHtmlTemplate("");
 			}else{
@@ -193,24 +192,24 @@ public class PDFMaker {
 			}
 			pd4ml.setPageHeader(headerMark);
 			
-			//footer ¿µ¿ª¼³Á¤
+			//footer ì˜ì—­ì„¤ì •
 			PD4PageMark footerMark = new PD4PageMark();
 			footerMark.setAreaHeight( 40 );
 			
-			//footer µ¥ÀÌÅÍ ¼ÂÆÃ
+			//footer ë°ì´í„° ì…‹íŒ…
 			if(footer == null){
-				footerMark.setHtmlTemplate("<table width='100%' height='35px' border='0'><tr><td valign='bottom'><font size=1 color=\"#5B5B5B\">"+footerDefault+ " (°ü¸®¹øÈ£:"+this.getContNo()+")</font></td></tr></table>");
+				footerMark.setHtmlTemplate("<table width='100%' height='35px' border='0' style=\"padding-top:-10px;\"><tr><td valign='bottom'><font size=1 color=\"#5B5B5B\">"+footerDefault+ " (ê´€ë¦¬ë²ˆí˜¸:"+this.getContNo()+")</font></td></tr></table>");
 			}else{
-				footerMark.setHtmlTemplate("<span><font size=1 color=\"#5B5B5B\">"+ getFooter() +"</font></span>");
+				footerMark.setHtmlTemplate("<span style=\"padding-top:-10px;\"><font size=1 color=\"#5B5B5B\">"+ getFooter() +"</font></span>");
 			}
 			pd4ml.setPageFooter(footerMark);
 			
-			pd4ml.setPageInsets(new Insets(10,20,5,20));						//¿©¹é¼³Á¤
-			pd4ml.setHtmlWidth(getHtmlWidth());									//º¯È¯ÇÒ htmlÀÇ width Á¤º¸
-			pd4ml.setPageSize(PD4Constants.A4);									//¿ëÁö¸ğ¾ç A4¼³Á¤
-			//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//°¡·Î·Î ¼³Á¤
-			pd4ml.useTTF("java:fonts", true);									//ÁöÁ¤ÇÑ ÆùÆ® »ç¿ë
-			pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
+			pd4ml.setPageInsets(new Insets(10,20,5,20));						//ì—¬ë°±ì„¤ì •
+			pd4ml.setHtmlWidth(getHtmlWidth());									//ë³€í™˜í•  htmlì˜ width ì •ë³´
+			pd4ml.setPageSize(PD4Constants.A4);									//ìš©ì§€ëª¨ì–‘ A4ì„¤ì •
+			//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//ê°€ë¡œë¡œ ì„¤ì •
+			pd4ml.useTTF("java:", true);									//ì§€ì •í•œ í°íŠ¸ ì‚¬ìš©
+			pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
 			pd4ml.enableDebugInfo();
 			
 			pd4ml.render(new StringReader(html), fos);

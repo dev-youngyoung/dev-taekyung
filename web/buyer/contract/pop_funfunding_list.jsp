@@ -1,41 +1,41 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(!_member_no.equals("20190800293")){
-    u.jsErrClose("ÇØ´çÈ­¸é¿¡ ´ëÇÑ »ç¿ë ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.");
+    u.jsErrClose("í•´ë‹¹í™”ë©´ì— ëŒ€í•œ ì‚¬ìš© ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.");
     return;
 }
 //String connect_module = "D:\\nicedata\\https_client\\earlypay.bat";
 String connect_module = "/application/nicesh/earlypay.sh";
 String header = "X-Funfunding-Site-Key=>IO20IUboJC98/RDQqIJdz1y+A860/u43bLVPQugS1sEdDB55mz2MON5oGJCtMVje||X-Funfunding-Secret-Key=>CQsZtHRHa/EbdQ8Y2q1Gjjo0lH29Ycb9H66GjyPoX+Ip8nzmaTn1rspBou2toemA";
-header =  u.aseEnc(header);//cmd ÀÎÀÚ°ª¸ÅÄª½Ã = ¹®ÀÚ ¾ø¾î¾ß ÇÔ. base64´Â »ç¿ë ¸øÇÏ°í ¼ıÀÚ¿µ¹®À¸·Î¸¸ ÀÌ¿ëÇÏ´Â ase¾ÏÈ£È­ »ç¿ë ¤Ğ.¤Ğ
+header =  u.aseEnc(header);//cmd ì¸ìê°’ë§¤ì¹­ì‹œ = ë¬¸ì ì—†ì–´ì•¼ í•¨. base64ëŠ” ì‚¬ìš© ëª»í•˜ê³  ìˆ«ìì˜ë¬¸ìœ¼ë¡œë§Œ ì´ìš©í•˜ëŠ” aseì•”í˜¸í™” ì‚¬ìš© ã… .ã… 
 String ret = "";
 
-f.addElement("id",null, "hname:'°è¾à¹øÈ£', required:'Y'");
+f.addElement("id",null, "hname:'ê³„ì•½ë²ˆí˜¸', required:'Y'");
 if(u.isPost()&&f.validate()){
 	String id = f.get("id");
     String connServer = "https://www.funfunding.co.kr/api/nice/detail/"+id;
     try{
         String buffer = null;
         String[] cmd =  {connect_module, "COMMON", connServer, header};
-        //  °³¹ß½Ã ¸·À½
+        //  ê°œë°œì‹œ ë§‰ìŒ
         Process process = new ProcessBuilder(cmd).start();
         BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
 
-        // Ç¥ÁØÃâ·Â »óÅÂ¸¦ Ãâ·Â
+        // í‘œì¤€ì¶œë ¥ ìƒíƒœë¥¼ ì¶œë ¥
         while( (buffer = stdOut.readLine()) != null ) {
             ret += buffer;
         }
 
     }catch (Exception ex){
-        System.out.println("funfunding Åë½Å ¿¡·¯ :" + ex.getMessage());
-        u.jsAlert("funfunding·ÎºÎÅÍ Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø¾î ±âº»Á¤º¸¸¸ ¼³Á¤ÇÕ´Ï´Ù.\\n\\n[Error message] " + ex.getMessage());
+        System.out.println("funfunding í†µì‹  ì—ëŸ¬ :" + ex.getMessage());
+        u.jsAlert("funfundingë¡œë¶€í„° ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ì–´ ê¸°ë³¸ì •ë³´ë§Œ ì„¤ì •í•©ë‹ˆë‹¤.\\n\\n[Error message] " + ex.getMessage());
         return;
     }
 
     DataSet recvData = u.json2Dataset(ret.substring(ret.indexOf("{")));
     recvData.next();
     if(!recvData.getString("result").equals("SUCCESS")){
-        u.jsAlert("funfunding·ÎºÎÅÍ Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.\\n\\n[Error message] " + recvData.getString("message"));
+        u.jsAlert("funfundingë¡œë¶€í„° ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\n\\n[Error message] " + recvData.getString("message"));
         return;
     }
 
@@ -53,25 +53,25 @@ try {
     String connServer = "https://www.funfunding.co.kr/api/nice/list";
     String[] cmd =  {connect_module, "COMMON", connServer, header};
 
-    //  °³¹ß½Ã ¸·À½
+    //  ê°œë°œì‹œ ë§‰ìŒ
     Process process = new ProcessBuilder(cmd).start();
     BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
 
-    // Ç¥ÁØÃâ·Â »óÅÂ¸¦ Ãâ·Â
+    // í‘œì¤€ì¶œë ¥ ìƒíƒœë¥¼ ì¶œë ¥
     while( (buffer = stdOut.readLine()) != null ) {
         ret += buffer;
     }
 
 } catch(Exception ex) {
-    System.out.println("funfunding Åë½Å ¿¡·¯ :" + ex.getMessage());
-    u.jsAlert("funfunding·ÎºÎÅÍ Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø¾î ±âº»Á¤º¸¸¸ ¼³Á¤ÇÕ´Ï´Ù.\\n\\n[Error message] " + ex.getMessage());
+    System.out.println("funfunding í†µì‹  ì—ëŸ¬ :" + ex.getMessage());
+    u.jsAlert("funfundingë¡œë¶€í„° ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ì–´ ê¸°ë³¸ì •ë³´ë§Œ ì„¤ì •í•©ë‹ˆë‹¤.\\n\\n[Error message] " + ex.getMessage());
     return;
 }
 
 DataSet recvData = u.json2Dataset(ret.substring(ret.indexOf("{")));
 recvData.next();
 if(!recvData.getString("result").equals("SUCCESS")){
-    u.jsAlert("funfunding·ÎºÎÅÍ Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.\\n\\n[Error message] " + recvData.getString("message"));
+    u.jsAlert("funfundingë¡œë¶€í„° ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\n\\n[Error message] " + recvData.getString("message"));
     return;
 }
 
@@ -81,7 +81,7 @@ DataSet list = recvData.getDataSet("data");
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("contract.pop_funfunding_list");
-p.setVar("popup_title","°è¾à´ë»ó");
+p.setVar("popup_title","ê³„ì•½ëŒ€ìƒ");
 p.setLoop("list", list);
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("cont_no,cont_chasu"));

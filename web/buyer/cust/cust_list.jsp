@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 
 f.addElement("s_member_name",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -18,63 +18,63 @@ list.setOrderBy("client_reg_date desc");
 DataSet ds = list.getDataSet();
 while(ds.next()){
 	ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
-	if(u.inArray(ds.getString("member_no"), new String[]{"20121203661","20130400010","20130400009","20130400011","20130400008"})) // ÇÑ±¹¾²¸®¿¥
+	if(u.inArray(ds.getString("member_no"), new String[]{"20121203661","20130400010","20130400009","20130400011","20130400008"})) // í•œêµ­ì“°ë¦¬ì— 
 	{
-		String[] code_client_type = {"0=>°ø±Ş»ç","1=>ÆÇ¸Å(´ë¸®)Á¡"};
+		String[] code_client_type = {"0=>ê³µê¸‰ì‚¬","1=>íŒë§¤(ëŒ€ë¦¬)ì "};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
-	else if(ds.getString("member_no").equals("20140300055")) // ÇÑ±¹À¯¸®°ø¾÷
+	else if(ds.getString("member_no").equals("20140300055")) // í•œêµ­ìœ ë¦¬ê³µì—…
 	{
-		String[] code_client_type = {"0=>°ø±Ş»ç","1=>ÆÇ¸Å(´ë¸®)Á¡"};
+		String[] code_client_type = {"0=>ê³µê¸‰ì‚¬","1=>íŒë§¤(ëŒ€ë¦¬)ì "};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
-	else if(ds.getString("member_no").equals("20130400091")) // ´ëº¸Á¤º¸Åë½Å
+	else if(ds.getString("member_no").equals("20130400091")) // ëŒ€ë³´ì •ë³´í†µì‹ 
 	{
-		String[] code_client_type = {"0=>¹°Ç°","1=>¿ë¿ª"};
+		String[] code_client_type = {"0=>ë¬¼í’ˆ","1=>ìš©ì—­"};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
-	else if( u.inArray(ds.getString("member_no"), new String[]{"20121200116", "20140101025", "20120200001", "20170101031","20170602171"}) ) // ÇÑ±¹Á¦Áö, ½Å¼¼°è, Å×½ºÆ®02, ¼öÇùÀºÇà, ´ë¸²¾¾¿£¿¡½º
+	else if( u.inArray(ds.getString("member_no"), new String[]{"20121200116", "20140101025", "20120200001", "20170101031","20170602171"}) ) // í•œêµ­ì œì§€, ì‹ ì„¸ê³„, í…ŒìŠ¤íŠ¸02, ìˆ˜í˜‘ì€í–‰, ëŒ€ë¦¼ì”¨ì—”ì—ìŠ¤
 	{
-		String[] code_client_type = {"0=>¹°Ç°","1=>°ø»ç","2=>¿ë¿ª"};
+		String[] code_client_type = {"0=>ë¬¼í’ˆ","1=>ê³µì‚¬","2=>ìš©ì—­"};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
-	else if( u.inArray(ds.getString("member_no"), new String[]{"20160901598"}) ) // NHÅõÀÚÁõ±Ç
+	else if( u.inArray(ds.getString("member_no"), new String[]{"20160901598"}) ) // NHíˆ¬ìì¦ê¶Œ
 	{
-		String[] code_client_type = {"1=>µî·Ï¾÷Ã¼","2=>Çù·Â¾÷Ã¼"};
+		String[] code_client_type = {"1=>ë“±ë¡ì—…ì²´","2=>í˜‘ë ¥ì—…ì²´"};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
-	else if( u.inArray(ds.getString("member_no"), new String[]{"20150200088"}) ) // ÄÚ½º¸ğÄÚ½º
+	else if( u.inArray(ds.getString("member_no"), new String[]{"20150200088"}) ) // ì½”ìŠ¤ëª¨ì½”ìŠ¤
 	{
-		String[] code_client_type = new String[]{"0=>¿øÀÚÀç","1=>¿ÜÁÖ","2=>ºÎÀÚÀç"};
+		String[] code_client_type = new String[]{"0=>ì›ìì¬","1=>ì™¸ì£¼","2=>ë¶€ìì¬"};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
-	else if( u.inArray(ds.getString("member_no"), new String[]{"20130400333"}) ) // CJ´ëÇÑÅë¿î
+	else if( u.inArray(ds.getString("member_no"), new String[]{"20130400333"}) ) // CJëŒ€í•œí†µìš´
 	{
-		String[] code_client_type = new String[]{"0=>¼ö¼Û","1=>±¸¸Å","2=>°ø»ç"};
+		String[] code_client_type = new String[]{"0=>ìˆ˜ì†¡","1=>êµ¬ë§¤","2=>ê³µì‚¬"};
 		ds.put("client_type_nm", Util.getItems(ds.getString("client_type"), code_client_type));
 	}
 	else
 	{
-		ds.put("client_type_nm", "ÀÏ¹İ°Å·¡Ã³");
+		ds.put("client_type_nm", "ì¼ë°˜ê±°ë˜ì²˜");
 	}
 
 	if(ds.getString("client_reg_cd").equals("0"))
-		ds.put("client_reg_nm", "°¡µî·Ï");
+		ds.put("client_reg_nm", "ê°€ë“±ë¡");
 	else
-		ds.put("client_reg_nm", "Á¤½Äµî·Ï");
+		ds.put("client_reg_nm", "ì •ì‹ë“±ë¡");
 
 
-	if(ds.getString("member_no").equals("20160901598")&&ds.getString("client_type").equals("1")){//NHÅõÀÚ Áõ±Ç µî·Ï¾÷Ã¼ ½ÅÃ»ÀÎ °æ¿ì ½ÅÃ»¼­ ÆË¾÷ Ãß°¡
+	if(ds.getString("member_no").equals("20160901598")&&ds.getString("client_type").equals("1")){//NHíˆ¬ì ì¦ê¶Œ ë“±ë¡ì—…ì²´ ì‹ ì²­ì¸ ê²½ìš° ì‹ ì²­ì„œ íŒì—… ì¶”ê°€
 		DataObject recruitNotiDao = new DataObject("tcb_recruit_noti");
 		DataSet recruitNoti  = recruitNotiDao.find("member_no = '20160901598' and req_sdate <= '"+u.getTimeString("yyyyMMdd")+"' and req_edate >= '"+u.getTimeString("yyyyMMdd")+"' and status = '10'");
 		if(recruitNoti.next()){
 			DataObject recruitCustDao = new DataObject("tcb_recruit_cust");
 			DataSet recruitCust = recruitCustDao.find("member_no = '20160901598' and noti_seq = '"+recruitNoti.getString("noti_seq")+"' and client_no = '"+_member_no+"' ");
 			if(recruitCust.next()){
-				String[] code_status = {"10=>ÀÓ½ÃÀúÀå","20=>½ÅÃ»Áß","30=>¼öÁ¤¿äÃ»","31=>¼öÁ¤½ÅÃ»","40=>½É»ç¿Ï·á","50=>¿Ï·á"};
+				String[] code_status = {"10=>ì„ì‹œì €ì¥","20=>ì‹ ì²­ì¤‘","30=>ìˆ˜ì •ìš”ì²­","31=>ìˆ˜ì •ì‹ ì²­","40=>ì‹¬ì‚¬ì™„ë£Œ","50=>ì™„ë£Œ"};
 
 				if(u.inArray(recruitCust.getString("status"), new String[]{"10","20","30","31"})   ){
-					String btn = " <button type=\"button\" class=\"sbtn color\" onclick=\"OpenWindows('pop_nhqv_recruit_req.jsp?noti_seq="+recruitNoti.getString("noti_seq")+"','pop_nhqv_recruit_req','1000','700');\">½ÅÃ»¼­("+u.getItem(recruitCust.getString("status"), code_status)+")</button>";
+					String btn = " <button type=\"button\" class=\"sbtn color\" onclick=\"OpenWindows('pop_nhqv_recruit_req.jsp?noti_seq="+recruitNoti.getString("noti_seq")+"','pop_nhqv_recruit_req','1000','700');\">ì‹ ì²­ì„œ("+u.getItem(recruitCust.getString("status"), code_status)+")</button>";
 					ds.put("client_reg_nm", ds.getString("client_reg_nm")+"<br>"+ btn);
 				}
 			}
@@ -84,7 +84,7 @@ while(ds.next()){
 }
 
 if(!f.get("s_member_name").equals("")&&ds.size()==0){
-	u.jsAlert("°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.\\n\\n¾÷Ã¼Ãß°¡¹öÆ°À» Å¬¸¯ÇÏ¿© °Å·¡¾÷Ã¼¸¦ Ãß°¡ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+	u.jsAlert("ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.\\n\\nì—…ì²´ì¶”ê°€ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ ê±°ë˜ì—…ì²´ë¥¼ ì¶”ê°€ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 }
 
 p.setLayout("default");

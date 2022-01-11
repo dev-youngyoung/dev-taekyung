@@ -1,14 +1,14 @@
-<form name="form1" method="post" enctype="multipart/form-data">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data">
 <div class="div_table">
 	<div class="util-row">
 		<div class="push-right">
 			<!-- IF START 'btn_confirm' -->
-			<button type="button" class="sbtn color" onclick="if(confirm('È®ÀÎÃ³¸® ÇÏ½Ã°Ú½À´Ï±î?')){location.href='warr_confirm.jsp?{{query}}';}">È®ÀÎ</button>
+			<button type="button" class="sbtn color" onclick="if(confirm('í™•ì¸ì²˜ë¦¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='warr_confirm.jsp?{{query}}';}">í™•ì¸</button>
 			<!-- IF END 'btn_confirm' -->
 			<!-- IF START 'btn' -->
-			<button type="button" class="sbtn color" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){location.href='pop_warr_delete.jsp?{{query}}';}">»èÁ¦</button>
+			<button type="button" class="sbtn color" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){location.href='pop_warr_delete.jsp?{{query}}';}">ì‚­ì œ</button>
 			<!-- IF END 'btn' -->
-			<button type="button" class="sbtn color" onclick="self.close();">´İ±â</button>
+			<button type="button" class="sbtn color" onclick="self.close();">ë‹«ê¸°</button>
 		</div>
 	</div>
 
@@ -18,50 +18,50 @@
 			<col width="75%"/>
 		</colgroup>
 		<tr>
-			<td style="padding:8px"> º¸Áõ¼­Á¾·ù</td>
+			<td style="padding:8px"> ë³´ì¦ì„œì¢…ë¥˜</td>
 			<td style="padding:8px">
 				{{warr.warr_type_nm}}
 			</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> ¹ß±Ş±â°ü</td>
+			<td style="padding:8px"> ë°œê¸‰ê¸°ê´€</td>
 			<td style="padding:8px">{{warr.warr_office}}</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> Áõ±Ç¹øÈ£</td>
+			<td style="padding:8px"> ì¦ê¶Œë²ˆí˜¸</td>
 			<td style="padding:8px">{{warr.warr_no}}</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> º¸Áõ±â°£</td>
+			<td style="padding:8px"> ë³´ì¦ê¸°ê°„</td>
 			<td style="padding:8px">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> º¸Áõ±İ¾×</td>
+			<td style="padding:8px"> ë³´ì¦ê¸ˆì•¡</td>
 			<td style="padding:8px">
 				\ {{warr.warr_amt}}
 			</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> ¹ß±ŞÀÏ</td>
+			<td style="padding:8px"> ë°œê¸‰ì¼</td>
 			<td style="padding:8px">
 				{{warr.warr_date}}
 			</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> ºñ°í</td>
+			<td style="padding:8px"> ë¹„ê³ </td>
 			<td style="padding:8px">
 				{{warr.etc}}
 			</td>
 		</tr>
 		<tr>
-			<td style="padding:8px"> Ã·ºÎÆÄÀÏ</td>
+			<td style="padding:8px"> ì²¨ë¶€íŒŒì¼</td>
 			<td style="padding:8px">
 				<!-- IFNOT START 'warr.file_name' -->
-				¹ÌÃ·ºÎ
+				ë¯¸ì²¨ë¶€
 				<!-- IFNOT END 'warr.file_name' -->
 				<!-- IF START 'warr.file_name' -->
 				{{warr.doc_name}}&nbsp;&nbsp;({{warr.file_size}})&nbsp;
-				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcompany','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}');"/><span></span>´Ù¿î·Îµå</td>
+				<button type="button" class="sbtn color ico-download" onclick="filedown('file.path.bcompany','{{warr.file_path}}{{warr.file_name}}','{{warr.doc_name}}');"/><span></span>ë‹¤ìš´ë¡œë“œ</td>
 				<!-- IF END 'warr.file_name' -->
 			</td>
 		</tr>

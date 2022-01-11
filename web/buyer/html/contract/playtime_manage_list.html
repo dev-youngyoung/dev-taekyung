@@ -11,17 +11,17 @@
 		<col width="10%">
 	  </colgroup>
 	  <tr>
-	    <th><p>°è¾àÀÏÀÚ</p></th>
+	    <th><p>ê³„ì•½ì¼ì</p></th>
 	    <td  >
 	    	<input type="text" name="s_sdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_sdate'])"> ~
 			<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 			<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 	    </td>
-	    <th><p>°è¾à»óÅÂ</p></th>
+	    <th><p>ê³„ì•½ìƒíƒœ</p></th>
 	    <td>
 	    	<select name="s_status">
-	    		<option value="">ÀüÃ¼</option>
+	    		<option value="">ì „ì²´</option>
 	    		<!-- LOOP START 'code_status' -->
 				<option value="{{code_status.id}}">{{code_status.value}}</option>
 				<!-- LOOP END 'code_status' -->
@@ -30,35 +30,35 @@
 	   <td></td>
 	  </tr> 
 	  <tr>
-	  	<th><p>°è¾à¼­Á¾·ù</p></th>
+	  	<th><p>ê³„ì•½ì„œì¢…ë¥˜</p></th>
 	    <td colspan="3">
 			<select name="s_template_cd">
-	    		<option value="">-------ÀüÃ¼-------</option>
+	    		<option value="">-------ì „ì²´-------</option>
 	    		<!-- LOOP START 'template' -->
 	    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
 	    		<!-- LOOP END 'template' -->
 	    	</select>
-	    	<span style="color: blue">* °è¾à¼­ Á¾·ù¿¡ µû¶ó Ç×¸ñÀÌ ´Ù¸£°Ô º¸ÀÔ´Ï´Ù.</span>
+	    	<span style="color: blue">* ê³„ì•½ì„œ ì¢…ë¥˜ì— ë”°ë¼ í•­ëª©ì´ ë‹¤ë¥´ê²Œ ë³´ì…ë‹ˆë‹¤.</span>
 		</td> 
 	  </tr>
 	  <tr>
-	  	<th><p>°è¾à¸í</p></th>
+	  	<th><p>ê³„ì•½ëª…</p></th>
 	    <td>
 	    	<input type="text" name="s_cont_name" maxlength="100" style="width:95%">
 	    </td> 
-	    <th><p>±Ù·ÎÀÚ</p></th>
+	    <th><p>ê·¼ë¡œì</p></th>
 	    <td>
 	    	<input type="text" name="s_cust_name" maxlength="100" style="width:95%">
 	    </td> 
 	    <td align="right">
-	          <button type="submit" class="search_btn">°Ë»ö</button>
+	          <button type="submit" class="search_btn">ê²€ìƒ‰</button>
 	      </td>
 	  </tr> 
 	</table>
 </div>
 
 <div class="util-row">
-	<div class="push-right"><button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>¿¢¼¿</button></div>
+	<div class="push-right"><button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>ì—‘ì…€</button></div>
 </div>
 
 <div class="div_table">
@@ -72,11 +72,11 @@
 			 	<!-- IFC START 'isTemplate!=A' --><col width="28%"/> <!-- IFC END 'isTemplate!=A' -->   
 			</colgroup>
 			<tr> 
-				<th>°è¾à¸í</th> 
-				<th>°è¾àÀÏÀÚ</th>
-				<th>°è¾à»óÅÂ</th>
-				<th>±Ù·ÎÀÚ¸í</th>  
-				<!-- IFC START 'isTemplate!=A' --><th>°è¾àÁ¤º¸</th><!-- IFC END 'isTemplate!=A' -->  
+				<th>ê³„ì•½ëª…</th> 
+				<th>ê³„ì•½ì¼ì</th>
+				<th>ê³„ì•½ìƒíƒœ</th>
+				<th>ê·¼ë¡œìëª…</th>  
+				<!-- IFC START 'isTemplate!=A' --><th>ê³„ì•½ì •ë³´</th><!-- IFC END 'isTemplate!=A' -->  
 			</tr>
 		</thead>
 		<tbody>
@@ -86,12 +86,12 @@
 			<td align="center">{{list.cont_date}}</td>
 			<td align="center">{{list.status_name}}</td>
 			<td align="center">{{list.cust_name}} ({{list.birth_date}})</td> 
-			<!-- IFC START 'isTemplate==2020041' --><td align="left" style="line-height:25px;text-align:justify">* ±Ù¹«Àå¼Ò : {{list.add_col1}}<br />* ±Ù·Î½Ã°£ : {{list.add_col2}}½Ã°£(1ÀÏ) {{list.add_col3}}ÀÏ(1ÁÖ) {{list.add_col4}}½Ã°£(1ÁÖ ÃÑ)<br />* ÀÔ±İ(½Ã±Ş) : {{list.add_col5}}¿ø ({{list.add_col6}})</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td align="left" style="line-height:25px;text-align:justify">* ¸ÅÀå¸í : {{list.add_col1}}<br />* »çÁ÷»çÀ¯ : {{list.dele_reason}}<br />* ±âÅ¸»çÀ¯ : {{list.add_col3}}</td><!-- IFC END 'isTemplate==2020042' --> 
+			<!-- IFC START 'isTemplate==2020041' --><td align="left" style="line-height:25px;text-align:justify">* ê·¼ë¬´ì¥ì†Œ : {{list.add_col1}}<br />* ê·¼ë¡œì‹œê°„ : {{list.add_col2}}ì‹œê°„(1ì¼) {{list.add_col3}}ì¼(1ì£¼) {{list.add_col4}}ì‹œê°„(1ì£¼ ì´)<br />* ì…ê¸ˆ(ì‹œê¸‰) : {{list.add_col5}}ì› ({{list.add_col6}})</td><!-- IFC END 'isTemplate==2020041' --><!-- IFC START 'isTemplate==2020042' --><td align="left" style="line-height:25px;text-align:justify">* ë§¤ì¥ëª… : {{list.add_col1}}<br />* ì‚¬ì§ì‚¬ìœ  : {{list.dele_reason}}<br />* ê¸°íƒ€ì‚¬ìœ  : {{list.add_col3}}</td><!-- IFC END 'isTemplate==2020042' --> 
 		 </tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr> 
-			<td <!-- IFC START 'isTemplate!=A' -->colspan="5" <!-- IFC END 'isTemplate!=A' --><!-- IFC START 'isTemplate==A' -->colspan="4" <!-- IFC END 'isTemplate==A' -->  align="center">Á¶È¸°á°ú°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.</td>
+			<td <!-- IFC START 'isTemplate!=A' -->colspan="5" <!-- IFC END 'isTemplate!=A' --><!-- IFC START 'isTemplate==A' -->colspan="4" <!-- IFC END 'isTemplate==A' -->  align="center">ì¡°íšŒê²°ê³¼ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</td>
 		 </tr>
 		<!-- IFNOT END 'list' -->
 		</tbody>

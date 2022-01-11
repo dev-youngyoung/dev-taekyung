@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String auth_cd = u.request("auth_cd");
 
 if(auth_cd.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	return;
 }
 
@@ -11,14 +11,14 @@ DB db = new DB();
 
 DataObject authDao = new DataObject("tcc_auth");
 
-authDao.item("status", "1"); // »èÁ¦½Ã STATS = 1
+authDao.item("status", "1"); // ì‚­ì œì‹œ STATS = 1
 db.setCommand(authDao.getUpdateQuery("auth_cd= '"+auth_cd+"'"), authDao.record);
 
 if(!db.executeArray()){
-	u.jsError("Ã³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+	u.jsError("ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-u.jsAlertReplace("»èÁ¦ µÇ¾ú½À´Ï´Ù.", "./auth_list.jsp?"+u.getQueryString("auth_cd"));
+u.jsAlertReplace("ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.", "./auth_list.jsp?"+u.getQueryString("auth_cd"));
 
 %>

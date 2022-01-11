@@ -39,7 +39,7 @@ ui.gnb = (function() {
                 		$(this).addClass('is-active');
                     	depth2.stop().slideUp(300,'easeOutSine').eq(index).stop().slideDown(300,'easeInOutQuad');
                 	 }else{
-                		 $(this).find("a").attr("href","javascript:alert('·Î±×ÀÎ ÈÄ ÀÌ¿ëÇÏ¼¼¿ä.');");
+                		 $(this).find("a").attr("href","javascript:alert('ë¡œê·¸ì¸ í›„ ì´ìš©í•˜ì„¸ìš”.');");
                 	 }
                  }
              }, function() {

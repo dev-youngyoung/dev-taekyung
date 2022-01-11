@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String bid_no = u.request("bid_no");
 String bid_deg = u.request("bid_deg");
@@ -20,11 +20,11 @@ if(!bid.next()){
 String etc = "";
 
 
-//±İ¾×Á¤º¸
+//ê¸ˆì•¡ì •ë³´
 DataObject suppDao = new DataObject("tcb_bid_supp");
 DataSet supp = new DataSet();;
 //suppDao.setDebug(out);
-if(bid.getString("succ_method").equals("03") || bid.getString("succ_method").equals("06")) // Çù»ó¿¡ ÀÇÇÑ ³«Âû°¡°İ °áÁ¤
+if(bid.getString("succ_method").equals("03") || bid.getString("succ_method").equals("06")) // í˜‘ìƒì— ì˜í•œ ë‚™ì°°ê°€ê²© ê²°ì •
 {
 	if(bid.getString("vat_yn").equals("Y")){
 		String nego_amt = bid.getString("nego_amt");
@@ -54,7 +54,7 @@ etc+="<input type=\"hidden\"  name=\"bid_no_deg\" value=\""+ bid.getString("bid_
 etc+="<input type=\"hidden\"  name=\"bid_method\" value=\""+ bid.getString("bid_method")+"\"> \n";
 
 
-//Ãß°¡ Á¤º¸
+//ì¶”ê°€ ì •ë³´
 
 if(u.inArray(_member_no, new String[]{"20120500023"})){
 etc+="<input type='hidden' name='bid_name' value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"' > \n";
@@ -64,29 +64,29 @@ etc+="<script>parent.payment_grid.delRow(1);parent.payment_grid.delRow(1);parent
 	for(int i = 1 ; i<= 4; i ++ ){
 		String field_name = "etc"+i;
 		if(!bid.getString(field_name).equals("")&&field_name.equals("etc1")){
-			etc+="<script>parent.setPay('°è¾à±İ','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/Ã¼°á (00)ÀÏ ÀÌ³» Ã»±¸/(00)ÀÏ ÀÌ³» Çö±ŞÁö±Ş');</script> \n";
+			etc+="<script>parent.setPay('ê³„ì•½ê¸ˆ','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/ì²´ê²° (00)ì¼ ì´ë‚´ ì²­êµ¬/(00)ì¼ ì´ë‚´ í˜„ê¸‰ì§€ê¸‰');</script> \n";
 		}
 		if(!bid.getString(field_name).equals("")&&field_name.equals("etc2")){
-			etc+="<script>parent.setPay('Áßµµ±İ(1Â÷)','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/¸ñÀû¹° ÀÔ°íÈÄ½Ã/(00)ÀÏ ÀÌ³» Çö±İÁö±Ş');</script> \n";
+			etc+="<script>parent.setPay('ì¤‘ë„ê¸ˆ(1ì°¨)','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/ëª©ì ë¬¼ ì…ê³ í›„ì‹œ/(00)ì¼ ì´ë‚´ í˜„ê¸ˆì§€ê¸‰');</script> \n";
 		}
 		if(!bid.getString(field_name).equals("")&&field_name.equals("etc3")){
-			etc+="<script>parent.setPay('Áßµµ±İ(2Â÷)','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/¸ñÀû¹° °Ë¼öÈÄ½Ã/(00)ÀÏ ÀÌ³» Çö±İÁö±Ş');</script> \n";
+			etc+="<script>parent.setPay('ì¤‘ë„ê¸ˆ(2ì°¨)','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/ëª©ì ë¬¼ ê²€ìˆ˜í›„ì‹œ/(00)ì¼ ì´ë‚´ í˜„ê¸ˆì§€ê¸‰');</script> \n";
 		}
 		if(!bid.getString(field_name).equals("")&&field_name.equals("etc4")){
-			etc+="<script>parent.setPay('ÀÜ±İ','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/Ã¼°á (00)ÀÏ ÀÌ³» Ã»±¸/(00)ÀÏ ÀÌ³» Çö±ŞÁö±Ş');</script> \n";
+			etc+="<script>parent.setPay('ì”ê¸ˆ','"+ u.numberFormat((long)Math.floor((supp.getLong("supp_tax")*bid.getLong(field_name))*0.01))+"','/ì²´ê²° (00)ì¼ ì´ë‚´ ì²­êµ¬/(00)ì¼ ì´ë‚´ í˜„ê¸‰ì§€ê¸‰');</script> \n";
 		}
 	}
-}else if(u.inArray(_member_no, new String[]{"20151101243"})){//NH°³¹ß
+}else if(u.inArray(_member_no, new String[]{"20151101243"})){//NHê°œë°œ
 	etc+="<input type='hidden' name='bid_name' value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"' > \n";
 	etc+="<script>parent.document.forms['form1']['cont_name'].value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"';</script> \n";
 	etc+="<script>parent.document.forms['form1']['cont_name_str'].value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"';</script> \n";
 	etc+="<script>parent.replaceInput('"+bid.getString("bid_name").replaceAll("'","&#39;")+"', 'cont_name', document.all.__html);</script> \n";
-}else if(u.inArray(_member_no, new String[]{"20121200116"})){//ÇÑ±¹Á¦Áö
+}else if(u.inArray(_member_no, new String[]{"20121200116"})){//í•œêµ­ì œì§€
 	etc+="<input type='hidden' name='bid_name' value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"' > \n";
 	etc+="<script>parent.document.forms['form1']['cont_name'].value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"';</script> \n";
 	etc+="<script>parent.replaceInput('"+bid.getString("bid_name").replaceAll("'","&#39;")+"', 'cont_name', document.all.__html);</script> \n";
 	etc+="<script>parent.document.forms['form1']['bid_user_no'].value='"+bid.getString("user_no")+"';</script> \n";
-}else if(u.inArray(_member_no, new String[]{"20160901598"})){//NHÅõÀÚÁõ±Ç
+}else if(u.inArray(_member_no, new String[]{"20160901598"})){//NHíˆ¬ìì¦ê¶Œ
 	etc+="<input type='hidden' name='bid_name' value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"' > \n";
 	etc+="<script>parent.document.forms['form1']['cont_name'].value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"';</script> \n";
 	etc+="<script>if(parent.document.forms['form1']['cont_name_str'])parent.document.forms['form1']['cont_name_str'].value='"+bid.getString("bid_name").replaceAll("'","&#39;")+"';</script> \n";

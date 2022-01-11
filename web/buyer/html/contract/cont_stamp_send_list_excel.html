@@ -1,7 +1,7 @@
-<html>
+ï»¿<html>
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 <table widtd="800" border="0" cellpadding="0" cellspacing="0">
@@ -15,51 +15,22 @@
 		<td>
 			<table widtd="100%" border="1" cellpadding="2" cellspacing="0" style="font-size:9pt">
 			  <tr>
-			  	<td bgcolor="#cccccc" align="center" rowspan="2">¼ø¹ø</td>
-			  	<td bgcolor="#cccccc" align="center" rowspan="2">°è¾à¸í</td>
-			  	<td bgcolor="#cccccc" align="center" rowspan="2">¼ö±Ş»ç¾÷ÀÚ</td>
-			  	<td bgcolor="#cccccc" align="center" rowspan="2">°è¾àÀÏÀÚ</td>
-			  	<td bgcolor="#cccccc" align="center" rowspan="2">°è¾à±İ¾×</td>
-			  	<td bgcolor="#cccccc" align="center" colspan="4">¿ø»ç¾÷ÀÚ</td>
-			  	<td bgcolor="#cccccc" align="center" colspan="4">¼ö±Ş¾÷ÀÚ</td>
-			  </tr>
-			  <tr>
-			  	<td bgcolor="#cccccc" align="center" >ÀÎÁö¼¼¾×</td>
-			  	<td bgcolor="#cccccc" align="center" >°íÀ¯(Á¢¼ö)¹øÈ£</td>
-			  	<td bgcolor="#cccccc" align="center" >¹ß±ŞÃ³</td>
-			  	<td bgcolor="#cccccc" align="center" >¹ß±ŞÀÏ</td>
-			  	<td bgcolor="#cccccc" align="center" >ÀÎÁö¼¼¾×</td>
-			  	<td bgcolor="#cccccc" align="center" >°íÀ¯(Á¢¼ö)¹øÈ£</td>
-			  	<td bgcolor="#cccccc" align="center" >¹ß±ŞÃ³</td>
-			  	<td bgcolor="#cccccc" align="center" >¹ß±ŞÀÏ</td>
+			    <td bgcolor="#cccccc" align="center">ê³„ì•½ëª…</td>
+			    <td bgcolor="#cccccc" align="center">ê±°ë˜ì²˜</td>
+			    <td bgcolor="#cccccc" align="center">ê³„ì•½ì¼</td>
+			    <td bgcolor="#cccccc" align="center">ê³„ì•½ê¸ˆì•¡</td>
+			    <td bgcolor="#cccccc" align="center">ì§„í–‰ìƒíƒœ</td>
+			    <td bgcolor="#cccccc" align="center">ì¸ì§€ì„¸ë‚©ë¶€ì—¬ë¶€</td>
 			  </tr>
 			  <!-- IF START 'list' -->
 			  <!-- LOOP START 'list' -->
 			  <tr>
-				<td align="center">{{list.__ord}}</td>
-				<td>{{list.cont_name}}</td>
-				<td>{{list.member_name}}</td>
+				<td align="left">{{list.cont_name}}</td>
+				<td align="left">{{list.member_name}}</td>
 				<td align="center">{{list.cont_date}}</td>
 				<td align="right">{{list.cont_total}}</td>
-				<!-- IF START 'list.send_reg' -->
-				<td align="right">{{list.send_stamp_amt}}</td>
-				<td align="center"    style="mso-number-format: '@';" >{{list.send_cert_no}}</td>
-				<td align="center">{{list.send_channel}}</td>
-				<td align="center">{{list.send_issue_date}}</td>
-				<!-- IF END 'list.send_reg' -->
-				<!-- IFNOT START 'list.send_reg' -->
-				<td align="center" colspan="4">ÇØ´ç¾øÀ½</td>
-				<!-- IFNOT END 'list.send_reg' -->
-				
-				<!-- IF START 'list.recv_reg' -->
-				<td align="right">{{list.recv_stamp_amt}}</td>
-				<td align="center"   style="mso-number-format: '@';">{{list.recv_cert_no}}</td>
-				<td align="center">{{list.recv_channel}}</td>
-				<td align="center">{{list.recv_issue_date}}</td>
-				<!-- IF END 'list.recv_reg' -->
-				<!-- IFNOT START 'list.recv_reg' -->
-				<td align="center" colspan="4">ÇØ´ç¾øÀ½</td>
-				<!-- IFNOT END 'list.recv_reg' -->
+				<td align="center">{{list.status_nm}}</td>
+				<td align="center">{{list.stamp_yn}}</td>
 			  </tr>
 			  <!-- LOOP END 'list' -->
 			</table>

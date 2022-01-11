@@ -11,12 +11,12 @@ import javax.imageio.ImageIO;
 public class ImageUtil {
 
 	/**
-     * ÀÌ¹ÌÁö ÆÄÀÏÀÇ Å©±â¿Í Åõ¸íµµ¸¦ Á¶ÀıÇÏ¿© pngÆÄÀÏ·Î ¸¸µç´Ù. (png¸¸ÀÌ Åõ¸íµµ¸¦ Áö¿øÇÏ´Â Å¸ÀÔÀÓ)
+     * ì´ë¯¸ì§€ íŒŒì¼ì˜ í¬ê¸°ì™€ íˆ¬ëª…ë„ë¥¼ ì¡°ì ˆí•˜ì—¬ pngíŒŒì¼ë¡œ ë§Œë“ ë‹¤. (pngë§Œì´ íˆ¬ëª…ë„ë¥¼ ì§€ì›í•˜ëŠ” íƒ€ì…ì„)
      * 
-     * @param srcImageFilePath ¿øº» ÀÌ¹ÌÁö ÆÄÀÏ °æ·Î
-     * @param nTargetSize º¯È¯ÀÌ¹ÌÁö °¡·Î Å©±â
-     * @param nOpacity Åõ¸íµµ %  1~100 »çÀÌ  (°ªÀÌ ÀÛÀ»¼ö·Ï ´õ Åõ¸íÇØÁü, 100Àº ¿øº»°ú °°À½)
-     * @return º¯È¯µÈ ÆÄÀÏ¸í
+     * @param srcImageFilePath ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ ê²½ë¡œ
+     * @param nTargetSize ë³€í™˜ì´ë¯¸ì§€ ê°€ë¡œ í¬ê¸°
+     * @param nOpacity íˆ¬ëª…ë„ %  1~100 ì‚¬ì´  (ê°’ì´ ì‘ì„ìˆ˜ë¡ ë” íˆ¬ëª…í•´ì§, 100ì€ ì›ë³¸ê³¼ ê°™ìŒ)
+     * @return ë³€í™˜ëœ íŒŒì¼ëª…
      * @throws Exception
      */
 	
@@ -39,7 +39,7 @@ public class ImageUtil {
             
             return sName + ".png";        	
         }
-        catch(Exception e)	// º¯È¯ÇÒ ¼ö ¾ø´Â Çü½ÄÀÌ¸é ±×³É ¿øº»»ç¿ë
+        catch(Exception e)	// ë³€í™˜í•  ìˆ˜ ì—†ëŠ” í˜•ì‹ì´ë©´ ê·¸ëƒ¥ ì›ë³¸ì‚¬ìš©
         {
         	return in.getName();
         }
@@ -68,11 +68,11 @@ public class ImageUtil {
     }
 
     /**
-     * ÀÌ¹ÌÁö Å©±â Á¶Àı ¹× Ç°Áú º¸Á¤
+     * ì´ë¯¸ì§€ í¬ê¸° ì¡°ì ˆ ë° í’ˆì§ˆ ë³´ì •
      * @param srcImageFileStream
      * @param destWidth
      * @param destHeight
-     * @return º¯È¯µÈ ÀÌ¹ÌÁöÀÇ base64ÀÎÄÚµù
+     * @return ë³€í™˜ëœ ì´ë¯¸ì§€ì˜ base64ì¸ì½”ë”©
      * @throws Exception
      */
     public String resizeQulityToFile(InputStream srcImageFileStream, int destWidth, int destHeight) throws Exception
@@ -92,7 +92,7 @@ public class ImageUtil {
             int pixels[] = new int[destWidth * destHeight];
             PixelGrabber pg = new PixelGrabber(imgTarget, 0, 0, destWidth, destHeight, pixels, 0, destWidth);
             try {
-                pg.grabPixels(); // JEPG Æ÷¸ËÀÇ °æ¿ì ¿À·£ ½Ã°£ÀÌ °É¸°´Ù.
+                pg.grabPixels(); // JEPG í¬ë§·ì˜ ê²½ìš° ì˜¤ëœ ì‹œê°„ì´ ê±¸ë¦°ë‹¤.
             } catch (InterruptedException e) {
 
             }
@@ -125,7 +125,7 @@ public class ImageUtil {
     public static void main(String[] args) throws Exception {
 
     	ImageUtil at = new ImageUtil();
-    	at.resizeToFile("d:\\°­»ê°Ç¼³CI(500p).jpg", 240, 20);
+    	at.resizeToFile("d:\\ê°•ì‚°ê±´ì„¤CI(500p).jpg", 240, 20);
 
     }
 }

@@ -4,19 +4,19 @@
 <%@page import="org.zefer.pd4ml.PD4ML"%>
 <%@page import="org.zefer.pd4ml.PD4PageMark"%>
 <%@page import="nicelib.pdf.PDFMaker"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 String client_no = u.request("client_no");
 if(member_no.equals("")||client_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject clientDao = new DataObject("tcb_client");
 DataSet client = clientDao.find(" member_no = '"+member_no+"' and client_no = '"+client_no+"'");
 if(!client.next()){
-	u.jsErrClose("°Å·¡°ü°è Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("ê±°ë˜ê´€ê³„ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -44,7 +44,7 @@ if(u.isPost()){
 	StringBuffer html = new StringBuffer();
 	html.append("<html><head><style type=\"text/css\">");
 	html.append("<!--");
-	html.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
+	html.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
 	html.append("		.lineTable { border-collapse:collapse; border:1 solid black }");
 	html.append("		.lineTable td { border:1 solid black }");
 	html.append("		.lineTable .noborder { border:0 }");	
@@ -59,24 +59,24 @@ if(u.isPost()){
 	
 	
 	PD4PageMark headerMark = new PD4PageMark();
-	headerMark.setAreaHeight( 30 );				//header ¿µ¿ª ¼³Á¤
+	headerMark.setAreaHeight( 30 );				//header ì˜ì—­ ì„¤ì •
 	
-	//header µ¥ÀÌÅÍ ¼ÂÆÃ
+	//header ë°ì´í„° ì…‹íŒ…
 	headerMark.setHtmlTemplate("");
 	pd4ml.setPageHeader(headerMark);
 	
-	//footer ¿µ¿ª¼³Á¤
+	//footer ì˜ì—­ì„¤ì •
 	PD4PageMark footerMark = new PD4PageMark();
 	footerMark.setAreaHeight( 35 );
-	footerMark.setHtmlTemplate("<span><font style=\"font-size:12px\" color=\"#5B5B5B\">¡Ø º» ¹®¼­´Â ±¸¸Å ¡¤ Á¶´Ş ÀåÅÍ ³ªÀÌ½º´ÙÅ¥(www.nicedocu.com, ÀÏ¹İ±â¾÷¿ë) ½Ã½ºÅÛ¿¡¼­ ÀÎÅÍ³İÀ¸·Î Ãâ·ÂµÇ¾ú½À´Ï´Ù.</font></span>");
+	footerMark.setHtmlTemplate("<span><font style=\"font-size:12px\" color=\"#5B5B5B\">â€» ë³¸ ë¬¸ì„œëŠ” êµ¬ë§¤ Â· ì¡°ë‹¬ ì¥í„° ë‚˜ì´ìŠ¤ë‹¤í(www.nicedocu.com, ì¼ë°˜ê¸°ì—…ìš©) ì‹œìŠ¤í…œì—ì„œ ì¸í„°ë„·ìœ¼ë¡œ ì¶œë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.</font></span>");
 	
 	pd4ml.setPageFooter(footerMark);
-	pd4ml.setPageInsets(new Insets(10,20,5,20));						//¿©¹é¼³Á¤
-	pd4ml.setHtmlWidth(750);									//º¯È¯ÇÒ htmlÀÇ width Á¤º¸
-	pd4ml.setPageSize(PD4Constants.A4);									//¿ëÁö¸ğ¾ç A4¼³Á¤
-	//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//°¡·Î·Î ¼³Á¤
-	pd4ml.useTTF("java:fonts", true);									//ÁöÁ¤ÇÑ ÆùÆ® »ç¿ë
-	pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
+	pd4ml.setPageInsets(new Insets(10,20,5,20));						//ì—¬ë°±ì„¤ì •
+	pd4ml.setHtmlWidth(750);									//ë³€í™˜í•  htmlì˜ width ì •ë³´
+	pd4ml.setPageSize(PD4Constants.A4);									//ìš©ì§€ëª¨ì–‘ A4ì„¤ì •
+	//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//ê°€ë¡œë¡œ ì„¤ì •
+	pd4ml.useTTF("java:fonts", true);									//ì§€ì •í•œ í°íŠ¸ ì‚¬ìš©
+	pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
 	pd4ml.enableDebugInfo();
 	
 	ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
@@ -99,7 +99,7 @@ if(u.isPost()){
 	response.setContentType(mimeType);
 	response.setHeader("Access-Control-Allow-Credentials", "true");
 	//response.setHeader("Content-Disposition", "attachment;filename="+StrUtil.ConfCharset(sFileTarFile)+"\"");
-	response.setHeader("Content-Disposition", "attachment;filename=\""+new String(("Çù·Â¾÷Ã¼µî·ÏÈ®ÀÎÁõ_"+c_member.getString("member_name")+".pdf").getBytes("EUC-KR"), "ISO-8859-1")+"\";");
+	response.setHeader("Content-Disposition", "attachment;filename=\""+new String(("í˜‘ë ¥ì—…ì²´ë“±ë¡í™•ì¸ì¦_"+c_member.getString("member_name")+".pdf").getBytes("UTF-8"), "ISO-8859-1")+"\";");
 	//response.setContentLength(fileSize);
 	ServletOutputStream outputStream = response.getOutputStream();
 
@@ -113,10 +113,10 @@ if(u.isPost()){
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("cust.pop_reg_doc");
-p.setVar("popup_title","°Å·¡Ã³µî·ÏÈ®ÀÎ¼­");
+p.setVar("popup_title","ê±°ë˜ì²˜ë“±ë¡í™•ì¸ì„œ");
 p.setVar("member",member);
 p.setVar("c_member",c_member);
-p.setVar("han_sysdate", u.getTimeString("yyyy³â MM¿ù ddÀÏ"));
+p.setVar("han_sysdate", u.getTimeString("yyyyë…„ MMì›” ddì¼"));
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("mode"));
 p.setVar("form_script",f.getScript());

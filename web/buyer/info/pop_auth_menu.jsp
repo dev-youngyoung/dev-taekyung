@@ -1,19 +1,19 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String callback = u.request("callback");
 if(callback.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+_member_no+"' ");
 if(!member.next()){
-	u.jsErrClose("È¸¿øÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsErrClose("íšŒì›ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
-                     //°ßÀû°á°ú,ÀÔÂû°á°ú, ¿Ï·á°è¾à, ÁøÇàÁßÀÎ°è¾à
+                     //ê²¬ì ê²°ê³¼,ìž…ì°°ê²°ê³¼, ì™„ë£Œê³„ì•½, ì§„í–‰ì¤‘ì¸ê³„ì•½
 String conf_menus = "'000034','000043','000063','000060','000120'";
 
 
@@ -125,7 +125,7 @@ if(u.isPost()&&f.validate()){
 p.setLayout("popup");
 p.setDebug(out);
 p.setBody("info.pop_auth_menu");
-p.setVar("popup_title","¸Þ´º¼±ÅÃ");
+p.setVar("popup_title","ë©”ë‰´ì„ íƒ");
 p.setLoop("treeMenu", treeMenu);
 p.setVar("callback", callback);
 p.setVar("form_script",f.getScript());

@@ -2,7 +2,7 @@
 <%@page import="org.zefer.pd4ml.*"%>
 <%@page import="java.awt.*"%>
 <%@ page import="org.jsoup.Jsoup,org.jsoup.nodes.Document,org.jsoup.nodes.Element,org.jsoup.select.Elements"%>
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String gubun = u.aseDec(u.request("gubun")) ;
 String noti_seq = u.aseDec(u.request("noti_seq")) ;
@@ -10,7 +10,7 @@ String member_no = u.aseDec(u.request("member_no")) ;
 String ci_img = u.request("ci_img");
 String down_file_name = u.request("down_file_name");
 if(noti_seq.equals("")||member_no.equals("")){
-	u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¿© ÁÖ¼¼¿ä.");
+	u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì—¬ ì£¼ì„¸ìš”.");
 	return;
 }
 
@@ -20,7 +20,7 @@ if(!down_file_name.equals("")) down_file_name = u.aseDec(down_file_name);
 DataObject custDao = new DataObject("tcb_recruit_cust");
 DataSet cust = custDao.find("member_no = '20160901598' and noti_seq = '"+noti_seq+"' and client_no= '"+member_no+"'");
 if(!cust.next()){
-	u.jsError("½ÅÃ»¼­ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì‹ ì²­ì„œ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -33,7 +33,7 @@ if(gubun.equals("req")){
 	 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"lineTable\" style='margin-top:2px'>"
 	+"<colgroup><col width='25%'><col width='75%'></colgrup>"
 	+"<tr>"
-	+"<td style=\"padding:3px\" align=\"center\">±âÅ¸Æò°¡»çÇ×</td>"
+	+"<td style=\"padding:3px\" align=\"center\">ê¸°íƒ€í‰ê°€ì‚¬í•­</td>"
 	+"<td style=\"padding:3px\" >"+u.nl2br(cust.getString("evaluate_etc"))+"</td>"
 	+"</tr>"
 	+"</table>";
@@ -44,7 +44,7 @@ if(gubun.equals("req")){
 StringBuffer html = new StringBuffer();
 html.append("<html><head><style type=\"text/css\">");
 html.append("<!--");
-html.append("		td {  font-family: \"³ª´®°íµñ\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
+html.append("		td {  font-family: \"ë‚˜ëˆ”ê³ ë”•\",\"Arial\"; font-size: 12px; font-style: normal; letter-spacing:0; color: black;line-height:150%}");
 html.append("		.lineTable { border-collapse:collapse; border:1 solid black }");
 html.append("		.lineTable td { border:1 solid black }");
 html.append("		.lineTable .noborder { border:0 }");	
@@ -57,24 +57,24 @@ html.append("</body></html>");
 PD4ML pd4ml = new PD4ML();
 
 PD4PageMark headerMark = new PD4PageMark();
-headerMark.setAreaHeight( 30 );				//header ¿µ¿ª ¼³Á¤
+headerMark.setAreaHeight( 30 );				//header ì˜ì—­ ì„¤ì •
 
-//header µ¥ÀÌÅÍ ¼ÂÆÃ
+//header ë°ì´í„° ì…‹íŒ…
 headerMark.setHtmlTemplate("");
 pd4ml.setPageHeader(headerMark);
 
-//footer ¿µ¿ª¼³Á¤
+//footer ì˜ì—­ì„¤ì •
 PD4PageMark footerMark = new PD4PageMark();
 footerMark.setAreaHeight( 35 );
 //footerMark.setHtmlTemplate("");
 
 pd4ml.setPageFooter(footerMark);
-pd4ml.setPageInsets(new Insets(10,20,5,20));						//¿©¹é¼³Á¤
-pd4ml.setHtmlWidth(750);									//º¯È¯ÇÒ htmlÀÇ width Á¤º¸
-pd4ml.setPageSize(PD4Constants.A4);									//¿ëÁö¸ğ¾ç A4¼³Á¤
-//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//°¡·Î·Î ¼³Á¤
-pd4ml.useTTF("java:fonts", true);									//ÁöÁ¤ÇÑ ÆùÆ® »ç¿ë
-pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default ÆùÆ® ¼³Á¤
+pd4ml.setPageInsets(new Insets(10,20,5,20));						//ì—¬ë°±ì„¤ì •
+pd4ml.setHtmlWidth(750);									//ë³€í™˜í•  htmlì˜ width ì •ë³´
+pd4ml.setPageSize(PD4Constants.A4);									//ìš©ì§€ëª¨ì–‘ A4ì„¤ì •
+//pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));	//ê°€ë¡œë¡œ ì„¤ì •
+pd4ml.useTTF("java:fonts", true);									//ì§€ì •í•œ í°íŠ¸ ì‚¬ìš©
+pd4ml.setDefaultTTFs("Nanum Gothic", "Times New Roman", "Arial");	//default í°íŠ¸ ì„¤ì •
 pd4ml.enableDebugInfo();
 
 
@@ -82,7 +82,7 @@ response.setHeader("Pragma", "No-cache");
 response.setDateHeader("Expires", 0);
 response.setHeader("Cache-Control", "no-Cache");
 response.setContentType("application/pdf");
-response.setHeader("Content-Disposition", "attachment;filename="+new String((down_file_name+".pdf").getBytes("EUC-KR"), "ISO-8859-1")+";");
+response.setHeader("Content-Disposition", "attachment;filename="+new String((down_file_name+".pdf").getBytes("UTF-8"), "ISO-8859-1")+";");
 ByteArrayOutputStream byteOuterupStream = new ByteArrayOutputStream();
 pd4ml.render(new StringReader(html.toString()), byteOuterupStream);
 
@@ -94,17 +94,17 @@ byteOuterupStream.close();
 outputStream.close();
 %>
 <%!
-// input box µîÀ» Á¦°Å
+// input box ë“±ì„ ì œê±°
 public String removeHtml(String html)
 {
 	String html_rm = "";
-	// DB¿ë
+	// DBìš©
 	Document doc = Jsoup.parse(html);
-	// PDF¿ë
-	for( Element elem : doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().html("¢Ã"); else elem.parent().html("¡à");  }  // Ã¼Å©¹Ú½º
-	for( Element elem : doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().html("¢Ã"); else elem.parent().html("¡à"); }  // ¶óµğ¿À
-	for( Element elem : doc.select("input[type=hidden]") ){ elem.remove(); }  // input box °ª ¸ğµÎ Á¦°Å
-	for( Element elem : doc.select("input") ){ elem.parent().html(elem.val());  }  // input box °ª ¸ğµÎ Á¦°Å
+	// PDFìš©
+	for( Element elem : doc.select("input[type=checkbox]") ){ if(elem.hasAttr("checked")) elem.parent().html("â–£"); else elem.parent().html("â–¡");  }  // ì²´í¬ë°•ìŠ¤
+	for( Element elem : doc.select("input[type=radio]") ){ if(elem.hasAttr("checked")) elem.parent().html("â–£"); else elem.parent().html("â–¡"); }  // ë¼ë””ì˜¤
+	for( Element elem : doc.select("input[type=hidden]") ){ elem.remove(); }  // input box ê°’ ëª¨ë‘ ì œê±°
+	for( Element elem : doc.select("input") ){ elem.parent().html(elem.val());  }  // input box ê°’ ëª¨ë‘ ì œê±°
 	for( Element elem : doc.select("select") ){ elem.parent().html(elem.select("option[selected]").val()); }
 	for( Element elem : doc.select("textarea") ){ elem.parent().html(elem.val()); }
 

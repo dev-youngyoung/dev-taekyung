@@ -1,13 +1,13 @@
-<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+ï»¿<form name="form1" method="post" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
 
 	<div class="container-wrap">
 		<div class="bidinfo-block">
 			<div class="inner-container">
 				<div class="inner-section">
 					<div class="bidinfo-title">
-						<p>ÀÔÂûÁ¤º¸</p>
+						<p>ì…ì°°ì •ë³´</p>
 						<div class="btn">
-							<input type="button" onclick="location.href='logout.jsp?{{query}}'" value="·Î±×¾Æ¿ô">
+							<input type="button" onclick="location.href='logout.jsp?{{query}}'" value="ë¡œê·¸ì•„ì›ƒ">
 						</div>
 					</div>
 					<div class="bidinfo-table">
@@ -18,19 +18,19 @@
 							<col style="width: 30%;">
 							<tbody>
 							<tr>
-								<th scope="row">°ø°í¸í</th>
+								<th scope="row">ê³µê³ ëª…</th>
 								<td colspan="3">{{bid.bid_name}}</td>
 							</tr>
 							<tr>
-								<th scope="row">°ø°íÀÏÀÚ</th>
+								<th scope="row">ê³µê³ ì¼ì</th>
 								<td>{{bid.bid_date}}</td>
-								<th scope="row">¸¶°¨ÀÏÀÚ</th>
+								<th scope="row">ë§ˆê°ì¼ì</th>
 								<td>{{bid.submit_edate}}</td>
 							</tr>
 							<tr>
-								<th scope="row">ÀÔÂû´ã´çÀÚ</th>
+								<th scope="row">ì…ì°°ë‹´ë‹¹ì</th>
 								<td>{{bid.bid_charge}}</td>
-								<th scope="row">´ã´ç¿¬¶ôÃ³</th>
+								<th scope="row">ë‹´ë‹¹ì—°ë½ì²˜</th>
 								<td>{{bid.bid_tel_num}}</td>
 							</tr>
 							</tbody>
@@ -40,7 +40,7 @@
 
 				<div class="inner-section">
 					<div class="bidinfo-title">
-						<p>ÀÔÂûÂü¿©¾÷Ã¼</p>
+						<p>ì…ì°°ì°¸ì—¬ì—…ì²´</p>
 					</div>
 					<div class="bidinfo-table">
 						<table class="type2">
@@ -50,14 +50,14 @@
 							<col style="width: 25%;">
 							<thead>
 							<tr>
-								<th scope="col">»ç¾÷ÀÚ¹øÈ£</th>
-								<th scope="col">¾÷Ã¼¸í</th>
-								<th scope="col">´ã´çÀÚ</th>
+								<th scope="col">ì‚¬ì—…ìë²ˆí˜¸</th>
+								<th scope="col">ì—…ì²´ëª…</th>
+								<th scope="col">ë‹´ë‹¹ì</th>
 								<!-- IF START 'bid_view' -->
-								<th scope="col">Á¦Ãâ¿©ºÎ</th>
+								<th scope="col">ì œì¶œì—¬ë¶€</th>
 								<!-- IF END 'bid_view' -->
 								<!-- IFNOT START 'bid_view' -->
-								<th scope="col">ÀÔÂû±İ¾×<br>{{bid.vat_info}}</th>
+								<th scope="col">ì…ì°°ê¸ˆì•¡<br>{{bid.vat_info}}</th>
 								<!-- IFNOT END 'bid_view' -->
 							</tr>
 							</thead>
@@ -77,15 +77,15 @@
 				<div class="btn-wrap">
 					<!-- IF START 'bid.btn_open' -->
 					<!-- IFNOT START 'open_able' -->
-					<input type="button" value="°³Âû" class="common-btn width-200" onclick="alert('¸¶°¨½Ã°£ ÀÌÈÄ °³Âû´ã´çÀÚ¸¸ °³Âû°¡´É ÇÕ´Ï´Ù.');">
+					<input type="button" value="ê°œì°°" class="common-btn width-200" onclick="alert('ë§ˆê°ì‹œê°„ ì´í›„ ê°œì°°ë‹´ë‹¹ìë§Œ ê°œì°°ê°€ëŠ¥ í•©ë‹ˆë‹¤.');">
 					<!-- IFNOT END 'open_able' -->
 					<!-- IF START 'open_able' -->
-					<input type="submit" value="°³Âû" class="common-btn width-200">
+					<input type="submit" value="ê°œì°°" class="common-btn width-200">
 					<!-- IF END 'open_able' -->
 					<!-- IF END 'bid.btn_open' -->
 				</div>
 				<div class="notice-message">
-					<p>¡Ø °³Âû¿¡ ´ëÇÑ »ó¼¼ Á¤º¸´Â PC¿¡¼­ È®ÀÎÀ» ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.</p>
+					<p>â€» ê°œì°°ì— ëŒ€í•œ ìƒì„¸ ì •ë³´ëŠ” PCì—ì„œ í™•ì¸ì„ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.</p>
 				</div>
 			</div>
 		</div>
@@ -96,7 +96,7 @@
 
 <script language="javascript">
 function formSubmit(f){
-	if(confirm("°³ÂûÇÏ½Ã°Ú½À´Ï±î?")){
+	if(confirm("ê°œì°°í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 		return true;
 	}
 	return false;

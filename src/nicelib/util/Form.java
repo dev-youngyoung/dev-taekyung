@@ -1,17 +1,21 @@
 package nicelib.util;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.regex.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.http.Cookie;
 
 import procure.common.conf.Startup;
-
-import nicelib.util.MultipartRequest;
-import nicelib.util.Util;
 
 public class Form {
 
@@ -19,7 +23,7 @@ public class Form {
 	public Vector elements = new Vector();
 	public Hashtable data = new Hashtable();
 	public String errMsg = null;
-	public String uploadDir = null; //»ç¿ëÀÚ ÁöÁ¤ µğ·ºÅä¸®
+	public String uploadDir = null; //ì‚¬ìš©ì ì§€ì • ë””ë ‰í† ë¦¬
 	public int maxPostSize = 1024 * 1024 * 1024; //1G
 	public String encoding = Config.getEncoding();
 
@@ -36,7 +40,7 @@ public class Form {
 	static {
 		options.put("email", "^[a-z0-9A-Z\\_\\.\\-]+@([a-z0-9A-Z\\.\\-]+)\\.([a-zA-Z]+)$");
 		//options.put("userid", "^([a-z0-9\\_\\.\\-]{4,15})$");
-		options.put("userid", "^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$");//20160808 ÀÚ¸®¼ö ÀÌ½´ Àû¿ë
+		options.put("userid", "^[a-zA-Z]{1}[a-zA-Z0-9_]{5,19}$");//20160808 ìë¦¬ìˆ˜ ì´ìŠˆ ì ìš©
 		//options.put("userpw", "^([a-z0-9\"'\\{\\}\\[\\]/?.,;:|\\)\\(*~`!^\\-_+<>@#$&%^\\\\=]{8,20})$");
 		options.put("url", "^(http:\\/\\/)(.+)");
 		options.put("number", "^-?[0-9]+$");
@@ -179,7 +183,7 @@ public class Form {
 	}
 	
 	public boolean validate() throws Exception {
-		Iterator ie = elements.iterator();         //VectorÀÇ ¿ä¼ÒÀÇ ¸®½ºÆ®¸¦ ¸®ÅÏ
+		Iterator ie = elements.iterator();         //Vectorì˜ ìš”ì†Œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¦¬í„´
 		while(ie.hasNext()) {
 		    String[] element = (String[])ie.next();
 		    if(isValid(element) == false) return false;
@@ -321,7 +325,7 @@ public class Form {
 		if(attributes.containsKey("REQUIRED")) {
 			if(mrequest !=  null && mrequest.getFile(name) != null) value = getFileName(name);
 			if("".equals(value.trim())) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀº ÇÊ¼öÇ×¸ñÀÔ´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì€ í•„ìˆ˜í•­ëª©ì…ë‹ˆë‹¤.";
 				return false;
 			}
 		}
@@ -329,7 +333,7 @@ public class Form {
 		if(attributes.containsKey("MAXBYTE")) {
 			int size = Integer.parseInt((String)attributes.get("MAXBYTE"));
 			if(value.getBytes().length > size) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀÇ ÃÖ´ë±æÀÌ´Â "+ size +"ÀÚ ÀÔ´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì˜ ìµœëŒ€ê¸¸ì´ëŠ” "+ size +"ì ì…ë‹ˆë‹¤.";
 				return false;
 			}
 		}
@@ -337,14 +341,14 @@ public class Form {
 		if(attributes.containsKey("MINBYTE")&&attributes.containsKey("REQUIRED")) {
 			int size = Integer.parseInt((String)attributes.get("MINBYTE"));
 			if(value.getBytes().length < size) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀÇ ÃÖ¼Ò±æÀÌ´Â "+ size +"ÀÚ ÀÔ´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì˜ ìµœì†Œê¸¸ì´ëŠ” "+ size +"ì ì…ë‹ˆë‹¤.";
 				return false;
 			}
 		}
 		if(attributes.containsKey("FIXBYTE")&&attributes.containsKey("REQUIRED")) {
 			int size = Integer.parseInt((String)attributes.get("FIXBYTE"));
 			if(value.getBytes().length != size) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀº Á¤È®È÷ "+ size +"ÀÚÀÌ¾î¾ß ÇÕ´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì€ ì •í™•íˆ "+ size +"ìì´ì–´ì•¼ í•©ë‹ˆë‹¤.";
 				return false;
 			}
 		}
@@ -353,7 +357,7 @@ public class Form {
 			int size = Integer.parseInt((String)attributes.get("MINSIZE"));
 			int v = Integer.parseInt(value);
 			if(v < size) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀÇ °ªÀº "+ size +"ÀÌÇÏÀÌ¾î¾ß ÇÕ´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì˜ ê°’ì€ "+ size +"ì´í•˜ì´ì–´ì•¼ í•©ë‹ˆë‹¤.";
 				return false;
 			}
 		}
@@ -362,7 +366,7 @@ public class Form {
 			int size = Integer.parseInt((String)attributes.get("MAXSIZE"));
 			int v = Integer.parseInt(value);
 			if(v > size) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀÇ °ªÀº "+ size +"ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì˜ ê°’ì€ "+ size +"ì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤.";
 				return false;
 			}
 		}
@@ -384,7 +388,7 @@ public class Form {
 			Pattern pattern = Pattern.compile(re);
 			Matcher match = pattern.matcher(value);
 			if(match.find() == false) {
-				this.errMsg = "["+ nicname +"]Ç×¸ñÀº Çü½Ä¿¡ ¾î±ß³³´Ï´Ù.";
+				this.errMsg = "["+ nicname +"]í•­ëª©ì€ í˜•ì‹ì— ì–´ê¸‹ë‚©ë‹ˆë‹¤.";
 				return false;
 			}
 		}
@@ -396,7 +400,7 @@ public class Form {
 				Pattern pattern = Pattern.compile("(" + re.replace('\'', '|') + ")$");
 				Matcher match = pattern.matcher(getFileName(name).toLowerCase());
 				if(match.find() == false) {
-					this.errMsg = "["+ nicname +"]Ç×¸ñÀº ¾÷·Îµå°¡ Á¦ÇÑµÈ ÆÄÀÏÀÔ´Ï´Ù.";
+					this.errMsg = "["+ nicname +"]í•­ëª©ì€ ì—…ë¡œë“œê°€ ì œí•œëœ íŒŒì¼ì…ë‹ˆë‹¤.";
 					return false;
 				}
 			}
@@ -409,7 +413,7 @@ public class Form {
 				Pattern pattern = Pattern.compile("(" + re.replace('\'', '|') + ")$");
 				Matcher match = pattern.matcher(getFileName(name).toLowerCase());
 				if(match.find() == true) {
-					this.errMsg = "["+ nicname +"]Ç×¸ñÀº ¾÷·Îµå°¡ Á¦ÇÑµÈ ÆÄÀÏÀÔ´Ï´Ù.";
+					this.errMsg = "["+ nicname +"]í•­ëª©ì€ ì—…ë¡œë“œê°€ ì œí•œëœ íŒŒì¼ì…ë‹ˆë‹¤.";
 					return false;
 				}
 			}
@@ -431,7 +435,7 @@ public class Form {
 				function(e){
 					e.target.setCustomValidity("");
 					if(!e.target.validity.valid)
-					e.target.setCustomValidity("["+e.target.getAttribute("hname")+"] Ç×¸ñÀº ÇÊ¼ö ÀÔ·Â »çÇ× ÀÔ´Ï´Ù.");	
+					e.target.setCustomValidity("["+e.target.getAttribute("hname")+"] í•­ëª©ì€ í•„ìˆ˜ ì…ë ¥ ì‚¬í•­ ì…ë‹ˆë‹¤.");	
 				}
 				elements[i].oninput = function(e) {
 			            e.target.setCustomValidity("");

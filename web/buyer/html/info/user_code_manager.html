@@ -1,7 +1,13 @@
+﻿<!-- 
 <script type="text/javascript" src="/cab/realgrid/realgridjs-lic.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs.1.1.24.min.js"></script>
 <script type="text/javascript" src="/cab/realgrid/realgridjs-api.1.1.24.js"></script>
 <script type="text/javascript" src="/cab/realgrid/jszip.min.js"></script>
+ -->
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-lic.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs_eval.1.1.34.min.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/realgridjs-api.1.1.34.js"></script>
+<script type="text/javascript" src="../../../../cab/realgrid/jszip.min.js"></script>
 
 <script type="text/javascript">
     var treeDataProvider = null;
@@ -10,9 +16,9 @@
         RealGridJS.setRootContext("{{realgrid_path}}");   //  cab/realgrid
         //RealGridJS.setTrace(true);
 
-        // filed�� ����Ÿ ����, �÷��� view����
+        // filed는 데이타 영역, 컬럼은 view영역
 
-        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source ��ü
+        treeDataProvider	= new RealGridJS.LocalTreeDataProvider();	//   Data source 객체
         treeView			= new RealGridJS.TreeView("realgrid");
         treeView.setDataSource(treeDataProvider);
 
@@ -38,7 +44,7 @@
                 updatable: true,
                 deletable: true,
                 deleteRowsConfirm: true,
-                deleteRowsMessage: "�����Ͻðڽ��ϱ� ?"
+                deleteRowsMessage: "삭제하시겠습니까 ?"
             }
             ,displayOptions:{
                 //columnWidth : 200
@@ -46,11 +52,11 @@
         };
         treeView.setOptions(options);
 
-        //���� �̹��� ���
+        //폴더 이미지 등록
         var imgFiles = ["folder_close.gif","folder_open.gif","unknown.gif"];
         var imageList = new RealGridJS.ImageList("images", "/cab/realgrid/resource/");
         imageList.addUrls(imgFiles);
-        // Ʈ���信 �̹��� ����Ʈ ����ϱ�
+        // 트리뷰에 이미지 리스트 등록하기
         treeView.registerImageList(imageList);
         treeView.setTreeOptions({
             iconImages: imageList.getName(),
@@ -80,20 +86,20 @@
     function setColumns() {
         var columns = [];
         columns.push({name:"icon" ,fieldName:"icon" ,header:"icon" ,width:120 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"code_nm" ,fieldName:"code_nm" ,header:"�ڵ��" ,width: 450 ,editable:false ,movable:false ,sortable:false});
+        columns.push({name:"code_nm" ,fieldName:"code_nm" ,header:"코드명" ,width: 450 ,editable:false ,movable:false ,sortable:false});
         columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,editable:false ,movable:false ,sortable:false});
-        columns.push({name:"l_cd" ,fieldName:"l_cd" ,header:"�ڵ�1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"m_cd" ,fieldName:"m_cd" ,header:"�ڵ�2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"s_cd" ,fieldName:"s_cd" ,header:"�ڵ�3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"d_cd" ,fieldName:"d_cd" ,header:"�ڵ�4" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"code" ,fieldName:"code" ,header:"�ڵ�" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"p_code" ,fieldName:"p_code" ,header:"�θ��ڵ�" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"l_cd" ,fieldName:"l_cd" ,header:"코드1" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"m_cd" ,fieldName:"m_cd" ,header:"코드2" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"s_cd" ,fieldName:"s_cd" ,header:"코드3" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"d_cd" ,fieldName:"d_cd" ,header:"코드4" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"code" ,fieldName:"code" ,header:"코드" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"p_code" ,fieldName:"p_code" ,header:"부모코드" ,width:80 ,editable:true ,movable:false ,sortable:false, visible:false});
         columns.push({name:"depth" ,fieldName:"depth" ,header:"depth" ,width:50 ,editable:true ,movable:false ,sortable:false, visible:false});
-        columns.push({name:"use_yn" ,fieldName:"use_yn" ,header:"��뿩��" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:false});
-        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "������ ��忩��" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
+        columns.push({name:"use_yn" ,fieldName:"use_yn" ,header:"사용여부" ,width: 80 ,editable:false , movable:false ,sortable:false, visible:false});
+        columns.push({name:"end_node_yn" ,fieldName:"end_node_yn" ,header: "마지막 노드여부" ,width:130 ,editable:true ,movable:false ,sortable:false, visible:false});
 
         treeDataProvider.setFields(columns);
-        treeView.setColumns(columns);	// �÷��� TreeView�� �Է�
+        treeView.setColumns(columns);	// 컬럼을 TreeView에 입력
         treeView.addCellRenderers(
             [{
                 "id": "chk_use_yn",
@@ -184,7 +190,7 @@
     function fAddItem() {
         var f = document.forms['form1'];
         if(f['depth'].value=='') {
-            alert('������ �׸��� �����ϴ�.');
+            alert('선택한 항목이 없습니다.');
             return;
         }
         if(f['depth'].value=='4') {
@@ -215,7 +221,7 @@
     function fAddItemChild() {
         var f = document.forms['form1'];
         if(f['depth'].value=='') {
-            alert('������ �׸��� �����ϴ�.');
+            alert('선택한 항목이 없습니다.');
             return;
         }
         f['depth'].value = parseInt(f['depth'].value)+1;
@@ -245,16 +251,16 @@
     function fSaveItem() {
         var f = document.forms['form1'];
         if(f['l_cd'].value=='' || f['m_cd'].value=='' || ['s_cd'].value=='' || f['d_cd'].value=='') {
-            alert('�ڵ带 �Է��� �ּ���');
+            alert('코드를 입력해 주세요');
             f['l_cd'].focus();
             return;
         } else 	if(f['code_nm'].value=='') {
-            alert('�ڵ���� �Է��� �ּ���');
+            alert('코드명을 입력해 주세요');
             f['code_nm'].focus();
             return;
         }
 
-        if(!confirm("���� �Ͻðڽ��ϱ�?")){
+        if(!confirm("저장 하시겠습니까?")){
             return false;
         }
 
@@ -275,12 +281,12 @@
             },
             success : function(data) {
                 if (data > 0) {
-                    alert("ó���Ǿ����ϴ�.");
+                    alert("처리되었습니다.");
                     location.reload();
                 } else if (data < 0) {
-                    alert("������ �ڵ尡 �����մϴ�.");
+                    alert("동일한 코드가 존재합니다.");
                 } else {
-                    alert("ó���� �����Ͽ����ϴ�.");
+                    alert("처리에 실패하였습니다.");
                 }
             },
             error : function(request, status, error) {
@@ -292,16 +298,16 @@
     function fModifyItem() {
         var f = document.forms['form1'];
         if(f['l_cd'].value=='' || f['m_cd'].value=='' || ['s_cd'].value=='' || f['d_cd'].value=='') {
-            alert('�ڵ带 �Է��� �ּ���');
+            alert('코드를 입력해 주세요');
             f['l_cd'].focus();
             return;
         } else 	if(f['code_nm'].value=='') {
-            alert('�ڵ���� �Է��� �ּ���');
+            alert('코드명을 입력해 주세요');
             f['code_nm'].focus();
             return;
         }
 
-        if(!confirm("���� �Ͻðڽ��ϱ�?")){
+        if(!confirm("수정 하시겠습니까?")){
             return false;
         }
 
@@ -322,10 +328,10 @@
             },
             success : function(data) {
                 if (data > 0) {
-                    alert("ó���Ǿ����ϴ�.");
+                    alert("처리되었습니다.");
                     location.reload();
                 } else {
-                    alert("ó���� �����Ͽ����ϴ�.");
+                    alert("처리에 실패하였습니다.");
                 }
             },
             error : function(request, status, error) {
@@ -338,11 +344,11 @@
         var f = document.forms['form1'];
         var url = "user_code_manager_a.jsp";
         if(f['end_node_yn'].value!='Y') {
-            alert('���� �׸��� �����մϴ�');
+            alert('하위 항목이 존재합니다');
             return false;
 		}
         //var formData = $("#form1").serialize();
-        if(!confirm("���� �Ͻðڽ��ϱ�?")){
+        if(!confirm("삭제 하시겠습니까?")){
             return false;
         }
         $.ajax({
@@ -356,10 +362,10 @@
             },
             success : function(data) {
                 if (data > 0) {
-                    alert("ó���Ǿ����ϴ�.");
+                    alert("처리되었습니다.");
                     location.reload();
                 } else {
-                    alert("ó���� �����Ͽ����ϴ�.");
+                    alert("처리에 실패하였습니다.");
                 }
             },
             error : function(request, status, error) {
@@ -386,7 +392,7 @@
 			<div class="div_table">
 				<div class="util-row">
 					<div class="push-left">
-						<h3>�ڵ�ī�װ���</h3>
+						<h3>코드카테고리</h3>
 					</div>
 				</div>
 				<div id="realgrid" style="width: 95%; height: 500px;"></div>
@@ -397,11 +403,11 @@
 			<div class="div_table">
 				<div class="util-row">
 					<div class="push-right">
-						<button type="button" id="btnAdd"class="sbtn color auth_css" onClick="fAddItem();">����depthǰ���߰�</button>
-						<button type="button" id="btnAddChild" class="sbtn color auth_css" onClick="fAddItemChild();" style="display: none">����ǰ���߰�</button>
-						<button type="button" id="btnDelete" class="sbtn color auth_css" onClick="fDelLItemDelete();">����ǰ�����</button>
-						<button type="button" id="btnSave" class="sbtn color auth_css" onClick="fSaveItem();">ǰ������</button>
-						<button type="button" id="btnModify" class="sbtn color auth_css" onClick="fModifyItem();" style="display: none">ǰ�����</button>
+						<button type="button" id="btnAdd"class="sbtn color auth_css" onClick="fAddItem();">동일depth품목추가</button>
+						<button type="button" id="btnAddChild" class="sbtn color auth_css" onClick="fAddItemChild();" style="display: none">하위품목추가</button>
+						<button type="button" id="btnDelete" class="sbtn color auth_css" onClick="fDelLItemDelete();">선택품목삭제</button>
+						<button type="button" id="btnSave" class="sbtn color auth_css" onClick="fSaveItem();">품목저장</button>
+						<button type="button" id="btnModify" class="sbtn color auth_css" onClick="fModifyItem();" style="display: none">품목수정</button>
 					</div>
 				</div>
 				<table>
@@ -410,11 +416,11 @@
 						<col/>
 					</colgroup>
 					<tr>
-						<th>�з�</th>
+						<th>분류</th>
 						<td style="padding-left:5px"><span id="span_div_nm"></span></td>
 					</tr>
 					<tr>
-						<th class="req-check">�ڵ�</th>
+						<th class="req-check">코드</th>
 						<td style="padding-left:5px">
 							<input type="text" id="in_l_cd"  name="l_cd" size="1" maxlength="1">
 							<input type="text" id="in_m_cd"  name="m_cd" size="3" maxlength="3">
@@ -423,14 +429,14 @@
 						</td>
 					</tr>
 					<tr>
-						<th class="req-check">�ڵ��</th>
+						<th class="req-check">코드명</th>
 						<td style="padding-left:5px">
 							<input type="text" id="in_code_nm" name="code_nm" size="255" maxlength="255" style="width:95%">
 						</td>
 					</tr>
 					<tr>
-						<th>��뿩��</th>
-						<td style="padding-left:5px">��� <input type="checkbox" id="chk_use_yn" name="use_yn" value="Y"></td>
+						<th>사용여부</th>
+						<td style="padding-left:5px">사용 <input type="checkbox" id="chk_use_yn" name="use_yn" value="Y"></td>
 					</tr>
 				</table>
 			</div>

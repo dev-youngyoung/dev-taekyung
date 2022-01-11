@@ -1,7 +1,7 @@
 package procure.common.utils;
 
 public class TaxUtil {
-	// »ç¾÷ÀÚ ¹øÈ£ ¹İÈ¯0:¿ø·¡¹øÈ£,1:Ã¹Â°, 2:µÑÂ°, 3:¼ÂÂ°
+	// ì‚¬ì—…ì ë²ˆí˜¸ ë°˜í™˜0:ì›ë˜ë²ˆí˜¸,1:ì²«ì§¸, 2:ë‘˜ì§¸, 3:ì…‹ì§¸
 	public static String [] getBizNum4Arr(String sBizNum){
 		String [] returnVal = new String[4];
 		if(sBizNum == null || sBizNum.length() != 10){

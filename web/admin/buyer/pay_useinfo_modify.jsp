@@ -1,20 +1,20 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String member_no = u.request("member_no");
 if(member_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.");
 	return;
 }
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_pay_type = codeDao.getCodeArray("M006", " and use_yn = 'Y' ");
 String[] code_calc_day = codeDao.getCodeArray("M048");
-String[] code_allow_ext = {"pdf=>PDF","jpg,jpeg,pdf,png,gif=>ÀÌ¹ÌÁöÆÄÀÏ","xls,xlsx=>¿¢¼¿","doc,docx=>¿öµå","hwp=>ÇÑ±Û"};
+String[] code_allow_ext = {"pdf=>PDF","jpg,jpeg,pdf,png,gif=>ì´ë¯¸ì§€íŒŒì¼","xls,xlsx=>ì—‘ì…€","doc,docx=>ì›Œë“œ","hwp=>í•œê¸€"};
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+member_no+"' ");
 if(!member.next()){
-	u.jsError("¾÷Ã¼Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì—…ì²´ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 
@@ -25,7 +25,7 @@ int bid_cnt = menuMemberDao.findCount(" member_no = '"+member_no+"' and adm_cd i
 DataObject useInfoDao = new DataObject("tcb_useinfo");
 DataSet useInfo = useInfoDao.find("member_no = '"+member_no+"' ");
 if(!useInfo.next()){
-	u.jsError("ÀÌ¿ëÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+	u.jsError("ì´ìš©ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	return;
 }
 useInfo.put("usestartday", u.getTimeString("yyyy-MM-dd", useInfo.getString("usestartday")));
@@ -53,32 +53,32 @@ while(lds.next())
 {
 	lds.put("recpmoneyamt", u.numberFormat(lds.getString("recpmoneyamt")));
 	lds.put("suppmoneyamt", u.numberFormat(lds.getString("suppmoneyamt")));
-	lds.put("insteadyn", lds.getString("insteadyn").equals("Y") ? "¿ø»ç¾÷ÀÚ °ú±Ý" : "¼ö±Þ»ç¾÷ÀÚ °ú±Ý");
+	lds.put("insteadyn", lds.getString("insteadyn").equals("Y") ? "ì›ì‚¬ì—…ìž ê³¼ê¸ˆ" : "ìˆ˜ê¸‰ì‚¬ì—…ìž ê³¼ê¸ˆ");
 }
 
 DataObject calcPersonDao = new DataObject("tcb_calc_person");
 DataSet calcPerson = calcPersonDao.find(" member_no = '"+member_no+"' ", "*", " seq asc");
 while(calcPerson.next()){
 	if(calcPerson.getString("field_seq").equals("")){
-		calcPerson.put("field_name", "ÀüÃ¼" );
+		calcPerson.put("field_name", "ì „ì²´" );
 	}else {
 		String field_name = calcPersonDao.getOne("select wm_concat(field_name) from tcb_field where member_no = '" + member_no + "' and field_seq in (" + calcPerson.getString("field_seq") + ")");
 		calcPerson.put("field_name", field_name );
 	}
 }
 
-f.addElement("paytypecd", useInfo.getString("paytypecd"), "hname:'ÀÌ¿ë¿ä±ÝÁ¦', required:'Y'");
-f.addElement("calc_day", useInfo.getString("calc_day"), "hname:'°è»ê¼­¹ßÇàÀÏ'");
-f.addElement("usestartday", useInfo.getString("usestartday"), "hname:'ÀÌ¿ë±â°£', required:'Y'");
-f.addElement("useendday", useInfo.getString("useendday"), "hname:'ÀÌ¿ë±â°£', required:'Y'");
-f.addElement("recpmoneyamt", u.numberFormat(useInfo.getString("recpmoneyamt")), "hname:'¿ø»ç¾÷ÀÚ¿ä±Ý', required:'Y'");
-f.addElement("suppmoneyamt", u.numberFormat(useInfo.getString("suppmoneyamt")), "hname:'¼ö±Þ»ç¾÷ÀÚ¿ä±Ý', required:'Y'");
-f.addElement("insteadyn", useInfo.getString("insteadyn"), "hname:'¼ö±Þ»ç¾÷ÀÚ ¿ä±Ý Ã³¸®', required:'Y'");
-f.addElement("paper_amt", useInfo.getString("paper_amt"), "hname:'¼­¸é°è¾à¿ä±Ý'");
-f.addElement("bid_amt", u.numberFormat(useInfo.getString("bid_amt")), "hname:'ÀÔÂû¿ä±Ý', requred:'Y'");
-f.addElement("proof_yn", useInfo.getString("proof_yn"), "hname:'½ÇÀûÁõ¸í»ç¿ë¿©ºÎ'");
-f.addElement("stampyn", useInfo.getString("stampyn"), "hname:'ÀÚÀ¯¼­½ÄÀÎÁö¼¼ »ç¿ëÀ¯¹«'");
-f.addElement("etc", null, "hname:'ºñ°í'");
+f.addElement("paytypecd", useInfo.getString("paytypecd"), "hname:'ì´ìš©ìš”ê¸ˆì œ', required:'Y'");
+f.addElement("calc_day", useInfo.getString("calc_day"), "hname:'ê³„ì‚°ì„œë°œí–‰ì¼'");
+f.addElement("usestartday", useInfo.getString("usestartday"), "hname:'ì´ìš©ê¸°ê°„', required:'Y'");
+f.addElement("useendday", useInfo.getString("useendday"), "hname:'ì´ìš©ê¸°ê°„', required:'Y'");
+f.addElement("recpmoneyamt", u.numberFormat(useInfo.getString("recpmoneyamt")), "hname:'ì›ì‚¬ì—…ìžìš”ê¸ˆ', required:'Y'");
+f.addElement("suppmoneyamt", u.numberFormat(useInfo.getString("suppmoneyamt")), "hname:'ìˆ˜ê¸‰ì‚¬ì—…ìžìš”ê¸ˆ', required:'Y'");
+f.addElement("insteadyn", useInfo.getString("insteadyn"), "hname:'ìˆ˜ê¸‰ì‚¬ì—…ìž ìš”ê¸ˆ ì²˜ë¦¬', required:'Y'");
+f.addElement("paper_amt", useInfo.getString("paper_amt"), "hname:'ì„œë©´ê³„ì•½ìš”ê¸ˆ'");
+f.addElement("bid_amt", u.numberFormat(useInfo.getString("bid_amt")), "hname:'ìž…ì°°ìš”ê¸ˆ', requred:'Y'");
+f.addElement("proof_yn", useInfo.getString("proof_yn"), "hname:'ì‹¤ì ì¦ëª…ì‚¬ìš©ì—¬ë¶€'");
+f.addElement("stampyn", useInfo.getString("stampyn"), "hname:'ìžìœ ì„œì‹ì¸ì§€ì„¸ ì‚¬ìš©ìœ ë¬´'");
+f.addElement("etc", null, "hname:'ë¹„ê³ '");
 
 if(u.isPost()&&f.validate()){
 	DB db = new DB();
@@ -104,7 +104,7 @@ if(u.isPost()&&f.validate()){
 	db.setCommand(dao.getUpdateQuery("member_no='"+member_no+"' "), dao.record);
 
 
-	// °Å·¡Ã³ µî·Ï Ã·ºÎÆÄÀÏ
+	// ê±°ëž˜ì²˜ ë“±ë¡ ì²¨ë¶€íŒŒì¼
 	db.setCommand("delete from tcb_client_rfile where member_no = '"+member_no+"'", null);
 	db.setCommand("delete from tcb_client_rfile_template where member_no = '"+member_no+"'", null);
 	int base_seq = rfileDao.getOneInt("select nvl(max(rfile_seq),0)+1 rfile_seq from tcb_client_rfile_template where member_no = '"+member_no+"'");
@@ -124,11 +124,11 @@ if(u.isPost()&&f.validate()){
 	}
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 
-	u.jsAlertReplace("ÀúÀåÇÏ¿´½À´Ï´Ù.", "pay_useinfo_modify.jsp?"+u.getQueryString());
+	u.jsAlertReplace("ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "pay_useinfo_modify.jsp?"+u.getQueryString());
 	return;
 }
 
@@ -138,7 +138,7 @@ p.setVar("menu_cd", "000045");
 p.setVar("modify", true);
 p.setVar("member", member);
 p.setVar("useInfo", useInfo);
-p.setVar("bid_use", bid_cnt>0?"ÀÔÂû»ç¿ë":"ÀÔÂû¹Ì»ç¿ë");
+p.setVar("bid_use", bid_cnt>0?"ìž…ì°°ì‚¬ìš©":"ìž…ì°°ë¯¸ì‚¬ìš©");
 p.setLoop("code_calc_day", u.arr2loop(code_calc_day));
 p.setLoop("code_pay_type", u.arr2loop(code_pay_type));
 p.setLoop("code_allow_ext", u.arr2loop(code_allow_ext));

@@ -1,4 +1,4 @@
-
+﻿
 <form novalidate name="form1" method="get" >
 <div class="search_div">
 <table class="search_table">
@@ -10,19 +10,19 @@
 		<col width="25%" />
 		<col width="15%" />
 	</colgroup>
-    <th><p>��ü��</p></th>
+    <th><p>업체명</p></th>
     <td><input type="text" name="s_member_name" maxlength="100" style="width:98%"></td>
     <td>&nbsp;</td>
-    <th><p>����ڹ�ȣ</p></th>
+    <th><p>사업자번호</p></th>
     <td><input type="text" name="s_vendcd" maxlength="100" style="width:98%"></td>
     <td align="right">
-      <button type="submit" class="search_btn">�˻�</button>
+      <button type="submit" class="search_btn">검색</button>
     </td>
 </table>
 </div>
 </form>
 <div style="text-align: right;padding:10px">
-<button type="button" class="sbtn color ico-write auth_css" onclick="location.href='./batch_url_insert.jsp'"><span></span>�űԵ��</button>
+<button type="button" class="sbtn color ico-write auth_css" onclick="location.href='./batch_url_insert.jsp'"><span></span>신규등록</button>
 </div>
 
 {{form_script}}
@@ -38,10 +38,10 @@
 		<thead>
 		<tr>
 			<th>No.</th>
-			<th>��ü��</th>
-			<th>����ڵ�</th>
-			<th>��ĸ�</th>
-			<th>�ϰ�����</th>
+			<th>업체명</th>
+			<th>양식코드</th>
+			<th>양식명</th>
+			<th>일괄전송</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -52,13 +52,13 @@
 			<td  onclick="location.href='batch_url_modify.jsp?member_no={{list.member_no}}&batch_seq={{list.batch_seq}}'">{{list.template_cd}}</td>
 			<td   onclick="location.href='batch_url_modify.jsp?member_no={{list.member_no}}&batch_seq={{list.batch_seq}}'">{{list.template_name}}</td>
 			<td align="center">
-				<button type="button" class="sbtn color ico-write" onclick="location.href='../batch/{{list.batch_url}}?member_no={{list.member_no}}&template_cd={{list.template_cd}}'"><span></span>����</button>
+				<button type="button" class="sbtn color ico-write" onclick="location.href='../batch/{{list.batch_url}}?member_no={{list.member_no}}&template_cd={{list.template_cd}}'"><span></span>전송</button>
 			</td>
 		</tr>
 		<!-- LOOP END 'list' -->
 		<!-- IFNOT START 'list' -->
 		<tr>
-			<td colspan="5" align="center">�����Ͱ� �������� �ʽ��ϴ�.</td>
+			<td colspan="5" align="center">데이터가 존재하지 않습니다.</td>
 		</tr>
 		<!-- IFNOT END 'list' -->
 		</tbody>

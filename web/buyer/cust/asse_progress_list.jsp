@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_detail_status = {"10=>Æò°¡´ë»ó","20=>Æò°¡¿Ï·á"};
+String[] code_detail_status = {"10=>í‰ê°€ëŒ€ìƒ","20=>í‰ê°€ì™„ë£Œ"};
 
 f.addElement("s_member_name",null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -38,25 +38,25 @@ while(ds.next()){
 	if(!ds.getString("s_user_name").equals("")){
 		if(ds.getString("s_status").equals("10")){
 			if(auth.getString("_USER_ID").startsWith("wm")){
-				ds.put("s_status_nm", ds.getString("s_point").equals("")?"<span style='color:red'>[Æò°¡´ë»ó]</span>":"<span style='color:red'>[Æò°¡Áß]</span>");
+				ds.put("s_status_nm", ds.getString("s_point").equals("")?"<span style='color:red'>[í‰ê°€ëŒ€ìƒ]</span>":"<span style='color:red'>[í‰ê°€ì¤‘]</span>");
 			}else{
-				ds.put("s_status_nm", ds.getString("s_point").equals("")?"<span style='color:red'>[Æò°¡´ë»ó]</span>":"<span style='color:red'>Æò°¡Áß [ "+ds.getString("s_point")+" ]</span>");
+				ds.put("s_status_nm", ds.getString("s_point").equals("")?"<span style='color:red'>[í‰ê°€ëŒ€ìƒ]</span>":"<span style='color:red'>í‰ê°€ì¤‘ [ "+ds.getString("s_point")+" ]</span>");
 			}
 		}else{
-			ds.put("s_status_nm","<span style='color:blue'>Æò°¡¿Ï·á</font>" );
+			ds.put("s_status_nm","<span style='color:blue'>í‰ê°€ì™„ë£Œ</font>" );
 		}
 	}else{
-		ds.put("s_status_nm", "Æò°¡Á¦¿Ü");
+		ds.put("s_status_nm", "í‰ê°€ì œì™¸");
 	}
 	
 	if(!ds.getString("qc_user_name").equals("")){
 		if(ds.getString("qc_status").equals("10")){
-			ds.put("qc_status_nm", ds.getString("qc_point").equals("")?"<span style='color:red'>[Æò°¡´ë»ó]</span>":"<span style='color:red'>Æò°¡Áß [ "+ds.getString("qc_point")+" ]</span>");
+			ds.put("qc_status_nm", ds.getString("qc_point").equals("")?"<span style='color:red'>[í‰ê°€ëŒ€ìƒ]</span>":"<span style='color:red'>í‰ê°€ì¤‘ [ "+ds.getString("qc_point")+" ]</span>");
 		}else{
-			ds.put("qc_status_nm","<span style='color:blue'>Æò°¡¿Ï·á</font>" );
+			ds.put("qc_status_nm","<span style='color:blue'>í‰ê°€ì™„ë£Œ</font>" );
 		}
 	}else{
-		ds.put("qc_status_nm", "Æò°¡Á¦¿Ü");
+		ds.put("qc_status_nm", "í‰ê°€ì œì™¸");
 	}
 	ds.put("s_link_yn",!auth.getString("_USER_ID").startsWith("wm"));
 	ds.put("reg_date", u.getTimeString("yyyy-MM-dd", ds.getString("reg_date")));

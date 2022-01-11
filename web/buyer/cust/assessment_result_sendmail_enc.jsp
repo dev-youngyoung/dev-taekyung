@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%@ page import="org.jsoup.Jsoup"%>
 <%@ page import="org.jsoup.nodes.Document"%>
 <%@ page import="org.jsoup.nodes.Element"%>
@@ -7,7 +7,7 @@
 
 String asse_no = u.request("asse_no", "");
 if(asse_no.equals("")){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -15,7 +15,7 @@ boolean modify = true;
 DataObject assessmentDao = new DataObject("tcb_assemaster a  inner join tcb_assedetail b on a.asse_no = b.asse_no and b.div_cd = 'E'");
 DataSet assessment = assessmentDao.find(" a.asse_no = '"+asse_no+"'", "a.*, b.div_cd, b.asse_html, b.asse_subhtml, b.sub_point, b.status as dstatus");
 if(!assessment.next()){
-	u.jsError("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+	u.jsError("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 	return;
 }
 
@@ -29,9 +29,9 @@ if(u.isPost() && f.validate()){
 	String rating = f.get("rating");
 	String doc_html = new String(Base64Coder.decode(f.get("doc_html")),"UTF-8");;
 		
-	//¸ŞÀÏ Àü¼Û
+	//ë©”ì¼ ì „ì†¡
 	p.clear();
-	p.setVar("title", "¼ö½ÃÆò°¡ °á°ú ");
+	p.setVar("title", "ìˆ˜ì‹œí‰ê°€ ê²°ê³¼ ");
 	p.setVar("member_name", assessment.getString("member_name"));
 	p.setVar("project_name", assessment.getString("project_name"));
 	p.setVar("asse_year", assessment.getString("asse_year"));
@@ -42,15 +42,15 @@ if(u.isPost() && f.validate()){
 	//p.setVar("resultParam1", "E");
 	p.setVar("server_name", request.getServerName());
 	p.setVar("return_url", "web/buyer/cust/assessment_result.jsp?param="+u.aseEnc(asseNo)+"&param1=E");
-	u.mail(email, "[¼ö½ÃÆò°¡ °á°ú] " +  assessment.getString("member_name") + " Æò°¡ °á°úÀÔ´Ï´Ù.", p.fetch("mail/assessment_mail.html"));
-	u.jsAlertReplace("°á°úÀü¼Û ÇÏ¿´½À´Ï´Ù.","asse_purchase_list.jsp?"+u.getQueryString());
+	u.mail(email, "[ìˆ˜ì‹œí‰ê°€ ê²°ê³¼] " +  assessment.getString("member_name") + " í‰ê°€ ê²°ê³¼ì…ë‹ˆë‹¤.", p.fetch("mail/assessment_mail.html"));
+	u.jsAlertReplace("ê²°ê³¼ì „ì†¡ í•˜ì˜€ìŠµë‹ˆë‹¤.","asse_purchase_list.jsp?"+u.getQueryString());
 	return;
 }
 
 p.setLayout("cust");
 //p.setDebug(out);
 p.setBody("cust.assessment_s_checkSheet_new");
-p.setVar("nevi","È¨ &gt; °Å·¡¾÷Ã¼°ü¸® &gt; ¾÷Ã¼ Æò°¡°ü¸® &gt; ¾÷Ã¼ Æò°¡»ó¼¼");
+p.setVar("nevi","í™ˆ &gt; ê±°ë˜ì—…ì²´ê´€ë¦¬ &gt; ì—…ì²´ í‰ê°€ê´€ë¦¬ &gt; ì—…ì²´ í‰ê°€ìƒì„¸");
 p.setVar("title_img","asse_chk_detail");
 p.setVar("modify", modify);
 p.setVar("assessment", assessment);

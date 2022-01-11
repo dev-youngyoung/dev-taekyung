@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="nongshim" target="6" />
-    </bytecodeTargetLevel>
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="2000" />
   </component>
 </project>

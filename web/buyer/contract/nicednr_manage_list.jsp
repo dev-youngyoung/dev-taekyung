@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String _menu_cd = "000192";
 
@@ -7,7 +7,7 @@ String s_edate = u.request("s_edate");
 
 CodeDao code = new CodeDao("tcb_comcode");
 String[] code_status = code.getCodeArray("M008", " and code in ('10','20','30','40','41','50')"); 
-String[] s_sel = {"1=>ÀÏ¹İÁ¶»ç¿ë","2=>¼ÒºñÀÚÇ°ÆòÈ¸¿ë"};
+String[] s_sel = {"1=>ì¼ë°˜ì¡°ì‚¬ìš©","2=>ì†Œë¹„ìí’ˆí‰íšŒìš©"};
  
 f.addElement("s_cust_name", null, null);
 f.addElement("s_cont_name", null, null);
@@ -19,7 +19,7 @@ f.addElement("s_edate", s_edate, null);
 f.addElement("s_template_cd", null, null);
 f.addElement("s_sel", null, null);
 
-//¸ñ·Ï »ı¼º
+//ëª©ë¡ ìƒì„±
 ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
@@ -56,9 +56,9 @@ if(!f.get("s_sel").equals("")){
 	list.addSearch("c.add_col4", f.get("s_sel"), "LIKE");  
 }  
 
-/*Á¶È¸±ÇÇÑ*/
+/*ì¡°íšŒê¶Œí•œ*/
 if(!auth.getString("_DEFAULT_YN").equals("Y")){
-	//10:´ã´çÁ¶È¸  20:ºÎ¼­Á¶È¸ 
+	//10:ë‹´ë‹¹ì¡°íšŒ  20:ë¶€ì„œì¡°íšŒ 
 	if(_authDao.getAuthMenuInfoB(_member_no,auth.getString("_AUTH_CD"),_menu_cd,"select_auth").equals("10")){
 		list.addWhere("a.reg_id = '"+auth.getString("_USER_ID")+"' ");
 	}
@@ -86,7 +86,7 @@ while(ds.next()){
 }
 
 if(u.request("mode").equals("excel")){
-	p.setVar("title", "°è¾àÇöÈ²");
+	p.setVar("title", "ê³„ì•½í˜„í™©");
 	String xlsFile = "nicednr_manage_excel.html";
 
 	ds.first();
@@ -95,7 +95,7 @@ if(u.request("mode").equals("excel")){
 	
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
-	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("³ªÀÌ½ºµğ¾Ø¾Ë °è¾àÇöÈ².xls".getBytes("KSC5601"),"8859_1") + "\"");
+	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("ë‚˜ì´ìŠ¤ë””ì•¤ì•Œ ê³„ì•½í˜„í™©.xls".getBytes("KSC5601"),"8859_1") + "\"");
 	out.println(p.fetch("../html/contract/"+xlsFile));
 	return;
 }

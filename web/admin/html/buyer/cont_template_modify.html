@@ -1,13 +1,13 @@
-<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
+ï»¿<form novalidate name="form1" method="post" onsubmit="return formSubmit(this);">
 
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-        <h3>±âº»Á¤º¸</h3>
+        <h3>ê¸°ë³¸ì •ë³´</h3>
     </div>
     <div class="push-right">
-    	<button type="submit" name="btn_join" class="sbtn color ico-save" ><span></span>±âº»Á¤º¸ÀúÀå</button>
-      	<button type="button" name="btn_join" class="sbtn color ico-list" onclick="location.href='cont_template_list.jsp?{{list_query}}'" ><span></span>¸ñ·ÏÀ¸·Î</button>    	
+    	<button type="submit" name="btn_join" class="sbtn color ico-save" ><span></span>ê¸°ë³¸ì •ë³´ì €ìž¥</button>
+      	<button type="button" name="btn_join" class="sbtn color ico-list" onclick="location.href='cont_template_list.jsp?{{list_query}}'" ><span></span>ëª©ë¡ìœ¼ë¡œ</button>    	
     </div>
 </div>
 <table>
@@ -18,33 +18,33 @@
 		<col width="37%">
 	</colgroup>
 	<tr>
-		<th>¼­½Ä¸í</th>
+		<th>ì„œì‹ëª…</th>
 		<td colspan="3"><input type="text" name="template_name" style="width:98%"></td>
 	</tr>
 	<tr>
-		<th>¼­½Ä¸í(Á¶È¸¿ë)</th>
+		<th>ì„œì‹ëª…(ì¡°íšŒìš©)</th>
 		<td colspan="3"><input type="text" name="display_name" style="width:98%"></td>
 	</tr>
 	<tr>
-		<th>¼­½ÄÀ¯Çü</th>
+		<th>ì„œì‹ìœ í˜•</th>
 		<td>{{template.template_type_nm}}</td>
-		<th>»ç¿ë¿©ºÎ</th>
+		<th>ì‚¬ìš©ì—¬ë¶€</th>
 		<td>
 			<select name="use_yn">
-				<option value="">-¼±ÅÃ-</option>
-				<option value="Y">»ç¿ë</option>
-				<option value="N">¹Ì»ç¿ë</option>
+				<option value="">-ì„ íƒ-</option>
+				<option value="Y">ì‚¬ìš©</option>
+				<option value="N">ë¯¸ì‚¬ìš©</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
-		<th>ÀÌ¿ë¾÷Ã¼</th>
+		<th>ì´ìš©ì—…ì²´</th>
 		<td>
 			<!-- LOOP START 'member' -->
 			{{member.member_name}}<br>
 			<!-- LOOP END 'member' -->
 		</td>
-		<th>ºÎ¼­ÁöÁ¤</th>
+		<th>ë¶€ì„œì§€ì •</th>
 		<td>
 			<!-- LOOP START 'member' -->
 				<!-- LOOP START 'field' -->
@@ -54,40 +54,40 @@
 		</td>
 	</tr>
 	<tr>
-		<th>¼ö½ÅÀÛ¼ºÇ×¸ñ</th>
+		<th>ìˆ˜ì‹ ìž‘ì„±í•­ëª©</th>
 		<td>{{template.writer_type_nm}}</td>
-		<th>¹®¼­À¯Çü</th>
+		<th>ë¬¸ì„œìœ í˜•</th>
 		<td>{{template.doc_type_nm}}</td>
 	</tr>
 	<tr>
-		<th>ÀÎÁö¼¼»ç¿ë¿©ºÎ</th>
+		<th>ì¸ì§€ì„¸ì‚¬ìš©ì—¬ë¶€</th>
 		<td>
 			<select name="stamp_yn">
-				<option value="Y">ÀÎÁö¼¼»ç¿ë</option>
-				<option value="N">ÀÎÁö¼¼»ç¿ë¾ÈÇÔ</option>
+				<option value="Y">ì¸ì§€ì„¸ì‚¬ìš©</option>
+				<option value="N">ì¸ì§€ì„¸ì‚¬ìš©ì•ˆí•¨</option>
 			</select>
 		</td>
-		<th>º¸Áõ»ç¿ë¿©ºÎ</th>
+		<th>ë³´ì¦ì‚¬ìš©ì—¬ë¶€</th>
 		<td>
 			<select name="warr_yn">
-				<option value="N">º¸Áõ¹Ì»ç¿ë</option>
-				<option value="">º¸ÁõÁ¤º¸»ç¿ë</option>
+				<option value="N">ë³´ì¦ë¯¸ì‚¬ìš©</option>
+				<option value="">ë³´ì¦ì •ë³´ì‚¬ìš©</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
-		<th>±¸ºñ¼­·ùÇÊ¼ö</th>
+		<th>êµ¬ë¹„ì„œë¥˜í•„ìˆ˜</th>
 		<td>
 			<select name="need_attach_yn">
-				<option value="Y">ÇÊ¼öÃ·ºÎ</option>
-				<option value="">¹ÌÇÊ¼ö</option>
+				<option value="Y">í•„ìˆ˜ì²¨ë¶€</option>
+				<option value="">ë¯¸í•„ìˆ˜</option>
 			</select>
 		</td>
-		<th>±âÅ¸Ã·ºÎ»ç¿ë</th>
+		<th>ê¸°íƒ€ì²¨ë¶€ì‚¬ìš©</th>
 		<td>
 			<select name="efile_yn">
-				<option value="Y">±âÅ¸Ã·ºÎ»ç¿ë</option>
-				<option value="N">±âÅ¸Ã·ºÎ »ç¿ë¾ÈÇÔ</option>
+				<option value="Y">ê¸°íƒ€ì²¨ë¶€ì‚¬ìš©</option>
+				<option value="N">ê¸°íƒ€ì²¨ë¶€ ì‚¬ìš©ì•ˆí•¨</option>
 			</select>
 		</td>
 	</tr>
@@ -99,7 +99,7 @@
 <script type="text/javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("±âº»Á¤º¸ ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ê¸°ë³¸ì •ë³´ ì €ìž¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -113,11 +113,11 @@ function formSubmit(f){
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-        <h3>Ãß°¡ÀúÀå Ç×¸ñ°ü¸®</h3>
+        <h3>ì¶”ê°€ì €ìž¥ í•­ëª©ê´€ë¦¬</h3>
     </div>
     <div class="push-right">
-    	<button type="button" class="sbtn color ico-add" onclick="tfile_grid.addRow();"><span></span>Ãß°¡</button>
-    	<button type="submit" class="sbtn color ico-save"><span></span>ÀúÀå</button>
+    	<button type="button" class="sbtn color ico-add" onclick="tfile_grid.addRow();"><span></span>ì¶”ê°€</button>
+    	<button type="submit" class="sbtn color ico-save"><span></span>ì €ìž¥</button>
     </div>
 </div>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tfile_grid">
@@ -130,20 +130,20 @@ function formSubmit(f){
 	</colgroup>
 	<thead>
 	<tr>
-		<th>Ç×¸ñ¸í(¿µ¹®)</th>
-		<th>Ç×¸ñ¸í(ÇÑ±Û)</th>
-		<th>º¹¼ö¿©ºÎ</th>
-		<th>ÄÃ·³¸í</th>
-		<th>»èÁ¦</th>
+		<th>í•­ëª©ëª…(ì˜ë¬¸)</th>
+		<th>í•­ëª©ëª…(í•œê¸€)</th>
+		<th>ë³µìˆ˜ì—¬ë¶€</th>
+		<th>ì»¬ëŸ¼ëª…</th>
+		<th>ì‚­ì œ</th>
 	</tr>
 	</thead>
 	<!-- LOOP START 'tfile' -->
 	<tr>
-		<td><input type="text" name="tfile_name_en" value="{{tfile.template_name_en}}" class="label" style="width:98%" hname="Ç×¸ñ¸í(¿µ¹®)" required="Y" /></td>
-		<td><input type="text" name="tfile_name_ko" value="{{tfile.template_name_ko}}" class="label" style="width:98%" hname="Ç×¸ñ¸í(ÇÑ±Û)" required="Y" /></td>
-		<td><input type="text" name="mul_yn" value="{{tfile.mul_yn}}" class="label" style="width:98%" hname="º¹¼ö¿©ºÎ(Y/N)" required="Y" /></td>
-		<td><input type="text" name="col_name" value="{{tfile.col_name}}" class="label" style="width:98%" hname="ÄÃ·³¸í" required="Y" /></td>
-		<td align="center"><button type="button" class="sbtn color ico-delete" onclick="tfile_grid.del(this);"><span></span>»èÁ¦</button></td>
+		<td><input type="text" name="tfile_name_en" value="{{tfile.template_name_en}}" class="label" style="width:98%" hname="í•­ëª©ëª…(ì˜ë¬¸)" required="Y" /></td>
+		<td><input type="text" name="tfile_name_ko" value="{{tfile.template_name_ko}}" class="label" style="width:98%" hname="í•­ëª©ëª…(í•œê¸€)" required="Y" /></td>
+		<td><input type="text" name="mul_yn" value="{{tfile.mul_yn}}" class="label" style="width:98%" hname="ë³µìˆ˜ì—¬ë¶€(Y/N)" required="Y" /></td>
+		<td><input type="text" name="col_name" value="{{tfile.col_name}}" class="label" style="width:98%" hname="ì»¬ëŸ¼ëª…" required="Y" /></td>
+		<td align="center"><button type="button" class="sbtn color ico-delete" onclick="tfile_grid.del(this);"><span></span>ì‚­ì œ</button></td>
 	</tr>
 	<!-- LOOP END 'tfile' -->
 	<tbody>
@@ -155,16 +155,16 @@ function formSubmit(f){
 
 var tfile_grid = new MGRID("tfile_grid");
 tfile_grid.cells = new Array(
-	 '<input type="text" name="tfile_name_en" class="label" style="width:98%" hname="Ç×¸ñ¸í(¿µ¹®)" required="Y" />'
-	,'<input type="text" name="tfile_name_ko" class="label" style="width:98%" hname="Ç×¸ñ¸í(ÇÑ±Û)" required="Y" />'
-	,'<input type="text" name="mul_yn" class="label" style="width:98%" hname="º¹¼ö¿©ºÎ(Y/N)" required="Y" />'
-	,'<input type="text" name="col_name" class="label" style="width:98%" hname="ÄÃ·³¸í" required="Y" />'
-	,'<button type="button" class="sbtn color ico-delete" onclick="tfile_grid.del(this);"><span></span>»èÁ¦</button>'
+	 '<input type="text" name="tfile_name_en" class="label" style="width:98%" hname="í•­ëª©ëª…(ì˜ë¬¸)" required="Y" />'
+	,'<input type="text" name="tfile_name_ko" class="label" style="width:98%" hname="í•­ëª©ëª…(í•œê¸€)" required="Y" />'
+	,'<input type="text" name="mul_yn" class="label" style="width:98%" hname="ë³µìˆ˜ì—¬ë¶€(Y/N)" required="Y" />'
+	,'<input type="text" name="col_name" class="label" style="width:98%" hname="ì»¬ëŸ¼ëª…" required="Y" />'
+	,'<button type="button" class="sbtn color ico-delete" onclick="tfile_grid.del(this);"><span></span>ì‚­ì œ</button>'
 );
 
 function formSubmit_tfile(f){
 	if(validate(f)){
-		if(confirm("Ãß°¡ÀúÀå Ç×¸ñÀ» ÀúÀå ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(confirm("ì¶”ê°€ì €ìž¥ í•­ëª©ì„ ì €ìž¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return true;
 		}
 	}
@@ -187,12 +187,12 @@ function formSubmit_tfile(f){
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-        <h3>°áÁ¦¶óÀÎÁ¤º¸</h3>
+        <h3>ê²°ì œë¼ì¸ì •ë³´</h3>
     </div>
 </div>
 <table>
 	<tr>
-		<td align="center">ÀÛ¼º</td>
+		<td align="center">ìž‘ì„±</td>
 		<!-- LOOP START 'agreeTemplate' -->
 		<td align="center">{{agreeTemplate.agree_name}}</td>
 		<!-- LOOP END 'agreeTemplate' -->

@@ -51,16 +51,16 @@ public class ExcelManager {
 	public DataSet xls2dataset(String filePath,int readStartRow){
 		DataSet ds = new DataSet();
 		try{
-			//ÆÄÀÏÀ» ÀĞ±âÀ§ÇØ ¿¢¼¿ÆÄÀÏÀ» °¡Á®¿Â´Ù
+			//íŒŒì¼ì„ ì½ê¸°ìœ„í•´ ì—‘ì…€íŒŒì¼ì„ ê°€ì ¸ì˜¨ë‹¤
 			FileInputStream fis=new FileInputStream(filePath);
 			HSSFWorkbook workbook=new HSSFWorkbook(fis);
-			//½ÃÆ® ¼ö (Ã¹¹øÂ°¿¡¸¸ Á¸ÀçÇÏ¹Ç·Î 0À» ÁØ´Ù)
-			//¸¸¾à °¢ ½ÃÆ®¸¦ ÀĞ±âÀ§ÇØ¼­´Â FOR¹®À» ÇÑ¹ø´õ µ¹·ÁÁØ´Ù
+			//ì‹œíŠ¸ ìˆ˜ (ì²«ë²ˆì§¸ì—ë§Œ ì¡´ì¬í•˜ë¯€ë¡œ 0ì„ ì¤€ë‹¤)
+			//ë§Œì•½ ê° ì‹œíŠ¸ë¥¼ ì½ê¸°ìœ„í•´ì„œëŠ” FORë¬¸ì„ í•œë²ˆë” ëŒë ¤ì¤€ë‹¤
 			HSSFSheet sheet=workbook.getSheetAt(0);
-			//ÇàÀÇ ¼ö
+			//í–‰ì˜ ìˆ˜
 			int row_cnt = sheet.getPhysicalNumberOfRows();
 			for(int rowindex=readStartRow ; rowindex<row_cnt ; rowindex++){
-				//ÇàÀ» ÀĞ´Â´Ù
+				//í–‰ì„ ì½ëŠ”ë‹¤
 			    HSSFRow row=sheet.getRow(rowindex);
 		
 			    if(row == null)continue;
@@ -104,16 +104,16 @@ public class ExcelManager {
 	public DataSet xlsx2dataset(String filePath, int readStartRow){		
 		DataSet ds = new DataSet();
 		try{
-			//ÆÄÀÏÀ» ÀĞ±âÀ§ÇØ ¿¢¼¿ÆÄÀÏÀ» °¡Á®¿Â´Ù
+			//íŒŒì¼ì„ ì½ê¸°ìœ„í•´ ì—‘ì…€íŒŒì¼ì„ ê°€ì ¸ì˜¨ë‹¤
 			FileInputStream fis=new FileInputStream(filePath);
 			XSSFWorkbook workbook=new XSSFWorkbook(fis);
-			//½ÃÆ® ¼ö (Ã¹¹øÂ°¿¡¸¸ Á¸ÀçÇÏ¹Ç·Î 0À» ÁØ´Ù)
-			//¸¸¾à °¢ ½ÃÆ®¸¦ ÀĞ±âÀ§ÇØ¼­´Â FOR¹®À» ÇÑ¹ø´õ µ¹·ÁÁØ´Ù
+			//ì‹œíŠ¸ ìˆ˜ (ì²«ë²ˆì§¸ì—ë§Œ ì¡´ì¬í•˜ë¯€ë¡œ 0ì„ ì¤€ë‹¤)
+			//ë§Œì•½ ê° ì‹œíŠ¸ë¥¼ ì½ê¸°ìœ„í•´ì„œëŠ” FORë¬¸ì„ í•œë²ˆë” ëŒë ¤ì¤€ë‹¤
 			XSSFSheet sheet=workbook.getSheetAt(0);
-			//ÇàÀÇ ¼ö
+			//í–‰ì˜ ìˆ˜
 			int row_cnt = sheet.getPhysicalNumberOfRows();
 			for(int rowindex=readStartRow ; rowindex<row_cnt ; rowindex++){
-				//ÇàÀ» ÀĞ´Â´Ù
+				//í–‰ì„ ì½ëŠ”ë‹¤
 				XSSFRow row=sheet.getRow(rowindex);
 		
 			    if(row == null)continue;
@@ -165,47 +165,47 @@ public class ExcelManager {
 				return;
 			}
 			
-			//column Á¤º¸
+			//column ì •ë³´
 			String[] columns = confDS.getString("column").split(",");
-			//header Á¤º¸
+			//header ì •ë³´
 			DataSet header = confDS.getDataSet("header");
-			//¼¿º´ÇÕ Á¤º¸
+			//ì…€ë³‘í•© ì •ë³´
 			DataSet merge = confDS.getDataSet("merge");
 			//col style
 			DataSet col_style = confDS.getDataSet("col_style");
 		
-			//workbookÀ» »ı¼º 
+			//workbookì„ ìƒì„± 
 			HSSFWorkbook workbook=new HSSFWorkbook();
-			//sheet»ı¼º 
+			//sheetìƒì„± 
 			HSSFSheet sheet=workbook.createSheet("sheet1");
 			
-			//¿¢¼¿ÀÇ Çà 
+			//ì—‘ì…€ì˜ í–‰ 
 			HSSFRow row=null;
-			//¿¢¼¿ÀÇ ¼¿ 
+			//ì—‘ì…€ì˜ ì…€ 
 			HSSFCell cell=null;
-			//¿¢¼¿ÀÇ header style
+			//ì—‘ì…€ì˜ header style
 			HSSFCellStyle headerStyle = getHeaderStyle(workbook);
-			//Èò»ö
+			//í°ìƒ‰
 			HSSFCellStyle colStyle_left = getColStyle(workbook,"left","","");
 			HSSFCellStyle colStyle_center = getColStyle(workbook,"center","","");
 			HSSFCellStyle colStyle_right = getColStyle(workbook,"right","","");
 
-			//Èò»ö ¼ıÀÚ
+			//í°ìƒ‰ ìˆ«ì
 			HSSFCellStyle colStyle_left_number = getColStyle(workbook,"left","","#,##0.00");
 			HSSFCellStyle colStyle_center_number = getColStyle(workbook,"center","","#,##0");
 			HSSFCellStyle colStyle_right_number = getColStyle(workbook,"right","","#,##0");
 			
-			//Èò»ö  ¼Ò¼öÁ¡ ¼ıÀÚ
+			//í°ìƒ‰  ì†Œìˆ˜ì  ìˆ«ì
 			HSSFCellStyle colStyle_left_decimal = getColStyle(workbook,"left","","#,##0.000");
 			HSSFCellStyle colStyle_center_decimal = getColStyle(workbook,"center","","#,##0.000");
 			HSSFCellStyle colStyle_right_decimal = getColStyle(workbook,"right","","#,##0.000");
 
-			//³ë¶õ»ö ¼ıÀÚ
+			//ë…¸ë€ìƒ‰ ìˆ«ì
 			HSSFCellStyle colStyle_left_yellow_number = getColStyle(workbook,"left","yellow","#,##0");
 			HSSFCellStyle colStyle_center_yellow_number = getColStyle(workbook,"center","yellow","#,##0");
 			HSSFCellStyle colStyle_right_yellow_number = getColStyle(workbook,"right","yellow","#,##0");
 			
-			//³ë¶õ»ö  ¼Ò¼öÁ¡ ¼ıÀÚ
+			//ë…¸ë€ìƒ‰  ì†Œìˆ˜ì  ìˆ«ì
 			HSSFCellStyle colStyle_left_yellow_decimal = getColStyle(workbook,"left","yellow","#,##0.000");
 			HSSFCellStyle colStyle_center_yellow_decimal = getColStyle(workbook,"center","yellow","#,##0.000");
 			HSSFCellStyle colStyle_right_yellow_decimal = getColStyle(workbook,"right","yellow","#,##0.000");
@@ -275,7 +275,7 @@ public class ExcelManager {
 							col_style.first();
 							while(col_style.next()){
 								if(col_style.getString("column").equals(columns[i])){
-									//ÀÏ¹İ
+									//ì¼ë°˜
 									
 									if(col_style.getString("style").equals("left")){
 										cell.setCellStyle(colStyle_left);
@@ -286,7 +286,7 @@ public class ExcelManager {
 									if(col_style.getString("style").equals("right")){
 										cell.setCellStyle(colStyle_right);
 									}else
-									//ÀÏ¹İ ¼ıÀÚ
+									//ì¼ë°˜ ìˆ«ì
 									if(col_style.getString("style").equals("left_number")){
 										cell.setCellStyle(colStyle_left_number);
 									}else
@@ -296,7 +296,7 @@ public class ExcelManager {
 									if(col_style.getString("style").equals("right_number")){
 										cell.setCellStyle(colStyle_right_number);
 									}else
-									//ÀÏ¹İ ¼Ò¼öÁ¡
+									//ì¼ë°˜ ì†Œìˆ˜ì 
 									if(col_style.getString("style").equals("left_decimal")){
 										cell.setCellStyle(colStyle_left_decimal);
 									}else
@@ -306,7 +306,7 @@ public class ExcelManager {
 									if(col_style.getString("style").equals("right_decimal")){
 											cell.setCellStyle(colStyle_right_decimal);
 									}else
-									//³ë¶û ¼ıÀÚ
+									//ë…¸ë‘ ìˆ«ì
 									if(col_style.getString("style").equals("left_yellow_number")){
 										cell.setCellStyle(colStyle_left_yellow_number);
 									}else
@@ -316,7 +316,7 @@ public class ExcelManager {
 									if(col_style.getString("style").equals("right_yellow_number")){
 										cell.setCellStyle(colStyle_right_yellow_number);
 									}else
-									//³ë¶û ¼Ò¼öÁ¡
+									//ë…¸ë‘ ì†Œìˆ˜ì 
 									if(col_style.getString("style").equals("left_yellow_decimal")){
 										cell.setCellStyle(colStyle_left_yellow_decimal);
 									}else
@@ -362,7 +362,7 @@ public class ExcelManager {
 					header.first();
 					while(header.next()){
 						if(columns[i].equals(header.getString("column"))){
-							sheet.setColumnWidth((short)i,header.getInt("width") );//300ÀÏ ¿¢¼¿¿­³ĞÀÌ 1 Á¤µµ
+							sheet.setColumnWidth((short)i,header.getInt("width") );//300ì¼ ì—‘ì…€ì—´ë„“ì´ 1 ì •ë„
 							break;
 						}
 					}
@@ -402,7 +402,7 @@ public class ExcelManager {
 	private HSSFCellStyle getHeaderStyle(HSSFWorkbook workbook){
 		HSSFCellStyle cellStyle = null;
 		
-		//styleÀº excel´ç4000°³ °¡Áö ¹Û¿¡ »ı¼º ºÒ°¡
+		//styleì€ excelë‹¹4000ê°œ ê°€ì§€ ë°–ì— ìƒì„± ë¶ˆê°€
 		//header style
 		cellStyle = workbook.createCellStyle();
 		//bgcolor

@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-String[] code_item_form = {"01=>DEPTH2[ºĞ·ù->¸íÄª]","02=>DEPTH3[´ëºĞ·ù->ÁßºĞ·ù->¸íÄª]","03=>DEPTH4[´ëºĞ·ù->ÁßºĞ·ù->¼ÒºĞ·ù->¸íÄª]"};
+String[] code_item_form = {"01=>DEPTH2[ë¶„ë¥˜->ëª…ì¹­]","02=>DEPTH3[ëŒ€ë¶„ë¥˜->ì¤‘ë¶„ë¥˜->ëª…ì¹­]","03=>DEPTH4[ëŒ€ë¶„ë¥˜->ì¤‘ë¶„ë¥˜->ì†Œë¶„ë¥˜->ëª…ì¹­]"};
 
 boolean bInsert = true;
-String item_form_cd_10 = "";	// °ßÀû³»¿ª¾ç½Ä±âº»°ª_¹°Ç°
-String item_form_cd_20 = "";	// °ßÀû³»¿ª¾ç½Ä±âº»°ª_°ø»ç
-String item_form_cd_30 = "";	// °ßÀû³»¿ª¾ç½Ä±âº»°ª_¿ë¿ª
-String build_item_yn = "";		// Àç³ë°æ ºĞ¸® ¿©ºÎ
+String item_form_cd_10 = "";	// ê²¬ì ë‚´ì—­ì–‘ì‹ê¸°ë³¸ê°’_ë¬¼í’ˆ
+String item_form_cd_20 = "";	// ê²¬ì ë‚´ì—­ì–‘ì‹ê¸°ë³¸ê°’_ê³µì‚¬
+String item_form_cd_30 = "";	// ê²¬ì ë‚´ì—­ì–‘ì‹ê¸°ë³¸ê°’_ìš©ì—­
+String build_item_yn = "";		// ì¬ë…¸ê²½ ë¶„ë¦¬ ì—¬ë¶€
 
 DataObject itemformDao = new DataObject("tcb_bid_item_form_default");
 DataSet itemform = itemformDao.find(" member_no = '"+_member_no+"' ");
@@ -19,10 +19,10 @@ if(itemform.next()){
 	bInsert = false;
 }
 
-f.addElement("item_form_cd_10", item_form_cd_10, "hname:'°ßÀû³»¿ª¾ç½Ä±âº»°ª_¹°Ç°'");
-f.addElement("item_form_cd_20", item_form_cd_20, "hname:'°ßÀû³»¿ª¾ç½Ä±âº»°ª_°ø»ç'");
-f.addElement("item_form_cd_30", item_form_cd_30, "hname:'°ßÀû³»¿ª¾ç½Ä±âº»°ª_¿ë¿ª'");
-f.addElement("build_item_yn", build_item_yn, "hname:'Àç³ë°æºĞ¸®¿©ºÎ'" );
+f.addElement("item_form_cd_10", item_form_cd_10, "hname:'ê²¬ì ë‚´ì—­ì–‘ì‹ê¸°ë³¸ê°’_ë¬¼í’ˆ'");
+f.addElement("item_form_cd_20", item_form_cd_20, "hname:'ê²¬ì ë‚´ì—­ì–‘ì‹ê¸°ë³¸ê°’_ê³µì‚¬'");
+f.addElement("item_form_cd_30", item_form_cd_30, "hname:'ê²¬ì ë‚´ì—­ì–‘ì‹ê¸°ë³¸ê°’_ìš©ì—­'");
+f.addElement("build_item_yn", build_item_yn, "hname:'ì¬ë…¸ê²½ë¶„ë¦¬ì—¬ë¶€'" );
 
 if(u.isPost()&& f.validate()){
 	itemformDao.item("item_form_cd_10", f.get("item_form_cd_10"));
@@ -34,16 +34,16 @@ if(u.isPost()&& f.validate()){
 	{
 		itemformDao.item("member_no", _member_no);
 		if(!itemformDao.insert()){
-			u.jsError("ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	} else {
 		if(!itemformDao.update("member_no = '"+_member_no+"' ")){
-			u.jsError("ÀúÀå¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+			u.jsError("ì €ì¥ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
-	u.jsAlertReplace("ÀúÀå ÇÏ¿´½À´Ï´Ù.", "./item_form_manager.jsp");
+	u.jsAlertReplace("ì €ì¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", "./item_form_manager.jsp");
 	return;
 }
 

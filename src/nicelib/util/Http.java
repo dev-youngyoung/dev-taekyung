@@ -99,7 +99,7 @@ public class Http {
 			
 			
 			//######################################################################
-			// POST ¹æ½ÄÀ¸·Î ±¸ÇöÇÑ ºÎºĞ
+			// POST ë°©ì‹ìœ¼ë¡œ êµ¬í˜„í•œ ë¶€ë¶„
 			hUrlc = (HttpURLConnection) conn;
 			hUrlc.setRequestProperty("Content-Type", "application/xml; charset=UTF-8");
 			hUrlc.setRequestProperty("Content-Length", Integer.toString(data.length()) );
@@ -153,7 +153,7 @@ public class Http {
 			System.out.println(url);
 			
 			//######################################################################
-			// POST ¹æ½ÄÀ¸·Î ±¸ÇöÇÑ ºÎºĞ
+			// POST ë°©ì‹ìœ¼ë¡œ êµ¬í˜„í•œ ë¶€ë¶„
 			hUrlc = (HttpURLConnection) conn;
 			hUrlc.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");						
 			//hUrlc.setRequestProperty("Content-Length", Integer.toString(data.toString().length()) );
@@ -170,7 +170,7 @@ public class Http {
 			
 			JSONObject json = null;
 			String bandinfo = "";
-			if(isArray)  // Json ¹è¿­ÀÏ°æ¿ì
+			if(isArray)  // Json ë°°ì—´ì¼ê²½ìš°
 			{				
 				bandinfo = data.toString();
 			}else
@@ -187,7 +187,7 @@ public class Http {
 			bandinfo = URLEncoder.encode(bandinfo,"UTF-8");
 			
 			param = "reqCode=" + reqCode + "&data=" + bandinfo ;
-			System.out.println("==================================Åë½ÅÁß===========================================");	
+			System.out.println("==================================í†µì‹ ì¤‘===========================================");	
 			System.out.println("==================================" +param);			
 			
 						
@@ -333,7 +333,7 @@ public class Http {
 			System.out.println(">>>>>>>>>>>>>>>>"+data);
 			
 			//######################################################################
-			// POST ¹æ½ÄÀ¸·Î ±¸ÇöÇÑ ºÎºĞ
+			// POST ë°©ì‹ìœ¼ë¡œ êµ¬í˜„í•œ ë¶€ë¶„
 			//header param set
 			Enumeration h = headers.keys();
 			while(h.hasMoreElements()) {
@@ -402,7 +402,7 @@ public class Http {
 			conn = url.openConnection();
 			
 			//######################################################################
-			// POST ¹æ½ÄÀ¸·Î ±¸ÇöÇÑ ºÎºĞ
+			// POST ë°©ì‹ìœ¼ë¡œ êµ¬í˜„í•œ ë¶€ë¶„
 			hUrlc = (HttpURLConnection) conn;
 			hUrlc.setRequestProperty("Content-Type", "Application/x-www-form-urlencoded");
 			hUrlc.setRequestMethod("POST");
