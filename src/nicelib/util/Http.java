@@ -4,7 +4,7 @@ import javax.servlet.jsp.JspWriter;
 
 import net.sf.json.JSONObject;
 import net.sf.json.JSONArray;
-import org.apache.http.conn.ConnectTimeoutException;
+//import org.apache.http.conn.ConnectTimeoutException;
 
 import java.io.*;
 import java.util.*;
@@ -372,9 +372,6 @@ public class Http {
 
 			in.close();
 
-		}catch (ConnectTimeoutException ce) {
-			System.out.println(">>>>>connection timeout>>>>>>>>>>>"+data);
-			System.out.println(ce.getMessage());
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}finally{
