@@ -1,0 +1,23 @@
+웹서버(Non-ERP운영) : 172.22.1.242 
+                      Administrator / tknon242 
+
+DB정보(개발DB) :   TKNONDEV / 172.22.1.244:4243 
+                 (스키마)  naniceecs  /  naniceecs11 
+                 (테이블스페이스 명)  NANIECS_TBL 
+                 (index 스페이스 명)  NANIECS_IDX 
+
+* DB tool(sql developer) 사용은 Non-ERP 개발( 172.22.1.243) 서버에서 부탁드립니다.(리소스 문제) 
+                              nondev1 / !dev243 
+
+웹서버  X:\8013\niceecs  위치에 배포할 파일을 복사하시고 
+저에게 연락주시면 웹로직서버에 배포설정을 하도록 하겠습니다. 
+
+<담당자>
+편홍범 ITO사업본부 ERP개발팀 과장 
+직통 	: 	(02)827.2243 
+Fax 	: 	(02)827.2149 
+Mobile 	: 	010.3461.1883 
+E-mail 	: 	hbpyeon@nongshim.co.kr 
+
+
+* 담당자 PC에 원격지원 프로그램으로 접속 후 작업
