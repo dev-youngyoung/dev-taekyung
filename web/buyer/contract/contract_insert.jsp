@@ -292,24 +292,15 @@
 			contDao.item("efile_yn", "Y");
 		}
 		if(!bid_no.equals("")&&!bid_deg.equals("")){
-			contDao.item("bid_kind_cd", bid.getString("bid_kind_cd"));
+			contDao.item("bid_kind_cd", "");
 			contDao.item("bid_no", bid_no);
 			contDao.item("bid_deg", bid_deg);
 		}
 		contDao.item("src_cd", f.get("src_cd"));
 		contDao.item("stamp_type", f.get("stamp_type"));
 		contDao.item("project_seq", f.get("project_seq"));
-		if(bIsKakao) {
-			contDao.item("cont_etc1", f.get("cont_etc1"));
-			contDao.item("cont_etc2", f.get("cont_etc2"));
-			contDao.item("cont_etc3", f.get("cont_etc3"));
-		}
-		else if(isCJT) {
-			contDao.item("cont_etc1", auth.getString("_DIVISION")); // 작성자의 부문
-		}
-		else if(!f.get("cont_etc1").equals("")) {
-			contDao.item("cont_etc1", f.get("cont_etc1"));
-		}
+		contDao.item("cont_etc1", f.get("cont_etc1"));
+		
 
 		db.setCommand(contDao.getInsertQuery(), contDao.record);
 
@@ -814,7 +805,6 @@
 	p.setVar("efile_yn", template.getString("efile_yn").equals("Y"));//내부 관리 서류 사용여부
 	p.setLoop("efile", efile);
 	p.setLoop("code_warr", u.arr2loop(code_warr));
-	p.setVar("bid", bid);
 	p.setVar("supp_member_no", supp_member_no);
 	p.setVar("form_script", f.getScript());
 	p.setVar("warr_yn", template.getString("warr_yn").equals("")||template.getString("warr_yn").equals("Y"));

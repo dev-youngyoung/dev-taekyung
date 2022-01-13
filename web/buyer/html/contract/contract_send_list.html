@@ -11,17 +11,129 @@
 			<col width="10%">
 		</colgroup>
 		<tr>
-		  	<th><p>계약서종류</p></th>
-		    <td colspan="3">
+		  	<th><p>계약서종류</p></th> 
+		  	<!-- IFNOT START 'isWoowahan' -->
+			  <td colspan="3"> 
+			<!-- IFNOT END 'isWoowahan' --> 
+		    <!-- IF START 'isWoowahan' -->
+		    <td> 
+		     <!-- IF END 'isWoowahan' -->
 		    	<select name="s_template_cd">
 		    		<option value="">-------선택-------</option>
 					<!-- LOOP START 'template' -->
 					<option value="{{template.template_cd}}">{{template.template_name}}</option>
 					<!-- LOOP END 'template' -->
 				</select>
+				<!-- IFC START '_auth._MEMBER_NO==20130600116' -->
+				<input type="checkbox" name="s_chkKth" value="Y">개인정보처리 위탁계약서 포함
+				<!-- IFC END '_auth._MEMBER_NO==20130600116' -->
 			</td>
+			<!-- IFNOT START 'isWoowahan' -->
 			<td align="right"></td>
+			<!-- IFNOT END 'isWoowahan' --> 
+			 <!-- IF START 'isWoowahan' -->
+			<th><p>계약일자</p></th>
+			<td > 
+				<input type="text" name="s_contdate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
+				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_contdate'])"> 
+			</td>
+			 <!-- IF END 'isWoowahan' -->
 		 </tr>
+		 
+		  <!-- IF START 'isKakaoc' -->
+		 	
+		 	<th><p>부서명</p></th>
+		 	<td>
+				<select name="s_field_seq">
+					<option value="">-부서 선택-</option>
+					<!-- LOOP START 'code_field' -->
+					<option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
+					<!-- LOOP END 'code_field' -->
+				</select>
+			</td>
+			
+		 <!-- IF END 'isKakaoc' -->
+		 
+		  <!-- IF START 'isKakao' -->
+		 	
+		 	<th><p>부서명</p></th>
+		 	<td>
+				<select name="s_field_seq">
+					<option value="">-부서 선택-</option>
+					<!-- LOOP START 'code_field' -->
+					<option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
+					<!-- LOOP END 'code_field' -->
+				</select>
+			</td>
+			
+		 <!-- IF END 'isKakao' -->
+		 
+		 <!-- IF START 'isCJT' -->
+		 <tr>
+		
+		 	<!-- IF START 'isDefaultYn' -->
+		 	<th><p>부문/부서</p></th>
+		 	<td>
+				<select name="s_division">
+					<option value="">-부문 선택-</option>
+					<!-- LOOP START 'code_cj_division' -->
+					<option value="{{code_cj_division.id}}">{{code_cj_division.name}}</option>
+					<!-- LOOP END 'code_cj_division' -->
+				</select> 
+				/ 
+				<select name="s_field_seq">
+					<option value="">-부서 선택-</option>
+					<!-- LOOP START 'code_field' -->
+					<option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
+					<!-- LOOP END 'code_field' -->
+				</select>
+			</td>
+			<!-- IF END 'isDefaultYn' -->
+			
+			<th>
+				<p>
+				<select name="cj_searh_col">
+					<option value="boss_name">대표자</option>
+					<option value="vendcd">사업자번호</option>
+				</select>
+				</p> 
+			</th>
+			<td><input type="text" name="cj_search_keyword" maxlength="100" style="width: 90%"></td>
+		 
+		 </tr>
+		 <!-- IF END 'isCJT' -->
+		 
+		
+		<!-- IF START 'detail_cd' -->
+			<tr>
+				<th><p>계약처코드</p></th>
+		   		<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
+				<th><p>KPP담당자명</p></th>
+		   		<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
+		   		<td></td>
+			</tr>
+		<!-- IF END 'detail_cd' -->
+		
+		<!-- IFNOT START 'detail_cd' -->
+			
+			<!-- IF START 'isKTH' -->
+			<tr>
+				<th><p>거래처코드</p></th>
+		   		<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
+		   		<th><p>담당자명</p></th>
+		   		<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
+		   		<td></td>
+			</tr>
+			<!-- IF END 'isKTH' -->
+			
+		<!-- IFNOT END 'detail_cd' -->
+		<!-- IF START 'isPersonView' -->
+			<tr>
+				<th><p>담당자명</p></th>
+				<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
+				<td></td>
+			</tr>
+		<!-- IF END 'isPersonView' -->
 		 <tr>
 			<th><p>거래처명</p></th>
 		    <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
@@ -41,17 +153,6 @@
 					<!-- LOOP END 'code_status' -->
 				</select>
 		  	</td>
-		</tr>
-		<tr>
-			<th><p>계약구분</p></th>
-		   	<td colspan="3">
-		   		<select name="s_cont_gubun">
-		   			<option value="">-전체-</option>
-		   			<option value="P">표준</option>
-		   			<option value="B">비표준</option>
-		   			<option value="A">자동연장</option>
-				</select>
-		  	</td>
 			<td align="right">
 				<button type="submit" class="search_btn">검색</button>
 			</td>
@@ -60,43 +161,98 @@
 	</table>
 </div>
 
-<!-- <div class="util-row" align="right">
-	<button type="button" class="sbtn color2 ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
-</div> -->
+<div class="util-row" align="right">
+	<button type="button" class="sbtn color ico-excel" onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
+	<!-- IF START 'btn_pop_resend' -->
+	<button type="button" class="sbtn color ico-monitor" onclick="OpenWindows('pop_resend.jsp','pop_resend','1000','700')"><span></span>일괄재전송(사업자)</button>
+	<!-- IF END 'btn_pop_resend' -->
+	<!-- IF START 'btn_pop_resend_kakao' -->
+	<button type="button" class="sbtn color ico-monitor" onclick="OpenWindows('pop_resend_kakao.jsp','pop_resend_kakao','1000','700')"><span></span>일괄재전송(사업자)</button>
+	<!-- IF END 'btn_pop_resend_kakao' -->
+	<!-- IF START 'btn_pop_msign_resend' -->
+		<button type="button" class="sbtn color ico-monitor" onclick="OpenWindows('pop_msign_resend.jsp','pop_msign_resend','1000','700')"><span></span>일괄재전송</button>
+	<!-- IF END 'btn_pop_msign_resend' --> 
+</div>
 
 <br>
 
 <div class="div_table">
 	<table>
-  		<colgroup>
-			<col width="10%"> 
+  		<colgroup> 
+			<col width="7%">   
 			<col width="*">
 			<col width="20%">   
+		<!-- IF START 'detail_cd' -->
+			<col width="8%">
+			<col width="7%">
+		<!-- IF END 'detail_cd' -->
+		<!-- IF START 'isKTH' -->
+			<col width="8%">
+			<col width="7%">
+		<!-- IF END 'isKTH' -->
+		<!-- IF START 'isCJT' -->
+			<col width="8%">
+		<!-- IF END 'isCJT' -->
 			<col width="10%">
+		<!-- IF START 'isPersonView' -->
+			<col width="8%">
+		<!-- IF END 'isPersonView' -->
 			<col width="10%">
+		<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->
+			<col width="10%">    
+		<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->      
   		</colgroup>
-		<tr>
-				<th width="13%">계약번호</th>
+		<tr> 
+				<th width="7%">순번</th> 
 			    <th width="%">계약명</th>
 			    <th width="20%">거래처명</th>
+			<!-- IF START 'detail_cd' -->
+				<th width="8%">계약처<br>코드</th>
+				<th width="7%">KPP담당</th>
+			<!-- IF END 'detail_cd' -->
+			<!-- IF START 'isKTH' -->
+				<th width="8%">거래처<br>코드</th>
+				<th width="7%">담당자</th>
+			<!-- IF END 'isKTH' -->
+			<!-- IF START 'isCJT' -->
+				<th width="8%">대표자</th>
+			<!-- IF END 'isCJT' -->
 			    <th width="10%">계약일자</th>
+			<!-- IF START 'isPersonView' -->
+				<th width="8%">담당자</th>
+			<!-- IF END 'isPersonView' -->
 			    <th width="10%">상태</th>
+			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->    
+			    <th width="10%">계약번호</th>
+			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->      
 		</tr>
 		
 		<!-- IF START 'list' -->
   			<!-- LOOP START 'list' -->
   				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
-  					onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
-					<td align="center">{{list.cont_userno}}</td>
-					<td>
-					<!-- IFC START 'list.auto_yn==Y' -->
-					<img src="/web/buyer/html/images/common/i_contexp.gif" style="width:17px; height:17px; vertical-align: middle;"/> 
-					<!-- IFC END 'list.auto_yn==Y' -->
-					&nbsp;{{list.cont_name}}
-					</td>
+  					onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer"> 
+					<td align="center">{{list.__ord}}</td> 
+					<td>{{list.cont_name}}</td>
 					<td>{{list.cust_name}}</td>
+				<!-- IF START 'detail_cd' -->
+					<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCD('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
+					<td align="center">{{list.reg_name}}</td>
+				<!-- IF END 'detail_cd' -->
+				<!-- IF START 'isKTH' -->
+					<td align="center">{{list.cust_detail_code}}</td>
+					<td align="center">{{list.reg_name}}</td>
+				<!-- IF END 'isKTH' -->
+				<!-- IF START 'isCJT' -->
+					<td align="center">{{list.boss_name}}</td>
+				<!-- IF END 'isCJT' -->
 					<td align="center">{{list.cont_date}}</td>
+				<!-- IF START 'isPersonView' -->
+					<td align="center">{{list.reg_name}}</td>
+				<!-- IF END 'isPersonView' -->	
 					<td align="center">{{list.status_name}}</td>
+				<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
+					<td align="center">{{list.cont_userno}}</td>
+				<!-- IFC END '_auth._MEMBER_NO!=20130500619' --> 
 			</tr>
   		<!-- LOOP END 'list' -->
 	<!-- IF END 'list' -->

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<db>
-		<datasource>cdb</datasource>
+		<datasource>java:comp/env/cdb</datasource> 
 		<queryformat>true</queryformat>
 	</db>
 	
-	<dir>D:/Project/Intellij/nongshim</dir>
+	<dir>D:/nongshim/nongshim</dir>
 
 	<file>
 		<path> <!-- 파일 디렉토리-->

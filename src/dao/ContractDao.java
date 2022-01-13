@@ -32,7 +32,7 @@ public class ContractDao extends DataObject {
 	}
 	
 	public String makeContNo() {
-		DataSet ds = this.query("select f_tec_maxcontnumb('P') cont_no from dual");
+		DataSet ds = this.query("SELECT 'N'|| (TO_NUMBER(TO_CHAR(SYSDATE, 'YYMM')) + 3300) || LPAD( TCB_CONT_NO_SEQ.nextval, 6, '0' ) cont_no from dual");
 		String cont_no = "";
 		if (ds.next()) cont_no = ds.getString("cont_no");
 		return cont_no;
