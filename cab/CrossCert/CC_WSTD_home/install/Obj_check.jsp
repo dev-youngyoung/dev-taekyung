@@ -1,10 +1,10 @@
 <%@page import="nicelib.util.Base64Coder"%>
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
 String callback = request.getParameter("callback")==null?"":request.getParameter("callback");
 if(callback.equals("")||callback.startsWith("http")){
 	/* out.println("<script>");
-	out.println("alert('Á¤»óÀûÀÎ °æ·Î·Î Á¢±ÙÇÏ¼¼¿ä.');");
+	out.println("alert('ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼í•˜ì„¸ìš”.');");
 	out.println("self.close();");
 	out.println("</script>");
 	return; */
@@ -12,14 +12,14 @@ if(callback.equals("")||callback.startsWith("http")){
 callback = new String(Base64Coder.decode(callback),"UTF-8");
 %>
 <!-- 
-	¼³Ä¡ ÈÄ ÀÌµ¿ÇÒ ÆäÀÌÁö °æ·Î ¼³Á¤ : mainPageUrl
+	ì„¤ì¹˜ í›„ ì´ë™í•  í˜ì´ì§€ ê²½ë¡œ ì„¤ì • : mainPageUrl
 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-	<title>ÇÑ±¹ÀüÀÚÀÎÁõ ÀÎÁõ¼­ °ü¸®ÇÁ·Î±×·¥ ¼³Ä¡ </title>
+	<title>í•œêµ­ì „ìì¸ì¦ ì¸ì¦ì„œ ê´€ë¦¬í”„ë¡œê·¸ë¨ ì„¤ì¹˜ </title>
 	<link rel="stylesheet" href="style.css" /> 
 	<script type="text/javascript" src="../unisignweb/framework/json2.js"></script>
 </head>
@@ -63,39 +63,39 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 
 <body>
 	<div id="setup">
-		<a href="https://open.crosscert.com/index.jsp" class="logo_footer" alt="ÇÑ±¹ÀüÀÚÀÎÁõ ·Î°í"><span class="blind">ÇÑ±¹ÀüÀÚÀÎÁõ ·Î°í</span></a>
+		<a href="https://open.crosscert.com/index.jsp" class="logo_footer" alt="í•œêµ­ì „ìì¸ì¦ ë¡œê³ "><span class="blind">í•œêµ­ì „ìì¸ì¦ ë¡œê³ </span></a>
 		<img src="https://open.crosscert.com/images/setup_img.jpg" alt="" />
 		<ul id="list_bl">
-			<li>¡¤ °í°´´ÔÀÇ ¾ÈÀüÇÑ °øÀÎÀÎÁõ¼­ºñ½º ÀÌ¿ëÀ» À§ÇÏ¿© ÀÎÁõÇÁ·Î±×·¥À» ¼³Ä¡ÇÕ´Ï´Ù.</li>
-			<li>¡¤ ¼³Ä¡°¡ ¿Ï·áµÇ¸é [F5]Å°¸¦ ´­·¯ »õ·Î°íÄ§À» ÇÏ½Ã°Å³ª, ºê¶ó¿ìÀú¸¦ ´İÀº ÈÄ ´Ù½Ã Á¢¼ÓÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</li>
-			<li>¡¤ ¿À·ù ¸Ş½ÃÁö°¡ ¹ß»ıÇÒ °æ¿ì ´Ù¿î·Îµå ¾È³»Ã¢¿¡¼­ ¡®ÀúÀå¡¯À» ´­·¯ PC¿¡ ´Ù¿î·Îµå ÈÄ ½ÇÇàÇÏ¼¼¿ä.</li>
-			<li>¡¤ ¼³Ä¡È­¸éÀÌ ¹İº¹ÀûÀ¸·Î ³ª¿Ã °æ¿ì À¥ºê¶ó¿ìÀú¸¦ Á¾·áÇÏ°í ´Ù½Ã Á¢¼ÓÇÏ¼¼¿ä.</li>
+			<li>Â· ê³ ê°ë‹˜ì˜ ì•ˆì „í•œ ê³µì¸ì¸ì¦ì„œë¹„ìŠ¤ ì´ìš©ì„ ìœ„í•˜ì—¬ ì¸ì¦í”„ë¡œê·¸ë¨ì„ ì„¤ì¹˜í•©ë‹ˆë‹¤.</li>
+			<li>Â· ì„¤ì¹˜ê°€ ì™„ë£Œë˜ë©´ [F5]í‚¤ë¥¼ ëˆŒëŸ¬ ìƒˆë¡œê³ ì¹¨ì„ í•˜ì‹œê±°ë‚˜, ë¸Œë¼ìš°ì €ë¥¼ ë‹«ì€ í›„ ë‹¤ì‹œ ì ‘ì†í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.</li>
+			<li>Â· ì˜¤ë¥˜ ë©”ì‹œì§€ê°€ ë°œìƒí•  ê²½ìš° ë‹¤ìš´ë¡œë“œ ì•ˆë‚´ì°½ì—ì„œ â€˜ì €ì¥â€™ì„ ëˆŒëŸ¬ PCì— ë‹¤ìš´ë¡œë“œ í›„ ì‹¤í–‰í•˜ì„¸ìš”.</li>
+			<li>Â· ì„¤ì¹˜í™”ë©´ì´ ë°˜ë³µì ìœ¼ë¡œ ë‚˜ì˜¬ ê²½ìš° ì›¹ë¸Œë¼ìš°ì €ë¥¼ ì¢…ë£Œí•˜ê³  ë‹¤ì‹œ ì ‘ì†í•˜ì„¸ìš”.</li>
 			
 			</br>
 			<div id="faq">
-				<span style="margin-right: 15px;">ÇÁ·Î±×·¥ ¼³Ä¡ Áß ¿À·ù ¹®ÀÇ |<a href="mailto:;sos@crosscert.com" > sos@crosscert.com</a></span>&nbsp;&nbsp;
-				<span id="btn" class="wh_s"><a href="https://www.crosscert.com/support" target="_blank">¿ø°İÁö¿ø¼­ºñ½º</a></span>&nbsp;&nbsp;
-				<span id="btn" class="rd_s"><a href="http://blog.daum.net/crosscert/199" target="_blank">ÇÁ·Î±×·¥ ¼³Ä¡ ¿À·ù ÇØ°áÇÏ±â</a></span>
+				<span style="margin-right: 15px;">í”„ë¡œê·¸ë¨ ì„¤ì¹˜ ì¤‘ ì˜¤ë¥˜ ë¬¸ì˜ |<a href="mailto:;sos@crosscert.com" > sos@crosscert.com</a></span>&nbsp;&nbsp;
+				<span id="btn" class="wh_s"><a href="https://www.crosscert.com/support" target="_blank">ì›ê²©ì§€ì›ì„œë¹„ìŠ¤</a></span>&nbsp;&nbsp;
+				<span id="btn" class="rd_s"><a href="http://blog.daum.net/crosscert/199" target="_blank">í”„ë¡œê·¸ë¨ ì„¤ì¹˜ ì˜¤ë¥˜ í•´ê²°í•˜ê¸°</a></span>
 			</div>
 
 		</ul>
 		<table>
 			<tr>
-				<th width="20%">ÇÁ·Î±×·¥¸í</th>
-				<th width="20%">±â´É</th>
-				<th width="20%">¼³Ä¡»óÅÂ</th>
-				<th width="20%">¿î¿µÃ¼Á¦(OS)</th>
-				<th>À¥ºê¶ó¿ìÀú</th>
+				<th width="20%">í”„ë¡œê·¸ë¨ëª…</th>
+				<th width="20%">ê¸°ëŠ¥</th>
+				<th width="20%">ì„¤ì¹˜ìƒíƒœ</th>
+				<th width="20%">ìš´ì˜ì²´ì œ(OS)</th>
+				<th>ì›¹ë¸Œë¼ìš°ì €</th>
 			</tr>
 			<tr>
-				<td>ÀÎÁõÇÁ·Î±×·¥</td>
-				<td>°øÀÎÀÎÁõ¼­ ¹ß±Ş ¹× ÀüÀÚ¼­¸íÀ» À§ÇÑ ÇÁ·Î±×·¥</td>
+				<td>ì¸ì¦í”„ë¡œê·¸ë¨</td>
+				<td>ê³µì¸ì¸ì¦ì„œ ë°œê¸‰ ë° ì „ìì„œëª…ì„ ìœ„í•œ í”„ë¡œê·¸ë¨</td>
 				<td>
 					<div id="status_text"></div>
 				</td>
 				<td>
 					<script type="text/javascript">
-					/* »ç¿ëÀÚ OS */
+					/* ì‚¬ìš©ì OS */
 			    	var userOs = "";
 			        var ua = navigator.userAgent;
 
@@ -152,14 +152,14 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 			        }
 
 			        else{
-			        	userOs = "¹ÌÈ®ÀÎ";
+			        	userOs = "ë¯¸í™•ì¸";
 			        }
 					document.write(userOs);
 					</script>
 				</td>
 				<td>
 					<script type="text/javascript">
-					/* ºê¶ó¿ìÀú È®ÀÎ */
+					/* ë¸Œë¼ìš°ì € í™•ì¸ */
 			        var Browser = { a : navigator.userAgent.toLowerCase() }
 			        var browserNm = "";
 			        var browserVr = "";
@@ -179,7 +179,7 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 			            browserVr = "v.7";
 			        }
 
-			        /* IE8 ºÎÅÍ´Â msie °ªÀ¸·Î ºê¶ó¿ìÀú ¹öÀüÀ» ºĞº°ÇÒ¼ö ¾øÀ½ trident °ªÀ¸·Î ÇØ¾ßÇÑ´Ù. */
+			        /* IE8 ë¶€í„°ëŠ” msie ê°’ìœ¼ë¡œ ë¸Œë¼ìš°ì € ë²„ì „ì„ ë¶„ë³„í• ìˆ˜ ì—†ìŒ trident ê°’ìœ¼ë¡œ í•´ì•¼í•œë‹¤. */
 			        if( Browser.a.indexOf('trident/4.0') != -1 ) {
 			            browserNm = "Internet Explorer";
 			            browserVr = "v.8";
@@ -241,7 +241,7 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 			        }
 			        
 			        if(browserVr == "v.5" || browserVr == "v.6" || browserVr == "v.7" ){
-			           alert("[¾Ë¸²]IE7 ÀÌÇÏ ºê¶ó¿ìÀú´Â ±¹Á¦Ç¥ÁØ±Ô°İÀÎ HTML5 Áö¿øÀÌ ¾ÈµÇ´Â ºê¶ó¿ìÁ®ÀÔ´Ï´Ù.\n¾ÈÁ¤ÀûÀÎ ¼­ºñ½º¸¦ À§ÇØ »óÀ§ ºê¶ó¿ìÀú(IE8ÀÌ»ó)·Î Á¢¼ÓÇÏ¿© ÁÖ½Ê½Ã¿À");
+			           alert("[ì•Œë¦¼]IE7 ì´í•˜ ë¸Œë¼ìš°ì €ëŠ” êµ­ì œí‘œì¤€ê·œê²©ì¸ HTML5 ì§€ì›ì´ ì•ˆë˜ëŠ” ë¸Œë¼ìš°ì ¸ì…ë‹ˆë‹¤.\nì•ˆì •ì ì¸ ì„œë¹„ìŠ¤ë¥¼ ìœ„í•´ ìƒìœ„ ë¸Œë¼ìš°ì €(IE8ì´ìƒ)ë¡œ ì ‘ì†í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤");
 		               document.location.href = "/glca_AX/01_00_AX.jsp";
 			        }
 			        document.write(browserNm + "<br/>" + browserVr);
@@ -253,10 +253,10 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 		<iframe id="us-downloadURL" name="us-downloadURL" width="0" height="0" style="display: none;"></iframe>
 		</br>
 		<div id="next" style="text-align: center">
-			ÀÎÁõ¼­ °ü¸® ÇÁ·Î±×·¥ÀÌ ¼³Ä¡µÇ¾îÀÖÁö ¾Ê°Å³ª ½ÇÇàÁßÀÌ ¾Æ´Õ´Ï´Ù<br><br> ÇÁ·Î±×·¥ÀÌ ÀÚµ¿À¸·Î ¼³Ä¡µÇÁö ¾ÊÀ¸¹Ç·Î <b>¼³Ä¡ÇÏ±â</b>¸¦ Å¬¸¯ÇØ ÁÖ½Ê½Ã¿À.<br>
+			ì¸ì¦ì„œ ê´€ë¦¬ í”„ë¡œê·¸ë¨ì´ ì„¤ì¹˜ë˜ì–´ìˆì§€ ì•Šê±°ë‚˜ ì‹¤í–‰ì¤‘ì´ ì•„ë‹™ë‹ˆë‹¤<br><br> í”„ë¡œê·¸ë¨ì´ ìë™ìœ¼ë¡œ ì„¤ì¹˜ë˜ì§€ ì•Šìœ¼ë¯€ë¡œ <b>ì„¤ì¹˜í•˜ê¸°</b>ë¥¼ í´ë¦­í•´ ì£¼ì‹­ì‹œì˜¤.<br>
 		</div>
 		<div id="next2" style="text-align: center">
-			¼³Ä¡¿Ï·á ÈÄ ÀÚµ¿À¸·Î ´ÙÀ½ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù. ¼³Ä¡ÈÄ¿¡µµ 1ºĞÀÌ»ó º¯È­°¡ ¾øÀ» °æ¿ì <span id="btnreload" class="bl_s"><a href="javascript:;" onclick="location.reload();"><b>»õ·Î°íÄ§</a></b></span>À» ´­·¯ÁÖ¼¼¿ä
+			ì„¤ì¹˜ì™„ë£Œ í›„ ìë™ìœ¼ë¡œ ë‹¤ìŒí˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤. ì„¤ì¹˜í›„ì—ë„ 1ë¶„ì´ìƒ ë³€í™”ê°€ ì—†ì„ ê²½ìš° <span id="btnreload" class="bl_s"><a href="javascript:;" onclick="location.reload();"><b>ìƒˆë¡œê³ ì¹¨</a></b></span>ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”
 		</div>
 
 
@@ -279,11 +279,11 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 		var VestCert_WIN_PKG 				= 'VestCertSetup.exe';			
 
 		
-		// OS package  - Real ¹İ¿µÀü¿¡ ¼¾ÅÍ¿¡ È®ÀÎÇÒ °Í.
+		// OS package  - Real ë°˜ì˜ì „ì— ì„¼í„°ì— í™•ì¸í•  ê²ƒ.
 		//var VestCert_MAC_PKG 				= 'https://www.crosscert.com/Download/2.4.8/VestCertSetup.exe';
 		//var VestCert_WIN_PKG 				= 'https://www.crosscert.com/Download/2.4.8/VestCertSetup.exe';			
 		
-		// default´Â windows. GetClientOS ÀÌÈÄ OS¿¡ ¸Â´Â ¹öÀü°ú package¸í ¼³Á¤
+		// defaultëŠ” windows. GetClientOS ì´í›„ OSì— ë§ëŠ” ë²„ì „ê³¼ packageëª… ì„¤ì •
 		var VestCert_PKG = VestCert_WIN_PKG;
 		var lastestVersion = VestCert_WIN_Version;
 		
@@ -349,12 +349,12 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 				
 				//if(obj.list == null || currentVersion < parseInt(lastestVersion)){
 				if( isUpdate(currentVersion) ){
-					statusMsg("ÀÎÁõ¼­ °ü¸® ÇÁ·Î±×·¥ÀÌ ÃÖ½Å¹öÀüÀÌ ¾Æ´Õ´Ï´Ù.<br>ÃÖ½Å¹öÀüÀ¸·Î ¼³Ä¡ÇØÁÖ½Ã±â¹Ù¶ø´Ï´Ù.<br><br>ÃÖ½Å¹öÀü : " + lastestVersion + "<br>¼³Ä¡µÈ ¹öÀü : " + currentVersion + '<div id="btn" class="wh_s"><a href="'+VestCert_PKG+'">¼³Ä¡ÇÏ±â</a></div>');
+					statusMsg("ì¸ì¦ì„œ ê´€ë¦¬ í”„ë¡œê·¸ë¨ì´ ìµœì‹ ë²„ì „ì´ ì•„ë‹™ë‹ˆë‹¤.<br>ìµœì‹ ë²„ì „ìœ¼ë¡œ ì„¤ì¹˜í•´ì£¼ì‹œê¸°ë°”ëë‹ˆë‹¤.<br><br>ìµœì‹ ë²„ì „ : " + lastestVersion + "<br>ì„¤ì¹˜ëœ ë²„ì „ : " + currentVersion + '<div id="btn" class="wh_s"><a href="'+VestCert_PKG+'">ì„¤ì¹˜í•˜ê¸°</a></div>');
 					if(versionCheck == false) document.getElementById("hsmiframe").src = VestCert_PKG;
 					versionCheck = true;
 					setTimeout(send, 2000);
 			}else{
-					statusMsg("ÀÎÁõ¼­ °ü¸® ÇÁ·Î±×·¥ÀÌ ¼³Ä¡µÇ¾ú½À´Ï´Ù");
+					statusMsg("ì¸ì¦ì„œ ê´€ë¦¬ í”„ë¡œê·¸ë¨ì´ ì„¤ì¹˜ë˜ì—ˆìŠµë‹ˆë‹¤");
 					setTimeout(function(){/*document.location.href = mainPageUrl;*/if(opener){opener.location.reload();}self.close();}, 500);
 			}
 			}else return;
@@ -435,19 +435,19 @@ callback = new String(Base64Coder.decode(callback),"UTF-8");
 				chkCount = 0;
 				if(versionCheck == false){
 					document.getElementById("hsmiframe").src = iframesrc;
-					statusMsg("¼³Ä¡µÈ ÀÎÁõ¼­ °ü¸®ÇÁ·Î±×·¥ ¹öÀü È®ÀÎÁß", chkCount);
+					statusMsg("ì„¤ì¹˜ëœ ì¸ì¦ì„œ ê´€ë¦¬í”„ë¡œê·¸ë¨ ë²„ì „ í™•ì¸ì¤‘", chkCount);
 					addEvent();
 					setTimeout(send, 200);
 					setTimeout(function(){fnChecker(true);}, 1000);
 				}
 			}else{
 				if(navigator.userAgent.indexOf("Firefox") > -1){
-					statusMsg('<span class="setting">¹Ì¼³Ä¡</span><div id="btn" class="wh_s"><a href="'+VestCert_PKG+'">¼³Ä¡ÇÏ±â</a></div>');
+					statusMsg('<span class="setting">ë¯¸ì„¤ì¹˜</span><div id="btn" class="wh_s"><a href="'+VestCert_PKG+'">ì„¤ì¹˜í•˜ê¸°</a></div>');
 				}else if (navigator.userAgent.indexOf("MSIE 7.0") > -1 && navigator.userAgent.indexOf("compatible") < 0) {
-					statusMsg("»ç¿ëÁßÀÎ IE7 ºê¶ó¿ìÁ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê½À´Ï´Ù. Å¸ ºê¶ó¿ìÁ® ¶Ç´Â IE¹öÀüÀ» ¾÷µ¥ÀÌÆ® ÇÏ½Ã±æ ¹Ù¶ø´Ï´Ù.");
+					statusMsg("ì‚¬ìš©ì¤‘ì¸ IE7 ë¸Œë¼ìš°ì ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. íƒ€ ë¸Œë¼ìš°ì ¸ ë˜ëŠ” IEë²„ì „ì„ ì—…ë°ì´íŠ¸ í•˜ì‹œê¸¸ ë°”ëë‹ˆë‹¤.");
 					document.getElementById("btn_run").style.display = "block";
 				} else {
-					statusMsg('<span class="setting">¹Ì¼³Ä¡</span><div id="btn" class="wh_s"><a href="'+VestCert_PKG+'">¼³Ä¡ÇÏ±â</a></div>');
+					statusMsg('<span class="setting">ë¯¸ì„¤ì¹˜</span><div id="btn" class="wh_s"><a href="'+VestCert_PKG+'">ì„¤ì¹˜í•˜ê¸°</a></div>');
 					//document.getElementById("btn_run").style.display = "block";
 					setTimeout(function(){ fnInstallCheck(fnChecker); }, 1000);
 				}

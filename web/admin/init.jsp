@@ -1,7 +1,7 @@
 <%@ page import="java.util.*,java.io.*,nicelib.db.*,nicelib.util.*,dao.*" %>
 <%@page import="procure.common.conf.Startup"%>
 <%@page import="procure.common.utils.*"%><%
-// ·Î±×¾Æ¿ô ÈÄ µÚ·Î°¡±â Ä³½Ã ¹æÁö 2012.11.1 add by À¯¼ºÈÆ
+// ë¡œê·¸ì•„ì›ƒ í›„ ë’¤ë¡œê°€ê¸° ìºì‹œ ë°©ì§€ 2012.11.1 add by ìœ ì„±í›ˆ
 response.setHeader("Pragma", "No-cache");
 response.setDateHeader("Expires", 0);
 response.setHeader("Cache-Control", "no-Cache");
@@ -15,14 +15,14 @@ String dataDir = docRoot + "/data";
 
 Util u = new Util(request, response, out);
 
-if(request.getServerName().equals("nicedocu.com")){//www.°¡ ºüÁø °Ç À¥ ¹æÈ­º®¿¡ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀº µµ¸ÅÀÎÀÌ´Ù.
+if(request.getServerName().equals("nicedocu.com")){//www.ê°€ ë¹ ì§„ ê±´ ì›¹ ë°©í™”ë²½ì— ë“±ë¡ë˜ì–´ ìžˆì§€ ì•Šì€ ë„ë§¤ì¸ì´ë‹¤.
 	u.redirect("https://www.nicedocu.com"+u.getThisURI()+"?"+u.getQueryString());
 	return;
 }
 
 if(request.getServerName().equals("www.nicedocu.com")&&!request.isSecure()){
 	if(u.isPost()){
-		u.jsError("º¸¾ÈÀ» À§ÇØ https·Î  Á¢±Ù ÇÏ¼¼¿ä.\\n\\nhttpÁ¢±Ù½Ã post¹æ½ÄÀ¸·Î´Â Á¢±ÙÀÌ ºÒ°¡ÇÕ´Ï´Ù.");
+		u.jsError("ë³´ì•ˆì„ ìœ„í•´ httpsë¡œ  ì ‘ê·¼ í•˜ì„¸ìš”.\\n\\nhttpì ‘ê·¼ì‹œ postë°©ì‹ìœ¼ë¡œëŠ” ì ‘ê·¼ì´ ë¶ˆê°€í•©ë‹ˆë‹¤.");
 	}else{
 		u.redirect(request.getRequestURL().toString().replaceAll("http://", "https://")+"?"+u.getQueryString());
 	}
