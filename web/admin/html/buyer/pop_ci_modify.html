@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-// ±âÁ¸¿¡ ÀúÀåµÈ ·Î°í ÀÌ¹ÌÁö ºÒ·¯¿À±â
+// ê¸°ì¡´ì— ì €ì¥ëœ ë¡œê³  ì´ë¯¸ì§€ ë¶ˆëŸ¬ì˜¤ê¸°
 function fLoadLogo()
 {
     // document.getElementById("img_logo").src = "/servlets/procure.common.file.FileDownLoad?FILE_KEY=file.path.bcont_logo&FILE_NAME={{member.ci_img_path}}";
@@ -8,7 +8,7 @@ function fLoadLogo()
     return;
 }
 
-// ·Î°í ÀÌ¹ÌÁö Å©±â Á¶Á¤
+// ë¡œê³  ì´ë¯¸ì§€ í¬ê¸° ì¡°ì •
 function fSetSizeLogo(img)
 {
     var maxWidth = 480;
@@ -17,14 +17,14 @@ function fSetSizeLogo(img)
     if ( (img.width > 0) && (img.height > 0) )
     {
 
-        // °¡·Î/¼¼·Î ºñÀ²ÀÌ ±âÁØºñÀ²º¸´Ù ´õ Å©¸é
+        // ê°€ë¡œ/ì„¸ë¡œ ë¹„ìœ¨ì´ ê¸°ì¤€ë¹„ìœ¨ë³´ë‹¤ ë” í¬ë©´
         if ( (img.width/img.height) > (maxWidth/maxHeight) )
         {
-            img.width = maxWidth;   // °¡·ÎÅ©±â Á¦ÇÑ
+            img.width = maxWidth;   // ê°€ë¡œí¬ê¸° ì œí•œ
         }
         else
         {
-            img.height = maxHeight; // ¼¼·ÎÅ©±â Á¦ÇÑ
+            img.height = maxHeight; // ì„¸ë¡œí¬ê¸° ì œí•œ
         }
     }
 
@@ -33,11 +33,11 @@ function fSetSizeLogo(img)
 </script>
 <form name="form1" method="post" enctype="multipart/form-data">
 <div style="text-align:right;margin: 5px 0px" >
-	<button type="submit"  class="sbtn color ico-save" value="ÀúÀå"><span></span>ÀúÀå</button>
+	<button type="submit"  class="sbtn color ico-save" value="ì €ì¥"><span></span>ì €ì¥</button>
 	<!-- IF START 'member.ci_img_path' -->
-    <button type="button"  class="sbtn color ico-save" value="»èÁ¦" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){document.forms['form1'].action='pop_ci_delete.jsp'; document.forms['form1'].submit(); }" ><span></span>»èÁ¦</button>
+    <button type="button"  class="sbtn color ico-save" value="ì‚­ì œ" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){document.forms['form1'].action='pop_ci_delete.jsp'; document.forms['form1'].submit(); }" ><span></span>ì‚­ì œ</button>
     <!-- IF END 'member.ci_img_path' -->
-	<button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>´İ±â</button>
+	<button type="button" class="sbtn color ico-cancel"  onclick="self.close()"><span></span>ë‹«ê¸°</button>
 </div>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -47,7 +47,7 @@ function fSetSizeLogo(img)
   <tr>
     <td style="color:#e08036">
       &nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="ci_file" class="label" style="width:90%"><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;¡Ø ÀÌ¹ÌÁö´Â jpg,gif,png Çü½Ä ÆÄÀÏ¸¸ Ã·ºÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
+      &nbsp;&nbsp;&nbsp;&nbsp;â€» ì´ë¯¸ì§€ëŠ” jpg,gif,png í˜•ì‹ íŒŒì¼ë§Œ ì²¨ë¶€í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.
     </td>
   </tr>
   <tr>
