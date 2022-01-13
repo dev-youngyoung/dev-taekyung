@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%@ include file="../chk_login.jsp" %>
 <%
 
 String sServerName = request.getServerName();
@@ -6,14 +6,14 @@ String sUrl = "./changepass.jsp";
 
 if(u.request("passdate_done").equals("Y")){
 	Cookie cookie = new Cookie("passdate_done", u.getTimeString());
-	cookie.setMaxAge(60*60*24*14); // À¯È¿±â°£ ÇÑ´Þ
-	response.addCookie(cookie);    // ÄíÅ°¸¦ ÀÀ´ä¿¡ Ãß°¡ÇØÁÜ
+	cookie.setMaxAge(60*60*24*14); // ìœ íš¨ê¸°ê°„ í•œë‹¬
+	response.addCookie(cookie);    // ì¿ í‚¤ë¥¼ ì‘ë‹µì— ì¶”ê°€í•´ì¤Œ
 	u.redirect("./index2.jsp");
 	return;
 }
 
-f.addElement("now_passwd", null, "hname:'ÇöÀç ºñ¹Ð¹øÈ£', required:'Y'");
-f.addElement("passwd", null, "hname:'ºñ¹Ð¹øÈ£', required:'Y', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
+f.addElement("now_passwd", null, "hname:'í˜„ìž¬ ë¹„ë°€ë²ˆí˜¸', required:'Y'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸', required:'Y', option:'userpw', match:'passwd2', minbyte:'8', mixbyte:'20'");
 
 if(u.isPost()&&f.validate()){
 	DataObject personDao = new DataObject("tcb_person");
@@ -22,7 +22,7 @@ if(u.isPost()&&f.validate()){
 	}
 	
 	if( !u.sha256(f.get("now_passwd")).equals(person.getString("passwd")) ){
-		u.jsError("ÇöÀç ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù.\\n\\n»ç¿ëÁßÀÎ ºñ¹Ð¹øÈ£¸¦ È®ÀÎÇØ ÁÖ¼¼¿ä.");
+		u.jsError("í˜„ìž¬ ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\nì‚¬ìš©ì¤‘ì¸ ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•´ ì£¼ì„¸ìš”.");
 		return;
 	}
 	
@@ -30,10 +30,10 @@ if(u.isPost()&&f.validate()){
 	personDao.item("passwd", u.sha256(f.get("passwd")));
 	personDao.item("passdate", u.getTimeString());
 	if(!personDao.update(" member_no = '"+_member_no+"' and person_seq = '"+auth.getString("_PERSON_SEQ")+"' ")){
-		u.jsError("ÀúÀåÃ³¸®¿¡ ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.");
+		u.jsError("ì €ìž¥ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return;
 	}
-	u.jsAlertReplace("ºñ¹Ð¹øÈ£¸¦ ÀúÀåÇÏ¿´½À´Ï´Ù.", "http://"+sServerName+"/web/buyer/main/index2.jsp");
+	u.jsAlertReplace("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤.", "http://"+sServerName+"/web/buyer/main/index2.jsp");
 	return;
 }
 

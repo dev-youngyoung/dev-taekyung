@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(auth.getString("_MEMBER_NO")==null||auth.getString("_MEMBER_NO").equals("")){
 	u.redirect("index.jsp");
 	return;
 }
 
-//¾Ë¸²¹æ
+//ì•Œë¦¼ë°©
 boolean view_gap_pds = false;
 boolean view_eul_pds = false;
 boolean view_slist = false;
@@ -14,14 +14,14 @@ boolean useCont = false;
 
 DataSet slist = new DataSet();
 
-if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").equals("03")){//°©»ç
+if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").equals("03")){//ê°‘ì‚¬
 	view_gap_pds = true;
 	view_slist = true;
 	CodeDao codeDao = new CodeDao("tcb_comcode");
 	
 	
 	DataObject menuMemberDao = new DataObject("tcb_menu_member");
-	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd in ('000033','000036') ")>0){//ÀÔÂû»ç¿ë¿©ºÎ
+	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd in ('000033','000036') ")>0){//ì…ì°°ì‚¬ìš©ì—¬ë¶€
 		String[] code_bid_status = codeDao.getCodeArray("M022");
 		String[] code_bid_link = {"01=>gap_plan_list.jsp","02=>gap_field_list.jsp","03=>gap_field_list.jsp","04=>gap_bid_list.jsp","05=>gap_bid_list.jsp","06=>gap_select_list.jsp"};
 		String[] code_esti_status = codeDao.getCodeArray("M034");
@@ -38,17 +38,17 @@ if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").e
 		while(bid.next()){
 			slist.addRow();
 			if(bid.getString("bid_kind_cd").equals("90")){
-				slist.put("gubun", "ÀüÀÚ°ßÀû");
+				slist.put("gubun", "ì „ìê²¬ì ");
 				slist.put("link", "/web/buyer/esti/gap_esti_list.jsp");
 				slist.put("status_nm", u.getItem(bid.getString("status"), code_esti_status));
 				if(bid.getString("status").equals("05")&&bid.getLong("submit_edate")<=Long.parseLong(u.getTimeString())){
-					slist.put("status_nm","°ßÀû¸¶°¨");
+					slist.put("status_nm","ê²¬ì ë§ˆê°");
 				}
 			}else{
-				slist.put("gubun", "ÀüÀÚÀÔÂû" );
+				slist.put("gubun", "ì „ìì…ì°°" );
 				slist.put("link", "/web/buyer/bid/"+u.getItem(bid.getString("status"),code_bid_link));
 				if(bid.getString("status").equals("06")){
-					slist.put("status_nm", "³«Âû¾÷Ã¼¼±Á¤´ë»ó");
+					slist.put("status_nm", "ë‚™ì°°ì—…ì²´ì„ ì •ëŒ€ìƒ");
 				}else{
 					slist.put("status_nm", u.getItem(bid.getString("status"), code_bid_status));
 				}
@@ -68,16 +68,16 @@ if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").e
 				,10);
 		while(openbid.next()){
 			slist.addRow();
-			slist.put("gubun", "ÀüÀÚÀÔÂû" );
+			slist.put("gubun", "ì „ìì…ì°°" );
 			slist.put("link", "/web/buyer/bid/gap_open_list.jsp");
-			slist.put("status_nm", "<span class='caution-text'>°³Âû´ë»ó</span>");
+			slist.put("status_nm", "<span class='caution-text'>ê°œì°°ëŒ€ìƒ</span>");
 			slist.put("name", openbid.getString("bid_name"));
 		}
 	}
-	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd = '000053'  ") >0){//ÀüÀÚ°è¾à »ç¿ë¿©ºÎ
+	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd = '000053'  ") >0){//ì „ìê³„ì•½ ì‚¬ìš©ì—¬ë¶€
 		useCont = true;
 		String[] code_cont_status = codeDao.getCodeArray("M008");
-		String[] code_recv_status = new String[] {"30=>½ÅÃ»Áß","41=>¹İ·Á","50=>¿Ï·á"};
+		String[] code_recv_status = new String[] {"30=>ì‹ ì²­ì¤‘","41=>ë°˜ë ¤","50=>ì™„ë£Œ"};
 
 		DataObject contDao = new DataObject("tcb_contmaster");
 		DataSet cont = contDao.query(
@@ -96,11 +96,11 @@ if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").e
 		while(cont.next()){
 			slist.addRow();
 			if(cont.getString("subscription_yn").equals("Y")) {
-				slist.put("gubun", "ÀüÀÚ¹®¼­");
+				slist.put("gubun", "ì „ìë¬¸ì„œ");
 				slist.put("link", "/web/buyer/contract/subscription_view.jsp?cont_no="+u.aseEnc(cont.getString("cont_no"))+"&cont_chasu="+cont.getString("cont_chasu") );
 				slist.put("status_nm", u.getItem(cont.getString("status"), code_recv_status));
 			} else {
-				slist.put("gubun", "ÀüÀÚ°è¾à");
+				slist.put("gubun", "ì „ìê³„ì•½");
 				slist.put("status_nm", u.getItem(cont.getString("status"), code_cont_status));
 
 				String link_page = "";
@@ -119,12 +119,12 @@ if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").e
 			}
 
 			if(cont.getString("status").equals("40")){
-				slist.put("status_nm", "<span style='color:blue'>¼öÁ¤¿äÃ»</span>");
+				slist.put("status_nm", "<span style='color:blue'>ìˆ˜ì •ìš”ì²­</span>");
 			}
-			slist.put("name", cont.getString("cont_name")+" (°Å·¡¾÷Ã¼ : "+cont.getString("member_name")+")");
+			slist.put("name", cont.getString("cont_name")+" (ê±°ë˜ì—…ì²´ : "+cont.getString("member_name")+")");
 		}
 	}
-	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd = '000078'  ") >0){//Ã¤±ÇÀÜ¾× »ç¿ë¿©ºÎ
+	if(menuMemberDao.findCount( "member_no = '"+auth.getString("_MEMBER_NO")+"' and menu_cd = '000078'  ") >0){//ì±„ê¶Œì”ì•¡ ì‚¬ìš©ì—¬ë¶€
 		DataObject debtGroupDao = new DataObject("tcb_debt_group");
 		DataSet debtGroup = debtGroupDao.query(
 				 " select group_name, send_yn                   "
@@ -136,16 +136,16 @@ if(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_MEMBER_TYPE").e
 				,5);
 		while(debtGroup.next()){
 			slist.addRow();
-			slist.put("gubun", "Ã¤±ÇÀÜ¾×" );
+			slist.put("gubun", "ì±„ê¶Œì”ì•¡" );
 			slist.put("link", "/web/buyer/debt/debt_group_list.jsp" );
-			slist.put("status_nm", "¹ÌÀü¼Û");
+			slist.put("status_nm", "ë¯¸ì „ì†¡");
 			slist.put("name", debtGroup.getString("group_name"));
 		}
 	}
 }
 
 DataSet rlist = new DataSet();
-if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").equals("03")){//À»»ç
+if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").equals("03")){//ì„ì‚¬
 	//view_gap_pds = false;
 	view_eul_pds = true;
 	view_rlist = true;
@@ -155,13 +155,13 @@ if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").e
 	boolean findDebt = true;
 	if(auth.getString("_MEMBER_TYPE").equals("03")&&!auth.getString("_DEFAULT_YN").equals("Y")){
 		DataObject authMenuDao = new DataObject("tcb_auth_menu");
-		findBid = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '000050' ")>0?true:false;//À»»ç ÀÔÂû°ø°í¸Ş´º
-		findCont = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '000061' ")>0?true:false;//À»»ç ÁøÇàÁßÀÎ ¹ŞÀº°è¾à
+		findBid = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '000050' ")>0?true:false;//ì„ì‚¬ ì…ì°°ê³µê³ ë©”ë‰´
+		findCont = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '000061' ")>0?true:false;//ì„ì‚¬ ì§„í–‰ì¤‘ì¸ ë°›ì€ê³„ì•½
 		//findDebt = authMenuDao.findCount(" member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd = '' ")>0?true:false;
 		view_eul_pds = view_rlist = findCont;
 	}
 	
-	//ÀÔÂû °Ë»ç
+	//ì…ì°° ê²€ì‚¬
 	if(findBid){
 		DataObject bidDao = new DataObject("tcb_bid_master");
 		//bidDao.setDebug(out);
@@ -175,28 +175,28 @@ if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").e
 			    +"   and a.bid_deg = b.bid_deg                         "
 			    +"   and a.main_member_no = c.member_no                "
 			    +"   and (                                             " 
-			    +"         (a.status = '03' and (b.field_enter_yn is null) and a.field_date >= '"+u.getTimeString("yyyyMMdd")+"000000'  )  "// Çö¼³ÀÎ °æ¿ì
-			    +"      or (a.status = '05' and b.status = '10' and a.submit_edate >= '"+u.getTimeString()+"'  )  ) " // ÀÔÂûÀÎ°æ¿ì
+			    +"         (a.status = '03' and (b.field_enter_yn is null) and a.field_date >= '"+u.getTimeString("yyyyMMdd")+"000000'  )  "// í˜„ì„¤ì¸ ê²½ìš°
+			    +"      or (a.status = '05' and b.status = '10' and a.submit_edate >= '"+u.getTimeString()+"'  )  ) " // ì…ì°°ì¸ê²½ìš°
 			    +"   and b.member_no = '"+auth.getString("_MEMBER_NO")+"' "
 			    +" order by a.submit_edate asc                        "
 				, 5);
 		while(bid.next()){
 			rlist.addRow();
 			if(bid.getString("bid_kind_cd").equals("90")){
-				rlist.put("gubun", "°ßÀû");
+				rlist.put("gubun", "ê²¬ì ");
 				rlist.put("link", "/web/buyer/bid/eul_bid_list.jsp");
-				rlist.put("status_nm", "°ßÀû¿äÃ»Áß");
+				rlist.put("status_nm", "ê²¬ì ìš”ì²­ì¤‘");
 			}else{
-				rlist.put("gubun", "ÀÔÂû");
+				rlist.put("gubun", "ì…ì°°");
 				rlist.put("link", bid.getString("public_bid_yn").equals("Y")?"/web/buyer/bid/eul_obid_list.jsp":"/web/buyer/bid/eul_bid_list.jsp");
-				rlist.put("status_nm", bid.getString("status").equals("03")?"Çö¼³°ø°íÁß":"ÀÔÂû°ø°íÁß");
+				rlist.put("status_nm", bid.getString("status").equals("03")?"í˜„ì„¤ê³µê³ ì¤‘":"ì…ì°°ê³µê³ ì¤‘");
 			}
 			rlist.put("client_name",  bid.getString("member_name"));
 			rlist.put("name", bid.getString("bid_name"));
 		}
 	}
 	
-	//°è¾à°Ë»ç
+	//ê³„ì•½ê²€ì‚¬
 	if(findCont){
 		DataObject contDao = new DataObject("tcb_contmaster");
 		DataSet cont = contDao.query(
@@ -216,15 +216,15 @@ if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").e
 				,5);
 		while(cont.next()){
 			rlist.addRow();
-			rlist.put("gubun","°è¾à");
+			rlist.put("gubun","ê³„ì•½");
 			rlist.put("link","/web/buyer/contract/contract_recv_list.jsp");
 			rlist.put("client_name", cont.getString("member_name"));
 			rlist.put("name", cont.getString("cont_name"));
-			rlist.put("status_nm", cont.getString("status").equals("20")?"<span class='caution-text'>¼­¸í¿äÃ»</span>":"<span style='color:blue'>¹İ·Á</span>");
+			rlist.put("status_nm", cont.getString("status").equals("20")?"<span class='caution-text'>ì„œëª…ìš”ì²­</span>":"<span style='color:blue'>ë°˜ë ¤</span>");
 		}
 	}
 	
-	//Ã¤±ÇÀÜ¾×
+	//ì±„ê¶Œì”ì•¡
 	if(findDebt){
 		DataObject debtDao = new DataObject("tcb_debt");
 		DataSet debt = debtDao.query(
@@ -239,26 +239,26 @@ if(auth.getString("_MEMBER_TYPE").equals("02")||auth.getString("_MEMBER_TYPE").e
 			,5	);
 		while(debt.next()){
 			rlist.addRow();
-			rlist.put("gubun","Ã¤±ÇÀÜ¾×");
+			rlist.put("gubun","ì±„ê¶Œì”ì•¡");
 			rlist.put("link","/web/buyer/debt/debt_recv_list.jsp");
 			rlist.put("client_name", debt.getString("member_name"));
 			rlist.put("name", debt.getString("group_name"));
-			rlist.put("status_nm","<span class='caution-text'>¼­¸í¿äÃ»</span>");
+			rlist.put("status_nm","<span class='caution-text'>ì„œëª…ìš”ì²­</span>");
 		}
 	}
 }
 
 
-if(auth.getString("_MEMBER_TYPE").equals("03")&&!auth.getString("_DEFAULT_YN").equals("Y")){//°©À»»çÀÎ °æ¿ì ±âº» »ç¿ëÀÚ°¡ ¾Æ´Ò¶§ ±ÇÇÑ¿¡ µû¸¥ ¾Ë¸²¹æ Á¶È¸
+if(auth.getString("_MEMBER_TYPE").equals("03")&&!auth.getString("_DEFAULT_YN").equals("Y")){//ê°‘ì„ì‚¬ì¸ ê²½ìš° ê¸°ë³¸ ì‚¬ìš©ìê°€ ì•„ë‹ë•Œ ê¶Œí•œì— ë”°ë¥¸ ì•Œë¦¼ë°© ì¡°íšŒ
 	DataObject authMenuDao = new DataObject("tcb_auth_menu");
-	view_gap_pds = authMenuDao.findCount("member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd in ('000036','000060') ") > 0;//°©»ç ¾Ë¸²¹æ('ÀÔÂû°èÈ¹','ÁøÇàÁßÀÎº¸³½°è¾à')
-	view_eul_pds = authMenuDao.findCount("member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd in ('000050','000061') ") > 0;//À»»ç ¾Ë¸²¹æ('ÀÓÂû°ø°íÁ¶È¸','ÁøÇàÁßÀÎ ¹ŞÀº°è¾à')
+	view_gap_pds = authMenuDao.findCount("member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd in ('000036','000060') ") > 0;//ê°‘ì‚¬ ì•Œë¦¼ë°©('ì…ì°°ê³„íš','ì§„í–‰ì¤‘ì¸ë³´ë‚¸ê³„ì•½')
+	view_eul_pds = authMenuDao.findCount("member_no = '"+auth.getString("_MEMBER_NO")+"' and auth_cd = '"+auth.getString("_AUTH_CD")+"' and menu_cd in ('000050','000061') ") > 0;//ì„ì‚¬ ì•Œë¦¼ë°©('ì„ì°°ê³µê³ ì¡°íšŒ','ì§„í–‰ì¤‘ì¸ ë°›ì€ê³„ì•½')
 	view_slist = view_gap_pds; 
 	view_rlist = view_eul_pds; 
 }
 
 
-//¾Ë¸²¹æ
+//ì•Œë¦¼ë°©
 DataSet gap_pds = new DataSet();
 DataSet eul_pds = new DataSet();
 if(view_gap_pds){
@@ -304,20 +304,20 @@ String cert_msg = "";
 if(auth.getString("_CERT_END_DATE")==null){
 	/*
 	if(auth.getString("_MEMBER_GUBUN").equals("04")){
-		cert_msg = "ÀÎÁõ¼­°¡ µî·Ï µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [³»Á¤º¸¼öÁ¤]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
+		cert_msg = "ì¸ì¦ì„œê°€ ë“±ë¡ ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\nìƒë‹¨ ìš°ì¸¡ [íšŒì›ì •ë³´ìˆ˜ì •] â†’ [ë‚´ì •ë³´ìˆ˜ì •]ì—ì„œ ì¸ì¦ì„œë¥¼ ë“±ë¡í•´ ì£¼ì„¸ìš”.";
 	}else{
-		cert_msg = "ÀÎÁõ¼­°¡ µî·Ï µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [È¸»çÁ¤º¸º¯°æ]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
-	} ktm&s »ç¿ë½ÃÁ¡ºÎ¼­ Á¦¿Ü
+		cert_msg = "ì¸ì¦ì„œê°€ ë“±ë¡ ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\nìƒë‹¨ ìš°ì¸¡ [íšŒì›ì •ë³´ìˆ˜ì •] â†’ [íšŒì‚¬ì •ë³´ë³€ê²½]ì—ì„œ ì¸ì¦ì„œë¥¼ ë“±ë¡í•´ ì£¼ì„¸ìš”.";
+	} ktm&s ì‚¬ìš©ì‹œì ë¶€ì„œ ì œì™¸
 	*/
 }else{
 	if(!auth.getString("_CERT_END_DATE").equals("")){
 		if(Integer.parseInt(auth.getString("_CERT_END_DATE"))<Integer.parseInt(u.getTimeString("yyyyMMdd"))){
 			if(auth.getString("_MEMBER_GUBUN").equals("04"))
 			{
-				cert_msg = "Á¦ÃâÇÑ ÀÎÁõ¼­ÀÇ À¯È¿±â°£ÀÌ ¸¸·á µÇ¾ú½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [³»Á¤º¸¼öÁ¤]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
+				cert_msg = "ì œì¶œí•œ ì¸ì¦ì„œì˜ ìœ íš¨ê¸°ê°„ì´ ë§Œë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nìƒë‹¨ ìš°ì¸¡ [íšŒì›ì •ë³´ìˆ˜ì •] â†’ [ë‚´ì •ë³´ìˆ˜ì •]ì—ì„œ ì¸ì¦ì„œë¥¼ ë“±ë¡í•´ ì£¼ì„¸ìš”.";
 			}else
 			{
-				cert_msg = "Á¦ÃâÇÑ ÀÎÁõ¼­ÀÇ À¯È¿±â°£ÀÌ ¸¸·á µÇ¾ú½À´Ï´Ù.\\n\\n»ó´Ü ¿ìÃø [È¸¿øÁ¤º¸¼öÁ¤] ¡æ [È¸»çÁ¤º¸º¯°æ]¿¡¼­ ÀÎÁõ¼­¸¦ µî·ÏÇØ ÁÖ¼¼¿ä.";
+				cert_msg = "ì œì¶œí•œ ì¸ì¦ì„œì˜ ìœ íš¨ê¸°ê°„ì´ ë§Œë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nìƒë‹¨ ìš°ì¸¡ [íšŒì›ì •ë³´ìˆ˜ì •] â†’ [íšŒì‚¬ì •ë³´ë³€ê²½]ì—ì„œ ì¸ì¦ì„œë¥¼ ë“±ë¡í•´ ì£¼ì„¸ìš”.";
 			}
 		}
 	}
@@ -329,9 +329,9 @@ if((!useCont)&&(auth.getString("_MEMBER_TYPE").equals("01")||auth.getString("_ME
 }
 
 
-// ÀüÀÚ°áÀç ½ÂÀÎ ´ë»ó ¸ñ·Ï
+// ì „ìê²°ì¬ ìŠ¹ì¸ ëŒ€ìƒ ëª©ë¡
 if(useCont){
-	String s_status = auth.getString("_MEMBER_NO").equals("20171101813") ? "'21'" : "'11','21','30'";  // skºê·Îµå¹êµå´Â ½ÂÀÎ´ë±â°Ç¸¸
+	String s_status = auth.getString("_MEMBER_NO").equals("20171101813") ? "'21'" : "'11','21','30'";  // skë¸Œë¡œë“œë°´ë“œëŠ” ìŠ¹ì¸ëŒ€ê¸°ê±´ë§Œ
 	
 	DataObject daoAgree = new DataObject();
 	//daoAgree.setDebug(out);
