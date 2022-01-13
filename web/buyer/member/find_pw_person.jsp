@@ -1,22 +1,23 @@
-<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
 <%
-f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y'");
-f.addElement("user_name", null, "hname:'ì´ë¦„', required:'Y'");
-f.addElement("jumin_no", null, "hname:'ìƒë…„ì›”ì¼', required:'Y', fixbyte:'6'");
-f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', fixbyte:'3'");
-f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', fixbyte:'4'");
-f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', fixbyte:'4'");
-f.addElement("email", null, "hname:'ì´ë©”ì¼', required:'Y'");
+f.addElement("user_id", null, "hname:'¾ÆÀÌµð', required:'Y'");
+f.addElement("user_name", null, "hname:'ÀÌ¸§', required:'Y'");
+f.addElement("jumin_no", null, "hname:'»ý³â¿ùÀÏ', required:'Y', fixbyte:'6'");
+f.addElement("hp1", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', fixbyte:'3'");
+f.addElement("hp2", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', fixbyte:'4'");
+f.addElement("hp3", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', fixbyte:'4'");
+f.addElement("email", null, "hname:'ÀÌ¸ÞÀÏ', required:'Y'");
 
 if (u.isPost() && f.validate()) {
+
 	if (f.get("jumin_no").length() != 6) {
-		u.jsError("ìƒë…„ì›”ì¼ì„ ì •í™•ížˆ ìž…ë ¥ í•˜ì„¸ìš”.");
+		u.jsError("»ý³â¿ùÀÏÀ» Á¤È®È÷ ÀÔ·Â ÇÏ¼¼¿ä.");
 		return;
 	}
 
 	String hp = f.get("hp1") + f.get("hp2") + f.get("hp3");
 	if (hp.length() != 11) {
-		u.jsError("íœ´ëŒ€ì „í™” ë²ˆí˜¸ë¥¼ ì •í™•ížˆ ìž…ë ¥ í•˜ì„¸ìš”.");
+		u.jsError("ÈÞ´ëÀüÈ­ ¹øÈ£¸¦ Á¤È®È÷ ÀÔ·Â ÇÏ¼¼¿ä.");
 		return;
 	}
 
@@ -27,12 +28,12 @@ if (u.isPost() && f.validate()) {
 			"' and a.hp1 = '" + f.get("hp1") + "' and a.hp2 = '" + f.get("hp2") + "' and a.hp3 = '" + f.get("hp3") + "' ", "a.*", "a.reg_date desc");
 
 	if (!person.next()) {
-		u.jsError("ë“±ë¡í•˜ì‹  ì •ë³´ë¡œ ê²€ìƒ‰ëœ ì‚¬ìš©ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+		u.jsError("µî·ÏÇÏ½Å Á¤º¸·Î °Ë»öµÈ »ç¿ëÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
 		return;
 	}
 
 	if ("".equals(person.getString("jumin_no"))) {
-		u.jsError("ë“±ë¡í•˜ì‹  ì •ë³´ë¡œ ê²€ìƒ‰ëœ ì‚¬ìš©ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+		u.jsError("µî·ÏÇÏ½Å Á¤º¸·Î °Ë»öµÈ »ç¿ëÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
 		return;
 	}
 
@@ -41,33 +42,33 @@ if (u.isPost() && f.validate()) {
 	jumin_no = jumin_no.substring(0,6);
 
 	if (!jumin_no.equals(f.get("jumin_no"))) {
-		u.jsError("ë“±ë¡í•˜ì‹  ì •ë³´ë¡œ ê²€ìƒ‰ëœ ì‚¬ìš©ìž ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+		u.jsError("µî·ÏÇÏ½Å Á¤º¸·Î °Ë»öµÈ »ç¿ëÀÚ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
 		return;
 	}
 
-	String passwd = "p" + u.strpad(u.getRandInt(0,999999) + "", 6, "0") + "!";
+	String passwd = "p"+u.strpad(u.getRandInt(0,999999)+"",6,"0")+"!";
 	person.put("passwd",passwd);
 	personDao.item("passwd",u.sha256(passwd));
 
-	if (!personDao.update(" member_no = '" + person.getString("member_no") + "' and person_seq = '" + person.getString("person_seq") + "' ")) {
-		u.jsError("ìž„ì‹œë¹„ë°€ë²ˆí˜¸ ë°œê¸‰ì²˜ë¦¬ì— ì‹¤íŒ¨ í•˜ì—¿ìŠµë‹ˆë‹¤.");
+	if(!personDao.update(" member_no = '" + person.getString("member_no") + "' and person_seq = '" + person.getString("person_seq") + "' ")){
+		u.jsError("ÀÓ½Ãºñ¹Ð¹øÈ£ ¹ß±ÞÃ³¸®¿¡ ½ÇÆÐ ÇÏ¿³½À´Ï´Ù.");
 		return;
 	}
 
-	p.setVar("server_name", Config.getWebUrl());
+	p.setVar("server_name", request.getServerName());
 	p.setVar("return_url", "/web/buyer/");
 	p.setVar("person", person);
 	String mail_body = p.fetch("../html/mail/find_pw_person_mail.html");
-	u.mail(person.getString("email"), "[ë†ì‹¬] ê³„ì •ì •ë³´ ì•ˆë‚´", mail_body );
+	u.mail(person.getString("email"), "[³ªÀÌ½º´ÙÅ¥] °èÁ¤Á¤º¸ ¾È³»", mail_body );
 
-	u.jsAlertReplace("ë©”ì¼ì´ ë°œì†¡ ë˜ì—ˆìŠµë‹ˆë‹¤.", "/web/buyer/main/index.jsp");
+	u.jsAlertReplace("¸ÞÀÏÀÌ ¹ß¼Û µÇ¾ú½À´Ï´Ù.", "/web/buyer/main/index.jsp");
 	return;
 }
 
-p.setLayout("default");
+	p.setLayout("default");
 //p.setDebug(out);
-p.setBody("member.find_pw_person");
-p.setVar("menu_cd","000129");
-p.setVar("form_script",f.getScript());
-p.display(out);
+	p.setBody("member.find_pw_person");
+	p.setVar("menu_cd","000129");
+	p.setVar("form_script",f.getScript());
+	p.display(out);
 %>

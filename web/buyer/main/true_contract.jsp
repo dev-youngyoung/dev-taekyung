@@ -1,43 +1,43 @@
-<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %><%
+<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %><%
 
 
-f.addElement("cont_no", null, "hname:'ê´€ë¦¬ë²ˆí˜¸', required:'Y', maxbyte:'11'");
-f.addElement("cont_chasu", null, "hname:'ê´€ë¦¬ë²ˆí˜¸', required:'Y', maxbyte:'2'");
-f.addElement("true_random", null, "hname:'ê´€ë¦¬ë²ˆí˜¸', required:'Y', maxbyte:'5'");
+f.addElement("cont_no", null, "hname:'°ü¸®¹øÈ£', required:'Y', maxbyte:'11'");
+f.addElement("cont_chasu", null, "hname:'°ü¸®¹øÈ£', required:'Y', maxbyte:'2'");
+f.addElement("true_random", null, "hname:'°ü¸®¹øÈ£', required:'Y', maxbyte:'5'");
 
 if(u.isPost() && f.validate())
 {
 	DataObject pDao = new DataObject("tcb_contmaster cont INNER JOIN tcb_cust cust ON cont.cont_no = cust.cont_no AND cont.cont_chasu = cust.cont_chasu and cont.member_no = cust.member_no");
 
-	pDao.setFields("cont.cont_no"			// ê³„ì•½ê´€ë¦¬ë²ˆí˜¸
-					+",cont.cont_chasu"		// ë³€ê²½ì°¨ìˆ˜
-					+",cont.cont_name"		// ê³„ì•½ëª…
-					+",cont.cont_date"		// ê³„ì•½ì¼ì (yyyyMMdd)
-					+",cont.status"			// ê³„ì•½ì§„í–‰ìƒíƒœ ì½”ë“œ
-					+",cust.member_name first_cust_name"			// ì›ì‚¬ì—…ì ì—…ì²´ëª…
+	pDao.setFields("cont.cont_no"			// °è¾à°ü¸®¹øÈ£
+					+",cont.cont_chasu"		// º¯°æÂ÷¼ö
+					+",cont.cont_name"		// °è¾à¸í
+					+",cont.cont_date"		// °è¾àÀÏÀÚ (yyyyMMdd)
+					+",cont.status"			// °è¾àÁøÇà»óÅÂ ÄÚµå
+					+",cust.member_name first_cust_name"			// ¿ø»ç¾÷ÀÚ ¾÷Ã¼¸í
 					+",(SELECT member_name"
 					+"	FROM tcb_cust"
 					+"	WHERE cont_no = cont.cont_no"
 					+"	  AND cont_chasu = cont.cont_chasu"
 					+"	  AND display_seq = (select max(display_seq) from tcb_cust where cont_no = cont.cont_no AND cont_chasu = cont.cont_chasu and member_no <> cont.member_no)"
-					+" ) second_cust_name"  // ìˆ˜ê¸‰ì‚¬ì—…ì ì—…ì²´ëª…
+					+" ) second_cust_name"  // ¼ö±Ş»ç¾÷ÀÚ ¾÷Ã¼¸í
 					);
 					
 	DataSet ds = pDao.find("cont.cont_no='" + f.get("cont_no") + "' and cont.cont_chasu = '"+ f.get("cont_chasu") +"' and cont.true_random = '" + f.get("true_random") + "'");
 
 	if(!ds.next()){
-		u.jsError("í•´ë‹¹ ê³„ì•½ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		u.jsError("ÇØ´ç °è¾àÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 		return;
 	}
 	
 	String msg = "";
 	CodeDao code = new CodeDao("tcb_comcode");
-	String[] status_code = code.getCodeArray("M008");	// ê³„ì•½ì§„í–‰ìƒíƒœ ì½”ë“œ	
+	String[] status_code = code.getCodeArray("M008");	// °è¾àÁøÇà»óÅÂ ÄÚµå	
 	String status_name = u.getItem(ds.getString("status"), status_code);
 	if(status_name.equals(""))
-		msg = "ì´ ê³„ì•½ì€ <b><font color=\"red\">[íê¸°ëœ]</font></b> ê³„ì•½ì…ë‹ˆë‹¤.";
+		msg = "ÀÌ °è¾àÀº <b><font color=\"red\">[Æó±âµÈ]</font></b> °è¾àÀÔ´Ï´Ù.";
 	else
-		msg = "ì „ìê³„ì•½ìœ¼ë¡œ <b><font color=\"blue\">["+u.getItem(ds.getString("status"), status_code)+"]</font></b>ì¸ ê³„ì•½ì„œ ì…ë‹ˆë‹¤.";
+		msg = "ÀüÀÚ°è¾àÀ¸·Î <b><font color=\"blue\">["+u.getItem(ds.getString("status"), status_code)+"]</font></b>ÀÎ °è¾à¼­ ÀÔ´Ï´Ù.";
 	
 	ds.put("cont_date", u.getTimeString("yyyy-MM-dd", ds.getString("cont_date")) );
 	p.setVar("ds", ds);
@@ -47,7 +47,7 @@ if(u.isPost() && f.validate())
 p.setLayout("popup");
 //p.setDebug(out);
 p.setBody("main.true_contract");
-p.setVar("popup_title","ì „ìê³„ì•½ ì§„ìœ„í™•ì¸");
+p.setVar("popup_title","ÀüÀÚ°è¾à ÁøÀ§È®ÀÎ");
 p.setVar("form_script",f.getScript());
 p.display(out);
 %>

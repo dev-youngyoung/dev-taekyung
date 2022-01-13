@@ -7,8 +7,8 @@
 		<div style="width:50%;">
 
 			<div style="line-height:20px">
-				<b><span style="color:#4EAEEA">â€» ì•„ì´ë”” ì°¾ê¸° ì ˆì°¨ â€»</span></b><br><br>
-				<b>1)ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ ì…ë ¥ -> 2)ë‹´ë‹¹ì ì„ íƒ -> 3)ë‹´ë‹¹ì ì´ë©”ì¼ë¡œ ì•„ì´ë”” ë°œì†¡</b>
+				<b><span style="color:#4EAEEA">¡Ø ¾ÆÀÌµğ Ã£±â ÀıÂ÷ ¡Ø</span></b><br><br>
+				<b>1)»ç¾÷ÀÚµî·Ï¹øÈ£ ÀÔ·Â -> 2)´ã´çÀÚ ¼±ÅÃ -> 3)´ã´çÀÚ ÀÌ¸ŞÀÏ·Î ¾ÆÀÌµğ ¹ß¼Û</b>
 			</div>
 
 			<div class="div_table" style="margin-top: 10px;">
@@ -18,23 +18,23 @@
 						<col width="70%">
 					</colgroup>
 					<tr>
-						<th>ì‚¬ìš©ìêµ¬ë¶„</th>
+						<th>»ç¿ëÀÚ±¸ºĞ</th>
 						<td>
 							<label>
-								<input type="radio" name="userGubun" checked="checked" />ì‚¬ì—…ì&nbsp;
+								<input type="radio" name="userGubun" checked="checked" />»ç¾÷ÀÚ&nbsp;
 							</label>
 							<label>
-								<input type="radio" name="userGubun" onchange="location.href='find_id_person.jsp';" />ê°œì¸
+								<input type="radio" name="userGubun" onchange="location.href='find_id_person.jsp';" />°³ÀÎ
 							</label>
 						</td>
 					</tr>
 					<tr>
-						<th class="req-check">ì‚¬ì—…ì ë²ˆí˜¸</th>
+						<th class="req-check">»ç¾÷ÀÚ ¹øÈ£</th>
 						<td>
 							<input type="text" name="vendcd1" size="3" maxlength="3" onKeyPress="num_only();" onKeyUp="moveNext('vendcd2')" style="ime-mode:disabled;"> -
 							<input type="text" name="vendcd2" size="2" maxlength="2" onKeyPress="num_only();" onKeyUp="moveNext('vendcd3')" style="ime-mode:disabled;"> -
 							<input type="text" name="vendcd3" size="5" maxlength="5" onKeyPress="num_only();" style="ime-mode:disabled;"> &nbsp; &nbsp;
-							<button type="submit" class="sbtn color ico-confirm"><span></span>í™•ì¸</button>
+							<button type="submit" class="sbtn color ico-confirm"><span></span>È®ÀÎ</button>
 						</td>
 					</tr>
 				</table>
@@ -48,15 +48,15 @@
 						<col width="30%">
 					</colgroup>
 					<tr>
-						<th>ì•„ì´ë””</th>
-						<th>ì´ë©”ì¼</th>
-						<th>ë©”ì¼ì „ì†¡</th>
+						<th>¾ÆÀÌµğ</th>
+						<th>ÀÌ¸ŞÀÏ</th>
+						<th>¸ŞÀÏÀü¼Û</th>
 					</tr>
 					<!-- LOOP START 'person' -->
 					<tr>
 						<td align="center">{{person.user_id}}</td>
 						<td align="center">{{person.email}}</td>
-						<td align="center"><button type="button" class="sbtn color ico-request" onclick="sendMail('{{person.member_no}}','{{person.person_seq}}')"><span></span>ë©”ì¼ì „ì†¡</button></td>
+						<td align="center"><button type="button" class="sbtn color ico-request" onclick="sendMail('{{person.member_no}}','{{person.person_seq}}')"><span></span>¸ŞÀÏÀü¼Û</button></td>
 					</tr>
 					<!-- LOOP END 'person' -->
 				</table>
@@ -67,12 +67,15 @@
 </form>
 {{form_script}}
 
+
 <script type="text/javascript">
-    function sendMail(member_no, person_seq) {
+
+    function sendMail(member_no, person_seq){
         var f = document.forms['form1'];
         f['mode'].value = 2;
         f['member_no'].value=member_no;
         f['person_seq'].value=person_seq;
         f.submit();
     }
+
 </script>

@@ -1,0 +1,578 @@
+<style>
+.wrap {
+	background-color: #f9f9fb;
+}
+
+.div__outer {
+	display: table;
+	margin: 0 auto;
+}
+
+.div__outer>* {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.div_radius {
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	box-shadow: 3px 5px 10px rgba(143, 143, 143, 0.2);
+}
+</style>
+<div class="dashboard-header">
+	<ul class="clearfix">
+		<li class="div_datepicker div_radius">
+			<div class="div__outer todo-list clearfix">
+				<div class="to-do">
+					해야할일 <span><font id="font_ing_cnt">0</font>건</span>
+				</div>
+				<div class="to-done">
+					업무완료 <span><font id="font_fin_cnt">0</font>건</span>
+				</div>
+			</div>
+			<div class="div__outer datepicker">
+				<div id="s_edate"></div>
+			</div>
+		</li>
+		<li class="div_guide div__outer div_radius">
+			<div class="div__inner">
+				<h3>공동인증서 발급안내</h3>
+				<p>전자인증 1566-0566</p>
+				<div class="btn-box btn--more">
+					<a href="https://raadmin.crosscert.com/customer/application/Main.jsp" target="_blank" class="btn2">자세히보기</a>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="dashboard-content">
+	<div class="div_tab_top">
+		<dl>
+			<dt>서비스</dt>
+			<dd>프로세스</dd>
+		</dl>
+	</div>
+	<div class="div_tab div_radius">
+		<dl class="tab-block" id="dl_esti_cnt">
+			<dt class="ico ico6">견적</dt>
+			<dd>
+				<ul>
+					<li><a href="#STEP1-2"> 견적요청
+							<p>
+								<span id="span_esti_01_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP1-2"> 견적결과
+							<p>
+								<span id="span_esti_07_cnt">0</span>건
+							</p>
+					</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl class="tab-block" id="dl_bid_cnt">
+			<dt class="ico ico1">입찰</dt>
+			<dd>
+				<ul>
+					<li><a href="#STEP2-1"> 입찰계획
+							<p>
+								<span id="span_bid_01_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP2-2"> 현설(사양)공고
+							<p>
+								<span id="span_bid_02_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP2-3"> 입찰공고
+							<p>
+								<span id="span_bid_04_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP2-4"> 기술(규격)평가
+							<p>
+								<span id="span_bid_eval_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP2-5"> 입찰서개찰
+							<p>
+								<span id="span_bid_05_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP2-6"> 낙찰업체선정
+							<p>
+								<span id="span_bid_06_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP2-7"> 입찰결과
+							<p>
+								<span id="span_bid_07_cnt">0</span>건
+							</p>
+					</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl class="tab-block" id="dl_cont_cnt">
+			<dt class="ico ico2">계약</dt>
+			<dd>
+				<ul>
+					<li><a href="#STEP3-1"> 계약작성
+							<p>
+								<span id="span_cont_10_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP3-2"> 서명요청
+							<p>
+								<span id="span_cont_20_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP3-3"> 서명대기
+							<p>
+								<span id="span_cont_30_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP3-4"> 계약완료
+							<p>
+								<span id="span_cont_50_cnt">0</span>건
+							</p>
+					</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl class="tab-block" id="dl_work_cnt">
+			<dt class="ico ico3">근로계약</dt>
+			<dd>
+				<ul>
+					<li><a href="#STEP4-1"> 계약작성
+							<p>
+								<span id="span_work_10_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP4-2"> 서명요청
+							<p>
+								<span id="span_work_20_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP4-3"> 서명대기
+							<p>
+								<span id="span_work_30_cnt">0</span>건
+							</p>
+					</a></li>
+					<li><a href="#STEP4-4"> 계약완료
+							<p>
+								<span id="span_work_50_cnt">0</span>건
+							</p>
+					</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+	<!-- chart -->
+	<div class="div_chart clearfix">
+		<p class="title">이용현황 <span id="spanId" style="font-size:18px"></span></p>
+		<div id="chartdiv_service" class="chart-item div_radius" style="display:none">
+			<div class="chartdiv__chart"></div>
+		</div>
+		<div id="chartdiv_person" class="chart-item div_radius" style="display:none">
+			<div class="chartdiv__chart"></div>
+		</div>
+		<div id="chartdiv_client" class="chart-item div_radius" style="display:none">
+			<div class="chartdiv__chart"></div>
+		</div>
+	</div>
+	<!-- //chart -->
+</div>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css">
+<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<script language="javascript" type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#s_edate").datepicker({
+			dateFormat : 'yymm',
+			monthNames : [ '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ],
+			showMonthAfterYear : true,
+			yearSuffix : '.'
+		});
+
+		$(".tab-block dd li").each(function() {
+			$(this).on('click', function() {
+				var tab_contents = '<div class="tab-contents div_table">' + add_table() + '</div>';
+				$(this).toggleClass('is-active').siblings().removeClass('is-active');
+				$(this).parents('dl').next('.tab-contents').remove().end().after(tab_contents);
+				if (!$(this).hasClass('is-active')) {
+					$(this).parents('dl').next('.tab-contents').remove();
+				}
+			});
+		});
+		fn_getNumStateData();
+	});
+	
+	/*********************************
+		이용현황 graph 그리기
+	*********************************/
+	function fn_graph(id, title, unit, cols)
+	{
+		if($("#chartdiv_"+id+" .chartdiv__legend").length > 0)
+		{
+			$("#chartdiv_"+id+" .chartdiv__legend").remove();
+		}
+		
+		$("#chartdiv_"+id).show();
+		
+		var color = [ "#00a2ea", "#2358c0", "#65d1dd", "#5352b0", "#64c985", "#033479" ];
+		/* var color = [ "#f24b0d", "#f18b0e", "#e4ef10", "#44eb14", "#1785e8", "#11326f" ]; */
+
+		baseData = { 
+			data : {
+				json : [ cols ],
+				keys : {
+					value : Object.keys(cols), 
+				},
+				type : 'donut',
+			},
+			/* color : {
+				pattern : color
+			}, */
+			size : {
+				width : 290,
+				/* height : 314 */
+			}, 
+			legend : {
+				show : false
+				/* inset: {
+				    anchor: 'top-right',
+				    x: 20,
+				    y: 10,
+				    step: 1
+				  } */
+			},
+			donut : {
+				title : title,
+				width : 70,
+				/* padAngle: .9, */
+				label : {
+					format : function(value, ratio, id) {
+						var label;
+						label = [ value + unit ].join();
+						return label;
+					}
+				}
+			},
+			/* gauge : {
+				max: 200
+			}, */
+			tooltip: {
+		        format: {
+		            title: function (d) { return d; },
+		            value: function (value, ratio, id) {
+		            	var	percent	=	(ratio * 100).toFixed(1);
+		               return value +unit+" ("+percent+"%)";
+		            }
+		        }
+		    } 
+		    ,point: {
+		    	  select: {
+		    	    r: 10
+		    	  }
+		    	}
+		};
+		
+		baseData.bindto = document.querySelector("#chartdiv_" + id + " .chartdiv__chart");
+		c3.generate(baseData);
+		
+		//ledend
+		var parentDivs = d3.select('#chartdiv_' + id).insert('div').attr('class', 'chartdiv__legend').selectAll('div').data(Object.keys(cols)).enter().append('div').attr('data-id', function(id) {
+			return id;
+		});
+		
+		parentDivs.append('span').attr('style', function(id) {
+			var	_id	=	id
+			_id	=	id.replaceAll(" ","-");
+			_id	=	_id.replaceAll(",","-");
+			var color = $(".c3-chart-arc.c3-target-" + _id).find('.c3-arc').css("fill");
+			return "background-color:" + color;
+		});
+		
+		parentDivs.append('text').text(function(id, index) {
+			return id;
+			/*var unit = $(".c3-chart-arc.c3-target-" + id).find('text').text();
+			 for (var j = 0; j < $(".c3-chart-arcs-title").length; j++) {
+				if ($(".c3-chart-arcs-title")[j].innerHTML == '거래업체') {
+					return id;
+				}
+				if ($(".c3-chart-arcs-title")[j].innerHTML == '담당자') {
+					return id;
+				}
+			}
+			return id + " - " + unit; */
+		}); 
+	}
+
+	var colgroup = [ 70, 330, 110, 135, 135, 80, 50, 50 ];
+	var thead = [ '순번', '공고명', '공고일자', '시작일시', '마감일시', '상태', '연기', '정정' ]
+	var tbody = [ [ "7", "", "", "", "", "", "", "" ], [ "6", "", "", "", "", "", "", "" ], [ "5", "", "", "", "", "", "", "" ],
+			[ "4", "", "", "", "", "", "", "" ], [ "3", "", "", "", "", "", "", "" ], [ "2", "", "", "", "", "", "", "" ],
+			[ "1", "", "", "", "", "", "", "" ], ];
+	function add_table() {
+		var tableHTML = '';
+		if (tbody.length > 5) {
+			tableHTML += '<table class="is-scroll" width="100%" border="0" cellpadding="0" cellspacing="0" summary="선택한 업무단계의 순번, 공고명, 공고일자, 시작일시, 마감일시, 상태, 연기, 정정 순으로 나열 되어있는 테이블입니다">';
+		} else {
+			tableHTML += '<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="선택한 업무단계의 순번, 공고명, 공고일자, 시작일시, 마감일시, 상태, 연기, 정정 순으로 나열 되어있는 테이블입니다">';
+		}
+
+		//thead
+		tableHTML += '<thead>'
+		tableHTML += '<tr>';
+		$.each(thead, function(index, value) {
+			tableHTML += '<th style="width:'+ colgroup[index] +'px">' + thead[index] + '</th>';
+		});
+		tableHTML += '</tr>';
+		tableHTML += '</thead>';
+
+		//tbody
+		tableHTML += '<tbody>';
+		if (tbody.length > 5) {
+			tableHTML += '<tbody style="height:186px; overflow-y:scroll">';
+		}
+		for (var i = 0; i < tbody.length; i++) {
+			tableHTML += '<tr>';
+			for (var j = 0; j < tbody[i].length; j++) {
+				tableHTML += '<td style="width:'+ colgroup[j] +'px">' + tbody[i][j] + '</td>';
+			}
+			tableHTML += '</tr>';
+		}
+		tableHTML += '</tbody>';
+		tableHTML += '</table>';
+
+		return tableHTML;
+	}
+
+	/*********************************
+		통계데이터 가져오기
+	 *********************************/
+	function fn_getNumStateData() {
+		var year = $(".ui-datepicker-year").text();
+		var month = $(".ui-datepicker-month").text();
+
+		var reqYM = year + month;
+
+		$.ajax({
+			url : "./index_q_ajax.jsp",
+			type : "POST",
+			dataType : "json",
+			data : {
+				member_no : "{{member_no}}",
+				reqYM : reqYM
+			},
+			success : function(result) {
+				if (result != null) {
+					if (result.tot != null && result.tot.length == 1) {
+						fn_setTot(result.tot[0]);
+					}
+					if (result.esti != null && result.esti.length == 1) {
+						fn_setEsti(result.esti[0]);
+					}
+					if (result.bid != null && result.bid.length == 1) {
+						fn_setBid(result.bid[0]);
+					}
+					if (result.cont != null && result.cont.length == 1) {
+						fn_setCont(result.cont[0]);
+					}
+					if (result.work != null && result.work.length == 1) {
+						fn_setWork(result.work[0]);
+					}
+					
+					$("#spanId").text("( ~ "+year+"."+month+" 누적현황)");
+					
+					if (result.service != null) {
+						fn_setGraphService(result.service);
+					}
+					
+					if (result.person != null) {
+						fn_setGraphPerson(result.person);
+					}
+					if (result.client != null) {
+						fn_setGraphClient(result.client);
+					}
+				}
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "error:" + error);
+			}
+		});
+	}
+
+	/*********************************
+		이전월, 다음월 클릭시 이벤트
+	 *********************************/
+	$(document).on("click", ".ui-datepicker-prev, .ui-datepicker-next ", function() {
+		fn_getNumStateData();
+	})
+
+	/*********************************
+		해야할일, 업무완료 건수
+	 *********************************/
+	function fn_setTot(data) {
+		numCount("#font_ing_cnt", data.ing_cnt);
+		numCount("#font_fin_cnt", data.fin_cnt);
+	}
+
+	/*********************************
+		건적건수
+	 *********************************/
+	function fn_setEsti(data) {
+		if (Number(data.esti_cnt) > 0) {
+			$("#dl_esti_cnt").show();
+			numCount("#span_esti_01_cnt", data.esti_01_cnt);
+			numCount("#span_esti_07_cnt", data.esti_07_cnt);
+		} else {
+			$("#dl_esti_cnt").hide();
+		}
+	}
+
+	/*********************************
+		입찰건수
+	 *********************************/
+	function fn_setBid(data) {
+		if (Number(data.bid_cnt) > 0) {
+			$("#dl_bid_cnt").show();
+			numCount("#span_bid_01_cnt", data.bid_01_cnt);
+			numCount("#span_bid_02_cnt", data.bid_02_cnt);
+			numCount("#span_bid_04_cnt", data.bid_04_cnt);
+			numCount("#span_bid_eval_cnt", data.bid_eval_cnt);
+			numCount("#span_bid_05_cnt", data.bid_05_cnt);
+			numCount("#span_bid_06_cnt", data.bid_06_cnt);
+			numCount("#span_bid_07_cnt", data.bid_07_cnt);
+		} else {
+			$("#dl_bid_cnt").hide();
+		}
+	}
+
+	/*********************************
+		계약건수
+	 *********************************/
+	function fn_setCont(data) {
+		if (Number(data.cont_cnt) > 0) {
+			$("#dl_cont_cnt").show();
+			numCount("#span_cont_10_cnt", data.cont_10_cnt);
+			numCount("#span_cont_20_cnt", data.cont_20_cnt);
+			numCount("#span_cont_30_cnt", data.cont_30_cnt);
+			numCount("#span_cont_50_cnt", data.cont_50_cnt);
+		} else {
+			$("#dl_cont_cnt").hide();
+		}
+	}
+
+	/*********************************
+		근로 계약건수
+	*********************************/
+	function fn_setWork(data) {
+		if (Number(data.work_cnt) > 0) {
+			$("#dl_work_cnt").show();
+			numCount("#span_work_10_cnt", data.work_10_cnt);
+			numCount("#span_work_20_cnt", data.work_20_cnt);
+			numCount("#span_work_30_cnt", data.work_30_cnt);
+			numCount("#span_work_50_cnt", data.work_50_cnt);
+		} else {
+			$("#dl_work_cnt").hide();
+		}
+	}
+	
+	
+	
+	/*********************************
+		서비스별 통계 graph 그리기
+	*********************************/
+	function fn_setGraphService(data)
+	{
+		console.log("chartdiv_person["+data.length+"]");
+		if(data == null || data.length == 0)
+		{
+			$("#chartdiv_service").hide();
+		}else
+		{
+			var cols	=	{};
+			for(var i=0; i < data.length; i++)
+			{
+				cols[data[i].nm]	=	Number(data[i].cnt);
+			}
+			
+			fn_graph("service","이용건수(완료기준)","건", cols);	
+		}
+	}
+	
+	
+	/*********************************
+		담당자 통계 graph 그리기
+	*********************************/
+	function fn_setGraphPerson(data)
+	{
+		console.log("chartdiv_person["+data.length+"]");
+		if(data == null || data.length == 0)
+		{
+			$("#chartdiv_person").hide();
+		}else
+		{
+			var cols	=	{};
+			for(var i=0; i < data.length; i++)
+			{
+				cols[data[i].field_name]	=	Number(data[i].cnt);
+			}
+			
+			fn_graph("person","담당자","명", cols);	
+		}
+	}
+	
+	/*********************************
+		거래업체 통계 graph 그리기
+	*********************************/
+	function fn_setGraphClient(data)
+	{
+		if(data == null || data.length == 0)
+		{
+			$("#chartdiv_client").hide();
+		}else
+		{
+			var cols	=	{};
+			for(var i=0; i < data.length; i++)
+			{
+				cols[data[i].member_gubun_nm]	=	Number(data[i].cnt);
+			}
+			
+			fn_graph("client","거래업체","개", cols);	
+		}
+	}
+
+	function numCount(target_frame, target_number) {
+		new numberCounter(target_frame, target_number);
+	}
+
+	function numberCounter(target_frame, target_number) {
+		this.count = 0;
+		this.diff = 0;
+		this.target_count = parseInt(target_number);
+		this.target_frame = $(target_frame);
+		this.timer = null;
+		this.counter();
+	};
+
+	numberCounter.prototype.counter = function() {
+		var self = this;
+		this.diff = this.target_count - this.count;
+
+		if (this.diff > 0) {
+			self.count += Math.ceil(this.diff / 5);
+		}
+
+		this.target_frame.text(this.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+
+		if (this.count < this.target_count) {
+			this.timer = setTimeout(function() {
+				self.counter();
+			}, 20);
+		} else {
+			clearTimeout(this.timer);
+		}
+	};
+</script>

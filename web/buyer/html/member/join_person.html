@@ -1,15 +1,11 @@
 <form novalidate name="form1" method="post" onsubmit="return false">
-<input type="hidden" name="hdn_mode">
 <input type="hidden" name="member_no">
-<input type="hidden" name="person_seq">
-<input type="hidden" name="org_user_id">
 <input type="hidden" name="boss_ci">
 <input type="hidden" name="ci_text">
-<input type="hidden" name="org_member_no" value="20120700021"> <!-- ë†ì‹¬ member_no -->
 <div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>ê¸°ë³¸ì •ë³´ (í•„ìˆ˜ìž…ë ¥ì‚¬í•­)</h3>
+      <h3>±âº»Á¤º¸ (ÇÊ¼öÀÔ·Â»çÇ×)</h3>
     </div>
   </div>
   <table>
@@ -20,10 +16,42 @@
       <col width="26%">
     </colgroup>
     <tr>
-      <th class="req-check">íœ´ëŒ€ì „í™”</th>
-      <td colspan="2">
-        <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}" onBlur="fChkPhone()">
-          <option value="">ì„ íƒ</option>
+      <th class="req-check">ÀÌ¸§</th>
+      <td colspan="3">
+        <input type="text" name="member_name" size="20" maxlength="20" >
+      </td>
+    </tr>
+    <tr>
+      <th class="req-check">»ý³â¿ùÀÏ/¼ºº°</th>
+      <td  colspan="3">
+        <input type="text" name="birth_date" id="birth_date" size="10" maxlength="10" onKeyDown="num_only()" onKeyUp="dateFormat(this)">
+        <img src="../html/images/common/datepicker_icon.png"  align="absmiddle"  style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['birth_date'])" />
+          <label><input type="radio" name="gender" value="1"></label>³²ÀÚ /<label><input type="radio" name="gender" value="2">¿©ÀÚ</label>
+         &nbsp;&nbsp;<font color="gray">¡Ø °è¾à¼­ ¼­¸í½Ã º»ÀÎÀÎÁõ(°øµ¿ÀÎÁõ¼­) Ã³¸®¸ñÀû.</font><br><b><font id="font_jumin_msg" color="#FF6C00"></font></b>
+      </td>
+    </tr>
+    <tr>
+      <th class="req-check">¾ÆÀÌµð</th>
+      <td colspan="3">
+        <input type="hidden" name="chk_id">
+        <input type="text" name="user_id" size="20" maxlength="20" style="ime-mode:disabled" onchange="document.forms['form1']['chk_id'].value=''">
+        <button type="button" class="sbtn ico-confirm" onclick="chkId()" id="btn_chkid"><span></span>Áßº¹È®ÀÎ</button>
+        <font color="gray">¡Ø 6~20ÀÚ¸®·Î ÀÔ·ÂÇÏ¼¼¿ä.(¿µ¹®¼Ò¹®ÀÚ,¼ýÀÚ¸¸ °¡´É / ÈÞ´ëÆù,»ý³â¿ùÀÏ,¾ÆÀÌµð ºÒ°¡)</font>
+      </td>
+    </tr>
+    <tr>
+      <th class="req-check">ºñ¹Ð¹øÈ£</th>
+      <td colspan="3"><input type="password" name="passwd" size="20" maxlength="20"> <font color="gray">¡Ø ¿µ¹®, ¼ýÀÚ 1ÀÚ ÀÌ»ó, Æ¯¼ö¹®ÀÚ('$','\' Á¦¿Ü) 1ÀÚ ÀÌ»ó Æ÷ÇÔÇÑ 8 ~ 20ÀÚ¸®·Î ÀÔ·ÂÇÏ¼¼¿ä.</font></td>
+    </tr>
+    <tr>
+      <th class="req-check">ºñ¹Ð¹øÈ£ È®ÀÎ</th>
+      <td colspan="3"><input type="password" name="passwd2" size="20" maxlength="20"></td>
+    </tr>
+    <tr>
+      <th class="req-check">ÈÞ´ëÀüÈ­</th>
+      <td>
+        <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
+          <option value="">¼±ÅÃ</option>
           <option value="010">010</option>
           <option value="011">011</option>
           <option value="016">016</option>
@@ -31,65 +59,27 @@
           <option value="018">018</option>
           <option value="019">019</option>
         </select> -
-        <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')" onBlur="fChkPhone()"> -
-        <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')" onBlur="fChkPhone()">
-        <br/>
-        <b><span style="color:#FF6C00" id="font_hp_msg"></span></b>
+        <input type="text" name="hp2" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('hp3'); movePrv('hp1')"> -
+        <input type="text" name="hp3" size="4" maxlength="4" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp=" movePrv('hp2')">
       </td>
-      <td colspan="3" style="border: none;">
-      </td>
-    </tr>
-    <tr>
-    <th class="req-check">ì´ë¦„</th>
-      <td colspan="1">
-        <input type="text" name="member_name" size="20" maxlength="20" >
-      </td>
-    </tr>
-   <tr>
-      <th class="req-check">ìƒë…„ì›”ì¼/ì„±ë³„</th>
-      <td  colspan="3">
-        <input type="text" name="birth_date" id="birth_date" size="10" maxlength="10" onKeyDown="num_only()" onKeyUp="dateFormat(this)">
-        <img src="../html/images/common/datepicker_icon.png"  align="absmiddle"  style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['birth_date'])" />
-          <label><input type="radio" name="gender" value="1"></label>ë‚¨ìž /<label><input type="radio" name="gender" value="2">ì—¬ìž</label>
-         &nbsp;&nbsp;<font color="gray">â€» ê³„ì•½ì„œ ì„œëª…ì‹œ ë³¸ì¸ì¸ì¦(ê³µì¸ì¸ì¦ì„œ) ì²˜ë¦¬ëª©ì .</font><br><b><font id="font_jumin_msg" color="#FF6C00"></font></b>
-      </td>
-    </tr>
-    <tr>
-      <th class="req-check">ì•„ì´ë””</th>
-      <td colspan="3">
-        <input type="hidden" name="chk_id">
-        <input type="text" name="user_id" size="20" maxlength="20" style="ime-mode:disabled" onchange="document.forms['form1']['chk_id'].value=''">
-        <button type="button" class="sbtn ico-confirm" onclick="chkId()" id="btn_chkid"><span></span>ì¤‘ë³µí™•ì¸</button>
-        <font color="gray">â€» 6 ~ 20ìžë¦¬ë¡œ ìž…ë ¥í•˜ì„¸ìš”. (ì˜ë¬¸ì†Œë¬¸ìž, ìˆ«ìžë§Œ ê°€ëŠ¥)</font>
-      </td>
-    </tr>
-    <tr>
-      <th class="req-check">ë¹„ë°€ë²ˆí˜¸</th>
-      <td colspan="3"><input type="password" name="passwd" size="20" maxlength="20"> <font color="gray">â€» ì˜ë¬¸, ìˆ«ìž 1ìž ì´ìƒ, íŠ¹ìˆ˜ë¬¸ìž 1ìž ì´ìƒ í¬í•¨í•œ 8 ~ 20ìžë¦¬ë¡œ ìž…ë ¥í•˜ì„¸ìš”.</font></td>
-    </tr>
-    <tr>
-      <th class="req-check">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</th>
-      <td colspan="3"><input type="password" name="passwd2" size="20" maxlength="20"></td>
-    </tr>
-    <tr>
-      <th class="req-check">ì´ë©”ì¼</th>
+      <th class="req-check">ÀÌ¸ÞÀÏ</th>
       <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:98%"></td>
     </tr>
-    <!-- <tr>
-      <th class="req-check">ì£¼ì†Œ</th>
+    <tr>
+      <th class="req-check">ÁÖ¼Ò</th>
       <td colspan="3">
         <input type="text" name="post_code" class="in_readonly" size="6" readonly>
-        <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>ìš°íŽ¸ë²ˆí˜¸ì°¾ê¸°</button>
+        <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>¿ìÆí¹øÈ£Ã£±â</button>
         <input type="text" name="address" style="width:98%" maxlength="150">
       </td>
-    </tr> -->
+    </tr>
   </table>
 </div>
 
-<!-- <div class="div_table">
+<div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>ê±°ëž˜ì²˜ ì„ íƒ <span class="caution-text">â€»<u>ê±°ëž˜í•˜ì‹œëŠ” ì—…ì²´ê°€ ì—†ëŠ” ê²½ìš°</u> ê°œì¸íšŒì›ì´ ì•„ë‹Œ <font color="blue"><b><u>ê°œì¸ì‚¬ì—…ìž íšŒì›ìœ¼ë¡œ</u></b></font> ê°€ìž…í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.</span></h3>
+      <h3>°Å·¡Ã³ ¼±ÅÃ <span class="caution-text">¡Ø<u>°Å·¡ÇÏ½Ã´Â ¾÷Ã¼°¡ ¾ø´Â °æ¿ì</u> °³ÀÎÈ¸¿øÀÌ ¾Æ´Ñ <font color="blue"><b><u>°³ÀÎ»ç¾÷ÀÚ È¸¿øÀ¸·Î</u></b></font> °¡ÀÔÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.</span></h3>
     </div>
   </div>
   <table>
@@ -98,60 +88,68 @@
       <col width="85%">
     </colgroup>
     <tr>
-      <th class="req-check">ê±°ëž˜ì²˜ëª…</th>
+      <th class="req-check">°Å·¡Ã³¸í</th>
       <td>
         <select name="org_member_no">
-          <option value="">-----ì„ íƒ-----</option>
-          <option value="20160101092">í”Œëž˜í‹°ë„˜ëŒ€ë¶€(ì£¼)</option>
-          <option value="20150600357">(ì£¼)ì¢‹ì€ì‚¬ëžŒë“¤</option>
-          <option value="20170100165">ì£¼ì‹íšŒì‚¬ ì¢‹ì€ì±…ì‹ ì‚¬ê³ </option>
-          <option value="20170100166">ì£¼ì‹íšŒì‚¬ ì‹ ì‚¬ê³ ì•„ì¹´ë°ë¯¸</option>
-          <option value="20130300071">í•œìˆ˜í…Œí¬ë‹ˆì¹¼ì„œë¹„ìŠ¤(ì£¼)</option>
-          <option value="20141000487">ì£¼ì‹íšŒì‚¬ ë‹¤ë‚ ì—”í„°í…Œì¸ë¨¼íŠ¸</option>
-          <option value="20130900194">(ì£¼)ì¹´ì¹´ì˜¤</option>
-          <option value="20150500269">ëŒ€ë•ì „ìž(ì£¼)</option>
-          <option value="20181100184">(ì£¼)ê³¨ë“œë¬¸</option>
-          <option value="20160601221">(ì£¼)ë ˆì§„ì—”í„°í…Œì¸ë¨¼íŠ¸</option>
-          <option value="20170201245">ì˜¤ë¹„ë‹ë‹·ì»´</option>
-          <option value="20170101189">(ì£¼)ì œë‹ˆì—˜ë§¥</option>
-          <option value="20171001476">(ì£¼)ì‹¸ì´ë²„ì›</option>
-          <option value="20190102015">(ì£¼)í‹°ë¹„íƒ‘</option>
-          <option value="20190200556">ì£¼ì‹íšŒì‚¬ ë ˆì˜¨</option>
-          <option value="20190301556">ì£¼ì‹íšŒì‚¬ í—¬ë¡œí¬ë¼ìš°ë“œëŒ€ë¶€</option>
-          <option value="20190600623">(ì£¼)ì—ì´í”¼ì—˜íŒŒì´ë‚¸ì…œëŒ€ë¶€</option>
-          <option value="20121200535">(ìœ )ëŒì½”ë¦¬ì•„</option>
-          <option value="20190702578">ë””ì—˜ì”¨ì£¼ì‹íšŒì‚¬</option>
-          <option value="20190702620">ìœ í•œíšŒì‚¬ ëŒë¡œì§€ìŠ¤í‹±ìŠ¤ ìº„íŒŒë‹ˆ</option>
-          <option value="20190702651">ë””ì—í”„ì”¨í‘¸ë“œ(ì£¼)</option>
-          <option value="20190702652">ì½”ë¦¬ì•„í›„ë ˆì‰¬ì‹œìŠ¤í…œ(ì£¼)</option>
-          <option value="20150700675">ì”¨ì œì´í‘¸ë“œë¹Œ(ì£¼)</option>
-          <option value="20190300995">ì£¼ì‹íšŒì‚¬ ì§€ë‹ˆë®¤ì§</option>
-          <option value="20190300598">(ì£¼)ìš°ì•„í•œí˜•ì œë“¤</option> 
-          <option value="20190600690">(ì£¼)ìš°ì•„í•œì²­ë…„ë“¤</option> 
-          <option value="20190101731">íŠ¸ë¦¬ë…¸ë“œ ì£¼ì‹íšŒì‚¬</option> 
-          <option value="20151100453">(ì£¼)ì´ì´ì”¨ì—˜ë¦¬íŠ¸</option> 
-          <option value="20191209598">(ì£¼)í•œêµ­ê³ ìš©ì •ë³´</option> 
-          <option value="20200104452">(ì£¼)ì¼€ì´ì—ìŠ¤í•œêµ­ê³ ìš©ì •ë³´</option> 
-          <option value="20200200487">ì£¼ì‹íšŒì‚¬ ë°ë¸Œê·¸ë£¨</option> 
-          <option value="20160500857">í•œêµ­ì „ìžê¸ˆìœµ</option> 
-          <option value="20200300208">ì£¼ì‹íšŒì‚¬ íŒìŠ¤í•€í…Œí¬ëŒ€ë¶€ê¸ˆìœµ</option> 
-          <option value="20170501348">(ì£¼)ì•„ì›Œí™ˆ</option> 
-          <option value="20120600068">ë‚˜ì´ìŠ¤íŽ˜ì´ë¨¼ì¸ (ì£¼)</option> 
-          <option value="20121202533">ì—°ì„¸ëŒ€í•™êµ ì—°ì„¸ìš°ìœ </option> 
-          <option value="20170100118">í…ŒìŠ¤íŠ¸ì—…ì²´</option> 
-          <option value="20120700021">í…ŒìŠ¤íŠ¸(SIì‚¬ì—…)</option> 
+          <option value="">-----¼±ÅÃ-----</option>
+          <option value="20160101092">ÇÃ·¡Æ¼³Ñ´ëºÎ(ÁÖ)</option>
+          <option value="20150600357">(ÁÖ)ÁÁÀº»ç¶÷µé</option>
+          <option value="20170100165">ÁÖ½ÄÈ¸»ç ÁÁÀºÃ¥½Å»ç°í</option>
+          <option value="20170100166">ÁÖ½ÄÈ¸»ç ½Å»ç°í¾ÆÄ«µ¥¹Ì</option>
+          <option value="20130300071">ÇÑ¼öÅ×Å©´ÏÄ®¼­ºñ½º(ÁÖ)</option>
+          <option value="20141000487">ÁÖ½ÄÈ¸»ç ´Ù³¯¿£ÅÍÅ×ÀÎ¸ÕÆ®</option>
+          <option value="20130900194">(ÁÖ)Ä«Ä«¿À</option>
+          <option value="20150500269">´ë´öÀüÀÚ(ÁÖ)</option>
+          <option value="20181100184">(ÁÖ)°ñµå¹®</option>
+          <option value="20160601221">(ÁÖ)·¹Áø¿£ÅÍÅ×ÀÎ¸ÕÆ®</option>
+          <option value="20170201245">¿Àºñ´Ò´åÄÄ</option>
+          <option value="20170101189">(ÁÖ)Á¦´Ï¿¤¸Æ</option>
+          <option value="20171001476">(ÁÖ)½ÎÀÌ¹ö¿ø</option>
+          <option value="20190102015">(ÁÖ)Æ¼ºñÅ¾</option>
+          <option value="20190200556">ÁÖ½ÄÈ¸»ç ·¹¿Â</option>
+          <option value="20190301556">ÁÖ½ÄÈ¸»ç Çï·ÎÅ©¶ó¿ìµå´ëºÎ</option>
+          <option value="20190600623">(ÁÖ)¿¡ÀÌÇÇ¿¤ÆÄÀÌ³½¼È´ëºÎ</option>
+          <option value="20121200535">(À¯)µ¹ÄÚ¸®¾Æ</option>
+          <option value="20190702578">µð¿¤¾¾ÁÖ½ÄÈ¸»ç</option>
+          <option value="20190702620">À¯ÇÑÈ¸»ç µ¹·ÎÁö½ºÆ½½º Ä¯ÆÄ´Ï</option>
+          <option value="20190702651">µð¿¡ÇÁ¾¾Çªµå(ÁÖ)</option>
+          <option value="20190702652">ÄÚ¸®¾ÆÈÄ·¹½¬½Ã½ºÅÛ(ÁÖ)</option>
+          <option value="20150700675">¾¾Á¦ÀÌÇªµåºô(ÁÖ)</option>
+          <option value="20190300995">ÁÖ½ÄÈ¸»ç Áö´Ï¹ÂÁ÷</option>
+          <option value="20190300598">(ÁÖ)¿ì¾ÆÇÑÇüÁ¦µé</option> 
+          <option value="20190600690">(ÁÖ)¿ì¾ÆÇÑÃ»³âµé</option> 
+          <option value="20190101731">Æ®¸®³ëµå ÁÖ½ÄÈ¸»ç</option> 
+          <option value="20151100453">(ÁÖ)ÀÌÀÌ¾¾¿¤¸®Æ®</option> 
+          <option value="20191209598">(ÁÖ)ÇÑ±¹°í¿ëÁ¤º¸</option> 
+          <option value="20200104452">(ÁÖ)ÄÉÀÌ¿¡½ºÇÑ±¹°í¿ëÁ¤º¸</option> 
+          <!-- <option value="20200200487">ÁÖ½ÄÈ¸»ç µ¥ºê±×·ç</option> --> 
+          <option value="20200200487">°¨¼ºÄÚÆÛ·¹ÀÌ¼Ç ÁÖ½ÄÈ¸»ç</option> <!-- Á¤µµ±ÙÃ¥ÀÓ´Ô ¿äÃ»(20210616) -->
+          <option value="20160500857">ÇÑ±¹ÀüÀÚ±ÝÀ¶</option> 
+          <option value="20200300208">ÁÖ½ÄÈ¸»ç ÆÅ½ºÇÉÅ×Å©´ëºÎ±ÝÀ¶</option> 
+          <option value="20170501348">(ÁÖ)¾Æ¿öÈ¨</option> 
+          <option value="20120600068">³ªÀÌ½ºÆäÀÌ¸ÕÃ÷(ÁÖ)</option> 
+          <option value="20121202533">¿¬¼¼´ëÇÐ±³ ¿¬¼¼¿ìÀ¯</option> 
+          <option value="20170901411">ÂüÁÁÀº¿©Çà(ÁÖ)</option> 
+          <option value="20200200287">ÁÖ½ÄÈ¸»ç Çªµð½ºÆ®</option> 
+          <option value="20180100684">(ÁÖ)±³º¸¹®°í</option> 
+          <option value="20200712105">(ÁÖ)ÇÑÁøÁß°ø¾÷ °Ç¼³ºÎ¹®</option> 
+          <option value="20200106495">(ÁÖ)ÇÃ·¹ÀÌÅ¸ÀÓ±×·ì</option> 
+          <option value="20121202581">(ÁÖ)°æ¹æ</option>
+          <option value="20200406309">HCAS ÁÖ½ÄÈ¸»ç</option>
+          <option value="20121200073">ÇÑ±¹·ÎÁö½ºÇ®(ÁÖ)</option> 
+          <option value="20170100118">Å×½ºÆ®¾÷Ã¼</option> 
         </select>
       </td>
     </tr>
   </table>
-</div> -->
+</div>
 
 
 
-<!-- <div class="div_table">
+<div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>ì¶”ê°€ì •ë³´ (ì„ íƒìž…ë ¥ì‚¬í•­)</h3>
+      <h3>Ãß°¡Á¤º¸ (¼±ÅÃÀÔ·Â»çÇ×)</h3>
     </div>
   </div>
   <table>
@@ -162,160 +160,138 @@
       <col width="31%">
     </colgroup>
     <tr>
-      <th>ì „í™”ë²ˆí˜¸ </th>
+      <th>ÀüÈ­¹øÈ£ </th>
       <td>
-        <input type="text" name="tel_num" size="12" maxlength="15" style="width:98%" placeholder="ì˜ˆ) 02-788-9097">
+        <input type="text" name="tel_num" size="12" maxlength="15" style="width:98%" placeholder="¿¹) 02-788-9097">
       </td>
-      <th>íŒ©ìŠ¤ë²ˆí˜¸ </th>
+      <th>ÆÑ½º¹øÈ£ </th>
       <td>
-        <input type="text" name="fax_num" size="12" maxlength="15" style="width:98%" placeholder="ì˜ˆ) 02-788-9097">
+        <input type="text" name="fax_num" size="12" maxlength="15" style="width:98%" placeholder="¿¹) 02-788-9097">
       </td>
     </tr>
   </table>
-</div> -->
+</div>
 <div class="help-content" style="margin-top: 10px;margin-bottom: 10px">
-  <h3>NOTICE<span>ìœ ìš©í•œ ì •ë³´! ì‚¬ìš©ì „ì— ì•Œì•„ë‘ì„¸ìš”~ </span></h3>
+  <h3>NOTICE<span>À¯¿ëÇÑ Á¤º¸! »ç¿ëÀü¿¡ ¾Ë¾ÆµÎ¼¼¿ä~ </span></h3>
   <div class="help-content-body">
     <ul>
-      <li style="font-weight:bold">íœ´ëŒ€ì „í™” ë° ì´ë©”ì¼ë¡œ ìž…ì°°ê³µì§€, ê³„ì•½ì„œ ìˆ˜ì‹ ì— ëŒ€í•œ ì‚¬ì „ì•Œë¦¼ì´ í†µë³´ë˜ì˜¤ë‹ˆ ì •í™•í•œ ê¸°ìž¬ë°”ëžë‹ˆë‹¤.</li>
+      <li style="font-weight:bold">ÈÞ´ëÀüÈ­ ¹× ÀÌ¸ÞÀÏ·Î ÀÔÂû°øÁö, °è¾à¼­ ¼ö½Å¿¡ ´ëÇÑ »çÀü¾Ë¸²ÀÌ Åëº¸µÇ¿À´Ï Á¤È®ÇÑ ±âÀç¹Ù¶ø´Ï´Ù.</li>
     </ul>
   </div>
 </div>
 
 <div class="btn-group-wrap">
-	<button type="button" class="btn color ico-save" onclick="chkJoin()"><span></span>íšŒì›ê°€ìž…</button>
-	<button type="button" class="btn color ico-cancel" onclick="location.href='../'"><span></span>ì·¨ì†Œ</button>
+	<button type="button" class="btn color ico-save" onclick="chkJoin()"><span></span>È¸¿ø°¡ÀÔ</button>
+	<button type="button" class="btn color ico-cancel" onclick="location.href='../'"><span></span>Ãë¼Ò</button>
 </div>
 </form>
 
 <iframe name="ifm_proc" frameborder="0" width="0" height="0" style="display: none"></iframe>
 <script type="text/javascript">
-function chkJoin() {
+
+
+function chkJoin(){
 	var f = document.forms['form1'];
-	f.action = "chk_join_person.jsp";
+	f.action="chk_join_person.jsp";
 	f.target ="ifm_proc";
-	if (validate(f)) {
-		if (f['hdn_mode'].value	== "BREAK") {
-			alert("í•´ë‹¹ íšŒì›ì€ íƒˆí‡´ ìƒíƒœìž…ë‹ˆë‹¤.\n\në‹¤ì‹œ íšŒì›ìœ¼ë¡œ ê°€ìž…í•˜ì‹œë ¤ë©´, ê³ ê°ì§€ì›ì„¼í„°ì— ë¬¸ì˜í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.");
-			return false;
-		} else if (f['hdn_mode'].value == "JOIN") {
-			alert("í•´ë‹¹ íšŒì›ì€ ì´ë¯¸ ê°€ìž…ì´ ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.");
-			return false;
-		} else if(f['hdn_mode'].value == "ERROR") {
-			alert("ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.");
-			return false;
-		} else if(f['hdn_mode'].value == "NEW" || f['hdn_mode'].value == "SSO") {
-			f.submit();
-		}
+	 
+	 var passwd_ck = f['passwd'].value;
+	 var birth_date_ck =  f['birth_date'].value.replaceAll("-","")  ;
+	 var user_id_ck =  f['user_id'].value ; 
+	 var hp_ck = f['hp1'].value +  f['hp2'].value + f['hp3'].value  ; 
+	  
+	 if(passwd_ck != ""){
+		 if(passwd_ck.search(birth_date_ck) != -1){		
+			 alert("ºñ¹Ð¹øÈ£¿¡´Â ¾ÆÀÌµð, ÈÞ´ëÆù¹øÈ£¸¦ Æ÷ÇÔ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			 return; 
+		} 
+		if(passwd_ck.search(user_id_ck) != -1){		
+			alert("ºñ¹Ð¹øÈ£¿¡´Â ¾ÆÀÌµð, »ý³â¿ùÀÏ, ÈÞ´ëÆù¹øÈ£¸¦ Æ÷ÇÔ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			 return; 
+		} 
+		if(passwd_ck.search(hp_ck) != -1){		
+			alert("ºñ¹Ð¹øÈ£¿¡´Â ¾ÆÀÌµð, »ý³â¿ùÀÏ, ÈÞ´ëÆù¹øÈ£¸¦ Æ÷ÇÔ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			 return; 
+		} 
+	 }
+	  
+	if(validate(f)){
+		f.submit();
 	}
     return;
 }
 
-function chkId() {
+function chkId(){
     var f = document.forms['form1'];
     var user_id = f['user_id'].value;
-    var org_user_id = f['org_user_id'].value;
-    if (user_id == "") {
-        alert("ì•„ì´ë””ë¥¼ ìž…ë ¥ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
+    if(user_id==""){
+        alert("¾ÆÀÌµð¸¦ ÀÔ·Â ÇÏ¿© ÁÖ½Ê½Ã¿À.");
         return;
     }
-    if(6 > user_id.length || user_id.length > 20){
-		alert("ì•„ì´ë””ëŠ” 6ìžì´ìƒ 20ìž ì´í•˜ë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
-		return;
-	}
-    if(user_id == org_user_id){
-    	alert('ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´ë”” ìž…ë‹ˆë‹¤.');
-    	document.forms['form1']['chk_id'].value='1'
-    }else{
-    	call("./idchk.jsp?user_id=" + user_id);
-    }
+    call("./idchk.jsp?user_id="+user_id);
 }
 
-function validChkId() {
+function validChkId()
+{
     var f = document.forms['form1'];
-    if (f['chk_id'].value =="") {
-        alert("ì•„ì´ë”” ì¤‘ë³µ í™•ì¸ì„ í•´ ì£¼ì‹­ì‹œì˜¤.");
+
+    if(f['chk_id'].value ==""){
+        alert("¾ÆÀÌµð Áßº¹ È®ÀÎÀ» ÇØ ÁÖ½Ê½Ã¿À.");
         return false;
     }
+
     return true;
 }
 
-function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn) {
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo,admCd, rnMgtSn, bdMgtSn){
     var f = document.forms['form1'];
-    f['address'].value = roadFullAddr;
-    f['post_code'].value = zipNo;
+    f['address'].value=roadFullAddr;
+    f['post_code'].value=zipNo;
 }
 
-//íœ´ëŒ€í° ë³¸ì¸ ì¸ì¦ ì½œë°±
-function identifyCallback(ci, userName, birthDate, hp, text, genDer) {
-	if (ci == '') {
-		alert('ì‚¬ìš©ìž ì •ë³´ë¥¼ ì¡°íšŒ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');
-		return;
-	} else {
-		var f = document.forms['form1'];
+//ÈÞ´ëÆù º»ÀÎ ÀÎÁõ ÄÝ¹é
+function identifyCallback(ci, userName, birthDate, hp, text, genDer){
+	  
+	 if(ci == ''){
+		 alert('»ç¿ëÀÚ Á¤º¸¸¦ Á¶È¸ ÇÒ ¼ö ¾ø½À´Ï´Ù.');
+		 return;
+	 }else{
+		 var f = document.forms['form1'];
 		 
-		if (f['boss_ci'].value == "") {
+		 if(f['boss_ci'].value == ""){
 			 f['boss_ci'].value = ci;
-		} else {
-			if (f['boss_ci'].value!=ci) {
-				alert("íœ´ëŒ€í° ë³¸ì¸ í™•ì¸ ì •ë³´ê°€ ë‹¤ë¦…ë‹ˆë‹¤.\\n\\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.");
+		 }else{	 
+			if(f['boss_ci'].value!=ci){
+				alert("ÈÞ´ëÆù º»ÀÎ È®ÀÎ Á¤º¸°¡ ´Ù¸¨´Ï´Ù.\\n\\n°í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
 				return;
-			}
-		}
-		if (f['member_name'].value != userName) {
-			alert("íšŒì›ê°€ìž…ì‹œ ìž…ë ¥í•œ ì •ë³´ì™€ ë³¸ì¸í™•ì¸ì •ë³´ê°€ ì¼ì¹˜ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(ì´ë¦„)");
-			return;
-		}
-		if (f['birth_date'].value != (birthDate.substr(0,4) + '-' + birthDate.substr(4,2) + '-' + birthDate.substr(6,2))) {
-			alert("íšŒì›ê°€ìž…ì‹œ ìž…ë ¥í•œ ì •ë³´ì™€ ë³¸ì¸í™•ì¸ì •ë³´ê°€ ì¼ì¹˜ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(ìƒë…„ì›”ì¼)");
-			return;
-		}
-
-		if (f['hp1'].value != hp.substr(0,3) || f['hp2'].value != hp.substr(3,4) || f['hp3'].value != hp.substr(7,4)) {
-			alert("íšŒì›ê°€ìž…ì‹œ ìž…ë ¥í•œ ì •ë³´ì™€ ë³¸ì¸í™•ì¸ì •ë³´ê°€ ì¼ì¹˜ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(íœ´ëŒ€í°)");
-			return;
-		}
-		if (genDer == 0) {
-			genDer = 2;
-		}
-		if (GetFormValue("form1","gender") != genDer) {
-			alert("íšŒì›ê°€ìž…ì‹œ ìž…ë ¥í•œ ì •ë³´ì™€ ë³¸ì¸í™•ì¸ì •ë³´ê°€ ì¼ì¹˜ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.(ì„±ë³„)");
-			return;
-		}
-
-		f.action="";
-		f.target="";
-		f.submit();
-	}
-}
-
-// íœ´ëŒ€í° ë²ˆí˜¸ë¡œ íšŒì›ì •ë³´ í™•ì¸
-function fChkPhone(){
-	var f = document.forms['form1'];
-	var	hp1 = f['hp1'].value;
-	var	hp2 = f['hp2'].value;
-	var	hp3 = f['hp3'].value;
-	var	hp = hp1 + "-" + hp2 + "-" + hp3;
-	
-	f['org_user_id'].value = "";
-	
-	if (hp.length >= 10) {
-		call("./chk_hp_person.jsp?hp=" + hp);
-	} else {
-		f['chk_id'].value = "";
-		f['member_name'].value = "";
-		f['user_id'].value = "";
-		f['email'].value = "";
-		f['person_seq'].value = "";
-		f['org_user_id'].value = "";
-		f['member_no'].value = "";
-		f['hdn_mode'].value = "";
-		f['user_id'].className = "label";
-		f['user_id'].readOnly = false;
-		
-		document.getElementById("btn_chkid").style.display = "";
-		document.getElementById("font_hp_msg").innerHTML = "";
-	}
+			} 
+		 }
+		 
+		 if(f['member_name'].value != userName){
+			 alert("È¸¿ø°¡ÀÔ½Ã ÀÔ·ÂÇÑ Á¤º¸¿Í º»ÀÎÈ®ÀÎÁ¤º¸°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù.(ÀÌ¸§)");
+			 return;
+		 }
+		 if( f['birth_date'].value != (birthDate.substr(0,4) + '-'+birthDate.substr(4,2) + '-'+birthDate.substr(6,2)) ){
+			 alert("È¸¿ø°¡ÀÔ½Ã ÀÔ·ÂÇÑ Á¤º¸¿Í º»ÀÎÈ®ÀÎÁ¤º¸°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù.(»ý³â¿ùÀÏ)");
+			 return;
+		 }
+		 
+		 if(f['hp1'].value != hp.substr(0,3) || f['hp2'].value != hp.substr(3,4)|| f['hp3'].value != hp.substr(7,4)){
+			 alert("È¸¿ø°¡ÀÔ½Ã ÀÔ·ÂÇÑ Á¤º¸¿Í º»ÀÎÈ®ÀÎÁ¤º¸°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù.(ÈÞ´ëÆù)");
+			 return;
+		 }
+		 if(genDer==0){
+			 genDer = 2;
+		 }
+		 if(GetFormValue("form1","gender")!=genDer){
+			 alert("È¸¿ø°¡ÀÔ½Ã ÀÔ·ÂÇÑ Á¤º¸¿Í º»ÀÎÈ®ÀÎÁ¤º¸°¡ ÀÏÄ¡ ÇÏÁö ¾Ê½À´Ï´Ù.(¼ºº°)");
+			 return;
+		 }
+		 
+		 f.action="";
+		 f.target="";
+		 f.submit();
+	 }
 }
 </script>
 {{form_script}}

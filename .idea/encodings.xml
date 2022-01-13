@@ -3,6 +3,60 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/WEB-INF/lib/httpclient-4.3.5.jar" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/nicelib/pdf/PDFDown.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/campus_pop.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/changepass.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/charge.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/dong_fee.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/index.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/index2.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/index_dash.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/moral.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/pop_campus.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/pop_new_docu.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/pop_noti.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/privacy_pop.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/renewal_open_index.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/service.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/true_contract.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/true_elec.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/main/true_proof.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/find_id.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/find_id_person.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/find_pw.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/find_pw_person.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/join.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/join_agree.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/html/member/join_person.html" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/layout/leftMenu.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/layout/topMenu.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/layout/topTitle.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/changepass.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/charge.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/index.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/index2.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/index_dash.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/index_q_ajax.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/init.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/login.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/logout.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/moral.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/qr_test.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/service.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/true_contract.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/true_elec.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/main/true_proof.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/chk_join_person.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/chk_vendcd.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/find_id.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/find_id_person.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/find_pw.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/find_pw_person.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/idchk.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/init.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/join.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/join_agree.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/join_cichk.jsp" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/web/buyer/member/join_person.jsp" charset="x-windows-949" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

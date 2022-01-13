@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
 <%
-if (u.isPost()) {
+if(u.isPost()){
 	String birth_date = f.get("birth_date").replaceAll("-", "");
 	String gender = f.get("gender");
 	String member_name = f.get("member_name");
@@ -12,58 +12,59 @@ if (u.isPost()) {
 	
 	DataObject personDao = new DataObject("tcb_person");
 	
-	if (Integer.parseInt(f.get("birth_date").substring(0,4)) >= 2000) {
+	if(Integer.parseInt(f.get("birth_date").substring(0,4)) >= 2000){
 		gender = f.get("gender").equals("1") ? "3" : "4";
 	} else {
 		gender = f.get("gender");
 	}
 	
-	String jumin_no = birth_date.substring(2) + gender;
+	String jumin_no = birth_date.substring(2)+gender;
 	DataSet person = personDao.query(
-			  " select a.member_no, a.status, c.boss_ci                     "
-			 + "  from tcb_member a, tcb_person b, tcb_member_boss c        "
-			 + " where a.member_no = b.member_no                            "
-			 + "   and a.member_no = c.member_no(+)                         "
-			 + "   and a.member_gubun = '04'                                "
-			 + "   and b.jumin_no = '" + security.AESencrypt(jumin_no) + "' "
-			 + "   and a.member_name = '" + member_name + "'                "
-			 + "   and b.hp1 = '" + hp1 + "'                                "
-			 + "   and b.hp2 = '" + hp2 + "'                                "
-			 + "   and b.hp3 = '" + hp3 + "'                                "
+			  "select a.member_no, a.status, c.boss_ci                 "
+			 +"  from tcb_member a, tcb_person b, tcb_member_boss c    "
+			 +" where a.member_no = b.member_no                        "
+			 +"   and a.member_no = c.member_no(+)                     "
+			 +"   and a.member_gubun = '04'                            "
+			 +"   and b.jumin_no = '"+security.AESencrypt(jumin_no)+"' "
+			 +"   and a.member_name = '"+member_name+"'                "
+			 +"   and b.hp1 = '"+hp1+"'                                "
+			 +"   and b.hp2 = '"+hp2+"'                                "
+			 +"   and b.hp3 = '"+hp3+"'                                "
 			);
-	if (!person.next()) {
+	if(!person.next()){
 		out.println("<script>");
-		out.println("if (confirm('ì…ë ¥í•˜ì‹  ì •ë³´ë¡œ íšŒì›ê°€ì…ì„ ì§„í–‰ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) {");
-		out.println("    parent.document.forms['form1'].target='';");
-		out.println("    parent.document.forms['form1'].action='';");
-		out.println("    parent.document.forms['form1'].submit();");
+		out.println("if(confirm('ÀÔ·ÂÇÏ½Å Á¤º¸·Î È¸¿ø°¡ÀÔÀ» ÁøÇà ÇÏ½Ã°Ú½À´Ï±î?')){");
+		out.println("parent.document.forms['form1'].target='';");
+		out.println("parent.document.forms['form1'].action='';");
+		out.println("parent.document.forms['form1'].submit();");
 		out.println("}");
 		out.println("</script>");
 		return;
-	} else {
-		if (person.getString("status").equals("01") || person.getString("status").equals("03")) {
-			out.print("<script>");
-			out.print("    alert('" + member_name + "ë‹˜ì€ ì´ë¯¸ íšŒì›ê°€ì…ì´ ë˜ì–´ ìˆìŠµë‹ˆë‹¤.\\n\\në¡œê·¸ì¸í›„ ì´ìš© í•˜ì„¸ìš”.');");
-			out.print("    parent.location.href='/web/buyer/';");
-			out.print("</script>");
-			return;
-		} else if (person.getString("status").equals("00")) {
-			out.print("<script>");
-			out.print("    alert('íšŒì›íƒˆí‡´ ìƒíƒœ ì…ë‹ˆë‹¤.');");
-			out.print("    parent.location.href='/web/buyer/';");
-			out.print("</script>");
-			return;
-		} else if (person.getString("status").equals("02")) {
-			out.print("<script>");
-			out.print("    alert('ë¹„íšŒì› ìƒíƒœ ì…ë‹ˆë‹¤.\\n\\níœ´ëŒ€í° ë³¸ì¸ ì¸ì¦ì„ ì§„í–‰ í•˜ì„¸ìš”');");
-			out.print("    parent.document.forms['form1']['member_no'].value = '" + person.getString("member_no") + "';");
-			if (!person.getString("boss_ci").equals("")) {
-				out.print("parent.document.forms['form1']['boss_ci'].value = '" + person.getString("boss_ci") + "';");
-			}
-			out.print("    parent.OpenIdentifyCheckplus('" + person.getString("member_no") + "');");
-			out.print("</script>");
-			return;
+	}
+	if(person.getString("status").equals("01")||person.getString("status").equals("03")){
+		out.print("<script>");
+		out.print("alert('"+member_name+"´ÔÀº ÀÌ¹Ì È¸¿ø°¡ÀÔÀÌ µÇ¾î ÀÖ½À´Ï´Ù.\\n\\n·Î±×ÀÎÈÄ ÀÌ¿ë ÇÏ¼¼¿ä.');");
+		out.print("pareint.location.href='/web/buyer/';");
+		out.print("</script>");
+		return;
+	}
+	if(person.getString("status").equals("00")){
+		out.print("<script>");
+		out.print("alert('È¸¿øÅ»Åğ »óÅÂ ÀÔ´Ï´Ù.');");
+		out.print("pareint.location.href='/web/buyer/';");
+		out.print("</script>");
+		return;
+	}
+	if(person.getString("status").equals("02")){
+		out.print("<script>");
+		out.print("alert('ºñÈ¸¿ø »óÅÂ ÀÔ´Ï´Ù.\\n\\nÈŞ´ëÆù º»ÀÎ ÀÎÁõÀ» ÁøÇà ÇÏ¼¼¿ä');");
+		out.print("parent.document.forms['form1']['member_no'].value = '"+person.getString("member_no")+"' ;");
+		if(!person.getString("boss_ci").equals("")){
+			out.print("parent.document.forms['form1']['boss_ci'].value = '"+person.getString("boss_ci")+"' ;");
 		}
+		out.print("parent.OpenIdentifyCheckplus('"+person.getString("member_no")+"');");
+		out.print("</script>");
+		return;
 	}
 }
 %>

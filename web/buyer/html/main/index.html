@@ -1,236 +1,372 @@
-﻿<link rel="stylesheet" type="text/css" href="../html/css/layout.css?sysdate={{_sysdate}}">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<link rel="stylesheet" type="text/css" href="/web/buyer/html/js/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="/web/buyer/html/js/slick/slick-theme.css">
+<script language="javascript" type="text/javascript" src="/web/buyer/html/js/slick/slick.js"></script>
 
-<!-- 전자인증 모듈 설정 //-->
-<!-- INCLUDE FILE 'layout/crosscert_include.html' -->
-<!-- 전자인증 모듈 설정 //-->
-
-<div class="login_wrap">
-    <div class="login_inner">
-        <h1>농심</h1>
-        <form name="form1" action="{{loginurl}}" method="post" onSubmit="return false">
-        <div class="login_box">        
-            <div class="login_left">
-                <h2>전자계약시스템</h2>
-                <span>Electronic Contract System</span>
-                <div class="CS_guide">
-                    <p>공인인증서 발급문의</p>
-                    <p>한국무역정보 1566-5950(영업부문)<br> 
-                                                    한국전자인증 1566-0566(영업부문 외)</p>
-                    <p></p>
-                    <p>평일 : 오전 9시 ~ 오후 6시<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( * 점심시간 : 12시 ~ 13시 )</p>
+<div class="main-container">
+    <div class="main-visual">
+        <div class="main-visual-inner">
+            <div class="login-wrap">
+                <h3><em>나이스다큐</em>에 오신 걸 환영합니다.</h3>
+                <div class="login-input-wrap">
+                    <form name="form1" action="{{loginurl}}" method="post" onSubmit="return false">
+                    <div class="login-input-form">
+                        <input type="text" name="user_id" value="{{user_id}}" maxlength="20" placeholder="아이디" style="ime-mode:disabled">
+                        <input type="password" name="passwd" maxlength="20" placeholder="비밀번호" onkeyup="if(event.keyCode=='13'){fLogin();}" >
+                    </div>
+                    <button type="button" class="login-input-btn" onclick="fLogin()">로그인</button>
+                    </form>
+                    <iframe name="login_ifrm" src="about:blank" width="0" height="0" frameborder="0" style="display: none"></iframe>
+                    <div id="loading" style="position:absolute;left:100px;top:70px;display:none"><img src="../html/images/common/loading.gif"></div>
                 </div>
-                <ul class="go_link2">
-                    <li><a href="javascript:fTradesignUrl()">공인인증서 안내(한국무역정보)</a></li>
-                    <li><a href="javascript:fCrosscerUrl()">공인인증서 안내(한국전자인증)</a></li>
-                </ul>
-                <ul class="go_link">
-                    <li><a href="/FileDownLoad?FILE_KEY=file.path.pds&FILE_NAME=manual.ppt" download="사용자매뉴얼.pptx">사용자 매뉴얼</a></li>
-                    <li><a href="javascript:OpenWindow('/web/buyer/html/layout/policy.html', 'policy', 1200, 800);">이용약관</a></li>
-                    <li><a href="javascript:OpenWindow('/web/buyer/html/layout/privacy.html', 'policy', 1200, 800);">개인정보처리방침</a></li>
-                </ul>
-				<!-- 임시 SSO 로그인 적용 start -->
-				<!-- 
-				<ul>
-                    <li><a href="#">임시 SSO로그인 &nbsp;&nbsp;☞&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="sso_id" name="sso_id" class="id" style="width:130px;" maxlength="10" placeholder="사번입력" onkeydown="if(event.keyCode==13){event.preventDefault();ssoSign();}">&nbsp;&nbsp;<button type="button" onclick="ssoSign()">클릭</button></a></li>
-                </ul>
-                 -->
-                <!-- 임시 SSO 로그인 적용 end -->
-                
+                <div class="login-info">
+                    <div class="reg-btn">
+                        <input type="button" value="회원가입" onclick="location.href='../member/join_agree.jsp';">
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="button" value="아이디 찾기" onclick="location.href='../member/find_id.jsp';">
+                        </li>
+                        <li>
+                            <input type="button" value="비밀번호 찾기" onclick="location.href='../member/find_pw.jsp';">
+                        </li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="login_right">
-                <h2>Member Login</h2>
-                <div class="tab">
-                    <button class="tablinks" onclick="openLogin(event, 'typeA')">인증서로그인</button>
-                    <button class="tablinks" onclick="openLogin(event, 'typeB')" id="defaultOpen">비밀번호 로그인</button>
+            <div class="main-btn">
+                <a href="https://blog.naver.com/nicedocu" class="blog-btn" target="_blank"><img src="/web/buyer/html/images/common/but_blog2.gif" alt="네이버블로그 바로가기 버튼"></a>
+            </div>
+        </div>
+        <div class="main-visual-slider main-btn-wrap">
+            <div class="slider-item item01">
+                <div class="inner">
+                    <div class="txt-area">
+                        <p class="tit">견적, 입찰 업무를 개선하세요</p>
+                        <p class="txt">구매 업무의 투명성 확보, 업무 효율화 및 생산성 향상</p>
+                    </div>
                 </div>
-                <!--인증서 로그인-->
-                <div id="typeA" class="tabcontent">
-                  <ul>
-                      <li><input type="text" id="vendCd" name="vendCd" class="id" maxlength="10" placeholder="사업자등록번호를 입력하세요"></li>
-                      <li><a href="javascript:fSign();" class="btn_login">로그인</a></li>
-                      <li><a href="../member/join_agree.jsp" class="btn_join">회원가입</a></li>
-                  </ul>
-                  <p class="find_link" style="margin-top: 70px;">
-                      <a href="../member/find_id.jsp">아이디 찾기</a>
-                      <a href="../member/find_pw.jsp">비밀번호 찾기</a>
-                  </p>
+            </div>
+            <div class="slider-item item02">
+                <div class="inner">
+                    <div class="txt-area">
+                        <p class="tit">근로계약도 전자계약으로 진행하세요</p>
+                        <p class="txt">모바일 기반, 대량 발송 지원, 증명서발급, 인사시스템과 연동을 통한 업무 처리</p>
+                    </div>
                 </div>
-                <!--비밀번호 로그인-->
-                <div id="typeB" class="tabcontent" style="display:none">
-                  <ul>
-                      <li><input type="text" name="user_id" value="{{user_id}}" maxlength="20" class="id" placeholder="아이디를 입력하세요" style="ime-mode:disabled"></li>
-                      <li><input type="password" name="passwd" maxlength="20" class="pw" placeholder="비밀번호를 입력하세요" onkeydown="if(event.keyCode==13){event.preventDefault();fLogin();}" ></li>
-                      <li><a href="javascript:fLogin();" class="btn_login">로그인</a></li>
-                      <!-- <li><button type="button" class="login-input-btn" onclick="fLogin()">로그인</button></li> -->
-                      <li><a href="../member/join_agree.jsp" class="btn_join">회원가입</a></li>
-                      <iframe name="login_ifrm" src="about:blank" width="0" height="0" frameborder="0" style="display: none"></iframe>
-                      <!-- <div id="loading" style="position:absolute;left:100px;top:70px;display:none"><img src="../html/images/common/loading.gif"></div> -->
-                  </ul>
-                  <p class="find_link">
-                      <a href="../member/find_id.jsp">아이디 찾기</a>
-                      <a href="../member/find_pw.jsp">비밀번호 찾기</a>
-                  </p>
-                  <!-- 메인페이지 : 최초1회 ~ 부분 등록에 따른 추가 -->
-                  <p class="certify"><b><font color="blue"> * 최초 1회 회원가입으로 ID/PWD를 발급하여 ID로 로그인 및 <br>&nbsp;&nbsp;&nbsp;인증서등록 후 사용해야 합니다.</font> </b></p>
+            </div>
+            <div class="slider-item item03">
+                <div class="inner">
+                    <div class="txt-area">
+                        <p class="tit">간편하고 손쉽게 계약서를 관리하세요</p>
+                        <p class="txt">보증증권 및 각종 구비서류 관리, 계약만료예정 알림 등 계약체결에서 관리까지 지원</p>
+                    </div>
                 </div>
             </div>
         </div>
-        </form>
     </div>
-    <div class="footer-cont">
-        <p>
-            <span class="name">(주)농심</span>
-            <span>서울특별시 동작구 여의대방로 112(신대방동)</span>
-            <span>사업자등록번호 118-81-03914</span>
-            <span>대표이사 박준</span>
-            <span>대표전화 02.820.7114</span>
-		<!-- <span>고객센터 080.023.5181</span> -->
-        </p>
-        <p>©  NONGSHIM CO.,LTD. ALL RIGHTS RESERVED.</p>
+    <div class="main-content">
+        <div class="main-content-top">
+            <div class="main-notice">
+                 <!-- IF START 'bid' -->
+                <div class="notice-section">
+                    <div class="notice-title">
+                        <p>견적/입찰공고(일반경쟁)</p>
+                    </div>
+                    <div class="notice-contents">
+                        <ul>
+                            <!-- LOOP START 'bid' -->
+                            <li>
+                                <a href="javascript:OpenWindows('{{bid.link}}?main_member_no={{bid.main_member_no}}&bid_no={{bid.bid_no}}&bid_deg={{bid.bid_deg}}', 'bid', 1000, 800);">
+                                    <p class="text text-cut" style="max-width:370px"><span style="color:blue">[{{bid.member_name}}]</span> {{bid.bid_name}}</p>
+                                    <p class="date">{{bid.bid_date}}</p>
+                                </a>
+                            </li>
+                            <!-- LOOP END 'bid' -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- IF END 'bid' -->
+                <!-- IF START 'noti' -->
+                <div class="notice-section">
+                    <div class="notice-title">
+                        <p>공지사항</p>
+                        <span class="more" onclick="location.href='../center/noti_list.jsp';">더보기</span>
+                    </div>
+                    <div class="notice-contents">
+                        <ul>
+                            <!-- LOOP START 'noti' -->
+                            <li>
+                                <a href="../center/noti_view.jsp?id={{noti.board_id}}">
+                                    <p class="text text-cut" style="max-width:370px">{{noti.title}}</p>
+                                    <p class="date">{{noti.open_date}}</p>
+                                </a>
+                            </li>
+                            <!-- LOOP END 'noti' -->
+                            <!-- IFNOT START 'noti' -->
+                            <li>
+                                <a>
+                                    <p class="text">공지사항 정보가 없습니다.</p>
+                                </a>
+                            </li>
+                            <!-- IFNOT END 'noti' -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- IF END 'noti' -->
+            </div>
+            <div class="main-favorite">
+                <ul>
+                    <li>
+                        <a  href="javascript:OpenWindow('/web/buyer/main/true_contract.jsp','','650','500');">문서 진위여부 확인</a>
+                    </li>
+                    <li>
+                        <a href="../center/si_qna.jsp">문의 및 상담</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-customer">
+                <div class="customer-title">
+                    <p>나이스다큐 운영팀</p>
+                </div>
+                <div class="customer-phone">
+                    <ul>
+                        <li>나이스다큐 이용문의<span>02-788-9097</span></li>
+                        <li>공동인증서 발급문의<span>1566-0566</span></li>
+                    </ul>
+                </div>
+                <div class="customer-time">
+                    <ul>
+                        <li><strong>nicedocu@nicednr.co.kr</strong></li>
+                        <li>점심시간 : 12:00 ~ 13:00</li>
+                        <li>평일 : 09:00 ~ 18:00 <span>토,일,공휴일 휴무</span></li>
+                    </ul>
+                </div>
+                <div class="customer-btn">
+                    <ul>
+                        <li>
+                            <a href="http://www.0302.co.kr/ndocu" target="_blank">원격지원요청</a>
+                        </li>
+                        <li>
+                            <a href="https://raadmin.crosscert.com/customer/dnbkorea/index.html" target="_blank">공동인증서 발급신청</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-content-bottom" style="display:">
+        
+            <ul class="banner-logo">
+                <!-- <li>
+                    <a href="https://aff.g2brating.co.kr/#MENUCM0300?param=NICEDOCU" target="_blank">
+                            <img src="../html/images/main/banner/banner_nicednb_01_1.jpg">
+                    </a>
+                </li> -->
+              <!--   <li>
+                    <a href="http://bit.ly/3oyZQj2" target="_blank">
+                            <img src="../html/images/main/banner/banner_finset1.png">  
+                    </a>
+                </li> -->
+                <li> 
+                    <a href="https://finset.page.link/invite-event01" target="_blank">   
+                            <img src="../html/images/main/banner/banner_finset1_2.jpg">  
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.nicers.co.kr" target="_blank">
+                            <img src="../html/images/main/banner/banner_nicednb_01_2.jpg"> 
+                    </a>
+                </li> 
+                <!-- <li style="padding-left:10px" >
+                    <a href="javascript:OpenWindows('/web/buyer/html/main/pop_campus.html','campus' ,1020,780,300,80);" target="_self">
+                            <img src="../html/images/main/banner/docu_main_global.jpg">
+                    </a>
+                </li> -->
+		<!--  	<li>
+                    <a href="https://www.nicers.co.kr" target="_blank">
+                            <img src="../html/images/main/banner/banner_nicednb_01_2.jpg">
+                    </a>
+                </li> 
+                <li style="padding-left:10px">
+                    <a href="http://campus.nicedocu.com/educ/edupurch.jsp?cpsmtno=3" target="_blank">
+                            <img src="../html/images/main/banner/banner_ism04.jpg">
+                    </a>
+                    
+                </li> --> 
+             <!--    <li style="padding-left:10px">
+                    <a href="http://campus.nicedocu.com/educ/edupurch.jsp?cpsmtno=3" target="_blank">
+                            <img src="../html/images/main/banner/banner_ism04.jpg">
+                    </a>
+                </li>  --> 
+               <!--  <li style="padding-left:10px">
+                	<a href="javascript:OpenWindow('http://www.nicedocu.com/web/buyer/layout/vauchar.jsp?member_no={{_auth._MEMBER_NO}}&user_id={{_auth._USER_ID}}','vouchar','1200','750')"  style=" overflow: hidden;">   
+                            <img src="../html/images/main/banner/banner_voucher.jpg">
+                    </a>
+                </li>  -->
+                <!-- <li style="padding-left:10px">
+                    <a href="https://nicewel.co.kr/?act=user.user_join_info&r=nomubi" target="_blank">
+                            <img src="../html/images/main/banner/banner_nicewel01.jpg">
+                    </a>
+                </li> --> 
+                 <!-- <li style="padding-left:10px">
+                    <a href="http://campus.nicedocu.com/educ/edupurch.jsp?cpsmtno=3" target="_blank">
+                            <img src="../html/images/main/banner/banner_ism03.jpg">
+                    </a>
+                </li>  -->
+                <li style="padding-left:5px">
+                     <a href="https://www.nicedocu.com/web/buyer/layout/event.jsp" target="_blank">
+                            <img src="../html/images/main/banner/nicebill.png" width="291" height="85">
+                    </a>
+                     <!-- <a href="#" onClick="javascript:fn_untactVoucharPop()">
+                            <img src="../html/images/main/banner/untactVouchar_banner.jpg" width="315"height="85">
+                    </a> -->
+                  <!--   <a href="javascript:fn_dataVouchar()">
+                    	<img src="../html/images/main/banner/dataVouchar_banner.jpg" width="315" height="85"/>
+                    </a> -->
+                </li>
+                	
+                
+            </ul>
+        </div>
     </div>
 </div>
-<script>
-function openLogin(evt, loginType) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(loginType).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
+<!-- main content end -->
 
 <script>
-function ssoSign(){
-	var f = document.forms['form1'];
-	var ssoId = null;
-	var url = null;
-	
-	ssoId = f['sso_id'].value;
-	if (ssoId == null || ssoId.length == 0) {
-		alert("사번을 입력해주세요.");
-		return;
-	}	
-	url = "/web/buyer/main/loginSSO.jsp?user_id=" + ssoId;
-	location.href=url;
-}
 function fLogin(){
 	var f = document.forms['form1'];
-	if (f['user_id'].value=="") {
+	if(f['user_id'].value==""){
 		f['user_id'].focus();
 		alert("아이디를 입력 하세요.");
 		return;
 	}
-	if (f['passwd'].value=="") {
+	if(f['passwd'].value==""){
 		f['passwd'].focus();
 		alert("비밀번호를 입력 하세요.");
 		return;
 	}
-	// document.getElementById("loading").style.display = '';
-	// setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 3000);
-	document.getElementById("loading").style.display = 'block';
+	document.getElementById("loading").style.display = '';
+	setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 3000);
 
 	f.target = "login_ifrm";
 	f.submit();
 }
+
+function fMailto(){
+	var body = "업체명:\n\n담당자:\n\n연락처\n\n\문의내용:\n\n";
+	location.href='mailto:nicedocu@nicednr.co.kr?body='+encodeURI(body);
+}
+
+ 
+ /*
+if("{{_sysdate}}" <= 20190728130000 ){
+	if(GetCookie("net")!="done"){ 
+			fLayerPop('net',"/web/com/main/pop_net_noti.html" ,603,510,400,130);
+	} 
+}
+*/
+
+/*
+if(GetCookie("merger")!="done"){ 
+	fLayerPop('merger',"/web/com/main/merger_docu.html" ,500,800,400,130);
+}
+
+if(GetCookie("new_docu")!="done"){ 
+	fLayerPop('new_docu',"/web/buyer/html/main/pop_new_docu.html" ,430,516,920,130);
+}
+*/
+/*
+if(GetCookie("campus_pop")!="done"){ 
+	fLayerPop('campus_pop',"/web/buyer/html/main/campus_pop.html" ,503,370,250,130);
+}
+ */
+
+
+/*   //공지
+if(GetCookie("noti_docu")!="done"){
+	fLayerPop('noti_docu',"/web/buyer/html/main/pop_noti.html" ,602,520,705,120);
+	//fLayerPop('noti1',"/web/com/main/pop_notice.html" ,400,300,400,150);
+}  
+ */
+ //비대면 바우처 공지
+ /* if(GetCookie("n_eventdocu")!="done"){ */  
+	 /* fn_untactVoucharPop(); */
+	/* fLayerPop('n_eventdocu',"/web/com/main/pop_event.html" ,602,720,90,120);  ///web/com/main/pop_event.html */
+	 //OpenWindows("/web/buyer/layout/event.jsp",'noti1' ,722,579,300,150);
+/* } */
+
+ /* 홈플러스 */
+if("{{_sysdate}}" >= 20210822000059 &&  "{{_sysdate}}" <= 20210905235959 ){ 
+ 	if(GetCookie("recruit_home")!="done"){  
+ 		fLayerPop('recruit_home',"/web/com/main/pop_recruit.html" ,378,478,670,120); 
+ 		//OpenWindows("/web/com/main/pop_recruit.html",'recruit' ,722,579,300,150);
+ 	}
+ }    
+  
+ /* nh투자증권 */
+/* if("{{_sysdate}}" >= 20210622085959 &&  "{{_sysdate}}" <= 20210629105959 ){ 
+ 	if(GetCookie("recruit_home")!="done"){  
+ 		fLayerPop('recruit_home',"/web/com/main/pop_recruit.html" ,381,478,570,130);  
+ 		//OpenWindows("/web/com/main/pop_recruit.html",'recruit' ,722,579,300,150);
+ 	}
+ }  
+  */
+ /* 메트로 */
+/*  if("{{_sysdate}}" >= 20210427000059 &&  "{{_sysdate}}" <= 20210531235959 ){ 
+  	if(GetCookie("recruit3")!="done"){  
+  		//fLayerPop('recruit2',"/web/com/main/pop_recruit2.html" ,378,474,160,150);
+  		fLayerPop('recruit3',"/web/com/main/pop_recruit2.html" ,379,478,160,150);
+  		//OpenWindows("/web/com/main/pop_recruit.html",'recruit' ,722,579,300,150);
+  	}
+  }   */
+ 	   
+	   
+ 
+//서버 공지
+/* if("{{_sysdate}}" >= 20210614000059 &&  "{{_sysdate}}" <= 20210617235959 ){ 
+	if(GetCookie("new_docu")!="done"){ 
+		fLayerPop('new_docu',"/web/buyer/html/main/pop_new_docu.html" ,602,517,550,150);  
+	}  
+} 
+     */
+
+/* function fn_untactVoucharPop()
+{   
+	fLayerPop2('n_eventdocu',"/web/hub2/pop_voucher.jsp?typ=L" ,610,720,10,120);  ///web/com/main/pop_event.html
+} */
+    
+function campus_pop(){
+	fLayerPop('campus','/web/buyer/html/main/pop_campus.html' ,1020,780,300,80);
+}
+
+/* function fn_dataVouchar()
+{  
+	fLayerPop2('pop_data_voucher',"/web/hub2/pop_data_voucher.jsp?civ=docu_buyer&showBtn=N" ,1020,720,10,130);
+} */
+
+	/******************************************
+		토스(toss) 인증 출시 기념 이벤트 팝업
+	******************************************/
+	if("{{_sysdate}}" >= 20210601000000 &&  "{{_sysdate}}" <= 20210730999999 )
+	{
+		if(GetCookie("pop_toss_event")!="done"){  
+			fLayerPop2('pop_toss_event',"/web/hub2/pop_toss_event.jsp" ,550,720,10,130);
+		}
+	}
 </script>
+
 
 <script>
-function fSign(sinput){
-	setUniSign("comp");
-	var ssn = document.getElementById("vendCd").value;
-	if (ssn == null || ssn.length == 0) {
-		alert("사업자번호를 입력해주세요.");
-		return;
-	}
-	if (ssn.length != 10) {
-		alert("사업자번호는 10자리로 입력하셔야 합니다.");
-		return;
-	}
-
-    /* 서명데이타 만들기 */
-    var f = document.forms['signFrm'];
-    var	org_data = "nocedocu";	//	서명대상 원본데이타
-    var	sign_data = "";
-    
-    unisign.SignDataNVerifyVID( org_data, null, ssn,
-        function(rv, signedText, certAttrs)
-        {
-            sign_data = signedText;
-
-            if ( null === sign_data || '' === sign_data || false === rv )
-            {
-                unisign.GetLastError(
-                    function(errCode, errMsg)
-                    {
-                        if(errCode == "999"){
-                            //사용자 취소
-                        }else if(errCode == "14208"){
-                            alert("선택한 인증서는 귀사의 인증서가 아닙니다.");
-                        }else{
-                            alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
-                        }
-                    }
-                );
-            } else {
-                //console.log(JSON.stringify(certAttrs,null,2));
-                //인증서 확인 단계
-                var cert_end_date = getFormatDate(certAttrs.validateTo);
-                if (cert_end_date.length < 8){
-                    alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
-                    return;
-                }
-                if (!isValidDate(cert_end_date))
-                {
-                    alert("유효하지 않은 인증서입니다.(유효일자 미확인)\n\n다시 한번 인증서를 확인 하십시오.");
-                    return;
-                }
-                if (js_isDateCmp(cert_end_date, "{{_sysdate}}"))
-                {
-                    alert("유효기간이 지난 인증서 입니다.\n\n다시 한번 인증서를 확인 하십시오.");
-                    return;
-                }
-
-                f['vend_cd'].value = ssn;
-                f['sign_data'].value = sign_data;
-                f['cert_dn'].value=certAttrs.subjectName;
-                f['cert_end_date'].value=cert_end_date;
-                
-                f.target = "login_ifrm";
-                f.submit();
-            }
-        }
-    );
-}
-
-function fCrosscerUrl()
-{
-    window.open('https://raadmin.crosscert.com/customer/nongshim/index.html','_blank');
-}
-
-function fTradesignUrl()
-{
-    window.open('http://www.tradesign.net/ra/nongshimsc','_blank');
-}
-
-function closeLoading() {
-	document.getElementById("loading").style.display = 'none';
-}
+    $(document).ready(function(){
+        $('.main-visual-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 1000,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 5000,
+        });
+    });
 </script>
-<form name="signFrm" method="post" action="{{loginurl}}">
-	<input type="hidden" name="sign_data" />
-	<input type="hidden" name="vend_cd" />
-	<input type="hidden" name="cert_dn" value="{{_auth._CERT_DN}}" />
-	<input type="hidden" name="cert_end_date" value="{{_auth._CERT_END_DATE}}" />
-</form>
-
-<div id="loading"><img id="loading-image" src="../html/images/common/loading.gif" alt="Loading..."></div>
