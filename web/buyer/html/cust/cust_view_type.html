@@ -2,7 +2,7 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>��ü����</h3>
+            <h3>업체정보</h3>
         </div>
     </div>
     <table>
@@ -13,72 +13,72 @@
         <col width="33%">
       </colgroup>
       <tr>
-        <th class="req-check">��ü����</th>
+        <th class="req-check">업체유형</th>
         <td colspan="3">
             <!-- LOOP START 'code_client_type' -->
-            <input type="checkbox" name="client_type" value="{{code_client_type.id}}" hname="��ü����" required="Y"> {{code_client_type.value}}&nbsp;&nbsp;
+            <input type="checkbox" name="client_type" value="{{code_client_type.id}}" hname="업체유형" required="Y"> {{code_client_type.value}}&nbsp;&nbsp;
             <!-- LOOP END 'code_client_type' -->
         </td>
       </tr>
       <tr>
-        <th>����ڱ���</th>
+        <th>사업자구분</th>
         <td colspan="3">{{member.member_gubun_name}}</td>
       </tr>
       <tr>
-        <th>����ڹ�ȣ</th>
+        <th>사업자번호</th>
         <td>{{member.vendcd}}</td>
-        <th>���ι�ȣ </th>
+        <th>법인번호 </th>
         <td>{{member.member_slno}}</td>
       </tr>
       <tr>
-        <th>��ü��</th>
+        <th>업체명</th>
         <td>{{member.member_name}}</td>
-        <th>��ǥ�ڸ�</th>
+        <th>대표자명</th>
         <td>{{member.boss_name}}</td>
       </tr>
       <tr>
-        <th>����</th>
+        <th>업태</th>
         <td>{{member.condition}}</td>
-        <th>����</th>
+        <th>종목</th>
         <td>{{member.category}}</td>
       </tr>
       <tr>
-        <th>�ּ�</th>
+        <th>주소</th>
         <td colspan="3">
           ({{member.post_code}})&nbsp;&nbsp;
           {{member.address}}
         </td>
       </tr>
       <tr>
-        <th>�ŷ�����</th>
+        <th>거래정지</th>
         <td colspan="3">
-            <input type="checkbox" value="90" name="client_status" onclick="chgClientStatus(this.checked)"> (�� �ش��ü�� ���� �ŷ������� �ϰ��� �ϴ� ��� üũ �ϼ���.)
+            <input type="checkbox" value="90" name="client_status" onclick="chgClientStatus(this.checked)"> (※ 해당업체에 대해 거래정지를 하고자 하는 경우 체크 하세요.)
         </td>
       </tr>
       <tr>
-        <th>�ŷ���������</th>
+        <th>거래정지사유</th>
         <td colspan="3">
             <textarea rows="3" style="width:95%" name="reason" class="in_readonly" readonly>{{reason}}</textarea>
         </td>
       </tr>
       <tr>
-        <th>��ȸ����ü</th>
+        <th>일회성업체</th>
         <td colspan="3">
-            <input type="checkbox" value="Y" name="temp_yn"> (�� �ش��ü�� ��ȸ�� ��ü�� ��� üũ �ϼ���.)
+            <input type="checkbox" value="Y" name="temp_yn"> (※ 해당업체가 일회성 업체인 경우 체크 하세요.)
         </td>
       </tr>
     <!-- IF START 'rfile' -->
         <tr>
-            <th>÷�μ���</th>
+            <th>첨부서류</th>
             <td colspan="3">
             <!-- LOOP START 'rfile' -->
                 {{rfile.doc_name}}
                 <!-- IFNOT START 'rfile.file_name' -->
-                    <font color="red">(�̵��)</font>
+                    <font color="red">(미등록)</font>
                 <!-- IFNOT END 'rfile.file_name' -->
                 <!-- IF START 'rfile.file_name' -->
                     <font color="blue">({{rfile.file_size}})</font>
-                    &nbsp;<input type="button" class="down4" value="�ٿ�ε�" onclick="filedown('file.path.bcompany','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"/>
+                    &nbsp;<input type="button" class="down4" value="다운로드" onclick="filedown('file.path.bcompany','{{rfile.file_path}}{{rfile.file_name}}','{{rfile.doc_name}}.{{rfile.file_ext}}')"/>
                 <!-- IF END 'rfile.file_name' -->
                 <br>
             <!-- LOOP END 'rfile' -->
@@ -88,8 +88,8 @@
     </table>
 </div>
 <div class="btn-group-wrap">
-    <button type="submit" name="btn_save" class="btn color ico-save auth_css"><span></span>����</button>
-    <button type="button" name="btn_save" class="btn color ico-list" onclick="location.href='my_cust_list_type.jsp?{{list_query}}'"><span></span>�������</button>
+    <button type="submit" name="btn_save" class="btn color ico-save auth_css"><span></span>저장</button>
+    <button type="button" name="btn_save" class="btn color ico-list" onclick="location.href='my_cust_list_type.jsp?{{list_query}}'"><span></span>목록으로</button>
 </div>
 </form>
 {{form_script}}
@@ -97,7 +97,7 @@
 <div class="div_table">
     <div class="util-row">
         <div class="push-left">
-            <h3>���������</h3>
+            <h3>담당자정보</h3>
         </div>
     </div>
     <table>
@@ -112,12 +112,12 @@
         </colgroup>
         <tr>
             <th>NO</th>
-            <th>�̸�</th>
-            <th>����</th>
-            <th>�̸���</th>
-            <th>��ȭ��ȣ</th>
-            <th>�޴���</th>
-            <th>�ѽ���ȣ</th>
+            <th>이름</th>
+            <th>직위</th>
+            <th>이메일</th>
+            <th>전화번호</th>
+            <th>휴대폰</th>
+            <th>팩스번호</th>
         </tr>
         <!-- LOOP START 'person' -->
         <tr>
@@ -135,7 +135,7 @@
 <script language="javascript">
 function formSubmit(f){
 	if(validate(f)){
-		if(confirm("�����Ͻðڽ��ϱ�?")){
+		if(confirm("저장하시겠습니까?")){
 			return true;
 		}
 	}

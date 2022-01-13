@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(auth.getString("_MEMBER_NO")==null||auth.getString("_MEMBER_NO").equals("")){
 	u.redirect("index.jsp");

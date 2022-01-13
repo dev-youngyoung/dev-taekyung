@@ -5,7 +5,7 @@
 <div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>ȸ��⺻����</h3>
+      <h3>회사기본정보</h3>
     </div>
   </div>
   <table>
@@ -16,13 +16,13 @@
     <col width="31%">
   </colgroup>
   <tr>
-    <th>����ڱ���</th>
+    <th>사업자구분</th>
     <td colspan="3">
       <input type="hidden" name="member_gubun"><span id="span_memner_gubun_nm"></span>
     </td>
   </tr>
   <tr>
-    <th class="req-check">����ڹ�ȣ</th>
+    <th class="req-check">사업자번호</th>
     <td colspan="3">
       <input type="text" name="vendcd1" size="3" maxlength="3" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd2')" onBlur="fChkVendCd()"> -
       <input type="text" name="vendcd2" size="2" maxlength="2" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('vendcd3');movePrv('vendcd1')" onBlur="fChkVendCd()"> -
@@ -32,37 +32,37 @@
     </td>
   </tr>
   <tr>
-  <th>���ι�ȣ </th>
+  <th>법인번호 </th>
   <td colspan="3">
     <input type="text" name="member_slno1" size="6" maxlength="6" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="moveNext('member_slno2')"> -
     <input type="text" name="member_slno2" size="7" maxlength="7" style="ime-mode:disabled" onKeyDown="num_only()" onKeyUp="movePrv('txt_cust_slno1')">
   </td>
   </tr>
   <tr>
-    <th class="req-check">��ü��</th>
+    <th class="req-check">업체명</th>
     <td>
       <input type="text" name="member_name" style="width:95%" maxlength="30" >
     </td>
-    <th class="req-check">��ǥ�ڸ�</th>
+    <th class="req-check">대표자명</th>
     <td>
       <input type="text" name="boss_name" style="width:95%" maxlength="30" >
     </td>
   </tr>
   <tr>
-  <th class="req-check">����</th>
+  <th class="req-check">업태</th>
   <td>
     <input type="text" name="condition" style="width:95%" maxlength="30" >
   </td>
-  <th class="req-check">����</th>
+  <th class="req-check">종목</th>
   <td>
     <input type="text" name="category" style="width:95%" maxlength="30" >
   </td>
   </tr>
   <tr>
-    <th class="req-check">�ּ�</th>
+    <th class="req-check">주소</th>
     <td colspan="3">
       <input type="text" name="post_code" class="in_readonly" size="6" readonly>
-      <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>������ȣã��</button>
+      <button type="button" class="sbtn ico-search" onclick="jusoPopup()"><span></span>우편번호찾기</button>
       <input type="text" name="address" style="width:98%" maxlength="150">
     </td>
   </tr>
@@ -72,7 +72,7 @@
 <div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <h3>����� ����&nbsp;&nbsp;<span style="color:red">(�� ȸ�������ϴ� ��ü(�����) �Ҽ��� ����� Ȥ�� ��ǥ�� ������ �Է��ϼ���.)</span></h3>
+      <h3>담당자 정보&nbsp;&nbsp;<span style="color:red">(※ 회원가입하는 업체(사업장) 소속의 담당자 혹은 대표자 정보를 입력하세요.)</span></h3>
     </div>
   </div>
   <table>
@@ -83,54 +83,54 @@
       <col width="31%">
     </colgroup>
     <tr>
-      <th class="req-check">���̵�</th>
+      <th class="req-check">아이디</th>
       <td colspan="3">
         <input type="hidden" name="chk_id">
         <input type="text" name="user_id" size="20" maxlength="20" style="ime-mode:disabled;width:150px" onchange="document.forms['form1']['chk_id'].value=''">
-        <button type="button" class="sbtn ico-check" onClick="chkId()" id="btn_chkid"><span></span>�ߺ�Ȯ��</button>
-        &nbsp;&nbsp;<font color="gray">��  6 ~ 20�ڸ��� �Է��ϼ���. (�����ҹ���, ���ڸ� ����)</font>
+        <button type="button" class="sbtn ico-check" onClick="chkId()" id="btn_chkid"><span></span>중복확인</button>
+        &nbsp;&nbsp;<font color="gray">※  6 ~ 20자리로 입력하세요. (영문소문자, 숫자만 가능)</font>
       </td>
       
     </tr>
     <tr>
-      <th class="req-check">��й�ȣ</th>
+      <th class="req-check">비밀번호</th>
       <td colspan="3">
       	<input type="password" name="passwd" size="20" maxlength="20" style="width:150px">
-      	<br />&nbsp;&nbsp;<font color="gray">�� ����, ���� 1�� �̻�, Ư������('$','\' ����) 1�� �̻� ������ 8 ~ 20�ڸ��� �Է��ϼ���. (�޴���,���̵� �Ұ�)</font> 
+      	<br />&nbsp;&nbsp;<font color="gray">※ 영문, 숫자 1자 이상, 특수문자('$','\' 제외) 1자 이상 포함한 8 ~ 20자리로 입력하세요. (휴대폰,아이디 불가)</font> 
       </td>
       
     </tr>
     <tr>
-      <th class="req-check">��й�ȣ Ȯ��</th>
+      <th class="req-check">비밀번호 확인</th>
       <td colspan="3"><input type="password" name="passwd2" size="20" maxlength="20" style="width:150px"></td>
     </tr>
     <tr>
-      <th class="req-check">����ڸ�</th>
+      <th class="req-check">담당자명</th>
       <td><input type="text" name="user_name"  size="10" maxlength="30" style="width:95%"></td>
-      <th class="req-check">����</th>
+      <th class="req-check">직위</th>
       <td><input type="text" name="position"  maxlength="20" style="width:95%"></td>
     </tr>
     <tr>
-      <th class="req-check">�̸���</th>
+      <th class="req-check">이메일</th>
       <td><input type="text" name="email" maxlength="255" style="ime-mode:disabled; width:95%"></td>
-      <th class="req-check">��ȭ��ȣ</th>
+      <th class="req-check">전화번호</th>
       <td>
-        <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="��) 02-788-9097">
+        <input type="text" name="tel_num" style="width:98%" maxlength="15" placeholder="예) 02-788-9097">
       </td>
     </tr>
     <tr>
-      <th class="req-check">�μ���</th>
+      <th class="req-check">부서명</th>
       <td><input type="text" name="division" maxlength="50" style="width:100%"></td>
-      <th>�ѽ���ȣ</th>
+      <th>팩스번호</th>
       <td>
-        <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="��) 02-788-9097">
+        <input type="text" name="fax_num" style="width:98%" maxlength="15" placeholder="예) 02-788-9097">
       </td>
     </tr>
     <tr>
-      <th class="req-check">�޴���ȭ</th>
+      <th class="req-check">휴대전화</th>
       <td colspan="3">
         <select name="hp1" onChange="if(this.value!=''){document.forms['form1']['hp2'].focus();}">
-          <option value="">����</option>
+          <option value="">선택</option>
           <option value="010">010</option>
           <option value="011">011</option>
           <option value="016">016</option>
@@ -146,17 +146,17 @@
 </div>
 
 <div class="help-content" style="margin-top: 10px;margin-bottom: 10px">
-  <h3>NOTICE<span>������ ����! ������� �˾Ƶμ���~ </span></h3>
+  <h3>NOTICE<span>유용한 정보! 사용전에 알아두세요~ </span></h3>
   <div class="help-content-body">
     <ul>
-      <li style="font-weight:bold">�޴���ȭ �� �̸��Ϸ� ����/���� ������û, ��༭ ������û�� ���� �˸��� �뺸�ǿ��� ��Ȯ�� ����ٶ��ϴ�.</li>
+      <li style="font-weight:bold">휴대전화 및 이메일로 견적/입찰 참여요청, 계약서 서명요청에 대한 알림이 통보되오니 정확히 기재바랍니다.</li>
     </ul>
   </div>
 </div>
 
 <div class="btn-group-wrap">
-  <button type="submit" class="btn color ico-confirm"><span></span>ȸ������</button>
-  <button type="button" class="btn color ico-cancel" onclick="location.href='../'"><span></span>���</button>
+  <button type="submit" class="btn color ico-confirm"><span></span>회원가입</button>
+  <button type="button" class="btn color ico-cancel" onclick="location.href='../'"><span></span>취소</button>
 </div>
 
 </form>
@@ -169,11 +169,11 @@ function formSubmit(f){
 	
 	if(passwd_ck != ""){ 
 		if(passwd_ck.search(user_id_ck) != -1){		
-			 alert("��й�ȣ���� ���̵�, �޴�����ȣ�� ���� �� �� �����ϴ�.");
+			 alert("비밀번호에는 아이디, 휴대폰번호를 포함 할 수 없습니다.");
 			 return false;
 		} 
 		if(passwd_ck.search(hp_ck) != -1){		
-			 alert("��й�ȣ���� ���̵�, �޴�����ȣ�� ���� �� �� �����ϴ�.");
+			 alert("비밀번호에는 아이디, 휴대폰번호를 포함 할 수 없습니다.");
 			 return false;
 		} 
 	 }
@@ -182,23 +182,23 @@ function formSubmit(f){
 	{
 		if(f['hdn_mode'].value	==	"BREAK")
 	 	{
-	 		alert("�ش� ����ڹ�ȣ�� ȸ��Ż�� �����Դϴ�.\n\n�ٽ� ȸ������ �����Ͻ÷���, ����� �����Ͻñ� �ٶ��ϴ�.");
+	 		alert("해당 사업자번호는 회원탈퇴 상태입니다.\n\n다시 회원으로 가입하시려면, 운영팀에 문의하시기 바랍니다.");
 			return false;
 	 	}
 
 	 	if(f['hdn_mode'].value	==	"JOIN")
 	 	{
-	 		alert("�ش� ����ڹ�ȣ�� �̹� ȸ�������� �Ǿ� �ֽ��ϴ�.");
+	 		alert("해당 사업자번호는 이미 회원가입이 되어 있습니다.");
 			return false;
 	 	}
 
 	 	if(f['hdn_mode'].value	==	"ERROR")
 	 	{
-	 		alert("�������ͷ� ���� �Ͻñ� �ٶ��ϴ�.");
+	 		alert("고객센터로 문의 하시기 바랍니다.");
 			return false;
 	 	}
 
-		if(confirm("��ϵ� ������ ȸ�������� �Ͻðڽ��ϱ�?"))
+		if(confirm("등록된 정보로 회원가입을 하시겠습니까?"))
 		{
 			return true;
 		}
@@ -207,7 +207,7 @@ function formSubmit(f){
 }
 
 	/*****************************
-		����ڹ�ȣ Ȯ��
+		사업자번호 확인
 	*****************************/
 	function fChkVendCd()
 	{
@@ -258,7 +258,7 @@ function formSubmit(f){
  	var f = document.forms['form1'];
  	var user_id = f['user_id'].value;
  	if(user_id==""){
- 		alert("���̵� �Է� �Ͽ� �ֽʽÿ�.");
+ 		alert("아이디를 입력 하여 주십시오.");
  		return;
  	}
  	call("./idchk.jsp?user_id="+user_id);
@@ -267,7 +267,7 @@ function formSubmit(f){
  function validChkId(){
  	var f = document.forms['form1'];
  	if(f['chk_id'].value ==""){
- 		alert("���̵� �ߺ� Ȯ���� �� �ֽʽÿ�.");
+ 		alert("아이디 중복 확인을 해 주십시오.");
  		return false;
  	}
 

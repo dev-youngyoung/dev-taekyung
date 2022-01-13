@@ -1,7 +1,7 @@
 <div>
   <div class="cont_tab">
-    <span class="tab_on" >ÀüÀÚ°è¾à ÁøÀ§È®ÀÎ</span>
-    <span class="tab_off" onclick="location.href='true_proof.jsp'">½ÇÀûÁõ¸í¼­ ÁøÀ§È®ÀÎ</span>
+    <span class="tab_on" >ì „ìžê³„ì•½ ì§„ìœ„í™•ì¸</span>
+    <span class="tab_off" onclick="location.href='true_proof.jsp'">ì‹¤ì ì¦ëª…ì„œ ì§„ìœ„í™•ì¸</span>
   </div>
 </div>
 
@@ -10,7 +10,7 @@
 <div class="div_table">
   <div class="util-row">
     <div class="push-left">
-      <span class="caution-text">(¡Ø °è¾à¼­ ÇÏ´Ü ¿ìÃøÀÇ °ü¸®¹øÈ£ ÀÔ·Â)</span>
+      <span class="caution-text">(â€» ê³„ì•½ì„œ í•˜ë‹¨ ìš°ì¸¡ì˜ ê´€ë¦¬ë²ˆí˜¸ ìž…ë ¥)</span>
     </div>
   </div>
 
@@ -20,14 +20,14 @@
       <col width="85%">
     </colgroup>
     <tr>
-      <th>°ü¸®¹øÈ£</th>
+      <th>ê´€ë¦¬ë²ˆí˜¸</th>
       <td>
         <input type="text" name="cont_no" size="12" maxlength="11" style="ime-mode:disabled;width:120px" onKeyUp="moveNext('cont_chasu')">
         -
         <input type="text" name="cont_chasu" size="1" maxlength="2" style="ime-mode:disabled;width:40px" onKeyUp="movePrv('cont_no'); moveNext('true_random')">
         -
         <input type="text" name="true_random" size="5" maxlength="5" style="ime-mode:disabled;width:70px" onKeyUp="movePrv('cont_chasu')">
-        <button type="submit" class="sbtn color ico-confirm"><span></span>È®ÀÎ</button><br/>
+        <button type="submit" class="sbtn color ico-confirm"><span></span>í™•ì¸</button><br/>
       </td>
     </tr>
   </table>
@@ -39,19 +39,19 @@
       <col width="85%">
     </colgroup>
     <tr>
-      <th>°è¾à¸í</th>
+      <th>ê³„ì•½ëª…</th>
       <td><input type="text" name="cont_name" value="{{ds.cont_name}}" style="width:100%" readOnly></td>
     </tr>
     <tr>
-      <th>°©»ç¾÷ÀÚ</th>
+      <th>ê°‘ì‚¬ì—…ìž</th>
       <td><input type="text" name="first_cust_name" value="{{ds.first_cust_name}}" style="width:100%" readOnly></td>
     </tr>
     <tr>
-      <th>À»»ç¾÷ÀÚ</th>
+      <th>ì„ì‚¬ì—…ìž</th>
       <td><input type="text" name="second_cust_name" value="{{ds.second_cust_name}}" style="width:100%" readOnly></td>
     </tr>
     <tr>
-      <th>°è¾àÀÏÀÚ</th>
+      <th>ê³„ì•½ì¼ìž</th>
       <td><input type="text" name="cont_date" value="{{ds.cont_date}}" size="10" readOnly></td>
     </tr>
   </table>
@@ -65,7 +65,7 @@
 </div>
 </form>
 <div class="btn-group-wrap">
-  <button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>´Ý±â</button>
+  <button type="button" class="sbtn color ico-cancel" onclick="self.close()"><span></span>ë‹«ê¸°</button>
 </div>
 {{form_script}}
 
@@ -81,7 +81,7 @@ attachOnload( function()
     return;
 });
 
-// È®ÀÎ
+// í™•ì¸
 function fSubmit(form)
 {
     form.cont_no.value = form.cont_no.value.replace(/\\/g, "");
@@ -89,19 +89,19 @@ function fSubmit(form)
 
     if (form.cont_no.value.length < 11)
     {
-        alert("°ü¸®¹øÈ£¸¦ 11ÀÚ¸®·Î ÀÔ·ÂÇÏ¼¼¿ä.");
+        alert("ê´€ë¦¬ë²ˆí˜¸ë¥¼ 11ìžë¦¬ë¡œ ìž…ë ¥í•˜ì„¸ìš”.");
         form.cont_no.focus();
         return false;
     }
     else if (form.cont_chasu.value == "")
     {
-        alert("º¯°æÂ÷¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+        alert("ë³€ê²½ì°¨ìˆ˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.");
         form.cont_chasu.focus();
         return false;
     }
     else if (form.true_random.value == "")
     {
-        alert("°ü¸®¹øÈ£ µÞÀÚ¸®¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+        alert("ê´€ë¦¬ë²ˆí˜¸ ë’·ìžë¦¬ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.");
         form.true_random.focus();
         return false;
     }

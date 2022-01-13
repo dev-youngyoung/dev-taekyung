@@ -1,21 +1,21 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
-f.addElement("member_name", null, "hname:'ÀÌ¸§',required:'Y'");
-f.addElement("birth_date", null, "hname:'»ý³â¿ùÀÏ', required:'Y', minbyte:'10', mixbyte:'10'");
-f.addElement("gender", null, "hname:'¼ºº°', required:'Y'");
-f.addElement("user_id", null, "hname:'¾ÆÀÌµð', required:'Y', option:'userid', func:'validChkId'");
-f.addElement("passwd", null, "hname:'ºñ¹Ð¹øÈ£',required:'Y', option:'userpw', match:'passwd2', minbyte:'4', mixbyte:'20'");
-f.addElement("post_code", null, "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", null, "hname:'ÁÖ¼Ò', required:'Y'");
-f.addElement("hp1", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", null, "hname:'ÈÞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
-f.addElement("org_member_no", null, "hname:'°Å·¡Ã³', required:'Y'");
-f.addElement("email", null, "hname:'ÀÌ¸ÞÀÏ', required:'Y',option:'email'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£'");
-f.addElement("fax_num", null, "hname:'ÆÑ½º¹øÈ£'");
+f.addElement("member_name", null, "hname:'ì´ë¦„',required:'Y'");
+f.addElement("birth_date", null, "hname:'ìƒë…„ì›”ì¼', required:'Y', minbyte:'10', mixbyte:'10'");
+f.addElement("gender", null, "hname:'ì„±ë³„', required:'Y'");
+f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y', option:'userid', func:'validChkId'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸',required:'Y', option:'userpw', match:'passwd2', minbyte:'4', mixbyte:'20'");
+f.addElement("post_code", null, "hname:'ìš°íŽ¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", null, "hname:'ì£¼ì†Œ', required:'Y'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("org_member_no", null, "hname:'ê±°ëž˜ì²˜', required:'Y'");
+f.addElement("email", null, "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸'");
+f.addElement("fax_num", null, "hname:'íŒ©ìŠ¤ë²ˆí˜¸'");
 
-// ÀÔ·Â¼öÁ¤
+// ìž…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate()){
 	
 	Security security = new	Security();
@@ -46,7 +46,7 @@ if(u.isPost() && f.validate()){
 			);
 	if(person.next()){
 		if(!person.getString("status").equals("02")){
-			u.jsError("È¸¿ø Á¤º¸°¡ ÀÖ½À´Ï´Ù. \n\nÁßº¹µÈ Á¤º¸°í È¸¿ø °¡ÀÔ µÉ ¼ö ¾ø½À´Ï´Ù.");
+			u.jsError("íšŒì› ì •ë³´ê°€ ìžˆìŠµë‹ˆë‹¤. \n\nì¤‘ë³µëœ ì •ë³´ê³  íšŒì› ê°€ìž… ë  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			return;
 		}
 	}
@@ -103,7 +103,7 @@ if(u.isPost() && f.validate()){
 		personDao.item("event_agree_date", u.getCookie("event_agree_yn").equals("Y")?u.getTimeString():"");
 		db.setCommand(personDao.getInsertQuery(), personDao.record);
 		
-		//»ó´ë¹æ ¾÷Ã¼¿¡ µî·Ï
+		//ìƒëŒ€ë°© ì—…ì²´ì— ë“±ë¡
 		DataObject clientDao = new DataObject("tcb_client");
 		//dao.setDebug(out);
 		int client_seq = clientDao.getOneInt(
@@ -148,12 +148,12 @@ if(u.isPost() && f.validate()){
 		db.setCommand(personDao.getUpdateQuery("member_no = '"+member_no+"' and person_seq = '1'"), personDao.record);
 		
 		DataObject memberBossDao = new DataObject("tcb_member_boss");
-		if(memberBossDao.findCount(" member_no = '"+member_no+"' ")<1){//°øÀÎÀÎÁõ¼­ ¸ÞÀÏ ¼­¸í È¸¿øÀÇ °æ¿ì ÀÎÁõÁ¤º¸ ¼öÁý
+		if(memberBossDao.findCount(" member_no = '"+member_no+"' ")<1){//ê³µì¸ì¸ì¦ì„œ ë©”ì¼ ì„œëª… íšŒì›ì˜ ê²½ìš° ì¸ì¦ì •ë³´ ìˆ˜ì§‘
 			memberBossDao.item("member_no", member_no);
 			memberBossDao.item("seq","1");
 			memberBossDao.item("boss_name",f.get("member_name"));
 			memberBossDao.item("boss_birth_date",f.get("birth_date"));
-			memberBossDao.item("boss_gender", u.inArray(f.get("gender"), new String[]{"1","3"})?"³²":"¿©" );
+			memberBossDao.item("boss_gender", u.inArray(f.get("gender"), new String[]{"1","3"})?"ë‚¨":"ì—¬" );
 			memberBossDao.item("boss_hp1", f.get("hp1"));
 			memberBossDao.item("boss_hp2", f.get("hp2"));
 			memberBossDao.item("boss_hp3", f.get("hp3"));
@@ -163,16 +163,16 @@ if(u.isPost() && f.validate()){
 			memberBossDao.item("status", "10");
 			db.setCommand(memberBossDao.getInsertQuery() , memberBossDao.record);
 		}else{
-			//ÀÖ´Â °æ¿ì ±âÁ¸ °è¾à°ú ¸ÞÄªÀÌ ÀÚµ¿À¸·Î µÉ²¬?
+			//ìžˆëŠ” ê²½ìš° ê¸°ì¡´ ê³„ì•½ê³¼ ë©”ì¹­ì´ ìžë™ìœ¼ë¡œ ë ê»„?
 		}
 	}
 
 
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ý ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
-	u.jsAlert("Á¤»óÀûÀ¸·Î È¸¿ø °¡ÀÔµÇ¾ú½À´Ï´Ù. ·Î±×ÀÎÈÄ »ç¿ë ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	u.jsAlert("ì •ìƒì ìœ¼ë¡œ íšŒì› ê°€ìž…ë˜ì—ˆìŠµë‹ˆë‹¤. ë¡œê·¸ì¸í›„ ì‚¬ìš© í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	u.jsReplace("../");
 	return;
 }

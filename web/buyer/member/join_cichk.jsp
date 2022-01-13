@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 DataObject dao = new DataObject("tcb_member_boss");
 DataSet ds =  dao.find("boss_ci = '" + u.request("ci") + "'");
 if(ds.next()){
 	out.print("<script>");
-	out.print("alert('ÀÔ·ÂÇÏ½Å Á¤º¸ÀÇ È¸¿øÁ¤º¸°¡ Á¸Àç ÇÕ´Ï´Ù.\\n\\nÈ¸¿ø Á¤º¸¸¦ ºĞ½ÇÇÑ °æ¿ì ID/PASSWORD Ã£±â¸¦\\nÁøÇà ÇÏ¿© ÁÖ½Ê½Ã¿À.');");
+	out.print("alert('ì…ë ¥í•˜ì‹  ì •ë³´ì˜ íšŒì›ì •ë³´ê°€ ì¡´ì¬ í•©ë‹ˆë‹¤.\\n\\níšŒì› ì •ë³´ë¥¼ ë¶„ì‹¤í•œ ê²½ìš° ID/PASSWORD ì°¾ê¸°ë¥¼\\nì§„í–‰ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.');");
 	out.print("</script>");
 	return;	
 }else{
 	out.print("<script>");
-	out.print("alert('º»ÀÎ ÀÎÁõ µÇ¾ú½À´Ï´Ù.');");
+	out.print("alert('ë³¸ì¸ ì¸ì¦ ë˜ì—ˆìŠµë‹ˆë‹¤.');");
 	out.print("ciCallBack('"+u.request("ci")
                          +"','"+u.request("userName")
                          +"','"+u.request("birthDate")

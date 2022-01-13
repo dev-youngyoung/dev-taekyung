@@ -1,20 +1,20 @@
-<%@ page contentType="text/html; charset=EUC-KR"%><%@ include file="init.jsp"%>
+<%@ page contentType="text/html; charset=UTF-8"%><%@ include file="init.jsp"%>
 <%
-	String reqYM     = u.request("reqYM");			//	Åë°è±âÁØ³â¿ù
-	String member_no = u.request("member_no");	//	È¸¿ø¹øÈ£
+	String reqYM     = u.request("reqYM");			//	í†µê³„ê¸°ì¤€ë…„ì›”
+	String member_no = u.request("member_no");	//	íšŒì›ë²ˆí˜¸
 	
 	List<String>	lJson	=	new	ArrayList<String>();
 	
 	String	curYM	=	u.getTimeString("yyyyMM");
 	
-	long	lIngJob	 =	0;	//	ÇØ¾ßÇÒÀÏ°Ç¼ö
-	long	lFinJob	 =	0;	//	¾÷¹«¿Ï·á°Ç¼ö
-	long	lEstiCnt =	0;	//	ÀÌ¿ëÇöÈ²(°ßÀû) °Ç¼ö
-	long	lBidCnt	 =	0;	//	ÀÌ¿ëÇöÈ²(ÀÔÂû) °Ç¼ö
-	long	lContCnt =	0;	//	ÀÌ¿ëÇöÈ²(°è¾à) °Ç¼ö
-	long	lWorkCnt =	0;	//	ÀÌ¿ëÇöÈ²(±Ù·Î°è¾à) °Ç¼ö
+	long	lIngJob	 =	0;	//	í•´ì•¼í• ì¼ê±´ìˆ˜
+	long	lFinJob	 =	0;	//	ì—…ë¬´ì™„ë£Œê±´ìˆ˜
+	long	lEstiCnt =	0;	//	ì´ìš©í˜„í™©(ê²¬ì ) ê±´ìˆ˜
+	long	lBidCnt	 =	0;	//	ì´ìš©í˜„í™©(ìž…ì°°) ê±´ìˆ˜
+	long	lContCnt =	0;	//	ì´ìš©í˜„í™©(ê³„ì•½) ê±´ìˆ˜
+	long	lWorkCnt =	0;	//	ì´ìš©í˜„í™©(ê·¼ë¡œê³„ì•½) ê±´ìˆ˜
 
-	/* °ßÀû°Ç¼ö */
+	/* ê²¬ì ê±´ìˆ˜ */
 	StringBuffer	sb	=	new	StringBuffer();
 	sb.append("select (select count (main_member_no) ");
 	sb.append("          from tcb_bid_master ");
@@ -50,7 +50,7 @@
 	
 	lJson.add("\"esti\":" + u.loop2json(estiDS)); 
 	
-	/* ÀÔÂû °Ç¼ö */
+	/* ìž…ì°° ê±´ìˆ˜ */
 	sb	=	new	StringBuffer();
 	sb.append("select (select count (main_member_no) cnt ");
 	sb.append("          from tcb_bid_master a ");
@@ -248,10 +248,10 @@
 	
 	sb	=	new	StringBuffer();
 	sb.append("select a3.member_no, ");
-	sb.append("       case when a3.field_seq = 999999 then '±âÅ¸ ºÎ¼­' else nvl ( (select field_name ");
+	sb.append("       case when a3.field_seq = 999999 then 'ê¸°íƒ€ ë¶€ì„œ' else nvl ( (select field_name ");
 	sb.append("                                                                      from tcb_field ");
 	sb.append("                                                                     where member_no = a3.member_no ");
-	sb.append("                                                                       and field_seq = a3.field_seq), 'ºÎ¼­ ¹ÌÁöÁ¤') end field_name, ");
+	sb.append("                                                                       and field_seq = a3.field_seq), 'ë¶€ì„œ ë¯¸ì§€ì •') end field_name, ");
 	sb.append("       a3.field_seq, ");
 	sb.append("       sum (a3.cnt) cnt ");
 	sb.append("  from (select case when a2.rnum > 5 then 999999 else a2.field_seq end field_seq, ");
@@ -277,7 +277,7 @@
 	lJson.add("\"person\":" + u.loop2json(personDS));
 	
 	sb	=	new	StringBuffer();
-	sb.append("select decode (a1.member_gubun, '01', '¹ýÀÎ»ç¾÷ÀÚ', '03', '°³ÀÎ»ç¾÷ÀÚ', '°³ÀÎ') member_gubun_nm, ");
+	sb.append("select decode (a1.member_gubun, '01', 'ë²•ì¸ì‚¬ì—…ìž', '03', 'ê°œì¸ì‚¬ì—…ìž', 'ê°œì¸') member_gubun_nm, ");
 	sb.append("       count (a1.member_gubun) cnt ");
 	sb.append("  from (select case when b.member_gubun in ('01', '02') then '01' else b.member_gubun end member_gubun ");
 	sb.append("          from tcb_client a ");
@@ -293,25 +293,25 @@
 	if(lEstiCnt > 0)
 	{
 		serviceDS.addRow();
-		serviceDS.put("nm",  "°ßÀû");
+		serviceDS.put("nm",  "ê²¬ì ");
 		serviceDS.put("cnt", Long.toString(lEstiCnt));	
 	}
 	if(lBidCnt > 0)
 	{
 		serviceDS.addRow();
-		serviceDS.put("nm",  "ÀÔÂû");
+		serviceDS.put("nm",  "ìž…ì°°");
 		serviceDS.put("cnt", Long.toString(lBidCnt));	
 	}
 	if(lContCnt > 0)
 	{
 		serviceDS.addRow();
-		serviceDS.put("nm",  "°è¾à");
+		serviceDS.put("nm",  "ê³„ì•½");
 		serviceDS.put("cnt", Long.toString(lContCnt));	
 	}
 	if(lWorkCnt > 0)
 	{
 		serviceDS.addRow();
-		serviceDS.put("nm",  "±Ù·Î°è¾à");
+		serviceDS.put("nm",  "ê·¼ë¡œê³„ì•½");
 		serviceDS.put("cnt", Long.toString(lWorkCnt));	
 	}
 	

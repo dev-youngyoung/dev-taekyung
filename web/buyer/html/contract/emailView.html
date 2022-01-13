@@ -1,12 +1,12 @@
-<!-- ÀüÀÚÀÎÁõ ¸ğµâ ¼³Á¤ //-->
+<!-- ì „ìì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
 <!-- INCLUDE FILE 'layout/crosscert_include.html' -->
-<!-- ÀüÀÚÀÎÁõ ¸ğµâ ¼³Á¤ //-->
+<!-- ì „ìì¸ì¦ ëª¨ë“ˆ ì„¤ì • //-->
 
 <div class="con-title-block">
-	<p class="con-title">ÁøÇàÁßÀÎ°è¾à</p>
+	<p class="con-title">ì§„í–‰ì¤‘ì¸ê³„ì•½</p>
 	<ul class="con-breadcrumb">
 		<li>HOME</li>
-		<li>¼ö½Å¹ŞÀº °è¾à</li>
+		<li>ìˆ˜ì‹ ë°›ì€ ê³„ì•½</li>
 	</ul>
 </div>
 
@@ -21,10 +21,10 @@
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-        <h3>¼öÁ¤¿äÃ»/¹İ·Á »çÀ¯</h3>
+        <h3>ìˆ˜ì •ìš”ì²­/ë°˜ë ¤ ì‚¬ìœ </h3>
     </div>
     <div class="push-right">    	
-        	°è¾à»óÅÂ : <span class="caution-text"><b>{{status_name}}</b></span>        
+        	ê³„ì•½ìƒíƒœ : <span class="caution-text"><b>{{status_name}}</b></span>        
     </div>
 </div>
 
@@ -36,13 +36,13 @@
 		<col width="30%">
 	</colgroup>
 	<tr>
-		<th>¿äÃ»¾÷Ã¼¸í</th>
+		<th>ìš”ì²­ì—…ì²´ëª…</th>
 		<td>{{cont.mod_req_name}}</td>
-		<th>¿äÃ»ÀÏ½Ã</th>
+		<th>ìš”ì²­ì¼ì‹œ</th>
 		<td>{{cont.mod_req_date}}</td>
 	</tr>
 	<tr>
-		<th>»çÀ¯</th>
+		<th>ì‚¬ìœ </th>
 		<td colspan="3">{{cont.mod_req_reason}}</td>
 	</tr>
 </table>
@@ -52,11 +52,11 @@
 <div class="div_table">
 <div class="util-row">
     <div class="push-left">
-        <h3>°è¾à±âº»Á¤º¸</h3>
+        <h3>ê³„ì•½ê¸°ë³¸ì •ë³´</h3>
     </div>
     <div class="push-right">
     	<!-- IFNOT START 'cont.mod_req_date' -->
-        	°è¾à»óÅÂ : <span class="caution-text"><b>{{status_name}}</b></span>        
+        	ê³„ì•½ìƒíƒœ : <span class="caution-text"><b>{{status_name}}</b></span>        
 	  	<!-- IFNOT END 'cont.mod_req_date' -->
 	</div>
 </div>	
@@ -68,18 +68,18 @@
 		<col width="30%">
 	</colgroup>
 	<tr>
-		<th>°è¾à¸í</th>
+		<th>ê³„ì•½ëª…</th>
 		<td colspan="3">{{cont.cont_name}}</td>
 	</tr>
 	<tr>
-		<th>°è¾àÀÏÀÚ</th>
+		<th>ê³„ì•½ì¼ì</th>
 		<td>{{cont.cont_date}}</td>
-		<th>°è¾à¹øÈ£</th>
+		<th>ê³„ì•½ë²ˆí˜¸</th>
 		<td>{{cont.cont_userno}}</td>
 	</tr>
 	<!-- IF START 'change_cont' -->
 	<tr>
-		<th>°è¾à±¸ºĞ</th>
+		<th>ê³„ì•½êµ¬ë¶„</th>
 		<td colspan="3">
 			<font color="red"><b>{{cont.change_gubun_str}}</b></font>
 		</td>
@@ -91,7 +91,7 @@
 <div class="div_table">
 	<div class="util-row">
     <div class="push-left">
-        <h3>¼­¸íÁøÇà»óÅÂ</h3>
+        <h3>ì„œëª…ì§„í–‰ìƒíƒœ</h3>
     </div>
     <table>
     	<!-- LOOP START 'cust' -->
@@ -109,10 +109,10 @@
 			<!-- IF END 'cust.hp1' -->
 			/ {{cust.email}} </td>
 		<!-- IF START 'cust.sign_dn' -->
-			<td align="center"><font color="blue">¼­¸í¿Ï·á({{cust.sign_date}})</font></td>
+			<td align="center"><font color="blue">ì„œëª…ì™„ë£Œ({{cust.sign_date}})</font></td>
 		<!-- IF END 'cust.sign_dn' -->
 		<!-- IFNOT START 'cust.sign_dn' -->
-			<td align="center"><font color="red">¹Ì¼­¸í</font></td>
+			<td align="center"><font color="red">ë¯¸ì„œëª…</font></td>
 		<!-- IFNOT END 'cust.sign_dn' -->
 		</tr>
 		<!-- LOOP END 'cust' -->
@@ -123,7 +123,7 @@
 <div class="div_table">
 	<div class="util-row">
     <div class="push-left">
-        <h3>°è¾à¼­·ù <span class="caution-text">¡Ø °è¾à¼­·ù¸¦ È®ÀÎ ÈÄ ÀüÀÚ¼­¸í ÇÏ¼¼¿ä.</span></h3>
+        <h3>ê³„ì•½ì„œë¥˜ <span class="caution-text">â€» ê³„ì•½ì„œë¥˜ë¥¼ í™•ì¸ í›„ ì „ìì„œëª… í•˜ì„¸ìš”.</span></h3>
     </div>
     </div>
     <table>
@@ -134,9 +134,9 @@
 	</colgroup>
 	<thead>
 	<tr>
-		<th>ÆÄÀÏ±¸ºĞ</th>
-		<th>°è¾à¼­·ù¸í</th>
-		<th>Ã·ºÎ</th>
+		<th>íŒŒì¼êµ¬ë¶„</th>
+		<th>ê³„ì•½ì„œë¥˜ëª…</th>
+		<th>ì²¨ë¶€</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -175,7 +175,7 @@
 <div class="div_table">
 <div class="util-row">
 	<div class="push-left">
-		<h3>º¸Áõ¼­·ù <span class="caution-text">¡Ø Á¦ÃâÇØ¾ß ÇÒ º¸ÁõÁõ±Ç¿¡ ´ëÇØ [µî·Ï] ¹öÆ°À» Å¬¸¯ÇÏ¿© Ã·ºÎÇÏ¼¼¿ä.</span></h3>
+		<h3>ë³´ì¦ì„œë¥˜ <span class="caution-text">â€» ì œì¶œí•´ì•¼ í•  ë³´ì¦ì¦ê¶Œì— ëŒ€í•´ [ë“±ë¡] ë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ ì²¨ë¶€í•˜ì„¸ìš”.</span></h3>
 	</div>  
 </div>
 <table id="warr_grid">
@@ -190,13 +190,13 @@
 	</colgroup>
 	<thead>
 	<tr>
-		<th>º¸Áõ¼­Á¾·ù</th>
-		<th>¹ß±Ş±â°ü</th>
-		<th>Áõ±Ç¹øÈ£</th>
-		<th>¹ß±ŞÀÏÀÚ</th>
-		<th>º¸Áõ±â°£</th>
-		<th>º¸Áõ±İ¾×</th>
-		<th>µî·Ï/Á¶È¸</th>
+		<th>ë³´ì¦ì„œì¢…ë¥˜</th>
+		<th>ë°œê¸‰ê¸°ê´€</th>
+		<th>ì¦ê¶Œë²ˆí˜¸</th>
+		<th>ë°œê¸‰ì¼ì</th>
+		<th>ë³´ì¦ê¸°ê°„</th>
+		<th>ë³´ì¦ê¸ˆì•¡</th>
+		<th>ë“±ë¡/ì¡°íšŒ</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -204,10 +204,10 @@
 			<!-- IFNOT START 'warr.file_name' -->
 	<tr>
 		<td align="center">{{warr.warr_type}}</td>
-		<td colspan="5"><!-- IF START 'warr.haja' -->[°è¾à¿Ï·áÈÄ µî·Ï]<!-- IF END 'warr.haja' --></td>
+		<td colspan="5"><!-- IF START 'warr.haja' -->[ê³„ì•½ì™„ë£Œí›„ ë“±ë¡]<!-- IF END 'warr.haja' --></td>
 		<td align="center">
 		<!-- IFNOT START 'warr.haja' -->
-		<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.c}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>µî·Ï</button>
+		<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.c}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>ë“±ë¡</button>
 		<!-- IFNOT END 'warr.haja' -->
 		</td>
 	</tr>
@@ -219,8 +219,8 @@
 		<td align="center">{{warr.warr_no}}</td>
 		<td align="center">{{warr.warr_date}}</td>
 		<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
-		<td align="right">£Ü{{warr.warr_amt}}</td>
-		<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.c}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>Á¶È¸</button></td>
+		<td align="right">ï¿¦{{warr.warr_amt}}</td>
+		<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.c}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>ì¡°íšŒ</button></td>
 	</tr>
 		<!-- IF END 'warr.file_name' -->
 	<!-- LOOP END 'warr' -->
@@ -234,7 +234,7 @@
 
 <div class="btn-group-wrap">
 	<!-- IF START 'sign_able' -->
-	<button type="button" id="btn_sign" class="btn color ico-confirm" onclick="if(formSubmit(document.forms['form1'])){document.forms['form1'].submit();}"><span></span>°è¾à¼­ ¼­¸í</button>
+	<button type="button" id="btn_sign" class="btn color ico-confirm" onclick="if(formSubmit(document.forms['form1'])){document.forms['form1'].submit();}"><span></span>ê³„ì•½ì„œ ì„œëª…</button>
 	<!-- IF END 'sign_able' -->
 </div>
 
@@ -243,12 +243,12 @@
 <script language="javascript">
 function formSubmit(f){
 	<!-- IF START 'cont.main_recv_sign_check' -->
-	alert("°è¾à ¼ö½ÅÀÚ ¼­¸í ÈÄ ¿¬´ëº¸ÁõÀÎ ¼­¸íÀÌ °¡´É ÇÕ´Ï´Ù.");
+	alert("ê³„ì•½ ìˆ˜ì‹ ì ì„œëª… í›„ ì—°ëŒ€ë³´ì¦ì¸ ì„œëª…ì´ ê°€ëŠ¥ í•©ë‹ˆë‹¤.");
 	return false
 	<!-- IF END 'cont.main_recv_sign_check' -->
 	
 	if(validate(f, true)){
-		if(!confirm("°è¾à¼­¿¡ ¼­¸í ÇÏ½Ã°Ú½À´Ï±î?")){
+		if(!confirm("ê³„ì•½ì„œì— ì„œëª… í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 			return false;
 		}
 
@@ -257,7 +257,7 @@ function formSubmit(f){
 	return false;
 }
 
-// ÀÎÁõ¼­ ¼±ÅÃÃ¢ ¶ç¿ì°í °è¾à¼­¼­¸í ½ÇÇà
+// ì¸ì¦ì„œ ì„ íƒì°½ ë„ìš°ê³  ê³„ì•½ì„œì„œëª… ì‹¤í–‰
 
 function fSign(sinput){
 	 var f = document.forms["form1"];
@@ -271,7 +271,7 @@ function fSign(sinput){
 	    		OpenWindow("../info/pop_sign_val.jsp?full=Y","pop_sign_val","400","150");
 	    		return;
 	    	}catch(err){
-	    		alert("ÆË¾÷Â÷´ÜÀ» ÇØÁ¦ ÇÏ¼¼¿ä.");
+	    		alert("íŒì—…ì°¨ë‹¨ì„ í•´ì œ í•˜ì„¸ìš”.");
 	    		return;
 	    	}
 	    	<!-- IF END 'full_jumin_no' -->
@@ -280,16 +280,16 @@ function fSign(sinput){
 	    		OpenWindow("../info/pop_sign_val.jsp","pop_sign_val","400","150");
 	    		return;
 	    	}catch(err){
-	    		alert("ÆË¾÷Â÷´ÜÀ» ÇØÁ¦ ÇÏ¼¼¿ä.");
+	    		alert("íŒì—…ì°¨ë‹¨ì„ í•´ì œ í•˜ì„¸ìš”.");
 	    		return;
 	    	}
 	    	<!-- IFNOT END 'full_jumin_no' -->
     	}
-    	alert("¡Ø °øÀÎÀÎÁõ¼­ ¾È³»\n\n°øÀÎÀÎÁõ¼­°¡ º¸ÀÌÁö ¾Ê´Â °æ¿ì\n\n°³ÀÎÀ¸·Î °Å·¡ÇÏ½Ã´Â ÀºÇàÀÇ °øÀÎÀÎÁõ¼±ÅÍ¿¡¼­\n\n°³ÀÎ¹ü¿ë °øÀÎÀÎÁõ¼­¸¦ ¹ß±Ş¹Ş¾Æ\n\n°è¾à¼­¼­¸íÇÏ¼¼¿ä.");
+    	alert("â€» ê³µì¸ì¸ì¦ì„œ ì•ˆë‚´\n\nê³µì¸ì¸ì¦ì„œê°€ ë³´ì´ì§€ ì•ŠëŠ” ê²½ìš°\n\nê°œì¸ìœ¼ë¡œ ê±°ë˜í•˜ì‹œëŠ” ì€í–‰ì˜ ê³µì¸ì¸ì¦ì„ í„°ì—ì„œ\n\nê°œì¸ë²”ìš© ê³µì¸ì¸ì¦ì„œë¥¼ ë°œê¸‰ë°›ì•„\n\nê³„ì•½ì„œì„œëª…í•˜ì„¸ìš”.");
     	 
     	vendcd = vendcd+sinput;
     	if(vendcd.length!=13){
-    		alert("ÁÖ¹Îµî·Ï¹øÈ£°¡ ºÎÁ¤È® ÇÕ´Ï´Ù.\n\n°í°´¼¾ÅÍ·Î ¹®ÀÇÇÏ¼¼¿ä.");
+    		alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ê°€ ë¶€ì •í™• í•©ë‹ˆë‹¤.\n\nê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•˜ì„¸ìš”.");
     		return;
     	}
      }
@@ -298,13 +298,13 @@ function fSign(sinput){
     var vendcd = "{{_auth._VENDCD}}";
     <!-- IFNOT END 'person_yn' -->
     
-    var cont_hash = f['cont_hash'].value;    // °è¾à¼­·ù hash¿¡ ¼­¸íÇÑ °ª
+    var cont_hash = f['cont_hash'].value;    // ê³„ì•½ì„œë¥˜ hashì— ì„œëª…í•œ ê°’
     if(cont_hash==""){
-    	alert("{{sign_title}} µ¥ÀÌÅÍ°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù. °í°´¼¾ÅÍ(02-788-9097)·Î ¹®ÀÇÇØ ÁÖ¼¼¿ä.");
+    	alert("{{sign_title}} ë°ì´í„°ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°(02-788-9097)ë¡œ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.");
     	return false;
     }
 
-    // È¯°æ¼³Á¤ ÇÔ¼ö È£Ãâ
+    // í™˜ê²½ì„¤ì • í•¨ìˆ˜ í˜¸ì¶œ
     <!-- IF START 'person_yn' -->
     setUniSign("person");
     <!-- IF END 'person_yn' -->
@@ -324,9 +324,9 @@ function fSign(sinput){
 					function(errCode, errMsg) 
 					{ 
 						if(errCode == "999"){
-							//»ç¿ëÀÚ Ãë¼Ò
+							//ì‚¬ìš©ì ì·¨ì†Œ
 						}else if(errCode == "14208"){
-							alert("¼±ÅÃÇÑ ÀÎÁõ¼­´Â ±Í»çÀÇ ÀÎÁõ¼­°¡ ¾Æ´Õ´Ï´Ù.");
+							alert("ì„ íƒí•œ ì¸ì¦ì„œëŠ” ê·€ì‚¬ì˜ ì¸ì¦ì„œê°€ ì•„ë‹™ë‹ˆë‹¤.");
 						}else{
 							alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
 						}
@@ -334,20 +334,20 @@ function fSign(sinput){
 				);
 			} else {
 				//console.log(JSON.stringify(certAttrs,null,2));
-				//ÀÎÁõ¼­ È®ÀÎ ´Ü°è
+				//ì¸ì¦ì„œ í™•ì¸ ë‹¨ê³„
 				var signEnddt = getFormatDate(certAttrs.validateTo);
 				if (signEnddt.length < 8){
-					alert("À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ¼­ÀÔ´Ï´Ù.(À¯È¿ÀÏÀÚ ¹ÌÈ®ÀÎ)\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+					alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
 					return;
 				}
 				if (!isValidDate(signEnddt))
 				{
-					alert("À¯È¿ÇÏÁö ¾ÊÀº ÀÎÁõ¼­ÀÔ´Ï´Ù.(À¯È¿ÀÏÀÚ ¹ÌÈ®ÀÎ)\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+					alert("ìœ íš¨í•˜ì§€ ì•Šì€ ì¸ì¦ì„œì…ë‹ˆë‹¤.(ìœ íš¨ì¼ì ë¯¸í™•ì¸)\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
 					return;
 				}
 				if (js_isDateCmp(signEnddt, "{{_sysdate}}"))
 				{
-					alert("À¯È¿±â°£ÀÌ Áö³­ ÀÎÁõ¼­ ÀÔ´Ï´Ù.\n\n´Ù½Ã ÇÑ¹ø ÀÎÁõ¼­¸¦ È®ÀÎ ÇÏ½Ê½Ã¿À.");
+					alert("ìœ íš¨ê¸°ê°„ì´ ì§€ë‚œ ì¸ì¦ì„œ ì…ë‹ˆë‹¤.\n\në‹¤ì‹œ í•œë²ˆ ì¸ì¦ì„œë¥¼ í™•ì¸ í•˜ì‹­ì‹œì˜¤.");
 					return;
 				}
 				

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String user_id = u.request("user_id");
 
@@ -7,14 +7,14 @@ DataObject dao = new DataObject("tcb_person");
 DataSet ds =  dao.find("lower(user_id) = lower('"+user_id+"') ");
 if(ds.next()){
 	out.print("<script>");
-	out.print("alert('ÇØ´ç¾ÆÀÌµğ´Â »ç¿ëÁßÀÎ ¾ÆÀÌµğ ÀÔ´Ï´Ù.\\n\\n´Ù¸¥ ¾ÆÀÌµğ¸¦ »ç¿ëÇØ ÁÖ½Ê½Ã¿ä.');");
+	out.print("alert('í•´ë‹¹ì•„ì´ë””ëŠ” ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë”” ì…ë‹ˆë‹¤.\\n\\në‹¤ë¥¸ ì•„ì´ë””ë¥¼ ì‚¬ìš©í•´ ì£¼ì‹­ì‹œìš”.');");
 	out.print("document.forms['form1']['user_id'].value='';");
 	out.print("document.forms['form1']['chk_id'].value='';");
 	out.print("</script>");
 	return;	
 }else{
 	out.print("<script>");
-	out.print("alert('»ç¿ë°¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù.');");
+	out.print("alert('ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´ë”” ì…ë‹ˆë‹¤.');");
 	out.print("document.forms['form1']['chk_id'].value='1';");
 	out.print("</script>");
 	return;

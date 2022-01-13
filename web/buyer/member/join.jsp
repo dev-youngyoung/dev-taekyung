@@ -1,33 +1,33 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 String sec = u.request("sec");
 
-f.addElement("vendcd1", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y',option:'number',fixbyte:'3' ");
-f.addElement("vendcd2", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y',option:'number',fixbyte:'2'");
-f.addElement("vendcd3", null, "hname:'»ç¾÷ÀÚµî·Ï¹øÈ£', required:'Y',option:'number',fixbyte:'5'");
+f.addElement("vendcd1", null, "hname:'ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸', required:'Y',option:'number',fixbyte:'3' ");
+f.addElement("vendcd2", null, "hname:'ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸', required:'Y',option:'number',fixbyte:'2'");
+f.addElement("vendcd3", null, "hname:'ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸', required:'Y',option:'number',fixbyte:'5'");
 f.addElement("member_gubun", null, null);
-f.addElement("member_slno1", null, "hnme:'¹ıÀÎ¹øÈ£',option:'number', minbyte:'6'");
-f.addElement("member_slno2", null, "hnme:'¹ıÀÎ¹øÈ£',option:'number', minbyte:'7'");
-f.addElement("member_name", null, "hname:'¾÷Ã¼¸í',required:'Y'");
-f.addElement("boss_name", null, "hname:'´ëÇ¥ÀÚ¸í',required:'Y'");
-f.addElement("condition", null, "hname:'¾÷ÅÂ',required:'Y'");
-f.addElement("category", null, "hname:'Á¾¸ñ', required:'Y'");
-f.addElement("post_code", null, "hname:'¿ìÆí¹øÈ£',required:'Y', option:'number'");
-f.addElement("address", null, "hname:'ÁÖ¼Ò', required:'Y'");
+f.addElement("member_slno1", null, "hnme:'ë²•ì¸ë²ˆí˜¸',option:'number', minbyte:'6'");
+f.addElement("member_slno2", null, "hnme:'ë²•ì¸ë²ˆí˜¸',option:'number', minbyte:'7'");
+f.addElement("member_name", null, "hname:'ì—…ì²´ëª…',required:'Y'");
+f.addElement("boss_name", null, "hname:'ëŒ€í‘œìëª…',required:'Y'");
+f.addElement("condition", null, "hname:'ì—…íƒœ',required:'Y'");
+f.addElement("category", null, "hname:'ì¢…ëª©', required:'Y'");
+f.addElement("post_code", null, "hname:'ìš°í¸ë²ˆí˜¸',required:'Y', option:'number'");
+f.addElement("address", null, "hname:'ì£¼ì†Œ', required:'Y'");
 
-f.addElement("user_id", null, "hname:'¾ÆÀÌµğ', required:'Y', option:'userid', func:'validChkId'");
-f.addElement("passwd", null, "hname:'ºñ¹Ğ¹øÈ£',required:'Y', option:'userpw', match:'passwd2', minbyte:'4', mixbyte:'20'");
-f.addElement("user_name", null, "hname:'´ã´çÀÚ¸í',required:'Y'");
-f.addElement("position", null, "hname:'Á÷À§',requried:'Y'");
-f.addElement("email", null, "hname:'ÀÌ¸ŞÀÏ', required:'Y',option:'email'");
-f.addElement("tel_num", null, "hname:'ÀüÈ­¹øÈ£', required:'Y'");
-f.addElement("division", null, "hname:'ºÎ¼­', required:'Y'");
-f.addElement("fax_num", null, "hname:'ÆÑ½º'");
-f.addElement("hp1", null, "hname:'ÈŞ´ëÀüÈ­', required:'Y'");
-f.addElement("hp2", null, "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'3', maxbyte:'4'");
-f.addElement("hp3", null, "hname:'ÈŞ´ëÀüÈ­', required:'Y', minbyte:'4', maxbyte:'4'");
+f.addElement("user_id", null, "hname:'ì•„ì´ë””', required:'Y', option:'userid', func:'validChkId'");
+f.addElement("passwd", null, "hname:'ë¹„ë°€ë²ˆí˜¸',required:'Y', option:'userpw', match:'passwd2', minbyte:'4', mixbyte:'20'");
+f.addElement("user_name", null, "hname:'ë‹´ë‹¹ìëª…',required:'Y'");
+f.addElement("position", null, "hname:'ì§ìœ„',requried:'Y'");
+f.addElement("email", null, "hname:'ì´ë©”ì¼', required:'Y',option:'email'");
+f.addElement("tel_num", null, "hname:'ì „í™”ë²ˆí˜¸', required:'Y'");
+f.addElement("division", null, "hname:'ë¶€ì„œ', required:'Y'");
+f.addElement("fax_num", null, "hname:'íŒ©ìŠ¤'");
+f.addElement("hp1", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y'");
+f.addElement("hp2", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'3', maxbyte:'4'");
+f.addElement("hp3", null, "hname:'íœ´ëŒ€ì „í™”', required:'Y', minbyte:'4', maxbyte:'4'");
 
-// ÀÔ·Â¼öÁ¤
+// ì…ë ¥ìˆ˜ì •
 if(u.isPost() && f.validate())
 {
 	String	sMemberNo	=	f.get("hdn_member_no");
@@ -41,7 +41,7 @@ if(u.isPost() && f.validate())
 	if(!bMember)
 	{
 		if(memberDao.findCount("vendcd = '"+f.get("vendcd1")+f.get("vendcd2")+f.get("vendcd3")+"' ")>0){
-			u.jsError("ÀÌ¹Ì °¡ÀÔµÈ »ç¾÷ÀÚ µî·Ï ¹øÈ£ ÀÔ´Ï´Ù.");
+			u.jsError("ì´ë¯¸ ê°€ì…ëœ ì‚¬ì—…ì ë“±ë¡ ë²ˆí˜¸ ì…ë‹ˆë‹¤.");
 			return;
 		}
 
@@ -50,7 +50,7 @@ if(u.isPost() && f.validate())
 	    		"  FROM tcb_member WHERE  member_no like '"+u.getTimeString("yyyyMM")+"%'"
 	    		    				);
 		if(sMemberNo.equals("")){
-	  		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	  		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	    	return;
 	  }
 	}
@@ -90,7 +90,7 @@ if(u.isPost() && f.validate())
 	}
 	
 	if(sPersonSeq.equals("")){
-	  	u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+	  	u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 	    return;
   	}
 
@@ -116,7 +116,7 @@ if(u.isPost() && f.validate())
 	personDao.item("reg_id", f.get("user_id"));
 	personDao.item("user_gubun", "10");
 	personDao.item("status", "1");
-	personDao.item("user_level", "10");//10:°ü¸®ÀÚ , 20:ºÎ¼­°ü¸®ÀÚ , 30:ÀÏ¹İ»ç¿ëÀÚ
+	personDao.item("user_level", "10");//10:ê´€ë¦¬ì , 20:ë¶€ì„œê´€ë¦¬ì , 30:ì¼ë°˜ì‚¬ìš©ì
 	personDao.item("event_agree_date", u.getCookie("event_agree_yn").equals("Y")?u.getTimeString():"");
 	
 	
@@ -138,7 +138,7 @@ if(u.isPost() && f.validate())
 		db.setCommand(personDao.getUpdateQuery(" member_no = '"+sMemberNo+"' and person_seq = '"+sPersonSeq+"' and default_yn = 'Y' "), personDao.record);
 	}
 	
-	/* ÈŞÆó¾÷ ´ë»ó Å×ÀÌºí ¹İ¿µ*/
+	/* íœ´íì—… ëŒ€ìƒ í…Œì´ë¸” ë°˜ì˜*/
 	String vendcd = f.get("vendcd1")+f.get("vendcd2")+f.get("vendcd3");
 	if(vendcd != null && !"".equals(vendcd) && vendcd.length() == 10)
 	{
@@ -154,7 +154,7 @@ if(u.isPost() && f.validate())
 	}
 
 	String addMsg = "";
-	if(!sec.equals(""))  // ÀÌ¸ŞÀÏ ÀÔÂû ÃÊ´ë ¹ŞÀº °æ¿ì
+	if(!sec.equals(""))  // ì´ë©”ì¼ ì…ì°° ì´ˆëŒ€ ë°›ì€ ê²½ìš°
 	{
 		String main_member_no = "";
 		String bid_no = "";
@@ -167,7 +167,7 @@ if(u.isPost() && f.validate())
 		
 		if(arrSec.length != 3)
 		{
-			u.jsErrClose("Á¤»óÀûÀÎ °æ·Î·Î Á¢±Ù ÇÏ¼¼¿ä.");
+			u.jsErrClose("ì •ìƒì ì¸ ê²½ë¡œë¡œ ì ‘ê·¼ í•˜ì„¸ìš”.");
 			return;	
 		}
 		bid_no = arrSec[0];
@@ -178,7 +178,7 @@ if(u.isPost() && f.validate())
 		bid = bidDao.find("main_member_no = '"+main_member_no+"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"'", "bid_name,bid_date,submit_sdate,submit_edate,status");
 		if(!bid.next())
 		{
-			addMsg = "[È¸¿ø°¡ÀÔ] Á¤»óÀûÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù.\\n\\n[ÀüÀÚÀÔÂû] ÀÔÂû°ø°í°¡ »èÁ¦µÇ¾î Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.";
+			addMsg = "[íšŒì›ê°€ì…] ì •ìƒì ìœ¼ë¡œ ê°€ì…ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\n[ì „ìì…ì°°] ì…ì°°ê³µê³ ê°€ ì‚­ì œë˜ì–´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
 		
 		} else {
 			DataObject clientDao = new DataObject("tcb_client");
@@ -194,11 +194,11 @@ if(u.isPost() && f.validate())
 			
 			if(!u.inArray(bid.getString("status"), new String[]{"03","05"}))
 			{
-				addMsg = "[È¸¿ø°¡ÀÔ] Á¤»óÀûÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù.\\n\\n[ÀüÀÚÀÔÂû] ÀÔÂûÀÌ ¸¶°¨ µÇ¾ú½À´Ï´Ù. ´ÙÀ½¿¡ Âü¿©ÇØÁÖ¼¼¿ä";
+				addMsg = "[íšŒì›ê°€ì…] ì •ìƒì ìœ¼ë¡œ ê°€ì…ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\n[ì „ìì…ì°°] ì…ì°°ì´ ë§ˆê° ë˜ì—ˆìŠµë‹ˆë‹¤. ë‹¤ìŒì— ì°¸ì—¬í•´ì£¼ì„¸ìš”";
 			}
 			else 
 			{
-				// °ø°í¿¡ Âü¿© ¿©ºÎ È®ÀÎ ÈÄ µî·Ï
+				// ê³µê³ ì— ì°¸ì—¬ ì—¬ë¶€ í™•ì¸ í›„ ë“±ë¡
 				DataObject suppDao = new DataObject("tcb_bid_supp");
 				DataSet supp = suppDao.find("main_member_no = '"+main_member_no+"' and bid_no = '"+bid_no+"' and bid_deg = '"+bid_deg+"' and member_no = '"+member_no+"'");
 				if(!supp.next())
@@ -223,7 +223,7 @@ if(u.isPost() && f.validate())
 					db.setCommand(suppDao.getInsertQuery(), suppDao.record);
 				}
 				
-				addMsg = "[È¸¿ø°¡ÀÔ] Á¤»óÀûÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù.\\n\\n¡Ú¡Ú·Î±×ÀÎ ÈÄ »ó´Ü [ÀüÀÚÀÔÂû] ¸Ş´º¿¡¼­ °ø°í¸¦ È®ÀÎÇÏ¼¼¿ä.¡Ú¡Ú";
+				addMsg = "[íšŒì›ê°€ì…] ì •ìƒì ìœ¼ë¡œ ê°€ì…ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nâ˜…â˜…ë¡œê·¸ì¸ í›„ ìƒë‹¨ [ì „ìì…ì°°] ë©”ë‰´ì—ì„œ ê³µê³ ë¥¼ í™•ì¸í•˜ì„¸ìš”.â˜…â˜…";
 			}		
 		}
 	} else if(subdomain.equals("wmp"))
@@ -239,12 +239,12 @@ if(u.isPost() && f.validate())
 		clientDao.item("client_reg_cd", "1");
 		db.setCommand(clientDao.getInsertQuery(), clientDao.record);
 		
-		addMsg = "[È¸¿ø°¡ÀÔ] Á¤»óÀûÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù.\\n\\n¡Ú¡Ú[ÀüÀÚÀÔÂû °ø°í°¡ ³ª¿Ã°æ¿ì ÀÚµ¿À¸·Î ¹®ÀÚ¿Í ÀÌ¸ŞÀÏ·Î ¾È³»µË´Ï´Ù.]¡Ú¡Ú";
+		addMsg = "[íšŒì›ê°€ì…] ì •ìƒì ìœ¼ë¡œ ê°€ì…ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nâ˜…â˜…[ì „ìì…ì°° ê³µê³ ê°€ ë‚˜ì˜¬ê²½ìš° ìë™ìœ¼ë¡œ ë¬¸ìì™€ ì´ë©”ì¼ë¡œ ì•ˆë‚´ë©ë‹ˆë‹¤.]â˜…â˜…";
 	}
 	
 	System.out.print(addMsg);
 	if(!db.executeArray()){
-		u.jsError("Ã³¸®Áß ¿À·ù°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù. °í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+		u.jsError("ì²˜ë¦¬ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 		return;
 	}
 	
@@ -254,7 +254,7 @@ if(u.isPost() && f.validate())
 	}
 	else
 	{
-		u.jsAlert("Á¤»óÀûÀ¸·Î È¸¿ø °¡ÀÔ µÇ¾ú½À´Ï´Ù.\\n\\n¡Ú¡Ú·Î±×ÀÎ ÈÄ »ó´Ü [°Å·¡¾÷Ã¼°ü¸®] ¸Ş´º¿¡¼­ »ó´ë¹æ ¾÷Ã¼¸¦ Ãß°¡ÇÏ¼¼¿ä!!¡Ú¡Ú");
+		u.jsAlert("ì •ìƒì ìœ¼ë¡œ íšŒì› ê°€ì… ë˜ì—ˆìŠµë‹ˆë‹¤.\\n\\nâ˜…â˜…ë¡œê·¸ì¸ í›„ ìƒë‹¨ [ê±°ë˜ì—…ì²´ê´€ë¦¬] ë©”ë‰´ì—ì„œ ìƒëŒ€ë°© ì—…ì²´ë¥¼ ì¶”ê°€í•˜ì„¸ìš”!!â˜…â˜…");
 	}
 	
 	u.jsReplace("../");

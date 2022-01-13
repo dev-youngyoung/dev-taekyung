@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="../init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="../init.jsp" %>
 <%
 
-//top menu º≥¡§
+//top menu ÏÑ§Ï†ï
 DataSet menu = new DataSet();
-if(auth.isValid()){	//	∑Œ±◊¿Œ«— ∞ÊøÏ
-	if(u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){// ∞Ëæ‡¿€º∫ æ˜√º
+if(auth.isValid()){	//	Î°úÍ∑∏Ïù∏Ìïú Í≤ΩÏö∞
+	if(u.inArray(auth.getString("_MEMBER_TYPE"), new String[]{"01","03"}) ){// Í≥ÑÏïΩÏûëÏÑ± ÏóÖÏ≤¥
 		DataObject menuDao = new DataObject("tcb_menu");
 		DataSet temp = new DataSet();
 		if(auth.getString("_DEFAULT_YN").equals("Y")){
@@ -88,10 +88,10 @@ if(auth.isValid()){	//	∑Œ±◊¿Œ«— ∞ÊøÏ
 				s_menu.put("href",temp.getString("menu_path"));
 			}
 		}
-	}else{// ∞Ëæ‡ ºˆΩ≈ æ˜√º
+	}else{// Í≥ÑÏïΩ ÏàòÏã† ÏóÖÏ≤¥
 		DataObject menuDao = new DataObject("tcb_menu");
 		DataSet temp = new DataSet();
-		if(!auth.getString("_MEMBER_GUBUN").equals("04")){//¿ª ªÁæ˜¿⁄
+		if(!auth.getString("_MEMBER_GUBUN").equals("04")){//ÏùÑ ÏÇ¨ÏóÖÏûê
 			String not_in_menu = "'000119'";
 			if(!auth.getString("_DEFAULT_YN").equals("Y")){
 				not_in_menu = "'000119','000108','000120','000109'";
@@ -123,7 +123,7 @@ if(auth.isValid()){	//	∑Œ±◊¿Œ«— ∞ÊøÏ
 					+"  where cnt > 0                                                                                                                "
 					);
 			
-		}else{// ¿ª ∞≥¿Œ
+		}else{// ÏùÑ Í∞úÏù∏
 			temp = menuDao.query(
 					 " select *                                                                                                                      "
 					+"   from (                                                                                                                      "
@@ -175,15 +175,15 @@ if(auth.isValid()){	//	∑Œ±◊¿Œ«— ∞ÊøÏ
 			}
 		}
 	}
-}else{//∑Œ±◊¿Œ æ»«— ∞ÊøÏ
+}else{//Î°úÍ∑∏Ïù∏ ÏïàÌïú Í≤ΩÏö∞
 	DataObject menuDao = new DataObject("tcb_menu");
 	DataSet temp = menuDao.query(
 		  " select *                                       "
 		 +"   from tcb_menu                                "
 		 +"  where menu_cd in (                            "
-		 +"  '000001','000002','000003','000004','000007','000009'  " // ¥Î∫–∑˘
-		 +"  ,'000028','000029','000125','000126'                   " // ∞Ì∞¥ºæ≈Õ
-		 +"  ,'000030','000130','000131','000132','000133' " // º≠∫ÒΩ∫ ¿ÃøÎæ»≥ª
+		 +"  '000001','000002','000003','000004','000007','000009'  " // ÎåÄÎ∂ÑÎ•ò
+		 +"  ,'000028','000029','000125','000126'                   " // Í≥†Í∞ùÏÑºÌÑ∞
+		 +"  ,'000030','000130','000131','000132','000133' " // ÏÑúÎπÑÏä§ Ïù¥Ïö©ÏïàÎÇ¥
 		 +"  ,'000127','000128','000129'                                      "
 		 +"  )                                             "
 		 +"  start with p_menu_cd = '000000'               "

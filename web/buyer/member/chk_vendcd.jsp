@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 	String vendcd = u.request("vendcd");
 
@@ -29,9 +29,9 @@
 	}
 %>
 	<script>
-		var	sVendMsg				=	"";	//	»ç¾÷ÀÚÁßº¹Ã¼Å© ¸Ş¼¼Áö
-		var	sMemberGubunNm	=	"";	//	»ç¾÷ÀÚ±¸ºĞ
-		var	sVendcd2				=	"<%=sVendcd2%>";	//	»ç¾÷ÀÚ¹øÈ£ 4,5ÀÚ¸®
+		var	sVendMsg				=	"";	//	ì‚¬ì—…ìì¤‘ë³µì²´í¬ ë©”ì„¸ì§€
+		var	sMemberGubunNm	=	"";	//	ì‚¬ì—…ìêµ¬ë¶„
+		var	sVendcd2				=	"<%=sVendcd2%>";	//	ì‚¬ì—…ìë²ˆí˜¸ 4,5ìë¦¬
 		var	sMemberGubun		=	"";
 
 		if(sVendcd2.length == 2)
@@ -44,15 +44,15 @@
 					sVendcd2 == "87" ||
 					sVendcd2 == "88")
 			{
-				sMemberGubunNm	=	"¹ıÀÎ»ç¾÷ÀÚ(º»»ç)";
+				sMemberGubunNm	=	"ë²•ì¸ì‚¬ì—…ì(ë³¸ì‚¬)";
 				member_gubun 		= "01";
 			}else if(sVendcd2 == "85")
 			{
-				sMemberGubunNm	=	"¹ıÀÎ»ç¾÷ÀÚ(Áö»ç)";
+				sMemberGubunNm	=	"ë²•ì¸ì‚¬ì—…ì(ì§€ì‚¬)";
 				member_gubun 		= "02";
 			}else
 			{
-				sMemberGubunNm	=	"°³ÀÎ»ç¾÷ÀÚ";
+				sMemberGubunNm	=	"ê°œì¸ì‚¬ì—…ì";
 				member_gubun 		= "03";
 			}
 		}
@@ -62,10 +62,10 @@
 	{
 		if(ds.next())
 		{
-			if(ds.getString("status").equals("00"))	// 00:Å»Åğ 01:Á¤È¸¿ø 02:ºñÈ¸¿ø 03:Àç°¡ÀÔ
+			if(ds.getString("status").equals("00"))	// 00:íƒˆí‡´ 01:ì •íšŒì› 02:ë¹„íšŒì› 03:ì¬ê°€ì…
 			{
 %>
-				sVendMsg	=	"ÇØ´ç »ç¾÷ÀÚ¹øÈ£´Â È¸¿øÅ»Åğ »óÅÂÀÔ´Ï´Ù.<br>´Ù½Ã È¸¿øÀ¸·Î °¡ÀÔÇÏ½Ã·Á¸é, ¿î¿µÆÀ¿¡ ¹®ÀÇÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
+				sVendMsg	=	"í•´ë‹¹ ì‚¬ì—…ìë²ˆí˜¸ëŠ” íšŒì›íƒˆí‡´ ìƒíƒœì…ë‹ˆë‹¤.<br>ë‹¤ì‹œ íšŒì›ìœ¼ë¡œ ê°€ì…í•˜ì‹œë ¤ë©´, ìš´ì˜íŒ€ì— ë¬¸ì˜í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
 				document.forms['form1']['member_slno1'].value		=	"";
 				document.forms['form1']['member_slno2'].value		=	"";
 				document.forms['form1']['member_name'].value		=	"";
@@ -97,7 +97,7 @@
 				if(ds.getString("status").equals("01")||ds.getString("status").equals("03"))
 				{
 %>
-					sVendMsg	=	"ÇØ´ç »ç¾÷ÀÚ¹øÈ£´Â ÀÌ¹Ì È¸¿ø°¡ÀÔÀÌ µÇ¾î ÀÖ½À´Ï´Ù.<br>¾Æ·¡ÀÇ ´ã´çÀÚ¿¡°Ô »ç¿ëÀÚµî·ÏÀ» ¿äÃ»ÇÏ¼¼¿ä. <br>´ã´çÀÚ¸í : <%=ds.getString("user_name")%>, ÀüÈ­¹øÈ£ : <%=ds.getString("tel_num")%>";
+					sVendMsg	=	"í•´ë‹¹ ì‚¬ì—…ìë²ˆí˜¸ëŠ” ì´ë¯¸ íšŒì›ê°€ì…ì´ ë˜ì–´ ìˆìŠµë‹ˆë‹¤.<br>ì•„ë˜ì˜ ë‹´ë‹¹ìì—ê²Œ ì‚¬ìš©ìë“±ë¡ì„ ìš”ì²­í•˜ì„¸ìš”. <br>ë‹´ë‹¹ìëª… : <%=ds.getString("user_name")%>, ì „í™”ë²ˆí˜¸ : <%=ds.getString("tel_num")%>";
 					document.forms['form1']['member_slno1'].value		=	"";
 					document.forms['form1']['member_slno2'].value		=	"";
 					document.forms['form1']['member_name'].value		=	"";
@@ -136,7 +136,7 @@
 	    			}
 
 %>
-						sVendMsg	=	"ÇØ´ç »ç¾÷ÀÚ¹øÈ£´Â °Å·¡Ã³¿¡¼­ ¹Ì¸® ÀÔ·ÂÇÑ Á¤º¸°¡ ÀÖ½À´Ï´Ù. ³ª¸ÓÁö Á¤º¸¸¦ ÀÔ·Â ÈÄ È¸¿ø°¡ÀÔ ¹öÆ°À» ´­·¯ÁÖ¼¼¿ä.";
+						sVendMsg	=	"í•´ë‹¹ ì‚¬ì—…ìë²ˆí˜¸ëŠ” ê±°ë˜ì²˜ì—ì„œ ë¯¸ë¦¬ ì…ë ¥í•œ ì •ë³´ê°€ ìˆìŠµë‹ˆë‹¤. ë‚˜ë¨¸ì§€ ì •ë³´ë¥¼ ì…ë ¥ í›„ íšŒì›ê°€ì… ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.";
 						document.forms['form1']['member_slno1'].value		=	"<%=sMemberSlno1%>";
 						document.forms['form1']['member_slno2'].value		=	"<%=sMemberSlno2%>";
 						document.forms['form1']['member_name'].value		=	"<%=ds.getString("member_name")%>";
@@ -171,7 +171,7 @@
 						}
 					}else{
 %>
-						sVendMsg	=	"°í°´¼¾ÅÍ·Î ¹®ÀÇ ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.";
+						sVendMsg	=	"ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.";
 						document.forms['form1']['member_slno1'].value		=	"";
 						document.forms['form1']['member_slno2'].value		=	"";
 						document.forms['form1']['member_name'].value		=	"";
@@ -205,7 +205,7 @@
 	}else
 	{
 %>
-		sVendMsg	=	"µî·Ï°¡´ÉÇÑ ½Å±Ô»ç¾÷ÀÚÀÔ´Ï´Ù.";
+		sVendMsg	=	"ë“±ë¡ê°€ëŠ¥í•œ ì‹ ê·œì‚¬ì—…ìì…ë‹ˆë‹¤.";
 		document.forms['form1']['member_slno1'].value		=	"";
 		document.forms['form1']['member_slno2'].value		=	"";
 		document.forms['form1']['member_name'].value		=	"";

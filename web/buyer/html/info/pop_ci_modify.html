@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-// ±âÁ¸¿¡ ÀúÀåµÈ ·Î°í ÀÌ¹ÌÁö ºÒ·¯¿À±â
+// ê¸°ì¡´ì— ì €ì¥ëœ ë¡œê³  ì´ë¯¸ì§€ ë¶ˆëŸ¬ì˜¤ê¸°
 function fLoadLogo()
 {
     // document.getElementById("img_logo").src = "/servlets/procure.common.file.FileDownLoad?FILE_KEY=file.path.bcont_logo&FILE_NAME={{member.ci_img_path}}";
@@ -8,7 +8,7 @@ function fLoadLogo()
     return;
 }
 
-// ·Î°í ÀÌ¹ÌÁö Å©±â Á¶Á¤
+// ë¡œê³  ì´ë¯¸ì§€ í¬ê¸° ì¡°ì •
 function fSetSizeLogo(img)
 {
     var maxWidth = 480;
@@ -17,14 +17,14 @@ function fSetSizeLogo(img)
     if ( (img.width > 0) && (img.height > 0) )
     {
 
-        // °¡·Î/¼¼·Î ºñÀ²ÀÌ ±âÁØºñÀ²º¸´Ù ´õ Å©¸é
+        // ê°€ë¡œ/ì„¸ë¡œ ë¹„ìœ¨ì´ ê¸°ì¤€ë¹„ìœ¨ë³´ë‹¤ ë” í¬ë©´
         if ( (img.width/img.height) > (maxWidth/maxHeight) )
         {
-            img.width = maxWidth;   // °¡·ÎÅ©±â Á¦ÇÑ
+            img.width = maxWidth;   // ê°€ë¡œí¬ê¸° ì œí•œ
         }
         else
         {
-            img.height = maxHeight; // ¼¼·ÎÅ©±â Á¦ÇÑ
+            img.height = maxHeight; // ì„¸ë¡œí¬ê¸° ì œí•œ
         }
     }
 
@@ -37,7 +37,7 @@ function fSetSizeLogo(img)
             <tr>
                 <td style="color:#e08036">
                     <input type="file" name="ci_file"   accept="image/*"  style="width:90%" /><br>
-                    ¡Ø ÀÌ¹ÌÁö´Â jpg,gif,png Çü½Ä ÆÄÀÏ¸¸ Ã·ºÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
+                    â€» ì´ë¯¸ì§€ëŠ” jpg,gif,png í˜•ì‹ íŒŒì¼ë§Œ ì²¨ë¶€í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.
                 </td>
             </tr>
             <tr>
@@ -49,11 +49,11 @@ function fSetSizeLogo(img)
     </div>
 
     <div class="btn-group-wrap">
-        <button type="submit"  class="sbtn color ico-save"><span></span>ÀúÀå</button>
+        <button type="submit"  class="sbtn color ico-save"><span></span>ì €ì¥</button>
         <!-- IF START 'member.ci_img_path' -->
-        <button type="button"  class="sbtn color ico-delete" onclick="if(confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')){document.forms['form1'].action='pop_ci_delete.jsp'; document.forms['form1'].submit(); }"><span></span>»èÁ¦</button>
+        <button type="button"  class="sbtn color ico-delete" onclick="if(confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){document.forms['form1'].action='pop_ci_delete.jsp'; document.forms['form1'].submit(); }"><span></span>ì‚­ì œ</button>
         <!-- IF END 'member.ci_img_path' -->
-        <button type="button"  class="sbtn color ico-cancel"  onclick="self.close()"><span></span>´İ±â</button>
+        <button type="button"  class="sbtn color ico-cancel"  onclick="self.close()"><span></span>ë‹«ê¸°</button>
     </div>
 </form>
 {{form_script}}

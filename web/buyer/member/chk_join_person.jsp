@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %><%@ include file="init.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %><%@ include file="init.jsp" %>
 <%
 if(u.isPost()){
 	String birth_date = f.get("birth_date").replaceAll("-", "");
@@ -33,7 +33,7 @@ if(u.isPost()){
 			);
 	if(!person.next()){
 		out.println("<script>");
-		out.println("if(confirm('ÀÔ·ÂÇÏ½Å Á¤º¸·Î È¸¿ø°¡ÀÔÀ» ÁøÇà ÇÏ½Ã°Ú½À´Ï±î?')){");
+		out.println("if(confirm('ì…ë ¥í•˜ì‹  ì •ë³´ë¡œ íšŒì›ê°€ì…ì„ ì§„í–‰ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')){");
 		out.println("parent.document.forms['form1'].target='';");
 		out.println("parent.document.forms['form1'].action='';");
 		out.println("parent.document.forms['form1'].submit();");
@@ -43,21 +43,21 @@ if(u.isPost()){
 	}
 	if(person.getString("status").equals("01")||person.getString("status").equals("03")){
 		out.print("<script>");
-		out.print("alert('"+member_name+"´ÔÀº ÀÌ¹Ì È¸¿ø°¡ÀÔÀÌ µÇ¾î ÀÖ½À´Ï´Ù.\\n\\n·Î±×ÀÎÈÄ ÀÌ¿ë ÇÏ¼¼¿ä.');");
+		out.print("alert('"+member_name+"ë‹˜ì€ ì´ë¯¸ íšŒì›ê°€ì…ì´ ë˜ì–´ ìˆìŠµë‹ˆë‹¤.\\n\\në¡œê·¸ì¸í›„ ì´ìš© í•˜ì„¸ìš”.');");
 		out.print("pareint.location.href='/web/buyer/';");
 		out.print("</script>");
 		return;
 	}
 	if(person.getString("status").equals("00")){
 		out.print("<script>");
-		out.print("alert('È¸¿øÅ»Åğ »óÅÂ ÀÔ´Ï´Ù.');");
+		out.print("alert('íšŒì›íƒˆí‡´ ìƒíƒœ ì…ë‹ˆë‹¤.');");
 		out.print("pareint.location.href='/web/buyer/';");
 		out.print("</script>");
 		return;
 	}
 	if(person.getString("status").equals("02")){
 		out.print("<script>");
-		out.print("alert('ºñÈ¸¿ø »óÅÂ ÀÔ´Ï´Ù.\\n\\nÈŞ´ëÆù º»ÀÎ ÀÎÁõÀ» ÁøÇà ÇÏ¼¼¿ä');");
+		out.print("alert('ë¹„íšŒì› ìƒíƒœ ì…ë‹ˆë‹¤.\\n\\níœ´ëŒ€í° ë³¸ì¸ ì¸ì¦ì„ ì§„í–‰ í•˜ì„¸ìš”');");
 		out.print("parent.document.forms['form1']['member_no'].value = '"+person.getString("member_no")+"' ;");
 		if(!person.getString("boss_ci").equals("")){
 			out.print("parent.document.forms['form1']['boss_ci'].value = '"+person.getString("boss_ci")+"' ;");
