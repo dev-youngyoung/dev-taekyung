@@ -20,26 +20,6 @@ list.addWhere(" a.member_no <> b.member_no ");
 list.addWhere(" a.member_no = c.member_no ");
 list.addWhere(" b.member_no = '"+_member_no+"'");
 list.addWhere("	a.status in ('20','21','30','40','41') ");// 20:서명요청, 21:을사서명 후 갑검토대상, 30:을사 서명 완료 후 갑서명대상, 40:반려
-
-if(_member_no.equals("20201000002")){
-	DataObject ssoUserDao = new DataObject("sso_user_info");
-	DataSet ssoUser = ssoUserDao.find("user_id = '" + auth.getString("_USER_ID") + "' ");
-	if (!ssoUser.next()) {
-		u.jsError("사용자 정보가 존재하지 않습니다.");
-		return;
-	}
-	String userName = ssoUser.getString("user_name");
-	String celNo = ssoUser.getString("cel_no");
-	String celNo1 = celNo.replaceAll("-", "").substring(0, 3);
-	String celNo2 = celNo.replaceAll("-", "").substring(3, 7);
-	String celNo3 = celNo.replaceAll("-", "").substring(7);
-	
-	list.addWhere(" b.user_name = '" + userName + "'");
-	list.addWhere(" b.hp1 = '" + celNo1 + "'");
-	list.addWhere(" b.hp2 = '" + celNo2 + "'");
-	list.addWhere(" b.hp3 = '" + celNo3 + "'");
-}
-
 list.addSearch(" c.member_name" ,f.get("s_cust_name"),"LIKE");
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
 if(u.inArray(f.get("s_status"), new String[]{"20","21","30"})){
@@ -49,7 +29,8 @@ if(u.inArray(f.get("s_status"), new String[]{"20","21","30"})){
 }else{
 	list.addSearch("a.status",f.get("s_status"));
 }
-list.setOrderBy("a.reg_date desc");
+/* list.setOrderBy("cont_no desc"); */
+list.setOrderBy("nvl(a.mod_req_date,a.reg_date) desc, a.cont_no desc, a.cont_chasu");
 
 DataSet ds = list.getDataSet();
 while(ds.next()){

@@ -10,7 +10,153 @@
 			<col width="13%">
 			<col width="20%">
 			<col width="10%">
-		</colgroup>
+		  </colgroup>
+		<!-- IF START 'member.src_depth' -->
+		<tr>
+	  		<th><p>소싱그룹{{subdomain}}</p></th>
+		  	<td colspan="3">
+		  		<!-- IF START 'src_l' -->
+		  		<span id="l_src_area">
+		  			<select name="l_src_cd" onchange="chgSelectBox('m')">
+		  				<option value="">-전체-</option>
+		  			</select>
+		  		</span>
+		  		<!-- IF END 'src_l' -->
+		  		<!-- IF START 'src_m' -->
+		  		<span id="m_src_area">
+		  			<select name="m_src_cd" onchange="chgSelectBox('s')">
+		  				<option value="">-전체-</option>
+		  			</select>
+		  		</span>
+		  		<!-- IF END 'src_m' -->
+		  		<!-- IF START 'src_s' -->
+		  		<span id="s_src_area">
+		  			<select name="s_src_cd">
+		  				<option value="">-전체-</option>
+		  			</select>
+		  		</span>
+		  		<!-- IF END 'src_s' -->
+		  	</td>
+	  		<td align="right"></td>
+	  	</tr>
+	  	<!-- IF END 'member.src_depth' -->
+	  	<tr>
+		    <th><p>계약서종류</p></th>
+		    <td <!-- IFNOT START 'bviewContNo' -->colspan="4"<!-- IFNOT END 'bviewContNo' -->>
+		    	<select name="s_template_cd">
+		    		<option value="">-------선택-------</option>
+		    		<!-- LOOP START 'template' -->
+		    		<option value="{{template.template_cd}}">{{template.template_name}}</option>
+		    		<!-- LOOP END 'template' -->
+		    	</select>
+			</td>
+			<!-- IF START 'bviewContNo' -->	
+				<th><p>계약관리번호</p></th>
+				<td><input type="text" name="s_manage_no" style="width: 50%;"></td>
+			<!-- IF END 'bviewContNo' -->
+		</tr>
+		
+		  <!-- IF START 'isKakaoc' -->
+		
+		 	<th><p>부서명</p></th>
+		 	<td>
+				<select name="s_field_seq">
+					<option value="">-부서 선택-</option>
+					<!-- LOOP START 'code_field' -->
+					<option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
+					<!-- LOOP END 'code_field' -->
+				</select>
+			</td>
+			
+		 <!-- IF END 'isKakaoc' -->
+		 
+		 
+		 
+		<!-- IF START 'isCJT' -->
+		<tr>
+			<!-- IF START 'isDefaultYn' -->
+		 	<th><p>부문/부서</p></th>
+		   	<td>
+			    <select name="s_division">
+				    <option value="">-부문 선택-</option>
+				    <!-- LOOP START 'code_cj_division' -->
+				    <option value="{{code_cj_division.id}}">{{code_cj_division.name}}</option>
+				    <!-- LOOP END 'code_cj_division' -->
+			    </select>/<select name="s_field_seq">
+				    <option value="">-부서 선택-</option>
+				    <!-- LOOP START 'code_field' -->
+				    <option value="{{code_field.field_seq}}">{{code_field.field_name}}</option>
+				    <!-- LOOP END 'code_field' -->
+			    </select>
+			</td>    
+			<!-- IF END 'isDefaultYn' -->
+			<th>
+				<p>
+				<select name="cj_searh_col" >
+					<option value="boss_name">대표자</option>
+					<option value="vendcd">사업자번호</option>
+				</select>
+				</p> 
+			</th>
+			<td><input type="text" name="cj_search_keyword" maxlength="100" style="width: 50%;"></td>
+			<td align="right"></td>
+		</tr>
+		<!-- IF END 'isCJT' -->
+		<!-- IF START 'isKTH' -->
+		<tr>
+			<th><p>거래처코드</p></th>
+			<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
+			<th><p>담당자명</p></th>
+			<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
+			<td></td>
+		</tr>
+		<!-- IF END 'isKTH' -->
+		
+		<!-- IF START 'isLGH' -->
+		<tr>
+		    <th><p>프로젝트 코드</p></th>
+		    <td colspan="3"><input type="text" name="s_project_cd" size="20" style="width: 20%;"></td>
+			<td align="right">
+	    	</td>
+		</tr>
+		<!-- IF END 'isLGH' -->
+		
+		<!-- IF START 'detail_cd' -->
+		<tr>
+			<th><p>계약처코드</p></th>
+			<td><input type="text" name="s_cust_detail_code" style="width: 95%;"></td>
+			<th><p>KPP담당자명</p></th>
+			<td><input type="text" name="s_user_name" style="width: 90%;" style="margin-left:10"></td>
+			<td></td>
+		</tr>
+		<!-- IF END 'detail_cd' -->
+		<!-- IF START 'isPersonView' -->
+		<tr>
+			<th><p>담당자명</p></th>
+			<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
+			<td></td>
+		</tr>
+		<!-- IF END 'isPersonView' -->
+		<!-- IF START 'isNHhanaro' -->
+		<tr>
+			<th><p>담당자명</p></th>
+			<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<th><p>거래처 이메일</p></th>
+			<td colspan="3"><input type="text" name="s_email" style="width: 395px;"></td>
+			<td></td>
+		</tr>
+		
+		<!-- IF END 'isNHhanaro' -->
+		<!-- IF START 'isJobkorea' -->
+		<tr>
+			<th><p>담당자명</p></th>
+			<td colspan="3"><input type="text" name="s_user_name" style="width: 395px;"></td>
+			<td></td>
+		</tr>
+		<!-- IF END 'isJobkorea' -->
 		<tr>
 		   <th><p>거래처명</p></th>
 		   <td><input type="text" name="s_cust_name" maxlength="100" style="width: 95%;"></td>
@@ -27,23 +173,28 @@
 				<input type="text" name="s_edate" class="in_readonly" style="width: 100px;" maxlength="10" onkeyup="dateFormat(this)" onkeydown="num_only()" onkeypress="num_only()"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['s_edate'])">
 		    </td>
-		    <th><p>담당자</p></th>
-		    <td><input type="text" name="s_user_name" maxlength="100" style="width: 90%;">
+		    <th><p>계약번호</p></th>
+		    <td><input type="text" name="s_user_no" maxlength="100" style="width: 90%;">
 		    </td>
 		</tr>
+		<!-- IF START 'view_status' -->
+		<tr>
+		    <td><p>계약상태</p></td>
+		    <td colspan="3">
+		    	<select name="s_status">
+		    		<option value="">-전체-</option>
+		    		<!-- LOOP START 'code_status' -->
+		    		<option value="{{code_status.id}}">{{code_status.value}}</option>
+		    		<!-- LOOP END 'code_status' -->
+		    	</select>
+		    </td>
+		    <td></td>
+		</tr>
+		<!-- IF END 'view_status' -->
 		<tr>
 		    <th><p>계약명</p></th>
-		    <td><input type="text" name="s_cont_name" maxlength="100" style="width: 95%;"></td>
-		    <th><p>계약구분</p></th>
-		   	<td>
-		   		<select name="s_cont_gubun">
-		   			<option value="">-전체-</option>
-		   			<option value="P">표준</option>
-		   			<option value="B">자유계약</option>
-		   			<option value="A">자동연장</option>
-				</select>
-		  	</td>
-		  	<td align="right">
+		    <td colspan="3"><input type="text" name="s_cont_name" maxlength="100" style="width: 97%;"></td>
+		    <td align="right">
 		      <button type="submit" class="search_btn">검색</button>
 		    </td>
 		</tr>
@@ -51,7 +202,13 @@
 </div>
 
 <div style="width:100%" align="right">
-	<button type="button" class="sbtn color2 ico-excel"onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
+	<!-- IF START 'isDongheeGroup' -->
+		<button type="button" class="sbtn color ico-list" onClick="document.forms['form1']['mode'].value='report';document.forms['form1'].submit();"><span></span>계약현황</button>
+	<!-- IF END 'isDongheeGroup' -->
+	<button type="button" class="sbtn color ico-excel"onClick="document.forms['form1']['mode'].value='excel';document.forms['form1'].submit();"><span></span>엑셀</button>
+	<!-- IF START 'view_checkbox' -->
+		<button type="button" class="sbtn color ico-download" onClick="fSave();"><span></span>다운로드</button>
+	<!-- IF END 'view_checkbox' -->
 </div>
 
 <br/>
@@ -60,32 +217,95 @@
 	<table>
 	
 		<colgroup>
-			<col width="13%">
-		    <col>
-		    <col width="7%">
-		    <col width="12%">
-		    <col width="15%">
-	    	<col width="10%">
-	    	<col width="8%">
+			<!-- IF START 'view_checkbox' -->  
+				<col width="7%">
+			<!-- IF END 'view_checkbox' -->   
+			<!-- IFNOT START 'view_checkbox' -->  
+				<col width="7%">
+			<!-- IFNOT END 'view_checkbox' -->
+			<!-- IF START 'isLGH' -->
+				<col width="15%"> 
+			<!-- IF END 'isLGH' -->   
+			    <col>
+			    <col width="15">
+			<!-- IF START 'isCJT' -->     
+				<col width="7%">
+			<!-- IF END 'isCJT' --> 
+			<!-- IF START 'detail_cd' -->
+				<col width="8%">
+				<col width="7%">
+			<!-- IF END 'detail_cd' -->
+			<!-- IF START 'isKTH' -->
+				<col width="8%">
+				<col width="7%">
+			<!-- IF END 'isKTH' -->
+			<!-- IF START 'isPersonView' -->
+				<col width="10%">
+			<!-- IF END 'isPersonView' -->
+			<!-- IF START 'isNHhanaro' -->
+				<col width="10%">
+			<!-- IF END 'isNHhanaro' -->
+			<!-- IF START 'isJobkorea' -->
+				<col width="10%">
+			<!-- IF END 'isJobkorea' -->
+			<!-- IF START 'isTES' -->
+				<col width="10%">
+			<!-- IF END 'isTES' -->
+			<!-- IF START 'isLGH' --> 
+				<col width="10%">
+			<!-- IF END 'isLGH' -->   
+		    	<col width="10%">
+			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
+				<!-- IF START 'bviewContNo' -->
+				    <col width="18%">
+				<!-- IF END 'bviewContNo' -->	
+				<col width="10%">
+			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
+			<!-- IF START 'view_status' -->
+			  <col width="10%">
+			<!-- IF END 'view_status' -->
 		</colgroup>
 		
 		<tr>
-		    <th>
-				<a href="javascript:fChangeOrder('a.cont_userno', '{{sSortOrder}}')">
-				계약번호
-				<!-- IFC START 'sSortColumn==a.cont_userno' -->
-					{{sSortCustNameIconName}}
-				<!-- IFC END 'sSortColumn==a.cont_userno' -->
-				<!-- IFC START 'sSortColumn!=a.cont_userno' -->
-					<font style='color:blue;font-weight:bold'>↕</font>
-				<!-- IFC END 'sSortColumn!=a.cont_userno' -->
-				</a>
-			</th>
-		    <th>계약명</th>
-		    <th>담당자</th>
-		    <th>부서</th>
-		    <th>거래처명</th>
-		    <th>
+			<!-- IF START 'view_checkbox' -->  
+				<th width="7%"><input type="checkbox" name="all" onClick="fAllCheck()"/></th>
+			<!-- IF END 'view_checkbox' -->   
+			<!-- IFNOT START 'view_checkbox' -->  
+				<th width="7%">순번</th>
+			<!-- IFNOT END 'view_checkbox' -->
+			<!-- IF START 'isLGH' -->
+				<th width="15%">프로젝트<br>코드</th> 
+			<!-- IF END 'isLGH' -->   
+			    <th width="%">계약명</th>
+			    <th width="15%">거래처명</th>
+			<!-- IF START 'isCJT' -->     
+				<th width="7%">대표자명</th>
+			<!-- IF END 'isCJT' --> 
+			<!-- IF START 'detail_cd' -->
+				<th width="8%">계약처<br>코드</th>
+				<th width="7%">KPP담당</th>
+			<!-- IF END 'detail_cd' -->
+			<!-- IF START 'isKTH' -->
+				<th width="8%">거래처<br>코드</th>
+				<th width="8%">담당자</th>
+			<!-- IF END 'isKTH' -->
+			<!-- IF START 'isPersonView' -->
+				<th>담당자</th>
+			<!-- IF END 'isPersonView' -->
+			<!-- IF START 'isNHhanaro' -->
+				<th>담당자</th>
+			<!-- IF END 'isNHhanaro' -->
+			<!-- IF START 'isJobkorea' -->
+				<th>담당자</th>
+			<!-- IF END 'isJobkorea' -->
+			<!-- IF START 'isTES' -->
+				<th>담당자</th>
+			<!-- IF END 'isTES' -->
+			<!-- IF START 'isLGH' --> 
+				<th>담당자</th>
+			<!-- IF END 'isLGH' -->   
+			
+		    <th width="10%">
 				<a href="javascript:fChangeOrder('a.cont_date', '{{sSortOrder}}')">
 				계약일자
 				<!-- IFC START 'sSortColumn==a.cont_date' -->
@@ -96,25 +316,82 @@
 				<!-- IFC END 'sSortColumn!=a.cont_date' -->
 				</a>
 			</th>
-			<th>상태</th>
+			
+			<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
+				<!-- IF START 'bviewContNo' -->
+				    <th width="18%">계약관리번호</th>
+				<!-- IF END 'bviewContNo' -->	
+			    <th width="10%">
+					<a href="javascript:fChangeOrder('a.cont_userno', '{{sSortOrder}}')">
+					계약번호
+					<!-- IFC START 'sSortColumn==a.cont_userno' -->
+						{{sSortCustNameIconName}}
+					<!-- IFC END 'sSortColumn==a.cont_userno' -->
+					<!-- IFC START 'sSortColumn!=a.cont_userno' -->
+						<font style='color:blue;font-weight:bold'>↕</font>
+					<!-- IFC END 'sSortColumn!=a.cont_userno' -->
+					</a>
+				</th>
+			<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
+			
+			
+			<!-- IF START 'view_status' -->
+				<th>계약상태</th>
+			<!-- IF END 'view_status' -->  
 		</tr>
 		
 		<!-- IF START 'list' -->
 			<!-- LOOP START 'list' -->
 				<tr onMouseOver="this.style.backgroundColor='#EFEFEF'; return true" onMouseOut="this.style.backgroundColor=''; return true"
 		    		onclick="location.href='{{list.link}}?cont_no={{list.cont_no}}&cont_chasu={{list.cont_chasu}}&{{list_query}}'" style="cursor:pointer">
-					<td align="center">{{list.cont_userno}}</td>
-					<td>
-					<!-- IFC START 'list.auto_yn==Y' -->
-					<img src="/web/buyer/html/images/common/i_contexp.gif" style="width:17px; height:17px; vertical-align: middle;" /> 
-					<!-- IFC END 'list.auto_yn==Y' -->
-					&nbsp;{{list.cont_name}}
-					</td>
-					<td align="center">{{list.user_name}}</td>
-					<td align="center">{{list.division}}</td>
-					<td align="center">{{list.cust_name}}</td>
-					<td align="center">{{list.cont_date}}</td>
-					<td align="center">{{list.status_nm}}</td>
+					<!-- IF START 'view_checkbox' -->  
+						<td align="center" onclick="event.cancelBubble=true;"><input type="checkbox" name="save" value="{{list.cont_no}}_{{list.cont_chasu}}"/></td>
+					<!-- IF END 'view_checkbox' -->   
+					<!-- IFNOT START 'view_checkbox' -->  
+						<td align="center">{{list.__ord}}</td>
+					<!-- IFNOT END 'view_checkbox' -->
+					<!-- IF START 'isLGH' -->
+						<!-- <td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopPJCD('{{list.cont_no}}', '{{list.cont_chasu}}')">{{list.cont_etc1}}</a></td> -->
+						<td align="center" >{{list.project_cd}}</td>
+					 <!-- IF END 'isLGH' -->         
+					<td>{{list.cont_name}}</td>
+					<td>{{list.cust_name}}</td>
+					<!-- IF START 'isCJT' -->     
+						<td align="center">{{list.boss_name}}</td>
+					<!-- IF END 'isCJT' --> 	
+					<!-- IF START 'detail_cd' -->
+						<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCD('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'detail_cd' -->
+					<!-- IF START 'isKTH' -->
+						<td align="center" onclick="event.cancelBubble = true;"><a href="#" onClick="fPopCDKTH('{{list.cont_no}}', '{{list.cont_chasu}}', '{{list.member_no}}')">{{list.cust_detail_code}}</a></td>
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'isKTH' -->
+					<!-- IF START 'isPersonView' -->
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'isPersonView' -->
+					<!-- IF START 'isNHhanaro' -->
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'isNHhanaro' -->
+					<!-- IF START 'isJobkorea' -->
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'isJobkorea' -->
+					<!-- IF START 'isTES' -->
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'isTES' -->
+					<!-- IF START 'isLGH' -->  
+						<td align="center">{{list.user_name}}</td>
+					<!-- IF END 'isLGH' -->         
+						<td align="center">{{list.cont_date}}</td>
+					<!-- IFC START '_auth._MEMBER_NO!=20130500619' -->  
+					<!-- IF START 'bviewContNo' -->
+					    <td width="10%">{{list.manage_no}}</td>
+					<!-- IF END 'bviewContNo' -->	
+						<td align="center">{{list.cont_userno}}</td>
+					<!-- IFC END '_auth._MEMBER_NO!=20130500619' -->
+					<!-- IF START 'view_status' -->
+					    <td align="center">{{list.status_nm}}</td>
+					<!-- IF END 'view_status' -->
 		  		</tr>
 			<!-- LOOP END 'list' -->
 		<!-- IF END 'list' -->
@@ -141,6 +418,7 @@ function formSubmit(f){
 	return true;
 }
 
+
 // 정렬방식 변경
 function fChangeOrder(sortColumn, sortOrder)
 {
@@ -159,6 +437,21 @@ function fChangeOrder(sortColumn, sortOrder)
     form.submit();
 
     return;
+}
+
+function chgSelectBox(gubun){
+	var f = document.forms('form1');
+	var l_src_cd = f['l_src_cd'].value;
+	var m_src_cd = f['m_src_cd'].value;
+	switch(gubun){
+		case 'l':
+			call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area");
+		case 'm':
+			call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area");
+		case 's':
+			call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area");
+			break;
+	}
 }
 
 //거래처 코드 입력
@@ -206,4 +499,37 @@ function fSave()
 	document.forms['form1'].submit();
 	document.form1.target = "_self";
 }
+
 </script>
+
+
+<!-- IF START 'member.src_depth' -->
+<script language="javascript">
+
+var l_src_cd = "{{l_src_cd}}";
+var m_src_cd = "{{m_src_cd}}";
+var s_src_cd = "{{s_src_cd}}";
+
+<!-- IF START 'src_l' -->
+call("../bid/call_src_selectbox.jsp?gubun=l","l_src_area","defaultValue_l");
+function defaultValue_l(){
+	SetFormValue("form1","l_src_cd", l_src_cd);
+}
+<!-- IF END 'src_l' -->
+
+<!-- IF START 'src_m' -->
+call("../bid/call_src_selectbox.jsp?gubun=m&l_src_cd="+l_src_cd,"m_src_area","defaultValue_m");
+function defaultValue_m(){
+	SetFormValue("form1","m_src_cd", m_src_cd);
+}
+<!-- IF END 'src_m' -->
+
+<!-- IF START 'src_s' -->
+function defaultValue_s(){
+	SetFormValue("form1","s_src_cd", s_src_cd);
+}
+call("../bid/call_src_selectbox.jsp?gubun=s&l_src_cd="+l_src_cd+"&m_src_cd="+m_src_cd,"s_src_area", "defaultValue_s");
+
+<!-- IF END 'src_s' -->
+</script>
+<!-- IF END 'member.src_depth' -->

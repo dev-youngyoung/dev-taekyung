@@ -35,6 +35,28 @@ if(cust.getString("pay_yn").equals("Y")){
 	return;
 }
 
+DataObject useInfoDao = new DataObject("tcb_useinfo");
+DataSet useInfo = useInfoDao.find("member_no = '"+cont.getString("member_no")+"' ");
+if(!useInfo.next()){
+	u.jsAlert("갑 사업자가 나이스다큐 요금제에 가입되어 있지 않습니다. \\n\\n나이스다큐 고객센터(02-788-9097)로 문의하세요");
+	return;
+}
+
+if(!"10".equals(useInfo.getString("paytypecd")) && "".equals(useInfo.getString("useendday")))	/* 요금제[!년선납], 이용기간종료일[X]인 경우 */
+{
+	useInfo.put("useendday", u.getTimeString("yyyyMMdd"));
+}
+
+//이용기간 만료확인
+if(useInfo.getLong("useendday")<Long.parseLong(u.getTimeString("yyyyMMdd"))){ 
+	if(cont.getString("member_no").equals(_member_no)){
+		u.jsAlert("서비스 이용기간이 만료되어 더 이상 계약을 진행할 수 없습니다.\\n\\나이스다큐 고객센터(02-788-9097)로 문의하세요.");
+		return;
+	}else{
+		u.jsAlert("갑 사업자의 나이스다큐 사용기간이 만료되었습니다. \\n\\n나이스다큐 고객센터(02-788-9097)로 문의하세요");
+		return;
+	}
+}
 /*
 paytypecd M006
 10	정액(연간)

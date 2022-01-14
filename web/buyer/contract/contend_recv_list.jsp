@@ -14,38 +14,23 @@ ListManager list = new ListManager();
 list.setRequest(request);
 //list.setDebug(out);
 list.setListNum(u.request("mode").equals("excel")?-1:15);
-list.setTable("tcb_contmaster a, tcb_cust b, tcb_member c");
-list.setFields("a.cont_no , a.cont_chasu, a.template_cd, a.cont_name, a.cont_date,a.cont_sdate, a.cont_edate, a.cont_total, a.status, a.cont_userno, a.paper_yn, c.member_name as cust_name, b.sign_dn ");
+list.setTable("tcb_contmaster a, tcb_cust b, tcb_member c, tcb_cust d");
+list.setFields(  "a.cont_no , a.cont_chasu, a.template_cd, a.cont_name, a.cont_date,a.cont_sdate, a.cont_edate, a.cont_total, a.status, a.cont_userno, a.paper_yn, c.member_name as cust_name, b.sign_dn,d.vendcd ,d.boss_name,d.user_name,d.email"
+		           + ",d.tel_num,d.hp1,d.hp2,d.hp3,d.sign_date,(select template_name from tcb_cont_template where template_cd = a.template_cd) template_name");
 list.addWhere(" a.cont_no = b.cont_no  and a.cont_chasu = b.cont_chasu ");
 list.addWhere(" a.member_no <> b.member_no ");
 list.addWhere(" a.member_no = c.member_no ");
+list.addWhere(" a.cont_no = d.cont_no ");
+list.addWhere(" a.cont_chasu = d.cont_chasu ");
+list.addWhere(" a.member_no = d.member_no ");
 list.addWhere(" b.member_no = '"+_member_no+"'");
-list.addWhere("	a.status in ('50','91', '99') ");// 50:완료된 계약 91:계약해지 99:계약폐기
+list.addWhere("	a.status in ('50','91') ");// 50:완료된 계약 91:계약해지
 if(!f.get("s_sdate").equals(""))list.addWhere(" a.cont_date >= '"+f.get("s_sdate").replaceAll("-","")+"'");
 if(!f.get("s_edate").equals(""))list.addWhere(" a.cont_date <= '"+f.get("s_edate").replaceAll("-","")+"'");
-
-if(_member_no.equals("20201000002")){
-	DataObject ssoUserDao = new DataObject("sso_user_info");
-	DataSet ssoUser = ssoUserDao.find("user_id = '" + auth.getString("_USER_ID") + "' ");
-	if (!ssoUser.next()) {
-		u.jsError("사용자 정보가 존재하지 않습니다.");
-		return;
-	}
-	String userName = ssoUser.getString("user_name");
-	String celNo = ssoUser.getString("cel_no");
-	String celNo1 = celNo.replaceAll("-", "").substring(0, 3);
-	String celNo2 = celNo.replaceAll("-", "").substring(3, 7);
-	String celNo3 = celNo.replaceAll("-", "").substring(7);
-	
-	list.addWhere(" b.user_name = '" + userName + "'");
-	list.addWhere(" b.hp1 = '" + celNo1 + "'");
-	list.addWhere(" b.hp2 = '" + celNo2 + "'");
-	list.addWhere(" b.hp3 = '" + celNo3 + "'");
-}
-
 list.addSearch(" c.member_name",f.get("s_cust_name"),"LIKE");
 list.addSearch("a.cont_name", f.get("s_cont_name"), "LIKE");
-list.setOrderBy("a.reg_date desc");
+/* list.setOrderBy("cont_no desc, cont_chasu asc"); */
+list.setOrderBy("(select max(nvl(mod_req_date,reg_date)) from tcb_contmaster where member_no = a.member_no and cont_no = a.cont_no) desc, a.cont_no desc, a.cont_chasu");
 
 DataSet ds = list.getDataSet();
 while(ds.next()){
@@ -70,6 +55,15 @@ while(ds.next()){
 	ds.put("cont_sdate", u.getTimeString("yyyy-MM-dd", ds.getString("cont_sdate")));
 	ds.put("cont_edate", u.getTimeString("yyyy-MM-dd", ds.getString("cont_edate")));
 	ds.put("status", u.getItem(ds.getString("status"), code_cont_status));
+	ds.put("sign_date", u.getTimeString("yyyy-MM-dd", ds.getString("sign_date")));
+	if(!"".equals(ds.getString("hp1")) &&  !"".equals(ds.getString("hp2")) &&  !"".equals(ds.getString("hp3")))
+	{
+		ds.put("hp", ds.getString("hp1")+"-"+ds.getString("hp2")+"-"+ds.getString("hp3"));	
+	}else
+	{
+		ds.put("hp", "");
+	}
+	ds.put("vendcd", u.getBizNo(ds.getString("vendcd")));
 }
 
 if(u.request("mode").equals("excel")){
@@ -77,7 +71,13 @@ if(u.request("mode").equals("excel")){
 	p.setLoop("list", ds);
 	response.setContentType("application/vnd.ms-excel");
 	response.setHeader("Content-Disposition", "attachment; filename=\"" + new String("완료된계약(받은계약).xls".getBytes("KSC5601"),"8859_1") + "\"");
-	out.println(p.fetch("../html/contract/contend_recv_list_excel.html"));
+	if("20130700376".equals(_member_no))	/* 웅진식품의 경우 */
+	{
+		out.println(p.fetch("../html/contract/contend_recv_list_excel_20130700376.html"));
+	}else
+	{
+		out.println(p.fetch("../html/contract/contend_recv_list_excel.html"));
+	}
 	return;
 }
 

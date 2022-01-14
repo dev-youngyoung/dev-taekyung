@@ -5,16 +5,17 @@ String cont_no = u.aseDec(u.request("cont_no"));
 String cont_chasu = u.request("cont_chasu","0");
 if(cont_no.equals("")||cont_chasu.equals("")){
 	u.jsError("정상적인 경로로 접근 하세요.");
-	return;
+	return; 
 }
 
-
+/* boolean isTemplate = false;// 우형 2021283 */
 boolean sign_able = false;
 String cust_type = "";// 받는 사람이 갑인 경우 01 을인 경우 02
 boolean gap_yn = false;// 로그인한 업체가갑인지 여부 cust_type == "01" 이면 갑이다.
 String file_path = "";
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
+String[] code_warr = codeDao.getCodeArray("M007");
 String[] code_status = codeDao.getCodeArray("M008");
 String[] code_change_gubun = codeDao.getCodeArray("M010");
 
@@ -26,6 +27,9 @@ DataSet cont = contDao.find(
 +" ,(select count(member_no) from tcb_cust where cont_no = tcb_contmaster.cont_no and cont_chasu=tcb_contmaster.cont_chasu and sign_dn is not null ) sign_cnt "
 +" ,(select count(member_no) from tcb_cust where cont_no = tcb_contmaster.cont_no and cont_chasu=tcb_contmaster.cont_chasu and sign_dn is null ) unsign_cnt "
 +" ,(select member_name from tcb_member where member_no = tcb_contmaster.mod_req_member_no ) mod_req_name "
++" ,(select src_nm from tcb_src_adm where member_no = tcb_contmaster.member_no and substr(src_cd,0,3) = substr(tcb_contmaster.src_cd,0,3) and depth='1') l_src_nm "
++" ,(select src_nm from tcb_src_adm where member_no = tcb_contmaster.member_no and substr(src_cd,0,6) = substr(tcb_contmaster.src_cd,0,6) and depth='2') m_src_nm "
++" ,(select src_nm from tcb_src_adm where member_no = tcb_contmaster.member_no and src_cd = tcb_contmaster.src_cd and depth='3') s_src_nm "
 );
 if(!cont.next()){
 	u.jsError("계약정보가 존재 하지 않습니다.");
@@ -37,6 +41,8 @@ cont.put("mod_req_date", u.getTimeString("yyyy-MM-dd HH:mm:ss", cont.getString("
 cont.put("mod_req_reason", u.nl2br(cont.getString("mod_req_reason")));
 cont.put("status_name", u.getItem(cont.getString("status"), code_status));
 cont.put("change_gubun_str", u.getItem(cont.getString("change_gubun"), code_change_gubun)+"("+cont_chasu+"차)");
+if(!cont.getString("src_cd").equals(""))
+cont.put("src_nm", cont.getString("l_src_nm")+" > "+cont.getString("m_src_nm")+" > "+cont.getString("s_src_nm"));
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+cont.getString("member_no")+"' ");
@@ -131,6 +137,23 @@ while(stamp.next()){
 	stamp.put("vendcd", u.getBizNo(stamp.getString("vendcd")));
 }
 
+//보증정보조회
+DataObject warrDao = new DataObject("tcb_warr");
+DataSet warr = warrDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'");
+while(warr.next()){
+    warr.put("cont_no", u.aseEnc(warr.getString("cont_no")));
+	warr.put("haja", warr.getString("warr_type").equals("20"));
+	warr.put("cred", warr.getString("warr_type").equals("80"));
+	warr.put("warr_type", u.getItem(warr.getString("warr_type"),code_warr));
+	warr.put("warr_date", u.getTimeString("yyyy-MM-dd", warr.getString("warr_date")));
+	warr.put("warr_sdate", u.getTimeString("yyyy-MM-dd", warr.getString("warr_sdate")));
+	warr.put("warr_edate", u.getTimeString("yyyy-MM-dd", warr.getString("warr_edate")));
+	warr.put("warr_amt", u.numberFormat(warr.getDouble("warr_amt"),0));
+
+	warr.put("warr_status", u.getItem(warr.getString("status"),code_warr_status));
+	warr.put("end", warr.getString("status").equals("30")||warr.getString("status").equals(""));
+}
+
 // 업체별 구비 서류 조회
 DataObject rfileDao = new DataObject("tcb_rfile");
 
@@ -207,6 +230,7 @@ p.setLoop("cust", cust);
 if(cust_chain.size()>0) p.setLoop("cust_chain", cust_chain);
 p.setLoop("cfile", cfile);
 p.setLoop("stamp", stamp);
+p.setLoop("warr", warr);
 p.setLoop("rfile_cust", rfile_cust);
 p.setVar("file_path", file_path);
 p.setVar("query", u.getQueryString());

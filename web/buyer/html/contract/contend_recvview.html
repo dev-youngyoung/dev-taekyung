@@ -4,7 +4,7 @@
 <input type="hidden" name="sign_data"/>
 <input type="hidden" name="sign_dn"/>
 
-<div class="div_table">
+<div class="div_table"> 
 	<div class="util-row">
 	    <div class="push-left">
 	        <h3>계약기본정보</h3>
@@ -98,9 +98,16 @@
 <!-- IF START 'cust_chain' -->
 <div class="div_table">
 	<div class="util-row">
-	    <div class="push-left">
-	        <h3>연대보증</h3>
-	    </div>	    
+	    <!-- IFNOT START 'isTemplate' -->
+		    <div class="push-left">
+		        <h3>연대보증</h3>
+		    </div>
+		<!-- IFNOT END 'isTemplate' -->	
+		<!-- IF START 'isTemplate' -->
+		    <div class="push-left">
+		        <h3>아티스트</h3>
+		    </div>
+		<!-- IF END 'isTemplate' -->		    
 	</div>
 	<table>
 		<colgroup>
@@ -123,10 +130,10 @@
 					/ {{cust_chain.email}} 
 				</td>
 				<!-- IF START 'cust_chain.sign_dn' -->
-					<td align="right" style="font-size: 16px;">서명일시: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
+					<td align="right">서명일시: <b style="color:blue">{{cust_chain.sign_date}}</b></td>
 				<!-- IF END 'cust_chain.sign_dn' -->
 				<!-- IFNOT START 'cust_chain.sign_dn' -->
-					<td align="right" style="font-size: 16px;">서명일시: <b style="color:red">미서명</b></td>
+					<td align="right">서명일시: <b style="color:red">미서명</b></td>
 				<!-- IFNOT END 'cust_chain.sign_dn' -->
 			</tr>
 		<!-- LOOP END 'cust_chain' -->
@@ -231,6 +238,89 @@
 </div>
 
 <!-- IF END 'stamp' -->
+
+<!-- IF START 'warr' -->
+<div class="div_table">
+	<div class="util-row">
+		<div class="push-left">
+			<h3>보증서류</h3>
+		</div>
+		<div class="push-right">
+		<!--
+			<button type="button" class="sbtn" style="background-color:#09b0c3" onclick="document.getElementById('ifm_sgic').src = './contract_sgic_req.jsp?{{query}}&sysdate={{_sysdate}}';">서울보증보험 신청</button>
+		-->
+		</div>
+	</div>
+	<table id="warr_grid">
+		<colgroup>
+			<col width="10%">
+			<col width="15%">
+			<col width="14%">
+			<col width="10%">
+			<col width="18%">
+			<col width="14%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>보증서종류</th>
+				<th>발급기관</th>
+				<th>증권번호</th>
+				<th>발급일자</th>
+				<th>보증기간</th>
+				<th>보증금액</th>
+				<th>등록/조회</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- LOOP START 'warr' -->
+			<!-- IFNOT START 'warr.warr_no' -->
+				<tr>
+					<td align="center">{{warr.warr_type}}</td>
+					<td colspan="5"><b>비고:</b> {{warr.etc}}</td>
+					<td align="center">
+			
+					<!-- IFNOT START 'warr.status' -->
+			
+						<!-- IF START 'warr.haja' -->
+						<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>등록</button>
+						<!-- IF END 'warr.haja' -->
+				
+						<!-- IFNOT START 'warr.haja' -->
+						<button type="button" class="sbtn ico-save" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )" ><span></span>등록</button>
+						<!-- IFNOT END 'warr.haja' -->
+					
+					<!-- IFNOT END 'warr.status' -->
+			
+					<!-- IF START 'warr.status' -->
+						<a href="javascript:contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}')"><u style="color:red">{{warr.warr_status}}</u></a>
+					<!-- IF END 'warr.status' -->
+			
+					</td>
+				</tr>
+			<!-- IFNOT END 'warr.warr_no' -->
+					
+			<!-- IF START 'warr.warr_no' -->
+				<tr>
+					<td align="center">{{warr.warr_type}}</td>
+					<td align="center">{{warr.warr_office}}</td>
+					<td align="center">{{warr.warr_no}}</td>
+					<td align="center">{{warr.warr_date}}</td>
+					<td align="center">{{warr.warr_sdate}} ~ {{warr.warr_edate}}</td>
+					<td align="right">￦{{warr.warr_amt}}</td>
+					<!-- IF START 'warr.end' -->
+						<td align="center"><button type="button" class="sbtn ico-search" onclick="contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}' )"><span></span>조회</button></td>
+					<!-- IF END 'warr.end' -->
+					<!-- IFNOT START 'warr.end' -->
+						<td align="center"><a href="javascript:contWarr('{{warr.cont_no}}','{{warr.cont_chasu}}','{{warr.warr_seq}}')"><u style="color:red">{{warr.warr_status}}</u></a></td>
+					<!-- IFNOT END 'warr.end' -->
+				</tr>
+			<!-- IF END 'warr.warr_no' -->
+		<!-- LOOP END 'warr' -->
+		</tbody>
+	</table>
+</div>
+<!-- IF END 'warr' -->
 
 </form>
 {{form_script}}
@@ -337,10 +427,10 @@
 				<td><input type="text" name="boss_name" class="in_readonly" style="width:98%" readonly/></td>
 				<th>일반전화</th>
 				<td><input type="text" name="tel_num" class="in_readonly" style="width:98%" readonly/></td>
-				<th name="hp_th">휴대폰</th>
-				<td name="hp_td">
-					<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width:28%" readonly/><span name="hp_bar1">-</span>
-					<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width:30%" readonly/><span name="hp_bar2">-</span>
+				<th>휴대폰</th>
+				<td>
+					<input type="text" name="hp1" class="in_readonly" maxlength="3" style="width:28%" readonly/>-
+					<input type="text" name="hp2" class="in_readonly" maxlength="4" style="width:30%" readonly/>-
 					<input type="text" name="hp3" class="in_readonly" maxlength="4" style="width:30%" readonly/>
 				</td>
 			</tr>
@@ -474,18 +564,3 @@ comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{
 comp_grid_{{cust.sign_seq}}.addRow();
 </script>
 <!-- LOOP END 'cust' -->
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-	// 농심 휴대폰 hidden
-	document.getElementsByName('hp_th')[0].style.background = "white";
-	document.getElementsByName('hp_th')[0].style.borderLeft = "none";
-	document.getElementsByName('hp_td')[0].style.borderLeft = "none";
-	document.getElementsByName('hp_th')[0].innerHTML = "";
-	document.getElementsByName('hp_bar1')[0].innerHTML = "";
-	document.getElementsByName('hp_bar2')[0].innerHTML = "";
-	document.getElementsByName('hp1')[0].type= "hidden";
-	document.getElementsByName('hp2')[0].type= "hidden";
-	document.getElementsByName('hp3')[0].type= "hidden";
-});
-</script>

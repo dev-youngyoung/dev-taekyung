@@ -94,32 +94,66 @@
 	</div>
 	<table>
 		<colgroup>
-			<col width="15%">
-			<col width="45%">
-			<col width="15%">
-			<col width="23%">
+			<col width="10%">
+			<col width="52%">
+			<col width="10%">
+			<col width="28%">
 		</colgroup>
+		<!-- IF START 'cont.view_project' -->
+		<tr>
+			<th class="req-check">프로젝트명</td>
+			<td colspan="3">
+				<input type="hidden" name="project_seq" value="{{cont.project_seq}}">
+				<input type="text" name="project_name" value="{{cont.project_name}}" required="Y" hname="프로젝트명" style="display:none">
+				<span style="cursor: hend" id="spn_project_name">
+				<!-- IF START 'cont.project_seq' -->
+				<a href="javascript:OpenWindows('/web/buyer/info/pop_project_view.jsp?project_seq={{cont.project_seq}}','pop_project',700,350)">
+					{{cont.project_name}}
+					<!-- IF START 'cont.project_cd' -->
+					({{cont.project_cd}})
+					<!-- IF END 'cont.project_cd' -->
+				</a>
+				<!-- IF END 'cont.project_seq' -->
+				</span>
+				<!-- IF START 'cont.btn_select_project' -->
+				<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindows('/web/buyer/info/project_list.jsp?view_gubun=popup&callback=setProject','pop_project_list',700,400)"><span></span>선택</button>
+				<!-- IF END 'cont.btn_select_project' -->
+			</td>
+		</tr>
+		<!-- IF END 'cont.view_project' -->
 		<tr>
 			<th class="req-check">계약명</th>
-			<td>
-				<!-- IFNOT START 'modify' -->
-				<input type="text" name="cont_name_text" style="width:95%" onchange="javascript:setContName()" value="{{cont.cont_name}}" hname="계약서명" required="Y">
-				<!-- IFNOT END 'modify' -->
-				<!-- IF START 'modify' -->
-				<input type="text" name="cont_name_text" style="width:95%" value="{{cont.cont_name}}" readonly="readonly" >
-				<!-- IF END 'modify' -->
-				<input type="hidden" id="cont_name" name="cont_name" value="{{cont.cont_name}}" />
+			<td <!-- IFNOT START 'member.src_depth' -->colspan="3"<!-- IFNOT END 'member.src_depth' -->>
+				<input type="text" name="cont_name" style="width:95%" >
 			</td>
+			<!-- IF START 'member.src_depth' -->
+			<th>소싱그룹</th>
+			<td>
+				<input type="hidden" name="src_cd" value="{{cont.src_cd}}"/>
+				<span id="src_nm">{{cont.src_nm}}</span>&nbsp;&nbsp;<button type="button" class="sbtn ico-check auth_css" onclick="OpenWindow('../bid/pop_src_select.jsp','src_select',350,600)"><span></span>선택</button>
+			</td>
+			<!-- IF END 'member.src_depth' -->
+		</tr>
+		<tr>
 			<th class="req-check">계약일자</th>
 			<td>
-				<input type="hidden" name="cont_userno" value="{{cont.cont_userno}}" />
-				<input type="text" name="cont_date" value="{{sysdate}}" class="in_readonly" style="ime-mode:disabled;width:100px" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
+				<input type="text" name="cont_date" class="in_readonly" style="ime-mode:disabled;width:100px" size="10" maxlength="10" onkeydonw="num_only()" onkeypress="num_only()" onkeyup="dateFormat(this);"/>
 				<img src="../html/images/common/datepicker_icon.png" align="absmiddle" style="cursor:pointer" onClick="new CalendarFrame.Calendar(document.forms['form1']['cont_date'])"> 
 			</td>
-			<!-- <th>계약번호 </th>
+			<th>계약번호 </th>
 			<td>
+				<!-- IF START 'show_cont_user_no' -->
 				<input type="text" name="cont_userno" style="width:100%" maxlength="40" onChange="replaceInput(this, this.name, document.all.__html)">
-			</td> -->
+				<!-- IF END 'show_cont_user_no' -->
+				<!-- IFNOT START 'show_cont_user_no' -->
+					<!-- IF START 'modify' -->
+					<input type="text" name="cont_userno" readonly style="border:0">
+					<!-- IF END 'modify' -->
+					<!-- IFNOT START 'modify' -->
+					<input type="hidden" name="cont_userno">
+					<!-- IFNOT END 'modify' -->
+				<!-- IFNOT END 'show_cont_user_no' -->
+			</td>
 		</tr>
 		<tr>
 			<th>계약기간</th>
@@ -132,21 +166,34 @@
 			<th>계약금액</th>
 			<td>
 				<input type="text" name="cont_total" maxlength="20" style="text-align: right;ime-mode:disabled; width: 120px;" onkeydown="num_only()" onkeypress="num_only()" onkeyup="fnMakeComma()"> 원
+				 <!-- IF START 'techcross' -->
+				 <select name="cont_etc2" hname="VAT종류" style="margin-left: 20px;">
+					<option value="">-선택-</option>
+					<!-- LOOP START 'code_vat_type' -->
+					<option value="{{code_vat_type.id}}">{{code_vat_type.value}}</option>
+					<!-- LOOP END 'code_vat_type' -->
+				</select>
+				<!-- IF END 'techcross' -->
+			</td>
+		</tr>
+		<!-- IF START 'kakao' -->
+		<tr>
+			<th>수익쉐어</th>
+			<td>
+				<input type="text" name="cont_etc1" style="width:100%">
+			</td>
+			<th>양도/종료</th>
+			<td>
+				<input type="checkbox" name="cont_etc2"> <span class="caution-text">양도 및 종료 계약이면 체크.</span>
 			</td>
 		</tr>
 		<tr>
-			<th>전자결재여부</th>
-			<td>
-				<input type="radio" name="appr_yn" value="Y" onclick="return(false);">&nbsp;사용&nbsp;&nbsp;
-				<input type="radio" name="appr_yn" value="N" onclick="return(false);">&nbsp;미사용
-				<span class="caution-text">&nbsp;&nbsp;※ 법무팀 결재 필수</span>
-			</td>
-			<th>인지세사용여부</th>
-			<td>
-				<input type="radio" name="stamp_type" value="Y">&nbsp;사용&nbsp;&nbsp;
-				<input type="radio" name="stamp_type" value="N">&nbsp;미사용
+			<th>기타사항</th>
+			<td colspan="3">
+				<textarea name="cont_etc3" style="width:100%; height:50"></textarea>
 			</td>
 		</tr>
+		<!-- IF END 'kakao' -->
 		<!-- IF START 'cont.cont_url' -->
 		<tr>
 			<th>조회URL</th>
@@ -182,7 +229,7 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>계약서류<span class="caution-text">(※ 문서중앙화 사용자인 경우 반드시 문서반출 필요)</span></h3>
+	        <h3>계약서류<span class="caution-text">(※계약서 첨부시 꼭 <u>PDF파일로 첨부</u>, PDF파일이 아닌 경우 전자계약 표시 안됨)</span></h3>
 	    </div>
 	    <div class="push-right">
 	    	<button type="button" class="sbtn ico-add auth_css" onclick="addCfileRow();"><span></span>추가</button>
@@ -210,8 +257,8 @@
 					<td align="center">자동생성</td>
 					<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" class="in_readonly" readonly style="width:98%" hname="계약서류명" required="Y" /></td>
 					<td align="right">
-					 	<!-- {{cfile.file_size_str}}&nbsp;&nbsp;<button type="button" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfile.cfile_seq}}')"><span></span>조회(인쇄)</button> -->
-						<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
+					 	{{cfile.file_size_str}}&nbsp;&nbsp;<button type="button" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfile.cfile_seq}}')"><span></span>조회(인쇄)</button>
+					 <input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
 					</td>
 					<td></td>
 				</tr>
@@ -219,14 +266,14 @@
 				<!-- IFNOT START 'cfile.auto' -->
 				<tr>
 					<td align="center">직접첨부</td>
-					<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" style="width:98%" hname="계약서류명" required="Y"/></td>
+					<td><input type="text" name="cfile_doc_name" value="{{cfile.doc_name}}" style="width:98%" hname="계약서류명" required="Y" /></td>
 					<td align="right">
 						{{cfile.file_size_str}}
 							<!-- IF START 'cfile.pdf_yn' -->
-							<!-- <button type="button" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfile.cfile_seq}}')"><span></span>조회(인쇄)</button> -->
+							 <button type="button" class="sbtn ico-print" onclick="contPdfViewer('{{cont_no}}','{{cont_chasu}}','{{cfile.cfile_seq}}')"><span></span>조회(인쇄)</button>
 							<!-- IF END 'cfile.pdf_yn' -->
 							<!-- IFNOT START 'cfile.pdf_yn' -->
-							<!-- <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>다운로드</button> -->
+							 <button type="button" class="sbtn ico-download" onclick="filedown('file.path.bcont_pdf','{{cfile.file_path}}{{cfile.file_name}}','{{cfile.doc_name}}.{{cfile.file_ext}}')"><span></span>다운로드</button>
 							<!-- IFNOT END 'cfile.pdf_yn' -->
 							<input type="hidden" name="cfile_seq" value="{{cfile.cfile_seq}}"/>
 					</td>
@@ -237,6 +284,52 @@
 				<!-- IFNOT END 'cfile.auto' -->
 			<!-- LOOP END 'cfile' -->
 		</tbody>
+	</table>
+</div>
+
+<!-- IF START 'stamp_yn' -->
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>인지세<span class="caution-text">(※ 인지세 납부 대상을 선택하세요.)</span></h3>
+	    </div>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<input type="radio" name="stamp_type" value="1">계약 작성업체&nbsp;&nbsp;
+				<input type="radio" name="stamp_type" value="2">계약 수신업체 &nbsp;&nbsp;
+				<input type="radio" name="stamp_type" value="3">양사 분납 &nbsp;&nbsp;
+				<input type="radio" name="stamp_type" value="0">해당 없음
+			</td>
+		</tr>
+	</table>
+</div>
+<!-- IF END 'stamp_yn' -->
+
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>보증서류<span class="caution-text">(※ 비고항목에 선택한 보증서에 대한 정보입력, 예: 보증기간,보증률)</span></h3>
+	    </div>
+	    <div class="push-right">
+	    	<button type="button" class="sbtn ico-add auth_css" onclick="warr_grid.addRow();"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="warr_grid">
+		<colgroup>
+			<col width="15%"/>
+			<col width="70%"/>
+			<col width="15%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>보증서종류</th>
+				<th>비고</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
 	</table>
 </div>
 
@@ -277,6 +370,66 @@
 	</table>
 </div>
 
+<div class="div_table">
+	<div class="util-row">
+	    <div class="push-left">
+	        <h3>내부관리서류<span class="caution-text">※ 계약과 관련된 내부관리서류 첨부, 내부에서만 조회 가능.</span></h3>
+	    </div>
+	    <div class="push-right">
+	        <button type="button" class="sbtn ico-add auth_css" onclick="addEfileRow();"><span></span>추가</button>
+	    </div>
+	</div>
+	<table id="efile_grid">
+		<colgroup>
+			<col width="15%"/>
+			<col width="40%"/>
+			<col width="35%"/>
+			<col width="10%"/>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>관리유형</th>
+			<th>문서명</th>
+			<th>첨부</th>
+			<th>삭제</th>
+		</tr>
+		</thead>
+		<tbody>
+			<!-- LOOP START 'efile' -->
+			<tr>
+				<td align="center">{{efile.str_reg_type}}<input type="hidden" name="efile_reg_type" value="{{efile.reg_type}}"/></td>
+				<td><input type="text" name="efile_doc_name" value="{{efile.doc_name}}" class="{{efile.doc_name_class}}" {{efile.doc_name_readonly}} style="width:98%" hname="계약서류명" {{efile.required}} /></td>
+				<td align="center">
+					<!-- IF START 'efile.file_name' -->
+					<span id="div_efile_{{efile.efile_seq}}">
+					<!-- <input type="file" name="efile_{{efile.efile_seq}}" style="width:200px" hname="관리서류 파일"/> -->
+				 	{{efile.file_size_str}}&nbsp;&nbsp;
+				 	<button type="button" class="sbtn ico-download" onclick="{{efile.down_script}}"><span></span>다운로드</button>
+				 	</span>
+					<!-- IF END 'efile.file_name' -->
+					<!-- IFNOT START 'efile.file_name' -->
+					<input type="file" name="efile_{{efile.efile_seq}}" style="width:98%" hname="관리서류 파일" {{efile.required}} />
+					<!-- IFNOT END 'efile.file_name' -->
+					<input type="hidden" name="efile_seq" value="{{efile.efile_seq}}"/>
+					<input type="hidden" name="efile_del_yn" id="efile_del_yn_{{efile.efile_seq}}">
+				</td>
+				<td>
+					<!-- IF START 'efile.del_yn10' -->
+					<button type="button" class="sbtn ico-delete auth_css" onclick="delEfile('{{efile.efile_seq}}','10')"><span></span>삭제</button>
+					<!-- IF END 'efile.del_yn10' -->
+					<!-- IF START 'efile.del_yn20' -->
+					<button type="button" class="sbtn ico-delete auth_css" onclick="delEfile('{{efile.efile_seq}}','20')"><span></span>삭제</button>
+					<!-- IF END 'efile.del_yn20' -->
+					<!-- IF START 'efile.del_yn30' -->
+					<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>삭제</button>
+					<!-- IF END 'efile.del_yn30' -->
+				</td>
+			</tr>
+			<!-- LOOP END 'efile' -->
+		</tbody>
+	</table>
+</div>
+
 <!-- IF START 'modify' -->
 <!-- IF START '_auth._CONT_SHARE_ABLE' -->
 <iframe name="ifm_cont_share" id="ifm_cont_share" src="./ifm_cont_share.jsp?{{query}}" frameborder="0" width="100%" scrolling="no"></iframe>
@@ -291,17 +444,14 @@
 	<button type="button" class="btn color ico-cancel" onclick="location.href='contract_free_template.jsp?isDirect=Y';"><span></span>취소</button>
 	<!-- IFNOT END 'modify' -->
 	<!-- IF START 'modify' -->
-		<!-- IF START 'btnSave' -->
-			<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
-		<!-- IF START 'btnSave' -->
-		<!-- IF START 'btnAppr' -->
-			<button type="button" class="btn color ico-request auth_css" onclick="location.href='contract_approval_send.jsp?jobID=ECS12&{{query}}';"><span></span>결재상신</button>
-		<!-- IF END 'btnAppr' -->
+	<button type="submit" class="btn color ico-save auth_css"><span></span>저장</button>
 		<!-- IFNOT START 'btnSend' -->
 		<!-- <button type="button" class="btn color ico-request auth_css" onclick="if(confirm('담당자에게 검토요청 하시겠습니까?\n\n수정한 내용이 있을 경우 저장 후 검토요청 하세요.')){location.href='contract_agree.jsp?{{query}}'}" ><span></span>검토요청</button> -->
+		<button type="button" class="btn color ico-request auth_css" onclick="fn_agree(this.form)" ><span></span>검토요청</button>
 		<!-- IFNOT END 'btnSend' -->
 		<!-- IF START 'btnSend' -->
-			<button type="button" class="btn color ico-request auth_css" onclick="javascript:checkStampYn();"><span></span>서명요청</button>
+		<!-- <button type="button" class="btn color ico-request auth_css" onclick="if(confirm('계약 서명요청 하시겠습니까?\n\n수정한 내용이 있을 경우 저장 후 서명요청 하세요.')){location.href='contract_send.jsp?{{query}}'}"><span></span>서명요청</button> -->
+		<button type="button" class="btn color ico-request auth_css" onclick="fn_send(this.form)"><span></span>서명요청</button>
 		<!-- IF END 'btnSend' -->
 	<button type="button" class="btn color ico-delete auth_css" onclick="if(confirm('삭제하시겠습니까?')){location.href='contract_delete.jsp?{{query}}'}"><span></span>삭제</button>
 	<button type="button" class="btn color ico-list" onclick="location.href='contract_writing_list.jsp?{{list_query}}';"><span></span>목록으로</button>
@@ -347,11 +497,11 @@
 				<th>대표자</th>
 				<td><input type="text" name="boss_name" style="width:98%" maxlength="50" hname="대표자" required="Y"/></td>
 				<th>일반전화</th>
-				<td><input type="text" name="tel_num" style="width:98%" maxlength="20" hname="일반전화" /></td>
-				<th name="hp_th">휴대폰</th>
-				<td name="hp_td">
-					<input type="text" name="hp1" maxlength="3" style="width:28%" hname="휴대폰" required="Y"/><span name="hp_bar1">-</span>
-					<input type="text" name="hp2" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/><span name="hp_bar2">-</span>
+				<td><input type="text" name="tel_num" style="width:98%" maxlength="20" hname="일반전화" required="Y"/></td>
+				<th>휴대폰</th>
+				<td>
+					<input type="text" name="hp1" maxlength="3" style="width:28%" hname="휴대폰" required="Y"/>-
+					<input type="text" name="hp2" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>-
 					<input type="text" name="hp3" maxlength="4" style="width:30%" hname="휴대폰" required="Y"/>
 				</td>
 			</tr>
@@ -413,12 +563,29 @@
 		<td align="center">직접첨부</td>
 		<td><input type="text" name="cfile_doc_name" style="width:98%" hname="계약서류명" required="Y" maxlength="255"/></td>
 		<td>
-			<input type="file" name="cfile_[[seq]]" style="width:98%" hname="계약서류 파일" required="Y" onchange="javascript:setDocName(this,[[seq]]);"/>
+			<input type="file" name="cfile_[[seq]]" style="width:98%" hname="계약서류 파일" required="Y" />
 			<input type="hidden" name="cfile_seq" value="[[seq]]"/>
 		</td>
 		<td><button type="button" value="삭제" class="sbtn ico-delete auth_css" onclick="cfile_grid.del(this);"><span></span>삭제</button></td>
 	</tr>
 </table>
+
+<form name="temp_warr_form" method="post">
+<table id="warr_template" style="display:none">
+	<tr>
+		<td>
+			<select name="warr_type" hname="보증서종류" required="Y">
+				<option value="">-선택-</option>
+				<!-- LOOP START 'code_warr' -->
+				<option value="{{code_warr.id}}">{{code_warr.value}}</option>
+				<!-- LOOP END 'code_warr' -->
+			</select>
+		</td>
+		<td><input type="text" name="warr_etc" style="width:98%" hname="비고"/></td>
+		<td><button type="button" class="sbtn ico-delete auth_css" onclick="warr_grid.del(this);"><span></span>삭제</button></td>
+	</tr>
+</table>
+</form>
 
 <table id="rfile_template" style="display:none">
 	<tr>
@@ -431,42 +598,90 @@
 	</tr>
 </table>
 
+<table id="efile_template" style="display:none">
+	<tr>
+		<td align="center">추가첨부<input type="hidden" name="efile_reg_type" value="30"/></td>
+		<td><input type="text" name="efile_doc_name" style="width:98%" hname="문서명" required="Y" /></td>
+		<td>
+			<input type="hidden" name="efile_del_yn">
+			<input type="file" name="efile_[[seq]]" style="width:80%" hname="문서 파일" required="Y" />
+			<input type="hidden" name="efile_seq" value="[[seq]]"/>
+		</td>
+		<td>
+			<button type="button" class="sbtn ico-delete auth_css" onclick="efile_grid.del(this);"><span></span>삭제</button>
+		</td>
+	</tr>
+</table>
+
 
 <script language="javascript">
+	/******************************
+		검토요청
+	******************************/
+	function fn_send(f)
+	{
+		var msg	=	"계약 서명요청 하시겠습니까?";
+		if(fn_save(f,msg))
+		{
+			f.action	=	"contract_send.jsp?{{query}}";
+			f.submit();
+		}
+	}
 
-function formSubmit(f) {
-	if (validate(f)) {
+	/******************************
+		검토요청
+	******************************/
+	function fn_agree(f)
+	{
+		var msg	=	"담당자에게 검토요청 하시겠습니까?";
+		if(fn_save(f,msg))
+		{
+			f.action	=	"contract_agree.jsp?{{query}}";
+			f.submit();
+		}
+	}
+	
+	/******************************
+		저장
+	******************************/
+	function formSubmit(f){
+		var msg	=	"저장 하시겠습니까?";
+		return fn_save(f,msg);
+	}
+
+function fn_save(f,msg){
+	if(validate(f)){
 		var group_cnt = f['sign_seq'].length;
-		for (var i=0; i<group_cnt; i++) {
-			var table = document.getElementById("comp_grid_" + f["sign_seq"][i].value);
-			var row_cnt = table.rows.length - 1;
-			if (row_cnt == 0) {
-				alert(f['signer_name'][i].value + " 에 해당하는  업체를 선택해 주세요.");
+		for(var i =0; i< group_cnt ; i ++){
+			var table = document.getElementById("comp_grid_"+f["sign_seq"][i].value);
+			var row_cnt = table.rows.length-1;
+			if(row_cnt==0){
+				alert(f['signer_name'][i].value+" 에 해당하는  업체를 선택해 주세요.");
 				return false;
 			}
 		}
 
-		// 나포함 여부 체크
+		//나포함 여부 체크
 		var my_chk = false;
 		var cust_cnt = f['member_no'].length;
-		for (var i=0; i<cust_cnt; i++) {
-			if ("{{_auth._MEMBER_NO}}" == f['member_no'][i].value) {
+		for(var i =0; i < cust_cnt; i ++){
+			if("{{_auth._MEMBER_NO}}"==f['member_no'][i].value){
 				my_chk = true;
 				break;
 			}
 		}
-		if (!my_chk) {
+		if(!my_chk){
 			alert("로그인한 업체는 계약관계사에 반드시 포함 되어야 합니다.");
 			return false;
 		}
 
-		var cfile_cnt = document.getElementById("cfile_grid").rows.length - 1;
-		if (cfile_cnt < 1) {
+		var cfile_cnt = document.getElementById("cfile_grid").rows.length-1;
+		if(cfile_cnt<1){
 			alert("계약서류를 1개이상 첨부 하세요.");
 			return false;
 		}
 
-		if (!confirm("저장하시겠습니까?")) {
+		if(!confirm(msg)){
 			return false;
 		}
 		return true;
@@ -488,120 +703,87 @@ comp_grid_{{sign_template.sign_seq}}.cellClassName = "comp_grid_cell";
 var cfile_grid = new MGRID("cfile_grid");
 cfile_grid.cells = table2array("cfile_template");
 
+var warr_grid = new MGRID("warr_grid");
+warr_grid.cells = table2array("warr_template");
+
 var rfile_grid = new MGRID("rfile_grid");
 rfile_grid.cells = table2array("rfile_template");
 
+var efile_grid = new MGRID("efile_grid");
+efile_grid.cells = table2array("efile_template");
 
 function addClient(sign_seq, signer_max, signer_name){
 	var f = document.forms['form1'];
-	var grid_table = document.getElementById("comp_grid_" + sign_seq);
-	if( (grid_table.rows.length - 1) >= signer_max){
-		alert(signer_name + "는 " + signer_max + "개의 업체까지만 지정 가능 합니다.");
+	var grid_table = document.getElementById("comp_grid_"+sign_seq);
+	if( (grid_table.rows.length-1) >= signer_max){
+		alert(signer_name+"는 "+signer_max+"개의 업체까지만 지정 가능 합니다.");
 		return;
 	}
-	OpenWindows('pop_search_company.jsp?sign_seq=' + sign_seq, 'pop_search_comapny', '700', '650');
+	//var result = OpenDialog('pop_search_company.jsp','pop_search_comapny', '700','650','auto');
+	OpenWindows('pop_search_company.jsp?sign_seq='+sign_seq,'pop_search_comapny', '700','650');
 
-	if (result != null) {
-		if (f["member_no"]) {
-			if (f['member_no'].type == "hidden") {
-				if (f["member_no"].value == result[0]) {
+	if(result!=null){
+		if(f["member_no"]){
+			if(f['member_no'].type=="hidden"){
+				if(f["member_no"].value==result[0]){
 					alert("이미 추가 되어 있는 업체 입니다.");
 					return;
 				}
-			} else {
+			}else{
 				var cnt = f['member_no'].length;
-			  	for (var i = 0; i < cnt; i++) {
-					if(f["member_no"][i].value == result[0]) {
-						alert("이미 추가 되어 있는 업체 입니다.");
-						return;
-					}
+			  	for(var i = 0; i < cnt; i++){
+					if(f["member_no"][i].value==result[0]){
+					alert("이미 추가 되어 있는 업체 입니다.");
+					return;
+				}
 			  	}
 			}
 		}
-		var i = 0;
-		SetFormValue("temp_form", "member_no", result[i++]);
-		SetFormValue("temp_form", "vendcd", result[i++]);
-		SetFormValue("temp_form", "member_slno", result[i++]);
-		SetFormValue("temp_form", "member_name", result[i++]);
-		SetFormValue("temp_form", "post_code", result[i++]);
-		SetFormValue("temp_form", "address", result[i++]);
-		SetFormValue("temp_form", "boss_name", result[i++]);
-		SetFormValue("temp_form", "user_name", result[i++]);
-		SetFormValue("temp_form", "tel_num", result[i++]);
-		SetFormValue("temp_form", "hp1", result[i++]);
-		SetFormValue("temp_form", "hp2", result[i++]);
-		SetFormValue("temp_form", "hp3", result[i++]);
-		SetFormValue("temp_form", "email", result[i++]);
-		SetFormValue("temp_form", "cust_sign_seq", sign_seq);
-		var grid = eval("comp_grid_" + sign_seq);
-		grid.cells = table2array("comp_template", new Array("seq=>" + sign_seq));
+		var i =0;
+		SetFormValue("temp_form","member_no",result[i++]);
+		SetFormValue("temp_form","vendcd",result[i++]);
+		SetFormValue("temp_form","member_slno",result[i++]);
+		SetFormValue("temp_form","member_name",result[i++]);
+		SetFormValue("temp_form","post_code",result[i++]);
+		SetFormValue("temp_form","address",result[i++]);
+		SetFormValue("temp_form","boss_name",result[i++]);
+		SetFormValue("temp_form","user_name",result[i++]);
+		SetFormValue("temp_form","tel_num",result[i++]);
+		SetFormValue("temp_form","hp1",result[i++]);
+		SetFormValue("temp_form","hp2",result[i++]);
+		SetFormValue("temp_form","hp3",result[i++]);
+		SetFormValue("temp_form","email",result[i++]);
+		SetFormValue("temp_form","cust_sign_seq",sign_seq);
+		var grid =eval("comp_grid_"+sign_seq);
+		grid.cells = table2array("comp_template", new Array("seq=>"+sign_seq));
 		grid.addRow();
+
 	}
 }
 
-function checkStampYn() {
-	var f = document.forms["form1"];
-	if (validate(f)) {
-		if (confirm('계약 서명요청 하시겠습니까?\n\n수정한 내용이 있을 경우 저장 후 서명요청 하세요.')) {
-			var stampType = '{{cont.stamp_type}}';
-			if (stampType == 'Y') {
-				var url = "./check_stamp_yn.jsp";
-				var data = {"cont_no" : '{{cont.cont_no}}'};
-				document.getElementById("loading").style.display = 'block';
-				callJqueryAjax(url, data);
-			} else {
-				location.href='contract_send.jsp?{{query}}';
-			}
-		}
-	}
-}
-
-function callJqueryAjax(url, postData) {
-   	$.ajax({
-        url : url,
-        type : "post",
-        data : postData,
-        success : function(data) {
-        	document.getElementById("loading").style.display = 'none';
-            if (data != null && data.trim().length > 0) {
-            	if (data == 'Y') {
-            		location.href='contract_send.jsp?{{query}}';
-            	} else {
-            		alert("인지세 신청이 확인되지 않습니다.");
-            		return;
-            	}
-            } else {
-                alert("조회 중 오류가 발생했습니다.");
-            }
-        },
-        error : function(request, status, error) {
-        	document.getElementById("loading").style.display = 'none';
-            alert("code:" + request.status + "\n" + "error:" + error);
-        }
-    });
-}
-
-function addCfileRow() {
+function addCfileRow(){
 	var f = document.forms["form1"];
 	var max_cfile_seq = 0;
 	var row_cnt = document.getElementById('cfile_grid').getElementsByTagName("tbody")[0].rows.length;
-	if (row_cnt > 0 ) {
-		if (row_cnt == 1){
+	if(row_cnt > 0 ){
+		if(row_cnt == 1){
 			max_cfile_seq = Number(f['cfile_seq'].value);
-		} else {
+		}else{
 			max_cfile_seq = Number(f['cfile_seq'][row_cnt-1].value);
 		}
 	}
-	var data = table2array("cfile_template", new Array("seq=>" + (max_cfile_seq+1)));
+	
+	var data = table2array("cfile_template", new Array("seq=>"+(max_cfile_seq+1)));
 	cfile_grid.addRow(null, data);
 }
 
-function addPersonInfo(data) {
-	if (data != null) {
+function addPersonInfo(data)
+{
+	if(data!=null){
 		var f = document.form1;
 		var agree_seq = data['agree_seq'];
 
-		replaceInput(data['person_name'], "agree_person_name_" + agree_seq);
+		replaceInput(data['person_name'], "agree_person_name_"+agree_seq);
 
 		f.agree_field_seq[agree_seq-1].value = data['field_seq'];
 		f.agree_person_id[agree_seq-1].value = data['person_id'];
@@ -611,93 +793,59 @@ function addPersonInfo(data) {
 
 
 //프로젝트 관리
-function setProject(data) {
+function setProject(data){
 	var f = document.forms['form1'];
 	var project_name = data["project_name"] ;
 	f['project_seq'].value = data["project_seq"];
 	f['project_name'].value = data["project_name"];
-	if (data["project_cd"] != "") project_name = data["project_name"] + "(" + data["project_cd"] + ")";
-	var html = "<a href=\"javascript:OpenWindow('/web/buyer/info/pop_project_view.jsp?project_seq=" + data["project_seq"] + "', 'pop_project', 700, 350)\">" + project_name + "</a>";
+	if(data["project_cd"] != ""){
+		project_name = data["project_name"] + "("+data["project_cd"]+")";
+	}
+	var html = "<a href=\"javascript:OpenWindow('/web/buyer/info/pop_project_view.jsp?project_seq="+data["project_seq"]+"','pop_project',700,350)\">"+project_name+"</a>";
 	document.getElementById("spn_project_name").innerHTML = html;
 }
 
-//계약명 생성
-function setContName(){
-	var vendcd = document.getElementsByName('vendcd');
-	var cont_name_text = document.getElementsByName('cont_name_text');
-	var contName = '';
-	if(cont_name_text[0].value != null && cont_name_text[0].value != ''){
-		contName = cont_name_text[0].value+'-'+vendcd[1].value;
-	}
-	document.form1['cont_name'].value = contName;
-}
-
-//파일명 setting
-function setDocName(upfile, seq){
-	var filename = upfile.value.split('/').pop().split('\\').pop().split('.'); // 파일명 추출
-	var setName = "";
-	var length = filename.length;
-	for(var i=0; i < filename.length; i++){
-		if(i+1 != length){
-			if(i==0){
-				setName = setName + filename[i];
-			}else{
-				setName = setName + "." + filename[i];
-			}
-		}
-	}
-	var cfile_doc_name = document.getElementsByName('cfile_doc_name');
-	cfile_doc_name[seq-1].value = setName;
+function addEfileRow(){
+	var data = table2array("efile_template", new Array("seq=>"+(document.getElementById('efile_grid').rows.length)));
+	efile_grid.addRow(null, data);
 }
 </script>
 
 <!-- LOOP START 'cust' -->
 <script language="javascript">
-if ("02" == "{{cust.cust_gubun}}") {
+if("02"=="{{cust.cust_gubun}}"){
 	form_name = "person_form";
 	template_name = "person_template";
-} else {
+}else{
 	form_name = "comp_form";
 	template_name = "comp_template";
 }
-SetFormValue(form_name, "member_no", "{{cust.member_no}}");
-SetFormValue(form_name, "vendcd", "{{cust.vendcd}}");
-SetFormValue(form_name, "post_code", "{{cust.post_code}}");
-SetFormValue(form_name, "member_slno", "{{cust.member_slno}}");
-SetFormValue(form_name, "cust_sign_seq", "{{cust.sign_seq}}");
-SetFormValue(form_name, "address", "{{cust.address}}");
-SetFormValue(form_name, "user_name", "{{cust.user_name}}");
-SetFormValue(form_name, "member_name", "{{cust.member_name}}");
-SetFormValue(form_name, "email", "{{cust.email}}");
-SetFormValue(form_name, "boss_name", "{{cust.boss_name}}");
-SetFormValue(form_name, "tel_num", "{{cust.tel_num}}");
-SetFormValue(form_name, "hp1", "{{cust.hp1}}");
-SetFormValue(form_name, "hp2", "{{cust.hp2}}");
-SetFormValue(form_name, "hp3", "{{cust.hp3}}");
-SetFormValue(form_name, "jumin_no", "{{cust.jumin_no}}");
+SetFormValue(form_name,"member_no","{{cust.member_no}}");
+SetFormValue(form_name,"vendcd","{{cust.vendcd}}");
+SetFormValue(form_name,"post_code","{{cust.post_code}}");
+SetFormValue(form_name,"member_slno","{{cust.member_slno}}");
+SetFormValue(form_name,"cust_sign_seq","{{cust.sign_seq}}");
+SetFormValue(form_name,"address","{{cust.address}}");
+SetFormValue(form_name,"user_name","{{cust.user_name}}");
+SetFormValue(form_name,"member_name","{{cust.member_name}}");
+SetFormValue(form_name,"email","{{cust.email}}");
+SetFormValue(form_name,"boss_name","{{cust.boss_name}}");
+SetFormValue(form_name,"tel_num","{{cust.tel_num}}");
+SetFormValue(form_name,"hp1","{{cust.hp1}}");
+SetFormValue(form_name,"hp2","{{cust.hp2}}");
+SetFormValue(form_name,"hp3","{{cust.hp3}}");
+SetFormValue(form_name,"jumin_no","{{cust.jumin_no}}");
 comp_grid_{{cust.sign_seq}}.cells = table2array(template_name, new Array("seq=>{{cust.sign_seq}}"));
 comp_grid_{{cust.sign_seq}}.addRow();
 </script>
 <!-- LOOP END 'cust' -->
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-	// 농심 readOnly
-	document.getElementsByName('address')[0].readOnly = true;
-	document.getElementsByName('user_name')[0].readOnly = true;
-	document.getElementsByName('member_name')[0].readOnly = true;
-	document.getElementsByName('email')[0].readOnly = true;
-	document.getElementsByName('boss_name')[0].readOnly = true;
-	document.getElementsByName('tel_num')[0].readOnly = true;
-	// 농심 휴대폰 hidden
-	document.getElementsByName('hp_th')[0].style.background = "white";
-	document.getElementsByName('hp_th')[0].style.borderLeft = "none";
-	document.getElementsByName('hp_td')[0].style.borderLeft = "none";
-	document.getElementsByName('hp_th')[0].innerHTML = "";
-	document.getElementsByName('hp_bar1')[0].innerHTML = "";
-	document.getElementsByName('hp_bar2')[0].innerHTML = "";
-	document.getElementsByName('hp1')[0].type= "hidden";
-	document.getElementsByName('hp2')[0].type= "hidden";
-	document.getElementsByName('hp3')[0].type= "hidden";
-});
+<!-- LOOP START 'warr' -->
+<script language="javascript">
+SetFormValue("temp_warr_form","warr_type","{{warr.warr_type}}");
+SetFormValue("temp_warr_form","warr_etc","{{warr.etc}}");
+warr_grid.cells = table2array("warr_template");
+warr_grid.addRow();
+document.forms['temp_warr_form'].reset();
+warr_grid.cells = table2array("warr_template");
 </script>
+<!-- LOOP END 'warr' -->

@@ -39,40 +39,28 @@
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
-	        <h3>농심</h3>
-	    </div>
-	</div>
-	<div style="border-top: 2px solid #333;border-bottom: 1px solid #e0e0e0;">
-		<table id="comp_grid_ns" class="inner_table" style="border-top:0px;border-bottom:0px;">
-			<thead>
-				<tr style="display: none;"><td style="height: 0px;border:0px;"></td></tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-<div class="div_table">
-	<div class="util-row">
-	    <div class="push-left">
-	        <h3>업체</h3>
+	        <h3>계약관계</h3>
 	    </div>
 	    <div class="push-right">
-			<button type="button" class="sbtn ico-add auth_css" onclick="javascript:addCustInfo();"><span></span>추가</button>
+			<!-- IF START 'detail_person' -->
+			<button type="button" class="sbtn ico-add auth_css" onclick="OpenWindows('pop_search_company2.jsp','pop_search_comapny', '800','700');"><span></span>계약업체추가</button>
+			<!-- IF END 'detail_person' -->
+			<!-- IFNOT START 'detail_person' -->
+			<button type="button" class="sbtn ico-add auth_css" onclick="OpenWindows('pop_search_company.jsp','pop_search_comapny', '860','700');"><span></span>계약업체추가</button>
+			<!-- IFNOT END 'detail_person' -->
 	    </div>
 	</div>
-	<div style="border-top: 2px solid #333;border-bottom: 1px solid #e0e0e0;">
-		<table id="comp_grid" class="inner_table" style="border-top:0px;border-bottom:0px;">
-			<thead>
-				<tr style="display: none;"><td style="height: 0px;border:0px;"></td></tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+	<div>
+	<table id="comp_grid" class="inner_table" style="border-top:0px;border-bottom:0px">
+		<thead>
+			<tr style="display: none;"><td style="height: 0px;border:0px;"></td></tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 	</div>
 </div>
-
+	
 <div class="div_table">
 	<div class="util-row">
 	    <div class="push-left">
@@ -131,66 +119,6 @@
 </table>
 </form>
 
-<form name="temp_form_ns" method="post">
-<table id="comp_template_ns" style="display: none">
-	<tr>
-		<td>
-			<input type="hidden" name="member_no"/>
-			<input type="hidden" name="cust_gubun" value="10"/>
-			<input type="hidden" name="vendcd"/>
-			<input type="hidden" name="post_code"/>
-			<input type="hidden" name="member_slno"/>
-			<input type="hidden" name="cust_sign_seq"/>
-			<table style="width:100%;border-top:0px;border-bottom:0px;">
-				<tr>
-					<td align="left" style="border: 0px;">
-						<!-- <b>업체구분:</b> -->
-						<input type="hidden" name="signer_name" required="Y" hname="업체구분" size="15" maxlength="15"/><!-- <span class="caution-text">※ 계약 관계명을 입력하세요. (갑,을,공급자,공급받는자 ...등)</span> -->
-					</td>
-					<!-- <td align="right" style="border: 0px;">
-						<button type="button" id="del_comp" name="del_comp" class="sbtn ico-delete auth_css" onclick="comp_grid.del(this)" style="display: show;"><span></span>업체삭제</button>
-					</td> -->
-				</tr>
-			</table>
-			<table class="inner_table">
-				<colgroup>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="23%"/>
-					<col width="10%"/>
-					<col width="24%"/>
-				</colgroup>
-				<tr>
-					<th>주소</th>
-					<td colspan="3"><input type="text" name="address" style="width:98%" required="Y"/></td>
-					<th>담당자</th>
-					<td><input type="text" name="user_name"style="width:98%" required="Y"/></td>
-				</tr>
-				<tr>
-					<th>상호</th>
-					<td colspan="3"><input type="text" name="member_name" style="width:98%" required="Y"/></td>
-					<th>이메일</th>
-					<td><input type="text" name="email"style="width:98%" required="Y" option="email"/></td>
-				</tr>
-				<tr>
-					<th>대표자</th>
-					<td><input type="text" name="boss_name"style="width:98%" required="Y"/></td>
-					<th>일반전화</th>
-					<td><input type="text" name="tel_num"style="width:98%"/></td>
-					<th name="hp_th">휴대폰</th>
-					<td name="hp_td">
-						<input type="text" name="hp1" maxlength="3" style="width:28%" required="Y"/><span name="hp_bar1">-</span>
-						<input type="text" name="hp2" maxlength="4" style="width:30%" required="Y"/><span name="hp_bar2">-</span>
-						<input type="text" name="hp3" maxlength="4" style="width:30%" required="Y"/>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-</form>
-
 <form name="temp_form" method="post">
 <table id="comp_template" style="display: none">
 	<tr>
@@ -201,18 +129,18 @@
 			<input type="hidden" name="post_code"/>
 			<input type="hidden" name="member_slno"/>
 			<input type="hidden" name="cust_sign_seq"/>
-			<table style="width:100%;border-top:0px;border-bottom:0px;">
+			<table style="width: 100%">
 				<tr>
 					<td align="left" style="border: 0px;">
-						<!-- <b>업체구분:</b> -->
-					<input type="hidden" name="signer_name" required="Y" hname="업체구분" size="15" maxlength="15"/><!-- <span class="caution-text">※ 계약 관계명을 입력하세요. (갑,을,공급자,공급받는자 ...등)</span> -->
+						<b>업체구분:</b>
+						<input type="text" name="signer_name" required="Y" hname="업체구분" size="15" maxlength="15"/> <span class="caution-text">※ 계약 관계명을 입력하세요. (갑,을,공급자,공급받는자 ...등)</span>
 					</td>
 					<td align="right" style="border: 0px;">
-						<button type="button" id="del_comp" name="del_comp" class="sbtn ico-delete auth_css" onclick="comp_grid.del(this)" style="display: show;"><span></span>삭제</button>
+						<button type="button" class="sbtn ico-delete auth_css" onclick="comp_grid.del(this)"><span></span>업체삭제</button>
 					</td>
 				</tr>
 			</table>
-			<table class="inner_table">
+			<table class="inner_table" style="margin-bottom:10px">
 				<colgroup>
 					<col width="10%"/>
 					<col width="23%"/>
@@ -237,12 +165,12 @@
 					<th>대표자</th>
 					<td><input type="text" name="boss_name"style="width:98%" required="Y"/></td>
 					<th>일반전화</th>
-					<td><input type="text" name="tel_num"style="width:98%"/></td>
-					<th name="hp_th">휴대폰</th>
-					<td name="hp_td">
-						<input type="text" name="hp1" maxlength="3" style="width:28%" required="Y"/><span name="hp_bar1">-</span>
-						<input type="text" name="hp2" maxlength="4" style="width:30%" required="Y"/><span name="hp_bar2">-</span>
-						<input type="text" name="hp3" maxlength="4" style="width:30%" required="Y"/>
+					<td><input type="text" name="tel_num"style="width:98%" required="Y"/></td>
+					<th>휴대폰</th>
+					<td>
+						<input type="text" name="hp1"maxlength="3" style="width:28%" required="Y"/>-
+						<input type="text" name="hp2"maxlength="4" style="width:30%" required="Y"/>-
+						<input type="text" name="hp3"maxlength="4" style="width:30%" required="Y"/>
 					</td>
 				</tr>
 			</table>
@@ -258,29 +186,39 @@
     <div class="help-content-body">
         <h4>작성안내</h4>
 		<ul>
-			<li>표준계약서식이 아닌 업체측 계약서 혹은 직접 작성한 계약서를 이용하여 전자계약 체결이 가능합니다.</li>
-			<li>표준계약서식이 아니므로 법무팀에 서식 검토 및 문의 후 사용하시기 바랍니다.</li>
+	        <!-- IF START 'Direct' -->
+				<li>오프라인에서 서면(종이)으로 체결한 계약서의 사본을 저장하실 때 사용하는 기능 입니다.</li>
+				<li>서면 계약서를 스캐너를 통해 파일로 만든 후 그 파일을 저장해야 하며 업체에게 전송되지 않습니다.</li>
+				<li>[계약업체추가] 버튼을 눌러 거래처를 선택 후 [작성] 버튼을 누르세요.</li>
+				<li>저장한 계약은 완료(보낸계약) 메뉴에서 확인하실 수 있습니다.</li>
+			<!-- IF END 'Direct' -->
+			<!-- IFNOT START 'Direct' -->
+				<li>나이스다큐에서 제공하는 계약 양식이 아닌 직접 작성한 계약서를 이용하여 계약을 체결하고자 하는 경우 사용하는 메뉴 입니다.</li>
+				<li>직접 작성한 계약서 갑지, 일반조건, 특수조건 등 계약서류를 직접 첨부를 하시면 됩니다.</li>
+				<li>정형화가 어려운 계약양식인 경우 사용 가능 합니다.</li>
+			<!-- IFNOT END 'Direct' -->
 		</ul>
     </div>
 </div>
 
 <script language="javascript">
-function formSubmit(f) {
-	if (validate(f)) {
+
+function formSubmit(f){
+	if(validate(f)){
 		var table = document.getElementById("comp_grid");
-		if (table.rows.length < 2) {
-			alert("거래처를 1개 이상 선택해 주세요.");
+		if(table.rows.length <3){
+			alert("계약관계사를 2개 이상 선택해 주세요.");
 			return false;
 		}
 		var comp_cnt = table.rows.length-1;
 		var chk = false;
 		var my_no = "{{_auth._MEMBER_NO}}";
-		for (var i=0; i<comp_cnt; i++) {
-			if (f["member_no"][i].value == my_no&& !chk) {
+		for(var i=0; i <comp_cnt; i ++){
+			if(f["member_no"][i].value == my_no&& !chk){
 				chk=true;
 			}
 		}
-		if (!chk) {
+		if(!chk){
 			alert("로그인한 업체는 계약관계사에 반드시 포함 되어야 합니다.");
 			return false;
 		}
@@ -289,48 +227,43 @@ function formSubmit(f) {
 	return false;
 }
 
-var comp_grid_ns = new MGRID("comp_grid_ns");
-comp_grid_ns.cells = table2array("comp_template_ns");
-comp_grid_ns.cellClassName = "comp_grid_cell";
-
 var comp_grid = new MGRID("comp_grid");
 comp_grid.cells = table2array("comp_template");
 comp_grid.cellClassName = "comp_grid_cell";
 
-function addClientInfo(data) {
+function addClientInfo(data){
 	var f = document.forms['form1'];
-	if (data != null) {
-		if (f["member_no"]) {
-			if (f['member_no'].type == "hidden") {
-				if (f["member_no"].value == data['member_no']) {
+	if(data!=null){
+		if(f["member_no"]){
+			if(f['member_no'].type=="hidden"){
+				if(f["member_no"].value==data['member_no']){
 					alert("이미 추가 되어 있는 업체 입니다.");
 					return;
 				}
-			} else {
+			}else{
 				var cnt = f['member_no'].length;
-			  	for (var i=0; i<cnt; i++) {
-					if (f["member_no"][i].value == data["member_no"]) {
-						alert("이미 추가 되어 있는 업체 입니다.");
-						return;
-					}
+			  	for(var i = 0; i < cnt; i++){
+					if(f["member_no"][i].value==data["member_no"]){
+					alert("이미 추가 되어 있는 업체 입니다.");
+					return;
+				}
 			  	}
 			}
 		}
-		SetFormValue("temp_form", "member_no", data["member_no"]);
-		SetFormValue("temp_form", "vendcd", data["vendcd"]);
-		SetFormValue("temp_form", "member_slno", data["member_slno"]);
-		SetFormValue("temp_form", "member_name", data["member_name"]);
-		SetFormValue("temp_form", "post_code", data["post_code"]);
-		SetFormValue("temp_form", "address", data["address"]);
-		SetFormValue("temp_form", "boss_name", data["boss_name"]);
-		SetFormValue("temp_form", "member_gubun", data["member_gubun"]);
-		SetFormValue("temp_form", "user_name", data["user_name"]);
-		SetFormValue("temp_form", "tel_num", data["tel_num"]);
-		SetFormValue("temp_form", "hp1", data["hp1"]);
-		SetFormValue("temp_form", "hp2", data["hp2"]);
-		SetFormValue("temp_form", "hp3", data["hp3"]);
-		SetFormValue("temp_form", "email", data["email"]);
-		SetFormValue("temp_form", "signer_name", "업체"); // 업체구분 기본값
+		SetFormValue("temp_form","member_no",data["member_no"]);
+		SetFormValue("temp_form","vendcd", data["vendcd"]);
+		SetFormValue("temp_form","member_slno", data["member_slno"]);
+		SetFormValue("temp_form","member_name", data["member_name"]);
+		SetFormValue("temp_form","post_code", data["post_code"]);
+		SetFormValue("temp_form","address", data["address"]);
+		SetFormValue("temp_form","boss_name", data["boss_name"]);
+		SetFormValue("temp_form","member_gubun", data["member_gubun"]);
+		SetFormValue("temp_form","user_name", data["user_name"]);
+		SetFormValue("temp_form","tel_num", data["tel_num"]);
+		SetFormValue("temp_form","hp1", data["hp1"]);
+		SetFormValue("temp_form","hp2", data["hp2"]);
+		SetFormValue("temp_form","hp3", data["hp3"]);
+		SetFormValue("temp_form","email", data["email"]);
 		comp_grid.cells = table2array("comp_template");
 		comp_grid.addRow();
 	}
@@ -338,17 +271,17 @@ function addClientInfo(data) {
 
 // 계약정보
 var cont_grid = new MGRID("cont_grid");
-function addContInfo(data) {
-	if (data != null) {
-		var i = 0;
+function addContInfo(data){
+	if(data!=null){
+		var i =0;
 		var grid_table = document.getElementById("cont_grid");
-		if (grid_table.rows.length-1 >= 1) {
+		if( grid_table.rows.length-1 >= 1){
 			alert("연관계약은 1개만 지정 가능 합니다.");
 			return;
 		}
 
-		SetFormValue("cont_form", "first_cont_no", data['cont_no']);
-		SetFormValue("cont_form", "first_cont_chasu", data['cont_chasu']);
+		SetFormValue("cont_form","first_cont_no", data['cont_no']);
+		SetFormValue("cont_form","first_cont_chasu", data['cont_chasu']);
 		document.getElementById("cont_name").innerHTML = data["cont_name"];
 		document.getElementById("cust_name").innerHTML = data['cust_name'];
 		document.getElementById("cont_date").innerHTML = data["cont_date"];
@@ -358,56 +291,25 @@ function addContInfo(data) {
 	}
 }
 
-// 업체 추가
-function addCustInfo(){
-	var table = document.getElementById("comp_grid");
-	if(table.rows.length < 2){
-		OpenWindows('pop_search_cust.jsp', 'pop_search_cust', '1100','700');
-	}else{
-		alert("한개의 업체만 추가 가능합니다.");
-		return;
-	}
-}
 </script>
 
 <!-- LOOP START 'cust' -->
 <script language="javascript">
-SetFormValue("temp_form_ns", "member_no", "{{cust.member_no}}");
-SetFormValue("temp_form_ns", "vendcd", "{{cust.vendcd}}");
-SetFormValue("temp_form_ns", "post_code", "{{cust.post_code}}");
-SetFormValue("temp_form_ns", "member_slno", "{{cust.member_slno}}");
-SetFormValue("temp_form_ns", "cust_sign_seq", "{{cust.sign_seq}}");
-SetFormValue("temp_form_ns", "address", "{{cust.address}}");
-SetFormValue("temp_form_ns", "user_name", "{{cust.user_name}}");
-SetFormValue("temp_form_ns", "member_name", "{{cust.member_name}}");
-SetFormValue("temp_form_ns", "email", "{{cust.email}}");
-SetFormValue("temp_form_ns", "boss_name", "{{cust.boss_name}}");
-SetFormValue("temp_form_ns", "tel_num", "{{cust.tel_num}}");
-SetFormValue("temp_form_ns", "hp1", "{{cust.hp1}}");
-SetFormValue("temp_form_ns", "hp2", "{{cust.hp2}}");
-SetFormValue("temp_form_ns", "hp3", "{{cust.hp3}}");
-SetFormValue("temp_form_ns", "signer_name", "농심"); // 업체구분 기본값
-comp_grid_ns.cells = table2array("comp_template_ns");
-comp_grid_ns.addRow();
-
-// 농심 업체 삭제버튼 제거, readOnly
-// document.getElementsByName('del_comp')[0].style.display = "none";
-document.getElementsByName('address')[0].readOnly = true;
-document.getElementsByName('user_name')[0].readOnly = true;
-document.getElementsByName('member_name')[0].readOnly = true;
-document.getElementsByName('email')[0].readOnly = true;
-document.getElementsByName('boss_name')[0].readOnly = true;
-document.getElementsByName('tel_num')[0].readOnly = true;
-
-// 농심 휴대폰 hidden
-document.getElementsByName('hp_th')[0].style.background = "white";
-document.getElementsByName('hp_th')[0].style.borderLeft = "none";
-document.getElementsByName('hp_td')[0].style.borderLeft = "none";
-document.getElementsByName('hp_th')[0].innerHTML = "";
-document.getElementsByName('hp_bar1')[0].innerHTML = "";
-document.getElementsByName('hp_bar2')[0].innerHTML = "";
-document.getElementsByName('hp1')[0].type= "hidden";
-document.getElementsByName('hp2')[0].type= "hidden";
-document.getElementsByName('hp3')[0].type= "hidden";
+SetFormValue("temp_form","member_no","{{cust.member_no}}");
+SetFormValue("temp_form","vendcd","{{cust.vendcd}}");
+SetFormValue("temp_form","post_code","{{cust.post_code}}");
+SetFormValue("temp_form","member_slno","{{cust.member_slno}}");
+SetFormValue("temp_form","cust_sign_seq","{{cust.sign_seq}}");
+SetFormValue("temp_form","address","{{cust.address}}");
+SetFormValue("temp_form","user_name","{{cust.user_name}}");
+SetFormValue("temp_form","member_name","{{cust.member_name}}");
+SetFormValue("temp_form","email","{{cust.email}}");
+SetFormValue("temp_form","boss_name","{{cust.boss_name}}");
+SetFormValue("temp_form","tel_num","{{cust.tel_num}}");
+SetFormValue("temp_form","hp1","{{cust.hp1}}");
+SetFormValue("temp_form","hp2","{{cust.hp2}}");
+SetFormValue("temp_form","hp3","{{cust.hp3}}");
+comp_grid.cells = table2array("comp_template");
+comp_grid.addRow();
 </script>
 <!-- LOOP END 'cust' -->

@@ -10,7 +10,7 @@ if(cont_no.equals("")||cont_chasu.equals("")){
 	return;
 }
 
-String ref = request.getHeader("referer");
+String ref = request.getHeader("referer"); 
 String listUrl = "";
 if(ref == null || !ref.startsWith("http://") || ref.indexOf("contend_send_list")<0)
 {
@@ -25,18 +25,21 @@ if(!re.equals(""))
 p.setVar("listUrl", listUrl);
 
 
+boolean isTemplate = false;// 우형 2021283
+
 String file_path = "";
 boolean gap_yn = false;// 로그인한 업체가갑인지 여부 cust_type == "01" 이면 갑이다.
 
 CodeDao codeDao = new CodeDao("tcb_comcode");
 String[] code_status = codeDao.getCodeArray("M008");
+String[] code_warr = codeDao.getCodeArray("M007");
 String[] code_change_gubun = codeDao.getCodeArray("M010");
 String[] code_auto_type = {"=>자동생성","1=>자동첨부","2=>필수첨부","3=>내부용"};
 
-boolean bIsKakao = u.inArray(_member_no, new String[]{"20130900194"});
+/* boolean bIsKakao = u.inArray(_member_no, new String[]{"20130900194"});
 boolean bviewContNo = u.inArray(_member_no, new String[]{"20160900378"}); // 소니코리아
 boolean bIsNh = u.inArray(_member_no, new String[]{"20121200734"}); //농협유통
-
+boolean bIsWshopping = u.inArray(_member_no, new String[]{"20150500312"}); //더블유소핑 */
 
 DataObject memberDao = new DataObject("tcb_member");
 DataSet member = memberDao.find("member_no = '"+_member_no+"' ");
@@ -45,16 +48,38 @@ if(!member.next()){
 	return;
 }
 
-ContractDao contDao = new ContractDao();
+StringBuffer	sb	=	new	StringBuffer();
+sb.append("select a.*, ");
+sb.append("       (select user_name from tcb_person where user_id = a.reg_id) writer_name, ");
+sb.append("       (select count (member_no) from tcb_cust where cont_no = a.cont_no and cont_chasu = a.cont_chasu and sign_dn is not null) sign_cnt, ");
+sb.append("       (select count (member_no) from tcb_cust where cont_no = a.cont_no and cont_chasu = a.cont_chasu and sign_dn is null) unsign_cnt, ");
+sb.append("       (select member_name from tcb_member where member_no = a.mod_req_member_no) mod_req_name, ");
+sb.append("       (select src_nm from tcb_src_adm where member_no = a.member_no and substr (src_cd, 0, 3) = substr (a.src_cd, 0, 3) and depth = '1') l_src_nm, ");
+sb.append("       (select src_nm from tcb_src_adm where member_no = a.member_no and substr (src_cd, 0, 6) = substr (a.src_cd, 0, 6) and depth = '2') m_src_nm, ");
+sb.append("       (select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = a.src_cd and depth = '3') s_src_nm, ");
+sb.append("       (select max(cont_chasu) from tcb_contmaster where cont_no = a.cont_no and status <> '00') max_cont_chasu ");
+sb.append("  from tcb_contmaster a ");
+sb.append(" where cont_no = '"+cont_no+"' ");
+sb.append("   and cont_chasu = '"+cont_chasu+"' ");
+sb.append("   and status in ('50', '91', '99') ");
+
+DataObject contDao = new DataObject("tcb_contmaster");
+DataSet cont =	contDao.query(sb.toString());	
+
+/* ContractDao contDao = new ContractDao(); */
 //contDao.setDebug(out);
-DataSet cont = contDao.find(
+/* DataSet cont = contDao.find(
 " cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and status in ('50','91','99') ",
-"tcb_contmaster.*"
-+" ,(select user_name from tcb_person where user_id = tcb_contmaster.reg_id AND  MEMBER_NO = '20201000001') writer_name "
-+" ,(select count(member_no) from tcb_cust where cont_no = tcb_contmaster.cont_no and cont_chasu=tcb_contmaster.cont_chasu and sign_dn is not null ) sign_cnt "
-+" ,(select count(member_no) from tcb_cust where cont_no = tcb_contmaster.cont_no and cont_chasu=tcb_contmaster.cont_chasu and sign_dn is null  ) unsign_cnt "
-+" ,(select member_name from tcb_member where member_no = tcb_contmaster.mod_req_member_no ) mod_req_name "
-);
+"a.*"
++" ,(select user_name from tcb_person where user_id = a.reg_id ) writer_name "
++" ,(select count(member_no) from tcb_cust where cont_no = a.cont_no and cont_chasu=a.cont_chasu and sign_dn is not null ) sign_cnt "
++" ,(select count(member_no) from tcb_cust where cont_no = a.cont_no and cont_chasu=a.cont_chasu and sign_dn is null  ) unsign_cnt "
++" ,(select member_name from tcb_member where member_no = a.mod_req_member_no ) mod_req_name "
++" ,(select src_nm from tcb_src_adm where member_no = a.member_no and substr(src_cd,0,3) = substr(a.src_cd,0,3) and depth='1') l_src_nm "
++" ,(select src_nm from tcb_src_adm where member_no = a.member_no and substr(src_cd,0,6) = substr(a.src_cd,0,6) and depth='2') m_src_nm "
++" ,(select src_nm from tcb_src_adm where member_no = a.member_no and src_cd = a.src_cd and depth='3') s_src_nm "
++" ,(select max(cont_chasu) from tcb_contmaster where cont_no = a.cont_no and status <> '00') max_cont_chasu "
+); */
 if(!cont.next()){
 	u.jsError("계약정보가 존재 하지 않습니다.");
 	return;
@@ -68,16 +93,10 @@ cont.put("reg_date", u.getTimeString("yyyy-MM-dd HH:mm", cont.getString("reg_dat
 cont.put("change_gubun_str", u.getItem(cont.getString("change_gubun"), code_change_gubun)+ (_member_no.equals("20150500217") ? "" : "("+cont_chasu+"차)"));
 if(_member_no.equals("20150600110"))//티알엔 조회 URL
 	cont.put("cont_url", "http://"+request.getServerName()+"/web/buyer/contract/cin.jsp?key="+u.aseEnc(cont_no+cont_chasu));
+if(!cont.getString("src_cd").equals(""))
+	cont.put("src_nm", cont.getString("l_src_nm")+" > "+cont.getString("m_src_nm")+" > "+cont.getString("s_src_nm"));
 
 cont.put("isCopyAble", cont.getString("cont_chasu").equals("0") && !_member_no.equals("20150600110"));
-if(bIsKakao) {
-	if(cont.getString("cont_etc2").equals("on"))
-		cont.put("cont_etc2", "▣ 양도 및 종료 계약");
-	else
-		cont.put("cont_etc2", "□ 양도 및 종료 계약 아님");
-
-	cont.put("cont_etc3", u.nl2br(cont.getString("cont_etc3")));
-}
 
 //프로젝트관리 사용시 //하이엔텍 사용 
 if(!cont.getString("project_seq").equals("")){
@@ -93,7 +112,10 @@ if(!cont.getString("project_seq").equals("")){
 
 // 추가 계약서 조회
 DataObject contSubDao = new DataObject("tcb_cont_sub");
-DataSet contSub = contSubDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and (gubun <> '40' or (gubun = '40' and option_yn in ('A','Y')))");
+DataSet contSub = null;
+contSub = contSubDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"' and (gubun <> '40' or (gubun = '40' and option_yn in ('A','Y')))");
+
+
 while(contSub.next()){
     contSub.put("cont_no", u.aseEnc(contSub.getString("cont_no")));
 	contSub.put("hidden", u.inArray(contSub.getString("gubun"), new String[]{"20","30"}));
@@ -160,7 +182,10 @@ while(cust_chain.next()){
 
 //계약서류 조회
 DataObject cfileDao = new DataObject("tcb_cfile");
-DataSet cfile = cfileDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'");
+DataSet cfile = null;
+cfile = cfileDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'");
+
+
 while(cfile.next()){
     cfile.put("cont_no", u.aseEnc(cfile.getString("cont_no")));
     cfile.put("auto_typeYN", "");
@@ -199,6 +224,22 @@ while(stamp.next()){
 	stamp.put("vendcd", u.getBizNo(stamp.getString("vendcd")));
 }
 
+
+//보증정보조회
+DataObject warrDao = new DataObject("tcb_warr");
+DataSet warr = warrDao.find(" cont_no = '"+cont_no+"' and cont_chasu = '"+cont_chasu+"'");
+while(warr.next()){
+    warr.put("cont_no", u.aseEnc(warr.getString("cont_no")));
+	warr.put("haja", warr.getString("warr_type").equals("20"));
+	warr.put("cred", warr.getString("warr_type").equals("80"));
+	warr.put("warr_type", u.getItem(warr.getString("warr_type"),code_warr));
+	warr.put("warr_date", u.getTimeString("yyyy-MM-dd", warr.getString("warr_date")));
+	warr.put("warr_sdate", u.getTimeString("yyyy-MM-dd", warr.getString("warr_sdate")));
+	warr.put("warr_edate", u.getTimeString("yyyy-MM-dd", warr.getString("warr_edate")));
+	warr.put("warr_amt", u.numberFormat(warr.getDouble("warr_amt"),0));
+}
+
+
 f.uploadDir = Startup.conf.getString("file.path.bcont_pdf") + file_path;
 
 // 업체별 구비 서류 조회
@@ -222,33 +263,6 @@ while(rfile_cust.next()){
 
 	String rfile_query = "";
 	
-	/* if(bIsNh){
-		if(rfile_cust.getString("sign_seq").equals("2")){
-			rfile_query =	 "  select a.attch_yn, a.doc_name, a.rfile_seq,a.allow_ext, a.uncheck_text,b.file_path, b.file_name, b.file_ext, b.file_size,  b.member_no, b.reg_gubun"
-							+"    from tcb_rfile a  "
-							+"    left outer join  tcb_rfile_cust b "
-							+"      on a.cont_no = b.cont_no  "
-							+"     and a.cont_chasu = b.cont_chasu "
-							+"     and a.rfile_seq = b.rfile_seq "
-							+"     and b.member_no in ('"+rfile_cust.getString("member_no")+"', '"+cont.getString("member_no")+"'  )"
-							+"   where  a.cont_no = '"+cont_no+"'  "
-							+"     and a.cont_chasu = '"+cont_chasu+"' " 
-							+"   and  (b.file_path not like '2019/%'  or  a.doc_name not like '%통장 사본%') "
-							+"   order by a.rfile_seq asc ";
-		}else{
-			rfile_query =	 "  select a.attch_yn, a.doc_name, a.rfile_seq,a.allow_ext, a.uncheck_text,b.file_path, b.file_name, b.file_ext, b.file_size,  b.member_no, b.reg_gubun"
-							+"    from tcb_rfile a  "
-							+"    left outer join  tcb_rfile_cust b "
-							+"      on a.cont_no = b.cont_no  "
-							+"     and a.cont_chasu = b.cont_chasu "
-							+"     and a.rfile_seq = b.rfile_seq "
-							+"     and b.member_no = '"+rfile_cust.getString("member_no")+"' "
-							+"   where  a.cont_no = '"+cont_no+"'  "
-							+"     and a.cont_chasu = '"+cont_chasu+"' " 
-									+"   and  (b.file_path not like '2019/%'  or  a.doc_name not like '%통장 사본%') "
-							+"   order by a.rfile_seq asc ";
-		}
-	}else{ */
 		if(rfile_cust.getString("sign_seq").equals("2")){
 			rfile_query =	 "  select a.attch_yn, a.doc_name, a.rfile_seq,a.allow_ext, a.uncheck_text,b.file_path, b.file_name, b.file_ext, b.file_size,  b.member_no, b.reg_gubun"
 							+"    from tcb_rfile a  "
@@ -398,16 +412,15 @@ if(cust_chain.size()>0) p.setLoop("cust_chain", cust_chain);
 p.setLoop("cust", cust);
 p.setLoop("cfile", cfile);
 p.setLoop("stamp", stamp);
+p.setLoop("warr", warr);
 p.setLoop("rfile_cust", rfile_cust);
 p.setLoop("efile", efile);
 p.setVar("query", u.getQueryString());
 p.setVar("list_query", u.getQueryString("cont_no,cont_chasu"));
 p.setVar("key", u.aseEnc(cont_no+cont_chasu));  // url복사용 key
 p.setVar("btn_urlcopy", u.inArray(_member_no, new String[]{"20120200001"}));  // 더블유컨셉만 URL복사 기능
-p.setVar("bIsNh", bIsNh);
-p.setVar("kakao", bIsKakao);
-p.setVar("ContManageNo", bviewContNo ? cont_no+"-"+cont_chasu+"-"+cont.getString("true_random"): "");
-p.setVar("btn_disuse", cont.getString("status").equals("50"));
+p.setVar("btn_disuse", u.inArray(_member_no, new String[]{"20130500619","20150500312","20171101813","20170501348"})&&cont.getString("status").equals("50"));//위메프, 더블유쇼핑, 에스케이스토아, 아워홈, 만 계약폐기 기능 사용 한다.
 p.setVar("form_script", f.getScript());
+p.setVar("isTemplate",isTemplate);
 p.display(out);
 %>

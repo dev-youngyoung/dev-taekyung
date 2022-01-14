@@ -39,7 +39,7 @@ int noti_cnt = 9;
 
 
 DataObject boardDao = new DataObject("tcb_board");
-boardDao.setDebug(out);
+/* boardDao.setDebug(out); */
 DataSet noti = boardDao.find("category = 'noti' and open_yn = 'Y' and open_date <= '"+u.getTimeString("yyyyMMdd")+"' ","*","open_date desc",noti_cnt);
 while(noti.next()){
 	noti.put("open_date", u.getTimeString("yyyy-MM-dd",noti.getString("open_date")));
@@ -59,7 +59,7 @@ for(int i=0 ; i<mobileos.length ; i++) {
 }
 
 p.setLayout("main");
-p.setDebug(out);
+/* p.setDebug(out); */
 p.setBody("main.index");
 p.setLoop("noti", noti);
 p.setVar("user_id", user_id);
