@@ -5,6 +5,11 @@
 		<queryformat>true</queryformat>
 	</db>
 	
+	<!-- <db>
+		<jndi>jdbc/econt</jndi>
+		<delimiter>$</delimiter>
+	</db> -->
+	
 	<dir>D:/nongshim/nongshim</dir>
 
 	<file>
