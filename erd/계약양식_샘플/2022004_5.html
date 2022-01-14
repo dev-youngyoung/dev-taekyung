@@ -1,0 +1,423 @@
+<script languate="javascript">
+          function addRow() {
+            var rowCnt = $("#tbody_item tr").length;
+            var obj = $("#tbody_item tr").first().clone();
+            $(obj).find("input[name='text_5_5_1']").attr("name", "text_5_5_" + (rowCnt + 1));
+            $(obj).find("input[name='text_5_6_1']").attr("name", "text_5_6_" + (rowCnt + 1));
+            $(obj).find("input[name='text_5_7_1']").attr("name", "text_5_7_" + (rowCnt + 1));
+            $(obj).find("input[name='text_5_8_1']").attr("name", "text_5_8_" + (rowCnt + 1));
+            $("#tbody_item").append(obj);
+          }
+
+          function delRow() {
+            var rowCnt = $("#tbody_item tr").length;
+            if (rowCnt == 1) {
+              alert("물건상세 정보를 최소 1개이상 등록하여야 합니다.");
+            } else {
+              var obj = $("#tbody_item tr").last();
+              obj.remove();
+            }
+          }
+        </script>
+                <table style="width: 100%;" border="0" cellpadding="3" cellspacing="0" class="lineTable">
+                    <tbody>
+                        <tr>
+                            <td style="border-right: none" rowspan="2">
+                                <img src="https://www.nicedocu.com/web/buyer/html/images/paper/20211206715/01.png" width="145px" height="28px" />
+                            </td>
+                            <td style="border-left: none; border-right: none; border-bottom: none;">부산광역시 금정구 금강로 328, KBR빌딩</td>
+                            <td style="border-left: none; border-right: none; border-bottom: none">대표번호 1670-9695</td>
+                            <td style="border-left: none; border-bottom: none; text-align: right">
+                                홈페이지 <u>www.kbrental.co.kr</u>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <p>
+                    <span style="font-size: 27px;"><b>렌탈물건 확인서</b></span>
+                </p>
+                <p>&nbsp;</p>
+                <p>
+                    <span style="font-size: 17px;">주식회사 한국기업렌탈 귀중<br /> <br /></span>
+                </p>
+                <table border="0" cellpadding="3" cellspacing="0" style="width: 100%">
+                    <colgroup>
+                        <col width="100px" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td style="background: #dd9696; font-size: 14px; border: 1px solid #000000" align="center">
+                                <b>렌탈내역</b>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td height="3px"></td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="3" cellspacing="0" class="lineTable" style="width: 100%;">
+                    <colgroup>
+                        <col width="100px" />
+                        <col width="271px" />
+                        <col width="100px" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td style="background: #f9eded; font-size: 14px" align="center">
+                                <b>계약번호</b>
+                            </td>
+                            <td align="center">
+                                <span><input type="text" name="text_5_1" class="cont_userno input_r" style="width: 95%" hname="계약번호" required="Y" errfunc="tabView(5)"></span>
+                            </td>
+                            <td style="background: #f9eded; font-size: 14px" align="center">
+                                <b>계약일자</b>
+                            </td>
+                            <td align="center">
+                                <span><input type="text" name="text_5_2" hname='계약일자(년도)' class='cont_year_area input_r' size="4" maxlength="4" fixbyte="4" onkeydown="num_only()" style="ime-mode: disabled" errfunc="tabView(5)" required="Y"></span>년 <span><input type="text" name="text_5_3" hname='계약일자(월)' class='cont_month_area input_r' size="2" maxlength="2" onkeydown="num_only()" style="ime-mode: disabled" errfunc="tabView(5)" required="Y"></span>월 <span><input type="text" name="text_5_4" hname='계약일자(일)' class='cont_day_area input_r' size="2" maxlength="2" onkeydown="num_only()" style="ime-mode: disabled" errfunc="tabView(5)" required="Y"></span>일
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background: #f9eded; font-size: 14px" align="center">
+                                <b>설치장소</b>
+                            </td>
+                            <td colspan="3">
+                                <span><input type="text" name="text_5_5" hname='설치장소' class='input_r' style="width: 95%" errfunc="tabView(5)" required="Y"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>&nbsp;</p>
+                <table border="0" cellpadding="3" cellspacing="0" style="width: 100%">
+                    <colgroup>
+                        <col width="100px" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td style="background: #dd9696; font-size: 14px; border: 1px solid #000000" align="center">
+                                <b>물건상세</b>
+                            </td>
+                            <td>
+                                <span id=pdf_pay_row style="background-color: #ccff99; float: right;"> <input onclick="addRow()" class="sbtn1" type="button" value="[+]" pdf="no:pdf_pay_row"> <input onclick="delRow()" class=sbtn1 type="button" value="[-]"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td height="3px"></td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="3" cellspacing="0" class="lineTable" style="width: 100%">
+                    <colgroup>
+                        <col width="100px" />
+                        <col />
+                        <col />
+                        <col />
+                    </colgroup>
+                    <tr>
+                        <td style="background: #f9eded; font-size: 14px" align="center">
+                            <b>항목</b>
+                        </td>
+                        <td style="background: #f9eded; font-size: 14px" align="center">
+                            <b>물건명</b>
+                        </td>
+                        <td style="background: #f9eded; font-size: 14px" align="center">
+                            <b>금액</b>
+                        </td>
+                        <td style="background: #f9eded; font-size: 14px" align="center">
+                            <b>공급자</b>
+                        </td>
+                    </tr>
+                    <tbody id="tbody_item">
+                        <tr>
+                            <td style="font-size: 14px">
+                                <span><input type="text" name="text_5_5_1" hname="항목" class='input_r' style="width: 100%" errfunc="tabView(5)" required="Y"></span>
+                            </td>
+                            <td style="font-size: 14px">
+                                <span><input type="text" name="text_5_6_1" hname="물건명" class='input_r' style="width: 100%" errfunc="tabView(5)" required="Y"></span>
+                            </td>
+                            <td style="font-size: 14px" align="right">
+                                <span><input type="text" name="text_5_7_1" hname="금액" class="input_r" style="text-align: right;" size="15" onkeypress="num_only()" onkeydown="num_only()" onkeyup="fnMakeComma();" required="Y" errfunc="tabView(5)"></span> 원
+                            </td>
+                            <td style="font-size: 14px">
+                                <span><input type="text" name="text_5_8_1" hname="공급자" class='input_r' style="width: 100%" errfunc="tabView(5)" required="Y"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>&nbsp;</p>
+                <table border="0" cellpadding="3" cellspacing="0" style="width: 100%">
+                    <colgroup>
+                        <col width="100px" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td style="background: #dd9696; font-size: 14px; border: 1px solid #000000" align="center">
+                                <b>렌탈이용자</b>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td height="3px"></td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="3" cellspacing="0" class="lineTable" style="width: 100%">
+                    <colgroup>
+                        <col width="100px" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <p>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <colgroup>
+                                        <col>
+                                    </colgroup>
+                                    <tr>
+                                        <td style="text-align: justify; font-size: 14px" class="noborder">
+                                            <b>본인은 렌탈[임대차] 계약서에 따라 물품을 정히 수령하였으며, 수령 물건은 당사가 신청한 물건과 규격, 사양, 성능 등이 적합하고 하자가 없는 상태로 지정장소에 설치 완료하였음을 확인합니다.</b>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </p>
+
+
+                                <p>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <colgroup>
+                                        <col>
+                                    </colgroup>
+                                    <tr>
+                                        <td class="noborder" align="center" style="font-size: 14px">
+                                            <b><span class="cont_year_area">____</span>.<span class="cont_month_area">__</span>.<span class="cont_day_area">__</span></b>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </p>
+
+
+
+                                <p>
+                                <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                                    <colgroup>
+                                        <col width="90px">
+                                        <col>
+                                    </colgroup>
+                                    <tr>
+                                        <td align="right" class="noborder" style="font-size: 14px">
+                                            <b>주 소 :</b>
+                                        </td>
+                                        <td class="noborder" style="font-size: 14px">
+                                            <span class="address_area_2">______</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" class="noborder" style="font-size: 14px">
+                                            <b>상 호 :</b>
+                                        </td>
+                                        <td class="noborder" style="font-size: 14px">
+                                            <span class="cust_name_area_2">_______</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" class="noborder" style="font-size: 14px">
+                                            <b>성 명 :</b>
+                                        </td>
+                                        <td class="noborder" style="font-size: 14px">
+                                            <span class="boss_name_area_2">___</span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p />
+                <pd4ml:page.break />
+                <table border="0" cellpadding="3" cellspacing="0" class="lineTable" style="width: 100%">
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제 1조(계약물건의 표시 및 발주금액)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">본인은 전면(또는 별첨의 명세) 기재의 렌탈물건과 금액을 확인하였습니다. 렌탈물건의 선정은 본인의 책임 하에 결정된 것이므로 물건의 선정, 견적서 등의 하자로 인한 모든 책임은 본인에게 귀속되며, 귀사는 책임이 없습니다.</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제2조 (렌탈물건 대금의 지급방법)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">본인이 귀사의 소정 양식에 따른 물건수령 확인란에 서명날인한 이후 귀사는 전면(또는 별첨의 명세) 공급자에게 물건대금을 지급하기로 합니다. 또한 본인 요청에 따라 계약금 혹은 중도금 형태로 물건 대금을 분할 지급한 후 납품 불이행, 하자 등 관련 문제가 발생하더라도 이는 본인의 요청에 따른 것으로서 귀사는 책임이 없습니다.</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제3조 (물건의 인도기한)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">물건수령 확인 이후에도 물건의 인도가 완료되지 못했을 경우, 본인은 렌탈물건의 공급자에게 직접 배상을 요구하기로 하며, 귀사는 아무런 책임이 없습니다.</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제4조 (물건의 하자부담)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">물건에 관한 하자담보, 기한 내 보증, 보수, 서비스, 기타 공급자의 편익공여 의무의 이행 등에 대하여는 본인과 공급자간 계약에 의하며, 귀사는 책임이 없습니다.</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col width="20px">
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제5조 (계약의 해제 및 해지)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; font-size: 14px" class="noborder">본인 또는 공급자에 다음 각 호의 하나에 해당하는 사유가 발생할 때에는 귀사는 렌탈물건의 발주 요청(또는 계약)을 해제 및 해지할 수 있다.</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">①</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">이 약정 조항을 위반한 때</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">②</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">어음교환소의 거래정지처분을 받았을 때</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">③</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">휴업 또는 폐업하거나 해산의 결의를 한 때</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">④</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">조세공과금의 체납으로 독촉을 받거나 보전 또는 압류처분을 받았을 때</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">⑤</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">가압류, 가처분, 압류, 경매신청, 파산, 화의개시 또는 회사정리절차 개시의 신청이 있거나 청산에 들어갈 때</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">⑥</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">영업활동 계속이 곤란하여 물건의 제작을 완수하지 못할 것으로 인정 될 때</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col width="20px">
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제6조 (물건수령자의 연대보증 의무)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; font-size: 14px" class="noborder">물건수령자인 본인은 공급자의 완전한 계약 이행을 연대하여 보증하며, 만일 공급자가 다음 각 조항 중 어느 한 가지를 불이행 또는 위반함으로서 귀사가 손해를 입을 경우 귀사가 정하는 바에 따라 본인의 책임 하에 이를 배상토록 한다.</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">①</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">물건의 제작에 대한 관리감독은 본인이 책임을 진다.</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">②</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">물건의 인수(설치, 성능보장을 위한 시운전, 품질 및 규격 등의 공인 검사기관에 의한 검사를 포함)는 본인의 책임 하에 모든 절차를 이행하며, 물건의 인수가 끝나는 즉시 본인은 귀사가 정하는 물건수령증을 발급하기로 한다.</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col width="20px">
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제7조 (담보제공 등 금지)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">①</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">본인은 렌탈물건이 압류, 가압류, 가처분 결정 또는 공장재단저당, 공장저당, 양도담보 등에 제공된 사실이 없음을 보장한다.</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" class="noborder" style="font-szie: 14px">②</td>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">렌탈 계약 체결일 현재 렌탈물건이 압류, 가압류, 가처분 결정 및 공장재단 저당, 공장저당, 양도담보 등에 제공된 사실이 밝혀진 경우, 또는 귀사의 소유권을 침해하는 여하한 행위를 한 사실이 밝혀진 경우에는 귀사는 즉시 발주 계약을 해제 또는 해지 할 수 있으며, 본인은 귀사가 입은 손해 및 손실액을 전액 배상하기로 한다.</td>
+                                </tr>
+                            </table>
+                            </p>
+
+                            <p>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 15px" class="noborder">
+                                        <b>제8조 (재판관할)</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: justify; font-size: 14px" class="noborder">본 약정에 관한 분쟁이 발생하여 소송할 필요가 있을 경우에는 귀 사의 본점 소재지 지방법원을 관할법원으로 한다.</td>
+                                </tr>
+                            </table>
+                            <p />
+
+                        </td>
+                    </tr>
+                </table>

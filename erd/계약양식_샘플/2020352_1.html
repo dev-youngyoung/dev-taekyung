@@ -1,0 +1,242 @@
+
+
+<script type="text/javascript">  
+    function addspecialrow(tableId){
+        var tableObj = document.getElementById(tableId).getElementsByTagName("tbody")[0];
+        var sData = document.getElementById(tableId).getElementsByTagName("tbody")[0].rows[0];
+
+         row = tableObj.insertRow(tableObj.rows.length);
+     
+          for(var i = 0; i < sData.cells.length; i++){
+              var cnt = document.getElementById(tableId).getElementsByTagName("tbody")[0].rows.length;
+              var td = sData.cells[i];
+              var cell = row.insertCell(i);
+              cell.align = td.align;
+              cell.style.padding = "2px"
+              cell.innerHTML = td.innerHTML;
+          } 
+    }
+
+    function delspecialrow(tableId){
+        var tableObj = document.getElementById(tableId).getElementsByTagName("tbody")[0];
+        var rowCnt = tableObj.rows.length;
+        if(rowCnt > 1){
+            tableObj.deleteRow(rowCnt-1);
+        }else{
+            alert("더 이상 삭제 할 수 없습니다.");
+        }
+    } 
+    
+    function speSum(){  
+        var f = document.forms['form1']; 
+        var total = 0; 
+        var vat = 0;
+        if(f['cont_text_a1'].value!="") {total += Number(f['cont_text_a1'].value.replaceAll(",",""));}
+        if(f['cont_text_a2'].value!=""){
+            total += Number(f['cont_text_a2'].value.replaceAll(",","")); 
+            
+            vat=Math.floor(total / 10)
+        }
+         
+        f['cont_text_a2'].value= fnMakeComma2(total+""); 
+        f['cont_text_a3'].value= fnMakeComma2(vat+""); 
+    }
+    
+    function speSum01(){  
+        var f = document.forms['form1']; 
+        var total_1 = 0; 
+
+        total_1 += Number(f['cont_text_a2'].value.replaceAll(",","")); 
+        
+        vat=Math.floor(total_1 / 10)
+        
+        total_1 += Number(f['cont_text_a3'].value.replaceAll(",","")); 
+            
+            
+     
+        f['cont_text_a3'].value= fnMakeComma2(vat+""); 
+        f['cont_text_a4'].value= fnMakeComma2(total_1+""); 
+       
+    }
+    
+  
+   
+
+    
+   
+    function calTotal(){ 
+        var f = document.forms['form1']; 
+        var supp_tax = 0;
+        var total_sum_arr = getElementsByClass("total");
+        
+        for(var j = 0 ; j < total_sum_arr.length ; j++){    // 입력값 calss만큼 돌면서 총 합계 구함
+            supp_tax += Number(total_sum_arr[j].value.replaceAll(",",""));
+            
+        } 
+        var cont_total =  supp_tax; 
+       
+        // 합계금액 계산
+       if(f['cont_text_a1'].value!=""){ 
+            cont_total += Number(f['cont_text_a1'].value.replaceAll(",",""));
+        }
+        document.getElementsByClassName("cont_total")[0].value =  fnMakeComma2(Math.round(cont_total).toString());  
+       
+    }
+    
+
+    function calTotal01(){ 
+        var f = document.forms['form1']; 
+        var supp_tax = 0;
+        var total_sum_arr = getElementsByClass("total_01");
+        
+        for(var j = 0 ; j < total_sum_arr.length ; j++){    // 입력값 calss만큼 돌면서 총 합계 구함
+            supp_tax += Number(total_sum_arr[j].value.replaceAll(",",""));
+            
+        } 
+        var cont_total_01 =  supp_tax; 
+       
+    
+        document.getElementsByClassName("cont_total_01")[0].value =  fnMakeComma2(Math.round(cont_total_01).toString());  
+       
+    }
+</script>
+
+  
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:justify"><b>[별첨1 - 판매상세내역]</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:justify">“구매자”와 “판매자”는 다음과 같이 공급상품의 내역 및 변제조건 등에 관해 합의한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"><b>1.</b></td>
+    <td style="text-align:left"><b>공급물품 상세</b><span id="pdf_row" style="background-color: #ccff99;float:center">
+            <button type="button" class="in_btn"   pdf="no:pdf_row" onclick="addspecialrow('special_grid_2')">+</button>
+            <button type="button" class="in_btn" onclick="delspecialrow('special_grid_2')">-</button> 
+        </span>   </td>
+</tr>
+<tr>
+    <td></td>
+    <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="lineTable" id="special_grid_2"> 
+        <colgroup><col width="10%"><col><col width="14%"><col width="14%"><col width="14%"><col width="14%"></colgroup> 
+         <thead>
+            <tr>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">구분</td> 
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">모델명</td>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">단가(원)</td>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">수량(건)</td>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">금액(원)</td>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">비고</td>
+         </tr>
+         </thead>
+          <tbody> 
+           <tr>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel1" class="input_r" required="Y"  hname="구분" style="width:80px;"  errfunc="tabView(1)"></span></td> 
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel2" class="input_r" required="Y"  hname="모델명" style="width:100%"  errfunc="tabView(1)"></span></td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel3" class="input_r" required="Y"  hname="단가(원)"  style="width:80px;text-align:right;"  onblur="fnMakeComma();"  onkeydown="num_only()" onkeypress="num_only()"  errfunc="tabView(1)"> </span></td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel4" class="input_r" required="Y" hname="수량(건)"   style="width:80px"  errfunc="tabView(1)"> </span></td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel5" class="input_r total"  required="Y" hname="금액(원)" style="width:80px;text-align:right;"  onblur="calTotal(this); fnMakeComma();speSum();speSum01();"   onkeydown="num_only()" onkeypress="num_only()"  errfunc="tabView(1)"></span></td>
+                  <td style="padding:2px;" align="center"><span><input type="text" name="cel6" class="input_n"  hname="비고" style="width:80px;text-align:left;"  errfunc="tabView(1)" ></span></td>
+            </tr> 
+        </tbody>
+        <tbody> 
+           <tr>
+                <td colspan="4" style=" text-align:center ; font-weight : bold;" >기타할부대금</td> 
+                <td style="padding:2px;" align="center"><span><input type="text" name="cont_text_a1" class="input_r"  required="Y" style="text-align:right;width:80px" onKeyPress="num_only()" onKeyDown="num_only()"  onblur="fnMakeComma();speSum01();"  errfunc="tabView(1)"></span></td>
+                <td  style=" text-align:center ; font-weight : bold;" ><span><input type="text" name="input_cel1" class="input_n"   hname="비고" style="width:80px;text-align:left;"  errfunc="tabView(1)" ></span></td> 
+           </tr>
+           <tr>
+                <td colspan="4" style=" text-align:center ; font-weight : bold;" >공급가액</td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cont_text_a2" class="input_n cont_total"  readonly style="text-align:right;width:80px" onKeyPress="num_only()" onKeyDown="num_only()" onblur="fnMakeComma();speSum01();" errfunc="tabView(1)"></span></td>
+                <td  style=" text-align:center ; font-weight : bold;" ><span><input type="text" name="input_cel2" class="input_n"   hname="비고" style="width:80px;text-align:left;"  errfunc="tabView(1)" ></span></td> 
+           </tr>
+           <tr>
+                <td colspan="4" style=" text-align:center ; font-weight : bold;" >VAT</td> 
+                <td style="padding:2px;" align="center"><span><input type="text" name="cont_text_a3" class="input_n" id="cont_text_a3"  readonly  style="text-align:right;width:80px" onKeyPress="num_only()" onKeyDown="num_only()" onblur="fnMakeComma();speSum01();" errfunc="tabView(1)"></span></td>
+                <td  style=" text-align:center ; font-weight : bold;" ><span><input type="text" name="input_cel3" class="input_n"   hname="비고" style="width:80px;text-align:left;"  errfunc="tabView(1)" ></span></td> 
+           </tr>
+           <tr>
+                <td colspan="4" style="text-align:center ;background-color: #E2EFD9; font-weight: bold;">공급대가</td> 
+                <td style="padding:2px;background-color: #E2EFD9;" align="center"><span><input type="text" name="cont_text_a4" class="input_n"  id="cont_text_a4" readonly style="text-align:right;width:80px" onKeyPress="num_only()" onKeyDown="num_only()" onblur="fnMakeComma();speSum01();" errfunc="tabView(1)"></span></td>
+                <td  style=" text-align:center ; background-color: #E2EFD9;font-weight : bold;" ></td> 
+           </tr>
+        </tbody>
+        </table>  
+    </td>
+</tr>
+
+</table>
+</p>
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"><b>2.</b></td>
+    <td style="text-align:justify"><b>대금납입일정</b><span id="pdf_row" style="background-color: #ccff99;float:center">
+            <button type="button" class="in_btn"   pdf="no:pdf_row" onclick="addspecialrow('special_grid_3')">+</button>
+            <button type="button" class="in_btn" onclick="delspecialrow('special_grid_3')">-</button> 
+        </span> </td>
+</tr>
+<tr>
+    <td colspan="2" valign="top" style="text-align:right">(단위 : 원)</td>
+</tr>
+<tr>
+    <td></td>
+    <td>
+          
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="lineTable" id="special_grid_3"> 
+        <colgroup><col width="25%"><col width="25%"><col width="25%"><col width="25%"></colgroup> 
+         <thead>
+            <tr>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">납부연월</td> 
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">금액</td>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">납부연월</td>
+              <td align="center" style="background-color: #E2EFD9; font-weight: bold;">금액</td>
+
+         </tr>
+         </thead>
+          <tbody> 
+           <tr>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel10" class="input_r" required="Y"  hname="납부연" style="width:20px"  errfunc="tabView(1)"></span>년 <span><input type="text" name="cel11" class="input_r" required="Y"  hname="납부월" style="width:15px"  errfunc="tabView(1)"></span>월말</td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel20" class="input_r total_01"  required="Y" hname="금액(원)" style="width:80px;text-align:right;"  onblur="calTotal01(this);fnMakeComma();speSum02();"   onkeydown="num_only()" onkeypress="num_only()"  errfunc="tabView(1)"></span></td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel30" class="input_r" required="Y" hname="납부연"   style="width:20px"  errfunc="tabView(1)"> </span>년 <span><input type="text" name="cel31" class="input_r" required="Y" hname="납부월"   style="width:15px"  errfunc="tabView(1)"> </span>월말</td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cel40" class="input_r total_01"  required="Y" hname="금액(원)" style="width:80px;text-align:right;"  onblur="calTotal01(this);fnMakeComma();speSum02();"   onkeydown="num_only()" onkeypress="num_only()"  errfunc="tabView(1)"></span></td>
+            </tr> 
+        </tbody>
+        <tbody> 
+           <tr>
+                <td colspan="3" style=" text-align:center ; font-weight : bold;" >합계</td>
+                <td style="padding:2px;" align="center"><span><input type="text" name="cont_text_a10" class="input_n cont_total_01"  readonly style="text-align:right;width:80px" onKeyPress="num_only()" onKeyDown="num_only()" onblur="fnMakeComma();" errfunc="tabView(1)"></span></td>
+           </tr>
+        </tbody>
+        </table>  
+    </td>
+</tr>
+
+</table>
+</p>

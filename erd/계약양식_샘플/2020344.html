@@ -1,0 +1,502 @@
+<script>
+    function mobileRecvValidate(){
+        var f = document.forms['form1'];
+        if(!document.getElementById("sign-popup-btn"))return;
+        if(validate(f,true)){
+            $( "#sign-popup-btn" ).trigger("click");
+        }
+    }
+</script>    
+
+<input type="hidden" name="recv_write_save">
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:justify;font-size: 25px;"><b>개인정보 수집·이용·제공 동의서</b></td>
+</tr>
+</table>
+</p>
+
+ 
+<span class="minput" mtype="check" mtitle="개인정보의 수집·이용 동의" mid="cont_radio_1_01">
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"><b>1.</b></td>
+    <td style="text-align:justify;font-weight: bold;">본인은 <span class="cust_name_area_1">(주)레즐러</span>(이하 "회사"라 함)에 재직근로자로서 인적자원관리상 개인정보제공이 필요하다는 것을 이해하고 있으며, 이를 위해 “개인정보보호법”등 규정 등에 따라 아래의 개인정보를 수집·이용하는 것에 동의합니다.</td>
+</tr>
+<tr>
+    <td style="text-align:justify"></td>
+    <td style="text-align:justify">
+        <table class="lineTable" width="100%" cellpadding="3" cellspacing="0" style="margin-top: 5px;">
+        <colgroup><col width="33%"><col width="33%"><col></colgroup>
+        <tbody>
+        <tr>
+              <td align="center" style="font-weight: bold;">개인정보 항목</td>
+              <td align="center" style="font-weight: bold;">수집·이용 목적</td>
+              <td align="center" style="font-weight: bold;">보유기간</td>
+         </tr>
+         <tr>
+              <td align="center"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup>
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">고용계약을 위해 필요한 정보</td>
+                </tr>
+                <tr>
+                    <td class="noborder"></td>
+                    <td style="text-align:left" class="noborder">: 성명, 국적, 주소 및 거주지, 이메일 주소, 전화번호, 휴대폰 번호 등 연락처, 가족사항, 병역사항, 학력, 경력사항, 면허 및 자격증, 외국어사항 등 채용을 위해 본인이 작성한 관련정보</td>
+                </tr>
+                <tr>
+                    <td class="noborder"></td>
+                    <td style="text-align:justify" class="noborder">(추후 변경되는 정보 포함)</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:left" class="noborder">회사의 법률 상 의무 준수를 위해 필요한 정보</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:left" class="noborder">기타 근무와 관련된 개인정보: 급여지급관련사항(은행 및 계좌번호), 단체보험가입관련사항, 복리후생지급관련사항 등</td>
+                </tr> 
+                </table> 
+            </td>
+              <td align="center" valign="top">
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup>
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">채용 전형</td>
+                </tr> 
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:left" class="noborder">근로관계에 근거하여 소득세법, 근로기준법, 시회보험법령, 기타 관련 법령에서 부과하는 의무 이행</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:left" class="noborder">인사이동, 상벌, 주요 근로조건 결정, 기타 인적자원관리</td>
+                </tr> 
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:justify" class="noborder"> 민원처리, 분쟁해결</td>
+                </tr> 
+                </table>  
+          </td>
+              <td align="left"  valign="top">보유기간은 개별 개인정보의 수집부터 삭제까지를 생애주기로 하고, 개별 법령의 규정에 명시된 자료의 보존기간으로 함.<br />개별법령에서 보유기간이 명시되어 있지 않은 경우에는 표준개인정보보호지침의 개인정보 파일 보유기간 책정기준표에서 정한 기간으로 책정함</td>
+         </tr>
+        </tbody>
+        </table> 
+    </td>
+</tr>
+</table>
+</p>
+</span>
+ 
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">※</td>
+    <td style="text-align:justify">위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 다만, 동의를 거부할 경우 원활한 인사관리(급여, 채용, 승진, 교육 등)가 진행되지 못할 수도 있음을 알려드립니다.</td>
+</tr>
+ <tr>
+     <td></td>
+      <td></td>
+     <td align="right" style="font-weight: bold;">개인정보의 수집<b>·</b>이용에 &nbsp;(<span><input type="checkbox" name="cont_radio_1_01" id="cont_radio_1_01" hname="개인정보 수집·이용에 대한 동의여부" required="Y" writable="Y"  errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의함 &nbsp; <span><input type="checkbox" name="cont_radio_1_01_1" writable="Y" errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의하지 않음)&nbsp; </td>
+ </tr>
+</table>
+</p>            
+ 
+
+<span class="minput" mtype="check" mtitle="민감정보의 수집·이용 동의" mid="cont_radio_1_02">
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"><b>2.</b></td>
+    <td style="text-align:justify;font-weight: bold;">본인은 상기 개인정보에 대한 동의와 별도로 아래의 민감 정보와 고유식별정보를 수집ㆍ이용 하는 것에 동의합니다.</td>
+</tr>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">
+        <table class="lineTable" width="100%" cellpadding="3" cellspacing="0" style="margin-top: 5px;">
+        <colgroup><col width="33%"><col width="33%"><col></colgroup>
+        <tbody>
+        <tr>
+              <td align="center" style="font-weight: bold;">민감정보의 항목</td>
+              <td align="center" style="font-weight: bold;">수집·이용 목적</td>
+              <td align="center" style="font-weight: bold;">보유기간</td>
+         </tr>
+         <tr>
+              <td align="center" valign="top"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup> 
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">신체장애</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:justify" class="noborder">국가보훈대상</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:justify" class="noborder">병력</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:justify" class="noborder">범죄경력</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">마.</td>
+                    <td style="text-align:justify" class="noborder">신용거래 및 신용능력정보</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">바.</td>
+                    <td style="text-align:justify" class="noborder">종교</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">사.</td>
+                    <td style="text-align:justify" class="noborder">개인위치 정보</td>
+                </tr> 
+                </table> 
+            </td>
+            <td align="center" valign="top"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup> 
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:left" class="noborder">우선채용대상자격 및 정부지원금 (장려금)</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:left" class="noborder">인사이동, 업무적합성 판단, 근태관리, 기타 인적자원관리</td>
+                </tr> 
+                </table> 
+            </td>
+              <td align="left" valign="top">보유기간은 특별히 영구 또는 장기간  보유해야 할 사정이 없는 한 상기 개인정보를 보유하는 기간 동안으로 함.</td>
+         </tr>
+        </tbody>
+        </table> 
+    </td>
+</tr>
+</table>
+</p>
+</span>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">※</td>
+    <td style="text-align:justify">위의 민감정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 다만, 동의를 거부할 경우 원활한 인사관리(급여, 채용, 승진, 교육 등)가 진행되지 못할 수도 있음을 알려드립니다.</td>
+</tr>
+ <tr>
+     <td></td>
+      <td></td>
+     <td align="right" style="font-weight: bold;">민감정보의 수집<b>·</b>이용에 &nbsp;(<span><input type="checkbox" name="cont_radio_1_02" id="cont_radio_1_02" hname="민감정보의 수집·이용에 대한 동의여부" required="Y" writable="Y"  errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의함 &nbsp; <span><input type="checkbox" name="cont_radio_1_02_1" writable="Y" errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의하지 않음)&nbsp; </td>
+ </tr>
+</table>
+</p>    
+
+<span class="minput" mtype="check" mtitle="고유식별정보의 수집·이용 동의" mid="cont_radio_1_03">
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup> 
+<tr>
+    <td valign="top"></td>
+    <td valign="top">
+        <table class="lineTable" width="100%" cellpadding="3" cellspacing="0" style="margin-top: 5px;">
+        <colgroup><col width="33%"><col width="33%"><col></colgroup>
+        <tbody>
+        <tr>
+              <td align="center" style="font-weight: bold;">고유식별정보의 항목</td>
+              <td align="center" style="font-weight: bold;">수집·이용 목적</td>
+              <td align="center" style="font-weight: bold;">보유기간</td>
+         </tr>
+         <tr>
+              <td align="center" valign="top">  
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup> 
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">주민등록번호</td>
+                </tr>
+                <tr>
+                    <td class="noborder"></td>
+                    <td style="text-align:justify" class="noborder">(외국인의 경우 외국인등록번호)</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:justify" class="noborder">운전면허번호</td>
+                </tr>
+                <tr>
+                    <td class="noborder"></td>
+                    <td style="text-align:justify" class="noborder">(운전면허가 필요한 업무자에 한함)</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:justify" class="noborder">자격증번호</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:justify" class="noborder">여권번호 (해외출장자에 한함)</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">마.</td>
+                    <td style="text-align:justify" class="noborder">보훈번호</td>
+                </tr> 
+                </table> 
+            </td>
+            <td align="center" valign="top"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup> 
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">개인정보 식별</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:justify" class="noborder">업무자격확인</td>
+                </tr> 
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:justify" class="noborder">해외출장 항공권 및 비자 발급시</td>
+                </tr> 
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:justify" class="noborder">보훈대상자 확인 </td>
+                </tr>  
+                </table> 
+            </td>
+              <td align="left" valign="top">보유기간은 특별히 영구 또는 장기간 보유해야 할 사정이 없는 한 상기 개인 정보를 보유하는 기간 동안으로 함.</td>
+         </tr>
+        </tbody>
+        </table> 
+    </td>
+</tr>
+</table>
+</p>
+</span>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">※</td>
+    <td style="text-align:justify">위의 고유식별정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 다만, 동의를 거부할 경우 원활한 인사관리(급여, 채용, 승진, 교육 등)가 진행되지 못할 수도 있음을 알려드립니다.</td>
+</tr>
+ <tr>
+     <td></td>
+      <td></td>
+     <td align="right" style="font-weight: bold;">고유식별정보의 수집<b>·</b>이용에 &nbsp;(<span><input type="checkbox" name="cont_radio_1_03" id="cont_radio_1_03" hname="고유식별정보의 수집·이용에 대한 동의여부" required="Y" writable="Y"  errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의함 &nbsp; <span><input type="checkbox" name="cont_radio_1_03_1" writable="Y" errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의하지 않음)&nbsp; </td>
+ </tr>
+</table>
+</p>    
+
+
+<span class="minput" mtype="check" mtitle="개인정보의 제3자 제공 및 위탁 동의" mid="cont_radio_1_04">
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"><b>3.</b></td>
+    <td style="text-align:justify;font-weight: bold;">본인은 회사가 아래와 같이 개인정보를 제3자에게 제공하거나 위탁하는 것에 동의합니다. </td>
+</tr>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">
+         <table class="lineTable" width="100%" cellpadding="3" cellspacing="0" style="margin-top: 5px;">
+        <colgroup><col width="25%"><col width="25%"><col width="25%"><col></colgroup>
+        <tbody>
+        <tr>
+              <td align="center" style="font-weight: bold;">제공받는자</td>
+              <td align="center" style="font-weight: bold;">제공하는 항목</td>
+              <td align="center" style="font-weight: bold;">이용 목적</td>
+              <td align="center" style="font-weight: bold;">정보보유 및 이용기간</td>
+         </tr>
+         <tr>
+              <td align="center" valign="top"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup>
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">건강검진기관</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:justify" class="noborder">생명,손해보험협회</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:justify" class="noborder">퇴직연금기관</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:justify" class="noborder">교육,훈련기관</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">마.</td>
+                    <td style="text-align:justify" class="noborder">신용정보집중기관</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">바.</td>
+                    <td style="text-align:left" class="noborder">인사 및 급여정보에 관련된 위탁사업자 및 자문기관</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">사.</td>
+                    <td style="text-align:justify" class="noborder">국가기관</td>
+                </tr> 
+                </table>  
+            </td>
+              <td align="center" valign="top"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup>
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">성명, 주민번호, 가족사항</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:left" class="noborder">주소, 이메일, 휴대전화번호 등 연락처</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:justify" class="noborder">학력, 근무경력</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:left" class="noborder">기타 인사 및 급여정보와 관련된 개인정보</td>
+                </tr> 
+                </table>  
+            </td>
+              <td align="center" valign="top"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup>
+                <tr>
+                    <td valign="top" class="noborder">가.</td>
+                    <td style="text-align:justify" class="noborder">입사자 채용업무,</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">나.</td>
+                    <td style="text-align:justify" class="noborder">입사자 채용 행정처리</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">다.</td>
+                    <td style="text-align:left" class="noborder">급여, 인사관리, 업무 등 취급위탁 업무 수행</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder">라.</td>
+                    <td style="text-align:justify" class="noborder">기타 자문기관과 업무협조</td>
+                </tr> 
+                </table>  
+            </td>
+              <td align="left" valign="top">제3자는 제공한 정보는 제3자에 대한 정보제공 제공·이용목적이 달성되면 즉시 파기함</td>
+         </tr>
+        </tbody>
+        </table> 
+    </td>
+</tr>
+</table>
+</p>
+</span>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">※</td>
+    <td style="text-align:justify">위의 본인, 가족 개인정보를 제3자에게 제공하거나 위탁하는 것에 대해 거부할 권리가 있습니다. 다만, 동의를 거부할 경우 원활한 인사관리(급여, 채용, 승진, 교육 등)가 진행되지 못할 수도 있음을 알려드립니다.</td>
+</tr>
+ <tr>
+     <td></td>
+      <td></td>
+     <td align="right" style="font-weight: bold;">본인, 가족 개인정보의 제3자 제공 및 위탁에 &nbsp;(<span><input type="checkbox" name="cont_radio_1_04" id="cont_radio_1_04" hname="본인, 가족 개인정보의 제3자 제공 및 위탁에 대한 동의여부" required="Y" writable="Y"  errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의함 &nbsp; <span><input type="checkbox" name="cont_radio_1_04_1" writable="Y" errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의하지 않음)&nbsp; </td>
+ </tr>
+</table>
+</p>    
+
+
+<span class="minput" mtype="check" mtitle="퇴사 후 개인정보 보관 동의" mid="cont_radio_1_05">퇴직자의 사용 증명은 근로기준법에 따라 퇴직 후 3년 이내에 청구할 수 있으며, 3년 보존기간 경과시 개인정보보호법에 따라 해당 정보를 파기해야 하나, 퇴직자의 경력 증명 및 조회를 위하여 3년 이상 개인정보를 보관하는 것에 동의합니다.</span>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">퇴직자의 사용 증명은 근로기준법에 따라 퇴직 후 3년 이내에 청구할 수 있으며, 3년 보존기간 경과시 개인정보보호법에 따라 해당 정보를 파기해야 하나, 퇴직자의 경력 증명 및 조회를 위하여 3년 이상 개인정보를 보관하는 것에 동의합니다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top"></td>
+    <td valign="top">※</td>
+    <td style="text-align:justify">위의 퇴직자 사용 증명을 위한 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 다만, 동의를 거부할 경우 퇴직 후 정보제공에 대한 제한을 받을 수 있습니다</td>
+</tr>
+ <tr>
+     <td></td>
+      <td></td>
+     <td align="right" style="font-weight: bold;">퇴사 후 개인정보 보관에  &nbsp;(<span><input type="checkbox" name="cont_radio_1_05" id="cont_radio_1_05" hname="퇴사 후 개인정보 보관에 대한 동의여부" required="Y" writable="Y"  errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의함 &nbsp; <span><input type="checkbox" name="cont_radio_1_05_1" writable="Y" errfunc="tabView(0)" onclick="if(this.checked){mobileRecvValidate();}" ></span>동의하지 않음)&nbsp; </td>
+ </tr>
+</table>
+</p>    
+ 
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">본인은 위 1~4항에 따르는 개인정보의 수집·제공·이용에 대한 동의를 거부하고 제공된 개인정보에 대한 열람·삭제·정정·처리정지를 요구할 권리가 있다는 사실을 알고 있으며 동의를 거부하거나 제공한 개인정보가 부정확할 시 이에 따른 채용, 인사이동, 업무지연 등 불이익을 받을 수 있다는 사실을 충분히 설명 받고 숙지하였으며, 그 불이익에 대한 책임은 본인에게 있음을 확인합니다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">본인은 업무 수행 중 취득한 타인의 개인정보를 제공의 범위를 벗어난 제3자에게 제공하지 않겠으며, 제공의 범위를 벗어난 유출행위에 대한 책임은 본인에게 있음을 확인합니다.</td>
+</tr>
+</table>
+</p>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="center"><span class="cont_year_area">__</span>년 <span class="cont_month_area">__</span>월 <span class="cont_day_area">__</span>일</td>
+    </tr>
+</table>
+<p></p> 
+<div style="height:50px;overflow-y:hidden;" class="cust_gubun_realperson_2"> 
+    <div class="sign_area" id="sign_area_2_1" style="position:relative;width:100px;height:50px;z-index:15;left:515px;top:-3px;" hname="근로계약서 서명" errfunc="tabDisplay(0)">
+        <div style="text-align:center;vertical-align:middle;">
+            클릭하여 계약서에 서명 하세요.
+        </div>
+    </div> 
+    <table width="100%" border="0" cellpadding="3" cellspacing="0" class="contract_font" style="margin-top:-40px">
+        <colgroup><col width="400px"><col width="75px"><col width="15px"><col></colgroup>
+        <tbody>
+        <tr>
+            <td></td>
+            <td>동의자 서명</td>
+            <td>:</td>
+            <td> <span class="cust_name_area_2">__</span><font color="white">....</font>(인) </td>
+        </tr>
+        </tbody>
+    </table>
+</div> 

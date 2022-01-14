@@ -1,0 +1,849 @@
+<script language="javascript">
+          function addOp(obj) {
+            var bChk = $(obj).is(":checked");
+            setOpDisplay(bChk);
+            $("td[id^='td_op_jumin_']").show();
+            $("td[id^='td_op_bupin_']").hide();
+            if(bChk)
+            {
+              $("input[name='add_op_buss']").prop("checked",false);
+              $("input[name^='op_vendcd_cd']").removeAttr("required");
+            }
+          }
+          
+          function addBussOp(obj)
+             {
+            var bChk = $(obj).is(":checked");
+            setOpDisplay(bChk);
+            $("td[id^='td_op_jumin_']").hide();
+            $("td[id^='td_op_bupin_']").show();
+            if(bChk)
+            {
+              $("input[name='add_op']").prop("checked",false);
+              $("input[name='op_birthday_1']").removeAttr("required");
+              $("input[name='op_gender_1']").removeAttr("required");
+            }
+             }
+          
+          function setOpDisplay(bChk)
+          {
+            $("input[name^='op_']").each(function(index, item) {
+              var errfunc = $(item).attr("errfunc");
+              if (bChk) {
+                if (typeof errfunc == "undefined" || errfunc == "" || errfunc == null) {
+                  $(item).attr("class", "input_n");
+                } else {
+                  $(item).attr("class", "input_r");
+                  $(item).attr("required", "Y");
+                }
+                $(item).removeAttr("disabled");
+              } else {
+                $(item).attr("class", "in_readonly");
+                $(item).attr("disabled", true);
+                $(item).removeAttr("required");
+                var    name    =    $(item).attr("name");
+                if(name == "op_radio")
+                {
+                  $("input[name^='op_radio']").prop("checked",false); 
+                }else
+                {
+                  $(item).val("");
+                }
+              }
+            });
+            
+            if(bChk)
+            {
+              $("tr[id^='tr_2_op_']").show();
+              $("tr[id^='tr_2_op_']").find("input").attr("required", "Y");
+              $("tr[id='tr_6_op']").show();
+              $("tr[id='tr_7_op']").show();
+            }else
+            {
+              $("tr[id^='tr_2_op_']").find("input").removeAttr("required");
+              $("tr[id^='tr_2_op_']").hide();
+              $("tr[id='tr_6_op']").hide();
+              $("tr[id='tr_7_op']").hide();              
+            }
+          }
+          
+          
+          function speChgClinet() {
+            var compGrid03Cnt = $("#comp_grid_2 .comp_grid_cell input[name='member_gubun']:input[value='03']").length;
+            
+            if(compGrid03Cnt > 0)
+            {
+              $("td[id^='td_jumin_']").show();
+              $("input[name='birthday1_2']").attr("required","Y");
+              $("input[name='birthday2_2']").attr("required","Y");
+              
+              $("input[name='text_36']").val("");
+              $("input[name='text_37']").val("");
+              $("td[id^='td_bupin_']").hide();
+            }else
+            {
+              $("input[name='birthday1_2']").removeAttr("required");
+              $("input[name='birthday2_2']").removeAttr("required");
+              $("input[name='birthday1_2']").val("");
+              $("input[name='birthday2_2']").val("");
+              $("td[id^='td_jumin_']").hide();
+              $("td[id^='td_bupin_']").show();
+            }
+          }
+          
+          function setBirth(index) {
+            var f = document.forms['form1'];
+            if (f['jumin_no'][index - 1] == null) {
+              alert("거래처를 먼저 선택하세요");
+              f['birthday1_' + index].value = "";
+              f['birthday2_' + index].value = "";
+              return;
+            }
+            
+            f['jumin_no'][index - 1].value = f['birthday1_' + index].value + f['birthday2_' + index].value;
+          }
+        </script>
+
+<input type="hidden" name="cont_html_chg_client" value="speChgClinet()">
+<table style="width: 100%;" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<tbody>
+		<tr>
+			<td style="border-right: none" rowspan="2"><img
+				src="https://www.nicedocu.com/web/buyer/html/images/paper/20211206715/01.png"
+				width="145px" height="28px" /></td>
+			<td
+				style="border-left: none; border-right: none; border-bottom: none;">부산광역시
+				금정구 금강로 328, KBR빌딩</td>
+			<td
+				style="border-left: none; border-right: none; border-bottom: none">대표번호
+				1670-9695</td>
+			<td style="border-left: none; border-bottom: none; text-align: right">
+				홈페이지 <u>www.kbrental.co.kr</u>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-left: none; border-right: none; border-top: none"></td>
+			<td style="border-left: none; border-right: none; border-top: none"></td>
+			<td style="border-left: none; border-top: none; text-align: right">&lt;회사용&gt;</td>
+		</tr>
+	</tbody>
+</table>
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0">
+	<colgroup>
+		<col />
+		<col width="60px" />
+		<col width="130px" />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="font-size: 20px"><b>렌탈[임대차]&nbsp;계약서</b></td>
+			<td>계약번호 :</td>
+			<td><span class="cont_userno">______</span></td>
+		</tr>
+		<tr>
+			<td>주식회사 한국기업렌탈 귀중</td>
+			<td>계약일자 :</td>
+			<td><span class="cont_year_area">____</span>년 <span
+				class="cont_month_area">__</span>월 <span class="cont_day_area">__</span>일
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="26px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center" rowspan="4">
+				<b>렌<br />탈<br />이<br />용<br />자
+			</b>
+			</td>
+			<td style="text-align: center"><b>성명</b></td>
+			<td><span class="boss_name_area_2">___</span></td>
+			<td style="text-align: center; display: none" id="td_jumin_1"><b>주민번호</b>
+			</td>
+			<td style="text-align: center;" id="td_bupin_1"><b>법인등록번호</b></td>
+			<td style="text-align: center; display: none" id="td_jumin_2"><input
+				type="checkbox" name="chk_person_2" style="display: none"
+				id="chk_person_2"> <span><input type="text"
+					name="birthday1_2" class="input_r" size="6" maxlength="6"
+					fixbyte="6" hname="주민번호" onkeydown="num_only()"
+					CHK_REQUIRED="chk_person_2" required="Y" onKeyup="setBirth(2);"
+					onChange="replaceInput(this, this.name, document.all.__html)"
+					errfunc="tabView(0)"></span> - <span><input type="text"
+					name="birthday2_2" class="input_r" size="1" maxlength="1"
+					fixbyte="1" hname="주민번호" onkeydown="num_only()"
+					CHK_REQUIRED="chk_person_2" required="Y" onKeyup="setBirth(2);"
+					onChange="replaceInput(this, this.name, document.all.__html)"
+					errfunc="tabView(0)"></span>******</td>
+			<td style="text-align: center;" id="td_bupin_2"><span><input
+					type="text" name="text_36" class="input_n" size="6" maxlength="6"
+					fixbyte="6" hname="법인번호" onkeydown="num_only()"></span> - <span><input
+					type="text" name="text_37" class="input_n" size="7" maxlength="7"
+					fixbyte="7" hname="법인번호" onkeydown="num_only()"></span></td>
+
+			<td style="text-align: center"><b>휴대전화</b></td>
+			<td><span><input type="text" name="text_38"
+					class="hp1_2 input_r" maxlength="3" size="3" errfunc="tabView(0)"
+					fixbyte="3" hname="휴대폰번호" required="Y" onkeydown="num_only()"
+					errfunc="tabView(0)" /></span> - <span><input type="text"
+					name="text_39" class="hp2_2 input_r" maxlength="4" size="4"
+					errfunc="tabView(0)" minbyte="3" hname="휴대폰번호" required="Y"
+					onkeydown="num_only()" errfunc="tabView(0)" /></span> - <span><input
+					type="text" name="text_40" class="hp3_2 input_r" maxlength="4"
+					size="4" errfunc="tabView(0)" fixbyte="4" hname="휴대폰번호"
+					required="Y" onkeydown="num_only()" errfunc="tabView(0)" /></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>사업장명</b></td>
+			<td><span class="cust_name_area_2">_______</span></td>
+			<td style="text-align: center"><b>사업자번호</b></td>
+			<td><span class="vendcd1_2">___</span>-<span class="vendcd2_2">__</span>-<span
+				class="vendcd3_2">_____</span></td>
+			<td style="text-align: center"><b>사업장전화</b></td>
+			<td><span class="telnum_area_2">______</span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>사업장주소</b></td>
+			<td colspan="5"><span class="address_area_2">______</span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>신분증확인</b></td>
+			<td colspan="5"><label><span><input type="radio"
+						name="radio_1" value="1" /></span> 주민등록증<label /> <label><span><input
+							type="radio" name="radio_1" value="2" /></span> 운전면허증<label /> (발급기관:<span><input
+							type="text" name="text_2" class="input_n" style="width: 100px"></span>/
+						발급일자: <span><input type="text" name="text_3"
+							class="input_n" style="width: 60px"></span>/ 면허번호: <span><input
+							type="text" name="text_4" class="input_n" style="width: 100px"></span>)
+				</td>
+		</tr>
+	</tbody>
+</table>
+</p>
+
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="26px" />
+		<col width="108px" />
+		<col width="370px" />
+		<col width="54px" />
+		<col width="54px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center" rowspan="4">
+				<b>계<br />약<br />조<br />건
+			</b>
+			</td>
+			<td style="text-align: center"><b>렌탈기간</b></td>
+			<td>렌탈물건 수령확인(설치)일로부터 <span><input type="text"
+					name="text_5" size="3" class="input_r" onkeydown="num_only()"
+					hname="렌탈기간" required="Y" errfunc="tabView(0)"></span>개월
+			</td>
+			<td colspan="2" style="text-align: center"><b>렌탈보증금</b></td>
+			<td><span><input type="text" name="text_6"
+					class="input_r" style="text-align: right" size="15"
+					onkeypress="num_only()" onkeydown="num_only()"
+					onkeyup="fnMakeComma();" hname="렌탈보증금" required="Y"
+					errfunc="tabView(0)"></span>원</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="text-align: center"><b>렌탈료</b></td>
+			<td rowspan="2">
+				<table style="width: 100%;" border="0" cellpadding="3"
+					cellspacing="0" class="lineTable">
+					<tbody>
+						<tr>
+							<td
+								style="background: #f9eded; border: solid #000000 1px; text-align: right">
+								<b>1 회 ~ <span><input type="text" name="text_7"
+										class="input_n" style="text-align: right" size="2"
+										onkeypress="num_only()" onkeydown="num_only()" /></span>회
+							</b>&nbsp;
+							</td>
+							<td align="right"><span><input type="text"
+									name="text_8" class="input_n" style="text-align: right"
+									size="15" onkeypress="num_only()" onkeydown="num_only()"
+									onkeyup="fnMakeComma();" hname="렌탈료"></span>원 [VAT 포함]</td>
+						</tr>
+						<tr>
+							<td
+								style="background: #f9eded; border: solid #000000 1px; text-align: right">
+								<b><span><input type="text" name="text_9"
+										class="input_n" style="text-align: right" size="2"
+										onkeypress="num_only()" onkeydown="num_only()" /></span>회 ~ <span><input
+										type="text" name="text_10" class="input_n"
+										style="text-align: right" size="2" onkeypress="num_only()"
+										onkeydown="num_only()" /></span>회</b>&nbsp;
+							</td>
+							<td align="right"><span><input type="text"
+									name="text_11" class="input_n" style="text-align: right"
+									size="15" onkeypress="num_only()" onkeydown="num_only()"
+									onkeyup="fnMakeComma();" hname="렌탈료"></span>원 [VAT 포함]</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td rowspan="2" style="text-align: center"><b>중도해지</b></td>
+			<td style="text-align: center"><b>위약금</b></td>
+			<td align="center">특약사항에 따름</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>인수금</b></td>
+			<td align="center">잔여렌탈료의 100%</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>종료시처리</b></td>
+			<td colspan="4"><label><span><input
+						type="checkbox" name="checkbox_1" value="Y" /></span> 소유권이전</label>[양도금액 <span><input
+					type="text" name="text_12" class="input_n"
+					style="text-align: right" size="15" onkeypress="num_only()"
+					onkeydown="num_only()" onkeyup="fnMakeComma();"></span>원 (VAT 포함)]
+				<label><span><input type="checkbox" name="checkbox_2"
+						value="Y" /></span> 반납</label> <label><span><input
+						type="checkbox" name="checkbox_3" value="Y" /></span> 재렌탈</label></td>
+		</tr>
+	</tbody>
+</table>
+<p />
+
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="26px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center" rowspan="3">
+				<b>납<br />부<br />방<br />법
+			</b>
+			</td>
+			<td style="text-align: center"><b>납부방법</b></td>
+			<td align="center">CMS자동이체</td>
+			<td style="text-align: center"><b>납입일자</b></td>
+			<td colspan="3" align="center"><label><span><input
+						type="radio" name="radio_2" value="1" hname="납일일자" required="Y"
+						errfunc="tabView(0)" /></span>1일</label> <label><span><input
+						type="radio" name="radio_2" value="5" hname="납일일자" required="Y"
+						errfunc="tabView(0)" /></span>5일</label> <label><span><input
+						type="radio" name="radio_2" value="10" hname="납일일자" required="Y"
+						errfunc="tabView(0)" /></span>10일</label> <label><span><input
+						type="radio" name="radio_2" value="15" hname="납일일자" required="Y"
+						errfunc="tabView(0)" /></span>15일</label> <label><span><input
+						type="radio" name="radio_2" value="15" hname="납일일자" required="Y"
+						errfunc="tabView(0)" /></span>20일</label> <label><span><input
+						type="radio" name="radio_2" value="etc" hname="납일일자" required="Y"
+						errfunc="tabView(0)" /></span>기타</label>(<span><input type="text"
+					name="text_13" style="width: 80px" class="input_n"></span>)</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>은행명</b></td>
+			<td><span><input type="text" name="text_14"
+					class="input_r" hname="은행명" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>계좌번호</b></td>
+			<td colspan="3"><span><input type="text" name="text_15"
+					class="input_r" hname="계좌번호" required="Y" errfunc="tabView(0)"></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>예금주</b></td>
+			<td><span><input type="text" name="text_16"
+					class="input_r" hname="예금주" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>관계</b></td>
+			<td><span><input type="text" name="text_17"
+					class="input_r" hname="관계" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>납입주기</b></td>
+			<td>매월 <label><span><input type="radio"
+						name="radio_3" value="후불" hname="납일주기" required="Y"
+						errfunc="tabView(0)" /></span>후불</label> <label><span><input
+						type="radio" name="radio_3" value="선불" hname="납일주기" required="Y"
+						errfunc="tabView(0)" /></span>선불</label>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</p>
+
+<span id="pdf_row" style="background-color: #CCFF99; font-size: 12px">
+	<label><input type="checkbox" name="add_op" value="Y"
+		pdf="no:pdf_row" onclick="addOp(this)" />연대보증인(개인) 여부</label>&nbsp; <label><input
+		type="checkbox" name="add_op_buss" value="Y" pdf="no:pdf_row"
+		onclick="addBussOp(this)" />연대보증인(사업자) 여부</label>
+</span>
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="26px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center" rowspan="4">
+				<b>연<br />대<br />보<br />증<br />인
+			</b>
+			</td>
+			<td style="text-align: center"><b>보증인성명</b></td>
+			<td><span><input type="text" name="op_member_name_1"
+					hname='연대보증인 성명' class='in_readonly' errfunc="tabView(0)"
+					onChange="replaceInput(this, this.name, document.all.__html)"
+					disabled></span></td>
+			<td style="text-align: center; display: none" id="td_op_jumin_1">
+				<b>주민번호</b>
+			</td>
+			<td style="display: none" id="td_op_jumin_2"><span><input
+					type="text" name="op_birthday_1" hname='연대보증인 주민번호'
+					class='in_readonly' size="6" maxlength="6" fixbyte="6"
+					onkeydown="num_only()" style="ime-mode: disabled"
+					errfunc="tabView(0)" disabled></span> - <span><input
+					type="text" name="op_gender_1" hname='연대보증인 주민번호'
+					class='in_readonly' size="1" maxlength="1" onkeydown="num_only()"
+					style="ime-mode: disabled" errfunc="tabView(0)" disabled></span>******
+			</td>
+			<td style="text-align: center;" id="td_op_bupin_1"><b>사업자번호<br />(법인번호)
+			</b></td>
+			<td style="" id="td_op_bupin_2" align="center"><span><input
+					type="text" name="op_vendcd_cd1_1" class="in_readonly"
+					maxlength="3" size="3" errfunc="tabView(0)" fixbyte="3"
+					hname="연대보증인 사업자번호" onkeydown="num_only()" errfunc="tabView(0)"
+					disabled /></span> - <span><input type="text"
+					name="op_vendcd_cd2_1" class="in_readonly" maxlength="2" size="2"
+					errfunc="tabView(0)" fixbyte="2" hname="연대보증인 사업자번호"
+					onkeydown="num_only()" errfunc="tabView(0)" disabled /></span> - <span><input
+					type="text" name="op_vendcd_cd3_1" class="in_readonly"
+					maxlength="5" size="5" errfunc="tabView(0)" fixbyte="5"
+					hname="연대보증인 사업자번호" onkeydown="num_only()" errfunc="tabView(0)"
+					disabled /></span><br /> (<span><input type="text"
+					name="op_text_1" class="in_readonly" size="6" maxlength="6"
+					fixbyte="6" hname="법인번호" onkeydown="num_only()" disabled></span> -
+				<span><input type="text" name="op_text_2" class="in_readonly"
+					size="7" maxlength="7" fixbyte="7" hname="법인번호"
+					onkeydown="num_only()" disabled></span>)</td>
+
+			<td style="text-align: center"><b>휴대전화</b></td>
+			<td><span><input type="text" name="op_hp1_1"
+					class="in_readonly" maxlength="3" size="3" errfunc="tabView(0)"
+					fixbyte="3" hname="연대보증인 휴대폰번호" onkeydown="num_only()"
+					errfunc="tabView(0)" disabled /></span> - <span><input type="text"
+					name="op_hp2_1" class="in_readonly" maxlength="4" size="4"
+					errfunc="tabView(0)" minbyte="3" hname="연대보증인 휴대폰번호"
+					onkeydown="num_only()" errfunc="tabView(0)" disabled /></span> - <span><input
+					type="text" name="op_hp3_1" class="in_readonly" maxlength="4"
+					size="4" errfunc="tabView(0)" fixbyte="4" hname="연대보증인 휴대폰번호"
+					onkeydown="num_only()" errfunc="tabView(0)" disabled /></span> <input
+				type="hidden" name="op_sign_type_1" value="10" /></td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>주소</b></td>
+			<td colspan="5"><span><input type="text"
+					name="op_address_1" hname='연대보증인 주소' class='in_readonly'
+					style="width: 540px" errfunc="tabView(0)" disabled></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>이메일</b></td>
+			<td colspan="3"><span><input type="text"
+					name="op_email_1" class='in_readonly' hname="연대보증인 이메일"
+					style="width: 100%" option="email" errfunc="tabView(0)" disabled></td>
+			<td style="text-align: center"><b>관계</b></td>
+			<td><span><input type="text" name="op_relation_1"
+					hname='연대보증인 관계' class='in_readonly' errfunc="tabView(0)" disabled></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>신분증확인</b></td>
+			<td colspan="5"><label><span><input type="radio"
+						name="op_radio" value="1" disabled /></span> 주민등록증<label /> <label><span><input
+							type="radio" name="op_radio" value="2" disabled /></span> 운전면허증<label />
+						(발급기관:<span><input type="text" name="op_2"
+							class="in_readonly" style="width: 100px" disabled></span>/ 발급일자:
+						<span><input type="text" name="op_3" class="in_readonly"
+							style="width: 60px" disabled></span>/ 면허번호: <span><input
+							type="text" name="op_4" class="in_readonly" style="width: 100px"
+							disabled></span>) </td>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p />
+
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="26px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col width="131px" />
+		<col width="108px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center" rowspan="3">
+				<b>물<br />건<br />정<br />보<br /> <br />및<br /> <br />수<br />령<br />확<br />인
+			</b>
+			</td>
+			<td style="text-align: center"><b>제조사</b></td>
+			<td><span><input type="text" name="text_18"
+					class="input_r" hname="제조사" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>물건명</b></td>
+			<td><span><input type="text" name="text_19"
+					class="input_r" hname="물건명" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>물건수량</b></td>
+			<td><span><input type="text" name="text_20"
+					class="input_r" hname="물건수량" required="Y" errfunc="tabView(0)"></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><b>모델명</b></td>
+			<td><span><input type="text" name="text_21"
+					class="input_r" hname="모델명" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>연식</b></td>
+			<td><span><input type="text" name="text_22"
+					class="input_r" hname="연식" required="Y" errfunc="tabView(0)"></span>
+			</td>
+			<td style="text-align: center"><b>S/N</b></td>
+			<td><span><input type="text" name="text_23"
+					class="input_r" hname="S/N" required="Y" errfunc="tabView(0)"></span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="6" valign="top">
+				<table style="width: 100%; border: none" border="0" cellpadding="3"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="noborder" style="text-align: center;"><b>렌탈물건
+									수령(설치) 확인증</b></td>
+						</tr>
+						<tr>
+							<td class="noborder">주식회사 한국기업렌탈 귀중</td>
+						</tr>
+						<tr>
+							<td class="noborder">귀사와의 렌탈 계약에 따라 물품을 정히 수령하였으며, 수령 물건은
+								당사가 신청한 물건과 규격, 사양, 성능 등이 적합하고 하자가 없는 상태로 지정장소에 설치 완료하였음을 확인합니다.</td>
+						</tr>
+					</tbody>
+				</table>
+				<table style="width: 100%;" border="0" cellpadding="3"
+					cellspacing="0" class="lineTable">
+					<tbody>
+						<tr>
+							<td style="text-align: center"><b>설치장소</b></td>
+							<td colspan="5">&nbsp;<label><span><input
+										type="radio" name="radio_4" value="Y" /></span> 사업장 주소지와 동일</label> <label><span><input
+										type="radio" name="radio_4" value="Y" /></span> 주소</label> : <span><input
+									type="text" name="text_24" style="width: 60%" class="input_n"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table> <br />
+				<table style="width: 100%; border: none" border="0" cellpadding="3"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="noborder"><b>수령(설치)일자 20<span><input
+										type="text" name="text_25" hname='수령(설치) 년도' class='input_r'
+										size="2" maxlength="2" fixbyte="2" onkeydown="num_only()"
+										style="ime-mode: disabled" errfunc="tabView(0)" required="Y"></span>년
+									<span><input type="text" name="text_26" hname='수령(설치) 월'
+										class='input_r' size="2" maxlength="2" onkeydown="num_only()"
+										style="ime-mode: disabled" errfunc="tabView(0)" required="Y"></span>월
+									<span><input type="text" name="text_27" hname='수령(설치) 일'
+										class='input_r' size="2" maxlength="2" onkeydown="num_only()"
+										style="ime-mode: disabled" errfunc="tabView(0)" required="Y"></span>일
+							</b></td>
+							<td class="noborder"><b>수령인(계약자) : <span
+									class="cust_name_area_2">____</span></b></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="128px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center" rowspan="2">
+				<b>세금계산서 수령</b>
+			</td>
+			<td style="border-bottom: none">귀사와 체결된 렌탈[임대차] 계약에 의한 세금계산서를 아래
+				E-Mail로 수령하고자 합니다.</td>
+		</tr>
+		<tr>
+			<td style="border-top: none">E-mail : <span><input
+					type="text" name="text_28" hname='세금계산서 수령 이메일'
+					class='input_r email_area_2' style="width: 50%" option="email"
+					errfunc="tabView(0)" required="Y"></span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p />
+<pd4ml:page.break />
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td>
+				<table style="width: 100%; border: none" border="0" cellpadding="3"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="noborder" colspan="2"><b>특약사항</b></td>
+						</tr>
+						<tr>
+							<td class="noborder" valign="top">□</td>
+							<td class="noborder">본 계약은 당사자 간 약정에 따라 렌탈기간 중 의무사용하기로 하며,
+								만일 렌탈 물건의 반납을 요청할 경우 중도해지위약금은 중도해지 인수금 조건에 준하여 납부하기로 한다.&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="noborder" valign="top">□</td>
+							<td class="noborder">본 계약 약관 제 16조, 제 17조, 제 18조에 따른 중도해지 시
+								중도해지금액은 본 계약 중도해지 인수금 조건의 중도해지금액에 따르기로 하며, 물건을 반환 또는 회수한 경우에도
+								영향을 미치지 아니한다.&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="noborder" colspan="2"><span><input
+									type="text" name="text_29" class='input_n' style="width: 100%"
+									value="□ "></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p />
+
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td valign="top">
+				<table style="width: 100%; border: none" border="0" cellpadding="3"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="noborder" colspan="2"><b>[출금이체 동의여부 사실 통지 안내]</b>
+							</td>
+						</tr>
+						<tr>
+							<td class="noborder" colspan="2">CMS제도의 안정적인 운영을 위하여 고객의(은행
+								등 금융회사 및 이용기관 보유) 연락처 정보를 활용하여 문자메세지로 고객의 출금이체 동의여부 사실을 통지할 수
+								있습니다.&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="noborder" colspan="2"><b>[금융거래정보의 제공 동의]</b></td>
+						</tr>
+						<tr>
+							<td class="noborder" colspan="2">본 신청과 관련하여 본인은 다음
+								금융거래정보(거래은행명, 계좌번호)를 신용카드 등 자동승인을 신규 신청하는 때로부터 해지 신청할 때까지 상기
+								청구기관(청구기관의 결제대행 업체를 포함함)에 제공하는 것에 대하여 「금융실명거래 및 비밀보장에 관한 법률」의
+								규정에 따라 동의합니다.</td>
+						</tr>
+						<tr>
+							<td class="noborder"><b><span class="cont_year_area">____</span>년
+									<span class="cont_month_area">__</span>월 <span
+									class="cont_day_area">__</span>일</b></td>
+							<td class="noborder"><b>신청인(계약자) : <span
+									class="cust_name_area_2">____</span></b></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<table style="width: 100%; border: none" border="0" cellpadding="3"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="noborder"><b>[렌탈채권의 양도승낙]</b></td>
+						</tr>
+						<tr>
+							<td class="noborder">본인이 ㈜한국기업렌탈의 렌탈이용자로 신청한 본 렌탈계약에 따라
+								㈜한국기업렌탈이 가지는 렌탈료 채권을 아래에 지정된 채권양수인에게 양도하고, 본인은 이러한 렌탈채권 양도에 대하여
+								이의없이 승낙합니다. &nbsp;&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="noborder"><b>[채권양수인의 지정]</b></td>
+						</tr>
+						<tr>
+							<td class="noborder">본 렌탈 채권을 양수하는 채권양수인은 ㈜한국캐피탈이며, 렌탈계약 체결
+								완료와 함께 채권양수인이 확정되었습니다.</td>
+						</tr>
+					</tbody>
+				</table> <br />
+				<table style="width: 100%;" border="0" cellpadding="3"
+					cellspacing="0" class="lineTable">
+					<tbody>
+						<tr>
+							<td rowspan="2" style="text-align: center">승낙일</td>
+							<td rowspan="2" style="text-align: center">20 년 월 일</td>
+							<td style="text-align: center">양도인</td>
+							<td style="text-align: center">㈜한국기업렌탈</td>
+						</tr>
+						<tr>
+							<td style="text-align: center">양수인</td>
+							<td style="text-align: center">비엔케이캐피탈(주)</td>
+						</tr>
+					</tbody>
+				</table> <br />
+				<table style="width: 100%; border: none" border="0" cellpadding="3"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="noborder"><b><span class="cont_year_area">____</span>년
+									<span class="cont_month_area">__</span>월 <span
+									class="cont_day_area">__</span>일</b></td>
+							<td class="noborder"><b>신청인(계약자) : <span
+									class="cust_name_area_2">____</span></b></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</p>
+
+<p>
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="128px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td style="background: #dd9696; text-align: center"><b>고객유의사항</b>
+			</td>
+			<td>
+				<table style="width: 100%;" cellpadding="3" cellspacing="0">
+					<tbody>
+						<tr>
+							<td valign="top" class="noborder">1.</td>
+							<td class="noborder">렌탈이용자는 렌탈상품 및 정보, 렌탈[임대차] 계약 및 약관을 제공받아
+								빠짐없이 숙지하시기 바랍니다.</td>
+						</tr>
+						<tr>
+							<td valign="top" class="noborder">2.</td>
+							<td class="noborder">렌탈상품의 유지보수(A/S)는 제조사(또는 판매사)의 규정을 따르며,
+								무상 유지보수(A/S)의 기준을 충족하지 못하는 경우에는 렌탈이용자의 책임과 비용으로 처리합니다.</td>
+						</tr>
+						<tr>
+							<td valign="top" class="noborder">3.</td>
+							<td class="noborder">렌탈이용자는 렌탈물건의 설치 후에는 렌탈 물건의 특성상 (상품가치의
+								현저한 훼손 등의 사유로) 청약을 철회할 수 없습니다.</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table style="width: 100%; border: none" border="0" cellpadding="3"
+	cellspacing="0">
+	<tbody>
+		<tr>
+			<td colspan="8"
+				style="border-left: 1px solid #ffffff; border-right: 1px solid #ffffff">렌탈이용자는
+				렌탈 약관 및 출금이체 약관의 주요 내용에 대하여 설명을 듣고 잘 이해한 후 본인의 의사에 따라 본 계약을 체결하며, 위
+				계좌에서 렌탈료가 출금, 결제되는 것에 동의합니다.</td>
+		</tr>
+	</tbody>
+</table>
+
+<table style="width: 100%;" border="0" cellpadding="3" cellspacing="0"
+	class="lineTable">
+	<colgroup>
+		<col width="128px" />
+		<col width="239px" />
+		<col width="128px" />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td
+				style="text-align: center; border-top: 3px solid; border-left: 3px solid; border-bottom: 3px solid">
+				<b>렌탈이용자<br />(고객)
+			</b>
+			</td>
+			<td style="border-top: 3px solid; border-bottom: 3px solid">주 소
+				: <span class="address_area_2">__</span><br /> 회사명 : <span
+				class="cust_name_area_2">__</span><br /> 성명 : <span
+				class="boss_name_area_2">__</span>
+			</td>
+			<td style="border-top: 3px solid; border-bottom: 3px solid"
+				align="center"><b>렌탈회사</b></td>
+			<td
+				style="border-top: 3px solid; border-bottom: 3px solid; border-right: 3px solid"
+				align="center">
+
+				<table style="width: 100%;" border="0" cellpadding="3"
+					cellspacing="0">
+					<colgroup>
+						<col />
+						<col width="50px" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<td class="noborder" colspan="2">부산광역시 금정구 금강로 328</td>
+						</tr>
+						<tr>
+							<td class="noborder">주식회사 한국기업렌탈</td>
+							<td class="noborder"><img
+								src="https://www.nicedocu.com/file/supplier/images/sign/buyer/sign_20211206715.png"
+								width="50px" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>

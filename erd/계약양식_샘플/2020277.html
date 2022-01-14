@@ -1,0 +1,527 @@
+
+
+ 
+<script>
+function speSetSignAll(data){
+        alert("모든 계약서 및 동의서에 일괄 서명 됩니다.");
+        var sign_img_html = document.getElementById(data['signature_object_name']).innerHTML;
+        document.getElementById("sign_area_2_1").innerHTML = sign_img_html;
+        document.getElementById("sign_area_2_2").innerHTML = sign_img_html;
+      /*   document.getElementById("sign_area_2_3").innerHTML = sign_img_html;  */
+        document.getElementById("sign_area_2_4").innerHTML = sign_img_html;
+        document.getElementById("sign_area_2_5").innerHTML = sign_img_html;   
+}
+  
+
+function chgGubun_0(gubun) {
+    var table = document.getElementById("gubun_table"); 
+    var hide_area = getElementsByClass("sh_0_area", table);
+   
+    for (var i = 0; i < hide_area.length; i++) {
+        hide_area[i].style.display = "none";
+        var required = hide_area[i].getElementsByTagName("input");
+        for(var j = 0 ; j < required.length ; j++){
+            required[j].removeAttribute("required");
+        }
+    } 
+    var show_area = getElementsByClass("sh_0_area_" + gubun, table);
+    for (var i = 0; i < show_area.length; i++) {
+        show_area[i].style.display = "";
+        var required = show_area[i].getElementsByTagName("input");
+        for(var j = 0 ; j < required.length ; j++){
+            required[j].setAttribute("required","Y");
+        }
+    }
+} 
+
+function contHtmlOnload2(){
+    var f = document.forms['form1'];
+    if(f['sign_able'].value.toLowerCase() == "true"){ 
+        var sign_year = f['sysdate'].value.substring(0,4);
+        var sign_month = f['sysdate'].value.substring(4,6);
+        var sign_day = f['sysdate'].value.substring(6,8);
+        replaceInput(sign_year, 'sign_year_2', document.all.__html);    
+        replaceInput(sign_month, 'sign_month_2', document.all.__html);    
+        replaceInput(sign_day, 'sign_day_2', document.all.__html);
+    }
+}
+
+
+function chgContDate_a(num){
+    var f = document.forms['form1'];
+    var as =  document.forms['form1']['cont_syear'].value + "-" + document.forms['form1']['cont_smonth'].value + "-" + document.forms['form1']['cont_sday'].value ;
+
+
+   var arr =as.split("-");
+
+    if(arr.length==3){ 
+        var dt = new Date(arr[0] , arr[1] , arr[2]); 
+        dt.setMonth(dt.getMonth() +num);
+         f['cont_eyear'].value  = dt.getFullYear() ;  
+         f['cont_emonth'].value  =  dt.getMonth();
+         f['cont_eday'].value  =  dt.getDate(); 
+    }
+}  
+ 
+</script>
+<input type="hidden" name="cont_html_onload2" value="contHtmlOnload2()"> 
+<input type="hidden" name="recv_write_save">    
+ 
+<p> </p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+ <tbody>
+  <tr> 
+   <td align="center">
+    <div style="font-size:23px;line-height:23px;font-weight:bold">근 로 계 약 서
+     <span id="pdf_row" class="no_pdf"  style="BACKGROUND-COLOR: #ccff99">(<span >
+            <select name="sel_01" class="input_r sel_01" pdf="no:pdf_row" style="font-size:13pt; font-weight:bold" hname="구분" required="Y" errfunc="tabView(0)" onchange="chgGubun_0(this.value);">
+                <option value="일반">일반</option> 
+                <option value="새벽">새벽</option>
+                <option value="주말">주말</option>  
+            </select>
+        </span>)</span>  
+    </div>
+   </td> 
+  </tr> 
+ </tbody>
+</table> 
+<p></p>
+
+
+<table class="lineTable" width="100%" cellpadding="3" cellspacing="0" style="margin-top: 20px; margin-bottom: 10px;">
+<colgroup><col width="13%"><col width="15%"><col width="25%"><col width="15%"><col width="25%"></colgroup>
+<tbody>
+<tr>
+      <td rowspan="3" align="center" style="font-weight: bold; background-color: #FBFAF7;">사업주</td>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">사업체명칭</td>
+      <td align="center"><span class="cust_name_area_1">_______</span></td>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">사업 종류</td>
+      <td align="center">배송 서비스업</td>
+ </tr>
+ <tr>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">대 표</td>
+      <td colspan="3" align="center"><span class="boss_name_area_1">__</span></td>
+ </tr>
+ <tr>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">소 재 지</td>
+      <td colspan="3" align="center"><span class="address_area_1">__</span></td>
+ </tr>
+ <tr>
+      <td rowspan="3" align="center" style="font-weight: bold; background-color: #FBFAF7;">근로자</td>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">성 명</td>
+      <td colspan="3" align="center"><span class="cust_name_area_2">_______</span></td>
+ </tr>
+ <tr>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">생년월일</td>
+      <td align="center"><span class="boss_birth_date_2">____-__-__</span></td>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">연락처</td>
+      <td align="center"><span class="hp1_2">___</span>-<span class="hp2_2">____</span>-<span class="hp3_2">____</span></td>
+ </tr>
+ <tr>
+      <td align="center" style="font-weight: bold; background-color: #FBFAF7;">주 소</td>
+      <td colspan="3" align="center"><span class="address_area_2">__</span></td>
+ </tr>
+</tbody>
+</table>
+   
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:justify"><span class="cust_name_area_1">_______</span> (이하 “사업주”이라 한다)과 <span class="cust_name_area_2">_______</span> (이하 "근로자" 이라 한다)은(는) 상호간에 근로기준법 및 회사의 제반규칙을 성실히 준수할 것을 약정하고 다음과 같이 근로계약을 체결한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제1조 (계약기간)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">근로계약은 <span><input type="text" name="cont_syear" style="vertical-align: middle;" size="4" maxlength="4" class="input_r cont_syear" hname="근로계약" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"  onblur ="chgContDate_a(3)" ></span>년 
+       <span><input type="text" name="cont_smonth" style="vertical-align: middle;" size="2" maxlength="2" class="input_r cont_smonth" hname="근로계약" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"  onblur ="chgContDate_a(3)" ></span>월 
+       <span><input type="text" name="cont_sday" style="vertical-align: middle;" size="2" maxlength="2" class="input_r cont_sday" hname="근로계약" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"  onblur ="chgContDate_a(3)" ></span>일부터 
+       <span><input type="text" name="cont_eyear" style="vertical-align: middle;" size="4" maxlength="4" class="input_r cont_eyear" hname="근로계약" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>년 
+       <span><input type="text" name="cont_emonth" style="vertical-align: middle;" size="2" maxlength="2" class="input_r cont_emonth" hname="근로계약" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>월 
+       <span><input type="text" name="cont_eday" style="vertical-align: middle;" size="2" maxlength="2" class="input_r cont_eday" hname="근로계약" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>일까지로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">본 계약은 제1항의 근로계약기간의 만료로 자동 종료된다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제2조 (담당업무와 근무지)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“근로자”은 “사업주”이 위임하는 업무를 성실히 수행하여야 하며, 업무는 (B마트 물류센터 재고관리)로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“근로자”의 근무장소는 (B마트 전 지점)로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">업무상 필요한 경우에 “사업주”은 제1항 및 제2항에서 정한 사항을 변경할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제3조 (근로시간 및 휴게시간)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“근로자”의 근로시간 및 휴게시간은 다음과 같으며, 아래의 시간은 업무의 내용, 계절 등 “사업주”의 업무형편에 따라 변경될 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td colspan="2">
+        <table class="lineTable" width="100%" cellpadding="3" cellspacing="0" style="margin-top: 5px; ">
+        <colgroup><col width="15%"><col><col  width="30%"></colgroup>
+        <tbody>
+        <tr>
+              <td align="center" style="font-weight: bold; background-color: #FBFAF7;">근무일</td>
+              <td align="center" style="font-weight: bold; background-color: #FBFAF7;">근로시간</td>
+              <td align="center" style="font-weight: bold; background-color: #FBFAF7;">휴게시간</td>
+         </tr>
+         <tr>
+              <td align="center"><span class="sh_0_area sh_0_area_일반 sh_0_area_새벽" >주5일<br />(주중 2일 휴무)</span><span class="sh_0_area sh_0_area_주말"  style="display: none">주 2일<br />(주말 근무)</span></td>
+              <td align="center"> 
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup><col width="20px"><col></colgroup>
+                <tr>
+                    <td colspan="2" style="text-align:center" class="noborder">현장스케줄을 고려하여 근무조를 상호협의하기로 함</td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder"></td>
+                    <td style="text-align:center" class="noborder">- <span class="sh_0_area sh_0_area_일반" >오픈조일 경우, 08:00~17:00</span> <span class="sh_0_area sh_0_area_새벽"  style="display: none">오픈조-1 일 경우, 05:00~10:00</span> <span class="sh_0_area sh_0_area_주말"  style="display: none">오픈조일 경우, 08:00~17:00</span></td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder"></td>
+                    <td style="text-align:center" class="noborder">- <span class="sh_0_area sh_0_area_일반" >중간조일 경우, 12:00~21:00</span> <span class="sh_0_area sh_0_area_새벽"  style="display: none">오픈조-2 일 경우, 06:00~11:00</span> <span class="sh_0_area sh_0_area_주말"  style="display: none">중간조일 경우, 12:00~21:00</span></td>
+                </tr>
+                <tr>
+                    <td valign="top" class="noborder"></td>
+                    <td style="text-align:center" class="noborder"><span class="sh_0_area sh_0_area_일반" >- 마감조일 경우, 16:00~01:00</span><span class="sh_0_area sh_0_area_주말"  style="display: none">- 마감조일 경우, 16:00~01:00</span></td>
+                </tr>
+                </table> 
+             </td>
+              <td align="center"><span class="sh_0_area sh_0_area_일반" >업무의 특성을 반영하여 1일 1시간 이내의 시간 내에서 자유롭게 사용함<br />(8시간 근무 1시간 휴식)</span><span class="sh_0_area sh_0_area_새벽"  style="display: none">업무의 특성을 반영하여 1일 30분 이내의 시간 내에서 자유롭게 사용함<br />(4시간 근무 30분 휴식)</span><span class="sh_0_area sh_0_area_주말"  style="display: none">업무의 특성을 반영하여 1일 1시간 이내의 시간 내에서 자유롭게 사용함<br />(8시간 근무 1시간 휴식)</span></td>
+         </tr>
+        </tbody>
+        </table>
+    </td> 
+</tr> 
+</table>
+</p>  
+   
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup> 
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“사업주”은 업무상 필요성이 있는 경우 “근로자”에게 1주 12시간의 한도 내의 연장근로, 야간근로 및 휴일근로를 명할 수 있으며, “근로자”은 이에 동의한다.  
+          <div style="height:55px;overflow-y:hidden;margin-left: 480px;" class="cust_gubun_realperson_2">
+            <div  id="sign_area_2_1" style="position:relative;width:100px;height:30px;z-index:15;left:100px;top:13px;" hname="근로계약서 서명" errfunc="tabDisplay(0)"  >
+              <!--   <div style="text-align:center;vertical-align:middle;">
+                    클릭하여 계약서에 서명 하세요.
+                </div> -->
+            </div>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="contract_font" style="margin-top:-10px">
+                <colgroup><col width="70px"><col></colgroup>
+                <tbody> 
+                <tr> 
+                    <td ></td> 
+                    <td ><span class="cust_name_area_2">_____</span><font color="white">....</font>(인) </td>
+                </tr> 
+                </tbody>
+            </table>
+        </div>  
+    </td>
+</tr>
+</table>
+</p>
+ 
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제4조 (임금)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">“근로자”의 기본 시급은 시간 당 <span class="sh_0_area sh_0_area_일반" >8,590원</span> <span class="sh_0_area sh_0_area_새벽"  style="display: none">10,000원</span> <span class="sh_0_area sh_0_area_주말"  style="display: none">8,590원</span>으로 지급한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제5조 (임금의 지급)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">임금은 매월 1일부터 말일까지 정산하여 익월 10일에 “근로자”의 개인계좌로 지급한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제6조 (휴일 및 휴가)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“근로자”의 유급 휴일은 근로자의 날과 주휴일(1주일 개근한 경우에 한함)로 하며 주휴일은 주말 및 공휴일을 제외한 평일로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">기타 유급휴일 및 연차유급휴가에 관한 사항은 근로기준법 및 노동관계법령 등에서 정한 바에 따른다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제7조 (퇴직금)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“사업주”은 “근로자”이 1년 이상 근속한 경우, 근로기준법 및 근로자 퇴직급여보장법에서 정하는 바에 따라 퇴직금을 지급한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“사업주”은 근로기준법 제36조에도 불구하고, 제1항의 퇴직금을 퇴직일 이후 도래하는 급여지급일까지 지급할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제8조 (보안서약)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td colspan="3" style="text-align:justify">“근로자”은 “사업주”의 직원으로 근무하면서 회사의 보안관리지침에서 정하는 바에 따라 다음 각 호의 사항을 준수하며, 고의 또는 과실로 인한 회사의 재산상 손해가 발생하지 않도록 할 것을 서약한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“근로자”은 근무 중에 습득한 직무상의 기술 및 기밀에 속하는 사항을 외부에 공개하거나 누설하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“근로자”은 회사에서 구매한 응용프로그램 및 회사에서 개발한 프로그램을 회사 밖으로 일체 유출하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“근로자”은 회사에서 근무 중 작성한 각종 서류 및 PC에 보관된 일체의 자료를 허가 없이 외부로 유출 또는 반출하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">기타 근무 중 습득한 보안사항 등 회사의 경영에 불이익을 초래할 가능성이 있는 여하한 정보도 외부로 누설하지 아니한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제9조 (계약의 해지 등)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“사업주”은 “근로자”에게 다음의 사유가 발생한 경우에는 근로계약을 해지할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“근로자”이 “사업주”의 제규정을 위반하거나 중대한 징계사유가 발생한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">기타 근로계약을 계속할 수 없을 정도로 “근로자”에게 책임 있는 사유가 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“근로자”이 무단으로 근무 현장을 벗어났을 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">무단결근 3일 연속 또는 월 3회 이상 했을 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">본 계약기간을 정한 경우 계약기간이 만료되면 별도의 통지가 없더라도 고용관계는 종료된다. 다만 계약기간 만료일 이전에 근로계약에 관한 갱신 합의가 있는 경우 연장될 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">계약 당사자가 계약을 이행하지 않거나 위반하여 상대방에게 손해를 발생하게 한 경우 상대방은 이에 대한 배상을 청구할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제10조 (기타)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">기타 본 계약서에 명시되지 않은 사항은 노동관계법령에 따른다.</td>
+</tr>
+</table>
+</p> 
+
+ 
+<p></p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:3px;">
+    <tbody>
+    <tr>
+        <td valign="top" width="10%"></td>
+        <td valign="top" width="65%" style="text-align: center; padding-top: 10px;">상기 내용과 같이 근로계약을 체결하며, 본 근로계약서 1부를 교부 받았음을 확인함.</td>
+        <td valign="top" width="25%" style="text-align: left;">
+            <div style="height:50px;overflow-y:hidden;" class="cust_gubun_realperson_2">
+                <div id="sign_area_2_2" style="position:relative;width:100px;height:60px;z-index:15;left:3px;top:1px;" hname="근로계약서 서명" errfunc="tabDisplay(0)">
+                    <!-- <div style="text-align:center;vertical-align:middle;">
+                            클릭하여 계약서에 서명 하세요.
+                        </div> -->
+                 </div> 
+                <table width="100%" border="0" cellpadding="1" cellspacing="0" class="contract_font" style="margin-top:-50px">
+                    <colgroup> <col></colgroup>
+                    <tbody> 
+                        <tr> 
+                            <td > <span class="cust_name_area_2">__</span><font color="white">....</font>(인) </td>
+                        </tr> 
+                    </tbody>
+                </table>
+            </div>
+        </td>
+    </tr>  
+    </tbody>
+</table>   
+
+
+<table width="100%" border="0" cellpadding="1" cellspacing="0" style="margin-top: 40px;">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="center"><span class="cont_year_area">__</span>년 <span class="cont_month_area">__</span>월 <span class="cont_day_area">__</span>일</td>
+    </tr>
+</table>
+<p></p>
+<table width="100%" border="0" cellpadding="1" cellspacing="0" style="margin-top: 40px;">
+    <tbody>
+    <tr>
+        <td valign="top" width="49%">
+            <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                <colgroup><col width="55px"><col width="10px"><col></colgroup>
+                <tbody>
+                <tr>
+                    <td colspan="3" style="font-weight: bold;">(사업주)</td>
+                </tr>
+                <tr>
+                    <td>상<font style="color:#ffffff">ㅇㅇ</font>호</td>
+                    <td>:</td>
+                    <td><span class="cust_name_area_1">주식회사 우아한청년들</span></td>
+                </tr>
+                <tr>
+                    <td valign="top">주<font style="color:#ffffff">ㅇㅇ</font>소</td>
+                    <td valign="top">:</td>
+                    <td valign="top"><span class="address_area_1">서울특별시 송파구 올림픽로35다길 42, 16층 일부 (신천동, 한국루터회관)</span></td>
+                </tr>
+                <tr>
+                    <td>대표이사</td>
+                    <td>:</td>
+                    <td><span class="boss_name_area_1">윤현준</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td width="2%"> </td>
+        <td valign="top" width="49%">
+            <div style="height:145px;overflow-y:hidden;" class="cust_gubun_realperson_2">
+              <!--   <div  id="sign_area_2_3" style="position:relative;width:100px;height:50px;z-index:15;left:100px;top:65px;" hname="근로계약서 서명" errfunc="tabDisplay(0)"> -->
+                <div class="sign_area" id="sign_area_2_3" style="position:relative;width:100px;height:50px;z-index:15;left:100px;top:65px;" hname="근로계약서 서명" errfunc="tabDisplay(0)" callback="speSetSignAll" >
+                    <div style="text-align:center;vertical-align:middle;">
+                        클릭하여 계약서에 서명 하세요.
+                    </div>
+                </div>
+                <table width="100%" border="0" cellpadding="3" cellspacing="0" class="contract_font" style="margin-top:-50px">
+                    <colgroup><col width="55px"><col width="10px"><col></colgroup>
+                    <tbody>
+                    <tr>
+                        <td colspan="3" style="font-weight: bold;">(근로자)</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top">주<font style="color:#ffffff">ㅇㅇ</font>소</td>
+                        <td valign="top">:</td>
+                        <td valign="top"><span class="address_area_2"></span></td>
+                    </tr> 
+                    <tr>
+                        <td>생년월일</td>
+                        <td>:</td>
+                        <td><span class="boss_birth_date_2">____-__-__</span></td>
+                    </tr> 
+                    <tr>
+                        <td>성<font style="color:#ffffff">ㅇㅇ</font>명</td>
+                        <td>:</td>
+                        <td> <span class="cust_name_area_2">__</span><font color="white">....</font>(인) </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,1857 @@
+
+<script> 
+ 
+
+function setWarr(){
+    // 생성할때만 실행
+    if(document.URL.indexOf("contract_insert")<0) return;
+
+    var f = document.forms["form1"];
+    var warr_row = document.getElementById("warr_grid").getElementsByTagName("tbody")[0];
+    var warr_etc = "『이행보증보험증권』 제출";
+    var row_pos = -1;
+    var type='10';
+
+    if(f['warr_type']){
+        if(warr_row.rows.length > 1){
+            for(var i= 0; i < f['warr_type'].length; i ++){
+                if(f['warr_type'][i].value == type){
+                    row_pos = i;
+                    break;
+                }
+            }
+        }else{
+            if(f['warr_type'].value == type||f['warr_type'][0].value == type){
+                row_pos = 0;
+            }
+        }
+    }
+    if(row_pos < 0 ){// 행추가
+        warr_grid.addRow();
+        if(warr_row.rows.length > 1){
+            f['warr_type'][f['warr_type'].length - 1].value = type;
+            f['warr_etc'][f['warr_type'].length - 1].value = warr_etc;
+        }else{
+            f['warr_type'].value = type;
+            if(f['warr_type'][0])f['warr_type'][0].value = type;
+            f['warr_etc'].value = warr_etc;
+            if(f['warr_etc'][0])f['warr_etc'][0].value = warr_etc;
+        }
+    }
+
+    if(row_pos > -1){// 행삭제
+        warr_row.deleteRow(row_pos);
+    }
+}
+ 
+
+if(window.attachEvent){
+    window.attachEvent("onload", setWarr);
+}else if(window.addEventListener){
+    window.addEventListener("load", setWarr, false);
+}
+</script>
+<input type="hidden" name="cont_term" value="1">  
+<table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+ <tbody>
+  <tr>
+   <td style="font-size:25px;font-weight:bold" align="center">거래기본계약서</td>
+  </tr> 
+ </tbody>
+</table> 
+<p> </p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+ <tbody>
+  <tr> 
+   <td><span class="cust_name_area_1">(주)티알엔</span>(이하 “홈쇼핑”이라 한다)과 <span class="cust_name_area_2">OOOO</span>(이하 “협력사”라 한다)은/는 상품 위탁판매, 직매입등 상품의 공급및 상품 매매, 공급 등에 관한 기본 계약을 다음과 같이 체결한다.</td> 
+  </tr> 
+ </tbody>
+</table> 
+<p> </p>
+
+ 
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;font-size: 16px;"><b>제1절 총칙</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제1조 [목적]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">이 계약의 목적은 “협력사”의 상품 또는 용역(통칭하여 이하 ”상품등”이라고 한다)을 “홈쇼핑”을 통하여 일정한 조건으로 고객에게 판매하는 것과 관련한 원칙과 조건을 정하는데 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 이 계약상 의무를 신의에 따라 성실히 이행함으로써 공정한 거래관계를 형성하고 상호 동반성장하는 것을 목적으로 하며, “상품”을 구매하는 고객의 만족을 최우선으로 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제2조 [용어의 정의]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td colspan="3" style="text-align:justify">이 계약에서 사용하는 용어의 정의는 다음 각 호와 같다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“직매입거래”라 함은 “홈쇼핑”이 매입한 상품 중 판매되지 아니한 상품에 대한 판매책임을 부담하고 “협력사”로부터 상품을 매입하는 형태의 거래를 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“위·수탁거래”라 함은 “홈쇼핑”이 “협력사”가 공급한 “상품등”을 자기 명의로 판매하고 “상품”의 판매 후 일정률이나 일정액의 수수료를 공제한 “상품등”의 판매대금을 “협력사”에게 지급하는 형태의 거래를 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">"특약매입거래"란 “홈쇼핑”이 매입한 상품 중 판매되지 아니한 상품을 반품할 수 있는 조건으로 “협력사”로부터 상품을 외상 매입하고 상품판매 후 일정률이나 일정액의 판매수익을 공제한 상품판매대금을 “협력사”에게 지급하는 형태의 거래를 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">“직택배”라 함은 “홈쇼핑”이 자체 또는 “홈쇼핑”이 지정한 택배사(기타 물류 서비스 제공업체 포함, 이하 같다)의 운송차량이 “협력사”가 지정한 장소를 방문하여 해당 상품을 상차한 후 “홈쇼핑”이 지정하는 고객에게 상품을 배송(기타 물류 서비스 포함, 이하 같다)하는 것을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">“협력사배송”이라 함은 “홈쇼핑”이 지정하는 고객에게 “협력사”가 자체적으로 상품을 배송하는 것을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">”SCM시스템”이라 함은 “협력사”가 수주하고 “홈쇼핑”이 발주하는 “홈쇼핑” 제공 전자거래시스템을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">7.</td>
+    <td style="text-align:justify">"홈쇼핑배송"이라 함은 “홈쇼핑”이 지정한 물류센터 및 택배사를 통해 “홈쇼핑”이 자체적으로 상품을 배송하는 것을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">8.</td>
+    <td style="text-align:justify">“SCM시스템”이라 함은, “홈쇼핑”이 “협력사”에게 물류관리를 위해 제공하는 전자시스템으로 파트너넷이라고도 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">9.</td>
+    <td style="text-align:justify">”TV App.”이라 함은 “홈쇼핑”의 상품판매형 데이터 방송채널에서 구동되는 애플리케이션을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">10.</td>
+    <td style="text-align:justify">”상품판매채널”이라 함은 “홈쇼핑”이 직접 또는 제휴하여 운영하는 상품판매형 데이터방송채널, “TV App.”, 모바일/인터넷 쇼핑몰 등의 플랫폼을 모두 포함한 것이다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제3조 [기본원칙]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 상호 이익을 존중하고 이 계약상 의무를 신의에 따라 성실히 이행한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 이 계약의 이행과 관련하여 「대규모유통업에서의 거래 공정화에 관한 법률」 및 그 시행령 등 관련 법령의 규정을 준수한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제4조 [공정거래준수 및 동반성장 지원]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”과 “협력사”는 공정하고 투명한 거래를 위하여 다음 각 호의 내용을 준수한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">상대방에게 금품, 향응, 편의 또는 접대를 요구하거나 제공해서는 아니 되며, 위법하거나 부당한 행위를 하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">거래의 지위를 남용하여 공정한 거래질서에 반하는 행위를 요구하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">유통분야 대ㆍ중소기업 동반성장을 위한 합의의 내용을 충실히 이행한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “협력사”와 동반성장을 위하여 “협력사”의 재무건전화, 기술개발 촉진, 근무환경개선 등을 위한 다양한 지원프로그램을 마련하여 지원하는데 노력한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “상품등”을 공급하는 기업들 사이에 대우의 차별을 두지 않고, “홈쇼핑”이 운영하는 모든 “상품등”의 판매를 위한 매체에 대하여 접근을 용이하게 하며, 판매수수료의 수준을 결정하는 과정 등에 합리적이고 공정한 절차를 도입하도록 노력한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제5조 [서면계약체결의무]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”는 이 계약을 기초로 상품공급계약 등 개별 계약을 체결하는 경우 별도의 서면(「전자거래기본법」 제2조 제1호에 따른 전자문서를 포함한다. 이하 같다)으로 체결한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”은 제1항에 따른 서면을 주기 전까지 “협력사”에게 공급할 상품을 제조ㆍ주문하게 하거나 공급할 “상품”을 위한 설비ㆍ장치를 준비하도록 요구하지 아니한다. 다만, “홈쇼핑”이 서명(「전자서명법」 제2조제3호에 따른 공인전자서명을 포함한다) 또는 기명날인한 서면으로 요구하는 경우는 그러하지 아니하다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제6조 [상품판매채널]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">이 계약은 “홈쇼핑“이 운영하는 상품판매형 데이터방송채널, “TV APP.”, 모바일/인터넷쇼핑몰과 ”홈쇼핑“이 ”상품등“의 판매를 위하여 제휴하는 인터넷쇼핑몰 등 모든 ”상품판매채널“에 적용되는 것을 원칙으로 한다. 이 경우 구체적인 판매방식과 형태는 ”홈쇼핑“과 ”협력사“간 사전에 협의하여 정한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;font-size: 16px;"><b>제2절 상품공급 및 정보 제공, 품질검사 등</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제7조 [상품의 공급]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”가 “홈쇼핑”에게 공급하여야 하는 “상품등”의 종류, 사양, 수량 및 가격과 상품의 공급장소ㆍ공급기일은 이 계약을 근거로 하여 “홈쇼핑”과 “협력사”가 별도의 서면으로 체결하는 상품공급계약서 등 개별 계약의 내용을 따른다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”는 제1항의 개별 계약에서 정한 장소 및 공급기일에 맞추어 “상품등”을 공급하여야 한다. 다만, 개별 계약에서 “홈쇼핑”이 지정한 자 또는 고객에게 “홈쇼핑”이 지정하는 기일에 배송하는 것으로 정한 경우 그에 따른다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”가 자신에게 책임 있는 사유로 인하여 약정한 상품의 공급기일 또는 배송일을 넘겨 공급 또는 배송한 경우 “협력사”는 “홈쇼핑”에게 지연으로 인한 손해를 배상한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“협력사”는 이 계약에 의하여 “홈쇼핑”에 상품 등을 공급함에 있어 「전자상거래 등에서의 소비자보호에 관한 법률」, 「품질경영 및 공산품안전관리법」, 「대외무역법」, 「전기용품 안전관리법」, 「식품위생법」, 「농산물(수산물)품질관리법」, 「상표법」, 「특허법」, 「디자인보호법」, 「표시·광고의 공정화에 관한 법률」 등 기타 공급하는 상품 등의 제조, 판매와 관련된 법령의 제 규정 및 제8조 제1항의 “SCM시스템”에 기재한 상품정보를 준수한 “상품등”을 공급하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td style="text-align:justify">“홈쇼핑”이 계약에 따라 공급하는 “상품등”의 전부 또는 일부의 수령을 지체하거나 거부하는 경우 이로 인하여 “협력사”가 받은 손해를 배상한다. 다만, “홈쇼핑”이 “협력사”로부터 공급받은 상품이 “협력사”의 책임 있는 사유로 인하여 오손 또는 훼손되었음을 이유로 수령을 지체하는 경우에는 그러하지 아니하다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제8조 [상품정보 제공 및 상품품질 보장]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”는 “홈쇼핑”으로의 입점, 상품품질검사, 입고상품의 관리 등을 위하여 견본품 및 “상품등”에 관한 정보 등을 “홈쇼핑”이 요구하는 기일 내에 제공하여야 한다. “협력사”는 “SCM시스템”에 “상품”에 관한 정보를 정확히 입력하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”가 “홈쇼핑”에게 공급하는 “상품등”은 “협력사”가 “홈쇼핑”에게 제출한 견본품과 동일하여야 하며, 품질상 하자가 없는 것이어야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”는 공급한 “상품등”에 대하여 관련 법령에 규정된 품질검사 사항과 공인기관의 검사결과 등을 “홈쇼핑”이 요구하는 기일 내에 서면으로 “홈쇼핑”에 제출하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“협력사”는 “상품등” 및 “상품등”의 판매와 관련한 일체의 표시, 광고 정보를 제공하는 주체로서 정확한 정보를 제공하여야 하고, “홈쇼핑”의 “상품판매채널”에 노출, 표시, 광고하기 위하여 상품의 원산지, 수입원, 제조원, 기능, 목적, 디자인 등 구체적인 조건 및 내용(이하 “광고내용”이라 한다)이 구매고객에게 판매되었거나 판매할 상품과 일치함을 보장하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td style="text-align:justify">“협력사”는 “협력사”가 판매하고자 하는 상품이 수입상품인 경우, 해당 상품의 판매 전에 해당상품의 유통경로, 상품의 진정성 등을 확인하기 위하여 “홈쇼핑”이 요청하는 관련증빙서류 또는 자료를 “홈쇼핑”에 제출하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑥</td>
+    <td style="text-align:justify">“협력사”가 본 조를 위반한 경우 발생한 모든 민·형사상의 법적 책임을 스스로 부담하고, 이와 관련하여 발생된 “홈쇼핑”의 모든 손해를 배상하며, “협력사”의 비용으로 “홈쇼핑”을 면책시켜야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제9조 [상품품질검사]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”은 “협력사”의 “상품등”을 “홈쇼핑”의 자체 품질검사 절차에 따라 검사할 수 있다. 단, “협력사”는 “홈쇼핑”이 해당 “상품등”을 자체 검사하였다는 이유만으로 구매고객 및 “홈쇼핑”에 대한 하자담보책임 등을 포함한 어떠한 법적 책임에서도 면책되지 않는다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”은 “협력사”가 공급한 “상품등”에 하자가 있음을 발견한 때는 이를 “협력사”에 통지하여야 하며, 이 경우 하자가 발생한 “상품등”은 공급수량에서 제외하기로 한다. “협력사”는 “홈쇼핑”의 요청이 있을 경우 부족한 수량만큼의 하자 없는 “상품등”을 즉시 공급하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”는 하자를 통보한 상품에 대해 “홈쇼핑”이 지정하는 기간 내에 자신의 책임과 비용으로 회수하여야 한다. 이 기간 내에 “협력사”가 회수하지 않는 경우 “홈쇼핑”은 “협력사”에게 해당 상품을 반송할 수 있다. 이 경우 반송에 소요되는 비용은 “협력사”가 부담하기로 하며, “협력사”에게 지급할 대금에서 공제하거나 구상할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“홈쇼핑” 자체 품질검사 결과 추가적인 외부공인기관의 품질검사가 필요하다고 판단될 경우, “홈쇼핑”은 협력사와 합의 하에 외부공인기관 품질검사를 실시하며 이에 소요된 비용은 “협력사”에게 청구하거나 “협력사”의 납품대금에서 공제할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td style="text-align:justify">“홈쇼핑”의 자체품질검사를 위해 소요되는 견본품의 처리는 “홈쇼핑” 자체 규정에 따른다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑥</td>
+    <td style="text-align:justify">품질검사 및 성분검사 결과 “협력사”가 공급한 상품이 법적기준 및 “홈쇼핑”의 자체 품질 검사 기준을 충족시키지 못하여 불합격 또는 부적합 판정을 받은 경우 “홈쇼핑”은 해당 “상품등”의 공급중지 및 상당한 기간을 정하여 시정을 요구할 수 있으며, “을”이 시정요구에 불응할 경우 계약을 해지할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제10조 [입고상품의 관리 및 반출]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”의 요청에 의해 “홈쇼핑”의 물류센터에 “협력사”의 상품이 입고될 경우 “홈쇼핑”은 입고된 “협력사”의 상품에 대하여 입고검수를 실시하며, 이 때 확인된 상품의 하자, 수량부족, 훼손, 포장불량 등에 대해서는 원칙적으로 “협력사”가 책임을 부담한다. 단, 입고된 상품의 보관상 “홈쇼핑”의 명백한 귀책사유로 인하여 발생한 손해에 관해서는 예외로 한다. 보관 중 발생한 상품의 훼손, 멸실 등이 어느 당사자의 귀책사유에 의한 것인지 불분명한 경우에는 양 당사자간 상호 협의에 따라 처리하기로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”은 자신의 물류센터에 입고된 상품이 화재 등으로 멸실, 훼손, 도난이나 변질되지 않도록 화재보험 등 필요한 보험에 가입하기로 하며, 도난 등 제3자의 침해에 대비해 충분한 보안시스템을 갖추기로 한다. 단, 입고된 상품이 특별하게 관리되어야 할 품목인 경우, 이로 인한 비용은 “협력사”가 부담한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">입고된 상품 중 미판매된 상품에 대하여 “홈쇼핑”이 반출을 요구할 수 있는 경우, “홈쇼핑”의 반출통보가 있을 경우 “협력사”는 통보 후 5일 이내에 자신의 비용으로 회수하여야 하며, 이를 거부하거나 1개월이 지나도 이를 이행하지 않는 경우에는 “홈쇼핑”이 임의처분 할 수 있다. 또한 반출통보에 따른 “협력사” 수거기일(5일 이내) 이후 발생되는 비용에 대해서는 “홈쇼핑”이 “협력사”에게 그 비용을 청구하거나 상품판매대금에서 공제할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제11조 [포장]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 “홈쇼핑”이 요구하는 기준에 따라 상품의 입고시나 배송시에 파손 또는 훼손이 발생하지 않도록 견고하게 포장하여 배송이 가능한 상태로 상품을 공급하여야 한다. “협력사”가 상품포장에 필요한 포장자재를 “홈쇼핑”에 요구하는 경우, 포장자재 비용은 “홈쇼핑”과 “협력사”가 협의로 정한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 상품포장 시 관련 법령의 준수를 위해 바코드, 청약철회 등의 계약서, 디자인 TAG, 상품설명서, 취급 및 주의사항 등의 TAG 또는 스티커 등을 상품의 지정된 위치에 부착한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 상품의 파손 또는 훼손의 가능성이 있는 경우, 협력사에게 재포장을 요구할 수 있다. 다만, 다음 각 호의 경우 “홈쇼핑”은 “홈쇼핑”의 비용으로 직접 재포장할 수 있으며, 이때 발생한 포장비용은 협력사에게 지급할 대금에서 공제하거나 구상할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“협력사”의 재포장이 배송기한을 고려할 때 적시에 이루어지기 힘든 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“홈쇼핑”이 신속히 배송을 해야 하는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">포장자재 등 비용은 “협력사”가 부담하는 것을 원칙으로 하되 양자가 협의하여 변경할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제12조 [배송 및 그 비용의 부담]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 고객으로부터 주문을 받은 날로부터 3일 이내 “상품등”이 고객에게 배송되는 것을 원칙으로 하므로 “협력사”는 배송형태에 따라 구체적으로 다음 각 호의 배송절차(이하 “배송절차”라 한다)를 준수하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“직택배”의 경우 “협력사”는 “홈쇼핑”으로부터 발주서를 받은 날로부터 “홈쇼핑”이 지정한 장소에 2일 이내(발주일 포함)로 “상품”을 출고하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“협력사배송”의 경우 “협력사”는 “홈쇼핑”으로부터 발주서를 받은 날로부터 2일 이내에 출고완료하여야 한다. 단, 공급 완료일이 공휴일인 경우는 익일로 연장된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“홈쇼핑배송”의 경우 “협력사”는 “홈쇼핑”으로부터 발주서를 받은 날로부터 5일 이내(발주일 포함) “홈쇼핑”의 물류센터에 상품을 입고시켜야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">상품배송에 따른 비용부담은 다음과 같다. 다만, 상품의 하자 등과 관련한 교환, 반품, 회수 처리에 대해서는 이 계약 제9조 제3항, 제20조, 제25조에 따른다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“직택배”의 경우 “협력사”는 “상품”의 입고부터 출고까지 배송에 관련된 책임과 비용을 부담하고 출고 이후 고객에 대한 배송과 관련된 책임은 부담하지 않는다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“협력사배송”의 경우 상품의 배송에 따른 모든 비용과 책임은 “협력사”가 부담한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“홈쇼핑배송”의 경우 협력사”는 “홈쇼핑”의 물류센터에 입고시까지 책임과 비용을 부담하고 상품입고 이후 고객에 대한 배송과 관련한 책임은 부담하지 않는다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “협력사”에게 자신이 지정한 자(택배회사 등)를 이용하도록 강요해서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">“직택배”의 경우 원활한 수행을 위해 “협력사”와 “홈쇼핑”은 협의하여 택배사를 지정할 권한, 배송비 관련 협상권(배송 또는 물류 서비스 조건 포함) 및 배송과 관련된 일체의 권한을 일방에게 부여할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="5" style="text-align:justify"><b>제13조 [공급기일 및 공급확정]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="3" style="text-align:justify">공급기일은 “협력사”가 상품공급계약서, “SCM시스템” 등에 지정한 공급장소에 “상품등”을 공급하기로 한 일자를 의미한다. 상품공급계약서, “SCM시스템” 등의 일자가 상이한 경우 상품공급계약서를 우선한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="3" style="text-align:justify">이 계약에 따라 매매되는 “상품등”의 공급기일은 다음 각 호에 해당하는 시점에 확정된 것으로 본다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td colspan="2" style="text-align:justify">“직매입거래”의 경우 “협력사”가 “홈쇼핑”이 지정한 장소에 상품을 인도하고 상품의 검수를 완료하는 때. 다만, 상품의 이동이 필요하지 않은 경우에는 상품 검수가 완료된 시점</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td colspan="2" style="text-align:justify">“위수탁거래”의 경우는 배송형태에 따라 다음 각 목에 따른 시점</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td valign="top">가.</td>
+    <td style="text-align:justify">“직택배”의 경우 : “홈쇼핑”이 지정하는 고객에게 상품을 배송(기타 물류 서비스 포함)완료한 시점</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td valign="top">나.</td>
+    <td style="text-align:justify">“협력사배송”의 경우 : “협력사”가 고객에게 상품 배송을 완료한 후, “홈쇼핑”에게 그 내역을 통보하여 도달한 시점</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td valign="top">다.</td>
+    <td style="text-align:justify">“홈쇼핑배송”의 경우 : “홈쇼핑”이 지정한 택배사가 고객에게 배송을 완료한 후, “홈쇼핑”이 택배사로부터 그 내역을 통보 받은 시점</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="3" style="text-align:justify">“홈쇼핑” 또는 “협력사”는 제1항의 확정된 거래일자를 기준으로 세금계산서를 발행한다. 단, 계속적인 거래관계가 발생할 경우를 고려하여 매월 말일을 기준으로 당월 순거래액의 합계액을 기재한 거래명세서 또는 인수증을 교부할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제14조 [공급기일 등의 준수]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 이 계약에 따른 공급기일의 준수 및 관리가 중대한 의무사항임을 인식하고, 구매고객에게 피해가 발생하지 않도록 제13조 제1항에서 정한 공급기일 내에 “상품등”의 배송/제공을 완료해야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 제13조 제1항에서 양 당사자가 정한 공급기일까지 해당 “상품”의 공급을 완료할 수 없거나 고객에게 인도할 수 없는 사유가 발생한 때에는 “홈쇼핑”에게 즉시 통보하고 동의를 얻어야 한다. “협력사”가 위 통보하지 않음에 따라 발생하는 모든 손해는 “협력사”가 부담한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">이를 위해 “협력사”는 해당 상품별로 “상품등”의 재고상태 등을 항상 확인, 점검하고 “SCM시스템”상의 상품재고정보를 정확히 관리하여야 한다. 만약 해당 “상품등”의 재고가 부족한 경우, 해당 “상품등”의 재고를 확보할 때까지 “상품등”의 판매가 일시 중지되도록 필요한 조치를 취해야 한다. 단, “협력사”가 이러한 조치를 취하지 않을 경우 “홈쇼핑”은 구매고객에게 피해가 발생하지 않도록 “협력사”를 대신하여 “상품등”의 판매 중지, 품절처리 등 필요한 조치를 취할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">“협력사”가 자신의 귀책사유로 제12조 제1항의 “배송절차”나 공급기일을 준수하지 못할 경우 “홈쇼핑”에게 다음 각 호에 따른 손해를 배상하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“배송절차”나 공급기일의 미준수의 경우 지체일수당 1,000원씩을 “홈쇼핑”의 손해로 본다. 단, 최대 지연 손해배상금은 주문건당 상품판매가(부가가치세 포함)의 20%내 또는 5,000원중 적은 금액으로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">고객이 “상품등”의 구입을 취소하거나 민원을 제기한 경우 상품판매가(부가가치세 포함)의 20% 내 또는 5,000원중 적은 금액을 “홈쇼핑”의 손해로 본다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“배송절차”나 공급기일의 미준수가 재고부족, 품절 등 배송이 불가능한 사유로 인한 것일 때는 해당 상품 판매가(부가가치세 포함)의 20% 또는 5,000원중 적은 금액을 “홈쇼핑”의 손해로 본다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;font-size: 16px;"><b>제3절 상품의 판매 및 반품, 환불, 상품판매 중지</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제15조 [상품판매활동]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”은 제6조에 따라 “상품판매채널”을 통해 “협력사”의 “상품등”을 판매할 수 있다. 단, “협력사”의 명시적인 반대의사가 있는 경우에는 그러하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”가 “홈쇼핑”의 T커머스방송, 인터넷쇼핑몰, 모바일커머스몰 등에 입점시 “홈쇼핑”은 상품판매수수료와는 별도로 입점 형태 또는 입점 위치에 따라 별도의 수수료와 각 판매촉진활동을 별도의 서면으로 합의할 수 있다. 이 경우 “홈쇼핑”은 “협력사”의 의사에 반하여 부당하게 수수료와 판매촉진활동에 따른 비용을 징구하거나 전가하여서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”는 “상품등”의 광고선전 효과를 극대화하기 위하여 “홈쇼핑”에 각 “상품판매채널”에 적합한 자료화면, 이미지 등을 제공하기로 하며, “홈쇼핑”이 “협력사”의 “상품등”을 위해 추가적인 광고선전물을 제작 대행하는 경우 “홈쇼핑”과 해당 “협력사”는 제작 대행에 대한 비용을 별도의 서면으로 협의하여야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제16조 [판매수수료율의 결정]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">판매수수료율은 예상매출액 및 손익, 협력사의 부담능력 등을 고려하여 합리적으로 결정하되, 구체적인 판매수수료율은 상품공급계약서 등 개별계약에 따른다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”은 정당한 사유 없이는 상품공급계약서 등 개별 계약을 체결한 때로부터 “협력사”에게 상품대금을 지급할 때까지 해당 개별 계약으로 정한 판매수수료율을 변경해서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“홈쇼핑”은 판매수수료율의 결정 및 변경 절차를 사전에 “을”에게 공개한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제17조 [판촉행사 참여 등]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">판매촉진을 위한 행사나 활동(이하 “판촉행사”라 한다)을 하려면 “갑”과 “을”은 사전에 다음 각 호의 사항이 명시된 서면으로 “판촉행사”의 합의를 한 후 진행한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“판촉행사”의 명칭ㆍ성격ㆍ기간</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“판촉행사”를 통해 판매할 상품의 품목</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“판촉행사”에 소요될 것으로 예상되는 비용의 규모 및 사용내역</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">해당 “판촉행사”를 통해 “홈쇼핑”과 “협력사”가 직접적으로 얻을 것으로 예상되는 경제적 이익(이하 이 조에서 “예상이익”이라 한다)의 비율</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">“판촉행사”에 소요되는 모든 비용(광고비, 경품비, 사은행사비, 무이자할부, ARS할인, 할인구입혜택, 적립금 부여 등 명칭에 상관없이 “상품등”의 판촉행사에 소요되는 모든 비용을 말하며, 이하 “판촉비용”이라 한다)의 분담비율 또는 액수</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 정당한 사유 없이 “협력사”에게 “협력사”의 의사에 반하여 판촉행사에 참여하게 해서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">제1항 제5호의 “판촉비용”의 분담비율은 “홈쇼핑”과 “협력사”의 “예상이익”비율에 따라 정하는 것을 원칙으로 하되, 구체적인 비율을 산정하기 곤란한 경우에는 “홈쇼핑”과 “협력사”의 “예상이익”이 동일한 것으로 추정한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">제3항에 따른 “협력사”의 “판촉비용”의 분담비율은 100분의 50을 초과할 수 없다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td colspan="2" style="text-align:justify">제1항부터 제4항까지의 규정에도 불구하고 “협력사”가 “홈쇼핑”에게 요청하여 다른 공급업자와 차별화되는 판촉행사를 실시하려는 경우에는 “홈쇼핑”과 “협력사”가 상호 협의하여 판촉비용의 분담비율을 정할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제18조 [제작비 등]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">판매전문가·출연모델·방청객의 방송 투입· 세트제작 등 방송제작과 관련한 비용은 “홈쇼핑”이 부담한다. 다만, “협력사”가 당초 약정 내용과 달리 방송에 투입될 판매전문가·모델·방청객 등의 추가 또는 변경을 요구할 경우 “홈쇼핑”과 “협력사”는 추가·변경에 소요되는 비용을 상호 협의하여 서면으로 정한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑”이 계약내용과 다른 판매전문가 및 모델을 출연시키거나 출연비용을 일방적으로 변경한 경우 이로 인하여 발생한 손해는 “홈쇼핑”이 부담한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 방송에 사용될 회사 홍보 등에 관한 사전영상물 제작여부에 대해 상호간 협의를 거쳐 서면으로 정한다. 이 경우 “홈쇼핑”은 “협력사”에게 자신 또는 자신이 지정한 사업자에게 사전영상물을 제작하도록 강요하여서는 아니 된다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제19조 [방송일정 취소ㆍ변경금지]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”가 합의한 방송일정 등은 상품공급계약서에 따른다. 이 계약사항에 대해 일정기간 동안의 방송일정을 전면적으로 개편해야 하는 불가피한 사유가 발생하거나 “협력사”에게 이익이 되는 경우 등 정당한 이유가 인정되는 경우를 제외하고는 해당 상품에 대한 거래조건이 확정된 날부터 “상품등”의 판매대금이 정산 완료되어 해당 “상품등”에 대한 거래가 종료되는 시점까지 취소ㆍ변경할 수 없다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”가 계약의 의무를 전부 이행하였음에도 불구하고 “홈쇼핑”이 정당한 이유 없이 방송을 취소ㆍ변경하여 “협력사”에게 손해가 발생한 경우 “홈쇼핑”은 이에 대한 손해를 “협력사”에게 배상한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제20조 [상품의 교환, 환불 및 반품처리]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 다음 각 호에 해당하는 경우 자신의 비용으로 해당 상품을 교환하거나 환불하여야 한다. 이 경우 “협력사”는 교환 또는 환불을 실시하고, 그 완료 여부를 “홈쇼핑”에 통보해야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">관련 법령 또는 “홈쇼핑”과 “협력사”가 구매고객에게 사전에 고지한 약관내용에 따라 구매고객이 정당한 사유로 철회가 가능한 기간 내에 “홈쇼핑”에게 교환 또는 환불을 요구하는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">상품의 제조 및 판매와 관련하여 “협력사”의 관련 법령위반에 따른 교환, 환불의 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">품목별 피해보상규정 등 제반 법규와 협력사의 품질보증각서상의 규정에 근거한 하자담보책임의 일환으로 행해지는 교환, 환불의 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">「제조물책임법」상 상품의 결함이 인정되는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">협력사”는 고객의 요구가 접수된 날로부터 3일 이내에 고객에게 배송된 상품을 회수하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 고객이 제1항 각 호의 사유에 따라 “홈쇼핑”에게 정상적인 환불을 요구하는 경우 및 “협력사”가 정당한 이유 없이 제1항 및 제2항의 의무를 이행하지 아니하는 경우 “협력사”를 대신하여 교환, 환불 등 필요한 조치를 취할 수 있으며, 이에 소요된 비용은 “협력사”에게 지급할 대금에서 공제할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 상품의 입고 또는 반품에 의해 보관하고 있는 상품이 있는 경우 “협력사”에게 반출할 때까지 선량한 관리자의 주의로써 관리한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 제4항에 따라 “홈쇼핑”이 보관하고 있는 상품의 반출을 요청받은 경우에는 이를 회수하여야 한다. “홈쇼핑”은 “협력사”가 상당한 기간 동안 해당 상품을 회수하지 아니하는 경우 그 상품을 “협력사”에게 직접 반환하고, “협력사”에게 지급할 대금에서 공제할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑥</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”과 “협력사”사이의 공급상품에 대한 반품대상상품, 반품기한, 반품절차, 반품비용 등의 반품조건은 직매입 등 별도의 계약서에 따른다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제21조 [상품판매 중지]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “협력사”가 판매한 상품 또는 “광고내용”과 관련하여 다음 각 호의 사유가 발생하는 경우 해당 “상품”의 판매를 중지할 수 있다. 이 경우 “홈쇼핑”은 즉시 “협력사”에게 판매 중지에 대한 사유 및 구체적인 내용을 통보하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">제3자로부터 지식재산권침해 등의 내용이 접수된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">관련법령 등의 위반을 이유로 정부기관(수사기관, 소비자단체포함)의 조사가 시작되거나 출석 또는 자료제출의 요구가 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“협력사”의 부도, 파산 등으로 주요 자산에 대해 가압류, 가처분 등 법적 강제집행이 진행되어 해당“상품”의 정상적인 판매 및 정상적인 A/S에 차질의 우려가 있다고 판단되는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">감독기관의 인허가 취소, 영업정지 등으로 정상적인 판매활동이 어려운 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">관계법령 등에 따라 “상품”에 요구되는 각종 기준(안전, 위생, 표시/광고 등) 위반 또는 “상품”의 품질, 성능 및 안전성 문제 등과 관련하여 상품구매 고객이 한국소비자보호원에 집단분쟁조정 신청, 소비자단체소송의 제기 또는 소비자 관련단체가 “홈쇼핑”에게 대량 교환, 환불 또는 보상을 요청하는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">매출의 부진 및 현저한 저하로 인하여 “홈쇼핑”과 “협력사”가 협의하여 판매를 중단하기로 한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 제1항의 “상품”의 판매중단사유로 인해 “홈쇼핑”이 외부기관에 소명이 필요한 경우, 소명자료의 작성 및 제출을 위한 제반 사항에 적극 협조하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">제1항에 따라 판매가 중단되거나 본 계약의 해제, 해지 또는 본 계약의 종료로 “상품”의 판매가 종료된 경우, “협력사”가 판매한 “상품”의 종류 또는 시기별로 잔여 하자보증기간 또는 A/S 보증기간 동안 “상품”의 하자로 인한 반품 또는 A/S 등 구매 고객으로부터의 클레임 처리를 위해 “협력사”는 “홈쇼핑”과 합의하여 반품 또는 A/S에 필요한 금액(이하 “A/S미정산금”이라 한다)을 “홈쇼핑”에 담보로 제공하기로 한다. 이 경우에 “협력사”는 “A/S미정산금”은 보증보험가입으로 대체할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">제3항에 따라 “협력사”가 정상적으로 A/S 및 고객 클레임을 처리할 수 없다고 판단되는 경우, “홈쇼핑”은 “협력사”의 비용 부담 하에 “협력사”를 대신할 수 있으며, 이를 위해 “협력사”는 해당 “상품”의 A/S 및 고객 클레임 처리 수행에 필요한 범위 및 기간 내에서 지식재산권 등의 사용을 허락하여야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;font-size: 16px;"><b>제4절 대급지급 및 하자보증</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제22조 [대금의 지급 및 감액금지]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 상품판매대금에서 판매수수료 및 이 계약에 따른 차감액, 보류액, “A/S미정산금” 등을 공제하고, 다음과 같이 매월3회 정산하여 “협력사”가 지정한 계좌로 지급한다. 단, 각 대금지급일이 공유일인 경우에는 그 이전 영업일에 지급한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">매월 1일~10일까지 판매실적의 경우 : 10일 판매실적 마감 후 해당월 20일 지급</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">매월 11일~20일까지 판매실적의 경우 : 20일 판매실적 마감 후 해당월 말일 지급</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">매월 21일~말일까지 판매실적의 경우 : 해당월 말일에 판매실적 마감 후 다음달 10일 지급</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”이 제1항에서 정한 기간을 넘겨서 대금을 지급하는 경우에는 그 초과 기간에 대하여 공정거래위원회가 고시하는 이율에 따른 이자를 지급한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 제1항에서 정한 기간 이전에 대금의 일부에 대해 선지급을 요청할 수 있으며, “홈쇼핑”은 “협력사”의 신용도, 거래실적 등을 고려하여 선지급 여부를 결정한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “협력사”에게 공급받은 “상품등”의 대금을 감액하거나, 상품판매대금 및 제2항에 따른 이자를 상품 또는 상품권으로 지급하지 아니한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 제4항에도 불구하고 다음 각 호의 어느 하나에 해당하는 경우에는 공급받은 날부터 거래관행상 합리적이라고 인정되는 기간 안에서 “협력사”와 서면으로 합의한 후에 감액할 수 있다. 다만, 해당 상품이 시간이 지남에 따라 부패하기 쉬운 특성을 지닌 신선상태의 농산물ㆍ수산물ㆍ축산물로서 건조ㆍ염장 등 가공을 하지 아니한 상품(이하 “신선농ㆍ수ㆍ축산물”이라 한다)인 경우에는 해당 상품의 대금은 “홈쇼핑”이 공급받은 시점부터 상품의 검수 및 매입을 마치기 전까지의 기간(특별한 사유가 없으면 2일을 초과할 수 없다)에만 감액할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">공급받은 “상품등”이 계약한 “상품등”과 다른 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“협력사”의 책임 있는 사유로 인하여 오손ㆍ훼손된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">공급받은 “상품등”에 하자가 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">제1호부터 제3호까지에 준하는 정당한 사유가 있는 경우</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제23조 [대금의 공제 및 지급보류 등]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “협력사”와 합의하여 이 계약에 따라 “홈쇼핑”이 “협력사”에게 지급하여야 하는 상품판매대금에서 차감액, 보류액, “A/S미정산금” 등을 공제할 수 있다. 이 경우 “홈쇼핑”은 “협력사”가 “SCM시스템”을 통하여 공제 내역을 확인할 수 있도록 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">이 계약에서 차감액이란 다음 각 호의 경우에 공제할 수 있는 금액을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“협력사”가 사전에 부담하기로 한 광고비용</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“협력사”가 사전에 부담하기로 한 “판촉비용”</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“협력사”가 사전에 부담하기로 한 포장비용</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">“협력사“가 사전에 부담하기로 한 상품판매채널”에 따른 콘텐츠 제작비용 등</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">각종 지연손해금, 반품, 미수금, 상품배송 및 회수비용 등</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">이 계약에 따라 “홈쇼핑”이 “협력사”를 대신하여 고객 및 제3자에게 보상한 비용</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">7.</td>
+    <td style="text-align:justify">기타 “협력사”가 부담하여야 할 비용 등</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">이 계약에서 보류액은 다음 각 호의 경우에 “홈쇼핑”이 상품판매대금에서 지급을 보류할 수 있는 금액을 말한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">법원, 세무당국 등으로부터 지급정지요청, 가압류, 가처분, 추심 등의 결정이 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">수사기관의 고소 및 고발, 제3자로부터 지식재산권 등의 침해 주장 또는 보상청구가 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">제25조에 따라 상품의 하자를 보증하기 위한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">제31조의 제조물책임에 따른 손해를 배상하기 위하여 “홈쇼핑”과 “협력사”가 협의하여 지급을 보류하기로 한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">관련법령 등에 따라 “상품등”에 요구되는 각종 기준(안전, 위생, 표시/광고) 위반 또는 “상품등”의 품질, 성능 및 안전성 문제 등과 관련하여 상품구매 고객이 한국소비자원에 집단분쟁조정 신청, 소비자단체소송의 제기 등으로 대량교환 또는 환불 및 보상이 명백히 예상되는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">“협력사”가 공급한 “상품등”의 하자로 인해 언론보도, 방송 등을 통하여 “홈쇼핑”에 구매고객의 대량교환 및 환불, 보상요청이 명백히 예상되는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">7.</td>
+    <td style="text-align:justify">기타 이에 준하는 사정이 발생한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 “SCM시스템” 등을 통하여 사전에 합의한 기준에 따라 구매 고객의 교환, 반품, 환불요청 등에 대비하기 위하여 “협력사”에게 지급 예정인 상품대금에서 일정금액을 “A/S미정산금”으로 보류할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td colspan="2" style="text-align:justify">이 계약에 따른 차감액, 보류액, “A/S미정산금”을 포함하여 “협력사”가 “홈쇼핑”에게 지급할 금액이 “홈쇼핑”이 “협력사”에 지급할 지급예정대금보다 많은 경우, “협력사”는 그 차액을 익월 말일까지 “홈쇼핑”이 지정한 계좌에 현금으로 입금하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑥</td>
+    <td colspan="2" style="text-align:justify">제33조에 따라 이 계약이 해제 또는 해지될 경우 이 계약과 관련하여 해제 또는 해지의 시점까지 발생하여 이행기가 도래한 채무를 대등액에서 상계할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑦</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”이 “협력사”에 지급해야 할 대금과 관련하여 채권자가 누군지 알 수 없거나, 다수의 채권자의 청구가 경합할 경우, “홈쇼핑”은 해당금액을 법원에 공탁할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제24조 [공급원가 변동에 따른 공급 가격의 조정]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 계약 체결 이후 최저임금 인상, 원재료가격 상승 등으로 인해 납품하는 “상품등”의 공급원가가 변동되는 경우에는 다음 각 호 서류를 첨부하여 “홈쇼핑”에게 공급 가격 조정을 신청할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">공급 가격 조정 대상이 되는 “상품등”의 공급원가 변동, 공급조건 변화 등을 확인할 수 있는 서류</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">그 밖에 공급 가격 조정에 필요한 서류</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 제1항에 따른 신청이 있은 날부터 10일 안에 “협력사”와 협의를 개시하여야 하며, 정당한 사유 없이 협의를 거부하거나 게을리 하여서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">제2항에 따른 협의 결과 “홈쇼핑”과 “협력사”가 계약 내용 변경에 합의하는 경우 “홈쇼핑”은 계약 변경사항을 명시하고 양 당사자가 각각 서명 또는 기명날인한 서면을 “협력사”에게 주어야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑” 또는 “협력사”는 다음 각 호의 어느 하나에 해당하는 경우 대규모유통업거래 분쟁조정협의회에 조정을 신청할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">제1항에 따른 신청이 있은 날부터 30일 안에 “홈쇼핑”과 “협력사”가 합의에 도달하지 아니한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">제1항에 따른 신청으로 인한 협의개시 이후 “홈쇼핑” 또는 “협력사”가 협의 중단의 의사를 밝힌 경우 등 합의에 도달하지 못할 것이 명백히 예상되는 경우</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;font-size: 16px;"><b>제5절 하자보증 및 담보제공</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제25조 [하자보증]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">이 계약에 따라 “홈쇼핑”이 판매한 “상품등”의 하자와 관련하여 “협력사”는 품목별 소비자피해보상규정 등 제반 법규와 “협력사”의 품질보증서상의 규정 중 소비자에게 유리한 규정에 따라 A/S, 교환, 반품, 회수 등의 하자보증책임을 부담한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”가 공급한 상품에 무상 품질보증기간이 없는 경우에는 무상품질보증기간은 고객이 상품을 인도 받은 날로부터 1년으로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”가 공급한 “상품등”이 원재료, 제조과정 및 구조상의 문제로 안전상의 결함이 있어서 고객 또는 상품사용자의 생명, 신체에 위해를 초래할 수 있는 경우 “협력사”는 공급한 “상품등”을 전량 리콜(수리, 교환, 환불 등)하여야 하며 리콜에 따른 비용을 부담하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“협력사”가 공급한 상품에 제품상의 하자 또는 사용자의 안전상에 결함이 있는 경우 전량 리콜(수리, 교환, 환불 등)하여야 하며 협력사는 리콜에 따른 비용을 부담하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td style="text-align:justify">“홈쇼핑”은 하자보증기간 내에 “협력사”의 책임을 담보하기 위하여 하자보증금으로 “협력사”에게 지급할 결제 예정금액 중 일부 금액의 지급을 유보할 수 있다. 단, “협력사”가 하자담보책임을 이행하는데 충분한 담보(하자보증보험증권 포함)를 제공한 경우에는 그러하지 아니하다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑥</td>
+    <td style="text-align:justify">“협력사”의 하자담보책임은 이 계약이 종료된 이후에도 지속된다. 단 “홈쇼핑” 및 “협력사”가 “상품등”의 하자에 대한 책임을 완전히 면한 것이 명백한 경우 제4항에 따른 보류액의 잔액에 대하여 “협력사” 또는 “협력사”가 지정한 자에게 반환하여야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제26조 [물적 담보 제공]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”가 부도, 파산, 압류 등의 사유로 향후 정상적인 영업활동이나 하자보증을 하지 못하거나 향후 그러한 상황이 명백히 예상될 경우 “홈쇼핑”은 “협력사”에게 제25조에 따른 하자보증, 제28조 지식재산권 침해를 예방하기 위하여 상당한 물적 담보를 제공하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">이 계약에 따른 “협력사”의 의무이행과 관련하여 “홈쇼핑”은 이 계약체결 당시는 물론 계약기간 중에라도 “협력사”에게 별도의 물적 담보(계약이행보증보험증권 포함)를 요구할 수 있으며, 이 경우 “협력사”는 이에 응해야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">이 계약의 종료 후에도 “협력사”의 잔존채무가 있거나 본 조에 의한 물적 담보 제공의무가 소멸하지 않은 경우에는 “홈쇼핑”은 “협력사”가 제공한 담보에 대한 반환 내지 설정된 담보권의 말소요청을 거부할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;font-size: 16px;"><b>제6절 일반사항 및 기타</b></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제27조 [각종 불이익 제공 금지 등]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td colspan="3" style="text-align:justify">“홈쇼핑”은 “협력사”에게 다음 각 호의 어느 하나에 해당하는 행위를 해서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“협력사”의 “상품등”을 무상 또는 저가로 취득하거나 요구하는 등 부당한 이익을 취득하는 행위</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">거래관계를 자신만으로 한정하거나 다른 특정사업자와 거래하는 것을 강요 또는 방해하는 행위</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">상품원가, “협력사”가 다른 사업자에게 공급하는 “상품등”의 공급조건이나 판촉행사 조건 등 경영정보의 제공을 요구하는 행위</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">정당한 사유 없이 상품권이나 물품을 구입하도록 요구하는 행위</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">이 계약과 관련하여 인지한 “협력사”의 영업비밀이나 정보를 부당하게 이용하는 행위</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제28조 [지식재산권 등]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”는 “홈쇼핑”에 “상품등”을 공급함에 있어 공급한 “상품등” 또는 관련 자료(사전제작영상물 등 상품관련 영상 포함)가 저작권, 특허권, 실용신안권, 디자인권, 상표권, 초상권 기타 지식재산권(이하 “지식재산권등”이라 한다)을 침해하는 것이 아니어야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">제1항의 지식재산권 침해와 관련하여 제3자로부터 민ㆍ형사상의 법적 분쟁이 제기된 경우 “협력사”는 자신의 책임과 부담으로 처리하여 “홈쇼핑”을 면책시키고, 이로 인하여 “홈쇼핑”에게 발생한 손해를 배상한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”가 공급한 “상품등”과 관련하여 “홈쇼핑”이 제작 방송하는 영상물 및 “상품판매채널”에 게시되는 제반 웹 제작물 등의 저작권은 “홈쇼핑”에게 있으며 “협력사”는 “홈쇼핑”이 서면으로 허락한 경우를 제외하고 해당 저작물을 사업목적이나 그 밖의 목적으로 사용해서는 아니 된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“협력사”가 제공한 사전제작영상물 등 상품관련 영상에 대하여 “홈쇼핑”은 상품판매의 목적 범위 내에서 수정, 변경, 삭제, 변형할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제29조 [상표관련특약]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”는 “홈쇼핑”에게 “협력사”가 직접 생산하거나 수입한 상품을 공급하는 것을 원칙으로 한다. 다만, “홈쇼핑”의 사전 동의가 있을 경우 제3자가 생산하거나 수입한 상품을 공급할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”는 “홈쇼핑”의 상표 또는 “홈쇼핑”이 제조, 설계 및 아이디어를 제공한 “상품등”에 대하여, “홈쇼핑”의 서면 동의 없이 제3자에게 임의로 판매할 수 없다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“협력사”는 이 계약에 따라 상품을 공급하면서, 자신이 직접 생산하거나 수입하지 않은 상품에 상표라벨을 교체하여 납품할 수는 없다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“협력사”는 납품하는 “상품등”에 표시하는 상표를 상표권자의 권리에 따라 적법하게 표시하며 “상품등”을 구매한 고객 간에 차별이 없도록 하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td style="text-align:justify">“협력사”는 “홈쇼핑”에게 공급하는 상품이 생산, 제조 혹은 가공된 것으로 인정되는 국가(원산지)를 표시하는 경우 「대외무역법」 등 관련 법령에서 정한 방법에 따라 표시하여야 하고, 상품 제조자의 회사명, 주소 및 주문자상표부착(OEM)방식 등 원산지 관련 정보를 정확히 표시하여 고객이 원산지의 정보를 올바르게 알 수 있도록 하여야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제30조 [영업비밀 준수]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 이 계약의 체결 또는 이행과정에서 알게 된 상대방의 업무상의 영업비밀을 제3자에게 누설, 제공하지 아니한다. 다만, 다른 법령에 근거한 정부 또는 공공기관의 요청에 따르거나 법원의 판결에 따라 누설, 제공하는 경우 및 공지의 사실인 경우는 예외로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">양 당사자 중 영업비밀 준수를 위반하는 일방은 「부정경쟁방지 및 영업비밀보호에 관한 법률」 또는 「정보통신망 이용촉진 등에 관한 법률」 등에 의거한 형사상 책임과 불법행위에 의한 손해배상책임 등 민사상의 책임을 부담하는 것으로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">본 조의 의무는 이 계약의 유효기간 동안은 물론 해지, 만료, 기타 사유로 인한 계약 종료 이후에도 계속적으로 유효하다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제31조 [제조물책임]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">“협력사”가 납품하는 상품이 「제조물책임법」상 결함으로 인하여 “홈쇼핑”의 고객 또는 제3자에게 생명, 신체 또는 재산상 손해를 입힌 경우, “협력사”는 「제조물책임법」에 따라 “홈쇼핑”의 고객 또는 제3자가 입은 손해를 배상한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제32조 [손해배상]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">“홈쇼핑” 또는 “협력사”가 계약 또는 개별계약을 위반하여 상대방에게 손해를 가한 경우, 그 책임 있는 당사자는 이로 인해 상대방이 입은 손해를 배상한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제33조 [계약의 해제·해지]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”과 “협력사”는 다음 각 호의 하나에 해당하는 사유가 발생하는 경우 상대방에 대하여 그 의사를 서면으로 통지함으로써 이 계약을 해지하거나 상품공급계약 등 개별 계약을 해제할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“홈쇼핑” 또는 “협력사”가 발행한 어음·수표가 지급거절되거나, “홈쇼핑” 또는 “협력사” 자신에 의한 회생·파산 절차의 신청이 있거나, 채권자의 신청에 의해 동 절차가 개시된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“홈쇼핑” 또는 “협력사”의 주요재산(이 계약에 따라 “협력사”가 “홈쇼핑”에 대하여 가지는 공급대금 청구채권을 포함한다)에 대하여 강제경매 등이 실행되어 더 이상의 이 계약 이행이 곤란하게 된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">이 계약에 명시된 브랜드나 거래품목의 생산이 중단 또는 종료된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">“협력사”가 납품한 상품이 관계법령에 저촉되거나, “협력사”가 瓚抉굵볍퓽悶�체결한 라이선스계약이 종료되어 해당 상품의 공급 또는 판매가 불가능하게 된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">“협력사”가 정당한 이유 없이 공급기일까지 또는 공급기일 이후 상당한 기간 내에 상품을 공급하지 못하거나 공급할 의사가 없음이 명백한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">기타 사회통념상 이 계약의 목적을 달성할 수 없는 중대한 사유가 발생한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑” 또는 “협력사”가 계약의 중요한 사항을 위반한 경우 14일 이상의 기간을 정하여 상대방에게 대한 서면통보로써 그 시정을 요구하고, 이 기간 내에 시정이 이루어지지 않으면 이 계약을 해제 또는 해지할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">제1항 및 제2항에 해당하지 않는 부득이한 사유로 어느 일방이 이 계약을 해지하려는 경우에는 해지 3개월 전까지 상대방에게 그 사유를 서면으로 통지하여야 해지할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td colspan="2" style="text-align:justify">계약이 해지되었을 경우에도 “협력사”는 해지통보 이전에 이루어진 주문에 대하여는 고객에게 대상 “상품등”의 배송/제공을 완료하여야 하며, “홈쇼핑”은 “협력사”에게 대상 “상품등”에 관한 대금의 정산을 완료하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td colspan="2" style="text-align:justify">이 조에 의하여 계약이 해제 또는 해지될 경우, 이에 관하여 책임 있는 당사자는 상대방에 대하여 계약 종료로 인한 손해를 배상하여야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제34조 [고객보호정책]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“협력사”는 이 계약과 관련하여 지득한 고객정보(이하 “고객정보”라 한다)를 이 계약의 목적달성을 위해서만 사용해야 하며, 이 계약에서 정한 목적 외 또는 관계법령에서 허용하는 범위를 초과하여 “고객정보”를 사용(제3자에게 양도, 위탁, 누설 등)할 수 없다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑” 및 “협력사”는 “고객정보”보호정책을 수립하고, “고객정보”보호시스템을 구축하는 등의 “고객정보”의 보호에 필요한 제반 조치를 마련하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">제2항의 “고객정보”의 보호를 위한 제반 조치에는 관계법령에서 제시한 기술적이고 관리적인 보호정책(화면 인쇄 및 복사기능차단, 이동식 저장장치 사용금지 등) 등이 포함되어야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">“협력사”는 자신의 임직원, 대리인 및 위탁 받은 자가 “고객정보”보호의무를 준수 할 수 있도록 필요한 교육을 실시하여야 하고, 임직원들에 대한 일체의 관리책임을 부담하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑤</td>
+    <td style="text-align:justify">“협력사”는 이 계약이 종료 또는 해지되거나 이 계약에 따른 목적을 달성한 경우, 일체의 “고객정보”를 즉시 반환 또는 폐기, 삭제하여야 한다. 단 법률상 거래기록 및 그와 관련된 개인정보를 보존해야 하는 경우는 예외로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑥</td>
+    <td style="text-align:justify">“협력사”는 이 계약에 따른 업무 수행 중 “고객정보”의 유출, 침해 등의 “고객정보”와 관련된 일체의 사고가 발생한 경우 즉시 “홈쇼핑”에 이를 통보하고, 피해를 최소화하기 위해 필요한 조치를 신속하게 취하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑦</td>
+    <td style="text-align:justify">“홈쇼핑”은 “협력사”의 “고객정보”보호의무 이행여부를 판단하기 위해 필요한 범위 내에서 조사를 요청할 수 있으며, “협력사”는 정당한 사유가 없는 한 성실히 이에 협조해야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑧</td>
+    <td style="text-align:justify">“협력사”가 “고객정보”보호의무 사항을 위반하여 “홈쇼핑”에 민사, 형사 또는 행정상 손해 등을 입힌 경우 “협력사”는 그 손해의 전부를 배상하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">⑨</td>
+    <td style="text-align:justify">이 조에 따른 의무는 이 계약이 해지 또는 종료된 경우에도 유효하다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제35조 [유효기간]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">이 계약의 유효기간은 <span><input type="text" name="cont_syear_a1" style="vertical-align: middle;" size="4" maxlength="4" class="input_r cont_syear_a1" hname="유효기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>년 
+       <span><input type="text" name="cont_smonth_a1" style="vertical-align: middle;" size="2" maxlength="2" class="input_r cont_smonth_a1" hname="유효기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>월 
+       <span><input type="text" name="cont_sday_a1" style="vertical-align: middle;" size="2" maxlength="2" class="input_r cont_sday_a1" hname="유효기간" required="Y" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>일로부터 해당연도 말일까지로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“홈쇼핑” 또는 “협력사”가 계약기간의 만료일로부터 30일 전까지 서면으로 상대방에게 계약조건의 변경이나 갱신거절 등 계약의 갱신과 관련한 별도의 의사표시를 하지 아니하는 경우, 이 계약은 종전과 동일한 조건으로 1년씩 자동 연장되는 것으로 본다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“홈쇼핑”은 “협력사”가 “협력사”의 납품업자 간 거래에 있어서 불공정거래행위가 지속적으로 발생하고 있음이 객관적으로 확인되는 경우 “협력사”와의 계약갱신을 거절할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제36조 [통지의무]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">“협력사”는 다음 각 호에 해당하는 사유가 발생하는 경우에는 지체 없이 관련서류를 첨부하여 “홈쇼핑”에 서면(「전자거래기본법」 제2조제1호의 전자문서 및 이메일 포함. 이하 이 조에서 같다)으로 통지하여야 한다. “협력사”는 다음 각 호에 해당하는 사유가 발생할 것으로 예상되는 경우에도 사전에 “홈쇼핑”에게 서면으로 통지하여 상호간 세금계산서 발행 등의 절차수행에 차질이 없도록 하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">“협력사”의 합병, 분할 또는 해산절차의 개시가 있거나 최대주주 또는 대표이사의 변경이 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">“협력사”의 파산 또는 청산 절차의 신청, 회생절차의 개시 신청이 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“협력사”가 발행 또는 지급한 어음이 어음교환소에서 거래정지 처분이 있거나 지급이 정지된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">“협력사”의 주소, 상호가 변경된 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">개인사업자가 법인사업자로 변경되거나 그 반대로 변경되는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">6.</td>
+    <td style="text-align:justify">“협력사”의 주요자산 또는 사업을 양도하는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">7.</td>
+    <td style="text-align:justify">기타 이 계약 등의 이행에 중대한 영향을 줄 수 있는 변경사항이 발생될 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">“홈쇼핑”은 다음 각 호에 해당하는 사유가 발생할 경우 지체 없이 관련서류를 첨부하여 서면으로 “협력사”에 통지하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">이 계약 등에 따라 “협력사”가 판매한 상품 또는 “광고내용”과 관련하여 제3자로부터 지식재산권 침해 등의 경고가 접수되거나 “상품등”에 판매의 중단사유가 발생한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">이 계약에 따라 “협력사”가 판매한 “상품등”과 관련하여 구매고객으로부터 클레임이 접수되는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“홈쇼핑”이 “협력사”에 지급할 정산대금에 대해 제3자, 법원 또는 세무당국 등으로부터 가압류, 가처분 또는 추심 등의 명령 또는 결정의 통지가 있는 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">4.</td>
+    <td style="text-align:justify">이 계약 체결 후 “홈쇼핑”의 고객 클레임 처리기준의 주요내용이 변경되는 경우. 단 이 경우 협력사에 대한 통지는 그 변경내용을 “SCM시스템”에 공지하는 방법으로 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">5.</td>
+    <td style="text-align:justify">기타 “홈쇼핑”이 계약에 따른 의무를 이행함에 있어 중대한 변경을 초래할 수 있는 사유가 발생한 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td colspan="2" style="text-align:justify">이 계약과 관련한 모든 통지는 각 대표자에게 서면으로 하는 것을 원칙으로 하되, 각 대표자에게 권한을 위임받은 실무담당자에게 할 수 있으며, 통지가 상대방에게 도달하여야 그 효력이 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제37조 [해석 및 일부 무효]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">이 계약에서 정하지 않은 사항은 이 계약의 취지에 따라 “협력사”와 “홈쇼핑”이 상호 협의하여 정한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">이 계약의 일부 조항이 무효인 경우에도 다른 조항은 유효하게 존속한다. 다만, 무효조항으로 인하여 당사자 일방에 불합리하게 부당한 부담을 주게 되거나, 이 계약의 취지에 어긋나게 된 경우에는 당사자들은 이 계약을 합리적으로 수정하도록 노력한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제38조 [조사협력]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">“협력사”가 계약 또는 계약조건을 위반하여 “홈쇼핑”의 명예와 신용에 중대한 손상을 초래할 우려가 있는 경우 “홈쇼핑”은 “협력사”에게 필요한 조사를 요청할 수 있으며, 조사대상, 내용, 범위에 관하여 공정거래 관련 법령 위반 등 특별한 사유가 없는 한 “협력사”는 이에 협조해야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제39조 [분쟁해결 및 재판관할]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">이 계약에서 정하지 아니한 사항 또는 이 계약의 해석과 이행에 대하여 양 당사자 사이에 의견이 다른 경우에는 양당사자의 합의된 의사에 따르고, 양 당사자 사이에 관련한 합의가 이루어지지 않은 경우에는 일반 상관례 및 관련 법령에 따른다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">제1항에 의해서도 이 계약과 관련한 분쟁이 해결되지 아니한 경우에는 「대규모유통업에서의 거래 공정화에 관한 법률」 제25조제1항에 따라 한국공정거래 조정원의 대규모유통업거래 분쟁조정협의회에 조정을 신청할 수 있다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">제1항에 의해서도 이 계약과 관련된 분쟁이 해결되지 않는 경우, 서울중앙지방법원을 제1심의 전속적 합의 관할법원으로 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제40조 [특약사항]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 어떠한 경우도 사전동의 없이 이 계약과 관련한 일체의 권리 및 의무를 제3자에게 양도, 처분하거나 담보로 제공하지 않는다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“협력사”는 “SCM시스템” 전담직원을 두고 “홈쇼핑”이 제공하는 관련 교육을 이수하도록 하여야 하며, 해당직원이 계약 등에서 정한 입력·확인을 적시에 수행할 있도록 필요한 지원 및 조치를 성실히 수행하여야 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제41조[계약의 효력]</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“홈쇼핑”과 “협력사”는 이 계약을 체결하기 전에 충분한 협의를 거쳤으며, 계약 내용을 모두 숙지하였다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">계약은 “협력사”와 “홈쇼핑”간의 거래에 있어 기본적인 사항을 정한 것으로 이 계약의 체결일로부터 효력을 가진다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">이 계약서에 기재된 내용만이 “홈쇼핑”과 “협력사” 사이에 합의된 내용이며, 이 이외의 내용에 대한 당사자 간의 그 어떠한 구두 합의도 당사자를 구속하지 아니한다. 다만, 이 계약에서 이미 예정된 별도의 서면약정은 이 계약에 우선하여 적용된다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">④</td>
+    <td style="text-align:justify">이 계약서의 내용은 “홈쇼핑”과 “협력사” 사이의 서면 합의에 의해서만 변경되거나 수정될 수 있으며, 그 변경 및 수정은 “홈쇼핑”과 “협력사”가 해당 서면에 서명 또는 기명날인함과 동시에 그 효력을 발생한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:justify">이 계약의 진정한 성립을 증명하기 위하여, “홈쇼핑”과 “협력사”의 대표자 또는 그 권한을 위임받은 임직원이 (전자)서명 또는 기명날인 한 후 각 1통씩 보관한다.</td>
+</tr>
+</table>
+</p>
+
+
+
+
+<p><br> </p>
+<table align="right" border="0" cellpadding="0" cellspacing="0" width="100%"> 
+ <tbody>
+  <tr>
+   <td align="center"><span class="cont_year_area"> </span>년 <span class="cont_month_area"> </span>월 <span class="cont_day_area"> </span>일</td>
+  </tr> 
+ </tbody>
+</table> 
+<br> 
+<br>
+
+ 
+<p></p> 
+<p> </p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+ <tbody>
+  <tr> 
+   <td valign="top" width="48%"> 
+    <table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+     <tbody>
+      <tr> 
+       <td colspan="3" align="center">협 력 사</td> 
+      </tr> 
+      <tr> 
+       <td width="30" valign="top"></td> 
+       <td width="98">상<font color="white">...............</font>호 : </td> 
+       <td><span class="cust_name_area_2"></span></td> 
+      </tr> 
+      <tr> 
+       <td></td> 
+       <td valign="top">사업자등록번호 : </td> 
+       <td><span id="vendcd1_2" class="vendcd1_2"></span>-<span id="vendcd2_2" class="vendcd2_2"></span>-<span id="vendcd3_2" class="vendcd3_2"></span></td> 
+      </tr> 
+      <tr> 
+       <td></td> 
+       <td valign="top">주<font color="white">..............</font> 소 : </td> 
+       <td><span class="address_area_2"></span></td> 
+      </tr> 
+      <tr> 
+       <td></td> 
+       <td>대<font color="white">......</font>표<font color="white">......</font>자 : </td> 
+       <td><span class="boss_name_area_2"></span><font color="white">..</font>(인)</td> 
+      </tr> 
+     </tbody>
+    </table> </td> 
+   <td width="1%"> </td>
+   <td valign="top" width="51%"> 
+    <table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+     <tbody>
+      <tr> 
+       <td colspan="3" align="center">홈쇼핑</td> 
+      </tr> 
+      <tr> 
+       <td width="30" valign="top"></td> 
+       <td width="98">상<font color="white">...............</font>호 : </td> 
+       <td><span class="cust_name_area_1">(주)쇼핑엔티</span></td> 
+      </tr> 
+      <tr> 
+       <td></td> 
+       <td valign="top">사업자등록번호 : </td> 
+       <td><span class="vendcd1_1">117</span>-<span class="vendcd2_1">81</span>-<span class="vendcd3_1">54803</span></td> 
+      </tr> 
+      <tr> 
+       <td></td> 
+       <td valign="top">주<font color="white">..............</font> 소 : </td> 
+       <td><span class="address_area_1">서울특별시 중구 충무로2가 64-5 신일빌딩 6층</span></td> 
+      </tr> 
+      <tr> 
+       <td></td> 
+       <td>대<font color="white">......</font>표<font color="white">......</font>자 : </td> 
+       <td><span class="boss_name_area_1">성기현</span><font color="white">..</font>(인)</td> 
+      </tr> 
+     </tbody>
+    </table> </td> 
+  </tr> 
+ </tbody>
+</table> 
+<p></p>  

@@ -1,0 +1,326 @@
+<script type="text/javascript">  
+    function chg_sh_area(gubun) {
+        var hide_area = document.getElementsByClassName("sh_area");
+        for (var i = 0; i < hide_area.length; i++) {
+            hide_area[i].style.display = "none";
+            var required = hide_area[i].getElementsByTagName("input");
+            for (var j = 0 ; j < required.length ; j++) {
+                required[j].removeAttribute("required");
+            }
+        }
+
+        var show_area = document.getElementsByClassName("sh_area_" + gubun);
+        for (var i = 0; i < show_area.length; i++) {
+            show_area[i].style.display = "";
+            var required = show_area[i].getElementsByTagName("input");
+            for (var j = 0 ; j < required.length ; j++) {
+                if (required[j].getAttribute('pdf') == null || required[j].getAttribute('pdf') != "no:pdf_com_1") {
+                    required[j].setAttribute("required", "Y");
+                }
+            }
+        }
+    } 
+</script>
+ 
+<input type="hidden" name="recv_write_save"> 
+<p>
+<table width="100%" border="0" cellpadding="3" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="font-size:22pt" align="center"><b>장 비 판 매 계 약 서</b></td> 
+</tr>
+</table>
+</p>
+ 
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col></colgroup>
+    <tr>
+        <td align="right"><label><span id="pdf_no_2" style="background-color: #ccff99;display:inline-block;" class="no_pdf"><input type="checkbox" onchange="this.checked ? chg_sh_area('2') : chg_sh_area('1')" pdf="no:pdf_no_2">연대보증인 추가</span></label></td>
+    </tr> 
+</table>
+</p>
+ 
+
+<p>
+<table width="100%" border="0" cellpadding="3" cellspacing="0" style="margin-top: 20px;">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><span class="cust_name_area_2">__</span> (이하 “구매자”라 한다)와 <span class="cust_name_area_1">KIS정보통신주식회사</span>(이하 “판매자”라 한다)는 신용카드 및 현금영수증 거래승인 서비스 등의 이용을 위한 장비 판매에 관하여 <span class="sh_area sh_area_2" style="display: none;">합의하고, 연대보증인 <span><input type="text" name="op_name" hname="연대보증인" class="input_r" style="width: 100px;" onblur="replaceInput(this, this.name, document.all.__html);" errfunc="tabView(0)"></span>은(는) “구매자”가 이하의 계약에 따라 부담하는 채무를 연대보증하기로</span> 합의함에 따라 다음과 같은 내용으로 계약(이하 “본 계약”)을 체결한다.</td>
+</tr> 
+</table>
+</p>
+
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제1조 (계약의 목적)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">본 계약은 “KIS”의 “가맹점”에서 발생하는 신용카드 및 현금영수증 거래승인 서비스 등의 제공과 관련하여 사용되는 장비의 판매에 대한 세부 내역을 정하는 것을 목적으로 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제2조 (판매 방식 및 내역)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“판매자”는 별첨1이 정하는 바에 따라 장비를 “구매자”에게 할부 판매한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">판매방식, 가격 및 수량은 양 당사자간 합의에 의해 변경될 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="3" style="text-align:justify"><b>제3조 (대금지급)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td style="text-align:justify">“구매자”는 “판매자”에게 제2조에서 정한 장비의 구매 대가로 ￦<span><input type="text" name="cont_total" class="input_r" style="text-align:right" size="12" onKeyPress="num_only()" onKeyDown="num_only()" onKeyUp="fnMakeComma();" onblur="replaceInput(this, this.name, document.all.__html);" hname="대금지급" required="Y"  errfunc="tabView(0)"/></span>원(VAT포함)을 지급한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td style="text-align:justify">“구매자”는 별첨1의 대금납일일정에 맞추어 대금을 납부하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">③</td>
+    <td style="text-align:justify">“판매자”는 전항의 금액을 “구매자”에게 지급하는 수수료 기타 채권에서 차감할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제4조 (관계법령의 준수)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">양 당사자는 여신전문금융업법, 하위 법령 및 기타 규정을 준수한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col width="20px"><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="4" style="text-align:justify"><b>제5조 (기한의 이익)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">①</td>
+    <td colspan="2" style="text-align:justify">아래의 각 호에서 명시한 사항이 발생한 경우 “구매자”는 대금 납입과 관련된 기한의 이익을 상실하고 잔여 대금을 즉시 변제하여야 한다.</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">1.</td>
+    <td style="text-align:justify">구매자에 대한 가압류, 압류 명령이나 체납처분 압류통지가 발송된 때 또는 기타의 방법에 의한 강제집행개시나 체납처분 착수가 있을 때</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">2.</td>
+    <td style="text-align:justify">파산, 화의결정, 회사정리절차개시의 신청이 있거나, 채무 불이행자 명부 등재 신청이 있을 때</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td valign="top">3.</td>
+    <td style="text-align:justify">“구매자”가 정당한 사유 없이 제3조 제2항의 대금 납부를 지연하여 “판매자”가 그 시정을 요구한 뒤, 그로부터 7일 내에 시정이 이루어지지 않을 경우</td>
+</tr>
+<tr>
+    <td></td>
+    <td valign="top">②</td>
+    <td colspan="2" style="text-align:justify">전항에 따른 기한의 이익 상실은 손해배상의 청구에 영향을 주지 아니한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제6조 (손해배상)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">“판매자”는 “구매자”가 “본 계약”을 위반하여 발생한 손해 전부에 대한 배상을 청구할 수 있다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제7조 (계약의 해석)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">본 계약의 해석과 관련하여 양 당사자간 이의가 있을 때에는 상호 협의하여 결정하는 것을 원칙으로 한다. 상호 협의가 되지 않을 경우에는 상 관습과 관련 법규에 따른다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col width="20px"><col></colgroup>
+<tr>
+    <td colspan="2" style="text-align:justify"><b>제8조 (관할 법원)</b></td>
+</tr>
+<tr>
+    <td></td>
+    <td style="text-align:justify">본 계약과 관련한 법적 분쟁이 발생할 경우 제1심의 관할 법원은 서울남부지방법원으로 한다.</td>
+</tr>
+</table>
+</p>
+
+<p>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:justify">본 계약의 유효함을 증명하기 위하여 본 계약서 2부를 작성하여 서명 날인 후, 각각 1부씩 보관한다.</td>
+</tr> 
+</table>
+</p>
+
+
+
+<p>
+<table width="100%" border="0" cellpadding="3" cellspacing="0" style="margin-top: 30px;">
+<colgroup><col></colgroup>
+<tr>
+    <td style="text-align:center;"><span class="cont_year_area">__</span>년 <span class="cont_month_area">__</span>월 <span class="cont_day_area">__</span>일</td>
+</tr> 
+</table>
+</p>
+ 
+<pd4ml:page.break/>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0"> 
+<colgroup><col width="20px"><col width="90px"><col></colgroup> 
+<tbody>
+<tr> 
+    <td valign="top" colspan="3"><b>"구매자"</b></td>  
+</tr> 
+<tr> 
+<td></td> 
+    <td valign="top">주<font color="white">ㅇㅇㅇ</font>소 :</td> 
+    <td><span class="address_area_2"></span></td> 
+</tr>  
+<tr> 
+<td></td> 
+    <td valign="top">상<font color="white">ㅇㅇㅇ</font>호 :</td> 
+    <td><span class="cust_name_area_2"></span></td> 
+</tr> 
+<tr> 
+    <td></td> 
+    <td valign="top">대<font color="white">ㅇ</font>표<font color="white">ㅇ</font>자 :</td> 
+    <td><span class="boss_name_area_2"></span></td> 
+</tr> 
+</tbody>
+</table> 
+</p> 
+
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0"  >  
+<colgroup><col width="20px"><col width="90px"><col></colgroup> 
+<tbody>
+<tr> 
+    <td valign="top" colspan="3"><b>"판매자"</b></td>  
+</tr> 
+<tr> 
+<td></td> 
+    <td valign="top">주<font color="white">ㅇㅇㅇ</font>소 :</td> 
+    <td><span class="address_area_1"></span></td> 
+</tr>  
+<tr> 
+<td></td> 
+    <td valign="top">상<font color="white">ㅇㅇㅇ</font>호 :</td> 
+    <td><span class="cust_name_area_1"></span></td> 
+</tr>  
+<tr> 
+    <td></td> 
+    <td valign="top">대<font color="white">ㅇ</font>표<font color="white">ㅇ</font>자 :</td> 
+    <td><span class="boss_name_area_1"></span></td> 
+</tr> 
+</tbody>
+</table> 
+</p> 
+ 
+
+<div class="sh_area sh_area_2" style="display: none;"> 
+     <div class="sign_area" id="sign_area_2_1" style="position:relative;width:100px;height:50px;z-index:15;left:200px;top:130px;" hname="연대보증인 서명" errfunc="tabDisplay(0)"  >
+        <div style="text-align:center;vertical-align:middle;">
+            클릭하여 계약서에 서명 하세요.
+        </div>
+    </div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <colgroup><col width="20px"><col width="90px"><col></colgroup>
+        <tr>
+            <td colspan="2"><b>“연대보증인”</b></td>
+            <td><span id="pdf_no_3" style="background-color: #ccff99;display:inline-block;" class="no_pdf"><input type="radio" name="op_sign_type_1" value="10" checked pdf="no:pdf_no_3">공인인증서명 <input type="radio" name="op_sign_type_1" value="20" pdf="no:pdf_no_3">휴대폰서명 </span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>주<font style="color:#ffffff">ㅇㅇㅇ</font>소 : </td> 
+            <td><span><input type="text" name="op_address_1" hname="주소" class='input_r' style="width: 50%" errfunc="tabView(0)"></span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>생 년 월 일 : </td> 
+            <td><span><input type="text" name="op_birthday_1" hname="생년월일" class='input_r' size="6" maxlength="6" onChange="replaceInput(this, this.name, document.all.__html)" onkeydown="num_only()" onkeypress="num_only()" style="ime-mode:disabled" errfunc="tabView(0)"></span> - <span><input type="text" name="op_gender_1" hname="성별" class='input_r' size="1" maxlength="1" onChange="replaceInput(this, this.name, document.all.__html)" onkeydown="num_only()" onkeypress="num_only()" style="ime-mode:disabled" errfunc="tabView(0)"></span>****** <span id="pdf_com_1" style="margin-left:10px" class="no_pdf"><input type="text" style="width:0" pdf="no:pdf_com_1">(생년월일, 성별까지 필수)</span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>휴 대 전 화 : </td> 
+            <td><span><input type="text" name="op_hp1_1" hname="휴대전화" class='input_r' style="width: 26px" maxlength="3" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>
+            -<span><input type="text" name="op_hp2_1" hname="휴대전화" class='input_r' style="width: 35px" maxlength="4" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span>
+            <span><input type="text" name="op_hp3_1" hname="휴대전화" class='input_r' style="width: 35px" maxlength="4" onkeydown="num_only()" onkeypress="num_only()" errfunc="tabView(0)"></span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>성<font style="color:#ffffff">ㅇㅇㅇ</font>명 :</td> 
+            <td><span><input type="text" name="op_member_name_1" hname="성명" class='input_r op_name' style="width: 10%" errfunc="tabView(0)"></span></td>
+        </tr>
+        <tr id="pdf_email_1" style="background-color:#ccff99;">
+            <td></td>
+            <td>이<font style="color:#ccff99">ㅇ</font>메<font style="color:#ccff99">ㅇ</font>일 :</td> 
+            <td><input type="text" name="op_email_1" class='input_r' pdf="no:pdf_email_1" hname="연대보증인 이메일" option="email" style="width: 35%" errfunc="tabView(0)"></span></td>
+        </tr>
+    </table>
+     
+    <p>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <colgroup><col></colgroup>
+    <tr>
+        <td style="text-align:justify"><label><span><input name="chk_all" class="input_r" type="checkbox"  value="Y" hname="연대보증" errfunc="tabView(0)" writable="Y"></span> <b>“연대보증인” 본인은 본 계약에 따라 “구매자”가 부담하는 일체의 채무에 대하여 “구매자”와 연대하여 책임을 부담함을 이해하고 날인하였습니다.</b></label></td>
+    </tr>
+    </table>
+    </p>
+     
+</div>
