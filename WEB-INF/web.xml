@@ -18,7 +18,7 @@
 	<servlet>
 		<servlet-name>ConfigServlet</servlet-name>
 		<servlet-class>nicelib.util.Config</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 
 	<servlet>
@@ -50,6 +50,13 @@
 		<servlet-name>ApprovalReceiver</servlet-name>
 		<url-pattern>/ApprovalReceiver</url-pattern>
 	</servlet-mapping>
+	
+	<resource-ref>
+	  <description>OracleDatasource</description>
+	  <res-ref-name>jdbc/econt</res-ref-name>
+	  <res-type>javax.sql.DataSource</res-type>
+	  <res-auth>Container</res-auth>
+	</resource-ref>
 	
 	<!-- Quartz -->
 	<context-param>

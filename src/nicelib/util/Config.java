@@ -30,7 +30,7 @@ public class Config extends GenericServlet {
 	private static String approvalCreateServer = Startup.conf.getString("approval.createServer");
 	private static String approvalSystemCd = Startup.conf.getString("approval.systemCd");
 	private static String secretId = "nicednb-23ywx-20x05-s7399";
-	private static String was = "weblogic";
+	private static String was = "tomcat";
 	private static String encoding = "UTF-8";
 	private static Hashtable data = new Hashtable();
 
@@ -65,6 +65,7 @@ public class Config extends GenericServlet {
 		if (data.containsKey("approvalCreateSystem")) approvalCreateSystem = get("approvalCreateSystem");
 		if (data.containsKey("approvalCreateServer")) approvalCreateServer = get("approvalCreateServer");
 		if (data.containsKey("approvalSystemCd")) approvalSystemCd = get("approvalSystemCd");
+		
 	}
 
 	public void service(ServletRequest req, ServletResponse res) throws ServletException {

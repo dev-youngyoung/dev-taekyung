@@ -89,9 +89,14 @@ public class DB {
 			Context ctx = null;
 			try {
 				ctx = new InitialContext();
+
 				if("resin".equals(was) || "tomcat".equals(was)) {
-					//ds = (DataSource)ctx.lookup("java:comp/env/" + jndi);
-					ds = (DataSource)ctx.lookup(jndi);
+					
+					ctx  = (Context)ctx.lookup("java:/comp/env");
+					ds = (DataSource)ctx.lookup("jdbc/econt");
+					
+//					ds = (DataSource)ctx.lookup("java:comp/env/" + jndi);
+//					ds = (DataSource)ctx.lookup(jndi);
 				} else {
 					ds = (DataSource)ctx.lookup(jndi);
 				}
@@ -111,7 +116,6 @@ public class DB {
 				setError(e.getMessage());
 			}
 		}
-		
 		return conn;
 	}
 	
